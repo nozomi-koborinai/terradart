@@ -48,7 +48,7 @@ final class ApigeeAnalyticsStack extends Stack {
         orgId: .literal(orgId),
         displayName: .literal('Analytics GCS export'),
         targetType: .literal(.gcs),
-        datastoreConfig: ApigeeDatastoreDatastoreConfig(
+        datastoreConfig: ApigeeDatastoreConfig(
           projectId: .literal(projectId),
           bucketName: .literal('$projectId-apigee-analytics'),
           path: .literal('analytics'),

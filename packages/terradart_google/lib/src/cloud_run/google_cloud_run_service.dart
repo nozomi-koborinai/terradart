@@ -38,7 +38,7 @@ final class CloudRunServiceTemplate {
 
   final CloudRunServiceTemplateMetadata? metadata;
 
-  final CloudRunServiceTemplateSpec? spec;
+  final CloudRunServiceSpec? spec;
 
   Map<String, Object?> encode() => {
     'metadata': ?metadata?.encode(),
@@ -76,8 +76,8 @@ final class CloudRunServiceTemplateMetadata {
 /// Typed helper for the `template.spec` block of
 /// `google_cloud_run_service` (derived from provider schema).
 @immutable
-final class CloudRunServiceTemplateSpec {
-  const CloudRunServiceTemplateSpec({
+final class CloudRunServiceSpec {
+  const CloudRunServiceSpec({
     this.containerConcurrency,
     this.nodeSelector,
     this.serviceAccountName,
@@ -94,9 +94,9 @@ final class CloudRunServiceTemplateSpec {
 
   final TfArg<num>? timeoutSeconds;
 
-  final List<CloudRunServiceTemplateSpecContainers>? containers;
+  final List<CloudRunServiceContainers>? containers;
 
-  final List<CloudRunServiceTemplateSpecVolumes>? volumes;
+  final List<CloudRunServiceVolumes>? volumes;
 
   Map<String, Object?> encode() => {
     'container_concurrency': ?containerConcurrency?.toTfJson(),
@@ -112,8 +112,8 @@ final class CloudRunServiceTemplateSpec {
 /// Typed helper for the `template.spec.containers` block of
 /// `google_cloud_run_service` (derived from provider schema).
 @immutable
-final class CloudRunServiceTemplateSpecContainers {
-  const CloudRunServiceTemplateSpecContainers({
+final class CloudRunServiceContainers {
+  const CloudRunServiceContainers({
     this.args,
     this.command,
     required this.image,
@@ -142,21 +142,21 @@ final class CloudRunServiceTemplateSpecContainers {
 
   final TfArg<String>? workingDir;
 
-  final List<CloudRunServiceTemplateSpecContainersEnv>? env;
+  final List<CloudRunServiceEnv>? env;
 
-  final List<CloudRunServiceTemplateSpecContainersEnvFrom>? envFrom;
+  final List<CloudRunServiceEnvFrom>? envFrom;
 
-  final CloudRunServiceTemplateSpecContainersLivenessProbe? livenessProbe;
+  final CloudRunServiceLivenessProbe? livenessProbe;
 
-  final List<CloudRunServiceTemplateSpecContainersPorts>? ports;
+  final List<CloudRunServicePorts>? ports;
 
-  final CloudRunServiceTemplateSpecContainersReadinessProbe? readinessProbe;
+  final CloudRunServiceReadinessProbe? readinessProbe;
 
-  final CloudRunServiceTemplateSpecContainersResources? resources;
+  final CloudRunServiceResources? resources;
 
-  final CloudRunServiceTemplateSpecContainersStartupProbe? startupProbe;
+  final CloudRunServiceStartupProbe? startupProbe;
 
-  final List<CloudRunServiceTemplateSpecContainersVolumeMounts>? volumeMounts;
+  final List<CloudRunServiceVolumeMounts>? volumeMounts;
 
   Map<String, Object?> encode() => {
     'args': ?args?.toTfJson(),
@@ -180,18 +180,14 @@ final class CloudRunServiceTemplateSpecContainers {
 /// Typed helper for the `template.spec.containers.env` block of
 /// `google_cloud_run_service` (derived from provider schema).
 @immutable
-final class CloudRunServiceTemplateSpecContainersEnv {
-  const CloudRunServiceTemplateSpecContainersEnv({
-    this.name,
-    this.value,
-    this.valueFrom,
-  });
+final class CloudRunServiceEnv {
+  const CloudRunServiceEnv({this.name, this.value, this.valueFrom});
 
   final TfArg<String>? name;
 
   final TfArg<String>? value;
 
-  final CloudRunServiceTemplateSpecContainersEnvValueFrom? valueFrom;
+  final CloudRunServiceValueFrom? valueFrom;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
@@ -203,13 +199,10 @@ final class CloudRunServiceTemplateSpecContainersEnv {
 /// Typed helper for the `template.spec.containers.env.value_from` block of
 /// `google_cloud_run_service` (derived from provider schema).
 @immutable
-final class CloudRunServiceTemplateSpecContainersEnvValueFrom {
-  const CloudRunServiceTemplateSpecContainersEnvValueFrom({
-    required this.secretKeyRef,
-  });
+final class CloudRunServiceValueFrom {
+  const CloudRunServiceValueFrom({required this.secretKeyRef});
 
-  final CloudRunServiceTemplateSpecContainersEnvValueFromSecretKeyRef
-  secretKeyRef;
+  final CloudRunServiceSecretKeyRef secretKeyRef;
 
   Map<String, Object?> encode() => {'secret_key_ref': secretKeyRef.encode()};
 }
@@ -217,11 +210,8 @@ final class CloudRunServiceTemplateSpecContainersEnvValueFrom {
 /// Typed helper for the `template.spec.containers.env.value_from.secret_key_ref` block of
 /// `google_cloud_run_service` (derived from provider schema).
 @immutable
-final class CloudRunServiceTemplateSpecContainersEnvValueFromSecretKeyRef {
-  const CloudRunServiceTemplateSpecContainersEnvValueFromSecretKeyRef({
-    required this.key,
-    required this.name,
-  });
+final class CloudRunServiceSecretKeyRef {
+  const CloudRunServiceSecretKeyRef({required this.key, required this.name});
 
   final TfArg<String> key;
 
@@ -236,8 +226,8 @@ final class CloudRunServiceTemplateSpecContainersEnvValueFromSecretKeyRef {
 /// Typed helper for the `template.spec.containers.env_from` block of
 /// `google_cloud_run_service` (derived from provider schema).
 @immutable
-final class CloudRunServiceTemplateSpecContainersEnvFrom {
-  const CloudRunServiceTemplateSpecContainersEnvFrom({
+final class CloudRunServiceEnvFrom {
+  const CloudRunServiceEnvFrom({
     this.prefix,
     this.configMapRef,
     this.secretRef,
@@ -245,9 +235,9 @@ final class CloudRunServiceTemplateSpecContainersEnvFrom {
 
   final TfArg<String>? prefix;
 
-  final CloudRunServiceTemplateSpecContainersEnvFromConfigMapRef? configMapRef;
+  final CloudRunServiceConfigMapRef? configMapRef;
 
-  final CloudRunServiceTemplateSpecContainersEnvFromSecretRef? secretRef;
+  final CloudRunServiceSecretRef? secretRef;
 
   Map<String, Object?> encode() => {
     'prefix': ?prefix?.toTfJson(),
@@ -259,16 +249,12 @@ final class CloudRunServiceTemplateSpecContainersEnvFrom {
 /// Typed helper for the `template.spec.containers.env_from.config_map_ref` block of
 /// `google_cloud_run_service` (derived from provider schema).
 @immutable
-final class CloudRunServiceTemplateSpecContainersEnvFromConfigMapRef {
-  const CloudRunServiceTemplateSpecContainersEnvFromConfigMapRef({
-    this.optional,
-    this.localObjectReference,
-  });
+final class CloudRunServiceConfigMapRef {
+  const CloudRunServiceConfigMapRef({this.optional, this.localObjectReference});
 
   final TfArg<bool>? optional;
 
-  final CloudRunServiceTemplateSpecContainersEnvFromConfigMapRefLocalObjectReference?
-  localObjectReference;
+  final CloudRunServiceLocalObjectReference? localObjectReference;
 
   Map<String, Object?> encode() => {
     'optional': ?optional?.toTfJson(),
@@ -278,11 +264,10 @@ final class CloudRunServiceTemplateSpecContainersEnvFromConfigMapRef {
 
 /// Typed helper for the `template.spec.containers.env_from.config_map_ref.local_object_reference` block of
 /// `google_cloud_run_service` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CloudRunServiceTemplateSpecContainersEnvFromConfigMapRefLocalObjectReference {
-  const CloudRunServiceTemplateSpecContainersEnvFromConfigMapRefLocalObjectReference({
-    required this.name,
-  });
+final class CloudRunServiceLocalObjectReference {
+  const CloudRunServiceLocalObjectReference({required this.name});
 
   final TfArg<String> name;
 
@@ -292,16 +277,12 @@ final class CloudRunServiceTemplateSpecContainersEnvFromConfigMapRefLocalObjectR
 /// Typed helper for the `template.spec.containers.env_from.secret_ref` block of
 /// `google_cloud_run_service` (derived from provider schema).
 @immutable
-final class CloudRunServiceTemplateSpecContainersEnvFromSecretRef {
-  const CloudRunServiceTemplateSpecContainersEnvFromSecretRef({
-    this.optional,
-    this.localObjectReference,
-  });
+final class CloudRunServiceSecretRef {
+  const CloudRunServiceSecretRef({this.optional, this.localObjectReference});
 
   final TfArg<bool>? optional;
 
-  final CloudRunServiceTemplateSpecContainersEnvFromSecretRefLocalObjectReference?
-  localObjectReference;
+  final CloudRunServiceLocalObjectReference? localObjectReference;
 
   Map<String, Object?> encode() => {
     'optional': ?optional?.toTfJson(),
@@ -309,24 +290,11 @@ final class CloudRunServiceTemplateSpecContainersEnvFromSecretRef {
   };
 }
 
-/// Typed helper for the `template.spec.containers.env_from.secret_ref.local_object_reference` block of
-/// `google_cloud_run_service` (derived from provider schema).
-@immutable
-final class CloudRunServiceTemplateSpecContainersEnvFromSecretRefLocalObjectReference {
-  const CloudRunServiceTemplateSpecContainersEnvFromSecretRefLocalObjectReference({
-    required this.name,
-  });
-
-  final TfArg<String> name;
-
-  Map<String, Object?> encode() => {'name': name.toTfJson()};
-}
-
 /// Typed helper for the `template.spec.containers.liveness_probe` block of
 /// `google_cloud_run_service` (derived from provider schema).
 @immutable
-final class CloudRunServiceTemplateSpecContainersLivenessProbe {
-  const CloudRunServiceTemplateSpecContainersLivenessProbe({
+final class CloudRunServiceLivenessProbe {
+  const CloudRunServiceLivenessProbe({
     this.failureThreshold,
     this.initialDelaySeconds,
     this.periodSeconds,
@@ -342,7 +310,7 @@ final class CloudRunServiceTemplateSpecContainersLivenessProbe {
 
   final TfArg<num>? timeoutSeconds;
 
-  final CloudRunServiceTemplateSpecContainersLivenessProbeCheck check;
+  final CloudRunServiceLivenessProbeCheck check;
 
   Map<String, Object?> encode() => {
     'failure_threshold': ?failureThreshold?.toTfJson(),
@@ -357,18 +325,18 @@ final class CloudRunServiceTemplateSpecContainersLivenessProbe {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.httpGet(...)`.
-sealed class CloudRunServiceTemplateSpecContainersLivenessProbeCheck {
-  const CloudRunServiceTemplateSpecContainersLivenessProbeCheck();
+sealed class CloudRunServiceLivenessProbeCheck {
+  const CloudRunServiceLivenessProbeCheck();
 
   /// Sets `http_get`.
-  const factory CloudRunServiceTemplateSpecContainersLivenessProbeCheck.httpGet(
-    CloudRunServiceTemplateSpecContainersLivenessProbeHttpGet httpGet,
-  ) = CloudRunServiceTemplateSpecContainersLivenessProbeCheckHttpGet;
+  const factory CloudRunServiceLivenessProbeCheck.httpGet(
+    CloudRunServiceLivenessProbeHttpGet httpGet,
+  ) = CloudRunServiceLivenessProbeCheckHttpGet;
 
   /// Sets `grpc`.
-  const factory CloudRunServiceTemplateSpecContainersLivenessProbeCheck.grpc(
-    CloudRunServiceTemplateSpecContainersLivenessProbeGrpc grpc,
-  ) = CloudRunServiceTemplateSpecContainersLivenessProbeCheckGrpc;
+  const factory CloudRunServiceLivenessProbeCheck.grpc(
+    CloudRunServiceGrpc grpc,
+  ) = CloudRunServiceLivenessProbeCheckGrpc;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -376,14 +344,12 @@ sealed class CloudRunServiceTemplateSpecContainersLivenessProbeCheck {
   Map<String, Object?> encode();
 }
 
-/// The [CloudRunServiceTemplateSpecContainersLivenessProbeCheck.httpGet] choice: sets `http_get`.
-final class CloudRunServiceTemplateSpecContainersLivenessProbeCheckHttpGet
-    extends CloudRunServiceTemplateSpecContainersLivenessProbeCheck {
-  const CloudRunServiceTemplateSpecContainersLivenessProbeCheckHttpGet(
-    this.httpGet,
-  );
+/// The [CloudRunServiceLivenessProbeCheck.httpGet] choice: sets `http_get`.
+final class CloudRunServiceLivenessProbeCheckHttpGet
+    extends CloudRunServiceLivenessProbeCheck {
+  const CloudRunServiceLivenessProbeCheckHttpGet(this.httpGet);
 
-  final CloudRunServiceTemplateSpecContainersLivenessProbeHttpGet httpGet;
+  final CloudRunServiceLivenessProbeHttpGet httpGet;
 
   @override
   String get blockKey => 'http_get';
@@ -392,12 +358,12 @@ final class CloudRunServiceTemplateSpecContainersLivenessProbeCheckHttpGet
   Map<String, Object?> encode() => {'http_get': httpGet.encode()};
 }
 
-/// The [CloudRunServiceTemplateSpecContainersLivenessProbeCheck.grpc] choice: sets `grpc`.
-final class CloudRunServiceTemplateSpecContainersLivenessProbeCheckGrpc
-    extends CloudRunServiceTemplateSpecContainersLivenessProbeCheck {
-  const CloudRunServiceTemplateSpecContainersLivenessProbeCheckGrpc(this.grpc);
+/// The [CloudRunServiceLivenessProbeCheck.grpc] choice: sets `grpc`.
+final class CloudRunServiceLivenessProbeCheckGrpc
+    extends CloudRunServiceLivenessProbeCheck {
+  const CloudRunServiceLivenessProbeCheckGrpc(this.grpc);
 
-  final CloudRunServiceTemplateSpecContainersLivenessProbeGrpc grpc;
+  final CloudRunServiceGrpc grpc;
 
   @override
   String get blockKey => 'grpc';
@@ -408,12 +374,10 @@ final class CloudRunServiceTemplateSpecContainersLivenessProbeCheckGrpc
 
 /// Typed helper for the `template.spec.containers.liveness_probe.grpc` block of
 /// `google_cloud_run_service` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CloudRunServiceTemplateSpecContainersLivenessProbeGrpc {
-  const CloudRunServiceTemplateSpecContainersLivenessProbeGrpc({
-    this.port,
-    this.service,
-  });
+final class CloudRunServiceGrpc {
+  const CloudRunServiceGrpc({this.port, this.service});
 
   final TfArg<num>? port;
 
@@ -427,9 +391,10 @@ final class CloudRunServiceTemplateSpecContainersLivenessProbeGrpc {
 
 /// Typed helper for the `template.spec.containers.liveness_probe.http_get` block of
 /// `google_cloud_run_service` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CloudRunServiceTemplateSpecContainersLivenessProbeHttpGet {
-  const CloudRunServiceTemplateSpecContainersLivenessProbeHttpGet({
+final class CloudRunServiceLivenessProbeHttpGet {
+  const CloudRunServiceLivenessProbeHttpGet({
     this.path,
     this.port,
     this.httpHeaders,
@@ -439,10 +404,7 @@ final class CloudRunServiceTemplateSpecContainersLivenessProbeHttpGet {
 
   final TfArg<num>? port;
 
-  final List<
-    CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetHttpHeaders
-  >?
-  httpHeaders;
+  final List<CloudRunServiceHttpHeaders>? httpHeaders;
 
   Map<String, Object?> encode() => {
     'path': ?path?.toTfJson(),
@@ -454,12 +416,10 @@ final class CloudRunServiceTemplateSpecContainersLivenessProbeHttpGet {
 
 /// Typed helper for the `template.spec.containers.liveness_probe.http_get.http_headers` block of
 /// `google_cloud_run_service` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetHttpHeaders {
-  const CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetHttpHeaders({
-    required this.name,
-    this.value,
-  });
+final class CloudRunServiceHttpHeaders {
+  const CloudRunServiceHttpHeaders({required this.name, this.value});
 
   final TfArg<String> name;
 
@@ -474,12 +434,8 @@ final class CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetHttpHeaders
 /// Typed helper for the `template.spec.containers.ports` block of
 /// `google_cloud_run_service` (derived from provider schema).
 @immutable
-final class CloudRunServiceTemplateSpecContainersPorts {
-  const CloudRunServiceTemplateSpecContainersPorts({
-    this.containerPort,
-    this.name,
-    this.protocol,
-  });
+final class CloudRunServicePorts {
+  const CloudRunServicePorts({this.containerPort, this.name, this.protocol});
 
   final TfArg<num>? containerPort;
 
@@ -497,8 +453,8 @@ final class CloudRunServiceTemplateSpecContainersPorts {
 /// Typed helper for the `template.spec.containers.readiness_probe` block of
 /// `google_cloud_run_service` (derived from provider schema).
 @immutable
-final class CloudRunServiceTemplateSpecContainersReadinessProbe {
-  const CloudRunServiceTemplateSpecContainersReadinessProbe({
+final class CloudRunServiceReadinessProbe {
+  const CloudRunServiceReadinessProbe({
     this.failureThreshold,
     this.periodSeconds,
     this.successThreshold,
@@ -514,7 +470,7 @@ final class CloudRunServiceTemplateSpecContainersReadinessProbe {
 
   final TfArg<num>? timeoutSeconds;
 
-  final CloudRunServiceTemplateSpecContainersReadinessProbeCheck check;
+  final CloudRunServiceReadinessProbeCheck check;
 
   Map<String, Object?> encode() => {
     'failure_threshold': ?failureThreshold?.toTfJson(),
@@ -529,18 +485,18 @@ final class CloudRunServiceTemplateSpecContainersReadinessProbe {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.httpGet(...)`.
-sealed class CloudRunServiceTemplateSpecContainersReadinessProbeCheck {
-  const CloudRunServiceTemplateSpecContainersReadinessProbeCheck();
+sealed class CloudRunServiceReadinessProbeCheck {
+  const CloudRunServiceReadinessProbeCheck();
 
   /// Sets `http_get`.
-  const factory CloudRunServiceTemplateSpecContainersReadinessProbeCheck.httpGet(
-    CloudRunServiceTemplateSpecContainersReadinessProbeHttpGet httpGet,
-  ) = CloudRunServiceTemplateSpecContainersReadinessProbeCheckHttpGet;
+  const factory CloudRunServiceReadinessProbeCheck.httpGet(
+    CloudRunServiceReadinessProbeHttpGet httpGet,
+  ) = CloudRunServiceReadinessProbeCheckHttpGet;
 
   /// Sets `grpc`.
-  const factory CloudRunServiceTemplateSpecContainersReadinessProbeCheck.grpc(
-    CloudRunServiceTemplateSpecContainersReadinessProbeGrpc grpc,
-  ) = CloudRunServiceTemplateSpecContainersReadinessProbeCheckGrpc;
+  const factory CloudRunServiceReadinessProbeCheck.grpc(
+    CloudRunServiceGrpc grpc,
+  ) = CloudRunServiceReadinessProbeCheckGrpc;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -548,14 +504,12 @@ sealed class CloudRunServiceTemplateSpecContainersReadinessProbeCheck {
   Map<String, Object?> encode();
 }
 
-/// The [CloudRunServiceTemplateSpecContainersReadinessProbeCheck.httpGet] choice: sets `http_get`.
-final class CloudRunServiceTemplateSpecContainersReadinessProbeCheckHttpGet
-    extends CloudRunServiceTemplateSpecContainersReadinessProbeCheck {
-  const CloudRunServiceTemplateSpecContainersReadinessProbeCheckHttpGet(
-    this.httpGet,
-  );
+/// The [CloudRunServiceReadinessProbeCheck.httpGet] choice: sets `http_get`.
+final class CloudRunServiceReadinessProbeCheckHttpGet
+    extends CloudRunServiceReadinessProbeCheck {
+  const CloudRunServiceReadinessProbeCheckHttpGet(this.httpGet);
 
-  final CloudRunServiceTemplateSpecContainersReadinessProbeHttpGet httpGet;
+  final CloudRunServiceReadinessProbeHttpGet httpGet;
 
   @override
   String get blockKey => 'http_get';
@@ -564,12 +518,12 @@ final class CloudRunServiceTemplateSpecContainersReadinessProbeCheckHttpGet
   Map<String, Object?> encode() => {'http_get': httpGet.encode()};
 }
 
-/// The [CloudRunServiceTemplateSpecContainersReadinessProbeCheck.grpc] choice: sets `grpc`.
-final class CloudRunServiceTemplateSpecContainersReadinessProbeCheckGrpc
-    extends CloudRunServiceTemplateSpecContainersReadinessProbeCheck {
-  const CloudRunServiceTemplateSpecContainersReadinessProbeCheckGrpc(this.grpc);
+/// The [CloudRunServiceReadinessProbeCheck.grpc] choice: sets `grpc`.
+final class CloudRunServiceReadinessProbeCheckGrpc
+    extends CloudRunServiceReadinessProbeCheck {
+  const CloudRunServiceReadinessProbeCheckGrpc(this.grpc);
 
-  final CloudRunServiceTemplateSpecContainersReadinessProbeGrpc grpc;
+  final CloudRunServiceGrpc grpc;
 
   @override
   String get blockKey => 'grpc';
@@ -578,33 +532,11 @@ final class CloudRunServiceTemplateSpecContainersReadinessProbeCheckGrpc
   Map<String, Object?> encode() => {'grpc': grpc.encode()};
 }
 
-/// Typed helper for the `template.spec.containers.readiness_probe.grpc` block of
-/// `google_cloud_run_service` (derived from provider schema).
-@immutable
-final class CloudRunServiceTemplateSpecContainersReadinessProbeGrpc {
-  const CloudRunServiceTemplateSpecContainersReadinessProbeGrpc({
-    this.port,
-    this.service,
-  });
-
-  final TfArg<num>? port;
-
-  final TfArg<String>? service;
-
-  Map<String, Object?> encode() => {
-    'port': ?port?.toTfJson(),
-    'service': ?service?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `template.spec.containers.readiness_probe.http_get` block of
 /// `google_cloud_run_service` (derived from provider schema).
 @immutable
-final class CloudRunServiceTemplateSpecContainersReadinessProbeHttpGet {
-  const CloudRunServiceTemplateSpecContainersReadinessProbeHttpGet({
-    this.path,
-    this.port,
-  });
+final class CloudRunServiceReadinessProbeHttpGet {
+  const CloudRunServiceReadinessProbeHttpGet({this.path, this.port});
 
   final TfArg<String>? path;
 
@@ -619,11 +551,8 @@ final class CloudRunServiceTemplateSpecContainersReadinessProbeHttpGet {
 /// Typed helper for the `template.spec.containers.resources` block of
 /// `google_cloud_run_service` (derived from provider schema).
 @immutable
-final class CloudRunServiceTemplateSpecContainersResources {
-  const CloudRunServiceTemplateSpecContainersResources({
-    this.limits,
-    this.requests,
-  });
+final class CloudRunServiceResources {
+  const CloudRunServiceResources({this.limits, this.requests});
 
   final TfArg<Map<String, String>>? limits;
 
@@ -638,8 +567,8 @@ final class CloudRunServiceTemplateSpecContainersResources {
 /// Typed helper for the `template.spec.containers.startup_probe` block of
 /// `google_cloud_run_service` (derived from provider schema).
 @immutable
-final class CloudRunServiceTemplateSpecContainersStartupProbe {
-  const CloudRunServiceTemplateSpecContainersStartupProbe({
+final class CloudRunServiceStartupProbe {
+  const CloudRunServiceStartupProbe({
     this.failureThreshold,
     this.initialDelaySeconds,
     this.periodSeconds,
@@ -655,7 +584,7 @@ final class CloudRunServiceTemplateSpecContainersStartupProbe {
 
   final TfArg<num>? timeoutSeconds;
 
-  final CloudRunServiceTemplateSpecContainersStartupProbeCheck check;
+  final CloudRunServiceStartupProbeCheck check;
 
   Map<String, Object?> encode() => {
     'failure_threshold': ?failureThreshold?.toTfJson(),
@@ -670,23 +599,23 @@ final class CloudRunServiceTemplateSpecContainersStartupProbe {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.tcpSocket(...)`.
-sealed class CloudRunServiceTemplateSpecContainersStartupProbeCheck {
-  const CloudRunServiceTemplateSpecContainersStartupProbeCheck();
+sealed class CloudRunServiceStartupProbeCheck {
+  const CloudRunServiceStartupProbeCheck();
 
   /// Sets `tcp_socket`.
-  const factory CloudRunServiceTemplateSpecContainersStartupProbeCheck.tcpSocket(
-    CloudRunServiceTemplateSpecContainersStartupProbeTcpSocket tcpSocket,
-  ) = CloudRunServiceTemplateSpecContainersStartupProbeCheckTcpSocket;
+  const factory CloudRunServiceStartupProbeCheck.tcpSocket(
+    CloudRunServiceTcpSocket tcpSocket,
+  ) = CloudRunServiceStartupProbeCheckTcpSocket;
 
   /// Sets `http_get`.
-  const factory CloudRunServiceTemplateSpecContainersStartupProbeCheck.httpGet(
-    CloudRunServiceTemplateSpecContainersStartupProbeHttpGet httpGet,
-  ) = CloudRunServiceTemplateSpecContainersStartupProbeCheckHttpGet;
+  const factory CloudRunServiceStartupProbeCheck.httpGet(
+    CloudRunServiceLivenessProbeHttpGet httpGet,
+  ) = CloudRunServiceStartupProbeCheckHttpGet;
 
   /// Sets `grpc`.
-  const factory CloudRunServiceTemplateSpecContainersStartupProbeCheck.grpc(
-    CloudRunServiceTemplateSpecContainersStartupProbeGrpc grpc,
-  ) = CloudRunServiceTemplateSpecContainersStartupProbeCheckGrpc;
+  const factory CloudRunServiceStartupProbeCheck.grpc(
+    CloudRunServiceGrpc grpc,
+  ) = CloudRunServiceStartupProbeCheckGrpc;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -694,14 +623,12 @@ sealed class CloudRunServiceTemplateSpecContainersStartupProbeCheck {
   Map<String, Object?> encode();
 }
 
-/// The [CloudRunServiceTemplateSpecContainersStartupProbeCheck.tcpSocket] choice: sets `tcp_socket`.
-final class CloudRunServiceTemplateSpecContainersStartupProbeCheckTcpSocket
-    extends CloudRunServiceTemplateSpecContainersStartupProbeCheck {
-  const CloudRunServiceTemplateSpecContainersStartupProbeCheckTcpSocket(
-    this.tcpSocket,
-  );
+/// The [CloudRunServiceStartupProbeCheck.tcpSocket] choice: sets `tcp_socket`.
+final class CloudRunServiceStartupProbeCheckTcpSocket
+    extends CloudRunServiceStartupProbeCheck {
+  const CloudRunServiceStartupProbeCheckTcpSocket(this.tcpSocket);
 
-  final CloudRunServiceTemplateSpecContainersStartupProbeTcpSocket tcpSocket;
+  final CloudRunServiceTcpSocket tcpSocket;
 
   @override
   String get blockKey => 'tcp_socket';
@@ -710,14 +637,12 @@ final class CloudRunServiceTemplateSpecContainersStartupProbeCheckTcpSocket
   Map<String, Object?> encode() => {'tcp_socket': tcpSocket.encode()};
 }
 
-/// The [CloudRunServiceTemplateSpecContainersStartupProbeCheck.httpGet] choice: sets `http_get`.
-final class CloudRunServiceTemplateSpecContainersStartupProbeCheckHttpGet
-    extends CloudRunServiceTemplateSpecContainersStartupProbeCheck {
-  const CloudRunServiceTemplateSpecContainersStartupProbeCheckHttpGet(
-    this.httpGet,
-  );
+/// The [CloudRunServiceStartupProbeCheck.httpGet] choice: sets `http_get`.
+final class CloudRunServiceStartupProbeCheckHttpGet
+    extends CloudRunServiceStartupProbeCheck {
+  const CloudRunServiceStartupProbeCheckHttpGet(this.httpGet);
 
-  final CloudRunServiceTemplateSpecContainersStartupProbeHttpGet httpGet;
+  final CloudRunServiceLivenessProbeHttpGet httpGet;
 
   @override
   String get blockKey => 'http_get';
@@ -726,12 +651,12 @@ final class CloudRunServiceTemplateSpecContainersStartupProbeCheckHttpGet
   Map<String, Object?> encode() => {'http_get': httpGet.encode()};
 }
 
-/// The [CloudRunServiceTemplateSpecContainersStartupProbeCheck.grpc] choice: sets `grpc`.
-final class CloudRunServiceTemplateSpecContainersStartupProbeCheckGrpc
-    extends CloudRunServiceTemplateSpecContainersStartupProbeCheck {
-  const CloudRunServiceTemplateSpecContainersStartupProbeCheckGrpc(this.grpc);
+/// The [CloudRunServiceStartupProbeCheck.grpc] choice: sets `grpc`.
+final class CloudRunServiceStartupProbeCheckGrpc
+    extends CloudRunServiceStartupProbeCheck {
+  const CloudRunServiceStartupProbeCheckGrpc(this.grpc);
 
-  final CloudRunServiceTemplateSpecContainersStartupProbeGrpc grpc;
+  final CloudRunServiceGrpc grpc;
 
   @override
   String get blockKey => 'grpc';
@@ -740,76 +665,11 @@ final class CloudRunServiceTemplateSpecContainersStartupProbeCheckGrpc
   Map<String, Object?> encode() => {'grpc': grpc.encode()};
 }
 
-/// Typed helper for the `template.spec.containers.startup_probe.grpc` block of
-/// `google_cloud_run_service` (derived from provider schema).
-@immutable
-final class CloudRunServiceTemplateSpecContainersStartupProbeGrpc {
-  const CloudRunServiceTemplateSpecContainersStartupProbeGrpc({
-    this.port,
-    this.service,
-  });
-
-  final TfArg<num>? port;
-
-  final TfArg<String>? service;
-
-  Map<String, Object?> encode() => {
-    'port': ?port?.toTfJson(),
-    'service': ?service?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `template.spec.containers.startup_probe.http_get` block of
-/// `google_cloud_run_service` (derived from provider schema).
-@immutable
-final class CloudRunServiceTemplateSpecContainersStartupProbeHttpGet {
-  const CloudRunServiceTemplateSpecContainersStartupProbeHttpGet({
-    this.path,
-    this.port,
-    this.httpHeaders,
-  });
-
-  final TfArg<String>? path;
-
-  final TfArg<num>? port;
-
-  final List<
-    CloudRunServiceTemplateSpecContainersStartupProbeHttpGetHttpHeaders
-  >?
-  httpHeaders;
-
-  Map<String, Object?> encode() => {
-    'path': ?path?.toTfJson(),
-    'port': ?port?.toTfJson(),
-    if (httpHeaders != null)
-      'http_headers': [for (final e in httpHeaders!) e.encode()],
-  };
-}
-
-/// Typed helper for the `template.spec.containers.startup_probe.http_get.http_headers` block of
-/// `google_cloud_run_service` (derived from provider schema).
-@immutable
-final class CloudRunServiceTemplateSpecContainersStartupProbeHttpGetHttpHeaders {
-  const CloudRunServiceTemplateSpecContainersStartupProbeHttpGetHttpHeaders({
-    required this.name,
-    this.value,
-  });
-
-  final TfArg<String> name;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'name': name.toTfJson(),
-    'value': ?value?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `template.spec.containers.startup_probe.tcp_socket` block of
 /// `google_cloud_run_service` (derived from provider schema).
 @immutable
-final class CloudRunServiceTemplateSpecContainersStartupProbeTcpSocket {
-  const CloudRunServiceTemplateSpecContainersStartupProbeTcpSocket({this.port});
+final class CloudRunServiceTcpSocket {
+  const CloudRunServiceTcpSocket({this.port});
 
   final TfArg<num>? port;
 
@@ -819,8 +679,8 @@ final class CloudRunServiceTemplateSpecContainersStartupProbeTcpSocket {
 /// Typed helper for the `template.spec.containers.volume_mounts` block of
 /// `google_cloud_run_service` (derived from provider schema).
 @immutable
-final class CloudRunServiceTemplateSpecContainersVolumeMounts {
-  const CloudRunServiceTemplateSpecContainersVolumeMounts({
+final class CloudRunServiceVolumeMounts {
+  const CloudRunServiceVolumeMounts({
     required this.mountPath,
     required this.name,
     this.subPath,
@@ -842,8 +702,8 @@ final class CloudRunServiceTemplateSpecContainersVolumeMounts {
 /// Typed helper for the `template.spec.volumes` block of
 /// `google_cloud_run_service` (derived from provider schema).
 @immutable
-final class CloudRunServiceTemplateSpecVolumes {
-  const CloudRunServiceTemplateSpecVolumes({
+final class CloudRunServiceVolumes {
+  const CloudRunServiceVolumes({
     required this.name,
     this.csi,
     this.emptyDir,
@@ -853,13 +713,13 @@ final class CloudRunServiceTemplateSpecVolumes {
 
   final TfArg<String> name;
 
-  final CloudRunServiceTemplateSpecVolumesCsi? csi;
+  final CloudRunServiceCsi? csi;
 
-  final CloudRunServiceTemplateSpecVolumesEmptyDir? emptyDir;
+  final CloudRunServiceEmptyDir? emptyDir;
 
-  final CloudRunServiceTemplateSpecVolumesNfs? nfs;
+  final CloudRunServiceNfs? nfs;
 
-  final CloudRunServiceTemplateSpecVolumesSecret? secret;
+  final CloudRunServiceSecret? secret;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -873,8 +733,8 @@ final class CloudRunServiceTemplateSpecVolumes {
 /// Typed helper for the `template.spec.volumes.csi` block of
 /// `google_cloud_run_service` (derived from provider schema).
 @immutable
-final class CloudRunServiceTemplateSpecVolumesCsi {
-  const CloudRunServiceTemplateSpecVolumesCsi({
+final class CloudRunServiceCsi {
+  const CloudRunServiceCsi({
     required this.driver,
     this.readOnly,
     this.volumeAttributes,
@@ -896,11 +756,8 @@ final class CloudRunServiceTemplateSpecVolumesCsi {
 /// Typed helper for the `template.spec.volumes.empty_dir` block of
 /// `google_cloud_run_service` (derived from provider schema).
 @immutable
-final class CloudRunServiceTemplateSpecVolumesEmptyDir {
-  const CloudRunServiceTemplateSpecVolumesEmptyDir({
-    this.medium,
-    this.sizeLimit,
-  });
+final class CloudRunServiceEmptyDir {
+  const CloudRunServiceEmptyDir({this.medium, this.sizeLimit});
 
   final TfArg<String>? medium;
 
@@ -915,8 +772,8 @@ final class CloudRunServiceTemplateSpecVolumesEmptyDir {
 /// Typed helper for the `template.spec.volumes.nfs` block of
 /// `google_cloud_run_service` (derived from provider schema).
 @immutable
-final class CloudRunServiceTemplateSpecVolumesNfs {
-  const CloudRunServiceTemplateSpecVolumesNfs({
+final class CloudRunServiceNfs {
+  const CloudRunServiceNfs({
     required this.path,
     this.readOnly,
     required this.server,
@@ -938,8 +795,8 @@ final class CloudRunServiceTemplateSpecVolumesNfs {
 /// Typed helper for the `template.spec.volumes.secret` block of
 /// `google_cloud_run_service` (derived from provider schema).
 @immutable
-final class CloudRunServiceTemplateSpecVolumesSecret {
-  const CloudRunServiceTemplateSpecVolumesSecret({
+final class CloudRunServiceSecret {
+  const CloudRunServiceSecret({
     this.defaultMode,
     required this.secretName,
     this.items,
@@ -949,7 +806,7 @@ final class CloudRunServiceTemplateSpecVolumesSecret {
 
   final TfArg<String> secretName;
 
-  final List<CloudRunServiceTemplateSpecVolumesSecretItems>? items;
+  final List<CloudRunServiceItems>? items;
 
   Map<String, Object?> encode() => {
     'default_mode': ?defaultMode?.toTfJson(),
@@ -961,8 +818,8 @@ final class CloudRunServiceTemplateSpecVolumesSecret {
 /// Typed helper for the `template.spec.volumes.secret.items` block of
 /// `google_cloud_run_service` (derived from provider schema).
 @immutable
-final class CloudRunServiceTemplateSpecVolumesSecretItems {
-  const CloudRunServiceTemplateSpecVolumesSecretItems({
+final class CloudRunServiceItems {
+  const CloudRunServiceItems({
     required this.key,
     this.mode,
     required this.path,
@@ -1032,9 +889,9 @@ final class CloudRunServiceTraffic {
 ///   location: TfArg.literal('us-central1'),
 ///   name: TfArg.literal('terradart-run-v1'),
 ///   template: CloudRunServiceTemplate(
-///     spec: CloudRunServiceTemplateSpec(
+///     spec: CloudRunServiceSpec(
 ///       containers: [
-///         CloudRunServiceTemplateSpecContainers(
+///         CloudRunServiceContainers(
 ///           image: TfArg.literal(
 ///             'us-docker.pkg.dev/cloudrun/container/hello',
 ///           ),

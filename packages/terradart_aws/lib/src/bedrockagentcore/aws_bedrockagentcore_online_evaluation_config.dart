@@ -29,9 +29,7 @@ final class BedrockagentcoreOnlineEvaluationConfigDataSourceConfig {
     this.cloudwatchLogs,
   });
 
-  final List<
-    BedrockagentcoreOnlineEvaluationConfigDataSourceConfigCloudwatchLogs
-  >?
+  final List<BedrockagentcoreOnlineEvaluationConfigCloudwatchLogs>?
   cloudwatchLogs;
 
   Map<String, Object?> encode() => {
@@ -43,8 +41,8 @@ final class BedrockagentcoreOnlineEvaluationConfigDataSourceConfig {
 /// Typed helper for the `data_source_config.cloudwatch_logs` block of
 /// `aws_bedrockagentcore_online_evaluation_config` (derived from provider schema).
 @immutable
-final class BedrockagentcoreOnlineEvaluationConfigDataSourceConfigCloudwatchLogs {
-  const BedrockagentcoreOnlineEvaluationConfigDataSourceConfigCloudwatchLogs({
+final class BedrockagentcoreOnlineEvaluationConfigCloudwatchLogs {
+  const BedrockagentcoreOnlineEvaluationConfigCloudwatchLogs({
     required this.logGroupNames,
     required this.serviceNames,
   });
@@ -82,12 +80,12 @@ final class BedrockagentcoreOnlineEvaluationConfigRule {
     this.sessionConfig,
   });
 
-  final List<BedrockagentcoreOnlineEvaluationConfigRuleFilter>? filter;
+  final List<BedrockagentcoreOnlineEvaluationConfigFilter>? filter;
 
-  final List<BedrockagentcoreOnlineEvaluationConfigRuleSamplingConfig>?
+  final List<BedrockagentcoreOnlineEvaluationConfigSamplingConfig>?
   samplingConfig;
 
-  final List<BedrockagentcoreOnlineEvaluationConfigRuleSessionConfig>?
+  final List<BedrockagentcoreOnlineEvaluationConfigSessionConfig>?
   sessionConfig;
 
   Map<String, Object?> encode() => {
@@ -102,8 +100,8 @@ final class BedrockagentcoreOnlineEvaluationConfigRule {
 /// Typed helper for the `rule.filter` block of
 /// `aws_bedrockagentcore_online_evaluation_config` (derived from provider schema).
 @immutable
-final class BedrockagentcoreOnlineEvaluationConfigRuleFilter {
-  const BedrockagentcoreOnlineEvaluationConfigRuleFilter({
+final class BedrockagentcoreOnlineEvaluationConfigFilter {
+  const BedrockagentcoreOnlineEvaluationConfigFilter({
     required this.key,
     required this.operator,
     this.value,
@@ -111,10 +109,9 @@ final class BedrockagentcoreOnlineEvaluationConfigRuleFilter {
 
   final TfArg<String> key;
 
-  final TfArg<BedrockagentcoreOnlineEvaluationConfigRuleFilterOperator>
-  operator;
+  final TfArg<BedrockagentcoreOnlineEvaluationConfigOperator> operator;
 
-  final List<BedrockagentcoreOnlineEvaluationConfigRuleFilterValue>? value;
+  final List<BedrockagentcoreOnlineEvaluationConfigValue>? value;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
@@ -124,8 +121,7 @@ final class BedrockagentcoreOnlineEvaluationConfigRuleFilter {
 }
 
 /// `operator` — derived from the provider schema description.
-enum BedrockagentcoreOnlineEvaluationConfigRuleFilterOperator
-    implements TerraformEnum {
+enum BedrockagentcoreOnlineEvaluationConfigOperator implements TerraformEnum {
   equals('Equals'),
   notequals('NotEquals'),
   greaterthan('GreaterThan'),
@@ -135,9 +131,7 @@ enum BedrockagentcoreOnlineEvaluationConfigRuleFilterOperator
   contains('Contains'),
   notcontains('NotContains');
 
-  const BedrockagentcoreOnlineEvaluationConfigRuleFilterOperator(
-    this.terraformValue,
-  );
+  const BedrockagentcoreOnlineEvaluationConfigOperator(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -145,8 +139,8 @@ enum BedrockagentcoreOnlineEvaluationConfigRuleFilterOperator
 /// Typed helper for the `rule.filter.value` block of
 /// `aws_bedrockagentcore_online_evaluation_config` (derived from provider schema).
 @immutable
-final class BedrockagentcoreOnlineEvaluationConfigRuleFilterValue {
-  const BedrockagentcoreOnlineEvaluationConfigRuleFilterValue({
+final class BedrockagentcoreOnlineEvaluationConfigValue {
+  const BedrockagentcoreOnlineEvaluationConfigValue({
     this.booleanValue,
     this.doubleValue,
     this.stringValue,
@@ -168,8 +162,8 @@ final class BedrockagentcoreOnlineEvaluationConfigRuleFilterValue {
 /// Typed helper for the `rule.sampling_config` block of
 /// `aws_bedrockagentcore_online_evaluation_config` (derived from provider schema).
 @immutable
-final class BedrockagentcoreOnlineEvaluationConfigRuleSamplingConfig {
-  const BedrockagentcoreOnlineEvaluationConfigRuleSamplingConfig({
+final class BedrockagentcoreOnlineEvaluationConfigSamplingConfig {
+  const BedrockagentcoreOnlineEvaluationConfigSamplingConfig({
     required this.samplingPercentage,
   });
 
@@ -183,8 +177,8 @@ final class BedrockagentcoreOnlineEvaluationConfigRuleSamplingConfig {
 /// Typed helper for the `rule.session_config` block of
 /// `aws_bedrockagentcore_online_evaluation_config` (derived from provider schema).
 @immutable
-final class BedrockagentcoreOnlineEvaluationConfigRuleSessionConfig {
-  const BedrockagentcoreOnlineEvaluationConfigRuleSessionConfig({
+final class BedrockagentcoreOnlineEvaluationConfigSessionConfig {
+  const BedrockagentcoreOnlineEvaluationConfigSessionConfig({
     required this.sessionTimeoutMinutes,
   });
 

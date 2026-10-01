@@ -44,9 +44,9 @@ final class TokenValidationRulesPosition {
 final class TokenValidationRulesSelector {
   const TokenValidationRulesSelector({this.exclude, this.include});
 
-  final List<TokenValidationRulesSelectorExclude>? exclude;
+  final List<TokenValidationRulesExclude>? exclude;
 
-  final List<TokenValidationRulesSelectorInclude>? include;
+  final List<TokenValidationRulesInclude>? include;
 
   Map<String, Object?> encode() => {
     if (exclude != null) 'exclude': [for (final e in exclude!) e.encode()],
@@ -57,8 +57,8 @@ final class TokenValidationRulesSelector {
 /// Typed helper for the `selector.exclude` block of
 /// `cloudflare_token_validation_rules` (derived from provider schema).
 @immutable
-final class TokenValidationRulesSelectorExclude {
-  const TokenValidationRulesSelectorExclude({this.operationIds});
+final class TokenValidationRulesExclude {
+  const TokenValidationRulesExclude({this.operationIds});
 
   final TfArg<List<String>>? operationIds;
 
@@ -68,8 +68,8 @@ final class TokenValidationRulesSelectorExclude {
 /// Typed helper for the `selector.include` block of
 /// `cloudflare_token_validation_rules` (derived from provider schema).
 @immutable
-final class TokenValidationRulesSelectorInclude {
-  const TokenValidationRulesSelectorInclude({this.host});
+final class TokenValidationRulesInclude {
+  const TokenValidationRulesInclude({this.host});
 
   final TfArg<List<String>>? host;
 

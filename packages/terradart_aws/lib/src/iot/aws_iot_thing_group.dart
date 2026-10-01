@@ -15,7 +15,7 @@ final class IotThingGroupProperties {
 
   final TfArg<String>? description;
 
-  final IotThingGroupPropertiesAttributePayload? attributePayload;
+  final IotThingGroupAttributePayload? attributePayload;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -26,8 +26,8 @@ final class IotThingGroupProperties {
 /// Typed helper for the `properties.attribute_payload` block of
 /// `aws_iot_thing_group` (derived from provider schema).
 @immutable
-final class IotThingGroupPropertiesAttributePayload {
-  const IotThingGroupPropertiesAttributePayload({this.attributes});
+final class IotThingGroupAttributePayload {
+  const IotThingGroupAttributePayload({this.attributes});
 
   final TfArg<Map<String, String>>? attributes;
 

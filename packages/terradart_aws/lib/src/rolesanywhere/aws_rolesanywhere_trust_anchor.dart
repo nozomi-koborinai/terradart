@@ -18,11 +18,11 @@ final class RolesanywhereTrustAnchorNotificationSettings {
     this.threshold,
   });
 
-  final TfArg<RolesanywhereTrustAnchorNotificationSettingsChannel>? channel;
+  final TfArg<RolesanywhereTrustAnchorChannel>? channel;
 
   final TfArg<bool>? enabled;
 
-  final TfArg<RolesanywhereTrustAnchorNotificationSettingsEvent>? event;
+  final TfArg<RolesanywhereTrustAnchorEvent>? event;
 
   final TfArg<num>? threshold;
 
@@ -35,24 +35,20 @@ final class RolesanywhereTrustAnchorNotificationSettings {
 }
 
 /// `channel` — derived from the provider schema description.
-enum RolesanywhereTrustAnchorNotificationSettingsChannel
-    implements TerraformEnum {
+enum RolesanywhereTrustAnchorChannel implements TerraformEnum {
   all('ALL');
 
-  const RolesanywhereTrustAnchorNotificationSettingsChannel(
-    this.terraformValue,
-  );
+  const RolesanywhereTrustAnchorChannel(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `event` — derived from the provider schema description.
-enum RolesanywhereTrustAnchorNotificationSettingsEvent
-    implements TerraformEnum {
+enum RolesanywhereTrustAnchorEvent implements TerraformEnum {
   caCertificateExpiry('CA_CERTIFICATE_EXPIRY'),
   endEntityCertificateExpiry('END_ENTITY_CERTIFICATE_EXPIRY');
 
-  const RolesanywhereTrustAnchorNotificationSettingsEvent(this.terraformValue);
+  const RolesanywhereTrustAnchorEvent(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -66,9 +62,9 @@ final class RolesanywhereTrustAnchorSource {
     required this.sourceData,
   });
 
-  final TfArg<RolesanywhereTrustAnchorSourceSourceType> sourceType;
+  final TfArg<RolesanywhereTrustAnchorSourceType> sourceType;
 
-  final RolesanywhereTrustAnchorSourceSourceData sourceData;
+  final RolesanywhereTrustAnchorSourceData sourceData;
 
   Map<String, Object?> encode() => {
     'source_type': sourceType.toTfJson(),
@@ -77,12 +73,12 @@ final class RolesanywhereTrustAnchorSource {
 }
 
 /// `source_type` — derived from the provider schema description.
-enum RolesanywhereTrustAnchorSourceSourceType implements TerraformEnum {
+enum RolesanywhereTrustAnchorSourceType implements TerraformEnum {
   awsAcmPca('AWS_ACM_PCA'),
   certificateBundle('CERTIFICATE_BUNDLE'),
   selfSignedRepository('SELF_SIGNED_REPOSITORY');
 
-  const RolesanywhereTrustAnchorSourceSourceType(this.terraformValue);
+  const RolesanywhereTrustAnchorSourceType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -90,8 +86,8 @@ enum RolesanywhereTrustAnchorSourceSourceType implements TerraformEnum {
 /// Typed helper for the `source.source_data` block of
 /// `aws_rolesanywhere_trust_anchor` (derived from provider schema).
 @immutable
-final class RolesanywhereTrustAnchorSourceSourceData {
-  const RolesanywhereTrustAnchorSourceSourceData({
+final class RolesanywhereTrustAnchorSourceData {
+  const RolesanywhereTrustAnchorSourceData({
     this.acmPcaArn,
     this.x509CertificateData,
   });

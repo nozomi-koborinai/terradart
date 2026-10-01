@@ -250,11 +250,9 @@ final class ComputeResourcePolicyInstanceSchedulePolicy {
 
   final TfArg<String> timeZone;
 
-  final ComputeResourcePolicyInstanceSchedulePolicyVmStartSchedule?
-  vmStartSchedule;
+  final ComputeResourcePolicyVmStartSchedule? vmStartSchedule;
 
-  final ComputeResourcePolicyInstanceSchedulePolicyVmStopSchedule?
-  vmStopSchedule;
+  final ComputeResourcePolicyVmStopSchedule? vmStopSchedule;
 
   Map<String, Object?> encode() => {
     'expiration_time': ?expirationTime?.toTfJson(),
@@ -268,10 +266,8 @@ final class ComputeResourcePolicyInstanceSchedulePolicy {
 /// Typed helper for the `instance_schedule_policy.vm_start_schedule` block of
 /// `google_compute_resource_policy` (derived from provider schema).
 @immutable
-final class ComputeResourcePolicyInstanceSchedulePolicyVmStartSchedule {
-  const ComputeResourcePolicyInstanceSchedulePolicyVmStartSchedule({
-    required this.schedule,
-  });
+final class ComputeResourcePolicyVmStartSchedule {
+  const ComputeResourcePolicyVmStartSchedule({required this.schedule});
 
   final TfArg<String> schedule;
 
@@ -281,10 +277,8 @@ final class ComputeResourcePolicyInstanceSchedulePolicyVmStartSchedule {
 /// Typed helper for the `instance_schedule_policy.vm_stop_schedule` block of
 /// `google_compute_resource_policy` (derived from provider schema).
 @immutable
-final class ComputeResourcePolicyInstanceSchedulePolicyVmStopSchedule {
-  const ComputeResourcePolicyInstanceSchedulePolicyVmStopSchedule({
-    required this.schedule,
-  });
+final class ComputeResourcePolicyVmStopSchedule {
+  const ComputeResourcePolicyVmStopSchedule({required this.schedule});
 
   final TfArg<String> schedule;
 
@@ -301,13 +295,11 @@ final class ComputeResourcePolicySnapshotSchedulePolicy {
     this.snapshotProperties,
   });
 
-  final ComputeResourcePolicySnapshotSchedulePolicyRetentionPolicy?
-  retentionPolicy;
+  final ComputeResourcePolicyRetentionPolicy? retentionPolicy;
 
-  final ComputeResourcePolicySnapshotSchedulePolicySchedule schedule;
+  final ComputeResourcePolicySchedule schedule;
 
-  final ComputeResourcePolicySnapshotSchedulePolicySnapshotProperties?
-  snapshotProperties;
+  final ComputeResourcePolicySnapshotProperties? snapshotProperties;
 
   Map<String, Object?> encode() => {
     'retention_policy': ?retentionPolicy?.encode(),
@@ -319,8 +311,8 @@ final class ComputeResourcePolicySnapshotSchedulePolicy {
 /// Typed helper for the `snapshot_schedule_policy.retention_policy` block of
 /// `google_compute_resource_policy` (derived from provider schema).
 @immutable
-final class ComputeResourcePolicySnapshotSchedulePolicyRetentionPolicy {
-  const ComputeResourcePolicySnapshotSchedulePolicyRetentionPolicy({
+final class ComputeResourcePolicyRetentionPolicy {
+  const ComputeResourcePolicyRetentionPolicy({
     required this.maxRetentionDays,
     this.onSourceDiskDelete,
   });
@@ -339,26 +331,23 @@ final class ComputeResourcePolicySnapshotSchedulePolicyRetentionPolicy {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.hourlySchedule(...)`.
-sealed class ComputeResourcePolicySnapshotSchedulePolicySchedule {
-  const ComputeResourcePolicySnapshotSchedulePolicySchedule();
+sealed class ComputeResourcePolicySchedule {
+  const ComputeResourcePolicySchedule();
 
   /// Sets `hourly_schedule`.
-  const factory ComputeResourcePolicySnapshotSchedulePolicySchedule.hourlySchedule(
-    ComputeResourcePolicySnapshotSchedulePolicyScheduleHourlySchedule
-    hourlySchedule,
-  ) = ComputeResourcePolicySnapshotSchedulePolicyScheduleHourlyScheduleChoice;
+  const factory ComputeResourcePolicySchedule.hourlySchedule(
+    ComputeResourcePolicyHourlySchedule hourlySchedule,
+  ) = ComputeResourcePolicyHourlyScheduleChoice;
 
   /// Sets `daily_schedule`.
-  const factory ComputeResourcePolicySnapshotSchedulePolicySchedule.dailySchedule(
-    ComputeResourcePolicySnapshotSchedulePolicyScheduleDailySchedule
-    dailySchedule,
-  ) = ComputeResourcePolicySnapshotSchedulePolicyScheduleDailyScheduleChoice;
+  const factory ComputeResourcePolicySchedule.dailySchedule(
+    ComputeResourcePolicyDailySchedule dailySchedule,
+  ) = ComputeResourcePolicyDailyScheduleChoice;
 
   /// Sets `weekly_schedule`.
-  const factory ComputeResourcePolicySnapshotSchedulePolicySchedule.weeklySchedule(
-    ComputeResourcePolicySnapshotSchedulePolicyScheduleWeeklySchedule
-    weeklySchedule,
-  ) = ComputeResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleChoice;
+  const factory ComputeResourcePolicySchedule.weeklySchedule(
+    ComputeResourcePolicyWeeklySchedule weeklySchedule,
+  ) = ComputeResourcePolicyWeeklyScheduleChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -366,15 +355,12 @@ sealed class ComputeResourcePolicySnapshotSchedulePolicySchedule {
   Map<String, Object?> encode();
 }
 
-/// The [ComputeResourcePolicySnapshotSchedulePolicySchedule.hourlySchedule] choice: sets `hourly_schedule`.
-final class ComputeResourcePolicySnapshotSchedulePolicyScheduleHourlyScheduleChoice
-    extends ComputeResourcePolicySnapshotSchedulePolicySchedule {
-  const ComputeResourcePolicySnapshotSchedulePolicyScheduleHourlyScheduleChoice(
-    this.hourlySchedule,
-  );
+/// The [ComputeResourcePolicySchedule.hourlySchedule] choice: sets `hourly_schedule`.
+final class ComputeResourcePolicyHourlyScheduleChoice
+    extends ComputeResourcePolicySchedule {
+  const ComputeResourcePolicyHourlyScheduleChoice(this.hourlySchedule);
 
-  final ComputeResourcePolicySnapshotSchedulePolicyScheduleHourlySchedule
-  hourlySchedule;
+  final ComputeResourcePolicyHourlySchedule hourlySchedule;
 
   @override
   String get blockKey => 'hourly_schedule';
@@ -383,15 +369,12 @@ final class ComputeResourcePolicySnapshotSchedulePolicyScheduleHourlyScheduleCho
   Map<String, Object?> encode() => {'hourly_schedule': hourlySchedule.encode()};
 }
 
-/// The [ComputeResourcePolicySnapshotSchedulePolicySchedule.dailySchedule] choice: sets `daily_schedule`.
-final class ComputeResourcePolicySnapshotSchedulePolicyScheduleDailyScheduleChoice
-    extends ComputeResourcePolicySnapshotSchedulePolicySchedule {
-  const ComputeResourcePolicySnapshotSchedulePolicyScheduleDailyScheduleChoice(
-    this.dailySchedule,
-  );
+/// The [ComputeResourcePolicySchedule.dailySchedule] choice: sets `daily_schedule`.
+final class ComputeResourcePolicyDailyScheduleChoice
+    extends ComputeResourcePolicySchedule {
+  const ComputeResourcePolicyDailyScheduleChoice(this.dailySchedule);
 
-  final ComputeResourcePolicySnapshotSchedulePolicyScheduleDailySchedule
-  dailySchedule;
+  final ComputeResourcePolicyDailySchedule dailySchedule;
 
   @override
   String get blockKey => 'daily_schedule';
@@ -400,15 +383,12 @@ final class ComputeResourcePolicySnapshotSchedulePolicyScheduleDailyScheduleChoi
   Map<String, Object?> encode() => {'daily_schedule': dailySchedule.encode()};
 }
 
-/// The [ComputeResourcePolicySnapshotSchedulePolicySchedule.weeklySchedule] choice: sets `weekly_schedule`.
-final class ComputeResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleChoice
-    extends ComputeResourcePolicySnapshotSchedulePolicySchedule {
-  const ComputeResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleChoice(
-    this.weeklySchedule,
-  );
+/// The [ComputeResourcePolicySchedule.weeklySchedule] choice: sets `weekly_schedule`.
+final class ComputeResourcePolicyWeeklyScheduleChoice
+    extends ComputeResourcePolicySchedule {
+  const ComputeResourcePolicyWeeklyScheduleChoice(this.weeklySchedule);
 
-  final ComputeResourcePolicySnapshotSchedulePolicyScheduleWeeklySchedule
-  weeklySchedule;
+  final ComputeResourcePolicyWeeklySchedule weeklySchedule;
 
   @override
   String get blockKey => 'weekly_schedule';
@@ -420,8 +400,8 @@ final class ComputeResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleCho
 /// Typed helper for the `snapshot_schedule_policy.schedule.daily_schedule` block of
 /// `google_compute_resource_policy` (derived from provider schema).
 @immutable
-final class ComputeResourcePolicySnapshotSchedulePolicyScheduleDailySchedule {
-  const ComputeResourcePolicySnapshotSchedulePolicyScheduleDailySchedule({
+final class ComputeResourcePolicyDailySchedule {
+  const ComputeResourcePolicyDailySchedule({
     required this.daysInCycle,
     required this.startTime,
   });
@@ -439,8 +419,8 @@ final class ComputeResourcePolicySnapshotSchedulePolicyScheduleDailySchedule {
 /// Typed helper for the `snapshot_schedule_policy.schedule.hourly_schedule` block of
 /// `google_compute_resource_policy` (derived from provider schema).
 @immutable
-final class ComputeResourcePolicySnapshotSchedulePolicyScheduleHourlySchedule {
-  const ComputeResourcePolicySnapshotSchedulePolicyScheduleHourlySchedule({
+final class ComputeResourcePolicyHourlySchedule {
+  const ComputeResourcePolicyHourlySchedule({
     required this.hoursInCycle,
     required this.startTime,
   });
@@ -458,15 +438,10 @@ final class ComputeResourcePolicySnapshotSchedulePolicyScheduleHourlySchedule {
 /// Typed helper for the `snapshot_schedule_policy.schedule.weekly_schedule` block of
 /// `google_compute_resource_policy` (derived from provider schema).
 @immutable
-final class ComputeResourcePolicySnapshotSchedulePolicyScheduleWeeklySchedule {
-  const ComputeResourcePolicySnapshotSchedulePolicyScheduleWeeklySchedule({
-    required this.dayOfWeeks,
-  });
+final class ComputeResourcePolicyWeeklySchedule {
+  const ComputeResourcePolicyWeeklySchedule({required this.dayOfWeeks});
 
-  final List<
-    ComputeResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeeks
-  >
-  dayOfWeeks;
+  final List<ComputeResourcePolicyDayOfWeeks> dayOfWeeks;
 
   Map<String, Object?> encode() => {
     'day_of_weeks': [for (final e in dayOfWeeks) e.encode()],
@@ -476,8 +451,8 @@ final class ComputeResourcePolicySnapshotSchedulePolicyScheduleWeeklySchedule {
 /// Typed helper for the `snapshot_schedule_policy.schedule.weekly_schedule.day_of_weeks` block of
 /// `google_compute_resource_policy` (derived from provider schema).
 @immutable
-final class ComputeResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeeks {
-  const ComputeResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeeks({
+final class ComputeResourcePolicyDayOfWeeks {
+  const ComputeResourcePolicyDayOfWeeks({
     required this.day,
     required this.startTime,
   });
@@ -495,8 +470,8 @@ final class ComputeResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDay
 /// Typed helper for the `snapshot_schedule_policy.snapshot_properties` block of
 /// `google_compute_resource_policy` (derived from provider schema).
 @immutable
-final class ComputeResourcePolicySnapshotSchedulePolicySnapshotProperties {
-  const ComputeResourcePolicySnapshotSchedulePolicySnapshotProperties({
+final class ComputeResourcePolicySnapshotProperties {
+  const ComputeResourcePolicySnapshotProperties({
     this.chainName,
     this.guestFlush,
     this.labels,
@@ -561,13 +536,13 @@ final class ComputeResourcePolicyWorkloadPolicy {
 ///   kind: .snapshotSchedulePolicy(
 ///     ComputeResourcePolicySnapshotSchedulePolicy(
 ///       schedule: .dailySchedule(
-///         ComputeResourcePolicySnapshotSchedulePolicyScheduleDailySchedule(
+///         ComputeResourcePolicyDailySchedule(
 ///           daysInCycle: .literal(1),
 ///           startTime: .literal('04:00'),
 ///         ),
 ///       ),
 ///       retentionPolicy:
-///           ComputeResourcePolicySnapshotSchedulePolicyRetentionPolicy(
+///           ComputeResourcePolicyRetentionPolicy(
 ///             maxRetentionDays: .literal(7),
 ///             onSourceDiskDelete: .literal(.applyRetentionPolicy),
 ///           ),

@@ -104,14 +104,13 @@ final class PrivatecaCertificateTemplatePredefinedValues {
   final List<PrivatecaCertificateTemplatePredefinedValuesAdditionalExtensions>?
   additionalExtensions;
 
-  final PrivatecaCertificateTemplatePredefinedValuesCaOptions? caOptions;
+  final PrivatecaCertificateTemplateCaOptions? caOptions;
 
-  final PrivatecaCertificateTemplatePredefinedValuesKeyUsage? keyUsage;
+  final PrivatecaCertificateTemplateKeyUsage? keyUsage;
 
-  final PrivatecaCertificateTemplatePredefinedValuesNameConstraints?
-  nameConstraints;
+  final PrivatecaCertificateTemplateNameConstraints? nameConstraints;
 
-  final List<PrivatecaCertificateTemplatePredefinedValuesPolicyIds>? policyIds;
+  final List<PrivatecaCertificateTemplatePolicyIds>? policyIds;
 
   Map<String, Object?> encode() => {
     'aia_ocsp_servers': ?aiaOcspServers?.toTfJson(),
@@ -141,8 +140,7 @@ final class PrivatecaCertificateTemplatePredefinedValuesAdditionalExtensions {
 
   final TfArg<String> value;
 
-  final PrivatecaCertificateTemplatePredefinedValuesAdditionalExtensionsObjectId
-  objectId;
+  final PrivatecaCertificateTemplateObjectId objectId;
 
   Map<String, Object?> encode() => {
     'critical': ?critical?.toTfJson(),
@@ -154,10 +152,8 @@ final class PrivatecaCertificateTemplatePredefinedValuesAdditionalExtensions {
 /// Typed helper for the `predefined_values.additional_extensions.object_id` block of
 /// `google_privateca_certificate_template` (derived from provider schema).
 @immutable
-final class PrivatecaCertificateTemplatePredefinedValuesAdditionalExtensionsObjectId {
-  const PrivatecaCertificateTemplatePredefinedValuesAdditionalExtensionsObjectId({
-    required this.objectIdPath,
-  });
+final class PrivatecaCertificateTemplateObjectId {
+  const PrivatecaCertificateTemplateObjectId({required this.objectIdPath});
 
   final TfArg<List<num>> objectIdPath;
 
@@ -167,8 +163,8 @@ final class PrivatecaCertificateTemplatePredefinedValuesAdditionalExtensionsObje
 /// Typed helper for the `predefined_values.ca_options` block of
 /// `google_privateca_certificate_template` (derived from provider schema).
 @immutable
-final class PrivatecaCertificateTemplatePredefinedValuesCaOptions {
-  const PrivatecaCertificateTemplatePredefinedValuesCaOptions({
+final class PrivatecaCertificateTemplateCaOptions {
+  const PrivatecaCertificateTemplateCaOptions({
     this.isCa,
     this.maxIssuerPathLength,
     this.nullCa,
@@ -194,22 +190,18 @@ final class PrivatecaCertificateTemplatePredefinedValuesCaOptions {
 /// Typed helper for the `predefined_values.key_usage` block of
 /// `google_privateca_certificate_template` (derived from provider schema).
 @immutable
-final class PrivatecaCertificateTemplatePredefinedValuesKeyUsage {
-  const PrivatecaCertificateTemplatePredefinedValuesKeyUsage({
+final class PrivatecaCertificateTemplateKeyUsage {
+  const PrivatecaCertificateTemplateKeyUsage({
     this.baseKeyUsage,
     this.extendedKeyUsage,
     this.unknownExtendedKeyUsages,
   });
 
-  final PrivatecaCertificateTemplatePredefinedValuesKeyUsageBaseKeyUsage?
-  baseKeyUsage;
+  final PrivatecaCertificateTemplateBaseKeyUsage? baseKeyUsage;
 
-  final PrivatecaCertificateTemplatePredefinedValuesKeyUsageExtendedKeyUsage?
-  extendedKeyUsage;
+  final PrivatecaCertificateTemplateExtendedKeyUsage? extendedKeyUsage;
 
-  final List<
-    PrivatecaCertificateTemplatePredefinedValuesKeyUsageUnknownExtendedKeyUsages
-  >?
+  final List<PrivatecaCertificateTemplateUnknownExtendedKeyUsages>?
   unknownExtendedKeyUsages;
 
   Map<String, Object?> encode() => {
@@ -225,8 +217,8 @@ final class PrivatecaCertificateTemplatePredefinedValuesKeyUsage {
 /// Typed helper for the `predefined_values.key_usage.base_key_usage` block of
 /// `google_privateca_certificate_template` (derived from provider schema).
 @immutable
-final class PrivatecaCertificateTemplatePredefinedValuesKeyUsageBaseKeyUsage {
-  const PrivatecaCertificateTemplatePredefinedValuesKeyUsageBaseKeyUsage({
+final class PrivatecaCertificateTemplateBaseKeyUsage {
+  const PrivatecaCertificateTemplateBaseKeyUsage({
     this.certSign,
     this.contentCommitment,
     this.crlSign,
@@ -272,8 +264,8 @@ final class PrivatecaCertificateTemplatePredefinedValuesKeyUsageBaseKeyUsage {
 /// Typed helper for the `predefined_values.key_usage.extended_key_usage` block of
 /// `google_privateca_certificate_template` (derived from provider schema).
 @immutable
-final class PrivatecaCertificateTemplatePredefinedValuesKeyUsageExtendedKeyUsage {
-  const PrivatecaCertificateTemplatePredefinedValuesKeyUsageExtendedKeyUsage({
+final class PrivatecaCertificateTemplateExtendedKeyUsage {
+  const PrivatecaCertificateTemplateExtendedKeyUsage({
     this.clientAuth,
     this.codeSigning,
     this.emailProtection,
@@ -307,8 +299,8 @@ final class PrivatecaCertificateTemplatePredefinedValuesKeyUsageExtendedKeyUsage
 /// Typed helper for the `predefined_values.key_usage.unknown_extended_key_usages` block of
 /// `google_privateca_certificate_template` (derived from provider schema).
 @immutable
-final class PrivatecaCertificateTemplatePredefinedValuesKeyUsageUnknownExtendedKeyUsages {
-  const PrivatecaCertificateTemplatePredefinedValuesKeyUsageUnknownExtendedKeyUsages({
+final class PrivatecaCertificateTemplateUnknownExtendedKeyUsages {
+  const PrivatecaCertificateTemplateUnknownExtendedKeyUsages({
     required this.objectIdPath,
   });
 
@@ -320,8 +312,8 @@ final class PrivatecaCertificateTemplatePredefinedValuesKeyUsageUnknownExtendedK
 /// Typed helper for the `predefined_values.name_constraints` block of
 /// `google_privateca_certificate_template` (derived from provider schema).
 @immutable
-final class PrivatecaCertificateTemplatePredefinedValuesNameConstraints {
-  const PrivatecaCertificateTemplatePredefinedValuesNameConstraints({
+final class PrivatecaCertificateTemplateNameConstraints {
+  const PrivatecaCertificateTemplateNameConstraints({
     required this.critical,
     this.excludedDnsNames,
     this.excludedEmailAddresses,
@@ -367,10 +359,8 @@ final class PrivatecaCertificateTemplatePredefinedValuesNameConstraints {
 /// Typed helper for the `predefined_values.policy_ids` block of
 /// `google_privateca_certificate_template` (derived from provider schema).
 @immutable
-final class PrivatecaCertificateTemplatePredefinedValuesPolicyIds {
-  const PrivatecaCertificateTemplatePredefinedValuesPolicyIds({
-    required this.objectIdPath,
-  });
+final class PrivatecaCertificateTemplatePolicyIds {
+  const PrivatecaCertificateTemplatePolicyIds({required this.objectIdPath});
 
   final TfArg<List<num>> objectIdPath;
 

@@ -21,16 +21,16 @@ export 'src/opensearchserverless/aws_opensearchserverless_lifecycle_policy.dart'
 export 'src/opensearchserverless/aws_opensearchserverless_security_config.dart'
     show
         AwsOpensearchserverlessSecurityConfig,
+        OpensearchserverlessSecurityConfigGroupAttribute,
         OpensearchserverlessSecurityConfigIamFederationOptions,
+        OpensearchserverlessSecurityConfigIamFederationOptionsChoice,
         OpensearchserverlessSecurityConfigIamIdentityCenterOptions,
-        OpensearchserverlessSecurityConfigIamIdentityCenterOptionsGroupAttribute,
-        OpensearchserverlessSecurityConfigIamIdentityCenterOptionsUserAttribute,
+        OpensearchserverlessSecurityConfigIamIdentityCenterOptionsChoice,
         OpensearchserverlessSecurityConfigOptions,
-        OpensearchserverlessSecurityConfigOptionsIamFederationOptions,
-        OpensearchserverlessSecurityConfigOptionsIamIdentityCenterOptions,
-        OpensearchserverlessSecurityConfigOptionsSamlOptions,
         OpensearchserverlessSecurityConfigSamlOptions,
-        OpensearchserverlessSecurityConfigType;
+        OpensearchserverlessSecurityConfigSamlOptionsChoice,
+        OpensearchserverlessSecurityConfigType,
+        OpensearchserverlessSecurityConfigUserAttribute;
 export 'src/opensearchserverless/aws_opensearchserverless_security_policy.dart'
     show
         AwsOpensearchserverlessSecurityPolicy,

@@ -18,9 +18,7 @@ final class MemorystoreInstanceDesiredUserCreatedEndpointsDesiredUserCreatedEndp
     this.connections,
   });
 
-  final List<
-    MemorystoreInstanceDesiredUserCreatedEndpointsDesiredUserCreatedEndpointsConnections
-  >?
+  final List<MemorystoreInstanceDesiredUserCreatedEndpointsConnections>?
   connections;
 
   Map<String, Object?> encode() => {
@@ -32,12 +30,12 @@ final class MemorystoreInstanceDesiredUserCreatedEndpointsDesiredUserCreatedEndp
 /// Typed helper for the `desired_user_created_endpoints.connections` block of
 /// `google_memorystore_instance_desired_user_created_endpoints` (derived from provider schema).
 @immutable
-final class MemorystoreInstanceDesiredUserCreatedEndpointsDesiredUserCreatedEndpointsConnections {
-  const MemorystoreInstanceDesiredUserCreatedEndpointsDesiredUserCreatedEndpointsConnections({
+final class MemorystoreInstanceDesiredUserCreatedEndpointsConnections {
+  const MemorystoreInstanceDesiredUserCreatedEndpointsConnections({
     this.pscConnection,
   });
 
-  final MemorystoreInstanceDesiredUserCreatedEndpointsDesiredUserCreatedEndpointsConnectionsPscConnection?
+  final MemorystoreInstanceDesiredUserCreatedEndpointsPscConnection?
   pscConnection;
 
   Map<String, Object?> encode() => {'psc_connection': ?pscConnection?.encode()};
@@ -46,8 +44,8 @@ final class MemorystoreInstanceDesiredUserCreatedEndpointsDesiredUserCreatedEndp
 /// Typed helper for the `desired_user_created_endpoints.connections.psc_connection` block of
 /// `google_memorystore_instance_desired_user_created_endpoints` (derived from provider schema).
 @immutable
-final class MemorystoreInstanceDesiredUserCreatedEndpointsDesiredUserCreatedEndpointsConnectionsPscConnection {
-  const MemorystoreInstanceDesiredUserCreatedEndpointsDesiredUserCreatedEndpointsConnectionsPscConnection({
+final class MemorystoreInstanceDesiredUserCreatedEndpointsPscConnection {
+  const MemorystoreInstanceDesiredUserCreatedEndpointsPscConnection({
     required this.forwardingRule,
     required this.ipAddress,
     required this.network,

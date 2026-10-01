@@ -137,11 +137,11 @@ final class VpcEndpointDnsOptions {
     this.privateDnsSpecifiedDomains,
   });
 
-  final TfArg<VpcEndpointDnsOptionsDnsRecordIpType>? dnsRecordIpType;
+  final TfArg<VpcEndpointDnsRecordIpType>? dnsRecordIpType;
 
   final TfArg<bool>? privateDnsOnlyForInboundResolverEndpoint;
 
-  final TfArg<VpcEndpointDnsOptionsPrivateDnsPreference>? privateDnsPreference;
+  final TfArg<VpcEndpointPrivateDnsPreference>? privateDnsPreference;
 
   final TfArg<List<String>>? privateDnsSpecifiedDomains;
 
@@ -155,25 +155,25 @@ final class VpcEndpointDnsOptions {
 }
 
 /// `dns_record_ip_type` — derived from the provider schema description.
-enum VpcEndpointDnsOptionsDnsRecordIpType implements TerraformEnum {
+enum VpcEndpointDnsRecordIpType implements TerraformEnum {
   ipv4('ipv4'),
   dualstack('dualstack'),
   ipv6('ipv6'),
   serviceDefined('service-defined');
 
-  const VpcEndpointDnsOptionsDnsRecordIpType(this.terraformValue);
+  const VpcEndpointDnsRecordIpType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `private_dns_preference` — derived from the provider schema description.
-enum VpcEndpointDnsOptionsPrivateDnsPreference implements TerraformEnum {
+enum VpcEndpointPrivateDnsPreference implements TerraformEnum {
   allDomains('ALL_DOMAINS'),
   verifiedDomainsOnly('VERIFIED_DOMAINS_ONLY'),
   verifiedDomainsAndSpecifiedDomains('VERIFIED_DOMAINS_AND_SPECIFIED_DOMAINS'),
   specifiedDomainsOnly('SPECIFIED_DOMAINS_ONLY');
 
-  const VpcEndpointDnsOptionsPrivateDnsPreference(this.terraformValue);
+  const VpcEndpointPrivateDnsPreference(this.terraformValue);
   @override
   final String terraformValue;
 }

@@ -22,17 +22,17 @@ final class TransferWorkflowOnExceptionSteps {
     this.tagStepDetails,
   });
 
-  final TfArg<TransferWorkflowOnExceptionStepsType> type;
+  final TfArg<TransferWorkflowType> type;
 
-  final TransferWorkflowOnExceptionStepsCopyStepDetails? copyStepDetails;
+  final TransferWorkflowCopyStepDetails? copyStepDetails;
 
-  final TransferWorkflowOnExceptionStepsCustomStepDetails? customStepDetails;
+  final TransferWorkflowCustomStepDetails? customStepDetails;
 
-  final TransferWorkflowOnExceptionStepsDecryptStepDetails? decryptStepDetails;
+  final TransferWorkflowDecryptStepDetails? decryptStepDetails;
 
-  final TransferWorkflowOnExceptionStepsDeleteStepDetails? deleteStepDetails;
+  final TransferWorkflowDeleteStepDetails? deleteStepDetails;
 
-  final TransferWorkflowOnExceptionStepsTagStepDetails? tagStepDetails;
+  final TransferWorkflowTagStepDetails? tagStepDetails;
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
@@ -45,23 +45,24 @@ final class TransferWorkflowOnExceptionSteps {
 }
 
 /// `type` — derived from the provider schema description.
-enum TransferWorkflowOnExceptionStepsType implements TerraformEnum {
+enum TransferWorkflowType implements TerraformEnum {
   copy('COPY'),
   custom('CUSTOM'),
   tag('TAG'),
   delete('DELETE'),
   decrypt('DECRYPT');
 
-  const TransferWorkflowOnExceptionStepsType(this.terraformValue);
+  const TransferWorkflowType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `on_exception_steps.copy_step_details` block of
 /// `aws_transfer_workflow` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class TransferWorkflowOnExceptionStepsCopyStepDetails {
-  const TransferWorkflowOnExceptionStepsCopyStepDetails({
+final class TransferWorkflowCopyStepDetails {
+  const TransferWorkflowCopyStepDetails({
     this.name,
     this.overwriteExisting,
     this.sourceFileLocation,
@@ -70,13 +71,11 @@ final class TransferWorkflowOnExceptionStepsCopyStepDetails {
 
   final TfArg<String>? name;
 
-  final TfArg<TransferWorkflowOnExceptionStepsCopyStepDetailsOverwriteExisting>?
-  overwriteExisting;
+  final TfArg<TransferWorkflowOverwriteExisting>? overwriteExisting;
 
   final TfArg<String>? sourceFileLocation;
 
-  final TransferWorkflowOnExceptionStepsCopyStepDetailsDestinationFileLocation?
-  destinationFileLocation;
+  final TransferWorkflowDestinationFileLocation? destinationFileLocation;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
@@ -87,32 +86,28 @@ final class TransferWorkflowOnExceptionStepsCopyStepDetails {
 }
 
 /// `overwrite_existing` — derived from the provider schema description.
-enum TransferWorkflowOnExceptionStepsCopyStepDetailsOverwriteExisting
-    implements TerraformEnum {
+enum TransferWorkflowOverwriteExisting implements TerraformEnum {
   trueCase('TRUE'),
   falseCase('FALSE');
 
-  const TransferWorkflowOnExceptionStepsCopyStepDetailsOverwriteExisting(
-    this.terraformValue,
-  );
+  const TransferWorkflowOverwriteExisting(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `on_exception_steps.copy_step_details.destination_file_location` block of
 /// `aws_transfer_workflow` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class TransferWorkflowOnExceptionStepsCopyStepDetailsDestinationFileLocation {
-  const TransferWorkflowOnExceptionStepsCopyStepDetailsDestinationFileLocation({
+final class TransferWorkflowDestinationFileLocation {
+  const TransferWorkflowDestinationFileLocation({
     this.efsFileLocation,
     this.s3FileLocation,
   });
 
-  final TransferWorkflowOnExceptionStepsCopyStepDetailsDestinationFileLocationEfsFileLocation?
-  efsFileLocation;
+  final TransferWorkflowEfsFileLocation? efsFileLocation;
 
-  final TransferWorkflowOnExceptionStepsCopyStepDetailsDestinationFileLocationS3FileLocation?
-  s3FileLocation;
+  final TransferWorkflowS3FileLocation? s3FileLocation;
 
   Map<String, Object?> encode() => {
     'efs_file_location': ?efsFileLocation?.encode(),
@@ -122,12 +117,10 @@ final class TransferWorkflowOnExceptionStepsCopyStepDetailsDestinationFileLocati
 
 /// Typed helper for the `on_exception_steps.copy_step_details.destination_file_location.efs_file_location` block of
 /// `aws_transfer_workflow` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class TransferWorkflowOnExceptionStepsCopyStepDetailsDestinationFileLocationEfsFileLocation {
-  const TransferWorkflowOnExceptionStepsCopyStepDetailsDestinationFileLocationEfsFileLocation({
-    this.fileSystemId,
-    this.path,
-  });
+final class TransferWorkflowEfsFileLocation {
+  const TransferWorkflowEfsFileLocation({this.fileSystemId, this.path});
 
   final TfArg<String>? fileSystemId;
 
@@ -141,12 +134,10 @@ final class TransferWorkflowOnExceptionStepsCopyStepDetailsDestinationFileLocati
 
 /// Typed helper for the `on_exception_steps.copy_step_details.destination_file_location.s3_file_location` block of
 /// `aws_transfer_workflow` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class TransferWorkflowOnExceptionStepsCopyStepDetailsDestinationFileLocationS3FileLocation {
-  const TransferWorkflowOnExceptionStepsCopyStepDetailsDestinationFileLocationS3FileLocation({
-    this.bucket,
-    this.key,
-  });
+final class TransferWorkflowS3FileLocation {
+  const TransferWorkflowS3FileLocation({this.bucket, this.key});
 
   final RefTo<AwsS3Bucket>? bucket;
 
@@ -160,9 +151,10 @@ final class TransferWorkflowOnExceptionStepsCopyStepDetailsDestinationFileLocati
 
 /// Typed helper for the `on_exception_steps.custom_step_details` block of
 /// `aws_transfer_workflow` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class TransferWorkflowOnExceptionStepsCustomStepDetails {
-  const TransferWorkflowOnExceptionStepsCustomStepDetails({
+final class TransferWorkflowCustomStepDetails {
+  const TransferWorkflowCustomStepDetails({
     this.name,
     this.sourceFileLocation,
     this.target,
@@ -187,9 +179,10 @@ final class TransferWorkflowOnExceptionStepsCustomStepDetails {
 
 /// Typed helper for the `on_exception_steps.decrypt_step_details` block of
 /// `aws_transfer_workflow` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class TransferWorkflowOnExceptionStepsDecryptStepDetails {
-  const TransferWorkflowOnExceptionStepsDecryptStepDetails({
+final class TransferWorkflowDecryptStepDetails {
+  const TransferWorkflowDecryptStepDetails({
     this.name,
     this.overwriteExisting,
     this.sourceFileLocation,
@@ -199,17 +192,13 @@ final class TransferWorkflowOnExceptionStepsDecryptStepDetails {
 
   final TfArg<String>? name;
 
-  final TfArg<
-    TransferWorkflowOnExceptionStepsDecryptStepDetailsOverwriteExisting
-  >?
-  overwriteExisting;
+  final TfArg<TransferWorkflowOverwriteExisting>? overwriteExisting;
 
   final TfArg<String>? sourceFileLocation;
 
-  final TfArg<TransferWorkflowOnExceptionStepsDecryptStepDetailsType> type;
+  final TfArg<TransferWorkflowDecryptStepDetailsType> type;
 
-  final TransferWorkflowOnExceptionStepsDecryptStepDetailsDestinationFileLocation?
-  destinationFileLocation;
+  final TransferWorkflowDestinationFileLocation? destinationFileLocation;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
@@ -220,98 +209,21 @@ final class TransferWorkflowOnExceptionStepsDecryptStepDetails {
   };
 }
 
-/// `overwrite_existing` — derived from the provider schema description.
-enum TransferWorkflowOnExceptionStepsDecryptStepDetailsOverwriteExisting
-    implements TerraformEnum {
-  trueCase('TRUE'),
-  falseCase('FALSE');
-
-  const TransferWorkflowOnExceptionStepsDecryptStepDetailsOverwriteExisting(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// `type` — derived from the provider schema description.
-enum TransferWorkflowOnExceptionStepsDecryptStepDetailsType
-    implements TerraformEnum {
+enum TransferWorkflowDecryptStepDetailsType implements TerraformEnum {
   pgp('PGP');
 
-  const TransferWorkflowOnExceptionStepsDecryptStepDetailsType(
-    this.terraformValue,
-  );
+  const TransferWorkflowDecryptStepDetailsType(this.terraformValue);
   @override
   final String terraformValue;
-}
-
-/// Typed helper for the `on_exception_steps.decrypt_step_details.destination_file_location` block of
-/// `aws_transfer_workflow` (derived from provider schema).
-@immutable
-final class TransferWorkflowOnExceptionStepsDecryptStepDetailsDestinationFileLocation {
-  const TransferWorkflowOnExceptionStepsDecryptStepDetailsDestinationFileLocation({
-    this.efsFileLocation,
-    this.s3FileLocation,
-  });
-
-  final TransferWorkflowOnExceptionStepsDecryptStepDetailsDestinationFileLocationEfsFileLocation?
-  efsFileLocation;
-
-  final TransferWorkflowOnExceptionStepsDecryptStepDetailsDestinationFileLocationS3FileLocation?
-  s3FileLocation;
-
-  Map<String, Object?> encode() => {
-    'efs_file_location': ?efsFileLocation?.encode(),
-    's3_file_location': ?s3FileLocation?.encode(),
-  };
-}
-
-/// Typed helper for the `on_exception_steps.decrypt_step_details.destination_file_location.efs_file_location` block of
-/// `aws_transfer_workflow` (derived from provider schema).
-@immutable
-final class TransferWorkflowOnExceptionStepsDecryptStepDetailsDestinationFileLocationEfsFileLocation {
-  const TransferWorkflowOnExceptionStepsDecryptStepDetailsDestinationFileLocationEfsFileLocation({
-    this.fileSystemId,
-    this.path,
-  });
-
-  final TfArg<String>? fileSystemId;
-
-  final TfArg<String>? path;
-
-  Map<String, Object?> encode() => {
-    'file_system_id': ?fileSystemId?.toTfJson(),
-    'path': ?path?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `on_exception_steps.decrypt_step_details.destination_file_location.s3_file_location` block of
-/// `aws_transfer_workflow` (derived from provider schema).
-@immutable
-final class TransferWorkflowOnExceptionStepsDecryptStepDetailsDestinationFileLocationS3FileLocation {
-  const TransferWorkflowOnExceptionStepsDecryptStepDetailsDestinationFileLocationS3FileLocation({
-    this.bucket,
-    this.key,
-  });
-
-  final RefTo<AwsS3Bucket>? bucket;
-
-  final TfArg<String>? key;
-
-  Map<String, Object?> encode() => {
-    'bucket': ?bucket?.encodeAs('id').toTfJson(),
-    'key': ?key?.toTfJson(),
-  };
 }
 
 /// Typed helper for the `on_exception_steps.delete_step_details` block of
 /// `aws_transfer_workflow` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class TransferWorkflowOnExceptionStepsDeleteStepDetails {
-  const TransferWorkflowOnExceptionStepsDeleteStepDetails({
-    this.name,
-    this.sourceFileLocation,
-  });
+final class TransferWorkflowDeleteStepDetails {
+  const TransferWorkflowDeleteStepDetails({this.name, this.sourceFileLocation});
 
   final TfArg<String>? name;
 
@@ -325,9 +237,10 @@ final class TransferWorkflowOnExceptionStepsDeleteStepDetails {
 
 /// Typed helper for the `on_exception_steps.tag_step_details` block of
 /// `aws_transfer_workflow` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class TransferWorkflowOnExceptionStepsTagStepDetails {
-  const TransferWorkflowOnExceptionStepsTagStepDetails({
+final class TransferWorkflowTagStepDetails {
+  const TransferWorkflowTagStepDetails({
     this.name,
     this.sourceFileLocation,
     this.tags,
@@ -337,7 +250,7 @@ final class TransferWorkflowOnExceptionStepsTagStepDetails {
 
   final TfArg<String>? sourceFileLocation;
 
-  final List<TransferWorkflowOnExceptionStepsTagStepDetailsTags>? tags;
+  final List<TransferWorkflowTagStepDetailsTags>? tags;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
@@ -348,9 +261,10 @@ final class TransferWorkflowOnExceptionStepsTagStepDetails {
 
 /// Typed helper for the `on_exception_steps.tag_step_details.tags` block of
 /// `aws_transfer_workflow` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class TransferWorkflowOnExceptionStepsTagStepDetailsTags {
-  const TransferWorkflowOnExceptionStepsTagStepDetailsTags({
+final class TransferWorkflowTagStepDetailsTags {
+  const TransferWorkflowTagStepDetailsTags({
     required this.key,
     required this.value,
   });
@@ -378,17 +292,17 @@ final class TransferWorkflowSteps {
     this.tagStepDetails,
   });
 
-  final TfArg<TransferWorkflowStepsType> type;
+  final TfArg<TransferWorkflowType> type;
 
-  final TransferWorkflowStepsCopyStepDetails? copyStepDetails;
+  final TransferWorkflowCopyStepDetails? copyStepDetails;
 
-  final TransferWorkflowStepsCustomStepDetails? customStepDetails;
+  final TransferWorkflowCustomStepDetails? customStepDetails;
 
-  final TransferWorkflowStepsDecryptStepDetails? decryptStepDetails;
+  final TransferWorkflowDecryptStepDetails? decryptStepDetails;
 
-  final TransferWorkflowStepsDeleteStepDetails? deleteStepDetails;
+  final TransferWorkflowDeleteStepDetails? deleteStepDetails;
 
-  final TransferWorkflowStepsTagStepDetails? tagStepDetails;
+  final TransferWorkflowTagStepDetails? tagStepDetails;
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
@@ -397,322 +311,6 @@ final class TransferWorkflowSteps {
     'decrypt_step_details': ?decryptStepDetails?.encode(),
     'delete_step_details': ?deleteStepDetails?.encode(),
     'tag_step_details': ?tagStepDetails?.encode(),
-  };
-}
-
-/// `type` — derived from the provider schema description.
-enum TransferWorkflowStepsType implements TerraformEnum {
-  copy('COPY'),
-  custom('CUSTOM'),
-  tag('TAG'),
-  delete('DELETE'),
-  decrypt('DECRYPT');
-
-  const TransferWorkflowStepsType(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `steps.copy_step_details` block of
-/// `aws_transfer_workflow` (derived from provider schema).
-@immutable
-final class TransferWorkflowStepsCopyStepDetails {
-  const TransferWorkflowStepsCopyStepDetails({
-    this.name,
-    this.overwriteExisting,
-    this.sourceFileLocation,
-    this.destinationFileLocation,
-  });
-
-  final TfArg<String>? name;
-
-  final TfArg<TransferWorkflowStepsCopyStepDetailsOverwriteExisting>?
-  overwriteExisting;
-
-  final TfArg<String>? sourceFileLocation;
-
-  final TransferWorkflowStepsCopyStepDetailsDestinationFileLocation?
-  destinationFileLocation;
-
-  Map<String, Object?> encode() => {
-    'name': ?name?.toTfJson(),
-    'overwrite_existing': ?overwriteExisting?.toTfJson(),
-    'source_file_location': ?sourceFileLocation?.toTfJson(),
-    'destination_file_location': ?destinationFileLocation?.encode(),
-  };
-}
-
-/// `overwrite_existing` — derived from the provider schema description.
-enum TransferWorkflowStepsCopyStepDetailsOverwriteExisting
-    implements TerraformEnum {
-  trueCase('TRUE'),
-  falseCase('FALSE');
-
-  const TransferWorkflowStepsCopyStepDetailsOverwriteExisting(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `steps.copy_step_details.destination_file_location` block of
-/// `aws_transfer_workflow` (derived from provider schema).
-@immutable
-final class TransferWorkflowStepsCopyStepDetailsDestinationFileLocation {
-  const TransferWorkflowStepsCopyStepDetailsDestinationFileLocation({
-    this.efsFileLocation,
-    this.s3FileLocation,
-  });
-
-  final TransferWorkflowStepsCopyStepDetailsDestinationFileLocationEfsFileLocation?
-  efsFileLocation;
-
-  final TransferWorkflowStepsCopyStepDetailsDestinationFileLocationS3FileLocation?
-  s3FileLocation;
-
-  Map<String, Object?> encode() => {
-    'efs_file_location': ?efsFileLocation?.encode(),
-    's3_file_location': ?s3FileLocation?.encode(),
-  };
-}
-
-/// Typed helper for the `steps.copy_step_details.destination_file_location.efs_file_location` block of
-/// `aws_transfer_workflow` (derived from provider schema).
-@immutable
-final class TransferWorkflowStepsCopyStepDetailsDestinationFileLocationEfsFileLocation {
-  const TransferWorkflowStepsCopyStepDetailsDestinationFileLocationEfsFileLocation({
-    this.fileSystemId,
-    this.path,
-  });
-
-  final TfArg<String>? fileSystemId;
-
-  final TfArg<String>? path;
-
-  Map<String, Object?> encode() => {
-    'file_system_id': ?fileSystemId?.toTfJson(),
-    'path': ?path?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `steps.copy_step_details.destination_file_location.s3_file_location` block of
-/// `aws_transfer_workflow` (derived from provider schema).
-@immutable
-final class TransferWorkflowStepsCopyStepDetailsDestinationFileLocationS3FileLocation {
-  const TransferWorkflowStepsCopyStepDetailsDestinationFileLocationS3FileLocation({
-    this.bucket,
-    this.key,
-  });
-
-  final RefTo<AwsS3Bucket>? bucket;
-
-  final TfArg<String>? key;
-
-  Map<String, Object?> encode() => {
-    'bucket': ?bucket?.encodeAs('id').toTfJson(),
-    'key': ?key?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `steps.custom_step_details` block of
-/// `aws_transfer_workflow` (derived from provider schema).
-@immutable
-final class TransferWorkflowStepsCustomStepDetails {
-  const TransferWorkflowStepsCustomStepDetails({
-    this.name,
-    this.sourceFileLocation,
-    this.target,
-    this.timeoutSeconds,
-  });
-
-  final TfArg<String>? name;
-
-  final TfArg<String>? sourceFileLocation;
-
-  final TfArg<String>? target;
-
-  final TfArg<num>? timeoutSeconds;
-
-  Map<String, Object?> encode() => {
-    'name': ?name?.toTfJson(),
-    'source_file_location': ?sourceFileLocation?.toTfJson(),
-    'target': ?target?.toTfJson(),
-    'timeout_seconds': ?timeoutSeconds?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `steps.decrypt_step_details` block of
-/// `aws_transfer_workflow` (derived from provider schema).
-@immutable
-final class TransferWorkflowStepsDecryptStepDetails {
-  const TransferWorkflowStepsDecryptStepDetails({
-    this.name,
-    this.overwriteExisting,
-    this.sourceFileLocation,
-    required this.type,
-    this.destinationFileLocation,
-  });
-
-  final TfArg<String>? name;
-
-  final TfArg<TransferWorkflowStepsDecryptStepDetailsOverwriteExisting>?
-  overwriteExisting;
-
-  final TfArg<String>? sourceFileLocation;
-
-  final TfArg<TransferWorkflowStepsDecryptStepDetailsType> type;
-
-  final TransferWorkflowStepsDecryptStepDetailsDestinationFileLocation?
-  destinationFileLocation;
-
-  Map<String, Object?> encode() => {
-    'name': ?name?.toTfJson(),
-    'overwrite_existing': ?overwriteExisting?.toTfJson(),
-    'source_file_location': ?sourceFileLocation?.toTfJson(),
-    'type': type.toTfJson(),
-    'destination_file_location': ?destinationFileLocation?.encode(),
-  };
-}
-
-/// `overwrite_existing` — derived from the provider schema description.
-enum TransferWorkflowStepsDecryptStepDetailsOverwriteExisting
-    implements TerraformEnum {
-  trueCase('TRUE'),
-  falseCase('FALSE');
-
-  const TransferWorkflowStepsDecryptStepDetailsOverwriteExisting(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `type` — derived from the provider schema description.
-enum TransferWorkflowStepsDecryptStepDetailsType implements TerraformEnum {
-  pgp('PGP');
-
-  const TransferWorkflowStepsDecryptStepDetailsType(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `steps.decrypt_step_details.destination_file_location` block of
-/// `aws_transfer_workflow` (derived from provider schema).
-@immutable
-final class TransferWorkflowStepsDecryptStepDetailsDestinationFileLocation {
-  const TransferWorkflowStepsDecryptStepDetailsDestinationFileLocation({
-    this.efsFileLocation,
-    this.s3FileLocation,
-  });
-
-  final TransferWorkflowStepsDecryptStepDetailsDestinationFileLocationEfsFileLocation?
-  efsFileLocation;
-
-  final TransferWorkflowStepsDecryptStepDetailsDestinationFileLocationS3FileLocation?
-  s3FileLocation;
-
-  Map<String, Object?> encode() => {
-    'efs_file_location': ?efsFileLocation?.encode(),
-    's3_file_location': ?s3FileLocation?.encode(),
-  };
-}
-
-/// Typed helper for the `steps.decrypt_step_details.destination_file_location.efs_file_location` block of
-/// `aws_transfer_workflow` (derived from provider schema).
-@immutable
-final class TransferWorkflowStepsDecryptStepDetailsDestinationFileLocationEfsFileLocation {
-  const TransferWorkflowStepsDecryptStepDetailsDestinationFileLocationEfsFileLocation({
-    this.fileSystemId,
-    this.path,
-  });
-
-  final TfArg<String>? fileSystemId;
-
-  final TfArg<String>? path;
-
-  Map<String, Object?> encode() => {
-    'file_system_id': ?fileSystemId?.toTfJson(),
-    'path': ?path?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `steps.decrypt_step_details.destination_file_location.s3_file_location` block of
-/// `aws_transfer_workflow` (derived from provider schema).
-@immutable
-final class TransferWorkflowStepsDecryptStepDetailsDestinationFileLocationS3FileLocation {
-  const TransferWorkflowStepsDecryptStepDetailsDestinationFileLocationS3FileLocation({
-    this.bucket,
-    this.key,
-  });
-
-  final RefTo<AwsS3Bucket>? bucket;
-
-  final TfArg<String>? key;
-
-  Map<String, Object?> encode() => {
-    'bucket': ?bucket?.encodeAs('id').toTfJson(),
-    'key': ?key?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `steps.delete_step_details` block of
-/// `aws_transfer_workflow` (derived from provider schema).
-@immutable
-final class TransferWorkflowStepsDeleteStepDetails {
-  const TransferWorkflowStepsDeleteStepDetails({
-    this.name,
-    this.sourceFileLocation,
-  });
-
-  final TfArg<String>? name;
-
-  final TfArg<String>? sourceFileLocation;
-
-  Map<String, Object?> encode() => {
-    'name': ?name?.toTfJson(),
-    'source_file_location': ?sourceFileLocation?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `steps.tag_step_details` block of
-/// `aws_transfer_workflow` (derived from provider schema).
-@immutable
-final class TransferWorkflowStepsTagStepDetails {
-  const TransferWorkflowStepsTagStepDetails({
-    this.name,
-    this.sourceFileLocation,
-    this.tags,
-  });
-
-  final TfArg<String>? name;
-
-  final TfArg<String>? sourceFileLocation;
-
-  final List<TransferWorkflowStepsTagStepDetailsTags>? tags;
-
-  Map<String, Object?> encode() => {
-    'name': ?name?.toTfJson(),
-    'source_file_location': ?sourceFileLocation?.toTfJson(),
-    if (tags != null) 'tags': [for (final e in tags!) e.encode()],
-  };
-}
-
-/// Typed helper for the `steps.tag_step_details.tags` block of
-/// `aws_transfer_workflow` (derived from provider schema).
-@immutable
-final class TransferWorkflowStepsTagStepDetailsTags {
-  const TransferWorkflowStepsTagStepDetailsTags({
-    required this.key,
-    required this.value,
-  });
-
-  final TfArg<String> key;
-
-  final TfArg<String> value;
-
-  Map<String, Object?> encode() => {
-    'key': key.toTfJson(),
-    'value': value.toTfJson(),
   };
 }
 

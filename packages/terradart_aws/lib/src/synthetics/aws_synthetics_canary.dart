@@ -19,7 +19,7 @@ const Set<String> _awsSyntheticsCanarySensitive = <String>{};
 final class SyntheticsCanaryArtifactConfig {
   const SyntheticsCanaryArtifactConfig({this.s3Encryption});
 
-  final SyntheticsCanaryArtifactConfigS3Encryption? s3Encryption;
+  final SyntheticsCanaryS3Encryption? s3Encryption;
 
   Map<String, Object?> encode() => {'s3_encryption': ?s3Encryption?.encode()};
 }
@@ -27,14 +27,10 @@ final class SyntheticsCanaryArtifactConfig {
 /// Typed helper for the `artifact_config.s3_encryption` block of
 /// `aws_synthetics_canary` (derived from provider schema).
 @immutable
-final class SyntheticsCanaryArtifactConfigS3Encryption {
-  const SyntheticsCanaryArtifactConfigS3Encryption({
-    this.encryptionMode,
-    this.kmsKeyArn,
-  });
+final class SyntheticsCanaryS3Encryption {
+  const SyntheticsCanaryS3Encryption({this.encryptionMode, this.kmsKeyArn});
 
-  final TfArg<SyntheticsCanaryArtifactConfigS3EncryptionEncryptionMode>?
-  encryptionMode;
+  final TfArg<SyntheticsCanaryEncryptionMode>? encryptionMode;
 
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
@@ -45,14 +41,11 @@ final class SyntheticsCanaryArtifactConfigS3Encryption {
 }
 
 /// `encryption_mode` — derived from the provider schema description.
-enum SyntheticsCanaryArtifactConfigS3EncryptionEncryptionMode
-    implements TerraformEnum {
+enum SyntheticsCanaryEncryptionMode implements TerraformEnum {
   sseS3('SSE_S3'),
   sseKms('SSE_KMS');
 
-  const SyntheticsCanaryArtifactConfigS3EncryptionEncryptionMode(
-    this.terraformValue,
-  );
+  const SyntheticsCanaryEncryptionMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -102,7 +95,7 @@ final class SyntheticsCanarySchedule {
 
   final TfArg<String> expression;
 
-  final SyntheticsCanaryScheduleRetryConfig? retryConfig;
+  final SyntheticsCanaryRetryConfig? retryConfig;
 
   Map<String, Object?> encode() => {
     'duration_in_seconds': ?durationInSeconds?.toTfJson(),
@@ -114,8 +107,8 @@ final class SyntheticsCanarySchedule {
 /// Typed helper for the `schedule.retry_config` block of
 /// `aws_synthetics_canary` (derived from provider schema).
 @immutable
-final class SyntheticsCanaryScheduleRetryConfig {
-  const SyntheticsCanaryScheduleRetryConfig({required this.maxRetries});
+final class SyntheticsCanaryRetryConfig {
+  const SyntheticsCanaryRetryConfig({required this.maxRetries});
 
   final TfArg<num> maxRetries;
 

@@ -6,26 +6,25 @@ library;
 
 export 'src/edgecontainer/google_edgecontainer_cluster.dart'
     show
+        EdgecontainerClusterAdminUsers,
         EdgecontainerClusterAuthorization,
-        EdgecontainerClusterAuthorizationAdminUsers,
         EdgecontainerClusterControlPlane,
         EdgecontainerClusterControlPlaneEncryption,
         EdgecontainerClusterControlPlaneLocal,
-        EdgecontainerClusterControlPlaneLocalChoice,
-        EdgecontainerClusterControlPlaneLocalSharedDeploymentPolicy,
         EdgecontainerClusterControlPlaneRemote,
-        EdgecontainerClusterControlPlaneRemoteChoice,
         EdgecontainerClusterFleet,
+        EdgecontainerClusterIngress,
+        EdgecontainerClusterLocal,
+        EdgecontainerClusterMaintenanceExclusions,
+        EdgecontainerClusterMaintenanceExclusionsWindow,
         EdgecontainerClusterMaintenancePolicy,
-        EdgecontainerClusterMaintenancePolicyMaintenanceExclusions,
-        EdgecontainerClusterMaintenancePolicyMaintenanceExclusionsWindow,
-        EdgecontainerClusterMaintenancePolicyWindow,
-        EdgecontainerClusterMaintenancePolicyWindowRecurringWindow,
-        EdgecontainerClusterMaintenancePolicyWindowRecurringWindowWindow,
         EdgecontainerClusterNetworking,
+        EdgecontainerClusterRecurringWindow,
         EdgecontainerClusterReleaseChannel,
+        EdgecontainerClusterRemote,
+        EdgecontainerClusterSharedDeploymentPolicy,
         EdgecontainerClusterSystemAddonsConfig,
-        EdgecontainerClusterSystemAddonsConfigIngress,
+        EdgecontainerClusterWindow,
         GoogleEdgecontainerCluster;
 export 'src/edgecontainer/google_edgecontainer_node_pool.dart'
     show

@@ -251,9 +251,9 @@ final class BudgetsBudgetAutoAdjustData {
     this.historicalOptions,
   });
 
-  final TfArg<BudgetsBudgetAutoAdjustDataAutoAdjustType> autoAdjustType;
+  final TfArg<BudgetsBudgetAutoAdjustType> autoAdjustType;
 
-  final BudgetsBudgetAutoAdjustDataHistoricalOptions? historicalOptions;
+  final BudgetsBudgetHistoricalOptions? historicalOptions;
 
   Map<String, Object?> encode() => {
     'auto_adjust_type': autoAdjustType.toTfJson(),
@@ -262,11 +262,11 @@ final class BudgetsBudgetAutoAdjustData {
 }
 
 /// `auto_adjust_type` — derived from the provider schema description.
-enum BudgetsBudgetAutoAdjustDataAutoAdjustType implements TerraformEnum {
+enum BudgetsBudgetAutoAdjustType implements TerraformEnum {
   historical('HISTORICAL'),
   forecast('FORECAST');
 
-  const BudgetsBudgetAutoAdjustDataAutoAdjustType(this.terraformValue);
+  const BudgetsBudgetAutoAdjustType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -274,10 +274,8 @@ enum BudgetsBudgetAutoAdjustDataAutoAdjustType implements TerraformEnum {
 /// Typed helper for the `auto_adjust_data.historical_options` block of
 /// `aws_budgets_budget` (derived from provider schema).
 @immutable
-final class BudgetsBudgetAutoAdjustDataHistoricalOptions {
-  const BudgetsBudgetAutoAdjustDataHistoricalOptions({
-    required this.budgetAdjustmentPeriod,
-  });
+final class BudgetsBudgetHistoricalOptions {
+  const BudgetsBudgetHistoricalOptions({required this.budgetAdjustmentPeriod});
 
   final TfArg<num> budgetAdjustmentPeriod;
 
@@ -370,15 +368,15 @@ final class BudgetsBudgetFilterExpression {
     this.tags,
   });
 
-  final List<BudgetsBudgetFilterExpressionAnd>? and;
+  final List<BudgetsBudgetAnd>? and;
 
-  final BudgetsBudgetFilterExpressionCostCategories? costCategories;
+  final BudgetsBudgetCostCategories? costCategories;
 
-  final BudgetsBudgetFilterExpressionDimensions? dimensions;
+  final BudgetsBudgetDimensions? dimensions;
 
-  final BudgetsBudgetFilterExpressionNot? not;
+  final BudgetsBudgetNot? not;
 
-  final List<BudgetsBudgetFilterExpressionOr>? or;
+  final List<BudgetsBudgetOr>? or;
 
   final BudgetsBudgetFilterExpressionTags? tags;
 
@@ -395,8 +393,8 @@ final class BudgetsBudgetFilterExpression {
 /// Typed helper for the `filter_expression.and` block of
 /// `aws_budgets_budget` (derived from provider schema).
 @immutable
-final class BudgetsBudgetFilterExpressionAnd {
-  const BudgetsBudgetFilterExpressionAnd({
+final class BudgetsBudgetAnd {
+  const BudgetsBudgetAnd({
     this.and,
     this.costCategories,
     this.dimensions,
@@ -405,17 +403,17 @@ final class BudgetsBudgetFilterExpressionAnd {
     this.tags,
   });
 
-  final List<BudgetsBudgetFilterExpressionAndAnd>? and;
+  final List<BudgetsBudgetAndAnd>? and;
 
-  final BudgetsBudgetFilterExpressionAndCostCategories? costCategories;
+  final BudgetsBudgetAndCostCategories? costCategories;
 
-  final BudgetsBudgetFilterExpressionAndDimensions? dimensions;
+  final BudgetsBudgetAndDimensions? dimensions;
 
-  final BudgetsBudgetFilterExpressionAndNot? not;
+  final BudgetsBudgetAndNot? not;
 
-  final List<BudgetsBudgetFilterExpressionAndOr>? or;
+  final List<BudgetsBudgetAndOr>? or;
 
-  final BudgetsBudgetFilterExpressionAndTags? tags;
+  final BudgetsBudgetAndTags? tags;
 
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
@@ -429,19 +427,16 @@ final class BudgetsBudgetFilterExpressionAnd {
 
 /// Typed helper for the `filter_expression.and.and` block of
 /// `aws_budgets_budget` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BudgetsBudgetFilterExpressionAndAnd {
-  const BudgetsBudgetFilterExpressionAndAnd({
-    this.costCategories,
-    this.dimensions,
-    this.tags,
-  });
+final class BudgetsBudgetAndAnd {
+  const BudgetsBudgetAndAnd({this.costCategories, this.dimensions, this.tags});
 
-  final BudgetsBudgetFilterExpressionAndAndCostCategories? costCategories;
+  final BudgetsBudgetAndCostCategories? costCategories;
 
-  final BudgetsBudgetFilterExpressionAndAndDimensions? dimensions;
+  final BudgetsBudgetAndDimensions? dimensions;
 
-  final BudgetsBudgetFilterExpressionAndAndTags? tags;
+  final BudgetsBudgetAndTags? tags;
 
   Map<String, Object?> encode() => {
     'cost_categories': ?costCategories?.encode(),
@@ -450,80 +445,12 @@ final class BudgetsBudgetFilterExpressionAndAnd {
   };
 }
 
-/// Typed helper for the `filter_expression.and.and.cost_categories` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionAndAndCostCategories {
-  const BudgetsBudgetFilterExpressionAndAndCostCategories({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter_expression.and.and.dimensions` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionAndAndDimensions {
-  const BudgetsBudgetFilterExpressionAndAndDimensions({
-    required this.key,
-    this.matchOptions,
-    required this.values,
-  });
-
-  final TfArg<String> key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>> values;
-
-  Map<String, Object?> encode() => {
-    'key': key.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': values.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter_expression.and.and.tags` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionAndAndTags {
-  const BudgetsBudgetFilterExpressionAndAndTags({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `filter_expression.and.cost_categories` block of
 /// `aws_budgets_budget` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BudgetsBudgetFilterExpressionAndCostCategories {
-  const BudgetsBudgetFilterExpressionAndCostCategories({
+final class BudgetsBudgetAndCostCategories {
+  const BudgetsBudgetAndCostCategories({
     this.key,
     this.matchOptions,
     this.values,
@@ -544,9 +471,10 @@ final class BudgetsBudgetFilterExpressionAndCostCategories {
 
 /// Typed helper for the `filter_expression.and.dimensions` block of
 /// `aws_budgets_budget` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BudgetsBudgetFilterExpressionAndDimensions {
-  const BudgetsBudgetFilterExpressionAndDimensions({
+final class BudgetsBudgetAndDimensions {
+  const BudgetsBudgetAndDimensions({
     required this.key,
     this.matchOptions,
     required this.values,
@@ -562,202 +490,15 @@ final class BudgetsBudgetFilterExpressionAndDimensions {
     'key': key.toTfJson(),
     'match_options': ?matchOptions?.toTfJson(),
     'values': values.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter_expression.and.not` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionAndNot {
-  const BudgetsBudgetFilterExpressionAndNot({
-    this.costCategories,
-    this.dimensions,
-    this.tags,
-  });
-
-  final BudgetsBudgetFilterExpressionAndNotCostCategories? costCategories;
-
-  final BudgetsBudgetFilterExpressionAndNotDimensions? dimensions;
-
-  final BudgetsBudgetFilterExpressionAndNotTags? tags;
-
-  Map<String, Object?> encode() => {
-    'cost_categories': ?costCategories?.encode(),
-    'dimensions': ?dimensions?.encode(),
-    'tags': ?tags?.encode(),
-  };
-}
-
-/// Typed helper for the `filter_expression.and.not.cost_categories` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionAndNotCostCategories {
-  const BudgetsBudgetFilterExpressionAndNotCostCategories({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter_expression.and.not.dimensions` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionAndNotDimensions {
-  const BudgetsBudgetFilterExpressionAndNotDimensions({
-    required this.key,
-    this.matchOptions,
-    required this.values,
-  });
-
-  final TfArg<String> key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>> values;
-
-  Map<String, Object?> encode() => {
-    'key': key.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': values.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter_expression.and.not.tags` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionAndNotTags {
-  const BudgetsBudgetFilterExpressionAndNotTags({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter_expression.and.or` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionAndOr {
-  const BudgetsBudgetFilterExpressionAndOr({
-    this.costCategories,
-    this.dimensions,
-    this.tags,
-  });
-
-  final BudgetsBudgetFilterExpressionAndOrCostCategories? costCategories;
-
-  final BudgetsBudgetFilterExpressionAndOrDimensions? dimensions;
-
-  final BudgetsBudgetFilterExpressionAndOrTags? tags;
-
-  Map<String, Object?> encode() => {
-    'cost_categories': ?costCategories?.encode(),
-    'dimensions': ?dimensions?.encode(),
-    'tags': ?tags?.encode(),
-  };
-}
-
-/// Typed helper for the `filter_expression.and.or.cost_categories` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionAndOrCostCategories {
-  const BudgetsBudgetFilterExpressionAndOrCostCategories({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter_expression.and.or.dimensions` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionAndOrDimensions {
-  const BudgetsBudgetFilterExpressionAndOrDimensions({
-    required this.key,
-    this.matchOptions,
-    required this.values,
-  });
-
-  final TfArg<String> key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>> values;
-
-  Map<String, Object?> encode() => {
-    'key': key.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': values.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter_expression.and.or.tags` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionAndOrTags {
-  const BudgetsBudgetFilterExpressionAndOrTags({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
   };
 }
 
 /// Typed helper for the `filter_expression.and.tags` block of
 /// `aws_budgets_budget` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BudgetsBudgetFilterExpressionAndTags {
-  const BudgetsBudgetFilterExpressionAndTags({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
+final class BudgetsBudgetAndTags {
+  const BudgetsBudgetAndTags({this.key, this.matchOptions, this.values});
 
   final TfArg<String>? key;
 
@@ -769,23 +510,58 @@ final class BudgetsBudgetFilterExpressionAndTags {
     'key': ?key?.toTfJson(),
     'match_options': ?matchOptions?.toTfJson(),
     'values': ?values?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `filter_expression.and.not` block of
+/// `aws_budgets_budget` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class BudgetsBudgetAndNot {
+  const BudgetsBudgetAndNot({this.costCategories, this.dimensions, this.tags});
+
+  final BudgetsBudgetAndCostCategories? costCategories;
+
+  final BudgetsBudgetAndDimensions? dimensions;
+
+  final BudgetsBudgetAndTags? tags;
+
+  Map<String, Object?> encode() => {
+    'cost_categories': ?costCategories?.encode(),
+    'dimensions': ?dimensions?.encode(),
+    'tags': ?tags?.encode(),
+  };
+}
+
+/// Typed helper for the `filter_expression.and.or` block of
+/// `aws_budgets_budget` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class BudgetsBudgetAndOr {
+  const BudgetsBudgetAndOr({this.costCategories, this.dimensions, this.tags});
+
+  final BudgetsBudgetAndCostCategories? costCategories;
+
+  final BudgetsBudgetAndDimensions? dimensions;
+
+  final BudgetsBudgetAndTags? tags;
+
+  Map<String, Object?> encode() => {
+    'cost_categories': ?costCategories?.encode(),
+    'dimensions': ?dimensions?.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
 /// Typed helper for the `filter_expression.cost_categories` block of
 /// `aws_budgets_budget` (derived from provider schema).
 @immutable
-final class BudgetsBudgetFilterExpressionCostCategories {
-  const BudgetsBudgetFilterExpressionCostCategories({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
+final class BudgetsBudgetCostCategories {
+  const BudgetsBudgetCostCategories({this.key, this.matchOptions, this.values});
 
   final TfArg<String>? key;
 
-  final List<TfArg<BudgetsBudgetFilterExpressionCostCategoriesMatchOptions>>?
-  matchOptions;
+  final List<TfArg<BudgetsBudgetMatchOptions>>? matchOptions;
 
   final TfArg<List<String>>? values;
 
@@ -798,8 +574,7 @@ final class BudgetsBudgetFilterExpressionCostCategories {
 }
 
 /// `match_options` — derived from the provider schema description.
-enum BudgetsBudgetFilterExpressionCostCategoriesMatchOptions
-    implements TerraformEnum {
+enum BudgetsBudgetMatchOptions implements TerraformEnum {
   equals('EQUALS'),
   absent('ABSENT'),
   startsWith('STARTS_WITH'),
@@ -809,9 +584,7 @@ enum BudgetsBudgetFilterExpressionCostCategoriesMatchOptions
   caseSensitive('CASE_SENSITIVE'),
   caseInsensitive('CASE_INSENSITIVE');
 
-  const BudgetsBudgetFilterExpressionCostCategoriesMatchOptions(
-    this.terraformValue,
-  );
+  const BudgetsBudgetMatchOptions(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -819,17 +592,16 @@ enum BudgetsBudgetFilterExpressionCostCategoriesMatchOptions
 /// Typed helper for the `filter_expression.dimensions` block of
 /// `aws_budgets_budget` (derived from provider schema).
 @immutable
-final class BudgetsBudgetFilterExpressionDimensions {
-  const BudgetsBudgetFilterExpressionDimensions({
+final class BudgetsBudgetDimensions {
+  const BudgetsBudgetDimensions({
     required this.key,
     this.matchOptions,
     required this.values,
   });
 
-  final TfArg<BudgetsBudgetFilterExpressionDimensionsKey> key;
+  final TfArg<BudgetsBudgetKey> key;
 
-  final List<TfArg<BudgetsBudgetFilterExpressionDimensionsMatchOptions>>?
-  matchOptions;
+  final List<TfArg<BudgetsBudgetMatchOptions>>? matchOptions;
 
   final TfArg<List<String>> values;
 
@@ -842,7 +614,7 @@ final class BudgetsBudgetFilterExpressionDimensions {
 }
 
 /// `key` — derived from the provider schema description.
-enum BudgetsBudgetFilterExpressionDimensionsKey implements TerraformEnum {
+enum BudgetsBudgetKey implements TerraformEnum {
   az('AZ'),
   instanceType('INSTANCE_TYPE'),
   linkedAccount('LINKED_ACCOUNT'),
@@ -877,26 +649,7 @@ enum BudgetsBudgetFilterExpressionDimensionsKey implements TerraformEnum {
   tagKey('TAG_KEY'),
   costCategoryName('COST_CATEGORY_NAME');
 
-  const BudgetsBudgetFilterExpressionDimensionsKey(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
-/// `match_options` — derived from the provider schema description.
-enum BudgetsBudgetFilterExpressionDimensionsMatchOptions
-    implements TerraformEnum {
-  equals('EQUALS'),
-  absent('ABSENT'),
-  startsWith('STARTS_WITH'),
-  endsWith('ENDS_WITH'),
-  contains('CONTAINS'),
-  greaterThanOrEqual('GREATER_THAN_OR_EQUAL'),
-  caseSensitive('CASE_SENSITIVE'),
-  caseInsensitive('CASE_INSENSITIVE');
-
-  const BudgetsBudgetFilterExpressionDimensionsMatchOptions(
-    this.terraformValue,
-  );
+  const BudgetsBudgetKey(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -904,8 +657,8 @@ enum BudgetsBudgetFilterExpressionDimensionsMatchOptions
 /// Typed helper for the `filter_expression.not` block of
 /// `aws_budgets_budget` (derived from provider schema).
 @immutable
-final class BudgetsBudgetFilterExpressionNot {
-  const BudgetsBudgetFilterExpressionNot({
+final class BudgetsBudgetNot {
+  const BudgetsBudgetNot({
     this.and,
     this.costCategories,
     this.dimensions,
@@ -914,17 +667,17 @@ final class BudgetsBudgetFilterExpressionNot {
     this.tags,
   });
 
-  final List<BudgetsBudgetFilterExpressionNotAnd>? and;
+  final List<BudgetsBudgetAndAnd>? and;
 
-  final BudgetsBudgetFilterExpressionNotCostCategories? costCategories;
+  final BudgetsBudgetAndCostCategories? costCategories;
 
-  final BudgetsBudgetFilterExpressionNotDimensions? dimensions;
+  final BudgetsBudgetAndDimensions? dimensions;
 
-  final BudgetsBudgetFilterExpressionNotNot? not;
+  final BudgetsBudgetAndNot? not;
 
-  final List<BudgetsBudgetFilterExpressionNotOr>? or;
+  final List<BudgetsBudgetAndOr>? or;
 
-  final BudgetsBudgetFilterExpressionNotTags? tags;
+  final BudgetsBudgetAndTags? tags;
 
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
@@ -933,359 +686,14 @@ final class BudgetsBudgetFilterExpressionNot {
     'not': ?not?.encode(),
     if (or != null) 'or': [for (final e in or!) e.encode()],
     'tags': ?tags?.encode(),
-  };
-}
-
-/// Typed helper for the `filter_expression.not.and` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionNotAnd {
-  const BudgetsBudgetFilterExpressionNotAnd({
-    this.costCategories,
-    this.dimensions,
-    this.tags,
-  });
-
-  final BudgetsBudgetFilterExpressionNotAndCostCategories? costCategories;
-
-  final BudgetsBudgetFilterExpressionNotAndDimensions? dimensions;
-
-  final BudgetsBudgetFilterExpressionNotAndTags? tags;
-
-  Map<String, Object?> encode() => {
-    'cost_categories': ?costCategories?.encode(),
-    'dimensions': ?dimensions?.encode(),
-    'tags': ?tags?.encode(),
-  };
-}
-
-/// Typed helper for the `filter_expression.not.and.cost_categories` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionNotAndCostCategories {
-  const BudgetsBudgetFilterExpressionNotAndCostCategories({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter_expression.not.and.dimensions` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionNotAndDimensions {
-  const BudgetsBudgetFilterExpressionNotAndDimensions({
-    required this.key,
-    this.matchOptions,
-    required this.values,
-  });
-
-  final TfArg<String> key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>> values;
-
-  Map<String, Object?> encode() => {
-    'key': key.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': values.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter_expression.not.and.tags` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionNotAndTags {
-  const BudgetsBudgetFilterExpressionNotAndTags({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter_expression.not.cost_categories` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionNotCostCategories {
-  const BudgetsBudgetFilterExpressionNotCostCategories({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter_expression.not.dimensions` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionNotDimensions {
-  const BudgetsBudgetFilterExpressionNotDimensions({
-    required this.key,
-    this.matchOptions,
-    required this.values,
-  });
-
-  final TfArg<String> key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>> values;
-
-  Map<String, Object?> encode() => {
-    'key': key.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': values.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter_expression.not.not` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionNotNot {
-  const BudgetsBudgetFilterExpressionNotNot({
-    this.costCategories,
-    this.dimensions,
-    this.tags,
-  });
-
-  final BudgetsBudgetFilterExpressionNotNotCostCategories? costCategories;
-
-  final BudgetsBudgetFilterExpressionNotNotDimensions? dimensions;
-
-  final BudgetsBudgetFilterExpressionNotNotTags? tags;
-
-  Map<String, Object?> encode() => {
-    'cost_categories': ?costCategories?.encode(),
-    'dimensions': ?dimensions?.encode(),
-    'tags': ?tags?.encode(),
-  };
-}
-
-/// Typed helper for the `filter_expression.not.not.cost_categories` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionNotNotCostCategories {
-  const BudgetsBudgetFilterExpressionNotNotCostCategories({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter_expression.not.not.dimensions` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionNotNotDimensions {
-  const BudgetsBudgetFilterExpressionNotNotDimensions({
-    required this.key,
-    this.matchOptions,
-    required this.values,
-  });
-
-  final TfArg<String> key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>> values;
-
-  Map<String, Object?> encode() => {
-    'key': key.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': values.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter_expression.not.not.tags` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionNotNotTags {
-  const BudgetsBudgetFilterExpressionNotNotTags({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter_expression.not.or` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionNotOr {
-  const BudgetsBudgetFilterExpressionNotOr({
-    this.costCategories,
-    this.dimensions,
-    this.tags,
-  });
-
-  final BudgetsBudgetFilterExpressionNotOrCostCategories? costCategories;
-
-  final BudgetsBudgetFilterExpressionNotOrDimensions? dimensions;
-
-  final BudgetsBudgetFilterExpressionNotOrTags? tags;
-
-  Map<String, Object?> encode() => {
-    'cost_categories': ?costCategories?.encode(),
-    'dimensions': ?dimensions?.encode(),
-    'tags': ?tags?.encode(),
-  };
-}
-
-/// Typed helper for the `filter_expression.not.or.cost_categories` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionNotOrCostCategories {
-  const BudgetsBudgetFilterExpressionNotOrCostCategories({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter_expression.not.or.dimensions` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionNotOrDimensions {
-  const BudgetsBudgetFilterExpressionNotOrDimensions({
-    required this.key,
-    this.matchOptions,
-    required this.values,
-  });
-
-  final TfArg<String> key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>> values;
-
-  Map<String, Object?> encode() => {
-    'key': key.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': values.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter_expression.not.or.tags` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionNotOrTags {
-  const BudgetsBudgetFilterExpressionNotOrTags({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter_expression.not.tags` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionNotTags {
-  const BudgetsBudgetFilterExpressionNotTags({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
   };
 }
 
 /// Typed helper for the `filter_expression.or` block of
 /// `aws_budgets_budget` (derived from provider schema).
 @immutable
-final class BudgetsBudgetFilterExpressionOr {
-  const BudgetsBudgetFilterExpressionOr({
+final class BudgetsBudgetOr {
+  const BudgetsBudgetOr({
     this.and,
     this.costCategories,
     this.dimensions,
@@ -1294,17 +702,17 @@ final class BudgetsBudgetFilterExpressionOr {
     this.tags,
   });
 
-  final List<BudgetsBudgetFilterExpressionOrAnd>? and;
+  final List<BudgetsBudgetAndAnd>? and;
 
-  final BudgetsBudgetFilterExpressionOrCostCategories? costCategories;
+  final BudgetsBudgetAndCostCategories? costCategories;
 
-  final BudgetsBudgetFilterExpressionOrDimensions? dimensions;
+  final BudgetsBudgetAndDimensions? dimensions;
 
-  final BudgetsBudgetFilterExpressionOrNot? not;
+  final BudgetsBudgetAndNot? not;
 
-  final List<BudgetsBudgetFilterExpressionOrOr>? or;
+  final List<BudgetsBudgetAndOr>? or;
 
-  final BudgetsBudgetFilterExpressionOrTags? tags;
+  final BudgetsBudgetAndTags? tags;
 
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
@@ -1313,351 +721,6 @@ final class BudgetsBudgetFilterExpressionOr {
     'not': ?not?.encode(),
     if (or != null) 'or': [for (final e in or!) e.encode()],
     'tags': ?tags?.encode(),
-  };
-}
-
-/// Typed helper for the `filter_expression.or.and` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionOrAnd {
-  const BudgetsBudgetFilterExpressionOrAnd({
-    this.costCategories,
-    this.dimensions,
-    this.tags,
-  });
-
-  final BudgetsBudgetFilterExpressionOrAndCostCategories? costCategories;
-
-  final BudgetsBudgetFilterExpressionOrAndDimensions? dimensions;
-
-  final BudgetsBudgetFilterExpressionOrAndTags? tags;
-
-  Map<String, Object?> encode() => {
-    'cost_categories': ?costCategories?.encode(),
-    'dimensions': ?dimensions?.encode(),
-    'tags': ?tags?.encode(),
-  };
-}
-
-/// Typed helper for the `filter_expression.or.and.cost_categories` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionOrAndCostCategories {
-  const BudgetsBudgetFilterExpressionOrAndCostCategories({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter_expression.or.and.dimensions` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionOrAndDimensions {
-  const BudgetsBudgetFilterExpressionOrAndDimensions({
-    required this.key,
-    this.matchOptions,
-    required this.values,
-  });
-
-  final TfArg<String> key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>> values;
-
-  Map<String, Object?> encode() => {
-    'key': key.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': values.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter_expression.or.and.tags` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionOrAndTags {
-  const BudgetsBudgetFilterExpressionOrAndTags({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter_expression.or.cost_categories` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionOrCostCategories {
-  const BudgetsBudgetFilterExpressionOrCostCategories({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter_expression.or.dimensions` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionOrDimensions {
-  const BudgetsBudgetFilterExpressionOrDimensions({
-    required this.key,
-    this.matchOptions,
-    required this.values,
-  });
-
-  final TfArg<String> key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>> values;
-
-  Map<String, Object?> encode() => {
-    'key': key.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': values.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter_expression.or.not` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionOrNot {
-  const BudgetsBudgetFilterExpressionOrNot({
-    this.costCategories,
-    this.dimensions,
-    this.tags,
-  });
-
-  final BudgetsBudgetFilterExpressionOrNotCostCategories? costCategories;
-
-  final BudgetsBudgetFilterExpressionOrNotDimensions? dimensions;
-
-  final BudgetsBudgetFilterExpressionOrNotTags? tags;
-
-  Map<String, Object?> encode() => {
-    'cost_categories': ?costCategories?.encode(),
-    'dimensions': ?dimensions?.encode(),
-    'tags': ?tags?.encode(),
-  };
-}
-
-/// Typed helper for the `filter_expression.or.not.cost_categories` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionOrNotCostCategories {
-  const BudgetsBudgetFilterExpressionOrNotCostCategories({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter_expression.or.not.dimensions` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionOrNotDimensions {
-  const BudgetsBudgetFilterExpressionOrNotDimensions({
-    required this.key,
-    this.matchOptions,
-    required this.values,
-  });
-
-  final TfArg<String> key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>> values;
-
-  Map<String, Object?> encode() => {
-    'key': key.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': values.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter_expression.or.not.tags` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionOrNotTags {
-  const BudgetsBudgetFilterExpressionOrNotTags({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter_expression.or.or` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionOrOr {
-  const BudgetsBudgetFilterExpressionOrOr({
-    this.costCategories,
-    this.dimensions,
-    this.tags,
-  });
-
-  final BudgetsBudgetFilterExpressionOrOrCostCategories? costCategories;
-
-  final BudgetsBudgetFilterExpressionOrOrDimensions? dimensions;
-
-  final BudgetsBudgetFilterExpressionOrOrTags? tags;
-
-  Map<String, Object?> encode() => {
-    'cost_categories': ?costCategories?.encode(),
-    'dimensions': ?dimensions?.encode(),
-    'tags': ?tags?.encode(),
-  };
-}
-
-/// Typed helper for the `filter_expression.or.or.cost_categories` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionOrOrCostCategories {
-  const BudgetsBudgetFilterExpressionOrOrCostCategories({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter_expression.or.or.dimensions` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionOrOrDimensions {
-  const BudgetsBudgetFilterExpressionOrOrDimensions({
-    required this.key,
-    this.matchOptions,
-    required this.values,
-  });
-
-  final TfArg<String> key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>> values;
-
-  Map<String, Object?> encode() => {
-    'key': key.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': values.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter_expression.or.or.tags` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionOrOrTags {
-  const BudgetsBudgetFilterExpressionOrOrTags({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter_expression.or.tags` block of
-/// `aws_budgets_budget` (derived from provider schema).
-@immutable
-final class BudgetsBudgetFilterExpressionOrTags {
-  const BudgetsBudgetFilterExpressionOrTags({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1673,8 +736,7 @@ final class BudgetsBudgetFilterExpressionTags {
 
   final TfArg<String>? key;
 
-  final List<TfArg<BudgetsBudgetFilterExpressionTagsMatchOptions>>?
-  matchOptions;
+  final List<TfArg<BudgetsBudgetMatchOptions>>? matchOptions;
 
   final TfArg<List<String>>? values;
 
@@ -1684,22 +746,6 @@ final class BudgetsBudgetFilterExpressionTags {
       'match_options': [for (final e in matchOptions!) e.toTfJson()],
     'values': ?values?.toTfJson(),
   };
-}
-
-/// `match_options` — derived from the provider schema description.
-enum BudgetsBudgetFilterExpressionTagsMatchOptions implements TerraformEnum {
-  equals('EQUALS'),
-  absent('ABSENT'),
-  startsWith('STARTS_WITH'),
-  endsWith('ENDS_WITH'),
-  contains('CONTAINS'),
-  greaterThanOrEqual('GREATER_THAN_OR_EQUAL'),
-  caseSensitive('CASE_SENSITIVE'),
-  caseInsensitive('CASE_INSENSITIVE');
-
-  const BudgetsBudgetFilterExpressionTagsMatchOptions(this.terraformValue);
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `notification` block of
@@ -1715,9 +761,9 @@ final class BudgetsBudgetNotification {
     required this.thresholdType,
   });
 
-  final TfArg<BudgetsBudgetNotificationComparisonOperator> comparisonOperator;
+  final TfArg<BudgetsBudgetComparisonOperator> comparisonOperator;
 
-  final TfArg<BudgetsBudgetNotificationNotificationType> notificationType;
+  final TfArg<BudgetsBudgetNotificationType> notificationType;
 
   final TfArg<List<String>>? subscriberEmailAddresses;
 
@@ -1725,7 +771,7 @@ final class BudgetsBudgetNotification {
 
   final TfArg<num> threshold;
 
-  final TfArg<BudgetsBudgetNotificationThresholdType> thresholdType;
+  final TfArg<BudgetsBudgetThresholdType> thresholdType;
 
   Map<String, Object?> encode() => {
     'comparison_operator': comparisonOperator.toTfJson(),
@@ -1738,32 +784,32 @@ final class BudgetsBudgetNotification {
 }
 
 /// `comparison_operator` — derived from the provider schema description.
-enum BudgetsBudgetNotificationComparisonOperator implements TerraformEnum {
+enum BudgetsBudgetComparisonOperator implements TerraformEnum {
   greaterThan('GREATER_THAN'),
   lessThan('LESS_THAN'),
   equalTo('EQUAL_TO');
 
-  const BudgetsBudgetNotificationComparisonOperator(this.terraformValue);
+  const BudgetsBudgetComparisonOperator(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `notification_type` — derived from the provider schema description.
-enum BudgetsBudgetNotificationNotificationType implements TerraformEnum {
+enum BudgetsBudgetNotificationType implements TerraformEnum {
   actual('ACTUAL'),
   forecasted('FORECASTED');
 
-  const BudgetsBudgetNotificationNotificationType(this.terraformValue);
+  const BudgetsBudgetNotificationType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `threshold_type` — derived from the provider schema description.
-enum BudgetsBudgetNotificationThresholdType implements TerraformEnum {
+enum BudgetsBudgetThresholdType implements TerraformEnum {
   percentage('PERCENTAGE'),
   absoluteValue('ABSOLUTE_VALUE');
 
-  const BudgetsBudgetNotificationThresholdType(this.terraformValue);
+  const BudgetsBudgetThresholdType(this.terraformValue);
   @override
   final String terraformValue;
 }

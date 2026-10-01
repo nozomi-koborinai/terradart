@@ -13,21 +13,17 @@ const Set<String> _awsLocationPlaceIndexSensitive = <String>{};
 final class LocationPlaceIndexDataSourceConfiguration {
   const LocationPlaceIndexDataSourceConfiguration({this.intendedUse});
 
-  final TfArg<LocationPlaceIndexDataSourceConfigurationIntendedUse>?
-  intendedUse;
+  final TfArg<LocationPlaceIndexIntendedUse>? intendedUse;
 
   Map<String, Object?> encode() => {'intended_use': ?intendedUse?.toTfJson()};
 }
 
 /// `intended_use` — derived from the provider schema description.
-enum LocationPlaceIndexDataSourceConfigurationIntendedUse
-    implements TerraformEnum {
+enum LocationPlaceIndexIntendedUse implements TerraformEnum {
   singleuse('SingleUse'),
   storage('Storage');
 
-  const LocationPlaceIndexDataSourceConfigurationIntendedUse(
-    this.terraformValue,
-  );
+  const LocationPlaceIndexIntendedUse(this.terraformValue);
   @override
   final String terraformValue;
 }

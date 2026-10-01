@@ -266,16 +266,11 @@ final class ElasticacheReplicationGroupLogDeliveryConfiguration {
 
   final TfArg<String> destination;
 
-  final TfArg<
-    ElasticacheReplicationGroupLogDeliveryConfigurationDestinationType
-  >
-  destinationType;
+  final TfArg<ElasticacheReplicationGroupDestinationType> destinationType;
 
-  final TfArg<ElasticacheReplicationGroupLogDeliveryConfigurationLogFormat>
-  logFormat;
+  final TfArg<ElasticacheReplicationGroupLogFormat> logFormat;
 
-  final TfArg<ElasticacheReplicationGroupLogDeliveryConfigurationLogType>
-  logType;
+  final TfArg<ElasticacheReplicationGroupLogType> logType;
 
   Map<String, Object?> encode() => {
     'destination': destination.toTfJson(),
@@ -286,40 +281,31 @@ final class ElasticacheReplicationGroupLogDeliveryConfiguration {
 }
 
 /// `destination_type` — derived from the provider schema description.
-enum ElasticacheReplicationGroupLogDeliveryConfigurationDestinationType
-    implements TerraformEnum {
+enum ElasticacheReplicationGroupDestinationType implements TerraformEnum {
   cloudwatchLogs('cloudwatch-logs'),
   kinesisFirehose('kinesis-firehose');
 
-  const ElasticacheReplicationGroupLogDeliveryConfigurationDestinationType(
-    this.terraformValue,
-  );
+  const ElasticacheReplicationGroupDestinationType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `log_format` — derived from the provider schema description.
-enum ElasticacheReplicationGroupLogDeliveryConfigurationLogFormat
-    implements TerraformEnum {
+enum ElasticacheReplicationGroupLogFormat implements TerraformEnum {
   text('text'),
   json('json');
 
-  const ElasticacheReplicationGroupLogDeliveryConfigurationLogFormat(
-    this.terraformValue,
-  );
+  const ElasticacheReplicationGroupLogFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `log_type` — derived from the provider schema description.
-enum ElasticacheReplicationGroupLogDeliveryConfigurationLogType
-    implements TerraformEnum {
+enum ElasticacheReplicationGroupLogType implements TerraformEnum {
   slowLog('slow-log'),
   engineLog('engine-log');
 
-  const ElasticacheReplicationGroupLogDeliveryConfigurationLogType(
-    this.terraformValue,
-  );
+  const ElasticacheReplicationGroupLogType(this.terraformValue);
   @override
   final String terraformValue;
 }

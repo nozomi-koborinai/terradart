@@ -18,7 +18,7 @@ final class DataIamPolicyAuditConfig {
 
   final TfArg<String> service;
 
-  final List<DataIamPolicyAuditConfigAuditLogConfigs> auditLogConfigs;
+  final List<DataIamPolicyAuditLogConfigs> auditLogConfigs;
 
   Map<String, Object?> encode() => {
     'service': service.toTfJson(),
@@ -29,8 +29,8 @@ final class DataIamPolicyAuditConfig {
 /// Typed helper for the `audit_config.audit_log_configs` block of
 /// `google_iam_policy` (derived from provider schema).
 @immutable
-final class DataIamPolicyAuditConfigAuditLogConfigs {
-  const DataIamPolicyAuditConfigAuditLogConfigs({
+final class DataIamPolicyAuditLogConfigs {
+  const DataIamPolicyAuditLogConfigs({
     this.exemptedMembers,
     required this.logType,
   });
@@ -59,7 +59,7 @@ final class DataIamPolicyBinding {
 
   final TfArg<String> role;
 
-  final DataIamPolicyBindingCondition? condition;
+  final DataIamPolicyCondition? condition;
 
   Map<String, Object?> encode() => {
     'members': members.toTfJson(),
@@ -71,8 +71,8 @@ final class DataIamPolicyBinding {
 /// Typed helper for the `binding.condition` block of
 /// `google_iam_policy` (derived from provider schema).
 @immutable
-final class DataIamPolicyBindingCondition {
-  const DataIamPolicyBindingCondition({
+final class DataIamPolicyCondition {
+  const DataIamPolicyCondition({
     this.description,
     required this.expression,
     required this.title,

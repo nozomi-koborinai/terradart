@@ -16,10 +16,9 @@ final class WafregionalXssMatchSetXssMatchTuple {
     required this.fieldToMatch,
   });
 
-  final TfArg<WafregionalXssMatchSetXssMatchTupleTextTransformation>
-  textTransformation;
+  final TfArg<WafregionalXssMatchSetTextTransformation> textTransformation;
 
-  final WafregionalXssMatchSetXssMatchTupleFieldToMatch fieldToMatch;
+  final WafregionalXssMatchSetFieldToMatch fieldToMatch;
 
   Map<String, Object?> encode() => {
     'text_transformation': textTransformation.toTfJson(),
@@ -28,8 +27,7 @@ final class WafregionalXssMatchSetXssMatchTuple {
 }
 
 /// `text_transformation` — derived from the provider schema description.
-enum WafregionalXssMatchSetXssMatchTupleTextTransformation
-    implements TerraformEnum {
+enum WafregionalXssMatchSetTextTransformation implements TerraformEnum {
   none('NONE'),
   compressWhiteSpace('COMPRESS_WHITE_SPACE'),
   htmlEntityDecode('HTML_ENTITY_DECODE'),
@@ -37,9 +35,7 @@ enum WafregionalXssMatchSetXssMatchTupleTextTransformation
   cmdLine('CMD_LINE'),
   urlDecode('URL_DECODE');
 
-  const WafregionalXssMatchSetXssMatchTupleTextTransformation(
-    this.terraformValue,
-  );
+  const WafregionalXssMatchSetTextTransformation(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -47,15 +43,12 @@ enum WafregionalXssMatchSetXssMatchTupleTextTransformation
 /// Typed helper for the `xss_match_tuple.field_to_match` block of
 /// `aws_wafregional_xss_match_set` (derived from provider schema).
 @immutable
-final class WafregionalXssMatchSetXssMatchTupleFieldToMatch {
-  const WafregionalXssMatchSetXssMatchTupleFieldToMatch({
-    this.data,
-    required this.type,
-  });
+final class WafregionalXssMatchSetFieldToMatch {
+  const WafregionalXssMatchSetFieldToMatch({this.data, required this.type});
 
   final TfArg<String>? data;
 
-  final TfArg<WafregionalXssMatchSetXssMatchTupleFieldToMatchType> type;
+  final TfArg<WafregionalXssMatchSetType> type;
 
   Map<String, Object?> encode() => {
     'data': ?data?.toTfJson(),
@@ -64,8 +57,7 @@ final class WafregionalXssMatchSetXssMatchTupleFieldToMatch {
 }
 
 /// `type` — derived from the provider schema description.
-enum WafregionalXssMatchSetXssMatchTupleFieldToMatchType
-    implements TerraformEnum {
+enum WafregionalXssMatchSetType implements TerraformEnum {
   uri('URI'),
   queryString('QUERY_STRING'),
   header('HEADER'),
@@ -74,9 +66,7 @@ enum WafregionalXssMatchSetXssMatchTupleFieldToMatchType
   singleQueryArg('SINGLE_QUERY_ARG'),
   allQueryArgs('ALL_QUERY_ARGS');
 
-  const WafregionalXssMatchSetXssMatchTupleFieldToMatchType(
-    this.terraformValue,
-  );
+  const WafregionalXssMatchSetType(this.terraformValue);
   @override
   final String terraformValue;
 }

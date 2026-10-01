@@ -13,7 +13,7 @@ const Set<String> _awsApigatewayv2RoutingRuleSensitive = <String>{};
 final class Apigatewayv2RoutingRuleAction {
   const Apigatewayv2RoutingRuleAction({this.invokeApi});
 
-  final List<Apigatewayv2RoutingRuleActionInvokeApi>? invokeApi;
+  final List<Apigatewayv2RoutingRuleInvokeApi>? invokeApi;
 
   Map<String, Object?> encode() => {
     if (invokeApi != null)
@@ -24,8 +24,8 @@ final class Apigatewayv2RoutingRuleAction {
 /// Typed helper for the `action.invoke_api` block of
 /// `aws_apigatewayv2_routing_rule` (derived from provider schema).
 @immutable
-final class Apigatewayv2RoutingRuleActionInvokeApi {
-  const Apigatewayv2RoutingRuleActionInvokeApi({
+final class Apigatewayv2RoutingRuleInvokeApi {
+  const Apigatewayv2RoutingRuleInvokeApi({
     required this.apiId,
     required this.stage,
     this.stripBasePath,
@@ -53,9 +53,9 @@ final class Apigatewayv2RoutingRuleCondition {
     this.matchHeaders,
   });
 
-  final List<Apigatewayv2RoutingRuleConditionMatchBasePaths>? matchBasePaths;
+  final List<Apigatewayv2RoutingRuleMatchBasePaths>? matchBasePaths;
 
-  final List<Apigatewayv2RoutingRuleConditionMatchHeaders>? matchHeaders;
+  final List<Apigatewayv2RoutingRuleMatchHeaders>? matchHeaders;
 
   Map<String, Object?> encode() => {
     if (matchBasePaths != null)
@@ -68,8 +68,8 @@ final class Apigatewayv2RoutingRuleCondition {
 /// Typed helper for the `condition.match_base_paths` block of
 /// `aws_apigatewayv2_routing_rule` (derived from provider schema).
 @immutable
-final class Apigatewayv2RoutingRuleConditionMatchBasePaths {
-  const Apigatewayv2RoutingRuleConditionMatchBasePaths({required this.anyOf});
+final class Apigatewayv2RoutingRuleMatchBasePaths {
+  const Apigatewayv2RoutingRuleMatchBasePaths({required this.anyOf});
 
   final TfArg<List<String>> anyOf;
 
@@ -79,10 +79,10 @@ final class Apigatewayv2RoutingRuleConditionMatchBasePaths {
 /// Typed helper for the `condition.match_headers` block of
 /// `aws_apigatewayv2_routing_rule` (derived from provider schema).
 @immutable
-final class Apigatewayv2RoutingRuleConditionMatchHeaders {
-  const Apigatewayv2RoutingRuleConditionMatchHeaders({this.anyOf});
+final class Apigatewayv2RoutingRuleMatchHeaders {
+  const Apigatewayv2RoutingRuleMatchHeaders({this.anyOf});
 
-  final List<Apigatewayv2RoutingRuleConditionMatchHeadersAnyOf>? anyOf;
+  final List<Apigatewayv2RoutingRuleAnyOf>? anyOf;
 
   Map<String, Object?> encode() => {
     if (anyOf != null) 'any_of': [for (final e in anyOf!) e.encode()],
@@ -92,8 +92,8 @@ final class Apigatewayv2RoutingRuleConditionMatchHeaders {
 /// Typed helper for the `condition.match_headers.any_of` block of
 /// `aws_apigatewayv2_routing_rule` (derived from provider schema).
 @immutable
-final class Apigatewayv2RoutingRuleConditionMatchHeadersAnyOf {
-  const Apigatewayv2RoutingRuleConditionMatchHeadersAnyOf({
+final class Apigatewayv2RoutingRuleAnyOf {
+  const Apigatewayv2RoutingRuleAnyOf({
     required this.header,
     required this.valueGlob,
   });

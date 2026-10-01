@@ -116,8 +116,7 @@ final class BatchComputeEnvironmentComputeResources {
     this.launchTemplate,
   });
 
-  final TfArg<BatchComputeEnvironmentComputeResourcesAllocationStrategy>?
-  allocationStrategy;
+  final TfArg<BatchComputeEnvironmentAllocationStrategy>? allocationStrategy;
 
   final TfArg<num>? bidPercentage;
 
@@ -147,10 +146,9 @@ final class BatchComputeEnvironmentComputeResources {
 
   final TfArg<BatchComputeEnvironmentComputeResourcesType> type;
 
-  final List<BatchComputeEnvironmentComputeResourcesEc2Configuration>?
-  ec2Configuration;
+  final List<BatchComputeEnvironmentEc2Configuration>? ec2Configuration;
 
-  final BatchComputeEnvironmentComputeResourcesLaunchTemplate? launchTemplate;
+  final BatchComputeEnvironmentLaunchTemplate? launchTemplate;
 
   Map<String, Object?> encode() => {
     'allocation_strategy': ?allocationStrategy?.toTfJson(),
@@ -175,8 +173,7 @@ final class BatchComputeEnvironmentComputeResources {
 }
 
 /// `allocation_strategy` — derived from the provider schema description.
-enum BatchComputeEnvironmentComputeResourcesAllocationStrategy
-    implements TerraformEnum {
+enum BatchComputeEnvironmentAllocationStrategy implements TerraformEnum {
   bestFit('BEST_FIT'),
   bestFitProgressive('BEST_FIT_PROGRESSIVE'),
   bestFitProgressiveOrdered('BEST_FIT_PROGRESSIVE_ORDERED'),
@@ -184,9 +181,7 @@ enum BatchComputeEnvironmentComputeResourcesAllocationStrategy
   spotPriceCapacityOptimized('SPOT_PRICE_CAPACITY_OPTIMIZED'),
   spotCapacityOptimizedPrioritized('SPOT_CAPACITY_OPTIMIZED_PRIORITIZED');
 
-  const BatchComputeEnvironmentComputeResourcesAllocationStrategy(
-    this.terraformValue,
-  );
+  const BatchComputeEnvironmentAllocationStrategy(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -207,8 +202,8 @@ enum BatchComputeEnvironmentComputeResourcesType implements TerraformEnum {
 /// Typed helper for the `compute_resources.ec2_configuration` block of
 /// `aws_batch_compute_environment` (derived from provider schema).
 @immutable
-final class BatchComputeEnvironmentComputeResourcesEc2Configuration {
-  const BatchComputeEnvironmentComputeResourcesEc2Configuration({
+final class BatchComputeEnvironmentEc2Configuration {
+  const BatchComputeEnvironmentEc2Configuration({
     this.imageIdOverride,
     this.imageKubernetesVersion,
     this.imageType,
@@ -230,14 +225,10 @@ final class BatchComputeEnvironmentComputeResourcesEc2Configuration {
 /// Typed helper for the `compute_resources.launch_template` block of
 /// `aws_batch_compute_environment` (derived from provider schema).
 @immutable
-final class BatchComputeEnvironmentComputeResourcesLaunchTemplate {
-  const BatchComputeEnvironmentComputeResourcesLaunchTemplate({
-    this.identifier,
-    this.version,
-  });
+final class BatchComputeEnvironmentLaunchTemplate {
+  const BatchComputeEnvironmentLaunchTemplate({this.identifier, this.version});
 
-  final BatchComputeEnvironmentComputeResourcesLaunchTemplateIdentifier?
-  identifier;
+  final BatchComputeEnvironmentIdentifier? identifier;
 
   final TfArg<String>? version;
 
@@ -252,18 +243,18 @@ final class BatchComputeEnvironmentComputeResourcesLaunchTemplate {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.launchTemplateId(...)`.
-sealed class BatchComputeEnvironmentComputeResourcesLaunchTemplateIdentifier {
-  const BatchComputeEnvironmentComputeResourcesLaunchTemplateIdentifier();
+sealed class BatchComputeEnvironmentIdentifier {
+  const BatchComputeEnvironmentIdentifier();
 
   /// Sets `launch_template_id`.
-  const factory BatchComputeEnvironmentComputeResourcesLaunchTemplateIdentifier.launchTemplateId(
+  const factory BatchComputeEnvironmentIdentifier.launchTemplateId(
     TfArg<String> launchTemplateId,
-  ) = BatchComputeEnvironmentComputeResourcesLaunchTemplateIdentifierLaunchTemplateId;
+  ) = BatchComputeEnvironmentIdentifierLaunchTemplateId;
 
   /// Sets `launch_template_name`.
-  const factory BatchComputeEnvironmentComputeResourcesLaunchTemplateIdentifier.launchTemplateName(
+  const factory BatchComputeEnvironmentIdentifier.launchTemplateName(
     TfArg<String> launchTemplateName,
-  ) = BatchComputeEnvironmentComputeResourcesLaunchTemplateIdentifierLaunchTemplateName;
+  ) = BatchComputeEnvironmentIdentifierLaunchTemplateName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -271,10 +262,10 @@ sealed class BatchComputeEnvironmentComputeResourcesLaunchTemplateIdentifier {
   Map<String, Object?> encode();
 }
 
-/// The [BatchComputeEnvironmentComputeResourcesLaunchTemplateIdentifier.launchTemplateId] choice: sets `launch_template_id`.
-final class BatchComputeEnvironmentComputeResourcesLaunchTemplateIdentifierLaunchTemplateId
-    extends BatchComputeEnvironmentComputeResourcesLaunchTemplateIdentifier {
-  const BatchComputeEnvironmentComputeResourcesLaunchTemplateIdentifierLaunchTemplateId(
+/// The [BatchComputeEnvironmentIdentifier.launchTemplateId] choice: sets `launch_template_id`.
+final class BatchComputeEnvironmentIdentifierLaunchTemplateId
+    extends BatchComputeEnvironmentIdentifier {
+  const BatchComputeEnvironmentIdentifierLaunchTemplateId(
     this.launchTemplateId,
   );
 
@@ -289,10 +280,10 @@ final class BatchComputeEnvironmentComputeResourcesLaunchTemplateIdentifierLaunc
   };
 }
 
-/// The [BatchComputeEnvironmentComputeResourcesLaunchTemplateIdentifier.launchTemplateName] choice: sets `launch_template_name`.
-final class BatchComputeEnvironmentComputeResourcesLaunchTemplateIdentifierLaunchTemplateName
-    extends BatchComputeEnvironmentComputeResourcesLaunchTemplateIdentifier {
-  const BatchComputeEnvironmentComputeResourcesLaunchTemplateIdentifierLaunchTemplateName(
+/// The [BatchComputeEnvironmentIdentifier.launchTemplateName] choice: sets `launch_template_name`.
+final class BatchComputeEnvironmentIdentifierLaunchTemplateName
+    extends BatchComputeEnvironmentIdentifier {
+  const BatchComputeEnvironmentIdentifierLaunchTemplateName(
     this.launchTemplateName,
   );
 

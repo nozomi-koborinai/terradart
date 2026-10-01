@@ -7,18 +7,17 @@ library;
 
 export 'src/dataflow/google_data_pipeline_pipeline.dart'
     show
+        DataPipelinePipelineDataflowFlexTemplateRequest,
+        DataPipelinePipelineDataflowLaunchTemplateRequest,
+        DataPipelinePipelineFlexrsGoal,
+        DataPipelinePipelineIpConfiguration,
+        DataPipelinePipelineLaunchParameter,
+        DataPipelinePipelineLaunchParameterEnvironment,
+        DataPipelinePipelineLaunchParameters,
+        DataPipelinePipelineLaunchParametersEnvironment,
         DataPipelinePipelineScheduleInfo,
         DataPipelinePipelineState,
         DataPipelinePipelineType,
         DataPipelinePipelineWorkload,
-        DataPipelinePipelineWorkloadDataflowFlexTemplateRequest,
-        DataPipelinePipelineWorkloadDataflowFlexTemplateRequestLaunchParameter,
-        DataPipelinePipelineWorkloadDataflowFlexTemplateRequestLaunchParameterEnvironment,
-        DataPipelinePipelineWorkloadDataflowFlexTemplateRequestLaunchParameterEnvironmentFlexrsGoal,
-        DataPipelinePipelineWorkloadDataflowFlexTemplateRequestLaunchParameterEnvironmentIpConfiguration,
-        DataPipelinePipelineWorkloadDataflowLaunchTemplateRequest,
-        DataPipelinePipelineWorkloadDataflowLaunchTemplateRequestLaunchParameters,
-        DataPipelinePipelineWorkloadDataflowLaunchTemplateRequestLaunchParametersEnvironment,
-        DataPipelinePipelineWorkloadDataflowLaunchTemplateRequestLaunchParametersEnvironmentIpConfiguration,
         GoogleDataPipelinePipeline;
 export 'src/dataflow/google_dataflow_job.dart' show GoogleDataflowJob;

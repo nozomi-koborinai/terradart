@@ -61,13 +61,12 @@ final class OracleDatabaseExadbVmClusterProperties {
 
   final TfArg<List<String>> sshPublicKeys;
 
-  final OracleDatabaseExadbVmClusterPropertiesDataCollectionOptions?
+  final OracleDatabaseExadbVmClusterDataCollectionOptions?
   dataCollectionOptions;
 
-  final OracleDatabaseExadbVmClusterPropertiesTimeZone? timeZone;
+  final OracleDatabaseExadbVmClusterTimeZone? timeZone;
 
-  final OracleDatabaseExadbVmClusterPropertiesVmFileSystemStorage
-  vmFileSystemStorage;
+  final OracleDatabaseExadbVmClusterVmFileSystemStorage vmFileSystemStorage;
 
   Map<String, Object?> encode() => {
     'additional_ecpu_count_per_node': ?additionalEcpuCountPerNode?.toTfJson(),
@@ -90,8 +89,8 @@ final class OracleDatabaseExadbVmClusterProperties {
 /// Typed helper for the `properties.data_collection_options` block of
 /// `google_oracle_database_exadb_vm_cluster` (derived from provider schema).
 @immutable
-final class OracleDatabaseExadbVmClusterPropertiesDataCollectionOptions {
-  const OracleDatabaseExadbVmClusterPropertiesDataCollectionOptions({
+final class OracleDatabaseExadbVmClusterDataCollectionOptions {
+  const OracleDatabaseExadbVmClusterDataCollectionOptions({
     this.isDiagnosticsEventsEnabled,
     this.isHealthMonitoringEnabled,
     this.isIncidentLogsEnabled,
@@ -113,8 +112,8 @@ final class OracleDatabaseExadbVmClusterPropertiesDataCollectionOptions {
 /// Typed helper for the `properties.time_zone` block of
 /// `google_oracle_database_exadb_vm_cluster` (derived from provider schema).
 @immutable
-final class OracleDatabaseExadbVmClusterPropertiesTimeZone {
-  const OracleDatabaseExadbVmClusterPropertiesTimeZone({this.id, this.version});
+final class OracleDatabaseExadbVmClusterTimeZone {
+  const OracleDatabaseExadbVmClusterTimeZone({this.id, this.version});
 
   final TfArg<String>? id;
 
@@ -129,8 +128,8 @@ final class OracleDatabaseExadbVmClusterPropertiesTimeZone {
 /// Typed helper for the `properties.vm_file_system_storage` block of
 /// `google_oracle_database_exadb_vm_cluster` (derived from provider schema).
 @immutable
-final class OracleDatabaseExadbVmClusterPropertiesVmFileSystemStorage {
-  const OracleDatabaseExadbVmClusterPropertiesVmFileSystemStorage({
+final class OracleDatabaseExadbVmClusterVmFileSystemStorage {
+  const OracleDatabaseExadbVmClusterVmFileSystemStorage({
     required this.sizeInGbsPerNode,
   });
 

@@ -185,8 +185,7 @@ final class BigqueryTableExternalCatalogTableOptions {
 
   final TfArg<Map<String, String>>? parameters;
 
-  final BigqueryTableExternalCatalogTableOptionsStorageDescriptor?
-  storageDescriptor;
+  final BigqueryTableStorageDescriptor? storageDescriptor;
 
   Map<String, Object?> encode() => {
     'connection_id': ?connectionId?.toTfJson(),
@@ -198,8 +197,8 @@ final class BigqueryTableExternalCatalogTableOptions {
 /// Typed helper for the `external_catalog_table_options.storage_descriptor` block of
 /// `google_bigquery_table` (derived from provider schema).
 @immutable
-final class BigqueryTableExternalCatalogTableOptionsStorageDescriptor {
-  const BigqueryTableExternalCatalogTableOptionsStorageDescriptor({
+final class BigqueryTableStorageDescriptor {
+  const BigqueryTableStorageDescriptor({
     this.inputFormat,
     this.locationUri,
     this.outputFormat,
@@ -212,8 +211,7 @@ final class BigqueryTableExternalCatalogTableOptionsStorageDescriptor {
 
   final TfArg<String>? outputFormat;
 
-  final BigqueryTableExternalCatalogTableOptionsStorageDescriptorSerdeInfo?
-  serdeInfo;
+  final BigqueryTableSerdeInfo? serdeInfo;
 
   Map<String, Object?> encode() => {
     'input_format': ?inputFormat?.toTfJson(),
@@ -226,8 +224,8 @@ final class BigqueryTableExternalCatalogTableOptionsStorageDescriptor {
 /// Typed helper for the `external_catalog_table_options.storage_descriptor.serde_info` block of
 /// `google_bigquery_table` (derived from provider schema).
 @immutable
-final class BigqueryTableExternalCatalogTableOptionsStorageDescriptorSerdeInfo {
-  const BigqueryTableExternalCatalogTableOptionsStorageDescriptorSerdeInfo({
+final class BigqueryTableSerdeInfo {
+  const BigqueryTableSerdeInfo({
     this.name,
     this.parameters,
     required this.serializationLibrary,
@@ -302,21 +300,19 @@ final class BigqueryTableExternalDataConfiguration {
 
   final TfArg<List<String>> sourceUris;
 
-  final BigqueryTableExternalDataConfigurationAvroOptions? avroOptions;
+  final BigqueryTableAvroOptions? avroOptions;
 
-  final BigqueryTableExternalDataConfigurationBigtableOptions? bigtableOptions;
+  final BigqueryTableBigtableOptions? bigtableOptions;
 
-  final BigqueryTableExternalDataConfigurationCsvOptions? csvOptions;
+  final BigqueryTableCsvOptions? csvOptions;
 
-  final BigqueryTableExternalDataConfigurationGoogleSheetsOptions?
-  googleSheetsOptions;
+  final BigqueryTableGoogleSheetsOptions? googleSheetsOptions;
 
-  final BigqueryTableExternalDataConfigurationHivePartitioningOptions?
-  hivePartitioningOptions;
+  final BigqueryTableHivePartitioningOptions? hivePartitioningOptions;
 
-  final BigqueryTableExternalDataConfigurationJsonOptions? jsonOptions;
+  final BigqueryTableJsonOptions? jsonOptions;
 
-  final BigqueryTableExternalDataConfigurationParquetOptions? parquetOptions;
+  final BigqueryTableParquetOptions? parquetOptions;
 
   Map<String, Object?> encode() => {
     'autodetect': autodetect.toTfJson(),
@@ -346,10 +342,8 @@ final class BigqueryTableExternalDataConfiguration {
 /// Typed helper for the `external_data_configuration.avro_options` block of
 /// `google_bigquery_table` (derived from provider schema).
 @immutable
-final class BigqueryTableExternalDataConfigurationAvroOptions {
-  const BigqueryTableExternalDataConfigurationAvroOptions({
-    required this.useAvroLogicalTypes,
-  });
+final class BigqueryTableAvroOptions {
+  const BigqueryTableAvroOptions({required this.useAvroLogicalTypes});
 
   final TfArg<bool> useAvroLogicalTypes;
 
@@ -361,8 +355,8 @@ final class BigqueryTableExternalDataConfigurationAvroOptions {
 /// Typed helper for the `external_data_configuration.bigtable_options` block of
 /// `google_bigquery_table` (derived from provider schema).
 @immutable
-final class BigqueryTableExternalDataConfigurationBigtableOptions {
-  const BigqueryTableExternalDataConfigurationBigtableOptions({
+final class BigqueryTableBigtableOptions {
+  const BigqueryTableBigtableOptions({
     this.ignoreUnspecifiedColumnFamilies,
     this.outputColumnFamiliesAsJson,
     this.readRowkeyAsString,
@@ -375,8 +369,7 @@ final class BigqueryTableExternalDataConfigurationBigtableOptions {
 
   final TfArg<bool>? readRowkeyAsString;
 
-  final List<BigqueryTableExternalDataConfigurationBigtableOptionsColumnFamily>?
-  columnFamily;
+  final List<BigqueryTableColumnFamily>? columnFamily;
 
   Map<String, Object?> encode() => {
     'ignore_unspecified_column_families': ?ignoreUnspecifiedColumnFamilies
@@ -391,8 +384,8 @@ final class BigqueryTableExternalDataConfigurationBigtableOptions {
 /// Typed helper for the `external_data_configuration.bigtable_options.column_family` block of
 /// `google_bigquery_table` (derived from provider schema).
 @immutable
-final class BigqueryTableExternalDataConfigurationBigtableOptionsColumnFamily {
-  const BigqueryTableExternalDataConfigurationBigtableOptionsColumnFamily({
+final class BigqueryTableColumnFamily {
+  const BigqueryTableColumnFamily({
     this.encoding,
     this.familyId,
     this.onlyReadLatest,
@@ -408,10 +401,7 @@ final class BigqueryTableExternalDataConfigurationBigtableOptionsColumnFamily {
 
   final TfArg<String>? type;
 
-  final List<
-    BigqueryTableExternalDataConfigurationBigtableOptionsColumnFamilyColumn
-  >?
-  column;
+  final List<BigqueryTableColumn>? column;
 
   Map<String, Object?> encode() => {
     'encoding': ?encoding?.toTfJson(),
@@ -425,8 +415,8 @@ final class BigqueryTableExternalDataConfigurationBigtableOptionsColumnFamily {
 /// Typed helper for the `external_data_configuration.bigtable_options.column_family.column` block of
 /// `google_bigquery_table` (derived from provider schema).
 @immutable
-final class BigqueryTableExternalDataConfigurationBigtableOptionsColumnFamilyColumn {
-  const BigqueryTableExternalDataConfigurationBigtableOptionsColumnFamilyColumn({
+final class BigqueryTableColumn {
+  const BigqueryTableColumn({
     this.encoding,
     this.fieldName,
     this.onlyReadLatest,
@@ -460,8 +450,8 @@ final class BigqueryTableExternalDataConfigurationBigtableOptionsColumnFamilyCol
 /// Typed helper for the `external_data_configuration.csv_options` block of
 /// `google_bigquery_table` (derived from provider schema).
 @immutable
-final class BigqueryTableExternalDataConfigurationCsvOptions {
-  const BigqueryTableExternalDataConfigurationCsvOptions({
+final class BigqueryTableCsvOptions {
+  const BigqueryTableCsvOptions({
     this.allowJaggedRows,
     this.allowQuotedNewlines,
     this.encoding,
@@ -499,11 +489,8 @@ final class BigqueryTableExternalDataConfigurationCsvOptions {
 /// Typed helper for the `external_data_configuration.google_sheets_options` block of
 /// `google_bigquery_table` (derived from provider schema).
 @immutable
-final class BigqueryTableExternalDataConfigurationGoogleSheetsOptions {
-  const BigqueryTableExternalDataConfigurationGoogleSheetsOptions({
-    this.range,
-    this.skipLeadingRows,
-  });
+final class BigqueryTableGoogleSheetsOptions {
+  const BigqueryTableGoogleSheetsOptions({this.range, this.skipLeadingRows});
 
   final TfArg<String>? range;
 
@@ -518,8 +505,8 @@ final class BigqueryTableExternalDataConfigurationGoogleSheetsOptions {
 /// Typed helper for the `external_data_configuration.hive_partitioning_options` block of
 /// `google_bigquery_table` (derived from provider schema).
 @immutable
-final class BigqueryTableExternalDataConfigurationHivePartitioningOptions {
-  const BigqueryTableExternalDataConfigurationHivePartitioningOptions({
+final class BigqueryTableHivePartitioningOptions {
+  const BigqueryTableHivePartitioningOptions({
     this.mode,
     this.requirePartitionFilter,
     this.sourceUriPrefix,
@@ -541,8 +528,8 @@ final class BigqueryTableExternalDataConfigurationHivePartitioningOptions {
 /// Typed helper for the `external_data_configuration.json_options` block of
 /// `google_bigquery_table` (derived from provider schema).
 @immutable
-final class BigqueryTableExternalDataConfigurationJsonOptions {
-  const BigqueryTableExternalDataConfigurationJsonOptions({this.encoding});
+final class BigqueryTableJsonOptions {
+  const BigqueryTableJsonOptions({this.encoding});
 
   final TfArg<String>? encoding;
 
@@ -552,8 +539,8 @@ final class BigqueryTableExternalDataConfigurationJsonOptions {
 /// Typed helper for the `external_data_configuration.parquet_options` block of
 /// `google_bigquery_table` (derived from provider schema).
 @immutable
-final class BigqueryTableExternalDataConfigurationParquetOptions {
-  const BigqueryTableExternalDataConfigurationParquetOptions({
+final class BigqueryTableParquetOptions {
+  const BigqueryTableParquetOptions({
     this.enableListInference,
     this.enumAsString,
   });
@@ -607,7 +594,7 @@ final class BigqueryTableRangePartitioning {
 
   final TfArg<String> field;
 
-  final BigqueryTableRangePartitioningRange range;
+  final BigqueryTableRange range;
 
   Map<String, Object?> encode() => {
     'field': field.toTfJson(),
@@ -618,8 +605,8 @@ final class BigqueryTableRangePartitioning {
 /// Typed helper for the `range_partitioning.range` block of
 /// `google_bigquery_table` (derived from provider schema).
 @immutable
-final class BigqueryTableRangePartitioningRange {
-  const BigqueryTableRangePartitioningRange({
+final class BigqueryTableRange {
+  const BigqueryTableRange({
     required this.end,
     required this.interval,
     required this.start,
@@ -652,12 +639,12 @@ final class BigqueryTableSchemaForeignTypeInfo {
 /// Typed helper for the `table_constraints` block of
 /// `google_bigquery_table` (derived from provider schema).
 @immutable
-final class BigqueryTableTableConstraints {
-  const BigqueryTableTableConstraints({this.foreignKeys, this.primaryKey});
+final class BigqueryTableConstraints {
+  const BigqueryTableConstraints({this.foreignKeys, this.primaryKey});
 
-  final List<BigqueryTableTableConstraintsForeignKeys>? foreignKeys;
+  final List<BigqueryTableForeignKeys>? foreignKeys;
 
-  final BigqueryTableTableConstraintsPrimaryKey? primaryKey;
+  final BigqueryTablePrimaryKey? primaryKey;
 
   Map<String, Object?> encode() => {
     if (foreignKeys != null)
@@ -669,8 +656,8 @@ final class BigqueryTableTableConstraints {
 /// Typed helper for the `table_constraints.foreign_keys` block of
 /// `google_bigquery_table` (derived from provider schema).
 @immutable
-final class BigqueryTableTableConstraintsForeignKeys {
-  const BigqueryTableTableConstraintsForeignKeys({
+final class BigqueryTableForeignKeys {
+  const BigqueryTableForeignKeys({
     this.name,
     required this.columnReferences,
     required this.referencedTable,
@@ -678,10 +665,9 @@ final class BigqueryTableTableConstraintsForeignKeys {
 
   final TfArg<String>? name;
 
-  final BigqueryTableTableConstraintsForeignKeysColumnReferences
-  columnReferences;
+  final BigqueryTableColumnReferences columnReferences;
 
-  final BigqueryTableTableConstraintsForeignKeysReferencedTable referencedTable;
+  final BigqueryTableReferencedTable referencedTable;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
@@ -693,8 +679,8 @@ final class BigqueryTableTableConstraintsForeignKeys {
 /// Typed helper for the `table_constraints.foreign_keys.column_references` block of
 /// `google_bigquery_table` (derived from provider schema).
 @immutable
-final class BigqueryTableTableConstraintsForeignKeysColumnReferences {
-  const BigqueryTableTableConstraintsForeignKeysColumnReferences({
+final class BigqueryTableColumnReferences {
+  const BigqueryTableColumnReferences({
     required this.referencedColumn,
     required this.referencingColumn,
   });
@@ -712,8 +698,8 @@ final class BigqueryTableTableConstraintsForeignKeysColumnReferences {
 /// Typed helper for the `table_constraints.foreign_keys.referenced_table` block of
 /// `google_bigquery_table` (derived from provider schema).
 @immutable
-final class BigqueryTableTableConstraintsForeignKeysReferencedTable {
-  const BigqueryTableTableConstraintsForeignKeysReferencedTable({
+final class BigqueryTableReferencedTable {
+  const BigqueryTableReferencedTable({
     required this.datasetId,
     required this.projectId,
     required this.tableId,
@@ -735,8 +721,8 @@ final class BigqueryTableTableConstraintsForeignKeysReferencedTable {
 /// Typed helper for the `table_constraints.primary_key` block of
 /// `google_bigquery_table` (derived from provider schema).
 @immutable
-final class BigqueryTableTableConstraintsPrimaryKey {
-  const BigqueryTableTableConstraintsPrimaryKey({required this.columns});
+final class BigqueryTablePrimaryKey {
+  const BigqueryTablePrimaryKey({required this.columns});
 
   final TfArg<List<String>> columns;
 
@@ -746,8 +732,8 @@ final class BigqueryTableTableConstraintsPrimaryKey {
 /// Typed helper for the `table_replication_info` block of
 /// `google_bigquery_table` (derived from provider schema).
 @immutable
-final class BigqueryTableTableReplicationInfo {
-  const BigqueryTableTableReplicationInfo({
+final class BigqueryTableReplicationInfo {
+  const BigqueryTableReplicationInfo({
     this.replicationIntervalMs,
     required this.sourceDatasetId,
     required this.sourceProjectId,
@@ -878,8 +864,8 @@ final class GoogleBigqueryTable extends Resource {
     BigqueryTableView? view,
     BigqueryTableExternalDataConfiguration? externalDataConfiguration,
     BigqueryTableEncryptionConfiguration? encryptionConfiguration,
-    BigqueryTableTableConstraints? tableConstraints,
-    BigqueryTableTableReplicationInfo? tableReplicationInfo,
+    BigqueryTableConstraints? tableConstraints,
+    BigqueryTableReplicationInfo? tableReplicationInfo,
     BigqueryTableBiglakeConfiguration? biglakeConfiguration,
     TfArg<String>? project,
     BigqueryTableExternalCatalogTableOptions? externalCatalogTableOptions,

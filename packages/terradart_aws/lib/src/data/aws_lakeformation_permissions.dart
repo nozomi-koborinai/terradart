@@ -110,7 +110,7 @@ final class DataLakeformationPermissionsLfTagPolicy {
 
   final TfArg<String> resourceType;
 
-  final List<DataLakeformationPermissionsLfTagPolicyExpression> expression;
+  final List<DataLakeformationPermissionsExpression> expression;
 
   Map<String, Object?> encode() => {
     'catalog_id': ?catalogId?.toTfJson(),
@@ -122,8 +122,8 @@ final class DataLakeformationPermissionsLfTagPolicy {
 /// Typed helper for the `lf_tag_policy.expression` block of
 /// `aws_lakeformation_permissions` (derived from provider schema).
 @immutable
-final class DataLakeformationPermissionsLfTagPolicyExpression {
-  const DataLakeformationPermissionsLfTagPolicyExpression({
+final class DataLakeformationPermissionsExpression {
+  const DataLakeformationPermissionsExpression({
     required this.key,
     required this.values,
   });

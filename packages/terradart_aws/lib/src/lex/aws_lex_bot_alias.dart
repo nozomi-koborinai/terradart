@@ -21,7 +21,7 @@ final class LexBotAliasConversationLogs {
 
   final RefTo<AwsIamRole> iamRoleArn;
 
-  final List<LexBotAliasConversationLogsLogSettings>? logSettings;
+  final List<LexBotAliasLogSettings>? logSettings;
 
   Map<String, Object?> encode() => {
     'iam_role_arn': iamRoleArn.encodeAs('arn').toTfJson(),
@@ -33,8 +33,8 @@ final class LexBotAliasConversationLogs {
 /// Typed helper for the `conversation_logs.log_settings` block of
 /// `aws_lex_bot_alias` (derived from provider schema).
 @immutable
-final class LexBotAliasConversationLogsLogSettings {
-  const LexBotAliasConversationLogsLogSettings({
+final class LexBotAliasLogSettings {
+  const LexBotAliasLogSettings({
     required this.destination,
     this.kmsKeyArn,
     required this.logType,

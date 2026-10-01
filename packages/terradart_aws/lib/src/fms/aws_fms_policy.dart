@@ -126,7 +126,7 @@ final class FmsPolicySecurityServicePolicyData {
 
   final TfArg<String> type;
 
-  final FmsPolicySecurityServicePolicyDataPolicyOption? policyOption;
+  final FmsPolicyOption? policyOption;
 
   Map<String, Object?> encode() => {
     'managed_service_data': ?managedServiceData?.toTfJson(),
@@ -138,21 +138,18 @@ final class FmsPolicySecurityServicePolicyData {
 /// Typed helper for the `security_service_policy_data.policy_option` block of
 /// `aws_fms_policy` (derived from provider schema).
 @immutable
-final class FmsPolicySecurityServicePolicyDataPolicyOption {
-  const FmsPolicySecurityServicePolicyDataPolicyOption({
+final class FmsPolicyOption {
+  const FmsPolicyOption({
     this.networkAclCommonPolicy,
     this.networkFirewallPolicy,
     this.thirdPartyFirewallPolicy,
   });
 
-  final FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicy?
-  networkAclCommonPolicy;
+  final FmsPolicyNetworkAclCommonPolicy? networkAclCommonPolicy;
 
-  final FmsPolicySecurityServicePolicyDataPolicyOptionNetworkFirewallPolicy?
-  networkFirewallPolicy;
+  final FmsPolicyNetworkFirewallPolicy? networkFirewallPolicy;
 
-  final FmsPolicySecurityServicePolicyDataPolicyOptionThirdPartyFirewallPolicy?
-  thirdPartyFirewallPolicy;
+  final FmsPolicyThirdPartyFirewallPolicy? thirdPartyFirewallPolicy;
 
   Map<String, Object?> encode() => {
     'network_acl_common_policy': ?networkAclCommonPolicy?.encode(),
@@ -164,13 +161,10 @@ final class FmsPolicySecurityServicePolicyDataPolicyOption {
 /// Typed helper for the `security_service_policy_data.policy_option.network_acl_common_policy` block of
 /// `aws_fms_policy` (derived from provider schema).
 @immutable
-final class FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicy {
-  const FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicy({
-    this.networkAclEntrySet,
-  });
+final class FmsPolicyNetworkAclCommonPolicy {
+  const FmsPolicyNetworkAclCommonPolicy({this.networkAclEntrySet});
 
-  final FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicyNetworkAclEntrySet?
-  networkAclEntrySet;
+  final FmsPolicyNetworkAclEntrySet? networkAclEntrySet;
 
   Map<String, Object?> encode() => {
     'network_acl_entry_set': ?networkAclEntrySet?.encode(),
@@ -180,8 +174,8 @@ final class FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicy
 /// Typed helper for the `security_service_policy_data.policy_option.network_acl_common_policy.network_acl_entry_set` block of
 /// `aws_fms_policy` (derived from provider schema).
 @immutable
-final class FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicyNetworkAclEntrySet {
-  const FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicyNetworkAclEntrySet({
+final class FmsPolicyNetworkAclEntrySet {
+  const FmsPolicyNetworkAclEntrySet({
     required this.forceRemediateForFirstEntries,
     required this.forceRemediateForLastEntries,
     this.firstEntry,
@@ -192,15 +186,9 @@ final class FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicy
 
   final TfArg<bool> forceRemediateForLastEntries;
 
-  final List<
-    FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicyNetworkAclEntrySetFirstEntry
-  >?
-  firstEntry;
+  final List<FmsPolicyFirstEntry>? firstEntry;
 
-  final List<
-    FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicyNetworkAclEntrySetLastEntry
-  >?
-  lastEntry;
+  final List<FmsPolicyLastEntry>? lastEntry;
 
   Map<String, Object?> encode() => {
     'force_remediate_for_first_entries': forceRemediateForFirstEntries
@@ -216,8 +204,8 @@ final class FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicy
 /// Typed helper for the `security_service_policy_data.policy_option.network_acl_common_policy.network_acl_entry_set.first_entry` block of
 /// `aws_fms_policy` (derived from provider schema).
 @immutable
-final class FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicyNetworkAclEntrySetFirstEntry {
-  const FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicyNetworkAclEntrySetFirstEntry({
+final class FmsPolicyFirstEntry {
+  const FmsPolicyFirstEntry({
     this.cidrBlock,
     required this.egress,
     this.ipv6CidrBlock,
@@ -237,15 +225,9 @@ final class FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicy
 
   final TfArg<String> ruleAction;
 
-  final List<
-    FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicyNetworkAclEntrySetFirstEntryIcmpTypeCode
-  >?
-  icmpTypeCode;
+  final List<FmsPolicyIcmpTypeCode>? icmpTypeCode;
 
-  final List<
-    FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicyNetworkAclEntrySetFirstEntryPortRange
-  >?
-  portRange;
+  final List<FmsPolicyPortRange>? portRange;
 
   Map<String, Object?> encode() => {
     'cidr_block': ?cidrBlock?.toTfJson(),
@@ -262,12 +244,10 @@ final class FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicy
 
 /// Typed helper for the `security_service_policy_data.policy_option.network_acl_common_policy.network_acl_entry_set.first_entry.icmp_type_code` block of
 /// `aws_fms_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicyNetworkAclEntrySetFirstEntryIcmpTypeCode {
-  const FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicyNetworkAclEntrySetFirstEntryIcmpTypeCode({
-    this.code,
-    this.type,
-  });
+final class FmsPolicyIcmpTypeCode {
+  const FmsPolicyIcmpTypeCode({this.code, this.type});
 
   final TfArg<num>? code;
 
@@ -281,12 +261,10 @@ final class FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicy
 
 /// Typed helper for the `security_service_policy_data.policy_option.network_acl_common_policy.network_acl_entry_set.first_entry.port_range` block of
 /// `aws_fms_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicyNetworkAclEntrySetFirstEntryPortRange {
-  const FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicyNetworkAclEntrySetFirstEntryPortRange({
-    this.from,
-    this.to,
-  });
+final class FmsPolicyPortRange {
+  const FmsPolicyPortRange({this.from, this.to});
 
   final TfArg<num>? from;
 
@@ -301,8 +279,8 @@ final class FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicy
 /// Typed helper for the `security_service_policy_data.policy_option.network_acl_common_policy.network_acl_entry_set.last_entry` block of
 /// `aws_fms_policy` (derived from provider schema).
 @immutable
-final class FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicyNetworkAclEntrySetLastEntry {
-  const FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicyNetworkAclEntrySetLastEntry({
+final class FmsPolicyLastEntry {
+  const FmsPolicyLastEntry({
     this.cidrBlock,
     required this.egress,
     this.ipv6CidrBlock,
@@ -322,15 +300,9 @@ final class FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicy
 
   final TfArg<String> ruleAction;
 
-  final List<
-    FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicyNetworkAclEntrySetLastEntryIcmpTypeCode
-  >?
-  icmpTypeCode;
+  final List<FmsPolicyIcmpTypeCode>? icmpTypeCode;
 
-  final List<
-    FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicyNetworkAclEntrySetLastEntryPortRange
-  >?
-  portRange;
+  final List<FmsPolicyPortRange>? portRange;
 
   Map<String, Object?> encode() => {
     'cidr_block': ?cidrBlock?.toTfJson(),
@@ -345,56 +317,13 @@ final class FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicy
   };
 }
 
-/// Typed helper for the `security_service_policy_data.policy_option.network_acl_common_policy.network_acl_entry_set.last_entry.icmp_type_code` block of
-/// `aws_fms_policy` (derived from provider schema).
-@immutable
-final class FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicyNetworkAclEntrySetLastEntryIcmpTypeCode {
-  const FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicyNetworkAclEntrySetLastEntryIcmpTypeCode({
-    this.code,
-    this.type,
-  });
-
-  final TfArg<num>? code;
-
-  final TfArg<num>? type;
-
-  Map<String, Object?> encode() => {
-    'code': ?code?.toTfJson(),
-    'type': ?type?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `security_service_policy_data.policy_option.network_acl_common_policy.network_acl_entry_set.last_entry.port_range` block of
-/// `aws_fms_policy` (derived from provider schema).
-@immutable
-final class FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicyNetworkAclEntrySetLastEntryPortRange {
-  const FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicyNetworkAclEntrySetLastEntryPortRange({
-    this.from,
-    this.to,
-  });
-
-  final TfArg<num>? from;
-
-  final TfArg<num>? to;
-
-  Map<String, Object?> encode() => {
-    'from': ?from?.toTfJson(),
-    'to': ?to?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `security_service_policy_data.policy_option.network_firewall_policy` block of
 /// `aws_fms_policy` (derived from provider schema).
 @immutable
-final class FmsPolicySecurityServicePolicyDataPolicyOptionNetworkFirewallPolicy {
-  const FmsPolicySecurityServicePolicyDataPolicyOptionNetworkFirewallPolicy({
-    this.firewallDeploymentModel,
-  });
+final class FmsPolicyNetworkFirewallPolicy {
+  const FmsPolicyNetworkFirewallPolicy({this.firewallDeploymentModel});
 
-  final TfArg<
-    FmsPolicySecurityServicePolicyDataPolicyOptionNetworkFirewallPolicyFirewallDeploymentModel
-  >?
-  firewallDeploymentModel;
+  final TfArg<FmsPolicyFirewallDeploymentModel>? firewallDeploymentModel;
 
   Map<String, Object?> encode() => {
     'firewall_deployment_model': ?firewallDeploymentModel?.toTfJson(),
@@ -402,14 +331,11 @@ final class FmsPolicySecurityServicePolicyDataPolicyOptionNetworkFirewallPolicy 
 }
 
 /// `firewall_deployment_model` — derived from the provider schema description.
-enum FmsPolicySecurityServicePolicyDataPolicyOptionNetworkFirewallPolicyFirewallDeploymentModel
-    implements TerraformEnum {
+enum FmsPolicyFirewallDeploymentModel implements TerraformEnum {
   centralized('CENTRALIZED'),
   distributed('DISTRIBUTED');
 
-  const FmsPolicySecurityServicePolicyDataPolicyOptionNetworkFirewallPolicyFirewallDeploymentModel(
-    this.terraformValue,
-  );
+  const FmsPolicyFirewallDeploymentModel(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -417,32 +343,14 @@ enum FmsPolicySecurityServicePolicyDataPolicyOptionNetworkFirewallPolicyFirewall
 /// Typed helper for the `security_service_policy_data.policy_option.third_party_firewall_policy` block of
 /// `aws_fms_policy` (derived from provider schema).
 @immutable
-final class FmsPolicySecurityServicePolicyDataPolicyOptionThirdPartyFirewallPolicy {
-  const FmsPolicySecurityServicePolicyDataPolicyOptionThirdPartyFirewallPolicy({
-    this.firewallDeploymentModel,
-  });
+final class FmsPolicyThirdPartyFirewallPolicy {
+  const FmsPolicyThirdPartyFirewallPolicy({this.firewallDeploymentModel});
 
-  final TfArg<
-    FmsPolicySecurityServicePolicyDataPolicyOptionThirdPartyFirewallPolicyFirewallDeploymentModel
-  >?
-  firewallDeploymentModel;
+  final TfArg<FmsPolicyFirewallDeploymentModel>? firewallDeploymentModel;
 
   Map<String, Object?> encode() => {
     'firewall_deployment_model': ?firewallDeploymentModel?.toTfJson(),
   };
-}
-
-/// `firewall_deployment_model` — derived from the provider schema description.
-enum FmsPolicySecurityServicePolicyDataPolicyOptionThirdPartyFirewallPolicyFirewallDeploymentModel
-    implements TerraformEnum {
-  centralized('CENTRALIZED'),
-  distributed('DISTRIBUTED');
-
-  const FmsPolicySecurityServicePolicyDataPolicyOptionThirdPartyFirewallPolicyFirewallDeploymentModel(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_fms_policy`.

@@ -146,7 +146,7 @@ final class ChronicleNativeDashboardCharts {
 
   final TfArg<List<String>>? filtersIds;
 
-  final ChronicleNativeDashboardChartsChartLayout? chartLayout;
+  final ChronicleNativeDashboardChartLayout? chartLayout;
 
   Map<String, Object?> encode() => {
     'dashboard_chart': ?dashboardChart?.toTfJson(),
@@ -158,8 +158,8 @@ final class ChronicleNativeDashboardCharts {
 /// Typed helper for the `charts.chart_layout` block of
 /// `google_chronicle_native_dashboard` (derived from provider schema).
 @immutable
-final class ChronicleNativeDashboardChartsChartLayout {
-  const ChronicleNativeDashboardChartsChartLayout({
+final class ChronicleNativeDashboardChartLayout {
+  const ChronicleNativeDashboardChartLayout({
     required this.spanX,
     required this.spanY,
     this.startX,

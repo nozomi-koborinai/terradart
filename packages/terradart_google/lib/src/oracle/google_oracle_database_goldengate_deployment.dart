@@ -47,13 +47,11 @@ final class OracleDatabaseGoldengateDeploymentProperties {
 
   final TfArg<String>? licenseModel;
 
-  final OracleDatabaseGoldengateDeploymentPropertiesMaintenanceConfig?
-  maintenanceConfig;
+  final OracleDatabaseGoldengateDeploymentMaintenanceConfig? maintenanceConfig;
 
-  final OracleDatabaseGoldengateDeploymentPropertiesMaintenanceWindow?
-  maintenanceWindow;
+  final OracleDatabaseGoldengateDeploymentMaintenanceWindow? maintenanceWindow;
 
-  final OracleDatabaseGoldengateDeploymentPropertiesOggData oggData;
+  final OracleDatabaseGoldengateDeploymentOggData oggData;
 
   Map<String, Object?> encode() => {
     'cpu_core_count': ?cpuCoreCount?.toTfJson(),
@@ -71,8 +69,8 @@ final class OracleDatabaseGoldengateDeploymentProperties {
 /// Typed helper for the `properties.maintenance_config` block of
 /// `google_oracle_database_goldengate_deployment` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateDeploymentPropertiesMaintenanceConfig {
-  const OracleDatabaseGoldengateDeploymentPropertiesMaintenanceConfig({
+final class OracleDatabaseGoldengateDeploymentMaintenanceConfig {
+  const OracleDatabaseGoldengateDeploymentMaintenanceConfig({
     this.bundleReleaseUpgradePeriodDays,
     this.interimReleaseUpgradePeriodDays,
     this.isInterimReleaseAutoUpgradeEnabled,
@@ -107,8 +105,8 @@ final class OracleDatabaseGoldengateDeploymentPropertiesMaintenanceConfig {
 /// Typed helper for the `properties.maintenance_window` block of
 /// `google_oracle_database_goldengate_deployment` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateDeploymentPropertiesMaintenanceWindow {
-  const OracleDatabaseGoldengateDeploymentPropertiesMaintenanceWindow({
+final class OracleDatabaseGoldengateDeploymentMaintenanceWindow {
+  const OracleDatabaseGoldengateDeploymentMaintenanceWindow({
     required this.day,
     required this.startHour,
   });
@@ -126,8 +124,8 @@ final class OracleDatabaseGoldengateDeploymentPropertiesMaintenanceWindow {
 /// Typed helper for the `properties.ogg_data` block of
 /// `google_oracle_database_goldengate_deployment` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateDeploymentPropertiesOggData {
-  const OracleDatabaseGoldengateDeploymentPropertiesOggData({
+final class OracleDatabaseGoldengateDeploymentOggData {
+  const OracleDatabaseGoldengateDeploymentOggData({
     this.adminPassword,
     this.adminPasswordSecretVersion,
     required this.adminUsername,

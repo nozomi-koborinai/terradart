@@ -13,8 +13,7 @@ const Set<String> _googleGkeHubRolloutSequenceSensitive = <String>{};
 final class GkeHubRolloutSequenceAutoUpgradeConfig {
   const GkeHubRolloutSequenceAutoUpgradeConfig({this.rolloutCreationScope});
 
-  final GkeHubRolloutSequenceAutoUpgradeConfigRolloutCreationScope?
-  rolloutCreationScope;
+  final GkeHubRolloutSequenceRolloutCreationScope? rolloutCreationScope;
 
   Map<String, Object?> encode() => {
     'rollout_creation_scope': ?rolloutCreationScope?.encode(),
@@ -24,10 +23,8 @@ final class GkeHubRolloutSequenceAutoUpgradeConfig {
 /// Typed helper for the `auto_upgrade_config.rollout_creation_scope` block of
 /// `google_gke_hub_rollout_sequence` (derived from provider schema).
 @immutable
-final class GkeHubRolloutSequenceAutoUpgradeConfigRolloutCreationScope {
-  const GkeHubRolloutSequenceAutoUpgradeConfigRolloutCreationScope({
-    this.upgradeTypes,
-  });
+final class GkeHubRolloutSequenceRolloutCreationScope {
+  const GkeHubRolloutSequenceRolloutCreationScope({this.upgradeTypes});
 
   final TfArg<List<String>>? upgradeTypes;
 
@@ -61,7 +58,7 @@ final class GkeHubRolloutSequenceStages {
 
   final TfArg<String>? soakDuration;
 
-  final GkeHubRolloutSequenceStagesClusterSelector? clusterSelector;
+  final GkeHubRolloutSequenceClusterSelector? clusterSelector;
 
   Map<String, Object?> encode() => {
     'fleet_projects': fleetProjects.toTfJson(),
@@ -73,10 +70,8 @@ final class GkeHubRolloutSequenceStages {
 /// Typed helper for the `stages.cluster_selector` block of
 /// `google_gke_hub_rollout_sequence` (derived from provider schema).
 @immutable
-final class GkeHubRolloutSequenceStagesClusterSelector {
-  const GkeHubRolloutSequenceStagesClusterSelector({
-    required this.labelSelector,
-  });
+final class GkeHubRolloutSequenceClusterSelector {
+  const GkeHubRolloutSequenceClusterSelector({required this.labelSelector});
 
   final TfArg<String> labelSelector;
 

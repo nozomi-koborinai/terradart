@@ -6,23 +6,23 @@ library;
 export 'src/emrcontainers/aws_emrcontainers_job_template.dart'
     show
         AwsEmrcontainersJobTemplate,
-        EmrcontainersJobTemplateJobTemplateData,
-        EmrcontainersJobTemplateJobTemplateDataConfigurationOverrides,
-        EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesApplicationConfiguration,
-        EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesApplicationConfigurationConfigurations,
-        EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesMonitoringConfiguration,
-        EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesMonitoringConfigurationCloudWatchMonitoringConfiguration,
-        EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesMonitoringConfigurationPersistentAppUi,
-        EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesMonitoringConfigurationS3MonitoringConfiguration,
-        EmrcontainersJobTemplateJobTemplateDataJobDriver,
-        EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriver,
-        EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriverChoice,
-        EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSubmitJobDriver,
-        EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSubmitJobDriverChoice;
+        EmrcontainersJobTemplateApplicationConfiguration,
+        EmrcontainersJobTemplateCloudWatchMonitoringConfiguration,
+        EmrcontainersJobTemplateConfigurationOverrides,
+        EmrcontainersJobTemplateConfigurations,
+        EmrcontainersJobTemplateData,
+        EmrcontainersJobTemplateJobDriver,
+        EmrcontainersJobTemplateMonitoringConfiguration,
+        EmrcontainersJobTemplatePersistentAppUi,
+        EmrcontainersJobTemplateS3MonitoringConfiguration,
+        EmrcontainersJobTemplateSparkSqlJobDriver,
+        EmrcontainersJobTemplateSparkSqlJobDriverChoice,
+        EmrcontainersJobTemplateSparkSubmitJobDriver,
+        EmrcontainersJobTemplateSparkSubmitJobDriverChoice;
 export 'src/emrcontainers/aws_emrcontainers_virtual_cluster.dart'
     show
         AwsEmrcontainersVirtualCluster,
         EmrcontainersVirtualClusterContainerProvider,
-        EmrcontainersVirtualClusterContainerProviderInfo,
-        EmrcontainersVirtualClusterContainerProviderInfoEksInfo,
-        EmrcontainersVirtualClusterContainerProviderType;
+        EmrcontainersVirtualClusterEksInfo,
+        EmrcontainersVirtualClusterInfo,
+        EmrcontainersVirtualClusterType;

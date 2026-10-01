@@ -15,7 +15,7 @@ const Set<String> _cloudflareEmailRoutingAddressSensitive = <String>{};
 final class DataEmailRoutingAddressFilter {
   const DataEmailRoutingAddressFilter({this.direction, this.verified});
 
-  final TfArg<DataEmailRoutingAddressFilterDirection>? direction;
+  final TfArg<DataEmailRoutingAddressDirection>? direction;
 
   final TfArg<bool>? verified;
 
@@ -26,11 +26,11 @@ final class DataEmailRoutingAddressFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataEmailRoutingAddressFilterDirection implements TerraformEnum {
+enum DataEmailRoutingAddressDirection implements TerraformEnum {
   asc('asc'),
   desc('desc');
 
-  const DataEmailRoutingAddressFilterDirection(this.terraformValue);
+  const DataEmailRoutingAddressDirection(this.terraformValue);
   @override
   final String terraformValue;
 }

@@ -42,9 +42,7 @@ final class FinspaceKxEnvironmentTransitGatewayConfiguration {
 
   final TfArg<String> transitGatewayId;
 
-  final List<
-    FinspaceKxEnvironmentTransitGatewayConfigurationAttachmentNetworkAclConfiguration
-  >?
+  final List<FinspaceKxEnvironmentAttachmentNetworkAclConfiguration>?
   attachmentNetworkAclConfiguration;
 
   Map<String, Object?> encode() => {
@@ -60,8 +58,8 @@ final class FinspaceKxEnvironmentTransitGatewayConfiguration {
 /// Typed helper for the `transit_gateway_configuration.attachment_network_acl_configuration` block of
 /// `aws_finspace_kx_environment` (derived from provider schema).
 @immutable
-final class FinspaceKxEnvironmentTransitGatewayConfigurationAttachmentNetworkAclConfiguration {
-  const FinspaceKxEnvironmentTransitGatewayConfigurationAttachmentNetworkAclConfiguration({
+final class FinspaceKxEnvironmentAttachmentNetworkAclConfiguration {
+  const FinspaceKxEnvironmentAttachmentNetworkAclConfiguration({
     required this.cidrBlock,
     required this.protocol,
     required this.ruleAction,
@@ -74,18 +72,13 @@ final class FinspaceKxEnvironmentTransitGatewayConfigurationAttachmentNetworkAcl
 
   final TfArg<String> protocol;
 
-  final TfArg<
-    FinspaceKxEnvironmentTransitGatewayConfigurationAttachmentNetworkAclConfigurationRuleAction
-  >
-  ruleAction;
+  final TfArg<FinspaceKxEnvironmentRuleAction> ruleAction;
 
   final TfArg<num> ruleNumber;
 
-  final FinspaceKxEnvironmentTransitGatewayConfigurationAttachmentNetworkAclConfigurationIcmpTypeCode?
-  icmpTypeCode;
+  final FinspaceKxEnvironmentIcmpTypeCode? icmpTypeCode;
 
-  final FinspaceKxEnvironmentTransitGatewayConfigurationAttachmentNetworkAclConfigurationPortRange?
-  portRange;
+  final FinspaceKxEnvironmentPortRange? portRange;
 
   Map<String, Object?> encode() => {
     'cidr_block': cidrBlock.toTfJson(),
@@ -98,14 +91,11 @@ final class FinspaceKxEnvironmentTransitGatewayConfigurationAttachmentNetworkAcl
 }
 
 /// `rule_action` — derived from the provider schema description.
-enum FinspaceKxEnvironmentTransitGatewayConfigurationAttachmentNetworkAclConfigurationRuleAction
-    implements TerraformEnum {
+enum FinspaceKxEnvironmentRuleAction implements TerraformEnum {
   allow('allow'),
   deny('deny');
 
-  const FinspaceKxEnvironmentTransitGatewayConfigurationAttachmentNetworkAclConfigurationRuleAction(
-    this.terraformValue,
-  );
+  const FinspaceKxEnvironmentRuleAction(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -113,8 +103,8 @@ enum FinspaceKxEnvironmentTransitGatewayConfigurationAttachmentNetworkAclConfigu
 /// Typed helper for the `transit_gateway_configuration.attachment_network_acl_configuration.icmp_type_code` block of
 /// `aws_finspace_kx_environment` (derived from provider schema).
 @immutable
-final class FinspaceKxEnvironmentTransitGatewayConfigurationAttachmentNetworkAclConfigurationIcmpTypeCode {
-  const FinspaceKxEnvironmentTransitGatewayConfigurationAttachmentNetworkAclConfigurationIcmpTypeCode({
+final class FinspaceKxEnvironmentIcmpTypeCode {
+  const FinspaceKxEnvironmentIcmpTypeCode({
     required this.code,
     required this.type,
   });
@@ -132,11 +122,8 @@ final class FinspaceKxEnvironmentTransitGatewayConfigurationAttachmentNetworkAcl
 /// Typed helper for the `transit_gateway_configuration.attachment_network_acl_configuration.port_range` block of
 /// `aws_finspace_kx_environment` (derived from provider schema).
 @immutable
-final class FinspaceKxEnvironmentTransitGatewayConfigurationAttachmentNetworkAclConfigurationPortRange {
-  const FinspaceKxEnvironmentTransitGatewayConfigurationAttachmentNetworkAclConfigurationPortRange({
-    required this.from,
-    required this.to,
-  });
+final class FinspaceKxEnvironmentPortRange {
+  const FinspaceKxEnvironmentPortRange({required this.from, required this.to});
 
   final TfArg<num> from;
 

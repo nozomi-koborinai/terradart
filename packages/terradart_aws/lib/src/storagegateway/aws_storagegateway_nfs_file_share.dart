@@ -66,8 +66,8 @@ final class StoragegatewayNfsFileShareCacheAttributes {
 /// Typed helper for the `nfs_file_share_defaults` block of
 /// `aws_storagegateway_nfs_file_share` (derived from provider schema).
 @immutable
-final class StoragegatewayNfsFileShareNfsFileShareDefaults {
-  const StoragegatewayNfsFileShareNfsFileShareDefaults({
+final class StoragegatewayNfsFileShareDefaults {
+  const StoragegatewayNfsFileShareDefaults({
     this.directoryMode,
     this.fileMode,
     this.groupId,
@@ -116,7 +116,7 @@ final class AwsStoragegatewayNfsFileShare extends Resource {
     TfArg<Map<String, String>>? tags,
     TfArg<String>? vpcEndpointDnsName,
     StoragegatewayNfsFileShareCacheAttributes? cacheAttributes,
-    StoragegatewayNfsFileShareNfsFileShareDefaults? nfsFileShareDefaults,
+    StoragegatewayNfsFileShareDefaults? nfsFileShareDefaults,
     super.lifecycle,
     super.dependsOn,
     super.provider,

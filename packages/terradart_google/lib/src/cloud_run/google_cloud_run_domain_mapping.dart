@@ -40,7 +40,7 @@ final class CloudRunDomainMappingSpec {
     required this.routeName,
   });
 
-  final TfArg<CloudRunDomainMappingSpecCertificateMode>? certificateMode;
+  final TfArg<CloudRunDomainMappingCertificateMode>? certificateMode;
 
   final TfArg<bool>? forceOverride;
 
@@ -54,11 +54,11 @@ final class CloudRunDomainMappingSpec {
 }
 
 /// `certificate_mode` — derived from the provider schema description.
-enum CloudRunDomainMappingSpecCertificateMode implements TerraformEnum {
+enum CloudRunDomainMappingCertificateMode implements TerraformEnum {
   none('NONE'),
   automatic('AUTOMATIC');
 
-  const CloudRunDomainMappingSpecCertificateMode(this.terraformValue);
+  const CloudRunDomainMappingCertificateMode(this.terraformValue);
   @override
   final String terraformValue;
 }

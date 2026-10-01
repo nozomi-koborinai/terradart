@@ -191,7 +191,7 @@ final class LambdaFunctionCapacityProviderConfig {
     required this.lambdaManagedInstancesCapacityProviderConfig,
   });
 
-  final LambdaFunctionCapacityProviderConfigLambdaManagedInstancesCapacityProviderConfig
+  final LambdaFunctionLambdaManagedInstancesCapacityProviderConfig
   lambdaManagedInstancesCapacityProviderConfig;
 
   Map<String, Object?> encode() => {
@@ -203,8 +203,8 @@ final class LambdaFunctionCapacityProviderConfig {
 /// Typed helper for the `capacity_provider_config.lambda_managed_instances_capacity_provider_config` block of
 /// `aws_lambda_function` (derived from provider schema).
 @immutable
-final class LambdaFunctionCapacityProviderConfigLambdaManagedInstancesCapacityProviderConfig {
-  const LambdaFunctionCapacityProviderConfigLambdaManagedInstancesCapacityProviderConfig({
+final class LambdaFunctionLambdaManagedInstancesCapacityProviderConfig {
+  const LambdaFunctionLambdaManagedInstancesCapacityProviderConfig({
     required this.capacityProviderArn,
     this.executionEnvironmentMemoryGibPerVcpu,
     this.perExecutionEnvironmentMaxConcurrency,
@@ -330,14 +330,13 @@ final class LambdaFunctionLoggingConfig {
     this.systemLogLevel,
   });
 
-  final TfArg<LambdaFunctionLoggingConfigApplicationLogLevel>?
-  applicationLogLevel;
+  final TfArg<LambdaFunctionApplicationLogLevel>? applicationLogLevel;
 
-  final TfArg<LambdaFunctionLoggingConfigLogFormat> logFormat;
+  final TfArg<LambdaFunctionLogFormat> logFormat;
 
   final RefTo<AwsCloudwatchLogGroup>? logGroup;
 
-  final TfArg<LambdaFunctionLoggingConfigSystemLogLevel>? systemLogLevel;
+  final TfArg<LambdaFunctionSystemLogLevel>? systemLogLevel;
 
   Map<String, Object?> encode() => {
     'application_log_level': ?applicationLogLevel?.toTfJson(),
@@ -348,7 +347,7 @@ final class LambdaFunctionLoggingConfig {
 }
 
 /// `application_log_level` — derived from the provider schema description.
-enum LambdaFunctionLoggingConfigApplicationLogLevel implements TerraformEnum {
+enum LambdaFunctionApplicationLogLevel implements TerraformEnum {
   trace('TRACE'),
   debug('DEBUG'),
   info('INFO'),
@@ -356,28 +355,28 @@ enum LambdaFunctionLoggingConfigApplicationLogLevel implements TerraformEnum {
   error('ERROR'),
   fatal('FATAL');
 
-  const LambdaFunctionLoggingConfigApplicationLogLevel(this.terraformValue);
+  const LambdaFunctionApplicationLogLevel(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `log_format` — derived from the provider schema description.
-enum LambdaFunctionLoggingConfigLogFormat implements TerraformEnum {
+enum LambdaFunctionLogFormat implements TerraformEnum {
   json('JSON'),
   text('Text');
 
-  const LambdaFunctionLoggingConfigLogFormat(this.terraformValue);
+  const LambdaFunctionLogFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `system_log_level` — derived from the provider schema description.
-enum LambdaFunctionLoggingConfigSystemLogLevel implements TerraformEnum {
+enum LambdaFunctionSystemLogLevel implements TerraformEnum {
   debug('DEBUG'),
   info('INFO'),
   warn('WARN');
 
-  const LambdaFunctionLoggingConfigSystemLogLevel(this.terraformValue);
+  const LambdaFunctionSystemLogLevel(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -388,17 +387,17 @@ enum LambdaFunctionLoggingConfigSystemLogLevel implements TerraformEnum {
 final class LambdaFunctionSnapStart {
   const LambdaFunctionSnapStart({required this.applyOn});
 
-  final TfArg<LambdaFunctionSnapStartApplyOn> applyOn;
+  final TfArg<LambdaFunctionApplyOn> applyOn;
 
   Map<String, Object?> encode() => {'apply_on': applyOn.toTfJson()};
 }
 
 /// `apply_on` — derived from the provider schema description.
-enum LambdaFunctionSnapStartApplyOn implements TerraformEnum {
+enum LambdaFunctionApplyOn implements TerraformEnum {
   publishedversions('PublishedVersions'),
   none('None');
 
-  const LambdaFunctionSnapStartApplyOn(this.terraformValue);
+  const LambdaFunctionApplyOn(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -409,8 +408,7 @@ enum LambdaFunctionSnapStartApplyOn implements TerraformEnum {
 final class LambdaFunctionTenancyConfig {
   const LambdaFunctionTenancyConfig({required this.tenantIsolationMode});
 
-  final TfArg<LambdaFunctionTenancyConfigTenantIsolationMode>
-  tenantIsolationMode;
+  final TfArg<LambdaFunctionTenantIsolationMode> tenantIsolationMode;
 
   Map<String, Object?> encode() => {
     'tenant_isolation_mode': tenantIsolationMode.toTfJson(),
@@ -418,10 +416,10 @@ final class LambdaFunctionTenancyConfig {
 }
 
 /// `tenant_isolation_mode` — derived from the provider schema description.
-enum LambdaFunctionTenancyConfigTenantIsolationMode implements TerraformEnum {
+enum LambdaFunctionTenantIsolationMode implements TerraformEnum {
   perTenant('PER_TENANT');
 
-  const LambdaFunctionTenancyConfigTenantIsolationMode(this.terraformValue);
+  const LambdaFunctionTenantIsolationMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -432,17 +430,17 @@ enum LambdaFunctionTenancyConfigTenantIsolationMode implements TerraformEnum {
 final class LambdaFunctionTracingConfig {
   const LambdaFunctionTracingConfig({required this.mode});
 
-  final TfArg<LambdaFunctionTracingConfigMode> mode;
+  final TfArg<LambdaFunctionMode> mode;
 
   Map<String, Object?> encode() => {'mode': mode.toTfJson()};
 }
 
 /// `mode` — derived from the provider schema description.
-enum LambdaFunctionTracingConfigMode implements TerraformEnum {
+enum LambdaFunctionMode implements TerraformEnum {
   active('Active'),
   passthrough('PassThrough');
 
-  const LambdaFunctionTracingConfigMode(this.terraformValue);
+  const LambdaFunctionMode(this.terraformValue);
   @override
   final String terraformValue;
 }

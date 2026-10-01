@@ -14,8 +14,8 @@ const Set<String> _googleComputeMachineImageSensitive = <String>{
 /// Typed helper for the `machine_image_encryption_key` block of
 /// `google_compute_machine_image` (derived from provider schema).
 @immutable
-final class ComputeMachineImageMachineImageEncryptionKey {
-  const ComputeMachineImageMachineImageEncryptionKey({
+final class ComputeMachineImageEncryptionKey {
+  const ComputeMachineImageEncryptionKey({
     this.kmsKeyName,
     this.kmsKeyServiceAccount,
     this.rawKey,
@@ -63,7 +63,7 @@ final class GoogleComputeMachineImage extends Resource {
     required TfArg<String> name,
     TfArg<String>? project,
     required TfArg<String> sourceInstance,
-    ComputeMachineImageMachineImageEncryptionKey? machineImageEncryptionKey,
+    ComputeMachineImageEncryptionKey? machineImageEncryptionKey,
     ComputeMachineImageParams? params,
     super.lifecycle,
     super.dependsOn,

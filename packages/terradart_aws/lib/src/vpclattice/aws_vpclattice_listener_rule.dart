@@ -16,13 +16,13 @@ sealed class VpclatticeListenerRuleAction {
 
   /// Sets `fixed_response`.
   const factory VpclatticeListenerRuleAction.fixedResponse(
-    VpclatticeListenerRuleActionFixedResponse fixedResponse,
-  ) = VpclatticeListenerRuleActionFixedResponseChoice;
+    VpclatticeListenerRuleFixedResponse fixedResponse,
+  ) = VpclatticeListenerRuleActionFixedResponse;
 
   /// Sets `forward`.
   const factory VpclatticeListenerRuleAction.forward(
-    VpclatticeListenerRuleActionForward forward,
-  ) = VpclatticeListenerRuleActionForwardChoice;
+    VpclatticeListenerRuleForward forward,
+  ) = VpclatticeListenerRuleActionForward;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -31,11 +31,11 @@ sealed class VpclatticeListenerRuleAction {
 }
 
 /// The [VpclatticeListenerRuleAction.fixedResponse] choice: sets `fixed_response`.
-final class VpclatticeListenerRuleActionFixedResponseChoice
+final class VpclatticeListenerRuleActionFixedResponse
     extends VpclatticeListenerRuleAction {
-  const VpclatticeListenerRuleActionFixedResponseChoice(this.fixedResponse);
+  const VpclatticeListenerRuleActionFixedResponse(this.fixedResponse);
 
-  final VpclatticeListenerRuleActionFixedResponse fixedResponse;
+  final VpclatticeListenerRuleFixedResponse fixedResponse;
 
   @override
   String get blockKey => 'fixed_response';
@@ -45,11 +45,11 @@ final class VpclatticeListenerRuleActionFixedResponseChoice
 }
 
 /// The [VpclatticeListenerRuleAction.forward] choice: sets `forward`.
-final class VpclatticeListenerRuleActionForwardChoice
+final class VpclatticeListenerRuleActionForward
     extends VpclatticeListenerRuleAction {
-  const VpclatticeListenerRuleActionForwardChoice(this.forward);
+  const VpclatticeListenerRuleActionForward(this.forward);
 
-  final VpclatticeListenerRuleActionForward forward;
+  final VpclatticeListenerRuleForward forward;
 
   @override
   String get blockKey => 'forward';
@@ -61,8 +61,8 @@ final class VpclatticeListenerRuleActionForwardChoice
 /// Typed helper for the `action.fixed_response` block of
 /// `aws_vpclattice_listener_rule` (derived from provider schema).
 @immutable
-final class VpclatticeListenerRuleActionFixedResponse {
-  const VpclatticeListenerRuleActionFixedResponse({required this.statusCode});
+final class VpclatticeListenerRuleFixedResponse {
+  const VpclatticeListenerRuleFixedResponse({required this.statusCode});
 
   final TfArg<num> statusCode;
 
@@ -72,10 +72,10 @@ final class VpclatticeListenerRuleActionFixedResponse {
 /// Typed helper for the `action.forward` block of
 /// `aws_vpclattice_listener_rule` (derived from provider schema).
 @immutable
-final class VpclatticeListenerRuleActionForward {
-  const VpclatticeListenerRuleActionForward({required this.targetGroups});
+final class VpclatticeListenerRuleForward {
+  const VpclatticeListenerRuleForward({required this.targetGroups});
 
-  final List<VpclatticeListenerRuleActionForwardTargetGroups> targetGroups;
+  final List<VpclatticeListenerRuleTargetGroups> targetGroups;
 
   Map<String, Object?> encode() => {
     'target_groups': [for (final e in targetGroups) e.encode()],
@@ -85,8 +85,8 @@ final class VpclatticeListenerRuleActionForward {
 /// Typed helper for the `action.forward.target_groups` block of
 /// `aws_vpclattice_listener_rule` (derived from provider schema).
 @immutable
-final class VpclatticeListenerRuleActionForwardTargetGroups {
-  const VpclatticeListenerRuleActionForwardTargetGroups({
+final class VpclatticeListenerRuleTargetGroups {
+  const VpclatticeListenerRuleTargetGroups({
     required this.targetGroupIdentifier,
     this.weight,
   });
@@ -107,7 +107,7 @@ final class VpclatticeListenerRuleActionForwardTargetGroups {
 final class VpclatticeListenerRuleMatch {
   const VpclatticeListenerRuleMatch({required this.httpMatch});
 
-  final VpclatticeListenerRuleMatchHttpMatch httpMatch;
+  final VpclatticeListenerRuleHttpMatch httpMatch;
 
   Map<String, Object?> encode() => {'http_match': httpMatch.encode()};
 }
@@ -115,8 +115,8 @@ final class VpclatticeListenerRuleMatch {
 /// Typed helper for the `match.http_match` block of
 /// `aws_vpclattice_listener_rule` (derived from provider schema).
 @immutable
-final class VpclatticeListenerRuleMatchHttpMatch {
-  const VpclatticeListenerRuleMatchHttpMatch({
+final class VpclatticeListenerRuleHttpMatch {
+  const VpclatticeListenerRuleHttpMatch({
     this.method,
     this.headerMatches,
     this.pathMatch,
@@ -124,9 +124,9 @@ final class VpclatticeListenerRuleMatchHttpMatch {
 
   final TfArg<String>? method;
 
-  final List<VpclatticeListenerRuleMatchHttpMatchHeaderMatches>? headerMatches;
+  final List<VpclatticeListenerRuleHeaderMatches>? headerMatches;
 
-  final VpclatticeListenerRuleMatchHttpMatchPathMatch? pathMatch;
+  final VpclatticeListenerRulePathMatch? pathMatch;
 
   Map<String, Object?> encode() => {
     'method': ?method?.toTfJson(),
@@ -139,8 +139,8 @@ final class VpclatticeListenerRuleMatchHttpMatch {
 /// Typed helper for the `match.http_match.header_matches` block of
 /// `aws_vpclattice_listener_rule` (derived from provider schema).
 @immutable
-final class VpclatticeListenerRuleMatchHttpMatchHeaderMatches {
-  const VpclatticeListenerRuleMatchHttpMatchHeaderMatches({
+final class VpclatticeListenerRuleHeaderMatches {
+  const VpclatticeListenerRuleHeaderMatches({
     this.caseSensitive,
     required this.name,
     required this.match,
@@ -150,7 +150,7 @@ final class VpclatticeListenerRuleMatchHttpMatchHeaderMatches {
 
   final TfArg<String> name;
 
-  final VpclatticeListenerRuleMatchHttpMatchHeaderMatchesMatch match;
+  final VpclatticeListenerRuleHeaderMatchesMatch match;
 
   Map<String, Object?> encode() => {
     'case_sensitive': ?caseSensitive?.toTfJson(),
@@ -162,8 +162,8 @@ final class VpclatticeListenerRuleMatchHttpMatchHeaderMatches {
 /// Typed helper for the `match.http_match.header_matches.match` block of
 /// `aws_vpclattice_listener_rule` (derived from provider schema).
 @immutable
-final class VpclatticeListenerRuleMatchHttpMatchHeaderMatchesMatch {
-  const VpclatticeListenerRuleMatchHttpMatchHeaderMatchesMatch({
+final class VpclatticeListenerRuleHeaderMatchesMatch {
+  const VpclatticeListenerRuleHeaderMatchesMatch({
     this.contains,
     this.exact,
     this.prefix,
@@ -185,15 +185,15 @@ final class VpclatticeListenerRuleMatchHttpMatchHeaderMatchesMatch {
 /// Typed helper for the `match.http_match.path_match` block of
 /// `aws_vpclattice_listener_rule` (derived from provider schema).
 @immutable
-final class VpclatticeListenerRuleMatchHttpMatchPathMatch {
-  const VpclatticeListenerRuleMatchHttpMatchPathMatch({
+final class VpclatticeListenerRulePathMatch {
+  const VpclatticeListenerRulePathMatch({
     this.caseSensitive,
     required this.match,
   });
 
   final TfArg<bool>? caseSensitive;
 
-  final VpclatticeListenerRuleMatchHttpMatchPathMatchMatch match;
+  final VpclatticeListenerRulePathMatchMatch match;
 
   Map<String, Object?> encode() => {
     'case_sensitive': ?caseSensitive?.toTfJson(),
@@ -204,11 +204,8 @@ final class VpclatticeListenerRuleMatchHttpMatchPathMatch {
 /// Typed helper for the `match.http_match.path_match.match` block of
 /// `aws_vpclattice_listener_rule` (derived from provider schema).
 @immutable
-final class VpclatticeListenerRuleMatchHttpMatchPathMatchMatch {
-  const VpclatticeListenerRuleMatchHttpMatchPathMatchMatch({
-    this.exact,
-    this.prefix,
-  });
+final class VpclatticeListenerRulePathMatchMatch {
+  const VpclatticeListenerRulePathMatchMatch({this.exact, this.prefix});
 
   final TfArg<String>? exact;
 

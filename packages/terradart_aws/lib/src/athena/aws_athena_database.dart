@@ -16,16 +16,16 @@ const Set<String> _awsAthenaDatabaseSensitive = <String>{};
 final class AthenaDatabaseAclConfiguration {
   const AthenaDatabaseAclConfiguration({required this.s3AclOption});
 
-  final TfArg<AthenaDatabaseAclConfigurationS3AclOption> s3AclOption;
+  final TfArg<AthenaDatabaseS3AclOption> s3AclOption;
 
   Map<String, Object?> encode() => {'s3_acl_option': s3AclOption.toTfJson()};
 }
 
 /// `s3_acl_option` — derived from the provider schema description.
-enum AthenaDatabaseAclConfigurationS3AclOption implements TerraformEnum {
+enum AthenaDatabaseS3AclOption implements TerraformEnum {
   bucketOwnerFullControl('BUCKET_OWNER_FULL_CONTROL');
 
-  const AthenaDatabaseAclConfigurationS3AclOption(this.terraformValue);
+  const AthenaDatabaseS3AclOption(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -39,8 +39,7 @@ final class AthenaDatabaseEncryptionConfiguration {
     this.kmsKey,
   });
 
-  final TfArg<AthenaDatabaseEncryptionConfigurationEncryptionOption>
-  encryptionOption;
+  final TfArg<AthenaDatabaseEncryptionOption> encryptionOption;
 
   final RefTo<AwsKmsKey>? kmsKey;
 
@@ -51,15 +50,12 @@ final class AthenaDatabaseEncryptionConfiguration {
 }
 
 /// `encryption_option` — derived from the provider schema description.
-enum AthenaDatabaseEncryptionConfigurationEncryptionOption
-    implements TerraformEnum {
+enum AthenaDatabaseEncryptionOption implements TerraformEnum {
   sseS3('SSE_S3'),
   sseKms('SSE_KMS'),
   cseKms('CSE_KMS');
 
-  const AthenaDatabaseEncryptionConfigurationEncryptionOption(
-    this.terraformValue,
-  );
+  const AthenaDatabaseEncryptionOption(this.terraformValue);
   @override
   final String terraformValue;
 }

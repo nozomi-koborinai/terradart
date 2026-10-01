@@ -7,23 +7,23 @@ export 'src/evidently/aws_evidently_feature.dart'
     show
         AwsEvidentlyFeature,
         EvidentlyFeatureEvaluationStrategy,
-        EvidentlyFeatureVariations,
-        EvidentlyFeatureVariationsValue;
+        EvidentlyFeatureValue,
+        EvidentlyFeatureVariations;
 export 'src/evidently/aws_evidently_launch.dart'
     show
         AwsEvidentlyLaunch,
         EvidentlyLaunchGroups,
+        EvidentlyLaunchMetricDefinition,
         EvidentlyLaunchMetricMonitors,
-        EvidentlyLaunchMetricMonitorsMetricDefinition,
         EvidentlyLaunchScheduledSplitsConfig,
-        EvidentlyLaunchScheduledSplitsConfigSteps,
-        EvidentlyLaunchScheduledSplitsConfigStepsSegmentOverrides;
+        EvidentlyLaunchSegmentOverrides,
+        EvidentlyLaunchSteps;
 export 'src/evidently/aws_evidently_project.dart'
     show
         AwsEvidentlyProject,
+        EvidentlyProjectCloudwatchLogs,
         EvidentlyProjectDataDelivery,
         EvidentlyProjectDataDeliveryCloudwatchLogs,
-        EvidentlyProjectDataDeliveryCloudwatchLogsChoice,
         EvidentlyProjectDataDeliveryS3Destination,
-        EvidentlyProjectDataDeliveryS3DestinationChoice;
+        EvidentlyProjectS3Destination;
 export 'src/evidently/aws_evidently_segment.dart' show AwsEvidentlySegment;

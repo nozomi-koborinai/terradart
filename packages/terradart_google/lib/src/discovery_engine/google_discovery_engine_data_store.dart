@@ -60,15 +60,11 @@ final class DiscoveryEngineDataStoreDocumentProcessingConfig {
     this.parsingConfigOverrides,
   });
 
-  final DiscoveryEngineDataStoreDocumentProcessingConfigChunkingConfig?
-  chunkingConfig;
+  final DiscoveryEngineDataStoreChunkingConfig? chunkingConfig;
 
-  final DiscoveryEngineDataStoreDocumentProcessingConfigDefaultParsingConfig?
-  defaultParsingConfig;
+  final DiscoveryEngineDataStoreDefaultParsingConfig? defaultParsingConfig;
 
-  final List<
-    DiscoveryEngineDataStoreDocumentProcessingConfigParsingConfigOverrides
-  >?
+  final List<DiscoveryEngineDataStoreParsingConfigOverrides>?
   parsingConfigOverrides;
 
   Map<String, Object?> encode() => {
@@ -84,12 +80,12 @@ final class DiscoveryEngineDataStoreDocumentProcessingConfig {
 /// Typed helper for the `document_processing_config.chunking_config` block of
 /// `google_discovery_engine_data_store` (derived from provider schema).
 @immutable
-final class DiscoveryEngineDataStoreDocumentProcessingConfigChunkingConfig {
-  const DiscoveryEngineDataStoreDocumentProcessingConfigChunkingConfig({
+final class DiscoveryEngineDataStoreChunkingConfig {
+  const DiscoveryEngineDataStoreChunkingConfig({
     this.layoutBasedChunkingConfig,
   });
 
-  final DiscoveryEngineDataStoreDocumentProcessingConfigChunkingConfigLayoutBasedChunkingConfig?
+  final DiscoveryEngineDataStoreLayoutBasedChunkingConfig?
   layoutBasedChunkingConfig;
 
   Map<String, Object?> encode() => {
@@ -100,8 +96,8 @@ final class DiscoveryEngineDataStoreDocumentProcessingConfigChunkingConfig {
 /// Typed helper for the `document_processing_config.chunking_config.layout_based_chunking_config` block of
 /// `google_discovery_engine_data_store` (derived from provider schema).
 @immutable
-final class DiscoveryEngineDataStoreDocumentProcessingConfigChunkingConfigLayoutBasedChunkingConfig {
-  const DiscoveryEngineDataStoreDocumentProcessingConfigChunkingConfigLayoutBasedChunkingConfig({
+final class DiscoveryEngineDataStoreLayoutBasedChunkingConfig {
+  const DiscoveryEngineDataStoreLayoutBasedChunkingConfig({
     this.chunkSize,
     this.includeAncestorHeadings,
   });
@@ -119,21 +115,18 @@ final class DiscoveryEngineDataStoreDocumentProcessingConfigChunkingConfigLayout
 /// Typed helper for the `document_processing_config.default_parsing_config` block of
 /// `google_discovery_engine_data_store` (derived from provider schema).
 @immutable
-final class DiscoveryEngineDataStoreDocumentProcessingConfigDefaultParsingConfig {
-  const DiscoveryEngineDataStoreDocumentProcessingConfigDefaultParsingConfig({
+final class DiscoveryEngineDataStoreDefaultParsingConfig {
+  const DiscoveryEngineDataStoreDefaultParsingConfig({
     this.digitalParsingConfig,
     this.layoutParsingConfig,
     this.ocrParsingConfig,
   });
 
-  final DiscoveryEngineDataStoreDocumentProcessingConfigDefaultParsingConfigDigitalParsingConfig?
-  digitalParsingConfig;
+  final DiscoveryEngineDataStoreDigitalParsingConfig? digitalParsingConfig;
 
-  final DiscoveryEngineDataStoreDocumentProcessingConfigDefaultParsingConfigLayoutParsingConfig?
-  layoutParsingConfig;
+  final DiscoveryEngineDataStoreLayoutParsingConfig? layoutParsingConfig;
 
-  final DiscoveryEngineDataStoreDocumentProcessingConfigDefaultParsingConfigOcrParsingConfig?
-  ocrParsingConfig;
+  final DiscoveryEngineDataStoreOcrParsingConfig? ocrParsingConfig;
 
   Map<String, Object?> encode() => {
     'digital_parsing_config': ?digitalParsingConfig?.encode(),
@@ -144,18 +137,20 @@ final class DiscoveryEngineDataStoreDocumentProcessingConfigDefaultParsingConfig
 
 /// Typed helper for the `document_processing_config.default_parsing_config.digital_parsing_config` block of
 /// `google_discovery_engine_data_store` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DiscoveryEngineDataStoreDocumentProcessingConfigDefaultParsingConfigDigitalParsingConfig {
-  const DiscoveryEngineDataStoreDocumentProcessingConfigDefaultParsingConfigDigitalParsingConfig();
+final class DiscoveryEngineDataStoreDigitalParsingConfig {
+  const DiscoveryEngineDataStoreDigitalParsingConfig();
 
   Map<String, Object?> encode() => {};
 }
 
 /// Typed helper for the `document_processing_config.default_parsing_config.layout_parsing_config` block of
 /// `google_discovery_engine_data_store` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DiscoveryEngineDataStoreDocumentProcessingConfigDefaultParsingConfigLayoutParsingConfig {
-  const DiscoveryEngineDataStoreDocumentProcessingConfigDefaultParsingConfigLayoutParsingConfig({
+final class DiscoveryEngineDataStoreLayoutParsingConfig {
+  const DiscoveryEngineDataStoreLayoutParsingConfig({
     this.enableGetProcessedDocument,
     this.enableImageAnnotation,
     this.enableLlmLayoutParsing,
@@ -196,11 +191,10 @@ final class DiscoveryEngineDataStoreDocumentProcessingConfigDefaultParsingConfig
 
 /// Typed helper for the `document_processing_config.default_parsing_config.ocr_parsing_config` block of
 /// `google_discovery_engine_data_store` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DiscoveryEngineDataStoreDocumentProcessingConfigDefaultParsingConfigOcrParsingConfig {
-  const DiscoveryEngineDataStoreDocumentProcessingConfigDefaultParsingConfigOcrParsingConfig({
-    this.useNativeText,
-  });
+final class DiscoveryEngineDataStoreOcrParsingConfig {
+  const DiscoveryEngineDataStoreOcrParsingConfig({this.useNativeText});
 
   final TfArg<bool>? useNativeText;
 
@@ -212,8 +206,8 @@ final class DiscoveryEngineDataStoreDocumentProcessingConfigDefaultParsingConfig
 /// Typed helper for the `document_processing_config.parsing_config_overrides` block of
 /// `google_discovery_engine_data_store` (derived from provider schema).
 @immutable
-final class DiscoveryEngineDataStoreDocumentProcessingConfigParsingConfigOverrides {
-  const DiscoveryEngineDataStoreDocumentProcessingConfigParsingConfigOverrides({
+final class DiscoveryEngineDataStoreParsingConfigOverrides {
+  const DiscoveryEngineDataStoreParsingConfigOverrides({
     required this.fileType,
     this.digitalParsingConfig,
     this.layoutParsingConfig,
@@ -222,87 +216,17 @@ final class DiscoveryEngineDataStoreDocumentProcessingConfigParsingConfigOverrid
 
   final TfArg<String> fileType;
 
-  final DiscoveryEngineDataStoreDocumentProcessingConfigParsingConfigOverridesDigitalParsingConfig?
-  digitalParsingConfig;
+  final DiscoveryEngineDataStoreDigitalParsingConfig? digitalParsingConfig;
 
-  final DiscoveryEngineDataStoreDocumentProcessingConfigParsingConfigOverridesLayoutParsingConfig?
-  layoutParsingConfig;
+  final DiscoveryEngineDataStoreLayoutParsingConfig? layoutParsingConfig;
 
-  final DiscoveryEngineDataStoreDocumentProcessingConfigParsingConfigOverridesOcrParsingConfig?
-  ocrParsingConfig;
+  final DiscoveryEngineDataStoreOcrParsingConfig? ocrParsingConfig;
 
   Map<String, Object?> encode() => {
     'file_type': fileType.toTfJson(),
     'digital_parsing_config': ?digitalParsingConfig?.encode(),
     'layout_parsing_config': ?layoutParsingConfig?.encode(),
     'ocr_parsing_config': ?ocrParsingConfig?.encode(),
-  };
-}
-
-/// Typed helper for the `document_processing_config.parsing_config_overrides.digital_parsing_config` block of
-/// `google_discovery_engine_data_store` (derived from provider schema).
-@immutable
-final class DiscoveryEngineDataStoreDocumentProcessingConfigParsingConfigOverridesDigitalParsingConfig {
-  const DiscoveryEngineDataStoreDocumentProcessingConfigParsingConfigOverridesDigitalParsingConfig();
-
-  Map<String, Object?> encode() => {};
-}
-
-/// Typed helper for the `document_processing_config.parsing_config_overrides.layout_parsing_config` block of
-/// `google_discovery_engine_data_store` (derived from provider schema).
-@immutable
-final class DiscoveryEngineDataStoreDocumentProcessingConfigParsingConfigOverridesLayoutParsingConfig {
-  const DiscoveryEngineDataStoreDocumentProcessingConfigParsingConfigOverridesLayoutParsingConfig({
-    this.enableGetProcessedDocument,
-    this.enableImageAnnotation,
-    this.enableLlmLayoutParsing,
-    this.enableTableAnnotation,
-    this.excludeHtmlClasses,
-    this.excludeHtmlElements,
-    this.excludeHtmlIds,
-    this.structuredContentTypes,
-  });
-
-  final TfArg<bool>? enableGetProcessedDocument;
-
-  final TfArg<bool>? enableImageAnnotation;
-
-  final TfArg<bool>? enableLlmLayoutParsing;
-
-  final TfArg<bool>? enableTableAnnotation;
-
-  final TfArg<List<String>>? excludeHtmlClasses;
-
-  final TfArg<List<String>>? excludeHtmlElements;
-
-  final TfArg<List<String>>? excludeHtmlIds;
-
-  final TfArg<List<String>>? structuredContentTypes;
-
-  Map<String, Object?> encode() => {
-    'enable_get_processed_document': ?enableGetProcessedDocument?.toTfJson(),
-    'enable_image_annotation': ?enableImageAnnotation?.toTfJson(),
-    'enable_llm_layout_parsing': ?enableLlmLayoutParsing?.toTfJson(),
-    'enable_table_annotation': ?enableTableAnnotation?.toTfJson(),
-    'exclude_html_classes': ?excludeHtmlClasses?.toTfJson(),
-    'exclude_html_elements': ?excludeHtmlElements?.toTfJson(),
-    'exclude_html_ids': ?excludeHtmlIds?.toTfJson(),
-    'structured_content_types': ?structuredContentTypes?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `document_processing_config.parsing_config_overrides.ocr_parsing_config` block of
-/// `google_discovery_engine_data_store` (derived from provider schema).
-@immutable
-final class DiscoveryEngineDataStoreDocumentProcessingConfigParsingConfigOverridesOcrParsingConfig {
-  const DiscoveryEngineDataStoreDocumentProcessingConfigParsingConfigOverridesOcrParsingConfig({
-    this.useNativeText,
-  });
-
-  final TfArg<bool>? useNativeText;
-
-  Map<String, Object?> encode() => {
-    'use_native_text': ?useNativeText?.toTfJson(),
   };
 }
 

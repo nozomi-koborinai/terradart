@@ -6,11 +6,11 @@ library;
 export 'src/cloudsearch/aws_cloudsearch_domain.dart'
     show
         AwsCloudsearchDomain,
+        CloudsearchDomainDesiredInstanceType,
         CloudsearchDomainEndpointOptions,
-        CloudsearchDomainEndpointOptionsTlsSecurityPolicy,
         CloudsearchDomainIndexField,
-        CloudsearchDomainIndexFieldType,
         CloudsearchDomainScalingParameters,
-        CloudsearchDomainScalingParametersDesiredInstanceType;
+        CloudsearchDomainTlsSecurityPolicy,
+        CloudsearchDomainType;
 export 'src/cloudsearch/aws_cloudsearch_domain_service_access_policy.dart'
     show AwsCloudsearchDomainServiceAccessPolicy;

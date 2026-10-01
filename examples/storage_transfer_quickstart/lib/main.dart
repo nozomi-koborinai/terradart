@@ -122,12 +122,8 @@ final class StorageTransferStack extends Stack {
         description: .literal('terradart disabled gcs copy'),
         status: .literal('DISABLED'),
         transferSpec: StorageTransferJobTransferSpec(
-          gcsDataSource: StorageTransferJobTransferSpecGcsDataSource(
-            bucketName: src.ref,
-          ),
-          gcsDataSink: StorageTransferJobTransferSpecGcsDataSink(
-            bucketName: dst.ref,
-          ),
+          gcsDataSource: StorageTransferJobGcsDataSource(bucketName: src.ref),
+          gcsDataSink: StorageTransferJobGcsDataSink(bucketName: dst.ref),
         ),
         dependsOn: [
           ...apiDeps,
@@ -148,12 +144,12 @@ final class StorageTransferStack extends Stack {
         format: .csv(delimiter: .literal(','), headerRequired: .literal(true)),
         frequencyOptions: StorageInsightsReportConfigFrequencyOptions(
           frequency: .literal(.weekly),
-          startDate: StorageInsightsReportConfigFrequencyOptionsStartDate(
+          startDate: StorageInsightsReportConfigStartDate(
             year: .literal(2099),
             month: .literal(1),
             day: .literal(1),
           ),
-          endDate: StorageInsightsReportConfigFrequencyOptionsEndDate(
+          endDate: StorageInsightsReportConfigEndDate(
             year: .literal(2099),
             month: .literal(12),
             day: .literal(31),
@@ -163,14 +159,13 @@ final class StorageTransferStack extends Stack {
             StorageInsightsReportConfigObjectMetadataReportOptions(
               metadataFields: .literal(['name', 'size']),
               storageDestinationOptions:
-                  StorageInsightsReportConfigObjectMetadataReportOptionsStorageDestinationOptions(
+                  StorageInsightsReportConfigStorageDestinationOptions(
                     bucket: src.ref,
                     destinationPath: .literal('insights-reports/'),
                   ),
-              storageFilters:
-                  StorageInsightsReportConfigObjectMetadataReportOptionsStorageFilters(
-                    bucket: src.ref,
-                  ),
+              storageFilters: StorageInsightsReportConfigStorageFilters(
+                bucket: src.ref,
+              ),
             ),
         dependsOn: [
           ...apiDeps,

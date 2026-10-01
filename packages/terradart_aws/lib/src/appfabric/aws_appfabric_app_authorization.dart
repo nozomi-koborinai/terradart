@@ -29,11 +29,9 @@ final class AppfabricAppAuthorizationCredential {
     this.oauth2Credential,
   });
 
-  final List<AppfabricAppAuthorizationCredentialApiKeyCredential>?
-  apiKeyCredential;
+  final List<AppfabricAppAuthorizationApiKeyCredential>? apiKeyCredential;
 
-  final List<AppfabricAppAuthorizationCredentialOauth2Credential>?
-  oauth2Credential;
+  final List<AppfabricAppAuthorizationOauth2Credential>? oauth2Credential;
 
   Map<String, Object?> encode() => {
     if (apiKeyCredential != null)
@@ -46,10 +44,8 @@ final class AppfabricAppAuthorizationCredential {
 /// Typed helper for the `credential.api_key_credential` block of
 /// `aws_appfabric_app_authorization` (derived from provider schema).
 @immutable
-final class AppfabricAppAuthorizationCredentialApiKeyCredential {
-  const AppfabricAppAuthorizationCredentialApiKeyCredential({
-    required this.apiKey,
-  });
+final class AppfabricAppAuthorizationApiKeyCredential {
+  const AppfabricAppAuthorizationApiKeyCredential({required this.apiKey});
 
   final TfArg<String> apiKey;
 
@@ -59,8 +55,8 @@ final class AppfabricAppAuthorizationCredentialApiKeyCredential {
 /// Typed helper for the `credential.oauth2_credential` block of
 /// `aws_appfabric_app_authorization` (derived from provider schema).
 @immutable
-final class AppfabricAppAuthorizationCredentialOauth2Credential {
-  const AppfabricAppAuthorizationCredentialOauth2Credential({
+final class AppfabricAppAuthorizationOauth2Credential {
+  const AppfabricAppAuthorizationOauth2Credential({
     required this.clientId,
     required this.clientSecret,
   });

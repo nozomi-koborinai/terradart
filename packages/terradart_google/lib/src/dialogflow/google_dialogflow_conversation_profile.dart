@@ -39,17 +39,16 @@ final class DialogflowConversationProfileHumanAgentAssistantConfig {
     this.notificationConfig,
   });
 
-  final DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfig?
+  final DialogflowConversationProfileEndUserSuggestionConfig?
   endUserSuggestionConfig;
 
-  final DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfig?
+  final DialogflowConversationProfileHumanAgentSuggestionConfig?
   humanAgentSuggestionConfig;
 
-  final DialogflowConversationProfileHumanAgentAssistantConfigMessageAnalysisConfig?
+  final DialogflowConversationProfileMessageAnalysisConfig?
   messageAnalysisConfig;
 
-  final DialogflowConversationProfileHumanAgentAssistantConfigNotificationConfig?
-  notificationConfig;
+  final DialogflowConversationProfileNotificationConfig? notificationConfig;
 
   Map<String, Object?> encode() => {
     'end_user_suggestion_config': ?endUserSuggestionConfig?.encode(),
@@ -62,8 +61,8 @@ final class DialogflowConversationProfileHumanAgentAssistantConfig {
 /// Typed helper for the `human_agent_assistant_config.end_user_suggestion_config` block of
 /// `google_dialogflow_conversation_profile` (derived from provider schema).
 @immutable
-final class DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfig {
-  const DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfig({
+final class DialogflowConversationProfileEndUserSuggestionConfig {
+  const DialogflowConversationProfileEndUserSuggestionConfig({
     this.disableHighLatencyFeaturesSyncDelivery,
     this.generators,
     this.groupSuggestionResponses,
@@ -77,7 +76,7 @@ final class DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggest
   final TfArg<bool>? groupSuggestionResponses;
 
   final List<
-    DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigs
+    DialogflowConversationProfileEndUserSuggestionConfigFeatureConfigs
   >?
   featureConfigs;
 
@@ -94,8 +93,8 @@ final class DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggest
 /// Typed helper for the `human_agent_assistant_config.end_user_suggestion_config.feature_configs` block of
 /// `google_dialogflow_conversation_profile` (derived from provider schema).
 @immutable
-final class DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigs {
-  const DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigs({
+final class DialogflowConversationProfileEndUserSuggestionConfigFeatureConfigs {
+  const DialogflowConversationProfileEndUserSuggestionConfigFeatureConfigs({
     this.disableAgentQueryLogging,
     this.enableConversationAugmentedQuery,
     this.enableEventBasedSuggestion,
@@ -118,19 +117,18 @@ final class DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggest
 
   final TfArg<bool>? enableQuerySuggestionWhenNoAnswer;
 
-  final DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsConversationModelConfig?
+  final DialogflowConversationProfileConversationModelConfig?
   conversationModelConfig;
 
-  final DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsConversationProcessConfig?
+  final DialogflowConversationProfileConversationProcessConfig?
   conversationProcessConfig;
 
-  final DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsQueryConfig?
+  final DialogflowConversationProfileEndUserSuggestionConfigQueryConfig?
   queryConfig;
 
-  final DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsSuggestionFeature?
-  suggestionFeature;
+  final DialogflowConversationProfileSuggestionFeature? suggestionFeature;
 
-  final DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsSuggestionTriggerSettings?
+  final DialogflowConversationProfileSuggestionTriggerSettings?
   suggestionTriggerSettings;
 
   Map<String, Object?> encode() => {
@@ -151,9 +149,10 @@ final class DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggest
 
 /// Typed helper for the `human_agent_assistant_config.end_user_suggestion_config.feature_configs.conversation_model_config` block of
 /// `google_dialogflow_conversation_profile` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsConversationModelConfig {
-  const DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsConversationModelConfig({
+final class DialogflowConversationProfileConversationModelConfig {
+  const DialogflowConversationProfileConversationModelConfig({
     this.baselineModelVersion,
     this.model,
   });
@@ -170,9 +169,10 @@ final class DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggest
 
 /// Typed helper for the `human_agent_assistant_config.end_user_suggestion_config.feature_configs.conversation_process_config` block of
 /// `google_dialogflow_conversation_profile` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsConversationProcessConfig {
-  const DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsConversationProcessConfig({
+final class DialogflowConversationProfileConversationProcessConfig {
+  const DialogflowConversationProfileConversationProcessConfig({
     this.recentSentencesCount,
   });
 
@@ -186,8 +186,8 @@ final class DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggest
 /// Typed helper for the `human_agent_assistant_config.end_user_suggestion_config.feature_configs.query_config` block of
 /// `google_dialogflow_conversation_profile` (derived from provider schema).
 @immutable
-final class DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsQueryConfig {
-  const DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsQueryConfig({
+final class DialogflowConversationProfileEndUserSuggestionConfigQueryConfig {
+  const DialogflowConversationProfileEndUserSuggestionConfigQueryConfig({
     this.confidenceThreshold,
     this.maxResults,
     this.contextFilterSettings,
@@ -201,20 +201,18 @@ final class DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggest
 
   final TfArg<num>? maxResults;
 
-  final DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsQueryConfigContextFilterSettings?
+  final DialogflowConversationProfileContextFilterSettings?
   contextFilterSettings;
 
-  final DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsQueryConfigDialogflowQuerySource?
+  final DialogflowConversationProfileDialogflowQuerySource?
   dialogflowQuerySource;
 
-  final DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsQueryConfigDocumentQuerySource?
-  documentQuerySource;
+  final DialogflowConversationProfileDocumentQuerySource? documentQuerySource;
 
-  final DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsQueryConfigKnowledgeBaseQuerySource?
+  final DialogflowConversationProfileKnowledgeBaseQuerySource?
   knowledgeBaseQuerySource;
 
-  final DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsQueryConfigSections?
-  sections;
+  final DialogflowConversationProfileSections? sections;
 
   Map<String, Object?> encode() => {
     'confidence_threshold': ?confidenceThreshold?.toTfJson(),
@@ -229,9 +227,10 @@ final class DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggest
 
 /// Typed helper for the `human_agent_assistant_config.end_user_suggestion_config.feature_configs.query_config.context_filter_settings` block of
 /// `google_dialogflow_conversation_profile` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsQueryConfigContextFilterSettings {
-  const DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsQueryConfigContextFilterSettings({
+final class DialogflowConversationProfileContextFilterSettings {
+  const DialogflowConversationProfileContextFilterSettings({
     this.dropHandoffMessages,
     this.dropIvrMessages,
     this.dropVirtualAgentMessages,
@@ -252,17 +251,17 @@ final class DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggest
 
 /// Typed helper for the `human_agent_assistant_config.end_user_suggestion_config.feature_configs.query_config.dialogflow_query_source` block of
 /// `google_dialogflow_conversation_profile` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsQueryConfigDialogflowQuerySource {
-  const DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsQueryConfigDialogflowQuerySource({
+final class DialogflowConversationProfileDialogflowQuerySource {
+  const DialogflowConversationProfileDialogflowQuerySource({
     required this.agent,
     this.humanAgentSideConfig,
   });
 
   final TfArg<String> agent;
 
-  final DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsQueryConfigDialogflowQuerySourceHumanAgentSideConfig?
-  humanAgentSideConfig;
+  final DialogflowConversationProfileHumanAgentSideConfig? humanAgentSideConfig;
 
   Map<String, Object?> encode() => {
     'agent': agent.toTfJson(),
@@ -272,11 +271,10 @@ final class DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggest
 
 /// Typed helper for the `human_agent_assistant_config.end_user_suggestion_config.feature_configs.query_config.dialogflow_query_source.human_agent_side_config` block of
 /// `google_dialogflow_conversation_profile` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsQueryConfigDialogflowQuerySourceHumanAgentSideConfig {
-  const DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsQueryConfigDialogflowQuerySourceHumanAgentSideConfig({
-    this.agent,
-  });
+final class DialogflowConversationProfileHumanAgentSideConfig {
+  const DialogflowConversationProfileHumanAgentSideConfig({this.agent});
 
   final TfArg<String>? agent;
 
@@ -286,8 +284,8 @@ final class DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggest
 /// Typed helper for the `human_agent_assistant_config.end_user_suggestion_config.feature_configs.query_config.document_query_source` block of
 /// `google_dialogflow_conversation_profile` (derived from provider schema).
 @immutable
-final class DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsQueryConfigDocumentQuerySource {
-  const DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsQueryConfigDocumentQuerySource({
+final class DialogflowConversationProfileDocumentQuerySource {
+  const DialogflowConversationProfileDocumentQuerySource({
     required this.documents,
   });
 
@@ -299,8 +297,8 @@ final class DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggest
 /// Typed helper for the `human_agent_assistant_config.end_user_suggestion_config.feature_configs.query_config.knowledge_base_query_source` block of
 /// `google_dialogflow_conversation_profile` (derived from provider schema).
 @immutable
-final class DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsQueryConfigKnowledgeBaseQuerySource {
-  const DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsQueryConfigKnowledgeBaseQuerySource({
+final class DialogflowConversationProfileKnowledgeBaseQuerySource {
+  const DialogflowConversationProfileKnowledgeBaseQuerySource({
     required this.knowledgeBases,
   });
 
@@ -313,18 +311,12 @@ final class DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggest
 
 /// Typed helper for the `human_agent_assistant_config.end_user_suggestion_config.feature_configs.query_config.sections` block of
 /// `google_dialogflow_conversation_profile` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsQueryConfigSections {
-  const DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsQueryConfigSections({
-    this.sectionTypes,
-  });
+final class DialogflowConversationProfileSections {
+  const DialogflowConversationProfileSections({this.sectionTypes});
 
-  final List<
-    TfArg<
-      DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsQueryConfigSectionsSectionTypes
-    >
-  >?
-  sectionTypes;
+  final List<TfArg<DialogflowConversationProfileSectionTypes>>? sectionTypes;
 
   Map<String, Object?> encode() => {
     if (sectionTypes != null)
@@ -333,8 +325,7 @@ final class DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggest
 }
 
 /// `section_types` — derived from the provider schema description.
-enum DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsQueryConfigSectionsSectionTypes
-    implements TerraformEnum {
+enum DialogflowConversationProfileSectionTypes implements TerraformEnum {
   sectionTypeUnspecified('SECTION_TYPE_UNSPECIFIED'),
   situation('SITUATION'),
   action('ACTION'),
@@ -343,20 +334,17 @@ enum DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConf
   customerSatisfaction('CUSTOMER_SATISFACTION'),
   entities('ENTITIES');
 
-  const DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsQueryConfigSectionsSectionTypes(
-    this.terraformValue,
-  );
+  const DialogflowConversationProfileSectionTypes(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `human_agent_assistant_config.end_user_suggestion_config.feature_configs.suggestion_feature` block of
 /// `google_dialogflow_conversation_profile` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsSuggestionFeature {
-  const DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsSuggestionFeature({
-    this.type,
-  });
+final class DialogflowConversationProfileSuggestionFeature {
+  const DialogflowConversationProfileSuggestionFeature({this.type});
 
   final TfArg<String>? type;
 
@@ -365,9 +353,10 @@ final class DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggest
 
 /// Typed helper for the `human_agent_assistant_config.end_user_suggestion_config.feature_configs.suggestion_trigger_settings` block of
 /// `google_dialogflow_conversation_profile` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsSuggestionTriggerSettings {
-  const DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggestionConfigFeatureConfigsSuggestionTriggerSettings({
+final class DialogflowConversationProfileSuggestionTriggerSettings {
+  const DialogflowConversationProfileSuggestionTriggerSettings({
     this.noSmallTalk,
     this.onlyEndUser,
   });
@@ -385,8 +374,8 @@ final class DialogflowConversationProfileHumanAgentAssistantConfigEndUserSuggest
 /// Typed helper for the `human_agent_assistant_config.human_agent_suggestion_config` block of
 /// `google_dialogflow_conversation_profile` (derived from provider schema).
 @immutable
-final class DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfig {
-  const DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfig({
+final class DialogflowConversationProfileHumanAgentSuggestionConfig {
+  const DialogflowConversationProfileHumanAgentSuggestionConfig({
     this.disableHighLatencyFeaturesSyncDelivery,
     this.generators,
     this.groupSuggestionResponses,
@@ -400,7 +389,7 @@ final class DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSugg
   final TfArg<bool>? groupSuggestionResponses;
 
   final List<
-    DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfigFeatureConfigs
+    DialogflowConversationProfileHumanAgentSuggestionConfigFeatureConfigs
   >?
   featureConfigs;
 
@@ -417,8 +406,8 @@ final class DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSugg
 /// Typed helper for the `human_agent_assistant_config.human_agent_suggestion_config.feature_configs` block of
 /// `google_dialogflow_conversation_profile` (derived from provider schema).
 @immutable
-final class DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfigFeatureConfigs {
-  const DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfigFeatureConfigs({
+final class DialogflowConversationProfileHumanAgentSuggestionConfigFeatureConfigs {
+  const DialogflowConversationProfileHumanAgentSuggestionConfigFeatureConfigs({
     this.disableAgentQueryLogging,
     this.enableConversationAugmentedQuery,
     this.enableEventBasedSuggestion,
@@ -441,19 +430,18 @@ final class DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSugg
 
   final TfArg<bool>? enableQuerySuggestionWhenNoAnswer;
 
-  final DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfigFeatureConfigsConversationModelConfig?
+  final DialogflowConversationProfileConversationModelConfig?
   conversationModelConfig;
 
-  final DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfigFeatureConfigsConversationProcessConfig?
+  final DialogflowConversationProfileConversationProcessConfig?
   conversationProcessConfig;
 
-  final DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfigFeatureConfigsQueryConfig?
+  final DialogflowConversationProfileHumanAgentSuggestionConfigQueryConfig?
   queryConfig;
 
-  final DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfigFeatureConfigsSuggestionFeature?
-  suggestionFeature;
+  final DialogflowConversationProfileSuggestionFeature? suggestionFeature;
 
-  final DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfigFeatureConfigsSuggestionTriggerSettings?
+  final DialogflowConversationProfileSuggestionTriggerSettings?
   suggestionTriggerSettings;
 
   Map<String, Object?> encode() => {
@@ -472,45 +460,11 @@ final class DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSugg
   };
 }
 
-/// Typed helper for the `human_agent_assistant_config.human_agent_suggestion_config.feature_configs.conversation_model_config` block of
-/// `google_dialogflow_conversation_profile` (derived from provider schema).
-@immutable
-final class DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfigFeatureConfigsConversationModelConfig {
-  const DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfigFeatureConfigsConversationModelConfig({
-    this.baselineModelVersion,
-    this.model,
-  });
-
-  final TfArg<String>? baselineModelVersion;
-
-  final TfArg<String>? model;
-
-  Map<String, Object?> encode() => {
-    'baseline_model_version': ?baselineModelVersion?.toTfJson(),
-    'model': ?model?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `human_agent_assistant_config.human_agent_suggestion_config.feature_configs.conversation_process_config` block of
-/// `google_dialogflow_conversation_profile` (derived from provider schema).
-@immutable
-final class DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfigFeatureConfigsConversationProcessConfig {
-  const DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfigFeatureConfigsConversationProcessConfig({
-    this.recentSentencesCount,
-  });
-
-  final TfArg<num>? recentSentencesCount;
-
-  Map<String, Object?> encode() => {
-    'recent_sentences_count': ?recentSentencesCount?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `human_agent_assistant_config.human_agent_suggestion_config.feature_configs.query_config` block of
 /// `google_dialogflow_conversation_profile` (derived from provider schema).
 @immutable
-final class DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfigFeatureConfigsQueryConfig {
-  const DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfigFeatureConfigsQueryConfig({
+final class DialogflowConversationProfileHumanAgentSuggestionConfigQueryConfig {
+  const DialogflowConversationProfileHumanAgentSuggestionConfigQueryConfig({
     this.confidenceThreshold,
     this.maxResults,
     this.contextFilterSettings,
@@ -522,14 +476,13 @@ final class DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSugg
 
   final TfArg<num>? maxResults;
 
-  final DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfigFeatureConfigsQueryConfigContextFilterSettings?
+  final DialogflowConversationProfileContextFilterSettings?
   contextFilterSettings;
 
-  final DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfigFeatureConfigsQueryConfigDialogflowQuerySource?
+  final DialogflowConversationProfileDialogflowQuerySource?
   dialogflowQuerySource;
 
-  final DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfigFeatureConfigsQueryConfigSections?
-  sections;
+  final DialogflowConversationProfileSections? sections;
 
   Map<String, Object?> encode() => {
     'confidence_threshold': ?confidenceThreshold?.toTfJson(),
@@ -540,138 +493,11 @@ final class DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSugg
   };
 }
 
-/// Typed helper for the `human_agent_assistant_config.human_agent_suggestion_config.feature_configs.query_config.context_filter_settings` block of
-/// `google_dialogflow_conversation_profile` (derived from provider schema).
-@immutable
-final class DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfigFeatureConfigsQueryConfigContextFilterSettings {
-  const DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfigFeatureConfigsQueryConfigContextFilterSettings({
-    this.dropHandoffMessages,
-    this.dropIvrMessages,
-    this.dropVirtualAgentMessages,
-  });
-
-  final TfArg<bool>? dropHandoffMessages;
-
-  final TfArg<bool>? dropIvrMessages;
-
-  final TfArg<bool>? dropVirtualAgentMessages;
-
-  Map<String, Object?> encode() => {
-    'drop_handoff_messages': ?dropHandoffMessages?.toTfJson(),
-    'drop_ivr_messages': ?dropIvrMessages?.toTfJson(),
-    'drop_virtual_agent_messages': ?dropVirtualAgentMessages?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `human_agent_assistant_config.human_agent_suggestion_config.feature_configs.query_config.dialogflow_query_source` block of
-/// `google_dialogflow_conversation_profile` (derived from provider schema).
-@immutable
-final class DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfigFeatureConfigsQueryConfigDialogflowQuerySource {
-  const DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfigFeatureConfigsQueryConfigDialogflowQuerySource({
-    required this.agent,
-    this.humanAgentSideConfig,
-  });
-
-  final TfArg<String> agent;
-
-  final DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfigFeatureConfigsQueryConfigDialogflowQuerySourceHumanAgentSideConfig?
-  humanAgentSideConfig;
-
-  Map<String, Object?> encode() => {
-    'agent': agent.toTfJson(),
-    'human_agent_side_config': ?humanAgentSideConfig?.encode(),
-  };
-}
-
-/// Typed helper for the `human_agent_assistant_config.human_agent_suggestion_config.feature_configs.query_config.dialogflow_query_source.human_agent_side_config` block of
-/// `google_dialogflow_conversation_profile` (derived from provider schema).
-@immutable
-final class DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfigFeatureConfigsQueryConfigDialogflowQuerySourceHumanAgentSideConfig {
-  const DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfigFeatureConfigsQueryConfigDialogflowQuerySourceHumanAgentSideConfig({
-    this.agent,
-  });
-
-  final TfArg<String>? agent;
-
-  Map<String, Object?> encode() => {'agent': ?agent?.toTfJson()};
-}
-
-/// Typed helper for the `human_agent_assistant_config.human_agent_suggestion_config.feature_configs.query_config.sections` block of
-/// `google_dialogflow_conversation_profile` (derived from provider schema).
-@immutable
-final class DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfigFeatureConfigsQueryConfigSections {
-  const DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfigFeatureConfigsQueryConfigSections({
-    this.sectionTypes,
-  });
-
-  final List<
-    TfArg<
-      DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfigFeatureConfigsQueryConfigSectionsSectionTypes
-    >
-  >?
-  sectionTypes;
-
-  Map<String, Object?> encode() => {
-    if (sectionTypes != null)
-      'section_types': [for (final e in sectionTypes!) e.toTfJson()],
-  };
-}
-
-/// `section_types` — derived from the provider schema description.
-enum DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfigFeatureConfigsQueryConfigSectionsSectionTypes
-    implements TerraformEnum {
-  sectionTypeUnspecified('SECTION_TYPE_UNSPECIFIED'),
-  situation('SITUATION'),
-  action('ACTION'),
-  resolution('RESOLUTION'),
-  reasonForCancellation('REASON_FOR_CANCELLATION'),
-  customerSatisfaction('CUSTOMER_SATISFACTION'),
-  entities('ENTITIES');
-
-  const DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfigFeatureConfigsQueryConfigSectionsSectionTypes(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `human_agent_assistant_config.human_agent_suggestion_config.feature_configs.suggestion_feature` block of
-/// `google_dialogflow_conversation_profile` (derived from provider schema).
-@immutable
-final class DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfigFeatureConfigsSuggestionFeature {
-  const DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfigFeatureConfigsSuggestionFeature({
-    this.type,
-  });
-
-  final TfArg<String>? type;
-
-  Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
-}
-
-/// Typed helper for the `human_agent_assistant_config.human_agent_suggestion_config.feature_configs.suggestion_trigger_settings` block of
-/// `google_dialogflow_conversation_profile` (derived from provider schema).
-@immutable
-final class DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfigFeatureConfigsSuggestionTriggerSettings {
-  const DialogflowConversationProfileHumanAgentAssistantConfigHumanAgentSuggestionConfigFeatureConfigsSuggestionTriggerSettings({
-    this.noSmallTalk,
-    this.onlyEndUser,
-  });
-
-  final TfArg<bool>? noSmallTalk;
-
-  final TfArg<bool>? onlyEndUser;
-
-  Map<String, Object?> encode() => {
-    'no_small_talk': ?noSmallTalk?.toTfJson(),
-    'only_end_user': ?onlyEndUser?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `human_agent_assistant_config.message_analysis_config` block of
 /// `google_dialogflow_conversation_profile` (derived from provider schema).
 @immutable
-final class DialogflowConversationProfileHumanAgentAssistantConfigMessageAnalysisConfig {
-  const DialogflowConversationProfileHumanAgentAssistantConfigMessageAnalysisConfig({
+final class DialogflowConversationProfileMessageAnalysisConfig {
+  const DialogflowConversationProfileMessageAnalysisConfig({
     this.enableEntityExtraction,
     this.enableSentimentAnalysis,
   });
@@ -686,19 +512,17 @@ final class DialogflowConversationProfileHumanAgentAssistantConfigMessageAnalysi
   };
 }
 
-/// Typed helper for the `human_agent_assistant_config.notification_config` block of
+/// Typed helper for the `notification_config` block of
 /// `google_dialogflow_conversation_profile` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DialogflowConversationProfileHumanAgentAssistantConfigNotificationConfig {
-  const DialogflowConversationProfileHumanAgentAssistantConfigNotificationConfig({
+final class DialogflowConversationProfileNotificationConfig {
+  const DialogflowConversationProfileNotificationConfig({
     this.messageFormat,
     this.topic,
   });
 
-  final TfArg<
-    DialogflowConversationProfileHumanAgentAssistantConfigNotificationConfigMessageFormat
-  >?
-  messageFormat;
+  final TfArg<DialogflowConversationProfileMessageFormat>? messageFormat;
 
   final RefTo<GooglePubsubTopic>? topic;
 
@@ -709,15 +533,12 @@ final class DialogflowConversationProfileHumanAgentAssistantConfigNotificationCo
 }
 
 /// `message_format` — derived from the provider schema description.
-enum DialogflowConversationProfileHumanAgentAssistantConfigNotificationConfigMessageFormat
-    implements TerraformEnum {
+enum DialogflowConversationProfileMessageFormat implements TerraformEnum {
   messageFormatUnspecified('MESSAGE_FORMAT_UNSPECIFIED'),
   proto('PROTO'),
   json('JSON');
 
-  const DialogflowConversationProfileHumanAgentAssistantConfigNotificationConfigMessageFormat(
-    this.terraformValue,
-  );
+  const DialogflowConversationProfileMessageFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -730,8 +551,7 @@ final class DialogflowConversationProfileHumanAgentHandoffConfig {
     this.livePersonConfig,
   });
 
-  final DialogflowConversationProfileHumanAgentHandoffConfigLivePersonConfig?
-  livePersonConfig;
+  final DialogflowConversationProfileLivePersonConfig? livePersonConfig;
 
   Map<String, Object?> encode() => {
     'live_person_config': ?livePersonConfig?.encode(),
@@ -741,8 +561,8 @@ final class DialogflowConversationProfileHumanAgentHandoffConfig {
 /// Typed helper for the `human_agent_handoff_config.live_person_config` block of
 /// `google_dialogflow_conversation_profile` (derived from provider schema).
 @immutable
-final class DialogflowConversationProfileHumanAgentHandoffConfigLivePersonConfig {
-  const DialogflowConversationProfileHumanAgentHandoffConfigLivePersonConfig({
+final class DialogflowConversationProfileLivePersonConfig {
+  const DialogflowConversationProfileLivePersonConfig({
     required this.accountNumber,
   });
 
@@ -775,10 +595,7 @@ final class DialogflowConversationProfileNewMessageEventNotificationConfig {
     this.topic,
   });
 
-  final TfArg<
-    DialogflowConversationProfileNewMessageEventNotificationConfigMessageFormat
-  >?
-  messageFormat;
+  final TfArg<DialogflowConversationProfileMessageFormat>? messageFormat;
 
   final RefTo<GooglePubsubTopic>? topic;
 
@@ -786,20 +603,6 @@ final class DialogflowConversationProfileNewMessageEventNotificationConfig {
     'message_format': ?messageFormat?.toTfJson(),
     'topic': ?topic?.encodeAs('id').toTfJson(),
   };
-}
-
-/// `message_format` — derived from the provider schema description.
-enum DialogflowConversationProfileNewMessageEventNotificationConfigMessageFormat
-    implements TerraformEnum {
-  messageFormatUnspecified('MESSAGE_FORMAT_UNSPECIFIED'),
-  proto('PROTO'),
-  json('JSON');
-
-  const DialogflowConversationProfileNewMessageEventNotificationConfigMessageFormat(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `new_recognition_result_notification_config` block of
@@ -811,10 +614,7 @@ final class DialogflowConversationProfileNewRecognitionResultNotificationConfig 
     this.topic,
   });
 
-  final TfArg<
-    DialogflowConversationProfileNewRecognitionResultNotificationConfigMessageFormat
-  >?
-  messageFormat;
+  final TfArg<DialogflowConversationProfileMessageFormat>? messageFormat;
 
   final RefTo<GooglePubsubTopic>? topic;
 
@@ -822,54 +622,6 @@ final class DialogflowConversationProfileNewRecognitionResultNotificationConfig 
     'message_format': ?messageFormat?.toTfJson(),
     'topic': ?topic?.encodeAs('id').toTfJson(),
   };
-}
-
-/// `message_format` — derived from the provider schema description.
-enum DialogflowConversationProfileNewRecognitionResultNotificationConfigMessageFormat
-    implements TerraformEnum {
-  messageFormatUnspecified('MESSAGE_FORMAT_UNSPECIFIED'),
-  proto('PROTO'),
-  json('JSON');
-
-  const DialogflowConversationProfileNewRecognitionResultNotificationConfigMessageFormat(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `notification_config` block of
-/// `google_dialogflow_conversation_profile` (derived from provider schema).
-@immutable
-final class DialogflowConversationProfileNotificationConfig {
-  const DialogflowConversationProfileNotificationConfig({
-    this.messageFormat,
-    this.topic,
-  });
-
-  final TfArg<DialogflowConversationProfileNotificationConfigMessageFormat>?
-  messageFormat;
-
-  final RefTo<GooglePubsubTopic>? topic;
-
-  Map<String, Object?> encode() => {
-    'message_format': ?messageFormat?.toTfJson(),
-    'topic': ?topic?.encodeAs('id').toTfJson(),
-  };
-}
-
-/// `message_format` — derived from the provider schema description.
-enum DialogflowConversationProfileNotificationConfigMessageFormat
-    implements TerraformEnum {
-  messageFormatUnspecified('MESSAGE_FORMAT_UNSPECIFIED'),
-  proto('PROTO'),
-  json('JSON');
-
-  const DialogflowConversationProfileNotificationConfigMessageFormat(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `stt_config` block of
@@ -886,8 +638,7 @@ final class DialogflowConversationProfileSttConfig {
     this.useTimeoutBasedEndpointing,
   });
 
-  final TfArg<DialogflowConversationProfileSttConfigAudioEncoding>?
-  audioEncoding;
+  final TfArg<DialogflowConversationProfileAudioEncoding>? audioEncoding;
 
   final TfArg<bool>? enableWordInfo;
 
@@ -897,7 +648,7 @@ final class DialogflowConversationProfileSttConfig {
 
   final TfArg<num>? sampleRateHertz;
 
-  final TfArg<DialogflowConversationProfileSttConfigSpeechModelVariant>?
+  final TfArg<DialogflowConversationProfileSpeechModelVariant>?
   speechModelVariant;
 
   final TfArg<bool>? useTimeoutBasedEndpointing;
@@ -914,8 +665,7 @@ final class DialogflowConversationProfileSttConfig {
 }
 
 /// `audio_encoding` — derived from the provider schema description.
-enum DialogflowConversationProfileSttConfigAudioEncoding
-    implements TerraformEnum {
+enum DialogflowConversationProfileAudioEncoding implements TerraformEnum {
   audioEncodingUnspecified('AUDIO_ENCODING_UNSPECIFIED'),
   audioEncodingLinear16('AUDIO_ENCODING_LINEAR_16'),
   audioEncodingFlac('AUDIO_ENCODING_FLAC'),
@@ -925,24 +675,19 @@ enum DialogflowConversationProfileSttConfigAudioEncoding
   audioEncodingOggOpus('AUDIO_ENCODING_OGG_OPUS'),
   audioEncodingSpeexWithHeaderByte('AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE');
 
-  const DialogflowConversationProfileSttConfigAudioEncoding(
-    this.terraformValue,
-  );
+  const DialogflowConversationProfileAudioEncoding(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `speech_model_variant` — derived from the provider schema description.
-enum DialogflowConversationProfileSttConfigSpeechModelVariant
-    implements TerraformEnum {
+enum DialogflowConversationProfileSpeechModelVariant implements TerraformEnum {
   speechModelVariantUnspecified('SPEECH_MODEL_VARIANT_UNSPECIFIED'),
   useBestAvailable('USE_BEST_AVAILABLE'),
   useStandard('USE_STANDARD'),
   useEnhanced('USE_ENHANCED');
 
-  const DialogflowConversationProfileSttConfigSpeechModelVariant(
-    this.terraformValue,
-  );
+  const DialogflowConversationProfileSpeechModelVariant(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -967,7 +712,7 @@ final class DialogflowConversationProfileTtsConfig {
 
   final TfArg<num>? volumeGainDb;
 
-  final DialogflowConversationProfileTtsConfigVoice? voice;
+  final DialogflowConversationProfileVoice? voice;
 
   Map<String, Object?> encode() => {
     'effects_profile_id': ?effectsProfileId?.toTfJson(),
@@ -981,16 +726,12 @@ final class DialogflowConversationProfileTtsConfig {
 /// Typed helper for the `tts_config.voice` block of
 /// `google_dialogflow_conversation_profile` (derived from provider schema).
 @immutable
-final class DialogflowConversationProfileTtsConfigVoice {
-  const DialogflowConversationProfileTtsConfigVoice({
-    this.name,
-    this.ssmlGender,
-  });
+final class DialogflowConversationProfileVoice {
+  const DialogflowConversationProfileVoice({this.name, this.ssmlGender});
 
   final TfArg<String>? name;
 
-  final TfArg<DialogflowConversationProfileTtsConfigVoiceSsmlGender>?
-  ssmlGender;
+  final TfArg<DialogflowConversationProfileSsmlGender>? ssmlGender;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
@@ -999,16 +740,13 @@ final class DialogflowConversationProfileTtsConfigVoice {
 }
 
 /// `ssml_gender` — derived from the provider schema description.
-enum DialogflowConversationProfileTtsConfigVoiceSsmlGender
-    implements TerraformEnum {
+enum DialogflowConversationProfileSsmlGender implements TerraformEnum {
   ssmlVoiceGenderUnspecified('SSML_VOICE_GENDER_UNSPECIFIED'),
   ssmlVoiceGenderMale('SSML_VOICE_GENDER_MALE'),
   ssmlVoiceGenderFemale('SSML_VOICE_GENDER_FEMALE'),
   ssmlVoiceGenderNeutral('SSML_VOICE_GENDER_NEUTRAL');
 
-  const DialogflowConversationProfileTtsConfigVoiceSsmlGender(
-    this.terraformValue,
-  );
+  const DialogflowConversationProfileSsmlGender(this.terraformValue);
   @override
   final String terraformValue;
 }

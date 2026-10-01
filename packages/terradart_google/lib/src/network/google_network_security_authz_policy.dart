@@ -37,9 +37,9 @@ final class NetworkSecurityAuthzPolicyCustomProvider {
     this.cloudIap,
   });
 
-  final NetworkSecurityAuthzPolicyCustomProviderAuthzExtension? authzExtension;
+  final NetworkSecurityAuthzPolicyAuthzExtension? authzExtension;
 
-  final NetworkSecurityAuthzPolicyCustomProviderCloudIap? cloudIap;
+  final NetworkSecurityAuthzPolicyCloudIap? cloudIap;
 
   Map<String, Object?> encode() => {
     'authz_extension': ?authzExtension?.encode(),
@@ -50,10 +50,8 @@ final class NetworkSecurityAuthzPolicyCustomProvider {
 /// Typed helper for the `custom_provider.authz_extension` block of
 /// `google_network_security_authz_policy` (derived from provider schema).
 @immutable
-final class NetworkSecurityAuthzPolicyCustomProviderAuthzExtension {
-  const NetworkSecurityAuthzPolicyCustomProviderAuthzExtension({
-    required this.resources,
-  });
+final class NetworkSecurityAuthzPolicyAuthzExtension {
+  const NetworkSecurityAuthzPolicyAuthzExtension({required this.resources});
 
   final TfArg<List<String>> resources;
 
@@ -63,10 +61,8 @@ final class NetworkSecurityAuthzPolicyCustomProviderAuthzExtension {
 /// Typed helper for the `custom_provider.cloud_iap` block of
 /// `google_network_security_authz_policy` (derived from provider schema).
 @immutable
-final class NetworkSecurityAuthzPolicyCustomProviderCloudIap {
-  const NetworkSecurityAuthzPolicyCustomProviderCloudIap({
-    required this.enabled,
-  });
+final class NetworkSecurityAuthzPolicyCloudIap {
+  const NetworkSecurityAuthzPolicyCloudIap({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -101,9 +97,9 @@ final class NetworkSecurityAuthzPolicyHttpRulesFrom {
     this.sources,
   });
 
-  final List<NetworkSecurityAuthzPolicyHttpRulesFromNotSources>? notSources;
+  final List<NetworkSecurityAuthzPolicyHttpRulesNotSources>? notSources;
 
-  final List<NetworkSecurityAuthzPolicyHttpRulesFromSources>? sources;
+  final List<NetworkSecurityAuthzPolicyHttpRulesSources>? sources;
 
   Map<String, Object?> encode() => {
     if (notSources != null)
@@ -115,21 +111,18 @@ final class NetworkSecurityAuthzPolicyHttpRulesFrom {
 /// Typed helper for the `http_rules.from.not_sources` block of
 /// `google_network_security_authz_policy` (derived from provider schema).
 @immutable
-final class NetworkSecurityAuthzPolicyHttpRulesFromNotSources {
-  const NetworkSecurityAuthzPolicyHttpRulesFromNotSources({
+final class NetworkSecurityAuthzPolicyHttpRulesNotSources {
+  const NetworkSecurityAuthzPolicyHttpRulesNotSources({
     this.ipBlocks,
     this.principals,
     this.resources,
   });
 
-  final List<NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesIpBlocks>?
-  ipBlocks;
+  final List<NetworkSecurityAuthzPolicyIpBlocks>? ipBlocks;
 
-  final List<NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesPrincipals>?
-  principals;
+  final List<NetworkSecurityAuthzPolicyHttpRulesPrincipals>? principals;
 
-  final List<NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesResources>?
-  resources;
+  final List<NetworkSecurityAuthzPolicyResources>? resources;
 
   Map<String, Object?> encode() => {
     if (ipBlocks != null) 'ip_blocks': [for (final e in ipBlocks!) e.encode()],
@@ -142,9 +135,10 @@ final class NetworkSecurityAuthzPolicyHttpRulesFromNotSources {
 
 /// Typed helper for the `http_rules.from.not_sources.ip_blocks` block of
 /// `google_network_security_authz_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesIpBlocks {
-  const NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesIpBlocks({
+final class NetworkSecurityAuthzPolicyIpBlocks {
+  const NetworkSecurityAuthzPolicyIpBlocks({
     required this.length,
     required this.prefix,
   });
@@ -161,9 +155,10 @@ final class NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesIpBlocks {
 
 /// Typed helper for the `http_rules.from.not_sources.principals` block of
 /// `google_network_security_authz_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesPrincipals {
-  const NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesPrincipals({
+final class NetworkSecurityAuthzPolicyHttpRulesPrincipals {
+  const NetworkSecurityAuthzPolicyHttpRulesPrincipals({
     this.contains,
     this.exact,
     this.ignoreCase,
@@ -181,15 +176,11 @@ final class NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesPrincipals {
 
   final TfArg<String>? prefix;
 
-  final TfArg<
-    NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesPrincipalsPrincipalSelector
-  >?
-  principalSelector;
+  final TfArg<NetworkSecurityAuthzPolicyPrincipalSelector>? principalSelector;
 
   final TfArg<String>? suffix;
 
-  final NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesPrincipalsPrincipal?
-  principal;
+  final NetworkSecurityAuthzPolicyHttpRulesPrincipal? principal;
 
   Map<String, Object?> encode() => {
     'contains': ?contains?.toTfJson(),
@@ -203,25 +194,23 @@ final class NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesPrincipals {
 }
 
 /// `principal_selector` — derived from the provider schema description.
-enum NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesPrincipalsPrincipalSelector
-    implements TerraformEnum {
+enum NetworkSecurityAuthzPolicyPrincipalSelector implements TerraformEnum {
   principalSelectorUnspecified('PRINCIPAL_SELECTOR_UNSPECIFIED'),
   clientCertUriSan('CLIENT_CERT_URI_SAN'),
   clientCertDnsNameSan('CLIENT_CERT_DNS_NAME_SAN'),
   clientCertCommonName('CLIENT_CERT_COMMON_NAME');
 
-  const NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesPrincipalsPrincipalSelector(
-    this.terraformValue,
-  );
+  const NetworkSecurityAuthzPolicyPrincipalSelector(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `http_rules.from.not_sources.principals.principal` block of
 /// `google_network_security_authz_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesPrincipalsPrincipal {
-  const NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesPrincipalsPrincipal({
+final class NetworkSecurityAuthzPolicyHttpRulesPrincipal {
+  const NetworkSecurityAuthzPolicyHttpRulesPrincipal({
     this.contains,
     this.exact,
     this.ignoreCase,
@@ -250,18 +239,17 @@ final class NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesPrincipalsPrincipal
 
 /// Typed helper for the `http_rules.from.not_sources.resources` block of
 /// `google_network_security_authz_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesResources {
-  const NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesResources({
+final class NetworkSecurityAuthzPolicyResources {
+  const NetworkSecurityAuthzPolicyResources({
     this.iamServiceAccount,
     this.tagValueIdSet,
   });
 
-  final NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesResourcesIamServiceAccount?
-  iamServiceAccount;
+  final NetworkSecurityAuthzPolicyIamServiceAccount? iamServiceAccount;
 
-  final NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesResourcesTagValueIdSet?
-  tagValueIdSet;
+  final NetworkSecurityAuthzPolicyTagValueIdSet? tagValueIdSet;
 
   Map<String, Object?> encode() => {
     'iam_service_account': ?iamServiceAccount?.encode(),
@@ -271,9 +259,10 @@ final class NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesResources {
 
 /// Typed helper for the `http_rules.from.not_sources.resources.iam_service_account` block of
 /// `google_network_security_authz_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesResourcesIamServiceAccount {
-  const NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesResourcesIamServiceAccount({
+final class NetworkSecurityAuthzPolicyIamServiceAccount {
+  const NetworkSecurityAuthzPolicyIamServiceAccount({
     this.contains,
     this.exact,
     this.ignoreCase,
@@ -302,11 +291,10 @@ final class NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesResourcesIamService
 
 /// Typed helper for the `http_rules.from.not_sources.resources.tag_value_id_set` block of
 /// `google_network_security_authz_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesResourcesTagValueIdSet {
-  const NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesResourcesTagValueIdSet({
-    this.ids,
-  });
+final class NetworkSecurityAuthzPolicyTagValueIdSet {
+  const NetworkSecurityAuthzPolicyTagValueIdSet({this.ids});
 
   final TfArg<List<String>>? ids;
 
@@ -316,20 +304,18 @@ final class NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesResourcesTagValueId
 /// Typed helper for the `http_rules.from.sources` block of
 /// `google_network_security_authz_policy` (derived from provider schema).
 @immutable
-final class NetworkSecurityAuthzPolicyHttpRulesFromSources {
-  const NetworkSecurityAuthzPolicyHttpRulesFromSources({
+final class NetworkSecurityAuthzPolicyHttpRulesSources {
+  const NetworkSecurityAuthzPolicyHttpRulesSources({
     this.ipBlocks,
     this.principals,
     this.resources,
   });
 
-  final List<NetworkSecurityAuthzPolicyHttpRulesFromSourcesIpBlocks>? ipBlocks;
+  final List<NetworkSecurityAuthzPolicyIpBlocks>? ipBlocks;
 
-  final List<NetworkSecurityAuthzPolicyHttpRulesFromSourcesPrincipals>?
-  principals;
+  final List<NetworkSecurityAuthzPolicyHttpRulesPrincipals>? principals;
 
-  final List<NetworkSecurityAuthzPolicyHttpRulesFromSourcesResources>?
-  resources;
+  final List<NetworkSecurityAuthzPolicyResources>? resources;
 
   Map<String, Object?> encode() => {
     if (ipBlocks != null) 'ip_blocks': [for (final e in ipBlocks!) e.encode()],
@@ -338,179 +324,6 @@ final class NetworkSecurityAuthzPolicyHttpRulesFromSources {
     if (resources != null)
       'resources': [for (final e in resources!) e.encode()],
   };
-}
-
-/// Typed helper for the `http_rules.from.sources.ip_blocks` block of
-/// `google_network_security_authz_policy` (derived from provider schema).
-@immutable
-final class NetworkSecurityAuthzPolicyHttpRulesFromSourcesIpBlocks {
-  const NetworkSecurityAuthzPolicyHttpRulesFromSourcesIpBlocks({
-    required this.length,
-    required this.prefix,
-  });
-
-  final TfArg<num> length;
-
-  final TfArg<String> prefix;
-
-  Map<String, Object?> encode() => {
-    'length': length.toTfJson(),
-    'prefix': prefix.toTfJson(),
-  };
-}
-
-/// Typed helper for the `http_rules.from.sources.principals` block of
-/// `google_network_security_authz_policy` (derived from provider schema).
-@immutable
-final class NetworkSecurityAuthzPolicyHttpRulesFromSourcesPrincipals {
-  const NetworkSecurityAuthzPolicyHttpRulesFromSourcesPrincipals({
-    this.contains,
-    this.exact,
-    this.ignoreCase,
-    this.prefix,
-    this.principalSelector,
-    this.suffix,
-    this.principal,
-  });
-
-  final TfArg<String>? contains;
-
-  final TfArg<String>? exact;
-
-  final TfArg<bool>? ignoreCase;
-
-  final TfArg<String>? prefix;
-
-  final TfArg<
-    NetworkSecurityAuthzPolicyHttpRulesFromSourcesPrincipalsPrincipalSelector
-  >?
-  principalSelector;
-
-  final TfArg<String>? suffix;
-
-  final NetworkSecurityAuthzPolicyHttpRulesFromSourcesPrincipalsPrincipal?
-  principal;
-
-  Map<String, Object?> encode() => {
-    'contains': ?contains?.toTfJson(),
-    'exact': ?exact?.toTfJson(),
-    'ignore_case': ?ignoreCase?.toTfJson(),
-    'prefix': ?prefix?.toTfJson(),
-    'principal_selector': ?principalSelector?.toTfJson(),
-    'suffix': ?suffix?.toTfJson(),
-    'principal': ?principal?.encode(),
-  };
-}
-
-/// `principal_selector` — derived from the provider schema description.
-enum NetworkSecurityAuthzPolicyHttpRulesFromSourcesPrincipalsPrincipalSelector
-    implements TerraformEnum {
-  principalSelectorUnspecified('PRINCIPAL_SELECTOR_UNSPECIFIED'),
-  clientCertUriSan('CLIENT_CERT_URI_SAN'),
-  clientCertDnsNameSan('CLIENT_CERT_DNS_NAME_SAN'),
-  clientCertCommonName('CLIENT_CERT_COMMON_NAME');
-
-  const NetworkSecurityAuthzPolicyHttpRulesFromSourcesPrincipalsPrincipalSelector(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `http_rules.from.sources.principals.principal` block of
-/// `google_network_security_authz_policy` (derived from provider schema).
-@immutable
-final class NetworkSecurityAuthzPolicyHttpRulesFromSourcesPrincipalsPrincipal {
-  const NetworkSecurityAuthzPolicyHttpRulesFromSourcesPrincipalsPrincipal({
-    this.contains,
-    this.exact,
-    this.ignoreCase,
-    this.prefix,
-    this.suffix,
-  });
-
-  final TfArg<String>? contains;
-
-  final TfArg<String>? exact;
-
-  final TfArg<bool>? ignoreCase;
-
-  final TfArg<String>? prefix;
-
-  final TfArg<String>? suffix;
-
-  Map<String, Object?> encode() => {
-    'contains': ?contains?.toTfJson(),
-    'exact': ?exact?.toTfJson(),
-    'ignore_case': ?ignoreCase?.toTfJson(),
-    'prefix': ?prefix?.toTfJson(),
-    'suffix': ?suffix?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `http_rules.from.sources.resources` block of
-/// `google_network_security_authz_policy` (derived from provider schema).
-@immutable
-final class NetworkSecurityAuthzPolicyHttpRulesFromSourcesResources {
-  const NetworkSecurityAuthzPolicyHttpRulesFromSourcesResources({
-    this.iamServiceAccount,
-    this.tagValueIdSet,
-  });
-
-  final NetworkSecurityAuthzPolicyHttpRulesFromSourcesResourcesIamServiceAccount?
-  iamServiceAccount;
-
-  final NetworkSecurityAuthzPolicyHttpRulesFromSourcesResourcesTagValueIdSet?
-  tagValueIdSet;
-
-  Map<String, Object?> encode() => {
-    'iam_service_account': ?iamServiceAccount?.encode(),
-    'tag_value_id_set': ?tagValueIdSet?.encode(),
-  };
-}
-
-/// Typed helper for the `http_rules.from.sources.resources.iam_service_account` block of
-/// `google_network_security_authz_policy` (derived from provider schema).
-@immutable
-final class NetworkSecurityAuthzPolicyHttpRulesFromSourcesResourcesIamServiceAccount {
-  const NetworkSecurityAuthzPolicyHttpRulesFromSourcesResourcesIamServiceAccount({
-    this.contains,
-    this.exact,
-    this.ignoreCase,
-    this.prefix,
-    this.suffix,
-  });
-
-  final TfArg<String>? contains;
-
-  final TfArg<String>? exact;
-
-  final TfArg<bool>? ignoreCase;
-
-  final TfArg<String>? prefix;
-
-  final TfArg<String>? suffix;
-
-  Map<String, Object?> encode() => {
-    'contains': ?contains?.toTfJson(),
-    'exact': ?exact?.toTfJson(),
-    'ignore_case': ?ignoreCase?.toTfJson(),
-    'prefix': ?prefix?.toTfJson(),
-    'suffix': ?suffix?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `http_rules.from.sources.resources.tag_value_id_set` block of
-/// `google_network_security_authz_policy` (derived from provider schema).
-@immutable
-final class NetworkSecurityAuthzPolicyHttpRulesFromSourcesResourcesTagValueIdSet {
-  const NetworkSecurityAuthzPolicyHttpRulesFromSourcesResourcesTagValueIdSet({
-    this.ids,
-  });
-
-  final TfArg<List<String>>? ids;
-
-  Map<String, Object?> encode() => {'ids': ?ids?.toTfJson()};
 }
 
 /// Typed helper for the `http_rules.to` block of
@@ -522,9 +335,9 @@ final class NetworkSecurityAuthzPolicyHttpRulesTo {
     this.operations,
   });
 
-  final List<NetworkSecurityAuthzPolicyHttpRulesToNotOperations>? notOperations;
+  final List<NetworkSecurityAuthzPolicyNotOperations>? notOperations;
 
-  final List<NetworkSecurityAuthzPolicyHttpRulesToOperations>? operations;
+  final List<NetworkSecurityAuthzPolicyHttpRulesOperations>? operations;
 
   Map<String, Object?> encode() => {
     if (notOperations != null)
@@ -537,8 +350,8 @@ final class NetworkSecurityAuthzPolicyHttpRulesTo {
 /// Typed helper for the `http_rules.to.not_operations` block of
 /// `google_network_security_authz_policy` (derived from provider schema).
 @immutable
-final class NetworkSecurityAuthzPolicyHttpRulesToNotOperations {
-  const NetworkSecurityAuthzPolicyHttpRulesToNotOperations({
+final class NetworkSecurityAuthzPolicyNotOperations {
+  const NetworkSecurityAuthzPolicyNotOperations({
     this.methods,
     this.headerSet,
     this.hosts,
@@ -547,11 +360,11 @@ final class NetworkSecurityAuthzPolicyHttpRulesToNotOperations {
 
   final TfArg<List<String>>? methods;
 
-  final NetworkSecurityAuthzPolicyHttpRulesToNotOperationsHeaderSet? headerSet;
+  final NetworkSecurityAuthzPolicyHeaderSet? headerSet;
 
-  final List<NetworkSecurityAuthzPolicyHttpRulesToNotOperationsHosts>? hosts;
+  final List<NetworkSecurityAuthzPolicyHosts>? hosts;
 
-  final List<NetworkSecurityAuthzPolicyHttpRulesToNotOperationsPaths>? paths;
+  final List<NetworkSecurityAuthzPolicyPaths>? paths;
 
   Map<String, Object?> encode() => {
     'methods': ?methods?.toTfJson(),
@@ -563,16 +376,12 @@ final class NetworkSecurityAuthzPolicyHttpRulesToNotOperations {
 
 /// Typed helper for the `http_rules.to.not_operations.header_set` block of
 /// `google_network_security_authz_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class NetworkSecurityAuthzPolicyHttpRulesToNotOperationsHeaderSet {
-  const NetworkSecurityAuthzPolicyHttpRulesToNotOperationsHeaderSet({
-    this.headers,
-  });
+final class NetworkSecurityAuthzPolicyHeaderSet {
+  const NetworkSecurityAuthzPolicyHeaderSet({this.headers});
 
-  final List<
-    NetworkSecurityAuthzPolicyHttpRulesToNotOperationsHeaderSetHeaders
-  >?
-  headers;
+  final List<NetworkSecurityAuthzPolicyHeaders>? headers;
 
   Map<String, Object?> encode() => {
     if (headers != null) 'headers': [for (final e in headers!) e.encode()],
@@ -581,17 +390,14 @@ final class NetworkSecurityAuthzPolicyHttpRulesToNotOperationsHeaderSet {
 
 /// Typed helper for the `http_rules.to.not_operations.header_set.headers` block of
 /// `google_network_security_authz_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class NetworkSecurityAuthzPolicyHttpRulesToNotOperationsHeaderSetHeaders {
-  const NetworkSecurityAuthzPolicyHttpRulesToNotOperationsHeaderSetHeaders({
-    this.name,
-    this.value,
-  });
+final class NetworkSecurityAuthzPolicyHeaders {
+  const NetworkSecurityAuthzPolicyHeaders({this.name, this.value});
 
   final TfArg<String>? name;
 
-  final NetworkSecurityAuthzPolicyHttpRulesToNotOperationsHeaderSetHeadersValue?
-  value;
+  final NetworkSecurityAuthzPolicyValue? value;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
@@ -601,9 +407,10 @@ final class NetworkSecurityAuthzPolicyHttpRulesToNotOperationsHeaderSetHeaders {
 
 /// Typed helper for the `http_rules.to.not_operations.header_set.headers.value` block of
 /// `google_network_security_authz_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class NetworkSecurityAuthzPolicyHttpRulesToNotOperationsHeaderSetHeadersValue {
-  const NetworkSecurityAuthzPolicyHttpRulesToNotOperationsHeaderSetHeadersValue({
+final class NetworkSecurityAuthzPolicyValue {
+  const NetworkSecurityAuthzPolicyValue({
     this.contains,
     this.exact,
     this.ignoreCase,
@@ -632,9 +439,10 @@ final class NetworkSecurityAuthzPolicyHttpRulesToNotOperationsHeaderSetHeadersVa
 
 /// Typed helper for the `http_rules.to.not_operations.hosts` block of
 /// `google_network_security_authz_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class NetworkSecurityAuthzPolicyHttpRulesToNotOperationsHosts {
-  const NetworkSecurityAuthzPolicyHttpRulesToNotOperationsHosts({
+final class NetworkSecurityAuthzPolicyHosts {
+  const NetworkSecurityAuthzPolicyHosts({
     this.contains,
     this.exact,
     this.ignoreCase,
@@ -663,9 +471,10 @@ final class NetworkSecurityAuthzPolicyHttpRulesToNotOperationsHosts {
 
 /// Typed helper for the `http_rules.to.not_operations.paths` block of
 /// `google_network_security_authz_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class NetworkSecurityAuthzPolicyHttpRulesToNotOperationsPaths {
-  const NetworkSecurityAuthzPolicyHttpRulesToNotOperationsPaths({
+final class NetworkSecurityAuthzPolicyPaths {
+  const NetworkSecurityAuthzPolicyPaths({
     this.contains,
     this.exact,
     this.ignoreCase,
@@ -695,8 +504,8 @@ final class NetworkSecurityAuthzPolicyHttpRulesToNotOperationsPaths {
 /// Typed helper for the `http_rules.to.operations` block of
 /// `google_network_security_authz_policy` (derived from provider schema).
 @immutable
-final class NetworkSecurityAuthzPolicyHttpRulesToOperations {
-  const NetworkSecurityAuthzPolicyHttpRulesToOperations({
+final class NetworkSecurityAuthzPolicyHttpRulesOperations {
+  const NetworkSecurityAuthzPolicyHttpRulesOperations({
     this.methods,
     this.headerSet,
     this.hosts,
@@ -706,13 +515,13 @@ final class NetworkSecurityAuthzPolicyHttpRulesToOperations {
 
   final TfArg<List<String>>? methods;
 
-  final NetworkSecurityAuthzPolicyHttpRulesToOperationsHeaderSet? headerSet;
+  final NetworkSecurityAuthzPolicyHeaderSet? headerSet;
 
-  final List<NetworkSecurityAuthzPolicyHttpRulesToOperationsHosts>? hosts;
+  final List<NetworkSecurityAuthzPolicyHosts>? hosts;
 
-  final NetworkSecurityAuthzPolicyHttpRulesToOperationsMcp? mcp;
+  final NetworkSecurityAuthzPolicyMcp? mcp;
 
-  final List<NetworkSecurityAuthzPolicyHttpRulesToOperationsPaths>? paths;
+  final List<NetworkSecurityAuthzPolicyPaths>? paths;
 
   Map<String, Object?> encode() => {
     'methods': ?methods?.toTfJson(),
@@ -723,120 +532,19 @@ final class NetworkSecurityAuthzPolicyHttpRulesToOperations {
   };
 }
 
-/// Typed helper for the `http_rules.to.operations.header_set` block of
-/// `google_network_security_authz_policy` (derived from provider schema).
-@immutable
-final class NetworkSecurityAuthzPolicyHttpRulesToOperationsHeaderSet {
-  const NetworkSecurityAuthzPolicyHttpRulesToOperationsHeaderSet({
-    this.headers,
-  });
-
-  final List<NetworkSecurityAuthzPolicyHttpRulesToOperationsHeaderSetHeaders>?
-  headers;
-
-  Map<String, Object?> encode() => {
-    if (headers != null) 'headers': [for (final e in headers!) e.encode()],
-  };
-}
-
-/// Typed helper for the `http_rules.to.operations.header_set.headers` block of
-/// `google_network_security_authz_policy` (derived from provider schema).
-@immutable
-final class NetworkSecurityAuthzPolicyHttpRulesToOperationsHeaderSetHeaders {
-  const NetworkSecurityAuthzPolicyHttpRulesToOperationsHeaderSetHeaders({
-    this.name,
-    this.value,
-  });
-
-  final TfArg<String>? name;
-
-  final NetworkSecurityAuthzPolicyHttpRulesToOperationsHeaderSetHeadersValue?
-  value;
-
-  Map<String, Object?> encode() => {
-    'name': ?name?.toTfJson(),
-    'value': ?value?.encode(),
-  };
-}
-
-/// Typed helper for the `http_rules.to.operations.header_set.headers.value` block of
-/// `google_network_security_authz_policy` (derived from provider schema).
-@immutable
-final class NetworkSecurityAuthzPolicyHttpRulesToOperationsHeaderSetHeadersValue {
-  const NetworkSecurityAuthzPolicyHttpRulesToOperationsHeaderSetHeadersValue({
-    this.contains,
-    this.exact,
-    this.ignoreCase,
-    this.prefix,
-    this.suffix,
-  });
-
-  final TfArg<String>? contains;
-
-  final TfArg<String>? exact;
-
-  final TfArg<bool>? ignoreCase;
-
-  final TfArg<String>? prefix;
-
-  final TfArg<String>? suffix;
-
-  Map<String, Object?> encode() => {
-    'contains': ?contains?.toTfJson(),
-    'exact': ?exact?.toTfJson(),
-    'ignore_case': ?ignoreCase?.toTfJson(),
-    'prefix': ?prefix?.toTfJson(),
-    'suffix': ?suffix?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `http_rules.to.operations.hosts` block of
-/// `google_network_security_authz_policy` (derived from provider schema).
-@immutable
-final class NetworkSecurityAuthzPolicyHttpRulesToOperationsHosts {
-  const NetworkSecurityAuthzPolicyHttpRulesToOperationsHosts({
-    this.contains,
-    this.exact,
-    this.ignoreCase,
-    this.prefix,
-    this.suffix,
-  });
-
-  final TfArg<String>? contains;
-
-  final TfArg<String>? exact;
-
-  final TfArg<bool>? ignoreCase;
-
-  final TfArg<String>? prefix;
-
-  final TfArg<String>? suffix;
-
-  Map<String, Object?> encode() => {
-    'contains': ?contains?.toTfJson(),
-    'exact': ?exact?.toTfJson(),
-    'ignore_case': ?ignoreCase?.toTfJson(),
-    'prefix': ?prefix?.toTfJson(),
-    'suffix': ?suffix?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `http_rules.to.operations.mcp` block of
 /// `google_network_security_authz_policy` (derived from provider schema).
 @immutable
-final class NetworkSecurityAuthzPolicyHttpRulesToOperationsMcp {
-  const NetworkSecurityAuthzPolicyHttpRulesToOperationsMcp({
+final class NetworkSecurityAuthzPolicyMcp {
+  const NetworkSecurityAuthzPolicyMcp({
     this.baseProtocolMethodsOption,
     this.methods,
   });
 
-  final TfArg<
-    NetworkSecurityAuthzPolicyHttpRulesToOperationsMcpBaseProtocolMethodsOption
-  >?
+  final TfArg<NetworkSecurityAuthzPolicyBaseProtocolMethodsOption>?
   baseProtocolMethodsOption;
 
-  final List<NetworkSecurityAuthzPolicyHttpRulesToOperationsMcpMethods>?
-  methods;
+  final List<NetworkSecurityAuthzPolicyMethods>? methods;
 
   Map<String, Object?> encode() => {
     'base_protocol_methods_option': ?baseProtocolMethodsOption?.toTfJson(),
@@ -845,12 +553,12 @@ final class NetworkSecurityAuthzPolicyHttpRulesToOperationsMcp {
 }
 
 /// `base_protocol_methods_option` — derived from the provider schema description.
-enum NetworkSecurityAuthzPolicyHttpRulesToOperationsMcpBaseProtocolMethodsOption
+enum NetworkSecurityAuthzPolicyBaseProtocolMethodsOption
     implements TerraformEnum {
   skipBaseProtocolMethods('SKIP_BASE_PROTOCOL_METHODS'),
   matchBaseProtocolMethods('MATCH_BASE_PROTOCOL_METHODS');
 
-  const NetworkSecurityAuthzPolicyHttpRulesToOperationsMcpBaseProtocolMethodsOption(
+  const NetworkSecurityAuthzPolicyBaseProtocolMethodsOption(
     this.terraformValue,
   );
   @override
@@ -860,16 +568,12 @@ enum NetworkSecurityAuthzPolicyHttpRulesToOperationsMcpBaseProtocolMethodsOption
 /// Typed helper for the `http_rules.to.operations.mcp.methods` block of
 /// `google_network_security_authz_policy` (derived from provider schema).
 @immutable
-final class NetworkSecurityAuthzPolicyHttpRulesToOperationsMcpMethods {
-  const NetworkSecurityAuthzPolicyHttpRulesToOperationsMcpMethods({
-    required this.name,
-    this.params,
-  });
+final class NetworkSecurityAuthzPolicyMethods {
+  const NetworkSecurityAuthzPolicyMethods({required this.name, this.params});
 
   final TfArg<String> name;
 
-  final List<NetworkSecurityAuthzPolicyHttpRulesToOperationsMcpMethodsParams>?
-  params;
+  final List<NetworkSecurityAuthzPolicyParams>? params;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -880,39 +584,8 @@ final class NetworkSecurityAuthzPolicyHttpRulesToOperationsMcpMethods {
 /// Typed helper for the `http_rules.to.operations.mcp.methods.params` block of
 /// `google_network_security_authz_policy` (derived from provider schema).
 @immutable
-final class NetworkSecurityAuthzPolicyHttpRulesToOperationsMcpMethodsParams {
-  const NetworkSecurityAuthzPolicyHttpRulesToOperationsMcpMethodsParams({
-    this.contains,
-    this.exact,
-    this.ignoreCase,
-    this.prefix,
-    this.suffix,
-  });
-
-  final TfArg<String>? contains;
-
-  final TfArg<String>? exact;
-
-  final TfArg<bool>? ignoreCase;
-
-  final TfArg<String>? prefix;
-
-  final TfArg<String>? suffix;
-
-  Map<String, Object?> encode() => {
-    'contains': ?contains?.toTfJson(),
-    'exact': ?exact?.toTfJson(),
-    'ignore_case': ?ignoreCase?.toTfJson(),
-    'prefix': ?prefix?.toTfJson(),
-    'suffix': ?suffix?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `http_rules.to.operations.paths` block of
-/// `google_network_security_authz_policy` (derived from provider schema).
-@immutable
-final class NetworkSecurityAuthzPolicyHttpRulesToOperationsPaths {
-  const NetworkSecurityAuthzPolicyHttpRulesToOperationsPaths({
+final class NetworkSecurityAuthzPolicyParams {
+  const NetworkSecurityAuthzPolicyParams({
     this.contains,
     this.exact,
     this.ignoreCase,
@@ -964,9 +637,9 @@ final class NetworkSecurityAuthzPolicyNetworkRulesFrom {
     this.sources,
   });
 
-  final List<NetworkSecurityAuthzPolicyNetworkRulesFromNotSources>? notSources;
+  final List<NetworkSecurityAuthzPolicyNetworkRulesNotSources>? notSources;
 
-  final List<NetworkSecurityAuthzPolicyNetworkRulesFromSources>? sources;
+  final List<NetworkSecurityAuthzPolicyNetworkRulesSources>? sources;
 
   Map<String, Object?> encode() => {
     if (notSources != null)
@@ -978,17 +651,15 @@ final class NetworkSecurityAuthzPolicyNetworkRulesFrom {
 /// Typed helper for the `network_rules.from.not_sources` block of
 /// `google_network_security_authz_policy` (derived from provider schema).
 @immutable
-final class NetworkSecurityAuthzPolicyNetworkRulesFromNotSources {
-  const NetworkSecurityAuthzPolicyNetworkRulesFromNotSources({
+final class NetworkSecurityAuthzPolicyNetworkRulesNotSources {
+  const NetworkSecurityAuthzPolicyNetworkRulesNotSources({
     this.ipBlocks,
     this.principals,
   });
 
-  final List<NetworkSecurityAuthzPolicyNetworkRulesFromNotSourcesIpBlocks>?
-  ipBlocks;
+  final List<NetworkSecurityAuthzPolicyIpBlocks>? ipBlocks;
 
-  final List<NetworkSecurityAuthzPolicyNetworkRulesFromNotSourcesPrincipals>?
-  principals;
+  final List<NetworkSecurityAuthzPolicyNetworkRulesPrincipals>? principals;
 
   Map<String, Object?> encode() => {
     if (ipBlocks != null) 'ip_blocks': [for (final e in ipBlocks!) e.encode()],
@@ -997,41 +668,19 @@ final class NetworkSecurityAuthzPolicyNetworkRulesFromNotSources {
   };
 }
 
-/// Typed helper for the `network_rules.from.not_sources.ip_blocks` block of
-/// `google_network_security_authz_policy` (derived from provider schema).
-@immutable
-final class NetworkSecurityAuthzPolicyNetworkRulesFromNotSourcesIpBlocks {
-  const NetworkSecurityAuthzPolicyNetworkRulesFromNotSourcesIpBlocks({
-    required this.length,
-    required this.prefix,
-  });
-
-  final TfArg<num> length;
-
-  final TfArg<String> prefix;
-
-  Map<String, Object?> encode() => {
-    'length': length.toTfJson(),
-    'prefix': prefix.toTfJson(),
-  };
-}
-
 /// Typed helper for the `network_rules.from.not_sources.principals` block of
 /// `google_network_security_authz_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class NetworkSecurityAuthzPolicyNetworkRulesFromNotSourcesPrincipals {
-  const NetworkSecurityAuthzPolicyNetworkRulesFromNotSourcesPrincipals({
+final class NetworkSecurityAuthzPolicyNetworkRulesPrincipals {
+  const NetworkSecurityAuthzPolicyNetworkRulesPrincipals({
     this.principalSelector,
     this.principal,
   });
 
-  final TfArg<
-    NetworkSecurityAuthzPolicyNetworkRulesFromNotSourcesPrincipalsPrincipalSelector
-  >?
-  principalSelector;
+  final TfArg<NetworkSecurityAuthzPolicyPrincipalSelector>? principalSelector;
 
-  final NetworkSecurityAuthzPolicyNetworkRulesFromNotSourcesPrincipalsPrincipal?
-  principal;
+  final NetworkSecurityAuthzPolicyNetworkRulesPrincipal? principal;
 
   Map<String, Object?> encode() => {
     'principal_selector': ?principalSelector?.toTfJson(),
@@ -1039,28 +688,12 @@ final class NetworkSecurityAuthzPolicyNetworkRulesFromNotSourcesPrincipals {
   };
 }
 
-/// `principal_selector` — derived from the provider schema description.
-enum NetworkSecurityAuthzPolicyNetworkRulesFromNotSourcesPrincipalsPrincipalSelector
-    implements TerraformEnum {
-  principalSelectorUnspecified('PRINCIPAL_SELECTOR_UNSPECIFIED'),
-  clientCertUriSan('CLIENT_CERT_URI_SAN'),
-  clientCertDnsNameSan('CLIENT_CERT_DNS_NAME_SAN'),
-  clientCertCommonName('CLIENT_CERT_COMMON_NAME');
-
-  const NetworkSecurityAuthzPolicyNetworkRulesFromNotSourcesPrincipalsPrincipalSelector(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `network_rules.from.not_sources.principals.principal` block of
 /// `google_network_security_authz_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class NetworkSecurityAuthzPolicyNetworkRulesFromNotSourcesPrincipalsPrincipal {
-  const NetworkSecurityAuthzPolicyNetworkRulesFromNotSourcesPrincipalsPrincipal({
-    this.exact,
-  });
+final class NetworkSecurityAuthzPolicyNetworkRulesPrincipal {
+  const NetworkSecurityAuthzPolicyNetworkRulesPrincipal({this.exact});
 
   final TfArg<String>? exact;
 
@@ -1070,17 +703,15 @@ final class NetworkSecurityAuthzPolicyNetworkRulesFromNotSourcesPrincipalsPrinci
 /// Typed helper for the `network_rules.from.sources` block of
 /// `google_network_security_authz_policy` (derived from provider schema).
 @immutable
-final class NetworkSecurityAuthzPolicyNetworkRulesFromSources {
-  const NetworkSecurityAuthzPolicyNetworkRulesFromSources({
+final class NetworkSecurityAuthzPolicyNetworkRulesSources {
+  const NetworkSecurityAuthzPolicyNetworkRulesSources({
     this.ipBlocks,
     this.principals,
   });
 
-  final List<NetworkSecurityAuthzPolicyNetworkRulesFromSourcesIpBlocks>?
-  ipBlocks;
+  final List<NetworkSecurityAuthzPolicyIpBlocks>? ipBlocks;
 
-  final List<NetworkSecurityAuthzPolicyNetworkRulesFromSourcesPrincipals>?
-  principals;
+  final List<NetworkSecurityAuthzPolicyNetworkRulesPrincipals>? principals;
 
   Map<String, Object?> encode() => {
     if (ipBlocks != null) 'ip_blocks': [for (final e in ipBlocks!) e.encode()],
@@ -1089,83 +720,13 @@ final class NetworkSecurityAuthzPolicyNetworkRulesFromSources {
   };
 }
 
-/// Typed helper for the `network_rules.from.sources.ip_blocks` block of
-/// `google_network_security_authz_policy` (derived from provider schema).
-@immutable
-final class NetworkSecurityAuthzPolicyNetworkRulesFromSourcesIpBlocks {
-  const NetworkSecurityAuthzPolicyNetworkRulesFromSourcesIpBlocks({
-    required this.length,
-    required this.prefix,
-  });
-
-  final TfArg<num> length;
-
-  final TfArg<String> prefix;
-
-  Map<String, Object?> encode() => {
-    'length': length.toTfJson(),
-    'prefix': prefix.toTfJson(),
-  };
-}
-
-/// Typed helper for the `network_rules.from.sources.principals` block of
-/// `google_network_security_authz_policy` (derived from provider schema).
-@immutable
-final class NetworkSecurityAuthzPolicyNetworkRulesFromSourcesPrincipals {
-  const NetworkSecurityAuthzPolicyNetworkRulesFromSourcesPrincipals({
-    this.principalSelector,
-    this.principal,
-  });
-
-  final TfArg<
-    NetworkSecurityAuthzPolicyNetworkRulesFromSourcesPrincipalsPrincipalSelector
-  >?
-  principalSelector;
-
-  final NetworkSecurityAuthzPolicyNetworkRulesFromSourcesPrincipalsPrincipal?
-  principal;
-
-  Map<String, Object?> encode() => {
-    'principal_selector': ?principalSelector?.toTfJson(),
-    'principal': ?principal?.encode(),
-  };
-}
-
-/// `principal_selector` — derived from the provider schema description.
-enum NetworkSecurityAuthzPolicyNetworkRulesFromSourcesPrincipalsPrincipalSelector
-    implements TerraformEnum {
-  principalSelectorUnspecified('PRINCIPAL_SELECTOR_UNSPECIFIED'),
-  clientCertUriSan('CLIENT_CERT_URI_SAN'),
-  clientCertDnsNameSan('CLIENT_CERT_DNS_NAME_SAN'),
-  clientCertCommonName('CLIENT_CERT_COMMON_NAME');
-
-  const NetworkSecurityAuthzPolicyNetworkRulesFromSourcesPrincipalsPrincipalSelector(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `network_rules.from.sources.principals.principal` block of
-/// `google_network_security_authz_policy` (derived from provider schema).
-@immutable
-final class NetworkSecurityAuthzPolicyNetworkRulesFromSourcesPrincipalsPrincipal {
-  const NetworkSecurityAuthzPolicyNetworkRulesFromSourcesPrincipalsPrincipal({
-    this.exact,
-  });
-
-  final TfArg<String>? exact;
-
-  Map<String, Object?> encode() => {'exact': ?exact?.toTfJson()};
-}
-
 /// Typed helper for the `network_rules.to` block of
 /// `google_network_security_authz_policy` (derived from provider schema).
 @immutable
 final class NetworkSecurityAuthzPolicyNetworkRulesTo {
   const NetworkSecurityAuthzPolicyNetworkRulesTo({this.operations});
 
-  final List<NetworkSecurityAuthzPolicyNetworkRulesToOperations>? operations;
+  final List<NetworkSecurityAuthzPolicyNetworkRulesOperations>? operations;
 
   Map<String, Object?> encode() => {
     if (operations != null)
@@ -1176,10 +737,10 @@ final class NetworkSecurityAuthzPolicyNetworkRulesTo {
 /// Typed helper for the `network_rules.to.operations` block of
 /// `google_network_security_authz_policy` (derived from provider schema).
 @immutable
-final class NetworkSecurityAuthzPolicyNetworkRulesToOperations {
-  const NetworkSecurityAuthzPolicyNetworkRulesToOperations({this.snis});
+final class NetworkSecurityAuthzPolicyNetworkRulesOperations {
+  const NetworkSecurityAuthzPolicyNetworkRulesOperations({this.snis});
 
-  final List<NetworkSecurityAuthzPolicyNetworkRulesToOperationsSnis>? snis;
+  final List<NetworkSecurityAuthzPolicySnis>? snis;
 
   Map<String, Object?> encode() => {
     if (snis != null) 'snis': [for (final e in snis!) e.encode()],
@@ -1189,8 +750,8 @@ final class NetworkSecurityAuthzPolicyNetworkRulesToOperations {
 /// Typed helper for the `network_rules.to.operations.snis` block of
 /// `google_network_security_authz_policy` (derived from provider schema).
 @immutable
-final class NetworkSecurityAuthzPolicyNetworkRulesToOperationsSnis {
-  const NetworkSecurityAuthzPolicyNetworkRulesToOperationsSnis({this.exact});
+final class NetworkSecurityAuthzPolicySnis {
+  const NetworkSecurityAuthzPolicySnis({this.exact});
 
   final TfArg<String>? exact;
 
@@ -1206,7 +767,7 @@ final class NetworkSecurityAuthzPolicyTarget {
     this.resources,
   });
 
-  final TfArg<NetworkSecurityAuthzPolicyTargetLoadBalancingScheme>?
+  final TfArg<NetworkSecurityAuthzPolicyLoadBalancingScheme>?
   loadBalancingScheme;
 
   final TfArg<List<String>>? resources;
@@ -1218,15 +779,12 @@ final class NetworkSecurityAuthzPolicyTarget {
 }
 
 /// `load_balancing_scheme` — derived from the provider schema description.
-enum NetworkSecurityAuthzPolicyTargetLoadBalancingScheme
-    implements TerraformEnum {
+enum NetworkSecurityAuthzPolicyLoadBalancingScheme implements TerraformEnum {
   internalManaged('INTERNAL_MANAGED'),
   externalManaged('EXTERNAL_MANAGED'),
   internalSelfManaged('INTERNAL_SELF_MANAGED');
 
-  const NetworkSecurityAuthzPolicyTargetLoadBalancingScheme(
-    this.terraformValue,
-  );
+  const NetworkSecurityAuthzPolicyLoadBalancingScheme(this.terraformValue);
   @override
   final String terraformValue;
 }

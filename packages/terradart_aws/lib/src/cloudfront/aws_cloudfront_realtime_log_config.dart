@@ -18,10 +18,9 @@ final class CloudfrontRealtimeLogConfigEndpoint {
     required this.kinesisStreamConfig,
   });
 
-  final TfArg<CloudfrontRealtimeLogConfigEndpointStreamType> streamType;
+  final TfArg<CloudfrontRealtimeLogConfigStreamType> streamType;
 
-  final CloudfrontRealtimeLogConfigEndpointKinesisStreamConfig
-  kinesisStreamConfig;
+  final CloudfrontRealtimeLogConfigKinesisStreamConfig kinesisStreamConfig;
 
   Map<String, Object?> encode() => {
     'stream_type': streamType.toTfJson(),
@@ -30,10 +29,10 @@ final class CloudfrontRealtimeLogConfigEndpoint {
 }
 
 /// `stream_type` — derived from the provider schema description.
-enum CloudfrontRealtimeLogConfigEndpointStreamType implements TerraformEnum {
+enum CloudfrontRealtimeLogConfigStreamType implements TerraformEnum {
   kinesis('Kinesis');
 
-  const CloudfrontRealtimeLogConfigEndpointStreamType(this.terraformValue);
+  const CloudfrontRealtimeLogConfigStreamType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -41,8 +40,8 @@ enum CloudfrontRealtimeLogConfigEndpointStreamType implements TerraformEnum {
 /// Typed helper for the `endpoint.kinesis_stream_config` block of
 /// `aws_cloudfront_realtime_log_config` (derived from provider schema).
 @immutable
-final class CloudfrontRealtimeLogConfigEndpointKinesisStreamConfig {
-  const CloudfrontRealtimeLogConfigEndpointKinesisStreamConfig({
+final class CloudfrontRealtimeLogConfigKinesisStreamConfig {
+  const CloudfrontRealtimeLogConfigKinesisStreamConfig({
     required this.roleArn,
     required this.streamArn,
   });

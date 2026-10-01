@@ -13,7 +13,7 @@ const Set<String> _googleIamOrganizationAccessPolicySensitive = <String>{};
 final class IamOrganizationAccessPolicyDetails {
   const IamOrganizationAccessPolicyDetails({required this.rules});
 
-  final List<IamOrganizationAccessPolicyDetailsRules> rules;
+  final List<IamOrganizationAccessPolicyRules> rules;
 
   Map<String, Object?> encode() => {
     'rules': [for (final e in rules) e.encode()],
@@ -23,8 +23,8 @@ final class IamOrganizationAccessPolicyDetails {
 /// Typed helper for the `details.rules` block of
 /// `google_iam_organization_access_policy` (derived from provider schema).
 @immutable
-final class IamOrganizationAccessPolicyDetailsRules {
-  const IamOrganizationAccessPolicyDetailsRules({
+final class IamOrganizationAccessPolicyRules {
+  const IamOrganizationAccessPolicyRules({
     this.description,
     required this.effect,
     this.excludedPrincipals,
@@ -35,15 +35,15 @@ final class IamOrganizationAccessPolicyDetailsRules {
 
   final TfArg<String>? description;
 
-  final TfArg<IamOrganizationAccessPolicyDetailsRulesEffect> effect;
+  final TfArg<IamOrganizationAccessPolicyEffect> effect;
 
   final TfArg<List<String>>? excludedPrincipals;
 
   final TfArg<List<String>> principals;
 
-  final List<IamOrganizationAccessPolicyDetailsRulesConditions>? conditions;
+  final List<IamOrganizationAccessPolicyConditions>? conditions;
 
-  final IamOrganizationAccessPolicyDetailsRulesOperation operation;
+  final IamOrganizationAccessPolicyOperation operation;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -57,11 +57,11 @@ final class IamOrganizationAccessPolicyDetailsRules {
 }
 
 /// `effect` — derived from the provider schema description.
-enum IamOrganizationAccessPolicyDetailsRulesEffect implements TerraformEnum {
+enum IamOrganizationAccessPolicyEffect implements TerraformEnum {
   deny('DENY'),
   allow('ALLOW');
 
-  const IamOrganizationAccessPolicyDetailsRulesEffect(this.terraformValue);
+  const IamOrganizationAccessPolicyEffect(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -69,8 +69,8 @@ enum IamOrganizationAccessPolicyDetailsRulesEffect implements TerraformEnum {
 /// Typed helper for the `details.rules.conditions` block of
 /// `google_iam_organization_access_policy` (derived from provider schema).
 @immutable
-final class IamOrganizationAccessPolicyDetailsRulesConditions {
-  const IamOrganizationAccessPolicyDetailsRulesConditions({
+final class IamOrganizationAccessPolicyConditions {
+  const IamOrganizationAccessPolicyConditions({
     this.expression,
     required this.service,
   });
@@ -88,8 +88,8 @@ final class IamOrganizationAccessPolicyDetailsRulesConditions {
 /// Typed helper for the `details.rules.operation` block of
 /// `google_iam_organization_access_policy` (derived from provider schema).
 @immutable
-final class IamOrganizationAccessPolicyDetailsRulesOperation {
-  const IamOrganizationAccessPolicyDetailsRulesOperation({
+final class IamOrganizationAccessPolicyOperation {
+  const IamOrganizationAccessPolicyOperation({
     this.excludedPermissions,
     required this.permissions,
   });

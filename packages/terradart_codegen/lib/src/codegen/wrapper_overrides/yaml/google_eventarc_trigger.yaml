@@ -32,11 +32,11 @@ curatedDoc: |-
   ///
   /// Transport auto-creation:
   /// - When [transport] is omitted (or [EventarcTriggerTransport.pubsub] is
-  ///   set without a [EventarcTriggerTransportPubsub.topic]), Eventarc
+  ///   set without a [EventarcTriggerPubsub.topic]), Eventarc
   ///   automatically creates and manages a Pub/Sub topic as the delivery
   ///   intermediary. Eventarc owns that topic's lifecycle and deletes it
   ///   when the trigger is removed. Passing an explicit
-  ///   [EventarcTriggerTransportPubsub.topic] (only valid for triggers of
+  ///   [EventarcTriggerPubsub.topic] (only valid for triggers of
   ///   type `google.cloud.pubsub.topic.v1.messagePublished`) attaches an
   ///   existing topic instead -- and Eventarc will NOT delete that topic on
   ///   trigger deletion.
@@ -59,7 +59,7 @@ curatedDoc: |-
   ///     ),
   ///   ],
   ///   destination: EventarcTriggerDestination(
-  ///     cloudRunService: EventarcTriggerDestinationCloudRunService(
+  ///     cloudRunService: EventarcTriggerCloudRunService(
   ///       service: .literal('image-processor'),
   ///       region: .literal('asia-northeast1'),
   ///       path: .literal('/events'),
@@ -70,7 +70,7 @@ curatedDoc: |-
   ///
   /// Naming convention: ALL nested helper types in this resource are
   /// prefixed `EventarcTrigger...` (e.g. [EventarcTriggerMatchingCriteria],
-  /// [EventarcTriggerDestination], [EventarcTriggerDestinationCloudRunService]) to
+  /// [EventarcTriggerDestination], [EventarcTriggerCloudRunService]) to
   /// avoid colliding with similarly-named structures in sibling Eventarc
   /// resources (channels, connections) and other event-delivery wrappers
   /// (Pub/Sub subscriptions, Cloud Scheduler).

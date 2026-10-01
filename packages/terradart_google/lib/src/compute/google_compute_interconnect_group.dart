@@ -13,8 +13,7 @@ const Set<String> _googleComputeInterconnectGroupSensitive = <String>{};
 final class ComputeInterconnectGroupIntent {
   const ComputeInterconnectGroupIntent({this.topologyCapability});
 
-  final TfArg<ComputeInterconnectGroupIntentTopologyCapability>?
-  topologyCapability;
+  final TfArg<ComputeInterconnectGroupTopologyCapability>? topologyCapability;
 
   Map<String, Object?> encode() => {
     'topology_capability': ?topologyCapability?.toTfJson(),
@@ -22,13 +21,13 @@ final class ComputeInterconnectGroupIntent {
 }
 
 /// `topology_capability` — derived from the provider schema description.
-enum ComputeInterconnectGroupIntentTopologyCapability implements TerraformEnum {
+enum ComputeInterconnectGroupTopologyCapability implements TerraformEnum {
   productionNonCritical('PRODUCTION_NON_CRITICAL'),
   productionCritical('PRODUCTION_CRITICAL'),
   noSla('NO_SLA'),
   availabilitySlaUnspecified('AVAILABILITY_SLA_UNSPECIFIED');
 
-  const ComputeInterconnectGroupIntentTopologyCapability(this.terraformValue);
+  const ComputeInterconnectGroupTopologyCapability(this.terraformValue);
   @override
   final String terraformValue;
 }

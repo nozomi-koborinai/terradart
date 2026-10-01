@@ -20,7 +20,7 @@ final class WaitingRoomRulesRules {
     required this.expression,
   });
 
-  final TfArg<WaitingRoomRulesRulesAction> action;
+  final TfArg<WaitingRoomRulesAction> action;
 
   final TfArg<String>? description;
 
@@ -37,10 +37,10 @@ final class WaitingRoomRulesRules {
 }
 
 /// `action` — derived from the provider schema description.
-enum WaitingRoomRulesRulesAction implements TerraformEnum {
+enum WaitingRoomRulesAction implements TerraformEnum {
   bypassWaitingRoom('bypass_waiting_room');
 
-  const WaitingRoomRulesRulesAction(this.terraformValue);
+  const WaitingRoomRulesAction(this.terraformValue);
   @override
   final String terraformValue;
 }

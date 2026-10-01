@@ -86,7 +86,7 @@ final class LexIntentConclusionStatement {
 
   final TfArg<String>? responseCard;
 
-  final List<LexIntentConclusionStatementMessage> message;
+  final List<LexIntentMessage> message;
 
   Map<String, Object?> encode() => {
     'response_card': ?responseCard?.toTfJson(),
@@ -96,9 +96,10 @@ final class LexIntentConclusionStatement {
 
 /// Typed helper for the `conclusion_statement.message` block of
 /// `aws_lex_intent` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class LexIntentConclusionStatementMessage {
-  const LexIntentConclusionStatementMessage({
+final class LexIntentMessage {
+  const LexIntentMessage({
     required this.content,
     required this.contentType,
     this.groupNumber,
@@ -131,35 +132,12 @@ final class LexIntentConfirmationPrompt {
 
   final TfArg<String>? responseCard;
 
-  final List<LexIntentConfirmationPromptMessage> message;
+  final List<LexIntentMessage> message;
 
   Map<String, Object?> encode() => {
     'max_attempts': maxAttempts.toTfJson(),
     'response_card': ?responseCard?.toTfJson(),
     'message': [for (final e in message) e.encode()],
-  };
-}
-
-/// Typed helper for the `confirmation_prompt.message` block of
-/// `aws_lex_intent` (derived from provider schema).
-@immutable
-final class LexIntentConfirmationPromptMessage {
-  const LexIntentConfirmationPromptMessage({
-    required this.content,
-    required this.contentType,
-    this.groupNumber,
-  });
-
-  final TfArg<String> content;
-
-  final TfArg<String> contentType;
-
-  final TfArg<num>? groupNumber;
-
-  Map<String, Object?> encode() => {
-    'content': content.toTfJson(),
-    'content_type': contentType.toTfJson(),
-    'group_number': ?groupNumber?.toTfJson(),
   };
 }
 
@@ -191,9 +169,9 @@ final class LexIntentFollowUpPrompt {
     required this.rejectionStatement,
   });
 
-  final LexIntentFollowUpPromptPrompt prompt;
+  final LexIntentPrompt prompt;
 
-  final LexIntentFollowUpPromptRejectionStatement rejectionStatement;
+  final LexIntentRejectionStatement rejectionStatement;
 
   Map<String, Object?> encode() => {
     'prompt': prompt.encode(),
@@ -204,8 +182,8 @@ final class LexIntentFollowUpPrompt {
 /// Typed helper for the `follow_up_prompt.prompt` block of
 /// `aws_lex_intent` (derived from provider schema).
 @immutable
-final class LexIntentFollowUpPromptPrompt {
-  const LexIntentFollowUpPromptPrompt({
+final class LexIntentPrompt {
+  const LexIntentPrompt({
     required this.maxAttempts,
     this.responseCard,
     required this.message,
@@ -215,7 +193,7 @@ final class LexIntentFollowUpPromptPrompt {
 
   final TfArg<String>? responseCard;
 
-  final List<LexIntentFollowUpPromptPromptMessage> message;
+  final List<LexIntentMessage> message;
 
   Map<String, Object?> encode() => {
     'max_attempts': maxAttempts.toTfJson(),
@@ -224,68 +202,20 @@ final class LexIntentFollowUpPromptPrompt {
   };
 }
 
-/// Typed helper for the `follow_up_prompt.prompt.message` block of
+/// Typed helper for the `rejection_statement` block of
 /// `aws_lex_intent` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class LexIntentFollowUpPromptPromptMessage {
-  const LexIntentFollowUpPromptPromptMessage({
-    required this.content,
-    required this.contentType,
-    this.groupNumber,
-  });
-
-  final TfArg<String> content;
-
-  final TfArg<String> contentType;
-
-  final TfArg<num>? groupNumber;
-
-  Map<String, Object?> encode() => {
-    'content': content.toTfJson(),
-    'content_type': contentType.toTfJson(),
-    'group_number': ?groupNumber?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `follow_up_prompt.rejection_statement` block of
-/// `aws_lex_intent` (derived from provider schema).
-@immutable
-final class LexIntentFollowUpPromptRejectionStatement {
-  const LexIntentFollowUpPromptRejectionStatement({
-    this.responseCard,
-    required this.message,
-  });
+final class LexIntentRejectionStatement {
+  const LexIntentRejectionStatement({this.responseCard, required this.message});
 
   final TfArg<String>? responseCard;
 
-  final List<LexIntentFollowUpPromptRejectionStatementMessage> message;
+  final List<LexIntentMessage> message;
 
   Map<String, Object?> encode() => {
     'response_card': ?responseCard?.toTfJson(),
     'message': [for (final e in message) e.encode()],
-  };
-}
-
-/// Typed helper for the `follow_up_prompt.rejection_statement.message` block of
-/// `aws_lex_intent` (derived from provider schema).
-@immutable
-final class LexIntentFollowUpPromptRejectionStatementMessage {
-  const LexIntentFollowUpPromptRejectionStatementMessage({
-    required this.content,
-    required this.contentType,
-    this.groupNumber,
-  });
-
-  final TfArg<String> content;
-
-  final TfArg<String> contentType;
-
-  final TfArg<num>? groupNumber;
-
-  Map<String, Object?> encode() => {
-    'content': content.toTfJson(),
-    'content_type': contentType.toTfJson(),
-    'group_number': ?groupNumber?.toTfJson(),
   };
 }
 
@@ -295,9 +225,9 @@ final class LexIntentFollowUpPromptRejectionStatementMessage {
 final class LexIntentFulfillmentActivity {
   const LexIntentFulfillmentActivity({required this.type, this.codeHook});
 
-  final TfArg<LexIntentFulfillmentActivityType> type;
+  final TfArg<LexIntentType> type;
 
-  final LexIntentFulfillmentActivityCodeHook? codeHook;
+  final LexIntentCodeHook? codeHook;
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
@@ -306,11 +236,11 @@ final class LexIntentFulfillmentActivity {
 }
 
 /// `type` — derived from the provider schema description.
-enum LexIntentFulfillmentActivityType implements TerraformEnum {
+enum LexIntentType implements TerraformEnum {
   returnintent('ReturnIntent'),
   codehook('CodeHook');
 
-  const LexIntentFulfillmentActivityType(this.terraformValue);
+  const LexIntentType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -318,11 +248,8 @@ enum LexIntentFulfillmentActivityType implements TerraformEnum {
 /// Typed helper for the `fulfillment_activity.code_hook` block of
 /// `aws_lex_intent` (derived from provider schema).
 @immutable
-final class LexIntentFulfillmentActivityCodeHook {
-  const LexIntentFulfillmentActivityCodeHook({
-    required this.messageVersion,
-    required this.uri,
-  });
+final class LexIntentCodeHook {
+  const LexIntentCodeHook({required this.messageVersion, required this.uri});
 
   final TfArg<String> messageVersion;
 
@@ -331,45 +258,6 @@ final class LexIntentFulfillmentActivityCodeHook {
   Map<String, Object?> encode() => {
     'message_version': messageVersion.toTfJson(),
     'uri': uri.toTfJson(),
-  };
-}
-
-/// Typed helper for the `rejection_statement` block of
-/// `aws_lex_intent` (derived from provider schema).
-@immutable
-final class LexIntentRejectionStatement {
-  const LexIntentRejectionStatement({this.responseCard, required this.message});
-
-  final TfArg<String>? responseCard;
-
-  final List<LexIntentRejectionStatementMessage> message;
-
-  Map<String, Object?> encode() => {
-    'response_card': ?responseCard?.toTfJson(),
-    'message': [for (final e in message) e.encode()],
-  };
-}
-
-/// Typed helper for the `rejection_statement.message` block of
-/// `aws_lex_intent` (derived from provider schema).
-@immutable
-final class LexIntentRejectionStatementMessage {
-  const LexIntentRejectionStatementMessage({
-    required this.content,
-    required this.contentType,
-    this.groupNumber,
-  });
-
-  final TfArg<String> content;
-
-  final TfArg<String> contentType;
-
-  final TfArg<num>? groupNumber;
-
-  Map<String, Object?> encode() => {
-    'content': content.toTfJson(),
-    'content_type': contentType.toTfJson(),
-    'group_number': ?groupNumber?.toTfJson(),
   };
 }
 
@@ -399,13 +287,13 @@ final class LexIntentSlot {
 
   final TfArg<List<String>>? sampleUtterances;
 
-  final TfArg<LexIntentSlotSlotConstraint> slotConstraint;
+  final TfArg<LexIntentSlotConstraint> slotConstraint;
 
   final TfArg<String> slotType;
 
   final TfArg<String>? slotTypeVersion;
 
-  final LexIntentSlotValueElicitationPrompt? valueElicitationPrompt;
+  final LexIntentValueElicitationPrompt? valueElicitationPrompt;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -421,11 +309,11 @@ final class LexIntentSlot {
 }
 
 /// `slot_constraint` — derived from the provider schema description.
-enum LexIntentSlotSlotConstraint implements TerraformEnum {
+enum LexIntentSlotConstraint implements TerraformEnum {
   required('Required'),
   optional('Optional');
 
-  const LexIntentSlotSlotConstraint(this.terraformValue);
+  const LexIntentSlotConstraint(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -433,8 +321,8 @@ enum LexIntentSlotSlotConstraint implements TerraformEnum {
 /// Typed helper for the `slot.value_elicitation_prompt` block of
 /// `aws_lex_intent` (derived from provider schema).
 @immutable
-final class LexIntentSlotValueElicitationPrompt {
-  const LexIntentSlotValueElicitationPrompt({
+final class LexIntentValueElicitationPrompt {
+  const LexIntentValueElicitationPrompt({
     required this.maxAttempts,
     this.responseCard,
     required this.message,
@@ -444,35 +332,12 @@ final class LexIntentSlotValueElicitationPrompt {
 
   final TfArg<String>? responseCard;
 
-  final List<LexIntentSlotValueElicitationPromptMessage> message;
+  final List<LexIntentMessage> message;
 
   Map<String, Object?> encode() => {
     'max_attempts': maxAttempts.toTfJson(),
     'response_card': ?responseCard?.toTfJson(),
     'message': [for (final e in message) e.encode()],
-  };
-}
-
-/// Typed helper for the `slot.value_elicitation_prompt.message` block of
-/// `aws_lex_intent` (derived from provider schema).
-@immutable
-final class LexIntentSlotValueElicitationPromptMessage {
-  const LexIntentSlotValueElicitationPromptMessage({
-    required this.content,
-    required this.contentType,
-    this.groupNumber,
-  });
-
-  final TfArg<String> content;
-
-  final TfArg<String> contentType;
-
-  final TfArg<num>? groupNumber;
-
-  Map<String, Object?> encode() => {
-    'content': content.toTfJson(),
-    'content_type': contentType.toTfJson(),
-    'group_number': ?groupNumber?.toTfJson(),
   };
 }
 

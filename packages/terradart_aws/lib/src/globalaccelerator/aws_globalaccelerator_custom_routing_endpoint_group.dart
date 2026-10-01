@@ -20,11 +20,7 @@ final class GlobalacceleratorCustomRoutingEndpointGroupDestinationConfiguration 
 
   final TfArg<num> fromPort;
 
-  final List<
-    TfArg<
-      GlobalacceleratorCustomRoutingEndpointGroupDestinationConfigurationProtocols
-    >
-  >
+  final List<TfArg<GlobalacceleratorCustomRoutingEndpointGroupProtocols>>
   protocols;
 
   final TfArg<num> toPort;
@@ -37,12 +33,12 @@ final class GlobalacceleratorCustomRoutingEndpointGroupDestinationConfiguration 
 }
 
 /// `protocols` — derived from the provider schema description.
-enum GlobalacceleratorCustomRoutingEndpointGroupDestinationConfigurationProtocols
+enum GlobalacceleratorCustomRoutingEndpointGroupProtocols
     implements TerraformEnum {
   tcp('TCP'),
   udp('UDP');
 
-  const GlobalacceleratorCustomRoutingEndpointGroupDestinationConfigurationProtocols(
+  const GlobalacceleratorCustomRoutingEndpointGroupProtocols(
     this.terraformValue,
   );
   @override

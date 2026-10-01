@@ -200,10 +200,9 @@ final class DatabaseMigrationServiceConnectionProfileAlloydbSettings {
 
   final RefTo<GoogleComputeNetwork> vpcNetwork;
 
-  final DatabaseMigrationServiceConnectionProfileAlloydbSettingsInitialUser
-  initialUser;
+  final DatabaseMigrationServiceConnectionProfileInitialUser initialUser;
 
-  final DatabaseMigrationServiceConnectionProfileAlloydbSettingsPrimaryInstanceSettings?
+  final DatabaseMigrationServiceConnectionProfilePrimaryInstanceSettings?
   primaryInstanceSettings;
 
   Map<String, Object?> encode() => {
@@ -217,8 +216,8 @@ final class DatabaseMigrationServiceConnectionProfileAlloydbSettings {
 /// Typed helper for the `alloydb.settings.initial_user` block of
 /// `google_database_migration_service_connection_profile` (derived from provider schema).
 @immutable
-final class DatabaseMigrationServiceConnectionProfileAlloydbSettingsInitialUser {
-  const DatabaseMigrationServiceConnectionProfileAlloydbSettingsInitialUser({
+final class DatabaseMigrationServiceConnectionProfileInitialUser {
+  const DatabaseMigrationServiceConnectionProfileInitialUser({
     required this.password,
     required this.user,
   });
@@ -236,8 +235,8 @@ final class DatabaseMigrationServiceConnectionProfileAlloydbSettingsInitialUser 
 /// Typed helper for the `alloydb.settings.primary_instance_settings` block of
 /// `google_database_migration_service_connection_profile` (derived from provider schema).
 @immutable
-final class DatabaseMigrationServiceConnectionProfileAlloydbSettingsPrimaryInstanceSettings {
-  const DatabaseMigrationServiceConnectionProfileAlloydbSettingsPrimaryInstanceSettings({
+final class DatabaseMigrationServiceConnectionProfilePrimaryInstanceSettings {
+  const DatabaseMigrationServiceConnectionProfilePrimaryInstanceSettings({
     this.databaseFlags,
     required this.id,
     this.labels,
@@ -250,8 +249,7 @@ final class DatabaseMigrationServiceConnectionProfileAlloydbSettingsPrimaryInsta
 
   final TfArg<Map<String, String>>? labels;
 
-  final DatabaseMigrationServiceConnectionProfileAlloydbSettingsPrimaryInstanceSettingsMachineConfig
-  machineConfig;
+  final DatabaseMigrationServiceConnectionProfileMachineConfig machineConfig;
 
   Map<String, Object?> encode() => {
     'database_flags': ?databaseFlags?.toTfJson(),
@@ -264,8 +262,8 @@ final class DatabaseMigrationServiceConnectionProfileAlloydbSettingsPrimaryInsta
 /// Typed helper for the `alloydb.settings.primary_instance_settings.machine_config` block of
 /// `google_database_migration_service_connection_profile` (derived from provider schema).
 @immutable
-final class DatabaseMigrationServiceConnectionProfileAlloydbSettingsPrimaryInstanceSettingsMachineConfig {
-  const DatabaseMigrationServiceConnectionProfileAlloydbSettingsPrimaryInstanceSettingsMachineConfig({
+final class DatabaseMigrationServiceConnectionProfileMachineConfig {
+  const DatabaseMigrationServiceConnectionProfileMachineConfig({
     required this.cpuCount,
   });
 
@@ -308,9 +306,7 @@ final class DatabaseMigrationServiceConnectionProfileCloudsqlSettings {
     this.ipConfig,
   });
 
-  final TfArg<
-    DatabaseMigrationServiceConnectionProfileCloudsqlSettingsActivationPolicy
-  >?
+  final TfArg<DatabaseMigrationServiceConnectionProfileActivationPolicy>?
   activationPolicy;
 
   final TfArg<bool>? autoStorageIncrease;
@@ -321,17 +317,14 @@ final class DatabaseMigrationServiceConnectionProfileCloudsqlSettings {
 
   final TfArg<String>? dataDiskSizeGb;
 
-  final TfArg<
-    DatabaseMigrationServiceConnectionProfileCloudsqlSettingsDataDiskType
-  >?
+  final TfArg<DatabaseMigrationServiceConnectionProfileDataDiskType>?
   dataDiskType;
 
   final TfArg<Map<String, String>>? databaseFlags;
 
   final TfArg<String>? databaseVersion;
 
-  final TfArg<DatabaseMigrationServiceConnectionProfileCloudsqlSettingsEdition>?
-  edition;
+  final TfArg<DatabaseMigrationServiceConnectionProfileEdition>? edition;
 
   final TfArg<String>? rootPassword;
 
@@ -345,8 +338,7 @@ final class DatabaseMigrationServiceConnectionProfileCloudsqlSettings {
 
   final TfArg<String>? zone;
 
-  final DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfig?
-  ipConfig;
+  final DatabaseMigrationServiceConnectionProfileIpConfig? ipConfig;
 
   Map<String, Object?> encode() => {
     'activation_policy': ?activationPolicy?.toTfJson(),
@@ -369,12 +361,12 @@ final class DatabaseMigrationServiceConnectionProfileCloudsqlSettings {
 }
 
 /// `activation_policy` — derived from the provider schema description.
-enum DatabaseMigrationServiceConnectionProfileCloudsqlSettingsActivationPolicy
+enum DatabaseMigrationServiceConnectionProfileActivationPolicy
     implements TerraformEnum {
   always('ALWAYS'),
   never('NEVER');
 
-  const DatabaseMigrationServiceConnectionProfileCloudsqlSettingsActivationPolicy(
+  const DatabaseMigrationServiceConnectionProfileActivationPolicy(
     this.terraformValue,
   );
   @override
@@ -382,12 +374,12 @@ enum DatabaseMigrationServiceConnectionProfileCloudsqlSettingsActivationPolicy
 }
 
 /// `data_disk_type` — derived from the provider schema description.
-enum DatabaseMigrationServiceConnectionProfileCloudsqlSettingsDataDiskType
+enum DatabaseMigrationServiceConnectionProfileDataDiskType
     implements TerraformEnum {
   pdSsd('PD_SSD'),
   pdHdd('PD_HDD');
 
-  const DatabaseMigrationServiceConnectionProfileCloudsqlSettingsDataDiskType(
+  const DatabaseMigrationServiceConnectionProfileDataDiskType(
     this.terraformValue,
   );
   @override
@@ -395,14 +387,11 @@ enum DatabaseMigrationServiceConnectionProfileCloudsqlSettingsDataDiskType
 }
 
 /// `edition` — derived from the provider schema description.
-enum DatabaseMigrationServiceConnectionProfileCloudsqlSettingsEdition
-    implements TerraformEnum {
+enum DatabaseMigrationServiceConnectionProfileEdition implements TerraformEnum {
   enterprise('ENTERPRISE'),
   enterprisePlus('ENTERPRISE_PLUS');
 
-  const DatabaseMigrationServiceConnectionProfileCloudsqlSettingsEdition(
-    this.terraformValue,
-  );
+  const DatabaseMigrationServiceConnectionProfileEdition(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -410,8 +399,8 @@ enum DatabaseMigrationServiceConnectionProfileCloudsqlSettingsEdition
 /// Typed helper for the `cloudsql.settings.ip_config` block of
 /// `google_database_migration_service_connection_profile` (derived from provider schema).
 @immutable
-final class DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfig {
-  const DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfig({
+final class DatabaseMigrationServiceConnectionProfileIpConfig {
+  const DatabaseMigrationServiceConnectionProfileIpConfig({
     this.enableIpv4,
     this.privateNetwork,
     this.requireSsl,
@@ -424,9 +413,7 @@ final class DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfig {
 
   final TfArg<bool>? requireSsl;
 
-  final List<
-    DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworks
-  >?
+  final List<DatabaseMigrationServiceConnectionProfileAuthorizedNetworks>?
   authorizedNetworks;
 
   Map<String, Object?> encode() => {
@@ -441,15 +428,14 @@ final class DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfig {
 /// Typed helper for the `cloudsql.settings.ip_config.authorized_networks` block of
 /// `google_database_migration_service_connection_profile` (derived from provider schema).
 @immutable
-final class DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworks {
-  const DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworks({
+final class DatabaseMigrationServiceConnectionProfileAuthorizedNetworks {
+  const DatabaseMigrationServiceConnectionProfileAuthorizedNetworks({
     required this.expiration,
     this.label,
     required this.value,
   });
 
-  final DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpiration
-  expiration;
+  final DatabaseMigrationServiceConnectionProfileExpiration expiration;
 
   final TfArg<String>? label;
 
@@ -466,18 +452,18 @@ final class DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAut
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.expireTime(...)`.
-sealed class DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpiration {
-  const DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpiration();
+sealed class DatabaseMigrationServiceConnectionProfileExpiration {
+  const DatabaseMigrationServiceConnectionProfileExpiration();
 
   /// Sets `expire_time`.
-  const factory DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpiration.expireTime(
+  const factory DatabaseMigrationServiceConnectionProfileExpiration.expireTime(
     TfArg<String> expireTime,
-  ) = DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpirationExpireTime;
+  ) = DatabaseMigrationServiceConnectionProfileExpirationExpireTime;
 
   /// Sets `ttl`.
-  const factory DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpiration.ttl(
+  const factory DatabaseMigrationServiceConnectionProfileExpiration.ttl(
     TfArg<String> ttl,
-  ) = DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpirationTtl;
+  ) = DatabaseMigrationServiceConnectionProfileExpirationTtl;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -485,11 +471,10 @@ sealed class DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAu
   Map<String, Object?> encode();
 }
 
-/// The [DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpiration.expireTime] choice: sets `expire_time`.
-final class DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpirationExpireTime
-    extends
-        DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpiration {
-  const DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpirationExpireTime(
+/// The [DatabaseMigrationServiceConnectionProfileExpiration.expireTime] choice: sets `expire_time`.
+final class DatabaseMigrationServiceConnectionProfileExpirationExpireTime
+    extends DatabaseMigrationServiceConnectionProfileExpiration {
+  const DatabaseMigrationServiceConnectionProfileExpirationExpireTime(
     this.expireTime,
   );
 
@@ -502,13 +487,10 @@ final class DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAut
   Map<String, Object?> encode() => {'expire_time': expireTime.toTfJson()};
 }
 
-/// The [DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpiration.ttl] choice: sets `ttl`.
-final class DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpirationTtl
-    extends
-        DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpiration {
-  const DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpirationTtl(
-    this.ttl,
-  );
+/// The [DatabaseMigrationServiceConnectionProfileExpiration.ttl] choice: sets `ttl`.
+final class DatabaseMigrationServiceConnectionProfileExpirationTtl
+    extends DatabaseMigrationServiceConnectionProfileExpiration {
+  const DatabaseMigrationServiceConnectionProfileExpirationTtl(this.ttl);
 
   final TfArg<String> ttl;
 
@@ -556,6 +538,7 @@ final class DatabaseMigrationServiceConnectionProfileMysql {
 
 /// Typed helper for the `mysql.ssl` block of
 /// `google_database_migration_service_connection_profile` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
 final class DatabaseMigrationServiceConnectionProfileMysqlSsl {
   const DatabaseMigrationServiceConnectionProfileMysqlSsl({
@@ -571,7 +554,7 @@ final class DatabaseMigrationServiceConnectionProfileMysqlSsl {
 
   final TfArg<String>? clientKey;
 
-  final TfArg<DatabaseMigrationServiceConnectionProfileMysqlSslType>? type;
+  final TfArg<DatabaseMigrationServiceConnectionProfileType>? type;
 
   Map<String, Object?> encode() => {
     'ca_certificate': ?caCertificate?.toTfJson(),
@@ -582,16 +565,13 @@ final class DatabaseMigrationServiceConnectionProfileMysqlSsl {
 }
 
 /// `type` — derived from the provider schema description.
-enum DatabaseMigrationServiceConnectionProfileMysqlSslType
-    implements TerraformEnum {
+enum DatabaseMigrationServiceConnectionProfileType implements TerraformEnum {
   serverOnly('SERVER_ONLY'),
   serverClient('SERVER_CLIENT'),
   required('REQUIRED'),
   none('NONE');
 
-  const DatabaseMigrationServiceConnectionProfileMysqlSslType(
-    this.terraformValue,
-  );
+  const DatabaseMigrationServiceConnectionProfileType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -620,8 +600,7 @@ final class DatabaseMigrationServiceConnectionProfileOracle {
 
   final TfArg<String> username;
 
-  final DatabaseMigrationServiceConnectionProfileOracleConnectivity
-  connectivity;
+  final DatabaseMigrationServiceConnectionProfileConnectivity connectivity;
 
   final DatabaseMigrationServiceConnectionProfileOracleSsl? ssl;
 
@@ -640,26 +619,26 @@ final class DatabaseMigrationServiceConnectionProfileOracle {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.staticServiceIpConnectivity(...)`.
-sealed class DatabaseMigrationServiceConnectionProfileOracleConnectivity {
-  const DatabaseMigrationServiceConnectionProfileOracleConnectivity();
+sealed class DatabaseMigrationServiceConnectionProfileConnectivity {
+  const DatabaseMigrationServiceConnectionProfileConnectivity();
 
   /// Sets `static_service_ip_connectivity`.
-  const factory DatabaseMigrationServiceConnectionProfileOracleConnectivity.staticServiceIpConnectivity(
-    DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivity
+  const factory DatabaseMigrationServiceConnectionProfileConnectivity.staticServiceIpConnectivity(
+    DatabaseMigrationServiceConnectionProfileStaticServiceIpConnectivity
     staticServiceIpConnectivity,
-  ) = DatabaseMigrationServiceConnectionProfileOracleConnectivityStaticServiceIpConnectivity;
+  ) = DatabaseMigrationServiceConnectionProfileStaticServiceIpConnectivityChoice;
 
   /// Sets `forward_ssh_connectivity`.
-  const factory DatabaseMigrationServiceConnectionProfileOracleConnectivity.forwardSshConnectivity(
-    DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivity
+  const factory DatabaseMigrationServiceConnectionProfileConnectivity.forwardSshConnectivity(
+    DatabaseMigrationServiceConnectionProfileForwardSshConnectivity
     forwardSshConnectivity,
-  ) = DatabaseMigrationServiceConnectionProfileOracleConnectivityForwardSshConnectivity;
+  ) = DatabaseMigrationServiceConnectionProfileForwardSshConnectivityChoice;
 
   /// Sets `private_connectivity`.
-  const factory DatabaseMigrationServiceConnectionProfileOracleConnectivity.privateConnectivity(
-    DatabaseMigrationServiceConnectionProfileOraclePrivateConnectivity
+  const factory DatabaseMigrationServiceConnectionProfileConnectivity.privateConnectivity(
+    DatabaseMigrationServiceConnectionProfilePrivateConnectivity
     privateConnectivity,
-  ) = DatabaseMigrationServiceConnectionProfileOracleConnectivityPrivateConnectivity;
+  ) = DatabaseMigrationServiceConnectionProfilePrivateConnectivityChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -667,14 +646,14 @@ sealed class DatabaseMigrationServiceConnectionProfileOracleConnectivity {
   Map<String, Object?> encode();
 }
 
-/// The [DatabaseMigrationServiceConnectionProfileOracleConnectivity.staticServiceIpConnectivity] choice: sets `static_service_ip_connectivity`.
-final class DatabaseMigrationServiceConnectionProfileOracleConnectivityStaticServiceIpConnectivity
-    extends DatabaseMigrationServiceConnectionProfileOracleConnectivity {
-  const DatabaseMigrationServiceConnectionProfileOracleConnectivityStaticServiceIpConnectivity(
+/// The [DatabaseMigrationServiceConnectionProfileConnectivity.staticServiceIpConnectivity] choice: sets `static_service_ip_connectivity`.
+final class DatabaseMigrationServiceConnectionProfileStaticServiceIpConnectivityChoice
+    extends DatabaseMigrationServiceConnectionProfileConnectivity {
+  const DatabaseMigrationServiceConnectionProfileStaticServiceIpConnectivityChoice(
     this.staticServiceIpConnectivity,
   );
 
-  final DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivity
+  final DatabaseMigrationServiceConnectionProfileStaticServiceIpConnectivity
   staticServiceIpConnectivity;
 
   @override
@@ -686,14 +665,14 @@ final class DatabaseMigrationServiceConnectionProfileOracleConnectivityStaticSer
   };
 }
 
-/// The [DatabaseMigrationServiceConnectionProfileOracleConnectivity.forwardSshConnectivity] choice: sets `forward_ssh_connectivity`.
-final class DatabaseMigrationServiceConnectionProfileOracleConnectivityForwardSshConnectivity
-    extends DatabaseMigrationServiceConnectionProfileOracleConnectivity {
-  const DatabaseMigrationServiceConnectionProfileOracleConnectivityForwardSshConnectivity(
+/// The [DatabaseMigrationServiceConnectionProfileConnectivity.forwardSshConnectivity] choice: sets `forward_ssh_connectivity`.
+final class DatabaseMigrationServiceConnectionProfileForwardSshConnectivityChoice
+    extends DatabaseMigrationServiceConnectionProfileConnectivity {
+  const DatabaseMigrationServiceConnectionProfileForwardSshConnectivityChoice(
     this.forwardSshConnectivity,
   );
 
-  final DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivity
+  final DatabaseMigrationServiceConnectionProfileForwardSshConnectivity
   forwardSshConnectivity;
 
   @override
@@ -705,14 +684,14 @@ final class DatabaseMigrationServiceConnectionProfileOracleConnectivityForwardSs
   };
 }
 
-/// The [DatabaseMigrationServiceConnectionProfileOracleConnectivity.privateConnectivity] choice: sets `private_connectivity`.
-final class DatabaseMigrationServiceConnectionProfileOracleConnectivityPrivateConnectivity
-    extends DatabaseMigrationServiceConnectionProfileOracleConnectivity {
-  const DatabaseMigrationServiceConnectionProfileOracleConnectivityPrivateConnectivity(
+/// The [DatabaseMigrationServiceConnectionProfileConnectivity.privateConnectivity] choice: sets `private_connectivity`.
+final class DatabaseMigrationServiceConnectionProfilePrivateConnectivityChoice
+    extends DatabaseMigrationServiceConnectionProfileConnectivity {
+  const DatabaseMigrationServiceConnectionProfilePrivateConnectivityChoice(
     this.privateConnectivity,
   );
 
-  final DatabaseMigrationServiceConnectionProfileOraclePrivateConnectivity
+  final DatabaseMigrationServiceConnectionProfilePrivateConnectivity
   privateConnectivity;
 
   @override
@@ -727,8 +706,8 @@ final class DatabaseMigrationServiceConnectionProfileOracleConnectivityPrivateCo
 /// Typed helper for the `oracle.forward_ssh_connectivity` block of
 /// `google_database_migration_service_connection_profile` (derived from provider schema).
 @immutable
-final class DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivity {
-  const DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivity({
+final class DatabaseMigrationServiceConnectionProfileForwardSshConnectivity {
+  const DatabaseMigrationServiceConnectionProfileForwardSshConnectivity({
     required this.hostname,
     required this.credential,
     required this.port,
@@ -737,8 +716,7 @@ final class DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivit
 
   final TfArg<String> hostname;
 
-  final DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityCredential
-  credential;
+  final DatabaseMigrationServiceConnectionProfileCredential credential;
 
   final TfArg<num> port;
 
@@ -756,18 +734,18 @@ final class DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivit
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.password(...)`.
-sealed class DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityCredential {
-  const DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityCredential();
+sealed class DatabaseMigrationServiceConnectionProfileCredential {
+  const DatabaseMigrationServiceConnectionProfileCredential();
 
   /// Sets `password`.
-  const factory DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityCredential.password(
+  const factory DatabaseMigrationServiceConnectionProfileCredential.password(
     TfArg<String> password,
-  ) = DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityCredentialPassword;
+  ) = DatabaseMigrationServiceConnectionProfileCredentialPassword;
 
   /// Sets `private_key`.
-  const factory DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityCredential.privateKey(
+  const factory DatabaseMigrationServiceConnectionProfileCredential.privateKey(
     TfArg<String> privateKey,
-  ) = DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityCredentialPrivateKey;
+  ) = DatabaseMigrationServiceConnectionProfileCredentialPrivateKey;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -775,11 +753,10 @@ sealed class DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivi
   Map<String, Object?> encode();
 }
 
-/// The [DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityCredential.password] choice: sets `password`.
-final class DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityCredentialPassword
-    extends
-        DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityCredential {
-  const DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityCredentialPassword(
+/// The [DatabaseMigrationServiceConnectionProfileCredential.password] choice: sets `password`.
+final class DatabaseMigrationServiceConnectionProfileCredentialPassword
+    extends DatabaseMigrationServiceConnectionProfileCredential {
+  const DatabaseMigrationServiceConnectionProfileCredentialPassword(
     this.password,
   );
 
@@ -792,11 +769,10 @@ final class DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivit
   Map<String, Object?> encode() => {'password': password.toTfJson()};
 }
 
-/// The [DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityCredential.privateKey] choice: sets `private_key`.
-final class DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityCredentialPrivateKey
-    extends
-        DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityCredential {
-  const DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityCredentialPrivateKey(
+/// The [DatabaseMigrationServiceConnectionProfileCredential.privateKey] choice: sets `private_key`.
+final class DatabaseMigrationServiceConnectionProfileCredentialPrivateKey
+    extends DatabaseMigrationServiceConnectionProfileCredential {
+  const DatabaseMigrationServiceConnectionProfileCredentialPrivateKey(
     this.privateKey,
   );
 
@@ -811,9 +787,10 @@ final class DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivit
 
 /// Typed helper for the `oracle.private_connectivity` block of
 /// `google_database_migration_service_connection_profile` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DatabaseMigrationServiceConnectionProfileOraclePrivateConnectivity {
-  const DatabaseMigrationServiceConnectionProfileOraclePrivateConnectivity({
+final class DatabaseMigrationServiceConnectionProfilePrivateConnectivity {
+  const DatabaseMigrationServiceConnectionProfilePrivateConnectivity({
     required this.privateConnection,
   });
 
@@ -850,8 +827,8 @@ final class DatabaseMigrationServiceConnectionProfileOracleSsl {
 /// Typed helper for the `oracle.static_service_ip_connectivity` block of
 /// `google_database_migration_service_connection_profile` (derived from provider schema).
 @immutable
-final class DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivity {
-  const DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivity();
+final class DatabaseMigrationServiceConnectionProfileStaticServiceIpConnectivity {
+  const DatabaseMigrationServiceConnectionProfileStaticServiceIpConnectivity();
 
   Map<String, Object?> encode() => {};
 }
@@ -886,10 +863,10 @@ final class DatabaseMigrationServiceConnectionProfilePostgresql {
 
   final TfArg<String>? username;
 
-  final DatabaseMigrationServiceConnectionProfilePostgresqlPrivateConnectivity?
+  final DatabaseMigrationServiceConnectionProfilePrivateConnectivity?
   privateConnectivity;
 
-  final DatabaseMigrationServiceConnectionProfilePostgresqlSsl? ssl;
+  final DatabaseMigrationServiceConnectionProfileMysqlSsl? ssl;
 
   Map<String, Object?> encode() => {
     'alloydb_cluster_id': ?alloydbClusterId?.toTfJson(),
@@ -902,63 +879,6 @@ final class DatabaseMigrationServiceConnectionProfilePostgresql {
     'private_connectivity': ?privateConnectivity?.encode(),
     'ssl': ?ssl?.encode(),
   };
-}
-
-/// Typed helper for the `postgresql.private_connectivity` block of
-/// `google_database_migration_service_connection_profile` (derived from provider schema).
-@immutable
-final class DatabaseMigrationServiceConnectionProfilePostgresqlPrivateConnectivity {
-  const DatabaseMigrationServiceConnectionProfilePostgresqlPrivateConnectivity({
-    required this.privateConnection,
-  });
-
-  final TfArg<String> privateConnection;
-
-  Map<String, Object?> encode() => {
-    'private_connection': privateConnection.toTfJson(),
-  };
-}
-
-/// Typed helper for the `postgresql.ssl` block of
-/// `google_database_migration_service_connection_profile` (derived from provider schema).
-@immutable
-final class DatabaseMigrationServiceConnectionProfilePostgresqlSsl {
-  const DatabaseMigrationServiceConnectionProfilePostgresqlSsl({
-    this.caCertificate,
-    this.clientCertificate,
-    this.clientKey,
-    this.type,
-  });
-
-  final TfArg<String>? caCertificate;
-
-  final TfArg<String>? clientCertificate;
-
-  final TfArg<String>? clientKey;
-
-  final TfArg<DatabaseMigrationServiceConnectionProfilePostgresqlSslType>? type;
-
-  Map<String, Object?> encode() => {
-    'ca_certificate': ?caCertificate?.toTfJson(),
-    'client_certificate': ?clientCertificate?.toTfJson(),
-    'client_key': ?clientKey?.toTfJson(),
-    'type': ?type?.toTfJson(),
-  };
-}
-
-/// `type` — derived from the provider schema description.
-enum DatabaseMigrationServiceConnectionProfilePostgresqlSslType
-    implements TerraformEnum {
-  serverOnly('SERVER_ONLY'),
-  serverClient('SERVER_CLIENT'),
-  required('REQUIRED'),
-  none('NONE');
-
-  const DatabaseMigrationServiceConnectionProfilePostgresqlSslType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Factory wrapper for `google_database_migration_service_connection_profile`.

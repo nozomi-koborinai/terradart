@@ -41,7 +41,7 @@ final class ApprunnerServiceHealthCheckConfiguration {
 
   final TfArg<String>? path;
 
-  final TfArg<ApprunnerServiceHealthCheckConfigurationProtocol>? protocol;
+  final TfArg<ApprunnerServiceProtocol>? protocol;
 
   final TfArg<num>? timeout;
 
@@ -58,11 +58,11 @@ final class ApprunnerServiceHealthCheckConfiguration {
 }
 
 /// `protocol` — derived from the provider schema description.
-enum ApprunnerServiceHealthCheckConfigurationProtocol implements TerraformEnum {
+enum ApprunnerServiceProtocol implements TerraformEnum {
   tcp('TCP'),
   http('HTTP');
 
-  const ApprunnerServiceHealthCheckConfigurationProtocol(this.terraformValue);
+  const ApprunnerServiceProtocol(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -100,13 +100,11 @@ final class ApprunnerServiceNetworkConfiguration {
     this.ingressConfiguration,
   });
 
-  final TfArg<ApprunnerServiceNetworkConfigurationIpAddressType>? ipAddressType;
+  final TfArg<ApprunnerServiceIpAddressType>? ipAddressType;
 
-  final ApprunnerServiceNetworkConfigurationEgressConfiguration?
-  egressConfiguration;
+  final ApprunnerServiceEgressConfiguration? egressConfiguration;
 
-  final ApprunnerServiceNetworkConfigurationIngressConfiguration?
-  ingressConfiguration;
+  final ApprunnerServiceIngressConfiguration? ingressConfiguration;
 
   Map<String, Object?> encode() => {
     'ip_address_type': ?ipAddressType?.toTfJson(),
@@ -116,12 +114,11 @@ final class ApprunnerServiceNetworkConfiguration {
 }
 
 /// `ip_address_type` — derived from the provider schema description.
-enum ApprunnerServiceNetworkConfigurationIpAddressType
-    implements TerraformEnum {
+enum ApprunnerServiceIpAddressType implements TerraformEnum {
   ipv4('IPV4'),
   dualStack('DUAL_STACK');
 
-  const ApprunnerServiceNetworkConfigurationIpAddressType(this.terraformValue);
+  const ApprunnerServiceIpAddressType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -129,16 +126,13 @@ enum ApprunnerServiceNetworkConfigurationIpAddressType
 /// Typed helper for the `network_configuration.egress_configuration` block of
 /// `aws_apprunner_service` (derived from provider schema).
 @immutable
-final class ApprunnerServiceNetworkConfigurationEgressConfiguration {
-  const ApprunnerServiceNetworkConfigurationEgressConfiguration({
+final class ApprunnerServiceEgressConfiguration {
+  const ApprunnerServiceEgressConfiguration({
     this.egressType,
     this.vpcConnectorArn,
   });
 
-  final TfArg<
-    ApprunnerServiceNetworkConfigurationEgressConfigurationEgressType
-  >?
-  egressType;
+  final TfArg<ApprunnerServiceEgressType>? egressType;
 
   final TfArg<String>? vpcConnectorArn;
 
@@ -149,14 +143,11 @@ final class ApprunnerServiceNetworkConfigurationEgressConfiguration {
 }
 
 /// `egress_type` — derived from the provider schema description.
-enum ApprunnerServiceNetworkConfigurationEgressConfigurationEgressType
-    implements TerraformEnum {
+enum ApprunnerServiceEgressType implements TerraformEnum {
   defaultCase('DEFAULT'),
   vpc('VPC');
 
-  const ApprunnerServiceNetworkConfigurationEgressConfigurationEgressType(
-    this.terraformValue,
-  );
+  const ApprunnerServiceEgressType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -164,10 +155,8 @@ enum ApprunnerServiceNetworkConfigurationEgressConfigurationEgressType
 /// Typed helper for the `network_configuration.ingress_configuration` block of
 /// `aws_apprunner_service` (derived from provider schema).
 @immutable
-final class ApprunnerServiceNetworkConfigurationIngressConfiguration {
-  const ApprunnerServiceNetworkConfigurationIngressConfiguration({
-    this.isPubliclyAccessible,
-  });
+final class ApprunnerServiceIngressConfiguration {
+  const ApprunnerServiceIngressConfiguration({this.isPubliclyAccessible});
 
   final TfArg<bool>? isPubliclyAccessible;
 
@@ -208,10 +197,10 @@ final class ApprunnerServiceSourceConfiguration {
 
   final TfArg<bool>? autoDeploymentsEnabled;
 
-  final ApprunnerServiceSourceConfigurationAuthenticationConfiguration?
+  final ApprunnerServiceAuthenticationConfiguration?
   authenticationConfiguration;
 
-  final ApprunnerServiceSourceConfigurationRepository repository;
+  final ApprunnerServiceRepository repository;
 
   Map<String, Object?> encode() => {
     'auto_deployments_enabled': ?autoDeploymentsEnabled?.toTfJson(),
@@ -224,18 +213,18 @@ final class ApprunnerServiceSourceConfiguration {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.codeRepository(...)`.
-sealed class ApprunnerServiceSourceConfigurationRepository {
-  const ApprunnerServiceSourceConfigurationRepository();
+sealed class ApprunnerServiceRepository {
+  const ApprunnerServiceRepository();
 
   /// Sets `code_repository`.
-  const factory ApprunnerServiceSourceConfigurationRepository.codeRepository(
-    ApprunnerServiceSourceConfigurationCodeRepository codeRepository,
-  ) = ApprunnerServiceSourceConfigurationRepositoryCodeRepository;
+  const factory ApprunnerServiceRepository.codeRepository(
+    ApprunnerServiceCodeRepository codeRepository,
+  ) = ApprunnerServiceCodeRepositoryChoice;
 
   /// Sets `image_repository`.
-  const factory ApprunnerServiceSourceConfigurationRepository.imageRepository(
-    ApprunnerServiceSourceConfigurationImageRepository imageRepository,
-  ) = ApprunnerServiceSourceConfigurationRepositoryImageRepository;
+  const factory ApprunnerServiceRepository.imageRepository(
+    ApprunnerServiceImageRepository imageRepository,
+  ) = ApprunnerServiceImageRepositoryChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -243,14 +232,12 @@ sealed class ApprunnerServiceSourceConfigurationRepository {
   Map<String, Object?> encode();
 }
 
-/// The [ApprunnerServiceSourceConfigurationRepository.codeRepository] choice: sets `code_repository`.
-final class ApprunnerServiceSourceConfigurationRepositoryCodeRepository
-    extends ApprunnerServiceSourceConfigurationRepository {
-  const ApprunnerServiceSourceConfigurationRepositoryCodeRepository(
-    this.codeRepository,
-  );
+/// The [ApprunnerServiceRepository.codeRepository] choice: sets `code_repository`.
+final class ApprunnerServiceCodeRepositoryChoice
+    extends ApprunnerServiceRepository {
+  const ApprunnerServiceCodeRepositoryChoice(this.codeRepository);
 
-  final ApprunnerServiceSourceConfigurationCodeRepository codeRepository;
+  final ApprunnerServiceCodeRepository codeRepository;
 
   @override
   String get blockKey => 'code_repository';
@@ -259,14 +246,12 @@ final class ApprunnerServiceSourceConfigurationRepositoryCodeRepository
   Map<String, Object?> encode() => {'code_repository': codeRepository.encode()};
 }
 
-/// The [ApprunnerServiceSourceConfigurationRepository.imageRepository] choice: sets `image_repository`.
-final class ApprunnerServiceSourceConfigurationRepositoryImageRepository
-    extends ApprunnerServiceSourceConfigurationRepository {
-  const ApprunnerServiceSourceConfigurationRepositoryImageRepository(
-    this.imageRepository,
-  );
+/// The [ApprunnerServiceRepository.imageRepository] choice: sets `image_repository`.
+final class ApprunnerServiceImageRepositoryChoice
+    extends ApprunnerServiceRepository {
+  const ApprunnerServiceImageRepositoryChoice(this.imageRepository);
 
-  final ApprunnerServiceSourceConfigurationImageRepository imageRepository;
+  final ApprunnerServiceImageRepository imageRepository;
 
   @override
   String get blockKey => 'image_repository';
@@ -280,8 +265,8 @@ final class ApprunnerServiceSourceConfigurationRepositoryImageRepository
 /// Typed helper for the `source_configuration.authentication_configuration` block of
 /// `aws_apprunner_service` (derived from provider schema).
 @immutable
-final class ApprunnerServiceSourceConfigurationAuthenticationConfiguration {
-  const ApprunnerServiceSourceConfigurationAuthenticationConfiguration({
+final class ApprunnerServiceAuthenticationConfiguration {
+  const ApprunnerServiceAuthenticationConfiguration({
     this.accessRoleArn,
     this.connectionArn,
   });
@@ -299,8 +284,8 @@ final class ApprunnerServiceSourceConfigurationAuthenticationConfiguration {
 /// Typed helper for the `source_configuration.code_repository` block of
 /// `aws_apprunner_service` (derived from provider schema).
 @immutable
-final class ApprunnerServiceSourceConfigurationCodeRepository {
-  const ApprunnerServiceSourceConfigurationCodeRepository({
+final class ApprunnerServiceCodeRepository {
+  const ApprunnerServiceCodeRepository({
     required this.repositoryUrl,
     this.sourceDirectory,
     this.codeConfiguration,
@@ -311,11 +296,9 @@ final class ApprunnerServiceSourceConfigurationCodeRepository {
 
   final TfArg<String>? sourceDirectory;
 
-  final ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfiguration?
-  codeConfiguration;
+  final ApprunnerServiceCodeConfiguration? codeConfiguration;
 
-  final ApprunnerServiceSourceConfigurationCodeRepositorySourceCodeVersion
-  sourceCodeVersion;
+  final ApprunnerServiceSourceCodeVersion sourceCodeVersion;
 
   Map<String, Object?> encode() => {
     'repository_url': repositoryUrl.toTfJson(),
@@ -328,19 +311,15 @@ final class ApprunnerServiceSourceConfigurationCodeRepository {
 /// Typed helper for the `source_configuration.code_repository.code_configuration` block of
 /// `aws_apprunner_service` (derived from provider schema).
 @immutable
-final class ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfiguration {
-  const ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfiguration({
+final class ApprunnerServiceCodeConfiguration {
+  const ApprunnerServiceCodeConfiguration({
     required this.configurationSource,
     this.codeConfigurationValues,
   });
 
-  final TfArg<
-    ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfigurationConfigurationSource
-  >
-  configurationSource;
+  final TfArg<ApprunnerServiceConfigurationSource> configurationSource;
 
-  final ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfigurationCodeConfigurationValues?
-  codeConfigurationValues;
+  final ApprunnerServiceCodeConfigurationValues? codeConfigurationValues;
 
   Map<String, Object?> encode() => {
     'configuration_source': configurationSource.toTfJson(),
@@ -349,14 +328,11 @@ final class ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfiguration {
 }
 
 /// `configuration_source` — derived from the provider schema description.
-enum ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfigurationConfigurationSource
-    implements TerraformEnum {
+enum ApprunnerServiceConfigurationSource implements TerraformEnum {
   repository('REPOSITORY'),
   api('API');
 
-  const ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfigurationConfigurationSource(
-    this.terraformValue,
-  );
+  const ApprunnerServiceConfigurationSource(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -364,8 +340,8 @@ enum ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfigurationConfigura
 /// Typed helper for the `source_configuration.code_repository.code_configuration.code_configuration_values` block of
 /// `aws_apprunner_service` (derived from provider schema).
 @immutable
-final class ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfigurationCodeConfigurationValues {
-  const ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfigurationCodeConfigurationValues({
+final class ApprunnerServiceCodeConfigurationValues {
+  const ApprunnerServiceCodeConfigurationValues({
     this.buildCommand,
     this.port,
     required this.runtime,
@@ -378,10 +354,7 @@ final class ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfigurationCo
 
   final TfArg<String>? port;
 
-  final TfArg<
-    ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfigurationCodeConfigurationValuesRuntime
-  >
-  runtime;
+  final TfArg<ApprunnerServiceRuntime> runtime;
 
   final TfArg<Map<String, String>>? runtimeEnvironmentSecrets;
 
@@ -400,8 +373,7 @@ final class ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfigurationCo
 }
 
 /// `runtime` — derived from the provider schema description.
-enum ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfigurationCodeConfigurationValuesRuntime
-    implements TerraformEnum {
+enum ApprunnerServiceRuntime implements TerraformEnum {
   python3('PYTHON_3'),
   nodejs12('NODEJS_12'),
   nodejs14('NODEJS_14'),
@@ -416,9 +388,7 @@ enum ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfigurationCodeConfi
   nodejs18('NODEJS_18'),
   nodejs22('NODEJS_22');
 
-  const ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfigurationCodeConfigurationValuesRuntime(
-    this.terraformValue,
-  );
+  const ApprunnerServiceRuntime(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -426,16 +396,13 @@ enum ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfigurationCodeConfi
 /// Typed helper for the `source_configuration.code_repository.source_code_version` block of
 /// `aws_apprunner_service` (derived from provider schema).
 @immutable
-final class ApprunnerServiceSourceConfigurationCodeRepositorySourceCodeVersion {
-  const ApprunnerServiceSourceConfigurationCodeRepositorySourceCodeVersion({
+final class ApprunnerServiceSourceCodeVersion {
+  const ApprunnerServiceSourceCodeVersion({
     required this.type,
     required this.value,
   });
 
-  final TfArg<
-    ApprunnerServiceSourceConfigurationCodeRepositorySourceCodeVersionType
-  >
-  type;
+  final TfArg<ApprunnerServiceType> type;
 
   final TfArg<String> value;
 
@@ -446,13 +413,10 @@ final class ApprunnerServiceSourceConfigurationCodeRepositorySourceCodeVersion {
 }
 
 /// `type` — derived from the provider schema description.
-enum ApprunnerServiceSourceConfigurationCodeRepositorySourceCodeVersionType
-    implements TerraformEnum {
+enum ApprunnerServiceType implements TerraformEnum {
   branch('BRANCH');
 
-  const ApprunnerServiceSourceConfigurationCodeRepositorySourceCodeVersionType(
-    this.terraformValue,
-  );
+  const ApprunnerServiceType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -460,8 +424,8 @@ enum ApprunnerServiceSourceConfigurationCodeRepositorySourceCodeVersionType
 /// Typed helper for the `source_configuration.image_repository` block of
 /// `aws_apprunner_service` (derived from provider schema).
 @immutable
-final class ApprunnerServiceSourceConfigurationImageRepository {
-  const ApprunnerServiceSourceConfigurationImageRepository({
+final class ApprunnerServiceImageRepository {
+  const ApprunnerServiceImageRepository({
     required this.imageIdentifier,
     required this.imageRepositoryType,
     this.imageConfiguration,
@@ -469,13 +433,9 @@ final class ApprunnerServiceSourceConfigurationImageRepository {
 
   final TfArg<String> imageIdentifier;
 
-  final TfArg<
-    ApprunnerServiceSourceConfigurationImageRepositoryImageRepositoryType
-  >
-  imageRepositoryType;
+  final TfArg<ApprunnerServiceImageRepositoryType> imageRepositoryType;
 
-  final ApprunnerServiceSourceConfigurationImageRepositoryImageConfiguration?
-  imageConfiguration;
+  final ApprunnerServiceImageConfiguration? imageConfiguration;
 
   Map<String, Object?> encode() => {
     'image_identifier': imageIdentifier.toTfJson(),
@@ -485,14 +445,11 @@ final class ApprunnerServiceSourceConfigurationImageRepository {
 }
 
 /// `image_repository_type` — derived from the provider schema description.
-enum ApprunnerServiceSourceConfigurationImageRepositoryImageRepositoryType
-    implements TerraformEnum {
+enum ApprunnerServiceImageRepositoryType implements TerraformEnum {
   ecr('ECR'),
   ecrPublic('ECR_PUBLIC');
 
-  const ApprunnerServiceSourceConfigurationImageRepositoryImageRepositoryType(
-    this.terraformValue,
-  );
+  const ApprunnerServiceImageRepositoryType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -500,8 +457,8 @@ enum ApprunnerServiceSourceConfigurationImageRepositoryImageRepositoryType
 /// Typed helper for the `source_configuration.image_repository.image_configuration` block of
 /// `aws_apprunner_service` (derived from provider schema).
 @immutable
-final class ApprunnerServiceSourceConfigurationImageRepositoryImageConfiguration {
-  const ApprunnerServiceSourceConfigurationImageRepositoryImageConfiguration({
+final class ApprunnerServiceImageConfiguration {
+  const ApprunnerServiceImageConfiguration({
     this.port,
     this.runtimeEnvironmentSecrets,
     this.runtimeEnvironmentVariables,

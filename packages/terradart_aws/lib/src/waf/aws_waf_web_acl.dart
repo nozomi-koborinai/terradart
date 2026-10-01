@@ -29,7 +29,7 @@ final class WafWebAclLoggingConfiguration {
 
   final TfArg<String> logDestination;
 
-  final WafWebAclLoggingConfigurationRedactedFields? redactedFields;
+  final WafWebAclRedactedFields? redactedFields;
 
   Map<String, Object?> encode() => {
     'log_destination': logDestination.toTfJson(),
@@ -40,13 +40,10 @@ final class WafWebAclLoggingConfiguration {
 /// Typed helper for the `logging_configuration.redacted_fields` block of
 /// `aws_waf_web_acl` (derived from provider schema).
 @immutable
-final class WafWebAclLoggingConfigurationRedactedFields {
-  const WafWebAclLoggingConfigurationRedactedFields({
-    required this.fieldToMatch,
-  });
+final class WafWebAclRedactedFields {
+  const WafWebAclRedactedFields({required this.fieldToMatch});
 
-  final List<WafWebAclLoggingConfigurationRedactedFieldsFieldToMatch>
-  fieldToMatch;
+  final List<WafWebAclFieldToMatch> fieldToMatch;
 
   Map<String, Object?> encode() => {
     'field_to_match': [for (final e in fieldToMatch) e.encode()],
@@ -56,11 +53,8 @@ final class WafWebAclLoggingConfigurationRedactedFields {
 /// Typed helper for the `logging_configuration.redacted_fields.field_to_match` block of
 /// `aws_waf_web_acl` (derived from provider schema).
 @immutable
-final class WafWebAclLoggingConfigurationRedactedFieldsFieldToMatch {
-  const WafWebAclLoggingConfigurationRedactedFieldsFieldToMatch({
-    this.data,
-    required this.type,
-  });
+final class WafWebAclFieldToMatch {
+  const WafWebAclFieldToMatch({this.data, required this.type});
 
   final TfArg<String>? data;
 
@@ -88,11 +82,11 @@ final class WafWebAclRules {
 
   final TfArg<String> ruleId;
 
-  final TfArg<WafWebAclRulesType>? type;
+  final TfArg<WafWebAclType>? type;
 
-  final WafWebAclRulesAction? action;
+  final WafWebAclAction? action;
 
-  final WafWebAclRulesOverrideAction? overrideAction;
+  final WafWebAclOverrideAction? overrideAction;
 
   Map<String, Object?> encode() => {
     'priority': priority.toTfJson(),
@@ -104,12 +98,12 @@ final class WafWebAclRules {
 }
 
 /// `type` — derived from the provider schema description.
-enum WafWebAclRulesType implements TerraformEnum {
+enum WafWebAclType implements TerraformEnum {
   regular('REGULAR'),
   rateBased('RATE_BASED'),
   group('GROUP');
 
-  const WafWebAclRulesType(this.terraformValue);
+  const WafWebAclType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -117,8 +111,8 @@ enum WafWebAclRulesType implements TerraformEnum {
 /// Typed helper for the `rules.action` block of
 /// `aws_waf_web_acl` (derived from provider schema).
 @immutable
-final class WafWebAclRulesAction {
-  const WafWebAclRulesAction({required this.type});
+final class WafWebAclAction {
+  const WafWebAclAction({required this.type});
 
   final TfArg<String> type;
 
@@ -128,8 +122,8 @@ final class WafWebAclRulesAction {
 /// Typed helper for the `rules.override_action` block of
 /// `aws_waf_web_acl` (derived from provider schema).
 @immutable
-final class WafWebAclRulesOverrideAction {
-  const WafWebAclRulesOverrideAction({required this.type});
+final class WafWebAclOverrideAction {
+  const WafWebAclOverrideAction({required this.type});
 
   final TfArg<String> type;
 

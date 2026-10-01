@@ -74,10 +74,10 @@ final class OracleDatabaseCloudVmClusterProperties {
 
   final TfArg<List<String>>? sshPublicKeys;
 
-  final OracleDatabaseCloudVmClusterPropertiesDiagnosticsDataCollectionOptions?
+  final OracleDatabaseCloudVmClusterDiagnosticsDataCollectionOptions?
   diagnosticsDataCollectionOptions;
 
-  final OracleDatabaseCloudVmClusterPropertiesTimeZone? timeZone;
+  final OracleDatabaseCloudVmClusterTimeZone? timeZone;
 
   Map<String, Object?> encode() => {
     'cluster_name': ?clusterName?.toTfJson(),
@@ -104,8 +104,8 @@ final class OracleDatabaseCloudVmClusterProperties {
 /// Typed helper for the `properties.diagnostics_data_collection_options` block of
 /// `google_oracle_database_cloud_vm_cluster` (derived from provider schema).
 @immutable
-final class OracleDatabaseCloudVmClusterPropertiesDiagnosticsDataCollectionOptions {
-  const OracleDatabaseCloudVmClusterPropertiesDiagnosticsDataCollectionOptions({
+final class OracleDatabaseCloudVmClusterDiagnosticsDataCollectionOptions {
+  const OracleDatabaseCloudVmClusterDiagnosticsDataCollectionOptions({
     this.diagnosticsEventsEnabled,
     this.healthMonitoringEnabled,
     this.incidentLogsEnabled,
@@ -127,8 +127,8 @@ final class OracleDatabaseCloudVmClusterPropertiesDiagnosticsDataCollectionOptio
 /// Typed helper for the `properties.time_zone` block of
 /// `google_oracle_database_cloud_vm_cluster` (derived from provider schema).
 @immutable
-final class OracleDatabaseCloudVmClusterPropertiesTimeZone {
-  const OracleDatabaseCloudVmClusterPropertiesTimeZone({this.id, this.version});
+final class OracleDatabaseCloudVmClusterTimeZone {
+  const OracleDatabaseCloudVmClusterTimeZone({this.id, this.version});
 
   final TfArg<String>? id;
 

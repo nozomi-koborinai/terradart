@@ -63,14 +63,13 @@ final class NetworkfirewallRuleGroupRuleGroup {
     this.statefulRuleOptions,
   });
 
-  final NetworkfirewallRuleGroupRuleGroupReferenceSets? referenceSets;
+  final NetworkfirewallRuleGroupReferenceSets? referenceSets;
 
-  final NetworkfirewallRuleGroupRuleGroupRuleVariables? ruleVariables;
+  final NetworkfirewallRuleGroupRuleVariables? ruleVariables;
 
-  final NetworkfirewallRuleGroupRuleGroupRulesSource rulesSource;
+  final NetworkfirewallRuleGroupRulesSource rulesSource;
 
-  final NetworkfirewallRuleGroupRuleGroupStatefulRuleOptions?
-  statefulRuleOptions;
+  final NetworkfirewallRuleGroupStatefulRuleOptions? statefulRuleOptions;
 
   Map<String, Object?> encode() => {
     'reference_sets': ?referenceSets?.encode(),
@@ -83,11 +82,10 @@ final class NetworkfirewallRuleGroupRuleGroup {
 /// Typed helper for the `rule_group.reference_sets` block of
 /// `aws_networkfirewall_rule_group` (derived from provider schema).
 @immutable
-final class NetworkfirewallRuleGroupRuleGroupReferenceSets {
-  const NetworkfirewallRuleGroupRuleGroupReferenceSets({this.ipSetReferences});
+final class NetworkfirewallRuleGroupReferenceSets {
+  const NetworkfirewallRuleGroupReferenceSets({this.ipSetReferences});
 
-  final List<NetworkfirewallRuleGroupRuleGroupReferenceSetsIpSetReferences>?
-  ipSetReferences;
+  final List<NetworkfirewallRuleGroupIpSetReferences>? ipSetReferences;
 
   Map<String, Object?> encode() => {
     if (ipSetReferences != null)
@@ -98,18 +96,15 @@ final class NetworkfirewallRuleGroupRuleGroupReferenceSets {
 /// Typed helper for the `rule_group.reference_sets.ip_set_references` block of
 /// `aws_networkfirewall_rule_group` (derived from provider schema).
 @immutable
-final class NetworkfirewallRuleGroupRuleGroupReferenceSetsIpSetReferences {
-  const NetworkfirewallRuleGroupRuleGroupReferenceSetsIpSetReferences({
+final class NetworkfirewallRuleGroupIpSetReferences {
+  const NetworkfirewallRuleGroupIpSetReferences({
     required this.key,
     required this.ipSetReference,
   });
 
   final TfArg<String> key;
 
-  final List<
-    NetworkfirewallRuleGroupRuleGroupReferenceSetsIpSetReferencesIpSetReference
-  >
-  ipSetReference;
+  final List<NetworkfirewallRuleGroupIpSetReference> ipSetReference;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
@@ -120,10 +115,8 @@ final class NetworkfirewallRuleGroupRuleGroupReferenceSetsIpSetReferences {
 /// Typed helper for the `rule_group.reference_sets.ip_set_references.ip_set_reference` block of
 /// `aws_networkfirewall_rule_group` (derived from provider schema).
 @immutable
-final class NetworkfirewallRuleGroupRuleGroupReferenceSetsIpSetReferencesIpSetReference {
-  const NetworkfirewallRuleGroupRuleGroupReferenceSetsIpSetReferencesIpSetReference({
-    required this.referenceArn,
-  });
+final class NetworkfirewallRuleGroupIpSetReference {
+  const NetworkfirewallRuleGroupIpSetReference({required this.referenceArn});
 
   final TfArg<String> referenceArn;
 
@@ -133,15 +126,12 @@ final class NetworkfirewallRuleGroupRuleGroupReferenceSetsIpSetReferencesIpSetRe
 /// Typed helper for the `rule_group.rule_variables` block of
 /// `aws_networkfirewall_rule_group` (derived from provider schema).
 @immutable
-final class NetworkfirewallRuleGroupRuleGroupRuleVariables {
-  const NetworkfirewallRuleGroupRuleGroupRuleVariables({
-    this.ipSets,
-    this.portSets,
-  });
+final class NetworkfirewallRuleGroupRuleVariables {
+  const NetworkfirewallRuleGroupRuleVariables({this.ipSets, this.portSets});
 
-  final List<NetworkfirewallRuleGroupRuleGroupRuleVariablesIpSets>? ipSets;
+  final List<NetworkfirewallRuleGroupIpSets>? ipSets;
 
-  final List<NetworkfirewallRuleGroupRuleGroupRuleVariablesPortSets>? portSets;
+  final List<NetworkfirewallRuleGroupPortSets>? portSets;
 
   Map<String, Object?> encode() => {
     if (ipSets != null) 'ip_sets': [for (final e in ipSets!) e.encode()],
@@ -152,15 +142,15 @@ final class NetworkfirewallRuleGroupRuleGroupRuleVariables {
 /// Typed helper for the `rule_group.rule_variables.ip_sets` block of
 /// `aws_networkfirewall_rule_group` (derived from provider schema).
 @immutable
-final class NetworkfirewallRuleGroupRuleGroupRuleVariablesIpSets {
-  const NetworkfirewallRuleGroupRuleGroupRuleVariablesIpSets({
+final class NetworkfirewallRuleGroupIpSets {
+  const NetworkfirewallRuleGroupIpSets({
     required this.key,
     required this.ipSet,
   });
 
   final TfArg<String> key;
 
-  final NetworkfirewallRuleGroupRuleGroupRuleVariablesIpSetsIpSet ipSet;
+  final NetworkfirewallRuleGroupIpSet ipSet;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
@@ -171,10 +161,8 @@ final class NetworkfirewallRuleGroupRuleGroupRuleVariablesIpSets {
 /// Typed helper for the `rule_group.rule_variables.ip_sets.ip_set` block of
 /// `aws_networkfirewall_rule_group` (derived from provider schema).
 @immutable
-final class NetworkfirewallRuleGroupRuleGroupRuleVariablesIpSetsIpSet {
-  const NetworkfirewallRuleGroupRuleGroupRuleVariablesIpSetsIpSet({
-    required this.definition,
-  });
+final class NetworkfirewallRuleGroupIpSet {
+  const NetworkfirewallRuleGroupIpSet({required this.definition});
 
   final TfArg<List<String>> definition;
 
@@ -184,15 +172,15 @@ final class NetworkfirewallRuleGroupRuleGroupRuleVariablesIpSetsIpSet {
 /// Typed helper for the `rule_group.rule_variables.port_sets` block of
 /// `aws_networkfirewall_rule_group` (derived from provider schema).
 @immutable
-final class NetworkfirewallRuleGroupRuleGroupRuleVariablesPortSets {
-  const NetworkfirewallRuleGroupRuleGroupRuleVariablesPortSets({
+final class NetworkfirewallRuleGroupPortSets {
+  const NetworkfirewallRuleGroupPortSets({
     required this.key,
     required this.portSet,
   });
 
   final TfArg<String> key;
 
-  final NetworkfirewallRuleGroupRuleGroupRuleVariablesPortSetsPortSet portSet;
+  final NetworkfirewallRuleGroupPortSet portSet;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
@@ -203,10 +191,8 @@ final class NetworkfirewallRuleGroupRuleGroupRuleVariablesPortSets {
 /// Typed helper for the `rule_group.rule_variables.port_sets.port_set` block of
 /// `aws_networkfirewall_rule_group` (derived from provider schema).
 @immutable
-final class NetworkfirewallRuleGroupRuleGroupRuleVariablesPortSetsPortSet {
-  const NetworkfirewallRuleGroupRuleGroupRuleVariablesPortSetsPortSet({
-    required this.definition,
-  });
+final class NetworkfirewallRuleGroupPortSet {
+  const NetworkfirewallRuleGroupPortSet({required this.definition});
 
   final TfArg<List<String>> definition;
 
@@ -216,8 +202,8 @@ final class NetworkfirewallRuleGroupRuleGroupRuleVariablesPortSetsPortSet {
 /// Typed helper for the `rule_group.rules_source` block of
 /// `aws_networkfirewall_rule_group` (derived from provider schema).
 @immutable
-final class NetworkfirewallRuleGroupRuleGroupRulesSource {
-  const NetworkfirewallRuleGroupRuleGroupRulesSource({
+final class NetworkfirewallRuleGroupRulesSource {
+  const NetworkfirewallRuleGroupRulesSource({
     this.rulesString,
     this.rulesSourceList,
     this.statefulRule,
@@ -226,13 +212,11 @@ final class NetworkfirewallRuleGroupRuleGroupRulesSource {
 
   final TfArg<String>? rulesString;
 
-  final NetworkfirewallRuleGroupRuleGroupRulesSourceRulesSourceList?
-  rulesSourceList;
+  final NetworkfirewallRuleGroupRulesSourceList? rulesSourceList;
 
-  final List<NetworkfirewallRuleGroupRuleGroupRulesSourceStatefulRule>?
-  statefulRule;
+  final List<NetworkfirewallRuleGroupStatefulRule>? statefulRule;
 
-  final NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActions?
+  final NetworkfirewallRuleGroupStatelessRulesAndCustomActions?
   statelessRulesAndCustomActions;
 
   Map<String, Object?> encode() => {
@@ -248,24 +232,16 @@ final class NetworkfirewallRuleGroupRuleGroupRulesSource {
 /// Typed helper for the `rule_group.rules_source.rules_source_list` block of
 /// `aws_networkfirewall_rule_group` (derived from provider schema).
 @immutable
-final class NetworkfirewallRuleGroupRuleGroupRulesSourceRulesSourceList {
-  const NetworkfirewallRuleGroupRuleGroupRulesSourceRulesSourceList({
+final class NetworkfirewallRuleGroupRulesSourceList {
+  const NetworkfirewallRuleGroupRulesSourceList({
     required this.generatedRulesType,
     required this.targetTypes,
     required this.targets,
   });
 
-  final TfArg<
-    NetworkfirewallRuleGroupRuleGroupRulesSourceRulesSourceListGeneratedRulesType
-  >
-  generatedRulesType;
+  final TfArg<NetworkfirewallRuleGroupGeneratedRulesType> generatedRulesType;
 
-  final List<
-    TfArg<
-      NetworkfirewallRuleGroupRuleGroupRulesSourceRulesSourceListTargetTypes
-    >
-  >
-  targetTypes;
+  final List<TfArg<NetworkfirewallRuleGroupTargetTypes>> targetTypes;
 
   final TfArg<List<String>> targets;
 
@@ -277,29 +253,23 @@ final class NetworkfirewallRuleGroupRuleGroupRulesSourceRulesSourceList {
 }
 
 /// `generated_rules_type` — derived from the provider schema description.
-enum NetworkfirewallRuleGroupRuleGroupRulesSourceRulesSourceListGeneratedRulesType
-    implements TerraformEnum {
+enum NetworkfirewallRuleGroupGeneratedRulesType implements TerraformEnum {
   allowlist('ALLOWLIST'),
   denylist('DENYLIST'),
   rejectlist('REJECTLIST'),
   alertlist('ALERTLIST');
 
-  const NetworkfirewallRuleGroupRuleGroupRulesSourceRulesSourceListGeneratedRulesType(
-    this.terraformValue,
-  );
+  const NetworkfirewallRuleGroupGeneratedRulesType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `target_types` — derived from the provider schema description.
-enum NetworkfirewallRuleGroupRuleGroupRulesSourceRulesSourceListTargetTypes
-    implements TerraformEnum {
+enum NetworkfirewallRuleGroupTargetTypes implements TerraformEnum {
   tlsSni('TLS_SNI'),
   httpHost('HTTP_HOST');
 
-  const NetworkfirewallRuleGroupRuleGroupRulesSourceRulesSourceListTargetTypes(
-    this.terraformValue,
-  );
+  const NetworkfirewallRuleGroupTargetTypes(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -307,20 +277,18 @@ enum NetworkfirewallRuleGroupRuleGroupRulesSourceRulesSourceListTargetTypes
 /// Typed helper for the `rule_group.rules_source.stateful_rule` block of
 /// `aws_networkfirewall_rule_group` (derived from provider schema).
 @immutable
-final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatefulRule {
-  const NetworkfirewallRuleGroupRuleGroupRulesSourceStatefulRule({
+final class NetworkfirewallRuleGroupStatefulRule {
+  const NetworkfirewallRuleGroupStatefulRule({
     required this.action,
     required this.header,
     required this.ruleOption,
   });
 
-  final TfArg<NetworkfirewallRuleGroupRuleGroupRulesSourceStatefulRuleAction>
-  action;
+  final TfArg<NetworkfirewallRuleGroupAction> action;
 
-  final NetworkfirewallRuleGroupRuleGroupRulesSourceStatefulRuleHeader header;
+  final NetworkfirewallRuleGroupHeader header;
 
-  final List<NetworkfirewallRuleGroupRuleGroupRulesSourceStatefulRuleRuleOption>
-  ruleOption;
+  final List<NetworkfirewallRuleGroupRuleOption> ruleOption;
 
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
@@ -330,16 +298,13 @@ final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatefulRule {
 }
 
 /// `action` — derived from the provider schema description.
-enum NetworkfirewallRuleGroupRuleGroupRulesSourceStatefulRuleAction
-    implements TerraformEnum {
+enum NetworkfirewallRuleGroupAction implements TerraformEnum {
   pass('PASS'),
   drop('DROP'),
   alert('ALERT'),
   reject('REJECT');
 
-  const NetworkfirewallRuleGroupRuleGroupRulesSourceStatefulRuleAction(
-    this.terraformValue,
-  );
+  const NetworkfirewallRuleGroupAction(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -347,8 +312,8 @@ enum NetworkfirewallRuleGroupRuleGroupRulesSourceStatefulRuleAction
 /// Typed helper for the `rule_group.rules_source.stateful_rule.header` block of
 /// `aws_networkfirewall_rule_group` (derived from provider schema).
 @immutable
-final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatefulRuleHeader {
-  const NetworkfirewallRuleGroupRuleGroupRulesSourceStatefulRuleHeader({
+final class NetworkfirewallRuleGroupHeader {
+  const NetworkfirewallRuleGroupHeader({
     required this.destination,
     required this.destinationPort,
     required this.direction,
@@ -361,15 +326,9 @@ final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatefulRuleHeader {
 
   final TfArg<String> destinationPort;
 
-  final TfArg<
-    NetworkfirewallRuleGroupRuleGroupRulesSourceStatefulRuleHeaderDirection
-  >
-  direction;
+  final TfArg<NetworkfirewallRuleGroupDirection> direction;
 
-  final TfArg<
-    NetworkfirewallRuleGroupRuleGroupRulesSourceStatefulRuleHeaderProtocol
-  >
-  protocol;
+  final TfArg<NetworkfirewallRuleGroupProtocol> protocol;
 
   final TfArg<String> source;
 
@@ -386,21 +345,17 @@ final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatefulRuleHeader {
 }
 
 /// `direction` — derived from the provider schema description.
-enum NetworkfirewallRuleGroupRuleGroupRulesSourceStatefulRuleHeaderDirection
-    implements TerraformEnum {
+enum NetworkfirewallRuleGroupDirection implements TerraformEnum {
   forward('FORWARD'),
   any('ANY');
 
-  const NetworkfirewallRuleGroupRuleGroupRulesSourceStatefulRuleHeaderDirection(
-    this.terraformValue,
-  );
+  const NetworkfirewallRuleGroupDirection(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `protocol` — derived from the provider schema description.
-enum NetworkfirewallRuleGroupRuleGroupRulesSourceStatefulRuleHeaderProtocol
-    implements TerraformEnum {
+enum NetworkfirewallRuleGroupProtocol implements TerraformEnum {
   ip('IP'),
   tcp('TCP'),
   udp('UDP'),
@@ -423,9 +378,7 @@ enum NetworkfirewallRuleGroupRuleGroupRulesSourceStatefulRuleHeaderProtocol
   http2('HTTP2'),
   quic('QUIC');
 
-  const NetworkfirewallRuleGroupRuleGroupRulesSourceStatefulRuleHeaderProtocol(
-    this.terraformValue,
-  );
+  const NetworkfirewallRuleGroupProtocol(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -433,8 +386,8 @@ enum NetworkfirewallRuleGroupRuleGroupRulesSourceStatefulRuleHeaderProtocol
 /// Typed helper for the `rule_group.rules_source.stateful_rule.rule_option` block of
 /// `aws_networkfirewall_rule_group` (derived from provider schema).
 @immutable
-final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatefulRuleRuleOption {
-  const NetworkfirewallRuleGroupRuleGroupRulesSourceStatefulRuleRuleOption({
+final class NetworkfirewallRuleGroupRuleOption {
+  const NetworkfirewallRuleGroupRuleOption({
     required this.keyword,
     this.settings,
   });
@@ -452,21 +405,15 @@ final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatefulRuleRuleOption {
 /// Typed helper for the `rule_group.rules_source.stateless_rules_and_custom_actions` block of
 /// `aws_networkfirewall_rule_group` (derived from provider schema).
 @immutable
-final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActions {
-  const NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActions({
+final class NetworkfirewallRuleGroupStatelessRulesAndCustomActions {
+  const NetworkfirewallRuleGroupStatelessRulesAndCustomActions({
     this.customAction,
     required this.statelessRule,
   });
 
-  final List<
-    NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsCustomAction
-  >?
-  customAction;
+  final List<NetworkfirewallRuleGroupCustomAction>? customAction;
 
-  final List<
-    NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRule
-  >
-  statelessRule;
+  final List<NetworkfirewallRuleGroupStatelessRule> statelessRule;
 
   Map<String, Object?> encode() => {
     if (customAction != null)
@@ -478,16 +425,15 @@ final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomA
 /// Typed helper for the `rule_group.rules_source.stateless_rules_and_custom_actions.custom_action` block of
 /// `aws_networkfirewall_rule_group` (derived from provider schema).
 @immutable
-final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsCustomAction {
-  const NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsCustomAction({
+final class NetworkfirewallRuleGroupCustomAction {
+  const NetworkfirewallRuleGroupCustomAction({
     required this.actionName,
     required this.actionDefinition,
   });
 
   final TfArg<String> actionName;
 
-  final NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsCustomActionActionDefinition
-  actionDefinition;
+  final NetworkfirewallRuleGroupActionDefinition actionDefinition;
 
   Map<String, Object?> encode() => {
     'action_name': actionName.toTfJson(),
@@ -498,13 +444,12 @@ final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomA
 /// Typed helper for the `rule_group.rules_source.stateless_rules_and_custom_actions.custom_action.action_definition` block of
 /// `aws_networkfirewall_rule_group` (derived from provider schema).
 @immutable
-final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsCustomActionActionDefinition {
-  const NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsCustomActionActionDefinition({
+final class NetworkfirewallRuleGroupActionDefinition {
+  const NetworkfirewallRuleGroupActionDefinition({
     required this.publishMetricAction,
   });
 
-  final NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsCustomActionActionDefinitionPublishMetricAction
-  publishMetricAction;
+  final NetworkfirewallRuleGroupPublishMetricAction publishMetricAction;
 
   Map<String, Object?> encode() => {
     'publish_metric_action': publishMetricAction.encode(),
@@ -514,15 +459,10 @@ final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomA
 /// Typed helper for the `rule_group.rules_source.stateless_rules_and_custom_actions.custom_action.action_definition.publish_metric_action` block of
 /// `aws_networkfirewall_rule_group` (derived from provider schema).
 @immutable
-final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsCustomActionActionDefinitionPublishMetricAction {
-  const NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsCustomActionActionDefinitionPublishMetricAction({
-    required this.dimension,
-  });
+final class NetworkfirewallRuleGroupPublishMetricAction {
+  const NetworkfirewallRuleGroupPublishMetricAction({required this.dimension});
 
-  final List<
-    NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsCustomActionActionDefinitionPublishMetricActionDimension
-  >
-  dimension;
+  final List<NetworkfirewallRuleGroupDimension> dimension;
 
   Map<String, Object?> encode() => {
     'dimension': [for (final e in dimension) e.encode()],
@@ -532,10 +472,8 @@ final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomA
 /// Typed helper for the `rule_group.rules_source.stateless_rules_and_custom_actions.custom_action.action_definition.publish_metric_action.dimension` block of
 /// `aws_networkfirewall_rule_group` (derived from provider schema).
 @immutable
-final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsCustomActionActionDefinitionPublishMetricActionDimension {
-  const NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsCustomActionActionDefinitionPublishMetricActionDimension({
-    required this.value,
-  });
+final class NetworkfirewallRuleGroupDimension {
+  const NetworkfirewallRuleGroupDimension({required this.value});
 
   final TfArg<String> value;
 
@@ -545,16 +483,15 @@ final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomA
 /// Typed helper for the `rule_group.rules_source.stateless_rules_and_custom_actions.stateless_rule` block of
 /// `aws_networkfirewall_rule_group` (derived from provider schema).
 @immutable
-final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRule {
-  const NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRule({
+final class NetworkfirewallRuleGroupStatelessRule {
+  const NetworkfirewallRuleGroupStatelessRule({
     required this.priority,
     required this.ruleDefinition,
   });
 
   final TfArg<num> priority;
 
-  final NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinition
-  ruleDefinition;
+  final NetworkfirewallRuleGroupRuleDefinition ruleDefinition;
 
   Map<String, Object?> encode() => {
     'priority': priority.toTfJson(),
@@ -565,16 +502,15 @@ final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomA
 /// Typed helper for the `rule_group.rules_source.stateless_rules_and_custom_actions.stateless_rule.rule_definition` block of
 /// `aws_networkfirewall_rule_group` (derived from provider schema).
 @immutable
-final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinition {
-  const NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinition({
+final class NetworkfirewallRuleGroupRuleDefinition {
+  const NetworkfirewallRuleGroupRuleDefinition({
     required this.actions,
     required this.matchAttributes,
   });
 
   final TfArg<List<String>> actions;
 
-  final NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinitionMatchAttributes
-  matchAttributes;
+  final NetworkfirewallRuleGroupMatchAttributes matchAttributes;
 
   Map<String, Object?> encode() => {
     'actions': actions.toTfJson(),
@@ -585,8 +521,8 @@ final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomA
 /// Typed helper for the `rule_group.rules_source.stateless_rules_and_custom_actions.stateless_rule.rule_definition.match_attributes` block of
 /// `aws_networkfirewall_rule_group` (derived from provider schema).
 @immutable
-final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinitionMatchAttributes {
-  const NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinitionMatchAttributes({
+final class NetworkfirewallRuleGroupMatchAttributes {
+  const NetworkfirewallRuleGroupMatchAttributes({
     this.protocols,
     this.destination,
     this.destinationPort,
@@ -597,30 +533,15 @@ final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomA
 
   final TfArg<List<num>>? protocols;
 
-  final List<
-    NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinitionMatchAttributesDestination
-  >?
-  destination;
+  final List<NetworkfirewallRuleGroupDestination>? destination;
 
-  final List<
-    NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinitionMatchAttributesDestinationPort
-  >?
-  destinationPort;
+  final List<NetworkfirewallRuleGroupDestinationPort>? destinationPort;
 
-  final List<
-    NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinitionMatchAttributesSource
-  >?
-  source;
+  final List<NetworkfirewallRuleGroupSource>? source;
 
-  final List<
-    NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinitionMatchAttributesSourcePort
-  >?
-  sourcePort;
+  final List<NetworkfirewallRuleGroupSourcePort>? sourcePort;
 
-  final List<
-    NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinitionMatchAttributesTcpFlag
-  >?
-  tcpFlag;
+  final List<NetworkfirewallRuleGroupTcpFlag>? tcpFlag;
 
   Map<String, Object?> encode() => {
     'protocols': ?protocols?.toTfJson(),
@@ -638,10 +559,8 @@ final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomA
 /// Typed helper for the `rule_group.rules_source.stateless_rules_and_custom_actions.stateless_rule.rule_definition.match_attributes.destination` block of
 /// `aws_networkfirewall_rule_group` (derived from provider schema).
 @immutable
-final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinitionMatchAttributesDestination {
-  const NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinitionMatchAttributesDestination({
-    required this.addressDefinition,
-  });
+final class NetworkfirewallRuleGroupDestination {
+  const NetworkfirewallRuleGroupDestination({required this.addressDefinition});
 
   final TfArg<String> addressDefinition;
 
@@ -653,8 +572,8 @@ final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomA
 /// Typed helper for the `rule_group.rules_source.stateless_rules_and_custom_actions.stateless_rule.rule_definition.match_attributes.destination_port` block of
 /// `aws_networkfirewall_rule_group` (derived from provider schema).
 @immutable
-final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinitionMatchAttributesDestinationPort {
-  const NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinitionMatchAttributesDestinationPort({
+final class NetworkfirewallRuleGroupDestinationPort {
+  const NetworkfirewallRuleGroupDestinationPort({
     required this.fromPort,
     this.toPort,
   });
@@ -672,10 +591,8 @@ final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomA
 /// Typed helper for the `rule_group.rules_source.stateless_rules_and_custom_actions.stateless_rule.rule_definition.match_attributes.source` block of
 /// `aws_networkfirewall_rule_group` (derived from provider schema).
 @immutable
-final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinitionMatchAttributesSource {
-  const NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinitionMatchAttributesSource({
-    required this.addressDefinition,
-  });
+final class NetworkfirewallRuleGroupSource {
+  const NetworkfirewallRuleGroupSource({required this.addressDefinition});
 
   final TfArg<String> addressDefinition;
 
@@ -687,8 +604,8 @@ final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomA
 /// Typed helper for the `rule_group.rules_source.stateless_rules_and_custom_actions.stateless_rule.rule_definition.match_attributes.source_port` block of
 /// `aws_networkfirewall_rule_group` (derived from provider schema).
 @immutable
-final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinitionMatchAttributesSourcePort {
-  const NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinitionMatchAttributesSourcePort({
+final class NetworkfirewallRuleGroupSourcePort {
+  const NetworkfirewallRuleGroupSourcePort({
     required this.fromPort,
     this.toPort,
   });
@@ -706,25 +623,12 @@ final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomA
 /// Typed helper for the `rule_group.rules_source.stateless_rules_and_custom_actions.stateless_rule.rule_definition.match_attributes.tcp_flag` block of
 /// `aws_networkfirewall_rule_group` (derived from provider schema).
 @immutable
-final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinitionMatchAttributesTcpFlag {
-  const NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinitionMatchAttributesTcpFlag({
-    required this.flags,
-    this.masks,
-  });
+final class NetworkfirewallRuleGroupTcpFlag {
+  const NetworkfirewallRuleGroupTcpFlag({required this.flags, this.masks});
 
-  final List<
-    TfArg<
-      NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinitionMatchAttributesTcpFlagFlags
-    >
-  >
-  flags;
+  final List<TfArg<NetworkfirewallRuleGroupFlags>> flags;
 
-  final List<
-    TfArg<
-      NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinitionMatchAttributesTcpFlagMasks
-    >
-  >?
-  masks;
+  final List<TfArg<NetworkfirewallRuleGroupMasks>>? masks;
 
   Map<String, Object?> encode() => {
     'flags': [for (final e in flags) e.toTfJson()],
@@ -733,8 +637,7 @@ final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomA
 }
 
 /// `flags` — derived from the provider schema description.
-enum NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinitionMatchAttributesTcpFlagFlags
-    implements TerraformEnum {
+enum NetworkfirewallRuleGroupFlags implements TerraformEnum {
   fin('FIN'),
   syn('SYN'),
   rst('RST'),
@@ -744,16 +647,13 @@ enum NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsS
   ece('ECE'),
   cwr('CWR');
 
-  const NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinitionMatchAttributesTcpFlagFlags(
-    this.terraformValue,
-  );
+  const NetworkfirewallRuleGroupFlags(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `masks` — derived from the provider schema description.
-enum NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinitionMatchAttributesTcpFlagMasks
-    implements TerraformEnum {
+enum NetworkfirewallRuleGroupMasks implements TerraformEnum {
   fin('FIN'),
   syn('SYN'),
   rst('RST'),
@@ -763,9 +663,7 @@ enum NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsS
   ece('ECE'),
   cwr('CWR');
 
-  const NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinitionMatchAttributesTcpFlagMasks(
-    this.terraformValue,
-  );
+  const NetworkfirewallRuleGroupMasks(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -773,26 +671,20 @@ enum NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsS
 /// Typed helper for the `rule_group.stateful_rule_options` block of
 /// `aws_networkfirewall_rule_group` (derived from provider schema).
 @immutable
-final class NetworkfirewallRuleGroupRuleGroupStatefulRuleOptions {
-  const NetworkfirewallRuleGroupRuleGroupStatefulRuleOptions({
-    required this.ruleOrder,
-  });
+final class NetworkfirewallRuleGroupStatefulRuleOptions {
+  const NetworkfirewallRuleGroupStatefulRuleOptions({required this.ruleOrder});
 
-  final TfArg<NetworkfirewallRuleGroupRuleGroupStatefulRuleOptionsRuleOrder>
-  ruleOrder;
+  final TfArg<NetworkfirewallRuleGroupRuleOrder> ruleOrder;
 
   Map<String, Object?> encode() => {'rule_order': ruleOrder.toTfJson()};
 }
 
 /// `rule_order` — derived from the provider schema description.
-enum NetworkfirewallRuleGroupRuleGroupStatefulRuleOptionsRuleOrder
-    implements TerraformEnum {
+enum NetworkfirewallRuleGroupRuleOrder implements TerraformEnum {
   defaultActionOrder('DEFAULT_ACTION_ORDER'),
   strictOrder('STRICT_ORDER');
 
-  const NetworkfirewallRuleGroupRuleGroupStatefulRuleOptionsRuleOrder(
-    this.terraformValue,
-  );
+  const NetworkfirewallRuleGroupRuleOrder(this.terraformValue);
   @override
   final String terraformValue;
 }

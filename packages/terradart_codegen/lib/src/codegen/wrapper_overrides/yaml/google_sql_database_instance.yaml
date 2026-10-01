@@ -8,9 +8,9 @@ deriveNestedTypes: true
 curatedDoc: |-
   /// Manages a Cloud SQL instance — a managed MySQL, PostgreSQL, or SQL
   /// Server engine. The schema is large; this wrapper exposes the
-  /// commonly-used fields as typed helpers ([SqlDatabaseInstanceSettings], [SqlDatabaseInstanceSettingsIpConfiguration],
-  /// [SqlDatabaseInstanceSettingsBackupConfiguration], [SqlDatabaseInstanceSettingsDatabaseFlags], [SqlDatabaseInstanceSettingsLocationPreference],
-  /// [SqlDatabaseInstanceSettingsMaintenanceWindow], [SqlDatabaseInstanceReplicaConfiguration]) and leaves the rarely-set
+  /// commonly-used fields as typed helpers ([SqlDatabaseInstanceSettings], [SqlDatabaseInstanceIpConfiguration],
+  /// [SqlDatabaseInstanceBackupConfiguration], [SqlDatabaseInstanceDatabaseFlags], [SqlDatabaseInstanceLocationPreference],
+  /// [SqlDatabaseInstanceMaintenanceWindow], [SqlDatabaseInstanceReplicaConfiguration]) and leaves the rarely-set
   /// knobs (e.g. `active_directory_config`, `sql_server_audit_config`,
   /// `password_validation_policy`) on the
   /// [SqlDatabaseInstanceSettings.extra] / [SqlDatabaseInstanceSettings.advancedExtra] escape hatches so the
@@ -60,11 +60,11 @@ curatedDoc: |-
   ///     edition: TfArg.literal(SqlEdition.enterprise),
   ///     diskSize: TfArg.literal(20),
   ///     diskType: TfArg.literal(SqlDiskType.pdSsd),
-  ///     ipConfiguration: SqlDatabaseInstanceSettingsIpConfiguration(
+  ///     ipConfiguration: SqlDatabaseInstanceIpConfiguration(
   ///       ipv4Enabled: TfArg.literal(false),
   ///       privateNetwork: TfArg.ref(vpc.selfLink),
   ///     ),
-  ///     backupConfiguration: SqlDatabaseInstanceSettingsBackupConfiguration(
+  ///     backupConfiguration: SqlDatabaseInstanceBackupConfiguration(
   ///       enabled: TfArg.literal(true),
   ///       pointInTimeRecoveryEnabled: TfArg.literal(true),
   ///       startTime: TfArg.literal('03:00'),

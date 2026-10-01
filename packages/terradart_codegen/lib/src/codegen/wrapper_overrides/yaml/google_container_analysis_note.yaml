@@ -22,7 +22,7 @@ curatedDoc: |-
   ///   localName: 'attestor',
   ///   name: TfArg.literal('terradart-attestor-note'),
   ///   attestationAuthority: ContainerAnalysisNoteAttestationAuthority(
-  ///     hint: ContainerAnalysisNoteAttestationAuthorityHint(
+  ///     hint: ContainerAnalysisNoteHint(
   ///       humanReadableName: TfArg.literal('TerraDart attestor'),
   ///     ),
   ///   ),

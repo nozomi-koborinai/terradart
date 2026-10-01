@@ -43,7 +43,7 @@ sealed class RedshiftserverlessNamespaceAdminPassword {
   /// Sets `manage_admin_password`.
   const factory RedshiftserverlessNamespaceAdminPassword.manageAdminPassword(
     TfArg<bool> manageAdminPassword,
-  ) = RedshiftserverlessNamespaceAdminPasswordManageAdminPassword;
+  ) = RedshiftserverlessNamespaceManageAdminPassword;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -102,9 +102,9 @@ final class RedshiftserverlessNamespaceAdminPasswordAdminUserPasswordWo
 }
 
 /// The [RedshiftserverlessNamespaceAdminPassword.manageAdminPassword] choice: sets `manage_admin_password`.
-final class RedshiftserverlessNamespaceAdminPasswordManageAdminPassword
+final class RedshiftserverlessNamespaceManageAdminPassword
     extends RedshiftserverlessNamespaceAdminPassword {
-  const RedshiftserverlessNamespaceAdminPasswordManageAdminPassword(
+  const RedshiftserverlessNamespaceManageAdminPassword(
     this.manageAdminPassword,
   );
 

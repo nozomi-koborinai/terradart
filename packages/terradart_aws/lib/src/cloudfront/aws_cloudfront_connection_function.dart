@@ -10,8 +10,8 @@ const Set<String> _awsCloudfrontConnectionFunctionSensitive = <String>{};
 /// Typed helper for the `connection_function_config` block of
 /// `aws_cloudfront_connection_function` (derived from provider schema).
 @immutable
-final class CloudfrontConnectionFunctionConnectionFunctionConfig {
-  const CloudfrontConnectionFunctionConnectionFunctionConfig({
+final class CloudfrontConnectionFunctionConfig {
+  const CloudfrontConnectionFunctionConfig({
     required this.comment,
     required this.runtime,
     this.keyValueStoreAssociation,
@@ -19,12 +19,9 @@ final class CloudfrontConnectionFunctionConnectionFunctionConfig {
 
   final TfArg<String> comment;
 
-  final TfArg<CloudfrontConnectionFunctionConnectionFunctionConfigRuntime>
-  runtime;
+  final TfArg<CloudfrontConnectionFunctionRuntime> runtime;
 
-  final List<
-    CloudfrontConnectionFunctionConnectionFunctionConfigKeyValueStoreAssociation
-  >?
+  final List<CloudfrontConnectionFunctionKeyValueStoreAssociation>?
   keyValueStoreAssociation;
 
   Map<String, Object?> encode() => {
@@ -38,14 +35,11 @@ final class CloudfrontConnectionFunctionConnectionFunctionConfig {
 }
 
 /// `runtime` — derived from the provider schema description.
-enum CloudfrontConnectionFunctionConnectionFunctionConfigRuntime
-    implements TerraformEnum {
+enum CloudfrontConnectionFunctionRuntime implements TerraformEnum {
   cloudfrontJs1p0('cloudfront-js-1.0'),
   cloudfrontJs2p0('cloudfront-js-2.0');
 
-  const CloudfrontConnectionFunctionConnectionFunctionConfigRuntime(
-    this.terraformValue,
-  );
+  const CloudfrontConnectionFunctionRuntime(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -53,8 +47,8 @@ enum CloudfrontConnectionFunctionConnectionFunctionConfigRuntime
 /// Typed helper for the `connection_function_config.key_value_store_association` block of
 /// `aws_cloudfront_connection_function` (derived from provider schema).
 @immutable
-final class CloudfrontConnectionFunctionConnectionFunctionConfigKeyValueStoreAssociation {
-  const CloudfrontConnectionFunctionConnectionFunctionConfigKeyValueStoreAssociation({
+final class CloudfrontConnectionFunctionKeyValueStoreAssociation {
+  const CloudfrontConnectionFunctionKeyValueStoreAssociation({
     required this.keyValueStoreArn,
   });
 
@@ -75,8 +69,7 @@ final class AwsCloudfrontConnectionFunction extends Resource {
     required TfArg<String> name,
     TfArg<bool>? publish,
     TfArg<Map<String, String>>? tags,
-    List<CloudfrontConnectionFunctionConnectionFunctionConfig>?
-    connectionFunctionConfig,
+    List<CloudfrontConnectionFunctionConfig>? connectionFunctionConfig,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -19,16 +19,13 @@ final class BackupRestoreTestingPlanRecoveryPointSelection {
     this.selectionWindowDays,
   });
 
-  final TfArg<BackupRestoreTestingPlanRecoveryPointSelectionAlgorithm>
-  algorithm;
+  final TfArg<BackupRestoreTestingPlanAlgorithm> algorithm;
 
   final TfArg<List<String>>? excludeVaults;
 
   final TfArg<List<String>> includeVaults;
 
-  final List<
-    TfArg<BackupRestoreTestingPlanRecoveryPointSelectionRecoveryPointTypes>
-  >
+  final List<TfArg<BackupRestoreTestingPlanRecoveryPointTypes>>
   recoveryPointTypes;
 
   final TfArg<num>? selectionWindowDays;
@@ -43,27 +40,21 @@ final class BackupRestoreTestingPlanRecoveryPointSelection {
 }
 
 /// `algorithm` — derived from the provider schema description.
-enum BackupRestoreTestingPlanRecoveryPointSelectionAlgorithm
-    implements TerraformEnum {
+enum BackupRestoreTestingPlanAlgorithm implements TerraformEnum {
   latestWithinWindow('LATEST_WITHIN_WINDOW'),
   randomWithinWindow('RANDOM_WITHIN_WINDOW');
 
-  const BackupRestoreTestingPlanRecoveryPointSelectionAlgorithm(
-    this.terraformValue,
-  );
+  const BackupRestoreTestingPlanAlgorithm(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `recovery_point_types` — derived from the provider schema description.
-enum BackupRestoreTestingPlanRecoveryPointSelectionRecoveryPointTypes
-    implements TerraformEnum {
+enum BackupRestoreTestingPlanRecoveryPointTypes implements TerraformEnum {
   continuous('CONTINUOUS'),
   snapshot('SNAPSHOT');
 
-  const BackupRestoreTestingPlanRecoveryPointSelectionRecoveryPointTypes(
-    this.terraformValue,
-  );
+  const BackupRestoreTestingPlanRecoveryPointTypes(this.terraformValue);
   @override
   final String terraformValue;
 }

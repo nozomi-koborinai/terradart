@@ -44,7 +44,7 @@ final class InternetmonitorMonitorHealthEventsConfig {
 final class InternetmonitorMonitorInternetMeasurementsLogDelivery {
   const InternetmonitorMonitorInternetMeasurementsLogDelivery({this.s3Config});
 
-  final InternetmonitorMonitorInternetMeasurementsLogDeliveryS3Config? s3Config;
+  final InternetmonitorMonitorS3Config? s3Config;
 
   Map<String, Object?> encode() => {'s3_config': ?s3Config?.encode()};
 }
@@ -52,8 +52,8 @@ final class InternetmonitorMonitorInternetMeasurementsLogDelivery {
 /// Typed helper for the `internet_measurements_log_delivery.s3_config` block of
 /// `aws_internetmonitor_monitor` (derived from provider schema).
 @immutable
-final class InternetmonitorMonitorInternetMeasurementsLogDeliveryS3Config {
-  const InternetmonitorMonitorInternetMeasurementsLogDeliveryS3Config({
+final class InternetmonitorMonitorS3Config {
+  const InternetmonitorMonitorS3Config({
     required this.bucketName,
     this.bucketPrefix,
     this.logDeliveryStatus,
@@ -63,10 +63,7 @@ final class InternetmonitorMonitorInternetMeasurementsLogDeliveryS3Config {
 
   final TfArg<String>? bucketPrefix;
 
-  final TfArg<
-    InternetmonitorMonitorInternetMeasurementsLogDeliveryS3ConfigLogDeliveryStatus
-  >?
-  logDeliveryStatus;
+  final TfArg<InternetmonitorMonitorLogDeliveryStatus>? logDeliveryStatus;
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
@@ -76,14 +73,11 @@ final class InternetmonitorMonitorInternetMeasurementsLogDeliveryS3Config {
 }
 
 /// `log_delivery_status` — derived from the provider schema description.
-enum InternetmonitorMonitorInternetMeasurementsLogDeliveryS3ConfigLogDeliveryStatus
-    implements TerraformEnum {
+enum InternetmonitorMonitorLogDeliveryStatus implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const InternetmonitorMonitorInternetMeasurementsLogDeliveryS3ConfigLogDeliveryStatus(
-    this.terraformValue,
-  );
+  const InternetmonitorMonitorLogDeliveryStatus(this.terraformValue);
   @override
   final String terraformValue;
 }

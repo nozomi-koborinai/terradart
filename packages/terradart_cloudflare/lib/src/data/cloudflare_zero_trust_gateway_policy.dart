@@ -20,11 +20,11 @@ final class DataZeroTrustGatewayPolicyFilter {
     this.search,
   });
 
-  final TfArg<DataZeroTrustGatewayPolicyFilterDirection>? direction;
+  final TfArg<DataZeroTrustGatewayPolicyDirection>? direction;
 
   final TfArg<List<String>>? filter;
 
-  final TfArg<DataZeroTrustGatewayPolicyFilterOrderBy>? orderBy;
+  final TfArg<DataZeroTrustGatewayPolicyOrderBy>? orderBy;
 
   final TfArg<String>? search;
 
@@ -37,23 +37,23 @@ final class DataZeroTrustGatewayPolicyFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataZeroTrustGatewayPolicyFilterDirection implements TerraformEnum {
+enum DataZeroTrustGatewayPolicyDirection implements TerraformEnum {
   asc('asc'),
   desc('desc');
 
-  const DataZeroTrustGatewayPolicyFilterDirection(this.terraformValue);
+  const DataZeroTrustGatewayPolicyDirection(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `order_by` — derived from the provider schema description.
-enum DataZeroTrustGatewayPolicyFilterOrderBy implements TerraformEnum {
+enum DataZeroTrustGatewayPolicyOrderBy implements TerraformEnum {
   name('name'),
   createdAt('created_at'),
   updatedAt('updated_at'),
   precedence('precedence');
 
-  const DataZeroTrustGatewayPolicyFilterOrderBy(this.terraformValue);
+  const DataZeroTrustGatewayPolicyOrderBy(this.terraformValue);
   @override
   final String terraformValue;
 }

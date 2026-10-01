@@ -9,21 +9,21 @@ export 'src/dataexchange/aws_dataexchange_event_action.dart'
     show
         AwsDataexchangeEventAction,
         DataexchangeEventActionAction,
-        DataexchangeEventActionActionExportRevisionToS3,
-        DataexchangeEventActionActionExportRevisionToS3Encryption,
-        DataexchangeEventActionActionExportRevisionToS3EncryptionType,
-        DataexchangeEventActionActionExportRevisionToS3RevisionDestination,
+        DataexchangeEventActionEncryption,
         DataexchangeEventActionEvent,
-        DataexchangeEventActionEventRevisionPublished;
+        DataexchangeEventActionExportRevisionToS3,
+        DataexchangeEventActionRevisionDestination,
+        DataexchangeEventActionRevisionPublished,
+        DataexchangeEventActionType;
 export 'src/dataexchange/aws_dataexchange_revision.dart'
     show AwsDataexchangeRevision;
 export 'src/dataexchange/aws_dataexchange_revision_assets.dart'
     show
         AwsDataexchangeRevisionAssets,
         DataexchangeRevisionAssetsAsset,
-        DataexchangeRevisionAssetsAssetCreateS3DataAccessFromS3Bucket,
-        DataexchangeRevisionAssetsAssetCreateS3DataAccessFromS3BucketAssetSource,
-        DataexchangeRevisionAssetsAssetCreateS3DataAccessFromS3BucketAssetSourceKmsKeysToGrant,
-        DataexchangeRevisionAssetsAssetImportAssetsFromS3,
-        DataexchangeRevisionAssetsAssetImportAssetsFromS3AssetSource,
-        DataexchangeRevisionAssetsAssetImportAssetsFromSignedUrl;
+        DataexchangeRevisionAssetsCreateS3DataAccessFromS3Bucket,
+        DataexchangeRevisionAssetsCreateS3DataAccessFromS3BucketAssetSource,
+        DataexchangeRevisionAssetsImportAssetsFromS3,
+        DataexchangeRevisionAssetsImportAssetsFromS3AssetSource,
+        DataexchangeRevisionAssetsImportAssetsFromSignedUrl,
+        DataexchangeRevisionAssetsKmsKeysToGrant;

@@ -18,8 +18,7 @@ final class DialogflowCxGenerativeSettingsFallbackSettings {
 
   final TfArg<String>? selectedPrompt;
 
-  final List<DialogflowCxGenerativeSettingsFallbackSettingsPromptTemplates>?
-  promptTemplates;
+  final List<DialogflowCxGenerativeSettingsPromptTemplates>? promptTemplates;
 
   Map<String, Object?> encode() => {
     'selected_prompt': ?selectedPrompt?.toTfJson(),
@@ -31,8 +30,8 @@ final class DialogflowCxGenerativeSettingsFallbackSettings {
 /// Typed helper for the `fallback_settings.prompt_templates` block of
 /// `google_dialogflow_cx_generative_settings` (derived from provider schema).
 @immutable
-final class DialogflowCxGenerativeSettingsFallbackSettingsPromptTemplates {
-  const DialogflowCxGenerativeSettingsFallbackSettingsPromptTemplates({
+final class DialogflowCxGenerativeSettingsPromptTemplates {
+  const DialogflowCxGenerativeSettingsPromptTemplates({
     this.displayName,
     this.frozen,
     this.promptText,
@@ -62,10 +61,7 @@ final class DialogflowCxGenerativeSettingsGenerativeSafetySettings {
 
   final TfArg<String>? defaultBannedPhraseMatchStrategy;
 
-  final List<
-    DialogflowCxGenerativeSettingsGenerativeSafetySettingsBannedPhrases
-  >?
-  bannedPhrases;
+  final List<DialogflowCxGenerativeSettingsBannedPhrases>? bannedPhrases;
 
   Map<String, Object?> encode() => {
     'default_banned_phrase_match_strategy': ?defaultBannedPhraseMatchStrategy
@@ -78,8 +74,8 @@ final class DialogflowCxGenerativeSettingsGenerativeSafetySettings {
 /// Typed helper for the `generative_safety_settings.banned_phrases` block of
 /// `google_dialogflow_cx_generative_settings` (derived from provider schema).
 @immutable
-final class DialogflowCxGenerativeSettingsGenerativeSafetySettingsBannedPhrases {
-  const DialogflowCxGenerativeSettingsGenerativeSafetySettingsBannedPhrases({
+final class DialogflowCxGenerativeSettingsBannedPhrases {
+  const DialogflowCxGenerativeSettingsBannedPhrases({
     required this.languageCode,
     required this.text,
   });

@@ -31,38 +31,38 @@ export 'src/netapp/google_netapp_storage_pool.dart'
 export 'src/netapp/google_netapp_volume.dart'
     show
         GoogleNetappVolume,
+        NetappVolumeAccessType,
         NetappVolumeBackupConfig,
         NetappVolumeBlockDevices,
-        NetappVolumeBlockDevicesOsType,
+        NetappVolumeCacheConfig,
         NetappVolumeCacheParameters,
-        NetappVolumeCacheParametersCacheConfig,
+        NetappVolumeDailySchedule,
         NetappVolumeExportPolicy,
-        NetappVolumeExportPolicyRules,
-        NetappVolumeExportPolicyRulesAccessType,
-        NetappVolumeExportPolicyRulesSquashMode,
+        NetappVolumeHourlySchedule,
         NetappVolumeHybridReplicationParameters,
-        NetappVolumeHybridReplicationParametersHybridReplicationType,
-        NetappVolumeHybridReplicationParametersReplicationSchedule,
+        NetappVolumeHybridReplicationType,
         NetappVolumeLargeCapacityConfig,
+        NetappVolumeMonthlySchedule,
+        NetappVolumeOsType,
+        NetappVolumeReplicationSchedule,
         NetappVolumeRestoreParameters,
         NetappVolumeRestoreParametersSourceBackup,
         NetappVolumeRestoreParametersSourceSnapshot,
+        NetappVolumeRules,
         NetappVolumeSecurityStyle,
         NetappVolumeSnapshotPolicy,
-        NetappVolumeSnapshotPolicyDailySchedule,
-        NetappVolumeSnapshotPolicyHourlySchedule,
-        NetappVolumeSnapshotPolicyMonthlySchedule,
-        NetappVolumeSnapshotPolicyWeeklySchedule,
+        NetappVolumeSquashMode,
+        NetappVolumeTierAction,
         NetappVolumeTieringPolicy,
-        NetappVolumeTieringPolicyTierAction;
+        NetappVolumeWeeklySchedule;
 export 'src/netapp/google_netapp_volume_quota_rule.dart'
     show GoogleNetappVolumeQuotaRule, NetappVolumeQuotaRuleType;
 export 'src/netapp/google_netapp_volume_replication.dart'
     show
         GoogleNetappVolumeReplication,
         NetappVolumeReplicationDestinationVolumeParameters,
-        NetappVolumeReplicationDestinationVolumeParametersTieringPolicy,
-        NetappVolumeReplicationDestinationVolumeParametersTieringPolicyTierAction,
-        NetappVolumeReplicationReplicationSchedule;
+        NetappVolumeReplicationReplicationSchedule,
+        NetappVolumeReplicationTierAction,
+        NetappVolumeReplicationTieringPolicy;
 export 'src/netapp/google_netapp_volume_snapshot.dart'
     show GoogleNetappVolumeSnapshot;

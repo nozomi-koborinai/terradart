@@ -145,7 +145,7 @@ final class ComputeInstanceFromMachineImageNetworkInterface {
 
   final TfArg<String>? networkIp;
 
-  final TfArg<ComputeInstanceFromMachineImageNetworkInterfaceNicType>? nicType;
+  final TfArg<ComputeInstanceFromMachineImageNicType>? nicType;
 
   final TfArg<num>? queueCount;
 
@@ -159,17 +159,13 @@ final class ComputeInstanceFromMachineImageNetworkInterface {
 
   final TfArg<num>? vlan;
 
-  final List<ComputeInstanceFromMachineImageNetworkInterfaceAccessConfig>?
-  accessConfig;
+  final List<ComputeInstanceFromMachineImageAccessConfig>? accessConfig;
 
-  final List<ComputeInstanceFromMachineImageNetworkInterfaceAliasIpRange>?
-  aliasIpRange;
+  final List<ComputeInstanceFromMachineImageAliasIpRange>? aliasIpRange;
 
-  final List<ComputeInstanceFromMachineImageNetworkInterfaceAliasIpv6Range>?
-  aliasIpv6Range;
+  final List<ComputeInstanceFromMachineImageAliasIpv6Range>? aliasIpv6Range;
 
-  final List<ComputeInstanceFromMachineImageNetworkInterfaceIpv6AccessConfig>?
-  ipv6AccessConfig;
+  final List<ComputeInstanceFromMachineImageIpv6AccessConfig>? ipv6AccessConfig;
 
   Map<String, Object?> encode() => {
     'igmp_query': ?igmpQuery?.toTfJson(),
@@ -197,17 +193,14 @@ final class ComputeInstanceFromMachineImageNetworkInterface {
 }
 
 /// `nic_type` — derived from the provider schema description.
-enum ComputeInstanceFromMachineImageNetworkInterfaceNicType
-    implements TerraformEnum {
+enum ComputeInstanceFromMachineImageNicType implements TerraformEnum {
   gvnic('GVNIC'),
   virtioNet('VIRTIO_NET'),
   idpf('IDPF'),
   mrdma('MRDMA'),
   irdma('IRDMA');
 
-  const ComputeInstanceFromMachineImageNetworkInterfaceNicType(
-    this.terraformValue,
-  );
+  const ComputeInstanceFromMachineImageNicType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -215,8 +208,8 @@ enum ComputeInstanceFromMachineImageNetworkInterfaceNicType
 /// Typed helper for the `network_interface.access_config` block of
 /// `google_compute_instance_from_machine_image` (derived from provider schema).
 @immutable
-final class ComputeInstanceFromMachineImageNetworkInterfaceAccessConfig {
-  const ComputeInstanceFromMachineImageNetworkInterfaceAccessConfig({
+final class ComputeInstanceFromMachineImageAccessConfig {
+  const ComputeInstanceFromMachineImageAccessConfig({
     this.natIp,
     this.networkTier,
     this.publicPtrDomainName,
@@ -238,8 +231,8 @@ final class ComputeInstanceFromMachineImageNetworkInterfaceAccessConfig {
 /// Typed helper for the `network_interface.alias_ip_range` block of
 /// `google_compute_instance_from_machine_image` (derived from provider schema).
 @immutable
-final class ComputeInstanceFromMachineImageNetworkInterfaceAliasIpRange {
-  const ComputeInstanceFromMachineImageNetworkInterfaceAliasIpRange({
+final class ComputeInstanceFromMachineImageAliasIpRange {
+  const ComputeInstanceFromMachineImageAliasIpRange({
     required this.ipCidrRange,
     this.subnetworkRangeName,
   });
@@ -257,8 +250,8 @@ final class ComputeInstanceFromMachineImageNetworkInterfaceAliasIpRange {
 /// Typed helper for the `network_interface.alias_ipv6_range` block of
 /// `google_compute_instance_from_machine_image` (derived from provider schema).
 @immutable
-final class ComputeInstanceFromMachineImageNetworkInterfaceAliasIpv6Range {
-  const ComputeInstanceFromMachineImageNetworkInterfaceAliasIpv6Range({
+final class ComputeInstanceFromMachineImageAliasIpv6Range {
+  const ComputeInstanceFromMachineImageAliasIpv6Range({
     required this.ipCidrRange,
     this.subnetworkRangeName,
   });
@@ -276,8 +269,8 @@ final class ComputeInstanceFromMachineImageNetworkInterfaceAliasIpv6Range {
 /// Typed helper for the `network_interface.ipv6_access_config` block of
 /// `google_compute_instance_from_machine_image` (derived from provider schema).
 @immutable
-final class ComputeInstanceFromMachineImageNetworkInterfaceIpv6AccessConfig {
-  const ComputeInstanceFromMachineImageNetworkInterfaceIpv6AccessConfig({
+final class ComputeInstanceFromMachineImageIpv6AccessConfig {
+  const ComputeInstanceFromMachineImageIpv6AccessConfig({
     this.externalIpv6,
     this.externalIpv6PrefixLength,
     this.name,
@@ -312,9 +305,7 @@ final class ComputeInstanceFromMachineImageNetworkPerformanceConfig {
     required this.totalEgressBandwidthTier,
   });
 
-  final TfArg<
-    ComputeInstanceFromMachineImageNetworkPerformanceConfigTotalEgressBandwidthTier
-  >
+  final TfArg<ComputeInstanceFromMachineImageTotalEgressBandwidthTier>
   totalEgressBandwidthTier;
 
   Map<String, Object?> encode() => {
@@ -323,12 +314,12 @@ final class ComputeInstanceFromMachineImageNetworkPerformanceConfig {
 }
 
 /// `total_egress_bandwidth_tier` — derived from the provider schema description.
-enum ComputeInstanceFromMachineImageNetworkPerformanceConfigTotalEgressBandwidthTier
+enum ComputeInstanceFromMachineImageTotalEgressBandwidthTier
     implements TerraformEnum {
   tier1('TIER_1'),
   defaultCase('DEFAULT');
 
-  const ComputeInstanceFromMachineImageNetworkPerformanceConfigTotalEgressBandwidthTier(
+  const ComputeInstanceFromMachineImageTotalEgressBandwidthTier(
     this.terraformValue,
   );
   @override
@@ -359,8 +350,7 @@ final class ComputeInstanceFromMachineImageReservationAffinity {
 
   final TfArg<String> type;
 
-  final ComputeInstanceFromMachineImageReservationAffinitySpecificReservation?
-  specificReservation;
+  final ComputeInstanceFromMachineImageSpecificReservation? specificReservation;
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
@@ -371,8 +361,8 @@ final class ComputeInstanceFromMachineImageReservationAffinity {
 /// Typed helper for the `reservation_affinity.specific_reservation` block of
 /// `google_compute_instance_from_machine_image` (derived from provider schema).
 @immutable
-final class ComputeInstanceFromMachineImageReservationAffinitySpecificReservation {
-  const ComputeInstanceFromMachineImageReservationAffinitySpecificReservation({
+final class ComputeInstanceFromMachineImageSpecificReservation {
+  const ComputeInstanceFromMachineImageSpecificReservation({
     required this.key,
     required this.values,
   });
@@ -433,21 +423,19 @@ final class ComputeInstanceFromMachineImageScheduling {
 
   final TfArg<String>? terminationTime;
 
-  final ComputeInstanceFromMachineImageSchedulingGracefulShutdown?
-  gracefulShutdown;
+  final ComputeInstanceFromMachineImageGracefulShutdown? gracefulShutdown;
 
-  final ComputeInstanceFromMachineImageSchedulingLocalSsdRecoveryTimeout?
+  final ComputeInstanceFromMachineImageLocalSsdRecoveryTimeout?
   localSsdRecoveryTimeout;
 
-  final ComputeInstanceFromMachineImageSchedulingMaxRunDuration? maxRunDuration;
+  final ComputeInstanceFromMachineImageMaxRunDuration? maxRunDuration;
 
-  final List<ComputeInstanceFromMachineImageSchedulingNodeAffinities>?
-  nodeAffinities;
+  final List<ComputeInstanceFromMachineImageNodeAffinities>? nodeAffinities;
 
-  final ComputeInstanceFromMachineImageSchedulingOnInstanceStopAction?
+  final ComputeInstanceFromMachineImageOnInstanceStopAction?
   onInstanceStopAction;
 
-  final ComputeInstanceFromMachineImageSchedulingPreemptionNoticeDuration?
+  final ComputeInstanceFromMachineImagePreemptionNoticeDuration?
   preemptionNoticeDuration;
 
   Map<String, Object?> encode() => {
@@ -475,16 +463,15 @@ final class ComputeInstanceFromMachineImageScheduling {
 /// Typed helper for the `scheduling.graceful_shutdown` block of
 /// `google_compute_instance_from_machine_image` (derived from provider schema).
 @immutable
-final class ComputeInstanceFromMachineImageSchedulingGracefulShutdown {
-  const ComputeInstanceFromMachineImageSchedulingGracefulShutdown({
+final class ComputeInstanceFromMachineImageGracefulShutdown {
+  const ComputeInstanceFromMachineImageGracefulShutdown({
     required this.enabled,
     this.maxDuration,
   });
 
   final TfArg<bool> enabled;
 
-  final ComputeInstanceFromMachineImageSchedulingGracefulShutdownMaxDuration?
-  maxDuration;
+  final ComputeInstanceFromMachineImageMaxDuration? maxDuration;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
@@ -495,8 +482,8 @@ final class ComputeInstanceFromMachineImageSchedulingGracefulShutdown {
 /// Typed helper for the `scheduling.graceful_shutdown.max_duration` block of
 /// `google_compute_instance_from_machine_image` (derived from provider schema).
 @immutable
-final class ComputeInstanceFromMachineImageSchedulingGracefulShutdownMaxDuration {
-  const ComputeInstanceFromMachineImageSchedulingGracefulShutdownMaxDuration({
+final class ComputeInstanceFromMachineImageMaxDuration {
+  const ComputeInstanceFromMachineImageMaxDuration({
     this.nanos,
     required this.seconds,
   });
@@ -514,8 +501,8 @@ final class ComputeInstanceFromMachineImageSchedulingGracefulShutdownMaxDuration
 /// Typed helper for the `scheduling.local_ssd_recovery_timeout` block of
 /// `google_compute_instance_from_machine_image` (derived from provider schema).
 @immutable
-final class ComputeInstanceFromMachineImageSchedulingLocalSsdRecoveryTimeout {
-  const ComputeInstanceFromMachineImageSchedulingLocalSsdRecoveryTimeout({
+final class ComputeInstanceFromMachineImageLocalSsdRecoveryTimeout {
+  const ComputeInstanceFromMachineImageLocalSsdRecoveryTimeout({
     this.nanos,
     required this.seconds,
   });
@@ -533,8 +520,8 @@ final class ComputeInstanceFromMachineImageSchedulingLocalSsdRecoveryTimeout {
 /// Typed helper for the `scheduling.max_run_duration` block of
 /// `google_compute_instance_from_machine_image` (derived from provider schema).
 @immutable
-final class ComputeInstanceFromMachineImageSchedulingMaxRunDuration {
-  const ComputeInstanceFromMachineImageSchedulingMaxRunDuration({
+final class ComputeInstanceFromMachineImageMaxRunDuration {
+  const ComputeInstanceFromMachineImageMaxRunDuration({
     this.nanos,
     required this.seconds,
   });
@@ -552,8 +539,8 @@ final class ComputeInstanceFromMachineImageSchedulingMaxRunDuration {
 /// Typed helper for the `scheduling.node_affinities` block of
 /// `google_compute_instance_from_machine_image` (derived from provider schema).
 @immutable
-final class ComputeInstanceFromMachineImageSchedulingNodeAffinities {
-  const ComputeInstanceFromMachineImageSchedulingNodeAffinities({
+final class ComputeInstanceFromMachineImageNodeAffinities {
+  const ComputeInstanceFromMachineImageNodeAffinities({
     required this.key,
     required this.operator,
     required this.values,
@@ -575,8 +562,8 @@ final class ComputeInstanceFromMachineImageSchedulingNodeAffinities {
 /// Typed helper for the `scheduling.on_instance_stop_action` block of
 /// `google_compute_instance_from_machine_image` (derived from provider schema).
 @immutable
-final class ComputeInstanceFromMachineImageSchedulingOnInstanceStopAction {
-  const ComputeInstanceFromMachineImageSchedulingOnInstanceStopAction({
+final class ComputeInstanceFromMachineImageOnInstanceStopAction {
+  const ComputeInstanceFromMachineImageOnInstanceStopAction({
     this.discardLocalSsd,
   });
 
@@ -590,8 +577,8 @@ final class ComputeInstanceFromMachineImageSchedulingOnInstanceStopAction {
 /// Typed helper for the `scheduling.preemption_notice_duration` block of
 /// `google_compute_instance_from_machine_image` (derived from provider schema).
 @immutable
-final class ComputeInstanceFromMachineImageSchedulingPreemptionNoticeDuration {
-  const ComputeInstanceFromMachineImageSchedulingPreemptionNoticeDuration({
+final class ComputeInstanceFromMachineImagePreemptionNoticeDuration {
+  const ComputeInstanceFromMachineImagePreemptionNoticeDuration({
     this.nanos,
     required this.seconds,
   });

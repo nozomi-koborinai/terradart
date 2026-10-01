@@ -81,7 +81,7 @@ final class Macie2FindingsFilterNamePrefix extends Macie2FindingsFilterName {
 final class Macie2FindingsFilterFindingCriteria {
   const Macie2FindingsFilterFindingCriteria({this.criterion});
 
-  final List<Macie2FindingsFilterFindingCriteriaCriterion>? criterion;
+  final List<Macie2FindingsFilterCriterion>? criterion;
 
   Map<String, Object?> encode() => {
     if (criterion != null)
@@ -92,8 +92,8 @@ final class Macie2FindingsFilterFindingCriteria {
 /// Typed helper for the `finding_criteria.criterion` block of
 /// `aws_macie2_findings_filter` (derived from provider schema).
 @immutable
-final class Macie2FindingsFilterFindingCriteriaCriterion {
-  const Macie2FindingsFilterFindingCriteriaCriterion({
+final class Macie2FindingsFilterCriterion {
+  const Macie2FindingsFilterCriterion({
     this.eq,
     this.eqExactMatch,
     required this.field,

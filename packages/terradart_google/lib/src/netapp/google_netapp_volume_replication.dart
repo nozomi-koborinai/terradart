@@ -38,8 +38,7 @@ final class NetappVolumeReplicationDestinationVolumeParameters {
 
   final TfArg<String>? volumeId;
 
-  final NetappVolumeReplicationDestinationVolumeParametersTieringPolicy?
-  tieringPolicy;
+  final NetappVolumeReplicationTieringPolicy? tieringPolicy;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -53,18 +52,15 @@ final class NetappVolumeReplicationDestinationVolumeParameters {
 /// Typed helper for the `destination_volume_parameters.tiering_policy` block of
 /// `google_netapp_volume_replication` (derived from provider schema).
 @immutable
-final class NetappVolumeReplicationDestinationVolumeParametersTieringPolicy {
-  const NetappVolumeReplicationDestinationVolumeParametersTieringPolicy({
+final class NetappVolumeReplicationTieringPolicy {
+  const NetappVolumeReplicationTieringPolicy({
     this.coolingThresholdDays,
     this.tierAction,
   });
 
   final TfArg<num>? coolingThresholdDays;
 
-  final TfArg<
-    NetappVolumeReplicationDestinationVolumeParametersTieringPolicyTierAction
-  >?
-  tierAction;
+  final TfArg<NetappVolumeReplicationTierAction>? tierAction;
 
   Map<String, Object?> encode() => {
     'cooling_threshold_days': ?coolingThresholdDays?.toTfJson(),
@@ -73,14 +69,11 @@ final class NetappVolumeReplicationDestinationVolumeParametersTieringPolicy {
 }
 
 /// `tier_action` — derived from the provider schema description.
-enum NetappVolumeReplicationDestinationVolumeParametersTieringPolicyTierAction
-    implements TerraformEnum {
+enum NetappVolumeReplicationTierAction implements TerraformEnum {
   enabled('ENABLED'),
   paused('PAUSED');
 
-  const NetappVolumeReplicationDestinationVolumeParametersTieringPolicyTierAction(
-    this.terraformValue,
-  );
+  const NetappVolumeReplicationTierAction(this.terraformValue);
   @override
   final String terraformValue;
 }

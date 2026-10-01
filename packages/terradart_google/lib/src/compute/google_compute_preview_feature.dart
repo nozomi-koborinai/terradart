@@ -23,7 +23,7 @@ enum ComputePreviewFeatureActivationStatus implements TerraformEnum {
 final class ComputePreviewFeatureRolloutOperation {
   const ComputePreviewFeatureRolloutOperation({this.rolloutInput});
 
-  final ComputePreviewFeatureRolloutOperationRolloutInput? rolloutInput;
+  final ComputePreviewFeatureRolloutInput? rolloutInput;
 
   Map<String, Object?> encode() => {'rollout_input': ?rolloutInput?.encode()};
 }
@@ -31,8 +31,8 @@ final class ComputePreviewFeatureRolloutOperation {
 /// Typed helper for the `rollout_operation.rollout_input` block of
 /// `google_compute_preview_feature` (derived from provider schema).
 @immutable
-final class ComputePreviewFeatureRolloutOperationRolloutInput {
-  const ComputePreviewFeatureRolloutOperationRolloutInput({
+final class ComputePreviewFeatureRolloutInput {
+  const ComputePreviewFeatureRolloutInput({
     required this.predefinedRolloutPlan,
   });
 
@@ -68,7 +68,7 @@ final class ComputePreviewFeatureRolloutOperationRolloutInput {
 ///     ComputePreviewFeatureActivationStatus.activationStateUnspecified,
 ///   ),
 ///   rolloutOperation: ComputePreviewFeatureRolloutOperation(
-///     rolloutInput: ComputePreviewFeatureRolloutOperationRolloutInput(
+///     rolloutInput: ComputePreviewFeatureRolloutInput(
 ///       predefinedRolloutPlan: TfArg.literal('ROLLOUT_PLAN_FAST_ROLLOUT'),
 ///     ),
 ///   ),

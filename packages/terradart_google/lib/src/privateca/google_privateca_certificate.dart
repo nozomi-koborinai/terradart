@@ -80,13 +80,13 @@ final class PrivatecaCertificateConfig {
     required this.x509Config,
   });
 
-  final PrivatecaCertificateConfigPublicKey publicKey;
+  final PrivatecaCertificatePublicKey publicKey;
 
-  final PrivatecaCertificateConfigSubjectConfig subjectConfig;
+  final PrivatecaCertificateSubjectConfig subjectConfig;
 
-  final PrivatecaCertificateConfigSubjectKeyId? subjectKeyId;
+  final PrivatecaCertificateSubjectKeyId? subjectKeyId;
 
-  final PrivatecaCertificateConfigX509Config x509Config;
+  final PrivatecaCertificateX509Config x509Config;
 
   Map<String, Object?> encode() => {
     'public_key': publicKey.encode(),
@@ -99,10 +99,10 @@ final class PrivatecaCertificateConfig {
 /// Typed helper for the `config.public_key` block of
 /// `google_privateca_certificate` (derived from provider schema).
 @immutable
-final class PrivatecaCertificateConfigPublicKey {
-  const PrivatecaCertificateConfigPublicKey({required this.format, this.key});
+final class PrivatecaCertificatePublicKey {
+  const PrivatecaCertificatePublicKey({required this.format, this.key});
 
-  final TfArg<PrivatecaCertificateConfigPublicKeyFormat> format;
+  final TfArg<PrivatecaCertificateFormat> format;
 
   final TfArg<String>? key;
 
@@ -113,11 +113,11 @@ final class PrivatecaCertificateConfigPublicKey {
 }
 
 /// `format` — derived from the provider schema description.
-enum PrivatecaCertificateConfigPublicKeyFormat implements TerraformEnum {
+enum PrivatecaCertificateFormat implements TerraformEnum {
   keyTypeUnspecified('KEY_TYPE_UNSPECIFIED'),
   pem('PEM');
 
-  const PrivatecaCertificateConfigPublicKeyFormat(this.terraformValue);
+  const PrivatecaCertificateFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -125,15 +125,15 @@ enum PrivatecaCertificateConfigPublicKeyFormat implements TerraformEnum {
 /// Typed helper for the `config.subject_config` block of
 /// `google_privateca_certificate` (derived from provider schema).
 @immutable
-final class PrivatecaCertificateConfigSubjectConfig {
-  const PrivatecaCertificateConfigSubjectConfig({
+final class PrivatecaCertificateSubjectConfig {
+  const PrivatecaCertificateSubjectConfig({
     required this.subject,
     this.subjectAltName,
   });
 
-  final PrivatecaCertificateConfigSubjectConfigSubject subject;
+  final PrivatecaCertificateSubject subject;
 
-  final PrivatecaCertificateConfigSubjectConfigSubjectAltName? subjectAltName;
+  final PrivatecaCertificateSubjectAltName? subjectAltName;
 
   Map<String, Object?> encode() => {
     'subject': subject.encode(),
@@ -144,8 +144,8 @@ final class PrivatecaCertificateConfigSubjectConfig {
 /// Typed helper for the `config.subject_config.subject` block of
 /// `google_privateca_certificate` (derived from provider schema).
 @immutable
-final class PrivatecaCertificateConfigSubjectConfigSubject {
-  const PrivatecaCertificateConfigSubjectConfigSubject({
+final class PrivatecaCertificateSubject {
+  const PrivatecaCertificateSubject({
     required this.commonName,
     this.countryCode,
     this.locality,
@@ -187,8 +187,8 @@ final class PrivatecaCertificateConfigSubjectConfigSubject {
 /// Typed helper for the `config.subject_config.subject_alt_name` block of
 /// `google_privateca_certificate` (derived from provider schema).
 @immutable
-final class PrivatecaCertificateConfigSubjectConfigSubjectAltName {
-  const PrivatecaCertificateConfigSubjectConfigSubjectAltName({
+final class PrivatecaCertificateSubjectAltName {
+  const PrivatecaCertificateSubjectAltName({
     this.dnsNames,
     this.emailAddresses,
     this.ipAddresses,
@@ -214,8 +214,8 @@ final class PrivatecaCertificateConfigSubjectConfigSubjectAltName {
 /// Typed helper for the `config.subject_key_id` block of
 /// `google_privateca_certificate` (derived from provider schema).
 @immutable
-final class PrivatecaCertificateConfigSubjectKeyId {
-  const PrivatecaCertificateConfigSubjectKeyId({this.keyId});
+final class PrivatecaCertificateSubjectKeyId {
+  const PrivatecaCertificateSubjectKeyId({this.keyId});
 
   final TfArg<String>? keyId;
 
@@ -225,8 +225,8 @@ final class PrivatecaCertificateConfigSubjectKeyId {
 /// Typed helper for the `config.x509_config` block of
 /// `google_privateca_certificate` (derived from provider schema).
 @immutable
-final class PrivatecaCertificateConfigX509Config {
-  const PrivatecaCertificateConfigX509Config({
+final class PrivatecaCertificateX509Config {
+  const PrivatecaCertificateX509Config({
     this.aiaOcspServers,
     this.additionalExtensions,
     this.caOptions,
@@ -237,16 +237,15 @@ final class PrivatecaCertificateConfigX509Config {
 
   final TfArg<List<String>>? aiaOcspServers;
 
-  final List<PrivatecaCertificateConfigX509ConfigAdditionalExtensions>?
-  additionalExtensions;
+  final List<PrivatecaCertificateAdditionalExtensions>? additionalExtensions;
 
-  final PrivatecaCertificateConfigX509ConfigCaOptions? caOptions;
+  final PrivatecaCertificateCaOptions? caOptions;
 
-  final PrivatecaCertificateConfigX509ConfigKeyUsage keyUsage;
+  final PrivatecaCertificateKeyUsage keyUsage;
 
-  final PrivatecaCertificateConfigX509ConfigNameConstraints? nameConstraints;
+  final PrivatecaCertificateNameConstraints? nameConstraints;
 
-  final List<PrivatecaCertificateConfigX509ConfigPolicyIds>? policyIds;
+  final List<PrivatecaCertificatePolicyIds>? policyIds;
 
   Map<String, Object?> encode() => {
     'aia_ocsp_servers': ?aiaOcspServers?.toTfJson(),
@@ -265,8 +264,8 @@ final class PrivatecaCertificateConfigX509Config {
 /// Typed helper for the `config.x509_config.additional_extensions` block of
 /// `google_privateca_certificate` (derived from provider schema).
 @immutable
-final class PrivatecaCertificateConfigX509ConfigAdditionalExtensions {
-  const PrivatecaCertificateConfigX509ConfigAdditionalExtensions({
+final class PrivatecaCertificateAdditionalExtensions {
+  const PrivatecaCertificateAdditionalExtensions({
     required this.critical,
     required this.value,
     required this.objectId,
@@ -276,8 +275,7 @@ final class PrivatecaCertificateConfigX509ConfigAdditionalExtensions {
 
   final TfArg<String> value;
 
-  final PrivatecaCertificateConfigX509ConfigAdditionalExtensionsObjectId
-  objectId;
+  final PrivatecaCertificateObjectId objectId;
 
   Map<String, Object?> encode() => {
     'critical': critical.toTfJson(),
@@ -289,10 +287,8 @@ final class PrivatecaCertificateConfigX509ConfigAdditionalExtensions {
 /// Typed helper for the `config.x509_config.additional_extensions.object_id` block of
 /// `google_privateca_certificate` (derived from provider schema).
 @immutable
-final class PrivatecaCertificateConfigX509ConfigAdditionalExtensionsObjectId {
-  const PrivatecaCertificateConfigX509ConfigAdditionalExtensionsObjectId({
-    required this.objectIdPath,
-  });
+final class PrivatecaCertificateObjectId {
+  const PrivatecaCertificateObjectId({required this.objectIdPath});
 
   final TfArg<List<num>> objectIdPath;
 
@@ -302,8 +298,8 @@ final class PrivatecaCertificateConfigX509ConfigAdditionalExtensionsObjectId {
 /// Typed helper for the `config.x509_config.ca_options` block of
 /// `google_privateca_certificate` (derived from provider schema).
 @immutable
-final class PrivatecaCertificateConfigX509ConfigCaOptions {
-  const PrivatecaCertificateConfigX509ConfigCaOptions({
+final class PrivatecaCertificateCaOptions {
+  const PrivatecaCertificateCaOptions({
     this.isCa,
     this.maxIssuerPathLength,
     this.nonCa,
@@ -329,21 +325,18 @@ final class PrivatecaCertificateConfigX509ConfigCaOptions {
 /// Typed helper for the `config.x509_config.key_usage` block of
 /// `google_privateca_certificate` (derived from provider schema).
 @immutable
-final class PrivatecaCertificateConfigX509ConfigKeyUsage {
-  const PrivatecaCertificateConfigX509ConfigKeyUsage({
+final class PrivatecaCertificateKeyUsage {
+  const PrivatecaCertificateKeyUsage({
     required this.baseKeyUsage,
     required this.extendedKeyUsage,
     this.unknownExtendedKeyUsages,
   });
 
-  final PrivatecaCertificateConfigX509ConfigKeyUsageBaseKeyUsage baseKeyUsage;
+  final PrivatecaCertificateBaseKeyUsage baseKeyUsage;
 
-  final PrivatecaCertificateConfigX509ConfigKeyUsageExtendedKeyUsage
-  extendedKeyUsage;
+  final PrivatecaCertificateExtendedKeyUsage extendedKeyUsage;
 
-  final List<
-    PrivatecaCertificateConfigX509ConfigKeyUsageUnknownExtendedKeyUsages
-  >?
+  final List<PrivatecaCertificateUnknownExtendedKeyUsages>?
   unknownExtendedKeyUsages;
 
   Map<String, Object?> encode() => {
@@ -359,8 +352,8 @@ final class PrivatecaCertificateConfigX509ConfigKeyUsage {
 /// Typed helper for the `config.x509_config.key_usage.base_key_usage` block of
 /// `google_privateca_certificate` (derived from provider schema).
 @immutable
-final class PrivatecaCertificateConfigX509ConfigKeyUsageBaseKeyUsage {
-  const PrivatecaCertificateConfigX509ConfigKeyUsageBaseKeyUsage({
+final class PrivatecaCertificateBaseKeyUsage {
+  const PrivatecaCertificateBaseKeyUsage({
     this.certSign,
     this.contentCommitment,
     this.crlSign,
@@ -406,8 +399,8 @@ final class PrivatecaCertificateConfigX509ConfigKeyUsageBaseKeyUsage {
 /// Typed helper for the `config.x509_config.key_usage.extended_key_usage` block of
 /// `google_privateca_certificate` (derived from provider schema).
 @immutable
-final class PrivatecaCertificateConfigX509ConfigKeyUsageExtendedKeyUsage {
-  const PrivatecaCertificateConfigX509ConfigKeyUsageExtendedKeyUsage({
+final class PrivatecaCertificateExtendedKeyUsage {
+  const PrivatecaCertificateExtendedKeyUsage({
     this.clientAuth,
     this.codeSigning,
     this.emailProtection,
@@ -441,8 +434,8 @@ final class PrivatecaCertificateConfigX509ConfigKeyUsageExtendedKeyUsage {
 /// Typed helper for the `config.x509_config.key_usage.unknown_extended_key_usages` block of
 /// `google_privateca_certificate` (derived from provider schema).
 @immutable
-final class PrivatecaCertificateConfigX509ConfigKeyUsageUnknownExtendedKeyUsages {
-  const PrivatecaCertificateConfigX509ConfigKeyUsageUnknownExtendedKeyUsages({
+final class PrivatecaCertificateUnknownExtendedKeyUsages {
+  const PrivatecaCertificateUnknownExtendedKeyUsages({
     required this.objectIdPath,
   });
 
@@ -454,8 +447,8 @@ final class PrivatecaCertificateConfigX509ConfigKeyUsageUnknownExtendedKeyUsages
 /// Typed helper for the `config.x509_config.name_constraints` block of
 /// `google_privateca_certificate` (derived from provider schema).
 @immutable
-final class PrivatecaCertificateConfigX509ConfigNameConstraints {
-  const PrivatecaCertificateConfigX509ConfigNameConstraints({
+final class PrivatecaCertificateNameConstraints {
+  const PrivatecaCertificateNameConstraints({
     required this.critical,
     this.excludedDnsNames,
     this.excludedEmailAddresses,
@@ -501,10 +494,8 @@ final class PrivatecaCertificateConfigX509ConfigNameConstraints {
 /// Typed helper for the `config.x509_config.policy_ids` block of
 /// `google_privateca_certificate` (derived from provider schema).
 @immutable
-final class PrivatecaCertificateConfigX509ConfigPolicyIds {
-  const PrivatecaCertificateConfigX509ConfigPolicyIds({
-    required this.objectIdPath,
-  });
+final class PrivatecaCertificatePolicyIds {
+  const PrivatecaCertificatePolicyIds({required this.objectIdPath});
 
   final TfArg<List<num>> objectIdPath;
 

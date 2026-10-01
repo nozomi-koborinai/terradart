@@ -49,7 +49,7 @@ final class VerifiedaccessEndpointCidrOptions {
 
   final TfArg<List<RefTo<AwsSubnet>>>? subnetIds;
 
-  final List<VerifiedaccessEndpointCidrOptionsPortRange> portRange;
+  final List<VerifiedaccessEndpointPortRange> portRange;
 
   Map<String, Object?> encode() => {
     'cidr': cidr.toTfJson(),
@@ -70,9 +70,10 @@ enum VerifiedaccessEndpointCidrOptionsProtocol implements TerraformEnum {
 
 /// Typed helper for the `cidr_options.port_range` block of
 /// `aws_verifiedaccess_endpoint` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class VerifiedaccessEndpointCidrOptionsPortRange {
-  const VerifiedaccessEndpointCidrOptionsPortRange({
+final class VerifiedaccessEndpointPortRange {
+  const VerifiedaccessEndpointPortRange({
     required this.fromPort,
     required this.toPort,
   });
@@ -107,7 +108,7 @@ final class VerifiedaccessEndpointLoadBalancerOptions {
 
   final TfArg<List<RefTo<AwsSubnet>>>? subnetIds;
 
-  final List<VerifiedaccessEndpointLoadBalancerOptionsPortRange>? portRange;
+  final List<VerifiedaccessEndpointPortRange>? portRange;
 
   Map<String, Object?> encode() => {
     'load_balancer_arn': ?loadBalancerArn?.toTfJson(),
@@ -131,25 +132,6 @@ enum VerifiedaccessEndpointLoadBalancerOptionsProtocol
   final String terraformValue;
 }
 
-/// Typed helper for the `load_balancer_options.port_range` block of
-/// `aws_verifiedaccess_endpoint` (derived from provider schema).
-@immutable
-final class VerifiedaccessEndpointLoadBalancerOptionsPortRange {
-  const VerifiedaccessEndpointLoadBalancerOptionsPortRange({
-    required this.fromPort,
-    required this.toPort,
-  });
-
-  final TfArg<num> fromPort;
-
-  final TfArg<num> toPort;
-
-  Map<String, Object?> encode() => {
-    'from_port': fromPort.toTfJson(),
-    'to_port': toPort.toTfJson(),
-  };
-}
-
 /// Typed helper for the `network_interface_options` block of
 /// `aws_verifiedaccess_endpoint` (derived from provider schema).
 @immutable
@@ -165,9 +147,9 @@ final class VerifiedaccessEndpointNetworkInterfaceOptions {
 
   final TfArg<num>? port;
 
-  final TfArg<VerifiedaccessEndpointNetworkInterfaceOptionsProtocol>? protocol;
+  final TfArg<VerifiedaccessEndpointLoadBalancerOptionsProtocol>? protocol;
 
-  final List<VerifiedaccessEndpointNetworkInterfaceOptionsPortRange>? portRange;
+  final List<VerifiedaccessEndpointPortRange>? portRange;
 
   Map<String, Object?> encode() => {
     'network_interface_id': ?networkInterfaceId?.toTfJson(),
@@ -175,39 +157,6 @@ final class VerifiedaccessEndpointNetworkInterfaceOptions {
     'protocol': ?protocol?.toTfJson(),
     if (portRange != null)
       'port_range': [for (final e in portRange!) e.encode()],
-  };
-}
-
-/// `protocol` — derived from the provider schema description.
-enum VerifiedaccessEndpointNetworkInterfaceOptionsProtocol
-    implements TerraformEnum {
-  http('http'),
-  https('https'),
-  tcp('tcp');
-
-  const VerifiedaccessEndpointNetworkInterfaceOptionsProtocol(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `network_interface_options.port_range` block of
-/// `aws_verifiedaccess_endpoint` (derived from provider schema).
-@immutable
-final class VerifiedaccessEndpointNetworkInterfaceOptionsPortRange {
-  const VerifiedaccessEndpointNetworkInterfaceOptionsPortRange({
-    required this.fromPort,
-    required this.toPort,
-  });
-
-  final TfArg<num> fromPort;
-
-  final TfArg<num> toPort;
-
-  Map<String, Object?> encode() => {
-    'from_port': fromPort.toTfJson(),
-    'to_port': toPort.toTfJson(),
   };
 }
 
@@ -227,7 +176,7 @@ final class VerifiedaccessEndpointRdsOptions {
 
   final TfArg<num>? port;
 
-  final TfArg<VerifiedaccessEndpointRdsOptionsProtocol>? protocol;
+  final TfArg<VerifiedaccessEndpointCidrOptionsProtocol>? protocol;
 
   final TfArg<String>? rdsDbClusterArn;
 
@@ -248,15 +197,6 @@ final class VerifiedaccessEndpointRdsOptions {
     'rds_endpoint': ?rdsEndpoint?.toTfJson(),
     'subnet_ids': ?subnetIds?.encodeAs('id').toTfJson(),
   };
-}
-
-/// `protocol` — derived from the provider schema description.
-enum VerifiedaccessEndpointRdsOptionsProtocol implements TerraformEnum {
-  tcp('tcp');
-
-  const VerifiedaccessEndpointRdsOptionsProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `sse_specification` block of

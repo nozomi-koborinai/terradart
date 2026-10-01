@@ -15,7 +15,7 @@ const Set<String> _awsIvsRecordingConfigurationSensitive = <String>{};
 final class IvsRecordingConfigurationDestinationConfiguration {
   const IvsRecordingConfigurationDestinationConfiguration({required this.s3});
 
-  final IvsRecordingConfigurationDestinationConfigurationS3 s3;
+  final IvsRecordingConfigurationS3 s3;
 
   Map<String, Object?> encode() => {'s3': s3.encode()};
 }
@@ -23,10 +23,8 @@ final class IvsRecordingConfigurationDestinationConfiguration {
 /// Typed helper for the `destination_configuration.s3` block of
 /// `aws_ivs_recording_configuration` (derived from provider schema).
 @immutable
-final class IvsRecordingConfigurationDestinationConfigurationS3 {
-  const IvsRecordingConfigurationDestinationConfigurationS3({
-    required this.bucketName,
-  });
+final class IvsRecordingConfigurationS3 {
+  const IvsRecordingConfigurationS3({required this.bucketName});
 
   final RefTo<AwsS3Bucket> bucketName;
 
@@ -44,8 +42,7 @@ final class IvsRecordingConfigurationThumbnailConfiguration {
     this.targetIntervalSeconds,
   });
 
-  final TfArg<IvsRecordingConfigurationThumbnailConfigurationRecordingMode>?
-  recordingMode;
+  final TfArg<IvsRecordingConfigurationRecordingMode>? recordingMode;
 
   final TfArg<num>? targetIntervalSeconds;
 
@@ -56,14 +53,11 @@ final class IvsRecordingConfigurationThumbnailConfiguration {
 }
 
 /// `recording_mode` — derived from the provider schema description.
-enum IvsRecordingConfigurationThumbnailConfigurationRecordingMode
-    implements TerraformEnum {
+enum IvsRecordingConfigurationRecordingMode implements TerraformEnum {
   disabled('DISABLED'),
   interval('INTERVAL');
 
-  const IvsRecordingConfigurationThumbnailConfigurationRecordingMode(
-    this.terraformValue,
-  );
+  const IvsRecordingConfigurationRecordingMode(this.terraformValue);
   @override
   final String terraformValue;
 }

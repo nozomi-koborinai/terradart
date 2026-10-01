@@ -6,14 +6,14 @@ library;
 export 'src/bcmdataexports/aws_bcmdataexports_export.dart'
     show
         AwsBcmdataexportsExport,
+        BcmdataexportsExportCompression,
+        BcmdataexportsExportDataQuery,
+        BcmdataexportsExportDestinationConfigurations,
         BcmdataexportsExportExport,
-        BcmdataexportsExportExportDataQuery,
-        BcmdataexportsExportExportDestinationConfigurations,
-        BcmdataexportsExportExportDestinationConfigurationsS3Destination,
-        BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurations,
-        BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurationsCompression,
-        BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurationsFormat,
-        BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurationsOutputType,
-        BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurationsOverwrite,
-        BcmdataexportsExportExportRefreshCadence,
-        BcmdataexportsExportExportRefreshCadenceFrequency;
+        BcmdataexportsExportFormat,
+        BcmdataexportsExportFrequency,
+        BcmdataexportsExportOutputType,
+        BcmdataexportsExportOverwrite,
+        BcmdataexportsExportRefreshCadence,
+        BcmdataexportsExportS3Destination,
+        BcmdataexportsExportS3OutputConfigurations;

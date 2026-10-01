@@ -42,7 +42,7 @@ final class DataCloudforceOneRequestFilter {
 
   final TfArg<String>? sortBy;
 
-  final TfArg<DataCloudforceOneRequestFilterSortOrder>? sortOrder;
+  final TfArg<DataCloudforceOneRequestSortOrder>? sortOrder;
 
   final TfArg<DataCloudforceOneRequestFilterStatus>? status;
 
@@ -61,11 +61,11 @@ final class DataCloudforceOneRequestFilter {
 }
 
 /// `sort_order` — derived from the provider schema description.
-enum DataCloudforceOneRequestFilterSortOrder implements TerraformEnum {
+enum DataCloudforceOneRequestSortOrder implements TerraformEnum {
   asc('asc'),
   desc('desc');
 
-  const DataCloudforceOneRequestFilterSortOrder(this.terraformValue);
+  const DataCloudforceOneRequestSortOrder(this.terraformValue);
   @override
   final String terraformValue;
 }

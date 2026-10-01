@@ -19,9 +19,9 @@ final class DynamodbGlobalSecondaryIndexKeySchema {
 
   final TfArg<String> attributeName;
 
-  final TfArg<DynamodbGlobalSecondaryIndexKeySchemaAttributeType> attributeType;
+  final TfArg<DynamodbGlobalSecondaryIndexAttributeType> attributeType;
 
-  final TfArg<DynamodbGlobalSecondaryIndexKeySchemaKeyType> keyType;
+  final TfArg<DynamodbGlobalSecondaryIndexKeyType> keyType;
 
   Map<String, Object?> encode() => {
     'attribute_name': attributeName.toTfJson(),
@@ -31,23 +31,22 @@ final class DynamodbGlobalSecondaryIndexKeySchema {
 }
 
 /// `attribute_type` — derived from the provider schema description.
-enum DynamodbGlobalSecondaryIndexKeySchemaAttributeType
-    implements TerraformEnum {
+enum DynamodbGlobalSecondaryIndexAttributeType implements TerraformEnum {
   s('S'),
   n('N'),
   b('B');
 
-  const DynamodbGlobalSecondaryIndexKeySchemaAttributeType(this.terraformValue);
+  const DynamodbGlobalSecondaryIndexAttributeType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `key_type` — derived from the provider schema description.
-enum DynamodbGlobalSecondaryIndexKeySchemaKeyType implements TerraformEnum {
+enum DynamodbGlobalSecondaryIndexKeyType implements TerraformEnum {
   hash('HASH'),
   range('RANGE');
 
-  const DynamodbGlobalSecondaryIndexKeySchemaKeyType(this.terraformValue);
+  const DynamodbGlobalSecondaryIndexKeyType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -82,8 +81,7 @@ final class DynamodbGlobalSecondaryIndexProjection {
 
   final TfArg<List<String>>? nonKeyAttributes;
 
-  final TfArg<DynamodbGlobalSecondaryIndexProjectionProjectionType>
-  projectionType;
+  final TfArg<DynamodbGlobalSecondaryIndexProjectionType> projectionType;
 
   Map<String, Object?> encode() => {
     'non_key_attributes': ?nonKeyAttributes?.toTfJson(),
@@ -92,15 +90,12 @@ final class DynamodbGlobalSecondaryIndexProjection {
 }
 
 /// `projection_type` — derived from the provider schema description.
-enum DynamodbGlobalSecondaryIndexProjectionProjectionType
-    implements TerraformEnum {
+enum DynamodbGlobalSecondaryIndexProjectionType implements TerraformEnum {
   all('ALL'),
   keysOnly('KEYS_ONLY'),
   include('INCLUDE');
 
-  const DynamodbGlobalSecondaryIndexProjectionProjectionType(
-    this.terraformValue,
-  );
+  const DynamodbGlobalSecondaryIndexProjectionType(this.terraformValue);
   @override
   final String terraformValue;
 }

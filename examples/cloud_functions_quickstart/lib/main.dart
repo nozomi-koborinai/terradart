@@ -59,13 +59,13 @@ final class HttpFunctionStack extends Stack {
           runtime: .literal('python311'),
           entryPoint: .literal('hello'),
           source: .storageSource(
-            Cloudfunctions2FunctionBuildConfigSourceStorageSource(
+            Cloudfunctions2FunctionStorageSource(
               bucket: .of(sourceBucket),
               object: .ref(sourceObject.nameRef),
             ),
           ),
           updatePolicy: .automaticUpdatePolicy(
-            Cloudfunctions2FunctionBuildConfigAutomaticUpdatePolicy(),
+            Cloudfunctions2FunctionAutomaticUpdatePolicy(),
           ),
         ),
         serviceConfig: Cloudfunctions2FunctionServiceConfig(

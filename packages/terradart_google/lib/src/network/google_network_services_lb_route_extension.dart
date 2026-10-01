@@ -21,8 +21,8 @@ enum NetworkServicesLbRouteExtensionLoadBalancingScheme
 /// Typed helper for the `extension_chains` block of
 /// `google_network_services_lb_route_extension` (derived from provider schema).
 @immutable
-final class NetworkServicesLbRouteExtensionExtensionChains {
-  const NetworkServicesLbRouteExtensionExtensionChains({
+final class NetworkServicesLbRouteExtensionChains {
+  const NetworkServicesLbRouteExtensionChains({
     required this.name,
     required this.extensions,
     required this.matchCondition,
@@ -30,11 +30,9 @@ final class NetworkServicesLbRouteExtensionExtensionChains {
 
   final TfArg<String> name;
 
-  final List<NetworkServicesLbRouteExtensionExtensionChainsExtensions>
-  extensions;
+  final List<NetworkServicesLbRouteExtensionExtensions> extensions;
 
-  final NetworkServicesLbRouteExtensionExtensionChainsMatchCondition
-  matchCondition;
+  final NetworkServicesLbRouteExtensionMatchCondition matchCondition;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -46,8 +44,8 @@ final class NetworkServicesLbRouteExtensionExtensionChains {
 /// Typed helper for the `extension_chains.extensions` block of
 /// `google_network_services_lb_route_extension` (derived from provider schema).
 @immutable
-final class NetworkServicesLbRouteExtensionExtensionChainsExtensions {
-  const NetworkServicesLbRouteExtensionExtensionChainsExtensions({
+final class NetworkServicesLbRouteExtensionExtensions {
+  const NetworkServicesLbRouteExtensionExtensions({
     this.authority,
     this.failOpen,
     this.forwardAttributes,
@@ -75,9 +73,7 @@ final class NetworkServicesLbRouteExtensionExtensionChainsExtensions {
 
   final TfArg<bool>? observabilityMode;
 
-  final TfArg<
-    NetworkServicesLbRouteExtensionExtensionChainsExtensionsRequestBodySendMode
-  >?
+  final TfArg<NetworkServicesLbRouteExtensionRequestBodySendMode>?
   requestBodySendMode;
 
   final TfArg<String> service;
@@ -102,15 +98,13 @@ final class NetworkServicesLbRouteExtensionExtensionChainsExtensions {
 }
 
 /// `request_body_send_mode` — derived from the provider schema description.
-enum NetworkServicesLbRouteExtensionExtensionChainsExtensionsRequestBodySendMode
+enum NetworkServicesLbRouteExtensionRequestBodySendMode
     implements TerraformEnum {
   bodySendModeUnspecified('BODY_SEND_MODE_UNSPECIFIED'),
   bodySendModeStreamed('BODY_SEND_MODE_STREAMED'),
   bodySendModeFullDuplexStreamed('BODY_SEND_MODE_FULL_DUPLEX_STREAMED');
 
-  const NetworkServicesLbRouteExtensionExtensionChainsExtensionsRequestBodySendMode(
-    this.terraformValue,
-  );
+  const NetworkServicesLbRouteExtensionRequestBodySendMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -118,8 +112,8 @@ enum NetworkServicesLbRouteExtensionExtensionChainsExtensionsRequestBodySendMode
 /// Typed helper for the `extension_chains.match_condition` block of
 /// `google_network_services_lb_route_extension` (derived from provider schema).
 @immutable
-final class NetworkServicesLbRouteExtensionExtensionChainsMatchCondition {
-  const NetworkServicesLbRouteExtensionExtensionChainsMatchCondition({
+final class NetworkServicesLbRouteExtensionMatchCondition {
+  const NetworkServicesLbRouteExtensionMatchCondition({
     required this.celExpression,
   });
 
@@ -157,8 +151,7 @@ final class GoogleNetworkServicesLbRouteExtension extends Resource {
     required TfArg<NetworkServicesLbRouteExtensionLoadBalancingScheme>
     loadBalancingScheme,
     required TfArg<List<String>> forwardingRules,
-    required List<NetworkServicesLbRouteExtensionExtensionChains>
-    extensionChains,
+    required List<NetworkServicesLbRouteExtensionChains> extensionChains,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,

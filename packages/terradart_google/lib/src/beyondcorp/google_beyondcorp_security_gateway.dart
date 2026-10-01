@@ -18,7 +18,7 @@ final class BeyondcorpSecurityGatewayHubs {
 
   final TfArg<String> region;
 
-  final BeyondcorpSecurityGatewayHubsInternetGateway? internetGateway;
+  final BeyondcorpSecurityGatewayInternetGateway? internetGateway;
 
   Map<String, Object?> encode() => {
     'region': region.toTfJson(),
@@ -29,8 +29,8 @@ final class BeyondcorpSecurityGatewayHubs {
 /// Typed helper for the `hubs.internet_gateway` block of
 /// `google_beyondcorp_security_gateway` (derived from provider schema).
 @immutable
-final class BeyondcorpSecurityGatewayHubsInternetGateway {
-  const BeyondcorpSecurityGatewayHubsInternetGateway();
+final class BeyondcorpSecurityGatewayInternetGateway {
+  const BeyondcorpSecurityGatewayInternetGateway();
 
   Map<String, Object?> encode() => {};
 }
@@ -64,8 +64,7 @@ final class BeyondcorpSecurityGatewayProxyProtocolConfig {
 
   final TfArg<Map<String, String>>? metadataHeaders;
 
-  final BeyondcorpSecurityGatewayProxyProtocolConfigContextualHeaders?
-  contextualHeaders;
+  final BeyondcorpSecurityGatewayContextualHeaders? contextualHeaders;
 
   Map<String, Object?> encode() => {
     'allowed_client_headers': ?allowedClientHeaders?.toTfJson(),
@@ -79,27 +78,21 @@ final class BeyondcorpSecurityGatewayProxyProtocolConfig {
 /// Typed helper for the `proxy_protocol_config.contextual_headers` block of
 /// `google_beyondcorp_security_gateway` (derived from provider schema).
 @immutable
-final class BeyondcorpSecurityGatewayProxyProtocolConfigContextualHeaders {
-  const BeyondcorpSecurityGatewayProxyProtocolConfigContextualHeaders({
+final class BeyondcorpSecurityGatewayContextualHeaders {
+  const BeyondcorpSecurityGatewayContextualHeaders({
     this.outputType,
     this.deviceInfo,
     this.groupInfo,
     this.userInfo,
   });
 
-  final TfArg<
-    BeyondcorpSecurityGatewayProxyProtocolConfigContextualHeadersOutputType
-  >?
-  outputType;
+  final TfArg<BeyondcorpSecurityGatewayOutputType>? outputType;
 
-  final BeyondcorpSecurityGatewayProxyProtocolConfigContextualHeadersDeviceInfo?
-  deviceInfo;
+  final BeyondcorpSecurityGatewayDeviceInfo? deviceInfo;
 
-  final BeyondcorpSecurityGatewayProxyProtocolConfigContextualHeadersGroupInfo?
-  groupInfo;
+  final BeyondcorpSecurityGatewayGroupInfo? groupInfo;
 
-  final BeyondcorpSecurityGatewayProxyProtocolConfigContextualHeadersUserInfo?
-  userInfo;
+  final BeyondcorpSecurityGatewayUserInfo? userInfo;
 
   Map<String, Object?> encode() => {
     'output_type': ?outputType?.toTfJson(),
@@ -110,15 +103,12 @@ final class BeyondcorpSecurityGatewayProxyProtocolConfigContextualHeaders {
 }
 
 /// `output_type` — derived from the provider schema description.
-enum BeyondcorpSecurityGatewayProxyProtocolConfigContextualHeadersOutputType
-    implements TerraformEnum {
+enum BeyondcorpSecurityGatewayOutputType implements TerraformEnum {
   protobuf('PROTOBUF'),
   json('JSON'),
   none('NONE');
 
-  const BeyondcorpSecurityGatewayProxyProtocolConfigContextualHeadersOutputType(
-    this.terraformValue,
-  );
+  const BeyondcorpSecurityGatewayOutputType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -126,91 +116,34 @@ enum BeyondcorpSecurityGatewayProxyProtocolConfigContextualHeadersOutputType
 /// Typed helper for the `proxy_protocol_config.contextual_headers.device_info` block of
 /// `google_beyondcorp_security_gateway` (derived from provider schema).
 @immutable
-final class BeyondcorpSecurityGatewayProxyProtocolConfigContextualHeadersDeviceInfo {
-  const BeyondcorpSecurityGatewayProxyProtocolConfigContextualHeadersDeviceInfo({
-    this.outputType,
-  });
+final class BeyondcorpSecurityGatewayDeviceInfo {
+  const BeyondcorpSecurityGatewayDeviceInfo({this.outputType});
 
-  final TfArg<
-    BeyondcorpSecurityGatewayProxyProtocolConfigContextualHeadersDeviceInfoOutputType
-  >?
-  outputType;
+  final TfArg<BeyondcorpSecurityGatewayOutputType>? outputType;
 
   Map<String, Object?> encode() => {'output_type': ?outputType?.toTfJson()};
-}
-
-/// `output_type` — derived from the provider schema description.
-enum BeyondcorpSecurityGatewayProxyProtocolConfigContextualHeadersDeviceInfoOutputType
-    implements TerraformEnum {
-  protobuf('PROTOBUF'),
-  json('JSON'),
-  none('NONE');
-
-  const BeyondcorpSecurityGatewayProxyProtocolConfigContextualHeadersDeviceInfoOutputType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `proxy_protocol_config.contextual_headers.group_info` block of
 /// `google_beyondcorp_security_gateway` (derived from provider schema).
 @immutable
-final class BeyondcorpSecurityGatewayProxyProtocolConfigContextualHeadersGroupInfo {
-  const BeyondcorpSecurityGatewayProxyProtocolConfigContextualHeadersGroupInfo({
-    this.outputType,
-  });
+final class BeyondcorpSecurityGatewayGroupInfo {
+  const BeyondcorpSecurityGatewayGroupInfo({this.outputType});
 
-  final TfArg<
-    BeyondcorpSecurityGatewayProxyProtocolConfigContextualHeadersGroupInfoOutputType
-  >?
-  outputType;
+  final TfArg<BeyondcorpSecurityGatewayOutputType>? outputType;
 
   Map<String, Object?> encode() => {'output_type': ?outputType?.toTfJson()};
-}
-
-/// `output_type` — derived from the provider schema description.
-enum BeyondcorpSecurityGatewayProxyProtocolConfigContextualHeadersGroupInfoOutputType
-    implements TerraformEnum {
-  protobuf('PROTOBUF'),
-  json('JSON'),
-  none('NONE');
-
-  const BeyondcorpSecurityGatewayProxyProtocolConfigContextualHeadersGroupInfoOutputType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `proxy_protocol_config.contextual_headers.user_info` block of
 /// `google_beyondcorp_security_gateway` (derived from provider schema).
 @immutable
-final class BeyondcorpSecurityGatewayProxyProtocolConfigContextualHeadersUserInfo {
-  const BeyondcorpSecurityGatewayProxyProtocolConfigContextualHeadersUserInfo({
-    this.outputType,
-  });
+final class BeyondcorpSecurityGatewayUserInfo {
+  const BeyondcorpSecurityGatewayUserInfo({this.outputType});
 
-  final TfArg<
-    BeyondcorpSecurityGatewayProxyProtocolConfigContextualHeadersUserInfoOutputType
-  >?
-  outputType;
+  final TfArg<BeyondcorpSecurityGatewayOutputType>? outputType;
 
   Map<String, Object?> encode() => {'output_type': ?outputType?.toTfJson()};
-}
-
-/// `output_type` — derived from the provider schema description.
-enum BeyondcorpSecurityGatewayProxyProtocolConfigContextualHeadersUserInfoOutputType
-    implements TerraformEnum {
-  protobuf('PROTOBUF'),
-  json('JSON'),
-  none('NONE');
-
-  const BeyondcorpSecurityGatewayProxyProtocolConfigContextualHeadersUserInfoOutputType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `service_discovery` block of
@@ -219,7 +152,7 @@ enum BeyondcorpSecurityGatewayProxyProtocolConfigContextualHeadersUserInfoOutput
 final class BeyondcorpSecurityGatewayServiceDiscovery {
   const BeyondcorpSecurityGatewayServiceDiscovery({this.apiGateway});
 
-  final BeyondcorpSecurityGatewayServiceDiscoveryApiGateway? apiGateway;
+  final BeyondcorpSecurityGatewayApiGateway? apiGateway;
 
   Map<String, Object?> encode() => {'api_gateway': ?apiGateway?.encode()};
 }
@@ -227,13 +160,10 @@ final class BeyondcorpSecurityGatewayServiceDiscovery {
 /// Typed helper for the `service_discovery.api_gateway` block of
 /// `google_beyondcorp_security_gateway` (derived from provider schema).
 @immutable
-final class BeyondcorpSecurityGatewayServiceDiscoveryApiGateway {
-  const BeyondcorpSecurityGatewayServiceDiscoveryApiGateway({
-    this.resourceOverride,
-  });
+final class BeyondcorpSecurityGatewayApiGateway {
+  const BeyondcorpSecurityGatewayApiGateway({this.resourceOverride});
 
-  final BeyondcorpSecurityGatewayServiceDiscoveryApiGatewayResourceOverride?
-  resourceOverride;
+  final BeyondcorpSecurityGatewayResourceOverride? resourceOverride;
 
   Map<String, Object?> encode() => {
     'resource_override': ?resourceOverride?.encode(),
@@ -243,10 +173,8 @@ final class BeyondcorpSecurityGatewayServiceDiscoveryApiGateway {
 /// Typed helper for the `service_discovery.api_gateway.resource_override` block of
 /// `google_beyondcorp_security_gateway` (derived from provider schema).
 @immutable
-final class BeyondcorpSecurityGatewayServiceDiscoveryApiGatewayResourceOverride {
-  const BeyondcorpSecurityGatewayServiceDiscoveryApiGatewayResourceOverride({
-    this.path,
-  });
+final class BeyondcorpSecurityGatewayResourceOverride {
+  const BeyondcorpSecurityGatewayResourceOverride({this.path});
 
   final TfArg<String>? path;
 

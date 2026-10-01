@@ -67,7 +67,7 @@ prelude: |
   // Enums (sourced from schema "Possible values" prose)
   // ===========================================================================
 
-  /// One [FirestoreFieldIndexConfigIndexes.order] direction. `ASCENDING` / `DESCENDING`.
+  /// One [FirestoreFieldIndexes.order] direction. `ASCENDING` / `DESCENDING`.
   enum FirestoreFieldOrder implements TerraformEnum {
     ascending('ASCENDING'),
     descending('DESCENDING');

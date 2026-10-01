@@ -135,12 +135,11 @@ final class GlueClassifierCsvClassifier {
 
   final TfArg<bool>? allowSingleColumn;
 
-  final TfArg<GlueClassifierCsvClassifierContainsHeader>? containsHeader;
+  final TfArg<GlueClassifierContainsHeader>? containsHeader;
 
   final TfArg<bool>? customDatatypeConfigured;
 
-  final List<TfArg<GlueClassifierCsvClassifierCustomDatatypes>>?
-  customDatatypes;
+  final List<TfArg<GlueClassifierCustomDatatypes>>? customDatatypes;
 
   final TfArg<String>? delimiter;
 
@@ -150,7 +149,7 @@ final class GlueClassifierCsvClassifier {
 
   final TfArg<String>? quoteSymbol;
 
-  final TfArg<GlueClassifierCsvClassifierSerde>? serde;
+  final TfArg<GlueClassifierSerde>? serde;
 
   Map<String, Object?> encode() => {
     'allow_single_column': ?allowSingleColumn?.toTfJson(),
@@ -167,18 +166,18 @@ final class GlueClassifierCsvClassifier {
 }
 
 /// `contains_header` — derived from the provider schema description.
-enum GlueClassifierCsvClassifierContainsHeader implements TerraformEnum {
+enum GlueClassifierContainsHeader implements TerraformEnum {
   unknown('UNKNOWN'),
   present('PRESENT'),
   absent('ABSENT');
 
-  const GlueClassifierCsvClassifierContainsHeader(this.terraformValue);
+  const GlueClassifierContainsHeader(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `custom_datatypes` — derived from the provider schema description.
-enum GlueClassifierCsvClassifierCustomDatatypes implements TerraformEnum {
+enum GlueClassifierCustomDatatypes implements TerraformEnum {
   binary('BINARY'),
   boolean('BOOLEAN'),
   date('DATE'),
@@ -191,18 +190,18 @@ enum GlueClassifierCsvClassifierCustomDatatypes implements TerraformEnum {
   string('STRING'),
   timestamp('TIMESTAMP');
 
-  const GlueClassifierCsvClassifierCustomDatatypes(this.terraformValue);
+  const GlueClassifierCustomDatatypes(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `serde` — derived from the provider schema description.
-enum GlueClassifierCsvClassifierSerde implements TerraformEnum {
+enum GlueClassifierSerde implements TerraformEnum {
   opencsvserde('OpenCSVSerDe'),
   lazysimpleserde('LazySimpleSerDe'),
   none('None');
 
-  const GlueClassifierCsvClassifierSerde(this.terraformValue);
+  const GlueClassifierSerde(this.terraformValue);
   @override
   final String terraformValue;
 }

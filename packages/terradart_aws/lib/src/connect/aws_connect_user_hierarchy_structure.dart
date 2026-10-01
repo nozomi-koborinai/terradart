@@ -19,15 +19,15 @@ final class ConnectUserHierarchyStructureHierarchyStructure {
     this.levelTwo,
   });
 
-  final ConnectUserHierarchyStructureHierarchyStructureLevelFive? levelFive;
+  final ConnectUserHierarchyStructureLevelFive? levelFive;
 
-  final ConnectUserHierarchyStructureHierarchyStructureLevelFour? levelFour;
+  final ConnectUserHierarchyStructureLevelFour? levelFour;
 
-  final ConnectUserHierarchyStructureHierarchyStructureLevelOne? levelOne;
+  final ConnectUserHierarchyStructureLevelOne? levelOne;
 
-  final ConnectUserHierarchyStructureHierarchyStructureLevelThree? levelThree;
+  final ConnectUserHierarchyStructureLevelThree? levelThree;
 
-  final ConnectUserHierarchyStructureHierarchyStructureLevelTwo? levelTwo;
+  final ConnectUserHierarchyStructureLevelTwo? levelTwo;
 
   Map<String, Object?> encode() => {
     'level_five': ?levelFive?.encode(),
@@ -41,10 +41,8 @@ final class ConnectUserHierarchyStructureHierarchyStructure {
 /// Typed helper for the `hierarchy_structure.level_five` block of
 /// `aws_connect_user_hierarchy_structure` (derived from provider schema).
 @immutable
-final class ConnectUserHierarchyStructureHierarchyStructureLevelFive {
-  const ConnectUserHierarchyStructureHierarchyStructureLevelFive({
-    required this.name,
-  });
+final class ConnectUserHierarchyStructureLevelFive {
+  const ConnectUserHierarchyStructureLevelFive({required this.name});
 
   final TfArg<String> name;
 
@@ -54,10 +52,8 @@ final class ConnectUserHierarchyStructureHierarchyStructureLevelFive {
 /// Typed helper for the `hierarchy_structure.level_four` block of
 /// `aws_connect_user_hierarchy_structure` (derived from provider schema).
 @immutable
-final class ConnectUserHierarchyStructureHierarchyStructureLevelFour {
-  const ConnectUserHierarchyStructureHierarchyStructureLevelFour({
-    required this.name,
-  });
+final class ConnectUserHierarchyStructureLevelFour {
+  const ConnectUserHierarchyStructureLevelFour({required this.name});
 
   final TfArg<String> name;
 
@@ -67,10 +63,8 @@ final class ConnectUserHierarchyStructureHierarchyStructureLevelFour {
 /// Typed helper for the `hierarchy_structure.level_one` block of
 /// `aws_connect_user_hierarchy_structure` (derived from provider schema).
 @immutable
-final class ConnectUserHierarchyStructureHierarchyStructureLevelOne {
-  const ConnectUserHierarchyStructureHierarchyStructureLevelOne({
-    required this.name,
-  });
+final class ConnectUserHierarchyStructureLevelOne {
+  const ConnectUserHierarchyStructureLevelOne({required this.name});
 
   final TfArg<String> name;
 
@@ -80,10 +74,8 @@ final class ConnectUserHierarchyStructureHierarchyStructureLevelOne {
 /// Typed helper for the `hierarchy_structure.level_three` block of
 /// `aws_connect_user_hierarchy_structure` (derived from provider schema).
 @immutable
-final class ConnectUserHierarchyStructureHierarchyStructureLevelThree {
-  const ConnectUserHierarchyStructureHierarchyStructureLevelThree({
-    required this.name,
-  });
+final class ConnectUserHierarchyStructureLevelThree {
+  const ConnectUserHierarchyStructureLevelThree({required this.name});
 
   final TfArg<String> name;
 
@@ -93,10 +85,8 @@ final class ConnectUserHierarchyStructureHierarchyStructureLevelThree {
 /// Typed helper for the `hierarchy_structure.level_two` block of
 /// `aws_connect_user_hierarchy_structure` (derived from provider schema).
 @immutable
-final class ConnectUserHierarchyStructureHierarchyStructureLevelTwo {
-  const ConnectUserHierarchyStructureHierarchyStructureLevelTwo({
-    required this.name,
-  });
+final class ConnectUserHierarchyStructureLevelTwo {
+  const ConnectUserHierarchyStructureLevelTwo({required this.name});
 
   final TfArg<String> name;
 

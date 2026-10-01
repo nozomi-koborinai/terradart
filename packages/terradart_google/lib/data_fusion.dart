@@ -5,20 +5,20 @@ library;
 
 export 'src/data_fusion/google_data_fusion_instance.dart'
     show
+        DataFusionInstanceAcceleratorType,
         DataFusionInstanceAccelerators,
-        DataFusionInstanceAcceleratorsAcceleratorType,
         DataFusionInstanceAcceleratorsState,
+        DataFusionInstanceConnectionType,
         DataFusionInstanceCryptoKeyConfig,
         DataFusionInstanceEventPublishConfig,
         DataFusionInstanceMaintenancePolicy,
-        DataFusionInstanceMaintenancePolicyMaintenanceWindow,
-        DataFusionInstanceMaintenancePolicyMaintenanceWindowRecurringTimeWindow,
-        DataFusionInstanceMaintenancePolicyMaintenanceWindowRecurringTimeWindowWindow,
+        DataFusionInstanceMaintenanceWindow,
         DataFusionInstanceNetworkConfig,
-        DataFusionInstanceNetworkConfigConnectionType,
-        DataFusionInstanceNetworkConfigPrivateServiceConnectConfig,
+        DataFusionInstancePrivateServiceConnectConfig,
+        DataFusionInstanceRecurringTimeWindow,
         DataFusionInstanceState,
         DataFusionInstanceType,
+        DataFusionInstanceWindow,
         GoogleDataFusionInstance;
 export 'src/data_fusion/google_data_fusion_instance_iam_binding.dart'
     show

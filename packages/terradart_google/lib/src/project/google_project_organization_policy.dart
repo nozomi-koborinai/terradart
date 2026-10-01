@@ -33,9 +33,9 @@ final class ProjectOrganizationPolicyListPolicy {
 
   final TfArg<String>? suggestedValue;
 
-  final ProjectOrganizationPolicyListPolicyAllow? allow;
+  final ProjectOrganizationPolicyAllow? allow;
 
-  final ProjectOrganizationPolicyListPolicyDeny? deny;
+  final ProjectOrganizationPolicyDeny? deny;
 
   Map<String, Object?> encode() => {
     'inherit_from_parent': ?inheritFromParent?.toTfJson(),
@@ -48,8 +48,8 @@ final class ProjectOrganizationPolicyListPolicy {
 /// Typed helper for the `list_policy.allow` block of
 /// `google_project_organization_policy` (derived from provider schema).
 @immutable
-final class ProjectOrganizationPolicyListPolicyAllow {
-  const ProjectOrganizationPolicyListPolicyAllow({this.all, this.values});
+final class ProjectOrganizationPolicyAllow {
+  const ProjectOrganizationPolicyAllow({this.all, this.values});
 
   final TfArg<bool>? all;
 
@@ -64,8 +64,8 @@ final class ProjectOrganizationPolicyListPolicyAllow {
 /// Typed helper for the `list_policy.deny` block of
 /// `google_project_organization_policy` (derived from provider schema).
 @immutable
-final class ProjectOrganizationPolicyListPolicyDeny {
-  const ProjectOrganizationPolicyListPolicyDeny({this.all, this.values});
+final class ProjectOrganizationPolicyDeny {
+  const ProjectOrganizationPolicyDeny({this.all, this.values});
 
   final TfArg<bool>? all;
 

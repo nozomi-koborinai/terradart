@@ -40,13 +40,13 @@ final class EventarcTriggerDestination {
 
   final TfArg<String>? workflow;
 
-  final EventarcTriggerDestinationCloudRunService? cloudRunService;
+  final EventarcTriggerCloudRunService? cloudRunService;
 
-  final EventarcTriggerDestinationGke? gke;
+  final EventarcTriggerGke? gke;
 
-  final EventarcTriggerDestinationHttpEndpoint? httpEndpoint;
+  final EventarcTriggerHttpEndpoint? httpEndpoint;
 
-  final EventarcTriggerDestinationNetworkConfig? networkConfig;
+  final EventarcTriggerNetworkConfig? networkConfig;
 
   Map<String, Object?> encode() => {
     'workflow': ?workflow?.toTfJson(),
@@ -60,8 +60,8 @@ final class EventarcTriggerDestination {
 /// Typed helper for the `destination.cloud_run_service` block of
 /// `google_eventarc_trigger` (derived from provider schema).
 @immutable
-final class EventarcTriggerDestinationCloudRunService {
-  const EventarcTriggerDestinationCloudRunService({
+final class EventarcTriggerCloudRunService {
+  const EventarcTriggerCloudRunService({
     this.path,
     this.region,
     required this.service,
@@ -83,8 +83,8 @@ final class EventarcTriggerDestinationCloudRunService {
 /// Typed helper for the `destination.gke` block of
 /// `google_eventarc_trigger` (derived from provider schema).
 @immutable
-final class EventarcTriggerDestinationGke {
-  const EventarcTriggerDestinationGke({
+final class EventarcTriggerGke {
+  const EventarcTriggerGke({
     required this.cluster,
     required this.location,
     required this.namespace,
@@ -114,8 +114,8 @@ final class EventarcTriggerDestinationGke {
 /// Typed helper for the `destination.http_endpoint` block of
 /// `google_eventarc_trigger` (derived from provider schema).
 @immutable
-final class EventarcTriggerDestinationHttpEndpoint {
-  const EventarcTriggerDestinationHttpEndpoint({required this.uri});
+final class EventarcTriggerHttpEndpoint {
+  const EventarcTriggerHttpEndpoint({required this.uri});
 
   final TfArg<String> uri;
 
@@ -125,10 +125,8 @@ final class EventarcTriggerDestinationHttpEndpoint {
 /// Typed helper for the `destination.network_config` block of
 /// `google_eventarc_trigger` (derived from provider schema).
 @immutable
-final class EventarcTriggerDestinationNetworkConfig {
-  const EventarcTriggerDestinationNetworkConfig({
-    required this.networkAttachment,
-  });
+final class EventarcTriggerNetworkConfig {
+  const EventarcTriggerNetworkConfig({required this.networkAttachment});
 
   final TfArg<String> networkAttachment;
 
@@ -177,7 +175,7 @@ final class EventarcTriggerRetryPolicy {
 final class EventarcTriggerTransport {
   const EventarcTriggerTransport({this.pubsub});
 
-  final EventarcTriggerTransportPubsub? pubsub;
+  final EventarcTriggerPubsub? pubsub;
 
   Map<String, Object?> encode() => {'pubsub': ?pubsub?.encode()};
 }
@@ -185,8 +183,8 @@ final class EventarcTriggerTransport {
 /// Typed helper for the `transport.pubsub` block of
 /// `google_eventarc_trigger` (derived from provider schema).
 @immutable
-final class EventarcTriggerTransportPubsub {
-  const EventarcTriggerTransportPubsub({this.topic});
+final class EventarcTriggerPubsub {
+  const EventarcTriggerPubsub({this.topic});
 
   final RefTo<GooglePubsubTopic>? topic;
 
@@ -223,11 +221,11 @@ final class EventarcTriggerTransportPubsub {
 ///
 /// Transport auto-creation:
 /// - When [transport] is omitted (or [EventarcTriggerTransport.pubsub] is
-///   set without a [EventarcTriggerTransportPubsub.topic]), Eventarc
+///   set without a [EventarcTriggerPubsub.topic]), Eventarc
 ///   automatically creates and manages a Pub/Sub topic as the delivery
 ///   intermediary. Eventarc owns that topic's lifecycle and deletes it
 ///   when the trigger is removed. Passing an explicit
-///   [EventarcTriggerTransportPubsub.topic] (only valid for triggers of
+///   [EventarcTriggerPubsub.topic] (only valid for triggers of
 ///   type `google.cloud.pubsub.topic.v1.messagePublished`) attaches an
 ///   existing topic instead -- and Eventarc will NOT delete that topic on
 ///   trigger deletion.
@@ -250,7 +248,7 @@ final class EventarcTriggerTransportPubsub {
 ///     ),
 ///   ],
 ///   destination: EventarcTriggerDestination(
-///     cloudRunService: EventarcTriggerDestinationCloudRunService(
+///     cloudRunService: EventarcTriggerCloudRunService(
 ///       service: .literal('image-processor'),
 ///       region: .literal('asia-northeast1'),
 ///       path: .literal('/events'),
@@ -261,7 +259,7 @@ final class EventarcTriggerTransportPubsub {
 ///
 /// Naming convention: ALL nested helper types in this resource are
 /// prefixed `EventarcTrigger...` (e.g. [EventarcTriggerMatchingCriteria],
-/// [EventarcTriggerDestination], [EventarcTriggerDestinationCloudRunService]) to
+/// [EventarcTriggerDestination], [EventarcTriggerCloudRunService]) to
 /// avoid colliding with similarly-named structures in sibling Eventarc
 /// resources (channels, connections) and other event-delivery wrappers
 /// (Pub/Sub subscriptions, Cloud Scheduler).

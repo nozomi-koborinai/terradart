@@ -30,7 +30,7 @@ final class CodebuildReportGroupExportConfig {
 
   final TfArg<CodebuildReportGroupExportConfigType> type;
 
-  final CodebuildReportGroupExportConfigS3Destination? s3Destination;
+  final CodebuildReportGroupS3Destination? s3Destination;
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
@@ -51,8 +51,8 @@ enum CodebuildReportGroupExportConfigType implements TerraformEnum {
 /// Typed helper for the `export_config.s3_destination` block of
 /// `aws_codebuild_report_group` (derived from provider schema).
 @immutable
-final class CodebuildReportGroupExportConfigS3Destination {
-  const CodebuildReportGroupExportConfigS3Destination({
+final class CodebuildReportGroupS3Destination {
+  const CodebuildReportGroupS3Destination({
     required this.bucket,
     this.encryptionDisabled,
     required this.encryptionKey,
@@ -66,8 +66,7 @@ final class CodebuildReportGroupExportConfigS3Destination {
 
   final TfArg<String> encryptionKey;
 
-  final TfArg<CodebuildReportGroupExportConfigS3DestinationPackaging>?
-  packaging;
+  final TfArg<CodebuildReportGroupPackaging>? packaging;
 
   final TfArg<String>? path;
 
@@ -81,14 +80,11 @@ final class CodebuildReportGroupExportConfigS3Destination {
 }
 
 /// `packaging` — derived from the provider schema description.
-enum CodebuildReportGroupExportConfigS3DestinationPackaging
-    implements TerraformEnum {
+enum CodebuildReportGroupPackaging implements TerraformEnum {
   zip('ZIP'),
   none('NONE');
 
-  const CodebuildReportGroupExportConfigS3DestinationPackaging(
-    this.terraformValue,
-  );
+  const CodebuildReportGroupPackaging(this.terraformValue);
   @override
   final String terraformValue;
 }

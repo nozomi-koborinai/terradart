@@ -13,7 +13,7 @@ const Set<String> _awsSesv2MultiRegionEndpointSensitive = <String>{};
 final class Sesv2MultiRegionEndpointDetails {
   const Sesv2MultiRegionEndpointDetails({this.routesDetails});
 
-  final List<Sesv2MultiRegionEndpointDetailsRoutesDetails>? routesDetails;
+  final List<Sesv2MultiRegionEndpointRoutesDetails>? routesDetails;
 
   Map<String, Object?> encode() => {
     if (routesDetails != null)
@@ -24,8 +24,8 @@ final class Sesv2MultiRegionEndpointDetails {
 /// Typed helper for the `details.routes_details` block of
 /// `aws_sesv2_multi_region_endpoint` (derived from provider schema).
 @immutable
-final class Sesv2MultiRegionEndpointDetailsRoutesDetails {
-  const Sesv2MultiRegionEndpointDetailsRoutesDetails({required this.region});
+final class Sesv2MultiRegionEndpointRoutesDetails {
+  const Sesv2MultiRegionEndpointRoutesDetails({required this.region});
 
   final TfArg<String> region;
 

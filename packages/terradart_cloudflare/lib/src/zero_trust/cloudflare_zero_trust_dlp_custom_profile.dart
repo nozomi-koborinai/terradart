@@ -17,7 +17,7 @@ final class ZeroTrustDlpCustomProfileContextAwareness {
 
   final TfArg<bool>? enabled;
 
-  final ZeroTrustDlpCustomProfileContextAwarenessSkip? skip;
+  final ZeroTrustDlpCustomProfileSkip? skip;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
@@ -28,8 +28,8 @@ final class ZeroTrustDlpCustomProfileContextAwareness {
 /// Typed helper for the `context_awareness.skip` block of
 /// `cloudflare_zero_trust_dlp_custom_profile` (derived from provider schema).
 @immutable
-final class ZeroTrustDlpCustomProfileContextAwarenessSkip {
-  const ZeroTrustDlpCustomProfileContextAwarenessSkip({this.files});
+final class ZeroTrustDlpCustomProfileSkip {
+  const ZeroTrustDlpCustomProfileSkip({this.files});
 
   final TfArg<bool>? files;
 
@@ -56,7 +56,7 @@ final class ZeroTrustDlpCustomProfileEntries {
 
   final TfArg<String> name;
 
-  final ZeroTrustDlpCustomProfileEntriesPattern pattern;
+  final ZeroTrustDlpCustomProfilePattern pattern;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -70,15 +70,15 @@ final class ZeroTrustDlpCustomProfileEntries {
 /// Typed helper for the `entries.pattern` block of
 /// `cloudflare_zero_trust_dlp_custom_profile` (derived from provider schema).
 @immutable
-final class ZeroTrustDlpCustomProfileEntriesPattern {
-  const ZeroTrustDlpCustomProfileEntriesPattern({
+final class ZeroTrustDlpCustomProfilePattern {
+  const ZeroTrustDlpCustomProfilePattern({
     required this.regex,
     this.validation,
   });
 
   final TfArg<String> regex;
 
-  final TfArg<ZeroTrustDlpCustomProfileEntriesPatternValidation>? validation;
+  final TfArg<ZeroTrustDlpCustomProfileValidation>? validation;
 
   Map<String, Object?> encode() => {
     'regex': regex.toTfJson(),
@@ -87,11 +87,10 @@ final class ZeroTrustDlpCustomProfileEntriesPattern {
 }
 
 /// `validation` — derived from the provider schema description.
-enum ZeroTrustDlpCustomProfileEntriesPatternValidation
-    implements TerraformEnum {
+enum ZeroTrustDlpCustomProfileValidation implements TerraformEnum {
   luhn('luhn');
 
-  const ZeroTrustDlpCustomProfileEntriesPatternValidation(this.terraformValue);
+  const ZeroTrustDlpCustomProfileValidation(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -129,7 +128,7 @@ final class ZeroTrustDlpCustomProfileSharedEntries {
 
   final TfArg<String> entryId;
 
-  final TfArg<ZeroTrustDlpCustomProfileSharedEntriesEntryType> entryType;
+  final TfArg<ZeroTrustDlpCustomProfileEntryType> entryType;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
@@ -139,14 +138,14 @@ final class ZeroTrustDlpCustomProfileSharedEntries {
 }
 
 /// `entry_type` — derived from the provider schema description.
-enum ZeroTrustDlpCustomProfileSharedEntriesEntryType implements TerraformEnum {
+enum ZeroTrustDlpCustomProfileEntryType implements TerraformEnum {
   custom('custom'),
   predefined('predefined'),
   integration('integration'),
   exactData('exact_data'),
   documentFingerprint('document_fingerprint');
 
-  const ZeroTrustDlpCustomProfileSharedEntriesEntryType(this.terraformValue);
+  const ZeroTrustDlpCustomProfileEntryType(this.terraformValue);
   @override
   final String terraformValue;
 }

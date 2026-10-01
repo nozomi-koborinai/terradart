@@ -16,7 +16,7 @@ const Set<String> _googleTpuV2QueuedResourceSensitive = <String>{};
 final class TpuV2QueuedResourceTpu {
   const TpuV2QueuedResourceTpu({this.nodeSpec});
 
-  final List<TpuV2QueuedResourceTpuNodeSpec>? nodeSpec;
+  final List<TpuV2QueuedResourceNodeSpec>? nodeSpec;
 
   Map<String, Object?> encode() => {
     if (nodeSpec != null) 'node_spec': [for (final e in nodeSpec!) e.encode()],
@@ -26,8 +26,8 @@ final class TpuV2QueuedResourceTpu {
 /// Typed helper for the `tpu.node_spec` block of
 /// `google_tpu_v2_queued_resource` (derived from provider schema).
 @immutable
-final class TpuV2QueuedResourceTpuNodeSpec {
-  const TpuV2QueuedResourceTpuNodeSpec({
+final class TpuV2QueuedResourceNodeSpec {
+  const TpuV2QueuedResourceNodeSpec({
     this.nodeId,
     required this.parent,
     required this.node,
@@ -37,7 +37,7 @@ final class TpuV2QueuedResourceTpuNodeSpec {
 
   final TfArg<String> parent;
 
-  final TpuV2QueuedResourceTpuNodeSpecNode node;
+  final TpuV2QueuedResourceNode node;
 
   Map<String, Object?> encode() => {
     'node_id': ?nodeId?.toTfJson(),
@@ -49,8 +49,8 @@ final class TpuV2QueuedResourceTpuNodeSpec {
 /// Typed helper for the `tpu.node_spec.node` block of
 /// `google_tpu_v2_queued_resource` (derived from provider schema).
 @immutable
-final class TpuV2QueuedResourceTpuNodeSpecNode {
-  const TpuV2QueuedResourceTpuNodeSpecNode({
+final class TpuV2QueuedResourceNode {
+  const TpuV2QueuedResourceNode({
     this.acceleratorType,
     this.description,
     required this.runtimeVersion,
@@ -63,7 +63,7 @@ final class TpuV2QueuedResourceTpuNodeSpecNode {
 
   final TfArg<String> runtimeVersion;
 
-  final TpuV2QueuedResourceTpuNodeSpecNodeNetworkConfig? networkConfig;
+  final TpuV2QueuedResourceNetworkConfig? networkConfig;
 
   Map<String, Object?> encode() => {
     'accelerator_type': ?acceleratorType?.toTfJson(),
@@ -76,8 +76,8 @@ final class TpuV2QueuedResourceTpuNodeSpecNode {
 /// Typed helper for the `tpu.node_spec.node.network_config` block of
 /// `google_tpu_v2_queued_resource` (derived from provider schema).
 @immutable
-final class TpuV2QueuedResourceTpuNodeSpecNodeNetworkConfig {
-  const TpuV2QueuedResourceTpuNodeSpecNodeNetworkConfig({
+final class TpuV2QueuedResourceNetworkConfig {
+  const TpuV2QueuedResourceNetworkConfig({
     this.canIpForward,
     this.enableExternalIps,
     this.network,

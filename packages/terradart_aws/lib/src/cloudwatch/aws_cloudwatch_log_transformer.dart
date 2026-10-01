@@ -12,8 +12,8 @@ const Set<String> _awsCloudwatchLogTransformerSensitive = <String>{};
 /// Typed helper for the `transformer_config` block of
 /// `aws_cloudwatch_log_transformer` (derived from provider schema).
 @immutable
-final class CloudwatchLogTransformerTransformerConfig {
-  const CloudwatchLogTransformerTransformerConfig({
+final class CloudwatchLogTransformerConfig {
+  const CloudwatchLogTransformerConfig({
     this.addKeys,
     this.copyValue,
     this.csv,
@@ -39,60 +39,51 @@ final class CloudwatchLogTransformerTransformerConfig {
     this.upperCaseString,
   });
 
-  final List<CloudwatchLogTransformerTransformerConfigAddKeys>? addKeys;
+  final List<CloudwatchLogTransformerAddKeys>? addKeys;
 
-  final List<CloudwatchLogTransformerTransformerConfigCopyValue>? copyValue;
+  final List<CloudwatchLogTransformerCopyValue>? copyValue;
 
-  final List<CloudwatchLogTransformerTransformerConfigCsv>? csv;
+  final List<CloudwatchLogTransformerCsv>? csv;
 
-  final List<CloudwatchLogTransformerTransformerConfigDateTimeConverter>?
-  dateTimeConverter;
+  final List<CloudwatchLogTransformerDateTimeConverter>? dateTimeConverter;
 
-  final List<CloudwatchLogTransformerTransformerConfigDeleteKeys>? deleteKeys;
+  final List<CloudwatchLogTransformerDeleteKeys>? deleteKeys;
 
-  final List<CloudwatchLogTransformerTransformerConfigGrok>? grok;
+  final List<CloudwatchLogTransformerGrok>? grok;
 
-  final List<CloudwatchLogTransformerTransformerConfigListToMap>? listToMap;
+  final List<CloudwatchLogTransformerListToMap>? listToMap;
 
-  final List<CloudwatchLogTransformerTransformerConfigLowerCaseString>?
-  lowerCaseString;
+  final List<CloudwatchLogTransformerLowerCaseString>? lowerCaseString;
 
-  final List<CloudwatchLogTransformerTransformerConfigMoveKeys>? moveKeys;
+  final List<CloudwatchLogTransformerMoveKeys>? moveKeys;
 
-  final List<CloudwatchLogTransformerTransformerConfigParseCloudfront>?
-  parseCloudfront;
+  final List<CloudwatchLogTransformerParseCloudfront>? parseCloudfront;
 
-  final List<CloudwatchLogTransformerTransformerConfigParseJson>? parseJson;
+  final List<CloudwatchLogTransformerParseJson>? parseJson;
 
-  final List<CloudwatchLogTransformerTransformerConfigParseKeyValue>?
-  parseKeyValue;
+  final List<CloudwatchLogTransformerParseKeyValue>? parseKeyValue;
 
-  final List<CloudwatchLogTransformerTransformerConfigParsePostgres>?
-  parsePostgres;
+  final List<CloudwatchLogTransformerParsePostgres>? parsePostgres;
 
-  final List<CloudwatchLogTransformerTransformerConfigParseRoute53>?
-  parseRoute53;
+  final List<CloudwatchLogTransformerParseRoute53>? parseRoute53;
 
-  final List<CloudwatchLogTransformerTransformerConfigParseToOcsf>? parseToOcsf;
+  final List<CloudwatchLogTransformerParseToOcsf>? parseToOcsf;
 
-  final List<CloudwatchLogTransformerTransformerConfigParseVpc>? parseVpc;
+  final List<CloudwatchLogTransformerParseVpc>? parseVpc;
 
-  final List<CloudwatchLogTransformerTransformerConfigParseWaf>? parseWaf;
+  final List<CloudwatchLogTransformerParseWaf>? parseWaf;
 
-  final List<CloudwatchLogTransformerTransformerConfigRenameKeys>? renameKeys;
+  final List<CloudwatchLogTransformerRenameKeys>? renameKeys;
 
-  final List<CloudwatchLogTransformerTransformerConfigSplitString>? splitString;
+  final List<CloudwatchLogTransformerSplitString>? splitString;
 
-  final List<CloudwatchLogTransformerTransformerConfigSubstituteString>?
-  substituteString;
+  final List<CloudwatchLogTransformerSubstituteString>? substituteString;
 
-  final List<CloudwatchLogTransformerTransformerConfigTrimString>? trimString;
+  final List<CloudwatchLogTransformerTrimString>? trimString;
 
-  final List<CloudwatchLogTransformerTransformerConfigTypeConverter>?
-  typeConverter;
+  final List<CloudwatchLogTransformerTypeConverter>? typeConverter;
 
-  final List<CloudwatchLogTransformerTransformerConfigUpperCaseString>?
-  upperCaseString;
+  final List<CloudwatchLogTransformerUpperCaseString>? upperCaseString;
 
   Map<String, Object?> encode() => {
     if (addKeys != null) 'add_keys': [for (final e in addKeys!) e.encode()],
@@ -141,10 +132,10 @@ final class CloudwatchLogTransformerTransformerConfig {
 /// Typed helper for the `transformer_config.add_keys` block of
 /// `aws_cloudwatch_log_transformer` (derived from provider schema).
 @immutable
-final class CloudwatchLogTransformerTransformerConfigAddKeys {
-  const CloudwatchLogTransformerTransformerConfigAddKeys({this.entry});
+final class CloudwatchLogTransformerAddKeys {
+  const CloudwatchLogTransformerAddKeys({this.entry});
 
-  final List<CloudwatchLogTransformerTransformerConfigAddKeysEntry>? entry;
+  final List<CloudwatchLogTransformerAddKeysEntry>? entry;
 
   Map<String, Object?> encode() => {
     if (entry != null) 'entry': [for (final e in entry!) e.encode()],
@@ -154,8 +145,8 @@ final class CloudwatchLogTransformerTransformerConfigAddKeys {
 /// Typed helper for the `transformer_config.add_keys.entry` block of
 /// `aws_cloudwatch_log_transformer` (derived from provider schema).
 @immutable
-final class CloudwatchLogTransformerTransformerConfigAddKeysEntry {
-  const CloudwatchLogTransformerTransformerConfigAddKeysEntry({
+final class CloudwatchLogTransformerAddKeysEntry {
+  const CloudwatchLogTransformerAddKeysEntry({
     required this.key,
     this.overwriteIfExists,
     required this.value,
@@ -177,10 +168,10 @@ final class CloudwatchLogTransformerTransformerConfigAddKeysEntry {
 /// Typed helper for the `transformer_config.copy_value` block of
 /// `aws_cloudwatch_log_transformer` (derived from provider schema).
 @immutable
-final class CloudwatchLogTransformerTransformerConfigCopyValue {
-  const CloudwatchLogTransformerTransformerConfigCopyValue({this.entry});
+final class CloudwatchLogTransformerCopyValue {
+  const CloudwatchLogTransformerCopyValue({this.entry});
 
-  final List<CloudwatchLogTransformerTransformerConfigCopyValueEntry>? entry;
+  final List<CloudwatchLogTransformerCopyValueEntry>? entry;
 
   Map<String, Object?> encode() => {
     if (entry != null) 'entry': [for (final e in entry!) e.encode()],
@@ -189,9 +180,10 @@ final class CloudwatchLogTransformerTransformerConfigCopyValue {
 
 /// Typed helper for the `transformer_config.copy_value.entry` block of
 /// `aws_cloudwatch_log_transformer` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CloudwatchLogTransformerTransformerConfigCopyValueEntry {
-  const CloudwatchLogTransformerTransformerConfigCopyValueEntry({
+final class CloudwatchLogTransformerCopyValueEntry {
+  const CloudwatchLogTransformerCopyValueEntry({
     this.overwriteIfExists,
     required this.source,
     required this.target,
@@ -213,8 +205,8 @@ final class CloudwatchLogTransformerTransformerConfigCopyValueEntry {
 /// Typed helper for the `transformer_config.csv` block of
 /// `aws_cloudwatch_log_transformer` (derived from provider schema).
 @immutable
-final class CloudwatchLogTransformerTransformerConfigCsv {
-  const CloudwatchLogTransformerTransformerConfigCsv({
+final class CloudwatchLogTransformerCsv {
+  const CloudwatchLogTransformerCsv({
     this.columns,
     this.delimiter,
     this.quoteCharacter,
@@ -240,8 +232,8 @@ final class CloudwatchLogTransformerTransformerConfigCsv {
 /// Typed helper for the `transformer_config.date_time_converter` block of
 /// `aws_cloudwatch_log_transformer` (derived from provider schema).
 @immutable
-final class CloudwatchLogTransformerTransformerConfigDateTimeConverter {
-  const CloudwatchLogTransformerTransformerConfigDateTimeConverter({
+final class CloudwatchLogTransformerDateTimeConverter {
+  const CloudwatchLogTransformerDateTimeConverter({
     this.locale,
     required this.matchPatterns,
     required this.source,
@@ -279,10 +271,8 @@ final class CloudwatchLogTransformerTransformerConfigDateTimeConverter {
 /// Typed helper for the `transformer_config.delete_keys` block of
 /// `aws_cloudwatch_log_transformer` (derived from provider schema).
 @immutable
-final class CloudwatchLogTransformerTransformerConfigDeleteKeys {
-  const CloudwatchLogTransformerTransformerConfigDeleteKeys({
-    required this.withKeys,
-  });
+final class CloudwatchLogTransformerDeleteKeys {
+  const CloudwatchLogTransformerDeleteKeys({required this.withKeys});
 
   final TfArg<List<String>> withKeys;
 
@@ -292,11 +282,8 @@ final class CloudwatchLogTransformerTransformerConfigDeleteKeys {
 /// Typed helper for the `transformer_config.grok` block of
 /// `aws_cloudwatch_log_transformer` (derived from provider schema).
 @immutable
-final class CloudwatchLogTransformerTransformerConfigGrok {
-  const CloudwatchLogTransformerTransformerConfigGrok({
-    required this.match,
-    this.source,
-  });
+final class CloudwatchLogTransformerGrok {
+  const CloudwatchLogTransformerGrok({required this.match, this.source});
 
   final TfArg<String> match;
 
@@ -311,8 +298,8 @@ final class CloudwatchLogTransformerTransformerConfigGrok {
 /// Typed helper for the `transformer_config.list_to_map` block of
 /// `aws_cloudwatch_log_transformer` (derived from provider schema).
 @immutable
-final class CloudwatchLogTransformerTransformerConfigListToMap {
-  const CloudwatchLogTransformerTransformerConfigListToMap({
+final class CloudwatchLogTransformerListToMap {
+  const CloudwatchLogTransformerListToMap({
     this.flatten,
     this.flattenedElement,
     required this.key,
@@ -323,10 +310,7 @@ final class CloudwatchLogTransformerTransformerConfigListToMap {
 
   final TfArg<bool>? flatten;
 
-  final TfArg<
-    CloudwatchLogTransformerTransformerConfigListToMapFlattenedElement
-  >?
-  flattenedElement;
+  final TfArg<CloudwatchLogTransformerFlattenedElement>? flattenedElement;
 
   final TfArg<String> key;
 
@@ -347,14 +331,11 @@ final class CloudwatchLogTransformerTransformerConfigListToMap {
 }
 
 /// `flattened_element` — derived from the provider schema description.
-enum CloudwatchLogTransformerTransformerConfigListToMapFlattenedElement
-    implements TerraformEnum {
+enum CloudwatchLogTransformerFlattenedElement implements TerraformEnum {
   first('first'),
   last('last');
 
-  const CloudwatchLogTransformerTransformerConfigListToMapFlattenedElement(
-    this.terraformValue,
-  );
+  const CloudwatchLogTransformerFlattenedElement(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -362,10 +343,8 @@ enum CloudwatchLogTransformerTransformerConfigListToMapFlattenedElement
 /// Typed helper for the `transformer_config.lower_case_string` block of
 /// `aws_cloudwatch_log_transformer` (derived from provider schema).
 @immutable
-final class CloudwatchLogTransformerTransformerConfigLowerCaseString {
-  const CloudwatchLogTransformerTransformerConfigLowerCaseString({
-    required this.withKeys,
-  });
+final class CloudwatchLogTransformerLowerCaseString {
+  const CloudwatchLogTransformerLowerCaseString({required this.withKeys});
 
   final TfArg<List<String>> withKeys;
 
@@ -375,44 +354,21 @@ final class CloudwatchLogTransformerTransformerConfigLowerCaseString {
 /// Typed helper for the `transformer_config.move_keys` block of
 /// `aws_cloudwatch_log_transformer` (derived from provider schema).
 @immutable
-final class CloudwatchLogTransformerTransformerConfigMoveKeys {
-  const CloudwatchLogTransformerTransformerConfigMoveKeys({this.entry});
+final class CloudwatchLogTransformerMoveKeys {
+  const CloudwatchLogTransformerMoveKeys({this.entry});
 
-  final List<CloudwatchLogTransformerTransformerConfigMoveKeysEntry>? entry;
+  final List<CloudwatchLogTransformerCopyValueEntry>? entry;
 
   Map<String, Object?> encode() => {
     if (entry != null) 'entry': [for (final e in entry!) e.encode()],
   };
 }
 
-/// Typed helper for the `transformer_config.move_keys.entry` block of
-/// `aws_cloudwatch_log_transformer` (derived from provider schema).
-@immutable
-final class CloudwatchLogTransformerTransformerConfigMoveKeysEntry {
-  const CloudwatchLogTransformerTransformerConfigMoveKeysEntry({
-    this.overwriteIfExists,
-    required this.source,
-    required this.target,
-  });
-
-  final TfArg<bool>? overwriteIfExists;
-
-  final TfArg<String> source;
-
-  final TfArg<String> target;
-
-  Map<String, Object?> encode() => {
-    'overwrite_if_exists': ?overwriteIfExists?.toTfJson(),
-    'source': source.toTfJson(),
-    'target': target.toTfJson(),
-  };
-}
-
 /// Typed helper for the `transformer_config.parse_cloudfront` block of
 /// `aws_cloudwatch_log_transformer` (derived from provider schema).
 @immutable
-final class CloudwatchLogTransformerTransformerConfigParseCloudfront {
-  const CloudwatchLogTransformerTransformerConfigParseCloudfront({this.source});
+final class CloudwatchLogTransformerParseCloudfront {
+  const CloudwatchLogTransformerParseCloudfront({this.source});
 
   final TfArg<String>? source;
 
@@ -422,11 +378,8 @@ final class CloudwatchLogTransformerTransformerConfigParseCloudfront {
 /// Typed helper for the `transformer_config.parse_json` block of
 /// `aws_cloudwatch_log_transformer` (derived from provider schema).
 @immutable
-final class CloudwatchLogTransformerTransformerConfigParseJson {
-  const CloudwatchLogTransformerTransformerConfigParseJson({
-    this.destination,
-    this.source,
-  });
+final class CloudwatchLogTransformerParseJson {
+  const CloudwatchLogTransformerParseJson({this.destination, this.source});
 
   final TfArg<String>? destination;
 
@@ -441,8 +394,8 @@ final class CloudwatchLogTransformerTransformerConfigParseJson {
 /// Typed helper for the `transformer_config.parse_key_value` block of
 /// `aws_cloudwatch_log_transformer` (derived from provider schema).
 @immutable
-final class CloudwatchLogTransformerTransformerConfigParseKeyValue {
-  const CloudwatchLogTransformerTransformerConfigParseKeyValue({
+final class CloudwatchLogTransformerParseKeyValue {
+  const CloudwatchLogTransformerParseKeyValue({
     this.destination,
     this.fieldDelimiter,
     this.keyPrefix,
@@ -480,8 +433,8 @@ final class CloudwatchLogTransformerTransformerConfigParseKeyValue {
 /// Typed helper for the `transformer_config.parse_postgres` block of
 /// `aws_cloudwatch_log_transformer` (derived from provider schema).
 @immutable
-final class CloudwatchLogTransformerTransformerConfigParsePostgres {
-  const CloudwatchLogTransformerTransformerConfigParsePostgres({this.source});
+final class CloudwatchLogTransformerParsePostgres {
+  const CloudwatchLogTransformerParsePostgres({this.source});
 
   final TfArg<String>? source;
 
@@ -491,8 +444,8 @@ final class CloudwatchLogTransformerTransformerConfigParsePostgres {
 /// Typed helper for the `transformer_config.parse_route53` block of
 /// `aws_cloudwatch_log_transformer` (derived from provider schema).
 @immutable
-final class CloudwatchLogTransformerTransformerConfigParseRoute53 {
-  const CloudwatchLogTransformerTransformerConfigParseRoute53({this.source});
+final class CloudwatchLogTransformerParseRoute53 {
+  const CloudwatchLogTransformerParseRoute53({this.source});
 
   final TfArg<String>? source;
 
@@ -502,18 +455,16 @@ final class CloudwatchLogTransformerTransformerConfigParseRoute53 {
 /// Typed helper for the `transformer_config.parse_to_ocsf` block of
 /// `aws_cloudwatch_log_transformer` (derived from provider schema).
 @immutable
-final class CloudwatchLogTransformerTransformerConfigParseToOcsf {
-  const CloudwatchLogTransformerTransformerConfigParseToOcsf({
+final class CloudwatchLogTransformerParseToOcsf {
+  const CloudwatchLogTransformerParseToOcsf({
     required this.eventSource,
     required this.ocsfVersion,
     this.source,
   });
 
-  final TfArg<CloudwatchLogTransformerTransformerConfigParseToOcsfEventSource>
-  eventSource;
+  final TfArg<CloudwatchLogTransformerEventSource> eventSource;
 
-  final TfArg<CloudwatchLogTransformerTransformerConfigParseToOcsfOcsfVersion>
-  ocsfVersion;
+  final TfArg<CloudwatchLogTransformerOcsfVersion> ocsfVersion;
 
   final TfArg<String>? source;
 
@@ -525,30 +476,24 @@ final class CloudwatchLogTransformerTransformerConfigParseToOcsf {
 }
 
 /// `event_source` — derived from the provider schema description.
-enum CloudwatchLogTransformerTransformerConfigParseToOcsfEventSource
-    implements TerraformEnum {
+enum CloudwatchLogTransformerEventSource implements TerraformEnum {
   cloudtrail('CloudTrail'),
   route53resolver('Route53Resolver'),
   vpcflow('VPCFlow'),
   eksaudit('EKSAudit'),
   awswaf('AWSWAF');
 
-  const CloudwatchLogTransformerTransformerConfigParseToOcsfEventSource(
-    this.terraformValue,
-  );
+  const CloudwatchLogTransformerEventSource(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `ocsf_version` — derived from the provider schema description.
-enum CloudwatchLogTransformerTransformerConfigParseToOcsfOcsfVersion
-    implements TerraformEnum {
+enum CloudwatchLogTransformerOcsfVersion implements TerraformEnum {
   v1p1('V1.1'),
   v1p5('V1.5');
 
-  const CloudwatchLogTransformerTransformerConfigParseToOcsfOcsfVersion(
-    this.terraformValue,
-  );
+  const CloudwatchLogTransformerOcsfVersion(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -556,8 +501,8 @@ enum CloudwatchLogTransformerTransformerConfigParseToOcsfOcsfVersion
 /// Typed helper for the `transformer_config.parse_vpc` block of
 /// `aws_cloudwatch_log_transformer` (derived from provider schema).
 @immutable
-final class CloudwatchLogTransformerTransformerConfigParseVpc {
-  const CloudwatchLogTransformerTransformerConfigParseVpc({this.source});
+final class CloudwatchLogTransformerParseVpc {
+  const CloudwatchLogTransformerParseVpc({this.source});
 
   final TfArg<String>? source;
 
@@ -567,8 +512,8 @@ final class CloudwatchLogTransformerTransformerConfigParseVpc {
 /// Typed helper for the `transformer_config.parse_waf` block of
 /// `aws_cloudwatch_log_transformer` (derived from provider schema).
 @immutable
-final class CloudwatchLogTransformerTransformerConfigParseWaf {
-  const CloudwatchLogTransformerTransformerConfigParseWaf({this.source});
+final class CloudwatchLogTransformerParseWaf {
+  const CloudwatchLogTransformerParseWaf({this.source});
 
   final TfArg<String>? source;
 
@@ -578,10 +523,10 @@ final class CloudwatchLogTransformerTransformerConfigParseWaf {
 /// Typed helper for the `transformer_config.rename_keys` block of
 /// `aws_cloudwatch_log_transformer` (derived from provider schema).
 @immutable
-final class CloudwatchLogTransformerTransformerConfigRenameKeys {
-  const CloudwatchLogTransformerTransformerConfigRenameKeys({this.entry});
+final class CloudwatchLogTransformerRenameKeys {
+  const CloudwatchLogTransformerRenameKeys({this.entry});
 
-  final List<CloudwatchLogTransformerTransformerConfigRenameKeysEntry>? entry;
+  final List<CloudwatchLogTransformerRenameKeysEntry>? entry;
 
   Map<String, Object?> encode() => {
     if (entry != null) 'entry': [for (final e in entry!) e.encode()],
@@ -591,8 +536,8 @@ final class CloudwatchLogTransformerTransformerConfigRenameKeys {
 /// Typed helper for the `transformer_config.rename_keys.entry` block of
 /// `aws_cloudwatch_log_transformer` (derived from provider schema).
 @immutable
-final class CloudwatchLogTransformerTransformerConfigRenameKeysEntry {
-  const CloudwatchLogTransformerTransformerConfigRenameKeysEntry({
+final class CloudwatchLogTransformerRenameKeysEntry {
+  const CloudwatchLogTransformerRenameKeysEntry({
     required this.key,
     this.overwriteIfExists,
     required this.renameTo,
@@ -614,10 +559,10 @@ final class CloudwatchLogTransformerTransformerConfigRenameKeysEntry {
 /// Typed helper for the `transformer_config.split_string` block of
 /// `aws_cloudwatch_log_transformer` (derived from provider schema).
 @immutable
-final class CloudwatchLogTransformerTransformerConfigSplitString {
-  const CloudwatchLogTransformerTransformerConfigSplitString({this.entry});
+final class CloudwatchLogTransformerSplitString {
+  const CloudwatchLogTransformerSplitString({this.entry});
 
-  final List<CloudwatchLogTransformerTransformerConfigSplitStringEntry>? entry;
+  final List<CloudwatchLogTransformerSplitStringEntry>? entry;
 
   Map<String, Object?> encode() => {
     if (entry != null) 'entry': [for (final e in entry!) e.encode()],
@@ -627,8 +572,8 @@ final class CloudwatchLogTransformerTransformerConfigSplitString {
 /// Typed helper for the `transformer_config.split_string.entry` block of
 /// `aws_cloudwatch_log_transformer` (derived from provider schema).
 @immutable
-final class CloudwatchLogTransformerTransformerConfigSplitStringEntry {
-  const CloudwatchLogTransformerTransformerConfigSplitStringEntry({
+final class CloudwatchLogTransformerSplitStringEntry {
+  const CloudwatchLogTransformerSplitStringEntry({
     required this.delimiter,
     required this.source,
   });
@@ -646,11 +591,10 @@ final class CloudwatchLogTransformerTransformerConfigSplitStringEntry {
 /// Typed helper for the `transformer_config.substitute_string` block of
 /// `aws_cloudwatch_log_transformer` (derived from provider schema).
 @immutable
-final class CloudwatchLogTransformerTransformerConfigSubstituteString {
-  const CloudwatchLogTransformerTransformerConfigSubstituteString({this.entry});
+final class CloudwatchLogTransformerSubstituteString {
+  const CloudwatchLogTransformerSubstituteString({this.entry});
 
-  final List<CloudwatchLogTransformerTransformerConfigSubstituteStringEntry>?
-  entry;
+  final List<CloudwatchLogTransformerSubstituteStringEntry>? entry;
 
   Map<String, Object?> encode() => {
     if (entry != null) 'entry': [for (final e in entry!) e.encode()],
@@ -660,8 +604,8 @@ final class CloudwatchLogTransformerTransformerConfigSubstituteString {
 /// Typed helper for the `transformer_config.substitute_string.entry` block of
 /// `aws_cloudwatch_log_transformer` (derived from provider schema).
 @immutable
-final class CloudwatchLogTransformerTransformerConfigSubstituteStringEntry {
-  const CloudwatchLogTransformerTransformerConfigSubstituteStringEntry({
+final class CloudwatchLogTransformerSubstituteStringEntry {
+  const CloudwatchLogTransformerSubstituteStringEntry({
     required this.from,
     required this.source,
     required this.to,
@@ -683,10 +627,8 @@ final class CloudwatchLogTransformerTransformerConfigSubstituteStringEntry {
 /// Typed helper for the `transformer_config.trim_string` block of
 /// `aws_cloudwatch_log_transformer` (derived from provider schema).
 @immutable
-final class CloudwatchLogTransformerTransformerConfigTrimString {
-  const CloudwatchLogTransformerTransformerConfigTrimString({
-    required this.withKeys,
-  });
+final class CloudwatchLogTransformerTrimString {
+  const CloudwatchLogTransformerTrimString({required this.withKeys});
 
   final TfArg<List<String>> withKeys;
 
@@ -696,11 +638,10 @@ final class CloudwatchLogTransformerTransformerConfigTrimString {
 /// Typed helper for the `transformer_config.type_converter` block of
 /// `aws_cloudwatch_log_transformer` (derived from provider schema).
 @immutable
-final class CloudwatchLogTransformerTransformerConfigTypeConverter {
-  const CloudwatchLogTransformerTransformerConfigTypeConverter({this.entry});
+final class CloudwatchLogTransformerTypeConverter {
+  const CloudwatchLogTransformerTypeConverter({this.entry});
 
-  final List<CloudwatchLogTransformerTransformerConfigTypeConverterEntry>?
-  entry;
+  final List<CloudwatchLogTransformerTypeConverterEntry>? entry;
 
   Map<String, Object?> encode() => {
     if (entry != null) 'entry': [for (final e in entry!) e.encode()],
@@ -710,16 +651,15 @@ final class CloudwatchLogTransformerTransformerConfigTypeConverter {
 /// Typed helper for the `transformer_config.type_converter.entry` block of
 /// `aws_cloudwatch_log_transformer` (derived from provider schema).
 @immutable
-final class CloudwatchLogTransformerTransformerConfigTypeConverterEntry {
-  const CloudwatchLogTransformerTransformerConfigTypeConverterEntry({
+final class CloudwatchLogTransformerTypeConverterEntry {
+  const CloudwatchLogTransformerTypeConverterEntry({
     required this.key,
     required this.type,
   });
 
   final TfArg<String> key;
 
-  final TfArg<CloudwatchLogTransformerTransformerConfigTypeConverterEntryType>
-  type;
+  final TfArg<CloudwatchLogTransformerType> type;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
@@ -728,16 +668,13 @@ final class CloudwatchLogTransformerTransformerConfigTypeConverterEntry {
 }
 
 /// `type` — derived from the provider schema description.
-enum CloudwatchLogTransformerTransformerConfigTypeConverterEntryType
-    implements TerraformEnum {
+enum CloudwatchLogTransformerType implements TerraformEnum {
   boolean('boolean'),
   integer('integer'),
   double('double'),
   string('string');
 
-  const CloudwatchLogTransformerTransformerConfigTypeConverterEntryType(
-    this.terraformValue,
-  );
+  const CloudwatchLogTransformerType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -745,10 +682,8 @@ enum CloudwatchLogTransformerTransformerConfigTypeConverterEntryType
 /// Typed helper for the `transformer_config.upper_case_string` block of
 /// `aws_cloudwatch_log_transformer` (derived from provider schema).
 @immutable
-final class CloudwatchLogTransformerTransformerConfigUpperCaseString {
-  const CloudwatchLogTransformerTransformerConfigUpperCaseString({
-    required this.withKeys,
-  });
+final class CloudwatchLogTransformerUpperCaseString {
+  const CloudwatchLogTransformerUpperCaseString({required this.withKeys});
 
   final TfArg<List<String>> withKeys;
 
@@ -763,7 +698,7 @@ final class AwsCloudwatchLogTransformer extends Resource {
     required super.localName,
     required RefTo<AwsCloudwatchLogGroup> logGroupArn,
     TfArg<String>? region,
-    List<CloudwatchLogTransformerTransformerConfig>? transformerConfig,
+    List<CloudwatchLogTransformerConfig>? transformerConfig,
     super.lifecycle,
     super.dependsOn,
     super.provider,

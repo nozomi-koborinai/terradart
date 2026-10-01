@@ -84,25 +84,19 @@ final class ComputeoptimizerRecommendationPreferencesExternalMetricsPreference {
     required this.source,
   });
 
-  final TfArg<
-    ComputeoptimizerRecommendationPreferencesExternalMetricsPreferenceSource
-  >
-  source;
+  final TfArg<ComputeoptimizerRecommendationPreferencesSource> source;
 
   Map<String, Object?> encode() => {'source': source.toTfJson()};
 }
 
 /// `source` — derived from the provider schema description.
-enum ComputeoptimizerRecommendationPreferencesExternalMetricsPreferenceSource
-    implements TerraformEnum {
+enum ComputeoptimizerRecommendationPreferencesSource implements TerraformEnum {
   datadog('Datadog'),
   dynatrace('Dynatrace'),
   newrelic('NewRelic'),
   instana('Instana');
 
-  const ComputeoptimizerRecommendationPreferencesExternalMetricsPreferenceSource(
-    this.terraformValue,
-  );
+  const ComputeoptimizerRecommendationPreferencesSource(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -116,8 +110,7 @@ final class ComputeoptimizerRecommendationPreferencesPreferredResource {
     required this.name,
   });
 
-  final ComputeoptimizerRecommendationPreferencesPreferredResourceFilter?
-  filter;
+  final ComputeoptimizerRecommendationPreferencesFilter? filter;
 
   final TfArg<ComputeoptimizerRecommendationPreferencesPreferredResourceName>
   name;
@@ -133,18 +126,18 @@ final class ComputeoptimizerRecommendationPreferencesPreferredResource {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.excludeList(...)`.
-sealed class ComputeoptimizerRecommendationPreferencesPreferredResourceFilter {
-  const ComputeoptimizerRecommendationPreferencesPreferredResourceFilter();
+sealed class ComputeoptimizerRecommendationPreferencesFilter {
+  const ComputeoptimizerRecommendationPreferencesFilter();
 
   /// Sets `exclude_list`.
-  const factory ComputeoptimizerRecommendationPreferencesPreferredResourceFilter.excludeList(
+  const factory ComputeoptimizerRecommendationPreferencesFilter.excludeList(
     TfArg<List<String>> excludeList,
-  ) = ComputeoptimizerRecommendationPreferencesPreferredResourceFilterExcludeList;
+  ) = ComputeoptimizerRecommendationPreferencesFilterExcludeList;
 
   /// Sets `include_list`.
-  const factory ComputeoptimizerRecommendationPreferencesPreferredResourceFilter.includeList(
+  const factory ComputeoptimizerRecommendationPreferencesFilter.includeList(
     TfArg<List<String>> includeList,
-  ) = ComputeoptimizerRecommendationPreferencesPreferredResourceFilterIncludeList;
+  ) = ComputeoptimizerRecommendationPreferencesFilterIncludeList;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -152,10 +145,10 @@ sealed class ComputeoptimizerRecommendationPreferencesPreferredResourceFilter {
   Map<String, Object?> encode();
 }
 
-/// The [ComputeoptimizerRecommendationPreferencesPreferredResourceFilter.excludeList] choice: sets `exclude_list`.
-final class ComputeoptimizerRecommendationPreferencesPreferredResourceFilterExcludeList
-    extends ComputeoptimizerRecommendationPreferencesPreferredResourceFilter {
-  const ComputeoptimizerRecommendationPreferencesPreferredResourceFilterExcludeList(
+/// The [ComputeoptimizerRecommendationPreferencesFilter.excludeList] choice: sets `exclude_list`.
+final class ComputeoptimizerRecommendationPreferencesFilterExcludeList
+    extends ComputeoptimizerRecommendationPreferencesFilter {
+  const ComputeoptimizerRecommendationPreferencesFilterExcludeList(
     this.excludeList,
   );
 
@@ -168,10 +161,10 @@ final class ComputeoptimizerRecommendationPreferencesPreferredResourceFilterExcl
   Map<String, Object?> encode() => {'exclude_list': excludeList.toTfJson()};
 }
 
-/// The [ComputeoptimizerRecommendationPreferencesPreferredResourceFilter.includeList] choice: sets `include_list`.
-final class ComputeoptimizerRecommendationPreferencesPreferredResourceFilterIncludeList
-    extends ComputeoptimizerRecommendationPreferencesPreferredResourceFilter {
-  const ComputeoptimizerRecommendationPreferencesPreferredResourceFilterIncludeList(
+/// The [ComputeoptimizerRecommendationPreferencesFilter.includeList] choice: sets `include_list`.
+final class ComputeoptimizerRecommendationPreferencesFilterIncludeList
+    extends ComputeoptimizerRecommendationPreferencesFilter {
+  const ComputeoptimizerRecommendationPreferencesFilterIncludeList(
     this.includeList,
   );
 
@@ -236,14 +229,9 @@ final class ComputeoptimizerRecommendationPreferencesUtilizationPreference {
     this.metricParameters,
   });
 
-  final TfArg<
-    ComputeoptimizerRecommendationPreferencesUtilizationPreferenceMetricName
-  >
-  metricName;
+  final TfArg<ComputeoptimizerRecommendationPreferencesMetricName> metricName;
 
-  final List<
-    ComputeoptimizerRecommendationPreferencesUtilizationPreferenceMetricParameters
-  >?
+  final List<ComputeoptimizerRecommendationPreferencesMetricParameters>?
   metricParameters;
 
   Map<String, Object?> encode() => {
@@ -254,12 +242,12 @@ final class ComputeoptimizerRecommendationPreferencesUtilizationPreference {
 }
 
 /// `metric_name` — derived from the provider schema description.
-enum ComputeoptimizerRecommendationPreferencesUtilizationPreferenceMetricName
+enum ComputeoptimizerRecommendationPreferencesMetricName
     implements TerraformEnum {
   cpuutilization('CpuUtilization'),
   memoryutilization('MemoryUtilization');
 
-  const ComputeoptimizerRecommendationPreferencesUtilizationPreferenceMetricName(
+  const ComputeoptimizerRecommendationPreferencesMetricName(
     this.terraformValue,
   );
   @override
@@ -269,21 +257,15 @@ enum ComputeoptimizerRecommendationPreferencesUtilizationPreferenceMetricName
 /// Typed helper for the `utilization_preference.metric_parameters` block of
 /// `aws_computeoptimizer_recommendation_preferences` (derived from provider schema).
 @immutable
-final class ComputeoptimizerRecommendationPreferencesUtilizationPreferenceMetricParameters {
-  const ComputeoptimizerRecommendationPreferencesUtilizationPreferenceMetricParameters({
+final class ComputeoptimizerRecommendationPreferencesMetricParameters {
+  const ComputeoptimizerRecommendationPreferencesMetricParameters({
     required this.headroom,
     this.threshold,
   });
 
-  final TfArg<
-    ComputeoptimizerRecommendationPreferencesUtilizationPreferenceMetricParametersHeadroom
-  >
-  headroom;
+  final TfArg<ComputeoptimizerRecommendationPreferencesHeadroom> headroom;
 
-  final TfArg<
-    ComputeoptimizerRecommendationPreferencesUtilizationPreferenceMetricParametersThreshold
-  >?
-  threshold;
+  final TfArg<ComputeoptimizerRecommendationPreferencesThreshold>? threshold;
 
   Map<String, Object?> encode() => {
     'headroom': headroom.toTfJson(),
@@ -292,30 +274,26 @@ final class ComputeoptimizerRecommendationPreferencesUtilizationPreferenceMetric
 }
 
 /// `headroom` — derived from the provider schema description.
-enum ComputeoptimizerRecommendationPreferencesUtilizationPreferenceMetricParametersHeadroom
+enum ComputeoptimizerRecommendationPreferencesHeadroom
     implements TerraformEnum {
   percent30('PERCENT_30'),
   percent20('PERCENT_20'),
   percent10('PERCENT_10'),
   percent0('PERCENT_0');
 
-  const ComputeoptimizerRecommendationPreferencesUtilizationPreferenceMetricParametersHeadroom(
-    this.terraformValue,
-  );
+  const ComputeoptimizerRecommendationPreferencesHeadroom(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `threshold` — derived from the provider schema description.
-enum ComputeoptimizerRecommendationPreferencesUtilizationPreferenceMetricParametersThreshold
+enum ComputeoptimizerRecommendationPreferencesThreshold
     implements TerraformEnum {
   p90('P90'),
   p95('P95'),
   p995('P99_5');
 
-  const ComputeoptimizerRecommendationPreferencesUtilizationPreferenceMetricParametersThreshold(
-    this.terraformValue,
-  );
+  const ComputeoptimizerRecommendationPreferencesThreshold(this.terraformValue);
   @override
   final String terraformValue;
 }

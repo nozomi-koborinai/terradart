@@ -16,10 +16,10 @@ export 'src/secretsmanager/aws_secretsmanager_secret_rotation.dart'
     show
         AwsSecretsmanagerSecretRotation,
         SecretsmanagerSecretRotationExternalSecretRotationMetadata,
-        SecretsmanagerSecretRotationRotationRules,
-        SecretsmanagerSecretRotationRotationRulesSchedule,
-        SecretsmanagerSecretRotationRotationRulesScheduleAutomaticallyAfterDays,
-        SecretsmanagerSecretRotationRotationRulesScheduleExpression;
+        SecretsmanagerSecretRotationRules,
+        SecretsmanagerSecretRotationSchedule,
+        SecretsmanagerSecretRotationScheduleAutomaticallyAfterDays,
+        SecretsmanagerSecretRotationScheduleExpression;
 export 'src/secretsmanager/aws_secretsmanager_secret_version.dart'
     show
         AwsSecretsmanagerSecretVersion,

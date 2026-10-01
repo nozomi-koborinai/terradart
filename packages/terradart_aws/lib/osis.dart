@@ -7,11 +7,11 @@ export 'src/osis/aws_osis_pipeline.dart'
     show
         AwsOsisPipeline,
         OsisPipelineBufferOptions,
+        OsisPipelineCloudwatchLogDestination,
         OsisPipelineEncryptionAtRestOptions,
         OsisPipelineLogPublishingOptions,
-        OsisPipelineLogPublishingOptionsCloudwatchLogDestination,
-        OsisPipelineVpcOptions,
-        OsisPipelineVpcOptionsVpcEndpointManagement;
+        OsisPipelineVpcEndpointManagement,
+        OsisPipelineVpcOptions;
 export 'src/osis/aws_osis_pipeline_endpoint.dart'
     show AwsOsisPipelineEndpoint, OsisPipelineEndpointVpcOptions;
 export 'src/osis/aws_osis_resource_policy.dart' show AwsOsisResourcePolicy;

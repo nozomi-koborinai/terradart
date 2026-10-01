@@ -40,7 +40,7 @@ final class ComputePacketMirroringFilter {
 
   final TfArg<List<String>>? cidrRanges;
 
-  final TfArg<ComputePacketMirroringFilterDirection>? direction;
+  final TfArg<ComputePacketMirroringDirection>? direction;
 
   final TfArg<List<String>>? ipProtocols;
 
@@ -52,12 +52,12 @@ final class ComputePacketMirroringFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum ComputePacketMirroringFilterDirection implements TerraformEnum {
+enum ComputePacketMirroringDirection implements TerraformEnum {
   ingress('INGRESS'),
   egress('EGRESS'),
   both('BOTH');
 
-  const ComputePacketMirroringFilterDirection(this.terraformValue);
+  const ComputePacketMirroringDirection(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -74,9 +74,9 @@ final class ComputePacketMirroringMirroredResources {
 
   final TfArg<List<String>>? tags;
 
-  final List<ComputePacketMirroringMirroredResourcesInstances>? instances;
+  final List<ComputePacketMirroringInstances>? instances;
 
-  final List<ComputePacketMirroringMirroredResourcesSubnetworks>? subnetworks;
+  final List<ComputePacketMirroringSubnetworks>? subnetworks;
 
   Map<String, Object?> encode() => {
     'tags': ?tags?.toTfJson(),
@@ -90,8 +90,8 @@ final class ComputePacketMirroringMirroredResources {
 /// Typed helper for the `mirrored_resources.instances` block of
 /// `google_compute_packet_mirroring` (derived from provider schema).
 @immutable
-final class ComputePacketMirroringMirroredResourcesInstances {
-  const ComputePacketMirroringMirroredResourcesInstances({required this.url});
+final class ComputePacketMirroringInstances {
+  const ComputePacketMirroringInstances({required this.url});
 
   final TfArg<String> url;
 
@@ -101,8 +101,8 @@ final class ComputePacketMirroringMirroredResourcesInstances {
 /// Typed helper for the `mirrored_resources.subnetworks` block of
 /// `google_compute_packet_mirroring` (derived from provider schema).
 @immutable
-final class ComputePacketMirroringMirroredResourcesSubnetworks {
-  const ComputePacketMirroringMirroredResourcesSubnetworks({required this.url});
+final class ComputePacketMirroringSubnetworks {
+  const ComputePacketMirroringSubnetworks({required this.url});
 
   final TfArg<String> url;
 

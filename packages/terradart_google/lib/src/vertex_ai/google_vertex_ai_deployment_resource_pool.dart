@@ -22,12 +22,10 @@ final class VertexAiDeploymentResourcePoolDedicatedResources {
 
   final TfArg<num> minReplicaCount;
 
-  final List<
-    VertexAiDeploymentResourcePoolDedicatedResourcesAutoscalingMetricSpecs
-  >?
+  final List<VertexAiDeploymentResourcePoolAutoscalingMetricSpecs>?
   autoscalingMetricSpecs;
 
-  final VertexAiDeploymentResourcePoolDedicatedResourcesMachineSpec machineSpec;
+  final VertexAiDeploymentResourcePoolMachineSpec machineSpec;
 
   Map<String, Object?> encode() => {
     'max_replica_count': ?maxReplicaCount?.toTfJson(),
@@ -43,8 +41,8 @@ final class VertexAiDeploymentResourcePoolDedicatedResources {
 /// Typed helper for the `dedicated_resources.autoscaling_metric_specs` block of
 /// `google_vertex_ai_deployment_resource_pool` (derived from provider schema).
 @immutable
-final class VertexAiDeploymentResourcePoolDedicatedResourcesAutoscalingMetricSpecs {
-  const VertexAiDeploymentResourcePoolDedicatedResourcesAutoscalingMetricSpecs({
+final class VertexAiDeploymentResourcePoolAutoscalingMetricSpecs {
+  const VertexAiDeploymentResourcePoolAutoscalingMetricSpecs({
     required this.metricName,
     this.target,
   });
@@ -62,8 +60,8 @@ final class VertexAiDeploymentResourcePoolDedicatedResourcesAutoscalingMetricSpe
 /// Typed helper for the `dedicated_resources.machine_spec` block of
 /// `google_vertex_ai_deployment_resource_pool` (derived from provider schema).
 @immutable
-final class VertexAiDeploymentResourcePoolDedicatedResourcesMachineSpec {
-  const VertexAiDeploymentResourcePoolDedicatedResourcesMachineSpec({
+final class VertexAiDeploymentResourcePoolMachineSpec {
+  const VertexAiDeploymentResourcePoolMachineSpec({
     this.acceleratorCount,
     this.acceleratorType,
     this.machineType,
@@ -111,7 +109,7 @@ final class VertexAiDeploymentResourcePoolDedicatedResourcesMachineSpec {
 ///   region: TfArg.literal('us-central1'),
 ///   dedicatedResources: VertexAiDeploymentResourcePoolDedicatedResources(
 ///     minReplicaCount: TfArg.literal(1),
-///     machineSpec: VertexAiDeploymentResourcePoolDedicatedResourcesMachineSpec(
+///     machineSpec: VertexAiDeploymentResourcePoolMachineSpec(
 ///       machineType: TfArg.literal('n1-standard-2'),
 ///     ),
 ///   ),

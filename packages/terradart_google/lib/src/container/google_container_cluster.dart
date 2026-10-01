@@ -43,54 +43,49 @@ final class ContainerClusterAddonsConfig {
     this.statefulHaConfig,
   });
 
-  final ContainerClusterAddonsConfigAgentSandboxConfig? agentSandboxConfig;
+  final ContainerClusterAgentSandboxConfig? agentSandboxConfig;
 
-  final ContainerClusterAddonsConfigCloudrunConfig? cloudrunConfig;
+  final ContainerClusterCloudrunConfig? cloudrunConfig;
 
-  final ContainerClusterAddonsConfigConfigConnectorConfig?
-  configConnectorConfig;
+  final ContainerClusterConfigConnectorConfig? configConnectorConfig;
 
-  final ContainerClusterAddonsConfigDnsCacheConfig? dnsCacheConfig;
+  final ContainerClusterDnsCacheConfig? dnsCacheConfig;
 
-  final ContainerClusterAddonsConfigGcePersistentDiskCsiDriverConfig?
+  final ContainerClusterGcePersistentDiskCsiDriverConfig?
   gcePersistentDiskCsiDriverConfig;
 
-  final ContainerClusterAddonsConfigGcpFilestoreCsiDriverConfig?
+  final ContainerClusterGcpFilestoreCsiDriverConfig?
   gcpFilestoreCsiDriverConfig;
 
-  final ContainerClusterAddonsConfigGcsFuseCsiDriverConfig?
-  gcsFuseCsiDriverConfig;
+  final ContainerClusterGcsFuseCsiDriverConfig? gcsFuseCsiDriverConfig;
 
-  final ContainerClusterAddonsConfigGkeBackupAgentConfig? gkeBackupAgentConfig;
+  final ContainerClusterGkeBackupAgentConfig? gkeBackupAgentConfig;
 
-  final ContainerClusterAddonsConfigHighScaleCheckpointingConfig?
+  final ContainerClusterHighScaleCheckpointingConfig?
   highScaleCheckpointingConfig;
 
-  final ContainerClusterAddonsConfigHorizontalPodAutoscaling?
-  horizontalPodAutoscaling;
+  final ContainerClusterHorizontalPodAutoscaling? horizontalPodAutoscaling;
 
-  final ContainerClusterAddonsConfigHttpLoadBalancing? httpLoadBalancing;
+  final ContainerClusterHttpLoadBalancing? httpLoadBalancing;
 
-  final ContainerClusterAddonsConfigLustreCsiDriverConfig?
-  lustreCsiDriverConfig;
+  final ContainerClusterLustreCsiDriverConfig? lustreCsiDriverConfig;
 
-  final ContainerClusterAddonsConfigNetworkPolicyConfig? networkPolicyConfig;
+  final ContainerClusterNetworkPolicyConfig? networkPolicyConfig;
 
-  final ContainerClusterAddonsConfigNodeReadinessConfig? nodeReadinessConfig;
+  final ContainerClusterNodeReadinessConfig? nodeReadinessConfig;
 
-  final ContainerClusterAddonsConfigParallelstoreCsiDriverConfig?
+  final ContainerClusterParallelstoreCsiDriverConfig?
   parallelstoreCsiDriverConfig;
 
-  final ContainerClusterAddonsConfigPodSnapshotConfig? podSnapshotConfig;
+  final ContainerClusterPodSnapshotConfig? podSnapshotConfig;
 
-  final List<ContainerClusterAddonsConfigRayOperatorConfig>? rayOperatorConfig;
+  final List<ContainerClusterRayOperatorConfig>? rayOperatorConfig;
 
-  final ContainerClusterAddonsConfigSliceControllerConfig?
-  sliceControllerConfig;
+  final ContainerClusterSliceControllerConfig? sliceControllerConfig;
 
-  final ContainerClusterAddonsConfigSlurmOperatorConfig? slurmOperatorConfig;
+  final ContainerClusterSlurmOperatorConfig? slurmOperatorConfig;
 
-  final ContainerClusterAddonsConfigStatefulHaConfig? statefulHaConfig;
+  final ContainerClusterStatefulHaConfig? statefulHaConfig;
 
   Map<String, Object?> encode() => {
     'agent_sandbox_config': ?agentSandboxConfig?.encode(),
@@ -121,8 +116,8 @@ final class ContainerClusterAddonsConfig {
 /// Typed helper for the `addons_config.agent_sandbox_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterAddonsConfigAgentSandboxConfig {
-  const ContainerClusterAddonsConfigAgentSandboxConfig({required this.enabled});
+final class ContainerClusterAgentSandboxConfig {
+  const ContainerClusterAgentSandboxConfig({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -132,8 +127,8 @@ final class ContainerClusterAddonsConfigAgentSandboxConfig {
 /// Typed helper for the `addons_config.cloudrun_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterAddonsConfigCloudrunConfig {
-  const ContainerClusterAddonsConfigCloudrunConfig({
+final class ContainerClusterCloudrunConfig {
+  const ContainerClusterCloudrunConfig({
     required this.disabled,
     this.loadBalancerType,
   });
@@ -151,10 +146,8 @@ final class ContainerClusterAddonsConfigCloudrunConfig {
 /// Typed helper for the `addons_config.config_connector_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterAddonsConfigConfigConnectorConfig {
-  const ContainerClusterAddonsConfigConfigConnectorConfig({
-    required this.enabled,
-  });
+final class ContainerClusterConfigConnectorConfig {
+  const ContainerClusterConfigConnectorConfig({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -164,8 +157,8 @@ final class ContainerClusterAddonsConfigConfigConnectorConfig {
 /// Typed helper for the `addons_config.dns_cache_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterAddonsConfigDnsCacheConfig {
-  const ContainerClusterAddonsConfigDnsCacheConfig({required this.enabled});
+final class ContainerClusterDnsCacheConfig {
+  const ContainerClusterDnsCacheConfig({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -175,8 +168,8 @@ final class ContainerClusterAddonsConfigDnsCacheConfig {
 /// Typed helper for the `addons_config.gce_persistent_disk_csi_driver_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterAddonsConfigGcePersistentDiskCsiDriverConfig {
-  const ContainerClusterAddonsConfigGcePersistentDiskCsiDriverConfig({
+final class ContainerClusterGcePersistentDiskCsiDriverConfig {
+  const ContainerClusterGcePersistentDiskCsiDriverConfig({
     required this.enabled,
   });
 
@@ -188,10 +181,8 @@ final class ContainerClusterAddonsConfigGcePersistentDiskCsiDriverConfig {
 /// Typed helper for the `addons_config.gcp_filestore_csi_driver_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterAddonsConfigGcpFilestoreCsiDriverConfig {
-  const ContainerClusterAddonsConfigGcpFilestoreCsiDriverConfig({
-    required this.enabled,
-  });
+final class ContainerClusterGcpFilestoreCsiDriverConfig {
+  const ContainerClusterGcpFilestoreCsiDriverConfig({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -201,10 +192,8 @@ final class ContainerClusterAddonsConfigGcpFilestoreCsiDriverConfig {
 /// Typed helper for the `addons_config.gcs_fuse_csi_driver_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterAddonsConfigGcsFuseCsiDriverConfig {
-  const ContainerClusterAddonsConfigGcsFuseCsiDriverConfig({
-    required this.enabled,
-  });
+final class ContainerClusterGcsFuseCsiDriverConfig {
+  const ContainerClusterGcsFuseCsiDriverConfig({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -214,10 +203,8 @@ final class ContainerClusterAddonsConfigGcsFuseCsiDriverConfig {
 /// Typed helper for the `addons_config.gke_backup_agent_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterAddonsConfigGkeBackupAgentConfig {
-  const ContainerClusterAddonsConfigGkeBackupAgentConfig({
-    required this.enabled,
-  });
+final class ContainerClusterGkeBackupAgentConfig {
+  const ContainerClusterGkeBackupAgentConfig({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -227,10 +214,8 @@ final class ContainerClusterAddonsConfigGkeBackupAgentConfig {
 /// Typed helper for the `addons_config.high_scale_checkpointing_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterAddonsConfigHighScaleCheckpointingConfig {
-  const ContainerClusterAddonsConfigHighScaleCheckpointingConfig({
-    required this.enabled,
-  });
+final class ContainerClusterHighScaleCheckpointingConfig {
+  const ContainerClusterHighScaleCheckpointingConfig({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -240,10 +225,8 @@ final class ContainerClusterAddonsConfigHighScaleCheckpointingConfig {
 /// Typed helper for the `addons_config.horizontal_pod_autoscaling` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterAddonsConfigHorizontalPodAutoscaling {
-  const ContainerClusterAddonsConfigHorizontalPodAutoscaling({
-    required this.disabled,
-  });
+final class ContainerClusterHorizontalPodAutoscaling {
+  const ContainerClusterHorizontalPodAutoscaling({required this.disabled});
 
   final TfArg<bool> disabled;
 
@@ -253,8 +236,8 @@ final class ContainerClusterAddonsConfigHorizontalPodAutoscaling {
 /// Typed helper for the `addons_config.http_load_balancing` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterAddonsConfigHttpLoadBalancing {
-  const ContainerClusterAddonsConfigHttpLoadBalancing({required this.disabled});
+final class ContainerClusterHttpLoadBalancing {
+  const ContainerClusterHttpLoadBalancing({required this.disabled});
 
   final TfArg<bool> disabled;
 
@@ -264,8 +247,8 @@ final class ContainerClusterAddonsConfigHttpLoadBalancing {
 /// Typed helper for the `addons_config.lustre_csi_driver_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterAddonsConfigLustreCsiDriverConfig {
-  const ContainerClusterAddonsConfigLustreCsiDriverConfig({
+final class ContainerClusterLustreCsiDriverConfig {
+  const ContainerClusterLustreCsiDriverConfig({
     this.disableMultiNic,
     this.enableLegacyLustrePort,
     required this.enabled,
@@ -287,10 +270,8 @@ final class ContainerClusterAddonsConfigLustreCsiDriverConfig {
 /// Typed helper for the `addons_config.network_policy_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterAddonsConfigNetworkPolicyConfig {
-  const ContainerClusterAddonsConfigNetworkPolicyConfig({
-    required this.disabled,
-  });
+final class ContainerClusterNetworkPolicyConfig {
+  const ContainerClusterNetworkPolicyConfig({required this.disabled});
 
   final TfArg<bool> disabled;
 
@@ -300,10 +281,8 @@ final class ContainerClusterAddonsConfigNetworkPolicyConfig {
 /// Typed helper for the `addons_config.node_readiness_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterAddonsConfigNodeReadinessConfig {
-  const ContainerClusterAddonsConfigNodeReadinessConfig({
-    required this.enabled,
-  });
+final class ContainerClusterNodeReadinessConfig {
+  const ContainerClusterNodeReadinessConfig({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -313,10 +292,8 @@ final class ContainerClusterAddonsConfigNodeReadinessConfig {
 /// Typed helper for the `addons_config.parallelstore_csi_driver_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterAddonsConfigParallelstoreCsiDriverConfig {
-  const ContainerClusterAddonsConfigParallelstoreCsiDriverConfig({
-    required this.enabled,
-  });
+final class ContainerClusterParallelstoreCsiDriverConfig {
+  const ContainerClusterParallelstoreCsiDriverConfig({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -326,8 +303,8 @@ final class ContainerClusterAddonsConfigParallelstoreCsiDriverConfig {
 /// Typed helper for the `addons_config.pod_snapshot_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterAddonsConfigPodSnapshotConfig {
-  const ContainerClusterAddonsConfigPodSnapshotConfig({required this.enabled});
+final class ContainerClusterPodSnapshotConfig {
+  const ContainerClusterPodSnapshotConfig({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -337,8 +314,8 @@ final class ContainerClusterAddonsConfigPodSnapshotConfig {
 /// Typed helper for the `addons_config.ray_operator_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterAddonsConfigRayOperatorConfig {
-  const ContainerClusterAddonsConfigRayOperatorConfig({
+final class ContainerClusterRayOperatorConfig {
+  const ContainerClusterRayOperatorConfig({
     required this.enabled,
     this.rayClusterLoggingConfig,
     this.rayClusterMonitoringConfig,
@@ -346,11 +323,9 @@ final class ContainerClusterAddonsConfigRayOperatorConfig {
 
   final TfArg<bool> enabled;
 
-  final ContainerClusterAddonsConfigRayOperatorConfigRayClusterLoggingConfig?
-  rayClusterLoggingConfig;
+  final ContainerClusterRayClusterLoggingConfig? rayClusterLoggingConfig;
 
-  final ContainerClusterAddonsConfigRayOperatorConfigRayClusterMonitoringConfig?
-  rayClusterMonitoringConfig;
+  final ContainerClusterRayClusterMonitoringConfig? rayClusterMonitoringConfig;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
@@ -362,10 +337,8 @@ final class ContainerClusterAddonsConfigRayOperatorConfig {
 /// Typed helper for the `addons_config.ray_operator_config.ray_cluster_logging_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterAddonsConfigRayOperatorConfigRayClusterLoggingConfig {
-  const ContainerClusterAddonsConfigRayOperatorConfigRayClusterLoggingConfig({
-    required this.enabled,
-  });
+final class ContainerClusterRayClusterLoggingConfig {
+  const ContainerClusterRayClusterLoggingConfig({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -375,10 +348,8 @@ final class ContainerClusterAddonsConfigRayOperatorConfigRayClusterLoggingConfig
 /// Typed helper for the `addons_config.ray_operator_config.ray_cluster_monitoring_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterAddonsConfigRayOperatorConfigRayClusterMonitoringConfig {
-  const ContainerClusterAddonsConfigRayOperatorConfigRayClusterMonitoringConfig({
-    required this.enabled,
-  });
+final class ContainerClusterRayClusterMonitoringConfig {
+  const ContainerClusterRayClusterMonitoringConfig({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -388,10 +359,8 @@ final class ContainerClusterAddonsConfigRayOperatorConfigRayClusterMonitoringCon
 /// Typed helper for the `addons_config.slice_controller_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterAddonsConfigSliceControllerConfig {
-  const ContainerClusterAddonsConfigSliceControllerConfig({
-    required this.enabled,
-  });
+final class ContainerClusterSliceControllerConfig {
+  const ContainerClusterSliceControllerConfig({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -401,10 +370,8 @@ final class ContainerClusterAddonsConfigSliceControllerConfig {
 /// Typed helper for the `addons_config.slurm_operator_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterAddonsConfigSlurmOperatorConfig {
-  const ContainerClusterAddonsConfigSlurmOperatorConfig({
-    required this.enabled,
-  });
+final class ContainerClusterSlurmOperatorConfig {
+  const ContainerClusterSlurmOperatorConfig({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -414,8 +381,8 @@ final class ContainerClusterAddonsConfigSlurmOperatorConfig {
 /// Typed helper for the `addons_config.stateful_ha_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterAddonsConfigStatefulHaConfig {
-  const ContainerClusterAddonsConfigStatefulHaConfig({required this.enabled});
+final class ContainerClusterStatefulHaConfig {
+  const ContainerClusterStatefulHaConfig({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -495,8 +462,8 @@ final class ContainerClusterBinaryAuthorization {
 /// Typed helper for the `cluster_autoscaling` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterClusterAutoscaling {
-  const ContainerClusterClusterAutoscaling({
+final class ContainerClusterAutoscaling {
+  const ContainerClusterAutoscaling({
     this.autoProvisioningLocations,
     this.autoscalingProfile,
     this.defaultComputeClassEnabled,
@@ -513,10 +480,9 @@ final class ContainerClusterClusterAutoscaling {
 
   final TfArg<bool>? enabled;
 
-  final ContainerClusterClusterAutoscalingAutoProvisioningDefaults?
-  autoProvisioningDefaults;
+  final ContainerClusterAutoProvisioningDefaults? autoProvisioningDefaults;
 
-  final List<ContainerClusterClusterAutoscalingResourceLimits>? resourceLimits;
+  final List<ContainerClusterResourceLimits>? resourceLimits;
 
   Map<String, Object?> encode() => {
     'auto_provisioning_locations': ?autoProvisioningLocations?.toTfJson(),
@@ -532,8 +498,8 @@ final class ContainerClusterClusterAutoscaling {
 /// Typed helper for the `cluster_autoscaling.auto_provisioning_defaults` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterClusterAutoscalingAutoProvisioningDefaults {
-  const ContainerClusterClusterAutoscalingAutoProvisioningDefaults({
+final class ContainerClusterAutoProvisioningDefaults {
+  const ContainerClusterAutoProvisioningDefaults({
     this.bootDiskKmsKey,
     this.diskSize,
     this.diskType,
@@ -560,13 +526,11 @@ final class ContainerClusterClusterAutoscalingAutoProvisioningDefaults {
 
   final RefTo<GoogleServiceAccount>? serviceAccount;
 
-  final ContainerClusterClusterAutoscalingAutoProvisioningDefaultsManagement?
-  management;
+  final ContainerClusterManagement? management;
 
-  final ContainerClusterClusterAutoscalingAutoProvisioningDefaultsShieldedInstanceConfig?
-  shieldedInstanceConfig;
+  final ContainerClusterShieldedInstanceConfig? shieldedInstanceConfig;
 
-  final ContainerClusterClusterAutoscalingAutoProvisioningDefaultsUpgradeSettings?
+  final ContainerClusterAutoProvisioningDefaultsUpgradeSettings?
   upgradeSettings;
 
   Map<String, Object?> encode() => {
@@ -583,14 +547,12 @@ final class ContainerClusterClusterAutoscalingAutoProvisioningDefaults {
   };
 }
 
-/// Typed helper for the `cluster_autoscaling.auto_provisioning_defaults.management` block of
+/// Typed helper for the `node_pool.management` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterClusterAutoscalingAutoProvisioningDefaultsManagement {
-  const ContainerClusterClusterAutoscalingAutoProvisioningDefaultsManagement({
-    this.autoRepair,
-    this.autoUpgrade,
-  });
+final class ContainerClusterManagement {
+  const ContainerClusterManagement({this.autoRepair, this.autoUpgrade});
 
   final TfArg<bool>? autoRepair;
 
@@ -602,11 +564,12 @@ final class ContainerClusterClusterAutoscalingAutoProvisioningDefaultsManagement
   };
 }
 
-/// Typed helper for the `cluster_autoscaling.auto_provisioning_defaults.shielded_instance_config` block of
+/// Typed helper for the `node_config.shielded_instance_config` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterClusterAutoscalingAutoProvisioningDefaultsShieldedInstanceConfig {
-  const ContainerClusterClusterAutoscalingAutoProvisioningDefaultsShieldedInstanceConfig({
+final class ContainerClusterShieldedInstanceConfig {
+  const ContainerClusterShieldedInstanceConfig({
     this.enableIntegrityMonitoring,
     this.enableSecureBoot,
   });
@@ -624,8 +587,8 @@ final class ContainerClusterClusterAutoscalingAutoProvisioningDefaultsShieldedIn
 /// Typed helper for the `cluster_autoscaling.auto_provisioning_defaults.upgrade_settings` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterClusterAutoscalingAutoProvisioningDefaultsUpgradeSettings {
-  const ContainerClusterClusterAutoscalingAutoProvisioningDefaultsUpgradeSettings({
+final class ContainerClusterAutoProvisioningDefaultsUpgradeSettings {
+  const ContainerClusterAutoProvisioningDefaultsUpgradeSettings({
     this.maxSurge,
     this.maxUnavailable,
     this.strategy,
@@ -638,8 +601,7 @@ final class ContainerClusterClusterAutoscalingAutoProvisioningDefaultsUpgradeSet
 
   final TfArg<String>? strategy;
 
-  final ContainerClusterClusterAutoscalingAutoProvisioningDefaultsUpgradeSettingsBlueGreenSettings?
-  blueGreenSettings;
+  final ContainerClusterUpgradeSettingsBlueGreenSettings? blueGreenSettings;
 
   Map<String, Object?> encode() => {
     'max_surge': ?maxSurge?.toTfJson(),
@@ -652,16 +614,15 @@ final class ContainerClusterClusterAutoscalingAutoProvisioningDefaultsUpgradeSet
 /// Typed helper for the `cluster_autoscaling.auto_provisioning_defaults.upgrade_settings.blue_green_settings` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterClusterAutoscalingAutoProvisioningDefaultsUpgradeSettingsBlueGreenSettings {
-  const ContainerClusterClusterAutoscalingAutoProvisioningDefaultsUpgradeSettingsBlueGreenSettings({
+final class ContainerClusterUpgradeSettingsBlueGreenSettings {
+  const ContainerClusterUpgradeSettingsBlueGreenSettings({
     this.nodePoolSoakDuration,
     this.standardRolloutPolicy,
   });
 
   final TfArg<String>? nodePoolSoakDuration;
 
-  final ContainerClusterClusterAutoscalingAutoProvisioningDefaultsUpgradeSettingsBlueGreenSettingsStandardRolloutPolicy?
-  standardRolloutPolicy;
+  final ContainerClusterStandardRolloutPolicy? standardRolloutPolicy;
 
   Map<String, Object?> encode() => {
     'node_pool_soak_duration': ?nodePoolSoakDuration?.toTfJson(),
@@ -669,11 +630,12 @@ final class ContainerClusterClusterAutoscalingAutoProvisioningDefaultsUpgradeSet
   };
 }
 
-/// Typed helper for the `cluster_autoscaling.auto_provisioning_defaults.upgrade_settings.blue_green_settings.standard_rollout_policy` block of
+/// Typed helper for the `node_pool.upgrade_settings.blue_green_settings.standard_rollout_policy` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterClusterAutoscalingAutoProvisioningDefaultsUpgradeSettingsBlueGreenSettingsStandardRolloutPolicy {
-  const ContainerClusterClusterAutoscalingAutoProvisioningDefaultsUpgradeSettingsBlueGreenSettingsStandardRolloutPolicy({
+final class ContainerClusterStandardRolloutPolicy {
+  const ContainerClusterStandardRolloutPolicy({
     this.batchNodeCount,
     this.batchPercentage,
     this.batchSoakDuration,
@@ -695,8 +657,8 @@ final class ContainerClusterClusterAutoscalingAutoProvisioningDefaultsUpgradeSet
 /// Typed helper for the `cluster_autoscaling.resource_limits` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterClusterAutoscalingResourceLimits {
-  const ContainerClusterClusterAutoscalingResourceLimits({
+final class ContainerClusterResourceLimits {
+  const ContainerClusterResourceLimits({
     required this.maximum,
     this.minimum,
     required this.resourceType,
@@ -717,6 +679,7 @@ final class ContainerClusterClusterAutoscalingResourceLimits {
 
 /// Typed helper for the `confidential_nodes` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
 final class ContainerClusterConfidentialNodes {
   const ContainerClusterConfidentialNodes({
@@ -743,11 +706,9 @@ final class ContainerClusterControlPlaneEndpointsConfig {
     this.ipEndpointsConfig,
   });
 
-  final ContainerClusterControlPlaneEndpointsConfigDnsEndpointConfig?
-  dnsEndpointConfig;
+  final ContainerClusterDnsEndpointConfig? dnsEndpointConfig;
 
-  final ContainerClusterControlPlaneEndpointsConfigIpEndpointsConfig?
-  ipEndpointsConfig;
+  final ContainerClusterIpEndpointsConfig? ipEndpointsConfig;
 
   Map<String, Object?> encode() => {
     'dns_endpoint_config': ?dnsEndpointConfig?.encode(),
@@ -758,8 +719,8 @@ final class ContainerClusterControlPlaneEndpointsConfig {
 /// Typed helper for the `control_plane_endpoints_config.dns_endpoint_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterControlPlaneEndpointsConfigDnsEndpointConfig {
-  const ContainerClusterControlPlaneEndpointsConfigDnsEndpointConfig({
+final class ContainerClusterDnsEndpointConfig {
+  const ContainerClusterDnsEndpointConfig({
     this.allowExternalTraffic,
     this.enableK8sCertsViaDns,
     this.enableK8sTokensViaDns,
@@ -785,10 +746,8 @@ final class ContainerClusterControlPlaneEndpointsConfigDnsEndpointConfig {
 /// Typed helper for the `control_plane_endpoints_config.ip_endpoints_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterControlPlaneEndpointsConfigIpEndpointsConfig {
-  const ContainerClusterControlPlaneEndpointsConfigIpEndpointsConfig({
-    this.enabled,
-  });
+final class ContainerClusterIpEndpointsConfig {
+  const ContainerClusterIpEndpointsConfig({this.enabled});
 
   final TfArg<bool>? enabled;
 
@@ -958,18 +917,16 @@ final class ContainerClusterIpAllocationPolicy {
 
   final TfArg<String>? stackType;
 
-  final List<ContainerClusterIpAllocationPolicyAdditionalIpRangesConfig>?
+  final List<ContainerClusterAdditionalIpRangesConfig>?
   additionalIpRangesConfig;
 
-  final ContainerClusterIpAllocationPolicyAdditionalPodRangesConfig?
-  additionalPodRangesConfig;
+  final ContainerClusterAdditionalPodRangesConfig? additionalPodRangesConfig;
 
-  final ContainerClusterIpAllocationPolicyAutoIpamConfig? autoIpamConfig;
+  final ContainerClusterAutoIpamConfig? autoIpamConfig;
 
-  final ContainerClusterIpAllocationPolicyNetworkTierConfig? networkTierConfig;
+  final ContainerClusterNetworkTierConfig? networkTierConfig;
 
-  final ContainerClusterIpAllocationPolicyPodCidrOverprovisionConfig?
-  podCidrOverprovisionConfig;
+  final ContainerClusterPodCidrOverprovisionConfig? podCidrOverprovisionConfig;
 
   Map<String, Object?> encode() => {
     'cluster_ipv4_cidr_block': ?clusterIpv4CidrBlock?.toTfJson(),
@@ -991,8 +948,8 @@ final class ContainerClusterIpAllocationPolicy {
 /// Typed helper for the `ip_allocation_policy.additional_ip_ranges_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterIpAllocationPolicyAdditionalIpRangesConfig {
-  const ContainerClusterIpAllocationPolicyAdditionalIpRangesConfig({
+final class ContainerClusterAdditionalIpRangesConfig {
+  const ContainerClusterAdditionalIpRangesConfig({
     this.podIpv4RangeNames,
     this.status,
     required this.subnetwork,
@@ -1014,8 +971,8 @@ final class ContainerClusterIpAllocationPolicyAdditionalIpRangesConfig {
 /// Typed helper for the `ip_allocation_policy.additional_pod_ranges_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterIpAllocationPolicyAdditionalPodRangesConfig {
-  const ContainerClusterIpAllocationPolicyAdditionalPodRangesConfig({
+final class ContainerClusterAdditionalPodRangesConfig {
+  const ContainerClusterAdditionalPodRangesConfig({
     required this.podRangeNames,
   });
 
@@ -1029,10 +986,8 @@ final class ContainerClusterIpAllocationPolicyAdditionalPodRangesConfig {
 /// Typed helper for the `ip_allocation_policy.auto_ipam_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterIpAllocationPolicyAutoIpamConfig {
-  const ContainerClusterIpAllocationPolicyAutoIpamConfig({
-    required this.enabled,
-  });
+final class ContainerClusterAutoIpamConfig {
+  const ContainerClusterAutoIpamConfig({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -1042,10 +997,8 @@ final class ContainerClusterIpAllocationPolicyAutoIpamConfig {
 /// Typed helper for the `ip_allocation_policy.network_tier_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterIpAllocationPolicyNetworkTierConfig {
-  const ContainerClusterIpAllocationPolicyNetworkTierConfig({
-    required this.networkTier,
-  });
+final class ContainerClusterNetworkTierConfig {
+  const ContainerClusterNetworkTierConfig({required this.networkTier});
 
   final TfArg<String> networkTier;
 
@@ -1054,11 +1007,10 @@ final class ContainerClusterIpAllocationPolicyNetworkTierConfig {
 
 /// Typed helper for the `ip_allocation_policy.pod_cidr_overprovision_config` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterIpAllocationPolicyPodCidrOverprovisionConfig {
-  const ContainerClusterIpAllocationPolicyPodCidrOverprovisionConfig({
-    required this.disabled,
-  });
+final class ContainerClusterPodCidrOverprovisionConfig {
+  const ContainerClusterPodCidrOverprovisionConfig({required this.disabled});
 
   final TfArg<bool> disabled;
 
@@ -1090,18 +1042,15 @@ final class ContainerClusterMaintenancePolicy {
     this.recurringWindow,
   });
 
-  final ContainerClusterMaintenancePolicyDailyMaintenanceWindow?
-  dailyMaintenanceWindow;
+  final ContainerClusterDailyMaintenanceWindow? dailyMaintenanceWindow;
 
-  final ContainerClusterMaintenancePolicyDisruptionBudget? disruptionBudget;
+  final ContainerClusterDisruptionBudget? disruptionBudget;
 
-  final List<ContainerClusterMaintenancePolicyMaintenanceExclusion>?
-  maintenanceExclusion;
+  final List<ContainerClusterMaintenanceExclusion>? maintenanceExclusion;
 
-  final ContainerClusterMaintenancePolicyRecurringMaintenanceWindow?
-  recurringMaintenanceWindow;
+  final ContainerClusterRecurringMaintenanceWindow? recurringMaintenanceWindow;
 
-  final ContainerClusterMaintenancePolicyRecurringWindow? recurringWindow;
+  final ContainerClusterRecurringWindow? recurringWindow;
 
   Map<String, Object?> encode() => {
     'daily_maintenance_window': ?dailyMaintenanceWindow?.encode(),
@@ -1118,10 +1067,8 @@ final class ContainerClusterMaintenancePolicy {
 /// Typed helper for the `maintenance_policy.daily_maintenance_window` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterMaintenancePolicyDailyMaintenanceWindow {
-  const ContainerClusterMaintenancePolicyDailyMaintenanceWindow({
-    required this.startTime,
-  });
+final class ContainerClusterDailyMaintenanceWindow {
+  const ContainerClusterDailyMaintenanceWindow({required this.startTime});
 
   final TfArg<String> startTime;
 
@@ -1131,8 +1078,8 @@ final class ContainerClusterMaintenancePolicyDailyMaintenanceWindow {
 /// Typed helper for the `maintenance_policy.disruption_budget` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterMaintenancePolicyDisruptionBudget {
-  const ContainerClusterMaintenancePolicyDisruptionBudget({
+final class ContainerClusterDisruptionBudget {
+  const ContainerClusterDisruptionBudget({
     this.minorVersionDisruptionInterval,
     this.patchVersionDisruptionInterval,
   });
@@ -1152,8 +1099,8 @@ final class ContainerClusterMaintenancePolicyDisruptionBudget {
 /// Typed helper for the `maintenance_policy.maintenance_exclusion` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterMaintenancePolicyMaintenanceExclusion {
-  const ContainerClusterMaintenancePolicyMaintenanceExclusion({
+final class ContainerClusterMaintenanceExclusion {
+  const ContainerClusterMaintenanceExclusion({
     this.endTime,
     required this.exclusionName,
     required this.startTime,
@@ -1166,8 +1113,7 @@ final class ContainerClusterMaintenancePolicyMaintenanceExclusion {
 
   final TfArg<String> startTime;
 
-  final ContainerClusterMaintenancePolicyMaintenanceExclusionExclusionOptions?
-  exclusionOptions;
+  final ContainerClusterExclusionOptions? exclusionOptions;
 
   Map<String, Object?> encode() => {
     'end_time': ?endTime?.toTfJson(),
@@ -1180,8 +1126,8 @@ final class ContainerClusterMaintenancePolicyMaintenanceExclusion {
 /// Typed helper for the `maintenance_policy.maintenance_exclusion.exclusion_options` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterMaintenancePolicyMaintenanceExclusionExclusionOptions {
-  const ContainerClusterMaintenancePolicyMaintenanceExclusionExclusionOptions({
+final class ContainerClusterExclusionOptions {
+  const ContainerClusterExclusionOptions({
     this.endTimeBehavior,
     required this.scope,
   });
@@ -1199,8 +1145,8 @@ final class ContainerClusterMaintenancePolicyMaintenanceExclusionExclusionOption
 /// Typed helper for the `maintenance_policy.recurring_maintenance_window` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterMaintenancePolicyRecurringMaintenanceWindow {
-  const ContainerClusterMaintenancePolicyRecurringMaintenanceWindow({
+final class ContainerClusterRecurringMaintenanceWindow {
+  const ContainerClusterRecurringMaintenanceWindow({
     required this.recurrence,
     required this.windowDuration,
     this.delayUntil,
@@ -1211,11 +1157,9 @@ final class ContainerClusterMaintenancePolicyRecurringMaintenanceWindow {
 
   final TfArg<String> windowDuration;
 
-  final ContainerClusterMaintenancePolicyRecurringMaintenanceWindowDelayUntil?
-  delayUntil;
+  final ContainerClusterDelayUntil? delayUntil;
 
-  final ContainerClusterMaintenancePolicyRecurringMaintenanceWindowWindowStartTime
-  windowStartTime;
+  final ContainerClusterWindowStartTime windowStartTime;
 
   Map<String, Object?> encode() => {
     'recurrence': recurrence.toTfJson(),
@@ -1228,8 +1172,8 @@ final class ContainerClusterMaintenancePolicyRecurringMaintenanceWindow {
 /// Typed helper for the `maintenance_policy.recurring_maintenance_window.delay_until` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterMaintenancePolicyRecurringMaintenanceWindowDelayUntil {
-  const ContainerClusterMaintenancePolicyRecurringMaintenanceWindowDelayUntil({
+final class ContainerClusterDelayUntil {
+  const ContainerClusterDelayUntil({
     required this.day,
     required this.month,
     required this.year,
@@ -1251,8 +1195,8 @@ final class ContainerClusterMaintenancePolicyRecurringMaintenanceWindowDelayUnti
 /// Typed helper for the `maintenance_policy.recurring_maintenance_window.window_start_time` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterMaintenancePolicyRecurringMaintenanceWindowWindowStartTime {
-  const ContainerClusterMaintenancePolicyRecurringMaintenanceWindowWindowStartTime({
+final class ContainerClusterWindowStartTime {
+  const ContainerClusterWindowStartTime({
     required this.hours,
     required this.minutes,
     required this.seconds,
@@ -1274,8 +1218,8 @@ final class ContainerClusterMaintenancePolicyRecurringMaintenanceWindowWindowSta
 /// Typed helper for the `maintenance_policy.recurring_window` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterMaintenancePolicyRecurringWindow {
-  const ContainerClusterMaintenancePolicyRecurringWindow({
+final class ContainerClusterRecurringWindow {
+  const ContainerClusterRecurringWindow({
     required this.endTime,
     required this.recurrence,
     required this.startTime,
@@ -1300,8 +1244,7 @@ final class ContainerClusterMaintenancePolicyRecurringWindow {
 final class ContainerClusterMasterAuth {
   const ContainerClusterMasterAuth({required this.clientCertificateConfig});
 
-  final ContainerClusterMasterAuthClientCertificateConfig
-  clientCertificateConfig;
+  final ContainerClusterClientCertificateConfig clientCertificateConfig;
 
   Map<String, Object?> encode() => {
     'client_certificate_config': clientCertificateConfig.encode(),
@@ -1311,8 +1254,8 @@ final class ContainerClusterMasterAuth {
 /// Typed helper for the `master_auth.client_certificate_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterMasterAuthClientCertificateConfig {
-  const ContainerClusterMasterAuthClientCertificateConfig({
+final class ContainerClusterClientCertificateConfig {
+  const ContainerClusterClientCertificateConfig({
     required this.issueClientCertificate,
   });
 
@@ -1337,8 +1280,7 @@ final class ContainerClusterMasterAuthorizedNetworksConfig {
 
   final TfArg<bool>? privateEndpointEnforcementEnabled;
 
-  final List<ContainerClusterMasterAuthorizedNetworksConfigCidrBlocks>?
-  cidrBlocks;
+  final List<ContainerClusterCidrBlocks>? cidrBlocks;
 
   Map<String, Object?> encode() => {
     'gcp_public_cidrs_access_enabled': ?gcpPublicCidrsAccessEnabled?.toTfJson(),
@@ -1352,11 +1294,8 @@ final class ContainerClusterMasterAuthorizedNetworksConfig {
 /// Typed helper for the `master_authorized_networks_config.cidr_blocks` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterMasterAuthorizedNetworksConfigCidrBlocks {
-  const ContainerClusterMasterAuthorizedNetworksConfigCidrBlocks({
-    required this.cidrBlock,
-    this.displayName,
-  });
+final class ContainerClusterCidrBlocks {
+  const ContainerClusterCidrBlocks({required this.cidrBlock, this.displayName});
 
   final TfArg<String> cidrBlock;
 
@@ -1393,10 +1332,10 @@ final class ContainerClusterMonitoringConfig {
 
   final TfArg<List<String>>? enableComponents;
 
-  final ContainerClusterMonitoringConfigAdvancedDatapathObservabilityConfig?
+  final ContainerClusterAdvancedDatapathObservabilityConfig?
   advancedDatapathObservabilityConfig;
 
-  final ContainerClusterMonitoringConfigManagedPrometheus? managedPrometheus;
+  final ContainerClusterManagedPrometheus? managedPrometheus;
 
   Map<String, Object?> encode() => {
     'enable_components': ?enableComponents?.toTfJson(),
@@ -1409,8 +1348,8 @@ final class ContainerClusterMonitoringConfig {
 /// Typed helper for the `monitoring_config.advanced_datapath_observability_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterMonitoringConfigAdvancedDatapathObservabilityConfig {
-  const ContainerClusterMonitoringConfigAdvancedDatapathObservabilityConfig({
+final class ContainerClusterAdvancedDatapathObservabilityConfig {
+  const ContainerClusterAdvancedDatapathObservabilityConfig({
     required this.enableMetrics,
     required this.enableRelay,
   });
@@ -1428,16 +1367,15 @@ final class ContainerClusterMonitoringConfigAdvancedDatapathObservabilityConfig 
 /// Typed helper for the `monitoring_config.managed_prometheus` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterMonitoringConfigManagedPrometheus {
-  const ContainerClusterMonitoringConfigManagedPrometheus({
+final class ContainerClusterManagedPrometheus {
+  const ContainerClusterManagedPrometheus({
     required this.enabled,
     this.autoMonitoringConfig,
   });
 
   final TfArg<bool> enabled;
 
-  final ContainerClusterMonitoringConfigManagedPrometheusAutoMonitoringConfig?
-  autoMonitoringConfig;
+  final ContainerClusterAutoMonitoringConfig? autoMonitoringConfig;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
@@ -1448,10 +1386,8 @@ final class ContainerClusterMonitoringConfigManagedPrometheus {
 /// Typed helper for the `monitoring_config.managed_prometheus.auto_monitoring_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterMonitoringConfigManagedPrometheusAutoMonitoringConfig {
-  const ContainerClusterMonitoringConfigManagedPrometheusAutoMonitoringConfig({
-    required this.scope,
-  });
+final class ContainerClusterAutoMonitoringConfig {
+  const ContainerClusterAutoMonitoringConfig({required this.scope});
 
   final TfArg<String> scope;
 
@@ -1460,6 +1396,7 @@ final class ContainerClusterMonitoringConfigManagedPrometheusAutoMonitoringConfi
 
 /// Typed helper for the `network_performance_config` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
 final class ContainerClusterNetworkPerformanceConfig {
   const ContainerClusterNetworkPerformanceConfig({
@@ -1491,6 +1428,7 @@ final class ContainerClusterNetworkPolicy {
 
 /// Typed helper for the `node_config` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
 final class ContainerClusterNodeConfig {
   const ContainerClusterNodeConfig({
@@ -1590,54 +1528,50 @@ final class ContainerClusterNodeConfig {
 
   final TfArg<List<String>>? tags;
 
-  final ContainerClusterNodeConfigAdvancedMachineFeatures?
-  advancedMachineFeatures;
+  final ContainerClusterAdvancedMachineFeatures? advancedMachineFeatures;
 
-  final ContainerClusterNodeConfigBootDisk? bootDisk;
+  final ContainerClusterBootDisk? bootDisk;
 
-  final ContainerClusterNodeConfigConfidentialNodes? confidentialNodes;
+  final ContainerClusterConfidentialNodes? confidentialNodes;
 
-  final ContainerClusterNodeConfigContainerdConfig? containerdConfig;
+  final ContainerClusterContainerdConfig? containerdConfig;
 
-  final ContainerClusterNodeConfigEphemeralStorageLocalSsdConfig?
+  final ContainerClusterEphemeralStorageLocalSsdConfig?
   ephemeralStorageLocalSsdConfig;
 
-  final ContainerClusterNodeConfigFastSocket? fastSocket;
+  final ContainerClusterFastSocket? fastSocket;
 
-  final ContainerClusterNodeConfigGcfsConfig? gcfsConfig;
+  final ContainerClusterGcfsConfig? gcfsConfig;
 
-  final List<ContainerClusterNodeConfigGuestAccelerator>? guestAccelerator;
+  final List<ContainerClusterGuestAccelerator>? guestAccelerator;
 
-  final ContainerClusterNodeConfigGvnic? gvnic;
+  final ContainerClusterGvnic? gvnic;
 
-  final ContainerClusterNodeConfigKubeletConfig? kubeletConfig;
+  final ContainerClusterKubeletConfig? kubeletConfig;
 
   final ContainerClusterNodeConfigLinuxNodeConfig? linuxNodeConfig;
 
-  final ContainerClusterNodeConfigLocalNvmeSsdBlockConfig?
-  localNvmeSsdBlockConfig;
+  final ContainerClusterLocalNvmeSsdBlockConfig? localNvmeSsdBlockConfig;
 
-  final List<ContainerClusterNodeConfigNodeImageConfig>? nodeImageConfig;
+  final List<ContainerClusterNodeImageConfig>? nodeImageConfig;
 
-  final ContainerClusterNodeConfigReservationAffinity? reservationAffinity;
+  final ContainerClusterReservationAffinity? reservationAffinity;
 
-  final ContainerClusterNodeConfigSandboxConfig? sandboxConfig;
+  final ContainerClusterSandboxConfig? sandboxConfig;
 
-  final List<ContainerClusterNodeConfigSecondaryBootDisks>? secondaryBootDisks;
+  final List<ContainerClusterSecondaryBootDisks>? secondaryBootDisks;
 
-  final ContainerClusterNodeConfigShieldedInstanceConfig?
-  shieldedInstanceConfig;
+  final ContainerClusterShieldedInstanceConfig? shieldedInstanceConfig;
 
-  final ContainerClusterNodeConfigSoleTenantConfig? soleTenantConfig;
+  final ContainerClusterSoleTenantConfig? soleTenantConfig;
 
-  final List<ContainerClusterNodeConfigTaint>? taint;
+  final List<ContainerClusterTaint>? taint;
 
-  final ContainerClusterNodeConfigTaintConfig? taintConfig;
+  final ContainerClusterTaintConfig? taintConfig;
 
-  final ContainerClusterNodeConfigWindowsNodeConfig? windowsNodeConfig;
+  final ContainerClusterWindowsNodeConfig? windowsNodeConfig;
 
-  final ContainerClusterNodeConfigWorkloadMetadataConfig?
-  workloadMetadataConfig;
+  final ContainerClusterWorkloadMetadataConfig? workloadMetadataConfig;
 
   Map<String, Object?> encode() => {
     'boot_disk_kms_key': ?bootDiskKmsKey?.toTfJson(),
@@ -1695,9 +1629,10 @@ final class ContainerClusterNodeConfig {
 
 /// Typed helper for the `node_config.advanced_machine_features` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigAdvancedMachineFeatures {
-  const ContainerClusterNodeConfigAdvancedMachineFeatures({
+final class ContainerClusterAdvancedMachineFeatures {
+  const ContainerClusterAdvancedMachineFeatures({
     this.enableNestedVirtualization,
     this.performanceMonitoringUnit,
     required this.threadsPerCore,
@@ -1718,9 +1653,10 @@ final class ContainerClusterNodeConfigAdvancedMachineFeatures {
 
 /// Typed helper for the `node_config.boot_disk` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigBootDisk {
-  const ContainerClusterNodeConfigBootDisk({
+final class ContainerClusterBootDisk {
+  const ContainerClusterBootDisk({
     this.diskType,
     this.provisionedIops,
     this.provisionedThroughput,
@@ -1743,43 +1679,23 @@ final class ContainerClusterNodeConfigBootDisk {
   };
 }
 
-/// Typed helper for the `node_config.confidential_nodes` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodeConfigConfidentialNodes {
-  const ContainerClusterNodeConfigConfidentialNodes({
-    this.confidentialInstanceType,
-    required this.enabled,
-  });
-
-  final TfArg<String>? confidentialInstanceType;
-
-  final TfArg<bool> enabled;
-
-  Map<String, Object?> encode() => {
-    'confidential_instance_type': ?confidentialInstanceType?.toTfJson(),
-    'enabled': enabled.toTfJson(),
-  };
-}
-
 /// Typed helper for the `node_config.containerd_config` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigContainerdConfig {
-  const ContainerClusterNodeConfigContainerdConfig({
+final class ContainerClusterContainerdConfig {
+  const ContainerClusterContainerdConfig({
     this.privateRegistryAccessConfig,
     this.registryHosts,
     this.writableCgroups,
   });
 
-  final ContainerClusterNodeConfigContainerdConfigPrivateRegistryAccessConfig?
+  final ContainerClusterPrivateRegistryAccessConfig?
   privateRegistryAccessConfig;
 
-  final List<ContainerClusterNodeConfigContainerdConfigRegistryHosts>?
-  registryHosts;
+  final List<ContainerClusterRegistryHosts>? registryHosts;
 
-  final ContainerClusterNodeConfigContainerdConfigWritableCgroups?
-  writableCgroups;
+  final ContainerClusterWritableCgroups? writableCgroups;
 
   Map<String, Object?> encode() => {
     'private_registry_access_config': ?privateRegistryAccessConfig?.encode(),
@@ -1791,18 +1707,17 @@ final class ContainerClusterNodeConfigContainerdConfig {
 
 /// Typed helper for the `node_config.containerd_config.private_registry_access_config` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigContainerdConfigPrivateRegistryAccessConfig {
-  const ContainerClusterNodeConfigContainerdConfigPrivateRegistryAccessConfig({
+final class ContainerClusterPrivateRegistryAccessConfig {
+  const ContainerClusterPrivateRegistryAccessConfig({
     required this.enabled,
     this.certificateAuthorityDomainConfig,
   });
 
   final TfArg<bool> enabled;
 
-  final List<
-    ContainerClusterNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfig
-  >?
+  final List<ContainerClusterCertificateAuthorityDomainConfig>?
   certificateAuthorityDomainConfig;
 
   Map<String, Object?> encode() => {
@@ -1816,16 +1731,17 @@ final class ContainerClusterNodeConfigContainerdConfigPrivateRegistryAccessConfi
 
 /// Typed helper for the `node_config.containerd_config.private_registry_access_config.certificate_authority_domain_config` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfig {
-  const ContainerClusterNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfig({
+final class ContainerClusterCertificateAuthorityDomainConfig {
+  const ContainerClusterCertificateAuthorityDomainConfig({
     required this.fqdns,
     required this.gcpSecretManagerCertificateConfig,
   });
 
   final TfArg<List<String>> fqdns;
 
-  final ContainerClusterNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfigGcpSecretManagerCertificateConfig
+  final ContainerClusterGcpSecretManagerCertificateConfig
   gcpSecretManagerCertificateConfig;
 
   Map<String, Object?> encode() => {
@@ -1837,9 +1753,10 @@ final class ContainerClusterNodeConfigContainerdConfigPrivateRegistryAccessConfi
 
 /// Typed helper for the `node_config.containerd_config.private_registry_access_config.certificate_authority_domain_config.gcp_secret_manager_certificate_config` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfigGcpSecretManagerCertificateConfig {
-  const ContainerClusterNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfigGcpSecretManagerCertificateConfig({
+final class ContainerClusterGcpSecretManagerCertificateConfig {
+  const ContainerClusterGcpSecretManagerCertificateConfig({
     required this.secretUri,
   });
 
@@ -1850,17 +1767,14 @@ final class ContainerClusterNodeConfigContainerdConfigPrivateRegistryAccessConfi
 
 /// Typed helper for the `node_config.containerd_config.registry_hosts` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigContainerdConfigRegistryHosts {
-  const ContainerClusterNodeConfigContainerdConfigRegistryHosts({
-    required this.server,
-    this.hosts,
-  });
+final class ContainerClusterRegistryHosts {
+  const ContainerClusterRegistryHosts({required this.server, this.hosts});
 
   final TfArg<String> server;
 
-  final List<ContainerClusterNodeConfigContainerdConfigRegistryHostsHosts>?
-  hosts;
+  final List<ContainerClusterHosts>? hosts;
 
   Map<String, Object?> encode() => {
     'server': server.toTfJson(),
@@ -1870,9 +1784,10 @@ final class ContainerClusterNodeConfigContainerdConfigRegistryHosts {
 
 /// Typed helper for the `node_config.containerd_config.registry_hosts.hosts` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigContainerdConfigRegistryHostsHosts {
-  const ContainerClusterNodeConfigContainerdConfigRegistryHostsHosts({
+final class ContainerClusterHosts {
+  const ContainerClusterHosts({
     this.capabilities,
     this.dialTimeout,
     required this.host,
@@ -1890,18 +1805,11 @@ final class ContainerClusterNodeConfigContainerdConfigRegistryHostsHosts {
 
   final TfArg<bool>? overridePath;
 
-  final List<ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsCa>?
-  ca;
+  final List<ContainerClusterCa>? ca;
 
-  final List<
-    ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsClient
-  >?
-  client;
+  final List<ContainerClusterClient>? client;
 
-  final List<
-    ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsHeader
-  >?
-  header;
+  final List<ContainerClusterHeader>? header;
 
   Map<String, Object?> encode() => {
     'capabilities': ?capabilities?.toTfJson(),
@@ -1916,11 +1824,10 @@ final class ContainerClusterNodeConfigContainerdConfigRegistryHostsHosts {
 
 /// Typed helper for the `node_config.containerd_config.registry_hosts.hosts.ca` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsCa {
-  const ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsCa({
-    this.gcpSecretManagerSecretUri,
-  });
+final class ContainerClusterCa {
+  const ContainerClusterCa({this.gcpSecretManagerSecretUri});
 
   final TfArg<String>? gcpSecretManagerSecretUri;
 
@@ -1931,18 +1838,14 @@ final class ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsCa {
 
 /// Typed helper for the `node_config.containerd_config.registry_hosts.hosts.client` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsClient {
-  const ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsClient({
-    required this.cert,
-    this.key,
-  });
+final class ContainerClusterClient {
+  const ContainerClusterClient({required this.cert, this.key});
 
-  final ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsClientCert
-  cert;
+  final ContainerClusterCert cert;
 
-  final ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsClientKey?
-  key;
+  final ContainerClusterKey? key;
 
   Map<String, Object?> encode() => {
     'cert': cert.encode(),
@@ -1952,11 +1855,10 @@ final class ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsClient {
 
 /// Typed helper for the `node_config.containerd_config.registry_hosts.hosts.client.cert` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsClientCert {
-  const ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsClientCert({
-    this.gcpSecretManagerSecretUri,
-  });
+final class ContainerClusterCert {
+  const ContainerClusterCert({this.gcpSecretManagerSecretUri});
 
   final TfArg<String>? gcpSecretManagerSecretUri;
 
@@ -1967,11 +1869,10 @@ final class ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsClientCe
 
 /// Typed helper for the `node_config.containerd_config.registry_hosts.hosts.client.key` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsClientKey {
-  const ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsClientKey({
-    this.gcpSecretManagerSecretUri,
-  });
+final class ContainerClusterKey {
+  const ContainerClusterKey({this.gcpSecretManagerSecretUri});
 
   final TfArg<String>? gcpSecretManagerSecretUri;
 
@@ -1982,12 +1883,10 @@ final class ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsClientKe
 
 /// Typed helper for the `node_config.containerd_config.registry_hosts.hosts.header` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsHeader {
-  const ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsHeader({
-    required this.key,
-    required this.value,
-  });
+final class ContainerClusterHeader {
+  const ContainerClusterHeader({required this.key, required this.value});
 
   final TfArg<String> key;
 
@@ -2001,11 +1900,10 @@ final class ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsHeader {
 
 /// Typed helper for the `node_config.containerd_config.writable_cgroups` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigContainerdConfigWritableCgroups {
-  const ContainerClusterNodeConfigContainerdConfigWritableCgroups({
-    required this.enabled,
-  });
+final class ContainerClusterWritableCgroups {
+  const ContainerClusterWritableCgroups({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -2014,9 +1912,10 @@ final class ContainerClusterNodeConfigContainerdConfigWritableCgroups {
 
 /// Typed helper for the `node_config.ephemeral_storage_local_ssd_config` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigEphemeralStorageLocalSsdConfig {
-  const ContainerClusterNodeConfigEphemeralStorageLocalSsdConfig({
+final class ContainerClusterEphemeralStorageLocalSsdConfig {
+  const ContainerClusterEphemeralStorageLocalSsdConfig({
     this.dataCacheCount,
     required this.localSsdCount,
   });
@@ -2033,9 +1932,10 @@ final class ContainerClusterNodeConfigEphemeralStorageLocalSsdConfig {
 
 /// Typed helper for the `node_config.fast_socket` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigFastSocket {
-  const ContainerClusterNodeConfigFastSocket({required this.enabled});
+final class ContainerClusterFastSocket {
+  const ContainerClusterFastSocket({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -2044,9 +1944,10 @@ final class ContainerClusterNodeConfigFastSocket {
 
 /// Typed helper for the `node_config.gcfs_config` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigGcfsConfig {
-  const ContainerClusterNodeConfigGcfsConfig({required this.enabled});
+final class ContainerClusterGcfsConfig {
+  const ContainerClusterGcfsConfig({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -2055,9 +1956,10 @@ final class ContainerClusterNodeConfigGcfsConfig {
 
 /// Typed helper for the `node_config.guest_accelerator` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigGuestAccelerator {
-  const ContainerClusterNodeConfigGuestAccelerator({
+final class ContainerClusterGuestAccelerator {
+  const ContainerClusterGuestAccelerator({
     required this.count,
     this.gpuPartitionSize,
     required this.type,
@@ -2071,11 +1973,10 @@ final class ContainerClusterNodeConfigGuestAccelerator {
 
   final TfArg<String> type;
 
-  final ContainerClusterNodeConfigGuestAcceleratorGpuDriverInstallationConfig?
+  final ContainerClusterGpuDriverInstallationConfig?
   gpuDriverInstallationConfig;
 
-  final ContainerClusterNodeConfigGuestAcceleratorGpuSharingConfig?
-  gpuSharingConfig;
+  final ContainerClusterGpuSharingConfig? gpuSharingConfig;
 
   Map<String, Object?> encode() => {
     'count': count.toTfJson(),
@@ -2088,9 +1989,10 @@ final class ContainerClusterNodeConfigGuestAccelerator {
 
 /// Typed helper for the `node_config.guest_accelerator.gpu_driver_installation_config` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigGuestAcceleratorGpuDriverInstallationConfig {
-  const ContainerClusterNodeConfigGuestAcceleratorGpuDriverInstallationConfig({
+final class ContainerClusterGpuDriverInstallationConfig {
+  const ContainerClusterGpuDriverInstallationConfig({
     required this.gpuDriverVersion,
   });
 
@@ -2103,9 +2005,10 @@ final class ContainerClusterNodeConfigGuestAcceleratorGpuDriverInstallationConfi
 
 /// Typed helper for the `node_config.guest_accelerator.gpu_sharing_config` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigGuestAcceleratorGpuSharingConfig {
-  const ContainerClusterNodeConfigGuestAcceleratorGpuSharingConfig({
+final class ContainerClusterGpuSharingConfig {
+  const ContainerClusterGpuSharingConfig({
     required this.gpuSharingStrategy,
     required this.maxSharedClientsPerGpu,
   });
@@ -2122,9 +2025,10 @@ final class ContainerClusterNodeConfigGuestAcceleratorGpuSharingConfig {
 
 /// Typed helper for the `node_config.gvnic` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigGvnic {
-  const ContainerClusterNodeConfigGvnic({required this.enabled});
+final class ContainerClusterGvnic {
+  const ContainerClusterGvnic({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -2133,9 +2037,10 @@ final class ContainerClusterNodeConfigGvnic {
 
 /// Typed helper for the `node_config.kubelet_config` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigKubeletConfig {
-  const ContainerClusterNodeConfigKubeletConfig({
+final class ContainerClusterKubeletConfig {
+  const ContainerClusterKubeletConfig({
     this.allowedUnsafeSysctls,
     this.containerLogMaxFiles,
     this.containerLogMaxSize,
@@ -2195,20 +2100,17 @@ final class ContainerClusterNodeConfigKubeletConfig {
 
   final TfArg<bool>? singleProcessOomKill;
 
-  final ContainerClusterNodeConfigKubeletConfigCrashLoopBackOff?
-  crashLoopBackOff;
+  final ContainerClusterCrashLoopBackOff? crashLoopBackOff;
 
-  final ContainerClusterNodeConfigKubeletConfigEvictionMinimumReclaim?
-  evictionMinimumReclaim;
+  final ContainerClusterEvictionMinimumReclaim? evictionMinimumReclaim;
 
-  final ContainerClusterNodeConfigKubeletConfigEvictionSoft? evictionSoft;
+  final ContainerClusterEvictionSoft? evictionSoft;
 
-  final ContainerClusterNodeConfigKubeletConfigEvictionSoftGracePeriod?
-  evictionSoftGracePeriod;
+  final ContainerClusterEvictionSoftGracePeriod? evictionSoftGracePeriod;
 
-  final ContainerClusterNodeConfigKubeletConfigMemoryManager? memoryManager;
+  final ContainerClusterMemoryManager? memoryManager;
 
-  final ContainerClusterNodeConfigKubeletConfigTopologyManager? topologyManager;
+  final ContainerClusterTopologyManager? topologyManager;
 
   Map<String, Object?> encode() => {
     'allowed_unsafe_sysctls': ?allowedUnsafeSysctls?.toTfJson(),
@@ -2242,11 +2144,10 @@ final class ContainerClusterNodeConfigKubeletConfig {
 
 /// Typed helper for the `node_config.kubelet_config.crash_loop_back_off` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigKubeletConfigCrashLoopBackOff {
-  const ContainerClusterNodeConfigKubeletConfigCrashLoopBackOff({
-    this.maxContainerRestartPeriod,
-  });
+final class ContainerClusterCrashLoopBackOff {
+  const ContainerClusterCrashLoopBackOff({this.maxContainerRestartPeriod});
 
   final TfArg<String>? maxContainerRestartPeriod;
 
@@ -2257,9 +2158,10 @@ final class ContainerClusterNodeConfigKubeletConfigCrashLoopBackOff {
 
 /// Typed helper for the `node_config.kubelet_config.eviction_minimum_reclaim` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigKubeletConfigEvictionMinimumReclaim {
-  const ContainerClusterNodeConfigKubeletConfigEvictionMinimumReclaim({
+final class ContainerClusterEvictionMinimumReclaim {
+  const ContainerClusterEvictionMinimumReclaim({
     this.imagefsAvailable,
     this.imagefsInodesFree,
     this.memoryAvailable,
@@ -2292,9 +2194,10 @@ final class ContainerClusterNodeConfigKubeletConfigEvictionMinimumReclaim {
 
 /// Typed helper for the `node_config.kubelet_config.eviction_soft` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigKubeletConfigEvictionSoft {
-  const ContainerClusterNodeConfigKubeletConfigEvictionSoft({
+final class ContainerClusterEvictionSoft {
+  const ContainerClusterEvictionSoft({
     this.imagefsAvailable,
     this.imagefsInodesFree,
     this.memoryAvailable,
@@ -2327,9 +2230,10 @@ final class ContainerClusterNodeConfigKubeletConfigEvictionSoft {
 
 /// Typed helper for the `node_config.kubelet_config.eviction_soft_grace_period` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigKubeletConfigEvictionSoftGracePeriod {
-  const ContainerClusterNodeConfigKubeletConfigEvictionSoftGracePeriod({
+final class ContainerClusterEvictionSoftGracePeriod {
+  const ContainerClusterEvictionSoftGracePeriod({
     this.imagefsAvailable,
     this.imagefsInodesFree,
     this.memoryAvailable,
@@ -2362,9 +2266,10 @@ final class ContainerClusterNodeConfigKubeletConfigEvictionSoftGracePeriod {
 
 /// Typed helper for the `node_config.kubelet_config.memory_manager` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigKubeletConfigMemoryManager {
-  const ContainerClusterNodeConfigKubeletConfigMemoryManager({this.policy});
+final class ContainerClusterMemoryManager {
+  const ContainerClusterMemoryManager({this.policy});
 
   final TfArg<String>? policy;
 
@@ -2373,12 +2278,10 @@ final class ContainerClusterNodeConfigKubeletConfigMemoryManager {
 
 /// Typed helper for the `node_config.kubelet_config.topology_manager` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigKubeletConfigTopologyManager {
-  const ContainerClusterNodeConfigKubeletConfigTopologyManager({
-    this.policy,
-    this.scope,
-  });
+final class ContainerClusterTopologyManager {
+  const ContainerClusterTopologyManager({this.policy, this.scope});
 
   final TfArg<String>? policy;
 
@@ -2392,6 +2295,7 @@ final class ContainerClusterNodeConfigKubeletConfigTopologyManager {
 
 /// Typed helper for the `node_config.linux_node_config` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
 final class ContainerClusterNodeConfigLinuxNodeConfig {
   const ContainerClusterNodeConfigLinuxNodeConfig({
@@ -2414,18 +2318,15 @@ final class ContainerClusterNodeConfigLinuxNodeConfig {
 
   final TfArg<String>? transparentHugepageEnabled;
 
-  final ContainerClusterNodeConfigLinuxNodeConfigAccurateTimeConfig?
-  accurateTimeConfig;
+  final ContainerClusterAccurateTimeConfig? accurateTimeConfig;
 
-  final ContainerClusterNodeConfigLinuxNodeConfigCustomNodeInit? customNodeInit;
+  final ContainerClusterCustomNodeInit? customNodeInit;
 
-  final ContainerClusterNodeConfigLinuxNodeConfigHugepagesConfig?
-  hugepagesConfig;
+  final ContainerClusterHugepagesConfig? hugepagesConfig;
 
-  final ContainerClusterNodeConfigLinuxNodeConfigNodeKernelModuleLoading?
-  nodeKernelModuleLoading;
+  final ContainerClusterNodeKernelModuleLoading? nodeKernelModuleLoading;
 
-  final ContainerClusterNodeConfigLinuxNodeConfigSwapConfig? swapConfig;
+  final ContainerClusterSwapConfig? swapConfig;
 
   Map<String, Object?> encode() => {
     'cgroup_mode': ?cgroupMode?.toTfJson(),
@@ -2442,11 +2343,10 @@ final class ContainerClusterNodeConfigLinuxNodeConfig {
 
 /// Typed helper for the `node_config.linux_node_config.accurate_time_config` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigLinuxNodeConfigAccurateTimeConfig {
-  const ContainerClusterNodeConfigLinuxNodeConfigAccurateTimeConfig({
-    this.enablePtpKvmTimeSync,
-  });
+final class ContainerClusterAccurateTimeConfig {
+  const ContainerClusterAccurateTimeConfig({this.enablePtpKvmTimeSync});
 
   final TfArg<bool>? enablePtpKvmTimeSync;
 
@@ -2457,23 +2357,22 @@ final class ContainerClusterNodeConfigLinuxNodeConfigAccurateTimeConfig {
 
 /// Typed helper for the `node_config.linux_node_config.custom_node_init` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigLinuxNodeConfigCustomNodeInit {
-  const ContainerClusterNodeConfigLinuxNodeConfigCustomNodeInit({
-    this.initScript,
-  });
+final class ContainerClusterCustomNodeInit {
+  const ContainerClusterCustomNodeInit({this.initScript});
 
-  final ContainerClusterNodeConfigLinuxNodeConfigCustomNodeInitInitScript?
-  initScript;
+  final ContainerClusterInitScript? initScript;
 
   Map<String, Object?> encode() => {'init_script': ?initScript?.encode()};
 }
 
 /// Typed helper for the `node_config.linux_node_config.custom_node_init.init_script` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigLinuxNodeConfigCustomNodeInitInitScript {
-  const ContainerClusterNodeConfigLinuxNodeConfigCustomNodeInitInitScript({
+final class ContainerClusterInitScript {
+  const ContainerClusterInitScript({
     this.gcpSecretManagerSecretUri,
     this.gcsGeneration,
     this.gcsUri,
@@ -2494,9 +2393,10 @@ final class ContainerClusterNodeConfigLinuxNodeConfigCustomNodeInitInitScript {
 
 /// Typed helper for the `node_config.linux_node_config.hugepages_config` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigLinuxNodeConfigHugepagesConfig {
-  const ContainerClusterNodeConfigLinuxNodeConfigHugepagesConfig({
+final class ContainerClusterHugepagesConfig {
+  const ContainerClusterHugepagesConfig({
     this.hugepageSize1g,
     this.hugepageSize2m,
   });
@@ -2513,11 +2413,10 @@ final class ContainerClusterNodeConfigLinuxNodeConfigHugepagesConfig {
 
 /// Typed helper for the `node_config.linux_node_config.node_kernel_module_loading` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigLinuxNodeConfigNodeKernelModuleLoading {
-  const ContainerClusterNodeConfigLinuxNodeConfigNodeKernelModuleLoading({
-    this.policy,
-  });
+final class ContainerClusterNodeKernelModuleLoading {
+  const ContainerClusterNodeKernelModuleLoading({this.policy});
 
   final TfArg<String>? policy;
 
@@ -2526,9 +2425,10 @@ final class ContainerClusterNodeConfigLinuxNodeConfigNodeKernelModuleLoading {
 
 /// Typed helper for the `node_config.linux_node_config.swap_config` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigLinuxNodeConfigSwapConfig {
-  const ContainerClusterNodeConfigLinuxNodeConfigSwapConfig({
+final class ContainerClusterSwapConfig {
+  const ContainerClusterSwapConfig({
     this.enabled,
     this.bootDiskProfile,
     this.dedicatedLocalSsdProfile,
@@ -2538,17 +2438,13 @@ final class ContainerClusterNodeConfigLinuxNodeConfigSwapConfig {
 
   final TfArg<bool>? enabled;
 
-  final ContainerClusterNodeConfigLinuxNodeConfigSwapConfigBootDiskProfile?
-  bootDiskProfile;
+  final ContainerClusterBootDiskProfile? bootDiskProfile;
 
-  final ContainerClusterNodeConfigLinuxNodeConfigSwapConfigDedicatedLocalSsdProfile?
-  dedicatedLocalSsdProfile;
+  final ContainerClusterDedicatedLocalSsdProfile? dedicatedLocalSsdProfile;
 
-  final ContainerClusterNodeConfigLinuxNodeConfigSwapConfigEncryptionConfig?
-  encryptionConfig;
+  final ContainerClusterEncryptionConfig? encryptionConfig;
 
-  final ContainerClusterNodeConfigLinuxNodeConfigSwapConfigEphemeralLocalSsdProfile?
-  ephemeralLocalSsdProfile;
+  final ContainerClusterEphemeralLocalSsdProfile? ephemeralLocalSsdProfile;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
@@ -2561,9 +2457,10 @@ final class ContainerClusterNodeConfigLinuxNodeConfigSwapConfig {
 
 /// Typed helper for the `node_config.linux_node_config.swap_config.boot_disk_profile` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigLinuxNodeConfigSwapConfigBootDiskProfile {
-  const ContainerClusterNodeConfigLinuxNodeConfigSwapConfigBootDiskProfile({
+final class ContainerClusterBootDiskProfile {
+  const ContainerClusterBootDiskProfile({
     this.swapSizeGib,
     this.swapSizePercent,
   });
@@ -2580,11 +2477,10 @@ final class ContainerClusterNodeConfigLinuxNodeConfigSwapConfigBootDiskProfile {
 
 /// Typed helper for the `node_config.linux_node_config.swap_config.dedicated_local_ssd_profile` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigLinuxNodeConfigSwapConfigDedicatedLocalSsdProfile {
-  const ContainerClusterNodeConfigLinuxNodeConfigSwapConfigDedicatedLocalSsdProfile({
-    this.diskCount,
-  });
+final class ContainerClusterDedicatedLocalSsdProfile {
+  const ContainerClusterDedicatedLocalSsdProfile({this.diskCount});
 
   final TfArg<num>? diskCount;
 
@@ -2593,11 +2489,10 @@ final class ContainerClusterNodeConfigLinuxNodeConfigSwapConfigDedicatedLocalSsd
 
 /// Typed helper for the `node_config.linux_node_config.swap_config.encryption_config` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigLinuxNodeConfigSwapConfigEncryptionConfig {
-  const ContainerClusterNodeConfigLinuxNodeConfigSwapConfigEncryptionConfig({
-    this.disabled,
-  });
+final class ContainerClusterEncryptionConfig {
+  const ContainerClusterEncryptionConfig({this.disabled});
 
   final TfArg<bool>? disabled;
 
@@ -2606,9 +2501,10 @@ final class ContainerClusterNodeConfigLinuxNodeConfigSwapConfigEncryptionConfig 
 
 /// Typed helper for the `node_config.linux_node_config.swap_config.ephemeral_local_ssd_profile` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigLinuxNodeConfigSwapConfigEphemeralLocalSsdProfile {
-  const ContainerClusterNodeConfigLinuxNodeConfigSwapConfigEphemeralLocalSsdProfile({
+final class ContainerClusterEphemeralLocalSsdProfile {
+  const ContainerClusterEphemeralLocalSsdProfile({
     this.swapSizeGib,
     this.swapSizePercent,
   });
@@ -2625,11 +2521,10 @@ final class ContainerClusterNodeConfigLinuxNodeConfigSwapConfigEphemeralLocalSsd
 
 /// Typed helper for the `node_config.local_nvme_ssd_block_config` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigLocalNvmeSsdBlockConfig {
-  const ContainerClusterNodeConfigLocalNvmeSsdBlockConfig({
-    required this.localSsdCount,
-  });
+final class ContainerClusterLocalNvmeSsdBlockConfig {
+  const ContainerClusterLocalNvmeSsdBlockConfig({required this.localSsdCount});
 
   final TfArg<num> localSsdCount;
 
@@ -2640,12 +2535,10 @@ final class ContainerClusterNodeConfigLocalNvmeSsdBlockConfig {
 
 /// Typed helper for the `node_config.node_image_config` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigNodeImageConfig {
-  const ContainerClusterNodeConfigNodeImageConfig({
-    this.image,
-    this.imageProject,
-  });
+final class ContainerClusterNodeImageConfig {
+  const ContainerClusterNodeImageConfig({this.image, this.imageProject});
 
   final TfArg<String>? image;
 
@@ -2659,9 +2552,10 @@ final class ContainerClusterNodeConfigNodeImageConfig {
 
 /// Typed helper for the `node_config.reservation_affinity` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigReservationAffinity {
-  const ContainerClusterNodeConfigReservationAffinity({
+final class ContainerClusterReservationAffinity {
+  const ContainerClusterReservationAffinity({
     required this.consumeReservationType,
     this.key,
     this.values,
@@ -2682,9 +2576,10 @@ final class ContainerClusterNodeConfigReservationAffinity {
 
 /// Typed helper for the `node_config.sandbox_config` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigSandboxConfig {
-  const ContainerClusterNodeConfigSandboxConfig({required this.type});
+final class ContainerClusterSandboxConfig {
+  const ContainerClusterSandboxConfig({required this.type});
 
   final TfArg<String> type;
 
@@ -2693,9 +2588,10 @@ final class ContainerClusterNodeConfigSandboxConfig {
 
 /// Typed helper for the `node_config.secondary_boot_disks` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigSecondaryBootDisks {
-  const ContainerClusterNodeConfigSecondaryBootDisks({
+final class ContainerClusterSecondaryBootDisks {
+  const ContainerClusterSecondaryBootDisks({
     required this.diskImage,
     this.mode,
   });
@@ -2710,38 +2606,19 @@ final class ContainerClusterNodeConfigSecondaryBootDisks {
   };
 }
 
-/// Typed helper for the `node_config.shielded_instance_config` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodeConfigShieldedInstanceConfig {
-  const ContainerClusterNodeConfigShieldedInstanceConfig({
-    this.enableIntegrityMonitoring,
-    this.enableSecureBoot,
-  });
-
-  final TfArg<bool>? enableIntegrityMonitoring;
-
-  final TfArg<bool>? enableSecureBoot;
-
-  Map<String, Object?> encode() => {
-    'enable_integrity_monitoring': ?enableIntegrityMonitoring?.toTfJson(),
-    'enable_secure_boot': ?enableSecureBoot?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `node_config.sole_tenant_config` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigSoleTenantConfig {
-  const ContainerClusterNodeConfigSoleTenantConfig({
+final class ContainerClusterSoleTenantConfig {
+  const ContainerClusterSoleTenantConfig({
     this.minNodeCpus,
     required this.nodeAffinity,
   });
 
   final TfArg<num>? minNodeCpus;
 
-  final List<ContainerClusterNodeConfigSoleTenantConfigNodeAffinity>
-  nodeAffinity;
+  final List<ContainerClusterNodeAffinity> nodeAffinity;
 
   Map<String, Object?> encode() => {
     'min_node_cpus': ?minNodeCpus?.toTfJson(),
@@ -2751,9 +2628,10 @@ final class ContainerClusterNodeConfigSoleTenantConfig {
 
 /// Typed helper for the `node_config.sole_tenant_config.node_affinity` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigSoleTenantConfigNodeAffinity {
-  const ContainerClusterNodeConfigSoleTenantConfigNodeAffinity({
+final class ContainerClusterNodeAffinity {
+  const ContainerClusterNodeAffinity({
     required this.key,
     required this.operator,
     required this.values,
@@ -2774,9 +2652,10 @@ final class ContainerClusterNodeConfigSoleTenantConfigNodeAffinity {
 
 /// Typed helper for the `node_config.taint` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigTaint {
-  const ContainerClusterNodeConfigTaint({
+final class ContainerClusterTaint {
+  const ContainerClusterTaint({
     required this.effect,
     required this.key,
     required this.value,
@@ -2797,11 +2676,10 @@ final class ContainerClusterNodeConfigTaint {
 
 /// Typed helper for the `node_config.taint_config` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigTaintConfig {
-  const ContainerClusterNodeConfigTaintConfig({
-    required this.architectureTaintBehavior,
-  });
+final class ContainerClusterTaintConfig {
+  const ContainerClusterTaintConfig({required this.architectureTaintBehavior});
 
   final TfArg<String> architectureTaintBehavior;
 
@@ -2812,9 +2690,10 @@ final class ContainerClusterNodeConfigTaintConfig {
 
 /// Typed helper for the `node_config.windows_node_config` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigWindowsNodeConfig {
-  const ContainerClusterNodeConfigWindowsNodeConfig({this.osversion});
+final class ContainerClusterWindowsNodeConfig {
+  const ContainerClusterWindowsNodeConfig({this.osversion});
 
   final TfArg<String>? osversion;
 
@@ -2823,9 +2702,10 @@ final class ContainerClusterNodeConfigWindowsNodeConfig {
 
 /// Typed helper for the `node_config.workload_metadata_config` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterNodeConfigWorkloadMetadataConfig {
-  const ContainerClusterNodeConfigWorkloadMetadataConfig({required this.mode});
+final class ContainerClusterWorkloadMetadataConfig {
+  const ContainerClusterWorkloadMetadataConfig({required this.mode});
 
   final TfArg<String> mode;
 
@@ -2889,19 +2769,19 @@ final class ContainerClusterNodePool {
 
   final List<ContainerClusterNodePoolMaintenancePolicy>? maintenancePolicy;
 
-  final ContainerClusterNodePoolManagement? management;
+  final ContainerClusterManagement? management;
 
-  final ContainerClusterNodePoolNetworkConfig? networkConfig;
+  final ContainerClusterNetworkConfig? networkConfig;
 
-  final ContainerClusterNodePoolNodeConfig? nodeConfig;
+  final ContainerClusterNodeConfig? nodeConfig;
 
-  final List<ContainerClusterNodePoolNodeDrainConfig>? nodeDrainConfig;
+  final List<ContainerClusterNodeDrainConfig>? nodeDrainConfig;
 
-  final ContainerClusterNodePoolPlacementPolicy? placementPolicy;
+  final ContainerClusterPlacementPolicy? placementPolicy;
 
-  final ContainerClusterNodePoolQueuedProvisioning? queuedProvisioning;
+  final ContainerClusterQueuedProvisioning? queuedProvisioning;
 
-  final ContainerClusterNodePoolUpgradeSettings? upgradeSettings;
+  final ContainerClusterUpgradeSettings? upgradeSettings;
 
   Map<String, Object?> encode() => {
     'ignore_node_count_changes': ?ignoreNodeCountChanges?.toTfJson(),
@@ -2965,9 +2845,7 @@ final class ContainerClusterNodePoolMaintenancePolicy {
     this.exclusionUntilEndOfSupport,
   });
 
-  final List<
-    ContainerClusterNodePoolMaintenancePolicyExclusionUntilEndOfSupport
-  >?
+  final List<ContainerClusterExclusionUntilEndOfSupport>?
   exclusionUntilEndOfSupport;
 
   Map<String, Object?> encode() => {
@@ -2981,37 +2859,19 @@ final class ContainerClusterNodePoolMaintenancePolicy {
 /// Typed helper for the `node_pool.maintenance_policy.exclusion_until_end_of_support` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterNodePoolMaintenancePolicyExclusionUntilEndOfSupport {
-  const ContainerClusterNodePoolMaintenancePolicyExclusionUntilEndOfSupport({
-    this.enabled,
-  });
+final class ContainerClusterExclusionUntilEndOfSupport {
+  const ContainerClusterExclusionUntilEndOfSupport({this.enabled});
 
   final TfArg<bool>? enabled;
 
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
-/// Typed helper for the `node_pool.management` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolManagement {
-  const ContainerClusterNodePoolManagement({this.autoRepair, this.autoUpgrade});
-
-  final TfArg<bool>? autoRepair;
-
-  final TfArg<bool>? autoUpgrade;
-
-  Map<String, Object?> encode() => {
-    'auto_repair': ?autoRepair?.toTfJson(),
-    'auto_upgrade': ?autoUpgrade?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `node_pool.network_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterNodePoolNetworkConfig {
-  const ContainerClusterNodePoolNetworkConfig({
+final class ContainerClusterNetworkConfig {
+  const ContainerClusterNetworkConfig({
     this.acceleratorNetworkProfile,
     this.createPodRange,
     this.enablePrivateNodes,
@@ -3036,17 +2896,15 @@ final class ContainerClusterNodePoolNetworkConfig {
 
   final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
-  final List<ContainerClusterNodePoolNetworkConfigAdditionalNodeNetworkConfigs>?
+  final List<ContainerClusterAdditionalNodeNetworkConfigs>?
   additionalNodeNetworkConfigs;
 
-  final List<ContainerClusterNodePoolNetworkConfigAdditionalPodNetworkConfigs>?
+  final List<ContainerClusterAdditionalPodNetworkConfigs>?
   additionalPodNetworkConfigs;
 
-  final ContainerClusterNodePoolNetworkConfigNetworkPerformanceConfig?
-  networkPerformanceConfig;
+  final ContainerClusterNetworkPerformanceConfig? networkPerformanceConfig;
 
-  final ContainerClusterNodePoolNetworkConfigPodCidrOverprovisionConfig?
-  podCidrOverprovisionConfig;
+  final ContainerClusterPodCidrOverprovisionConfig? podCidrOverprovisionConfig;
 
   Map<String, Object?> encode() => {
     'accelerator_network_profile': ?acceleratorNetworkProfile?.toTfJson(),
@@ -3071,8 +2929,8 @@ final class ContainerClusterNodePoolNetworkConfig {
 /// Typed helper for the `node_pool.network_config.additional_node_network_configs` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterNodePoolNetworkConfigAdditionalNodeNetworkConfigs {
-  const ContainerClusterNodePoolNetworkConfigAdditionalNodeNetworkConfigs({
+final class ContainerClusterAdditionalNodeNetworkConfigs {
+  const ContainerClusterAdditionalNodeNetworkConfigs({
     this.network,
     this.subnetwork,
   });
@@ -3090,8 +2948,8 @@ final class ContainerClusterNodePoolNetworkConfigAdditionalNodeNetworkConfigs {
 /// Typed helper for the `node_pool.network_config.additional_pod_network_configs` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterNodePoolNetworkConfigAdditionalPodNetworkConfigs {
-  const ContainerClusterNodePoolNetworkConfigAdditionalPodNetworkConfigs({
+final class ContainerClusterAdditionalPodNetworkConfigs {
+  const ContainerClusterAdditionalPodNetworkConfigs({
     this.maxPodsPerNode,
     this.secondaryPodRange,
     this.subnetwork,
@@ -3110,1398 +2968,11 @@ final class ContainerClusterNodePoolNetworkConfigAdditionalPodNetworkConfigs {
   };
 }
 
-/// Typed helper for the `node_pool.network_config.network_performance_config` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNetworkConfigNetworkPerformanceConfig {
-  const ContainerClusterNodePoolNetworkConfigNetworkPerformanceConfig({
-    required this.totalEgressBandwidthTier,
-  });
-
-  final TfArg<String> totalEgressBandwidthTier;
-
-  Map<String, Object?> encode() => {
-    'total_egress_bandwidth_tier': totalEgressBandwidthTier.toTfJson(),
-  };
-}
-
-/// Typed helper for the `node_pool.network_config.pod_cidr_overprovision_config` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNetworkConfigPodCidrOverprovisionConfig {
-  const ContainerClusterNodePoolNetworkConfigPodCidrOverprovisionConfig({
-    required this.disabled,
-  });
-
-  final TfArg<bool> disabled;
-
-  Map<String, Object?> encode() => {'disabled': disabled.toTfJson()};
-}
-
-/// Typed helper for the `node_pool.node_config` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfig {
-  const ContainerClusterNodePoolNodeConfig({
-    this.bootDiskKmsKey,
-    this.diskSizeGb,
-    this.diskType,
-    this.enableConfidentialStorage,
-    this.flexStart,
-    this.gpudirectStrategy,
-    this.imageType,
-    this.labels,
-    this.localSsdCount,
-    this.localSsdEncryptionMode,
-    this.loggingVariant,
-    this.machineType,
-    this.maxRunDuration,
-    this.metadata,
-    this.minCpuPlatform,
-    this.nodeGroup,
-    this.oauthScopes,
-    this.preemptible,
-    this.resourceLabels,
-    this.resourceManagerTags,
-    this.serviceAccount,
-    this.spot,
-    this.storagePools,
-    this.tags,
-    this.advancedMachineFeatures,
-    this.bootDisk,
-    this.confidentialNodes,
-    this.containerdConfig,
-    this.ephemeralStorageLocalSsdConfig,
-    this.fastSocket,
-    this.gcfsConfig,
-    this.guestAccelerator,
-    this.gvnic,
-    this.kubeletConfig,
-    this.linuxNodeConfig,
-    this.localNvmeSsdBlockConfig,
-    this.nodeImageConfig,
-    this.reservationAffinity,
-    this.sandboxConfig,
-    this.secondaryBootDisks,
-    this.shieldedInstanceConfig,
-    this.soleTenantConfig,
-    this.taint,
-    this.taintConfig,
-    this.windowsNodeConfig,
-    this.workloadMetadataConfig,
-  });
-
-  final TfArg<String>? bootDiskKmsKey;
-
-  final TfArg<num>? diskSizeGb;
-
-  final TfArg<String>? diskType;
-
-  final TfArg<bool>? enableConfidentialStorage;
-
-  final TfArg<bool>? flexStart;
-
-  final TfArg<String>? gpudirectStrategy;
-
-  final TfArg<String>? imageType;
-
-  final TfArg<Map<String, String>>? labels;
-
-  final TfArg<num>? localSsdCount;
-
-  final TfArg<String>? localSsdEncryptionMode;
-
-  final TfArg<String>? loggingVariant;
-
-  final TfArg<String>? machineType;
-
-  final TfArg<String>? maxRunDuration;
-
-  final TfArg<Map<String, String>>? metadata;
-
-  final TfArg<String>? minCpuPlatform;
-
-  final TfArg<String>? nodeGroup;
-
-  final TfArg<List<String>>? oauthScopes;
-
-  final TfArg<bool>? preemptible;
-
-  final TfArg<Map<String, String>>? resourceLabels;
-
-  final TfArg<Map<String, String>>? resourceManagerTags;
-
-  final RefTo<GoogleServiceAccount>? serviceAccount;
-
-  final TfArg<bool>? spot;
-
-  final TfArg<List<String>>? storagePools;
-
-  final TfArg<List<String>>? tags;
-
-  final ContainerClusterNodePoolNodeConfigAdvancedMachineFeatures?
-  advancedMachineFeatures;
-
-  final ContainerClusterNodePoolNodeConfigBootDisk? bootDisk;
-
-  final ContainerClusterNodePoolNodeConfigConfidentialNodes? confidentialNodes;
-
-  final ContainerClusterNodePoolNodeConfigContainerdConfig? containerdConfig;
-
-  final ContainerClusterNodePoolNodeConfigEphemeralStorageLocalSsdConfig?
-  ephemeralStorageLocalSsdConfig;
-
-  final ContainerClusterNodePoolNodeConfigFastSocket? fastSocket;
-
-  final ContainerClusterNodePoolNodeConfigGcfsConfig? gcfsConfig;
-
-  final List<ContainerClusterNodePoolNodeConfigGuestAccelerator>?
-  guestAccelerator;
-
-  final ContainerClusterNodePoolNodeConfigGvnic? gvnic;
-
-  final ContainerClusterNodePoolNodeConfigKubeletConfig? kubeletConfig;
-
-  final ContainerClusterNodePoolNodeConfigLinuxNodeConfig? linuxNodeConfig;
-
-  final ContainerClusterNodePoolNodeConfigLocalNvmeSsdBlockConfig?
-  localNvmeSsdBlockConfig;
-
-  final List<ContainerClusterNodePoolNodeConfigNodeImageConfig>?
-  nodeImageConfig;
-
-  final ContainerClusterNodePoolNodeConfigReservationAffinity?
-  reservationAffinity;
-
-  final ContainerClusterNodePoolNodeConfigSandboxConfig? sandboxConfig;
-
-  final List<ContainerClusterNodePoolNodeConfigSecondaryBootDisks>?
-  secondaryBootDisks;
-
-  final ContainerClusterNodePoolNodeConfigShieldedInstanceConfig?
-  shieldedInstanceConfig;
-
-  final ContainerClusterNodePoolNodeConfigSoleTenantConfig? soleTenantConfig;
-
-  final List<ContainerClusterNodePoolNodeConfigTaint>? taint;
-
-  final ContainerClusterNodePoolNodeConfigTaintConfig? taintConfig;
-
-  final ContainerClusterNodePoolNodeConfigWindowsNodeConfig? windowsNodeConfig;
-
-  final ContainerClusterNodePoolNodeConfigWorkloadMetadataConfig?
-  workloadMetadataConfig;
-
-  Map<String, Object?> encode() => {
-    'boot_disk_kms_key': ?bootDiskKmsKey?.toTfJson(),
-    'disk_size_gb': ?diskSizeGb?.toTfJson(),
-    'disk_type': ?diskType?.toTfJson(),
-    'enable_confidential_storage': ?enableConfidentialStorage?.toTfJson(),
-    'flex_start': ?flexStart?.toTfJson(),
-    'gpudirect_strategy': ?gpudirectStrategy?.toTfJson(),
-    'image_type': ?imageType?.toTfJson(),
-    'labels': ?labels?.toTfJson(),
-    'local_ssd_count': ?localSsdCount?.toTfJson(),
-    'local_ssd_encryption_mode': ?localSsdEncryptionMode?.toTfJson(),
-    'logging_variant': ?loggingVariant?.toTfJson(),
-    'machine_type': ?machineType?.toTfJson(),
-    'max_run_duration': ?maxRunDuration?.toTfJson(),
-    'metadata': ?metadata?.toTfJson(),
-    'min_cpu_platform': ?minCpuPlatform?.toTfJson(),
-    'node_group': ?nodeGroup?.toTfJson(),
-    'oauth_scopes': ?oauthScopes?.toTfJson(),
-    'preemptible': ?preemptible?.toTfJson(),
-    'resource_labels': ?resourceLabels?.toTfJson(),
-    'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
-    'service_account': ?serviceAccount?.encodeAs('email').toTfJson(),
-    'spot': ?spot?.toTfJson(),
-    'storage_pools': ?storagePools?.toTfJson(),
-    'tags': ?tags?.toTfJson(),
-    'advanced_machine_features': ?advancedMachineFeatures?.encode(),
-    'boot_disk': ?bootDisk?.encode(),
-    'confidential_nodes': ?confidentialNodes?.encode(),
-    'containerd_config': ?containerdConfig?.encode(),
-    'ephemeral_storage_local_ssd_config': ?ephemeralStorageLocalSsdConfig
-        ?.encode(),
-    'fast_socket': ?fastSocket?.encode(),
-    'gcfs_config': ?gcfsConfig?.encode(),
-    if (guestAccelerator != null)
-      'guest_accelerator': [for (final e in guestAccelerator!) e.encode()],
-    'gvnic': ?gvnic?.encode(),
-    'kubelet_config': ?kubeletConfig?.encode(),
-    'linux_node_config': ?linuxNodeConfig?.encode(),
-    'local_nvme_ssd_block_config': ?localNvmeSsdBlockConfig?.encode(),
-    if (nodeImageConfig != null)
-      'node_image_config': [for (final e in nodeImageConfig!) e.encode()],
-    'reservation_affinity': ?reservationAffinity?.encode(),
-    'sandbox_config': ?sandboxConfig?.encode(),
-    if (secondaryBootDisks != null)
-      'secondary_boot_disks': [for (final e in secondaryBootDisks!) e.encode()],
-    'shielded_instance_config': ?shieldedInstanceConfig?.encode(),
-    'sole_tenant_config': ?soleTenantConfig?.encode(),
-    if (taint != null) 'taint': [for (final e in taint!) e.encode()],
-    'taint_config': ?taintConfig?.encode(),
-    'windows_node_config': ?windowsNodeConfig?.encode(),
-    'workload_metadata_config': ?workloadMetadataConfig?.encode(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.advanced_machine_features` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigAdvancedMachineFeatures {
-  const ContainerClusterNodePoolNodeConfigAdvancedMachineFeatures({
-    this.enableNestedVirtualization,
-    this.performanceMonitoringUnit,
-    required this.threadsPerCore,
-  });
-
-  final TfArg<bool>? enableNestedVirtualization;
-
-  final TfArg<String>? performanceMonitoringUnit;
-
-  final TfArg<num> threadsPerCore;
-
-  Map<String, Object?> encode() => {
-    'enable_nested_virtualization': ?enableNestedVirtualization?.toTfJson(),
-    'performance_monitoring_unit': ?performanceMonitoringUnit?.toTfJson(),
-    'threads_per_core': threadsPerCore.toTfJson(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.boot_disk` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigBootDisk {
-  const ContainerClusterNodePoolNodeConfigBootDisk({
-    this.diskType,
-    this.provisionedIops,
-    this.provisionedThroughput,
-    this.sizeGb,
-  });
-
-  final TfArg<String>? diskType;
-
-  final TfArg<num>? provisionedIops;
-
-  final TfArg<num>? provisionedThroughput;
-
-  final TfArg<num>? sizeGb;
-
-  Map<String, Object?> encode() => {
-    'disk_type': ?diskType?.toTfJson(),
-    'provisioned_iops': ?provisionedIops?.toTfJson(),
-    'provisioned_throughput': ?provisionedThroughput?.toTfJson(),
-    'size_gb': ?sizeGb?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.confidential_nodes` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigConfidentialNodes {
-  const ContainerClusterNodePoolNodeConfigConfidentialNodes({
-    this.confidentialInstanceType,
-    required this.enabled,
-  });
-
-  final TfArg<String>? confidentialInstanceType;
-
-  final TfArg<bool> enabled;
-
-  Map<String, Object?> encode() => {
-    'confidential_instance_type': ?confidentialInstanceType?.toTfJson(),
-    'enabled': enabled.toTfJson(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.containerd_config` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigContainerdConfig {
-  const ContainerClusterNodePoolNodeConfigContainerdConfig({
-    this.privateRegistryAccessConfig,
-    this.registryHosts,
-    this.writableCgroups,
-  });
-
-  final ContainerClusterNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfig?
-  privateRegistryAccessConfig;
-
-  final List<ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHosts>?
-  registryHosts;
-
-  final ContainerClusterNodePoolNodeConfigContainerdConfigWritableCgroups?
-  writableCgroups;
-
-  Map<String, Object?> encode() => {
-    'private_registry_access_config': ?privateRegistryAccessConfig?.encode(),
-    if (registryHosts != null)
-      'registry_hosts': [for (final e in registryHosts!) e.encode()],
-    'writable_cgroups': ?writableCgroups?.encode(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.containerd_config.private_registry_access_config` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfig {
-  const ContainerClusterNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfig({
-    required this.enabled,
-    this.certificateAuthorityDomainConfig,
-  });
-
-  final TfArg<bool> enabled;
-
-  final List<
-    ContainerClusterNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfig
-  >?
-  certificateAuthorityDomainConfig;
-
-  Map<String, Object?> encode() => {
-    'enabled': enabled.toTfJson(),
-    if (certificateAuthorityDomainConfig != null)
-      'certificate_authority_domain_config': [
-        for (final e in certificateAuthorityDomainConfig!) e.encode(),
-      ],
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.containerd_config.private_registry_access_config.certificate_authority_domain_config` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfig {
-  const ContainerClusterNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfig({
-    required this.fqdns,
-    required this.gcpSecretManagerCertificateConfig,
-  });
-
-  final TfArg<List<String>> fqdns;
-
-  final ContainerClusterNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfigGcpSecretManagerCertificateConfig
-  gcpSecretManagerCertificateConfig;
-
-  Map<String, Object?> encode() => {
-    'fqdns': fqdns.toTfJson(),
-    'gcp_secret_manager_certificate_config': gcpSecretManagerCertificateConfig
-        .encode(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.containerd_config.private_registry_access_config.certificate_authority_domain_config.gcp_secret_manager_certificate_config` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfigGcpSecretManagerCertificateConfig {
-  const ContainerClusterNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfigGcpSecretManagerCertificateConfig({
-    required this.secretUri,
-  });
-
-  final TfArg<String> secretUri;
-
-  Map<String, Object?> encode() => {'secret_uri': secretUri.toTfJson()};
-}
-
-/// Typed helper for the `node_pool.node_config.containerd_config.registry_hosts` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHosts {
-  const ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHosts({
-    required this.server,
-    this.hosts,
-  });
-
-  final TfArg<String> server;
-
-  final List<
-    ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHosts
-  >?
-  hosts;
-
-  Map<String, Object?> encode() => {
-    'server': server.toTfJson(),
-    if (hosts != null) 'hosts': [for (final e in hosts!) e.encode()],
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.containerd_config.registry_hosts.hosts` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHosts {
-  const ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHosts({
-    this.capabilities,
-    this.dialTimeout,
-    required this.host,
-    this.overridePath,
-    this.ca,
-    this.client,
-    this.header,
-  });
-
-  final TfArg<List<String>>? capabilities;
-
-  final TfArg<String>? dialTimeout;
-
-  final TfArg<String> host;
-
-  final TfArg<bool>? overridePath;
-
-  final List<
-    ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHostsCa
-  >?
-  ca;
-
-  final List<
-    ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHostsClient
-  >?
-  client;
-
-  final List<
-    ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHostsHeader
-  >?
-  header;
-
-  Map<String, Object?> encode() => {
-    'capabilities': ?capabilities?.toTfJson(),
-    'dial_timeout': ?dialTimeout?.toTfJson(),
-    'host': host.toTfJson(),
-    'override_path': ?overridePath?.toTfJson(),
-    if (ca != null) 'ca': [for (final e in ca!) e.encode()],
-    if (client != null) 'client': [for (final e in client!) e.encode()],
-    if (header != null) 'header': [for (final e in header!) e.encode()],
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.containerd_config.registry_hosts.hosts.ca` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHostsCa {
-  const ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHostsCa({
-    this.gcpSecretManagerSecretUri,
-  });
-
-  final TfArg<String>? gcpSecretManagerSecretUri;
-
-  Map<String, Object?> encode() => {
-    'gcp_secret_manager_secret_uri': ?gcpSecretManagerSecretUri?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.containerd_config.registry_hosts.hosts.client` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHostsClient {
-  const ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHostsClient({
-    required this.cert,
-    this.key,
-  });
-
-  final ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHostsClientCert
-  cert;
-
-  final ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHostsClientKey?
-  key;
-
-  Map<String, Object?> encode() => {
-    'cert': cert.encode(),
-    'key': ?key?.encode(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.containerd_config.registry_hosts.hosts.client.cert` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHostsClientCert {
-  const ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHostsClientCert({
-    this.gcpSecretManagerSecretUri,
-  });
-
-  final TfArg<String>? gcpSecretManagerSecretUri;
-
-  Map<String, Object?> encode() => {
-    'gcp_secret_manager_secret_uri': ?gcpSecretManagerSecretUri?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.containerd_config.registry_hosts.hosts.client.key` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHostsClientKey {
-  const ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHostsClientKey({
-    this.gcpSecretManagerSecretUri,
-  });
-
-  final TfArg<String>? gcpSecretManagerSecretUri;
-
-  Map<String, Object?> encode() => {
-    'gcp_secret_manager_secret_uri': ?gcpSecretManagerSecretUri?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.containerd_config.registry_hosts.hosts.header` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHostsHeader {
-  const ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHostsHeader({
-    required this.key,
-    required this.value,
-  });
-
-  final TfArg<String> key;
-
-  final TfArg<List<String>> value;
-
-  Map<String, Object?> encode() => {
-    'key': key.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.containerd_config.writable_cgroups` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigContainerdConfigWritableCgroups {
-  const ContainerClusterNodePoolNodeConfigContainerdConfigWritableCgroups({
-    required this.enabled,
-  });
-
-  final TfArg<bool> enabled;
-
-  Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
-}
-
-/// Typed helper for the `node_pool.node_config.ephemeral_storage_local_ssd_config` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigEphemeralStorageLocalSsdConfig {
-  const ContainerClusterNodePoolNodeConfigEphemeralStorageLocalSsdConfig({
-    this.dataCacheCount,
-    required this.localSsdCount,
-  });
-
-  final TfArg<num>? dataCacheCount;
-
-  final TfArg<num> localSsdCount;
-
-  Map<String, Object?> encode() => {
-    'data_cache_count': ?dataCacheCount?.toTfJson(),
-    'local_ssd_count': localSsdCount.toTfJson(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.fast_socket` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigFastSocket {
-  const ContainerClusterNodePoolNodeConfigFastSocket({required this.enabled});
-
-  final TfArg<bool> enabled;
-
-  Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
-}
-
-/// Typed helper for the `node_pool.node_config.gcfs_config` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigGcfsConfig {
-  const ContainerClusterNodePoolNodeConfigGcfsConfig({required this.enabled});
-
-  final TfArg<bool> enabled;
-
-  Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
-}
-
-/// Typed helper for the `node_pool.node_config.guest_accelerator` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigGuestAccelerator {
-  const ContainerClusterNodePoolNodeConfigGuestAccelerator({
-    required this.count,
-    this.gpuPartitionSize,
-    required this.type,
-    this.gpuDriverInstallationConfig,
-    this.gpuSharingConfig,
-  });
-
-  final TfArg<num> count;
-
-  final TfArg<String>? gpuPartitionSize;
-
-  final TfArg<String> type;
-
-  final ContainerClusterNodePoolNodeConfigGuestAcceleratorGpuDriverInstallationConfig?
-  gpuDriverInstallationConfig;
-
-  final ContainerClusterNodePoolNodeConfigGuestAcceleratorGpuSharingConfig?
-  gpuSharingConfig;
-
-  Map<String, Object?> encode() => {
-    'count': count.toTfJson(),
-    'gpu_partition_size': ?gpuPartitionSize?.toTfJson(),
-    'type': type.toTfJson(),
-    'gpu_driver_installation_config': ?gpuDriverInstallationConfig?.encode(),
-    'gpu_sharing_config': ?gpuSharingConfig?.encode(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.guest_accelerator.gpu_driver_installation_config` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigGuestAcceleratorGpuDriverInstallationConfig {
-  const ContainerClusterNodePoolNodeConfigGuestAcceleratorGpuDriverInstallationConfig({
-    required this.gpuDriverVersion,
-  });
-
-  final TfArg<String> gpuDriverVersion;
-
-  Map<String, Object?> encode() => {
-    'gpu_driver_version': gpuDriverVersion.toTfJson(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.guest_accelerator.gpu_sharing_config` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigGuestAcceleratorGpuSharingConfig {
-  const ContainerClusterNodePoolNodeConfigGuestAcceleratorGpuSharingConfig({
-    required this.gpuSharingStrategy,
-    required this.maxSharedClientsPerGpu,
-  });
-
-  final TfArg<String> gpuSharingStrategy;
-
-  final TfArg<num> maxSharedClientsPerGpu;
-
-  Map<String, Object?> encode() => {
-    'gpu_sharing_strategy': gpuSharingStrategy.toTfJson(),
-    'max_shared_clients_per_gpu': maxSharedClientsPerGpu.toTfJson(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.gvnic` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigGvnic {
-  const ContainerClusterNodePoolNodeConfigGvnic({required this.enabled});
-
-  final TfArg<bool> enabled;
-
-  Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
-}
-
-/// Typed helper for the `node_pool.node_config.kubelet_config` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigKubeletConfig {
-  const ContainerClusterNodePoolNodeConfigKubeletConfig({
-    this.allowedUnsafeSysctls,
-    this.containerLogMaxFiles,
-    this.containerLogMaxSize,
-    this.cpuCfsQuota,
-    this.cpuCfsQuotaPeriod,
-    this.cpuManagerPolicy,
-    this.evictionMaxPodGracePeriodSeconds,
-    this.imageGcHighThresholdPercent,
-    this.imageGcLowThresholdPercent,
-    this.imageMaximumGcAge,
-    this.imageMinimumGcAge,
-    this.insecureKubeletReadonlyPortEnabled,
-    this.maxParallelImagePulls,
-    this.podPidsLimit,
-    this.shutdownGracePeriodCriticalPodsSeconds,
-    this.shutdownGracePeriodSeconds,
-    this.singleProcessOomKill,
-    this.crashLoopBackOff,
-    this.evictionMinimumReclaim,
-    this.evictionSoft,
-    this.evictionSoftGracePeriod,
-    this.memoryManager,
-    this.topologyManager,
-  });
-
-  final TfArg<List<String>>? allowedUnsafeSysctls;
-
-  final TfArg<num>? containerLogMaxFiles;
-
-  final TfArg<String>? containerLogMaxSize;
-
-  final TfArg<bool>? cpuCfsQuota;
-
-  final TfArg<String>? cpuCfsQuotaPeriod;
-
-  final TfArg<String>? cpuManagerPolicy;
-
-  final TfArg<num>? evictionMaxPodGracePeriodSeconds;
-
-  final TfArg<num>? imageGcHighThresholdPercent;
-
-  final TfArg<num>? imageGcLowThresholdPercent;
-
-  final TfArg<String>? imageMaximumGcAge;
-
-  final TfArg<String>? imageMinimumGcAge;
-
-  final TfArg<String>? insecureKubeletReadonlyPortEnabled;
-
-  final TfArg<num>? maxParallelImagePulls;
-
-  final TfArg<num>? podPidsLimit;
-
-  final TfArg<num>? shutdownGracePeriodCriticalPodsSeconds;
-
-  final TfArg<num>? shutdownGracePeriodSeconds;
-
-  final TfArg<bool>? singleProcessOomKill;
-
-  final ContainerClusterNodePoolNodeConfigKubeletConfigCrashLoopBackOff?
-  crashLoopBackOff;
-
-  final ContainerClusterNodePoolNodeConfigKubeletConfigEvictionMinimumReclaim?
-  evictionMinimumReclaim;
-
-  final ContainerClusterNodePoolNodeConfigKubeletConfigEvictionSoft?
-  evictionSoft;
-
-  final ContainerClusterNodePoolNodeConfigKubeletConfigEvictionSoftGracePeriod?
-  evictionSoftGracePeriod;
-
-  final ContainerClusterNodePoolNodeConfigKubeletConfigMemoryManager?
-  memoryManager;
-
-  final ContainerClusterNodePoolNodeConfigKubeletConfigTopologyManager?
-  topologyManager;
-
-  Map<String, Object?> encode() => {
-    'allowed_unsafe_sysctls': ?allowedUnsafeSysctls?.toTfJson(),
-    'container_log_max_files': ?containerLogMaxFiles?.toTfJson(),
-    'container_log_max_size': ?containerLogMaxSize?.toTfJson(),
-    'cpu_cfs_quota': ?cpuCfsQuota?.toTfJson(),
-    'cpu_cfs_quota_period': ?cpuCfsQuotaPeriod?.toTfJson(),
-    'cpu_manager_policy': ?cpuManagerPolicy?.toTfJson(),
-    'eviction_max_pod_grace_period_seconds': ?evictionMaxPodGracePeriodSeconds
-        ?.toTfJson(),
-    'image_gc_high_threshold_percent': ?imageGcHighThresholdPercent?.toTfJson(),
-    'image_gc_low_threshold_percent': ?imageGcLowThresholdPercent?.toTfJson(),
-    'image_maximum_gc_age': ?imageMaximumGcAge?.toTfJson(),
-    'image_minimum_gc_age': ?imageMinimumGcAge?.toTfJson(),
-    'insecure_kubelet_readonly_port_enabled':
-        ?insecureKubeletReadonlyPortEnabled?.toTfJson(),
-    'max_parallel_image_pulls': ?maxParallelImagePulls?.toTfJson(),
-    'pod_pids_limit': ?podPidsLimit?.toTfJson(),
-    'shutdown_grace_period_critical_pods_seconds':
-        ?shutdownGracePeriodCriticalPodsSeconds?.toTfJson(),
-    'shutdown_grace_period_seconds': ?shutdownGracePeriodSeconds?.toTfJson(),
-    'single_process_oom_kill': ?singleProcessOomKill?.toTfJson(),
-    'crash_loop_back_off': ?crashLoopBackOff?.encode(),
-    'eviction_minimum_reclaim': ?evictionMinimumReclaim?.encode(),
-    'eviction_soft': ?evictionSoft?.encode(),
-    'eviction_soft_grace_period': ?evictionSoftGracePeriod?.encode(),
-    'memory_manager': ?memoryManager?.encode(),
-    'topology_manager': ?topologyManager?.encode(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.kubelet_config.crash_loop_back_off` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigKubeletConfigCrashLoopBackOff {
-  const ContainerClusterNodePoolNodeConfigKubeletConfigCrashLoopBackOff({
-    this.maxContainerRestartPeriod,
-  });
-
-  final TfArg<String>? maxContainerRestartPeriod;
-
-  Map<String, Object?> encode() => {
-    'max_container_restart_period': ?maxContainerRestartPeriod?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.kubelet_config.eviction_minimum_reclaim` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigKubeletConfigEvictionMinimumReclaim {
-  const ContainerClusterNodePoolNodeConfigKubeletConfigEvictionMinimumReclaim({
-    this.imagefsAvailable,
-    this.imagefsInodesFree,
-    this.memoryAvailable,
-    this.nodefsAvailable,
-    this.nodefsInodesFree,
-    this.pidAvailable,
-  });
-
-  final TfArg<String>? imagefsAvailable;
-
-  final TfArg<String>? imagefsInodesFree;
-
-  final TfArg<String>? memoryAvailable;
-
-  final TfArg<String>? nodefsAvailable;
-
-  final TfArg<String>? nodefsInodesFree;
-
-  final TfArg<String>? pidAvailable;
-
-  Map<String, Object?> encode() => {
-    'imagefs_available': ?imagefsAvailable?.toTfJson(),
-    'imagefs_inodes_free': ?imagefsInodesFree?.toTfJson(),
-    'memory_available': ?memoryAvailable?.toTfJson(),
-    'nodefs_available': ?nodefsAvailable?.toTfJson(),
-    'nodefs_inodes_free': ?nodefsInodesFree?.toTfJson(),
-    'pid_available': ?pidAvailable?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.kubelet_config.eviction_soft` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigKubeletConfigEvictionSoft {
-  const ContainerClusterNodePoolNodeConfigKubeletConfigEvictionSoft({
-    this.imagefsAvailable,
-    this.imagefsInodesFree,
-    this.memoryAvailable,
-    this.nodefsAvailable,
-    this.nodefsInodesFree,
-    this.pidAvailable,
-  });
-
-  final TfArg<String>? imagefsAvailable;
-
-  final TfArg<String>? imagefsInodesFree;
-
-  final TfArg<String>? memoryAvailable;
-
-  final TfArg<String>? nodefsAvailable;
-
-  final TfArg<String>? nodefsInodesFree;
-
-  final TfArg<String>? pidAvailable;
-
-  Map<String, Object?> encode() => {
-    'imagefs_available': ?imagefsAvailable?.toTfJson(),
-    'imagefs_inodes_free': ?imagefsInodesFree?.toTfJson(),
-    'memory_available': ?memoryAvailable?.toTfJson(),
-    'nodefs_available': ?nodefsAvailable?.toTfJson(),
-    'nodefs_inodes_free': ?nodefsInodesFree?.toTfJson(),
-    'pid_available': ?pidAvailable?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.kubelet_config.eviction_soft_grace_period` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigKubeletConfigEvictionSoftGracePeriod {
-  const ContainerClusterNodePoolNodeConfigKubeletConfigEvictionSoftGracePeriod({
-    this.imagefsAvailable,
-    this.imagefsInodesFree,
-    this.memoryAvailable,
-    this.nodefsAvailable,
-    this.nodefsInodesFree,
-    this.pidAvailable,
-  });
-
-  final TfArg<String>? imagefsAvailable;
-
-  final TfArg<String>? imagefsInodesFree;
-
-  final TfArg<String>? memoryAvailable;
-
-  final TfArg<String>? nodefsAvailable;
-
-  final TfArg<String>? nodefsInodesFree;
-
-  final TfArg<String>? pidAvailable;
-
-  Map<String, Object?> encode() => {
-    'imagefs_available': ?imagefsAvailable?.toTfJson(),
-    'imagefs_inodes_free': ?imagefsInodesFree?.toTfJson(),
-    'memory_available': ?memoryAvailable?.toTfJson(),
-    'nodefs_available': ?nodefsAvailable?.toTfJson(),
-    'nodefs_inodes_free': ?nodefsInodesFree?.toTfJson(),
-    'pid_available': ?pidAvailable?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.kubelet_config.memory_manager` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigKubeletConfigMemoryManager {
-  const ContainerClusterNodePoolNodeConfigKubeletConfigMemoryManager({
-    this.policy,
-  });
-
-  final TfArg<String>? policy;
-
-  Map<String, Object?> encode() => {'policy': ?policy?.toTfJson()};
-}
-
-/// Typed helper for the `node_pool.node_config.kubelet_config.topology_manager` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigKubeletConfigTopologyManager {
-  const ContainerClusterNodePoolNodeConfigKubeletConfigTopologyManager({
-    this.policy,
-    this.scope,
-  });
-
-  final TfArg<String>? policy;
-
-  final TfArg<String>? scope;
-
-  Map<String, Object?> encode() => {
-    'policy': ?policy?.toTfJson(),
-    'scope': ?scope?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.linux_node_config` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigLinuxNodeConfig {
-  const ContainerClusterNodePoolNodeConfigLinuxNodeConfig({
-    this.cgroupMode,
-    this.sysctls,
-    this.transparentHugepageDefrag,
-    this.transparentHugepageEnabled,
-    this.accurateTimeConfig,
-    this.customNodeInit,
-    this.hugepagesConfig,
-    this.nodeKernelModuleLoading,
-    this.swapConfig,
-  });
-
-  final TfArg<String>? cgroupMode;
-
-  final TfArg<Map<String, String>>? sysctls;
-
-  final TfArg<String>? transparentHugepageDefrag;
-
-  final TfArg<String>? transparentHugepageEnabled;
-
-  final ContainerClusterNodePoolNodeConfigLinuxNodeConfigAccurateTimeConfig?
-  accurateTimeConfig;
-
-  final ContainerClusterNodePoolNodeConfigLinuxNodeConfigCustomNodeInit?
-  customNodeInit;
-
-  final ContainerClusterNodePoolNodeConfigLinuxNodeConfigHugepagesConfig?
-  hugepagesConfig;
-
-  final ContainerClusterNodePoolNodeConfigLinuxNodeConfigNodeKernelModuleLoading?
-  nodeKernelModuleLoading;
-
-  final ContainerClusterNodePoolNodeConfigLinuxNodeConfigSwapConfig? swapConfig;
-
-  Map<String, Object?> encode() => {
-    'cgroup_mode': ?cgroupMode?.toTfJson(),
-    'sysctls': ?sysctls?.toTfJson(),
-    'transparent_hugepage_defrag': ?transparentHugepageDefrag?.toTfJson(),
-    'transparent_hugepage_enabled': ?transparentHugepageEnabled?.toTfJson(),
-    'accurate_time_config': ?accurateTimeConfig?.encode(),
-    'custom_node_init': ?customNodeInit?.encode(),
-    'hugepages_config': ?hugepagesConfig?.encode(),
-    'node_kernel_module_loading': ?nodeKernelModuleLoading?.encode(),
-    'swap_config': ?swapConfig?.encode(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.linux_node_config.accurate_time_config` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigLinuxNodeConfigAccurateTimeConfig {
-  const ContainerClusterNodePoolNodeConfigLinuxNodeConfigAccurateTimeConfig({
-    this.enablePtpKvmTimeSync,
-  });
-
-  final TfArg<bool>? enablePtpKvmTimeSync;
-
-  Map<String, Object?> encode() => {
-    'enable_ptp_kvm_time_sync': ?enablePtpKvmTimeSync?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.linux_node_config.custom_node_init` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigLinuxNodeConfigCustomNodeInit {
-  const ContainerClusterNodePoolNodeConfigLinuxNodeConfigCustomNodeInit({
-    this.initScript,
-  });
-
-  final ContainerClusterNodePoolNodeConfigLinuxNodeConfigCustomNodeInitInitScript?
-  initScript;
-
-  Map<String, Object?> encode() => {'init_script': ?initScript?.encode()};
-}
-
-/// Typed helper for the `node_pool.node_config.linux_node_config.custom_node_init.init_script` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigLinuxNodeConfigCustomNodeInitInitScript {
-  const ContainerClusterNodePoolNodeConfigLinuxNodeConfigCustomNodeInitInitScript({
-    this.gcpSecretManagerSecretUri,
-    this.gcsGeneration,
-    this.gcsUri,
-  });
-
-  final TfArg<String>? gcpSecretManagerSecretUri;
-
-  final TfArg<num>? gcsGeneration;
-
-  final TfArg<String>? gcsUri;
-
-  Map<String, Object?> encode() => {
-    'gcp_secret_manager_secret_uri': ?gcpSecretManagerSecretUri?.toTfJson(),
-    'gcs_generation': ?gcsGeneration?.toTfJson(),
-    'gcs_uri': ?gcsUri?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.linux_node_config.hugepages_config` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigLinuxNodeConfigHugepagesConfig {
-  const ContainerClusterNodePoolNodeConfigLinuxNodeConfigHugepagesConfig({
-    this.hugepageSize1g,
-    this.hugepageSize2m,
-  });
-
-  final TfArg<num>? hugepageSize1g;
-
-  final TfArg<num>? hugepageSize2m;
-
-  Map<String, Object?> encode() => {
-    'hugepage_size_1g': ?hugepageSize1g?.toTfJson(),
-    'hugepage_size_2m': ?hugepageSize2m?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.linux_node_config.node_kernel_module_loading` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigLinuxNodeConfigNodeKernelModuleLoading {
-  const ContainerClusterNodePoolNodeConfigLinuxNodeConfigNodeKernelModuleLoading({
-    this.policy,
-  });
-
-  final TfArg<String>? policy;
-
-  Map<String, Object?> encode() => {'policy': ?policy?.toTfJson()};
-}
-
-/// Typed helper for the `node_pool.node_config.linux_node_config.swap_config` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigLinuxNodeConfigSwapConfig {
-  const ContainerClusterNodePoolNodeConfigLinuxNodeConfigSwapConfig({
-    this.enabled,
-    this.bootDiskProfile,
-    this.dedicatedLocalSsdProfile,
-    this.encryptionConfig,
-    this.ephemeralLocalSsdProfile,
-  });
-
-  final TfArg<bool>? enabled;
-
-  final ContainerClusterNodePoolNodeConfigLinuxNodeConfigSwapConfigBootDiskProfile?
-  bootDiskProfile;
-
-  final ContainerClusterNodePoolNodeConfigLinuxNodeConfigSwapConfigDedicatedLocalSsdProfile?
-  dedicatedLocalSsdProfile;
-
-  final ContainerClusterNodePoolNodeConfigLinuxNodeConfigSwapConfigEncryptionConfig?
-  encryptionConfig;
-
-  final ContainerClusterNodePoolNodeConfigLinuxNodeConfigSwapConfigEphemeralLocalSsdProfile?
-  ephemeralLocalSsdProfile;
-
-  Map<String, Object?> encode() => {
-    'enabled': ?enabled?.toTfJson(),
-    'boot_disk_profile': ?bootDiskProfile?.encode(),
-    'dedicated_local_ssd_profile': ?dedicatedLocalSsdProfile?.encode(),
-    'encryption_config': ?encryptionConfig?.encode(),
-    'ephemeral_local_ssd_profile': ?ephemeralLocalSsdProfile?.encode(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.linux_node_config.swap_config.boot_disk_profile` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigLinuxNodeConfigSwapConfigBootDiskProfile {
-  const ContainerClusterNodePoolNodeConfigLinuxNodeConfigSwapConfigBootDiskProfile({
-    this.swapSizeGib,
-    this.swapSizePercent,
-  });
-
-  final TfArg<num>? swapSizeGib;
-
-  final TfArg<num>? swapSizePercent;
-
-  Map<String, Object?> encode() => {
-    'swap_size_gib': ?swapSizeGib?.toTfJson(),
-    'swap_size_percent': ?swapSizePercent?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.linux_node_config.swap_config.dedicated_local_ssd_profile` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigLinuxNodeConfigSwapConfigDedicatedLocalSsdProfile {
-  const ContainerClusterNodePoolNodeConfigLinuxNodeConfigSwapConfigDedicatedLocalSsdProfile({
-    this.diskCount,
-  });
-
-  final TfArg<num>? diskCount;
-
-  Map<String, Object?> encode() => {'disk_count': ?diskCount?.toTfJson()};
-}
-
-/// Typed helper for the `node_pool.node_config.linux_node_config.swap_config.encryption_config` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigLinuxNodeConfigSwapConfigEncryptionConfig {
-  const ContainerClusterNodePoolNodeConfigLinuxNodeConfigSwapConfigEncryptionConfig({
-    this.disabled,
-  });
-
-  final TfArg<bool>? disabled;
-
-  Map<String, Object?> encode() => {'disabled': ?disabled?.toTfJson()};
-}
-
-/// Typed helper for the `node_pool.node_config.linux_node_config.swap_config.ephemeral_local_ssd_profile` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigLinuxNodeConfigSwapConfigEphemeralLocalSsdProfile {
-  const ContainerClusterNodePoolNodeConfigLinuxNodeConfigSwapConfigEphemeralLocalSsdProfile({
-    this.swapSizeGib,
-    this.swapSizePercent,
-  });
-
-  final TfArg<num>? swapSizeGib;
-
-  final TfArg<num>? swapSizePercent;
-
-  Map<String, Object?> encode() => {
-    'swap_size_gib': ?swapSizeGib?.toTfJson(),
-    'swap_size_percent': ?swapSizePercent?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.local_nvme_ssd_block_config` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigLocalNvmeSsdBlockConfig {
-  const ContainerClusterNodePoolNodeConfigLocalNvmeSsdBlockConfig({
-    required this.localSsdCount,
-  });
-
-  final TfArg<num> localSsdCount;
-
-  Map<String, Object?> encode() => {
-    'local_ssd_count': localSsdCount.toTfJson(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.node_image_config` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigNodeImageConfig {
-  const ContainerClusterNodePoolNodeConfigNodeImageConfig({
-    this.image,
-    this.imageProject,
-  });
-
-  final TfArg<String>? image;
-
-  final TfArg<String>? imageProject;
-
-  Map<String, Object?> encode() => {
-    'image': ?image?.toTfJson(),
-    'image_project': ?imageProject?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.reservation_affinity` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigReservationAffinity {
-  const ContainerClusterNodePoolNodeConfigReservationAffinity({
-    required this.consumeReservationType,
-    this.key,
-    this.values,
-  });
-
-  final TfArg<String> consumeReservationType;
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'consume_reservation_type': consumeReservationType.toTfJson(),
-    'key': ?key?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.sandbox_config` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigSandboxConfig {
-  const ContainerClusterNodePoolNodeConfigSandboxConfig({required this.type});
-
-  final TfArg<String> type;
-
-  Map<String, Object?> encode() => {'type': type.toTfJson()};
-}
-
-/// Typed helper for the `node_pool.node_config.secondary_boot_disks` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigSecondaryBootDisks {
-  const ContainerClusterNodePoolNodeConfigSecondaryBootDisks({
-    required this.diskImage,
-    this.mode,
-  });
-
-  final TfArg<String> diskImage;
-
-  final TfArg<String>? mode;
-
-  Map<String, Object?> encode() => {
-    'disk_image': diskImage.toTfJson(),
-    'mode': ?mode?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.shielded_instance_config` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigShieldedInstanceConfig {
-  const ContainerClusterNodePoolNodeConfigShieldedInstanceConfig({
-    this.enableIntegrityMonitoring,
-    this.enableSecureBoot,
-  });
-
-  final TfArg<bool>? enableIntegrityMonitoring;
-
-  final TfArg<bool>? enableSecureBoot;
-
-  Map<String, Object?> encode() => {
-    'enable_integrity_monitoring': ?enableIntegrityMonitoring?.toTfJson(),
-    'enable_secure_boot': ?enableSecureBoot?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.sole_tenant_config` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigSoleTenantConfig {
-  const ContainerClusterNodePoolNodeConfigSoleTenantConfig({
-    this.minNodeCpus,
-    required this.nodeAffinity,
-  });
-
-  final TfArg<num>? minNodeCpus;
-
-  final List<ContainerClusterNodePoolNodeConfigSoleTenantConfigNodeAffinity>
-  nodeAffinity;
-
-  Map<String, Object?> encode() => {
-    'min_node_cpus': ?minNodeCpus?.toTfJson(),
-    'node_affinity': [for (final e in nodeAffinity) e.encode()],
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.sole_tenant_config.node_affinity` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigSoleTenantConfigNodeAffinity {
-  const ContainerClusterNodePoolNodeConfigSoleTenantConfigNodeAffinity({
-    required this.key,
-    required this.operator,
-    required this.values,
-  });
-
-  final TfArg<String> key;
-
-  final TfArg<String> operator;
-
-  final TfArg<List<String>> values;
-
-  Map<String, Object?> encode() => {
-    'key': key.toTfJson(),
-    'operator': operator.toTfJson(),
-    'values': values.toTfJson(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.taint` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigTaint {
-  const ContainerClusterNodePoolNodeConfigTaint({
-    required this.effect,
-    required this.key,
-    required this.value,
-  });
-
-  final TfArg<String> effect;
-
-  final TfArg<String> key;
-
-  final TfArg<String> value;
-
-  Map<String, Object?> encode() => {
-    'effect': effect.toTfJson(),
-    'key': key.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.taint_config` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigTaintConfig {
-  const ContainerClusterNodePoolNodeConfigTaintConfig({
-    required this.architectureTaintBehavior,
-  });
-
-  final TfArg<String> architectureTaintBehavior;
-
-  Map<String, Object?> encode() => {
-    'architecture_taint_behavior': architectureTaintBehavior.toTfJson(),
-  };
-}
-
-/// Typed helper for the `node_pool.node_config.windows_node_config` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigWindowsNodeConfig {
-  const ContainerClusterNodePoolNodeConfigWindowsNodeConfig({this.osversion});
-
-  final TfArg<String>? osversion;
-
-  Map<String, Object?> encode() => {'osversion': ?osversion?.toTfJson()};
-}
-
-/// Typed helper for the `node_pool.node_config.workload_metadata_config` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolNodeConfigWorkloadMetadataConfig {
-  const ContainerClusterNodePoolNodeConfigWorkloadMetadataConfig({
-    required this.mode,
-  });
-
-  final TfArg<String> mode;
-
-  Map<String, Object?> encode() => {'mode': mode.toTfJson()};
-}
-
 /// Typed helper for the `node_pool.node_drain_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterNodePoolNodeDrainConfig {
-  const ContainerClusterNodePoolNodeDrainConfig({
+final class ContainerClusterNodeDrainConfig {
+  const ContainerClusterNodeDrainConfig({
     this.graceTerminationDuration,
     this.pdbTimeoutDuration,
     this.respectPdbDuringNodePoolDeletion,
@@ -4524,8 +2995,8 @@ final class ContainerClusterNodePoolNodeDrainConfig {
 /// Typed helper for the `node_pool.placement_policy` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterNodePoolPlacementPolicy {
-  const ContainerClusterNodePoolPlacementPolicy({
+final class ContainerClusterPlacementPolicy {
+  const ContainerClusterPlacementPolicy({
     this.policyName,
     this.tpuTopology,
     required this.type,
@@ -4547,8 +3018,8 @@ final class ContainerClusterNodePoolPlacementPolicy {
 /// Typed helper for the `node_pool.queued_provisioning` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterNodePoolQueuedProvisioning {
-  const ContainerClusterNodePoolQueuedProvisioning({required this.enabled});
+final class ContainerClusterQueuedProvisioning {
+  const ContainerClusterQueuedProvisioning({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -4558,8 +3029,8 @@ final class ContainerClusterNodePoolQueuedProvisioning {
 /// Typed helper for the `node_pool.upgrade_settings` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterNodePoolUpgradeSettings {
-  const ContainerClusterNodePoolUpgradeSettings({
+final class ContainerClusterUpgradeSettings {
+  const ContainerClusterUpgradeSettings({
     this.maxSurge,
     this.maxUnavailable,
     this.strategy,
@@ -4572,8 +3043,7 @@ final class ContainerClusterNodePoolUpgradeSettings {
 
   final TfArg<String>? strategy;
 
-  final ContainerClusterNodePoolUpgradeSettingsBlueGreenSettings?
-  blueGreenSettings;
+  final ContainerClusterBlueGreenSettings? blueGreenSettings;
 
   Map<String, Object?> encode() => {
     'max_surge': ?maxSurge?.toTfJson(),
@@ -4586,43 +3056,19 @@ final class ContainerClusterNodePoolUpgradeSettings {
 /// Typed helper for the `node_pool.upgrade_settings.blue_green_settings` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterNodePoolUpgradeSettingsBlueGreenSettings {
-  const ContainerClusterNodePoolUpgradeSettingsBlueGreenSettings({
+final class ContainerClusterBlueGreenSettings {
+  const ContainerClusterBlueGreenSettings({
     this.nodePoolSoakDuration,
     required this.standardRolloutPolicy,
   });
 
   final TfArg<String>? nodePoolSoakDuration;
 
-  final ContainerClusterNodePoolUpgradeSettingsBlueGreenSettingsStandardRolloutPolicy
-  standardRolloutPolicy;
+  final ContainerClusterStandardRolloutPolicy standardRolloutPolicy;
 
   Map<String, Object?> encode() => {
     'node_pool_soak_duration': ?nodePoolSoakDuration?.toTfJson(),
     'standard_rollout_policy': standardRolloutPolicy.encode(),
-  };
-}
-
-/// Typed helper for the `node_pool.upgrade_settings.blue_green_settings.standard_rollout_policy` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolUpgradeSettingsBlueGreenSettingsStandardRolloutPolicy {
-  const ContainerClusterNodePoolUpgradeSettingsBlueGreenSettingsStandardRolloutPolicy({
-    this.batchNodeCount,
-    this.batchPercentage,
-    this.batchSoakDuration,
-  });
-
-  final TfArg<num>? batchNodeCount;
-
-  final TfArg<num>? batchPercentage;
-
-  final TfArg<String>? batchSoakDuration;
-
-  Map<String, Object?> encode() => {
-    'batch_node_count': ?batchNodeCount?.toTfJson(),
-    'batch_percentage': ?batchPercentage?.toTfJson(),
-    'batch_soak_duration': ?batchSoakDuration?.toTfJson(),
   };
 }
 
@@ -4641,9 +3087,9 @@ final class ContainerClusterNodePoolAutoConfig {
 
   final ContainerClusterNodePoolAutoConfigLinuxNodeConfig? linuxNodeConfig;
 
-  final ContainerClusterNodePoolAutoConfigNetworkTags? networkTags;
+  final ContainerClusterNetworkTags? networkTags;
 
-  final ContainerClusterNodePoolAutoConfigNodeKubeletConfig? nodeKubeletConfig;
+  final ContainerClusterNodeKubeletConfig? nodeKubeletConfig;
 
   Map<String, Object?> encode() => {
     'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
@@ -4664,8 +3110,7 @@ final class ContainerClusterNodePoolAutoConfigLinuxNodeConfig {
 
   final TfArg<String>? cgroupMode;
 
-  final ContainerClusterNodePoolAutoConfigLinuxNodeConfigNodeKernelModuleLoading?
-  nodeKernelModuleLoading;
+  final ContainerClusterNodeKernelModuleLoading? nodeKernelModuleLoading;
 
   Map<String, Object?> encode() => {
     'cgroup_mode': ?cgroupMode?.toTfJson(),
@@ -4673,24 +3118,11 @@ final class ContainerClusterNodePoolAutoConfigLinuxNodeConfig {
   };
 }
 
-/// Typed helper for the `node_pool_auto_config.linux_node_config.node_kernel_module_loading` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolAutoConfigLinuxNodeConfigNodeKernelModuleLoading {
-  const ContainerClusterNodePoolAutoConfigLinuxNodeConfigNodeKernelModuleLoading({
-    this.policy,
-  });
-
-  final TfArg<String>? policy;
-
-  Map<String, Object?> encode() => {'policy': ?policy?.toTfJson()};
-}
-
 /// Typed helper for the `node_pool_auto_config.network_tags` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterNodePoolAutoConfigNetworkTags {
-  const ContainerClusterNodePoolAutoConfigNetworkTags({this.tags});
+final class ContainerClusterNetworkTags {
+  const ContainerClusterNetworkTags({this.tags});
 
   final TfArg<List<String>>? tags;
 
@@ -4700,8 +3132,8 @@ final class ContainerClusterNodePoolAutoConfigNetworkTags {
 /// Typed helper for the `node_pool_auto_config.node_kubelet_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterNodePoolAutoConfigNodeKubeletConfig {
-  const ContainerClusterNodePoolAutoConfigNodeKubeletConfig({
+final class ContainerClusterNodeKubeletConfig {
+  const ContainerClusterNodeKubeletConfig({
     this.insecureKubeletReadonlyPortEnabled,
   });
 
@@ -4719,7 +3151,7 @@ final class ContainerClusterNodePoolAutoConfigNodeKubeletConfig {
 final class ContainerClusterNodePoolDefaults {
   const ContainerClusterNodePoolDefaults({this.nodeConfigDefaults});
 
-  final ContainerClusterNodePoolDefaultsNodeConfigDefaults? nodeConfigDefaults;
+  final ContainerClusterNodeConfigDefaults? nodeConfigDefaults;
 
   Map<String, Object?> encode() => {
     'node_config_defaults': ?nodeConfigDefaults?.encode(),
@@ -4729,8 +3161,8 @@ final class ContainerClusterNodePoolDefaults {
 /// Typed helper for the `node_pool_defaults.node_config_defaults` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterNodePoolDefaultsNodeConfigDefaults {
-  const ContainerClusterNodePoolDefaultsNodeConfigDefaults({
+final class ContainerClusterNodeConfigDefaults {
+  const ContainerClusterNodeConfigDefaults({
     this.insecureKubeletReadonlyPortEnabled,
     this.loggingVariant,
     this.containerdConfig,
@@ -4741,11 +3173,9 @@ final class ContainerClusterNodePoolDefaultsNodeConfigDefaults {
 
   final TfArg<String>? loggingVariant;
 
-  final ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfig?
-  containerdConfig;
+  final ContainerClusterContainerdConfig? containerdConfig;
 
-  final ContainerClusterNodePoolDefaultsNodeConfigDefaultsGcfsConfig?
-  gcfsConfig;
+  final ContainerClusterGcfsConfig? gcfsConfig;
 
   Map<String, Object?> encode() => {
     'insecure_kubelet_readonly_port_enabled':
@@ -4756,282 +3186,13 @@ final class ContainerClusterNodePoolDefaultsNodeConfigDefaults {
   };
 }
 
-/// Typed helper for the `node_pool_defaults.node_config_defaults.containerd_config` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfig {
-  const ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfig({
-    this.privateRegistryAccessConfig,
-    this.registryHosts,
-    this.writableCgroups,
-  });
-
-  final ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigPrivateRegistryAccessConfig?
-  privateRegistryAccessConfig;
-
-  final List<
-    ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHosts
-  >?
-  registryHosts;
-
-  final ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigWritableCgroups?
-  writableCgroups;
-
-  Map<String, Object?> encode() => {
-    'private_registry_access_config': ?privateRegistryAccessConfig?.encode(),
-    if (registryHosts != null)
-      'registry_hosts': [for (final e in registryHosts!) e.encode()],
-    'writable_cgroups': ?writableCgroups?.encode(),
-  };
-}
-
-/// Typed helper for the `node_pool_defaults.node_config_defaults.containerd_config.private_registry_access_config` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigPrivateRegistryAccessConfig {
-  const ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigPrivateRegistryAccessConfig({
-    required this.enabled,
-    this.certificateAuthorityDomainConfig,
-  });
-
-  final TfArg<bool> enabled;
-
-  final List<
-    ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfig
-  >?
-  certificateAuthorityDomainConfig;
-
-  Map<String, Object?> encode() => {
-    'enabled': enabled.toTfJson(),
-    if (certificateAuthorityDomainConfig != null)
-      'certificate_authority_domain_config': [
-        for (final e in certificateAuthorityDomainConfig!) e.encode(),
-      ],
-  };
-}
-
-/// Typed helper for the `node_pool_defaults.node_config_defaults.containerd_config.private_registry_access_config.certificate_authority_domain_config` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfig {
-  const ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfig({
-    required this.fqdns,
-    required this.gcpSecretManagerCertificateConfig,
-  });
-
-  final TfArg<List<String>> fqdns;
-
-  final ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfigGcpSecretManagerCertificateConfig
-  gcpSecretManagerCertificateConfig;
-
-  Map<String, Object?> encode() => {
-    'fqdns': fqdns.toTfJson(),
-    'gcp_secret_manager_certificate_config': gcpSecretManagerCertificateConfig
-        .encode(),
-  };
-}
-
-/// Typed helper for the `node_pool_defaults.node_config_defaults.containerd_config.private_registry_access_config.certificate_authority_domain_config.gcp_secret_manager_certificate_config` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfigGcpSecretManagerCertificateConfig {
-  const ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfigGcpSecretManagerCertificateConfig({
-    required this.secretUri,
-  });
-
-  final TfArg<String> secretUri;
-
-  Map<String, Object?> encode() => {'secret_uri': secretUri.toTfJson()};
-}
-
-/// Typed helper for the `node_pool_defaults.node_config_defaults.containerd_config.registry_hosts` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHosts {
-  const ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHosts({
-    required this.server,
-    this.hosts,
-  });
-
-  final TfArg<String> server;
-
-  final List<
-    ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHosts
-  >?
-  hosts;
-
-  Map<String, Object?> encode() => {
-    'server': server.toTfJson(),
-    if (hosts != null) 'hosts': [for (final e in hosts!) e.encode()],
-  };
-}
-
-/// Typed helper for the `node_pool_defaults.node_config_defaults.containerd_config.registry_hosts.hosts` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHosts {
-  const ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHosts({
-    this.capabilities,
-    this.dialTimeout,
-    required this.host,
-    this.overridePath,
-    this.ca,
-    this.client,
-    this.header,
-  });
-
-  final TfArg<List<String>>? capabilities;
-
-  final TfArg<String>? dialTimeout;
-
-  final TfArg<String> host;
-
-  final TfArg<bool>? overridePath;
-
-  final List<
-    ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHostsCa
-  >?
-  ca;
-
-  final List<
-    ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHostsClient
-  >?
-  client;
-
-  final List<
-    ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHostsHeader
-  >?
-  header;
-
-  Map<String, Object?> encode() => {
-    'capabilities': ?capabilities?.toTfJson(),
-    'dial_timeout': ?dialTimeout?.toTfJson(),
-    'host': host.toTfJson(),
-    'override_path': ?overridePath?.toTfJson(),
-    if (ca != null) 'ca': [for (final e in ca!) e.encode()],
-    if (client != null) 'client': [for (final e in client!) e.encode()],
-    if (header != null) 'header': [for (final e in header!) e.encode()],
-  };
-}
-
-/// Typed helper for the `node_pool_defaults.node_config_defaults.containerd_config.registry_hosts.hosts.ca` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHostsCa {
-  const ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHostsCa({
-    this.gcpSecretManagerSecretUri,
-  });
-
-  final TfArg<String>? gcpSecretManagerSecretUri;
-
-  Map<String, Object?> encode() => {
-    'gcp_secret_manager_secret_uri': ?gcpSecretManagerSecretUri?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `node_pool_defaults.node_config_defaults.containerd_config.registry_hosts.hosts.client` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHostsClient {
-  const ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHostsClient({
-    required this.cert,
-    this.key,
-  });
-
-  final ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHostsClientCert
-  cert;
-
-  final ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHostsClientKey?
-  key;
-
-  Map<String, Object?> encode() => {
-    'cert': cert.encode(),
-    'key': ?key?.encode(),
-  };
-}
-
-/// Typed helper for the `node_pool_defaults.node_config_defaults.containerd_config.registry_hosts.hosts.client.cert` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHostsClientCert {
-  const ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHostsClientCert({
-    this.gcpSecretManagerSecretUri,
-  });
-
-  final TfArg<String>? gcpSecretManagerSecretUri;
-
-  Map<String, Object?> encode() => {
-    'gcp_secret_manager_secret_uri': ?gcpSecretManagerSecretUri?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `node_pool_defaults.node_config_defaults.containerd_config.registry_hosts.hosts.client.key` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHostsClientKey {
-  const ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHostsClientKey({
-    this.gcpSecretManagerSecretUri,
-  });
-
-  final TfArg<String>? gcpSecretManagerSecretUri;
-
-  Map<String, Object?> encode() => {
-    'gcp_secret_manager_secret_uri': ?gcpSecretManagerSecretUri?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `node_pool_defaults.node_config_defaults.containerd_config.registry_hosts.hosts.header` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHostsHeader {
-  const ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHostsHeader({
-    required this.key,
-    required this.value,
-  });
-
-  final TfArg<String> key;
-
-  final TfArg<List<String>> value;
-
-  Map<String, Object?> encode() => {
-    'key': key.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
-
-/// Typed helper for the `node_pool_defaults.node_config_defaults.containerd_config.writable_cgroups` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigWritableCgroups {
-  const ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigWritableCgroups({
-    required this.enabled,
-  });
-
-  final TfArg<bool> enabled;
-
-  Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
-}
-
-/// Typed helper for the `node_pool_defaults.node_config_defaults.gcfs_config` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterNodePoolDefaultsNodeConfigDefaultsGcfsConfig {
-  const ContainerClusterNodePoolDefaultsNodeConfigDefaultsGcfsConfig({
-    required this.enabled,
-  });
-
-  final TfArg<bool> enabled;
-
-  Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
-}
-
 /// Typed helper for the `notification_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
 final class ContainerClusterNotificationConfig {
   const ContainerClusterNotificationConfig({required this.pubsub});
 
-  final ContainerClusterNotificationConfigPubsub pubsub;
+  final ContainerClusterPubsub pubsub;
 
   Map<String, Object?> encode() => {'pubsub': pubsub.encode()};
 }
@@ -5039,8 +3200,8 @@ final class ContainerClusterNotificationConfig {
 /// Typed helper for the `notification_config.pubsub` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterNotificationConfigPubsub {
-  const ContainerClusterNotificationConfigPubsub({
+final class ContainerClusterPubsub {
+  const ContainerClusterPubsub({
     required this.enabled,
     this.topic,
     this.filter,
@@ -5050,7 +3211,7 @@ final class ContainerClusterNotificationConfigPubsub {
 
   final RefTo<GooglePubsubTopic>? topic;
 
-  final ContainerClusterNotificationConfigPubsubFilter? filter;
+  final ContainerClusterFilter? filter;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
@@ -5062,10 +3223,8 @@ final class ContainerClusterNotificationConfigPubsub {
 /// Typed helper for the `notification_config.pubsub.filter` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterNotificationConfigPubsubFilter {
-  const ContainerClusterNotificationConfigPubsubFilter({
-    required this.eventType,
-  });
+final class ContainerClusterFilter {
+  const ContainerClusterFilter({required this.eventType});
 
   final TfArg<List<String>> eventType;
 
@@ -5103,8 +3262,7 @@ final class ContainerClusterPrivateClusterConfig {
 
   final TfArg<String>? privateEndpointSubnetwork;
 
-  final ContainerClusterPrivateClusterConfigMasterGlobalAccessConfig?
-  masterGlobalAccessConfig;
+  final ContainerClusterMasterGlobalAccessConfig? masterGlobalAccessConfig;
 
   Map<String, Object?> encode() => {
     'enable_private_endpoint': ?enablePrivateEndpoint?.toTfJson(),
@@ -5118,10 +3276,8 @@ final class ContainerClusterPrivateClusterConfig {
 /// Typed helper for the `private_cluster_config.master_global_access_config` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterPrivateClusterConfigMasterGlobalAccessConfig {
-  const ContainerClusterPrivateClusterConfigMasterGlobalAccessConfig({
-    required this.enabled,
-  });
+final class ContainerClusterMasterGlobalAccessConfig {
+  const ContainerClusterMasterGlobalAccessConfig({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -5174,8 +3330,7 @@ final class ContainerClusterResourceUsageExportConfig {
 
   final TfArg<bool>? enableResourceConsumptionMetering;
 
-  final ContainerClusterResourceUsageExportConfigBigqueryDestination
-  bigqueryDestination;
+  final ContainerClusterBigqueryDestination bigqueryDestination;
 
   Map<String, Object?> encode() => {
     'enable_network_egress_metering': ?enableNetworkEgressMetering?.toTfJson(),
@@ -5188,10 +3343,8 @@ final class ContainerClusterResourceUsageExportConfig {
 /// Typed helper for the `resource_usage_export_config.bigquery_destination` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable
-final class ContainerClusterResourceUsageExportConfigBigqueryDestination {
-  const ContainerClusterResourceUsageExportConfigBigqueryDestination({
-    required this.datasetId,
-  });
+final class ContainerClusterBigqueryDestination {
+  const ContainerClusterBigqueryDestination({required this.datasetId});
 
   final RefTo<GoogleBigqueryDataset> datasetId;
 
@@ -5224,7 +3377,7 @@ final class ContainerClusterSecretManagerConfig {
 
   final TfArg<bool> enabled;
 
-  final ContainerClusterSecretManagerConfigRotationConfig? rotationConfig;
+  final ContainerClusterRotationConfig? rotationConfig;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
@@ -5234,9 +3387,10 @@ final class ContainerClusterSecretManagerConfig {
 
 /// Typed helper for the `secret_manager_config.rotation_config` block of
 /// `google_container_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ContainerClusterSecretManagerConfigRotationConfig {
-  const ContainerClusterSecretManagerConfigRotationConfig({
+final class ContainerClusterRotationConfig {
+  const ContainerClusterRotationConfig({
     required this.enabled,
     this.rotationInterval,
   });
@@ -5262,30 +3416,11 @@ final class ContainerClusterSecretSyncConfig {
 
   final TfArg<bool> enabled;
 
-  final ContainerClusterSecretSyncConfigRotationConfig? rotationConfig;
+  final ContainerClusterRotationConfig? rotationConfig;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'rotation_config': ?rotationConfig?.encode(),
-  };
-}
-
-/// Typed helper for the `secret_sync_config.rotation_config` block of
-/// `google_container_cluster` (derived from provider schema).
-@immutable
-final class ContainerClusterSecretSyncConfigRotationConfig {
-  const ContainerClusterSecretSyncConfigRotationConfig({
-    required this.enabled,
-    this.rotationInterval,
-  });
-
-  final TfArg<bool> enabled;
-
-  final TfArg<String>? rotationInterval;
-
-  Map<String, Object?> encode() => {
-    'enabled': enabled.toTfJson(),
-    'rotation_interval': ?rotationInterval?.toTfJson(),
   };
 }
 
@@ -5456,7 +3591,7 @@ final class GoogleContainerCluster extends Resource {
     ContainerClusterAuthenticatorGroupsConfig? authenticatorGroupsConfig,
     ContainerClusterAutopilotClusterPolicyConfig? autopilotClusterPolicyConfig,
     ContainerClusterBinaryAuthorization? binaryAuthorization,
-    ContainerClusterClusterAutoscaling? clusterAutoscaling,
+    ContainerClusterAutoscaling? clusterAutoscaling,
     ContainerClusterConfidentialNodes? confidentialNodes,
     ContainerClusterControlPlaneEndpointsConfig? controlPlaneEndpointsConfig,
     ContainerClusterCostManagementConfig? costManagementConfig,

@@ -59,19 +59,19 @@ final class AlbListenerDefaultAction {
 
   final TfArg<String>? targetGroupArn;
 
-  final TfArg<AlbListenerDefaultActionType> type;
+  final TfArg<AlbListenerType> type;
 
-  final AlbListenerDefaultActionAuthenticateCognito? authenticateCognito;
+  final AlbListenerAuthenticateCognito? authenticateCognito;
 
-  final AlbListenerDefaultActionAuthenticateOidc? authenticateOidc;
+  final AlbListenerAuthenticateOidc? authenticateOidc;
 
-  final AlbListenerDefaultActionFixedResponse? fixedResponse;
+  final AlbListenerFixedResponse? fixedResponse;
 
-  final AlbListenerDefaultActionForward? forward;
+  final AlbListenerForward? forward;
 
-  final AlbListenerDefaultActionJwtValidation? jwtValidation;
+  final AlbListenerJwtValidation? jwtValidation;
 
-  final AlbListenerDefaultActionRedirect? redirect;
+  final AlbListenerRedirect? redirect;
 
   Map<String, Object?> encode() => {
     'order': ?order?.toTfJson(),
@@ -87,7 +87,7 @@ final class AlbListenerDefaultAction {
 }
 
 /// `type` — derived from the provider schema description.
-enum AlbListenerDefaultActionType implements TerraformEnum {
+enum AlbListenerType implements TerraformEnum {
   forward('forward'),
   authenticateOidc('authenticate-oidc'),
   authenticateCognito('authenticate-cognito'),
@@ -95,7 +95,7 @@ enum AlbListenerDefaultActionType implements TerraformEnum {
   fixedResponse('fixed-response'),
   jwtValidation('jwt-validation');
 
-  const AlbListenerDefaultActionType(this.terraformValue);
+  const AlbListenerType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -103,8 +103,8 @@ enum AlbListenerDefaultActionType implements TerraformEnum {
 /// Typed helper for the `default_action.authenticate_cognito` block of
 /// `aws_alb_listener` (derived from provider schema).
 @immutable
-final class AlbListenerDefaultActionAuthenticateCognito {
-  const AlbListenerDefaultActionAuthenticateCognito({
+final class AlbListenerAuthenticateCognito {
+  const AlbListenerAuthenticateCognito({
     this.authenticationRequestExtraParams,
     this.onUnauthenticatedRequest,
     this.scope,
@@ -117,10 +117,7 @@ final class AlbListenerDefaultActionAuthenticateCognito {
 
   final TfArg<Map<String, String>>? authenticationRequestExtraParams;
 
-  final TfArg<
-    AlbListenerDefaultActionAuthenticateCognitoOnUnauthenticatedRequest
-  >?
-  onUnauthenticatedRequest;
+  final TfArg<AlbListenerOnUnauthenticatedRequest>? onUnauthenticatedRequest;
 
   final TfArg<String>? scope;
 
@@ -148,15 +145,12 @@ final class AlbListenerDefaultActionAuthenticateCognito {
 }
 
 /// `on_unauthenticated_request` — derived from the provider schema description.
-enum AlbListenerDefaultActionAuthenticateCognitoOnUnauthenticatedRequest
-    implements TerraformEnum {
+enum AlbListenerOnUnauthenticatedRequest implements TerraformEnum {
   deny('deny'),
   allow('allow'),
   authenticate('authenticate');
 
-  const AlbListenerDefaultActionAuthenticateCognitoOnUnauthenticatedRequest(
-    this.terraformValue,
-  );
+  const AlbListenerOnUnauthenticatedRequest(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -164,8 +158,8 @@ enum AlbListenerDefaultActionAuthenticateCognitoOnUnauthenticatedRequest
 /// Typed helper for the `default_action.authenticate_oidc` block of
 /// `aws_alb_listener` (derived from provider schema).
 @immutable
-final class AlbListenerDefaultActionAuthenticateOidc {
-  const AlbListenerDefaultActionAuthenticateOidc({
+final class AlbListenerAuthenticateOidc {
+  const AlbListenerAuthenticateOidc({
     this.authenticationRequestExtraParams,
     required this.authorizationEndpoint,
     required this.clientId,
@@ -189,8 +183,7 @@ final class AlbListenerDefaultActionAuthenticateOidc {
 
   final TfArg<String> issuer;
 
-  final TfArg<AlbListenerDefaultActionAuthenticateOidcOnUnauthenticatedRequest>?
-  onUnauthenticatedRequest;
+  final TfArg<AlbListenerOnUnauthenticatedRequest>? onUnauthenticatedRequest;
 
   final TfArg<String>? scope;
 
@@ -218,31 +211,17 @@ final class AlbListenerDefaultActionAuthenticateOidc {
   };
 }
 
-/// `on_unauthenticated_request` — derived from the provider schema description.
-enum AlbListenerDefaultActionAuthenticateOidcOnUnauthenticatedRequest
-    implements TerraformEnum {
-  deny('deny'),
-  allow('allow'),
-  authenticate('authenticate');
-
-  const AlbListenerDefaultActionAuthenticateOidcOnUnauthenticatedRequest(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `default_action.fixed_response` block of
 /// `aws_alb_listener` (derived from provider schema).
 @immutable
-final class AlbListenerDefaultActionFixedResponse {
-  const AlbListenerDefaultActionFixedResponse({
+final class AlbListenerFixedResponse {
+  const AlbListenerFixedResponse({
     required this.contentType,
     this.messageBody,
     this.statusCode,
   });
 
-  final TfArg<AlbListenerDefaultActionFixedResponseContentType> contentType;
+  final TfArg<AlbListenerContentType> contentType;
 
   final TfArg<String>? messageBody;
 
@@ -256,14 +235,14 @@ final class AlbListenerDefaultActionFixedResponse {
 }
 
 /// `content_type` — derived from the provider schema description.
-enum AlbListenerDefaultActionFixedResponseContentType implements TerraformEnum {
+enum AlbListenerContentType implements TerraformEnum {
   textPlain('text/plain'),
   textCss('text/css'),
   textHtml('text/html'),
   applicationJavascript('application/javascript'),
   applicationJson('application/json');
 
-  const AlbListenerDefaultActionFixedResponseContentType(this.terraformValue);
+  const AlbListenerContentType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -271,15 +250,12 @@ enum AlbListenerDefaultActionFixedResponseContentType implements TerraformEnum {
 /// Typed helper for the `default_action.forward` block of
 /// `aws_alb_listener` (derived from provider schema).
 @immutable
-final class AlbListenerDefaultActionForward {
-  const AlbListenerDefaultActionForward({
-    this.stickiness,
-    required this.targetGroup,
-  });
+final class AlbListenerForward {
+  const AlbListenerForward({this.stickiness, required this.targetGroup});
 
-  final AlbListenerDefaultActionForwardStickiness? stickiness;
+  final AlbListenerStickiness? stickiness;
 
-  final List<AlbListenerDefaultActionForwardTargetGroup> targetGroup;
+  final List<AlbListenerTargetGroup> targetGroup;
 
   Map<String, Object?> encode() => {
     'stickiness': ?stickiness?.encode(),
@@ -290,11 +266,8 @@ final class AlbListenerDefaultActionForward {
 /// Typed helper for the `default_action.forward.stickiness` block of
 /// `aws_alb_listener` (derived from provider schema).
 @immutable
-final class AlbListenerDefaultActionForwardStickiness {
-  const AlbListenerDefaultActionForwardStickiness({
-    required this.duration,
-    this.enabled,
-  });
+final class AlbListenerStickiness {
+  const AlbListenerStickiness({required this.duration, this.enabled});
 
   final TfArg<num> duration;
 
@@ -309,11 +282,8 @@ final class AlbListenerDefaultActionForwardStickiness {
 /// Typed helper for the `default_action.forward.target_group` block of
 /// `aws_alb_listener` (derived from provider schema).
 @immutable
-final class AlbListenerDefaultActionForwardTargetGroup {
-  const AlbListenerDefaultActionForwardTargetGroup({
-    required this.arn,
-    this.weight,
-  });
+final class AlbListenerTargetGroup {
+  const AlbListenerTargetGroup({required this.arn, this.weight});
 
   final TfArg<String> arn;
 
@@ -328,8 +298,8 @@ final class AlbListenerDefaultActionForwardTargetGroup {
 /// Typed helper for the `default_action.jwt_validation` block of
 /// `aws_alb_listener` (derived from provider schema).
 @immutable
-final class AlbListenerDefaultActionJwtValidation {
-  const AlbListenerDefaultActionJwtValidation({
+final class AlbListenerJwtValidation {
+  const AlbListenerJwtValidation({
     required this.issuer,
     required this.jwksEndpoint,
     this.additionalClaim,
@@ -339,8 +309,7 @@ final class AlbListenerDefaultActionJwtValidation {
 
   final TfArg<String> jwksEndpoint;
 
-  final List<AlbListenerDefaultActionJwtValidationAdditionalClaim>?
-  additionalClaim;
+  final List<AlbListenerAdditionalClaim>? additionalClaim;
 
   Map<String, Object?> encode() => {
     'issuer': issuer.toTfJson(),
@@ -353,15 +322,14 @@ final class AlbListenerDefaultActionJwtValidation {
 /// Typed helper for the `default_action.jwt_validation.additional_claim` block of
 /// `aws_alb_listener` (derived from provider schema).
 @immutable
-final class AlbListenerDefaultActionJwtValidationAdditionalClaim {
-  const AlbListenerDefaultActionJwtValidationAdditionalClaim({
+final class AlbListenerAdditionalClaim {
+  const AlbListenerAdditionalClaim({
     required this.format,
     required this.name,
     required this.values,
   });
 
-  final TfArg<AlbListenerDefaultActionJwtValidationAdditionalClaimFormat>
-  format;
+  final TfArg<AlbListenerFormat> format;
 
   final TfArg<String> name;
 
@@ -375,15 +343,12 @@ final class AlbListenerDefaultActionJwtValidationAdditionalClaim {
 }
 
 /// `format` — derived from the provider schema description.
-enum AlbListenerDefaultActionJwtValidationAdditionalClaimFormat
-    implements TerraformEnum {
+enum AlbListenerFormat implements TerraformEnum {
   singleString('single-string'),
   stringArray('string-array'),
   spaceSeparatedValues('space-separated-values');
 
-  const AlbListenerDefaultActionJwtValidationAdditionalClaimFormat(
-    this.terraformValue,
-  );
+  const AlbListenerFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -391,8 +356,8 @@ enum AlbListenerDefaultActionJwtValidationAdditionalClaimFormat
 /// Typed helper for the `default_action.redirect` block of
 /// `aws_alb_listener` (derived from provider schema).
 @immutable
-final class AlbListenerDefaultActionRedirect {
-  const AlbListenerDefaultActionRedirect({
+final class AlbListenerRedirect {
+  const AlbListenerRedirect({
     this.host,
     this.path,
     this.port,
@@ -407,11 +372,11 @@ final class AlbListenerDefaultActionRedirect {
 
   final TfArg<String>? port;
 
-  final TfArg<AlbListenerDefaultActionRedirectProtocol>? protocol;
+  final TfArg<AlbListenerRedirectProtocol>? protocol;
 
   final TfArg<String>? query;
 
-  final TfArg<AlbListenerDefaultActionRedirectStatusCode> statusCode;
+  final TfArg<AlbListenerStatusCode> statusCode;
 
   Map<String, Object?> encode() => {
     'host': ?host?.toTfJson(),
@@ -424,22 +389,22 @@ final class AlbListenerDefaultActionRedirect {
 }
 
 /// `protocol` — derived from the provider schema description.
-enum AlbListenerDefaultActionRedirectProtocol implements TerraformEnum {
+enum AlbListenerRedirectProtocol implements TerraformEnum {
   protocol('#{protocol}'),
   http('HTTP'),
   https('HTTPS');
 
-  const AlbListenerDefaultActionRedirectProtocol(this.terraformValue);
+  const AlbListenerRedirectProtocol(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `status_code` — derived from the provider schema description.
-enum AlbListenerDefaultActionRedirectStatusCode implements TerraformEnum {
+enum AlbListenerStatusCode implements TerraformEnum {
   http301('HTTP_301'),
   http302('HTTP_302');
 
-  const AlbListenerDefaultActionRedirectStatusCode(this.terraformValue);
+  const AlbListenerStatusCode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -455,12 +420,12 @@ final class AlbListenerMutualAuthentication {
     this.trustStoreArn,
   });
 
-  final TfArg<AlbListenerMutualAuthenticationAdvertiseTrustStoreCaNames>?
+  final TfArg<AlbListenerAdvertiseTrustStoreCaNames>?
   advertiseTrustStoreCaNames;
 
   final TfArg<bool>? ignoreClientCertificateExpiry;
 
-  final TfArg<AlbListenerMutualAuthenticationMode> mode;
+  final TfArg<AlbListenerMode> mode;
 
   final TfArg<String>? trustStoreArn;
 
@@ -474,25 +439,22 @@ final class AlbListenerMutualAuthentication {
 }
 
 /// `advertise_trust_store_ca_names` — derived from the provider schema description.
-enum AlbListenerMutualAuthenticationAdvertiseTrustStoreCaNames
-    implements TerraformEnum {
+enum AlbListenerAdvertiseTrustStoreCaNames implements TerraformEnum {
   on('on'),
   off('off');
 
-  const AlbListenerMutualAuthenticationAdvertiseTrustStoreCaNames(
-    this.terraformValue,
-  );
+  const AlbListenerAdvertiseTrustStoreCaNames(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `mode` — derived from the provider schema description.
-enum AlbListenerMutualAuthenticationMode implements TerraformEnum {
+enum AlbListenerMode implements TerraformEnum {
   off('off'),
   verify('verify'),
   passthrough('passthrough');
 
-  const AlbListenerMutualAuthenticationMode(this.terraformValue);
+  const AlbListenerMode(this.terraformValue);
   @override
   final String terraformValue;
 }

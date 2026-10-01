@@ -326,42 +326,68 @@ String? sealedTypeName(String prefix, String concept) {
 /// [member] (`LambdaFunctionCode` + `image_uri` → `LambdaFunctionCodeImageUri`),
 /// with the words [member] repeats from the end of [sealed] dropped
 /// (`RdsClusterIdentifier` + `cluster_identifier_prefix` →
-/// `RdsClusterIdentifierPrefix`). Callers construct it through the sealed
-/// type's factory constructor (`.imageUri(...)`); the class exists for
-/// pattern matching. [exactlyOneVariantNames] settles a name that is
-/// taken, or that [member] only repeats.
-String exactlyOneVariantName(String sealed, String member) =>
-    joinTypeName(sealed, member);
+/// `RdsClusterIdentifierPrefix`). When [member] ends with the whole
+/// [concept] — the trailing words of [sealed] after its owner — and says
+/// more, it takes the concept's place instead of repeating it
+/// (`…FilterCloudStorageLocations` + `excluded_cloud_storage_locations` →
+/// `…FilterExcludedCloudStorageLocations`). Callers construct it through
+/// the sealed type's factory constructor (`.imageUri(...)`); the class
+/// exists for pattern matching. [exactlyOneVariantNames] settles a name
+/// that is taken, or that [member] only repeats.
+String exactlyOneVariantName(String sealed, String member, {String? concept}) {
+  final (:base, :rest) = _variantParts(sealed, member, concept).first;
+  return base + rest;
+}
+
+/// The ways to name [member]'s variant on [sealed], preferred first, each
+/// split at the join into the part of [sealed] it keeps and the words it
+/// adds: taking the place of [concept] (see [exactlyOneVariantName]) when
+/// that applies and repeats no words across the join, then extending
+/// [sealed].
+List<({String base, String rest})> _variantParts(
+  String sealed,
+  String member,
+  String? concept,
+) {
+  final joined = joinTypeName(sealed, member);
+  final plain = (base: sealed, rest: joined.substring(sealed.length));
+  final c = concept ?? '';
+  final m = snakeToPascal(member);
+  if (c.isEmpty || m.length <= c.length) return [plain];
+  if (!m.endsWith(c) || !sealed.endsWith(c)) return [plain];
+  if (!RegExp('[A-Z0-9]').hasMatch(m[m.length - c.length])) return [plain];
+  final base = sealed.substring(0, sealed.length - c.length);
+  final rest = joinTypeName(base, member).substring(base.length);
+  if (rest.isEmpty || repeatsAcrossJoin(base, rest)) return [plain];
+  return [(base: base, rest: rest), plain];
+}
 
 /// Suffixes that set a variant apart from a taken class, in preference
 /// order.
 const _variantSuffixes = ['Choice', 'Option', 'Variant'];
 
 /// The variant class of each of [members] on the sealed type [sealed], in
-/// order: [exactlyOneVariantName], or — when that is [sealed] itself, a
-/// class in [taken] (typically the member block's own helper:
-/// `MskconnectConnectorCapacity` + `autoscaling` →
-/// `MskconnectConnectorCapacityAutoscalingChoice`) or another member's
+/// order: [exactlyOneVariantName] (with [concept]), or — when that is
+/// [sealed] itself, a class in [taken] (typically the member block's own
+/// class: `MonitoringSloSli` + `request_based_sli` →
+/// `MonitoringSloRequestBasedSliChoice`) or another member's
 /// variant — the same name with the first of `Choice`, `Option`, `Variant`
 /// that is free. A name that [repeatsAcrossJoin] is never free. Null when
 /// none is.
 List<String>? exactlyOneVariantNames(
   String sealed,
   List<String> members,
-  Set<String> taken,
-) {
+  Set<String> taken, {
+  String? concept,
+}) {
   final out = <String>[];
   final seen = <String>{sealed};
-  bool free(String name) =>
-      !taken.contains(name) &&
-      !seen.contains(name) &&
-      !repeatsAcrossJoin(sealed, name.substring(sealed.length));
   for (final m in members) {
-    final base = exactlyOneVariantName(sealed, m);
     final name = [
-      base,
-      for (final s in _variantSuffixes) '$base$s',
-    ].where(free).firstOrNull;
+      for (final (:base, :rest) in _variantParts(sealed, m, concept))
+        for (final s in ['', ..._variantSuffixes])
+          if (!repeatsAcrossJoin(base, '$rest$s')) '$base$rest$s',
+    ].where((n) => !taken.contains(n) && !seen.contains(n)).firstOrNull;
     if (name == null) return null;
     seen.add(name);
     out.add(name);
@@ -369,21 +395,44 @@ List<String>? exactlyOneVariantNames(
   return out;
 }
 
+/// The PascalCase [concept] when [sealed] ends with it, or null.
+String? conceptSuffix(String sealed, String concept) {
+  final pascal = snakeToPascal(concept);
+  return sealed.endsWith(pascal) ? pascal : null;
+}
+
+/// The trailing words of [sealed] after [owner] — the concept a variant
+/// may take the place of — or null when [sealed] does not extend [owner].
+String? sealedConcept(String owner, String sealed) =>
+    sealed.length > owner.length && sealed.startsWith(owner)
+    ? sealed.substring(owner.length)
+    : null;
+
 /// Why the group [members] cannot take the sealed type named [concept] on
-/// [prefix], or null: the concept only repeats [prefix], or the sealed
-/// type's or a variant's class name is in [taken].
+/// [prefix] — or [named], when the type's name was chosen elsewhere — or
+/// null: the concept only repeats [prefix], or the sealed type's or a
+/// variant's class name is in [taken].
 String? sealedNameClash(
   String prefix,
   String concept,
   List<String> members,
-  Set<String> taken,
-) {
-  final sealed = sealedTypeName(prefix, concept);
+  Set<String> taken, {
+  String? named,
+}) {
+  final sealed = named ?? sealedTypeName(prefix, concept);
   if (sealed == null) {
     return 'the sealed type name repeats a segment of $prefix';
   }
   if (taken.contains(sealed)) return 'the class $sealed is taken';
-  if (exactlyOneVariantNames(sealed, members, taken) == null) {
+  if (exactlyOneVariantNames(
+        sealed,
+        members,
+        taken,
+        concept: named != null
+            ? conceptSuffix(sealed, concept)
+            : sealedConcept(prefix, sealed),
+      ) ==
+      null) {
     return 'the variants of $sealed clash with taken classes';
   }
   return null;

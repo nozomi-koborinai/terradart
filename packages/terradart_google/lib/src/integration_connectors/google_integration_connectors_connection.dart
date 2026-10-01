@@ -40,23 +40,21 @@ final class IntegrationConnectorsConnectionAuthConfig {
 
   final TfArg<String>? authKey;
 
-  final TfArg<IntegrationConnectorsConnectionAuthConfigAuthType> authType;
+  final TfArg<IntegrationConnectorsConnectionAuthType> authType;
 
   final List<IntegrationConnectorsConnectionAuthConfigAdditionalVariable>?
   additionalVariable;
 
-  final IntegrationConnectorsConnectionAuthConfigOauth2AuthCodeFlow?
-  oauth2AuthCodeFlow;
+  final IntegrationConnectorsConnectionOauth2AuthCodeFlow? oauth2AuthCodeFlow;
 
-  final IntegrationConnectorsConnectionAuthConfigOauth2ClientCredentials?
+  final IntegrationConnectorsConnectionOauth2ClientCredentials?
   oauth2ClientCredentials;
 
-  final IntegrationConnectorsConnectionAuthConfigOauth2JwtBearer?
-  oauth2JwtBearer;
+  final IntegrationConnectorsConnectionOauth2JwtBearer? oauth2JwtBearer;
 
-  final IntegrationConnectorsConnectionAuthConfigSshPublicKey? sshPublicKey;
+  final IntegrationConnectorsConnectionSshPublicKey? sshPublicKey;
 
-  final IntegrationConnectorsConnectionAuthConfigUserPassword? userPassword;
+  final IntegrationConnectorsConnectionUserPassword? userPassword;
 
   Map<String, Object?> encode() => {
     'auth_key': ?authKey?.toTfJson(),
@@ -72,8 +70,7 @@ final class IntegrationConnectorsConnectionAuthConfig {
 }
 
 /// `auth_type` — derived from the provider schema description.
-enum IntegrationConnectorsConnectionAuthConfigAuthType
-    implements TerraformEnum {
+enum IntegrationConnectorsConnectionAuthType implements TerraformEnum {
   authTypeUnspecified('AUTH_TYPE_UNSPECIFIED'),
   userPassword('USER_PASSWORD'),
   oauth2JwtBearer('OAUTH2_JWT_BEARER'),
@@ -81,7 +78,7 @@ enum IntegrationConnectorsConnectionAuthConfigAuthType
   sshPublicKey('SSH_PUBLIC_KEY'),
   oauth2AuthCodeFlow('OAUTH2_AUTH_CODE_FLOW');
 
-  const IntegrationConnectorsConnectionAuthConfigAuthType(this.terraformValue);
+  const IntegrationConnectorsConnectionAuthType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -107,11 +104,9 @@ final class IntegrationConnectorsConnectionAuthConfigAdditionalVariable {
 
   final TfArg<String>? stringValue;
 
-  final IntegrationConnectorsConnectionAuthConfigAdditionalVariableEncryptionKeyValue?
-  encryptionKeyValue;
+  final IntegrationConnectorsConnectionEncryptionKeyValue? encryptionKeyValue;
 
-  final IntegrationConnectorsConnectionAuthConfigAdditionalVariableSecretValue?
-  secretValue;
+  final IntegrationConnectorsConnectionSecretValue? secretValue;
 
   Map<String, Object?> encode() => {
     'boolean_value': ?booleanValue?.toTfJson(),
@@ -123,21 +118,19 @@ final class IntegrationConnectorsConnectionAuthConfigAdditionalVariable {
   };
 }
 
-/// Typed helper for the `auth_config.additional_variable.encryption_key_value` block of
+/// Typed helper for the `config_variable.encryption_key_value` block of
 /// `google_integration_connectors_connection` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class IntegrationConnectorsConnectionAuthConfigAdditionalVariableEncryptionKeyValue {
-  const IntegrationConnectorsConnectionAuthConfigAdditionalVariableEncryptionKeyValue({
+final class IntegrationConnectorsConnectionEncryptionKeyValue {
+  const IntegrationConnectorsConnectionEncryptionKeyValue({
     this.kmsKeyName,
     required this.type,
   });
 
   final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
 
-  final TfArg<
-    IntegrationConnectorsConnectionAuthConfigAdditionalVariableEncryptionKeyValueType
-  >
-  type;
+  final TfArg<IntegrationConnectorsConnectionEncryptionKeyValueType> type;
 
   Map<String, Object?> encode() => {
     'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
@@ -146,23 +139,24 @@ final class IntegrationConnectorsConnectionAuthConfigAdditionalVariableEncryptio
 }
 
 /// `type` — derived from the provider schema description.
-enum IntegrationConnectorsConnectionAuthConfigAdditionalVariableEncryptionKeyValueType
+enum IntegrationConnectorsConnectionEncryptionKeyValueType
     implements TerraformEnum {
   googleManaged('GOOGLE_MANAGED'),
   customerManaged('CUSTOMER_MANAGED');
 
-  const IntegrationConnectorsConnectionAuthConfigAdditionalVariableEncryptionKeyValueType(
+  const IntegrationConnectorsConnectionEncryptionKeyValueType(
     this.terraformValue,
   );
   @override
   final String terraformValue;
 }
 
-/// Typed helper for the `auth_config.additional_variable.secret_value` block of
+/// Typed helper for the `config_variable.secret_value` block of
 /// `google_integration_connectors_connection` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class IntegrationConnectorsConnectionAuthConfigAdditionalVariableSecretValue {
-  const IntegrationConnectorsConnectionAuthConfigAdditionalVariableSecretValue({
+final class IntegrationConnectorsConnectionSecretValue {
+  const IntegrationConnectorsConnectionSecretValue({
     required this.secretVersion,
   });
 
@@ -174,8 +168,8 @@ final class IntegrationConnectorsConnectionAuthConfigAdditionalVariableSecretVal
 /// Typed helper for the `auth_config.oauth2_auth_code_flow` block of
 /// `google_integration_connectors_connection` (derived from provider schema).
 @immutable
-final class IntegrationConnectorsConnectionAuthConfigOauth2AuthCodeFlow {
-  const IntegrationConnectorsConnectionAuthConfigOauth2AuthCodeFlow({
+final class IntegrationConnectorsConnectionOauth2AuthCodeFlow {
+  const IntegrationConnectorsConnectionOauth2AuthCodeFlow({
     this.authUri,
     this.clientId,
     this.enablePkce,
@@ -191,8 +185,7 @@ final class IntegrationConnectorsConnectionAuthConfigOauth2AuthCodeFlow {
 
   final TfArg<List<String>>? scopes;
 
-  final IntegrationConnectorsConnectionAuthConfigOauth2AuthCodeFlowClientSecret?
-  clientSecret;
+  final IntegrationConnectorsConnectionClientSecret? clientSecret;
 
   Map<String, Object?> encode() => {
     'auth_uri': ?authUri?.toTfJson(),
@@ -205,9 +198,10 @@ final class IntegrationConnectorsConnectionAuthConfigOauth2AuthCodeFlow {
 
 /// Typed helper for the `auth_config.oauth2_auth_code_flow.client_secret` block of
 /// `google_integration_connectors_connection` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class IntegrationConnectorsConnectionAuthConfigOauth2AuthCodeFlowClientSecret {
-  const IntegrationConnectorsConnectionAuthConfigOauth2AuthCodeFlowClientSecret({
+final class IntegrationConnectorsConnectionClientSecret {
+  const IntegrationConnectorsConnectionClientSecret({
     required this.secretVersion,
   });
 
@@ -219,16 +213,15 @@ final class IntegrationConnectorsConnectionAuthConfigOauth2AuthCodeFlowClientSec
 /// Typed helper for the `auth_config.oauth2_client_credentials` block of
 /// `google_integration_connectors_connection` (derived from provider schema).
 @immutable
-final class IntegrationConnectorsConnectionAuthConfigOauth2ClientCredentials {
-  const IntegrationConnectorsConnectionAuthConfigOauth2ClientCredentials({
+final class IntegrationConnectorsConnectionOauth2ClientCredentials {
+  const IntegrationConnectorsConnectionOauth2ClientCredentials({
     required this.clientId,
     this.clientSecret,
   });
 
   final TfArg<String> clientId;
 
-  final IntegrationConnectorsConnectionAuthConfigOauth2ClientCredentialsClientSecret?
-  clientSecret;
+  final IntegrationConnectorsConnectionClientSecret? clientSecret;
 
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
@@ -236,33 +229,18 @@ final class IntegrationConnectorsConnectionAuthConfigOauth2ClientCredentials {
   };
 }
 
-/// Typed helper for the `auth_config.oauth2_client_credentials.client_secret` block of
-/// `google_integration_connectors_connection` (derived from provider schema).
-@immutable
-final class IntegrationConnectorsConnectionAuthConfigOauth2ClientCredentialsClientSecret {
-  const IntegrationConnectorsConnectionAuthConfigOauth2ClientCredentialsClientSecret({
-    required this.secretVersion,
-  });
-
-  final TfArg<String> secretVersion;
-
-  Map<String, Object?> encode() => {'secret_version': secretVersion.toTfJson()};
-}
-
 /// Typed helper for the `auth_config.oauth2_jwt_bearer` block of
 /// `google_integration_connectors_connection` (derived from provider schema).
 @immutable
-final class IntegrationConnectorsConnectionAuthConfigOauth2JwtBearer {
-  const IntegrationConnectorsConnectionAuthConfigOauth2JwtBearer({
+final class IntegrationConnectorsConnectionOauth2JwtBearer {
+  const IntegrationConnectorsConnectionOauth2JwtBearer({
     this.clientKey,
     this.jwtClaims,
   });
 
-  final IntegrationConnectorsConnectionAuthConfigOauth2JwtBearerClientKey?
-  clientKey;
+  final IntegrationConnectorsConnectionClientKey? clientKey;
 
-  final IntegrationConnectorsConnectionAuthConfigOauth2JwtBearerJwtClaims?
-  jwtClaims;
+  final IntegrationConnectorsConnectionJwtClaims? jwtClaims;
 
   Map<String, Object?> encode() => {
     'client_key': ?clientKey?.encode(),
@@ -273,10 +251,8 @@ final class IntegrationConnectorsConnectionAuthConfigOauth2JwtBearer {
 /// Typed helper for the `auth_config.oauth2_jwt_bearer.client_key` block of
 /// `google_integration_connectors_connection` (derived from provider schema).
 @immutable
-final class IntegrationConnectorsConnectionAuthConfigOauth2JwtBearerClientKey {
-  const IntegrationConnectorsConnectionAuthConfigOauth2JwtBearerClientKey({
-    required this.secretVersion,
-  });
+final class IntegrationConnectorsConnectionClientKey {
+  const IntegrationConnectorsConnectionClientKey({required this.secretVersion});
 
   final TfArg<String> secretVersion;
 
@@ -286,8 +262,8 @@ final class IntegrationConnectorsConnectionAuthConfigOauth2JwtBearerClientKey {
 /// Typed helper for the `auth_config.oauth2_jwt_bearer.jwt_claims` block of
 /// `google_integration_connectors_connection` (derived from provider schema).
 @immutable
-final class IntegrationConnectorsConnectionAuthConfigOauth2JwtBearerJwtClaims {
-  const IntegrationConnectorsConnectionAuthConfigOauth2JwtBearerJwtClaims({
+final class IntegrationConnectorsConnectionJwtClaims {
+  const IntegrationConnectorsConnectionJwtClaims({
     this.audience,
     this.issuer,
     this.subject,
@@ -309,8 +285,8 @@ final class IntegrationConnectorsConnectionAuthConfigOauth2JwtBearerJwtClaims {
 /// Typed helper for the `auth_config.ssh_public_key` block of
 /// `google_integration_connectors_connection` (derived from provider schema).
 @immutable
-final class IntegrationConnectorsConnectionAuthConfigSshPublicKey {
-  const IntegrationConnectorsConnectionAuthConfigSshPublicKey({
+final class IntegrationConnectorsConnectionSshPublicKey {
+  const IntegrationConnectorsConnectionSshPublicKey({
     this.certType,
     required this.username,
     this.sshClientCert,
@@ -321,11 +297,9 @@ final class IntegrationConnectorsConnectionAuthConfigSshPublicKey {
 
   final TfArg<String> username;
 
-  final IntegrationConnectorsConnectionAuthConfigSshPublicKeySshClientCert?
-  sshClientCert;
+  final IntegrationConnectorsConnectionSshClientCert? sshClientCert;
 
-  final IntegrationConnectorsConnectionAuthConfigSshPublicKeySshClientCertPass?
-  sshClientCertPass;
+  final IntegrationConnectorsConnectionSshClientCertPass? sshClientCertPass;
 
   Map<String, Object?> encode() => {
     'cert_type': ?certType?.toTfJson(),
@@ -338,8 +312,8 @@ final class IntegrationConnectorsConnectionAuthConfigSshPublicKey {
 /// Typed helper for the `auth_config.ssh_public_key.ssh_client_cert` block of
 /// `google_integration_connectors_connection` (derived from provider schema).
 @immutable
-final class IntegrationConnectorsConnectionAuthConfigSshPublicKeySshClientCert {
-  const IntegrationConnectorsConnectionAuthConfigSshPublicKeySshClientCert({
+final class IntegrationConnectorsConnectionSshClientCert {
+  const IntegrationConnectorsConnectionSshClientCert({
     required this.secretVersion,
   });
 
@@ -351,8 +325,8 @@ final class IntegrationConnectorsConnectionAuthConfigSshPublicKeySshClientCert {
 /// Typed helper for the `auth_config.ssh_public_key.ssh_client_cert_pass` block of
 /// `google_integration_connectors_connection` (derived from provider schema).
 @immutable
-final class IntegrationConnectorsConnectionAuthConfigSshPublicKeySshClientCertPass {
-  const IntegrationConnectorsConnectionAuthConfigSshPublicKeySshClientCertPass({
+final class IntegrationConnectorsConnectionSshClientCertPass {
+  const IntegrationConnectorsConnectionSshClientCertPass({
     required this.secretVersion,
   });
 
@@ -364,15 +338,15 @@ final class IntegrationConnectorsConnectionAuthConfigSshPublicKeySshClientCertPa
 /// Typed helper for the `auth_config.user_password` block of
 /// `google_integration_connectors_connection` (derived from provider schema).
 @immutable
-final class IntegrationConnectorsConnectionAuthConfigUserPassword {
-  const IntegrationConnectorsConnectionAuthConfigUserPassword({
+final class IntegrationConnectorsConnectionUserPassword {
+  const IntegrationConnectorsConnectionUserPassword({
     required this.username,
     this.password,
   });
 
   final TfArg<String> username;
 
-  final IntegrationConnectorsConnectionAuthConfigUserPasswordPassword? password;
+  final IntegrationConnectorsConnectionPassword? password;
 
   Map<String, Object?> encode() => {
     'username': username.toTfJson(),
@@ -382,11 +356,10 @@ final class IntegrationConnectorsConnectionAuthConfigUserPassword {
 
 /// Typed helper for the `auth_config.user_password.password` block of
 /// `google_integration_connectors_connection` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class IntegrationConnectorsConnectionAuthConfigUserPasswordPassword {
-  const IntegrationConnectorsConnectionAuthConfigUserPasswordPassword({
-    required this.secretVersion,
-  });
+final class IntegrationConnectorsConnectionPassword {
+  const IntegrationConnectorsConnectionPassword({required this.secretVersion});
 
   final TfArg<String> secretVersion;
 
@@ -414,10 +387,9 @@ final class IntegrationConnectorsConnectionConfigVariable {
 
   final TfArg<String>? stringValue;
 
-  final IntegrationConnectorsConnectionConfigVariableEncryptionKeyValue?
-  encryptionKeyValue;
+  final IntegrationConnectorsConnectionEncryptionKeyValue? encryptionKeyValue;
 
-  final IntegrationConnectorsConnectionConfigVariableSecretValue? secretValue;
+  final IntegrationConnectorsConnectionSecretValue? secretValue;
 
   Map<String, Object?> encode() => {
     'boolean_value': ?booleanValue?.toTfJson(),
@@ -427,54 +399,6 @@ final class IntegrationConnectorsConnectionConfigVariable {
     'encryption_key_value': ?encryptionKeyValue?.encode(),
     'secret_value': ?secretValue?.encode(),
   };
-}
-
-/// Typed helper for the `config_variable.encryption_key_value` block of
-/// `google_integration_connectors_connection` (derived from provider schema).
-@immutable
-final class IntegrationConnectorsConnectionConfigVariableEncryptionKeyValue {
-  const IntegrationConnectorsConnectionConfigVariableEncryptionKeyValue({
-    this.kmsKeyName,
-    required this.type,
-  });
-
-  final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
-
-  final TfArg<
-    IntegrationConnectorsConnectionConfigVariableEncryptionKeyValueType
-  >
-  type;
-
-  Map<String, Object?> encode() => {
-    'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
-    'type': type.toTfJson(),
-  };
-}
-
-/// `type` — derived from the provider schema description.
-enum IntegrationConnectorsConnectionConfigVariableEncryptionKeyValueType
-    implements TerraformEnum {
-  googleManaged('GOOGLE_MANAGED'),
-  customerManaged('CUSTOMER_MANAGED');
-
-  const IntegrationConnectorsConnectionConfigVariableEncryptionKeyValueType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `config_variable.secret_value` block of
-/// `google_integration_connectors_connection` (derived from provider schema).
-@immutable
-final class IntegrationConnectorsConnectionConfigVariableSecretValue {
-  const IntegrationConnectorsConnectionConfigVariableSecretValue({
-    required this.secretVersion,
-  });
-
-  final TfArg<String> secretVersion;
-
-  Map<String, Object?> encode() => {'secret_version': secretVersion.toTfJson()};
 }
 
 /// Typed helper for the `destination_config` block of
@@ -488,8 +412,7 @@ final class IntegrationConnectorsConnectionDestinationConfig {
 
   final TfArg<String> key;
 
-  final List<IntegrationConnectorsConnectionDestinationConfigDestination>?
-  destination;
+  final List<IntegrationConnectorsConnectionDestination>? destination;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
@@ -500,9 +423,10 @@ final class IntegrationConnectorsConnectionDestinationConfig {
 
 /// Typed helper for the `destination_config.destination` block of
 /// `google_integration_connectors_connection` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class IntegrationConnectorsConnectionDestinationConfigDestination {
-  const IntegrationConnectorsConnectionDestinationConfigDestination({
+final class IntegrationConnectorsConnectionDestination {
+  const IntegrationConnectorsConnectionDestination({
     this.host,
     this.port,
     this.serviceAttachment,
@@ -539,7 +463,7 @@ final class IntegrationConnectorsConnectionEventingConfig {
 
   final IntegrationConnectorsConnectionEventingConfigAuthConfig? authConfig;
 
-  final IntegrationConnectorsConnectionEventingConfigRegistrationDestinationConfig
+  final IntegrationConnectorsConnectionRegistrationDestinationConfig
   registrationDestinationConfig;
 
   Map<String, Object?> encode() => {
@@ -553,6 +477,7 @@ final class IntegrationConnectorsConnectionEventingConfig {
 
 /// Typed helper for the `eventing_config.additional_variable` block of
 /// `google_integration_connectors_connection` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
 final class IntegrationConnectorsConnectionEventingConfigAdditionalVariable {
   const IntegrationConnectorsConnectionEventingConfigAdditionalVariable({
@@ -572,11 +497,10 @@ final class IntegrationConnectorsConnectionEventingConfigAdditionalVariable {
 
   final TfArg<String>? stringValue;
 
-  final IntegrationConnectorsConnectionEventingConfigAdditionalVariableEncryptionKeyValue?
+  final IntegrationConnectorsConnectionAdditionalVariableEncryptionKeyValue?
   encryptionKeyValue;
 
-  final IntegrationConnectorsConnectionEventingConfigAdditionalVariableSecretValue?
-  secretValue;
+  final IntegrationConnectorsConnectionSecretValue? secretValue;
 
   Map<String, Object?> encode() => {
     'boolean_value': ?booleanValue?.toTfJson(),
@@ -590,50 +514,22 @@ final class IntegrationConnectorsConnectionEventingConfigAdditionalVariable {
 
 /// Typed helper for the `eventing_config.additional_variable.encryption_key_value` block of
 /// `google_integration_connectors_connection` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class IntegrationConnectorsConnectionEventingConfigAdditionalVariableEncryptionKeyValue {
-  const IntegrationConnectorsConnectionEventingConfigAdditionalVariableEncryptionKeyValue({
+final class IntegrationConnectorsConnectionAdditionalVariableEncryptionKeyValue {
+  const IntegrationConnectorsConnectionAdditionalVariableEncryptionKeyValue({
     this.kmsKeyName,
     this.type,
   });
 
   final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
 
-  final TfArg<
-    IntegrationConnectorsConnectionEventingConfigAdditionalVariableEncryptionKeyValueType
-  >?
-  type;
+  final TfArg<IntegrationConnectorsConnectionEncryptionKeyValueType>? type;
 
   Map<String, Object?> encode() => {
     'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
     'type': ?type?.toTfJson(),
   };
-}
-
-/// `type` — derived from the provider schema description.
-enum IntegrationConnectorsConnectionEventingConfigAdditionalVariableEncryptionKeyValueType
-    implements TerraformEnum {
-  googleManaged('GOOGLE_MANAGED'),
-  customerManaged('CUSTOMER_MANAGED');
-
-  const IntegrationConnectorsConnectionEventingConfigAdditionalVariableEncryptionKeyValueType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `eventing_config.additional_variable.secret_value` block of
-/// `google_integration_connectors_connection` (derived from provider schema).
-@immutable
-final class IntegrationConnectorsConnectionEventingConfigAdditionalVariableSecretValue {
-  const IntegrationConnectorsConnectionEventingConfigAdditionalVariableSecretValue({
-    required this.secretVersion,
-  });
-
-  final TfArg<String> secretVersion;
-
-  Map<String, Object?> encode() => {'secret_version': secretVersion.toTfJson()};
 }
 
 /// Typed helper for the `eventing_config.auth_config` block of
@@ -651,13 +547,10 @@ final class IntegrationConnectorsConnectionEventingConfigAuthConfig {
 
   final TfArg<String> authType;
 
-  final List<
-    IntegrationConnectorsConnectionEventingConfigAuthConfigAdditionalVariable
-  >?
+  final List<IntegrationConnectorsConnectionEventingConfigAdditionalVariable>?
   additionalVariable;
 
-  final IntegrationConnectorsConnectionEventingConfigAuthConfigUserPassword
-  userPassword;
+  final IntegrationConnectorsConnectionAuthConfigUserPassword userPassword;
 
   Map<String, Object?> encode() => {
     'auth_key': ?authKey?.toTfJson(),
@@ -668,104 +561,18 @@ final class IntegrationConnectorsConnectionEventingConfigAuthConfig {
   };
 }
 
-/// Typed helper for the `eventing_config.auth_config.additional_variable` block of
-/// `google_integration_connectors_connection` (derived from provider schema).
-@immutable
-final class IntegrationConnectorsConnectionEventingConfigAuthConfigAdditionalVariable {
-  const IntegrationConnectorsConnectionEventingConfigAuthConfigAdditionalVariable({
-    this.booleanValue,
-    this.integerValue,
-    required this.key,
-    this.stringValue,
-    this.encryptionKeyValue,
-    this.secretValue,
-  });
-
-  final TfArg<bool>? booleanValue;
-
-  final TfArg<num>? integerValue;
-
-  final TfArg<String> key;
-
-  final TfArg<String>? stringValue;
-
-  final IntegrationConnectorsConnectionEventingConfigAuthConfigAdditionalVariableEncryptionKeyValue?
-  encryptionKeyValue;
-
-  final IntegrationConnectorsConnectionEventingConfigAuthConfigAdditionalVariableSecretValue?
-  secretValue;
-
-  Map<String, Object?> encode() => {
-    'boolean_value': ?booleanValue?.toTfJson(),
-    'integer_value': ?integerValue?.toTfJson(),
-    'key': key.toTfJson(),
-    'string_value': ?stringValue?.toTfJson(),
-    'encryption_key_value': ?encryptionKeyValue?.encode(),
-    'secret_value': ?secretValue?.encode(),
-  };
-}
-
-/// Typed helper for the `eventing_config.auth_config.additional_variable.encryption_key_value` block of
-/// `google_integration_connectors_connection` (derived from provider schema).
-@immutable
-final class IntegrationConnectorsConnectionEventingConfigAuthConfigAdditionalVariableEncryptionKeyValue {
-  const IntegrationConnectorsConnectionEventingConfigAuthConfigAdditionalVariableEncryptionKeyValue({
-    this.kmsKeyName,
-    this.type,
-  });
-
-  final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
-
-  final TfArg<
-    IntegrationConnectorsConnectionEventingConfigAuthConfigAdditionalVariableEncryptionKeyValueType
-  >?
-  type;
-
-  Map<String, Object?> encode() => {
-    'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
-    'type': ?type?.toTfJson(),
-  };
-}
-
-/// `type` — derived from the provider schema description.
-enum IntegrationConnectorsConnectionEventingConfigAuthConfigAdditionalVariableEncryptionKeyValueType
-    implements TerraformEnum {
-  googleManaged('GOOGLE_MANAGED'),
-  customerManaged('CUSTOMER_MANAGED');
-
-  const IntegrationConnectorsConnectionEventingConfigAuthConfigAdditionalVariableEncryptionKeyValueType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `eventing_config.auth_config.additional_variable.secret_value` block of
-/// `google_integration_connectors_connection` (derived from provider schema).
-@immutable
-final class IntegrationConnectorsConnectionEventingConfigAuthConfigAdditionalVariableSecretValue {
-  const IntegrationConnectorsConnectionEventingConfigAuthConfigAdditionalVariableSecretValue({
-    required this.secretVersion,
-  });
-
-  final TfArg<String> secretVersion;
-
-  Map<String, Object?> encode() => {'secret_version': secretVersion.toTfJson()};
-}
-
 /// Typed helper for the `eventing_config.auth_config.user_password` block of
 /// `google_integration_connectors_connection` (derived from provider schema).
 @immutable
-final class IntegrationConnectorsConnectionEventingConfigAuthConfigUserPassword {
-  const IntegrationConnectorsConnectionEventingConfigAuthConfigUserPassword({
+final class IntegrationConnectorsConnectionAuthConfigUserPassword {
+  const IntegrationConnectorsConnectionAuthConfigUserPassword({
     this.username,
     this.password,
   });
 
   final TfArg<String>? username;
 
-  final IntegrationConnectorsConnectionEventingConfigAuthConfigUserPasswordPassword?
-  password;
+  final IntegrationConnectorsConnectionPassword? password;
 
   Map<String, Object?> encode() => {
     'username': ?username?.toTfJson(),
@@ -773,62 +580,23 @@ final class IntegrationConnectorsConnectionEventingConfigAuthConfigUserPassword 
   };
 }
 
-/// Typed helper for the `eventing_config.auth_config.user_password.password` block of
-/// `google_integration_connectors_connection` (derived from provider schema).
-@immutable
-final class IntegrationConnectorsConnectionEventingConfigAuthConfigUserPasswordPassword {
-  const IntegrationConnectorsConnectionEventingConfigAuthConfigUserPasswordPassword({
-    required this.secretVersion,
-  });
-
-  final TfArg<String> secretVersion;
-
-  Map<String, Object?> encode() => {'secret_version': secretVersion.toTfJson()};
-}
-
 /// Typed helper for the `eventing_config.registration_destination_config` block of
 /// `google_integration_connectors_connection` (derived from provider schema).
 @immutable
-final class IntegrationConnectorsConnectionEventingConfigRegistrationDestinationConfig {
-  const IntegrationConnectorsConnectionEventingConfigRegistrationDestinationConfig({
+final class IntegrationConnectorsConnectionRegistrationDestinationConfig {
+  const IntegrationConnectorsConnectionRegistrationDestinationConfig({
     this.key,
     this.destination,
   });
 
   final TfArg<String>? key;
 
-  final List<
-    IntegrationConnectorsConnectionEventingConfigRegistrationDestinationConfigDestination
-  >?
-  destination;
+  final List<IntegrationConnectorsConnectionDestination>? destination;
 
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     if (destination != null)
       'destination': [for (final e in destination!) e.encode()],
-  };
-}
-
-/// Typed helper for the `eventing_config.registration_destination_config.destination` block of
-/// `google_integration_connectors_connection` (derived from provider schema).
-@immutable
-final class IntegrationConnectorsConnectionEventingConfigRegistrationDestinationConfigDestination {
-  const IntegrationConnectorsConnectionEventingConfigRegistrationDestinationConfigDestination({
-    this.host,
-    this.port,
-    this.serviceAttachment,
-  });
-
-  final TfArg<String>? host;
-
-  final TfArg<num>? port;
-
-  final TfArg<String>? serviceAttachment;
-
-  Map<String, Object?> encode() => {
-    'host': ?host?.toTfJson(),
-    'port': ?port?.toTfJson(),
-    'service_attachment': ?serviceAttachment?.toTfJson(),
   };
 }
 
@@ -862,7 +630,7 @@ final class IntegrationConnectorsConnectionLogConfig {
 
   final TfArg<bool> enabled;
 
-  final TfArg<IntegrationConnectorsConnectionLogConfigLevel>? level;
+  final TfArg<IntegrationConnectorsConnectionLevel>? level;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
@@ -871,13 +639,13 @@ final class IntegrationConnectorsConnectionLogConfig {
 }
 
 /// `level` — derived from the provider schema description.
-enum IntegrationConnectorsConnectionLogConfigLevel implements TerraformEnum {
+enum IntegrationConnectorsConnectionLevel implements TerraformEnum {
   logLevelUnspecified('LOG_LEVEL_UNSPECIFIED'),
   error('ERROR'),
   info('INFO'),
   debug('DEBUG');
 
-  const IntegrationConnectorsConnectionLogConfigLevel(this.terraformValue);
+  const IntegrationConnectorsConnectionLevel(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -922,25 +690,23 @@ final class IntegrationConnectorsConnectionSslConfig {
 
   final TfArg<String>? serverCertType;
 
-  final TfArg<IntegrationConnectorsConnectionSslConfigTrustModel>? trustModel;
+  final TfArg<IntegrationConnectorsConnectionTrustModel>? trustModel;
 
-  final TfArg<IntegrationConnectorsConnectionSslConfigType> type;
+  final TfArg<IntegrationConnectorsConnectionType> type;
 
   final TfArg<bool>? useSsl;
 
-  final List<IntegrationConnectorsConnectionSslConfigAdditionalVariable>?
+  final List<IntegrationConnectorsConnectionEventingConfigAdditionalVariable>?
   additionalVariable;
 
-  final IntegrationConnectorsConnectionSslConfigClientCertificate?
-  clientCertificate;
+  final IntegrationConnectorsConnectionClientCertificate? clientCertificate;
 
-  final IntegrationConnectorsConnectionSslConfigClientPrivateKey?
-  clientPrivateKey;
+  final IntegrationConnectorsConnectionClientPrivateKey? clientPrivateKey;
 
-  final IntegrationConnectorsConnectionSslConfigClientPrivateKeyPass?
+  final IntegrationConnectorsConnectionClientPrivateKeyPass?
   clientPrivateKeyPass;
 
-  final IntegrationConnectorsConnectionSslConfigPrivateServerCertificate?
+  final IntegrationConnectorsConnectionPrivateServerCertificate?
   privateServerCertificate;
 
   Map<String, Object?> encode() => {
@@ -959,117 +725,31 @@ final class IntegrationConnectorsConnectionSslConfig {
 }
 
 /// `trust_model` — derived from the provider schema description.
-enum IntegrationConnectorsConnectionSslConfigTrustModel
-    implements TerraformEnum {
+enum IntegrationConnectorsConnectionTrustModel implements TerraformEnum {
   public('PUBLIC'),
   private('PRIVATE'),
   insecure('INSECURE');
 
-  const IntegrationConnectorsConnectionSslConfigTrustModel(this.terraformValue);
+  const IntegrationConnectorsConnectionTrustModel(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `type` — derived from the provider schema description.
-enum IntegrationConnectorsConnectionSslConfigType implements TerraformEnum {
+enum IntegrationConnectorsConnectionType implements TerraformEnum {
   tls('TLS'),
   mtls('MTLS');
 
-  const IntegrationConnectorsConnectionSslConfigType(this.terraformValue);
+  const IntegrationConnectorsConnectionType(this.terraformValue);
   @override
   final String terraformValue;
-}
-
-/// Typed helper for the `ssl_config.additional_variable` block of
-/// `google_integration_connectors_connection` (derived from provider schema).
-@immutable
-final class IntegrationConnectorsConnectionSslConfigAdditionalVariable {
-  const IntegrationConnectorsConnectionSslConfigAdditionalVariable({
-    this.booleanValue,
-    this.integerValue,
-    required this.key,
-    this.stringValue,
-    this.encryptionKeyValue,
-    this.secretValue,
-  });
-
-  final TfArg<bool>? booleanValue;
-
-  final TfArg<num>? integerValue;
-
-  final TfArg<String> key;
-
-  final TfArg<String>? stringValue;
-
-  final IntegrationConnectorsConnectionSslConfigAdditionalVariableEncryptionKeyValue?
-  encryptionKeyValue;
-
-  final IntegrationConnectorsConnectionSslConfigAdditionalVariableSecretValue?
-  secretValue;
-
-  Map<String, Object?> encode() => {
-    'boolean_value': ?booleanValue?.toTfJson(),
-    'integer_value': ?integerValue?.toTfJson(),
-    'key': key.toTfJson(),
-    'string_value': ?stringValue?.toTfJson(),
-    'encryption_key_value': ?encryptionKeyValue?.encode(),
-    'secret_value': ?secretValue?.encode(),
-  };
-}
-
-/// Typed helper for the `ssl_config.additional_variable.encryption_key_value` block of
-/// `google_integration_connectors_connection` (derived from provider schema).
-@immutable
-final class IntegrationConnectorsConnectionSslConfigAdditionalVariableEncryptionKeyValue {
-  const IntegrationConnectorsConnectionSslConfigAdditionalVariableEncryptionKeyValue({
-    this.kmsKeyName,
-    this.type,
-  });
-
-  final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
-
-  final TfArg<
-    IntegrationConnectorsConnectionSslConfigAdditionalVariableEncryptionKeyValueType
-  >?
-  type;
-
-  Map<String, Object?> encode() => {
-    'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
-    'type': ?type?.toTfJson(),
-  };
-}
-
-/// `type` — derived from the provider schema description.
-enum IntegrationConnectorsConnectionSslConfigAdditionalVariableEncryptionKeyValueType
-    implements TerraformEnum {
-  googleManaged('GOOGLE_MANAGED'),
-  customerManaged('CUSTOMER_MANAGED');
-
-  const IntegrationConnectorsConnectionSslConfigAdditionalVariableEncryptionKeyValueType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `ssl_config.additional_variable.secret_value` block of
-/// `google_integration_connectors_connection` (derived from provider schema).
-@immutable
-final class IntegrationConnectorsConnectionSslConfigAdditionalVariableSecretValue {
-  const IntegrationConnectorsConnectionSslConfigAdditionalVariableSecretValue({
-    required this.secretVersion,
-  });
-
-  final TfArg<String> secretVersion;
-
-  Map<String, Object?> encode() => {'secret_version': secretVersion.toTfJson()};
 }
 
 /// Typed helper for the `ssl_config.client_certificate` block of
 /// `google_integration_connectors_connection` (derived from provider schema).
 @immutable
-final class IntegrationConnectorsConnectionSslConfigClientCertificate {
-  const IntegrationConnectorsConnectionSslConfigClientCertificate({
+final class IntegrationConnectorsConnectionClientCertificate {
+  const IntegrationConnectorsConnectionClientCertificate({
     required this.secretVersion,
   });
 
@@ -1081,8 +761,8 @@ final class IntegrationConnectorsConnectionSslConfigClientCertificate {
 /// Typed helper for the `ssl_config.client_private_key` block of
 /// `google_integration_connectors_connection` (derived from provider schema).
 @immutable
-final class IntegrationConnectorsConnectionSslConfigClientPrivateKey {
-  const IntegrationConnectorsConnectionSslConfigClientPrivateKey({
+final class IntegrationConnectorsConnectionClientPrivateKey {
+  const IntegrationConnectorsConnectionClientPrivateKey({
     required this.secretVersion,
   });
 
@@ -1094,8 +774,8 @@ final class IntegrationConnectorsConnectionSslConfigClientPrivateKey {
 /// Typed helper for the `ssl_config.client_private_key_pass` block of
 /// `google_integration_connectors_connection` (derived from provider schema).
 @immutable
-final class IntegrationConnectorsConnectionSslConfigClientPrivateKeyPass {
-  const IntegrationConnectorsConnectionSslConfigClientPrivateKeyPass({
+final class IntegrationConnectorsConnectionClientPrivateKeyPass {
+  const IntegrationConnectorsConnectionClientPrivateKeyPass({
     required this.secretVersion,
   });
 
@@ -1107,8 +787,8 @@ final class IntegrationConnectorsConnectionSslConfigClientPrivateKeyPass {
 /// Typed helper for the `ssl_config.private_server_certificate` block of
 /// `google_integration_connectors_connection` (derived from provider schema).
 @immutable
-final class IntegrationConnectorsConnectionSslConfigPrivateServerCertificate {
-  const IntegrationConnectorsConnectionSslConfigPrivateServerCertificate({
+final class IntegrationConnectorsConnectionPrivateServerCertificate {
+  const IntegrationConnectorsConnectionPrivateServerCertificate({
     required this.secretVersion,
   });
 

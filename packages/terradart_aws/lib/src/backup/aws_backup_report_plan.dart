@@ -19,7 +19,7 @@ final class BackupReportPlanReportDeliveryChannel {
     this.s3KeyPrefix,
   });
 
-  final List<TfArg<BackupReportPlanReportDeliveryChannelFormats>>? formats;
+  final List<TfArg<BackupReportPlanFormats>>? formats;
 
   final RefTo<AwsS3Bucket> s3BucketName;
 
@@ -33,11 +33,11 @@ final class BackupReportPlanReportDeliveryChannel {
 }
 
 /// `formats` — derived from the provider schema description.
-enum BackupReportPlanReportDeliveryChannelFormats implements TerraformEnum {
+enum BackupReportPlanFormats implements TerraformEnum {
   csv('CSV'),
   json('JSON');
 
-  const BackupReportPlanReportDeliveryChannelFormats(this.terraformValue);
+  const BackupReportPlanFormats(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -65,7 +65,7 @@ final class BackupReportPlanReportSetting {
 
   final TfArg<List<String>>? regions;
 
-  final TfArg<BackupReportPlanReportSettingReportTemplate> reportTemplate;
+  final TfArg<BackupReportPlanReportTemplate> reportTemplate;
 
   Map<String, Object?> encode() => {
     'accounts': ?accounts?.toTfJson(),
@@ -78,14 +78,14 @@ final class BackupReportPlanReportSetting {
 }
 
 /// `report_template` — derived from the provider schema description.
-enum BackupReportPlanReportSettingReportTemplate implements TerraformEnum {
+enum BackupReportPlanReportTemplate implements TerraformEnum {
   backupJobReport('BACKUP_JOB_REPORT'),
   controlComplianceReport('CONTROL_COMPLIANCE_REPORT'),
   copyJobReport('COPY_JOB_REPORT'),
   resourceComplianceReport('RESOURCE_COMPLIANCE_REPORT'),
   restoreJobReport('RESTORE_JOB_REPORT');
 
-  const BackupReportPlanReportSettingReportTemplate(this.terraformValue);
+  const BackupReportPlanReportTemplate(this.terraformValue);
   @override
   final String terraformValue;
 }

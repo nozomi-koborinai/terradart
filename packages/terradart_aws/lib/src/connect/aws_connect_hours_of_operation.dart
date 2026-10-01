@@ -17,11 +17,11 @@ final class ConnectHoursOfOperationConfig {
     required this.startTime,
   });
 
-  final TfArg<ConnectHoursOfOperationConfigDay> day;
+  final TfArg<ConnectHoursOfOperationDay> day;
 
-  final ConnectHoursOfOperationConfigEndTime endTime;
+  final ConnectHoursOfOperationEndTime endTime;
 
-  final ConnectHoursOfOperationConfigStartTime startTime;
+  final ConnectHoursOfOperationStartTime startTime;
 
   Map<String, Object?> encode() => {
     'day': day.toTfJson(),
@@ -31,7 +31,7 @@ final class ConnectHoursOfOperationConfig {
 }
 
 /// `day` — derived from the provider schema description.
-enum ConnectHoursOfOperationConfigDay implements TerraformEnum {
+enum ConnectHoursOfOperationDay implements TerraformEnum {
   sunday('SUNDAY'),
   monday('MONDAY'),
   tuesday('TUESDAY'),
@@ -40,7 +40,7 @@ enum ConnectHoursOfOperationConfigDay implements TerraformEnum {
   friday('FRIDAY'),
   saturday('SATURDAY');
 
-  const ConnectHoursOfOperationConfigDay(this.terraformValue);
+  const ConnectHoursOfOperationDay(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -48,8 +48,8 @@ enum ConnectHoursOfOperationConfigDay implements TerraformEnum {
 /// Typed helper for the `config.end_time` block of
 /// `aws_connect_hours_of_operation` (derived from provider schema).
 @immutable
-final class ConnectHoursOfOperationConfigEndTime {
-  const ConnectHoursOfOperationConfigEndTime({
+final class ConnectHoursOfOperationEndTime {
+  const ConnectHoursOfOperationEndTime({
     required this.hours,
     required this.minutes,
   });
@@ -67,8 +67,8 @@ final class ConnectHoursOfOperationConfigEndTime {
 /// Typed helper for the `config.start_time` block of
 /// `aws_connect_hours_of_operation` (derived from provider schema).
 @immutable
-final class ConnectHoursOfOperationConfigStartTime {
-  const ConnectHoursOfOperationConfigStartTime({
+final class ConnectHoursOfOperationStartTime {
+  const ConnectHoursOfOperationStartTime({
     required this.hours,
     required this.minutes,
   });

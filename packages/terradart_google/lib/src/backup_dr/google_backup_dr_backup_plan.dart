@@ -21,7 +21,7 @@ final class BackupDrBackupPlanBackupRules {
 
   final TfArg<String> ruleId;
 
-  final BackupDrBackupPlanBackupRulesStandardSchedule standardSchedule;
+  final BackupDrBackupPlanStandardSchedule standardSchedule;
 
   Map<String, Object?> encode() => {
     'backup_retention_days': backupRetentionDays.toTfJson(),
@@ -33,8 +33,8 @@ final class BackupDrBackupPlanBackupRules {
 /// Typed helper for the `backup_rules.standard_schedule` block of
 /// `google_backup_dr_backup_plan` (derived from provider schema).
 @immutable
-final class BackupDrBackupPlanBackupRulesStandardSchedule {
-  const BackupDrBackupPlanBackupRulesStandardSchedule({
+final class BackupDrBackupPlanStandardSchedule {
+  const BackupDrBackupPlanStandardSchedule({
     this.daysOfMonth,
     this.daysOfWeek,
     this.hourlyFrequency,
@@ -47,23 +47,19 @@ final class BackupDrBackupPlanBackupRulesStandardSchedule {
 
   final TfArg<List<num>>? daysOfMonth;
 
-  final List<TfArg<BackupDrBackupPlanBackupRulesStandardScheduleDaysOfWeek>>?
-  daysOfWeek;
+  final List<TfArg<BackupDrBackupPlanDaysOfWeek>>? daysOfWeek;
 
   final TfArg<num>? hourlyFrequency;
 
-  final List<TfArg<BackupDrBackupPlanBackupRulesStandardScheduleMonths>>?
-  months;
+  final List<TfArg<BackupDrBackupPlanMonths>>? months;
 
-  final TfArg<BackupDrBackupPlanBackupRulesStandardScheduleRecurrenceType>
-  recurrenceType;
+  final TfArg<BackupDrBackupPlanRecurrenceType> recurrenceType;
 
   final TfArg<String> timeZone;
 
-  final BackupDrBackupPlanBackupRulesStandardScheduleBackupWindow? backupWindow;
+  final BackupDrBackupPlanBackupWindow? backupWindow;
 
-  final BackupDrBackupPlanBackupRulesStandardScheduleWeekDayOfMonth?
-  weekDayOfMonth;
+  final BackupDrBackupPlanWeekDayOfMonth? weekDayOfMonth;
 
   Map<String, Object?> encode() => {
     'days_of_month': ?daysOfMonth?.toTfJson(),
@@ -79,8 +75,7 @@ final class BackupDrBackupPlanBackupRulesStandardSchedule {
 }
 
 /// `days_of_week` — derived from the provider schema description.
-enum BackupDrBackupPlanBackupRulesStandardScheduleDaysOfWeek
-    implements TerraformEnum {
+enum BackupDrBackupPlanDaysOfWeek implements TerraformEnum {
   dayOfWeekUnspecified('DAY_OF_WEEK_UNSPECIFIED'),
   monday('MONDAY'),
   tuesday('TUESDAY'),
@@ -90,16 +85,13 @@ enum BackupDrBackupPlanBackupRulesStandardScheduleDaysOfWeek
   saturday('SATURDAY'),
   sunday('SUNDAY');
 
-  const BackupDrBackupPlanBackupRulesStandardScheduleDaysOfWeek(
-    this.terraformValue,
-  );
+  const BackupDrBackupPlanDaysOfWeek(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `months` — derived from the provider schema description.
-enum BackupDrBackupPlanBackupRulesStandardScheduleMonths
-    implements TerraformEnum {
+enum BackupDrBackupPlanMonths implements TerraformEnum {
   monthUnspecified('MONTH_UNSPECIFIED'),
   january('JANUARY'),
   february('FEBRUARY'),
@@ -114,25 +106,20 @@ enum BackupDrBackupPlanBackupRulesStandardScheduleMonths
   november('NOVEMBER'),
   december('DECEMBER');
 
-  const BackupDrBackupPlanBackupRulesStandardScheduleMonths(
-    this.terraformValue,
-  );
+  const BackupDrBackupPlanMonths(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `recurrence_type` — derived from the provider schema description.
-enum BackupDrBackupPlanBackupRulesStandardScheduleRecurrenceType
-    implements TerraformEnum {
+enum BackupDrBackupPlanRecurrenceType implements TerraformEnum {
   hourly('HOURLY'),
   daily('DAILY'),
   weekly('WEEKLY'),
   monthly('MONTHLY'),
   yearly('YEARLY');
 
-  const BackupDrBackupPlanBackupRulesStandardScheduleRecurrenceType(
-    this.terraformValue,
-  );
+  const BackupDrBackupPlanRecurrenceType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -140,8 +127,8 @@ enum BackupDrBackupPlanBackupRulesStandardScheduleRecurrenceType
 /// Typed helper for the `backup_rules.standard_schedule.backup_window` block of
 /// `google_backup_dr_backup_plan` (derived from provider schema).
 @immutable
-final class BackupDrBackupPlanBackupRulesStandardScheduleBackupWindow {
-  const BackupDrBackupPlanBackupRulesStandardScheduleBackupWindow({
+final class BackupDrBackupPlanBackupWindow {
+  const BackupDrBackupPlanBackupWindow({
     this.endHourOfDay,
     required this.startHourOfDay,
   });
@@ -159,21 +146,15 @@ final class BackupDrBackupPlanBackupRulesStandardScheduleBackupWindow {
 /// Typed helper for the `backup_rules.standard_schedule.week_day_of_month` block of
 /// `google_backup_dr_backup_plan` (derived from provider schema).
 @immutable
-final class BackupDrBackupPlanBackupRulesStandardScheduleWeekDayOfMonth {
-  const BackupDrBackupPlanBackupRulesStandardScheduleWeekDayOfMonth({
+final class BackupDrBackupPlanWeekDayOfMonth {
+  const BackupDrBackupPlanWeekDayOfMonth({
     required this.dayOfWeek,
     required this.weekOfMonth,
   });
 
-  final TfArg<
-    BackupDrBackupPlanBackupRulesStandardScheduleWeekDayOfMonthDayOfWeek
-  >
-  dayOfWeek;
+  final TfArg<BackupDrBackupPlanDayOfWeek> dayOfWeek;
 
-  final TfArg<
-    BackupDrBackupPlanBackupRulesStandardScheduleWeekDayOfMonthWeekOfMonth
-  >
-  weekOfMonth;
+  final TfArg<BackupDrBackupPlanWeekOfMonth> weekOfMonth;
 
   Map<String, Object?> encode() => {
     'day_of_week': dayOfWeek.toTfJson(),
@@ -182,8 +163,7 @@ final class BackupDrBackupPlanBackupRulesStandardScheduleWeekDayOfMonth {
 }
 
 /// `day_of_week` — derived from the provider schema description.
-enum BackupDrBackupPlanBackupRulesStandardScheduleWeekDayOfMonthDayOfWeek
-    implements TerraformEnum {
+enum BackupDrBackupPlanDayOfWeek implements TerraformEnum {
   dayOfWeekUnspecified('DAY_OF_WEEK_UNSPECIFIED'),
   monday('MONDAY'),
   tuesday('TUESDAY'),
@@ -193,16 +173,13 @@ enum BackupDrBackupPlanBackupRulesStandardScheduleWeekDayOfMonthDayOfWeek
   saturday('SATURDAY'),
   sunday('SUNDAY');
 
-  const BackupDrBackupPlanBackupRulesStandardScheduleWeekDayOfMonthDayOfWeek(
-    this.terraformValue,
-  );
+  const BackupDrBackupPlanDayOfWeek(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `week_of_month` — derived from the provider schema description.
-enum BackupDrBackupPlanBackupRulesStandardScheduleWeekDayOfMonthWeekOfMonth
-    implements TerraformEnum {
+enum BackupDrBackupPlanWeekOfMonth implements TerraformEnum {
   weekOfMonthUnspecified('WEEK_OF_MONTH_UNSPECIFIED'),
   first('FIRST'),
   second('SECOND'),
@@ -210,9 +187,7 @@ enum BackupDrBackupPlanBackupRulesStandardScheduleWeekDayOfMonthWeekOfMonth
   fourth('FOURTH'),
   last('LAST');
 
-  const BackupDrBackupPlanBackupRulesStandardScheduleWeekDayOfMonthWeekOfMonth(
-    this.terraformValue,
-  );
+  const BackupDrBackupPlanWeekOfMonth(this.terraformValue);
   @override
   final String terraformValue;
 }

@@ -6,28 +6,28 @@ library;
 export 'src/verifiedpermissions/aws_verifiedpermissions_identity_source.dart'
     show
         AwsVerifiedpermissionsIdentitySource,
+        VerifiedpermissionsIdentitySourceAccessTokenOnly,
+        VerifiedpermissionsIdentitySourceCognitoUserPoolConfiguration,
+        VerifiedpermissionsIdentitySourceCognitoUserPoolConfigurationGroupConfiguration,
         VerifiedpermissionsIdentitySourceConfiguration,
-        VerifiedpermissionsIdentitySourceConfigurationCognitoUserPoolConfiguration,
-        VerifiedpermissionsIdentitySourceConfigurationCognitoUserPoolConfigurationGroupConfiguration,
-        VerifiedpermissionsIdentitySourceConfigurationOpenIdConnectConfiguration,
-        VerifiedpermissionsIdentitySourceConfigurationOpenIdConnectConfigurationGroupConfiguration,
-        VerifiedpermissionsIdentitySourceConfigurationOpenIdConnectConfigurationTokenSelection,
-        VerifiedpermissionsIdentitySourceConfigurationOpenIdConnectConfigurationTokenSelectionAccessTokenOnly,
-        VerifiedpermissionsIdentitySourceConfigurationOpenIdConnectConfigurationTokenSelectionIdentityTokenOnly;
+        VerifiedpermissionsIdentitySourceIdentityTokenOnly,
+        VerifiedpermissionsIdentitySourceOpenIdConnectConfiguration,
+        VerifiedpermissionsIdentitySourceOpenIdConnectConfigurationGroupConfiguration,
+        VerifiedpermissionsIdentitySourceTokenSelection;
 export 'src/verifiedpermissions/aws_verifiedpermissions_policy.dart'
     show
         AwsVerifiedpermissionsPolicy,
         VerifiedpermissionsPolicyDefinition,
-        VerifiedpermissionsPolicyDefinitionStatic,
-        VerifiedpermissionsPolicyDefinitionTemplateLinked,
-        VerifiedpermissionsPolicyDefinitionTemplateLinkedPrincipal,
-        VerifiedpermissionsPolicyDefinitionTemplateLinkedResource;
+        VerifiedpermissionsPolicyPrincipal,
+        VerifiedpermissionsPolicyResource,
+        VerifiedpermissionsPolicyStatic,
+        VerifiedpermissionsPolicyTemplateLinked;
 export 'src/verifiedpermissions/aws_verifiedpermissions_policy_store.dart'
     show
         AwsVerifiedpermissionsPolicyStore,
         VerifiedpermissionsPolicyStoreDeletionProtection,
-        VerifiedpermissionsPolicyStoreValidationSettings,
-        VerifiedpermissionsPolicyStoreValidationSettingsMode;
+        VerifiedpermissionsPolicyStoreMode,
+        VerifiedpermissionsPolicyStoreValidationSettings;
 export 'src/verifiedpermissions/aws_verifiedpermissions_policy_template.dart'
     show AwsVerifiedpermissionsPolicyTemplate;
 export 'src/verifiedpermissions/aws_verifiedpermissions_schema.dart'

@@ -15,7 +15,7 @@ final class CloudfrontMonitoringSubscriptionMonitoringSubscription {
     required this.realtimeMetricsSubscriptionConfig,
   });
 
-  final CloudfrontMonitoringSubscriptionMonitoringSubscriptionRealtimeMetricsSubscriptionConfig
+  final CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionConfig
   realtimeMetricsSubscriptionConfig;
 
   Map<String, Object?> encode() => {
@@ -27,14 +27,12 @@ final class CloudfrontMonitoringSubscriptionMonitoringSubscription {
 /// Typed helper for the `monitoring_subscription.realtime_metrics_subscription_config` block of
 /// `aws_cloudfront_monitoring_subscription` (derived from provider schema).
 @immutable
-final class CloudfrontMonitoringSubscriptionMonitoringSubscriptionRealtimeMetricsSubscriptionConfig {
-  const CloudfrontMonitoringSubscriptionMonitoringSubscriptionRealtimeMetricsSubscriptionConfig({
+final class CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionConfig {
+  const CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionConfig({
     required this.realtimeMetricsSubscriptionStatus,
   });
 
-  final TfArg<
-    CloudfrontMonitoringSubscriptionMonitoringSubscriptionRealtimeMetricsSubscriptionConfigRealtimeMetricsSubscriptionStatus
-  >
+  final TfArg<CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionStatus>
   realtimeMetricsSubscriptionStatus;
 
   Map<String, Object?> encode() => {
@@ -44,12 +42,12 @@ final class CloudfrontMonitoringSubscriptionMonitoringSubscriptionRealtimeMetric
 }
 
 /// `realtime_metrics_subscription_status` — derived from the provider schema description.
-enum CloudfrontMonitoringSubscriptionMonitoringSubscriptionRealtimeMetricsSubscriptionConfigRealtimeMetricsSubscriptionStatus
+enum CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionStatus
     implements TerraformEnum {
   enabled('Enabled'),
   disabled('Disabled');
 
-  const CloudfrontMonitoringSubscriptionMonitoringSubscriptionRealtimeMetricsSubscriptionConfigRealtimeMetricsSubscriptionStatus(
+  const CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionStatus(
     this.terraformValue,
   );
   @override

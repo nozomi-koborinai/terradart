@@ -8,7 +8,7 @@ export 'src/cloudwatch/aws_cloudwatch_alarm_mute_rule.dart'
         AwsCloudwatchAlarmMuteRule,
         CloudwatchAlarmMuteRuleMuteTargets,
         CloudwatchAlarmMuteRuleRule,
-        CloudwatchAlarmMuteRuleRuleSchedule;
+        CloudwatchAlarmMuteRuleSchedule;
 export 'src/cloudwatch/aws_cloudwatch_composite_alarm.dart'
     show AwsCloudwatchCompositeAlarm, CloudwatchCompositeAlarmActionsSuppressor;
 export 'src/cloudwatch/aws_cloudwatch_contributor_insight_rule.dart'
@@ -29,53 +29,49 @@ export 'src/cloudwatch/aws_cloudwatch_event_bus.dart'
     show
         AwsCloudwatchEventBus,
         CloudwatchEventBusDeadLetterConfig,
-        CloudwatchEventBusLogConfig,
-        CloudwatchEventBusLogConfigIncludeDetail,
-        CloudwatchEventBusLogConfigLevel;
+        CloudwatchEventBusIncludeDetail,
+        CloudwatchEventBusLevel,
+        CloudwatchEventBusLogConfig;
 export 'src/cloudwatch/aws_cloudwatch_event_bus_policy.dart'
     show AwsCloudwatchEventBusPolicy;
 export 'src/cloudwatch/aws_cloudwatch_event_connection.dart'
     show
         AwsCloudwatchEventConnection,
+        CloudwatchEventConnectionApiKey,
+        CloudwatchEventConnectionAuth,
+        CloudwatchEventConnectionAuthApiKey,
+        CloudwatchEventConnectionAuthBasic,
+        CloudwatchEventConnectionAuthOauth,
         CloudwatchEventConnectionAuthParameters,
-        CloudwatchEventConnectionAuthParametersApiKey,
-        CloudwatchEventConnectionAuthParametersAuth,
-        CloudwatchEventConnectionAuthParametersAuthApiKey,
-        CloudwatchEventConnectionAuthParametersAuthBasic,
-        CloudwatchEventConnectionAuthParametersAuthOauth,
-        CloudwatchEventConnectionAuthParametersBasic,
-        CloudwatchEventConnectionAuthParametersConnectivityParameters,
-        CloudwatchEventConnectionAuthParametersConnectivityParametersResourceParameters,
-        CloudwatchEventConnectionAuthParametersInvocationHttpParameters,
-        CloudwatchEventConnectionAuthParametersInvocationHttpParametersBody,
-        CloudwatchEventConnectionAuthParametersInvocationHttpParametersHeader,
-        CloudwatchEventConnectionAuthParametersInvocationHttpParametersQueryString,
-        CloudwatchEventConnectionAuthParametersOauth,
-        CloudwatchEventConnectionAuthParametersOauthClientParameters,
-        CloudwatchEventConnectionAuthParametersOauthHttpMethod,
-        CloudwatchEventConnectionAuthParametersOauthOauthHttpParameters,
-        CloudwatchEventConnectionAuthParametersOauthOauthHttpParametersBody,
-        CloudwatchEventConnectionAuthParametersOauthOauthHttpParametersHeader,
-        CloudwatchEventConnectionAuthParametersOauthOauthHttpParametersQueryString,
         CloudwatchEventConnectionAuthorizationType,
+        CloudwatchEventConnectionBasic,
+        CloudwatchEventConnectionBody,
+        CloudwatchEventConnectionClientParameters,
+        CloudwatchEventConnectionConnectivityParameters,
+        CloudwatchEventConnectionHeader,
+        CloudwatchEventConnectionHttpMethod,
         CloudwatchEventConnectionInvocationConnectivityParameters,
-        CloudwatchEventConnectionInvocationConnectivityParametersResourceParameters;
+        CloudwatchEventConnectionInvocationHttpParameters,
+        CloudwatchEventConnectionOauth,
+        CloudwatchEventConnectionOauthHttpParameters,
+        CloudwatchEventConnectionQueryString,
+        CloudwatchEventConnectionResourceParameters;
 export 'src/cloudwatch/aws_cloudwatch_event_endpoint.dart'
     show
         AwsCloudwatchEventEndpoint,
         CloudwatchEventEndpointEventBus,
+        CloudwatchEventEndpointFailoverConfig,
+        CloudwatchEventEndpointPrimary,
         CloudwatchEventEndpointReplicationConfig,
-        CloudwatchEventEndpointReplicationConfigState,
         CloudwatchEventEndpointRoutingConfig,
-        CloudwatchEventEndpointRoutingConfigFailoverConfig,
-        CloudwatchEventEndpointRoutingConfigFailoverConfigPrimary,
-        CloudwatchEventEndpointRoutingConfigFailoverConfigSecondary;
+        CloudwatchEventEndpointSecondary,
+        CloudwatchEventEndpointState;
 export 'src/cloudwatch/aws_cloudwatch_event_permission.dart'
     show
         AwsCloudwatchEventPermission,
         CloudwatchEventPermissionCondition,
-        CloudwatchEventPermissionConditionKey,
-        CloudwatchEventPermissionConditionType;
+        CloudwatchEventPermissionKey,
+        CloudwatchEventPermissionType;
 export 'src/cloudwatch/aws_cloudwatch_event_rule.dart'
     show
         AwsCloudwatchEventRule,
@@ -91,16 +87,9 @@ export 'src/cloudwatch/aws_cloudwatch_event_target.dart'
         AwsCloudwatchEventTarget,
         CloudwatchEventTargetAppsyncTarget,
         CloudwatchEventTargetBatchTarget,
+        CloudwatchEventTargetCapacityProviderStrategy,
         CloudwatchEventTargetDeadLetterConfig,
         CloudwatchEventTargetEcsTarget,
-        CloudwatchEventTargetEcsTargetCapacityProviderStrategy,
-        CloudwatchEventTargetEcsTargetLaunchType,
-        CloudwatchEventTargetEcsTargetNetworkConfiguration,
-        CloudwatchEventTargetEcsTargetOrderedPlacementStrategy,
-        CloudwatchEventTargetEcsTargetOrderedPlacementStrategyType,
-        CloudwatchEventTargetEcsTargetPlacementConstraint,
-        CloudwatchEventTargetEcsTargetPlacementConstraintType,
-        CloudwatchEventTargetEcsTargetPropagateTags,
         CloudwatchEventTargetHttpTarget,
         CloudwatchEventTargetInput,
         CloudwatchEventTargetInputChoice,
@@ -108,11 +97,18 @@ export 'src/cloudwatch/aws_cloudwatch_event_target.dart'
         CloudwatchEventTargetInputTransformer,
         CloudwatchEventTargetInputTransformerChoice,
         CloudwatchEventTargetKinesisTarget,
+        CloudwatchEventTargetLaunchType,
+        CloudwatchEventTargetNetworkConfiguration,
+        CloudwatchEventTargetOrderedPlacementStrategy,
+        CloudwatchEventTargetOrderedPlacementStrategyType,
+        CloudwatchEventTargetPipelineParameterList,
+        CloudwatchEventTargetPlacementConstraint,
+        CloudwatchEventTargetPlacementConstraintType,
+        CloudwatchEventTargetPropagateTags,
         CloudwatchEventTargetRedshiftTarget,
         CloudwatchEventTargetRetryPolicy,
         CloudwatchEventTargetRunCommandTargets,
         CloudwatchEventTargetSagemakerPipelineTarget,
-        CloudwatchEventTargetSagemakerPipelineTargetPipelineParameterList,
         CloudwatchEventTargetSqsTarget;
 export 'src/cloudwatch/aws_cloudwatch_log_account_policy.dart'
     show
@@ -130,7 +126,7 @@ export 'src/cloudwatch/aws_cloudwatch_log_delivery.dart'
 export 'src/cloudwatch/aws_cloudwatch_log_delivery_destination.dart'
     show
         AwsCloudwatchLogDeliveryDestination,
-        CloudwatchLogDeliveryDestinationDeliveryDestinationConfiguration,
+        CloudwatchLogDeliveryDestinationConfiguration,
         CloudwatchLogDeliveryDestinationDeliveryDestinationType,
         CloudwatchLogDeliveryDestinationOutputFormat;
 export 'src/cloudwatch/aws_cloudwatch_log_delivery_destination_policy.dart'
@@ -154,7 +150,7 @@ export 'src/cloudwatch/aws_cloudwatch_log_metric_filter.dart'
     show
         AwsCloudwatchLogMetricFilter,
         CloudwatchLogMetricFilterMetricTransformation,
-        CloudwatchLogMetricFilterMetricTransformationUnit;
+        CloudwatchLogMetricFilterUnit;
 export 'src/cloudwatch/aws_cloudwatch_log_resource_policy.dart'
     show
         AwsCloudwatchLogResourcePolicy,
@@ -179,41 +175,40 @@ export 'src/cloudwatch/aws_cloudwatch_log_subscription_filter.dart'
 export 'src/cloudwatch/aws_cloudwatch_log_transformer.dart'
     show
         AwsCloudwatchLogTransformer,
-        CloudwatchLogTransformerTransformerConfig,
-        CloudwatchLogTransformerTransformerConfigAddKeys,
-        CloudwatchLogTransformerTransformerConfigAddKeysEntry,
-        CloudwatchLogTransformerTransformerConfigCopyValue,
-        CloudwatchLogTransformerTransformerConfigCopyValueEntry,
-        CloudwatchLogTransformerTransformerConfigCsv,
-        CloudwatchLogTransformerTransformerConfigDateTimeConverter,
-        CloudwatchLogTransformerTransformerConfigDeleteKeys,
-        CloudwatchLogTransformerTransformerConfigGrok,
-        CloudwatchLogTransformerTransformerConfigListToMap,
-        CloudwatchLogTransformerTransformerConfigListToMapFlattenedElement,
-        CloudwatchLogTransformerTransformerConfigLowerCaseString,
-        CloudwatchLogTransformerTransformerConfigMoveKeys,
-        CloudwatchLogTransformerTransformerConfigMoveKeysEntry,
-        CloudwatchLogTransformerTransformerConfigParseCloudfront,
-        CloudwatchLogTransformerTransformerConfigParseJson,
-        CloudwatchLogTransformerTransformerConfigParseKeyValue,
-        CloudwatchLogTransformerTransformerConfigParsePostgres,
-        CloudwatchLogTransformerTransformerConfigParseRoute53,
-        CloudwatchLogTransformerTransformerConfigParseToOcsf,
-        CloudwatchLogTransformerTransformerConfigParseToOcsfEventSource,
-        CloudwatchLogTransformerTransformerConfigParseToOcsfOcsfVersion,
-        CloudwatchLogTransformerTransformerConfigParseVpc,
-        CloudwatchLogTransformerTransformerConfigParseWaf,
-        CloudwatchLogTransformerTransformerConfigRenameKeys,
-        CloudwatchLogTransformerTransformerConfigRenameKeysEntry,
-        CloudwatchLogTransformerTransformerConfigSplitString,
-        CloudwatchLogTransformerTransformerConfigSplitStringEntry,
-        CloudwatchLogTransformerTransformerConfigSubstituteString,
-        CloudwatchLogTransformerTransformerConfigSubstituteStringEntry,
-        CloudwatchLogTransformerTransformerConfigTrimString,
-        CloudwatchLogTransformerTransformerConfigTypeConverter,
-        CloudwatchLogTransformerTransformerConfigTypeConverterEntry,
-        CloudwatchLogTransformerTransformerConfigTypeConverterEntryType,
-        CloudwatchLogTransformerTransformerConfigUpperCaseString;
+        CloudwatchLogTransformerAddKeys,
+        CloudwatchLogTransformerAddKeysEntry,
+        CloudwatchLogTransformerConfig,
+        CloudwatchLogTransformerCopyValue,
+        CloudwatchLogTransformerCopyValueEntry,
+        CloudwatchLogTransformerCsv,
+        CloudwatchLogTransformerDateTimeConverter,
+        CloudwatchLogTransformerDeleteKeys,
+        CloudwatchLogTransformerEventSource,
+        CloudwatchLogTransformerFlattenedElement,
+        CloudwatchLogTransformerGrok,
+        CloudwatchLogTransformerListToMap,
+        CloudwatchLogTransformerLowerCaseString,
+        CloudwatchLogTransformerMoveKeys,
+        CloudwatchLogTransformerOcsfVersion,
+        CloudwatchLogTransformerParseCloudfront,
+        CloudwatchLogTransformerParseJson,
+        CloudwatchLogTransformerParseKeyValue,
+        CloudwatchLogTransformerParsePostgres,
+        CloudwatchLogTransformerParseRoute53,
+        CloudwatchLogTransformerParseToOcsf,
+        CloudwatchLogTransformerParseVpc,
+        CloudwatchLogTransformerParseWaf,
+        CloudwatchLogTransformerRenameKeys,
+        CloudwatchLogTransformerRenameKeysEntry,
+        CloudwatchLogTransformerSplitString,
+        CloudwatchLogTransformerSplitStringEntry,
+        CloudwatchLogTransformerSubstituteString,
+        CloudwatchLogTransformerSubstituteStringEntry,
+        CloudwatchLogTransformerTrimString,
+        CloudwatchLogTransformerType,
+        CloudwatchLogTransformerTypeConverter,
+        CloudwatchLogTransformerTypeConverterEntry,
+        CloudwatchLogTransformerUpperCaseString;
 export 'src/cloudwatch/aws_cloudwatch_metric_alarm.dart'
     show
         AwsCloudwatchMetricAlarm,
@@ -223,15 +218,15 @@ export 'src/cloudwatch/aws_cloudwatch_metric_alarm.dart'
         CloudwatchMetricAlarmComparisonOperator,
         CloudwatchMetricAlarmEvaluateLowSampleCountPercentiles,
         CloudwatchMetricAlarmEvaluationCriteria,
-        CloudwatchMetricAlarmEvaluationCriteriaPromqlCriteria,
+        CloudwatchMetricAlarmMetric,
         CloudwatchMetricAlarmMetricQuery,
-        CloudwatchMetricAlarmMetricQueryMetric,
-        CloudwatchMetricAlarmMetricQueryMetricStat,
-        CloudwatchMetricAlarmMetricQueryMetricUnit,
+        CloudwatchMetricAlarmMetricUnit,
+        CloudwatchMetricAlarmPromqlCriteria,
         CloudwatchMetricAlarmSignal,
         CloudwatchMetricAlarmSignalEvaluationCriteria,
         CloudwatchMetricAlarmSignalMetricName,
         CloudwatchMetricAlarmSignalMetricQuery,
+        CloudwatchMetricAlarmStat,
         CloudwatchMetricAlarmStatistic,
         CloudwatchMetricAlarmThreshold,
         CloudwatchMetricAlarmThresholdChoice,
@@ -243,16 +238,16 @@ export 'src/cloudwatch/aws_cloudwatch_metric_stream.dart'
     show
         AwsCloudwatchMetricStream,
         CloudwatchMetricStreamExcludeFilter,
+        CloudwatchMetricStreamExcludeFilterChoice,
         CloudwatchMetricStreamFilter,
-        CloudwatchMetricStreamFilterExcludeFilter,
-        CloudwatchMetricStreamFilterIncludeFilter,
         CloudwatchMetricStreamIncludeFilter,
+        CloudwatchMetricStreamIncludeFilterChoice,
+        CloudwatchMetricStreamIncludeMetric,
         CloudwatchMetricStreamName,
         CloudwatchMetricStreamNameChoice,
         CloudwatchMetricStreamNamePrefix,
         CloudwatchMetricStreamOutputFormat,
-        CloudwatchMetricStreamStatisticsConfiguration,
-        CloudwatchMetricStreamStatisticsConfigurationIncludeMetric;
+        CloudwatchMetricStreamStatisticsConfiguration;
 export 'src/cloudwatch/aws_cloudwatch_otel_enrichment.dart'
     show AwsCloudwatchOtelEnrichment;
 export 'src/cloudwatch/aws_cloudwatch_query_definition.dart'

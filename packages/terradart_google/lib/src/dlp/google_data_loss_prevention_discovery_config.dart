@@ -35,20 +35,18 @@ final class DataLossPreventionDiscoveryConfigActions {
     this.tagResources,
   });
 
-  final DataLossPreventionDiscoveryConfigActionsExportData? exportData;
+  final DataLossPreventionDiscoveryConfigExportData? exportData;
 
-  final DataLossPreventionDiscoveryConfigActionsPubSubNotification?
-  pubSubNotification;
+  final DataLossPreventionDiscoveryConfigPubSubNotification? pubSubNotification;
 
-  final DataLossPreventionDiscoveryConfigActionsPublishToChronicle?
-  publishToChronicle;
+  final DataLossPreventionDiscoveryConfigPublishToChronicle? publishToChronicle;
 
-  final DataLossPreventionDiscoveryConfigActionsPublishToDataplexCatalog?
+  final DataLossPreventionDiscoveryConfigPublishToDataplexCatalog?
   publishToDataplexCatalog;
 
-  final DataLossPreventionDiscoveryConfigActionsPublishToScc? publishToScc;
+  final DataLossPreventionDiscoveryConfigPublishToScc? publishToScc;
 
-  final DataLossPreventionDiscoveryConfigActionsTagResources? tagResources;
+  final DataLossPreventionDiscoveryConfigTagResources? tagResources;
 
   Map<String, Object?> encode() => {
     'export_data': ?exportData?.encode(),
@@ -63,16 +61,15 @@ final class DataLossPreventionDiscoveryConfigActions {
 /// Typed helper for the `actions.export_data` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigActionsExportData {
-  const DataLossPreventionDiscoveryConfigActionsExportData({
+final class DataLossPreventionDiscoveryConfigExportData {
+  const DataLossPreventionDiscoveryConfigExportData({
     this.profileTable,
     this.sampleFindingsTable,
   });
 
-  final DataLossPreventionDiscoveryConfigActionsExportDataProfileTable?
-  profileTable;
+  final DataLossPreventionDiscoveryConfigProfileTable? profileTable;
 
-  final DataLossPreventionDiscoveryConfigActionsExportDataSampleFindingsTable?
+  final DataLossPreventionDiscoveryConfigSampleFindingsTable?
   sampleFindingsTable;
 
   Map<String, Object?> encode() => {
@@ -84,8 +81,8 @@ final class DataLossPreventionDiscoveryConfigActionsExportData {
 /// Typed helper for the `actions.export_data.profile_table` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigActionsExportDataProfileTable {
-  const DataLossPreventionDiscoveryConfigActionsExportDataProfileTable({
+final class DataLossPreventionDiscoveryConfigProfileTable {
+  const DataLossPreventionDiscoveryConfigProfileTable({
     this.datasetId,
     this.projectId,
     this.tableId,
@@ -107,8 +104,8 @@ final class DataLossPreventionDiscoveryConfigActionsExportDataProfileTable {
 /// Typed helper for the `actions.export_data.sample_findings_table` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigActionsExportDataSampleFindingsTable {
-  const DataLossPreventionDiscoveryConfigActionsExportDataSampleFindingsTable({
+final class DataLossPreventionDiscoveryConfigSampleFindingsTable {
+  const DataLossPreventionDiscoveryConfigSampleFindingsTable({
     this.datasetId,
     this.projectId,
     this.tableId,
@@ -130,26 +127,22 @@ final class DataLossPreventionDiscoveryConfigActionsExportDataSampleFindingsTabl
 /// Typed helper for the `actions.pub_sub_notification` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigActionsPubSubNotification {
-  const DataLossPreventionDiscoveryConfigActionsPubSubNotification({
+final class DataLossPreventionDiscoveryConfigPubSubNotification {
+  const DataLossPreventionDiscoveryConfigPubSubNotification({
     this.detailOfMessage,
     this.event,
     this.topic,
     this.pubsubCondition,
   });
 
-  final TfArg<
-    DataLossPreventionDiscoveryConfigActionsPubSubNotificationDetailOfMessage
-  >?
+  final TfArg<DataLossPreventionDiscoveryConfigDetailOfMessage>?
   detailOfMessage;
 
-  final TfArg<DataLossPreventionDiscoveryConfigActionsPubSubNotificationEvent>?
-  event;
+  final TfArg<DataLossPreventionDiscoveryConfigEvent>? event;
 
   final RefTo<GooglePubsubTopic>? topic;
 
-  final DataLossPreventionDiscoveryConfigActionsPubSubNotificationPubsubCondition?
-  pubsubCondition;
+  final DataLossPreventionDiscoveryConfigPubsubCondition? pubsubCondition;
 
   Map<String, Object?> encode() => {
     'detail_of_message': ?detailOfMessage?.toTfJson(),
@@ -160,29 +153,23 @@ final class DataLossPreventionDiscoveryConfigActionsPubSubNotification {
 }
 
 /// `detail_of_message` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigActionsPubSubNotificationDetailOfMessage
-    implements TerraformEnum {
+enum DataLossPreventionDiscoveryConfigDetailOfMessage implements TerraformEnum {
   tableProfile('TABLE_PROFILE'),
   resourceName('RESOURCE_NAME');
 
-  const DataLossPreventionDiscoveryConfigActionsPubSubNotificationDetailOfMessage(
-    this.terraformValue,
-  );
+  const DataLossPreventionDiscoveryConfigDetailOfMessage(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `event` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigActionsPubSubNotificationEvent
-    implements TerraformEnum {
+enum DataLossPreventionDiscoveryConfigEvent implements TerraformEnum {
   newProfile('NEW_PROFILE'),
   changedProfile('CHANGED_PROFILE'),
   scoreIncreased('SCORE_INCREASED'),
   errorChanged('ERROR_CHANGED');
 
-  const DataLossPreventionDiscoveryConfigActionsPubSubNotificationEvent(
-    this.terraformValue,
-  );
+  const DataLossPreventionDiscoveryConfigEvent(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -190,13 +177,10 @@ enum DataLossPreventionDiscoveryConfigActionsPubSubNotificationEvent
 /// Typed helper for the `actions.pub_sub_notification.pubsub_condition` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigActionsPubSubNotificationPubsubCondition {
-  const DataLossPreventionDiscoveryConfigActionsPubSubNotificationPubsubCondition({
-    this.expressions,
-  });
+final class DataLossPreventionDiscoveryConfigPubsubCondition {
+  const DataLossPreventionDiscoveryConfigPubsubCondition({this.expressions});
 
-  final DataLossPreventionDiscoveryConfigActionsPubSubNotificationPubsubConditionExpressions?
-  expressions;
+  final DataLossPreventionDiscoveryConfigExpressions? expressions;
 
   Map<String, Object?> encode() => {'expressions': ?expressions?.encode()};
 }
@@ -204,20 +188,16 @@ final class DataLossPreventionDiscoveryConfigActionsPubSubNotificationPubsubCond
 /// Typed helper for the `actions.pub_sub_notification.pubsub_condition.expressions` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigActionsPubSubNotificationPubsubConditionExpressions {
-  const DataLossPreventionDiscoveryConfigActionsPubSubNotificationPubsubConditionExpressions({
+final class DataLossPreventionDiscoveryConfigExpressions {
+  const DataLossPreventionDiscoveryConfigExpressions({
     this.logicalOperator,
     this.conditions,
   });
 
-  final TfArg<
-    DataLossPreventionDiscoveryConfigActionsPubSubNotificationPubsubConditionExpressionsLogicalOperator
-  >?
+  final TfArg<DataLossPreventionDiscoveryConfigLogicalOperator>?
   logicalOperator;
 
-  final List<
-    DataLossPreventionDiscoveryConfigActionsPubSubNotificationPubsubConditionExpressionsConditions
-  >?
+  final List<DataLossPreventionDiscoveryConfigExpressionsConditions>?
   conditions;
 
   Map<String, Object?> encode() => {
@@ -228,14 +208,11 @@ final class DataLossPreventionDiscoveryConfigActionsPubSubNotificationPubsubCond
 }
 
 /// `logical_operator` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigActionsPubSubNotificationPubsubConditionExpressionsLogicalOperator
-    implements TerraformEnum {
+enum DataLossPreventionDiscoveryConfigLogicalOperator implements TerraformEnum {
   or('OR'),
   and('AND');
 
-  const DataLossPreventionDiscoveryConfigActionsPubSubNotificationPubsubConditionExpressionsLogicalOperator(
-    this.terraformValue,
-  );
+  const DataLossPreventionDiscoveryConfigLogicalOperator(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -243,20 +220,16 @@ enum DataLossPreventionDiscoveryConfigActionsPubSubNotificationPubsubConditionEx
 /// Typed helper for the `actions.pub_sub_notification.pubsub_condition.expressions.conditions` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigActionsPubSubNotificationPubsubConditionExpressionsConditions {
-  const DataLossPreventionDiscoveryConfigActionsPubSubNotificationPubsubConditionExpressionsConditions({
+final class DataLossPreventionDiscoveryConfigExpressionsConditions {
+  const DataLossPreventionDiscoveryConfigExpressionsConditions({
     this.minimumRiskScore,
     this.minimumSensitivityScore,
   });
 
-  final TfArg<
-    DataLossPreventionDiscoveryConfigActionsPubSubNotificationPubsubConditionExpressionsConditionsMinimumRiskScore
-  >?
+  final TfArg<DataLossPreventionDiscoveryConfigMinimumRiskScore>?
   minimumRiskScore;
 
-  final TfArg<
-    DataLossPreventionDiscoveryConfigActionsPubSubNotificationPubsubConditionExpressionsConditionsMinimumSensitivityScore
-  >?
+  final TfArg<DataLossPreventionDiscoveryConfigMinimumSensitivityScore>?
   minimumSensitivityScore;
 
   Map<String, Object?> encode() => {
@@ -266,25 +239,23 @@ final class DataLossPreventionDiscoveryConfigActionsPubSubNotificationPubsubCond
 }
 
 /// `minimum_risk_score` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigActionsPubSubNotificationPubsubConditionExpressionsConditionsMinimumRiskScore
+enum DataLossPreventionDiscoveryConfigMinimumRiskScore
     implements TerraformEnum {
   high('HIGH'),
   mediumOrHigh('MEDIUM_OR_HIGH');
 
-  const DataLossPreventionDiscoveryConfigActionsPubSubNotificationPubsubConditionExpressionsConditionsMinimumRiskScore(
-    this.terraformValue,
-  );
+  const DataLossPreventionDiscoveryConfigMinimumRiskScore(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `minimum_sensitivity_score` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigActionsPubSubNotificationPubsubConditionExpressionsConditionsMinimumSensitivityScore
+enum DataLossPreventionDiscoveryConfigMinimumSensitivityScore
     implements TerraformEnum {
   high('HIGH'),
   mediumOrHigh('MEDIUM_OR_HIGH');
 
-  const DataLossPreventionDiscoveryConfigActionsPubSubNotificationPubsubConditionExpressionsConditionsMinimumSensitivityScore(
+  const DataLossPreventionDiscoveryConfigMinimumSensitivityScore(
     this.terraformValue,
   );
   @override
@@ -294,8 +265,8 @@ enum DataLossPreventionDiscoveryConfigActionsPubSubNotificationPubsubConditionEx
 /// Typed helper for the `actions.publish_to_chronicle` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigActionsPublishToChronicle {
-  const DataLossPreventionDiscoveryConfigActionsPublishToChronicle();
+final class DataLossPreventionDiscoveryConfigPublishToChronicle {
+  const DataLossPreventionDiscoveryConfigPublishToChronicle();
 
   Map<String, Object?> encode() => {};
 }
@@ -303,8 +274,8 @@ final class DataLossPreventionDiscoveryConfigActionsPublishToChronicle {
 /// Typed helper for the `actions.publish_to_dataplex_catalog` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigActionsPublishToDataplexCatalog {
-  const DataLossPreventionDiscoveryConfigActionsPublishToDataplexCatalog();
+final class DataLossPreventionDiscoveryConfigPublishToDataplexCatalog {
+  const DataLossPreventionDiscoveryConfigPublishToDataplexCatalog();
 
   Map<String, Object?> encode() => {};
 }
@@ -312,8 +283,8 @@ final class DataLossPreventionDiscoveryConfigActionsPublishToDataplexCatalog {
 /// Typed helper for the `actions.publish_to_scc` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigActionsPublishToScc {
-  const DataLossPreventionDiscoveryConfigActionsPublishToScc();
+final class DataLossPreventionDiscoveryConfigPublishToScc {
+  const DataLossPreventionDiscoveryConfigPublishToScc();
 
   Map<String, Object?> encode() => {};
 }
@@ -321,8 +292,8 @@ final class DataLossPreventionDiscoveryConfigActionsPublishToScc {
 /// Typed helper for the `actions.tag_resources` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigActionsTagResources {
-  const DataLossPreventionDiscoveryConfigActionsTagResources({
+final class DataLossPreventionDiscoveryConfigTagResources {
+  const DataLossPreventionDiscoveryConfigTagResources({
     this.lowerDataRiskToLow,
     this.profileGenerationsToTag,
     this.tagConditions,
@@ -330,15 +301,10 @@ final class DataLossPreventionDiscoveryConfigActionsTagResources {
 
   final TfArg<bool>? lowerDataRiskToLow;
 
-  final List<
-    TfArg<
-      DataLossPreventionDiscoveryConfigActionsTagResourcesProfileGenerationsToTag
-    >
-  >?
+  final List<TfArg<DataLossPreventionDiscoveryConfigProfileGenerationsToTag>>?
   profileGenerationsToTag;
 
-  final List<DataLossPreventionDiscoveryConfigActionsTagResourcesTagConditions>?
-  tagConditions;
+  final List<DataLossPreventionDiscoveryConfigTagConditions>? tagConditions;
 
   Map<String, Object?> encode() => {
     'lower_data_risk_to_low': ?lowerDataRiskToLow?.toTfJson(),
@@ -352,12 +318,12 @@ final class DataLossPreventionDiscoveryConfigActionsTagResources {
 }
 
 /// `profile_generations_to_tag` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigActionsTagResourcesProfileGenerationsToTag
+enum DataLossPreventionDiscoveryConfigProfileGenerationsToTag
     implements TerraformEnum {
   profileGenerationNew('PROFILE_GENERATION_NEW'),
   profileGenerationUpdate('PROFILE_GENERATION_UPDATE');
 
-  const DataLossPreventionDiscoveryConfigActionsTagResourcesProfileGenerationsToTag(
+  const DataLossPreventionDiscoveryConfigProfileGenerationsToTag(
     this.terraformValue,
   );
   @override
@@ -367,17 +333,15 @@ enum DataLossPreventionDiscoveryConfigActionsTagResourcesProfileGenerationsToTag
 /// Typed helper for the `actions.tag_resources.tag_conditions` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigActionsTagResourcesTagConditions {
-  const DataLossPreventionDiscoveryConfigActionsTagResourcesTagConditions({
+final class DataLossPreventionDiscoveryConfigTagConditions {
+  const DataLossPreventionDiscoveryConfigTagConditions({
     this.sensitivityScore,
     this.tag,
   });
 
-  final DataLossPreventionDiscoveryConfigActionsTagResourcesTagConditionsSensitivityScore?
-  sensitivityScore;
+  final DataLossPreventionDiscoveryConfigSensitivityScore? sensitivityScore;
 
-  final DataLossPreventionDiscoveryConfigActionsTagResourcesTagConditionsTag?
-  tag;
+  final DataLossPreventionDiscoveryConfigTag? tag;
 
   Map<String, Object?> encode() => {
     'sensitivity_score': ?sensitivityScore?.encode(),
@@ -388,30 +352,24 @@ final class DataLossPreventionDiscoveryConfigActionsTagResourcesTagConditions {
 /// Typed helper for the `actions.tag_resources.tag_conditions.sensitivity_score` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigActionsTagResourcesTagConditionsSensitivityScore {
-  const DataLossPreventionDiscoveryConfigActionsTagResourcesTagConditionsSensitivityScore({
+final class DataLossPreventionDiscoveryConfigSensitivityScore {
+  const DataLossPreventionDiscoveryConfigSensitivityScore({
     required this.score,
   });
 
-  final TfArg<
-    DataLossPreventionDiscoveryConfigActionsTagResourcesTagConditionsSensitivityScoreScore
-  >
-  score;
+  final TfArg<DataLossPreventionDiscoveryConfigScore> score;
 
   Map<String, Object?> encode() => {'score': score.toTfJson()};
 }
 
 /// `score` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigActionsTagResourcesTagConditionsSensitivityScoreScore
-    implements TerraformEnum {
+enum DataLossPreventionDiscoveryConfigScore implements TerraformEnum {
   sensitivityLow('SENSITIVITY_LOW'),
   sensitivityModerate('SENSITIVITY_MODERATE'),
   sensitivityHigh('SENSITIVITY_HIGH'),
   sensitivityUnknown('SENSITIVITY_UNKNOWN');
 
-  const DataLossPreventionDiscoveryConfigActionsTagResourcesTagConditionsSensitivityScoreScore(
-    this.terraformValue,
-  );
+  const DataLossPreventionDiscoveryConfigScore(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -419,10 +377,8 @@ enum DataLossPreventionDiscoveryConfigActionsTagResourcesTagConditionsSensitivit
 /// Typed helper for the `actions.tag_resources.tag_conditions.tag` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigActionsTagResourcesTagConditionsTag {
-  const DataLossPreventionDiscoveryConfigActionsTagResourcesTagConditionsTag({
-    this.namespacedValue,
-  });
+final class DataLossPreventionDiscoveryConfigTag {
+  const DataLossPreventionDiscoveryConfigTag({this.namespacedValue});
 
   final TfArg<String>? namespacedValue;
 
@@ -477,8 +433,7 @@ final class DataLossPreventionDiscoveryConfigOtherCloudStartingLocation {
     this.awsLocation,
   });
 
-  final DataLossPreventionDiscoveryConfigOtherCloudStartingLocationAwsLocation?
-  awsLocation;
+  final DataLossPreventionDiscoveryConfigAwsLocation? awsLocation;
 
   Map<String, Object?> encode() => {'aws_location': ?awsLocation?.encode()};
 }
@@ -486,8 +441,8 @@ final class DataLossPreventionDiscoveryConfigOtherCloudStartingLocation {
 /// Typed helper for the `other_cloud_starting_location.aws_location` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigOtherCloudStartingLocationAwsLocation {
-  const DataLossPreventionDiscoveryConfigOtherCloudStartingLocationAwsLocation({
+final class DataLossPreventionDiscoveryConfigAwsLocation {
+  const DataLossPreventionDiscoveryConfigAwsLocation({
     this.accountId,
     this.allAssetInventoryAssets,
   });
@@ -514,17 +469,15 @@ final class DataLossPreventionDiscoveryConfigTargets {
     this.secretsTarget,
   });
 
-  final DataLossPreventionDiscoveryConfigTargetsBigQueryTarget? bigQueryTarget;
+  final DataLossPreventionDiscoveryConfigBigQueryTarget? bigQueryTarget;
 
-  final DataLossPreventionDiscoveryConfigTargetsCloudSqlTarget? cloudSqlTarget;
+  final DataLossPreventionDiscoveryConfigCloudSqlTarget? cloudSqlTarget;
 
-  final DataLossPreventionDiscoveryConfigTargetsCloudStorageTarget?
-  cloudStorageTarget;
+  final DataLossPreventionDiscoveryConfigCloudStorageTarget? cloudStorageTarget;
 
-  final DataLossPreventionDiscoveryConfigTargetsOtherCloudTarget?
-  otherCloudTarget;
+  final DataLossPreventionDiscoveryConfigOtherCloudTarget? otherCloudTarget;
 
-  final DataLossPreventionDiscoveryConfigTargetsSecretsTarget? secretsTarget;
+  final DataLossPreventionDiscoveryConfigSecretsTarget? secretsTarget;
 
   Map<String, Object?> encode() => {
     'big_query_target': ?bigQueryTarget?.encode(),
@@ -538,23 +491,21 @@ final class DataLossPreventionDiscoveryConfigTargets {
 /// Typed helper for the `targets.big_query_target` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsBigQueryTarget {
-  const DataLossPreventionDiscoveryConfigTargetsBigQueryTarget({
+final class DataLossPreventionDiscoveryConfigBigQueryTarget {
+  const DataLossPreventionDiscoveryConfigBigQueryTarget({
     this.cadence,
     this.conditions,
     this.disabled,
     this.filter,
   });
 
-  final DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadence? cadence;
+  final DataLossPreventionDiscoveryConfigCadence? cadence;
 
-  final DataLossPreventionDiscoveryConfigTargetsBigQueryTargetConditions?
-  conditions;
+  final DataLossPreventionDiscoveryConfigBigQueryTargetConditions? conditions;
 
-  final DataLossPreventionDiscoveryConfigTargetsBigQueryTargetDisabled?
-  disabled;
+  final DataLossPreventionDiscoveryConfigDisabled? disabled;
 
-  final DataLossPreventionDiscoveryConfigTargetsBigQueryTargetFilter? filter;
+  final DataLossPreventionDiscoveryConfigBigQueryTargetFilter? filter;
 
   Map<String, Object?> encode() => {
     'cadence': ?cadence?.encode(),
@@ -567,26 +518,24 @@ final class DataLossPreventionDiscoveryConfigTargetsBigQueryTarget {
 /// Typed helper for the `targets.big_query_target.cadence` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadence {
-  const DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadence({
+final class DataLossPreventionDiscoveryConfigCadence {
+  const DataLossPreventionDiscoveryConfigCadence({
     this.refreshFrequency,
     this.inspectTemplateModifiedCadence,
     this.schemaModifiedCadence,
     this.tableModifiedCadence,
   });
 
-  final TfArg<
-    DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceRefreshFrequency
-  >?
+  final TfArg<DataLossPreventionDiscoveryConfigRefreshFrequency>?
   refreshFrequency;
 
-  final DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceInspectTemplateModifiedCadence?
+  final DataLossPreventionDiscoveryConfigCadenceInspectTemplateModifiedCadence?
   inspectTemplateModifiedCadence;
 
-  final DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceSchemaModifiedCadence?
+  final DataLossPreventionDiscoveryConfigCadenceSchemaModifiedCadence?
   schemaModifiedCadence;
 
-  final DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceTableModifiedCadence?
+  final DataLossPreventionDiscoveryConfigTableModifiedCadence?
   tableModifiedCadence;
 
   Map<String, Object?> encode() => {
@@ -599,45 +548,38 @@ final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadence {
 }
 
 /// `refresh_frequency` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceRefreshFrequency
+enum DataLossPreventionDiscoveryConfigRefreshFrequency
     implements TerraformEnum {
   updateFrequencyNever('UPDATE_FREQUENCY_NEVER'),
   updateFrequencyDaily('UPDATE_FREQUENCY_DAILY'),
   updateFrequencyMonthly('UPDATE_FREQUENCY_MONTHLY');
 
-  const DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceRefreshFrequency(
-    this.terraformValue,
-  );
+  const DataLossPreventionDiscoveryConfigRefreshFrequency(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `targets.big_query_target.cadence.inspect_template_modified_cadence` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceInspectTemplateModifiedCadence {
-  const DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceInspectTemplateModifiedCadence({
+final class DataLossPreventionDiscoveryConfigCadenceInspectTemplateModifiedCadence {
+  const DataLossPreventionDiscoveryConfigCadenceInspectTemplateModifiedCadence({
     this.frequency,
   });
 
-  final TfArg<
-    DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceInspectTemplateModifiedCadenceFrequency
-  >?
-  frequency;
+  final TfArg<DataLossPreventionDiscoveryConfigFrequency>? frequency;
 
   Map<String, Object?> encode() => {'frequency': ?frequency?.toTfJson()};
 }
 
 /// `frequency` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceInspectTemplateModifiedCadenceFrequency
-    implements TerraformEnum {
+enum DataLossPreventionDiscoveryConfigFrequency implements TerraformEnum {
   updateFrequencyNever('UPDATE_FREQUENCY_NEVER'),
   updateFrequencyDaily('UPDATE_FREQUENCY_DAILY'),
   updateFrequencyMonthly('UPDATE_FREQUENCY_MONTHLY');
 
-  const DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceInspectTemplateModifiedCadenceFrequency(
-    this.terraformValue,
-  );
+  const DataLossPreventionDiscoveryConfigFrequency(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -645,23 +587,15 @@ enum DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceInspectTemplat
 /// Typed helper for the `targets.big_query_target.cadence.schema_modified_cadence` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceSchemaModifiedCadence {
-  const DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceSchemaModifiedCadence({
+final class DataLossPreventionDiscoveryConfigCadenceSchemaModifiedCadence {
+  const DataLossPreventionDiscoveryConfigCadenceSchemaModifiedCadence({
     this.frequency,
     this.types,
   });
 
-  final TfArg<
-    DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceSchemaModifiedCadenceFrequency
-  >?
-  frequency;
+  final TfArg<DataLossPreventionDiscoveryConfigFrequency>? frequency;
 
-  final List<
-    TfArg<
-      DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceSchemaModifiedCadenceTypes
-    >
-  >?
-  types;
+  final List<TfArg<DataLossPreventionDiscoveryConfigCadenceTypes>>? types;
 
   Map<String, Object?> encode() => {
     'frequency': ?frequency?.toTfJson(),
@@ -669,29 +603,12 @@ final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceSchemaM
   };
 }
 
-/// `frequency` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceSchemaModifiedCadenceFrequency
-    implements TerraformEnum {
-  updateFrequencyNever('UPDATE_FREQUENCY_NEVER'),
-  updateFrequencyDaily('UPDATE_FREQUENCY_DAILY'),
-  updateFrequencyMonthly('UPDATE_FREQUENCY_MONTHLY');
-
-  const DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceSchemaModifiedCadenceFrequency(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// `types` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceSchemaModifiedCadenceTypes
-    implements TerraformEnum {
+enum DataLossPreventionDiscoveryConfigCadenceTypes implements TerraformEnum {
   schemaNewColumns('SCHEMA_NEW_COLUMNS'),
   schemaRemovedColumns('SCHEMA_REMOVED_COLUMNS');
 
-  const DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceSchemaModifiedCadenceTypes(
-    this.terraformValue,
-  );
+  const DataLossPreventionDiscoveryConfigCadenceTypes(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -699,16 +616,13 @@ enum DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceSchemaModified
 /// Typed helper for the `targets.big_query_target.cadence.table_modified_cadence` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceTableModifiedCadence {
-  const DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceTableModifiedCadence({
+final class DataLossPreventionDiscoveryConfigTableModifiedCadence {
+  const DataLossPreventionDiscoveryConfigTableModifiedCadence({
     this.frequency,
     this.types,
   });
 
-  final TfArg<
-    DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceTableModifiedCadenceFrequency
-  >?
-  frequency;
+  final TfArg<DataLossPreventionDiscoveryConfigFrequency>? frequency;
 
   final TfArg<List<String>>? types;
 
@@ -718,25 +632,11 @@ final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceTableMo
   };
 }
 
-/// `frequency` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceTableModifiedCadenceFrequency
-    implements TerraformEnum {
-  updateFrequencyNever('UPDATE_FREQUENCY_NEVER'),
-  updateFrequencyDaily('UPDATE_FREQUENCY_DAILY'),
-  updateFrequencyMonthly('UPDATE_FREQUENCY_MONTHLY');
-
-  const DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceTableModifiedCadenceFrequency(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `targets.big_query_target.conditions` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetConditions {
-  const DataLossPreventionDiscoveryConfigTargetsBigQueryTargetConditions({
+final class DataLossPreventionDiscoveryConfigBigQueryTargetConditions {
+  const DataLossPreventionDiscoveryConfigBigQueryTargetConditions({
     this.createdAfter,
     this.typeCollection,
     this.orConditions,
@@ -745,16 +645,11 @@ final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetConditions {
 
   final TfArg<String>? createdAfter;
 
-  final TfArg<
-    DataLossPreventionDiscoveryConfigTargetsBigQueryTargetConditionsTypeCollection
-  >?
-  typeCollection;
+  final TfArg<DataLossPreventionDiscoveryConfigTypeCollection>? typeCollection;
 
-  final DataLossPreventionDiscoveryConfigTargetsBigQueryTargetConditionsOrConditions?
-  orConditions;
+  final DataLossPreventionDiscoveryConfigOrConditions? orConditions;
 
-  final DataLossPreventionDiscoveryConfigTargetsBigQueryTargetConditionsTypes?
-  types;
+  final DataLossPreventionDiscoveryConfigBigQueryTargetTypes? types;
 
   Map<String, Object?> encode() => {
     'created_after': ?createdAfter?.toTfJson(),
@@ -765,16 +660,13 @@ final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetConditions {
 }
 
 /// `type_collection` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigTargetsBigQueryTargetConditionsTypeCollection
-    implements TerraformEnum {
+enum DataLossPreventionDiscoveryConfigTypeCollection implements TerraformEnum {
   bigQueryCollectionAllTypes('BIG_QUERY_COLLECTION_ALL_TYPES'),
   bigQueryCollectionOnlySupportedTypes(
     'BIG_QUERY_COLLECTION_ONLY_SUPPORTED_TYPES',
   );
 
-  const DataLossPreventionDiscoveryConfigTargetsBigQueryTargetConditionsTypeCollection(
-    this.terraformValue,
-  );
+  const DataLossPreventionDiscoveryConfigTypeCollection(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -782,8 +674,8 @@ enum DataLossPreventionDiscoveryConfigTargetsBigQueryTargetConditionsTypeCollect
 /// Typed helper for the `targets.big_query_target.conditions.or_conditions` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetConditionsOrConditions {
-  const DataLossPreventionDiscoveryConfigTargetsBigQueryTargetConditionsOrConditions({
+final class DataLossPreventionDiscoveryConfigOrConditions {
+  const DataLossPreventionDiscoveryConfigOrConditions({
     this.minAge,
     this.minRowCount,
   });
@@ -801,17 +693,10 @@ final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetConditionsOrCo
 /// Typed helper for the `targets.big_query_target.conditions.types` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetConditionsTypes {
-  const DataLossPreventionDiscoveryConfigTargetsBigQueryTargetConditionsTypes({
-    this.types,
-  });
+final class DataLossPreventionDiscoveryConfigBigQueryTargetTypes {
+  const DataLossPreventionDiscoveryConfigBigQueryTargetTypes({this.types});
 
-  final List<
-    TfArg<
-      DataLossPreventionDiscoveryConfigTargetsBigQueryTargetConditionsTypesTypes
-    >
-  >?
-  types;
+  final List<TfArg<DataLossPreventionDiscoveryConfigTypesTypes>>? types;
 
   Map<String, Object?> encode() => {
     if (types != null) 'types': [for (final e in types!) e.toTfJson()],
@@ -819,23 +704,21 @@ final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetConditionsType
 }
 
 /// `types` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigTargetsBigQueryTargetConditionsTypesTypes
-    implements TerraformEnum {
+enum DataLossPreventionDiscoveryConfigTypesTypes implements TerraformEnum {
   bigQueryTableTypeTable('BIG_QUERY_TABLE_TYPE_TABLE'),
   bigQueryTableTypeExternalBigLake('BIG_QUERY_TABLE_TYPE_EXTERNAL_BIG_LAKE');
 
-  const DataLossPreventionDiscoveryConfigTargetsBigQueryTargetConditionsTypesTypes(
-    this.terraformValue,
-  );
+  const DataLossPreventionDiscoveryConfigTypesTypes(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `targets.big_query_target.disabled` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetDisabled {
-  const DataLossPreventionDiscoveryConfigTargetsBigQueryTargetDisabled();
+final class DataLossPreventionDiscoveryConfigDisabled {
+  const DataLossPreventionDiscoveryConfigDisabled();
 
   Map<String, Object?> encode() => {};
 }
@@ -843,21 +726,18 @@ final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetDisabled {
 /// Typed helper for the `targets.big_query_target.filter` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetFilter {
-  const DataLossPreventionDiscoveryConfigTargetsBigQueryTargetFilter({
+final class DataLossPreventionDiscoveryConfigBigQueryTargetFilter {
+  const DataLossPreventionDiscoveryConfigBigQueryTargetFilter({
     this.otherTables,
     this.tableReference,
     this.tables,
   });
 
-  final DataLossPreventionDiscoveryConfigTargetsBigQueryTargetFilterOtherTables?
-  otherTables;
+  final DataLossPreventionDiscoveryConfigOtherTables? otherTables;
 
-  final DataLossPreventionDiscoveryConfigTargetsBigQueryTargetFilterTableReference?
-  tableReference;
+  final DataLossPreventionDiscoveryConfigTableReference? tableReference;
 
-  final DataLossPreventionDiscoveryConfigTargetsBigQueryTargetFilterTables?
-  tables;
+  final DataLossPreventionDiscoveryConfigTables? tables;
 
   Map<String, Object?> encode() => {
     'other_tables': ?otherTables?.encode(),
@@ -869,8 +749,8 @@ final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetFilter {
 /// Typed helper for the `targets.big_query_target.filter.other_tables` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetFilterOtherTables {
-  const DataLossPreventionDiscoveryConfigTargetsBigQueryTargetFilterOtherTables();
+final class DataLossPreventionDiscoveryConfigOtherTables {
+  const DataLossPreventionDiscoveryConfigOtherTables();
 
   Map<String, Object?> encode() => {};
 }
@@ -878,8 +758,8 @@ final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetFilterOtherTab
 /// Typed helper for the `targets.big_query_target.filter.table_reference` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetFilterTableReference {
-  const DataLossPreventionDiscoveryConfigTargetsBigQueryTargetFilterTableReference({
+final class DataLossPreventionDiscoveryConfigTableReference {
+  const DataLossPreventionDiscoveryConfigTableReference({
     required this.datasetId,
     this.projectId,
     required this.tableId,
@@ -901,13 +781,10 @@ final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetFilterTableRef
 /// Typed helper for the `targets.big_query_target.filter.tables` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetFilterTables {
-  const DataLossPreventionDiscoveryConfigTargetsBigQueryTargetFilterTables({
-    this.includeRegexes,
-  });
+final class DataLossPreventionDiscoveryConfigTables {
+  const DataLossPreventionDiscoveryConfigTables({this.includeRegexes});
 
-  final DataLossPreventionDiscoveryConfigTargetsBigQueryTargetFilterTablesIncludeRegexes?
-  includeRegexes;
+  final DataLossPreventionDiscoveryConfigTablesIncludeRegexes? includeRegexes;
 
   Map<String, Object?> encode() => {
     'include_regexes': ?includeRegexes?.encode(),
@@ -917,15 +794,10 @@ final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetFilterTables {
 /// Typed helper for the `targets.big_query_target.filter.tables.include_regexes` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetFilterTablesIncludeRegexes {
-  const DataLossPreventionDiscoveryConfigTargetsBigQueryTargetFilterTablesIncludeRegexes({
-    this.patterns,
-  });
+final class DataLossPreventionDiscoveryConfigTablesIncludeRegexes {
+  const DataLossPreventionDiscoveryConfigTablesIncludeRegexes({this.patterns});
 
-  final List<
-    DataLossPreventionDiscoveryConfigTargetsBigQueryTargetFilterTablesIncludeRegexesPatterns
-  >?
-  patterns;
+  final List<DataLossPreventionDiscoveryConfigTablesPatterns>? patterns;
 
   Map<String, Object?> encode() => {
     if (patterns != null) 'patterns': [for (final e in patterns!) e.encode()],
@@ -935,8 +807,8 @@ final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetFilterTablesIn
 /// Typed helper for the `targets.big_query_target.filter.tables.include_regexes.patterns` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetFilterTablesIncludeRegexesPatterns {
-  const DataLossPreventionDiscoveryConfigTargetsBigQueryTargetFilterTablesIncludeRegexesPatterns({
+final class DataLossPreventionDiscoveryConfigTablesPatterns {
+  const DataLossPreventionDiscoveryConfigTablesPatterns({
     this.datasetIdRegex,
     this.projectIdRegex,
     this.tableIdRegex,
@@ -958,23 +830,21 @@ final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetFilterTablesIn
 /// Typed helper for the `targets.cloud_sql_target` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsCloudSqlTarget {
-  const DataLossPreventionDiscoveryConfigTargetsCloudSqlTarget({
+final class DataLossPreventionDiscoveryConfigCloudSqlTarget {
+  const DataLossPreventionDiscoveryConfigCloudSqlTarget({
     this.conditions,
     this.disabled,
     required this.filter,
     this.generationCadence,
   });
 
-  final DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetConditions?
-  conditions;
+  final DataLossPreventionDiscoveryConfigCloudSqlTargetConditions? conditions;
 
-  final DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetDisabled?
-  disabled;
+  final DataLossPreventionDiscoveryConfigDisabled? disabled;
 
-  final DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetFilter filter;
+  final DataLossPreventionDiscoveryConfigCloudSqlTargetFilter filter;
 
-  final DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetGenerationCadence?
+  final DataLossPreventionDiscoveryConfigCloudSqlTargetGenerationCadence?
   generationCadence;
 
   Map<String, Object?> encode() => {
@@ -988,22 +858,16 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudSqlTarget {
 /// Typed helper for the `targets.cloud_sql_target.conditions` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetConditions {
-  const DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetConditions({
+final class DataLossPreventionDiscoveryConfigCloudSqlTargetConditions {
+  const DataLossPreventionDiscoveryConfigCloudSqlTargetConditions({
     this.databaseEngines,
     this.types,
   });
 
-  final List<
-    TfArg<
-      DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetConditionsDatabaseEngines
-    >
-  >?
+  final List<TfArg<DataLossPreventionDiscoveryConfigDatabaseEngines>>?
   databaseEngines;
 
-  final List<
-    TfArg<DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetConditionsTypes>
-  >?
+  final List<TfArg<DataLossPreventionDiscoveryConfigCloudSqlTargetTypes>>?
   types;
 
   Map<String, Object?> encode() => {
@@ -1014,61 +878,47 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetConditions {
 }
 
 /// `database_engines` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetConditionsDatabaseEngines
-    implements TerraformEnum {
+enum DataLossPreventionDiscoveryConfigDatabaseEngines implements TerraformEnum {
   allSupportedDatabaseEngines('ALL_SUPPORTED_DATABASE_ENGINES'),
   mysql('MYSQL'),
   postgres('POSTGRES');
 
-  const DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetConditionsDatabaseEngines(
-    this.terraformValue,
-  );
+  const DataLossPreventionDiscoveryConfigDatabaseEngines(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `types` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetConditionsTypes
+enum DataLossPreventionDiscoveryConfigCloudSqlTargetTypes
     implements TerraformEnum {
   databaseResourceTypeAllSupportedTypes(
     'DATABASE_RESOURCE_TYPE_ALL_SUPPORTED_TYPES',
   ),
   databaseResourceTypeTable('DATABASE_RESOURCE_TYPE_TABLE');
 
-  const DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetConditionsTypes(
+  const DataLossPreventionDiscoveryConfigCloudSqlTargetTypes(
     this.terraformValue,
   );
   @override
   final String terraformValue;
 }
 
-/// Typed helper for the `targets.cloud_sql_target.disabled` block of
-/// `google_data_loss_prevention_discovery_config` (derived from provider schema).
-@immutable
-final class DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetDisabled {
-  const DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetDisabled();
-
-  Map<String, Object?> encode() => {};
-}
-
 /// Typed helper for the `targets.cloud_sql_target.filter` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetFilter {
-  const DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetFilter({
+final class DataLossPreventionDiscoveryConfigCloudSqlTargetFilter {
+  const DataLossPreventionDiscoveryConfigCloudSqlTargetFilter({
     this.collection,
     this.databaseResourceReference,
     this.others,
   });
 
-  final DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetFilterCollection?
-  collection;
+  final DataLossPreventionDiscoveryConfigCloudSqlTargetCollection? collection;
 
-  final DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetFilterDatabaseResourceReference?
+  final DataLossPreventionDiscoveryConfigDatabaseResourceReference?
   databaseResourceReference;
 
-  final DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetFilterOthers?
-  others;
+  final DataLossPreventionDiscoveryConfigOthers? others;
 
   Map<String, Object?> encode() => {
     'collection': ?collection?.encode(),
@@ -1080,12 +930,12 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetFilter {
 /// Typed helper for the `targets.cloud_sql_target.filter.collection` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetFilterCollection {
-  const DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetFilterCollection({
+final class DataLossPreventionDiscoveryConfigCloudSqlTargetCollection {
+  const DataLossPreventionDiscoveryConfigCloudSqlTargetCollection({
     this.includeRegexes,
   });
 
-  final DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetFilterCollectionIncludeRegexes?
+  final DataLossPreventionDiscoveryConfigCloudSqlTargetIncludeRegexes?
   includeRegexes;
 
   Map<String, Object?> encode() => {
@@ -1096,15 +946,12 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetFilterCollecti
 /// Typed helper for the `targets.cloud_sql_target.filter.collection.include_regexes` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetFilterCollectionIncludeRegexes {
-  const DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetFilterCollectionIncludeRegexes({
+final class DataLossPreventionDiscoveryConfigCloudSqlTargetIncludeRegexes {
+  const DataLossPreventionDiscoveryConfigCloudSqlTargetIncludeRegexes({
     this.patterns,
   });
 
-  final List<
-    DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetFilterCollectionIncludeRegexesPatterns
-  >?
-  patterns;
+  final List<DataLossPreventionDiscoveryConfigCloudSqlTargetPatterns>? patterns;
 
   Map<String, Object?> encode() => {
     if (patterns != null) 'patterns': [for (final e in patterns!) e.encode()],
@@ -1114,8 +961,8 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetFilterCollecti
 /// Typed helper for the `targets.cloud_sql_target.filter.collection.include_regexes.patterns` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetFilterCollectionIncludeRegexesPatterns {
-  const DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetFilterCollectionIncludeRegexesPatterns({
+final class DataLossPreventionDiscoveryConfigCloudSqlTargetPatterns {
+  const DataLossPreventionDiscoveryConfigCloudSqlTargetPatterns({
     this.databaseRegex,
     this.databaseResourceNameRegex,
     this.instanceRegex,
@@ -1141,8 +988,8 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetFilterCollecti
 /// Typed helper for the `targets.cloud_sql_target.filter.database_resource_reference` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetFilterDatabaseResourceReference {
-  const DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetFilterDatabaseResourceReference({
+final class DataLossPreventionDiscoveryConfigDatabaseResourceReference {
+  const DataLossPreventionDiscoveryConfigDatabaseResourceReference({
     required this.database,
     required this.databaseResource,
     required this.instance,
@@ -1167,9 +1014,10 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetFilterDatabase
 
 /// Typed helper for the `targets.cloud_sql_target.filter.others` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetFilterOthers {
-  const DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetFilterOthers();
+final class DataLossPreventionDiscoveryConfigOthers {
+  const DataLossPreventionDiscoveryConfigOthers();
 
   Map<String, Object?> encode() => {};
 }
@@ -1177,22 +1025,20 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetFilterOthers {
 /// Typed helper for the `targets.cloud_sql_target.generation_cadence` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetGenerationCadence {
-  const DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetGenerationCadence({
+final class DataLossPreventionDiscoveryConfigCloudSqlTargetGenerationCadence {
+  const DataLossPreventionDiscoveryConfigCloudSqlTargetGenerationCadence({
     this.refreshFrequency,
     this.inspectTemplateModifiedCadence,
     this.schemaModifiedCadence,
   });
 
-  final TfArg<
-    DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetGenerationCadenceRefreshFrequency
-  >?
+  final TfArg<DataLossPreventionDiscoveryConfigRefreshFrequency>?
   refreshFrequency;
 
-  final DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetGenerationCadenceInspectTemplateModifiedCadence?
+  final DataLossPreventionDiscoveryConfigGenerationCadenceInspectTemplateModifiedCadence?
   inspectTemplateModifiedCadence;
 
-  final DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetGenerationCadenceSchemaModifiedCadence?
+  final DataLossPreventionDiscoveryConfigGenerationCadenceSchemaModifiedCadence?
   schemaModifiedCadence;
 
   Map<String, Object?> encode() => {
@@ -1203,69 +1049,31 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetGenerationCade
   };
 }
 
-/// `refresh_frequency` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetGenerationCadenceRefreshFrequency
-    implements TerraformEnum {
-  updateFrequencyNever('UPDATE_FREQUENCY_NEVER'),
-  updateFrequencyDaily('UPDATE_FREQUENCY_DAILY'),
-  updateFrequencyMonthly('UPDATE_FREQUENCY_MONTHLY');
-
-  const DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetGenerationCadenceRefreshFrequency(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `targets.cloud_sql_target.generation_cadence.inspect_template_modified_cadence` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetGenerationCadenceInspectTemplateModifiedCadence {
-  const DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetGenerationCadenceInspectTemplateModifiedCadence({
+final class DataLossPreventionDiscoveryConfigGenerationCadenceInspectTemplateModifiedCadence {
+  const DataLossPreventionDiscoveryConfigGenerationCadenceInspectTemplateModifiedCadence({
     required this.frequency,
   });
 
-  final TfArg<
-    DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetGenerationCadenceInspectTemplateModifiedCadenceFrequency
-  >
-  frequency;
+  final TfArg<DataLossPreventionDiscoveryConfigFrequency> frequency;
 
   Map<String, Object?> encode() => {'frequency': frequency.toTfJson()};
-}
-
-/// `frequency` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetGenerationCadenceInspectTemplateModifiedCadenceFrequency
-    implements TerraformEnum {
-  updateFrequencyNever('UPDATE_FREQUENCY_NEVER'),
-  updateFrequencyDaily('UPDATE_FREQUENCY_DAILY'),
-  updateFrequencyMonthly('UPDATE_FREQUENCY_MONTHLY');
-
-  const DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetGenerationCadenceInspectTemplateModifiedCadenceFrequency(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `targets.cloud_sql_target.generation_cadence.schema_modified_cadence` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetGenerationCadenceSchemaModifiedCadence {
-  const DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetGenerationCadenceSchemaModifiedCadence({
+final class DataLossPreventionDiscoveryConfigGenerationCadenceSchemaModifiedCadence {
+  const DataLossPreventionDiscoveryConfigGenerationCadenceSchemaModifiedCadence({
     this.frequency,
     this.types,
   });
 
-  final TfArg<
-    DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetGenerationCadenceSchemaModifiedCadenceFrequency
-  >?
-  frequency;
+  final TfArg<DataLossPreventionDiscoveryConfigFrequency>? frequency;
 
-  final List<
-    TfArg<
-      DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetGenerationCadenceSchemaModifiedCadenceTypes
-    >
-  >?
+  final List<TfArg<DataLossPreventionDiscoveryConfigGenerationCadenceTypes>>?
   types;
 
   Map<String, Object?> encode() => {
@@ -1274,27 +1082,13 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetGenerationCade
   };
 }
 
-/// `frequency` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetGenerationCadenceSchemaModifiedCadenceFrequency
-    implements TerraformEnum {
-  updateFrequencyNever('UPDATE_FREQUENCY_NEVER'),
-  updateFrequencyDaily('UPDATE_FREQUENCY_DAILY'),
-  updateFrequencyMonthly('UPDATE_FREQUENCY_MONTHLY');
-
-  const DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetGenerationCadenceSchemaModifiedCadenceFrequency(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// `types` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetGenerationCadenceSchemaModifiedCadenceTypes
+enum DataLossPreventionDiscoveryConfigGenerationCadenceTypes
     implements TerraformEnum {
   newColumns('NEW_COLUMNS'),
   removedColumns('REMOVED_COLUMNS');
 
-  const DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetGenerationCadenceSchemaModifiedCadenceTypes(
+  const DataLossPreventionDiscoveryConfigGenerationCadenceTypes(
     this.terraformValue,
   );
   @override
@@ -1304,23 +1098,22 @@ enum DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetGenerationCadenceSche
 /// Typed helper for the `targets.cloud_storage_target` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTarget {
-  const DataLossPreventionDiscoveryConfigTargetsCloudStorageTarget({
+final class DataLossPreventionDiscoveryConfigCloudStorageTarget {
+  const DataLossPreventionDiscoveryConfigCloudStorageTarget({
     this.conditions,
     this.disabled,
     required this.filter,
     this.generationCadence,
   });
 
-  final DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetConditions?
+  final DataLossPreventionDiscoveryConfigCloudStorageTargetConditions?
   conditions;
 
-  final DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetDisabled?
-  disabled;
+  final DataLossPreventionDiscoveryConfigDisabled? disabled;
 
-  final DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilter filter;
+  final DataLossPreventionDiscoveryConfigCloudStorageTargetFilter filter;
 
-  final DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetGenerationCadence?
+  final DataLossPreventionDiscoveryConfigCloudStorageTargetGenerationCadence?
   generationCadence;
 
   Map<String, Object?> encode() => {
@@ -1334,8 +1127,8 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTarget {
 /// Typed helper for the `targets.cloud_storage_target.conditions` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetConditions {
-  const DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetConditions({
+final class DataLossPreventionDiscoveryConfigCloudStorageTargetConditions {
+  const DataLossPreventionDiscoveryConfigCloudStorageTargetConditions({
     this.createdAfter,
     this.minAge,
     this.cloudStorageConditions,
@@ -1345,7 +1138,7 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetConditions
 
   final TfArg<String>? minAge;
 
-  final DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetConditionsCloudStorageConditions?
+  final DataLossPreventionDiscoveryConfigCloudStorageConditions?
   cloudStorageConditions;
 
   Map<String, Object?> encode() => {
@@ -1358,24 +1151,16 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetConditions
 /// Typed helper for the `targets.cloud_storage_target.conditions.cloud_storage_conditions` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetConditionsCloudStorageConditions {
-  const DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetConditionsCloudStorageConditions({
+final class DataLossPreventionDiscoveryConfigCloudStorageConditions {
+  const DataLossPreventionDiscoveryConfigCloudStorageConditions({
     this.includedBucketAttributes,
     this.includedObjectAttributes,
   });
 
-  final List<
-    TfArg<
-      DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetConditionsCloudStorageConditionsIncludedBucketAttributes
-    >
-  >?
+  final List<TfArg<DataLossPreventionDiscoveryConfigIncludedBucketAttributes>>?
   includedBucketAttributes;
 
-  final List<
-    TfArg<
-      DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetConditionsCloudStorageConditionsIncludedObjectAttributes
-    >
-  >?
+  final List<TfArg<DataLossPreventionDiscoveryConfigIncludedObjectAttributes>>?
   includedObjectAttributes;
 
   Map<String, Object?> encode() => {
@@ -1391,13 +1176,13 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetConditions
 }
 
 /// `included_bucket_attributes` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetConditionsCloudStorageConditionsIncludedBucketAttributes
+enum DataLossPreventionDiscoveryConfigIncludedBucketAttributes
     implements TerraformEnum {
   allSupportedBuckets('ALL_SUPPORTED_BUCKETS'),
   autoclassDisabled('AUTOCLASS_DISABLED'),
   autoclassEnabled('AUTOCLASS_ENABLED');
 
-  const DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetConditionsCloudStorageConditionsIncludedBucketAttributes(
+  const DataLossPreventionDiscoveryConfigIncludedBucketAttributes(
     this.terraformValue,
   );
   @override
@@ -1405,7 +1190,7 @@ enum DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetConditionsCloudSt
 }
 
 /// `included_object_attributes` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetConditionsCloudStorageConditionsIncludedObjectAttributes
+enum DataLossPreventionDiscoveryConfigIncludedObjectAttributes
     implements TerraformEnum {
   allSupportedObjects('ALL_SUPPORTED_OBJECTS'),
   standard('STANDARD'),
@@ -1416,40 +1201,30 @@ enum DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetConditionsCloudSt
   multiRegional('MULTI_REGIONAL'),
   durableReducedAvailability('DURABLE_REDUCED_AVAILABILITY');
 
-  const DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetConditionsCloudStorageConditionsIncludedObjectAttributes(
+  const DataLossPreventionDiscoveryConfigIncludedObjectAttributes(
     this.terraformValue,
   );
   @override
   final String terraformValue;
 }
 
-/// Typed helper for the `targets.cloud_storage_target.disabled` block of
-/// `google_data_loss_prevention_discovery_config` (derived from provider schema).
-@immutable
-final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetDisabled {
-  const DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetDisabled();
-
-  Map<String, Object?> encode() => {};
-}
-
 /// Typed helper for the `targets.cloud_storage_target.filter` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilter {
-  const DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilter({
+final class DataLossPreventionDiscoveryConfigCloudStorageTargetFilter {
+  const DataLossPreventionDiscoveryConfigCloudStorageTargetFilter({
     this.cloudStorageResourceReference,
     this.collection,
     this.others,
   });
 
-  final DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCloudStorageResourceReference?
+  final DataLossPreventionDiscoveryConfigCloudStorageResourceReference?
   cloudStorageResourceReference;
 
-  final DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollection?
+  final DataLossPreventionDiscoveryConfigCloudStorageTargetCollection?
   collection;
 
-  final DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterOthers?
-  others;
+  final DataLossPreventionDiscoveryConfigOthers? others;
 
   Map<String, Object?> encode() => {
     'cloud_storage_resource_reference': ?cloudStorageResourceReference
@@ -1462,8 +1237,8 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilter {
 /// Typed helper for the `targets.cloud_storage_target.filter.cloud_storage_resource_reference` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCloudStorageResourceReference {
-  const DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCloudStorageResourceReference({
+final class DataLossPreventionDiscoveryConfigCloudStorageResourceReference {
+  const DataLossPreventionDiscoveryConfigCloudStorageResourceReference({
     this.bucketName,
     this.projectId,
   });
@@ -1481,17 +1256,16 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterClou
 /// Typed helper for the `targets.cloud_storage_target.filter.collection` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollection {
-  const DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollection({
+final class DataLossPreventionDiscoveryConfigCloudStorageTargetCollection {
+  const DataLossPreventionDiscoveryConfigCloudStorageTargetCollection({
     this.includeRegexes,
     this.includeTags,
   });
 
-  final DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeRegexes?
+  final DataLossPreventionDiscoveryConfigCloudStorageTargetIncludeRegexes?
   includeRegexes;
 
-  final DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTags?
-  includeTags;
+  final DataLossPreventionDiscoveryConfigIncludeTags? includeTags;
 
   Map<String, Object?> encode() => {
     'include_regexes': ?includeRegexes?.encode(),
@@ -1502,14 +1276,12 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterColl
 /// Typed helper for the `targets.cloud_storage_target.filter.collection.include_regexes` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeRegexes {
-  const DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeRegexes({
+final class DataLossPreventionDiscoveryConfigCloudStorageTargetIncludeRegexes {
+  const DataLossPreventionDiscoveryConfigCloudStorageTargetIncludeRegexes({
     this.patterns,
   });
 
-  final List<
-    DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeRegexesPatterns
-  >?
+  final List<DataLossPreventionDiscoveryConfigCloudStorageTargetPatterns>?
   patterns;
 
   Map<String, Object?> encode() => {
@@ -1520,13 +1292,12 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterColl
 /// Typed helper for the `targets.cloud_storage_target.filter.collection.include_regexes.patterns` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeRegexesPatterns {
-  const DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeRegexesPatterns({
+final class DataLossPreventionDiscoveryConfigCloudStorageTargetPatterns {
+  const DataLossPreventionDiscoveryConfigCloudStorageTargetPatterns({
     this.cloudStorageRegex,
   });
 
-  final DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeRegexesPatternsCloudStorageRegex?
-  cloudStorageRegex;
+  final DataLossPreventionDiscoveryConfigCloudStorageRegex? cloudStorageRegex;
 
   Map<String, Object?> encode() => {
     'cloud_storage_regex': ?cloudStorageRegex?.encode(),
@@ -1536,8 +1307,8 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterColl
 /// Typed helper for the `targets.cloud_storage_target.filter.collection.include_regexes.patterns.cloud_storage_regex` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeRegexesPatternsCloudStorageRegex {
-  const DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeRegexesPatternsCloudStorageRegex({
+final class DataLossPreventionDiscoveryConfigCloudStorageRegex {
+  const DataLossPreventionDiscoveryConfigCloudStorageRegex({
     this.bucketNameRegex,
     this.projectIdRegex,
   });
@@ -1555,15 +1326,10 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterColl
 /// Typed helper for the `targets.cloud_storage_target.filter.collection.include_tags` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTags {
-  const DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTags({
-    this.tagFilters,
-  });
+final class DataLossPreventionDiscoveryConfigIncludeTags {
+  const DataLossPreventionDiscoveryConfigIncludeTags({this.tagFilters});
 
-  final List<
-    DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFilters
-  >?
-  tagFilters;
+  final List<DataLossPreventionDiscoveryConfigTagFilters>? tagFilters;
 
   Map<String, Object?> encode() => {
     if (tagFilters != null)
@@ -1576,18 +1342,18 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterColl
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.namespacedTagValue(...)`.
-sealed class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFilters {
-  const DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFilters();
+sealed class DataLossPreventionDiscoveryConfigTagFilters {
+  const DataLossPreventionDiscoveryConfigTagFilters();
 
   /// Sets `namespaced_tag_value`.
-  const factory DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFilters.namespacedTagValue(
+  const factory DataLossPreventionDiscoveryConfigTagFilters.namespacedTagValue(
     TfArg<String> namespacedTagValue,
-  ) = DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagValue;
+  ) = DataLossPreventionDiscoveryConfigTagFiltersNamespacedTagValue;
 
   /// Sets `namespaced_tag_key`.
-  const factory DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFilters.namespacedTagKey(
+  const factory DataLossPreventionDiscoveryConfigTagFilters.namespacedTagKey(
     TfArg<String> namespacedTagKey,
-  ) = DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagKey;
+  ) = DataLossPreventionDiscoveryConfigTagFiltersNamespacedTagKey;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1595,11 +1361,10 @@ sealed class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCol
   Map<String, Object?> encode();
 }
 
-/// The [DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFilters.namespacedTagValue] choice: sets `namespaced_tag_value`.
-final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagValue
-    extends
-        DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFilters {
-  const DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagValue(
+/// The [DataLossPreventionDiscoveryConfigTagFilters.namespacedTagValue] choice: sets `namespaced_tag_value`.
+final class DataLossPreventionDiscoveryConfigTagFiltersNamespacedTagValue
+    extends DataLossPreventionDiscoveryConfigTagFilters {
+  const DataLossPreventionDiscoveryConfigTagFiltersNamespacedTagValue(
     this.namespacedTagValue,
   );
 
@@ -1614,11 +1379,10 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterColl
   };
 }
 
-/// The [DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFilters.namespacedTagKey] choice: sets `namespaced_tag_key`.
-final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagKey
-    extends
-        DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFilters {
-  const DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagKey(
+/// The [DataLossPreventionDiscoveryConfigTagFilters.namespacedTagKey] choice: sets `namespaced_tag_key`.
+final class DataLossPreventionDiscoveryConfigTagFiltersNamespacedTagKey
+    extends DataLossPreventionDiscoveryConfigTagFilters {
+  const DataLossPreventionDiscoveryConfigTagFiltersNamespacedTagKey(
     this.namespacedTagKey,
   );
 
@@ -1633,30 +1397,20 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterColl
   };
 }
 
-/// Typed helper for the `targets.cloud_storage_target.filter.others` block of
-/// `google_data_loss_prevention_discovery_config` (derived from provider schema).
-@immutable
-final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterOthers {
-  const DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterOthers();
-
-  Map<String, Object?> encode() => {};
-}
-
 /// Typed helper for the `targets.cloud_storage_target.generation_cadence` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetGenerationCadence {
-  const DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetGenerationCadence({
+final class DataLossPreventionDiscoveryConfigCloudStorageTargetGenerationCadence {
+  const DataLossPreventionDiscoveryConfigCloudStorageTargetGenerationCadence({
     this.refreshFrequency,
     this.inspectTemplateModifiedCadence,
   });
 
-  final TfArg<
-    DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetGenerationCadenceRefreshFrequency
-  >?
+  final TfArg<DataLossPreventionDiscoveryConfigRefreshFrequency>?
   refreshFrequency;
 
-  final DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetGenerationCadenceInspectTemplateModifiedCadence?
+  final DataLossPreventionDiscoveryConfigCadenceInspectTemplateModifiedCadence?
   inspectTemplateModifiedCadence;
 
   Map<String, Object?> encode() => {
@@ -1666,55 +1420,11 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetGeneration
   };
 }
 
-/// `refresh_frequency` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetGenerationCadenceRefreshFrequency
-    implements TerraformEnum {
-  updateFrequencyNever('UPDATE_FREQUENCY_NEVER'),
-  updateFrequencyDaily('UPDATE_FREQUENCY_DAILY'),
-  updateFrequencyMonthly('UPDATE_FREQUENCY_MONTHLY');
-
-  const DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetGenerationCadenceRefreshFrequency(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `targets.cloud_storage_target.generation_cadence.inspect_template_modified_cadence` block of
-/// `google_data_loss_prevention_discovery_config` (derived from provider schema).
-@immutable
-final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetGenerationCadenceInspectTemplateModifiedCadence {
-  const DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetGenerationCadenceInspectTemplateModifiedCadence({
-    this.frequency,
-  });
-
-  final TfArg<
-    DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetGenerationCadenceInspectTemplateModifiedCadenceFrequency
-  >?
-  frequency;
-
-  Map<String, Object?> encode() => {'frequency': ?frequency?.toTfJson()};
-}
-
-/// `frequency` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetGenerationCadenceInspectTemplateModifiedCadenceFrequency
-    implements TerraformEnum {
-  updateFrequencyNever('UPDATE_FREQUENCY_NEVER'),
-  updateFrequencyDaily('UPDATE_FREQUENCY_DAILY'),
-  updateFrequencyMonthly('UPDATE_FREQUENCY_MONTHLY');
-
-  const DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetGenerationCadenceInspectTemplateModifiedCadenceFrequency(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `targets.other_cloud_target` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTarget {
-  const DataLossPreventionDiscoveryConfigTargetsOtherCloudTarget({
+final class DataLossPreventionDiscoveryConfigOtherCloudTarget {
+  const DataLossPreventionDiscoveryConfigOtherCloudTarget({
     this.conditions,
     this.dataSourceType,
     this.disabled,
@@ -1722,18 +1432,15 @@ final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTarget {
     this.generationCadence,
   });
 
-  final DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetConditions?
-  conditions;
+  final DataLossPreventionDiscoveryConfigOtherCloudTargetConditions? conditions;
 
-  final DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetDataSourceType?
-  dataSourceType;
+  final DataLossPreventionDiscoveryConfigDataSourceType? dataSourceType;
 
-  final DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetDisabled?
-  disabled;
+  final DataLossPreventionDiscoveryConfigDisabled? disabled;
 
-  final DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilter filter;
+  final DataLossPreventionDiscoveryConfigOtherCloudTargetFilter filter;
 
-  final DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetGenerationCadence?
+  final DataLossPreventionDiscoveryConfigCloudStorageTargetGenerationCadence?
   generationCadence;
 
   Map<String, Object?> encode() => {
@@ -1748,15 +1455,15 @@ final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTarget {
 /// Typed helper for the `targets.other_cloud_target.conditions` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetConditions {
-  const DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetConditions({
+final class DataLossPreventionDiscoveryConfigOtherCloudTargetConditions {
+  const DataLossPreventionDiscoveryConfigOtherCloudTargetConditions({
     this.minAge,
     this.amazonS3BucketConditions,
   });
 
   final TfArg<String>? minAge;
 
-  final DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetConditionsAmazonS3BucketConditions?
+  final DataLossPreventionDiscoveryConfigAmazonS3BucketConditions?
   amazonS3BucketConditions;
 
   Map<String, Object?> encode() => {
@@ -1768,24 +1475,15 @@ final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetConditions {
 /// Typed helper for the `targets.other_cloud_target.conditions.amazon_s3_bucket_conditions` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetConditionsAmazonS3BucketConditions {
-  const DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetConditionsAmazonS3BucketConditions({
+final class DataLossPreventionDiscoveryConfigAmazonS3BucketConditions {
+  const DataLossPreventionDiscoveryConfigAmazonS3BucketConditions({
     this.bucketTypes,
     this.objectStorageClasses,
   });
 
-  final List<
-    TfArg<
-      DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetConditionsAmazonS3BucketConditionsBucketTypes
-    >
-  >?
-  bucketTypes;
+  final List<TfArg<DataLossPreventionDiscoveryConfigBucketTypes>>? bucketTypes;
 
-  final List<
-    TfArg<
-      DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetConditionsAmazonS3BucketConditionsObjectStorageClasses
-    >
-  >?
+  final List<TfArg<DataLossPreventionDiscoveryConfigObjectStorageClasses>>?
   objectStorageClasses;
 
   Map<String, Object?> encode() => {
@@ -1799,20 +1497,17 @@ final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetConditionsAm
 }
 
 /// `bucket_types` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetConditionsAmazonS3BucketConditionsBucketTypes
-    implements TerraformEnum {
+enum DataLossPreventionDiscoveryConfigBucketTypes implements TerraformEnum {
   typeAllSupported('TYPE_ALL_SUPPORTED'),
   typeGeneralPurpose('TYPE_GENERAL_PURPOSE');
 
-  const DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetConditionsAmazonS3BucketConditionsBucketTypes(
-    this.terraformValue,
-  );
+  const DataLossPreventionDiscoveryConfigBucketTypes(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `object_storage_classes` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetConditionsAmazonS3BucketConditionsObjectStorageClasses
+enum DataLossPreventionDiscoveryConfigObjectStorageClasses
     implements TerraformEnum {
   allSupportedClasses('ALL_SUPPORTED_CLASSES'),
   standard('STANDARD'),
@@ -1820,7 +1515,7 @@ enum DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetConditionsAmazonS3B
   glacierInstantRetrieval('GLACIER_INSTANT_RETRIEVAL'),
   intelligentTiering('INTELLIGENT_TIERING');
 
-  const DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetConditionsAmazonS3BucketConditionsObjectStorageClasses(
+  const DataLossPreventionDiscoveryConfigObjectStorageClasses(
     this.terraformValue,
   );
   @override
@@ -1830,43 +1525,29 @@ enum DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetConditionsAmazonS3B
 /// Typed helper for the `targets.other_cloud_target.data_source_type` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetDataSourceType {
-  const DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetDataSourceType({
-    this.dataSource,
-  });
+final class DataLossPreventionDiscoveryConfigDataSourceType {
+  const DataLossPreventionDiscoveryConfigDataSourceType({this.dataSource});
 
   final TfArg<String>? dataSource;
 
   Map<String, Object?> encode() => {'data_source': ?dataSource?.toTfJson()};
 }
 
-/// Typed helper for the `targets.other_cloud_target.disabled` block of
-/// `google_data_loss_prevention_discovery_config` (derived from provider schema).
-@immutable
-final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetDisabled {
-  const DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetDisabled();
-
-  Map<String, Object?> encode() => {};
-}
-
 /// Typed helper for the `targets.other_cloud_target.filter` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilter {
-  const DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilter({
+final class DataLossPreventionDiscoveryConfigOtherCloudTargetFilter {
+  const DataLossPreventionDiscoveryConfigOtherCloudTargetFilter({
     this.collection,
     this.others,
     this.singleResource,
   });
 
-  final DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterCollection?
-  collection;
+  final DataLossPreventionDiscoveryConfigOtherCloudTargetCollection? collection;
 
-  final DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterOthers?
-  others;
+  final DataLossPreventionDiscoveryConfigOthers? others;
 
-  final DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterSingleResource?
-  singleResource;
+  final DataLossPreventionDiscoveryConfigSingleResource? singleResource;
 
   Map<String, Object?> encode() => {
     'collection': ?collection?.encode(),
@@ -1878,12 +1559,12 @@ final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilter {
 /// Typed helper for the `targets.other_cloud_target.filter.collection` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterCollection {
-  const DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterCollection({
+final class DataLossPreventionDiscoveryConfigOtherCloudTargetCollection {
+  const DataLossPreventionDiscoveryConfigOtherCloudTargetCollection({
     this.includeRegexes,
   });
 
-  final DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterCollectionIncludeRegexes?
+  final DataLossPreventionDiscoveryConfigOtherCloudTargetIncludeRegexes?
   includeRegexes;
 
   Map<String, Object?> encode() => {
@@ -1894,14 +1575,12 @@ final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterCollec
 /// Typed helper for the `targets.other_cloud_target.filter.collection.include_regexes` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterCollectionIncludeRegexes {
-  const DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterCollectionIncludeRegexes({
+final class DataLossPreventionDiscoveryConfigOtherCloudTargetIncludeRegexes {
+  const DataLossPreventionDiscoveryConfigOtherCloudTargetIncludeRegexes({
     this.patterns,
   });
 
-  final List<
-    DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterCollectionIncludeRegexesPatterns
-  >?
+  final List<DataLossPreventionDiscoveryConfigOtherCloudTargetPatterns>?
   patterns;
 
   Map<String, Object?> encode() => {
@@ -1912,12 +1591,12 @@ final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterCollec
 /// Typed helper for the `targets.other_cloud_target.filter.collection.include_regexes.patterns` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterCollectionIncludeRegexesPatterns {
-  const DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterCollectionIncludeRegexesPatterns({
+final class DataLossPreventionDiscoveryConfigOtherCloudTargetPatterns {
+  const DataLossPreventionDiscoveryConfigOtherCloudTargetPatterns({
     this.amazonS3BucketRegex,
   });
 
-  final DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterCollectionIncludeRegexesPatternsAmazonS3BucketRegex?
+  final DataLossPreventionDiscoveryConfigAmazonS3BucketRegex?
   amazonS3BucketRegex;
 
   Map<String, Object?> encode() => {
@@ -1928,16 +1607,15 @@ final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterCollec
 /// Typed helper for the `targets.other_cloud_target.filter.collection.include_regexes.patterns.amazon_s3_bucket_regex` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterCollectionIncludeRegexesPatternsAmazonS3BucketRegex {
-  const DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterCollectionIncludeRegexesPatternsAmazonS3BucketRegex({
+final class DataLossPreventionDiscoveryConfigAmazonS3BucketRegex {
+  const DataLossPreventionDiscoveryConfigAmazonS3BucketRegex({
     this.bucketNameRegex,
     this.awsAccountRegex,
   });
 
   final TfArg<String>? bucketNameRegex;
 
-  final DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterCollectionIncludeRegexesPatternsAmazonS3BucketRegexAwsAccountRegex?
-  awsAccountRegex;
+  final DataLossPreventionDiscoveryConfigAwsAccountRegex? awsAccountRegex;
 
   Map<String, Object?> encode() => {
     'bucket_name_regex': ?bucketNameRegex?.toTfJson(),
@@ -1948,10 +1626,8 @@ final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterCollec
 /// Typed helper for the `targets.other_cloud_target.filter.collection.include_regexes.patterns.amazon_s3_bucket_regex.aws_account_regex` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterCollectionIncludeRegexesPatternsAmazonS3BucketRegexAwsAccountRegex {
-  const DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterCollectionIncludeRegexesPatternsAmazonS3BucketRegexAwsAccountRegex({
-    this.accountIdRegex,
-  });
+final class DataLossPreventionDiscoveryConfigAwsAccountRegex {
+  const DataLossPreventionDiscoveryConfigAwsAccountRegex({this.accountIdRegex});
 
   final TfArg<String>? accountIdRegex;
 
@@ -1960,25 +1636,13 @@ final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterCollec
   };
 }
 
-/// Typed helper for the `targets.other_cloud_target.filter.others` block of
-/// `google_data_loss_prevention_discovery_config` (derived from provider schema).
-@immutable
-final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterOthers {
-  const DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterOthers();
-
-  Map<String, Object?> encode() => {};
-}
-
 /// Typed helper for the `targets.other_cloud_target.filter.single_resource` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterSingleResource {
-  const DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterSingleResource({
-    this.amazonS3Bucket,
-  });
+final class DataLossPreventionDiscoveryConfigSingleResource {
+  const DataLossPreventionDiscoveryConfigSingleResource({this.amazonS3Bucket});
 
-  final DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterSingleResourceAmazonS3Bucket?
-  amazonS3Bucket;
+  final DataLossPreventionDiscoveryConfigAmazonS3Bucket? amazonS3Bucket;
 
   Map<String, Object?> encode() => {
     'amazon_s3_bucket': ?amazonS3Bucket?.encode(),
@@ -1988,16 +1652,15 @@ final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterSingle
 /// Typed helper for the `targets.other_cloud_target.filter.single_resource.amazon_s3_bucket` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterSingleResourceAmazonS3Bucket {
-  const DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterSingleResourceAmazonS3Bucket({
+final class DataLossPreventionDiscoveryConfigAmazonS3Bucket {
+  const DataLossPreventionDiscoveryConfigAmazonS3Bucket({
     this.bucketName,
     this.awsAccount,
   });
 
   final TfArg<String>? bucketName;
 
-  final DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterSingleResourceAmazonS3BucketAwsAccount?
-  awsAccount;
+  final DataLossPreventionDiscoveryConfigAwsAccount? awsAccount;
 
   Map<String, Object?> encode() => {
     'bucket_name': ?bucketName?.toTfJson(),
@@ -2008,89 +1671,19 @@ final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterSingle
 /// Typed helper for the `targets.other_cloud_target.filter.single_resource.amazon_s3_bucket.aws_account` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterSingleResourceAmazonS3BucketAwsAccount {
-  const DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterSingleResourceAmazonS3BucketAwsAccount({
-    this.accountId,
-  });
+final class DataLossPreventionDiscoveryConfigAwsAccount {
+  const DataLossPreventionDiscoveryConfigAwsAccount({this.accountId});
 
   final TfArg<String>? accountId;
 
   Map<String, Object?> encode() => {'account_id': ?accountId?.toTfJson()};
 }
 
-/// Typed helper for the `targets.other_cloud_target.generation_cadence` block of
-/// `google_data_loss_prevention_discovery_config` (derived from provider schema).
-@immutable
-final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetGenerationCadence {
-  const DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetGenerationCadence({
-    this.refreshFrequency,
-    this.inspectTemplateModifiedCadence,
-  });
-
-  final TfArg<
-    DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetGenerationCadenceRefreshFrequency
-  >?
-  refreshFrequency;
-
-  final DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetGenerationCadenceInspectTemplateModifiedCadence?
-  inspectTemplateModifiedCadence;
-
-  Map<String, Object?> encode() => {
-    'refresh_frequency': ?refreshFrequency?.toTfJson(),
-    'inspect_template_modified_cadence': ?inspectTemplateModifiedCadence
-        ?.encode(),
-  };
-}
-
-/// `refresh_frequency` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetGenerationCadenceRefreshFrequency
-    implements TerraformEnum {
-  updateFrequencyNever('UPDATE_FREQUENCY_NEVER'),
-  updateFrequencyDaily('UPDATE_FREQUENCY_DAILY'),
-  updateFrequencyMonthly('UPDATE_FREQUENCY_MONTHLY');
-
-  const DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetGenerationCadenceRefreshFrequency(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `targets.other_cloud_target.generation_cadence.inspect_template_modified_cadence` block of
-/// `google_data_loss_prevention_discovery_config` (derived from provider schema).
-@immutable
-final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetGenerationCadenceInspectTemplateModifiedCadence {
-  const DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetGenerationCadenceInspectTemplateModifiedCadence({
-    this.frequency,
-  });
-
-  final TfArg<
-    DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetGenerationCadenceInspectTemplateModifiedCadenceFrequency
-  >?
-  frequency;
-
-  Map<String, Object?> encode() => {'frequency': ?frequency?.toTfJson()};
-}
-
-/// `frequency` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetGenerationCadenceInspectTemplateModifiedCadenceFrequency
-    implements TerraformEnum {
-  updateFrequencyNever('UPDATE_FREQUENCY_NEVER'),
-  updateFrequencyDaily('UPDATE_FREQUENCY_DAILY'),
-  updateFrequencyMonthly('UPDATE_FREQUENCY_MONTHLY');
-
-  const DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetGenerationCadenceInspectTemplateModifiedCadenceFrequency(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `targets.secrets_target` block of
 /// `google_data_loss_prevention_discovery_config` (derived from provider schema).
 @immutable
-final class DataLossPreventionDiscoveryConfigTargetsSecretsTarget {
-  const DataLossPreventionDiscoveryConfigTargetsSecretsTarget();
+final class DataLossPreventionDiscoveryConfigSecretsTarget {
+  const DataLossPreventionDiscoveryConfigSecretsTarget();
 
   Map<String, Object?> encode() => {};
 }

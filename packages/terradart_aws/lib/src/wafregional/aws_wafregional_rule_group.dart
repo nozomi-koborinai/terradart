@@ -24,7 +24,7 @@ final class WafregionalRuleGroupActivatedRule {
 
   final TfArg<String>? type;
 
-  final WafregionalRuleGroupActivatedRuleAction action;
+  final WafregionalRuleGroupAction action;
 
   Map<String, Object?> encode() => {
     'priority': priority.toTfJson(),
@@ -37,8 +37,8 @@ final class WafregionalRuleGroupActivatedRule {
 /// Typed helper for the `activated_rule.action` block of
 /// `aws_wafregional_rule_group` (derived from provider schema).
 @immutable
-final class WafregionalRuleGroupActivatedRuleAction {
-  const WafregionalRuleGroupActivatedRuleAction({required this.type});
+final class WafregionalRuleGroupAction {
+  const WafregionalRuleGroupAction({required this.type});
 
   final TfArg<String> type;
 

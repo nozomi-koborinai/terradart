@@ -10,8 +10,8 @@ const Set<String> _awsAuditmanagerControlSensitive = <String>{};
 /// Typed helper for the `control_mapping_sources` block of
 /// `aws_auditmanager_control` (derived from provider schema).
 @immutable
-final class AuditmanagerControlControlMappingSources {
-  const AuditmanagerControlControlMappingSources({
+final class AuditmanagerControlMappingSources {
+  const AuditmanagerControlMappingSources({
     this.sourceDescription,
     this.sourceFrequency,
     this.sourceKeyword,
@@ -23,17 +23,15 @@ final class AuditmanagerControlControlMappingSources {
 
   final TfArg<String>? sourceDescription;
 
-  final TfArg<AuditmanagerControlControlMappingSourcesSourceFrequency>?
-  sourceFrequency;
+  final TfArg<AuditmanagerControlSourceFrequency>? sourceFrequency;
 
   final TfArg<List<Object?>>? sourceKeyword;
 
   final TfArg<String> sourceName;
 
-  final TfArg<AuditmanagerControlControlMappingSourcesSourceSetUpOption>
-  sourceSetUpOption;
+  final TfArg<AuditmanagerControlSourceSetUpOption> sourceSetUpOption;
 
-  final TfArg<AuditmanagerControlControlMappingSourcesSourceType> sourceType;
+  final TfArg<AuditmanagerControlSourceType> sourceType;
 
   final TfArg<String>? troubleshootingText;
 
@@ -49,35 +47,28 @@ final class AuditmanagerControlControlMappingSources {
 }
 
 /// `source_frequency` — derived from the provider schema description.
-enum AuditmanagerControlControlMappingSourcesSourceFrequency
-    implements TerraformEnum {
+enum AuditmanagerControlSourceFrequency implements TerraformEnum {
   daily('DAILY'),
   weekly('WEEKLY'),
   monthly('MONTHLY');
 
-  const AuditmanagerControlControlMappingSourcesSourceFrequency(
-    this.terraformValue,
-  );
+  const AuditmanagerControlSourceFrequency(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `source_set_up_option` — derived from the provider schema description.
-enum AuditmanagerControlControlMappingSourcesSourceSetUpOption
-    implements TerraformEnum {
+enum AuditmanagerControlSourceSetUpOption implements TerraformEnum {
   systemControlsMapping('System_Controls_Mapping'),
   proceduralControlsMapping('Procedural_Controls_Mapping');
 
-  const AuditmanagerControlControlMappingSourcesSourceSetUpOption(
-    this.terraformValue,
-  );
+  const AuditmanagerControlSourceSetUpOption(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `source_type` — derived from the provider schema description.
-enum AuditmanagerControlControlMappingSourcesSourceType
-    implements TerraformEnum {
+enum AuditmanagerControlSourceType implements TerraformEnum {
   awsCloudtrail('AWS_Cloudtrail'),
   awsConfig('AWS_Config'),
   awsSecurityHub('AWS_Security_Hub'),
@@ -86,7 +77,7 @@ enum AuditmanagerControlControlMappingSourcesSourceType
   commonControl('Common_Control'),
   coreControl('Core_Control');
 
-  const AuditmanagerControlControlMappingSourcesSourceType(this.terraformValue);
+  const AuditmanagerControlSourceType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -104,7 +95,7 @@ final class AwsAuditmanagerControl extends Resource {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? testingInformation,
-    List<AuditmanagerControlControlMappingSources>? controlMappingSources,
+    List<AuditmanagerControlMappingSources>? controlMappingSources,
     super.lifecycle,
     super.dependsOn,
     super.provider,

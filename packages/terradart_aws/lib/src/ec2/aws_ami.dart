@@ -91,7 +91,7 @@ final class AmiEbsBlockDevice {
 
   final TfArg<num>? volumeSize;
 
-  final TfArg<AmiEbsBlockDeviceVolumeType>? volumeType;
+  final TfArg<AmiVolumeType>? volumeType;
 
   Map<String, Object?> encode() => {
     'delete_on_termination': ?deleteOnTermination?.toTfJson(),
@@ -107,7 +107,7 @@ final class AmiEbsBlockDevice {
 }
 
 /// `volume_type` — derived from the provider schema description.
-enum AmiEbsBlockDeviceVolumeType implements TerraformEnum {
+enum AmiVolumeType implements TerraformEnum {
   standard('standard'),
   io1('io1'),
   io2('io2'),
@@ -116,7 +116,7 @@ enum AmiEbsBlockDeviceVolumeType implements TerraformEnum {
   st1('st1'),
   gp3('gp3');
 
-  const AmiEbsBlockDeviceVolumeType(this.terraformValue);
+  const AmiVolumeType(this.terraformValue);
   @override
   final String terraformValue;
 }

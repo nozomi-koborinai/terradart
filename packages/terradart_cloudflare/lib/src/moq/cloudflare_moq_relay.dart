@@ -18,9 +18,9 @@ const Set<String> _cloudflareMoqRelaySensitive = <String>{
 final class MoqRelayConfig {
   const MoqRelayConfig({this.lingeringSubscribe, this.upstreams});
 
-  final MoqRelayConfigLingeringSubscribe? lingeringSubscribe;
+  final MoqRelayLingeringSubscribe? lingeringSubscribe;
 
-  final MoqRelayConfigUpstreams? upstreams;
+  final MoqRelayUpstreams? upstreams;
 
   Map<String, Object?> encode() => {
     'lingering_subscribe': ?lingeringSubscribe?.encode(),
@@ -31,8 +31,8 @@ final class MoqRelayConfig {
 /// Typed helper for the `config.lingering_subscribe` block of
 /// `cloudflare_moq_relay` (derived from provider schema).
 @immutable
-final class MoqRelayConfigLingeringSubscribe {
-  const MoqRelayConfigLingeringSubscribe({this.enabled, this.maxTimeoutMs});
+final class MoqRelayLingeringSubscribe {
+  const MoqRelayLingeringSubscribe({this.enabled, this.maxTimeoutMs});
 
   final TfArg<bool>? enabled;
 
@@ -47,12 +47,12 @@ final class MoqRelayConfigLingeringSubscribe {
 /// Typed helper for the `config.upstreams` block of
 /// `cloudflare_moq_relay` (derived from provider schema).
 @immutable
-final class MoqRelayConfigUpstreams {
-  const MoqRelayConfigUpstreams({this.enabled, this.upstreams});
+final class MoqRelayUpstreams {
+  const MoqRelayUpstreams({this.enabled, this.upstreams});
 
   final TfArg<bool>? enabled;
 
-  final List<MoqRelayConfigUpstreamsUpstreams>? upstreams;
+  final List<MoqRelayUpstreamsUpstreams>? upstreams;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
@@ -64,8 +64,8 @@ final class MoqRelayConfigUpstreams {
 /// Typed helper for the `config.upstreams.upstreams` block of
 /// `cloudflare_moq_relay` (derived from provider schema).
 @immutable
-final class MoqRelayConfigUpstreamsUpstreams {
-  const MoqRelayConfigUpstreamsUpstreams({this.url});
+final class MoqRelayUpstreamsUpstreams {
+  const MoqRelayUpstreamsUpstreams({this.url});
 
   final TfArg<String>? url;
 

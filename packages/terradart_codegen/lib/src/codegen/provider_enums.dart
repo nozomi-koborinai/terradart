@@ -13,6 +13,7 @@ import 'enum_value_parser.dart';
 import 'exactly_one_types.dart';
 import 'naming.dart';
 import 'nested_types/nested_type_collector.dart';
+import 'nested_types/nested_type_names.dart';
 import 'wrapper_overrides/wrapper_override.dart';
 
 /// The `wrap --provider-enums` gate: enum value sets a provider documents
@@ -374,6 +375,18 @@ final class ProviderEnums {
   ) {
     if (!(override?.deriveExactlyOne ?? false)) return const {};
     return atMostOneGroupsByBlock(terraformType)..remove('');
+  }
+
+  /// The names the sealed types of [terraformType]'s root groups take, with
+  /// their variants, for an override that sets `deriveExactlyOne` (empty
+  /// otherwise) — the `reserved` names `collectNestedTypes` keeps its
+  /// helpers off.
+  Set<String> rootSealedNames(String terraformType, WrapperOverride? override) {
+    if (!(override?.deriveExactlyOne ?? false)) return const {};
+    return rootSealedTypeNames(shortResourcePascal(terraformType), [
+      ...?exactlyOneGroupsByBlock(terraformType)[''],
+      ...?atMostOneGroupsByBlock(terraformType)[''],
+    ], sealedNames: override?.sealedNames);
   }
 
   /// The nested-type collector's resolver for [terraformType] (null for a

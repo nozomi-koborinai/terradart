@@ -24,7 +24,7 @@ enum IdentityPlatformTenantDeletionPolicy implements TerraformEnum {
 final class IdentityPlatformTenantClient {
   const IdentityPlatformTenantClient({this.permissions});
 
-  final IdentityPlatformTenantClientPermissions? permissions;
+  final IdentityPlatformTenantPermissions? permissions;
 
   Map<String, Object?> encode() => {'permissions': ?permissions?.encode()};
 }
@@ -32,8 +32,8 @@ final class IdentityPlatformTenantClient {
 /// Typed helper for the `client.permissions` block of
 /// `google_identity_platform_tenant` (derived from provider schema).
 @immutable
-final class IdentityPlatformTenantClientPermissions {
-  const IdentityPlatformTenantClientPermissions({
+final class IdentityPlatformTenantPermissions {
+  const IdentityPlatformTenantPermissions({
     this.disabledUserDeletion,
     this.disabledUserSignup,
   });

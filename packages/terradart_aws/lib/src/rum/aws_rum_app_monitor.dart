@@ -67,8 +67,8 @@ final class RumAppMonitorDomainList extends RumAppMonitorDomain {
 /// Typed helper for the `app_monitor_configuration` block of
 /// `aws_rum_app_monitor` (derived from provider schema).
 @immutable
-final class RumAppMonitorAppMonitorConfiguration {
-  const RumAppMonitorAppMonitorConfiguration({
+final class RumAppMonitorConfiguration {
+  const RumAppMonitorConfiguration({
     this.allowCookies,
     this.enableXray,
     this.excludedPages,
@@ -96,8 +96,7 @@ final class RumAppMonitorAppMonitorConfiguration {
 
   final TfArg<num>? sessionSampleRate;
 
-  final List<TfArg<RumAppMonitorAppMonitorConfigurationTelemetries>>?
-  telemetries;
+  final List<TfArg<RumAppMonitorTelemetries>>? telemetries;
 
   Map<String, Object?> encode() => {
     'allow_cookies': ?allowCookies?.toTfJson(),
@@ -114,12 +113,12 @@ final class RumAppMonitorAppMonitorConfiguration {
 }
 
 /// `telemetries` — derived from the provider schema description.
-enum RumAppMonitorAppMonitorConfigurationTelemetries implements TerraformEnum {
+enum RumAppMonitorTelemetries implements TerraformEnum {
   errors('errors'),
   performance('performance'),
   http('http');
 
-  const RumAppMonitorAppMonitorConfigurationTelemetries(this.terraformValue);
+  const RumAppMonitorTelemetries(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -130,17 +129,17 @@ enum RumAppMonitorAppMonitorConfigurationTelemetries implements TerraformEnum {
 final class RumAppMonitorCustomEvents {
   const RumAppMonitorCustomEvents({this.status});
 
-  final TfArg<RumAppMonitorCustomEventsStatus>? status;
+  final TfArg<RumAppMonitorStatus>? status;
 
   Map<String, Object?> encode() => {'status': ?status?.toTfJson()};
 }
 
 /// `status` — derived from the provider schema description.
-enum RumAppMonitorCustomEventsStatus implements TerraformEnum {
+enum RumAppMonitorStatus implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const RumAppMonitorCustomEventsStatus(this.terraformValue);
+  const RumAppMonitorStatus(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -156,7 +155,7 @@ final class AwsRumAppMonitor extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    RumAppMonitorAppMonitorConfiguration? appMonitorConfiguration,
+    RumAppMonitorConfiguration? appMonitorConfiguration,
     RumAppMonitorCustomEvents? customEvents,
     super.lifecycle,
     super.dependsOn,

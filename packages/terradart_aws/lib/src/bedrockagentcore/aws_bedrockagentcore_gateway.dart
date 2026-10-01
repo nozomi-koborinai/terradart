@@ -50,8 +50,7 @@ final class BedrockagentcoreGatewayAuthorizerConfiguration {
     this.customJwtAuthorizer,
   });
 
-  final List<BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizer>?
-  customJwtAuthorizer;
+  final List<BedrockagentcoreGatewayCustomJwtAuthorizer>? customJwtAuthorizer;
 
   Map<String, Object?> encode() => {
     if (customJwtAuthorizer != null)
@@ -64,8 +63,8 @@ final class BedrockagentcoreGatewayAuthorizerConfiguration {
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer` block of
 /// `aws_bedrockagentcore_gateway` (derived from provider schema).
 @immutable
-final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizer {
-  const BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizer({
+final class BedrockagentcoreGatewayCustomJwtAuthorizer {
+  const BedrockagentcoreGatewayCustomJwtAuthorizer({
     this.allowedAudience,
     this.allowedClients,
     this.allowedScopes,
@@ -84,24 +83,14 @@ final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizer {
 
   final TfArg<String> discoveryUrl;
 
-  final List<
-    BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerAllowedWorkloadConfiguration
-  >?
+  final List<BedrockagentcoreGatewayAllowedWorkloadConfiguration>?
   allowedWorkloadConfiguration;
 
-  final List<
-    BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerCustomClaim
-  >?
-  customClaim;
+  final List<BedrockagentcoreGatewayCustomClaim>? customClaim;
 
-  final List<
-    BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpoint
-  >?
-  privateEndpoint;
+  final List<BedrockagentcoreGatewayPrivateEndpoint>? privateEndpoint;
 
-  final List<
-    BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverrides
-  >?
+  final List<BedrockagentcoreGatewayPrivateEndpointOverrides>?
   privateEndpointOverrides;
 
   Map<String, Object?> encode() => {
@@ -127,18 +116,15 @@ final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizer {
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.allowed_workload_configuration` block of
 /// `aws_bedrockagentcore_gateway` (derived from provider schema).
 @immutable
-final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerAllowedWorkloadConfiguration {
-  const BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerAllowedWorkloadConfiguration({
+final class BedrockagentcoreGatewayAllowedWorkloadConfiguration {
+  const BedrockagentcoreGatewayAllowedWorkloadConfiguration({
     this.workloadIdentities,
     this.hostingEnvironment,
   });
 
   final TfArg<List<String>>? workloadIdentities;
 
-  final List<
-    BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerAllowedWorkloadConfigurationHostingEnvironment
-  >?
-  hostingEnvironment;
+  final List<BedrockagentcoreGatewayHostingEnvironment>? hostingEnvironment;
 
   Map<String, Object?> encode() => {
     'workload_identities': ?workloadIdentities?.toTfJson(),
@@ -150,10 +136,8 @@ final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerAll
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.allowed_workload_configuration.hosting_environment` block of
 /// `aws_bedrockagentcore_gateway` (derived from provider schema).
 @immutable
-final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerAllowedWorkloadConfigurationHostingEnvironment {
-  const BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerAllowedWorkloadConfigurationHostingEnvironment({
-    required this.arn,
-  });
+final class BedrockagentcoreGatewayHostingEnvironment {
+  const BedrockagentcoreGatewayHostingEnvironment({required this.arn});
 
   final TfArg<String> arn;
 
@@ -163,8 +147,8 @@ final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerAll
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.custom_claim` block of
 /// `aws_bedrockagentcore_gateway` (derived from provider schema).
 @immutable
-final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerCustomClaim {
-  const BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerCustomClaim({
+final class BedrockagentcoreGatewayCustomClaim {
+  const BedrockagentcoreGatewayCustomClaim({
     required this.inboundTokenClaimName,
     required this.inboundTokenClaimValueType,
     this.authorizingClaimMatchValue,
@@ -172,14 +156,10 @@ final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerCus
 
   final TfArg<String> inboundTokenClaimName;
 
-  final TfArg<
-    BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerCustomClaimInboundTokenClaimValueType
-  >
+  final TfArg<BedrockagentcoreGatewayInboundTokenClaimValueType>
   inboundTokenClaimValueType;
 
-  final List<
-    BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValue
-  >?
+  final List<BedrockagentcoreGatewayAuthorizingClaimMatchValue>?
   authorizingClaimMatchValue;
 
   Map<String, Object?> encode() => {
@@ -193,14 +173,12 @@ final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerCus
 }
 
 /// `inbound_token_claim_value_type` — derived from the provider schema description.
-enum BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerCustomClaimInboundTokenClaimValueType
+enum BedrockagentcoreGatewayInboundTokenClaimValueType
     implements TerraformEnum {
   string('STRING'),
   stringArray('STRING_ARRAY');
 
-  const BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerCustomClaimInboundTokenClaimValueType(
-    this.terraformValue,
-  );
+  const BedrockagentcoreGatewayInboundTokenClaimValueType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -208,21 +186,15 @@ enum BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerCustomClai
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.custom_claim.authorizing_claim_match_value` block of
 /// `aws_bedrockagentcore_gateway` (derived from provider schema).
 @immutable
-final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValue {
-  const BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValue({
+final class BedrockagentcoreGatewayAuthorizingClaimMatchValue {
+  const BedrockagentcoreGatewayAuthorizingClaimMatchValue({
     required this.claimMatchOperator,
     this.claimMatchValue,
   });
 
-  final TfArg<
-    BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchOperator
-  >
-  claimMatchOperator;
+  final TfArg<BedrockagentcoreGatewayClaimMatchOperator> claimMatchOperator;
 
-  final List<
-    BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchValue
-  >?
-  claimMatchValue;
+  final List<BedrockagentcoreGatewayClaimMatchValue>? claimMatchValue;
 
   Map<String, Object?> encode() => {
     'claim_match_operator': claimMatchOperator.toTfJson(),
@@ -232,15 +204,12 @@ final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerCus
 }
 
 /// `claim_match_operator` — derived from the provider schema description.
-enum BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchOperator
-    implements TerraformEnum {
+enum BedrockagentcoreGatewayClaimMatchOperator implements TerraformEnum {
   equals('EQUALS'),
   contains('CONTAINS'),
   containsAny('CONTAINS_ANY');
 
-  const BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchOperator(
-    this.terraformValue,
-  );
+  const BedrockagentcoreGatewayClaimMatchOperator(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -248,8 +217,8 @@ enum BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerCustomClai
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.custom_claim.authorizing_claim_match_value.claim_match_value` block of
 /// `aws_bedrockagentcore_gateway` (derived from provider schema).
 @immutable
-final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchValue {
-  const BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchValue({
+final class BedrockagentcoreGatewayClaimMatchValue {
+  const BedrockagentcoreGatewayClaimMatchValue({
     this.matchValueString,
     this.matchValueStringList,
   });
@@ -266,21 +235,17 @@ final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerCus
 
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.private_endpoint` block of
 /// `aws_bedrockagentcore_gateway` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpoint {
-  const BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpoint({
+final class BedrockagentcoreGatewayPrivateEndpoint {
+  const BedrockagentcoreGatewayPrivateEndpoint({
     this.managedVpcResource,
     this.selfManagedLatticeResource,
   });
 
-  final List<
-    BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResource
-  >?
-  managedVpcResource;
+  final List<BedrockagentcoreGatewayManagedVpcResource>? managedVpcResource;
 
-  final List<
-    BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointSelfManagedLatticeResource
-  >?
+  final List<BedrockagentcoreGatewaySelfManagedLatticeResource>?
   selfManagedLatticeResource;
 
   Map<String, Object?> encode() => {
@@ -295,9 +260,10 @@ final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPri
 
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.private_endpoint.managed_vpc_resource` block of
 /// `aws_bedrockagentcore_gateway` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResource {
-  const BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResource({
+final class BedrockagentcoreGatewayManagedVpcResource {
+  const BedrockagentcoreGatewayManagedVpcResource({
     required this.endpointIpAddressType,
     this.routingDomain,
     this.securityGroupIds,
@@ -306,9 +272,7 @@ final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPri
     required this.vpcIdentifier,
   });
 
-  final TfArg<
-    BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResourceEndpointIpAddressType
-  >
+  final TfArg<BedrockagentcoreGatewayEndpointIpAddressType>
   endpointIpAddressType;
 
   final TfArg<String>? routingDomain;
@@ -332,23 +296,21 @@ final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPri
 }
 
 /// `endpoint_ip_address_type` — derived from the provider schema description.
-enum BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResourceEndpointIpAddressType
-    implements TerraformEnum {
+enum BedrockagentcoreGatewayEndpointIpAddressType implements TerraformEnum {
   ipv4('IPV4'),
   ipv6('IPV6');
 
-  const BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResourceEndpointIpAddressType(
-    this.terraformValue,
-  );
+  const BedrockagentcoreGatewayEndpointIpAddressType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.private_endpoint.self_managed_lattice_resource` block of
 /// `aws_bedrockagentcore_gateway` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointSelfManagedLatticeResource {
-  const BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointSelfManagedLatticeResource({
+final class BedrockagentcoreGatewaySelfManagedLatticeResource {
+  const BedrockagentcoreGatewaySelfManagedLatticeResource({
     this.resourceConfigurationIdentifier,
   });
 
@@ -363,119 +325,20 @@ final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPri
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.private_endpoint_overrides` block of
 /// `aws_bedrockagentcore_gateway` (derived from provider schema).
 @immutable
-final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverrides {
-  const BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverrides({
+final class BedrockagentcoreGatewayPrivateEndpointOverrides {
+  const BedrockagentcoreGatewayPrivateEndpointOverrides({
     required this.domain,
     this.privateEndpoint,
   });
 
   final TfArg<String> domain;
 
-  final List<
-    BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpoint
-  >?
-  privateEndpoint;
+  final List<BedrockagentcoreGatewayPrivateEndpoint>? privateEndpoint;
 
   Map<String, Object?> encode() => {
     'domain': domain.toTfJson(),
     if (privateEndpoint != null)
       'private_endpoint': [for (final e in privateEndpoint!) e.encode()],
-  };
-}
-
-/// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.private_endpoint_overrides.private_endpoint` block of
-/// `aws_bedrockagentcore_gateway` (derived from provider schema).
-@immutable
-final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpoint {
-  const BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpoint({
-    this.managedVpcResource,
-    this.selfManagedLatticeResource,
-  });
-
-  final List<
-    BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResource
-  >?
-  managedVpcResource;
-
-  final List<
-    BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointSelfManagedLatticeResource
-  >?
-  selfManagedLatticeResource;
-
-  Map<String, Object?> encode() => {
-    if (managedVpcResource != null)
-      'managed_vpc_resource': [for (final e in managedVpcResource!) e.encode()],
-    if (selfManagedLatticeResource != null)
-      'self_managed_lattice_resource': [
-        for (final e in selfManagedLatticeResource!) e.encode(),
-      ],
-  };
-}
-
-/// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.private_endpoint_overrides.private_endpoint.managed_vpc_resource` block of
-/// `aws_bedrockagentcore_gateway` (derived from provider schema).
-@immutable
-final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResource {
-  const BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResource({
-    required this.endpointIpAddressType,
-    this.routingDomain,
-    this.securityGroupIds,
-    required this.subnetIds,
-    this.tags,
-    required this.vpcIdentifier,
-  });
-
-  final TfArg<
-    BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResourceEndpointIpAddressType
-  >
-  endpointIpAddressType;
-
-  final TfArg<String>? routingDomain;
-
-  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
-
-  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
-
-  final TfArg<Map<String, String>>? tags;
-
-  final TfArg<String> vpcIdentifier;
-
-  Map<String, Object?> encode() => {
-    'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
-    'routing_domain': ?routingDomain?.toTfJson(),
-    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
-    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
-    'tags': ?tags?.toTfJson(),
-    'vpc_identifier': vpcIdentifier.toTfJson(),
-  };
-}
-
-/// `endpoint_ip_address_type` — derived from the provider schema description.
-enum BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResourceEndpointIpAddressType
-    implements TerraformEnum {
-  ipv4('IPV4'),
-  ipv6('IPV6');
-
-  const BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResourceEndpointIpAddressType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.private_endpoint_overrides.private_endpoint.self_managed_lattice_resource` block of
-/// `aws_bedrockagentcore_gateway` (derived from provider schema).
-@immutable
-final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointSelfManagedLatticeResource {
-  const BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointSelfManagedLatticeResource({
-    this.resourceConfigurationIdentifier,
-  });
-
-  final TfArg<String>? resourceConfigurationIdentifier;
-
-  Map<String, Object?> encode() => {
-    'resource_configuration_identifier': ?resourceConfigurationIdentifier
-        ?.toTfJson(),
   };
 }
 
@@ -489,16 +352,12 @@ final class BedrockagentcoreGatewayInterceptorConfiguration {
     this.interceptor,
   });
 
-  final List<
-    TfArg<BedrockagentcoreGatewayInterceptorConfigurationInterceptionPoints>
-  >
+  final List<TfArg<BedrockagentcoreGatewayInterceptionPoints>>
   interceptionPoints;
 
-  final List<BedrockagentcoreGatewayInterceptorConfigurationInputConfiguration>?
-  inputConfiguration;
+  final List<BedrockagentcoreGatewayInputConfiguration>? inputConfiguration;
 
-  final List<BedrockagentcoreGatewayInterceptorConfigurationInterceptor>?
-  interceptor;
+  final List<BedrockagentcoreGatewayInterceptor>? interceptor;
 
   Map<String, Object?> encode() => {
     'interception_points': [for (final e in interceptionPoints) e.toTfJson()],
@@ -510,14 +369,11 @@ final class BedrockagentcoreGatewayInterceptorConfiguration {
 }
 
 /// `interception_points` — derived from the provider schema description.
-enum BedrockagentcoreGatewayInterceptorConfigurationInterceptionPoints
-    implements TerraformEnum {
+enum BedrockagentcoreGatewayInterceptionPoints implements TerraformEnum {
   request('REQUEST'),
   response('RESPONSE');
 
-  const BedrockagentcoreGatewayInterceptorConfigurationInterceptionPoints(
-    this.terraformValue,
-  );
+  const BedrockagentcoreGatewayInterceptionPoints(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -525,8 +381,8 @@ enum BedrockagentcoreGatewayInterceptorConfigurationInterceptionPoints
 /// Typed helper for the `interceptor_configuration.input_configuration` block of
 /// `aws_bedrockagentcore_gateway` (derived from provider schema).
 @immutable
-final class BedrockagentcoreGatewayInterceptorConfigurationInputConfiguration {
-  const BedrockagentcoreGatewayInterceptorConfigurationInputConfiguration({
+final class BedrockagentcoreGatewayInputConfiguration {
+  const BedrockagentcoreGatewayInputConfiguration({
     required this.passRequestHeaders,
   });
 
@@ -540,13 +396,10 @@ final class BedrockagentcoreGatewayInterceptorConfigurationInputConfiguration {
 /// Typed helper for the `interceptor_configuration.interceptor` block of
 /// `aws_bedrockagentcore_gateway` (derived from provider schema).
 @immutable
-final class BedrockagentcoreGatewayInterceptorConfigurationInterceptor {
-  const BedrockagentcoreGatewayInterceptorConfigurationInterceptor({
-    this.lambda,
-  });
+final class BedrockagentcoreGatewayInterceptor {
+  const BedrockagentcoreGatewayInterceptor({this.lambda});
 
-  final List<BedrockagentcoreGatewayInterceptorConfigurationInterceptorLambda>?
-  lambda;
+  final List<BedrockagentcoreGatewayLambda>? lambda;
 
   Map<String, Object?> encode() => {
     if (lambda != null) 'lambda': [for (final e in lambda!) e.encode()],
@@ -556,10 +409,8 @@ final class BedrockagentcoreGatewayInterceptorConfigurationInterceptor {
 /// Typed helper for the `interceptor_configuration.interceptor.lambda` block of
 /// `aws_bedrockagentcore_gateway` (derived from provider schema).
 @immutable
-final class BedrockagentcoreGatewayInterceptorConfigurationInterceptorLambda {
-  const BedrockagentcoreGatewayInterceptorConfigurationInterceptorLambda({
-    required this.arn,
-  });
+final class BedrockagentcoreGatewayLambda {
+  const BedrockagentcoreGatewayLambda({required this.arn});
 
   final TfArg<String> arn;
 
@@ -577,7 +428,7 @@ final class BedrockagentcoreGatewayPolicyEngineConfiguration {
 
   final TfArg<String> arn;
 
-  final TfArg<BedrockagentcoreGatewayPolicyEngineConfigurationMode> mode;
+  final TfArg<BedrockagentcoreGatewayMode> mode;
 
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
@@ -586,14 +437,11 @@ final class BedrockagentcoreGatewayPolicyEngineConfiguration {
 }
 
 /// `mode` — derived from the provider schema description.
-enum BedrockagentcoreGatewayPolicyEngineConfigurationMode
-    implements TerraformEnum {
+enum BedrockagentcoreGatewayMode implements TerraformEnum {
   logOnly('LOG_ONLY'),
   enforce('ENFORCE');
 
-  const BedrockagentcoreGatewayPolicyEngineConfigurationMode(
-    this.terraformValue,
-  );
+  const BedrockagentcoreGatewayMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -604,7 +452,7 @@ enum BedrockagentcoreGatewayPolicyEngineConfigurationMode
 final class BedrockagentcoreGatewayProtocolConfiguration {
   const BedrockagentcoreGatewayProtocolConfiguration({this.mcp});
 
-  final List<BedrockagentcoreGatewayProtocolConfigurationMcp>? mcp;
+  final List<BedrockagentcoreGatewayMcp>? mcp;
 
   Map<String, Object?> encode() => {
     if (mcp != null) 'mcp': [for (final e in mcp!) e.encode()],
@@ -614,8 +462,8 @@ final class BedrockagentcoreGatewayProtocolConfiguration {
 /// Typed helper for the `protocol_configuration.mcp` block of
 /// `aws_bedrockagentcore_gateway` (derived from provider schema).
 @immutable
-final class BedrockagentcoreGatewayProtocolConfigurationMcp {
-  const BedrockagentcoreGatewayProtocolConfigurationMcp({
+final class BedrockagentcoreGatewayMcp {
+  const BedrockagentcoreGatewayMcp({
     this.instructions,
     this.searchType,
     this.supportedVersions,
@@ -625,19 +473,13 @@ final class BedrockagentcoreGatewayProtocolConfigurationMcp {
 
   final TfArg<String>? instructions;
 
-  final TfArg<BedrockagentcoreGatewayProtocolConfigurationMcpSearchType>?
-  searchType;
+  final TfArg<BedrockagentcoreGatewaySearchType>? searchType;
 
   final TfArg<List<String>>? supportedVersions;
 
-  final List<
-    BedrockagentcoreGatewayProtocolConfigurationMcpSessionConfiguration
-  >?
-  sessionConfiguration;
+  final List<BedrockagentcoreGatewaySessionConfiguration>? sessionConfiguration;
 
-  final List<
-    BedrockagentcoreGatewayProtocolConfigurationMcpStreamingConfiguration
-  >?
+  final List<BedrockagentcoreGatewayStreamingConfiguration>?
   streamingConfiguration;
 
   Map<String, Object?> encode() => {
@@ -656,13 +498,10 @@ final class BedrockagentcoreGatewayProtocolConfigurationMcp {
 }
 
 /// `search_type` — derived from the provider schema description.
-enum BedrockagentcoreGatewayProtocolConfigurationMcpSearchType
-    implements TerraformEnum {
+enum BedrockagentcoreGatewaySearchType implements TerraformEnum {
   semantic('SEMANTIC');
 
-  const BedrockagentcoreGatewayProtocolConfigurationMcpSearchType(
-    this.terraformValue,
-  );
+  const BedrockagentcoreGatewaySearchType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -670,8 +509,8 @@ enum BedrockagentcoreGatewayProtocolConfigurationMcpSearchType
 /// Typed helper for the `protocol_configuration.mcp.session_configuration` block of
 /// `aws_bedrockagentcore_gateway` (derived from provider schema).
 @immutable
-final class BedrockagentcoreGatewayProtocolConfigurationMcpSessionConfiguration {
-  const BedrockagentcoreGatewayProtocolConfigurationMcpSessionConfiguration({
+final class BedrockagentcoreGatewaySessionConfiguration {
+  const BedrockagentcoreGatewaySessionConfiguration({
     this.sessionTimeoutInSeconds,
   });
 
@@ -685,8 +524,8 @@ final class BedrockagentcoreGatewayProtocolConfigurationMcpSessionConfiguration 
 /// Typed helper for the `protocol_configuration.mcp.streaming_configuration` block of
 /// `aws_bedrockagentcore_gateway` (derived from provider schema).
 @immutable
-final class BedrockagentcoreGatewayProtocolConfigurationMcpStreamingConfiguration {
-  const BedrockagentcoreGatewayProtocolConfigurationMcpStreamingConfiguration({
+final class BedrockagentcoreGatewayStreamingConfiguration {
+  const BedrockagentcoreGatewayStreamingConfiguration({
     this.enableResponseStreaming,
   });
 

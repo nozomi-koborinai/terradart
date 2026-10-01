@@ -78,7 +78,7 @@ final class RdsClusterParameterGroupParameter {
     required this.value,
   });
 
-  final TfArg<RdsClusterParameterGroupParameterApplyMethod>? applyMethod;
+  final TfArg<RdsClusterParameterGroupApplyMethod>? applyMethod;
 
   final TfArg<String> name;
 
@@ -92,11 +92,11 @@ final class RdsClusterParameterGroupParameter {
 }
 
 /// `apply_method` — derived from the provider schema description.
-enum RdsClusterParameterGroupParameterApplyMethod implements TerraformEnum {
+enum RdsClusterParameterGroupApplyMethod implements TerraformEnum {
   immediate('immediate'),
   pendingReboot('pending-reboot');
 
-  const RdsClusterParameterGroupParameterApplyMethod(this.terraformValue);
+  const RdsClusterParameterGroupApplyMethod(this.terraformValue);
   @override
   final String terraformValue;
 }

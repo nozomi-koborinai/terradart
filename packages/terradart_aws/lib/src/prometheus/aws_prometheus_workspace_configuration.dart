@@ -18,7 +18,7 @@ final class PrometheusWorkspaceConfigurationLimitsPerLabelSet {
 
   final TfArg<Map<String, String>> labelSet;
 
-  final List<PrometheusWorkspaceConfigurationLimitsPerLabelSetLimits>? limits;
+  final List<PrometheusWorkspaceConfigurationLimits>? limits;
 
   Map<String, Object?> encode() => {
     'label_set': labelSet.toTfJson(),
@@ -29,10 +29,8 @@ final class PrometheusWorkspaceConfigurationLimitsPerLabelSet {
 /// Typed helper for the `limits_per_label_set.limits` block of
 /// `aws_prometheus_workspace_configuration` (derived from provider schema).
 @immutable
-final class PrometheusWorkspaceConfigurationLimitsPerLabelSetLimits {
-  const PrometheusWorkspaceConfigurationLimitsPerLabelSetLimits({
-    required this.maxSeries,
-  });
+final class PrometheusWorkspaceConfigurationLimits {
+  const PrometheusWorkspaceConfigurationLimits({required this.maxSeries});
 
   final TfArg<num> maxSeries;
 

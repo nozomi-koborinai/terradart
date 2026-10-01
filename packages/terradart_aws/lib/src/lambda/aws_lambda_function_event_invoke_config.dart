@@ -18,9 +18,9 @@ final class LambdaFunctionEventInvokeConfigDestinationConfig {
     this.onSuccess,
   });
 
-  final LambdaFunctionEventInvokeConfigDestinationConfigOnFailure? onFailure;
+  final LambdaFunctionEventInvokeConfigOnFailure? onFailure;
 
-  final LambdaFunctionEventInvokeConfigDestinationConfigOnSuccess? onSuccess;
+  final LambdaFunctionEventInvokeConfigOnSuccess? onSuccess;
 
   Map<String, Object?> encode() => {
     'on_failure': ?onFailure?.encode(),
@@ -31,10 +31,8 @@ final class LambdaFunctionEventInvokeConfigDestinationConfig {
 /// Typed helper for the `destination_config.on_failure` block of
 /// `aws_lambda_function_event_invoke_config` (derived from provider schema).
 @immutable
-final class LambdaFunctionEventInvokeConfigDestinationConfigOnFailure {
-  const LambdaFunctionEventInvokeConfigDestinationConfigOnFailure({
-    required this.destination,
-  });
+final class LambdaFunctionEventInvokeConfigOnFailure {
+  const LambdaFunctionEventInvokeConfigOnFailure({required this.destination});
 
   final TfArg<String> destination;
 
@@ -44,10 +42,8 @@ final class LambdaFunctionEventInvokeConfigDestinationConfigOnFailure {
 /// Typed helper for the `destination_config.on_success` block of
 /// `aws_lambda_function_event_invoke_config` (derived from provider schema).
 @immutable
-final class LambdaFunctionEventInvokeConfigDestinationConfigOnSuccess {
-  const LambdaFunctionEventInvokeConfigDestinationConfigOnSuccess({
-    required this.destination,
-  });
+final class LambdaFunctionEventInvokeConfigOnSuccess {
+  const LambdaFunctionEventInvokeConfigOnSuccess({required this.destination});
 
   final TfArg<String> destination;
 

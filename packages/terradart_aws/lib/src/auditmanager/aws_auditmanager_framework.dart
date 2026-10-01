@@ -15,7 +15,7 @@ final class AuditmanagerFrameworkControlSets {
 
   final TfArg<String> name;
 
-  final List<AuditmanagerFrameworkControlSetsControls>? controls;
+  final List<AuditmanagerFrameworkControls>? controls;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -26,8 +26,8 @@ final class AuditmanagerFrameworkControlSets {
 /// Typed helper for the `control_sets.controls` block of
 /// `aws_auditmanager_framework` (derived from provider schema).
 @immutable
-final class AuditmanagerFrameworkControlSetsControls {
-  const AuditmanagerFrameworkControlSetsControls({required this.id});
+final class AuditmanagerFrameworkControls {
+  const AuditmanagerFrameworkControls({required this.id});
 
   final TfArg<String> id;
 

@@ -7,79 +7,77 @@ export 'src/glue/aws_glue_catalog.dart'
     show
         AwsGlueCatalog,
         GlueCatalogAllowFullTableExternalDataAccess,
-        GlueCatalogCatalogProperties,
-        GlueCatalogCatalogPropertiesDataLakeAccessProperties,
-        GlueCatalogCatalogPropertiesIcebergOptimizationProperties,
         GlueCatalogCreateDatabaseDefaultPermissions,
-        GlueCatalogCreateDatabaseDefaultPermissionsPrincipal,
         GlueCatalogCreateTableDefaultPermissions,
-        GlueCatalogCreateTableDefaultPermissionsPrincipal,
+        GlueCatalogDataLakeAccessProperties,
         GlueCatalogFederatedCatalog,
+        GlueCatalogIcebergOptimizationProperties,
         GlueCatalogOverwriteChildResourcePermissionsWithDefault,
+        GlueCatalogPrincipal,
+        GlueCatalogProperties,
         GlueCatalogTargetRedshiftCatalog;
 export 'src/glue/aws_glue_catalog_database.dart'
     show
         AwsGlueCatalogDatabase,
         GlueCatalogDatabaseCreateTableDefaultPermission,
-        GlueCatalogDatabaseCreateTableDefaultPermissionPermissions,
-        GlueCatalogDatabaseCreateTableDefaultPermissionPrincipal,
         GlueCatalogDatabaseFederatedDatabase,
+        GlueCatalogDatabasePermissions,
+        GlueCatalogDatabasePrincipal,
         GlueCatalogDatabaseTargetDatabase;
 export 'src/glue/aws_glue_catalog_table.dart'
     show
         AwsGlueCatalogTable,
+        GlueCatalogTableColumns,
+        GlueCatalogTableDialect,
+        GlueCatalogTableDirection,
+        GlueCatalogTableIcebergInput,
+        GlueCatalogTableIcebergTableInput,
+        GlueCatalogTableIcebergTableInputSchema,
+        GlueCatalogTableLastRefreshType,
+        GlueCatalogTableMetadataOperation,
+        GlueCatalogTableNullOrder,
         GlueCatalogTableOpenTableFormatInput,
-        GlueCatalogTableOpenTableFormatInputIcebergInput,
-        GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInput,
-        GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputPartitionSpec,
-        GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputPartitionSpecFields,
-        GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSchema,
-        GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSchemaFields,
-        GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSchemaType,
-        GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSortOrder,
-        GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSortOrderFields,
-        GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSortOrderFieldsDirection,
-        GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSortOrderFieldsNullOrder,
-        GlueCatalogTableOpenTableFormatInputIcebergInputMetadataOperation,
         GlueCatalogTablePartitionIndex,
         GlueCatalogTablePartitionKeys,
+        GlueCatalogTablePartitionSpec,
+        GlueCatalogTablePartitionSpecFields,
+        GlueCatalogTableRepresentations,
+        GlueCatalogTableSchema,
+        GlueCatalogTableSchemaFields,
+        GlueCatalogTableSchemaId,
+        GlueCatalogTableSchemaIdChoice,
+        GlueCatalogTableSchemaIdSchema,
+        GlueCatalogTableSchemaIdSchemaArn,
+        GlueCatalogTableSchemaIdSchemaName,
+        GlueCatalogTableSchemaReference,
+        GlueCatalogTableSchemaVersionId,
+        GlueCatalogTableSerDeInfo,
+        GlueCatalogTableSkewedInfo,
+        GlueCatalogTableSortColumns,
+        GlueCatalogTableSortOrder,
+        GlueCatalogTableSortOrderFields,
         GlueCatalogTableStorageDescriptor,
-        GlueCatalogTableStorageDescriptorColumns,
-        GlueCatalogTableStorageDescriptorSchemaReference,
-        GlueCatalogTableStorageDescriptorSchemaReferenceSchema,
-        GlueCatalogTableStorageDescriptorSchemaReferenceSchemaId,
-        GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdChoice,
-        GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchema,
-        GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArn,
-        GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaName,
-        GlueCatalogTableStorageDescriptorSchemaReferenceSchemaVersionId,
-        GlueCatalogTableStorageDescriptorSerDeInfo,
-        GlueCatalogTableStorageDescriptorSkewedInfo,
-        GlueCatalogTableStorageDescriptorSortColumns,
         GlueCatalogTableTargetTable,
-        GlueCatalogTableViewDefinition,
-        GlueCatalogTableViewDefinitionLastRefreshType,
-        GlueCatalogTableViewDefinitionRepresentations,
-        GlueCatalogTableViewDefinitionRepresentationsDialect;
+        GlueCatalogTableType,
+        GlueCatalogTableViewDefinition;
 export 'src/glue/aws_glue_catalog_table_optimizer.dart'
     show
         AwsGlueCatalogTableOptimizer,
+        GlueCatalogTableOptimizerCompactionConfiguration,
+        GlueCatalogTableOptimizerCompactionConfigurationIcebergConfiguration,
         GlueCatalogTableOptimizerConfiguration,
-        GlueCatalogTableOptimizerConfigurationCompactionConfiguration,
-        GlueCatalogTableOptimizerConfigurationCompactionConfigurationIcebergConfiguration,
-        GlueCatalogTableOptimizerConfigurationCompactionConfigurationIcebergConfigurationStrategy,
-        GlueCatalogTableOptimizerConfigurationOrphanFileDeletionConfiguration,
-        GlueCatalogTableOptimizerConfigurationOrphanFileDeletionConfigurationIcebergConfiguration,
-        GlueCatalogTableOptimizerConfigurationRetentionConfiguration,
-        GlueCatalogTableOptimizerConfigurationRetentionConfigurationIcebergConfiguration,
+        GlueCatalogTableOptimizerOrphanFileDeletionConfiguration,
+        GlueCatalogTableOptimizerOrphanFileDeletionConfigurationIcebergConfiguration,
+        GlueCatalogTableOptimizerRetentionConfiguration,
+        GlueCatalogTableOptimizerRetentionConfigurationIcebergConfiguration,
+        GlueCatalogTableOptimizerStrategy,
         GlueCatalogTableOptimizerType;
 export 'src/glue/aws_glue_classifier.dart'
     show
         AwsGlueClassifier,
+        GlueClassifierContainsHeader,
         GlueClassifierCsvClassifier,
-        GlueClassifierCsvClassifierContainsHeader,
-        GlueClassifierCsvClassifierCustomDatatypes,
-        GlueClassifierCsvClassifierSerde,
+        GlueClassifierCustomDatatypes,
         GlueClassifierFormat,
         GlueClassifierFormatCsvClassifier,
         GlueClassifierFormatGrokClassifier,
@@ -87,44 +85,45 @@ export 'src/glue/aws_glue_classifier.dart'
         GlueClassifierFormatXmlClassifier,
         GlueClassifierGrokClassifier,
         GlueClassifierJsonClassifier,
+        GlueClassifierSerde,
         GlueClassifierXmlClassifier;
 export 'src/glue/aws_glue_connection.dart'
     show
         AwsGlueConnection,
         GlueConnectionAuthenticationConfiguration,
-        GlueConnectionAuthenticationConfigurationBasicAuthenticationCredentials,
-        GlueConnectionAuthenticationConfigurationOauth2Properties,
-        GlueConnectionAuthenticationConfigurationOauth2PropertiesAuthorizationCodeProperties,
-        GlueConnectionAuthenticationConfigurationOauth2PropertiesOauth2ClientApplication,
-        GlueConnectionAuthenticationConfigurationOauth2PropertiesOauth2Credentials,
+        GlueConnectionAuthorizationCodeProperties,
+        GlueConnectionBasicAuthenticationCredentials,
+        GlueConnectionOauth2ClientApplication,
+        GlueConnectionOauth2Credentials,
+        GlueConnectionOauth2Properties,
         GlueConnectionPhysicalConnectionRequirements;
 export 'src/glue/aws_glue_crawler.dart'
     show
         AwsGlueCrawler,
         GlueCrawlerCatalogTarget,
+        GlueCrawlerDeleteBehavior,
         GlueCrawlerDeltaTarget,
         GlueCrawlerDynamodbTarget,
+        GlueCrawlerEnableAdditionalMetadata,
         GlueCrawlerHudiTarget,
         GlueCrawlerIcebergTarget,
         GlueCrawlerJdbcTarget,
-        GlueCrawlerJdbcTargetEnableAdditionalMetadata,
         GlueCrawlerLakeFormationConfiguration,
         GlueCrawlerLineageConfiguration,
-        GlueCrawlerLineageConfigurationCrawlerLineageSettings,
+        GlueCrawlerLineageSettings,
         GlueCrawlerMongodbTarget,
+        GlueCrawlerRecrawlBehavior,
         GlueCrawlerRecrawlPolicy,
-        GlueCrawlerRecrawlPolicyRecrawlBehavior,
         GlueCrawlerS3Target,
         GlueCrawlerSchemaChangePolicy,
-        GlueCrawlerSchemaChangePolicyDeleteBehavior,
-        GlueCrawlerSchemaChangePolicyUpdateBehavior;
+        GlueCrawlerUpdateBehavior;
 export 'src/glue/aws_glue_data_catalog_encryption_settings.dart'
     show
         AwsGlueDataCatalogEncryptionSettings,
+        GlueDataCatalogEncryptionSettingsCatalogEncryptionMode,
+        GlueDataCatalogEncryptionSettingsConnectionPasswordEncryption,
         GlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettings,
-        GlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsConnectionPasswordEncryption,
-        GlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsEncryptionAtRest,
-        GlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsEncryptionAtRestCatalogEncryptionMode;
+        GlueDataCatalogEncryptionSettingsEncryptionAtRest;
 export 'src/glue/aws_glue_data_quality_ruleset.dart'
     show AwsGlueDataQualityRuleset, GlueDataQualityRulesetTargetTable;
 export 'src/glue/aws_glue_dev_endpoint.dart'
@@ -137,32 +136,32 @@ export 'src/glue/aws_glue_dev_endpoint.dart'
 export 'src/glue/aws_glue_job.dart'
     show
         AwsGlueJob,
+        GlueJobAuthStrategy,
         GlueJobCommand,
-        GlueJobCommandPythonVersion,
-        GlueJobCommandRuntime,
         GlueJobExecutionClass,
         GlueJobExecutionProperty,
         GlueJobJobMode,
         GlueJobNotificationProperty,
-        GlueJobSourceControlDetails,
-        GlueJobSourceControlDetailsAuthStrategy,
-        GlueJobSourceControlDetailsProvider;
+        GlueJobProvider,
+        GlueJobPythonVersion,
+        GlueJobRuntime,
+        GlueJobSourceControlDetails;
 export 'src/glue/aws_glue_ml_transform.dart'
     show
         AwsGlueMlTransform,
+        GlueMlTransformFindMatchesParameters,
         GlueMlTransformInputRecordTables,
         GlueMlTransformParameters,
-        GlueMlTransformParametersFindMatchesParameters,
-        GlueMlTransformParametersTransformType,
+        GlueMlTransformType,
         GlueMlTransformWorkerType;
 export 'src/glue/aws_glue_partition.dart'
     show
         AwsGluePartition,
-        GluePartitionStorageDescriptor,
-        GluePartitionStorageDescriptorColumns,
-        GluePartitionStorageDescriptorSerDeInfo,
-        GluePartitionStorageDescriptorSkewedInfo,
-        GluePartitionStorageDescriptorSortColumns;
+        GluePartitionColumns,
+        GluePartitionSerDeInfo,
+        GluePartitionSkewedInfo,
+        GluePartitionSortColumns,
+        GluePartitionStorageDescriptor;
 export 'src/glue/aws_glue_partition_index.dart'
     show AwsGluePartitionIndex, GluePartitionIndexPartitionIndex;
 export 'src/glue/aws_glue_registry.dart' show AwsGlueRegistry;
@@ -173,30 +172,30 @@ export 'src/glue/aws_glue_schema.dart'
 export 'src/glue/aws_glue_security_configuration.dart'
     show
         AwsGlueSecurityConfiguration,
+        GlueSecurityConfigurationCloudwatchEncryption,
+        GlueSecurityConfigurationCloudwatchEncryptionMode,
         GlueSecurityConfigurationEncryptionConfiguration,
-        GlueSecurityConfigurationEncryptionConfigurationCloudwatchEncryption,
-        GlueSecurityConfigurationEncryptionConfigurationCloudwatchEncryptionCloudwatchEncryptionMode,
-        GlueSecurityConfigurationEncryptionConfigurationJobBookmarksEncryption,
-        GlueSecurityConfigurationEncryptionConfigurationJobBookmarksEncryptionJobBookmarksEncryptionMode,
-        GlueSecurityConfigurationEncryptionConfigurationS3Encryption,
-        GlueSecurityConfigurationEncryptionConfigurationS3EncryptionS3EncryptionMode;
+        GlueSecurityConfigurationJobBookmarksEncryption,
+        GlueSecurityConfigurationJobBookmarksEncryptionMode,
+        GlueSecurityConfigurationS3Encryption,
+        GlueSecurityConfigurationS3EncryptionMode;
 export 'src/glue/aws_glue_trigger.dart'
     show
         AwsGlueTrigger,
         GlueTriggerActions,
-        GlueTriggerActionsNotificationProperty,
+        GlueTriggerConditions,
+        GlueTriggerConditionsState,
+        GlueTriggerCrawlState,
         GlueTriggerEventBatchingCondition,
+        GlueTriggerLogical,
+        GlueTriggerLogicalOperator,
+        GlueTriggerNotificationProperty,
         GlueTriggerPredicate,
-        GlueTriggerPredicateConditions,
-        GlueTriggerPredicateConditionsCrawlState,
-        GlueTriggerPredicateConditionsLogicalOperator,
-        GlueTriggerPredicateConditionsState,
-        GlueTriggerPredicateLogical,
         GlueTriggerType;
 export 'src/glue/aws_glue_user_defined_function.dart'
     show
         AwsGlueUserDefinedFunction,
         GlueUserDefinedFunctionOwnerType,
-        GlueUserDefinedFunctionResourceUris,
-        GlueUserDefinedFunctionResourceUrisResourceType;
+        GlueUserDefinedFunctionResourceType,
+        GlueUserDefinedFunctionResourceUris;
 export 'src/glue/aws_glue_workflow.dart' show AwsGlueWorkflow;

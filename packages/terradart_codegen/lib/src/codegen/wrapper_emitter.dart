@@ -144,6 +144,10 @@ class WrapperEmitter {
             sealedNames: override?.sealedNames,
             references: (path) => refs[path.join('.')],
             typeOverrides: override?.nestedDartTypeOverrides ?? const {},
+            reserved: providerEnums.rootSealedNames(
+              def.terraformType,
+              override,
+            ),
           )
         : const <NestedBlockSpec>[];
     final nestedTypeKeys = {...?override?.nestedDartTypeOverrides.keys};

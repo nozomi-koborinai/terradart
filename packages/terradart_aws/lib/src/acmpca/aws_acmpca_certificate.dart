@@ -34,7 +34,7 @@ enum AcmpcaCertificateSigningAlgorithm implements TerraformEnum {
 final class AcmpcaCertificateValidity {
   const AcmpcaCertificateValidity({required this.type, required this.value});
 
-  final TfArg<AcmpcaCertificateValidityType> type;
+  final TfArg<AcmpcaCertificateType> type;
 
   final TfArg<String> value;
 
@@ -45,14 +45,14 @@ final class AcmpcaCertificateValidity {
 }
 
 /// `type` — derived from the provider schema description.
-enum AcmpcaCertificateValidityType implements TerraformEnum {
+enum AcmpcaCertificateType implements TerraformEnum {
   endDate('END_DATE'),
   absolute('ABSOLUTE'),
   days('DAYS'),
   months('MONTHS'),
   years('YEARS');
 
-  const AcmpcaCertificateValidityType(this.terraformValue);
+  const AcmpcaCertificateType(this.terraformValue);
   @override
   final String terraformValue;
 }

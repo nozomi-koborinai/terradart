@@ -96,7 +96,7 @@ final class CloudtrailAdvancedEventSelector {
 
   final TfArg<String>? name;
 
-  final List<CloudtrailAdvancedEventSelectorFieldSelector> fieldSelector;
+  final List<CloudtrailFieldSelector> fieldSelector;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
@@ -107,8 +107,8 @@ final class CloudtrailAdvancedEventSelector {
 /// Typed helper for the `advanced_event_selector.field_selector` block of
 /// `aws_cloudtrail` (derived from provider schema).
 @immutable
-final class CloudtrailAdvancedEventSelectorFieldSelector {
-  const CloudtrailAdvancedEventSelectorFieldSelector({
+final class CloudtrailFieldSelector {
+  const CloudtrailFieldSelector({
     this.endsWith,
     this.equals,
     required this.field,
@@ -122,7 +122,7 @@ final class CloudtrailAdvancedEventSelectorFieldSelector {
 
   final TfArg<List<String>>? equals;
 
-  final TfArg<CloudtrailAdvancedEventSelectorFieldSelectorField> field;
+  final TfArg<CloudtrailField> field;
 
   final TfArg<List<String>>? notEndsWith;
 
@@ -144,8 +144,7 @@ final class CloudtrailAdvancedEventSelectorFieldSelector {
 }
 
 /// `field` — derived from the provider schema description.
-enum CloudtrailAdvancedEventSelectorFieldSelectorField
-    implements TerraformEnum {
+enum CloudtrailField implements TerraformEnum {
   errorcode('errorCode'),
   eventcategory('eventCategory'),
   eventname('eventName'),
@@ -158,7 +157,7 @@ enum CloudtrailAdvancedEventSelectorFieldSelectorField
   useridentityArn('userIdentity.arn'),
   vpcendpointid('vpcEndpointId');
 
-  const CloudtrailAdvancedEventSelectorFieldSelectorField(this.terraformValue);
+  const CloudtrailField(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -178,9 +177,9 @@ final class CloudtrailEventSelector {
 
   final TfArg<bool>? includeManagementEvents;
 
-  final TfArg<CloudtrailEventSelectorReadWriteType>? readWriteType;
+  final TfArg<CloudtrailReadWriteType>? readWriteType;
 
-  final List<CloudtrailEventSelectorDataResource>? dataResource;
+  final List<CloudtrailDataResource>? dataResource;
 
   Map<String, Object?> encode() => {
     'exclude_management_event_sources': ?excludeManagementEventSources
@@ -193,12 +192,12 @@ final class CloudtrailEventSelector {
 }
 
 /// `read_write_type` — derived from the provider schema description.
-enum CloudtrailEventSelectorReadWriteType implements TerraformEnum {
+enum CloudtrailReadWriteType implements TerraformEnum {
   readonly('ReadOnly'),
   writeonly('WriteOnly'),
   all('All');
 
-  const CloudtrailEventSelectorReadWriteType(this.terraformValue);
+  const CloudtrailReadWriteType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -206,13 +205,10 @@ enum CloudtrailEventSelectorReadWriteType implements TerraformEnum {
 /// Typed helper for the `event_selector.data_resource` block of
 /// `aws_cloudtrail` (derived from provider schema).
 @immutable
-final class CloudtrailEventSelectorDataResource {
-  const CloudtrailEventSelectorDataResource({
-    required this.type,
-    required this.values,
-  });
+final class CloudtrailDataResource {
+  const CloudtrailDataResource({required this.type, required this.values});
 
-  final TfArg<CloudtrailEventSelectorDataResourceType> type;
+  final TfArg<CloudtrailType> type;
 
   final TfArg<List<String>> values;
 
@@ -223,12 +219,12 @@ final class CloudtrailEventSelectorDataResource {
 }
 
 /// `type` — derived from the provider schema description.
-enum CloudtrailEventSelectorDataResourceType implements TerraformEnum {
+enum CloudtrailType implements TerraformEnum {
   awsDynamodbTable('AWS::DynamoDB::Table'),
   awsLambdaFunction('AWS::Lambda::Function'),
   awsS3Object('AWS::S3::Object');
 
-  const CloudtrailEventSelectorDataResourceType(this.terraformValue);
+  const CloudtrailType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -239,17 +235,17 @@ enum CloudtrailEventSelectorDataResourceType implements TerraformEnum {
 final class CloudtrailInsightSelector {
   const CloudtrailInsightSelector({required this.insightType});
 
-  final TfArg<CloudtrailInsightSelectorInsightType> insightType;
+  final TfArg<CloudtrailInsightType> insightType;
 
   Map<String, Object?> encode() => {'insight_type': insightType.toTfJson()};
 }
 
 /// `insight_type` — derived from the provider schema description.
-enum CloudtrailInsightSelectorInsightType implements TerraformEnum {
+enum CloudtrailInsightType implements TerraformEnum {
   apicallrateinsight('ApiCallRateInsight'),
   apierrorrateinsight('ApiErrorRateInsight');
 
-  const CloudtrailInsightSelectorInsightType(this.terraformValue);
+  const CloudtrailInsightType(this.terraformValue);
   @override
   final String terraformValue;
 }

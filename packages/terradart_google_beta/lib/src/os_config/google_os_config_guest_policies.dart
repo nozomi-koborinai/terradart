@@ -28,9 +28,9 @@ final class OsConfigGuestPoliciesAssignment {
 
   final TfArg<List<String>>? zones;
 
-  final List<OsConfigGuestPoliciesAssignmentGroupLabels>? groupLabels;
+  final List<OsConfigGuestPoliciesGroupLabels>? groupLabels;
 
-  final List<OsConfigGuestPoliciesAssignmentOsTypes>? osTypes;
+  final List<OsConfigGuestPoliciesOsTypes>? osTypes;
 
   Map<String, Object?> encode() => {
     'instance_name_prefixes': ?instanceNamePrefixes?.toTfJson(),
@@ -45,8 +45,8 @@ final class OsConfigGuestPoliciesAssignment {
 /// Typed helper for the `assignment.group_labels` block of
 /// `google_os_config_guest_policies` (derived from provider schema).
 @immutable
-final class OsConfigGuestPoliciesAssignmentGroupLabels {
-  const OsConfigGuestPoliciesAssignmentGroupLabels({required this.labels});
+final class OsConfigGuestPoliciesGroupLabels {
+  const OsConfigGuestPoliciesGroupLabels({required this.labels});
 
   final TfArg<Map<String, String>> labels;
 
@@ -56,8 +56,8 @@ final class OsConfigGuestPoliciesAssignmentGroupLabels {
 /// Typed helper for the `assignment.os_types` block of
 /// `google_os_config_guest_policies` (derived from provider schema).
 @immutable
-final class OsConfigGuestPoliciesAssignmentOsTypes {
-  const OsConfigGuestPoliciesAssignmentOsTypes({
+final class OsConfigGuestPoliciesOsTypes {
+  const OsConfigGuestPoliciesOsTypes({
     this.osArchitecture,
     this.osShortName,
     this.osVersion,
@@ -87,13 +87,13 @@ final class OsConfigGuestPoliciesPackageRepositories {
     this.zypper,
   });
 
-  final OsConfigGuestPoliciesPackageRepositoriesApt? apt;
+  final OsConfigGuestPoliciesApt? apt;
 
-  final OsConfigGuestPoliciesPackageRepositoriesGoo? goo;
+  final OsConfigGuestPoliciesGoo? goo;
 
-  final OsConfigGuestPoliciesPackageRepositoriesYum? yum;
+  final OsConfigGuestPoliciesYum? yum;
 
-  final OsConfigGuestPoliciesPackageRepositoriesZypper? zypper;
+  final OsConfigGuestPoliciesZypper? zypper;
 
   Map<String, Object?> encode() => {
     'apt': ?apt?.encode(),
@@ -106,8 +106,8 @@ final class OsConfigGuestPoliciesPackageRepositories {
 /// Typed helper for the `package_repositories.apt` block of
 /// `google_os_config_guest_policies` (derived from provider schema).
 @immutable
-final class OsConfigGuestPoliciesPackageRepositoriesApt {
-  const OsConfigGuestPoliciesPackageRepositoriesApt({
+final class OsConfigGuestPoliciesApt {
+  const OsConfigGuestPoliciesApt({
     this.archiveType,
     required this.components,
     required this.distribution,
@@ -115,8 +115,7 @@ final class OsConfigGuestPoliciesPackageRepositoriesApt {
     required this.uri,
   });
 
-  final TfArg<OsConfigGuestPoliciesPackageRepositoriesAptArchiveType>?
-  archiveType;
+  final TfArg<OsConfigGuestPoliciesArchiveType>? archiveType;
 
   final TfArg<List<String>> components;
 
@@ -136,14 +135,11 @@ final class OsConfigGuestPoliciesPackageRepositoriesApt {
 }
 
 /// `archive_type` — derived from the provider schema description.
-enum OsConfigGuestPoliciesPackageRepositoriesAptArchiveType
-    implements TerraformEnum {
+enum OsConfigGuestPoliciesArchiveType implements TerraformEnum {
   deb('DEB'),
   debSrc('DEB_SRC');
 
-  const OsConfigGuestPoliciesPackageRepositoriesAptArchiveType(
-    this.terraformValue,
-  );
+  const OsConfigGuestPoliciesArchiveType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -151,11 +147,8 @@ enum OsConfigGuestPoliciesPackageRepositoriesAptArchiveType
 /// Typed helper for the `package_repositories.goo` block of
 /// `google_os_config_guest_policies` (derived from provider schema).
 @immutable
-final class OsConfigGuestPoliciesPackageRepositoriesGoo {
-  const OsConfigGuestPoliciesPackageRepositoriesGoo({
-    required this.name,
-    required this.url,
-  });
+final class OsConfigGuestPoliciesGoo {
+  const OsConfigGuestPoliciesGoo({required this.name, required this.url});
 
   final TfArg<String> name;
 
@@ -170,8 +163,8 @@ final class OsConfigGuestPoliciesPackageRepositoriesGoo {
 /// Typed helper for the `package_repositories.yum` block of
 /// `google_os_config_guest_policies` (derived from provider schema).
 @immutable
-final class OsConfigGuestPoliciesPackageRepositoriesYum {
-  const OsConfigGuestPoliciesPackageRepositoriesYum({
+final class OsConfigGuestPoliciesYum {
+  const OsConfigGuestPoliciesYum({
     required this.baseUrl,
     this.displayName,
     this.gpgKeys,
@@ -197,8 +190,8 @@ final class OsConfigGuestPoliciesPackageRepositoriesYum {
 /// Typed helper for the `package_repositories.zypper` block of
 /// `google_os_config_guest_policies` (derived from provider schema).
 @immutable
-final class OsConfigGuestPoliciesPackageRepositoriesZypper {
-  const OsConfigGuestPoliciesPackageRepositoriesZypper({
+final class OsConfigGuestPoliciesZypper {
+  const OsConfigGuestPoliciesZypper({
     required this.baseUrl,
     this.displayName,
     this.gpgKeys,
@@ -231,9 +224,9 @@ final class OsConfigGuestPoliciesPackages {
     required this.name,
   });
 
-  final TfArg<OsConfigGuestPoliciesPackagesDesiredState>? desiredState;
+  final TfArg<OsConfigGuestPoliciesDesiredState>? desiredState;
 
-  final TfArg<OsConfigGuestPoliciesPackagesManager>? manager;
+  final TfArg<OsConfigGuestPoliciesManager>? manager;
 
   final TfArg<String> name;
 
@@ -245,25 +238,25 @@ final class OsConfigGuestPoliciesPackages {
 }
 
 /// `desired_state` — derived from the provider schema description.
-enum OsConfigGuestPoliciesPackagesDesiredState implements TerraformEnum {
+enum OsConfigGuestPoliciesDesiredState implements TerraformEnum {
   installed('INSTALLED'),
   updated('UPDATED'),
   removed('REMOVED');
 
-  const OsConfigGuestPoliciesPackagesDesiredState(this.terraformValue);
+  const OsConfigGuestPoliciesDesiredState(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `manager` — derived from the provider schema description.
-enum OsConfigGuestPoliciesPackagesManager implements TerraformEnum {
+enum OsConfigGuestPoliciesManager implements TerraformEnum {
   any('ANY'),
   apt('APT'),
   yum('YUM'),
   zypper('ZYPPER'),
   goo('GOO');
 
-  const OsConfigGuestPoliciesPackagesManager(this.terraformValue);
+  const OsConfigGuestPoliciesManager(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -281,17 +274,17 @@ final class OsConfigGuestPoliciesRecipes {
     this.updateSteps,
   });
 
-  final TfArg<OsConfigGuestPoliciesRecipesDesiredState>? desiredState;
+  final TfArg<OsConfigGuestPoliciesDesiredState>? desiredState;
 
   final TfArg<String> name;
 
   final TfArg<String>? version;
 
-  final List<OsConfigGuestPoliciesRecipesArtifacts>? artifacts;
+  final List<OsConfigGuestPoliciesArtifacts>? artifacts;
 
-  final List<OsConfigGuestPoliciesRecipesInstallSteps>? installSteps;
+  final List<OsConfigGuestPoliciesInstallSteps>? installSteps;
 
-  final List<OsConfigGuestPoliciesRecipesUpdateSteps>? updateSteps;
+  final List<OsConfigGuestPoliciesUpdateSteps>? updateSteps;
 
   Map<String, Object?> encode() => {
     'desired_state': ?desiredState?.toTfJson(),
@@ -306,22 +299,11 @@ final class OsConfigGuestPoliciesRecipes {
   };
 }
 
-/// `desired_state` — derived from the provider schema description.
-enum OsConfigGuestPoliciesRecipesDesiredState implements TerraformEnum {
-  installed('INSTALLED'),
-  updated('UPDATED'),
-  removed('REMOVED');
-
-  const OsConfigGuestPoliciesRecipesDesiredState(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `recipes.artifacts` block of
 /// `google_os_config_guest_policies` (derived from provider schema).
 @immutable
-final class OsConfigGuestPoliciesRecipesArtifacts {
-  const OsConfigGuestPoliciesRecipesArtifacts({
+final class OsConfigGuestPoliciesArtifacts {
+  const OsConfigGuestPoliciesArtifacts({
     this.allowInsecure,
     required this.id,
     this.gcs,
@@ -332,9 +314,9 @@ final class OsConfigGuestPoliciesRecipesArtifacts {
 
   final TfArg<String> id;
 
-  final OsConfigGuestPoliciesRecipesArtifactsGcs? gcs;
+  final OsConfigGuestPoliciesGcs? gcs;
 
-  final OsConfigGuestPoliciesRecipesArtifactsRemote? remote;
+  final OsConfigGuestPoliciesRemote? remote;
 
   Map<String, Object?> encode() => {
     'allow_insecure': ?allowInsecure?.toTfJson(),
@@ -347,12 +329,8 @@ final class OsConfigGuestPoliciesRecipesArtifacts {
 /// Typed helper for the `recipes.artifacts.gcs` block of
 /// `google_os_config_guest_policies` (derived from provider schema).
 @immutable
-final class OsConfigGuestPoliciesRecipesArtifactsGcs {
-  const OsConfigGuestPoliciesRecipesArtifactsGcs({
-    this.bucket,
-    this.generation,
-    this.object,
-  });
+final class OsConfigGuestPoliciesGcs {
+  const OsConfigGuestPoliciesGcs({this.bucket, this.generation, this.object});
 
   final RefTo<GoogleStorageBucket>? bucket;
 
@@ -370,8 +348,8 @@ final class OsConfigGuestPoliciesRecipesArtifactsGcs {
 /// Typed helper for the `recipes.artifacts.remote` block of
 /// `google_os_config_guest_policies` (derived from provider schema).
 @immutable
-final class OsConfigGuestPoliciesRecipesArtifactsRemote {
-  const OsConfigGuestPoliciesRecipesArtifactsRemote({this.checkSum, this.uri});
+final class OsConfigGuestPoliciesRemote {
+  const OsConfigGuestPoliciesRemote({this.checkSum, this.uri});
 
   final TfArg<String>? checkSum;
 
@@ -386,8 +364,8 @@ final class OsConfigGuestPoliciesRecipesArtifactsRemote {
 /// Typed helper for the `recipes.install_steps` block of
 /// `google_os_config_guest_policies` (derived from provider schema).
 @immutable
-final class OsConfigGuestPoliciesRecipesInstallSteps {
-  const OsConfigGuestPoliciesRecipesInstallSteps({
+final class OsConfigGuestPoliciesInstallSteps {
+  const OsConfigGuestPoliciesInstallSteps({
     this.archiveExtraction,
     this.dpkgInstallation,
     this.fileCopy,
@@ -397,23 +375,19 @@ final class OsConfigGuestPoliciesRecipesInstallSteps {
     this.scriptRun,
   });
 
-  final OsConfigGuestPoliciesRecipesInstallStepsArchiveExtraction?
-  archiveExtraction;
+  final OsConfigGuestPoliciesArchiveExtraction? archiveExtraction;
 
-  final OsConfigGuestPoliciesRecipesInstallStepsDpkgInstallation?
-  dpkgInstallation;
+  final OsConfigGuestPoliciesDpkgInstallation? dpkgInstallation;
 
-  final OsConfigGuestPoliciesRecipesInstallStepsFileCopy? fileCopy;
+  final OsConfigGuestPoliciesFileCopy? fileCopy;
 
-  final OsConfigGuestPoliciesRecipesInstallStepsFileExec? fileExec;
+  final OsConfigGuestPoliciesInstallStepsFileExec? fileExec;
 
-  final OsConfigGuestPoliciesRecipesInstallStepsMsiInstallation?
-  msiInstallation;
+  final OsConfigGuestPoliciesMsiInstallation? msiInstallation;
 
-  final OsConfigGuestPoliciesRecipesInstallStepsRpmInstallation?
-  rpmInstallation;
+  final OsConfigGuestPoliciesRpmInstallation? rpmInstallation;
 
-  final OsConfigGuestPoliciesRecipesInstallStepsScriptRun? scriptRun;
+  final OsConfigGuestPoliciesScriptRun? scriptRun;
 
   Map<String, Object?> encode() => {
     'archive_extraction': ?archiveExtraction?.encode(),
@@ -428,9 +402,10 @@ final class OsConfigGuestPoliciesRecipesInstallSteps {
 
 /// Typed helper for the `recipes.install_steps.archive_extraction` block of
 /// `google_os_config_guest_policies` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class OsConfigGuestPoliciesRecipesInstallStepsArchiveExtraction {
-  const OsConfigGuestPoliciesRecipesInstallStepsArchiveExtraction({
+final class OsConfigGuestPoliciesArchiveExtraction {
+  const OsConfigGuestPoliciesArchiveExtraction({
     required this.artifactId,
     this.destination,
     required this.type,
@@ -440,8 +415,7 @@ final class OsConfigGuestPoliciesRecipesInstallStepsArchiveExtraction {
 
   final TfArg<String>? destination;
 
-  final TfArg<OsConfigGuestPoliciesRecipesInstallStepsArchiveExtractionType>
-  type;
+  final TfArg<OsConfigGuestPoliciesType> type;
 
   Map<String, Object?> encode() => {
     'artifact_id': artifactId.toTfJson(),
@@ -451,8 +425,7 @@ final class OsConfigGuestPoliciesRecipesInstallStepsArchiveExtraction {
 }
 
 /// `type` — derived from the provider schema description.
-enum OsConfigGuestPoliciesRecipesInstallStepsArchiveExtractionType
-    implements TerraformEnum {
+enum OsConfigGuestPoliciesType implements TerraformEnum {
   tar('TAR'),
   tarGzip('TAR_GZIP'),
   tarBzip('TAR_BZIP'),
@@ -460,20 +433,17 @@ enum OsConfigGuestPoliciesRecipesInstallStepsArchiveExtractionType
   tarXz('TAR_XZ'),
   zip('ZIP');
 
-  const OsConfigGuestPoliciesRecipesInstallStepsArchiveExtractionType(
-    this.terraformValue,
-  );
+  const OsConfigGuestPoliciesType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `recipes.install_steps.dpkg_installation` block of
 /// `google_os_config_guest_policies` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class OsConfigGuestPoliciesRecipesInstallStepsDpkgInstallation {
-  const OsConfigGuestPoliciesRecipesInstallStepsDpkgInstallation({
-    required this.artifactId,
-  });
+final class OsConfigGuestPoliciesDpkgInstallation {
+  const OsConfigGuestPoliciesDpkgInstallation({required this.artifactId});
 
   final TfArg<String> artifactId;
 
@@ -482,9 +452,10 @@ final class OsConfigGuestPoliciesRecipesInstallStepsDpkgInstallation {
 
 /// Typed helper for the `recipes.install_steps.file_copy` block of
 /// `google_os_config_guest_policies` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class OsConfigGuestPoliciesRecipesInstallStepsFileCopy {
-  const OsConfigGuestPoliciesRecipesInstallStepsFileCopy({
+final class OsConfigGuestPoliciesFileCopy {
+  const OsConfigGuestPoliciesFileCopy({
     required this.artifactId,
     required this.destination,
     this.overwrite,
@@ -510,8 +481,8 @@ final class OsConfigGuestPoliciesRecipesInstallStepsFileCopy {
 /// Typed helper for the `recipes.install_steps.file_exec` block of
 /// `google_os_config_guest_policies` (derived from provider schema).
 @immutable
-final class OsConfigGuestPoliciesRecipesInstallStepsFileExec {
-  const OsConfigGuestPoliciesRecipesInstallStepsFileExec({
+final class OsConfigGuestPoliciesInstallStepsFileExec {
+  const OsConfigGuestPoliciesInstallStepsFileExec({
     this.allowedExitCodes,
     this.args,
     this.artifactId,
@@ -536,9 +507,10 @@ final class OsConfigGuestPoliciesRecipesInstallStepsFileExec {
 
 /// Typed helper for the `recipes.install_steps.msi_installation` block of
 /// `google_os_config_guest_policies` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class OsConfigGuestPoliciesRecipesInstallStepsMsiInstallation {
-  const OsConfigGuestPoliciesRecipesInstallStepsMsiInstallation({
+final class OsConfigGuestPoliciesMsiInstallation {
+  const OsConfigGuestPoliciesMsiInstallation({
     this.allowedExitCodes,
     required this.artifactId,
     this.flags,
@@ -559,11 +531,10 @@ final class OsConfigGuestPoliciesRecipesInstallStepsMsiInstallation {
 
 /// Typed helper for the `recipes.install_steps.rpm_installation` block of
 /// `google_os_config_guest_policies` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class OsConfigGuestPoliciesRecipesInstallStepsRpmInstallation {
-  const OsConfigGuestPoliciesRecipesInstallStepsRpmInstallation({
-    required this.artifactId,
-  });
+final class OsConfigGuestPoliciesRpmInstallation {
+  const OsConfigGuestPoliciesRpmInstallation({required this.artifactId});
 
   final TfArg<String> artifactId;
 
@@ -572,9 +543,10 @@ final class OsConfigGuestPoliciesRecipesInstallStepsRpmInstallation {
 
 /// Typed helper for the `recipes.install_steps.script_run` block of
 /// `google_os_config_guest_policies` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class OsConfigGuestPoliciesRecipesInstallStepsScriptRun {
-  const OsConfigGuestPoliciesRecipesInstallStepsScriptRun({
+final class OsConfigGuestPoliciesScriptRun {
+  const OsConfigGuestPoliciesScriptRun({
     this.allowedExitCodes,
     this.interpreter,
     required this.script,
@@ -582,8 +554,7 @@ final class OsConfigGuestPoliciesRecipesInstallStepsScriptRun {
 
   final TfArg<List<num>>? allowedExitCodes;
 
-  final TfArg<OsConfigGuestPoliciesRecipesInstallStepsScriptRunInterpreter>?
-  interpreter;
+  final TfArg<OsConfigGuestPoliciesInterpreter>? interpreter;
 
   final TfArg<String> script;
 
@@ -595,14 +566,11 @@ final class OsConfigGuestPoliciesRecipesInstallStepsScriptRun {
 }
 
 /// `interpreter` — derived from the provider schema description.
-enum OsConfigGuestPoliciesRecipesInstallStepsScriptRunInterpreter
-    implements TerraformEnum {
+enum OsConfigGuestPoliciesInterpreter implements TerraformEnum {
   shell('SHELL'),
   powershell('POWERSHELL');
 
-  const OsConfigGuestPoliciesRecipesInstallStepsScriptRunInterpreter(
-    this.terraformValue,
-  );
+  const OsConfigGuestPoliciesInterpreter(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -610,8 +578,8 @@ enum OsConfigGuestPoliciesRecipesInstallStepsScriptRunInterpreter
 /// Typed helper for the `recipes.update_steps` block of
 /// `google_os_config_guest_policies` (derived from provider schema).
 @immutable
-final class OsConfigGuestPoliciesRecipesUpdateSteps {
-  const OsConfigGuestPoliciesRecipesUpdateSteps({
+final class OsConfigGuestPoliciesUpdateSteps {
+  const OsConfigGuestPoliciesUpdateSteps({
     this.archiveExtraction,
     this.dpkgInstallation,
     this.fileCopy,
@@ -621,21 +589,19 @@ final class OsConfigGuestPoliciesRecipesUpdateSteps {
     this.scriptRun,
   });
 
-  final OsConfigGuestPoliciesRecipesUpdateStepsArchiveExtraction?
-  archiveExtraction;
+  final OsConfigGuestPoliciesArchiveExtraction? archiveExtraction;
 
-  final OsConfigGuestPoliciesRecipesUpdateStepsDpkgInstallation?
-  dpkgInstallation;
+  final OsConfigGuestPoliciesDpkgInstallation? dpkgInstallation;
 
-  final OsConfigGuestPoliciesRecipesUpdateStepsFileCopy? fileCopy;
+  final OsConfigGuestPoliciesFileCopy? fileCopy;
 
-  final OsConfigGuestPoliciesRecipesUpdateStepsFileExec? fileExec;
+  final OsConfigGuestPoliciesUpdateStepsFileExec? fileExec;
 
-  final OsConfigGuestPoliciesRecipesUpdateStepsMsiInstallation? msiInstallation;
+  final OsConfigGuestPoliciesMsiInstallation? msiInstallation;
 
-  final OsConfigGuestPoliciesRecipesUpdateStepsRpmInstallation? rpmInstallation;
+  final OsConfigGuestPoliciesRpmInstallation? rpmInstallation;
 
-  final OsConfigGuestPoliciesRecipesUpdateStepsScriptRun? scriptRun;
+  final OsConfigGuestPoliciesScriptRun? scriptRun;
 
   Map<String, Object?> encode() => {
     'archive_extraction': ?archiveExtraction?.encode(),
@@ -648,92 +614,11 @@ final class OsConfigGuestPoliciesRecipesUpdateSteps {
   };
 }
 
-/// Typed helper for the `recipes.update_steps.archive_extraction` block of
-/// `google_os_config_guest_policies` (derived from provider schema).
-@immutable
-final class OsConfigGuestPoliciesRecipesUpdateStepsArchiveExtraction {
-  const OsConfigGuestPoliciesRecipesUpdateStepsArchiveExtraction({
-    required this.artifactId,
-    this.destination,
-    required this.type,
-  });
-
-  final TfArg<String> artifactId;
-
-  final TfArg<String>? destination;
-
-  final TfArg<OsConfigGuestPoliciesRecipesUpdateStepsArchiveExtractionType>
-  type;
-
-  Map<String, Object?> encode() => {
-    'artifact_id': artifactId.toTfJson(),
-    'destination': ?destination?.toTfJson(),
-    'type': type.toTfJson(),
-  };
-}
-
-/// `type` — derived from the provider schema description.
-enum OsConfigGuestPoliciesRecipesUpdateStepsArchiveExtractionType
-    implements TerraformEnum {
-  tar('TAR'),
-  tarGzip('TAR_GZIP'),
-  tarBzip('TAR_BZIP'),
-  tarLzma('TAR_LZMA'),
-  tarXz('TAR_XZ'),
-  zip('ZIP');
-
-  const OsConfigGuestPoliciesRecipesUpdateStepsArchiveExtractionType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `recipes.update_steps.dpkg_installation` block of
-/// `google_os_config_guest_policies` (derived from provider schema).
-@immutable
-final class OsConfigGuestPoliciesRecipesUpdateStepsDpkgInstallation {
-  const OsConfigGuestPoliciesRecipesUpdateStepsDpkgInstallation({
-    required this.artifactId,
-  });
-
-  final TfArg<String> artifactId;
-
-  Map<String, Object?> encode() => {'artifact_id': artifactId.toTfJson()};
-}
-
-/// Typed helper for the `recipes.update_steps.file_copy` block of
-/// `google_os_config_guest_policies` (derived from provider schema).
-@immutable
-final class OsConfigGuestPoliciesRecipesUpdateStepsFileCopy {
-  const OsConfigGuestPoliciesRecipesUpdateStepsFileCopy({
-    required this.artifactId,
-    required this.destination,
-    this.overwrite,
-    this.permissions,
-  });
-
-  final TfArg<String> artifactId;
-
-  final TfArg<String> destination;
-
-  final TfArg<bool>? overwrite;
-
-  final TfArg<String>? permissions;
-
-  Map<String, Object?> encode() => {
-    'artifact_id': artifactId.toTfJson(),
-    'destination': destination.toTfJson(),
-    'overwrite': ?overwrite?.toTfJson(),
-    'permissions': ?permissions?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `recipes.update_steps.file_exec` block of
 /// `google_os_config_guest_policies` (derived from provider schema).
 @immutable
-final class OsConfigGuestPoliciesRecipesUpdateStepsFileExec {
-  const OsConfigGuestPoliciesRecipesUpdateStepsFileExec({
+final class OsConfigGuestPoliciesUpdateStepsFileExec {
+  const OsConfigGuestPoliciesUpdateStepsFileExec({
     this.allowedExitCodes,
     this.args,
     this.artifactId,
@@ -754,79 +639,6 @@ final class OsConfigGuestPoliciesRecipesUpdateStepsFileExec {
     'artifact_id': ?artifactId?.toTfJson(),
     'local_path': ?localPath?.toTfJson(),
   };
-}
-
-/// Typed helper for the `recipes.update_steps.msi_installation` block of
-/// `google_os_config_guest_policies` (derived from provider schema).
-@immutable
-final class OsConfigGuestPoliciesRecipesUpdateStepsMsiInstallation {
-  const OsConfigGuestPoliciesRecipesUpdateStepsMsiInstallation({
-    this.allowedExitCodes,
-    required this.artifactId,
-    this.flags,
-  });
-
-  final TfArg<List<num>>? allowedExitCodes;
-
-  final TfArg<String> artifactId;
-
-  final TfArg<List<String>>? flags;
-
-  Map<String, Object?> encode() => {
-    'allowed_exit_codes': ?allowedExitCodes?.toTfJson(),
-    'artifact_id': artifactId.toTfJson(),
-    'flags': ?flags?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `recipes.update_steps.rpm_installation` block of
-/// `google_os_config_guest_policies` (derived from provider schema).
-@immutable
-final class OsConfigGuestPoliciesRecipesUpdateStepsRpmInstallation {
-  const OsConfigGuestPoliciesRecipesUpdateStepsRpmInstallation({
-    required this.artifactId,
-  });
-
-  final TfArg<String> artifactId;
-
-  Map<String, Object?> encode() => {'artifact_id': artifactId.toTfJson()};
-}
-
-/// Typed helper for the `recipes.update_steps.script_run` block of
-/// `google_os_config_guest_policies` (derived from provider schema).
-@immutable
-final class OsConfigGuestPoliciesRecipesUpdateStepsScriptRun {
-  const OsConfigGuestPoliciesRecipesUpdateStepsScriptRun({
-    this.allowedExitCodes,
-    this.interpreter,
-    required this.script,
-  });
-
-  final TfArg<List<num>>? allowedExitCodes;
-
-  final TfArg<OsConfigGuestPoliciesRecipesUpdateStepsScriptRunInterpreter>?
-  interpreter;
-
-  final TfArg<String> script;
-
-  Map<String, Object?> encode() => {
-    'allowed_exit_codes': ?allowedExitCodes?.toTfJson(),
-    'interpreter': ?interpreter?.toTfJson(),
-    'script': script.toTfJson(),
-  };
-}
-
-/// `interpreter` — derived from the provider schema description.
-enum OsConfigGuestPoliciesRecipesUpdateStepsScriptRunInterpreter
-    implements TerraformEnum {
-  shell('SHELL'),
-  powershell('POWERSHELL');
-
-  const OsConfigGuestPoliciesRecipesUpdateStepsScriptRunInterpreter(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Factory wrapper for `google_os_config_guest_policies`.

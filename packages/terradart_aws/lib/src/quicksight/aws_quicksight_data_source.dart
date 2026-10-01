@@ -73,7 +73,7 @@ final class QuicksightDataSourceCredentials {
 
   final TfArg<String>? secretArn;
 
-  final QuicksightDataSourceCredentialsCredentialPair? credentialPair;
+  final QuicksightDataSourceCredentialPair? credentialPair;
 
   Map<String, Object?> encode() => {
     'copy_source_arn': ?copySourceArn?.toTfJson(),
@@ -85,8 +85,8 @@ final class QuicksightDataSourceCredentials {
 /// Typed helper for the `credentials.credential_pair` block of
 /// `aws_quicksight_data_source` (derived from provider schema).
 @immutable
-final class QuicksightDataSourceCredentialsCredentialPair {
-  const QuicksightDataSourceCredentialsCredentialPair({
+final class QuicksightDataSourceCredentialPair {
+  const QuicksightDataSourceCredentialPair({
     required this.password,
     required this.username,
   });
@@ -129,47 +129,47 @@ final class QuicksightDataSourceParameters {
     this.twitter,
   });
 
-  final QuicksightDataSourceParametersAmazonElasticsearch? amazonElasticsearch;
+  final QuicksightDataSourceAmazonElasticsearch? amazonElasticsearch;
 
-  final QuicksightDataSourceParametersAthena? athena;
+  final QuicksightDataSourceAthena? athena;
 
-  final QuicksightDataSourceParametersAurora? aurora;
+  final QuicksightDataSourceAurora? aurora;
 
-  final QuicksightDataSourceParametersAuroraPostgresql? auroraPostgresql;
+  final QuicksightDataSourceAuroraPostgresql? auroraPostgresql;
 
-  final QuicksightDataSourceParametersAwsIotAnalytics? awsIotAnalytics;
+  final QuicksightDataSourceAwsIotAnalytics? awsIotAnalytics;
 
-  final QuicksightDataSourceParametersDatabricks? databricks;
+  final QuicksightDataSourceDatabricks? databricks;
 
-  final QuicksightDataSourceParametersJira? jira;
+  final QuicksightDataSourceJira? jira;
 
-  final QuicksightDataSourceParametersMariaDb? mariaDb;
+  final QuicksightDataSourceMariaDb? mariaDb;
 
-  final QuicksightDataSourceParametersMysql? mysql;
+  final QuicksightDataSourceMysql? mysql;
 
-  final QuicksightDataSourceParametersOracle? oracle;
+  final QuicksightDataSourceOracle? oracle;
 
-  final QuicksightDataSourceParametersPostgresql? postgresql;
+  final QuicksightDataSourcePostgresql? postgresql;
 
-  final QuicksightDataSourceParametersPresto? presto;
+  final QuicksightDataSourcePresto? presto;
 
-  final QuicksightDataSourceParametersRds? rds;
+  final QuicksightDataSourceRds? rds;
 
-  final QuicksightDataSourceParametersRedshift? redshift;
+  final QuicksightDataSourceRedshift? redshift;
 
-  final QuicksightDataSourceParametersS3? s3;
+  final QuicksightDataSourceS3? s3;
 
-  final QuicksightDataSourceParametersServiceNow? serviceNow;
+  final QuicksightDataSourceServiceNow? serviceNow;
 
-  final QuicksightDataSourceParametersSnowflake? snowflake;
+  final QuicksightDataSourceSnowflake? snowflake;
 
-  final QuicksightDataSourceParametersSpark? spark;
+  final QuicksightDataSourceSpark? spark;
 
-  final QuicksightDataSourceParametersSqlServer? sqlServer;
+  final QuicksightDataSourceSqlServer? sqlServer;
 
-  final QuicksightDataSourceParametersTeradata? teradata;
+  final QuicksightDataSourceTeradata? teradata;
 
-  final QuicksightDataSourceParametersTwitter? twitter;
+  final QuicksightDataSourceTwitter? twitter;
 
   Map<String, Object?> encode() => {
     'amazon_elasticsearch': ?amazonElasticsearch?.encode(),
@@ -199,10 +199,8 @@ final class QuicksightDataSourceParameters {
 /// Typed helper for the `parameters.amazon_elasticsearch` block of
 /// `aws_quicksight_data_source` (derived from provider schema).
 @immutable
-final class QuicksightDataSourceParametersAmazonElasticsearch {
-  const QuicksightDataSourceParametersAmazonElasticsearch({
-    required this.domain,
-  });
+final class QuicksightDataSourceAmazonElasticsearch {
+  const QuicksightDataSourceAmazonElasticsearch({required this.domain});
 
   final TfArg<String> domain;
 
@@ -212,8 +210,8 @@ final class QuicksightDataSourceParametersAmazonElasticsearch {
 /// Typed helper for the `parameters.athena` block of
 /// `aws_quicksight_data_source` (derived from provider schema).
 @immutable
-final class QuicksightDataSourceParametersAthena {
-  const QuicksightDataSourceParametersAthena({this.roleArn, this.workGroup});
+final class QuicksightDataSourceAthena {
+  const QuicksightDataSourceAthena({this.roleArn, this.workGroup});
 
   final RefTo<AwsIamRole>? roleArn;
 
@@ -228,8 +226,8 @@ final class QuicksightDataSourceParametersAthena {
 /// Typed helper for the `parameters.aurora` block of
 /// `aws_quicksight_data_source` (derived from provider schema).
 @immutable
-final class QuicksightDataSourceParametersAurora {
-  const QuicksightDataSourceParametersAurora({
+final class QuicksightDataSourceAurora {
+  const QuicksightDataSourceAurora({
     required this.database,
     required this.host,
     required this.port,
@@ -251,8 +249,8 @@ final class QuicksightDataSourceParametersAurora {
 /// Typed helper for the `parameters.aurora_postgresql` block of
 /// `aws_quicksight_data_source` (derived from provider schema).
 @immutable
-final class QuicksightDataSourceParametersAuroraPostgresql {
-  const QuicksightDataSourceParametersAuroraPostgresql({
+final class QuicksightDataSourceAuroraPostgresql {
+  const QuicksightDataSourceAuroraPostgresql({
     required this.database,
     required this.host,
     required this.port,
@@ -274,10 +272,8 @@ final class QuicksightDataSourceParametersAuroraPostgresql {
 /// Typed helper for the `parameters.aws_iot_analytics` block of
 /// `aws_quicksight_data_source` (derived from provider schema).
 @immutable
-final class QuicksightDataSourceParametersAwsIotAnalytics {
-  const QuicksightDataSourceParametersAwsIotAnalytics({
-    required this.dataSetName,
-  });
+final class QuicksightDataSourceAwsIotAnalytics {
+  const QuicksightDataSourceAwsIotAnalytics({required this.dataSetName});
 
   final TfArg<String> dataSetName;
 
@@ -287,8 +283,8 @@ final class QuicksightDataSourceParametersAwsIotAnalytics {
 /// Typed helper for the `parameters.databricks` block of
 /// `aws_quicksight_data_source` (derived from provider schema).
 @immutable
-final class QuicksightDataSourceParametersDatabricks {
-  const QuicksightDataSourceParametersDatabricks({
+final class QuicksightDataSourceDatabricks {
+  const QuicksightDataSourceDatabricks({
     required this.host,
     required this.port,
     required this.sqlEndpointPath,
@@ -310,8 +306,8 @@ final class QuicksightDataSourceParametersDatabricks {
 /// Typed helper for the `parameters.jira` block of
 /// `aws_quicksight_data_source` (derived from provider schema).
 @immutable
-final class QuicksightDataSourceParametersJira {
-  const QuicksightDataSourceParametersJira({required this.siteBaseUrl});
+final class QuicksightDataSourceJira {
+  const QuicksightDataSourceJira({required this.siteBaseUrl});
 
   final TfArg<String> siteBaseUrl;
 
@@ -321,8 +317,8 @@ final class QuicksightDataSourceParametersJira {
 /// Typed helper for the `parameters.maria_db` block of
 /// `aws_quicksight_data_source` (derived from provider schema).
 @immutable
-final class QuicksightDataSourceParametersMariaDb {
-  const QuicksightDataSourceParametersMariaDb({
+final class QuicksightDataSourceMariaDb {
+  const QuicksightDataSourceMariaDb({
     required this.database,
     required this.host,
     required this.port,
@@ -344,8 +340,8 @@ final class QuicksightDataSourceParametersMariaDb {
 /// Typed helper for the `parameters.mysql` block of
 /// `aws_quicksight_data_source` (derived from provider schema).
 @immutable
-final class QuicksightDataSourceParametersMysql {
-  const QuicksightDataSourceParametersMysql({
+final class QuicksightDataSourceMysql {
+  const QuicksightDataSourceMysql({
     required this.database,
     required this.host,
     required this.port,
@@ -367,8 +363,8 @@ final class QuicksightDataSourceParametersMysql {
 /// Typed helper for the `parameters.oracle` block of
 /// `aws_quicksight_data_source` (derived from provider schema).
 @immutable
-final class QuicksightDataSourceParametersOracle {
-  const QuicksightDataSourceParametersOracle({
+final class QuicksightDataSourceOracle {
+  const QuicksightDataSourceOracle({
     required this.database,
     required this.host,
     required this.port,
@@ -390,8 +386,8 @@ final class QuicksightDataSourceParametersOracle {
 /// Typed helper for the `parameters.postgresql` block of
 /// `aws_quicksight_data_source` (derived from provider schema).
 @immutable
-final class QuicksightDataSourceParametersPostgresql {
-  const QuicksightDataSourceParametersPostgresql({
+final class QuicksightDataSourcePostgresql {
+  const QuicksightDataSourcePostgresql({
     required this.database,
     required this.host,
     required this.port,
@@ -413,8 +409,8 @@ final class QuicksightDataSourceParametersPostgresql {
 /// Typed helper for the `parameters.presto` block of
 /// `aws_quicksight_data_source` (derived from provider schema).
 @immutable
-final class QuicksightDataSourceParametersPresto {
-  const QuicksightDataSourceParametersPresto({
+final class QuicksightDataSourcePresto {
+  const QuicksightDataSourcePresto({
     required this.catalog,
     required this.host,
     required this.port,
@@ -436,8 +432,8 @@ final class QuicksightDataSourceParametersPresto {
 /// Typed helper for the `parameters.rds` block of
 /// `aws_quicksight_data_source` (derived from provider schema).
 @immutable
-final class QuicksightDataSourceParametersRds {
-  const QuicksightDataSourceParametersRds({
+final class QuicksightDataSourceRds {
+  const QuicksightDataSourceRds({
     required this.database,
     required this.instanceId,
   });
@@ -455,8 +451,8 @@ final class QuicksightDataSourceParametersRds {
 /// Typed helper for the `parameters.redshift` block of
 /// `aws_quicksight_data_source` (derived from provider schema).
 @immutable
-final class QuicksightDataSourceParametersRedshift {
-  const QuicksightDataSourceParametersRedshift({
+final class QuicksightDataSourceRedshift {
+  const QuicksightDataSourceRedshift({
     this.clusterId,
     required this.database,
     this.host,
@@ -482,16 +478,15 @@ final class QuicksightDataSourceParametersRedshift {
 /// Typed helper for the `parameters.s3` block of
 /// `aws_quicksight_data_source` (derived from provider schema).
 @immutable
-final class QuicksightDataSourceParametersS3 {
-  const QuicksightDataSourceParametersS3({
+final class QuicksightDataSourceS3 {
+  const QuicksightDataSourceS3({
     this.roleArn,
     required this.manifestFileLocation,
   });
 
   final RefTo<AwsIamRole>? roleArn;
 
-  final QuicksightDataSourceParametersS3ManifestFileLocation
-  manifestFileLocation;
+  final QuicksightDataSourceManifestFileLocation manifestFileLocation;
 
   Map<String, Object?> encode() => {
     'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
@@ -502,8 +497,8 @@ final class QuicksightDataSourceParametersS3 {
 /// Typed helper for the `parameters.s3.manifest_file_location` block of
 /// `aws_quicksight_data_source` (derived from provider schema).
 @immutable
-final class QuicksightDataSourceParametersS3ManifestFileLocation {
-  const QuicksightDataSourceParametersS3ManifestFileLocation({
+final class QuicksightDataSourceManifestFileLocation {
+  const QuicksightDataSourceManifestFileLocation({
     required this.bucket,
     required this.key,
   });
@@ -521,8 +516,8 @@ final class QuicksightDataSourceParametersS3ManifestFileLocation {
 /// Typed helper for the `parameters.service_now` block of
 /// `aws_quicksight_data_source` (derived from provider schema).
 @immutable
-final class QuicksightDataSourceParametersServiceNow {
-  const QuicksightDataSourceParametersServiceNow({required this.siteBaseUrl});
+final class QuicksightDataSourceServiceNow {
+  const QuicksightDataSourceServiceNow({required this.siteBaseUrl});
 
   final TfArg<String> siteBaseUrl;
 
@@ -532,8 +527,8 @@ final class QuicksightDataSourceParametersServiceNow {
 /// Typed helper for the `parameters.snowflake` block of
 /// `aws_quicksight_data_source` (derived from provider schema).
 @immutable
-final class QuicksightDataSourceParametersSnowflake {
-  const QuicksightDataSourceParametersSnowflake({
+final class QuicksightDataSourceSnowflake {
+  const QuicksightDataSourceSnowflake({
     required this.database,
     required this.host,
     required this.warehouse,
@@ -555,11 +550,8 @@ final class QuicksightDataSourceParametersSnowflake {
 /// Typed helper for the `parameters.spark` block of
 /// `aws_quicksight_data_source` (derived from provider schema).
 @immutable
-final class QuicksightDataSourceParametersSpark {
-  const QuicksightDataSourceParametersSpark({
-    required this.host,
-    required this.port,
-  });
+final class QuicksightDataSourceSpark {
+  const QuicksightDataSourceSpark({required this.host, required this.port});
 
   final TfArg<String> host;
 
@@ -574,8 +566,8 @@ final class QuicksightDataSourceParametersSpark {
 /// Typed helper for the `parameters.sql_server` block of
 /// `aws_quicksight_data_source` (derived from provider schema).
 @immutable
-final class QuicksightDataSourceParametersSqlServer {
-  const QuicksightDataSourceParametersSqlServer({
+final class QuicksightDataSourceSqlServer {
+  const QuicksightDataSourceSqlServer({
     required this.database,
     required this.host,
     required this.port,
@@ -597,8 +589,8 @@ final class QuicksightDataSourceParametersSqlServer {
 /// Typed helper for the `parameters.teradata` block of
 /// `aws_quicksight_data_source` (derived from provider schema).
 @immutable
-final class QuicksightDataSourceParametersTeradata {
-  const QuicksightDataSourceParametersTeradata({
+final class QuicksightDataSourceTeradata {
+  const QuicksightDataSourceTeradata({
     required this.database,
     required this.host,
     required this.port,
@@ -620,8 +612,8 @@ final class QuicksightDataSourceParametersTeradata {
 /// Typed helper for the `parameters.twitter` block of
 /// `aws_quicksight_data_source` (derived from provider schema).
 @immutable
-final class QuicksightDataSourceParametersTwitter {
-  const QuicksightDataSourceParametersTwitter({
+final class QuicksightDataSourceTwitter {
+  const QuicksightDataSourceTwitter({
     required this.maxRows,
     required this.query,
   });

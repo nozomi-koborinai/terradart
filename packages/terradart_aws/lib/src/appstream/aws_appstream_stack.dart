@@ -16,7 +16,7 @@ final class AppstreamStackAccessEndpoints {
     this.vpceId,
   });
 
-  final TfArg<AppstreamStackAccessEndpointsEndpointType> endpointType;
+  final TfArg<AppstreamStackEndpointType> endpointType;
 
   final TfArg<String>? vpceId;
 
@@ -27,10 +27,10 @@ final class AppstreamStackAccessEndpoints {
 }
 
 /// `endpoint_type` — derived from the provider schema description.
-enum AppstreamStackAccessEndpointsEndpointType implements TerraformEnum {
+enum AppstreamStackEndpointType implements TerraformEnum {
   streaming('STREAMING');
 
-  const AppstreamStackAccessEndpointsEndpointType(this.terraformValue);
+  const AppstreamStackEndpointType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -64,7 +64,7 @@ final class AppstreamStackStorageConnectors {
     this.resourceIdentifier,
   });
 
-  final TfArg<AppstreamStackStorageConnectorsConnectorType> connectorType;
+  final TfArg<AppstreamStackConnectorType> connectorType;
 
   final TfArg<List<String>>? domains;
 
@@ -78,12 +78,12 @@ final class AppstreamStackStorageConnectors {
 }
 
 /// `connector_type` — derived from the provider schema description.
-enum AppstreamStackStorageConnectorsConnectorType implements TerraformEnum {
+enum AppstreamStackConnectorType implements TerraformEnum {
   homefolders('HOMEFOLDERS'),
   googleDrive('GOOGLE_DRIVE'),
   oneDrive('ONE_DRIVE');
 
-  const AppstreamStackStorageConnectorsConnectorType(this.terraformValue);
+  const AppstreamStackConnectorType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -94,8 +94,7 @@ enum AppstreamStackStorageConnectorsConnectorType implements TerraformEnum {
 final class AppstreamStackStreamingExperienceSettings {
   const AppstreamStackStreamingExperienceSettings({this.preferredProtocol});
 
-  final TfArg<AppstreamStackStreamingExperienceSettingsPreferredProtocol>?
-  preferredProtocol;
+  final TfArg<AppstreamStackPreferredProtocol>? preferredProtocol;
 
   Map<String, Object?> encode() => {
     'preferred_protocol': ?preferredProtocol?.toTfJson(),
@@ -103,14 +102,11 @@ final class AppstreamStackStreamingExperienceSettings {
 }
 
 /// `preferred_protocol` — derived from the provider schema description.
-enum AppstreamStackStreamingExperienceSettingsPreferredProtocol
-    implements TerraformEnum {
+enum AppstreamStackPreferredProtocol implements TerraformEnum {
   tcp('TCP'),
   udp('UDP');
 
-  const AppstreamStackStreamingExperienceSettingsPreferredProtocol(
-    this.terraformValue,
-  );
+  const AppstreamStackPreferredProtocol(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -124,9 +120,9 @@ final class AppstreamStackUserSettings {
     required this.permission,
   });
 
-  final TfArg<AppstreamStackUserSettingsAction> action;
+  final TfArg<AppstreamStackAction> action;
 
-  final TfArg<AppstreamStackUserSettingsPermission> permission;
+  final TfArg<AppstreamStackPermission> permission;
 
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
@@ -135,7 +131,7 @@ final class AppstreamStackUserSettings {
 }
 
 /// `action` — derived from the provider schema description.
-enum AppstreamStackUserSettingsAction implements TerraformEnum {
+enum AppstreamStackAction implements TerraformEnum {
   clipboardCopyFromLocalDevice('CLIPBOARD_COPY_FROM_LOCAL_DEVICE'),
   clipboardCopyToLocalDevice('CLIPBOARD_COPY_TO_LOCAL_DEVICE'),
   fileUpload('FILE_UPLOAD'),
@@ -145,17 +141,17 @@ enum AppstreamStackUserSettingsAction implements TerraformEnum {
   domainSmartCardSignin('DOMAIN_SMART_CARD_SIGNIN'),
   autoTimeZoneRedirection('AUTO_TIME_ZONE_REDIRECTION');
 
-  const AppstreamStackUserSettingsAction(this.terraformValue);
+  const AppstreamStackAction(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `permission` — derived from the provider schema description.
-enum AppstreamStackUserSettingsPermission implements TerraformEnum {
+enum AppstreamStackPermission implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const AppstreamStackUserSettingsPermission(this.terraformValue);
+  const AppstreamStackPermission(this.terraformValue);
   @override
   final String terraformValue;
 }

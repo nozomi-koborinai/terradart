@@ -15,7 +15,7 @@ const Set<String> _cloudflareRateLimitSensitive = <String>{};
 final class RateLimitAction {
   const RateLimitAction({this.mode, this.timeout, this.response});
 
-  final TfArg<RateLimitActionMode>? mode;
+  final TfArg<RateLimitMode>? mode;
 
   final TfArg<num>? timeout;
 
@@ -29,14 +29,14 @@ final class RateLimitAction {
 }
 
 /// `mode` — derived from the provider schema description.
-enum RateLimitActionMode implements TerraformEnum {
+enum RateLimitMode implements TerraformEnum {
   simulate('simulate'),
   ban('ban'),
   challenge('challenge'),
   jsChallenge('js_challenge'),
   managedChallenge('managed_challenge');
 
-  const RateLimitActionMode(this.terraformValue);
+  const RateLimitMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -63,9 +63,9 @@ final class RateLimitActionResponse {
 final class RateLimitMatch {
   const RateLimitMatch({this.headers, this.request, this.response});
 
-  final List<RateLimitMatchHeaders>? headers;
+  final List<RateLimitHeaders>? headers;
 
-  final RateLimitMatchRequest? request;
+  final RateLimitRequest? request;
 
   final RateLimitMatchResponse? response;
 
@@ -79,12 +79,12 @@ final class RateLimitMatch {
 /// Typed helper for the `match.headers` block of
 /// `cloudflare_rate_limit` (derived from provider schema).
 @immutable
-final class RateLimitMatchHeaders {
-  const RateLimitMatchHeaders({this.name, this.op, this.value});
+final class RateLimitHeaders {
+  const RateLimitHeaders({this.name, this.op, this.value});
 
   final TfArg<String>? name;
 
-  final TfArg<RateLimitMatchHeadersOp>? op;
+  final TfArg<RateLimitOp>? op;
 
   final TfArg<String>? value;
 
@@ -96,11 +96,11 @@ final class RateLimitMatchHeaders {
 }
 
 /// `op` — derived from the provider schema description.
-enum RateLimitMatchHeadersOp implements TerraformEnum {
+enum RateLimitOp implements TerraformEnum {
   eq('eq'),
   ne('ne');
 
-  const RateLimitMatchHeadersOp(this.terraformValue);
+  const RateLimitOp(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -108,10 +108,10 @@ enum RateLimitMatchHeadersOp implements TerraformEnum {
 /// Typed helper for the `match.request` block of
 /// `cloudflare_rate_limit` (derived from provider schema).
 @immutable
-final class RateLimitMatchRequest {
-  const RateLimitMatchRequest({this.methods, this.schemes, this.url});
+final class RateLimitRequest {
+  const RateLimitRequest({this.methods, this.schemes, this.url});
 
-  final List<TfArg<RateLimitMatchRequestMethods>>? methods;
+  final List<TfArg<RateLimitMethods>>? methods;
 
   final TfArg<List<String>>? schemes;
 
@@ -125,7 +125,7 @@ final class RateLimitMatchRequest {
 }
 
 /// `methods` — derived from the provider schema description.
-enum RateLimitMatchRequestMethods implements TerraformEnum {
+enum RateLimitMethods implements TerraformEnum {
   get('GET'),
   post('POST'),
   put('PUT'),
@@ -134,7 +134,7 @@ enum RateLimitMatchRequestMethods implements TerraformEnum {
   head('HEAD'),
   all('_ALL_');
 
-  const RateLimitMatchRequestMethods(this.terraformValue);
+  const RateLimitMethods(this.terraformValue);
   @override
   final String terraformValue;
 }

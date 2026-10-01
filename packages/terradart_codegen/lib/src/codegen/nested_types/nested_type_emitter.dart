@@ -141,6 +141,7 @@ String _renderBlockTree(
     (NestedAttrSpec a) => a.tfName,
   );
   for (final attr in enumAttrs) {
+    if (!rendered.add(attr.dartType)) continue;
     buf
       ..writeln()
       ..write(_renderEnum(attr));
@@ -431,7 +432,13 @@ _Layout _layout(NestedBlockSpec spec, Set<String> taken) {
       )) {
         continue;
       }
-      final classes = exactlyOneVariantNames(spec.className, group, taken);
+      final leaf = snakeToPascal(spec.tfName);
+      final classes = exactlyOneVariantNames(
+        spec.className,
+        group,
+        taken,
+        concept: spec.className.endsWith(leaf) ? leaf : null,
+      );
       if (classes == null) continue;
       return (
         plans: const [],
@@ -497,8 +504,13 @@ _Layout _layout(NestedBlockSpec spec, Set<String> taken) {
         if (!group.contains(m.tfName)) m.plan.fieldDecl.split(' ').last,
     };
     String typeOf(String concept) =>
+        spec.sealedTypeNames[concept] ??
         sealedTypeName(spec.className, concept) ??
         spec.className + snakeToPascal(concept);
+    String? conceptOf(String concept, String type) =>
+        spec.sealedTypeNames[concept] == type
+        ? conceptSuffix(type, concept)
+        : sealedConcept(spec.className, type);
     String? clashes(String concept) {
       final ident = safeDartIdentifier(snakeToCamel(concept));
       if ('$ident;' case final decl
@@ -508,7 +520,7 @@ _Layout _layout(NestedBlockSpec spec, Set<String> taken) {
       return sealedNameClash(spec.className, concept, group, {
         ...taken,
         ...chosenTypes,
-      });
+      }, named: spec.sealedTypeNames[concept]);
     }
 
     final derived = deriveSealedConcept(group);
@@ -523,8 +535,18 @@ _Layout _layout(NestedBlockSpec spec, Set<String> taken) {
     // the plain concatenations: `clashes` vetted every name it resolves to.
     final type = typeOf(resolved.concept);
     final classes =
-        exactlyOneVariantNames(type, group, {...taken, ...chosenTypes}) ??
-        [for (final m in group) exactlyOneVariantName(type, m)];
+        exactlyOneVariantNames(type, group, {
+          ...taken,
+          ...chosenTypes,
+        }, concept: conceptOf(resolved.concept, type)) ??
+        [
+          for (final m in group)
+            exactlyOneVariantName(
+              type,
+              m,
+              concept: conceptOf(resolved.concept, type),
+            ),
+        ];
     chosenIdents.add(ident);
     chosenTypes
       ..add(type)

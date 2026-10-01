@@ -26,7 +26,7 @@ final class StorageFtpUserStorageDirectoryMappings {
 
   final TfArg<String>? directory;
 
-  final TfArg<StorageFtpUserStorageDirectoryMappingsPermission>? permission;
+  final TfArg<StorageFtpUserPermission>? permission;
 
   Map<String, Object?> encode() => {
     'bucket': ?bucket?.encodeAs('name').toTfJson(),
@@ -37,11 +37,11 @@ final class StorageFtpUserStorageDirectoryMappings {
 }
 
 /// `permission` — derived from the provider schema description.
-enum StorageFtpUserStorageDirectoryMappingsPermission implements TerraformEnum {
+enum StorageFtpUserPermission implements TerraformEnum {
   readOnly('READ_ONLY'),
   readWrite('READ_WRITE');
 
-  const StorageFtpUserStorageDirectoryMappingsPermission(this.terraformValue);
+  const StorageFtpUserPermission(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -49,8 +49,8 @@ enum StorageFtpUserStorageDirectoryMappingsPermission implements TerraformEnum {
 /// Typed helper for the `user_credentials` block of
 /// `google_storage_ftp_user` (derived from provider schema).
 @immutable
-final class StorageFtpUserUserCredentials {
-  const StorageFtpUserUserCredentials({
+final class StorageFtpUserCredentials {
+  const StorageFtpUserCredentials({
     this.credentialName,
     this.credentialType,
     this.sshPublicKeyBody,
@@ -83,7 +83,7 @@ final class GoogleStorageFtpUser extends Resource {
     required TfArg<String> location,
     required TfArg<String> customerServiceAccount,
     List<StorageFtpUserStorageDirectoryMappings>? storageDirectoryMappings,
-    StorageFtpUserUserCredentials? userCredentials,
+    StorageFtpUserCredentials? userCredentials,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,

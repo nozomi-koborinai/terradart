@@ -11,6 +11,7 @@ const Set<String> _googleDialogflowCxWebhookSensitive = <String>{};
 
 /// Typed helper for the `generic_web_service` block of
 /// `google_dialogflow_cx_webhook` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
 final class DialogflowCxWebhookGenericWebService {
   const DialogflowCxWebhookGenericWebService({
@@ -30,7 +31,7 @@ final class DialogflowCxWebhookGenericWebService {
 
   final TfArg<List<String>>? allowedCaCerts;
 
-  final TfArg<DialogflowCxWebhookGenericWebServiceHttpMethod>? httpMethod;
+  final TfArg<DialogflowCxWebhookHttpMethod>? httpMethod;
 
   final TfArg<Map<String, String>>? parameterMapping;
 
@@ -40,22 +41,18 @@ final class DialogflowCxWebhookGenericWebService {
 
   final TfArg<String>? secretVersionForUsernamePassword;
 
-  final TfArg<DialogflowCxWebhookGenericWebServiceServiceAgentAuth>?
-  serviceAgentAuth;
+  final TfArg<DialogflowCxWebhookServiceAgentAuth>? serviceAgentAuth;
 
   final TfArg<String> uri;
 
-  final TfArg<DialogflowCxWebhookGenericWebServiceWebhookType>? webhookType;
+  final TfArg<DialogflowCxWebhookType>? webhookType;
 
-  final DialogflowCxWebhookGenericWebServiceOauthConfig? oauthConfig;
+  final DialogflowCxWebhookOauthConfig? oauthConfig;
 
-  final List<
-    DialogflowCxWebhookGenericWebServiceSecretVersionsForRequestHeaders
-  >?
+  final List<DialogflowCxWebhookSecretVersionsForRequestHeaders>?
   secretVersionsForRequestHeaders;
 
-  final DialogflowCxWebhookGenericWebServiceServiceAccountAuthConfig?
-  serviceAccountAuthConfig;
+  final DialogflowCxWebhookServiceAccountAuthConfig? serviceAccountAuthConfig;
 
   Map<String, Object?> encode() => {
     'allowed_ca_certs': ?allowedCaCerts?.toTfJson(),
@@ -78,7 +75,7 @@ final class DialogflowCxWebhookGenericWebService {
 }
 
 /// `http_method` — derived from the provider schema description.
-enum DialogflowCxWebhookGenericWebServiceHttpMethod implements TerraformEnum {
+enum DialogflowCxWebhookHttpMethod implements TerraformEnum {
   post('POST'),
   get('GET'),
   head('HEAD'),
@@ -87,40 +84,38 @@ enum DialogflowCxWebhookGenericWebServiceHttpMethod implements TerraformEnum {
   patch('PATCH'),
   options('OPTIONS');
 
-  const DialogflowCxWebhookGenericWebServiceHttpMethod(this.terraformValue);
+  const DialogflowCxWebhookHttpMethod(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `service_agent_auth` — derived from the provider schema description.
-enum DialogflowCxWebhookGenericWebServiceServiceAgentAuth
-    implements TerraformEnum {
+enum DialogflowCxWebhookServiceAgentAuth implements TerraformEnum {
   none('NONE'),
   idToken('ID_TOKEN'),
   accessToken('ACCESS_TOKEN');
 
-  const DialogflowCxWebhookGenericWebServiceServiceAgentAuth(
-    this.terraformValue,
-  );
+  const DialogflowCxWebhookServiceAgentAuth(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `webhook_type` — derived from the provider schema description.
-enum DialogflowCxWebhookGenericWebServiceWebhookType implements TerraformEnum {
+enum DialogflowCxWebhookType implements TerraformEnum {
   standard('STANDARD'),
   flexible('FLEXIBLE');
 
-  const DialogflowCxWebhookGenericWebServiceWebhookType(this.terraformValue);
+  const DialogflowCxWebhookType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `generic_web_service.oauth_config` block of
 /// `google_dialogflow_cx_webhook` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DialogflowCxWebhookGenericWebServiceOauthConfig {
-  const DialogflowCxWebhookGenericWebServiceOauthConfig({
+final class DialogflowCxWebhookOauthConfig {
+  const DialogflowCxWebhookOauthConfig({
     required this.clientId,
     this.clientSecret,
     this.scopes,
@@ -150,9 +145,10 @@ final class DialogflowCxWebhookGenericWebServiceOauthConfig {
 
 /// Typed helper for the `generic_web_service.secret_versions_for_request_headers` block of
 /// `google_dialogflow_cx_webhook` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DialogflowCxWebhookGenericWebServiceSecretVersionsForRequestHeaders {
-  const DialogflowCxWebhookGenericWebServiceSecretVersionsForRequestHeaders({
+final class DialogflowCxWebhookSecretVersionsForRequestHeaders {
+  const DialogflowCxWebhookSecretVersionsForRequestHeaders({
     required this.key,
     required this.secretVersion,
   });
@@ -169,9 +165,10 @@ final class DialogflowCxWebhookGenericWebServiceSecretVersionsForRequestHeaders 
 
 /// Typed helper for the `generic_web_service.service_account_auth_config` block of
 /// `google_dialogflow_cx_webhook` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DialogflowCxWebhookGenericWebServiceServiceAccountAuthConfig {
-  const DialogflowCxWebhookGenericWebServiceServiceAccountAuthConfig({
+final class DialogflowCxWebhookServiceAccountAuthConfig {
+  const DialogflowCxWebhookServiceAccountAuthConfig({
     required this.serviceAccount,
   });
 
@@ -193,195 +190,11 @@ final class DialogflowCxWebhookServiceDirectory {
 
   final TfArg<String> service;
 
-  final DialogflowCxWebhookServiceDirectoryGenericWebService? genericWebService;
+  final DialogflowCxWebhookGenericWebService? genericWebService;
 
   Map<String, Object?> encode() => {
     'service': service.toTfJson(),
     'generic_web_service': ?genericWebService?.encode(),
-  };
-}
-
-/// Typed helper for the `service_directory.generic_web_service` block of
-/// `google_dialogflow_cx_webhook` (derived from provider schema).
-@immutable
-final class DialogflowCxWebhookServiceDirectoryGenericWebService {
-  const DialogflowCxWebhookServiceDirectoryGenericWebService({
-    this.allowedCaCerts,
-    this.httpMethod,
-    this.parameterMapping,
-    this.requestBody,
-    this.requestHeaders,
-    this.secretVersionForUsernamePassword,
-    this.serviceAgentAuth,
-    required this.uri,
-    this.webhookType,
-    this.oauthConfig,
-    this.secretVersionsForRequestHeaders,
-    this.serviceAccountAuthConfig,
-  });
-
-  final TfArg<List<String>>? allowedCaCerts;
-
-  final TfArg<DialogflowCxWebhookServiceDirectoryGenericWebServiceHttpMethod>?
-  httpMethod;
-
-  final TfArg<Map<String, String>>? parameterMapping;
-
-  final TfArg<String>? requestBody;
-
-  final TfArg<Map<String, String>>? requestHeaders;
-
-  final TfArg<String>? secretVersionForUsernamePassword;
-
-  final TfArg<
-    DialogflowCxWebhookServiceDirectoryGenericWebServiceServiceAgentAuth
-  >?
-  serviceAgentAuth;
-
-  final TfArg<String> uri;
-
-  final TfArg<DialogflowCxWebhookServiceDirectoryGenericWebServiceWebhookType>?
-  webhookType;
-
-  final DialogflowCxWebhookServiceDirectoryGenericWebServiceOauthConfig?
-  oauthConfig;
-
-  final List<
-    DialogflowCxWebhookServiceDirectoryGenericWebServiceSecretVersionsForRequestHeaders
-  >?
-  secretVersionsForRequestHeaders;
-
-  final DialogflowCxWebhookServiceDirectoryGenericWebServiceServiceAccountAuthConfig?
-  serviceAccountAuthConfig;
-
-  Map<String, Object?> encode() => {
-    'allowed_ca_certs': ?allowedCaCerts?.toTfJson(),
-    'http_method': ?httpMethod?.toTfJson(),
-    'parameter_mapping': ?parameterMapping?.toTfJson(),
-    'request_body': ?requestBody?.toTfJson(),
-    'request_headers': ?requestHeaders?.toTfJson(),
-    'secret_version_for_username_password': ?secretVersionForUsernamePassword
-        ?.toTfJson(),
-    'service_agent_auth': ?serviceAgentAuth?.toTfJson(),
-    'uri': uri.toTfJson(),
-    'webhook_type': ?webhookType?.toTfJson(),
-    'oauth_config': ?oauthConfig?.encode(),
-    if (secretVersionsForRequestHeaders != null)
-      'secret_versions_for_request_headers': [
-        for (final e in secretVersionsForRequestHeaders!) e.encode(),
-      ],
-    'service_account_auth_config': ?serviceAccountAuthConfig?.encode(),
-  };
-}
-
-/// `http_method` — derived from the provider schema description.
-enum DialogflowCxWebhookServiceDirectoryGenericWebServiceHttpMethod
-    implements TerraformEnum {
-  post('POST'),
-  get('GET'),
-  head('HEAD'),
-  put('PUT'),
-  delete('DELETE'),
-  patch('PATCH'),
-  options('OPTIONS');
-
-  const DialogflowCxWebhookServiceDirectoryGenericWebServiceHttpMethod(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `service_agent_auth` — derived from the provider schema description.
-enum DialogflowCxWebhookServiceDirectoryGenericWebServiceServiceAgentAuth
-    implements TerraformEnum {
-  none('NONE'),
-  idToken('ID_TOKEN'),
-  accessToken('ACCESS_TOKEN');
-
-  const DialogflowCxWebhookServiceDirectoryGenericWebServiceServiceAgentAuth(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `webhook_type` — derived from the provider schema description.
-enum DialogflowCxWebhookServiceDirectoryGenericWebServiceWebhookType
-    implements TerraformEnum {
-  standard('STANDARD'),
-  flexible('FLEXIBLE');
-
-  const DialogflowCxWebhookServiceDirectoryGenericWebServiceWebhookType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `service_directory.generic_web_service.oauth_config` block of
-/// `google_dialogflow_cx_webhook` (derived from provider schema).
-@immutable
-final class DialogflowCxWebhookServiceDirectoryGenericWebServiceOauthConfig {
-  const DialogflowCxWebhookServiceDirectoryGenericWebServiceOauthConfig({
-    required this.clientId,
-    this.clientSecret,
-    this.scopes,
-    this.secretVersionForClientSecret,
-    required this.tokenEndpoint,
-  });
-
-  final TfArg<String> clientId;
-
-  final TfArg<String>? clientSecret;
-
-  final TfArg<List<String>>? scopes;
-
-  final TfArg<String>? secretVersionForClientSecret;
-
-  final TfArg<String> tokenEndpoint;
-
-  Map<String, Object?> encode() => {
-    'client_id': clientId.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-    'scopes': ?scopes?.toTfJson(),
-    'secret_version_for_client_secret': ?secretVersionForClientSecret
-        ?.toTfJson(),
-    'token_endpoint': tokenEndpoint.toTfJson(),
-  };
-}
-
-/// Typed helper for the `service_directory.generic_web_service.secret_versions_for_request_headers` block of
-/// `google_dialogflow_cx_webhook` (derived from provider schema).
-@immutable
-final class DialogflowCxWebhookServiceDirectoryGenericWebServiceSecretVersionsForRequestHeaders {
-  const DialogflowCxWebhookServiceDirectoryGenericWebServiceSecretVersionsForRequestHeaders({
-    required this.key,
-    required this.secretVersion,
-  });
-
-  final TfArg<String> key;
-
-  final TfArg<String> secretVersion;
-
-  Map<String, Object?> encode() => {
-    'key': key.toTfJson(),
-    'secret_version': secretVersion.toTfJson(),
-  };
-}
-
-/// Typed helper for the `service_directory.generic_web_service.service_account_auth_config` block of
-/// `google_dialogflow_cx_webhook` (derived from provider schema).
-@immutable
-final class DialogflowCxWebhookServiceDirectoryGenericWebServiceServiceAccountAuthConfig {
-  const DialogflowCxWebhookServiceDirectoryGenericWebServiceServiceAccountAuthConfig({
-    required this.serviceAccount,
-  });
-
-  final RefTo<GoogleServiceAccount> serviceAccount;
-
-  Map<String, Object?> encode() => {
-    'service_account': serviceAccount.encodeAs('email').toTfJson(),
   };
 }
 

@@ -33,8 +33,8 @@ export 'src/dns/google_dns_policy.dart'
         DnsPolicyAlternativeNameServerConfig,
         DnsPolicyAlternativeNameServerTargetNameServer,
         DnsPolicyDns64Config,
-        DnsPolicyDns64ConfigScope,
         DnsPolicyNetworks,
+        DnsPolicyScope,
         GoogleDnsPolicy;
 export 'src/dns/google_dns_record_set.dart'
     show

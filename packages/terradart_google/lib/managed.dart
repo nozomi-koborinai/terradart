@@ -5,27 +5,27 @@
 library;
 
 export 'src/managed/google_managed_kafka_acl.dart'
-    show GoogleManagedKafkaAcl, ManagedKafkaAclAclEntries;
+    show GoogleManagedKafkaAcl, ManagedKafkaAclEntries;
 export 'src/managed/google_managed_kafka_cluster.dart'
     show
         GoogleManagedKafkaCluster,
+        ManagedKafkaClusterAccessConfig,
         ManagedKafkaClusterBrokerCapacityConfig,
         ManagedKafkaClusterCapacityConfig,
+        ManagedKafkaClusterCasConfigs,
         ManagedKafkaClusterGcpConfig,
-        ManagedKafkaClusterGcpConfigAccessConfig,
-        ManagedKafkaClusterGcpConfigAccessConfigNetworkConfigs,
-        ManagedKafkaClusterGcpConfigAccessConfigPublicClusterConfig,
+        ManagedKafkaClusterNetworkConfigs,
+        ManagedKafkaClusterPublicClusterConfig,
         ManagedKafkaClusterRebalanceConfig,
         ManagedKafkaClusterTlsConfig,
-        ManagedKafkaClusterTlsConfigTrustConfig,
-        ManagedKafkaClusterTlsConfigTrustConfigCasConfigs;
+        ManagedKafkaClusterTrustConfig;
 export 'src/managed/google_managed_kafka_connect_cluster.dart'
     show
         GoogleManagedKafkaConnectCluster,
+        ManagedKafkaConnectClusterAccessConfig,
         ManagedKafkaConnectClusterCapacityConfig,
         ManagedKafkaConnectClusterGcpConfig,
-        ManagedKafkaConnectClusterGcpConfigAccessConfig,
-        ManagedKafkaConnectClusterGcpConfigAccessConfigNetworkConfigs;
+        ManagedKafkaConnectClusterNetworkConfigs;
 export 'src/managed/google_managed_kafka_connector.dart'
     show GoogleManagedKafkaConnector, ManagedKafkaConnectorTaskRestartPolicy;
 export 'src/managed/google_managed_kafka_topic.dart'

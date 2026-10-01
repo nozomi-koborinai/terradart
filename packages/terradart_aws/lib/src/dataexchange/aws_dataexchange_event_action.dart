@@ -16,8 +16,7 @@ const Set<String> _awsDataexchangeEventActionSensitive = <String>{};
 final class DataexchangeEventActionAction {
   const DataexchangeEventActionAction({this.exportRevisionToS3});
 
-  final List<DataexchangeEventActionActionExportRevisionToS3>?
-  exportRevisionToS3;
+  final List<DataexchangeEventActionExportRevisionToS3>? exportRevisionToS3;
 
   Map<String, Object?> encode() => {
     if (exportRevisionToS3 != null)
@@ -30,19 +29,15 @@ final class DataexchangeEventActionAction {
 /// Typed helper for the `action.export_revision_to_s3` block of
 /// `aws_dataexchange_event_action` (derived from provider schema).
 @immutable
-final class DataexchangeEventActionActionExportRevisionToS3 {
-  const DataexchangeEventActionActionExportRevisionToS3({
+final class DataexchangeEventActionExportRevisionToS3 {
+  const DataexchangeEventActionExportRevisionToS3({
     this.encryption,
     this.revisionDestination,
   });
 
-  final List<DataexchangeEventActionActionExportRevisionToS3Encryption>?
-  encryption;
+  final List<DataexchangeEventActionEncryption>? encryption;
 
-  final List<
-    DataexchangeEventActionActionExportRevisionToS3RevisionDestination
-  >?
-  revisionDestination;
+  final List<DataexchangeEventActionRevisionDestination>? revisionDestination;
 
   Map<String, Object?> encode() => {
     if (encryption != null)
@@ -57,16 +52,12 @@ final class DataexchangeEventActionActionExportRevisionToS3 {
 /// Typed helper for the `action.export_revision_to_s3.encryption` block of
 /// `aws_dataexchange_event_action` (derived from provider schema).
 @immutable
-final class DataexchangeEventActionActionExportRevisionToS3Encryption {
-  const DataexchangeEventActionActionExportRevisionToS3Encryption({
-    this.kmsKeyArn,
-    this.type,
-  });
+final class DataexchangeEventActionEncryption {
+  const DataexchangeEventActionEncryption({this.kmsKeyArn, this.type});
 
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
-  final TfArg<DataexchangeEventActionActionExportRevisionToS3EncryptionType>?
-  type;
+  final TfArg<DataexchangeEventActionType>? type;
 
   Map<String, Object?> encode() => {
     'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
@@ -75,14 +66,11 @@ final class DataexchangeEventActionActionExportRevisionToS3Encryption {
 }
 
 /// `type` — derived from the provider schema description.
-enum DataexchangeEventActionActionExportRevisionToS3EncryptionType
-    implements TerraformEnum {
+enum DataexchangeEventActionType implements TerraformEnum {
   awsKms('aws:kms'),
   aes256('AES256');
 
-  const DataexchangeEventActionActionExportRevisionToS3EncryptionType(
-    this.terraformValue,
-  );
+  const DataexchangeEventActionType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -90,8 +78,8 @@ enum DataexchangeEventActionActionExportRevisionToS3EncryptionType
 /// Typed helper for the `action.export_revision_to_s3.revision_destination` block of
 /// `aws_dataexchange_event_action` (derived from provider schema).
 @immutable
-final class DataexchangeEventActionActionExportRevisionToS3RevisionDestination {
-  const DataexchangeEventActionActionExportRevisionToS3RevisionDestination({
+final class DataexchangeEventActionRevisionDestination {
+  const DataexchangeEventActionRevisionDestination({
     required this.bucket,
     this.keyPattern,
   });
@@ -112,7 +100,7 @@ final class DataexchangeEventActionActionExportRevisionToS3RevisionDestination {
 final class DataexchangeEventActionEvent {
   const DataexchangeEventActionEvent({this.revisionPublished});
 
-  final List<DataexchangeEventActionEventRevisionPublished>? revisionPublished;
+  final List<DataexchangeEventActionRevisionPublished>? revisionPublished;
 
   Map<String, Object?> encode() => {
     if (revisionPublished != null)
@@ -123,10 +111,8 @@ final class DataexchangeEventActionEvent {
 /// Typed helper for the `event.revision_published` block of
 /// `aws_dataexchange_event_action` (derived from provider schema).
 @immutable
-final class DataexchangeEventActionEventRevisionPublished {
-  const DataexchangeEventActionEventRevisionPublished({
-    required this.dataSetId,
-  });
+final class DataexchangeEventActionRevisionPublished {
+  const DataexchangeEventActionRevisionPublished({required this.dataSetId});
 
   final TfArg<String> dataSetId;
 

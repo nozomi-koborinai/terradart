@@ -62,10 +62,10 @@ final class DataPipelinePipelineWorkload {
     this.dataflowLaunchTemplateRequest,
   });
 
-  final DataPipelinePipelineWorkloadDataflowFlexTemplateRequest?
+  final DataPipelinePipelineDataflowFlexTemplateRequest?
   dataflowFlexTemplateRequest;
 
-  final DataPipelinePipelineWorkloadDataflowLaunchTemplateRequest?
+  final DataPipelinePipelineDataflowLaunchTemplateRequest?
   dataflowLaunchTemplateRequest;
 
   Map<String, Object?> encode() => {
@@ -78,8 +78,8 @@ final class DataPipelinePipelineWorkload {
 /// Typed helper for the `workload.dataflow_flex_template_request` block of
 /// `google_data_pipeline_pipeline` (derived from provider schema).
 @immutable
-final class DataPipelinePipelineWorkloadDataflowFlexTemplateRequest {
-  const DataPipelinePipelineWorkloadDataflowFlexTemplateRequest({
+final class DataPipelinePipelineDataflowFlexTemplateRequest {
+  const DataPipelinePipelineDataflowFlexTemplateRequest({
     required this.location,
     required this.projectId,
     this.validateOnly,
@@ -92,8 +92,7 @@ final class DataPipelinePipelineWorkloadDataflowFlexTemplateRequest {
 
   final TfArg<bool>? validateOnly;
 
-  final DataPipelinePipelineWorkloadDataflowFlexTemplateRequestLaunchParameter
-  launchParameter;
+  final DataPipelinePipelineLaunchParameter launchParameter;
 
   Map<String, Object?> encode() => {
     'location': location.toTfJson(),
@@ -106,8 +105,8 @@ final class DataPipelinePipelineWorkloadDataflowFlexTemplateRequest {
 /// Typed helper for the `workload.dataflow_flex_template_request.launch_parameter` block of
 /// `google_data_pipeline_pipeline` (derived from provider schema).
 @immutable
-final class DataPipelinePipelineWorkloadDataflowFlexTemplateRequestLaunchParameter {
-  const DataPipelinePipelineWorkloadDataflowFlexTemplateRequestLaunchParameter({
+final class DataPipelinePipelineLaunchParameter {
+  const DataPipelinePipelineLaunchParameter({
     this.containerSpecGcsPath,
     required this.jobName,
     this.launchOptions,
@@ -129,8 +128,7 @@ final class DataPipelinePipelineWorkloadDataflowFlexTemplateRequestLaunchParamet
 
   final TfArg<bool>? update;
 
-  final DataPipelinePipelineWorkloadDataflowFlexTemplateRequestLaunchParameterEnvironment?
-  environment;
+  final DataPipelinePipelineLaunchParameterEnvironment? environment;
 
   Map<String, Object?> encode() => {
     'container_spec_gcs_path': ?containerSpecGcsPath?.toTfJson(),
@@ -146,8 +144,8 @@ final class DataPipelinePipelineWorkloadDataflowFlexTemplateRequestLaunchParamet
 /// Typed helper for the `workload.dataflow_flex_template_request.launch_parameter.environment` block of
 /// `google_data_pipeline_pipeline` (derived from provider schema).
 @immutable
-final class DataPipelinePipelineWorkloadDataflowFlexTemplateRequestLaunchParameterEnvironment {
-  const DataPipelinePipelineWorkloadDataflowFlexTemplateRequestLaunchParameterEnvironment({
+final class DataPipelinePipelineLaunchParameterEnvironment {
+  const DataPipelinePipelineLaunchParameterEnvironment({
     this.additionalExperiments,
     this.additionalUserLabels,
     this.enableStreamingEngine,
@@ -172,15 +170,9 @@ final class DataPipelinePipelineWorkloadDataflowFlexTemplateRequestLaunchParamet
 
   final TfArg<bool>? enableStreamingEngine;
 
-  final TfArg<
-    DataPipelinePipelineWorkloadDataflowFlexTemplateRequestLaunchParameterEnvironmentFlexrsGoal
-  >?
-  flexrsGoal;
+  final TfArg<DataPipelinePipelineFlexrsGoal>? flexrsGoal;
 
-  final TfArg<
-    DataPipelinePipelineWorkloadDataflowFlexTemplateRequestLaunchParameterEnvironmentIpConfiguration
-  >?
-  ipConfiguration;
+  final TfArg<DataPipelinePipelineIpConfiguration>? ipConfiguration;
 
   final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
 
@@ -225,29 +217,23 @@ final class DataPipelinePipelineWorkloadDataflowFlexTemplateRequestLaunchParamet
 }
 
 /// `flexrs_goal` — derived from the provider schema description.
-enum DataPipelinePipelineWorkloadDataflowFlexTemplateRequestLaunchParameterEnvironmentFlexrsGoal
-    implements TerraformEnum {
+enum DataPipelinePipelineFlexrsGoal implements TerraformEnum {
   flexrsUnspecified('FLEXRS_UNSPECIFIED'),
   flexrsSpeedOptimized('FLEXRS_SPEED_OPTIMIZED'),
   flexrsCostOptimized('FLEXRS_COST_OPTIMIZED');
 
-  const DataPipelinePipelineWorkloadDataflowFlexTemplateRequestLaunchParameterEnvironmentFlexrsGoal(
-    this.terraformValue,
-  );
+  const DataPipelinePipelineFlexrsGoal(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `ip_configuration` — derived from the provider schema description.
-enum DataPipelinePipelineWorkloadDataflowFlexTemplateRequestLaunchParameterEnvironmentIpConfiguration
-    implements TerraformEnum {
+enum DataPipelinePipelineIpConfiguration implements TerraformEnum {
   workerIpUnspecified('WORKER_IP_UNSPECIFIED'),
   workerIpPublic('WORKER_IP_PUBLIC'),
   workerIpPrivate('WORKER_IP_PRIVATE');
 
-  const DataPipelinePipelineWorkloadDataflowFlexTemplateRequestLaunchParameterEnvironmentIpConfiguration(
-    this.terraformValue,
-  );
+  const DataPipelinePipelineIpConfiguration(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -255,8 +241,8 @@ enum DataPipelinePipelineWorkloadDataflowFlexTemplateRequestLaunchParameterEnvir
 /// Typed helper for the `workload.dataflow_launch_template_request` block of
 /// `google_data_pipeline_pipeline` (derived from provider schema).
 @immutable
-final class DataPipelinePipelineWorkloadDataflowLaunchTemplateRequest {
-  const DataPipelinePipelineWorkloadDataflowLaunchTemplateRequest({
+final class DataPipelinePipelineDataflowLaunchTemplateRequest {
+  const DataPipelinePipelineDataflowLaunchTemplateRequest({
     this.gcsPath,
     this.location,
     required this.projectId,
@@ -272,8 +258,7 @@ final class DataPipelinePipelineWorkloadDataflowLaunchTemplateRequest {
 
   final TfArg<bool>? validateOnly;
 
-  final DataPipelinePipelineWorkloadDataflowLaunchTemplateRequestLaunchParameters?
-  launchParameters;
+  final DataPipelinePipelineLaunchParameters? launchParameters;
 
   Map<String, Object?> encode() => {
     'gcs_path': ?gcsPath?.toTfJson(),
@@ -287,8 +272,8 @@ final class DataPipelinePipelineWorkloadDataflowLaunchTemplateRequest {
 /// Typed helper for the `workload.dataflow_launch_template_request.launch_parameters` block of
 /// `google_data_pipeline_pipeline` (derived from provider schema).
 @immutable
-final class DataPipelinePipelineWorkloadDataflowLaunchTemplateRequestLaunchParameters {
-  const DataPipelinePipelineWorkloadDataflowLaunchTemplateRequestLaunchParameters({
+final class DataPipelinePipelineLaunchParameters {
+  const DataPipelinePipelineLaunchParameters({
     required this.jobName,
     this.parameters,
     this.transformNameMapping,
@@ -304,8 +289,7 @@ final class DataPipelinePipelineWorkloadDataflowLaunchTemplateRequestLaunchParam
 
   final TfArg<bool>? update;
 
-  final DataPipelinePipelineWorkloadDataflowLaunchTemplateRequestLaunchParametersEnvironment?
-  environment;
+  final DataPipelinePipelineLaunchParametersEnvironment? environment;
 
   Map<String, Object?> encode() => {
     'job_name': jobName.toTfJson(),
@@ -319,8 +303,8 @@ final class DataPipelinePipelineWorkloadDataflowLaunchTemplateRequestLaunchParam
 /// Typed helper for the `workload.dataflow_launch_template_request.launch_parameters.environment` block of
 /// `google_data_pipeline_pipeline` (derived from provider schema).
 @immutable
-final class DataPipelinePipelineWorkloadDataflowLaunchTemplateRequestLaunchParametersEnvironment {
-  const DataPipelinePipelineWorkloadDataflowLaunchTemplateRequestLaunchParametersEnvironment({
+final class DataPipelinePipelineLaunchParametersEnvironment {
+  const DataPipelinePipelineLaunchParametersEnvironment({
     this.additionalExperiments,
     this.additionalUserLabels,
     this.bypassTempDirValidation,
@@ -347,10 +331,7 @@ final class DataPipelinePipelineWorkloadDataflowLaunchTemplateRequestLaunchParam
 
   final TfArg<bool>? enableStreamingEngine;
 
-  final TfArg<
-    DataPipelinePipelineWorkloadDataflowLaunchTemplateRequestLaunchParametersEnvironmentIpConfiguration
-  >?
-  ipConfiguration;
+  final TfArg<DataPipelinePipelineIpConfiguration>? ipConfiguration;
 
   final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
 
@@ -392,20 +373,6 @@ final class DataPipelinePipelineWorkloadDataflowLaunchTemplateRequestLaunchParam
     'worker_zone': ?workerZone?.toTfJson(),
     'zone': ?zone?.toTfJson(),
   };
-}
-
-/// `ip_configuration` — derived from the provider schema description.
-enum DataPipelinePipelineWorkloadDataflowLaunchTemplateRequestLaunchParametersEnvironmentIpConfiguration
-    implements TerraformEnum {
-  workerIpUnspecified('WORKER_IP_UNSPECIFIED'),
-  workerIpPublic('WORKER_IP_PUBLIC'),
-  workerIpPrivate('WORKER_IP_PRIVATE');
-
-  const DataPipelinePipelineWorkloadDataflowLaunchTemplateRequestLaunchParametersEnvironmentIpConfiguration(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Factory wrapper for `google_data_pipeline_pipeline`.

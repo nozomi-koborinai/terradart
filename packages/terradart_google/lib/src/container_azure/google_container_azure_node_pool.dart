@@ -45,11 +45,11 @@ final class ContainerAzureNodePoolConfig {
 
   final TfArg<String>? vmSize;
 
-  final ContainerAzureNodePoolConfigProxyConfig? proxyConfig;
+  final ContainerAzureNodePoolProxyConfig? proxyConfig;
 
-  final ContainerAzureNodePoolConfigRootVolume? rootVolume;
+  final ContainerAzureNodePoolRootVolume? rootVolume;
 
-  final ContainerAzureNodePoolConfigSshConfig sshConfig;
+  final ContainerAzureNodePoolSshConfig sshConfig;
 
   Map<String, Object?> encode() => {
     'labels': ?labels?.toTfJson(),
@@ -64,8 +64,8 @@ final class ContainerAzureNodePoolConfig {
 /// Typed helper for the `config.proxy_config` block of
 /// `google_container_azure_node_pool` (derived from provider schema).
 @immutable
-final class ContainerAzureNodePoolConfigProxyConfig {
-  const ContainerAzureNodePoolConfigProxyConfig({
+final class ContainerAzureNodePoolProxyConfig {
+  const ContainerAzureNodePoolProxyConfig({
     required this.resourceGroupId,
     required this.secretId,
   });
@@ -83,8 +83,8 @@ final class ContainerAzureNodePoolConfigProxyConfig {
 /// Typed helper for the `config.root_volume` block of
 /// `google_container_azure_node_pool` (derived from provider schema).
 @immutable
-final class ContainerAzureNodePoolConfigRootVolume {
-  const ContainerAzureNodePoolConfigRootVolume({this.sizeGib});
+final class ContainerAzureNodePoolRootVolume {
+  const ContainerAzureNodePoolRootVolume({this.sizeGib});
 
   final TfArg<num>? sizeGib;
 
@@ -94,8 +94,8 @@ final class ContainerAzureNodePoolConfigRootVolume {
 /// Typed helper for the `config.ssh_config` block of
 /// `google_container_azure_node_pool` (derived from provider schema).
 @immutable
-final class ContainerAzureNodePoolConfigSshConfig {
-  const ContainerAzureNodePoolConfigSshConfig({required this.authorizedKey});
+final class ContainerAzureNodePoolSshConfig {
+  const ContainerAzureNodePoolSshConfig({required this.authorizedKey});
 
   final TfArg<String> authorizedKey;
 

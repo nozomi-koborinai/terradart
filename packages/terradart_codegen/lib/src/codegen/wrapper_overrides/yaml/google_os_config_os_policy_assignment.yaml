@@ -24,7 +24,7 @@ curatedDoc: |-
   ///     all: TfArg.literal(true),
   ///   ),
   ///   rollout: OsConfigOsPolicyAssignmentRollout(
-  ///     disruptionBudget: OsConfigOsPolicyAssignmentRolloutDisruptionBudget(
+  ///     disruptionBudget: OsConfigOsPolicyAssignmentDisruptionBudget(
   ///       percent: TfArg.literal(100),
   ///     ),
   ///     minWaitDuration: TfArg.literal('0s'),

@@ -25,11 +25,11 @@ final class WorkerObservability {
 
   final TfArg<num>? headSamplingRate;
 
-  final WorkerObservabilityIssues? issues;
+  final WorkerIssues? issues;
 
-  final WorkerObservabilityLogs? logs;
+  final WorkerLogs? logs;
 
-  final WorkerObservabilityTraces? traces;
+  final WorkerTraces? traces;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
@@ -42,9 +42,10 @@ final class WorkerObservability {
 
 /// Typed helper for the `observability.issues` block of
 /// `cloudflare_worker` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class WorkerObservabilityIssues {
-  const WorkerObservabilityIssues({this.enabled});
+final class WorkerIssues {
+  const WorkerIssues({this.enabled});
 
   final TfArg<bool>? enabled;
 
@@ -53,9 +54,10 @@ final class WorkerObservabilityIssues {
 
 /// Typed helper for the `observability.logs` block of
 /// `cloudflare_worker` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class WorkerObservabilityLogs {
-  const WorkerObservabilityLogs({
+final class WorkerLogs {
+  const WorkerLogs({
     this.destinations,
     this.enabled,
     this.headSamplingRate,
@@ -84,9 +86,10 @@ final class WorkerObservabilityLogs {
 
 /// Typed helper for the `observability.traces` block of
 /// `cloudflare_worker` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class WorkerObservabilityTraces {
-  const WorkerObservabilityTraces({
+final class WorkerTraces {
+  const WorkerTraces({
     this.destinations,
     this.enabled,
     this.headSamplingRate,
@@ -102,7 +105,7 @@ final class WorkerObservabilityTraces {
 
   final TfArg<bool>? persist;
 
-  final TfArg<WorkerObservabilityTracesPropagationPolicy>? propagationPolicy;
+  final TfArg<WorkerPropagationPolicy>? propagationPolicy;
 
   Map<String, Object?> encode() => {
     'destinations': ?destinations?.toTfJson(),
@@ -114,11 +117,11 @@ final class WorkerObservabilityTraces {
 }
 
 /// `propagation_policy` — derived from the provider schema description.
-enum WorkerObservabilityTracesPropagationPolicy implements TerraformEnum {
+enum WorkerPropagationPolicy implements TerraformEnum {
   authenticated('authenticated'),
   accept('accept');
 
-  const WorkerObservabilityTracesPropagationPolicy(this.terraformValue);
+  const WorkerPropagationPolicy(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -139,17 +142,17 @@ final class WorkerPreviewsBaseConfig {
 
   final TfArg<bool>? logpush;
 
-  final WorkerPreviewsBaseConfigCacheOptions? cacheOptions;
+  final WorkerCacheOptions? cacheOptions;
 
-  final Map<String, WorkerPreviewsBaseConfigEnv>? env;
+  final Map<String, WorkerEnv>? env;
 
-  final WorkerPreviewsBaseConfigLimits? limits;
+  final WorkerLimits? limits;
 
   final WorkerPreviewsBaseConfigObservability? observability;
 
-  final WorkerPreviewsBaseConfigPlacement? placement;
+  final WorkerPlacement? placement;
 
-  final List<WorkerPreviewsBaseConfigTailConsumers>? tailConsumers;
+  final List<WorkerTailConsumers>? tailConsumers;
 
   Map<String, Object?> encode() => {
     'logpush': ?logpush?.toTfJson(),
@@ -167,11 +170,8 @@ final class WorkerPreviewsBaseConfig {
 /// Typed helper for the `previews_base_config.cache_options` block of
 /// `cloudflare_worker` (derived from provider schema).
 @immutable
-final class WorkerPreviewsBaseConfigCacheOptions {
-  const WorkerPreviewsBaseConfigCacheOptions({
-    this.crossVersionCache,
-    this.enabled,
-  });
+final class WorkerCacheOptions {
+  const WorkerCacheOptions({this.crossVersionCache, this.enabled});
 
   final TfArg<bool>? crossVersionCache;
 
@@ -186,8 +186,8 @@ final class WorkerPreviewsBaseConfigCacheOptions {
 /// Typed helper for the `previews_base_config.env` block of
 /// `cloudflare_worker` (derived from provider schema).
 @immutable
-final class WorkerPreviewsBaseConfigEnv {
-  const WorkerPreviewsBaseConfigEnv({required this.type});
+final class WorkerEnv {
+  const WorkerEnv({required this.type});
 
   final TfArg<String> type;
 
@@ -197,8 +197,8 @@ final class WorkerPreviewsBaseConfigEnv {
 /// Typed helper for the `previews_base_config.limits` block of
 /// `cloudflare_worker` (derived from provider schema).
 @immutable
-final class WorkerPreviewsBaseConfigLimits {
-  const WorkerPreviewsBaseConfigLimits({this.cpuMs, this.subrequests});
+final class WorkerLimits {
+  const WorkerLimits({this.cpuMs, this.subrequests});
 
   final TfArg<num>? cpuMs;
 
@@ -229,11 +229,11 @@ final class WorkerPreviewsBaseConfigObservability {
 
   final TfArg<bool>? redactQueryString;
 
-  final WorkerPreviewsBaseConfigObservabilityIssues? issues;
+  final WorkerIssues? issues;
 
-  final WorkerPreviewsBaseConfigObservabilityLogs? logs;
+  final WorkerLogs? logs;
 
-  final WorkerPreviewsBaseConfigObservabilityTraces? traces;
+  final WorkerTraces? traces;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
@@ -245,98 +245,11 @@ final class WorkerPreviewsBaseConfigObservability {
   };
 }
 
-/// Typed helper for the `previews_base_config.observability.issues` block of
-/// `cloudflare_worker` (derived from provider schema).
-@immutable
-final class WorkerPreviewsBaseConfigObservabilityIssues {
-  const WorkerPreviewsBaseConfigObservabilityIssues({this.enabled});
-
-  final TfArg<bool>? enabled;
-
-  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
-}
-
-/// Typed helper for the `previews_base_config.observability.logs` block of
-/// `cloudflare_worker` (derived from provider schema).
-@immutable
-final class WorkerPreviewsBaseConfigObservabilityLogs {
-  const WorkerPreviewsBaseConfigObservabilityLogs({
-    this.destinations,
-    this.enabled,
-    this.headSamplingRate,
-    this.invocationLogs,
-    this.persist,
-  });
-
-  final TfArg<List<String>>? destinations;
-
-  final TfArg<bool>? enabled;
-
-  final TfArg<num>? headSamplingRate;
-
-  final TfArg<bool>? invocationLogs;
-
-  final TfArg<bool>? persist;
-
-  Map<String, Object?> encode() => {
-    'destinations': ?destinations?.toTfJson(),
-    'enabled': ?enabled?.toTfJson(),
-    'head_sampling_rate': ?headSamplingRate?.toTfJson(),
-    'invocation_logs': ?invocationLogs?.toTfJson(),
-    'persist': ?persist?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `previews_base_config.observability.traces` block of
-/// `cloudflare_worker` (derived from provider schema).
-@immutable
-final class WorkerPreviewsBaseConfigObservabilityTraces {
-  const WorkerPreviewsBaseConfigObservabilityTraces({
-    this.destinations,
-    this.enabled,
-    this.headSamplingRate,
-    this.persist,
-    this.propagationPolicy,
-  });
-
-  final TfArg<List<String>>? destinations;
-
-  final TfArg<bool>? enabled;
-
-  final TfArg<num>? headSamplingRate;
-
-  final TfArg<bool>? persist;
-
-  final TfArg<WorkerPreviewsBaseConfigObservabilityTracesPropagationPolicy>?
-  propagationPolicy;
-
-  Map<String, Object?> encode() => {
-    'destinations': ?destinations?.toTfJson(),
-    'enabled': ?enabled?.toTfJson(),
-    'head_sampling_rate': ?headSamplingRate?.toTfJson(),
-    'persist': ?persist?.toTfJson(),
-    'propagation_policy': ?propagationPolicy?.toTfJson(),
-  };
-}
-
-/// `propagation_policy` — derived from the provider schema description.
-enum WorkerPreviewsBaseConfigObservabilityTracesPropagationPolicy
-    implements TerraformEnum {
-  authenticated('authenticated'),
-  accept('accept');
-
-  const WorkerPreviewsBaseConfigObservabilityTracesPropagationPolicy(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `previews_base_config.placement` block of
 /// `cloudflare_worker` (derived from provider schema).
 @immutable
-final class WorkerPreviewsBaseConfigPlacement {
-  const WorkerPreviewsBaseConfigPlacement({
+final class WorkerPlacement {
+  const WorkerPlacement({
     this.host,
     this.hostname,
     this.mode,
@@ -348,11 +261,11 @@ final class WorkerPreviewsBaseConfigPlacement {
 
   final TfArg<String>? hostname;
 
-  final TfArg<WorkerPreviewsBaseConfigPlacementMode>? mode;
+  final TfArg<WorkerMode>? mode;
 
   final TfArg<String>? region;
 
-  final List<WorkerPreviewsBaseConfigPlacementTarget>? target;
+  final List<WorkerTarget>? target;
 
   Map<String, Object?> encode() => {
     'host': ?host?.toTfJson(),
@@ -364,11 +277,11 @@ final class WorkerPreviewsBaseConfigPlacement {
 }
 
 /// `mode` — derived from the provider schema description.
-enum WorkerPreviewsBaseConfigPlacementMode implements TerraformEnum {
+enum WorkerMode implements TerraformEnum {
   smart('smart'),
   targeted('targeted');
 
-  const WorkerPreviewsBaseConfigPlacementMode(this.terraformValue);
+  const WorkerMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -376,12 +289,8 @@ enum WorkerPreviewsBaseConfigPlacementMode implements TerraformEnum {
 /// Typed helper for the `previews_base_config.placement.target` block of
 /// `cloudflare_worker` (derived from provider schema).
 @immutable
-final class WorkerPreviewsBaseConfigPlacementTarget {
-  const WorkerPreviewsBaseConfigPlacementTarget({
-    this.host,
-    this.hostname,
-    this.region,
-  });
+final class WorkerTarget {
+  const WorkerTarget({this.host, this.hostname, this.region});
 
   final TfArg<String>? host;
 
@@ -396,11 +305,12 @@ final class WorkerPreviewsBaseConfigPlacementTarget {
   };
 }
 
-/// Typed helper for the `previews_base_config.tail_consumers` block of
+/// Typed helper for the `tail_consumers` block of
 /// `cloudflare_worker` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class WorkerPreviewsBaseConfigTailConsumers {
-  const WorkerPreviewsBaseConfigTailConsumers({required this.name});
+final class WorkerTailConsumers {
+  const WorkerTailConsumers({required this.name});
 
   final TfArg<String> name;
 
@@ -421,17 +331,6 @@ final class WorkerSubdomain {
     'enabled': ?enabled?.toTfJson(),
     'previews_enabled': ?previewsEnabled?.toTfJson(),
   };
-}
-
-/// Typed helper for the `tail_consumers` block of
-/// `cloudflare_worker` (derived from provider schema).
-@immutable
-final class WorkerTailConsumers {
-  const WorkerTailConsumers({required this.name});
-
-  final TfArg<String> name;
-
-  Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
 /// Factory wrapper for `cloudflare_worker`.

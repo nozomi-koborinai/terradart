@@ -28,7 +28,7 @@ final class ZeroTrustDlpEntryPattern {
 
   final TfArg<String> regex;
 
-  final TfArg<ZeroTrustDlpEntryPatternValidation>? validation;
+  final TfArg<ZeroTrustDlpEntryValidation>? validation;
 
   Map<String, Object?> encode() => {
     'regex': regex.toTfJson(),
@@ -37,10 +37,10 @@ final class ZeroTrustDlpEntryPattern {
 }
 
 /// `validation` — derived from the provider schema description.
-enum ZeroTrustDlpEntryPatternValidation implements TerraformEnum {
+enum ZeroTrustDlpEntryValidation implements TerraformEnum {
   luhn('luhn');
 
-  const ZeroTrustDlpEntryPatternValidation(this.terraformValue);
+  const ZeroTrustDlpEntryValidation(this.terraformValue);
   @override
   final String terraformValue;
 }

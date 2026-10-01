@@ -232,14 +232,12 @@ enum SagemakerNotebookInstanceRootAccess implements TerraformEnum {
 /// Typed helper for the `instance_metadata_service_configuration` block of
 /// `aws_sagemaker_notebook_instance` (derived from provider schema).
 @immutable
-final class SagemakerNotebookInstanceInstanceMetadataServiceConfiguration {
-  const SagemakerNotebookInstanceInstanceMetadataServiceConfiguration({
+final class SagemakerNotebookInstanceMetadataServiceConfiguration {
+  const SagemakerNotebookInstanceMetadataServiceConfiguration({
     this.minimumInstanceMetadataServiceVersion,
   });
 
-  final TfArg<
-    SagemakerNotebookInstanceInstanceMetadataServiceConfigurationMinimumInstanceMetadataServiceVersion
-  >?
+  final TfArg<SagemakerNotebookInstanceMinimumInstanceMetadataServiceVersion>?
   minimumInstanceMetadataServiceVersion;
 
   Map<String, Object?> encode() => {
@@ -249,12 +247,12 @@ final class SagemakerNotebookInstanceInstanceMetadataServiceConfiguration {
 }
 
 /// `minimum_instance_metadata_service_version` — derived from the provider schema description.
-enum SagemakerNotebookInstanceInstanceMetadataServiceConfigurationMinimumInstanceMetadataServiceVersion
+enum SagemakerNotebookInstanceMinimumInstanceMetadataServiceVersion
     implements TerraformEnum {
   v1('1'),
   v2('2');
 
-  const SagemakerNotebookInstanceInstanceMetadataServiceConfigurationMinimumInstanceMetadataServiceVersion(
+  const SagemakerNotebookInstanceMinimumInstanceMetadataServiceVersion(
     this.terraformValue,
   );
   @override
@@ -282,7 +280,7 @@ final class AwsSagemakerNotebookInstance extends Resource {
     RefTo<AwsSubnet>? subnetId,
     TfArg<Map<String, String>>? tags,
     TfArg<num>? volumeSize,
-    SagemakerNotebookInstanceInstanceMetadataServiceConfiguration?
+    SagemakerNotebookInstanceMetadataServiceConfiguration?
     instanceMetadataServiceConfiguration,
     super.lifecycle,
     super.dependsOn,

@@ -21,9 +21,9 @@ final class CesToolsetConnectorToolset {
 
   final TfArg<String> connection;
 
-  final CesToolsetConnectorToolsetAuthConfig? authConfig;
+  final CesToolsetAuthConfig? authConfig;
 
-  final List<CesToolsetConnectorToolsetConnectorActions> connectorActions;
+  final List<CesToolsetConnectorActions> connectorActions;
 
   Map<String, Object?> encode() => {
     'connection': connection.toTfJson(),
@@ -35,17 +35,15 @@ final class CesToolsetConnectorToolset {
 /// Typed helper for the `connector_toolset.auth_config` block of
 /// `google_ces_toolset` (derived from provider schema).
 @immutable
-final class CesToolsetConnectorToolsetAuthConfig {
-  const CesToolsetConnectorToolsetAuthConfig({
+final class CesToolsetAuthConfig {
+  const CesToolsetAuthConfig({
     this.oauth2AuthCodeConfig,
     this.oauth2JwtBearerConfig,
   });
 
-  final CesToolsetConnectorToolsetAuthConfigOauth2AuthCodeConfig?
-  oauth2AuthCodeConfig;
+  final CesToolsetOauth2AuthCodeConfig? oauth2AuthCodeConfig;
 
-  final CesToolsetConnectorToolsetAuthConfigOauth2JwtBearerConfig?
-  oauth2JwtBearerConfig;
+  final CesToolsetOauth2JwtBearerConfig? oauth2JwtBearerConfig;
 
   Map<String, Object?> encode() => {
     'oauth2_auth_code_config': ?oauth2AuthCodeConfig?.encode(),
@@ -56,10 +54,8 @@ final class CesToolsetConnectorToolsetAuthConfig {
 /// Typed helper for the `connector_toolset.auth_config.oauth2_auth_code_config` block of
 /// `google_ces_toolset` (derived from provider schema).
 @immutable
-final class CesToolsetConnectorToolsetAuthConfigOauth2AuthCodeConfig {
-  const CesToolsetConnectorToolsetAuthConfigOauth2AuthCodeConfig({
-    required this.oauthToken,
-  });
+final class CesToolsetOauth2AuthCodeConfig {
+  const CesToolsetOauth2AuthCodeConfig({required this.oauthToken});
 
   final TfArg<String> oauthToken;
 
@@ -69,8 +65,8 @@ final class CesToolsetConnectorToolsetAuthConfigOauth2AuthCodeConfig {
 /// Typed helper for the `connector_toolset.auth_config.oauth2_jwt_bearer_config` block of
 /// `google_ces_toolset` (derived from provider schema).
 @immutable
-final class CesToolsetConnectorToolsetAuthConfigOauth2JwtBearerConfig {
-  const CesToolsetConnectorToolsetAuthConfigOauth2JwtBearerConfig({
+final class CesToolsetOauth2JwtBearerConfig {
+  const CesToolsetOauth2JwtBearerConfig({
     required this.clientKey,
     required this.issuer,
     required this.subject,
@@ -92,8 +88,8 @@ final class CesToolsetConnectorToolsetAuthConfigOauth2JwtBearerConfig {
 /// Typed helper for the `connector_toolset.connector_actions` block of
 /// `google_ces_toolset` (derived from provider schema).
 @immutable
-final class CesToolsetConnectorToolsetConnectorActions {
-  const CesToolsetConnectorToolsetConnectorActions({
+final class CesToolsetConnectorActions {
+  const CesToolsetConnectorActions({
     this.connectionActionId,
     this.inputFields,
     this.outputFields,
@@ -106,8 +102,7 @@ final class CesToolsetConnectorToolsetConnectorActions {
 
   final TfArg<List<String>>? outputFields;
 
-  final CesToolsetConnectorToolsetConnectorActionsEntityOperation?
-  entityOperation;
+  final CesToolsetEntityOperation? entityOperation;
 
   Map<String, Object?> encode() => {
     'connection_action_id': ?connectionActionId?.toTfJson(),
@@ -120,8 +115,8 @@ final class CesToolsetConnectorToolsetConnectorActions {
 /// Typed helper for the `connector_toolset.connector_actions.entity_operation` block of
 /// `google_ces_toolset` (derived from provider schema).
 @immutable
-final class CesToolsetConnectorToolsetConnectorActionsEntityOperation {
-  const CesToolsetConnectorToolsetConnectorActionsEntityOperation({
+final class CesToolsetEntityOperation {
+  const CesToolsetEntityOperation({
     required this.entityId,
     required this.operation,
   });
@@ -153,13 +148,13 @@ final class CesToolsetMcpToolset {
 
   final TfArg<String> serverAddress;
 
-  final CesToolsetMcpToolsetApiAuthentication? apiAuthentication;
+  final CesToolsetApiAuthentication? apiAuthentication;
 
-  final CesToolsetMcpToolsetServiceDirectoryConfig? serviceDirectoryConfig;
+  final CesToolsetServiceDirectoryConfig? serviceDirectoryConfig;
 
-  final CesToolsetMcpToolsetTlsConfig? tlsConfig;
+  final CesToolsetTlsConfig? tlsConfig;
 
-  final List<CesToolsetMcpToolsetToolOverrides>? toolOverrides;
+  final List<CesToolsetToolOverrides>? toolOverrides;
 
   Map<String, Object?> encode() => {
     'custom_headers': ?customHeaders?.toTfJson(),
@@ -174,9 +169,10 @@ final class CesToolsetMcpToolset {
 
 /// Typed helper for the `mcp_toolset.api_authentication` block of
 /// `google_ces_toolset` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CesToolsetMcpToolsetApiAuthentication {
-  const CesToolsetMcpToolsetApiAuthentication({
+final class CesToolsetApiAuthentication {
+  const CesToolsetApiAuthentication({
     this.apiKeyConfig,
     this.bearerTokenConfig,
     this.oauthConfig,
@@ -184,18 +180,15 @@ final class CesToolsetMcpToolsetApiAuthentication {
     this.serviceAgentIdTokenAuthConfig,
   });
 
-  final CesToolsetMcpToolsetApiAuthenticationApiKeyConfig? apiKeyConfig;
+  final CesToolsetApiKeyConfig? apiKeyConfig;
 
-  final CesToolsetMcpToolsetApiAuthenticationBearerTokenConfig?
-  bearerTokenConfig;
+  final CesToolsetBearerTokenConfig? bearerTokenConfig;
 
-  final CesToolsetMcpToolsetApiAuthenticationOauthConfig? oauthConfig;
+  final CesToolsetOauthConfig? oauthConfig;
 
-  final CesToolsetMcpToolsetApiAuthenticationServiceAccountAuthConfig?
-  serviceAccountAuthConfig;
+  final CesToolsetServiceAccountAuthConfig? serviceAccountAuthConfig;
 
-  final CesToolsetMcpToolsetApiAuthenticationServiceAgentIdTokenAuthConfig?
-  serviceAgentIdTokenAuthConfig;
+  final CesToolsetServiceAgentIdTokenAuthConfig? serviceAgentIdTokenAuthConfig;
 
   Map<String, Object?> encode() => {
     'api_key_config': ?apiKeyConfig?.encode(),
@@ -209,9 +202,10 @@ final class CesToolsetMcpToolsetApiAuthentication {
 
 /// Typed helper for the `mcp_toolset.api_authentication.api_key_config` block of
 /// `google_ces_toolset` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CesToolsetMcpToolsetApiAuthenticationApiKeyConfig {
-  const CesToolsetMcpToolsetApiAuthenticationApiKeyConfig({
+final class CesToolsetApiKeyConfig {
+  const CesToolsetApiKeyConfig({
     required this.apiKeySecretVersion,
     required this.keyName,
     required this.requestLocation,
@@ -232,9 +226,10 @@ final class CesToolsetMcpToolsetApiAuthenticationApiKeyConfig {
 
 /// Typed helper for the `mcp_toolset.api_authentication.bearer_token_config` block of
 /// `google_ces_toolset` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CesToolsetMcpToolsetApiAuthenticationBearerTokenConfig {
-  const CesToolsetMcpToolsetApiAuthenticationBearerTokenConfig({this.token});
+final class CesToolsetBearerTokenConfig {
+  const CesToolsetBearerTokenConfig({this.token});
 
   final TfArg<String>? token;
 
@@ -243,9 +238,10 @@ final class CesToolsetMcpToolsetApiAuthenticationBearerTokenConfig {
 
 /// Typed helper for the `mcp_toolset.api_authentication.oauth_config` block of
 /// `google_ces_toolset` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CesToolsetMcpToolsetApiAuthenticationOauthConfig {
-  const CesToolsetMcpToolsetApiAuthenticationOauthConfig({
+final class CesToolsetOauthConfig {
+  const CesToolsetOauthConfig({
     required this.clientId,
     required this.clientSecretVersion,
     required this.oauthGrantType,
@@ -274,9 +270,10 @@ final class CesToolsetMcpToolsetApiAuthenticationOauthConfig {
 
 /// Typed helper for the `mcp_toolset.api_authentication.service_account_auth_config` block of
 /// `google_ces_toolset` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CesToolsetMcpToolsetApiAuthenticationServiceAccountAuthConfig {
-  const CesToolsetMcpToolsetApiAuthenticationServiceAccountAuthConfig({
+final class CesToolsetServiceAccountAuthConfig {
+  const CesToolsetServiceAccountAuthConfig({
     this.scopes,
     required this.serviceAccount,
   });
@@ -293,18 +290,20 @@ final class CesToolsetMcpToolsetApiAuthenticationServiceAccountAuthConfig {
 
 /// Typed helper for the `mcp_toolset.api_authentication.service_agent_id_token_auth_config` block of
 /// `google_ces_toolset` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CesToolsetMcpToolsetApiAuthenticationServiceAgentIdTokenAuthConfig {
-  const CesToolsetMcpToolsetApiAuthenticationServiceAgentIdTokenAuthConfig();
+final class CesToolsetServiceAgentIdTokenAuthConfig {
+  const CesToolsetServiceAgentIdTokenAuthConfig();
 
   Map<String, Object?> encode() => {};
 }
 
 /// Typed helper for the `mcp_toolset.service_directory_config` block of
 /// `google_ces_toolset` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CesToolsetMcpToolsetServiceDirectoryConfig {
-  const CesToolsetMcpToolsetServiceDirectoryConfig({required this.service});
+final class CesToolsetServiceDirectoryConfig {
+  const CesToolsetServiceDirectoryConfig({required this.service});
 
   final TfArg<String> service;
 
@@ -313,11 +312,12 @@ final class CesToolsetMcpToolsetServiceDirectoryConfig {
 
 /// Typed helper for the `mcp_toolset.tls_config` block of
 /// `google_ces_toolset` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CesToolsetMcpToolsetTlsConfig {
-  const CesToolsetMcpToolsetTlsConfig({required this.caCerts});
+final class CesToolsetTlsConfig {
+  const CesToolsetTlsConfig({required this.caCerts});
 
-  final List<CesToolsetMcpToolsetTlsConfigCaCerts> caCerts;
+  final List<CesToolsetCaCerts> caCerts;
 
   Map<String, Object?> encode() => {
     'ca_certs': [for (final e in caCerts) e.encode()],
@@ -326,12 +326,10 @@ final class CesToolsetMcpToolsetTlsConfig {
 
 /// Typed helper for the `mcp_toolset.tls_config.ca_certs` block of
 /// `google_ces_toolset` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CesToolsetMcpToolsetTlsConfigCaCerts {
-  const CesToolsetMcpToolsetTlsConfigCaCerts({
-    required this.cert,
-    required this.displayName,
-  });
+final class CesToolsetCaCerts {
+  const CesToolsetCaCerts({required this.cert, required this.displayName});
 
   final TfArg<String> cert;
 
@@ -346,8 +344,8 @@ final class CesToolsetMcpToolsetTlsConfigCaCerts {
 /// Typed helper for the `mcp_toolset.tool_overrides` block of
 /// `google_ces_toolset` (derived from provider schema).
 @immutable
-final class CesToolsetMcpToolsetToolOverrides {
-  const CesToolsetMcpToolsetToolOverrides({
+final class CesToolsetToolOverrides {
+  const CesToolsetToolOverrides({
     this.descriptionOverride,
     this.nameOverride,
     required this.tool,
@@ -382,11 +380,11 @@ final class CesToolsetOpenApiToolset {
 
   final TfArg<String> openApiSchema;
 
-  final CesToolsetOpenApiToolsetApiAuthentication? apiAuthentication;
+  final CesToolsetApiAuthentication? apiAuthentication;
 
-  final CesToolsetOpenApiToolsetServiceDirectoryConfig? serviceDirectoryConfig;
+  final CesToolsetServiceDirectoryConfig? serviceDirectoryConfig;
 
-  final CesToolsetOpenApiToolsetTlsConfig? tlsConfig;
+  final CesToolsetTlsConfig? tlsConfig;
 
   Map<String, Object?> encode() => {
     'ignore_unknown_fields': ?ignoreUnknownFields?.toTfJson(),
@@ -394,179 +392,6 @@ final class CesToolsetOpenApiToolset {
     'api_authentication': ?apiAuthentication?.encode(),
     'service_directory_config': ?serviceDirectoryConfig?.encode(),
     'tls_config': ?tlsConfig?.encode(),
-  };
-}
-
-/// Typed helper for the `open_api_toolset.api_authentication` block of
-/// `google_ces_toolset` (derived from provider schema).
-@immutable
-final class CesToolsetOpenApiToolsetApiAuthentication {
-  const CesToolsetOpenApiToolsetApiAuthentication({
-    this.apiKeyConfig,
-    this.bearerTokenConfig,
-    this.oauthConfig,
-    this.serviceAccountAuthConfig,
-    this.serviceAgentIdTokenAuthConfig,
-  });
-
-  final CesToolsetOpenApiToolsetApiAuthenticationApiKeyConfig? apiKeyConfig;
-
-  final CesToolsetOpenApiToolsetApiAuthenticationBearerTokenConfig?
-  bearerTokenConfig;
-
-  final CesToolsetOpenApiToolsetApiAuthenticationOauthConfig? oauthConfig;
-
-  final CesToolsetOpenApiToolsetApiAuthenticationServiceAccountAuthConfig?
-  serviceAccountAuthConfig;
-
-  final CesToolsetOpenApiToolsetApiAuthenticationServiceAgentIdTokenAuthConfig?
-  serviceAgentIdTokenAuthConfig;
-
-  Map<String, Object?> encode() => {
-    'api_key_config': ?apiKeyConfig?.encode(),
-    'bearer_token_config': ?bearerTokenConfig?.encode(),
-    'oauth_config': ?oauthConfig?.encode(),
-    'service_account_auth_config': ?serviceAccountAuthConfig?.encode(),
-    'service_agent_id_token_auth_config': ?serviceAgentIdTokenAuthConfig
-        ?.encode(),
-  };
-}
-
-/// Typed helper for the `open_api_toolset.api_authentication.api_key_config` block of
-/// `google_ces_toolset` (derived from provider schema).
-@immutable
-final class CesToolsetOpenApiToolsetApiAuthenticationApiKeyConfig {
-  const CesToolsetOpenApiToolsetApiAuthenticationApiKeyConfig({
-    required this.apiKeySecretVersion,
-    required this.keyName,
-    required this.requestLocation,
-  });
-
-  final TfArg<String> apiKeySecretVersion;
-
-  final TfArg<String> keyName;
-
-  final TfArg<String> requestLocation;
-
-  Map<String, Object?> encode() => {
-    'api_key_secret_version': apiKeySecretVersion.toTfJson(),
-    'key_name': keyName.toTfJson(),
-    'request_location': requestLocation.toTfJson(),
-  };
-}
-
-/// Typed helper for the `open_api_toolset.api_authentication.bearer_token_config` block of
-/// `google_ces_toolset` (derived from provider schema).
-@immutable
-final class CesToolsetOpenApiToolsetApiAuthenticationBearerTokenConfig {
-  const CesToolsetOpenApiToolsetApiAuthenticationBearerTokenConfig({
-    this.token,
-  });
-
-  final TfArg<String>? token;
-
-  Map<String, Object?> encode() => {'token': ?token?.toTfJson()};
-}
-
-/// Typed helper for the `open_api_toolset.api_authentication.oauth_config` block of
-/// `google_ces_toolset` (derived from provider schema).
-@immutable
-final class CesToolsetOpenApiToolsetApiAuthenticationOauthConfig {
-  const CesToolsetOpenApiToolsetApiAuthenticationOauthConfig({
-    required this.clientId,
-    required this.clientSecretVersion,
-    required this.oauthGrantType,
-    this.scopes,
-    required this.tokenEndpoint,
-  });
-
-  final TfArg<String> clientId;
-
-  final TfArg<String> clientSecretVersion;
-
-  final TfArg<String> oauthGrantType;
-
-  final TfArg<List<String>>? scopes;
-
-  final TfArg<String> tokenEndpoint;
-
-  Map<String, Object?> encode() => {
-    'client_id': clientId.toTfJson(),
-    'client_secret_version': clientSecretVersion.toTfJson(),
-    'oauth_grant_type': oauthGrantType.toTfJson(),
-    'scopes': ?scopes?.toTfJson(),
-    'token_endpoint': tokenEndpoint.toTfJson(),
-  };
-}
-
-/// Typed helper for the `open_api_toolset.api_authentication.service_account_auth_config` block of
-/// `google_ces_toolset` (derived from provider schema).
-@immutable
-final class CesToolsetOpenApiToolsetApiAuthenticationServiceAccountAuthConfig {
-  const CesToolsetOpenApiToolsetApiAuthenticationServiceAccountAuthConfig({
-    this.scopes,
-    required this.serviceAccount,
-  });
-
-  final TfArg<List<String>>? scopes;
-
-  final RefTo<GoogleServiceAccount> serviceAccount;
-
-  Map<String, Object?> encode() => {
-    'scopes': ?scopes?.toTfJson(),
-    'service_account': serviceAccount.encodeAs('email').toTfJson(),
-  };
-}
-
-/// Typed helper for the `open_api_toolset.api_authentication.service_agent_id_token_auth_config` block of
-/// `google_ces_toolset` (derived from provider schema).
-@immutable
-final class CesToolsetOpenApiToolsetApiAuthenticationServiceAgentIdTokenAuthConfig {
-  const CesToolsetOpenApiToolsetApiAuthenticationServiceAgentIdTokenAuthConfig();
-
-  Map<String, Object?> encode() => {};
-}
-
-/// Typed helper for the `open_api_toolset.service_directory_config` block of
-/// `google_ces_toolset` (derived from provider schema).
-@immutable
-final class CesToolsetOpenApiToolsetServiceDirectoryConfig {
-  const CesToolsetOpenApiToolsetServiceDirectoryConfig({required this.service});
-
-  final TfArg<String> service;
-
-  Map<String, Object?> encode() => {'service': service.toTfJson()};
-}
-
-/// Typed helper for the `open_api_toolset.tls_config` block of
-/// `google_ces_toolset` (derived from provider schema).
-@immutable
-final class CesToolsetOpenApiToolsetTlsConfig {
-  const CesToolsetOpenApiToolsetTlsConfig({required this.caCerts});
-
-  final List<CesToolsetOpenApiToolsetTlsConfigCaCerts> caCerts;
-
-  Map<String, Object?> encode() => {
-    'ca_certs': [for (final e in caCerts) e.encode()],
-  };
-}
-
-/// Typed helper for the `open_api_toolset.tls_config.ca_certs` block of
-/// `google_ces_toolset` (derived from provider schema).
-@immutable
-final class CesToolsetOpenApiToolsetTlsConfigCaCerts {
-  const CesToolsetOpenApiToolsetTlsConfigCaCerts({
-    required this.cert,
-    required this.displayName,
-  });
-
-  final TfArg<String> cert;
-
-  final TfArg<String> displayName;
-
-  Map<String, Object?> encode() => {
-    'cert': cert.toTfJson(),
-    'display_name': displayName.toTfJson(),
   };
 }
 
@@ -578,7 +403,7 @@ final class CesToolsetToolFakeConfig {
 
   final TfArg<bool>? enableFakeMode;
 
-  final CesToolsetToolFakeConfigCodeBlock? codeBlock;
+  final CesToolsetCodeBlock? codeBlock;
 
   Map<String, Object?> encode() => {
     'enable_fake_mode': ?enableFakeMode?.toTfJson(),
@@ -589,8 +414,8 @@ final class CesToolsetToolFakeConfig {
 /// Typed helper for the `tool_fake_config.code_block` block of
 /// `google_ces_toolset` (derived from provider schema).
 @immutable
-final class CesToolsetToolFakeConfigCodeBlock {
-  const CesToolsetToolFakeConfigCodeBlock({required this.pythonCode});
+final class CesToolsetCodeBlock {
+  const CesToolsetCodeBlock({required this.pythonCode});
 
   final TfArg<String> pythonCode;
 

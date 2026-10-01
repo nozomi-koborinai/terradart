@@ -22,12 +22,11 @@ final class CesAppAudioProcessingConfig {
 
   final TfArg<String>? inactivityTimeout;
 
-  final CesAppAudioProcessingConfigAmbientSoundConfig? ambientSoundConfig;
+  final CesAppAmbientSoundConfig? ambientSoundConfig;
 
-  final CesAppAudioProcessingConfigBargeInConfig? bargeInConfig;
+  final CesAppBargeInConfig? bargeInConfig;
 
-  final List<CesAppAudioProcessingConfigSynthesizeSpeechConfigs>?
-  synthesizeSpeechConfigs;
+  final List<CesAppSynthesizeSpeechConfigs>? synthesizeSpeechConfigs;
 
   Map<String, Object?> encode() => {
     'inactivity_timeout': ?inactivityTimeout?.toTfJson(),
@@ -43,8 +42,8 @@ final class CesAppAudioProcessingConfig {
 /// Typed helper for the `audio_processing_config.ambient_sound_config` block of
 /// `google_ces_app` (derived from provider schema).
 @immutable
-final class CesAppAudioProcessingConfigAmbientSoundConfig {
-  const CesAppAudioProcessingConfigAmbientSoundConfig({
+final class CesAppAmbientSoundConfig {
+  const CesAppAmbientSoundConfig({
     this.gcsUri,
     this.prebuiltAmbientSound,
     this.volumeGainDb,
@@ -66,8 +65,8 @@ final class CesAppAudioProcessingConfigAmbientSoundConfig {
 /// Typed helper for the `audio_processing_config.barge_in_config` block of
 /// `google_ces_app` (derived from provider schema).
 @immutable
-final class CesAppAudioProcessingConfigBargeInConfig {
-  const CesAppAudioProcessingConfigBargeInConfig({this.bargeInAwareness});
+final class CesAppBargeInConfig {
+  const CesAppBargeInConfig({this.bargeInAwareness});
 
   final TfArg<bool>? bargeInAwareness;
 
@@ -79,8 +78,8 @@ final class CesAppAudioProcessingConfigBargeInConfig {
 /// Typed helper for the `audio_processing_config.synthesize_speech_configs` block of
 /// `google_ces_app` (derived from provider schema).
 @immutable
-final class CesAppAudioProcessingConfigSynthesizeSpeechConfigs {
-  const CesAppAudioProcessingConfigSynthesizeSpeechConfigs({
+final class CesAppSynthesizeSpeechConfigs {
+  const CesAppSynthesizeSpeechConfigs({
     required this.languageCode,
     this.speakingRate,
     this.voice,
@@ -144,11 +143,11 @@ final class CesAppDefaultChannelProfile {
 
   final TfArg<String>? profileId;
 
-  final CesAppDefaultChannelProfilePersonaProperty? personaProperty;
+  final CesAppPersonaProperty? personaProperty;
 
-  final CesAppDefaultChannelProfileWebWidgetConfig? webWidgetConfig;
+  final CesAppWebWidgetConfig? webWidgetConfig;
 
-  final CesAppDefaultChannelProfileWhatsappConfig? whatsappConfig;
+  final CesAppWhatsappConfig? whatsappConfig;
 
   Map<String, Object?> encode() => {
     'channel_type': ?channelType?.toTfJson(),
@@ -164,8 +163,8 @@ final class CesAppDefaultChannelProfile {
 /// Typed helper for the `default_channel_profile.persona_property` block of
 /// `google_ces_app` (derived from provider schema).
 @immutable
-final class CesAppDefaultChannelProfilePersonaProperty {
-  const CesAppDefaultChannelProfilePersonaProperty({this.persona});
+final class CesAppPersonaProperty {
+  const CesAppPersonaProperty({this.persona});
 
   final TfArg<String>? persona;
 
@@ -175,8 +174,8 @@ final class CesAppDefaultChannelProfilePersonaProperty {
 /// Typed helper for the `default_channel_profile.web_widget_config` block of
 /// `google_ces_app` (derived from provider schema).
 @immutable
-final class CesAppDefaultChannelProfileWebWidgetConfig {
-  const CesAppDefaultChannelProfileWebWidgetConfig({
+final class CesAppWebWidgetConfig {
+  const CesAppWebWidgetConfig({
     this.modality,
     this.theme,
     this.webWidgetTitle,
@@ -189,8 +188,7 @@ final class CesAppDefaultChannelProfileWebWidgetConfig {
 
   final TfArg<String>? webWidgetTitle;
 
-  final CesAppDefaultChannelProfileWebWidgetConfigSecuritySettings?
-  securitySettings;
+  final CesAppSecuritySettings? securitySettings;
 
   Map<String, Object?> encode() => {
     'modality': ?modality?.toTfJson(),
@@ -203,8 +201,8 @@ final class CesAppDefaultChannelProfileWebWidgetConfig {
 /// Typed helper for the `default_channel_profile.web_widget_config.security_settings` block of
 /// `google_ces_app` (derived from provider schema).
 @immutable
-final class CesAppDefaultChannelProfileWebWidgetConfigSecuritySettings {
-  const CesAppDefaultChannelProfileWebWidgetConfigSecuritySettings({
+final class CesAppSecuritySettings {
+  const CesAppSecuritySettings({
     this.allowedOrigins,
     this.enableOriginCheck,
     this.enablePublicAccess,
@@ -230,8 +228,8 @@ final class CesAppDefaultChannelProfileWebWidgetConfigSecuritySettings {
 /// Typed helper for the `default_channel_profile.whatsapp_config` block of
 /// `google_ces_app` (derived from provider schema).
 @immutable
-final class CesAppDefaultChannelProfileWhatsappConfig {
-  const CesAppDefaultChannelProfileWhatsappConfig({
+final class CesAppWhatsappConfig {
+  const CesAppWhatsappConfig({
     this.phoneNumber,
     required this.phoneNumberId,
     required this.wabaId,
@@ -262,10 +260,9 @@ final class CesAppErrorHandlingSettings {
 
   final TfArg<String>? errorHandlingStrategy;
 
-  final CesAppErrorHandlingSettingsEndSessionConfig? endSessionConfig;
+  final CesAppEndSessionConfig? endSessionConfig;
 
-  final CesAppErrorHandlingSettingsFallbackResponseConfig?
-  fallbackResponseConfig;
+  final CesAppFallbackResponseConfig? fallbackResponseConfig;
 
   Map<String, Object?> encode() => {
     'error_handling_strategy': ?errorHandlingStrategy?.toTfJson(),
@@ -277,8 +274,8 @@ final class CesAppErrorHandlingSettings {
 /// Typed helper for the `error_handling_settings.end_session_config` block of
 /// `google_ces_app` (derived from provider schema).
 @immutable
-final class CesAppErrorHandlingSettingsEndSessionConfig {
-  const CesAppErrorHandlingSettingsEndSessionConfig({this.escalateSession});
+final class CesAppEndSessionConfig {
+  const CesAppEndSessionConfig({this.escalateSession});
 
   final TfArg<bool>? escalateSession;
 
@@ -290,8 +287,8 @@ final class CesAppErrorHandlingSettingsEndSessionConfig {
 /// Typed helper for the `error_handling_settings.fallback_response_config` block of
 /// `google_ces_app` (derived from provider schema).
 @immutable
-final class CesAppErrorHandlingSettingsFallbackResponseConfig {
-  const CesAppErrorHandlingSettingsFallbackResponseConfig({
+final class CesAppFallbackResponseConfig {
+  const CesAppFallbackResponseConfig({
     this.customFallbackMessages,
     this.maxFallbackAttempts,
   });
@@ -316,17 +313,13 @@ final class CesAppEvaluationMetricsThresholds {
     this.goldenEvaluationMetricsThresholds,
   });
 
-  final TfArg<
-    CesAppEvaluationMetricsThresholdsGoldenHallucinationMetricBehavior
-  >?
+  final TfArg<CesAppGoldenHallucinationMetricBehavior>?
   goldenHallucinationMetricBehavior;
 
-  final TfArg<
-    CesAppEvaluationMetricsThresholdsScenarioHallucinationMetricBehavior
-  >?
+  final TfArg<CesAppScenarioHallucinationMetricBehavior>?
   scenarioHallucinationMetricBehavior;
 
-  final CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholds?
+  final CesAppGoldenEvaluationMetricsThresholds?
   goldenEvaluationMetricsThresholds;
 
   Map<String, Object?> encode() => {
@@ -340,27 +333,21 @@ final class CesAppEvaluationMetricsThresholds {
 }
 
 /// `golden_hallucination_metric_behavior` — derived from the provider schema description.
-enum CesAppEvaluationMetricsThresholdsGoldenHallucinationMetricBehavior
-    implements TerraformEnum {
+enum CesAppGoldenHallucinationMetricBehavior implements TerraformEnum {
   disabled('DISABLED'),
   enabled('ENABLED');
 
-  const CesAppEvaluationMetricsThresholdsGoldenHallucinationMetricBehavior(
-    this.terraformValue,
-  );
+  const CesAppGoldenHallucinationMetricBehavior(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `scenario_hallucination_metric_behavior` — derived from the provider schema description.
-enum CesAppEvaluationMetricsThresholdsScenarioHallucinationMetricBehavior
-    implements TerraformEnum {
+enum CesAppScenarioHallucinationMetricBehavior implements TerraformEnum {
   disabled('DISABLED'),
   enabled('ENABLED');
 
-  const CesAppEvaluationMetricsThresholdsScenarioHallucinationMetricBehavior(
-    this.terraformValue,
-  );
+  const CesAppScenarioHallucinationMetricBehavior(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -368,21 +355,19 @@ enum CesAppEvaluationMetricsThresholdsScenarioHallucinationMetricBehavior
 /// Typed helper for the `evaluation_metrics_thresholds.golden_evaluation_metrics_thresholds` block of
 /// `google_ces_app` (derived from provider schema).
 @immutable
-final class CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholds {
-  const CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholds({
+final class CesAppGoldenEvaluationMetricsThresholds {
+  const CesAppGoldenEvaluationMetricsThresholds({
     this.expectationLevelMetricsThresholds,
     this.toolMatchingSettings,
     this.turnLevelMetricsThresholds,
   });
 
-  final CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsExpectationLevelMetricsThresholds?
+  final CesAppExpectationLevelMetricsThresholds?
   expectationLevelMetricsThresholds;
 
-  final CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsToolMatchingSettings?
-  toolMatchingSettings;
+  final CesAppToolMatchingSettings? toolMatchingSettings;
 
-  final CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsTurnLevelMetricsThresholds?
-  turnLevelMetricsThresholds;
+  final CesAppTurnLevelMetricsThresholds? turnLevelMetricsThresholds;
 
   Map<String, Object?> encode() => {
     'expectation_level_metrics_thresholds': ?expectationLevelMetricsThresholds
@@ -395,8 +380,8 @@ final class CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholds {
 /// Typed helper for the `evaluation_metrics_thresholds.golden_evaluation_metrics_thresholds.expectation_level_metrics_thresholds` block of
 /// `google_ces_app` (derived from provider schema).
 @immutable
-final class CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsExpectationLevelMetricsThresholds {
-  const CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsExpectationLevelMetricsThresholds({
+final class CesAppExpectationLevelMetricsThresholds {
+  const CesAppExpectationLevelMetricsThresholds({
     this.toolInvocationParameterCorrectnessThreshold,
   });
 
@@ -411,15 +396,10 @@ final class CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsEx
 /// Typed helper for the `evaluation_metrics_thresholds.golden_evaluation_metrics_thresholds.tool_matching_settings` block of
 /// `google_ces_app` (derived from provider schema).
 @immutable
-final class CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsToolMatchingSettings {
-  const CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsToolMatchingSettings({
-    this.extraToolCallBehavior,
-  });
+final class CesAppToolMatchingSettings {
+  const CesAppToolMatchingSettings({this.extraToolCallBehavior});
 
-  final TfArg<
-    CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsToolMatchingSettingsExtraToolCallBehavior
-  >?
-  extraToolCallBehavior;
+  final TfArg<CesAppExtraToolCallBehavior>? extraToolCallBehavior;
 
   Map<String, Object?> encode() => {
     'extra_tool_call_behavior': ?extraToolCallBehavior?.toTfJson(),
@@ -427,14 +407,11 @@ final class CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsTo
 }
 
 /// `extra_tool_call_behavior` — derived from the provider schema description.
-enum CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsToolMatchingSettingsExtraToolCallBehavior
-    implements TerraformEnum {
+enum CesAppExtraToolCallBehavior implements TerraformEnum {
   fail('FAIL'),
   allow('ALLOW');
 
-  const CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsToolMatchingSettingsExtraToolCallBehavior(
-    this.terraformValue,
-  );
+  const CesAppExtraToolCallBehavior(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -442,8 +419,8 @@ enum CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsToolMatch
 /// Typed helper for the `evaluation_metrics_thresholds.golden_evaluation_metrics_thresholds.turn_level_metrics_thresholds` block of
 /// `google_ces_app` (derived from provider schema).
 @immutable
-final class CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsTurnLevelMetricsThresholds {
-  const CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsTurnLevelMetricsThresholds({
+final class CesAppTurnLevelMetricsThresholds {
+  const CesAppTurnLevelMetricsThresholds({
     this.overallToolInvocationCorrectnessThreshold,
     this.semanticSimilarityChannel,
     this.semanticSimilaritySuccessThreshold,
@@ -504,18 +481,17 @@ final class CesAppLoggingSettings {
     this.redactionConfig,
   });
 
-  final CesAppLoggingSettingsAudioRecordingConfig? audioRecordingConfig;
+  final CesAppAudioRecordingConfig? audioRecordingConfig;
 
-  final CesAppLoggingSettingsBigqueryExportSettings? bigqueryExportSettings;
+  final CesAppBigqueryExportSettings? bigqueryExportSettings;
 
-  final CesAppLoggingSettingsCloudLoggingSettings? cloudLoggingSettings;
+  final CesAppCloudLoggingSettings? cloudLoggingSettings;
 
-  final CesAppLoggingSettingsConversationLoggingSettings?
-  conversationLoggingSettings;
+  final CesAppConversationLoggingSettings? conversationLoggingSettings;
 
-  final CesAppLoggingSettingsMetricAnalysisSettings? metricAnalysisSettings;
+  final CesAppMetricAnalysisSettings? metricAnalysisSettings;
 
-  final CesAppLoggingSettingsRedactionConfig? redactionConfig;
+  final CesAppRedactionConfig? redactionConfig;
 
   Map<String, Object?> encode() => {
     'audio_recording_config': ?audioRecordingConfig?.encode(),
@@ -530,11 +506,8 @@ final class CesAppLoggingSettings {
 /// Typed helper for the `logging_settings.audio_recording_config` block of
 /// `google_ces_app` (derived from provider schema).
 @immutable
-final class CesAppLoggingSettingsAudioRecordingConfig {
-  const CesAppLoggingSettingsAudioRecordingConfig({
-    this.gcsBucket,
-    this.gcsPathPrefix,
-  });
+final class CesAppAudioRecordingConfig {
+  const CesAppAudioRecordingConfig({this.gcsBucket, this.gcsPathPrefix});
 
   final RefTo<GoogleStorageBucket>? gcsBucket;
 
@@ -549,8 +522,8 @@ final class CesAppLoggingSettingsAudioRecordingConfig {
 /// Typed helper for the `logging_settings.bigquery_export_settings` block of
 /// `google_ces_app` (derived from provider schema).
 @immutable
-final class CesAppLoggingSettingsBigqueryExportSettings {
-  const CesAppLoggingSettingsBigqueryExportSettings({
+final class CesAppBigqueryExportSettings {
+  const CesAppBigqueryExportSettings({
     this.dataset,
     this.enabled,
     this.project,
@@ -572,8 +545,8 @@ final class CesAppLoggingSettingsBigqueryExportSettings {
 /// Typed helper for the `logging_settings.cloud_logging_settings` block of
 /// `google_ces_app` (derived from provider schema).
 @immutable
-final class CesAppLoggingSettingsCloudLoggingSettings {
-  const CesAppLoggingSettingsCloudLoggingSettings({this.enableCloudLogging});
+final class CesAppCloudLoggingSettings {
+  const CesAppCloudLoggingSettings({this.enableCloudLogging});
 
   final TfArg<bool>? enableCloudLogging;
 
@@ -585,8 +558,8 @@ final class CesAppLoggingSettingsCloudLoggingSettings {
 /// Typed helper for the `logging_settings.conversation_logging_settings` block of
 /// `google_ces_app` (derived from provider schema).
 @immutable
-final class CesAppLoggingSettingsConversationLoggingSettings {
-  const CesAppLoggingSettingsConversationLoggingSettings({
+final class CesAppConversationLoggingSettings {
+  const CesAppConversationLoggingSettings({
     this.disableConversationLogging,
     this.retentionWindow,
   });
@@ -604,8 +577,8 @@ final class CesAppLoggingSettingsConversationLoggingSettings {
 /// Typed helper for the `logging_settings.metric_analysis_settings` block of
 /// `google_ces_app` (derived from provider schema).
 @immutable
-final class CesAppLoggingSettingsMetricAnalysisSettings {
-  const CesAppLoggingSettingsMetricAnalysisSettings({this.llmMetricsOptedOut});
+final class CesAppMetricAnalysisSettings {
+  const CesAppMetricAnalysisSettings({this.llmMetricsOptedOut});
 
   final TfArg<bool>? llmMetricsOptedOut;
 
@@ -617,8 +590,8 @@ final class CesAppLoggingSettingsMetricAnalysisSettings {
 /// Typed helper for the `logging_settings.redaction_config` block of
 /// `google_ces_app` (derived from provider schema).
 @immutable
-final class CesAppLoggingSettingsRedactionConfig {
-  const CesAppLoggingSettingsRedactionConfig({
+final class CesAppRedactionConfig {
+  const CesAppRedactionConfig({
     this.deidentifyTemplate,
     this.enableRedaction,
     this.inspectTemplate,
@@ -678,7 +651,7 @@ final class CesAppVariableDeclarations {
 
   final TfArg<String> name;
 
-  final CesAppVariableDeclarationsSchema schema;
+  final CesAppSchema schema;
 
   Map<String, Object?> encode() => {
     'description': description.toTfJson(),
@@ -690,8 +663,8 @@ final class CesAppVariableDeclarations {
 /// Typed helper for the `variable_declarations.schema` block of
 /// `google_ces_app` (derived from provider schema).
 @immutable
-final class CesAppVariableDeclarationsSchema {
-  const CesAppVariableDeclarationsSchema({
+final class CesAppSchema {
+  const CesAppSchema({
     this.additionalProperties,
     this.anyOf,
     this.defaultCase,

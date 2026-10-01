@@ -19,11 +19,11 @@ final class ZeroTrustGatewayLoggingSettingsByRuleType {
     this.l4,
   });
 
-  final ZeroTrustGatewayLoggingSettingsByRuleTypeDns? dns;
+  final ZeroTrustGatewayLoggingDns? dns;
 
-  final ZeroTrustGatewayLoggingSettingsByRuleTypeHttp? http;
+  final ZeroTrustGatewayLoggingHttp? http;
 
-  final ZeroTrustGatewayLoggingSettingsByRuleTypeL4? l4;
+  final ZeroTrustGatewayLoggingL4? l4;
 
   Map<String, Object?> encode() => {
     'dns': ?dns?.encode(),
@@ -35,11 +35,8 @@ final class ZeroTrustGatewayLoggingSettingsByRuleType {
 /// Typed helper for the `settings_by_rule_type.dns` block of
 /// `cloudflare_zero_trust_gateway_logging` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewayLoggingSettingsByRuleTypeDns {
-  const ZeroTrustGatewayLoggingSettingsByRuleTypeDns({
-    this.logAll,
-    this.logBlocks,
-  });
+final class ZeroTrustGatewayLoggingDns {
+  const ZeroTrustGatewayLoggingDns({this.logAll, this.logBlocks});
 
   final TfArg<bool>? logAll;
 
@@ -54,11 +51,8 @@ final class ZeroTrustGatewayLoggingSettingsByRuleTypeDns {
 /// Typed helper for the `settings_by_rule_type.http` block of
 /// `cloudflare_zero_trust_gateway_logging` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewayLoggingSettingsByRuleTypeHttp {
-  const ZeroTrustGatewayLoggingSettingsByRuleTypeHttp({
-    this.logAll,
-    this.logBlocks,
-  });
+final class ZeroTrustGatewayLoggingHttp {
+  const ZeroTrustGatewayLoggingHttp({this.logAll, this.logBlocks});
 
   final TfArg<bool>? logAll;
 
@@ -73,11 +67,8 @@ final class ZeroTrustGatewayLoggingSettingsByRuleTypeHttp {
 /// Typed helper for the `settings_by_rule_type.l4` block of
 /// `cloudflare_zero_trust_gateway_logging` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewayLoggingSettingsByRuleTypeL4 {
-  const ZeroTrustGatewayLoggingSettingsByRuleTypeL4({
-    this.logAll,
-    this.logBlocks,
-  });
+final class ZeroTrustGatewayLoggingL4 {
+  const ZeroTrustGatewayLoggingL4({this.logAll, this.logBlocks});
 
   final TfArg<bool>? logAll;
 

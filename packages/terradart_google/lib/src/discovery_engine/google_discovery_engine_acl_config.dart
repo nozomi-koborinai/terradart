@@ -16,9 +16,9 @@ final class DiscoveryEngineAclConfigIdpConfig {
     this.externalIdpConfig,
   });
 
-  final TfArg<DiscoveryEngineAclConfigIdpConfigIdpType>? idpType;
+  final TfArg<DiscoveryEngineAclConfigIdpType>? idpType;
 
-  final DiscoveryEngineAclConfigIdpConfigExternalIdpConfig? externalIdpConfig;
+  final DiscoveryEngineAclConfigExternalIdpConfig? externalIdpConfig;
 
   Map<String, Object?> encode() => {
     'idp_type': ?idpType?.toTfJson(),
@@ -27,11 +27,11 @@ final class DiscoveryEngineAclConfigIdpConfig {
 }
 
 /// `idp_type` — derived from the provider schema description.
-enum DiscoveryEngineAclConfigIdpConfigIdpType implements TerraformEnum {
+enum DiscoveryEngineAclConfigIdpType implements TerraformEnum {
   gsuite('GSUITE'),
   thirdParty('THIRD_PARTY');
 
-  const DiscoveryEngineAclConfigIdpConfigIdpType(this.terraformValue);
+  const DiscoveryEngineAclConfigIdpType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -39,10 +39,8 @@ enum DiscoveryEngineAclConfigIdpConfigIdpType implements TerraformEnum {
 /// Typed helper for the `idp_config.external_idp_config` block of
 /// `google_discovery_engine_acl_config` (derived from provider schema).
 @immutable
-final class DiscoveryEngineAclConfigIdpConfigExternalIdpConfig {
-  const DiscoveryEngineAclConfigIdpConfigExternalIdpConfig({
-    this.workforcePoolName,
-  });
+final class DiscoveryEngineAclConfigExternalIdpConfig {
+  const DiscoveryEngineAclConfigExternalIdpConfig({this.workforcePoolName});
 
   final TfArg<String>? workforcePoolName;
 

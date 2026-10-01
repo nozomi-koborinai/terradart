@@ -21,9 +21,9 @@ final class DataEmailSecurityImpersonationRegistryFilter {
     this.search,
   });
 
-  final TfArg<DataEmailSecurityImpersonationRegistryFilterDirection>? direction;
+  final TfArg<DataEmailSecurityImpersonationRegistryDirection>? direction;
 
-  final TfArg<DataEmailSecurityImpersonationRegistryFilterOrder>? order;
+  final TfArg<DataEmailSecurityImpersonationRegistryOrder>? order;
 
   final TfArg<DataEmailSecurityImpersonationRegistryFilterProvenance>?
   provenance;
@@ -39,26 +39,22 @@ final class DataEmailSecurityImpersonationRegistryFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataEmailSecurityImpersonationRegistryFilterDirection
-    implements TerraformEnum {
+enum DataEmailSecurityImpersonationRegistryDirection implements TerraformEnum {
   asc('asc'),
   desc('desc');
 
-  const DataEmailSecurityImpersonationRegistryFilterDirection(
-    this.terraformValue,
-  );
+  const DataEmailSecurityImpersonationRegistryDirection(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `order` — derived from the provider schema description.
-enum DataEmailSecurityImpersonationRegistryFilterOrder
-    implements TerraformEnum {
+enum DataEmailSecurityImpersonationRegistryOrder implements TerraformEnum {
   name('name'),
   email('email'),
   createdAt('created_at');
 
-  const DataEmailSecurityImpersonationRegistryFilterOrder(this.terraformValue);
+  const DataEmailSecurityImpersonationRegistryOrder(this.terraformValue);
   @override
   final String terraformValue;
 }

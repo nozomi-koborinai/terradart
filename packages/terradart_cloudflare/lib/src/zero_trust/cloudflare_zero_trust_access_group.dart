@@ -43,58 +43,57 @@ final class ZeroTrustAccessGroupExclude {
     this.userRiskScore,
   });
 
-  final ZeroTrustAccessGroupExcludeAnyValidServiceToken? anyValidServiceToken;
+  final ZeroTrustAccessGroupAnyValidServiceToken? anyValidServiceToken;
 
-  final ZeroTrustAccessGroupExcludeAuthContext? authContext;
+  final ZeroTrustAccessGroupAuthContext? authContext;
 
-  final ZeroTrustAccessGroupExcludeAuthMethod? authMethod;
+  final ZeroTrustAccessGroupAuthMethod? authMethod;
 
-  final ZeroTrustAccessGroupExcludeAzureAd? azureAd;
+  final ZeroTrustAccessGroupAzureAd? azureAd;
 
-  final ZeroTrustAccessGroupExcludeCertificate? certificate;
+  final ZeroTrustAccessGroupCertificate? certificate;
 
-  final ZeroTrustAccessGroupExcludeCloudflareAccountMember?
-  cloudflareAccountMember;
+  final ZeroTrustAccessGroupCloudflareAccountMember? cloudflareAccountMember;
 
-  final ZeroTrustAccessGroupExcludeCommonName? commonName;
+  final ZeroTrustAccessGroupCommonName? commonName;
 
-  final ZeroTrustAccessGroupExcludeDevicePosture? devicePosture;
+  final ZeroTrustAccessGroupDevicePosture? devicePosture;
 
-  final ZeroTrustAccessGroupExcludeEmail? email;
+  final ZeroTrustAccessGroupEmail? email;
 
-  final ZeroTrustAccessGroupExcludeEmailDomain? emailDomain;
+  final ZeroTrustAccessGroupEmailDomain? emailDomain;
 
-  final ZeroTrustAccessGroupExcludeEmailList? emailList;
+  final ZeroTrustAccessGroupEmailList? emailList;
 
-  final ZeroTrustAccessGroupExcludeEveryone? everyone;
+  final ZeroTrustAccessGroupEveryone? everyone;
 
-  final ZeroTrustAccessGroupExcludeExternalEvaluation? externalEvaluation;
+  final ZeroTrustAccessGroupExternalEvaluation? externalEvaluation;
 
-  final ZeroTrustAccessGroupExcludeGeo? geo;
+  final ZeroTrustAccessGroupGeo? geo;
 
-  final ZeroTrustAccessGroupExcludeGithubOrganization? githubOrganization;
+  final ZeroTrustAccessGroupGithubOrganization? githubOrganization;
 
-  final ZeroTrustAccessGroupExcludeGroup? group;
+  final ZeroTrustAccessGroupGroup? group;
 
-  final ZeroTrustAccessGroupExcludeGsuite? gsuite;
+  final ZeroTrustAccessGroupGsuite? gsuite;
 
-  final ZeroTrustAccessGroupExcludeIp? ip;
+  final ZeroTrustAccessGroupIp? ip;
 
-  final ZeroTrustAccessGroupExcludeIpList? ipList;
+  final ZeroTrustAccessGroupIpList? ipList;
 
-  final ZeroTrustAccessGroupExcludeLinkedAppToken? linkedAppToken;
+  final ZeroTrustAccessGroupLinkedAppToken? linkedAppToken;
 
-  final ZeroTrustAccessGroupExcludeLoginMethod? loginMethod;
+  final ZeroTrustAccessGroupLoginMethod? loginMethod;
 
-  final ZeroTrustAccessGroupExcludeOidc? oidc;
+  final ZeroTrustAccessGroupOidc? oidc;
 
-  final ZeroTrustAccessGroupExcludeOkta? okta;
+  final ZeroTrustAccessGroupOkta? okta;
 
-  final ZeroTrustAccessGroupExcludeSaml? saml;
+  final ZeroTrustAccessGroupSaml? saml;
 
-  final ZeroTrustAccessGroupExcludeServiceToken? serviceToken;
+  final ZeroTrustAccessGroupServiceToken? serviceToken;
 
-  final ZeroTrustAccessGroupExcludeUserRiskScore? userRiskScore;
+  final ZeroTrustAccessGroupUserRiskScore? userRiskScore;
 
   Map<String, Object?> encode() => {
     'any_valid_service_token': ?anyValidServiceToken?.encode(),
@@ -128,18 +127,20 @@ final class ZeroTrustAccessGroupExclude {
 
 /// Typed helper for the `exclude.any_valid_service_token` block of
 /// `cloudflare_zero_trust_access_group` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessGroupExcludeAnyValidServiceToken {
-  const ZeroTrustAccessGroupExcludeAnyValidServiceToken();
+final class ZeroTrustAccessGroupAnyValidServiceToken {
+  const ZeroTrustAccessGroupAnyValidServiceToken();
 
   Map<String, Object?> encode() => {};
 }
 
 /// Typed helper for the `exclude.auth_context` block of
 /// `cloudflare_zero_trust_access_group` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessGroupExcludeAuthContext {
-  const ZeroTrustAccessGroupExcludeAuthContext({
+final class ZeroTrustAccessGroupAuthContext {
+  const ZeroTrustAccessGroupAuthContext({
     required this.acId,
     required this.id,
     required this.identityProviderId,
@@ -160,9 +161,10 @@ final class ZeroTrustAccessGroupExcludeAuthContext {
 
 /// Typed helper for the `exclude.auth_method` block of
 /// `cloudflare_zero_trust_access_group` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessGroupExcludeAuthMethod {
-  const ZeroTrustAccessGroupExcludeAuthMethod({required this.authMethod});
+final class ZeroTrustAccessGroupAuthMethod {
+  const ZeroTrustAccessGroupAuthMethod({required this.authMethod});
 
   final TfArg<String> authMethod;
 
@@ -171,9 +173,10 @@ final class ZeroTrustAccessGroupExcludeAuthMethod {
 
 /// Typed helper for the `exclude.azure_ad` block of
 /// `cloudflare_zero_trust_access_group` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessGroupExcludeAzureAd {
-  const ZeroTrustAccessGroupExcludeAzureAd({
+final class ZeroTrustAccessGroupAzureAd {
+  const ZeroTrustAccessGroupAzureAd({
     required this.id,
     required this.identityProviderId,
   });
@@ -190,18 +193,20 @@ final class ZeroTrustAccessGroupExcludeAzureAd {
 
 /// Typed helper for the `exclude.certificate` block of
 /// `cloudflare_zero_trust_access_group` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessGroupExcludeCertificate {
-  const ZeroTrustAccessGroupExcludeCertificate();
+final class ZeroTrustAccessGroupCertificate {
+  const ZeroTrustAccessGroupCertificate();
 
   Map<String, Object?> encode() => {};
 }
 
 /// Typed helper for the `exclude.cloudflare_account_member` block of
 /// `cloudflare_zero_trust_access_group` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessGroupExcludeCloudflareAccountMember {
-  const ZeroTrustAccessGroupExcludeCloudflareAccountMember({this.accountId});
+final class ZeroTrustAccessGroupCloudflareAccountMember {
+  const ZeroTrustAccessGroupCloudflareAccountMember({this.accountId});
 
   final RefTo<CloudflareAccount>? accountId;
 
@@ -212,9 +217,10 @@ final class ZeroTrustAccessGroupExcludeCloudflareAccountMember {
 
 /// Typed helper for the `exclude.common_name` block of
 /// `cloudflare_zero_trust_access_group` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessGroupExcludeCommonName {
-  const ZeroTrustAccessGroupExcludeCommonName({required this.commonName});
+final class ZeroTrustAccessGroupCommonName {
+  const ZeroTrustAccessGroupCommonName({required this.commonName});
 
   final TfArg<String> commonName;
 
@@ -223,9 +229,10 @@ final class ZeroTrustAccessGroupExcludeCommonName {
 
 /// Typed helper for the `exclude.device_posture` block of
 /// `cloudflare_zero_trust_access_group` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessGroupExcludeDevicePosture {
-  const ZeroTrustAccessGroupExcludeDevicePosture({
+final class ZeroTrustAccessGroupDevicePosture {
+  const ZeroTrustAccessGroupDevicePosture({
     this.accountId,
     required this.integrationUid,
   });
@@ -242,9 +249,10 @@ final class ZeroTrustAccessGroupExcludeDevicePosture {
 
 /// Typed helper for the `exclude.email` block of
 /// `cloudflare_zero_trust_access_group` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessGroupExcludeEmail {
-  const ZeroTrustAccessGroupExcludeEmail({required this.email});
+final class ZeroTrustAccessGroupEmail {
+  const ZeroTrustAccessGroupEmail({required this.email});
 
   final TfArg<String> email;
 
@@ -253,9 +261,10 @@ final class ZeroTrustAccessGroupExcludeEmail {
 
 /// Typed helper for the `exclude.email_domain` block of
 /// `cloudflare_zero_trust_access_group` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessGroupExcludeEmailDomain {
-  const ZeroTrustAccessGroupExcludeEmailDomain({required this.domain});
+final class ZeroTrustAccessGroupEmailDomain {
+  const ZeroTrustAccessGroupEmailDomain({required this.domain});
 
   final TfArg<String> domain;
 
@@ -264,9 +273,10 @@ final class ZeroTrustAccessGroupExcludeEmailDomain {
 
 /// Typed helper for the `exclude.email_list` block of
 /// `cloudflare_zero_trust_access_group` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessGroupExcludeEmailList {
-  const ZeroTrustAccessGroupExcludeEmailList({required this.id});
+final class ZeroTrustAccessGroupEmailList {
+  const ZeroTrustAccessGroupEmailList({required this.id});
 
   final TfArg<String> id;
 
@@ -275,18 +285,20 @@ final class ZeroTrustAccessGroupExcludeEmailList {
 
 /// Typed helper for the `exclude.everyone` block of
 /// `cloudflare_zero_trust_access_group` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessGroupExcludeEveryone {
-  const ZeroTrustAccessGroupExcludeEveryone();
+final class ZeroTrustAccessGroupEveryone {
+  const ZeroTrustAccessGroupEveryone();
 
   Map<String, Object?> encode() => {};
 }
 
 /// Typed helper for the `exclude.external_evaluation` block of
 /// `cloudflare_zero_trust_access_group` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessGroupExcludeExternalEvaluation {
-  const ZeroTrustAccessGroupExcludeExternalEvaluation({
+final class ZeroTrustAccessGroupExternalEvaluation {
+  const ZeroTrustAccessGroupExternalEvaluation({
     required this.evaluateUrl,
     required this.keysUrl,
   });
@@ -303,9 +315,10 @@ final class ZeroTrustAccessGroupExcludeExternalEvaluation {
 
 /// Typed helper for the `exclude.geo` block of
 /// `cloudflare_zero_trust_access_group` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessGroupExcludeGeo {
-  const ZeroTrustAccessGroupExcludeGeo({required this.countryCode});
+final class ZeroTrustAccessGroupGeo {
+  const ZeroTrustAccessGroupGeo({required this.countryCode});
 
   final TfArg<String> countryCode;
 
@@ -314,9 +327,10 @@ final class ZeroTrustAccessGroupExcludeGeo {
 
 /// Typed helper for the `exclude.github_organization` block of
 /// `cloudflare_zero_trust_access_group` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessGroupExcludeGithubOrganization {
-  const ZeroTrustAccessGroupExcludeGithubOrganization({
+final class ZeroTrustAccessGroupGithubOrganization {
+  const ZeroTrustAccessGroupGithubOrganization({
     required this.identityProviderId,
     required this.name,
     this.team,
@@ -337,9 +351,10 @@ final class ZeroTrustAccessGroupExcludeGithubOrganization {
 
 /// Typed helper for the `exclude.group` block of
 /// `cloudflare_zero_trust_access_group` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessGroupExcludeGroup {
-  const ZeroTrustAccessGroupExcludeGroup({required this.id});
+final class ZeroTrustAccessGroupGroup {
+  const ZeroTrustAccessGroupGroup({required this.id});
 
   final TfArg<String> id;
 
@@ -348,9 +363,10 @@ final class ZeroTrustAccessGroupExcludeGroup {
 
 /// Typed helper for the `exclude.gsuite` block of
 /// `cloudflare_zero_trust_access_group` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessGroupExcludeGsuite {
-  const ZeroTrustAccessGroupExcludeGsuite({
+final class ZeroTrustAccessGroupGsuite {
+  const ZeroTrustAccessGroupGsuite({
     required this.email,
     required this.identityProviderId,
   });
@@ -367,9 +383,10 @@ final class ZeroTrustAccessGroupExcludeGsuite {
 
 /// Typed helper for the `exclude.ip` block of
 /// `cloudflare_zero_trust_access_group` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessGroupExcludeIp {
-  const ZeroTrustAccessGroupExcludeIp({required this.ip});
+final class ZeroTrustAccessGroupIp {
+  const ZeroTrustAccessGroupIp({required this.ip});
 
   final TfArg<String> ip;
 
@@ -378,9 +395,10 @@ final class ZeroTrustAccessGroupExcludeIp {
 
 /// Typed helper for the `exclude.ip_list` block of
 /// `cloudflare_zero_trust_access_group` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessGroupExcludeIpList {
-  const ZeroTrustAccessGroupExcludeIpList({required this.id});
+final class ZeroTrustAccessGroupIpList {
+  const ZeroTrustAccessGroupIpList({required this.id});
 
   final TfArg<String> id;
 
@@ -389,9 +407,10 @@ final class ZeroTrustAccessGroupExcludeIpList {
 
 /// Typed helper for the `exclude.linked_app_token` block of
 /// `cloudflare_zero_trust_access_group` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessGroupExcludeLinkedAppToken {
-  const ZeroTrustAccessGroupExcludeLinkedAppToken({required this.appUid});
+final class ZeroTrustAccessGroupLinkedAppToken {
+  const ZeroTrustAccessGroupLinkedAppToken({required this.appUid});
 
   final TfArg<String> appUid;
 
@@ -400,9 +419,10 @@ final class ZeroTrustAccessGroupExcludeLinkedAppToken {
 
 /// Typed helper for the `exclude.login_method` block of
 /// `cloudflare_zero_trust_access_group` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessGroupExcludeLoginMethod {
-  const ZeroTrustAccessGroupExcludeLoginMethod({required this.id});
+final class ZeroTrustAccessGroupLoginMethod {
+  const ZeroTrustAccessGroupLoginMethod({required this.id});
 
   final TfArg<String> id;
 
@@ -411,9 +431,10 @@ final class ZeroTrustAccessGroupExcludeLoginMethod {
 
 /// Typed helper for the `exclude.oidc` block of
 /// `cloudflare_zero_trust_access_group` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessGroupExcludeOidc {
-  const ZeroTrustAccessGroupExcludeOidc({
+final class ZeroTrustAccessGroupOidc {
+  const ZeroTrustAccessGroupOidc({
     required this.claimName,
     required this.claimValue,
     required this.identityProviderId,
@@ -434,9 +455,10 @@ final class ZeroTrustAccessGroupExcludeOidc {
 
 /// Typed helper for the `exclude.okta` block of
 /// `cloudflare_zero_trust_access_group` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessGroupExcludeOkta {
-  const ZeroTrustAccessGroupExcludeOkta({
+final class ZeroTrustAccessGroupOkta {
+  const ZeroTrustAccessGroupOkta({
     required this.identityProviderId,
     required this.name,
   });
@@ -453,9 +475,10 @@ final class ZeroTrustAccessGroupExcludeOkta {
 
 /// Typed helper for the `exclude.saml` block of
 /// `cloudflare_zero_trust_access_group` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessGroupExcludeSaml {
-  const ZeroTrustAccessGroupExcludeSaml({
+final class ZeroTrustAccessGroupSaml {
+  const ZeroTrustAccessGroupSaml({
     required this.attributeName,
     required this.attributeValue,
     required this.identityProviderId,
@@ -476,9 +499,10 @@ final class ZeroTrustAccessGroupExcludeSaml {
 
 /// Typed helper for the `exclude.service_token` block of
 /// `cloudflare_zero_trust_access_group` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessGroupExcludeServiceToken {
-  const ZeroTrustAccessGroupExcludeServiceToken({required this.tokenId});
+final class ZeroTrustAccessGroupServiceToken {
+  const ZeroTrustAccessGroupServiceToken({required this.tokenId});
 
   final TfArg<String> tokenId;
 
@@ -487,11 +511,12 @@ final class ZeroTrustAccessGroupExcludeServiceToken {
 
 /// Typed helper for the `exclude.user_risk_score` block of
 /// `cloudflare_zero_trust_access_group` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessGroupExcludeUserRiskScore {
-  const ZeroTrustAccessGroupExcludeUserRiskScore({required this.userRiskScore});
+final class ZeroTrustAccessGroupUserRiskScore {
+  const ZeroTrustAccessGroupUserRiskScore({required this.userRiskScore});
 
-  final List<TfArg<ZeroTrustAccessGroupExcludeUserRiskScoreUserRiskScore>>
+  final List<TfArg<ZeroTrustAccessGroupUserRiskScoreUserRiskScore>>
   userRiskScore;
 
   Map<String, Object?> encode() => {
@@ -500,16 +525,13 @@ final class ZeroTrustAccessGroupExcludeUserRiskScore {
 }
 
 /// `user_risk_score` — derived from the provider schema description.
-enum ZeroTrustAccessGroupExcludeUserRiskScoreUserRiskScore
-    implements TerraformEnum {
+enum ZeroTrustAccessGroupUserRiskScoreUserRiskScore implements TerraformEnum {
   low('low'),
   medium('medium'),
   high('high'),
   unscored('unscored');
 
-  const ZeroTrustAccessGroupExcludeUserRiskScoreUserRiskScore(
-    this.terraformValue,
-  );
+  const ZeroTrustAccessGroupUserRiskScoreUserRiskScore(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -547,58 +569,57 @@ final class ZeroTrustAccessGroupInclude {
     this.userRiskScore,
   });
 
-  final ZeroTrustAccessGroupIncludeAnyValidServiceToken? anyValidServiceToken;
+  final ZeroTrustAccessGroupAnyValidServiceToken? anyValidServiceToken;
 
-  final ZeroTrustAccessGroupIncludeAuthContext? authContext;
+  final ZeroTrustAccessGroupAuthContext? authContext;
 
-  final ZeroTrustAccessGroupIncludeAuthMethod? authMethod;
+  final ZeroTrustAccessGroupAuthMethod? authMethod;
 
-  final ZeroTrustAccessGroupIncludeAzureAd? azureAd;
+  final ZeroTrustAccessGroupAzureAd? azureAd;
 
-  final ZeroTrustAccessGroupIncludeCertificate? certificate;
+  final ZeroTrustAccessGroupCertificate? certificate;
 
-  final ZeroTrustAccessGroupIncludeCloudflareAccountMember?
-  cloudflareAccountMember;
+  final ZeroTrustAccessGroupCloudflareAccountMember? cloudflareAccountMember;
 
-  final ZeroTrustAccessGroupIncludeCommonName? commonName;
+  final ZeroTrustAccessGroupCommonName? commonName;
 
-  final ZeroTrustAccessGroupIncludeDevicePosture? devicePosture;
+  final ZeroTrustAccessGroupDevicePosture? devicePosture;
 
-  final ZeroTrustAccessGroupIncludeEmail? email;
+  final ZeroTrustAccessGroupEmail? email;
 
-  final ZeroTrustAccessGroupIncludeEmailDomain? emailDomain;
+  final ZeroTrustAccessGroupEmailDomain? emailDomain;
 
-  final ZeroTrustAccessGroupIncludeEmailList? emailList;
+  final ZeroTrustAccessGroupEmailList? emailList;
 
-  final ZeroTrustAccessGroupIncludeEveryone? everyone;
+  final ZeroTrustAccessGroupEveryone? everyone;
 
-  final ZeroTrustAccessGroupIncludeExternalEvaluation? externalEvaluation;
+  final ZeroTrustAccessGroupExternalEvaluation? externalEvaluation;
 
-  final ZeroTrustAccessGroupIncludeGeo? geo;
+  final ZeroTrustAccessGroupGeo? geo;
 
-  final ZeroTrustAccessGroupIncludeGithubOrganization? githubOrganization;
+  final ZeroTrustAccessGroupGithubOrganization? githubOrganization;
 
-  final ZeroTrustAccessGroupIncludeGroup? group;
+  final ZeroTrustAccessGroupGroup? group;
 
-  final ZeroTrustAccessGroupIncludeGsuite? gsuite;
+  final ZeroTrustAccessGroupGsuite? gsuite;
 
-  final ZeroTrustAccessGroupIncludeIp? ip;
+  final ZeroTrustAccessGroupIp? ip;
 
-  final ZeroTrustAccessGroupIncludeIpList? ipList;
+  final ZeroTrustAccessGroupIpList? ipList;
 
-  final ZeroTrustAccessGroupIncludeLinkedAppToken? linkedAppToken;
+  final ZeroTrustAccessGroupLinkedAppToken? linkedAppToken;
 
-  final ZeroTrustAccessGroupIncludeLoginMethod? loginMethod;
+  final ZeroTrustAccessGroupLoginMethod? loginMethod;
 
-  final ZeroTrustAccessGroupIncludeOidc? oidc;
+  final ZeroTrustAccessGroupOidc? oidc;
 
-  final ZeroTrustAccessGroupIncludeOkta? okta;
+  final ZeroTrustAccessGroupOkta? okta;
 
-  final ZeroTrustAccessGroupIncludeSaml? saml;
+  final ZeroTrustAccessGroupSaml? saml;
 
-  final ZeroTrustAccessGroupIncludeServiceToken? serviceToken;
+  final ZeroTrustAccessGroupServiceToken? serviceToken;
 
-  final ZeroTrustAccessGroupIncludeUserRiskScore? userRiskScore;
+  final ZeroTrustAccessGroupUserRiskScore? userRiskScore;
 
   Map<String, Object?> encode() => {
     'any_valid_service_token': ?anyValidServiceToken?.encode(),
@@ -628,394 +649,6 @@ final class ZeroTrustAccessGroupInclude {
     'service_token': ?serviceToken?.encode(),
     'user_risk_score': ?userRiskScore?.encode(),
   };
-}
-
-/// Typed helper for the `include.any_valid_service_token` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupIncludeAnyValidServiceToken {
-  const ZeroTrustAccessGroupIncludeAnyValidServiceToken();
-
-  Map<String, Object?> encode() => {};
-}
-
-/// Typed helper for the `include.auth_context` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupIncludeAuthContext {
-  const ZeroTrustAccessGroupIncludeAuthContext({
-    required this.acId,
-    required this.id,
-    required this.identityProviderId,
-  });
-
-  final TfArg<String> acId;
-
-  final TfArg<String> id;
-
-  final TfArg<String> identityProviderId;
-
-  Map<String, Object?> encode() => {
-    'ac_id': acId.toTfJson(),
-    'id': id.toTfJson(),
-    'identity_provider_id': identityProviderId.toTfJson(),
-  };
-}
-
-/// Typed helper for the `include.auth_method` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupIncludeAuthMethod {
-  const ZeroTrustAccessGroupIncludeAuthMethod({required this.authMethod});
-
-  final TfArg<String> authMethod;
-
-  Map<String, Object?> encode() => {'auth_method': authMethod.toTfJson()};
-}
-
-/// Typed helper for the `include.azure_ad` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupIncludeAzureAd {
-  const ZeroTrustAccessGroupIncludeAzureAd({
-    required this.id,
-    required this.identityProviderId,
-  });
-
-  final TfArg<String> id;
-
-  final TfArg<String> identityProviderId;
-
-  Map<String, Object?> encode() => {
-    'id': id.toTfJson(),
-    'identity_provider_id': identityProviderId.toTfJson(),
-  };
-}
-
-/// Typed helper for the `include.certificate` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupIncludeCertificate {
-  const ZeroTrustAccessGroupIncludeCertificate();
-
-  Map<String, Object?> encode() => {};
-}
-
-/// Typed helper for the `include.cloudflare_account_member` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupIncludeCloudflareAccountMember {
-  const ZeroTrustAccessGroupIncludeCloudflareAccountMember({this.accountId});
-
-  final RefTo<CloudflareAccount>? accountId;
-
-  Map<String, Object?> encode() => {
-    'account_id': ?accountId?.encodeAs('id').toTfJson(),
-  };
-}
-
-/// Typed helper for the `include.common_name` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupIncludeCommonName {
-  const ZeroTrustAccessGroupIncludeCommonName({required this.commonName});
-
-  final TfArg<String> commonName;
-
-  Map<String, Object?> encode() => {'common_name': commonName.toTfJson()};
-}
-
-/// Typed helper for the `include.device_posture` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupIncludeDevicePosture {
-  const ZeroTrustAccessGroupIncludeDevicePosture({
-    this.accountId,
-    required this.integrationUid,
-  });
-
-  final RefTo<CloudflareAccount>? accountId;
-
-  final TfArg<String> integrationUid;
-
-  Map<String, Object?> encode() => {
-    'account_id': ?accountId?.encodeAs('id').toTfJson(),
-    'integration_uid': integrationUid.toTfJson(),
-  };
-}
-
-/// Typed helper for the `include.email` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupIncludeEmail {
-  const ZeroTrustAccessGroupIncludeEmail({required this.email});
-
-  final TfArg<String> email;
-
-  Map<String, Object?> encode() => {'email': email.toTfJson()};
-}
-
-/// Typed helper for the `include.email_domain` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupIncludeEmailDomain {
-  const ZeroTrustAccessGroupIncludeEmailDomain({required this.domain});
-
-  final TfArg<String> domain;
-
-  Map<String, Object?> encode() => {'domain': domain.toTfJson()};
-}
-
-/// Typed helper for the `include.email_list` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupIncludeEmailList {
-  const ZeroTrustAccessGroupIncludeEmailList({required this.id});
-
-  final TfArg<String> id;
-
-  Map<String, Object?> encode() => {'id': id.toTfJson()};
-}
-
-/// Typed helper for the `include.everyone` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupIncludeEveryone {
-  const ZeroTrustAccessGroupIncludeEveryone();
-
-  Map<String, Object?> encode() => {};
-}
-
-/// Typed helper for the `include.external_evaluation` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupIncludeExternalEvaluation {
-  const ZeroTrustAccessGroupIncludeExternalEvaluation({
-    required this.evaluateUrl,
-    required this.keysUrl,
-  });
-
-  final TfArg<String> evaluateUrl;
-
-  final TfArg<String> keysUrl;
-
-  Map<String, Object?> encode() => {
-    'evaluate_url': evaluateUrl.toTfJson(),
-    'keys_url': keysUrl.toTfJson(),
-  };
-}
-
-/// Typed helper for the `include.geo` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupIncludeGeo {
-  const ZeroTrustAccessGroupIncludeGeo({required this.countryCode});
-
-  final TfArg<String> countryCode;
-
-  Map<String, Object?> encode() => {'country_code': countryCode.toTfJson()};
-}
-
-/// Typed helper for the `include.github_organization` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupIncludeGithubOrganization {
-  const ZeroTrustAccessGroupIncludeGithubOrganization({
-    required this.identityProviderId,
-    required this.name,
-    this.team,
-  });
-
-  final TfArg<String> identityProviderId;
-
-  final TfArg<String> name;
-
-  final TfArg<String>? team;
-
-  Map<String, Object?> encode() => {
-    'identity_provider_id': identityProviderId.toTfJson(),
-    'name': name.toTfJson(),
-    'team': ?team?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `include.group` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupIncludeGroup {
-  const ZeroTrustAccessGroupIncludeGroup({required this.id});
-
-  final TfArg<String> id;
-
-  Map<String, Object?> encode() => {'id': id.toTfJson()};
-}
-
-/// Typed helper for the `include.gsuite` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupIncludeGsuite {
-  const ZeroTrustAccessGroupIncludeGsuite({
-    required this.email,
-    required this.identityProviderId,
-  });
-
-  final TfArg<String> email;
-
-  final TfArg<String> identityProviderId;
-
-  Map<String, Object?> encode() => {
-    'email': email.toTfJson(),
-    'identity_provider_id': identityProviderId.toTfJson(),
-  };
-}
-
-/// Typed helper for the `include.ip` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupIncludeIp {
-  const ZeroTrustAccessGroupIncludeIp({required this.ip});
-
-  final TfArg<String> ip;
-
-  Map<String, Object?> encode() => {'ip': ip.toTfJson()};
-}
-
-/// Typed helper for the `include.ip_list` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupIncludeIpList {
-  const ZeroTrustAccessGroupIncludeIpList({required this.id});
-
-  final TfArg<String> id;
-
-  Map<String, Object?> encode() => {'id': id.toTfJson()};
-}
-
-/// Typed helper for the `include.linked_app_token` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupIncludeLinkedAppToken {
-  const ZeroTrustAccessGroupIncludeLinkedAppToken({required this.appUid});
-
-  final TfArg<String> appUid;
-
-  Map<String, Object?> encode() => {'app_uid': appUid.toTfJson()};
-}
-
-/// Typed helper for the `include.login_method` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupIncludeLoginMethod {
-  const ZeroTrustAccessGroupIncludeLoginMethod({required this.id});
-
-  final TfArg<String> id;
-
-  Map<String, Object?> encode() => {'id': id.toTfJson()};
-}
-
-/// Typed helper for the `include.oidc` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupIncludeOidc {
-  const ZeroTrustAccessGroupIncludeOidc({
-    required this.claimName,
-    required this.claimValue,
-    required this.identityProviderId,
-  });
-
-  final TfArg<String> claimName;
-
-  final TfArg<String> claimValue;
-
-  final TfArg<String> identityProviderId;
-
-  Map<String, Object?> encode() => {
-    'claim_name': claimName.toTfJson(),
-    'claim_value': claimValue.toTfJson(),
-    'identity_provider_id': identityProviderId.toTfJson(),
-  };
-}
-
-/// Typed helper for the `include.okta` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupIncludeOkta {
-  const ZeroTrustAccessGroupIncludeOkta({
-    required this.identityProviderId,
-    required this.name,
-  });
-
-  final TfArg<String> identityProviderId;
-
-  final TfArg<String> name;
-
-  Map<String, Object?> encode() => {
-    'identity_provider_id': identityProviderId.toTfJson(),
-    'name': name.toTfJson(),
-  };
-}
-
-/// Typed helper for the `include.saml` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupIncludeSaml {
-  const ZeroTrustAccessGroupIncludeSaml({
-    required this.attributeName,
-    required this.attributeValue,
-    required this.identityProviderId,
-  });
-
-  final TfArg<String> attributeName;
-
-  final TfArg<String> attributeValue;
-
-  final TfArg<String> identityProviderId;
-
-  Map<String, Object?> encode() => {
-    'attribute_name': attributeName.toTfJson(),
-    'attribute_value': attributeValue.toTfJson(),
-    'identity_provider_id': identityProviderId.toTfJson(),
-  };
-}
-
-/// Typed helper for the `include.service_token` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupIncludeServiceToken {
-  const ZeroTrustAccessGroupIncludeServiceToken({required this.tokenId});
-
-  final TfArg<String> tokenId;
-
-  Map<String, Object?> encode() => {'token_id': tokenId.toTfJson()};
-}
-
-/// Typed helper for the `include.user_risk_score` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupIncludeUserRiskScore {
-  const ZeroTrustAccessGroupIncludeUserRiskScore({required this.userRiskScore});
-
-  final List<TfArg<ZeroTrustAccessGroupIncludeUserRiskScoreUserRiskScore>>
-  userRiskScore;
-
-  Map<String, Object?> encode() => {
-    'user_risk_score': [for (final e in userRiskScore) e.toTfJson()],
-  };
-}
-
-/// `user_risk_score` — derived from the provider schema description.
-enum ZeroTrustAccessGroupIncludeUserRiskScoreUserRiskScore
-    implements TerraformEnum {
-  low('low'),
-  medium('medium'),
-  high('high'),
-  unscored('unscored');
-
-  const ZeroTrustAccessGroupIncludeUserRiskScoreUserRiskScore(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `require` block of
@@ -1051,58 +684,57 @@ final class ZeroTrustAccessGroupRequire {
     this.userRiskScore,
   });
 
-  final ZeroTrustAccessGroupRequireAnyValidServiceToken? anyValidServiceToken;
+  final ZeroTrustAccessGroupAnyValidServiceToken? anyValidServiceToken;
 
-  final ZeroTrustAccessGroupRequireAuthContext? authContext;
+  final ZeroTrustAccessGroupAuthContext? authContext;
 
-  final ZeroTrustAccessGroupRequireAuthMethod? authMethod;
+  final ZeroTrustAccessGroupAuthMethod? authMethod;
 
-  final ZeroTrustAccessGroupRequireAzureAd? azureAd;
+  final ZeroTrustAccessGroupAzureAd? azureAd;
 
-  final ZeroTrustAccessGroupRequireCertificate? certificate;
+  final ZeroTrustAccessGroupCertificate? certificate;
 
-  final ZeroTrustAccessGroupRequireCloudflareAccountMember?
-  cloudflareAccountMember;
+  final ZeroTrustAccessGroupCloudflareAccountMember? cloudflareAccountMember;
 
-  final ZeroTrustAccessGroupRequireCommonName? commonName;
+  final ZeroTrustAccessGroupCommonName? commonName;
 
-  final ZeroTrustAccessGroupRequireDevicePosture? devicePosture;
+  final ZeroTrustAccessGroupDevicePosture? devicePosture;
 
-  final ZeroTrustAccessGroupRequireEmail? email;
+  final ZeroTrustAccessGroupEmail? email;
 
-  final ZeroTrustAccessGroupRequireEmailDomain? emailDomain;
+  final ZeroTrustAccessGroupEmailDomain? emailDomain;
 
-  final ZeroTrustAccessGroupRequireEmailList? emailList;
+  final ZeroTrustAccessGroupEmailList? emailList;
 
-  final ZeroTrustAccessGroupRequireEveryone? everyone;
+  final ZeroTrustAccessGroupEveryone? everyone;
 
-  final ZeroTrustAccessGroupRequireExternalEvaluation? externalEvaluation;
+  final ZeroTrustAccessGroupExternalEvaluation? externalEvaluation;
 
-  final ZeroTrustAccessGroupRequireGeo? geo;
+  final ZeroTrustAccessGroupGeo? geo;
 
-  final ZeroTrustAccessGroupRequireGithubOrganization? githubOrganization;
+  final ZeroTrustAccessGroupGithubOrganization? githubOrganization;
 
-  final ZeroTrustAccessGroupRequireGroup? group;
+  final ZeroTrustAccessGroupGroup? group;
 
-  final ZeroTrustAccessGroupRequireGsuite? gsuite;
+  final ZeroTrustAccessGroupGsuite? gsuite;
 
-  final ZeroTrustAccessGroupRequireIp? ip;
+  final ZeroTrustAccessGroupIp? ip;
 
-  final ZeroTrustAccessGroupRequireIpList? ipList;
+  final ZeroTrustAccessGroupIpList? ipList;
 
-  final ZeroTrustAccessGroupRequireLinkedAppToken? linkedAppToken;
+  final ZeroTrustAccessGroupLinkedAppToken? linkedAppToken;
 
-  final ZeroTrustAccessGroupRequireLoginMethod? loginMethod;
+  final ZeroTrustAccessGroupLoginMethod? loginMethod;
 
-  final ZeroTrustAccessGroupRequireOidc? oidc;
+  final ZeroTrustAccessGroupOidc? oidc;
 
-  final ZeroTrustAccessGroupRequireOkta? okta;
+  final ZeroTrustAccessGroupOkta? okta;
 
-  final ZeroTrustAccessGroupRequireSaml? saml;
+  final ZeroTrustAccessGroupSaml? saml;
 
-  final ZeroTrustAccessGroupRequireServiceToken? serviceToken;
+  final ZeroTrustAccessGroupServiceToken? serviceToken;
 
-  final ZeroTrustAccessGroupRequireUserRiskScore? userRiskScore;
+  final ZeroTrustAccessGroupUserRiskScore? userRiskScore;
 
   Map<String, Object?> encode() => {
     'any_valid_service_token': ?anyValidServiceToken?.encode(),
@@ -1132,394 +764,6 @@ final class ZeroTrustAccessGroupRequire {
     'service_token': ?serviceToken?.encode(),
     'user_risk_score': ?userRiskScore?.encode(),
   };
-}
-
-/// Typed helper for the `require.any_valid_service_token` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupRequireAnyValidServiceToken {
-  const ZeroTrustAccessGroupRequireAnyValidServiceToken();
-
-  Map<String, Object?> encode() => {};
-}
-
-/// Typed helper for the `require.auth_context` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupRequireAuthContext {
-  const ZeroTrustAccessGroupRequireAuthContext({
-    required this.acId,
-    required this.id,
-    required this.identityProviderId,
-  });
-
-  final TfArg<String> acId;
-
-  final TfArg<String> id;
-
-  final TfArg<String> identityProviderId;
-
-  Map<String, Object?> encode() => {
-    'ac_id': acId.toTfJson(),
-    'id': id.toTfJson(),
-    'identity_provider_id': identityProviderId.toTfJson(),
-  };
-}
-
-/// Typed helper for the `require.auth_method` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupRequireAuthMethod {
-  const ZeroTrustAccessGroupRequireAuthMethod({required this.authMethod});
-
-  final TfArg<String> authMethod;
-
-  Map<String, Object?> encode() => {'auth_method': authMethod.toTfJson()};
-}
-
-/// Typed helper for the `require.azure_ad` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupRequireAzureAd {
-  const ZeroTrustAccessGroupRequireAzureAd({
-    required this.id,
-    required this.identityProviderId,
-  });
-
-  final TfArg<String> id;
-
-  final TfArg<String> identityProviderId;
-
-  Map<String, Object?> encode() => {
-    'id': id.toTfJson(),
-    'identity_provider_id': identityProviderId.toTfJson(),
-  };
-}
-
-/// Typed helper for the `require.certificate` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupRequireCertificate {
-  const ZeroTrustAccessGroupRequireCertificate();
-
-  Map<String, Object?> encode() => {};
-}
-
-/// Typed helper for the `require.cloudflare_account_member` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupRequireCloudflareAccountMember {
-  const ZeroTrustAccessGroupRequireCloudflareAccountMember({this.accountId});
-
-  final RefTo<CloudflareAccount>? accountId;
-
-  Map<String, Object?> encode() => {
-    'account_id': ?accountId?.encodeAs('id').toTfJson(),
-  };
-}
-
-/// Typed helper for the `require.common_name` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupRequireCommonName {
-  const ZeroTrustAccessGroupRequireCommonName({required this.commonName});
-
-  final TfArg<String> commonName;
-
-  Map<String, Object?> encode() => {'common_name': commonName.toTfJson()};
-}
-
-/// Typed helper for the `require.device_posture` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupRequireDevicePosture {
-  const ZeroTrustAccessGroupRequireDevicePosture({
-    this.accountId,
-    required this.integrationUid,
-  });
-
-  final RefTo<CloudflareAccount>? accountId;
-
-  final TfArg<String> integrationUid;
-
-  Map<String, Object?> encode() => {
-    'account_id': ?accountId?.encodeAs('id').toTfJson(),
-    'integration_uid': integrationUid.toTfJson(),
-  };
-}
-
-/// Typed helper for the `require.email` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupRequireEmail {
-  const ZeroTrustAccessGroupRequireEmail({required this.email});
-
-  final TfArg<String> email;
-
-  Map<String, Object?> encode() => {'email': email.toTfJson()};
-}
-
-/// Typed helper for the `require.email_domain` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupRequireEmailDomain {
-  const ZeroTrustAccessGroupRequireEmailDomain({required this.domain});
-
-  final TfArg<String> domain;
-
-  Map<String, Object?> encode() => {'domain': domain.toTfJson()};
-}
-
-/// Typed helper for the `require.email_list` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupRequireEmailList {
-  const ZeroTrustAccessGroupRequireEmailList({required this.id});
-
-  final TfArg<String> id;
-
-  Map<String, Object?> encode() => {'id': id.toTfJson()};
-}
-
-/// Typed helper for the `require.everyone` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupRequireEveryone {
-  const ZeroTrustAccessGroupRequireEveryone();
-
-  Map<String, Object?> encode() => {};
-}
-
-/// Typed helper for the `require.external_evaluation` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupRequireExternalEvaluation {
-  const ZeroTrustAccessGroupRequireExternalEvaluation({
-    required this.evaluateUrl,
-    required this.keysUrl,
-  });
-
-  final TfArg<String> evaluateUrl;
-
-  final TfArg<String> keysUrl;
-
-  Map<String, Object?> encode() => {
-    'evaluate_url': evaluateUrl.toTfJson(),
-    'keys_url': keysUrl.toTfJson(),
-  };
-}
-
-/// Typed helper for the `require.geo` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupRequireGeo {
-  const ZeroTrustAccessGroupRequireGeo({required this.countryCode});
-
-  final TfArg<String> countryCode;
-
-  Map<String, Object?> encode() => {'country_code': countryCode.toTfJson()};
-}
-
-/// Typed helper for the `require.github_organization` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupRequireGithubOrganization {
-  const ZeroTrustAccessGroupRequireGithubOrganization({
-    required this.identityProviderId,
-    required this.name,
-    this.team,
-  });
-
-  final TfArg<String> identityProviderId;
-
-  final TfArg<String> name;
-
-  final TfArg<String>? team;
-
-  Map<String, Object?> encode() => {
-    'identity_provider_id': identityProviderId.toTfJson(),
-    'name': name.toTfJson(),
-    'team': ?team?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `require.group` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupRequireGroup {
-  const ZeroTrustAccessGroupRequireGroup({required this.id});
-
-  final TfArg<String> id;
-
-  Map<String, Object?> encode() => {'id': id.toTfJson()};
-}
-
-/// Typed helper for the `require.gsuite` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupRequireGsuite {
-  const ZeroTrustAccessGroupRequireGsuite({
-    required this.email,
-    required this.identityProviderId,
-  });
-
-  final TfArg<String> email;
-
-  final TfArg<String> identityProviderId;
-
-  Map<String, Object?> encode() => {
-    'email': email.toTfJson(),
-    'identity_provider_id': identityProviderId.toTfJson(),
-  };
-}
-
-/// Typed helper for the `require.ip` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupRequireIp {
-  const ZeroTrustAccessGroupRequireIp({required this.ip});
-
-  final TfArg<String> ip;
-
-  Map<String, Object?> encode() => {'ip': ip.toTfJson()};
-}
-
-/// Typed helper for the `require.ip_list` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupRequireIpList {
-  const ZeroTrustAccessGroupRequireIpList({required this.id});
-
-  final TfArg<String> id;
-
-  Map<String, Object?> encode() => {'id': id.toTfJson()};
-}
-
-/// Typed helper for the `require.linked_app_token` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupRequireLinkedAppToken {
-  const ZeroTrustAccessGroupRequireLinkedAppToken({required this.appUid});
-
-  final TfArg<String> appUid;
-
-  Map<String, Object?> encode() => {'app_uid': appUid.toTfJson()};
-}
-
-/// Typed helper for the `require.login_method` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupRequireLoginMethod {
-  const ZeroTrustAccessGroupRequireLoginMethod({required this.id});
-
-  final TfArg<String> id;
-
-  Map<String, Object?> encode() => {'id': id.toTfJson()};
-}
-
-/// Typed helper for the `require.oidc` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupRequireOidc {
-  const ZeroTrustAccessGroupRequireOidc({
-    required this.claimName,
-    required this.claimValue,
-    required this.identityProviderId,
-  });
-
-  final TfArg<String> claimName;
-
-  final TfArg<String> claimValue;
-
-  final TfArg<String> identityProviderId;
-
-  Map<String, Object?> encode() => {
-    'claim_name': claimName.toTfJson(),
-    'claim_value': claimValue.toTfJson(),
-    'identity_provider_id': identityProviderId.toTfJson(),
-  };
-}
-
-/// Typed helper for the `require.okta` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupRequireOkta {
-  const ZeroTrustAccessGroupRequireOkta({
-    required this.identityProviderId,
-    required this.name,
-  });
-
-  final TfArg<String> identityProviderId;
-
-  final TfArg<String> name;
-
-  Map<String, Object?> encode() => {
-    'identity_provider_id': identityProviderId.toTfJson(),
-    'name': name.toTfJson(),
-  };
-}
-
-/// Typed helper for the `require.saml` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupRequireSaml {
-  const ZeroTrustAccessGroupRequireSaml({
-    required this.attributeName,
-    required this.attributeValue,
-    required this.identityProviderId,
-  });
-
-  final TfArg<String> attributeName;
-
-  final TfArg<String> attributeValue;
-
-  final TfArg<String> identityProviderId;
-
-  Map<String, Object?> encode() => {
-    'attribute_name': attributeName.toTfJson(),
-    'attribute_value': attributeValue.toTfJson(),
-    'identity_provider_id': identityProviderId.toTfJson(),
-  };
-}
-
-/// Typed helper for the `require.service_token` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupRequireServiceToken {
-  const ZeroTrustAccessGroupRequireServiceToken({required this.tokenId});
-
-  final TfArg<String> tokenId;
-
-  Map<String, Object?> encode() => {'token_id': tokenId.toTfJson()};
-}
-
-/// Typed helper for the `require.user_risk_score` block of
-/// `cloudflare_zero_trust_access_group` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessGroupRequireUserRiskScore {
-  const ZeroTrustAccessGroupRequireUserRiskScore({required this.userRiskScore});
-
-  final List<TfArg<ZeroTrustAccessGroupRequireUserRiskScoreUserRiskScore>>
-  userRiskScore;
-
-  Map<String, Object?> encode() => {
-    'user_risk_score': [for (final e in userRiskScore) e.toTfJson()],
-  };
-}
-
-/// `user_risk_score` — derived from the provider schema description.
-enum ZeroTrustAccessGroupRequireUserRiskScoreUserRiskScore
-    implements TerraformEnum {
-  low('low'),
-  medium('medium'),
-  high('high'),
-  unscored('unscored');
-
-  const ZeroTrustAccessGroupRequireUserRiskScoreUserRiskScore(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_access_group`.

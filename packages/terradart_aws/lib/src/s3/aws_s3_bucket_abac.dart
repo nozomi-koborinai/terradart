@@ -12,8 +12,8 @@ const Set<String> _awsS3BucketAbacSensitive = <String>{};
 /// Typed helper for the `abac_status` block of
 /// `aws_s3_bucket_abac` (derived from provider schema).
 @immutable
-final class S3BucketAbacAbacStatus {
-  const S3BucketAbacAbacStatus({required this.status});
+final class S3BucketAbacStatus {
+  const S3BucketAbacStatus({required this.status});
 
   final TfArg<String> status;
 
@@ -29,7 +29,7 @@ final class AwsS3BucketAbac extends Resource {
     required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? expectedBucketOwner,
     TfArg<String>? region,
-    List<S3BucketAbacAbacStatus>? abacStatus,
+    List<S3BucketAbacStatus>? abacStatus,
     super.lifecycle,
     super.dependsOn,
     super.provider,

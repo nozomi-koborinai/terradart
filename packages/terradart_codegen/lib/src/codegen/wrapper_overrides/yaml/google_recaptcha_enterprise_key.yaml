@@ -22,7 +22,7 @@ curatedDoc: |-
   ///   displayName: TfArg.literal('Login page'),
   ///   webSettings: RecaptchaEnterpriseKeyWebSettings(
   ///     integrationType: TfArg.literal(
-  ///       RecaptchaEnterpriseKeyWebSettingsIntegrationType.score,
+  ///       RecaptchaEnterpriseKeyIntegrationType.score,
   ///     ),
   ///     allowAllDomains: TfArg.literal(true),
   ///   ),

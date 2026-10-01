@@ -213,7 +213,7 @@ final class LbTargetGroupStickiness {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<LbTargetGroupStickinessType> type;
+  final TfArg<LbTargetGroupType> type;
 
   Map<String, Object?> encode() => {
     'cookie_duration': ?cookieDuration?.toTfJson(),
@@ -224,14 +224,14 @@ final class LbTargetGroupStickiness {
 }
 
 /// `type` — derived from the provider schema description.
-enum LbTargetGroupStickinessType implements TerraformEnum {
+enum LbTargetGroupType implements TerraformEnum {
   lbCookie('lb_cookie'),
   appCookie('app_cookie'),
   sourceIp('source_ip'),
   sourceIpDestIp('source_ip_dest_ip'),
   sourceIpDestIpProto('source_ip_dest_ip_proto');
 
-  const LbTargetGroupStickinessType(this.terraformValue);
+  const LbTargetGroupType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -245,9 +245,9 @@ final class LbTargetGroupTargetFailover {
     required this.onUnhealthy,
   });
 
-  final TfArg<LbTargetGroupTargetFailoverOnDeregistration> onDeregistration;
+  final TfArg<LbTargetGroupOnDeregistration> onDeregistration;
 
-  final TfArg<LbTargetGroupTargetFailoverOnUnhealthy> onUnhealthy;
+  final TfArg<LbTargetGroupOnUnhealthy> onUnhealthy;
 
   Map<String, Object?> encode() => {
     'on_deregistration': onDeregistration.toTfJson(),
@@ -256,21 +256,21 @@ final class LbTargetGroupTargetFailover {
 }
 
 /// `on_deregistration` — derived from the provider schema description.
-enum LbTargetGroupTargetFailoverOnDeregistration implements TerraformEnum {
+enum LbTargetGroupOnDeregistration implements TerraformEnum {
   rebalance('rebalance'),
   noRebalance('no_rebalance');
 
-  const LbTargetGroupTargetFailoverOnDeregistration(this.terraformValue);
+  const LbTargetGroupOnDeregistration(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `on_unhealthy` — derived from the provider schema description.
-enum LbTargetGroupTargetFailoverOnUnhealthy implements TerraformEnum {
+enum LbTargetGroupOnUnhealthy implements TerraformEnum {
   rebalance('rebalance'),
   noRebalance('no_rebalance');
 
-  const LbTargetGroupTargetFailoverOnUnhealthy(this.terraformValue);
+  const LbTargetGroupOnUnhealthy(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -278,16 +278,12 @@ enum LbTargetGroupTargetFailoverOnUnhealthy implements TerraformEnum {
 /// Typed helper for the `target_group_health` block of
 /// `aws_lb_target_group` (derived from provider schema).
 @immutable
-final class LbTargetGroupTargetGroupHealth {
-  const LbTargetGroupTargetGroupHealth({
-    this.dnsFailover,
-    this.unhealthyStateRouting,
-  });
+final class LbTargetGroupHealth {
+  const LbTargetGroupHealth({this.dnsFailover, this.unhealthyStateRouting});
 
-  final LbTargetGroupTargetGroupHealthDnsFailover? dnsFailover;
+  final LbTargetGroupDnsFailover? dnsFailover;
 
-  final LbTargetGroupTargetGroupHealthUnhealthyStateRouting?
-  unhealthyStateRouting;
+  final LbTargetGroupUnhealthyStateRouting? unhealthyStateRouting;
 
   Map<String, Object?> encode() => {
     'dns_failover': ?dnsFailover?.encode(),
@@ -298,8 +294,8 @@ final class LbTargetGroupTargetGroupHealth {
 /// Typed helper for the `target_group_health.dns_failover` block of
 /// `aws_lb_target_group` (derived from provider schema).
 @immutable
-final class LbTargetGroupTargetGroupHealthDnsFailover {
-  const LbTargetGroupTargetGroupHealthDnsFailover({
+final class LbTargetGroupDnsFailover {
+  const LbTargetGroupDnsFailover({
     this.minimumHealthyTargetsCount,
     this.minimumHealthyTargetsPercentage,
   });
@@ -318,8 +314,8 @@ final class LbTargetGroupTargetGroupHealthDnsFailover {
 /// Typed helper for the `target_group_health.unhealthy_state_routing` block of
 /// `aws_lb_target_group` (derived from provider schema).
 @immutable
-final class LbTargetGroupTargetGroupHealthUnhealthyStateRouting {
-  const LbTargetGroupTargetGroupHealthUnhealthyStateRouting({
+final class LbTargetGroupUnhealthyStateRouting {
+  const LbTargetGroupUnhealthyStateRouting({
     this.minimumHealthyTargetsCount,
     this.minimumHealthyTargetsPercentage,
   });
@@ -385,7 +381,7 @@ final class AwsLbTargetGroup extends Resource {
     LbTargetGroupHealthCheck? healthCheck,
     LbTargetGroupStickiness? stickiness,
     List<LbTargetGroupTargetFailover>? targetFailover,
-    LbTargetGroupTargetGroupHealth? targetGroupHealth,
+    LbTargetGroupHealth? targetGroupHealth,
     List<LbTargetGroupTargetHealthState>? targetHealthState,
     super.lifecycle,
     super.dependsOn,

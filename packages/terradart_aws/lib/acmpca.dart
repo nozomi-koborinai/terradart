@@ -6,20 +6,20 @@ library;
 export 'src/acmpca/aws_acmpca_certificate.dart'
     show
         AcmpcaCertificateSigningAlgorithm,
+        AcmpcaCertificateType,
         AcmpcaCertificateValidity,
-        AcmpcaCertificateValidityType,
         AwsAcmpcaCertificate;
 export 'src/acmpca/aws_acmpca_certificate_authority.dart'
     show
-        AcmpcaCertificateAuthorityCertificateAuthorityConfiguration,
-        AcmpcaCertificateAuthorityCertificateAuthorityConfigurationKeyAlgorithm,
-        AcmpcaCertificateAuthorityCertificateAuthorityConfigurationSigningAlgorithm,
-        AcmpcaCertificateAuthorityCertificateAuthorityConfigurationSubject,
+        AcmpcaCertificateAuthorityConfiguration,
+        AcmpcaCertificateAuthorityCrlConfiguration,
+        AcmpcaCertificateAuthorityKeyAlgorithm,
         AcmpcaCertificateAuthorityKeyStorageSecurityStandard,
+        AcmpcaCertificateAuthorityOcspConfiguration,
         AcmpcaCertificateAuthorityRevocationConfiguration,
-        AcmpcaCertificateAuthorityRevocationConfigurationCrlConfiguration,
-        AcmpcaCertificateAuthorityRevocationConfigurationCrlConfigurationS3ObjectAcl,
-        AcmpcaCertificateAuthorityRevocationConfigurationOcspConfiguration,
+        AcmpcaCertificateAuthorityS3ObjectAcl,
+        AcmpcaCertificateAuthoritySigningAlgorithm,
+        AcmpcaCertificateAuthoritySubject,
         AcmpcaCertificateAuthorityType,
         AcmpcaCertificateAuthorityUsageMode,
         AwsAcmpcaCertificateAuthority;

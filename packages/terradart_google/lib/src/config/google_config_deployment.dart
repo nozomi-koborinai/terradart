@@ -39,9 +39,9 @@ final class ConfigDeploymentTerraformBlueprint {
     this.inputValues,
   });
 
-  final ConfigDeploymentTerraformBlueprintSource source;
+  final ConfigDeploymentSource source;
 
-  final List<ConfigDeploymentTerraformBlueprintInputValues>? inputValues;
+  final List<ConfigDeploymentInputValues>? inputValues;
 
   Map<String, Object?> encode() => {
     ...source.encode(),
@@ -54,18 +54,17 @@ final class ConfigDeploymentTerraformBlueprint {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.gcsSource(...)`.
-sealed class ConfigDeploymentTerraformBlueprintSource {
-  const ConfigDeploymentTerraformBlueprintSource();
+sealed class ConfigDeploymentSource {
+  const ConfigDeploymentSource();
 
   /// Sets `gcs_source`.
-  const factory ConfigDeploymentTerraformBlueprintSource.gcsSource(
-    TfArg<String> gcsSource,
-  ) = ConfigDeploymentTerraformBlueprintSourceGcsSource;
+  const factory ConfigDeploymentSource.gcsSource(TfArg<String> gcsSource) =
+      ConfigDeploymentGcsSource;
 
   /// Sets `git_source`.
-  const factory ConfigDeploymentTerraformBlueprintSource.gitSource(
-    ConfigDeploymentTerraformBlueprintGitSource gitSource,
-  ) = ConfigDeploymentTerraformBlueprintSourceGitSource;
+  const factory ConfigDeploymentSource.gitSource(
+    ConfigDeploymentGitSource gitSource,
+  ) = ConfigDeploymentGitSourceChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -73,10 +72,9 @@ sealed class ConfigDeploymentTerraformBlueprintSource {
   Map<String, Object?> encode();
 }
 
-/// The [ConfigDeploymentTerraformBlueprintSource.gcsSource] choice: sets `gcs_source`.
-final class ConfigDeploymentTerraformBlueprintSourceGcsSource
-    extends ConfigDeploymentTerraformBlueprintSource {
-  const ConfigDeploymentTerraformBlueprintSourceGcsSource(this.gcsSource);
+/// The [ConfigDeploymentSource.gcsSource] choice: sets `gcs_source`.
+final class ConfigDeploymentGcsSource extends ConfigDeploymentSource {
+  const ConfigDeploymentGcsSource(this.gcsSource);
 
   final TfArg<String> gcsSource;
 
@@ -87,12 +85,11 @@ final class ConfigDeploymentTerraformBlueprintSourceGcsSource
   Map<String, Object?> encode() => {'gcs_source': gcsSource.toTfJson()};
 }
 
-/// The [ConfigDeploymentTerraformBlueprintSource.gitSource] choice: sets `git_source`.
-final class ConfigDeploymentTerraformBlueprintSourceGitSource
-    extends ConfigDeploymentTerraformBlueprintSource {
-  const ConfigDeploymentTerraformBlueprintSourceGitSource(this.gitSource);
+/// The [ConfigDeploymentSource.gitSource] choice: sets `git_source`.
+final class ConfigDeploymentGitSourceChoice extends ConfigDeploymentSource {
+  const ConfigDeploymentGitSourceChoice(this.gitSource);
 
-  final ConfigDeploymentTerraformBlueprintGitSource gitSource;
+  final ConfigDeploymentGitSource gitSource;
 
   @override
   String get blockKey => 'git_source';
@@ -104,8 +101,8 @@ final class ConfigDeploymentTerraformBlueprintSourceGitSource
 /// Typed helper for the `terraform_blueprint.git_source` block of
 /// `google_config_deployment` (derived from provider schema).
 @immutable
-final class ConfigDeploymentTerraformBlueprintGitSource {
-  const ConfigDeploymentTerraformBlueprintGitSource({
+final class ConfigDeploymentGitSource {
+  const ConfigDeploymentGitSource({
     this.directory,
     this.ref,
     required this.repo,
@@ -127,8 +124,8 @@ final class ConfigDeploymentTerraformBlueprintGitSource {
 /// Typed helper for the `terraform_blueprint.input_values` block of
 /// `google_config_deployment` (derived from provider schema).
 @immutable
-final class ConfigDeploymentTerraformBlueprintInputValues {
-  const ConfigDeploymentTerraformBlueprintInputValues({
+final class ConfigDeploymentInputValues {
+  const ConfigDeploymentInputValues({
     required this.inputValue,
     required this.variableName,
   });
@@ -165,7 +162,7 @@ final class ConfigDeploymentTerraformBlueprintInputValues {
 ///   ),
 ///   terraformBlueprint: ConfigDeploymentTerraformBlueprint(
 ///     source: .gitSource(
-///       ConfigDeploymentTerraformBlueprintGitSource(
+///       ConfigDeploymentGitSource(
 ///         repo: .literal(
 ///           'https://github.com/terraform-google-modules/terraform-google-network',
 ///         ),
@@ -174,7 +171,7 @@ final class ConfigDeploymentTerraformBlueprintInputValues {
 ///       ),
 ///     ),
 ///     inputValues: [
-///       ConfigDeploymentTerraformBlueprintInputValues(
+///       ConfigDeploymentInputValues(
 ///         variableName: .literal('project_id'),
 ///         inputValue: .literal('"my-project"'),
 ///       ),

@@ -42,7 +42,7 @@ final class GlueTriggerActions {
 
   final TfArg<num>? timeout;
 
-  final GlueTriggerActionsNotificationProperty? notificationProperty;
+  final GlueTriggerNotificationProperty? notificationProperty;
 
   Map<String, Object?> encode() => {
     'arguments': ?arguments?.toTfJson(),
@@ -57,8 +57,8 @@ final class GlueTriggerActions {
 /// Typed helper for the `actions.notification_property` block of
 /// `aws_glue_trigger` (derived from provider schema).
 @immutable
-final class GlueTriggerActionsNotificationProperty {
-  const GlueTriggerActionsNotificationProperty({this.notifyDelayAfter});
+final class GlueTriggerNotificationProperty {
+  const GlueTriggerNotificationProperty({this.notifyDelayAfter});
 
   final TfArg<num>? notifyDelayAfter;
 
@@ -92,9 +92,9 @@ final class GlueTriggerEventBatchingCondition {
 final class GlueTriggerPredicate {
   const GlueTriggerPredicate({this.logical, required this.conditions});
 
-  final TfArg<GlueTriggerPredicateLogical>? logical;
+  final TfArg<GlueTriggerLogical>? logical;
 
-  final List<GlueTriggerPredicateConditions> conditions;
+  final List<GlueTriggerConditions> conditions;
 
   Map<String, Object?> encode() => {
     'logical': ?logical?.toTfJson(),
@@ -103,11 +103,11 @@ final class GlueTriggerPredicate {
 }
 
 /// `logical` — derived from the provider schema description.
-enum GlueTriggerPredicateLogical implements TerraformEnum {
+enum GlueTriggerLogical implements TerraformEnum {
   and('AND'),
   any('ANY');
 
-  const GlueTriggerPredicateLogical(this.terraformValue);
+  const GlueTriggerLogical(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -115,8 +115,8 @@ enum GlueTriggerPredicateLogical implements TerraformEnum {
 /// Typed helper for the `predicate.conditions` block of
 /// `aws_glue_trigger` (derived from provider schema).
 @immutable
-final class GlueTriggerPredicateConditions {
-  const GlueTriggerPredicateConditions({
+final class GlueTriggerConditions {
+  const GlueTriggerConditions({
     this.crawlState,
     this.crawlerName,
     this.jobName,
@@ -124,15 +124,15 @@ final class GlueTriggerPredicateConditions {
     this.state,
   });
 
-  final TfArg<GlueTriggerPredicateConditionsCrawlState>? crawlState;
+  final TfArg<GlueTriggerCrawlState>? crawlState;
 
   final TfArg<String>? crawlerName;
 
   final TfArg<String>? jobName;
 
-  final TfArg<GlueTriggerPredicateConditionsLogicalOperator>? logicalOperator;
+  final TfArg<GlueTriggerLogicalOperator>? logicalOperator;
 
-  final TfArg<GlueTriggerPredicateConditionsState>? state;
+  final TfArg<GlueTriggerConditionsState>? state;
 
   Map<String, Object?> encode() => {
     'crawl_state': ?crawlState?.toTfJson(),
@@ -144,7 +144,7 @@ final class GlueTriggerPredicateConditions {
 }
 
 /// `crawl_state` — derived from the provider schema description.
-enum GlueTriggerPredicateConditionsCrawlState implements TerraformEnum {
+enum GlueTriggerCrawlState implements TerraformEnum {
   running('RUNNING'),
   cancelling('CANCELLING'),
   cancelled('CANCELLED'),
@@ -152,22 +152,22 @@ enum GlueTriggerPredicateConditionsCrawlState implements TerraformEnum {
   failed('FAILED'),
   error('ERROR');
 
-  const GlueTriggerPredicateConditionsCrawlState(this.terraformValue);
+  const GlueTriggerCrawlState(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `logical_operator` — derived from the provider schema description.
-enum GlueTriggerPredicateConditionsLogicalOperator implements TerraformEnum {
+enum GlueTriggerLogicalOperator implements TerraformEnum {
   equals('EQUALS');
 
-  const GlueTriggerPredicateConditionsLogicalOperator(this.terraformValue);
+  const GlueTriggerLogicalOperator(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `state` — derived from the provider schema description.
-enum GlueTriggerPredicateConditionsState implements TerraformEnum {
+enum GlueTriggerConditionsState implements TerraformEnum {
   starting('STARTING'),
   running('RUNNING'),
   stopping('STOPPING'),
@@ -179,7 +179,7 @@ enum GlueTriggerPredicateConditionsState implements TerraformEnum {
   waiting('WAITING'),
   expired('EXPIRED');
 
-  const GlueTriggerPredicateConditionsState(this.terraformValue);
+  const GlueTriggerConditionsState(this.terraformValue);
   @override
   final String terraformValue;
 }

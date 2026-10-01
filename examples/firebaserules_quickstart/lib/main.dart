@@ -34,7 +34,7 @@ final class FirebaserulesStack extends Stack {
         deletionPolicy: .literal('DELETE'),
         source: FirebaserulesRulesetSource(
           files: [
-            FirebaserulesRulesetSourceFiles(
+            FirebaserulesRulesetFiles(
               name: .literal('firestore.rules'),
               content: .literal(
                 'service cloud.firestore {'

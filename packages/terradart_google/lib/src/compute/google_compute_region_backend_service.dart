@@ -384,9 +384,9 @@ final class ComputeRegionBackendServiceCdnPolicy {
 
   final TfArg<num>? signedUrlCacheMaxAgeSec;
 
-  final ComputeRegionBackendServiceCdnPolicyCacheKeyPolicy? cacheKeyPolicy;
+  final ComputeRegionBackendServiceCacheKeyPolicy? cacheKeyPolicy;
 
-  final List<ComputeRegionBackendServiceCdnPolicyNegativeCachingPolicy>?
+  final List<ComputeRegionBackendServiceNegativeCachingPolicy>?
   negativeCachingPolicy;
 
   Map<String, Object?> encode() => {
@@ -408,8 +408,8 @@ final class ComputeRegionBackendServiceCdnPolicy {
 /// Typed helper for the `cdn_policy.cache_key_policy` block of
 /// `google_compute_region_backend_service` (derived from provider schema).
 @immutable
-final class ComputeRegionBackendServiceCdnPolicyCacheKeyPolicy {
-  const ComputeRegionBackendServiceCdnPolicyCacheKeyPolicy({
+final class ComputeRegionBackendServiceCacheKeyPolicy {
+  const ComputeRegionBackendServiceCacheKeyPolicy({
     this.includeHost,
     this.includeNamedCookies,
     this.includeProtocol,
@@ -443,8 +443,8 @@ final class ComputeRegionBackendServiceCdnPolicyCacheKeyPolicy {
 /// Typed helper for the `cdn_policy.negative_caching_policy` block of
 /// `google_compute_region_backend_service` (derived from provider schema).
 @immutable
-final class ComputeRegionBackendServiceCdnPolicyNegativeCachingPolicy {
-  const ComputeRegionBackendServiceCdnPolicyNegativeCachingPolicy({this.code});
+final class ComputeRegionBackendServiceNegativeCachingPolicy {
+  const ComputeRegionBackendServiceNegativeCachingPolicy({this.code});
 
   final TfArg<num>? code;
 
@@ -525,7 +525,7 @@ final class ComputeRegionBackendServiceConsistentHash {
 
   final TfArg<num>? minimumRingSize;
 
-  final ComputeRegionBackendServiceConsistentHashHttpCookie? httpCookie;
+  final ComputeRegionBackendServiceHttpCookie? httpCookie;
 
   Map<String, Object?> encode() => {
     'http_header_name': ?httpHeaderName?.toTfJson(),
@@ -537,18 +537,14 @@ final class ComputeRegionBackendServiceConsistentHash {
 /// Typed helper for the `consistent_hash.http_cookie` block of
 /// `google_compute_region_backend_service` (derived from provider schema).
 @immutable
-final class ComputeRegionBackendServiceConsistentHashHttpCookie {
-  const ComputeRegionBackendServiceConsistentHashHttpCookie({
-    this.name,
-    this.path,
-    this.ttl,
-  });
+final class ComputeRegionBackendServiceHttpCookie {
+  const ComputeRegionBackendServiceHttpCookie({this.name, this.path, this.ttl});
 
   final TfArg<String>? name;
 
   final TfArg<String>? path;
 
-  final ComputeRegionBackendServiceConsistentHashHttpCookieTtl? ttl;
+  final ComputeRegionBackendServiceTtl? ttl;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
@@ -557,14 +553,12 @@ final class ComputeRegionBackendServiceConsistentHashHttpCookie {
   };
 }
 
-/// Typed helper for the `consistent_hash.http_cookie.ttl` block of
+/// Typed helper for the `strong_session_affinity_cookie.ttl` block of
 /// `google_compute_region_backend_service` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeRegionBackendServiceConsistentHashHttpCookieTtl {
-  const ComputeRegionBackendServiceConsistentHashHttpCookieTtl({
-    this.nanos,
-    required this.seconds,
-  });
+final class ComputeRegionBackendServiceTtl {
+  const ComputeRegionBackendServiceTtl({this.nanos, required this.seconds});
 
   final TfArg<num>? nanos;
 
@@ -627,7 +621,7 @@ final class ComputeRegionBackendServiceHaPolicy {
 
   final TfArg<RegionBackendServiceFastIpMove>? fastIpMove;
 
-  final ComputeRegionBackendServiceHaPolicyLeader? leader;
+  final ComputeRegionBackendServiceLeader? leader;
 
   Map<String, Object?> encode() => {
     'fast_ip_move': ?fastIpMove?.toTfJson(),
@@ -638,16 +632,15 @@ final class ComputeRegionBackendServiceHaPolicy {
 /// Typed helper for the `ha_policy.leader` block of
 /// `google_compute_region_backend_service` (derived from provider schema).
 @immutable
-final class ComputeRegionBackendServiceHaPolicyLeader {
-  const ComputeRegionBackendServiceHaPolicyLeader({
+final class ComputeRegionBackendServiceLeader {
+  const ComputeRegionBackendServiceLeader({
     this.backendGroup,
     this.networkEndpoint,
   });
 
   final TfArg<String>? backendGroup;
 
-  final ComputeRegionBackendServiceHaPolicyLeaderNetworkEndpoint?
-  networkEndpoint;
+  final ComputeRegionBackendServiceNetworkEndpoint? networkEndpoint;
 
   Map<String, Object?> encode() => {
     'backend_group': ?backendGroup?.toTfJson(),
@@ -658,10 +651,8 @@ final class ComputeRegionBackendServiceHaPolicyLeader {
 /// Typed helper for the `ha_policy.leader.network_endpoint` block of
 /// `google_compute_region_backend_service` (derived from provider schema).
 @immutable
-final class ComputeRegionBackendServiceHaPolicyLeaderNetworkEndpoint {
-  const ComputeRegionBackendServiceHaPolicyLeaderNetworkEndpoint({
-    this.instance,
-  });
+final class ComputeRegionBackendServiceNetworkEndpoint {
+  const ComputeRegionBackendServiceNetworkEndpoint({this.instance});
 
   final TfArg<String>? instance;
 
@@ -712,11 +703,9 @@ final class ComputeRegionBackendServiceLogConfig {
 
   final TfArg<num>? sampleRate;
 
-  final List<ComputeRegionBackendServiceLogConfigRequestHeaders>?
-  requestHeaders;
+  final List<ComputeRegionBackendServiceRequestHeaders>? requestHeaders;
 
-  final List<ComputeRegionBackendServiceLogConfigResponseHeaders>?
-  responseHeaders;
+  final List<ComputeRegionBackendServiceResponseHeaders>? responseHeaders;
 
   Map<String, Object?> encode() => {
     'enable': ?enable?.toTfJson(),
@@ -733,10 +722,8 @@ final class ComputeRegionBackendServiceLogConfig {
 /// Typed helper for the `log_config.request_headers` block of
 /// `google_compute_region_backend_service` (derived from provider schema).
 @immutable
-final class ComputeRegionBackendServiceLogConfigRequestHeaders {
-  const ComputeRegionBackendServiceLogConfigRequestHeaders({
-    required this.headerName,
-  });
+final class ComputeRegionBackendServiceRequestHeaders {
+  const ComputeRegionBackendServiceRequestHeaders({required this.headerName});
 
   final TfArg<String> headerName;
 
@@ -746,10 +733,8 @@ final class ComputeRegionBackendServiceLogConfigRequestHeaders {
 /// Typed helper for the `log_config.response_headers` block of
 /// `google_compute_region_backend_service` (derived from provider schema).
 @immutable
-final class ComputeRegionBackendServiceLogConfigResponseHeaders {
-  const ComputeRegionBackendServiceLogConfigResponseHeaders({
-    required this.headerName,
-  });
+final class ComputeRegionBackendServiceResponseHeaders {
+  const ComputeRegionBackendServiceResponseHeaders({required this.headerName});
 
   final TfArg<String> headerName;
 
@@ -764,8 +749,7 @@ final class ComputeRegionBackendServiceNetworkPassThroughLbTrafficPolicy {
     this.zonalAffinity,
   });
 
-  final ComputeRegionBackendServiceNetworkPassThroughLbTrafficPolicyZonalAffinity?
-  zonalAffinity;
+  final ComputeRegionBackendServiceZonalAffinity? zonalAffinity;
 
   Map<String, Object?> encode() => {'zonal_affinity': ?zonalAffinity?.encode()};
 }
@@ -773,8 +757,8 @@ final class ComputeRegionBackendServiceNetworkPassThroughLbTrafficPolicy {
 /// Typed helper for the `network_pass_through_lb_traffic_policy.zonal_affinity` block of
 /// `google_compute_region_backend_service` (derived from provider schema).
 @immutable
-final class ComputeRegionBackendServiceNetworkPassThroughLbTrafficPolicyZonalAffinity {
-  const ComputeRegionBackendServiceNetworkPassThroughLbTrafficPolicyZonalAffinity({
+final class ComputeRegionBackendServiceZonalAffinity {
+  const ComputeRegionBackendServiceZonalAffinity({
     this.spillover,
     this.spilloverRatio,
   });
@@ -825,10 +809,9 @@ final class ComputeRegionBackendServiceOutlierDetection {
 
   final TfArg<num>? successRateStdevFactor;
 
-  final ComputeRegionBackendServiceOutlierDetectionBaseEjectionTime?
-  baseEjectionTime;
+  final ComputeRegionBackendServiceBaseEjectionTime? baseEjectionTime;
 
-  final ComputeRegionBackendServiceOutlierDetectionInterval? interval;
+  final ComputeRegionBackendServiceInterval? interval;
 
   Map<String, Object?> encode() => {
     'consecutive_errors': ?consecutiveErrors?.toTfJson(),
@@ -849,8 +832,8 @@ final class ComputeRegionBackendServiceOutlierDetection {
 /// Typed helper for the `outlier_detection.base_ejection_time` block of
 /// `google_compute_region_backend_service` (derived from provider schema).
 @immutable
-final class ComputeRegionBackendServiceOutlierDetectionBaseEjectionTime {
-  const ComputeRegionBackendServiceOutlierDetectionBaseEjectionTime({
+final class ComputeRegionBackendServiceBaseEjectionTime {
+  const ComputeRegionBackendServiceBaseEjectionTime({
     this.nanos,
     required this.seconds,
   });
@@ -868,8 +851,8 @@ final class ComputeRegionBackendServiceOutlierDetectionBaseEjectionTime {
 /// Typed helper for the `outlier_detection.interval` block of
 /// `google_compute_region_backend_service` (derived from provider schema).
 @immutable
-final class ComputeRegionBackendServiceOutlierDetectionInterval {
-  const ComputeRegionBackendServiceOutlierDetectionInterval({
+final class ComputeRegionBackendServiceInterval {
+  const ComputeRegionBackendServiceInterval({
     this.nanos,
     required this.seconds,
   });
@@ -911,31 +894,12 @@ final class ComputeRegionBackendServiceStrongSessionAffinityCookie {
 
   final TfArg<String>? path;
 
-  final ComputeRegionBackendServiceStrongSessionAffinityCookieTtl? ttl;
+  final ComputeRegionBackendServiceTtl? ttl;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'path': ?path?.toTfJson(),
     'ttl': ?ttl?.encode(),
-  };
-}
-
-/// Typed helper for the `strong_session_affinity_cookie.ttl` block of
-/// `google_compute_region_backend_service` (derived from provider schema).
-@immutable
-final class ComputeRegionBackendServiceStrongSessionAffinityCookieTtl {
-  const ComputeRegionBackendServiceStrongSessionAffinityCookieTtl({
-    this.nanos,
-    required this.seconds,
-  });
-
-  final TfArg<num>? nanos;
-
-  final TfArg<num> seconds;
-
-  Map<String, Object?> encode() => {
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': seconds.toTfJson(),
   };
 }
 
@@ -953,8 +917,7 @@ final class ComputeRegionBackendServiceTlsSettings {
 
   final TfArg<String>? sni;
 
-  final List<ComputeRegionBackendServiceTlsSettingsSubjectAltNames>?
-  subjectAltNames;
+  final List<ComputeRegionBackendServiceSubjectAltNames>? subjectAltNames;
 
   Map<String, Object?> encode() => {
     'authentication_config': ?authenticationConfig?.toTfJson(),
@@ -967,8 +930,8 @@ final class ComputeRegionBackendServiceTlsSettings {
 /// Typed helper for the `tls_settings.subject_alt_names` block of
 /// `google_compute_region_backend_service` (derived from provider schema).
 @immutable
-final class ComputeRegionBackendServiceTlsSettingsSubjectAltNames {
-  const ComputeRegionBackendServiceTlsSettingsSubjectAltNames({
+final class ComputeRegionBackendServiceSubjectAltNames {
+  const ComputeRegionBackendServiceSubjectAltNames({
     this.dnsName,
     this.uniformResourceIdentifier,
   });

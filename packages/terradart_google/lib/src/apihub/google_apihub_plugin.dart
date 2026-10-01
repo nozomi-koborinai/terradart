@@ -45,10 +45,9 @@ final class ApihubPluginConfigTemplate {
     this.authConfigTemplate,
   });
 
-  final List<ApihubPluginConfigTemplateAdditionalConfigTemplate>?
-  additionalConfigTemplate;
+  final List<ApihubPluginAdditionalConfigTemplate>? additionalConfigTemplate;
 
-  final ApihubPluginConfigTemplateAuthConfigTemplate? authConfigTemplate;
+  final ApihubPluginAuthConfigTemplate? authConfigTemplate;
 
   Map<String, Object?> encode() => {
     if (additionalConfigTemplate != null)
@@ -62,8 +61,8 @@ final class ApihubPluginConfigTemplate {
 /// Typed helper for the `config_template.additional_config_template` block of
 /// `google_apihub_plugin` (derived from provider schema).
 @immutable
-final class ApihubPluginConfigTemplateAdditionalConfigTemplate {
-  const ApihubPluginConfigTemplateAdditionalConfigTemplate({
+final class ApihubPluginAdditionalConfigTemplate {
+  const ApihubPluginAdditionalConfigTemplate({
     this.description,
     required this.id,
     this.required,
@@ -83,13 +82,9 @@ final class ApihubPluginConfigTemplateAdditionalConfigTemplate {
 
   final TfArg<String> valueType;
 
-  final List<ApihubPluginConfigTemplateAdditionalConfigTemplateEnumOptions>?
-  enumOptions;
+  final List<ApihubPluginEnumOptions>? enumOptions;
 
-  final List<
-    ApihubPluginConfigTemplateAdditionalConfigTemplateMultiSelectOptions
-  >?
-  multiSelectOptions;
+  final List<ApihubPluginMultiSelectOptions>? multiSelectOptions;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -107,8 +102,8 @@ final class ApihubPluginConfigTemplateAdditionalConfigTemplate {
 /// Typed helper for the `config_template.additional_config_template.enum_options` block of
 /// `google_apihub_plugin` (derived from provider schema).
 @immutable
-final class ApihubPluginConfigTemplateAdditionalConfigTemplateEnumOptions {
-  const ApihubPluginConfigTemplateAdditionalConfigTemplateEnumOptions({
+final class ApihubPluginEnumOptions {
+  const ApihubPluginEnumOptions({
     this.description,
     required this.displayName,
     required this.id,
@@ -130,8 +125,8 @@ final class ApihubPluginConfigTemplateAdditionalConfigTemplateEnumOptions {
 /// Typed helper for the `config_template.additional_config_template.multi_select_options` block of
 /// `google_apihub_plugin` (derived from provider schema).
 @immutable
-final class ApihubPluginConfigTemplateAdditionalConfigTemplateMultiSelectOptions {
-  const ApihubPluginConfigTemplateAdditionalConfigTemplateMultiSelectOptions({
+final class ApihubPluginMultiSelectOptions {
+  const ApihubPluginMultiSelectOptions({
     this.description,
     required this.displayName,
     required this.id,
@@ -153,16 +148,15 @@ final class ApihubPluginConfigTemplateAdditionalConfigTemplateMultiSelectOptions
 /// Typed helper for the `config_template.auth_config_template` block of
 /// `google_apihub_plugin` (derived from provider schema).
 @immutable
-final class ApihubPluginConfigTemplateAuthConfigTemplate {
-  const ApihubPluginConfigTemplateAuthConfigTemplate({
+final class ApihubPluginAuthConfigTemplate {
+  const ApihubPluginAuthConfigTemplate({
     required this.supportedAuthTypes,
     this.serviceAccount,
   });
 
   final TfArg<List<String>> supportedAuthTypes;
 
-  final ApihubPluginConfigTemplateAuthConfigTemplateServiceAccount?
-  serviceAccount;
+  final ApihubPluginServiceAccount? serviceAccount;
 
   Map<String, Object?> encode() => {
     'supported_auth_types': supportedAuthTypes.toTfJson(),
@@ -173,10 +167,8 @@ final class ApihubPluginConfigTemplateAuthConfigTemplate {
 /// Typed helper for the `config_template.auth_config_template.service_account` block of
 /// `google_apihub_plugin` (derived from provider schema).
 @immutable
-final class ApihubPluginConfigTemplateAuthConfigTemplateServiceAccount {
-  const ApihubPluginConfigTemplateAuthConfigTemplateServiceAccount({
-    required this.serviceAccount,
-  });
+final class ApihubPluginServiceAccount {
+  const ApihubPluginServiceAccount({required this.serviceAccount});
 
   final RefTo<GoogleServiceAccount> serviceAccount;
 

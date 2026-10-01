@@ -55,7 +55,7 @@ final class AccessControlsStack extends Stack {
         definition: .basic(
           AccessContextManagerAccessLevelBasic(
             conditions: [
-              AccessContextManagerAccessLevelBasicConditions(
+              AccessContextManagerAccessLevelConditions(
                 regions: .literal(['US']),
               ),
             ],
@@ -128,7 +128,7 @@ final class AccessControlsStack extends Stack {
         definition: .basic(
           AccessContextManagerAccessLevelBasic(
             conditions: [
-              AccessContextManagerAccessLevelBasicConditions(
+              AccessContextManagerAccessLevelConditions(
                 regions: .literal(['US']),
               ),
             ],
@@ -153,10 +153,9 @@ final class AccessControlsStack extends Stack {
           requireAdminApproval: .literal(false),
           requireCorpOwned: .literal(true),
           osConstraints: [
-            AccessContextManagerAccessLevelConditionDevicePolicyOsConstraints(
+            AccessContextManagerAccessLevelConditionOsConstraints(
               osType: .literal(
-                AccessContextManagerAccessLevelConditionDevicePolicyOsConstraintsOsType
-                    .desktopChromeOs,
+                AccessContextManagerAccessLevelConditionOsType.desktopChromeOs,
               ),
             ),
           ],
@@ -209,9 +208,9 @@ final class AccessControlsStack extends Stack {
               '/accessLevels/bulk_eu',
             ),
             title: .literal('bulk_eu'),
-            basic: AccessContextManagerAccessLevelsAccessLevelsBasic(
+            basic: AccessContextManagerAccessLevelsBasic(
               conditions: [
-                AccessContextManagerAccessLevelsAccessLevelsBasicConditions(
+                AccessContextManagerAccessLevelsConditions(
                   regions: .literal(['DE']),
                 ),
               ],
@@ -274,12 +273,13 @@ final class AccessControlsStack extends Stack {
         localName: 'attach_ingress',
         perimeter: .ref(attach.nameRef),
         title: .literal('allow identities'),
-        ingressFrom: AccessContextManagerServicePerimeterIngressPolicyIngressFrom(
-          identityType: .literal(
-            AccessContextManagerServicePerimeterIngressPolicyIngressFromIdentityType
-                .anyIdentity,
-          ),
-        ),
+        ingressFrom:
+            AccessContextManagerServicePerimeterIngressPolicyIngressFrom(
+              identityType: .literal(
+                AccessContextManagerServicePerimeterIngressPolicyIdentityType
+                    .anyIdentity,
+              ),
+            ),
         dependsOn: [ResourceDependency(attach)],
       ),
     );
@@ -291,7 +291,7 @@ final class AccessControlsStack extends Stack {
         title: .literal('allow egress'),
         egressFrom: AccessContextManagerServicePerimeterEgressPolicyEgressFrom(
           identityType: .literal(
-            AccessContextManagerServicePerimeterEgressPolicyEgressFromIdentityType
+            AccessContextManagerServicePerimeterEgressPolicyIdentityType
                 .anyIdentity,
           ),
         ),
@@ -307,7 +307,7 @@ final class AccessControlsStack extends Stack {
         ingressFrom:
             AccessContextManagerServicePerimeterDryRunIngressPolicyIngressFrom(
               identityType: .literal(
-                AccessContextManagerServicePerimeterDryRunIngressPolicyIngressFromIdentityType
+                AccessContextManagerServicePerimeterDryRunIngressPolicyIdentityType
                     .anyIdentity,
               ),
             ),
@@ -323,7 +323,7 @@ final class AccessControlsStack extends Stack {
         egressFrom:
             AccessContextManagerServicePerimeterDryRunEgressPolicyEgressFrom(
               identityType: .literal(
-                AccessContextManagerServicePerimeterDryRunEgressPolicyEgressFromIdentityType
+                AccessContextManagerServicePerimeterDryRunEgressPolicyIdentityType
                     .anyIdentity,
               ),
             ),

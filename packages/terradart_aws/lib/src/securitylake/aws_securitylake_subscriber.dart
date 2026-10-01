@@ -26,10 +26,9 @@ final class SecuritylakeSubscriberSource {
     this.customLogSourceResource,
   });
 
-  final List<SecuritylakeSubscriberSourceAwsLogSourceResource>?
-  awsLogSourceResource;
+  final List<SecuritylakeSubscriberAwsLogSourceResource>? awsLogSourceResource;
 
-  final List<SecuritylakeSubscriberSourceCustomLogSourceResource>?
+  final List<SecuritylakeSubscriberCustomLogSourceResource>?
   customLogSourceResource;
 
   Map<String, Object?> encode() => {
@@ -47,14 +46,13 @@ final class SecuritylakeSubscriberSource {
 /// Typed helper for the `source.aws_log_source_resource` block of
 /// `aws_securitylake_subscriber` (derived from provider schema).
 @immutable
-final class SecuritylakeSubscriberSourceAwsLogSourceResource {
-  const SecuritylakeSubscriberSourceAwsLogSourceResource({
+final class SecuritylakeSubscriberAwsLogSourceResource {
+  const SecuritylakeSubscriberAwsLogSourceResource({
     required this.sourceName,
     this.sourceVersion,
   });
 
-  final TfArg<SecuritylakeSubscriberSourceAwsLogSourceResourceSourceName>
-  sourceName;
+  final TfArg<SecuritylakeSubscriberSourceName> sourceName;
 
   final TfArg<String>? sourceVersion;
 
@@ -65,8 +63,7 @@ final class SecuritylakeSubscriberSourceAwsLogSourceResource {
 }
 
 /// `source_name` — derived from the provider schema description.
-enum SecuritylakeSubscriberSourceAwsLogSourceResourceSourceName
-    implements TerraformEnum {
+enum SecuritylakeSubscriberSourceName implements TerraformEnum {
   route53('ROUTE53'),
   vpcFlow('VPC_FLOW'),
   shFindings('SH_FINDINGS'),
@@ -76,9 +73,7 @@ enum SecuritylakeSubscriberSourceAwsLogSourceResourceSourceName
   eksAudit('EKS_AUDIT'),
   waf('WAF');
 
-  const SecuritylakeSubscriberSourceAwsLogSourceResourceSourceName(
-    this.terraformValue,
-  );
+  const SecuritylakeSubscriberSourceName(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -86,8 +81,8 @@ enum SecuritylakeSubscriberSourceAwsLogSourceResourceSourceName
 /// Typed helper for the `source.custom_log_source_resource` block of
 /// `aws_securitylake_subscriber` (derived from provider schema).
 @immutable
-final class SecuritylakeSubscriberSourceCustomLogSourceResource {
-  const SecuritylakeSubscriberSourceCustomLogSourceResource({
+final class SecuritylakeSubscriberCustomLogSourceResource {
+  const SecuritylakeSubscriberCustomLogSourceResource({
     required this.sourceName,
     this.sourceVersion,
   });
@@ -105,8 +100,8 @@ final class SecuritylakeSubscriberSourceCustomLogSourceResource {
 /// Typed helper for the `subscriber_identity` block of
 /// `aws_securitylake_subscriber` (derived from provider schema).
 @immutable
-final class SecuritylakeSubscriberSubscriberIdentity {
-  const SecuritylakeSubscriberSubscriberIdentity({
+final class SecuritylakeSubscriberIdentity {
+  const SecuritylakeSubscriberIdentity({
     required this.externalId,
     required this.principal,
   });
@@ -133,7 +128,7 @@ final class AwsSecuritylakeSubscriber extends Resource {
     TfArg<String>? subscriberName,
     TfArg<Map<String, String>>? tags,
     List<SecuritylakeSubscriberSource>? source,
-    List<SecuritylakeSubscriberSubscriberIdentity>? subscriberIdentity,
+    List<SecuritylakeSubscriberIdentity>? subscriberIdentity,
     super.lifecycle,
     super.dependsOn,
     super.provider,

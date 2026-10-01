@@ -6,10 +6,10 @@ library;
 
 export 'src/firebase/google_firebase_ai_logic_config.dart'
     show
+        FirebaseAiLogicConfigApiKey,
+        FirebaseAiLogicConfigApiKeyChoice,
+        FirebaseAiLogicConfigApiKeyWo,
         FirebaseAiLogicConfigGenerativeLanguageConfig,
-        FirebaseAiLogicConfigGenerativeLanguageConfigApiKey,
-        FirebaseAiLogicConfigGenerativeLanguageConfigApiKeyChoice,
-        FirebaseAiLogicConfigGenerativeLanguageConfigApiKeyWo,
         FirebaseAiLogicConfigTelemetryConfig,
         FirebaseAiLogicConfigTrafficFilter,
         GoogleFirebaseAiLogicConfig;
@@ -50,10 +50,10 @@ export 'src/firebase/google_firebase_hosting_site.dart'
 export 'src/firebase/google_firebase_hosting_version.dart'
     show
         FirebaseHostingVersionConfig,
-        FirebaseHostingVersionConfigHeaders,
-        FirebaseHostingVersionConfigRedirects,
-        FirebaseHostingVersionConfigRewrites,
-        FirebaseHostingVersionConfigRewritesRun,
+        FirebaseHostingVersionHeaders,
+        FirebaseHostingVersionRedirects,
+        FirebaseHostingVersionRewrites,
+        FirebaseHostingVersionRun,
         GoogleFirebaseHostingVersion;
 export 'src/firebase/google_firebase_project.dart' show GoogleFirebaseProject;
 export 'src/firebase/google_firebase_storage_bucket.dart'

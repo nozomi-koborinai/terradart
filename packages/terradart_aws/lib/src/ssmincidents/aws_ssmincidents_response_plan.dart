@@ -16,7 +16,7 @@ const Set<String> _awsSsmincidentsResponsePlanSensitive = <String>{};
 final class SsmincidentsResponsePlanAction {
   const SsmincidentsResponsePlanAction({this.ssmAutomation});
 
-  final List<SsmincidentsResponsePlanActionSsmAutomation>? ssmAutomation;
+  final List<SsmincidentsResponsePlanSsmAutomation>? ssmAutomation;
 
   Map<String, Object?> encode() => {
     if (ssmAutomation != null)
@@ -27,8 +27,8 @@ final class SsmincidentsResponsePlanAction {
 /// Typed helper for the `action.ssm_automation` block of
 /// `aws_ssmincidents_response_plan` (derived from provider schema).
 @immutable
-final class SsmincidentsResponsePlanActionSsmAutomation {
-  const SsmincidentsResponsePlanActionSsmAutomation({
+final class SsmincidentsResponsePlanSsmAutomation {
+  const SsmincidentsResponsePlanSsmAutomation({
     required this.documentName,
     this.documentVersion,
     this.dynamicParameters,
@@ -47,7 +47,7 @@ final class SsmincidentsResponsePlanActionSsmAutomation {
 
   final TfArg<String>? targetAccount;
 
-  final List<SsmincidentsResponsePlanActionSsmAutomationParameter>? parameter;
+  final List<SsmincidentsResponsePlanParameter>? parameter;
 
   Map<String, Object?> encode() => {
     'document_name': documentName.toTfJson(),
@@ -63,8 +63,8 @@ final class SsmincidentsResponsePlanActionSsmAutomation {
 /// Typed helper for the `action.ssm_automation.parameter` block of
 /// `aws_ssmincidents_response_plan` (derived from provider schema).
 @immutable
-final class SsmincidentsResponsePlanActionSsmAutomationParameter {
-  const SsmincidentsResponsePlanActionSsmAutomationParameter({
+final class SsmincidentsResponsePlanParameter {
+  const SsmincidentsResponsePlanParameter({
     required this.name,
     required this.values,
   });
@@ -102,8 +102,7 @@ final class SsmincidentsResponsePlanIncidentTemplate {
 
   final TfArg<String> title;
 
-  final List<SsmincidentsResponsePlanIncidentTemplateNotificationTarget>?
-  notificationTarget;
+  final List<SsmincidentsResponsePlanNotificationTarget>? notificationTarget;
 
   Map<String, Object?> encode() => {
     'dedupe_string': ?dedupeString?.toTfJson(),
@@ -119,10 +118,8 @@ final class SsmincidentsResponsePlanIncidentTemplate {
 /// Typed helper for the `incident_template.notification_target` block of
 /// `aws_ssmincidents_response_plan` (derived from provider schema).
 @immutable
-final class SsmincidentsResponsePlanIncidentTemplateNotificationTarget {
-  const SsmincidentsResponsePlanIncidentTemplateNotificationTarget({
-    required this.snsTopicArn,
-  });
+final class SsmincidentsResponsePlanNotificationTarget {
+  const SsmincidentsResponsePlanNotificationTarget({required this.snsTopicArn});
 
   final RefTo<AwsSnsTopic> snsTopicArn;
 
@@ -137,7 +134,7 @@ final class SsmincidentsResponsePlanIncidentTemplateNotificationTarget {
 final class SsmincidentsResponsePlanIntegration {
   const SsmincidentsResponsePlanIntegration({this.pagerduty});
 
-  final List<SsmincidentsResponsePlanIntegrationPagerduty>? pagerduty;
+  final List<SsmincidentsResponsePlanPagerduty>? pagerduty;
 
   Map<String, Object?> encode() => {
     if (pagerduty != null)
@@ -148,8 +145,8 @@ final class SsmincidentsResponsePlanIntegration {
 /// Typed helper for the `integration.pagerduty` block of
 /// `aws_ssmincidents_response_plan` (derived from provider schema).
 @immutable
-final class SsmincidentsResponsePlanIntegrationPagerduty {
-  const SsmincidentsResponsePlanIntegrationPagerduty({
+final class SsmincidentsResponsePlanPagerduty {
+  const SsmincidentsResponsePlanPagerduty({
     required this.name,
     required this.secretId,
     required this.serviceId,

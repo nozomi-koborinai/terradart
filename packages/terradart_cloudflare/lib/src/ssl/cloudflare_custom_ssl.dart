@@ -46,18 +46,18 @@ enum CustomSslType implements TerraformEnum {
 final class CustomSslGeoRestrictions {
   const CustomSslGeoRestrictions({this.label});
 
-  final TfArg<CustomSslGeoRestrictionsLabel>? label;
+  final TfArg<CustomSslLabel>? label;
 
   Map<String, Object?> encode() => {'label': ?label?.toTfJson()};
 }
 
 /// `label` — derived from the provider schema description.
-enum CustomSslGeoRestrictionsLabel implements TerraformEnum {
+enum CustomSslLabel implements TerraformEnum {
   us('us'),
   eu('eu'),
   highestSecurity('highest_security');
 
-  const CustomSslGeoRestrictionsLabel(this.terraformValue);
+  const CustomSslLabel(this.terraformValue);
   @override
   final String terraformValue;
 }

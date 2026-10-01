@@ -15,9 +15,9 @@ const Set<String> _cloudflareWorkerSensitive = <String>{};
 final class DataWorkerFilter {
   const DataWorkerFilter({this.order, this.orderBy});
 
-  final TfArg<DataWorkerFilterOrder>? order;
+  final TfArg<DataWorkerOrder>? order;
 
-  final TfArg<DataWorkerFilterOrderBy>? orderBy;
+  final TfArg<DataWorkerOrderBy>? orderBy;
 
   Map<String, Object?> encode() => {
     'order': ?order?.toTfJson(),
@@ -26,23 +26,23 @@ final class DataWorkerFilter {
 }
 
 /// `order` — derived from the provider schema description.
-enum DataWorkerFilterOrder implements TerraformEnum {
+enum DataWorkerOrder implements TerraformEnum {
   asc('asc'),
   desc('desc');
 
-  const DataWorkerFilterOrder(this.terraformValue);
+  const DataWorkerOrder(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `order_by` — derived from the provider schema description.
-enum DataWorkerFilterOrderBy implements TerraformEnum {
+enum DataWorkerOrderBy implements TerraformEnum {
   deployedOn('deployed_on'),
   updatedOn('updated_on'),
   createdOn('created_on'),
   name('name');
 
-  const DataWorkerFilterOrderBy(this.terraformValue);
+  const DataWorkerOrderBy(this.terraformValue);
   @override
   final String terraformValue;
 }

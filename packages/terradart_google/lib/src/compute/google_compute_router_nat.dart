@@ -66,7 +66,7 @@ final class ComputeRouterNatLogConfig {
 
   final TfArg<bool> enable;
 
-  final TfArg<ComputeRouterNatLogConfigFilter> filter;
+  final TfArg<ComputeRouterNatFilter> filter;
 
   Map<String, Object?> encode() => {
     'enable': enable.toTfJson(),
@@ -75,12 +75,12 @@ final class ComputeRouterNatLogConfig {
 }
 
 /// `filter` — derived from the provider schema description.
-enum ComputeRouterNatLogConfigFilter implements TerraformEnum {
+enum ComputeRouterNatFilter implements TerraformEnum {
   errorsOnly('ERRORS_ONLY'),
   translationsOnly('TRANSLATIONS_ONLY'),
   all('ALL');
 
-  const ComputeRouterNatLogConfigFilter(this.terraformValue);
+  const ComputeRouterNatFilter(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -113,7 +113,7 @@ final class ComputeRouterNatRules {
 
   final TfArg<num> ruleNumber;
 
-  final ComputeRouterNatRulesAction? action;
+  final ComputeRouterNatAction? action;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -126,8 +126,8 @@ final class ComputeRouterNatRules {
 /// Typed helper for the `rules.action` block of
 /// `google_compute_router_nat` (derived from provider schema).
 @immutable
-final class ComputeRouterNatRulesAction {
-  const ComputeRouterNatRulesAction({
+final class ComputeRouterNatAction {
+  const ComputeRouterNatAction({
     this.sourceNatActiveIps,
     this.sourceNatActiveRanges,
     this.sourceNatDrainIps,

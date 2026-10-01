@@ -22,16 +22,12 @@ final class AccessContextManagerAccessLevelConditionDevicePolicy {
   });
 
   final List<
-    TfArg<
-      AccessContextManagerAccessLevelConditionDevicePolicyAllowedDeviceManagementLevels
-    >
+    TfArg<AccessContextManagerAccessLevelConditionAllowedDeviceManagementLevels>
   >?
   allowedDeviceManagementLevels;
 
   final List<
-    TfArg<
-      AccessContextManagerAccessLevelConditionDevicePolicyAllowedEncryptionStatuses
-    >
+    TfArg<AccessContextManagerAccessLevelConditionAllowedEncryptionStatuses>
   >?
   allowedEncryptionStatuses;
 
@@ -41,7 +37,7 @@ final class AccessContextManagerAccessLevelConditionDevicePolicy {
 
   final TfArg<bool>? requireScreenLock;
 
-  final List<AccessContextManagerAccessLevelConditionDevicePolicyOsConstraints>?
+  final List<AccessContextManagerAccessLevelConditionOsConstraints>?
   osConstraints;
 
   Map<String, Object?> encode() => {
@@ -62,14 +58,14 @@ final class AccessContextManagerAccessLevelConditionDevicePolicy {
 }
 
 /// `allowed_device_management_levels` — derived from the provider schema description.
-enum AccessContextManagerAccessLevelConditionDevicePolicyAllowedDeviceManagementLevels
+enum AccessContextManagerAccessLevelConditionAllowedDeviceManagementLevels
     implements TerraformEnum {
   managementUnspecified('MANAGEMENT_UNSPECIFIED'),
   none('NONE'),
   basic('BASIC'),
   complete('COMPLETE');
 
-  const AccessContextManagerAccessLevelConditionDevicePolicyAllowedDeviceManagementLevels(
+  const AccessContextManagerAccessLevelConditionAllowedDeviceManagementLevels(
     this.terraformValue,
   );
   @override
@@ -77,14 +73,14 @@ enum AccessContextManagerAccessLevelConditionDevicePolicyAllowedDeviceManagement
 }
 
 /// `allowed_encryption_statuses` — derived from the provider schema description.
-enum AccessContextManagerAccessLevelConditionDevicePolicyAllowedEncryptionStatuses
+enum AccessContextManagerAccessLevelConditionAllowedEncryptionStatuses
     implements TerraformEnum {
   encryptionUnspecified('ENCRYPTION_UNSPECIFIED'),
   encryptionUnsupported('ENCRYPTION_UNSUPPORTED'),
   unencrypted('UNENCRYPTED'),
   encrypted('ENCRYPTED');
 
-  const AccessContextManagerAccessLevelConditionDevicePolicyAllowedEncryptionStatuses(
+  const AccessContextManagerAccessLevelConditionAllowedEncryptionStatuses(
     this.terraformValue,
   );
   @override
@@ -94,18 +90,15 @@ enum AccessContextManagerAccessLevelConditionDevicePolicyAllowedEncryptionStatus
 /// Typed helper for the `device_policy.os_constraints` block of
 /// `google_access_context_manager_access_level_condition` (derived from provider schema).
 @immutable
-final class AccessContextManagerAccessLevelConditionDevicePolicyOsConstraints {
-  const AccessContextManagerAccessLevelConditionDevicePolicyOsConstraints({
+final class AccessContextManagerAccessLevelConditionOsConstraints {
+  const AccessContextManagerAccessLevelConditionOsConstraints({
     this.minimumVersion,
     required this.osType,
   });
 
   final TfArg<String>? minimumVersion;
 
-  final TfArg<
-    AccessContextManagerAccessLevelConditionDevicePolicyOsConstraintsOsType
-  >
-  osType;
+  final TfArg<AccessContextManagerAccessLevelConditionOsType> osType;
 
   Map<String, Object?> encode() => {
     'minimum_version': ?minimumVersion?.toTfJson(),
@@ -114,8 +107,7 @@ final class AccessContextManagerAccessLevelConditionDevicePolicyOsConstraints {
 }
 
 /// `os_type` — derived from the provider schema description.
-enum AccessContextManagerAccessLevelConditionDevicePolicyOsConstraintsOsType
-    implements TerraformEnum {
+enum AccessContextManagerAccessLevelConditionOsType implements TerraformEnum {
   osUnspecified('OS_UNSPECIFIED'),
   desktopMac('DESKTOP_MAC'),
   desktopWindows('DESKTOP_WINDOWS'),
@@ -124,9 +116,7 @@ enum AccessContextManagerAccessLevelConditionDevicePolicyOsConstraintsOsType
   android('ANDROID'),
   ios('IOS');
 
-  const AccessContextManagerAccessLevelConditionDevicePolicyOsConstraintsOsType(
-    this.terraformValue,
-  );
+  const AccessContextManagerAccessLevelConditionOsType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -139,8 +129,7 @@ final class AccessContextManagerAccessLevelConditionVpcNetworkSources {
     this.vpcSubnetwork,
   });
 
-  final AccessContextManagerAccessLevelConditionVpcNetworkSourcesVpcSubnetwork?
-  vpcSubnetwork;
+  final AccessContextManagerAccessLevelConditionVpcSubnetwork? vpcSubnetwork;
 
   Map<String, Object?> encode() => {'vpc_subnetwork': ?vpcSubnetwork?.encode()};
 }
@@ -148,8 +137,8 @@ final class AccessContextManagerAccessLevelConditionVpcNetworkSources {
 /// Typed helper for the `vpc_network_sources.vpc_subnetwork` block of
 /// `google_access_context_manager_access_level_condition` (derived from provider schema).
 @immutable
-final class AccessContextManagerAccessLevelConditionVpcNetworkSourcesVpcSubnetwork {
-  const AccessContextManagerAccessLevelConditionVpcNetworkSourcesVpcSubnetwork({
+final class AccessContextManagerAccessLevelConditionVpcSubnetwork {
+  const AccessContextManagerAccessLevelConditionVpcSubnetwork({
     required this.network,
     this.vpcIpSubnetworks,
   });
@@ -208,9 +197,9 @@ final class AccessContextManagerAccessLevelConditionVpcNetworkSourcesVpcSubnetwo
 ///     requireAdminApproval: TfArg.literal(false),
 ///     requireCorpOwned: TfArg.literal(true),
 ///     osConstraints: [
-///       AccessContextManagerAccessLevelConditionDevicePolicyOsConstraints(
+///       AccessContextManagerAccessLevelConditionOsConstraints(
 ///         osType: TfArg.literal(
-///           AccessContextManagerAccessLevelConditionDevicePolicyOsConstraintsOsType
+///           AccessContextManagerAccessLevelConditionOsType
 ///               .desktopChromeOs,
 ///         ),
 ///       ),

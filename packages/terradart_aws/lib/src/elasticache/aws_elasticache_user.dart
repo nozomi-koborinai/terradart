@@ -29,7 +29,7 @@ final class ElasticacheUserAuthenticationMode {
 
   final TfArg<List<String>>? passwords;
 
-  final TfArg<ElasticacheUserAuthenticationModeType> type;
+  final TfArg<ElasticacheUserType> type;
 
   Map<String, Object?> encode() => {
     'passwords': ?passwords?.toTfJson(),
@@ -38,12 +38,12 @@ final class ElasticacheUserAuthenticationMode {
 }
 
 /// `type` — derived from the provider schema description.
-enum ElasticacheUserAuthenticationModeType implements TerraformEnum {
+enum ElasticacheUserType implements TerraformEnum {
   password('password'),
   noPasswordRequired('no-password-required'),
   iam('iam');
 
-  const ElasticacheUserAuthenticationModeType(this.terraformValue);
+  const ElasticacheUserType(this.terraformValue);
   @override
   final String terraformValue;
 }

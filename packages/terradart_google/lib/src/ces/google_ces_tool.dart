@@ -41,9 +41,9 @@ final class CesToolClientFunction {
 
   final TfArg<String> name;
 
-  final CesToolClientFunctionParameters? parameters;
+  final CesToolParameters? parameters;
 
-  final CesToolClientFunctionResponse? response;
+  final CesToolResponse? response;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -55,9 +55,10 @@ final class CesToolClientFunction {
 
 /// Typed helper for the `client_function.parameters` block of
 /// `google_ces_tool` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CesToolClientFunctionParameters {
-  const CesToolClientFunctionParameters({
+final class CesToolParameters {
+  const CesToolParameters({
     this.additionalProperties,
     this.anyOf,
     this.defaultCase,
@@ -143,8 +144,8 @@ final class CesToolClientFunctionParameters {
 /// Typed helper for the `client_function.response` block of
 /// `google_ces_tool` (derived from provider schema).
 @immutable
-final class CesToolClientFunctionResponse {
-  const CesToolClientFunctionResponse({
+final class CesToolResponse {
+  const CesToolResponse({
     this.additionalProperties,
     this.anyOf,
     this.defaultCase,
@@ -243,18 +244,17 @@ final class CesToolDataStoreTool {
 
   final TfArg<String>? description;
 
-  final TfArg<CesToolDataStoreToolFilterParameterBehavior>?
-  filterParameterBehavior;
+  final TfArg<CesToolFilterParameterBehavior>? filterParameterBehavior;
 
   final TfArg<num>? maxResults;
 
   final TfArg<String> name;
 
-  final List<CesToolDataStoreToolBoostSpecs>? boostSpecs;
+  final List<CesToolBoostSpecs>? boostSpecs;
 
-  final CesToolDataStoreToolSource? source;
+  final CesToolSource? source;
 
-  final List<CesToolDataStoreToolModalityConfigs>? modalityConfigs;
+  final List<CesToolModalityConfigs>? modalityConfigs;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -274,18 +274,17 @@ final class CesToolDataStoreTool {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.dataStoreSource(...)`.
-sealed class CesToolDataStoreToolSource {
-  const CesToolDataStoreToolSource();
+sealed class CesToolSource {
+  const CesToolSource();
 
   /// Sets `data_store_source`.
-  const factory CesToolDataStoreToolSource.dataStoreSource(
-    CesToolDataStoreToolDataStoreSource dataStoreSource,
-  ) = CesToolDataStoreToolSourceDataStoreSource;
+  const factory CesToolSource.dataStoreSource(
+    CesToolDataStoreSource dataStoreSource,
+  ) = CesToolDataStoreSourceChoice;
 
   /// Sets `engine_source`.
-  const factory CesToolDataStoreToolSource.engineSource(
-    CesToolDataStoreToolEngineSource engineSource,
-  ) = CesToolDataStoreToolSourceEngineSource;
+  const factory CesToolSource.engineSource(CesToolEngineSource engineSource) =
+      CesToolEngineSourceChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -293,12 +292,11 @@ sealed class CesToolDataStoreToolSource {
   Map<String, Object?> encode();
 }
 
-/// The [CesToolDataStoreToolSource.dataStoreSource] choice: sets `data_store_source`.
-final class CesToolDataStoreToolSourceDataStoreSource
-    extends CesToolDataStoreToolSource {
-  const CesToolDataStoreToolSourceDataStoreSource(this.dataStoreSource);
+/// The [CesToolSource.dataStoreSource] choice: sets `data_store_source`.
+final class CesToolDataStoreSourceChoice extends CesToolSource {
+  const CesToolDataStoreSourceChoice(this.dataStoreSource);
 
-  final CesToolDataStoreToolDataStoreSource dataStoreSource;
+  final CesToolDataStoreSource dataStoreSource;
 
   @override
   String get blockKey => 'data_store_source';
@@ -309,12 +307,11 @@ final class CesToolDataStoreToolSourceDataStoreSource
   };
 }
 
-/// The [CesToolDataStoreToolSource.engineSource] choice: sets `engine_source`.
-final class CesToolDataStoreToolSourceEngineSource
-    extends CesToolDataStoreToolSource {
-  const CesToolDataStoreToolSourceEngineSource(this.engineSource);
+/// The [CesToolSource.engineSource] choice: sets `engine_source`.
+final class CesToolEngineSourceChoice extends CesToolSource {
+  const CesToolEngineSourceChoice(this.engineSource);
 
-  final CesToolDataStoreToolEngineSource engineSource;
+  final CesToolEngineSource engineSource;
 
   @override
   String get blockKey => 'engine_source';
@@ -324,12 +321,12 @@ final class CesToolDataStoreToolSourceEngineSource
 }
 
 /// `filter_parameter_behavior` — derived from the provider schema description.
-enum CesToolDataStoreToolFilterParameterBehavior implements TerraformEnum {
+enum CesToolFilterParameterBehavior implements TerraformEnum {
   filterParameterBehaviorUnspecified('FILTER_PARAMETER_BEHAVIOR_UNSPECIFIED'),
   alwaysInclude('ALWAYS_INCLUDE'),
   neverInclude('NEVER_INCLUDE');
 
-  const CesToolDataStoreToolFilterParameterBehavior(this.terraformValue);
+  const CesToolFilterParameterBehavior(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -337,15 +334,12 @@ enum CesToolDataStoreToolFilterParameterBehavior implements TerraformEnum {
 /// Typed helper for the `data_store_tool.boost_specs` block of
 /// `google_ces_tool` (derived from provider schema).
 @immutable
-final class CesToolDataStoreToolBoostSpecs {
-  const CesToolDataStoreToolBoostSpecs({
-    required this.dataStores,
-    required this.spec,
-  });
+final class CesToolBoostSpecs {
+  const CesToolBoostSpecs({required this.dataStores, required this.spec});
 
   final TfArg<List<String>> dataStores;
 
-  final List<CesToolDataStoreToolBoostSpecsSpec> spec;
+  final List<CesToolSpec> spec;
 
   Map<String, Object?> encode() => {
     'data_stores': dataStores.toTfJson(),
@@ -356,11 +350,10 @@ final class CesToolDataStoreToolBoostSpecs {
 /// Typed helper for the `data_store_tool.boost_specs.spec` block of
 /// `google_ces_tool` (derived from provider schema).
 @immutable
-final class CesToolDataStoreToolBoostSpecsSpec {
-  const CesToolDataStoreToolBoostSpecsSpec({required this.conditionBoostSpecs});
+final class CesToolSpec {
+  const CesToolSpec({required this.conditionBoostSpecs});
 
-  final List<CesToolDataStoreToolBoostSpecsSpecConditionBoostSpecs>
-  conditionBoostSpecs;
+  final List<CesToolConditionBoostSpecs> conditionBoostSpecs;
 
   Map<String, Object?> encode() => {
     'condition_boost_specs': [for (final e in conditionBoostSpecs) e.encode()],
@@ -370,8 +363,8 @@ final class CesToolDataStoreToolBoostSpecsSpec {
 /// Typed helper for the `data_store_tool.boost_specs.spec.condition_boost_specs` block of
 /// `google_ces_tool` (derived from provider schema).
 @immutable
-final class CesToolDataStoreToolBoostSpecsSpecConditionBoostSpecs {
-  const CesToolDataStoreToolBoostSpecsSpecConditionBoostSpecs({
+final class CesToolConditionBoostSpecs {
+  const CesToolConditionBoostSpecs({
     this.boost,
     required this.condition,
     this.boostControlSpec,
@@ -381,8 +374,7 @@ final class CesToolDataStoreToolBoostSpecsSpecConditionBoostSpecs {
 
   final TfArg<String> condition;
 
-  final CesToolDataStoreToolBoostSpecsSpecConditionBoostSpecsBoostControlSpec?
-  boostControlSpec;
+  final CesToolBoostControlSpec? boostControlSpec;
 
   Map<String, Object?> encode() => {
     'boost': ?boost?.toTfJson(),
@@ -394,8 +386,8 @@ final class CesToolDataStoreToolBoostSpecsSpecConditionBoostSpecs {
 /// Typed helper for the `data_store_tool.boost_specs.spec.condition_boost_specs.boost_control_spec` block of
 /// `google_ces_tool` (derived from provider schema).
 @immutable
-final class CesToolDataStoreToolBoostSpecsSpecConditionBoostSpecsBoostControlSpec {
-  const CesToolDataStoreToolBoostSpecsSpecConditionBoostSpecsBoostControlSpec({
+final class CesToolBoostControlSpec {
+  const CesToolBoostControlSpec({
     this.attributeType,
     this.fieldName,
     this.interpolationType,
@@ -408,10 +400,7 @@ final class CesToolDataStoreToolBoostSpecsSpecConditionBoostSpecsBoostControlSpe
 
   final TfArg<String>? interpolationType;
 
-  final List<
-    CesToolDataStoreToolBoostSpecsSpecConditionBoostSpecsBoostControlSpecControlPoints
-  >?
-  controlPoints;
+  final List<CesToolControlPoints>? controlPoints;
 
   Map<String, Object?> encode() => {
     'attribute_type': ?attributeType?.toTfJson(),
@@ -425,11 +414,8 @@ final class CesToolDataStoreToolBoostSpecsSpecConditionBoostSpecsBoostControlSpe
 /// Typed helper for the `data_store_tool.boost_specs.spec.condition_boost_specs.boost_control_spec.control_points` block of
 /// `google_ces_tool` (derived from provider schema).
 @immutable
-final class CesToolDataStoreToolBoostSpecsSpecConditionBoostSpecsBoostControlSpecControlPoints {
-  const CesToolDataStoreToolBoostSpecsSpecConditionBoostSpecsBoostControlSpecControlPoints({
-    this.attributeValue,
-    this.boostAmount,
-  });
+final class CesToolControlPoints {
+  const CesToolControlPoints({this.attributeValue, this.boostAmount});
 
   final TfArg<String>? attributeValue;
 
@@ -444,12 +430,12 @@ final class CesToolDataStoreToolBoostSpecsSpecConditionBoostSpecsBoostControlSpe
 /// Typed helper for the `data_store_tool.data_store_source` block of
 /// `google_ces_tool` (derived from provider schema).
 @immutable
-final class CesToolDataStoreToolDataStoreSource {
-  const CesToolDataStoreToolDataStoreSource({this.filter, this.dataStore});
+final class CesToolDataStoreSource {
+  const CesToolDataStoreSource({this.filter, this.dataStore});
 
   final TfArg<String>? filter;
 
-  final CesToolDataStoreToolDataStoreSourceDataStore? dataStore;
+  final CesToolDataStore? dataStore;
 
   Map<String, Object?> encode() => {
     'filter': ?filter?.toTfJson(),
@@ -459,9 +445,10 @@ final class CesToolDataStoreToolDataStoreSource {
 
 /// Typed helper for the `data_store_tool.data_store_source.data_store` block of
 /// `google_ces_tool` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CesToolDataStoreToolDataStoreSourceDataStore {
-  const CesToolDataStoreToolDataStoreSourceDataStore({required this.name});
+final class CesToolDataStore {
+  const CesToolDataStore({required this.name});
 
   final TfArg<String> name;
 
@@ -471,8 +458,8 @@ final class CesToolDataStoreToolDataStoreSourceDataStore {
 /// Typed helper for the `data_store_tool.engine_source` block of
 /// `google_ces_tool` (derived from provider schema).
 @immutable
-final class CesToolDataStoreToolEngineSource {
-  const CesToolDataStoreToolEngineSource({
+final class CesToolEngineSource {
+  const CesToolEngineSource({
     required this.engine,
     this.filter,
     this.dataStoreSources,
@@ -482,8 +469,7 @@ final class CesToolDataStoreToolEngineSource {
 
   final TfArg<String>? filter;
 
-  final List<CesToolDataStoreToolEngineSourceDataStoreSources>?
-  dataStoreSources;
+  final List<CesToolDataStoreSources>? dataStoreSources;
 
   Map<String, Object?> encode() => {
     'engine': engine.toTfJson(),
@@ -496,15 +482,12 @@ final class CesToolDataStoreToolEngineSource {
 /// Typed helper for the `data_store_tool.engine_source.data_store_sources` block of
 /// `google_ces_tool` (derived from provider schema).
 @immutable
-final class CesToolDataStoreToolEngineSourceDataStoreSources {
-  const CesToolDataStoreToolEngineSourceDataStoreSources({
-    this.filter,
-    this.dataStore,
-  });
+final class CesToolDataStoreSources {
+  const CesToolDataStoreSources({this.filter, this.dataStore});
 
   final TfArg<String>? filter;
 
-  final CesToolDataStoreToolEngineSourceDataStoreSourcesDataStore? dataStore;
+  final CesToolDataStore? dataStore;
 
   Map<String, Object?> encode() => {
     'filter': ?filter?.toTfJson(),
@@ -512,24 +495,11 @@ final class CesToolDataStoreToolEngineSourceDataStoreSources {
   };
 }
 
-/// Typed helper for the `data_store_tool.engine_source.data_store_sources.data_store` block of
-/// `google_ces_tool` (derived from provider schema).
-@immutable
-final class CesToolDataStoreToolEngineSourceDataStoreSourcesDataStore {
-  const CesToolDataStoreToolEngineSourceDataStoreSourcesDataStore({
-    required this.name,
-  });
-
-  final TfArg<String> name;
-
-  Map<String, Object?> encode() => {'name': name.toTfJson()};
-}
-
 /// Typed helper for the `data_store_tool.modality_configs` block of
 /// `google_ces_tool` (derived from provider schema).
 @immutable
-final class CesToolDataStoreToolModalityConfigs {
-  const CesToolDataStoreToolModalityConfigs({
+final class CesToolModalityConfigs {
+  const CesToolModalityConfigs({
     required this.modalityType,
     this.groundingConfig,
     this.rewriterConfig,
@@ -539,14 +509,13 @@ final class CesToolDataStoreToolModalityConfigs {
 
   final TfArg<String> modalityType;
 
-  final CesToolDataStoreToolModalityConfigsGroundingConfig? groundingConfig;
+  final CesToolGroundingConfig? groundingConfig;
 
-  final CesToolDataStoreToolModalityConfigsRewriterConfig? rewriterConfig;
+  final CesToolRewriterConfig? rewriterConfig;
 
-  final CesToolDataStoreToolModalityConfigsSnippetsConfig? snippetsConfig;
+  final CesToolSnippetsConfig? snippetsConfig;
 
-  final CesToolDataStoreToolModalityConfigsSummarizationConfig?
-  summarizationConfig;
+  final CesToolSummarizationConfig? summarizationConfig;
 
   Map<String, Object?> encode() => {
     'modality_type': modalityType.toTfJson(),
@@ -560,11 +529,8 @@ final class CesToolDataStoreToolModalityConfigs {
 /// Typed helper for the `data_store_tool.modality_configs.grounding_config` block of
 /// `google_ces_tool` (derived from provider schema).
 @immutable
-final class CesToolDataStoreToolModalityConfigsGroundingConfig {
-  const CesToolDataStoreToolModalityConfigsGroundingConfig({
-    this.disabled,
-    this.groundingLevel,
-  });
+final class CesToolGroundingConfig {
+  const CesToolGroundingConfig({this.disabled, this.groundingLevel});
 
   final TfArg<bool>? disabled;
 
@@ -579,8 +545,8 @@ final class CesToolDataStoreToolModalityConfigsGroundingConfig {
 /// Typed helper for the `data_store_tool.modality_configs.rewriter_config` block of
 /// `google_ces_tool` (derived from provider schema).
 @immutable
-final class CesToolDataStoreToolModalityConfigsRewriterConfig {
-  const CesToolDataStoreToolModalityConfigsRewriterConfig({
+final class CesToolRewriterConfig {
+  const CesToolRewriterConfig({
     this.disabled,
     this.prompt,
     required this.modelSettings,
@@ -590,8 +556,7 @@ final class CesToolDataStoreToolModalityConfigsRewriterConfig {
 
   final TfArg<String>? prompt;
 
-  final CesToolDataStoreToolModalityConfigsRewriterConfigModelSettings
-  modelSettings;
+  final CesToolModelSettings modelSettings;
 
   Map<String, Object?> encode() => {
     'disabled': ?disabled?.toTfJson(),
@@ -602,12 +567,10 @@ final class CesToolDataStoreToolModalityConfigsRewriterConfig {
 
 /// Typed helper for the `data_store_tool.modality_configs.rewriter_config.model_settings` block of
 /// `google_ces_tool` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CesToolDataStoreToolModalityConfigsRewriterConfigModelSettings {
-  const CesToolDataStoreToolModalityConfigsRewriterConfigModelSettings({
-    this.model,
-    this.temperature,
-  });
+final class CesToolModelSettings {
+  const CesToolModelSettings({this.model, this.temperature});
 
   final TfArg<String>? model;
 
@@ -622,10 +585,8 @@ final class CesToolDataStoreToolModalityConfigsRewriterConfigModelSettings {
 /// Typed helper for the `data_store_tool.modality_configs.snippets_config` block of
 /// `google_ces_tool` (derived from provider schema).
 @immutable
-final class CesToolDataStoreToolModalityConfigsSnippetsConfig {
-  const CesToolDataStoreToolModalityConfigsSnippetsConfig({
-    this.enableSnippets,
-  });
+final class CesToolSnippetsConfig {
+  const CesToolSnippetsConfig({this.enableSnippets});
 
   final TfArg<bool>? enableSnippets;
 
@@ -637,8 +598,8 @@ final class CesToolDataStoreToolModalityConfigsSnippetsConfig {
 /// Typed helper for the `data_store_tool.modality_configs.summarization_config` block of
 /// `google_ces_tool` (derived from provider schema).
 @immutable
-final class CesToolDataStoreToolModalityConfigsSummarizationConfig {
-  const CesToolDataStoreToolModalityConfigsSummarizationConfig({
+final class CesToolSummarizationConfig {
+  const CesToolSummarizationConfig({
     this.disabled,
     this.prompt,
     this.modelSettings,
@@ -648,32 +609,12 @@ final class CesToolDataStoreToolModalityConfigsSummarizationConfig {
 
   final TfArg<String>? prompt;
 
-  final CesToolDataStoreToolModalityConfigsSummarizationConfigModelSettings?
-  modelSettings;
+  final CesToolModelSettings? modelSettings;
 
   Map<String, Object?> encode() => {
     'disabled': ?disabled?.toTfJson(),
     'prompt': ?prompt?.toTfJson(),
     'model_settings': ?modelSettings?.encode(),
-  };
-}
-
-/// Typed helper for the `data_store_tool.modality_configs.summarization_config.model_settings` block of
-/// `google_ces_tool` (derived from provider schema).
-@immutable
-final class CesToolDataStoreToolModalityConfigsSummarizationConfigModelSettings {
-  const CesToolDataStoreToolModalityConfigsSummarizationConfigModelSettings({
-    this.model,
-    this.temperature,
-  });
-
-  final TfArg<String>? model;
-
-  final TfArg<num>? temperature;
-
-  Map<String, Object?> encode() => {
-    'model': ?model?.toTfJson(),
-    'temperature': ?temperature?.toTfJson(),
   };
 }
 
@@ -688,7 +629,7 @@ final class CesToolFileSearchTool {
     required this.name,
   });
 
-  final TfArg<CesToolFileSearchToolCorpusType>? corpusType;
+  final TfArg<CesToolCorpusType>? corpusType;
 
   final TfArg<String>? description;
 
@@ -705,12 +646,12 @@ final class CesToolFileSearchTool {
 }
 
 /// `corpus_type` — derived from the provider schema description.
-enum CesToolFileSearchToolCorpusType implements TerraformEnum {
+enum CesToolCorpusType implements TerraformEnum {
   corpusTypeUnspecified('CORPUS_TYPE_UNSPECIFIED'),
   userOwned('USER_OWNED'),
   fullyManaged('FULLY_MANAGED');
 
-  const CesToolFileSearchToolCorpusType(this.terraformValue);
+  const CesToolCorpusType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -738,7 +679,7 @@ final class CesToolGoogleSearchTool {
 
   final TfArg<List<String>>? preferredDomains;
 
-  final CesToolGoogleSearchToolPromptConfig? promptConfig;
+  final CesToolPromptConfig? promptConfig;
 
   Map<String, Object?> encode() => {
     'context_urls': ?contextUrls?.toTfJson(),
@@ -753,11 +694,8 @@ final class CesToolGoogleSearchTool {
 /// Typed helper for the `google_search_tool.prompt_config` block of
 /// `google_ces_tool` (derived from provider schema).
 @immutable
-final class CesToolGoogleSearchToolPromptConfig {
-  const CesToolGoogleSearchToolPromptConfig({
-    this.textPrompt,
-    this.voicePrompt,
-  });
+final class CesToolPromptConfig {
+  const CesToolPromptConfig({this.textPrompt, this.voicePrompt});
 
   final TfArg<String>? textPrompt;
 
@@ -783,7 +721,7 @@ final class CesToolPythonFunction {
 
   final TfArg<String>? pythonCode;
 
-  final CesToolPythonFunctionServiceDirectoryConfig? serviceDirectoryConfig;
+  final CesToolServiceDirectoryConfig? serviceDirectoryConfig;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
@@ -795,8 +733,8 @@ final class CesToolPythonFunction {
 /// Typed helper for the `python_function.service_directory_config` block of
 /// `google_ces_tool` (derived from provider schema).
 @immutable
-final class CesToolPythonFunctionServiceDirectoryConfig {
-  const CesToolPythonFunctionServiceDirectoryConfig({required this.service});
+final class CesToolServiceDirectoryConfig {
+  const CesToolServiceDirectoryConfig({required this.service});
 
   final TfArg<String> service;
 
@@ -806,12 +744,12 @@ final class CesToolPythonFunctionServiceDirectoryConfig {
 /// Typed helper for the `tool_fake_config` block of
 /// `google_ces_tool` (derived from provider schema).
 @immutable
-final class CesToolToolFakeConfig {
-  const CesToolToolFakeConfig({this.enableFakeMode, this.codeBlock});
+final class CesToolFakeConfig {
+  const CesToolFakeConfig({this.enableFakeMode, this.codeBlock});
 
   final TfArg<bool>? enableFakeMode;
 
-  final CesToolToolFakeConfigCodeBlock? codeBlock;
+  final CesToolCodeBlock? codeBlock;
 
   Map<String, Object?> encode() => {
     'enable_fake_mode': ?enableFakeMode?.toTfJson(),
@@ -822,8 +760,8 @@ final class CesToolToolFakeConfig {
 /// Typed helper for the `tool_fake_config.code_block` block of
 /// `google_ces_tool` (derived from provider schema).
 @immutable
-final class CesToolToolFakeConfigCodeBlock {
-  const CesToolToolFakeConfigCodeBlock({required this.pythonCode});
+final class CesToolCodeBlock {
+  const CesToolCodeBlock({required this.pythonCode});
 
   final TfArg<String> pythonCode;
 
@@ -850,13 +788,13 @@ final class CesToolWidgetTool {
 
   final TfArg<String>? uiConfig;
 
-  final TfArg<CesToolWidgetToolWidgetType>? widgetType;
+  final TfArg<CesToolWidgetType>? widgetType;
 
-  final CesToolWidgetToolDataMapping? dataMapping;
+  final CesToolDataMapping? dataMapping;
 
-  final CesToolWidgetToolParameters? parameters;
+  final CesToolParameters? parameters;
 
-  final CesToolWidgetToolTextResponseConfig? textResponseConfig;
+  final CesToolTextResponseConfig? textResponseConfig;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -870,7 +808,7 @@ final class CesToolWidgetTool {
 }
 
 /// `widget_type` — derived from the provider schema description.
-enum CesToolWidgetToolWidgetType implements TerraformEnum {
+enum CesToolWidgetType implements TerraformEnum {
   widgetTypeUnspecified('WIDGET_TYPE_UNSPECIFIED'),
   custom('CUSTOM'),
   productCarousel('PRODUCT_CAROUSEL'),
@@ -885,7 +823,7 @@ enum CesToolWidgetToolWidgetType implements TerraformEnum {
   appointmentScheduler('APPOINTMENT_SCHEDULER'),
   contactForm('CONTACT_FORM');
 
-  const CesToolWidgetToolWidgetType(this.terraformValue);
+  const CesToolWidgetType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -893,8 +831,8 @@ enum CesToolWidgetToolWidgetType implements TerraformEnum {
 /// Typed helper for the `widget_tool.data_mapping` block of
 /// `google_ces_tool` (derived from provider schema).
 @immutable
-final class CesToolWidgetToolDataMapping {
-  const CesToolWidgetToolDataMapping({
+final class CesToolDataMapping {
+  const CesToolDataMapping({
     this.fieldMappings,
     this.mode,
     this.sourceToolName,
@@ -903,11 +841,11 @@ final class CesToolWidgetToolDataMapping {
 
   final TfArg<Map<String, String>>? fieldMappings;
 
-  final TfArg<CesToolWidgetToolDataMappingMode>? mode;
+  final TfArg<CesToolMode>? mode;
 
   final TfArg<String>? sourceToolName;
 
-  final CesToolWidgetToolDataMappingPythonFunction? pythonFunction;
+  final CesToolDataMappingPythonFunction? pythonFunction;
 
   Map<String, Object?> encode() => {
     'field_mappings': ?fieldMappings?.toTfJson(),
@@ -918,12 +856,12 @@ final class CesToolWidgetToolDataMapping {
 }
 
 /// `mode` — derived from the provider schema description.
-enum CesToolWidgetToolDataMappingMode implements TerraformEnum {
+enum CesToolMode implements TerraformEnum {
   modeUnspecified('MODE_UNSPECIFIED'),
   fieldMapping('FIELD_MAPPING'),
   pythonScript('PYTHON_SCRIPT');
 
-  const CesToolWidgetToolDataMappingMode(this.terraformValue);
+  const CesToolMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -931,11 +869,8 @@ enum CesToolWidgetToolDataMappingMode implements TerraformEnum {
 /// Typed helper for the `widget_tool.data_mapping.python_function` block of
 /// `google_ces_tool` (derived from provider schema).
 @immutable
-final class CesToolWidgetToolDataMappingPythonFunction {
-  const CesToolWidgetToolDataMappingPythonFunction({
-    this.name,
-    this.pythonCode,
-  });
+final class CesToolDataMappingPythonFunction {
+  const CesToolDataMappingPythonFunction({this.name, this.pythonCode});
 
   final TfArg<String>? name;
 
@@ -947,98 +882,11 @@ final class CesToolWidgetToolDataMappingPythonFunction {
   };
 }
 
-/// Typed helper for the `widget_tool.parameters` block of
-/// `google_ces_tool` (derived from provider schema).
-@immutable
-final class CesToolWidgetToolParameters {
-  const CesToolWidgetToolParameters({
-    this.additionalProperties,
-    this.anyOf,
-    this.defaultCase,
-    this.defs,
-    this.description,
-    this.enumCase,
-    this.items,
-    this.maxItems,
-    this.maximum,
-    this.minItems,
-    this.minimum,
-    this.nullable,
-    this.prefixItems,
-    this.properties,
-    this.ref,
-    this.required,
-    this.title,
-    required this.type,
-    this.uniqueItems,
-  });
-
-  final TfArg<String>? additionalProperties;
-
-  final TfArg<String>? anyOf;
-
-  final TfArg<String>? defaultCase;
-
-  final TfArg<String>? defs;
-
-  final TfArg<String>? description;
-
-  final TfArg<List<String>>? enumCase;
-
-  final TfArg<String>? items;
-
-  final TfArg<num>? maxItems;
-
-  final TfArg<num>? maximum;
-
-  final TfArg<num>? minItems;
-
-  final TfArg<num>? minimum;
-
-  final TfArg<bool>? nullable;
-
-  final TfArg<String>? prefixItems;
-
-  final TfArg<String>? properties;
-
-  final TfArg<String>? ref;
-
-  final TfArg<List<String>>? required;
-
-  final TfArg<String>? title;
-
-  final TfArg<String> type;
-
-  final TfArg<bool>? uniqueItems;
-
-  Map<String, Object?> encode() => {
-    'additional_properties': ?additionalProperties?.toTfJson(),
-    'any_of': ?anyOf?.toTfJson(),
-    'default': ?defaultCase?.toTfJson(),
-    'defs': ?defs?.toTfJson(),
-    'description': ?description?.toTfJson(),
-    'enum': ?enumCase?.toTfJson(),
-    'items': ?items?.toTfJson(),
-    'max_items': ?maxItems?.toTfJson(),
-    'maximum': ?maximum?.toTfJson(),
-    'min_items': ?minItems?.toTfJson(),
-    'minimum': ?minimum?.toTfJson(),
-    'nullable': ?nullable?.toTfJson(),
-    'prefix_items': ?prefixItems?.toTfJson(),
-    'properties': ?properties?.toTfJson(),
-    'ref': ?ref?.toTfJson(),
-    'required': ?required?.toTfJson(),
-    'title': ?title?.toTfJson(),
-    'type': type.toTfJson(),
-    'unique_items': ?uniqueItems?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `widget_tool.text_response_config` block of
 /// `google_ces_tool` (derived from provider schema).
 @immutable
-final class CesToolWidgetToolTextResponseConfig {
-  const CesToolWidgetToolTextResponseConfig({
+final class CesToolTextResponseConfig {
+  const CesToolTextResponseConfig({
     this.staticText,
     this.textResponseInstruction,
     this.type,
@@ -1048,7 +896,7 @@ final class CesToolWidgetToolTextResponseConfig {
 
   final TfArg<String>? textResponseInstruction;
 
-  final TfArg<CesToolWidgetToolTextResponseConfigType>? type;
+  final TfArg<CesToolType>? type;
 
   Map<String, Object?> encode() => {
     'static_text': ?staticText?.toTfJson(),
@@ -1058,13 +906,13 @@ final class CesToolWidgetToolTextResponseConfig {
 }
 
 /// `type` — derived from the provider schema description.
-enum CesToolWidgetToolTextResponseConfigType implements TerraformEnum {
+enum CesToolType implements TerraformEnum {
   typeUnspecified('TYPE_UNSPECIFIED'),
   none('NONE'),
   llmGenerated('LLM_GENERATED'),
   static('STATIC');
 
-  const CesToolWidgetToolTextResponseConfigType(this.terraformValue);
+  const CesToolType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1115,7 +963,7 @@ final class GoogleCesTool extends Resource {
     CesToolFileSearchTool? fileSearchTool,
     CesToolWidgetTool? widgetTool,
     CesToolAgentTool? agentTool,
-    CesToolToolFakeConfig? toolFakeConfig,
+    CesToolFakeConfig? toolFakeConfig,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,

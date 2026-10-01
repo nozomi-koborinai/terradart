@@ -16,46 +16,43 @@ export 'src/s3/aws_s3_bucket.dart'
         S3BucketAccelerationStatus,
         S3BucketAccess,
         S3BucketAccessAcl,
+        S3BucketAccessControlTranslation,
         S3BucketAccessGrant,
         S3BucketBucketNamespace,
         S3BucketCorsRule,
+        S3BucketDeleteMarkerReplicationStatus,
+        S3BucketDestination,
+        S3BucketDestinationStorageClass,
+        S3BucketExpiration,
+        S3BucketFilter,
         S3BucketGrant,
-        S3BucketGrantPermissions,
-        S3BucketGrantType,
         S3BucketLifecycleRule,
-        S3BucketLifecycleRuleExpiration,
-        S3BucketLifecycleRuleNoncurrentVersionExpiration,
-        S3BucketLifecycleRuleNoncurrentVersionTransition,
-        S3BucketLifecycleRuleNoncurrentVersionTransitionStorageClass,
-        S3BucketLifecycleRuleTransition,
-        S3BucketLifecycleRuleTransitionStorageClass,
         S3BucketLogging,
+        S3BucketMetrics,
+        S3BucketMode,
+        S3BucketModeIndexDocument,
+        S3BucketModeRedirectAllRequestsTo,
         S3BucketName,
         S3BucketNameBucket,
         S3BucketNameBucketPrefix,
+        S3BucketNoncurrentVersionExpiration,
+        S3BucketNoncurrentVersionTransition,
+        S3BucketOwner,
+        S3BucketPermissions,
         S3BucketReplicationConfiguration,
-        S3BucketReplicationConfigurationRules,
-        S3BucketReplicationConfigurationRulesDeleteMarkerReplicationStatus,
-        S3BucketReplicationConfigurationRulesDestination,
-        S3BucketReplicationConfigurationRulesDestinationAccessControlTranslation,
-        S3BucketReplicationConfigurationRulesDestinationAccessControlTranslationOwner,
-        S3BucketReplicationConfigurationRulesDestinationMetrics,
-        S3BucketReplicationConfigurationRulesDestinationMetricsStatus,
-        S3BucketReplicationConfigurationRulesDestinationReplicationTime,
-        S3BucketReplicationConfigurationRulesDestinationReplicationTimeStatus,
-        S3BucketReplicationConfigurationRulesDestinationStorageClass,
-        S3BucketReplicationConfigurationRulesFilter,
-        S3BucketReplicationConfigurationRulesSourceSelectionCriteria,
-        S3BucketReplicationConfigurationRulesSourceSelectionCriteriaSseKmsEncryptedObjects,
-        S3BucketReplicationConfigurationRulesStatus,
+        S3BucketReplicationTime,
         S3BucketRequestPayer,
+        S3BucketRules,
+        S3BucketSourceSelectionCriteria,
+        S3BucketSseKmsEncryptedObjects,
+        S3BucketStatus,
+        S3BucketStorageClass,
+        S3BucketTransition,
+        S3BucketType,
         S3BucketVersioning,
-        S3BucketWebsite,
-        S3BucketWebsiteMode,
-        S3BucketWebsiteModeIndexDocument,
-        S3BucketWebsiteModeRedirectAllRequestsTo;
+        S3BucketWebsite;
 export 'src/s3/aws_s3_bucket_abac.dart'
-    show AwsS3BucketAbac, S3BucketAbacAbacStatus;
+    show AwsS3BucketAbac, S3BucketAbacStatus;
 export 'src/s3/aws_s3_bucket_accelerate_configuration.dart'
     show
         AwsS3BucketAccelerateConfiguration,
@@ -64,91 +61,88 @@ export 'src/s3/aws_s3_bucket_acl.dart'
     show
         AwsS3BucketAcl,
         S3BucketAclAccessControlPolicy,
-        S3BucketAclAccessControlPolicyGrant,
-        S3BucketAclAccessControlPolicyGrantGrantee,
-        S3BucketAclAccessControlPolicyGrantGranteeType,
-        S3BucketAclAccessControlPolicyGrantPermission,
-        S3BucketAclAccessControlPolicyOwner,
+        S3BucketAclAccessControlPolicyChoice,
+        S3BucketAclGrant,
+        S3BucketAclGrantee,
+        S3BucketAclOwner,
+        S3BucketAclPermission,
         S3BucketAclPolicy,
-        S3BucketAclPolicyAccessControlPolicy,
-        S3BucketAclPolicyAcl;
+        S3BucketAclPolicyAcl,
+        S3BucketAclType;
 export 'src/s3/aws_s3_bucket_analytics_configuration.dart'
     show
         AwsS3BucketAnalyticsConfiguration,
+        S3BucketAnalyticsConfigurationDataExport,
+        S3BucketAnalyticsConfigurationDestination,
         S3BucketAnalyticsConfigurationFilter,
-        S3BucketAnalyticsConfigurationStorageClassAnalysis,
-        S3BucketAnalyticsConfigurationStorageClassAnalysisDataExport,
-        S3BucketAnalyticsConfigurationStorageClassAnalysisDataExportDestination,
-        S3BucketAnalyticsConfigurationStorageClassAnalysisDataExportDestinationS3BucketDestination,
-        S3BucketAnalyticsConfigurationStorageClassAnalysisDataExportDestinationS3BucketDestinationFormat,
-        S3BucketAnalyticsConfigurationStorageClassAnalysisDataExportOutputSchemaVersion;
+        S3BucketAnalyticsConfigurationFormat,
+        S3BucketAnalyticsConfigurationOutputSchemaVersion,
+        S3BucketAnalyticsConfigurationS3BucketDestination,
+        S3BucketAnalyticsConfigurationStorageClassAnalysis;
 export 'src/s3/aws_s3_bucket_cors_configuration.dart'
     show AwsS3BucketCorsConfiguration, S3BucketCorsConfigurationCorsRule;
 export 'src/s3/aws_s3_bucket_intelligent_tiering_configuration.dart'
     show
         AwsS3BucketIntelligentTieringConfiguration,
+        S3BucketIntelligentTieringConfigurationAccessTier,
         S3BucketIntelligentTieringConfigurationFilter,
         S3BucketIntelligentTieringConfigurationStatus,
-        S3BucketIntelligentTieringConfigurationTiering,
-        S3BucketIntelligentTieringConfigurationTieringAccessTier;
+        S3BucketIntelligentTieringConfigurationTiering;
 export 'src/s3/aws_s3_bucket_inventory.dart'
     show
         AwsS3BucketInventory,
         S3BucketInventoryDestination,
         S3BucketInventoryDestinationBucket,
-        S3BucketInventoryDestinationBucketEncryption,
-        S3BucketInventoryDestinationBucketEncryptionSseKms,
-        S3BucketInventoryDestinationBucketEncryptionSseKmsChoice,
-        S3BucketInventoryDestinationBucketEncryptionSseS3,
-        S3BucketInventoryDestinationBucketEncryptionSseS3Choice,
-        S3BucketInventoryDestinationBucketFormat,
+        S3BucketInventoryEncryption,
+        S3BucketInventoryEncryptionSseKms,
+        S3BucketInventoryEncryptionSseS3,
         S3BucketInventoryFilter,
+        S3BucketInventoryFormat,
+        S3BucketInventoryFrequency,
         S3BucketInventoryIncludedObjectVersions,
         S3BucketInventoryOptionalFields,
         S3BucketInventorySchedule,
-        S3BucketInventoryScheduleFrequency;
+        S3BucketInventorySseKms,
+        S3BucketInventorySseS3;
 export 'src/s3/aws_s3_bucket_lifecycle_configuration.dart'
     show
         AwsS3BucketLifecycleConfiguration,
+        S3BucketLifecycleConfigurationAbortIncompleteMultipartUpload,
+        S3BucketLifecycleConfigurationAnd,
+        S3BucketLifecycleConfigurationExpiration,
+        S3BucketLifecycleConfigurationFilter,
+        S3BucketLifecycleConfigurationNoncurrentVersionExpiration,
+        S3BucketLifecycleConfigurationNoncurrentVersionTransition,
         S3BucketLifecycleConfigurationRule,
-        S3BucketLifecycleConfigurationRuleAbortIncompleteMultipartUpload,
-        S3BucketLifecycleConfigurationRuleExpiration,
-        S3BucketLifecycleConfigurationRuleFilter,
-        S3BucketLifecycleConfigurationRuleFilterAnd,
-        S3BucketLifecycleConfigurationRuleFilterTag,
-        S3BucketLifecycleConfigurationRuleNoncurrentVersionExpiration,
-        S3BucketLifecycleConfigurationRuleNoncurrentVersionTransition,
-        S3BucketLifecycleConfigurationRuleNoncurrentVersionTransitionStorageClass,
-        S3BucketLifecycleConfigurationRuleStatus,
-        S3BucketLifecycleConfigurationRuleTransition,
-        S3BucketLifecycleConfigurationRuleTransitionStorageClass,
+        S3BucketLifecycleConfigurationStatus,
+        S3BucketLifecycleConfigurationStorageClass,
+        S3BucketLifecycleConfigurationTag,
+        S3BucketLifecycleConfigurationTransition,
         S3BucketLifecycleConfigurationTransitionDefaultMinimumObjectSize;
 export 'src/s3/aws_s3_bucket_logging.dart'
     show
         AwsS3BucketLogging,
+        S3BucketLoggingGrantee,
+        S3BucketLoggingPartitionDateSource,
+        S3BucketLoggingPartitionedPrefix,
+        S3BucketLoggingPermission,
+        S3BucketLoggingSimplePrefix,
         S3BucketLoggingTargetGrant,
-        S3BucketLoggingTargetGrantGrantee,
-        S3BucketLoggingTargetGrantGranteeType,
-        S3BucketLoggingTargetGrantPermission,
         S3BucketLoggingTargetObjectKeyFormat,
         S3BucketLoggingTargetObjectKeyFormatPartitionedPrefix,
-        S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixChoice,
-        S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixPartitionDateSource,
         S3BucketLoggingTargetObjectKeyFormatSimplePrefix,
-        S3BucketLoggingTargetObjectKeyFormatSimplePrefixChoice;
+        S3BucketLoggingType;
 export 'src/s3/aws_s3_bucket_metadata_configuration.dart'
     show
         AwsS3BucketMetadataConfiguration,
+        S3BucketMetadataConfigurationEncryptionConfiguration,
+        S3BucketMetadataConfigurationExpiration,
+        S3BucketMetadataConfigurationInventoryTableConfiguration,
+        S3BucketMetadataConfigurationJournalTableConfiguration,
         S3BucketMetadataConfigurationMetadataConfiguration,
-        S3BucketMetadataConfigurationMetadataConfigurationInventoryTableConfiguration,
-        S3BucketMetadataConfigurationMetadataConfigurationInventoryTableConfigurationConfigurationState,
-        S3BucketMetadataConfigurationMetadataConfigurationInventoryTableConfigurationEncryptionConfiguration,
-        S3BucketMetadataConfigurationMetadataConfigurationInventoryTableConfigurationEncryptionConfigurationSseAlgorithm,
-        S3BucketMetadataConfigurationMetadataConfigurationJournalTableConfiguration,
-        S3BucketMetadataConfigurationMetadataConfigurationJournalTableConfigurationEncryptionConfiguration,
-        S3BucketMetadataConfigurationMetadataConfigurationJournalTableConfigurationEncryptionConfigurationSseAlgorithm,
-        S3BucketMetadataConfigurationMetadataConfigurationJournalTableConfigurationRecordExpiration,
-        S3BucketMetadataConfigurationMetadataConfigurationJournalTableConfigurationRecordExpirationExpiration;
+        S3BucketMetadataConfigurationRecordExpiration,
+        S3BucketMetadataConfigurationSseAlgorithm,
+        S3BucketMetadataConfigurationState;
 export 'src/s3/aws_s3_bucket_metric.dart'
     show AwsS3BucketMetric, S3BucketMetricFilter;
 export 'src/s3/aws_s3_bucket_notification.dart'
@@ -175,49 +169,43 @@ export 'src/s3/aws_s3_bucket_object.dart'
 export 'src/s3/aws_s3_bucket_object_lock_configuration.dart'
     show
         AwsS3BucketObjectLockConfiguration,
+        S3BucketObjectLockConfigurationDefaultRetention,
+        S3BucketObjectLockConfigurationMode,
         S3BucketObjectLockConfigurationObjectLockEnabled,
-        S3BucketObjectLockConfigurationRule,
-        S3BucketObjectLockConfigurationRuleDefaultRetention,
-        S3BucketObjectLockConfigurationRuleDefaultRetentionMode,
-        S3BucketObjectLockConfigurationRuleDefaultRetentionPeriod,
-        S3BucketObjectLockConfigurationRuleDefaultRetentionPeriodDays,
-        S3BucketObjectLockConfigurationRuleDefaultRetentionPeriodYears;
+        S3BucketObjectLockConfigurationPeriod,
+        S3BucketObjectLockConfigurationPeriodDays,
+        S3BucketObjectLockConfigurationPeriodYears,
+        S3BucketObjectLockConfigurationRule;
 export 'src/s3/aws_s3_bucket_ownership_controls.dart'
     show
         AwsS3BucketOwnershipControls,
-        S3BucketOwnershipControlsRule,
-        S3BucketOwnershipControlsRuleObjectOwnership;
+        S3BucketOwnershipControlsObjectOwnership,
+        S3BucketOwnershipControlsRule;
 export 'src/s3/aws_s3_bucket_policy.dart' show AwsS3BucketPolicy;
 export 'src/s3/aws_s3_bucket_public_access_block.dart'
     show AwsS3BucketPublicAccessBlock;
 export 'src/s3/aws_s3_bucket_replication_configuration.dart'
     show
         AwsS3BucketReplicationConfiguration,
+        S3BucketReplicationConfigurationAccessControlTranslation,
+        S3BucketReplicationConfigurationAnd,
+        S3BucketReplicationConfigurationDeleteMarkerReplication,
+        S3BucketReplicationConfigurationDestination,
+        S3BucketReplicationConfigurationEncryptionConfiguration,
+        S3BucketReplicationConfigurationEventThreshold,
+        S3BucketReplicationConfigurationExistingObjectReplication,
+        S3BucketReplicationConfigurationFilter,
+        S3BucketReplicationConfigurationMetrics,
+        S3BucketReplicationConfigurationOwner,
+        S3BucketReplicationConfigurationReplicaModifications,
+        S3BucketReplicationConfigurationReplicationTime,
         S3BucketReplicationConfigurationRule,
-        S3BucketReplicationConfigurationRuleDeleteMarkerReplication,
-        S3BucketReplicationConfigurationRuleDeleteMarkerReplicationStatus,
-        S3BucketReplicationConfigurationRuleDestination,
-        S3BucketReplicationConfigurationRuleDestinationAccessControlTranslation,
-        S3BucketReplicationConfigurationRuleDestinationAccessControlTranslationOwner,
-        S3BucketReplicationConfigurationRuleDestinationEncryptionConfiguration,
-        S3BucketReplicationConfigurationRuleDestinationMetrics,
-        S3BucketReplicationConfigurationRuleDestinationMetricsEventThreshold,
-        S3BucketReplicationConfigurationRuleDestinationMetricsStatus,
-        S3BucketReplicationConfigurationRuleDestinationReplicationTime,
-        S3BucketReplicationConfigurationRuleDestinationReplicationTimeStatus,
-        S3BucketReplicationConfigurationRuleDestinationReplicationTimeTime,
-        S3BucketReplicationConfigurationRuleDestinationStorageClass,
-        S3BucketReplicationConfigurationRuleExistingObjectReplication,
-        S3BucketReplicationConfigurationRuleExistingObjectReplicationStatus,
-        S3BucketReplicationConfigurationRuleFilter,
-        S3BucketReplicationConfigurationRuleFilterAnd,
-        S3BucketReplicationConfigurationRuleFilterTag,
-        S3BucketReplicationConfigurationRuleSourceSelectionCriteria,
-        S3BucketReplicationConfigurationRuleSourceSelectionCriteriaReplicaModifications,
-        S3BucketReplicationConfigurationRuleSourceSelectionCriteriaReplicaModificationsStatus,
-        S3BucketReplicationConfigurationRuleSourceSelectionCriteriaSseKmsEncryptedObjects,
-        S3BucketReplicationConfigurationRuleSourceSelectionCriteriaSseKmsEncryptedObjectsStatus,
-        S3BucketReplicationConfigurationRuleStatus;
+        S3BucketReplicationConfigurationSourceSelectionCriteria,
+        S3BucketReplicationConfigurationSseKmsEncryptedObjects,
+        S3BucketReplicationConfigurationStatus,
+        S3BucketReplicationConfigurationStorageClass,
+        S3BucketReplicationConfigurationTag,
+        S3BucketReplicationConfigurationTime;
 export 'src/s3/aws_s3_bucket_request_payment_configuration.dart'
     show
         AwsS3BucketRequestPaymentConfiguration,
@@ -225,26 +213,25 @@ export 'src/s3/aws_s3_bucket_request_payment_configuration.dart'
 export 'src/s3/aws_s3_bucket_server_side_encryption_configuration.dart'
     show
         AwsS3BucketServerSideEncryptionConfiguration,
+        S3BucketServerSideEncryptionConfigurationApplyServerSideEncryptionByDefault,
+        S3BucketServerSideEncryptionConfigurationBlockedEncryptionTypes,
         S3BucketServerSideEncryptionConfigurationRule,
-        S3BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault,
-        S3BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultSseAlgorithm,
-        S3BucketServerSideEncryptionConfigurationRuleBlockedEncryptionTypes;
+        S3BucketServerSideEncryptionConfigurationSseAlgorithm;
 export 'src/s3/aws_s3_bucket_versioning.dart'
     show
         AwsS3BucketVersioning,
-        S3BucketVersioningVersioningConfiguration,
-        S3BucketVersioningVersioningConfigurationMfaDelete;
+        S3BucketVersioningConfiguration,
+        S3BucketVersioningMfaDelete;
 export 'src/s3/aws_s3_bucket_website_configuration.dart'
     show
         AwsS3BucketWebsiteConfiguration,
+        S3BucketWebsiteConfigurationCondition,
         S3BucketWebsiteConfigurationErrorDocument,
         S3BucketWebsiteConfigurationIndexDocument,
+        S3BucketWebsiteConfigurationProtocol,
+        S3BucketWebsiteConfigurationRedirect,
         S3BucketWebsiteConfigurationRedirectAllRequestsTo,
-        S3BucketWebsiteConfigurationRedirectAllRequestsToProtocol,
-        S3BucketWebsiteConfigurationRoutingRule,
-        S3BucketWebsiteConfigurationRoutingRuleCondition,
-        S3BucketWebsiteConfigurationRoutingRuleRedirect,
-        S3BucketWebsiteConfigurationRoutingRuleRedirectProtocol;
+        S3BucketWebsiteConfigurationRoutingRule;
 export 'src/s3/aws_s3_directory_bucket.dart'
     show AwsS3DirectoryBucket, S3DirectoryBucketLocation;
 export 'src/s3/aws_s3_object.dart'
@@ -256,13 +243,13 @@ export 'src/s3/aws_s3_object.dart'
         S3ObjectBodyContentBase64,
         S3ObjectBodySource,
         S3ObjectChecksumAlgorithm,
+        S3ObjectDefaultTags,
         S3ObjectIntegrity,
         S3ObjectIntegrityEtag,
         S3ObjectIntegrityKmsKeyId,
         S3ObjectObjectLockLegalHoldStatus,
         S3ObjectObjectLockMode,
         S3ObjectOverrideProvider,
-        S3ObjectOverrideProviderDefaultTags,
         S3ObjectServerSideEncryption,
         S3ObjectStorageClass;
 export 'src/s3/aws_s3_object_copy.dart'
@@ -273,15 +260,15 @@ export 'src/s3/aws_s3_object_copy.dart'
         S3ObjectCopyAccessGrant,
         S3ObjectCopyAcl,
         S3ObjectCopyChecksumAlgorithm,
+        S3ObjectCopyDefaultTags,
         S3ObjectCopyGrant,
-        S3ObjectCopyGrantPermissions,
-        S3ObjectCopyGrantType,
         S3ObjectCopyMetadataDirective,
         S3ObjectCopyObjectLockLegalHoldStatus,
         S3ObjectCopyObjectLockMode,
         S3ObjectCopyOverrideProvider,
-        S3ObjectCopyOverrideProviderDefaultTags,
+        S3ObjectCopyPermissions,
         S3ObjectCopyRequestPayer,
         S3ObjectCopyServerSideEncryption,
         S3ObjectCopyStorageClass,
-        S3ObjectCopyTaggingDirective;
+        S3ObjectCopyTaggingDirective,
+        S3ObjectCopyType;

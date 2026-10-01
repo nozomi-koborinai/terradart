@@ -19,7 +19,7 @@ final class SsoadminPermissionsBoundaryAttachmentPermissionsBoundary {
 
   final TfArg<String>? managedPolicyArn;
 
-  final SsoadminPermissionsBoundaryAttachmentPermissionsBoundaryCustomerManagedPolicyReference?
+  final SsoadminPermissionsBoundaryAttachmentCustomerManagedPolicyReference?
   customerManagedPolicyReference;
 
   Map<String, Object?> encode() => {
@@ -32,8 +32,8 @@ final class SsoadminPermissionsBoundaryAttachmentPermissionsBoundary {
 /// Typed helper for the `permissions_boundary.customer_managed_policy_reference` block of
 /// `aws_ssoadmin_permissions_boundary_attachment` (derived from provider schema).
 @immutable
-final class SsoadminPermissionsBoundaryAttachmentPermissionsBoundaryCustomerManagedPolicyReference {
-  const SsoadminPermissionsBoundaryAttachmentPermissionsBoundaryCustomerManagedPolicyReference({
+final class SsoadminPermissionsBoundaryAttachmentCustomerManagedPolicyReference {
+  const SsoadminPermissionsBoundaryAttachmentCustomerManagedPolicyReference({
     required this.name,
     this.path,
   });

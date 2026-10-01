@@ -27,12 +27,12 @@ sealed class ImagebuilderImagePipelineRecipeArn {
   /// Sets `container_recipe_arn`.
   const factory ImagebuilderImagePipelineRecipeArn.containerRecipeArn(
     TfArg<String> containerRecipeArn,
-  ) = ImagebuilderImagePipelineRecipeArnContainerRecipeArn;
+  ) = ImagebuilderImagePipelineContainerRecipeArn;
 
   /// Sets `image_recipe_arn`.
   const factory ImagebuilderImagePipelineRecipeArn.imageRecipeArn(
     TfArg<String> imageRecipeArn,
-  ) = ImagebuilderImagePipelineRecipeArnImageRecipeArn;
+  ) = ImagebuilderImagePipelineImageRecipeArn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -45,11 +45,9 @@ sealed class ImagebuilderImagePipelineRecipeArn {
 }
 
 /// The [ImagebuilderImagePipelineRecipeArn.containerRecipeArn] choice: sets `container_recipe_arn`.
-final class ImagebuilderImagePipelineRecipeArnContainerRecipeArn
+final class ImagebuilderImagePipelineContainerRecipeArn
     extends ImagebuilderImagePipelineRecipeArn {
-  const ImagebuilderImagePipelineRecipeArnContainerRecipeArn(
-    this.containerRecipeArn,
-  );
+  const ImagebuilderImagePipelineContainerRecipeArn(this.containerRecipeArn);
 
   final TfArg<String> containerRecipeArn;
 
@@ -68,9 +66,9 @@ final class ImagebuilderImagePipelineRecipeArnContainerRecipeArn
 }
 
 /// The [ImagebuilderImagePipelineRecipeArn.imageRecipeArn] choice: sets `image_recipe_arn`.
-final class ImagebuilderImagePipelineRecipeArnImageRecipeArn
+final class ImagebuilderImagePipelineImageRecipeArn
     extends ImagebuilderImagePipelineRecipeArn {
-  const ImagebuilderImagePipelineRecipeArnImageRecipeArn(this.imageRecipeArn);
+  const ImagebuilderImagePipelineImageRecipeArn(this.imageRecipeArn);
 
   final TfArg<String> imageRecipeArn;
 
@@ -99,8 +97,7 @@ final class ImagebuilderImagePipelineImageScanningConfiguration {
 
   final TfArg<bool>? imageScanningEnabled;
 
-  final ImagebuilderImagePipelineImageScanningConfigurationEcrConfiguration?
-  ecrConfiguration;
+  final ImagebuilderImagePipelineEcrConfiguration? ecrConfiguration;
 
   Map<String, Object?> encode() => {
     'image_scanning_enabled': ?imageScanningEnabled?.toTfJson(),
@@ -111,8 +108,8 @@ final class ImagebuilderImagePipelineImageScanningConfiguration {
 /// Typed helper for the `image_scanning_configuration.ecr_configuration` block of
 /// `aws_imagebuilder_image_pipeline` (derived from provider schema).
 @immutable
-final class ImagebuilderImagePipelineImageScanningConfigurationEcrConfiguration {
-  const ImagebuilderImagePipelineImageScanningConfigurationEcrConfiguration({
+final class ImagebuilderImagePipelineEcrConfiguration {
+  const ImagebuilderImagePipelineEcrConfiguration({
     this.containerTags,
     this.repositoryName,
   });
@@ -175,7 +172,7 @@ final class ImagebuilderImagePipelineSchedule {
     this.timezone,
   });
 
-  final TfArg<ImagebuilderImagePipelineSchedulePipelineExecutionStartCondition>?
+  final TfArg<ImagebuilderImagePipelineExecutionStartCondition>?
   pipelineExecutionStartCondition;
 
   final TfArg<String> scheduleExpression;
@@ -191,16 +188,13 @@ final class ImagebuilderImagePipelineSchedule {
 }
 
 /// `pipeline_execution_start_condition` — derived from the provider schema description.
-enum ImagebuilderImagePipelineSchedulePipelineExecutionStartCondition
-    implements TerraformEnum {
+enum ImagebuilderImagePipelineExecutionStartCondition implements TerraformEnum {
   expressionMatchOnly('EXPRESSION_MATCH_ONLY'),
   expressionMatchAndDependencyUpdatesAvailable(
     'EXPRESSION_MATCH_AND_DEPENDENCY_UPDATES_AVAILABLE',
   );
 
-  const ImagebuilderImagePipelineSchedulePipelineExecutionStartCondition(
-    this.terraformValue,
-  );
+  const ImagebuilderImagePipelineExecutionStartCondition(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -216,13 +210,13 @@ final class ImagebuilderImagePipelineWorkflow {
     this.parameter,
   });
 
-  final TfArg<ImagebuilderImagePipelineWorkflowOnFailure>? onFailure;
+  final TfArg<ImagebuilderImagePipelineOnFailure>? onFailure;
 
   final TfArg<String>? parallelGroup;
 
   final TfArg<String> workflowArn;
 
-  final List<ImagebuilderImagePipelineWorkflowParameter>? parameter;
+  final List<ImagebuilderImagePipelineParameter>? parameter;
 
   Map<String, Object?> encode() => {
     'on_failure': ?onFailure?.toTfJson(),
@@ -234,11 +228,11 @@ final class ImagebuilderImagePipelineWorkflow {
 }
 
 /// `on_failure` — derived from the provider schema description.
-enum ImagebuilderImagePipelineWorkflowOnFailure implements TerraformEnum {
+enum ImagebuilderImagePipelineOnFailure implements TerraformEnum {
   continueCase('CONTINUE'),
   abort('ABORT');
 
-  const ImagebuilderImagePipelineWorkflowOnFailure(this.terraformValue);
+  const ImagebuilderImagePipelineOnFailure(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -246,8 +240,8 @@ enum ImagebuilderImagePipelineWorkflowOnFailure implements TerraformEnum {
 /// Typed helper for the `workflow.parameter` block of
 /// `aws_imagebuilder_image_pipeline` (derived from provider schema).
 @immutable
-final class ImagebuilderImagePipelineWorkflowParameter {
-  const ImagebuilderImagePipelineWorkflowParameter({
+final class ImagebuilderImagePipelineParameter {
+  const ImagebuilderImagePipelineParameter({
     required this.name,
     required this.value,
   });

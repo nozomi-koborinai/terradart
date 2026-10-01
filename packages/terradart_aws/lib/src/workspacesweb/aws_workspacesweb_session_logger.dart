@@ -18,13 +18,13 @@ sealed class WorkspaceswebSessionLoggerEventFilter {
 
   /// Sets `all`.
   const factory WorkspaceswebSessionLoggerEventFilter.all(
-    List<WorkspaceswebSessionLoggerEventFilterAll> all,
-  ) = WorkspaceswebSessionLoggerEventFilterAllChoice;
+    List<WorkspaceswebSessionLoggerAll> all,
+  ) = WorkspaceswebSessionLoggerEventFilterAll;
 
   /// Sets `include`.
   const factory WorkspaceswebSessionLoggerEventFilter.include(
-    List<TfArg<WorkspaceswebSessionLoggerEventFilterInclude>> include,
-  ) = WorkspaceswebSessionLoggerEventFilterIncludeChoice;
+    List<TfArg<WorkspaceswebSessionLoggerInclude>> include,
+  ) = WorkspaceswebSessionLoggerEventFilterInclude;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,11 +33,11 @@ sealed class WorkspaceswebSessionLoggerEventFilter {
 }
 
 /// The [WorkspaceswebSessionLoggerEventFilter.all] choice: sets `all`.
-final class WorkspaceswebSessionLoggerEventFilterAllChoice
+final class WorkspaceswebSessionLoggerEventFilterAll
     extends WorkspaceswebSessionLoggerEventFilter {
-  const WorkspaceswebSessionLoggerEventFilterAllChoice(this.all);
+  const WorkspaceswebSessionLoggerEventFilterAll(this.all);
 
-  final List<WorkspaceswebSessionLoggerEventFilterAll> all;
+  final List<WorkspaceswebSessionLoggerAll> all;
 
   @override
   String get blockKey => 'all';
@@ -49,11 +49,11 @@ final class WorkspaceswebSessionLoggerEventFilterAllChoice
 }
 
 /// The [WorkspaceswebSessionLoggerEventFilter.include] choice: sets `include`.
-final class WorkspaceswebSessionLoggerEventFilterIncludeChoice
+final class WorkspaceswebSessionLoggerEventFilterInclude
     extends WorkspaceswebSessionLoggerEventFilter {
-  const WorkspaceswebSessionLoggerEventFilterIncludeChoice(this.include);
+  const WorkspaceswebSessionLoggerEventFilterInclude(this.include);
 
-  final List<TfArg<WorkspaceswebSessionLoggerEventFilterInclude>> include;
+  final List<TfArg<WorkspaceswebSessionLoggerInclude>> include;
 
   @override
   String get blockKey => 'include';
@@ -65,7 +65,7 @@ final class WorkspaceswebSessionLoggerEventFilterIncludeChoice
 }
 
 /// `include` — derived from the provider schema description.
-enum WorkspaceswebSessionLoggerEventFilterInclude implements TerraformEnum {
+enum WorkspaceswebSessionLoggerInclude implements TerraformEnum {
   websiteinteract('WebsiteInteract'),
   filedownloadfromsecurebrowsertoremotedisk(
     'FileDownloadFromSecureBrowserToRemoteDisk',
@@ -90,7 +90,7 @@ enum WorkspaceswebSessionLoggerEventFilterInclude implements TerraformEnum {
   sessionend('SessionEnd'),
   urlblockbycontentfilter('UrlBlockByContentFilter');
 
-  const WorkspaceswebSessionLoggerEventFilterInclude(this.terraformValue);
+  const WorkspaceswebSessionLoggerInclude(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -98,8 +98,8 @@ enum WorkspaceswebSessionLoggerEventFilterInclude implements TerraformEnum {
 /// Typed helper for the `event_filter.all` block of
 /// `aws_workspacesweb_session_logger` (derived from provider schema).
 @immutable
-final class WorkspaceswebSessionLoggerEventFilterAll {
-  const WorkspaceswebSessionLoggerEventFilterAll();
+final class WorkspaceswebSessionLoggerAll {
+  const WorkspaceswebSessionLoggerAll();
 
   Map<String, Object?> encode() => {};
 }
@@ -110,7 +110,7 @@ final class WorkspaceswebSessionLoggerEventFilterAll {
 final class WorkspaceswebSessionLoggerLogConfiguration {
   const WorkspaceswebSessionLoggerLogConfiguration({this.s3});
 
-  final List<WorkspaceswebSessionLoggerLogConfigurationS3>? s3;
+  final List<WorkspaceswebSessionLoggerS3>? s3;
 
   Map<String, Object?> encode() => {
     if (s3 != null) 's3': [for (final e in s3!) e.encode()],
@@ -120,8 +120,8 @@ final class WorkspaceswebSessionLoggerLogConfiguration {
 /// Typed helper for the `log_configuration.s3` block of
 /// `aws_workspacesweb_session_logger` (derived from provider schema).
 @immutable
-final class WorkspaceswebSessionLoggerLogConfigurationS3 {
-  const WorkspaceswebSessionLoggerLogConfigurationS3({
+final class WorkspaceswebSessionLoggerS3 {
+  const WorkspaceswebSessionLoggerS3({
     required this.bucket,
     this.bucketOwner,
     required this.folderStructure,
@@ -133,13 +133,11 @@ final class WorkspaceswebSessionLoggerLogConfigurationS3 {
 
   final TfArg<String>? bucketOwner;
 
-  final TfArg<WorkspaceswebSessionLoggerLogConfigurationS3FolderStructure>
-  folderStructure;
+  final TfArg<WorkspaceswebSessionLoggerFolderStructure> folderStructure;
 
   final TfArg<String>? keyPrefix;
 
-  final TfArg<WorkspaceswebSessionLoggerLogConfigurationS3LogFileFormat>
-  logFileFormat;
+  final TfArg<WorkspaceswebSessionLoggerLogFileFormat> logFileFormat;
 
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
@@ -151,27 +149,21 @@ final class WorkspaceswebSessionLoggerLogConfigurationS3 {
 }
 
 /// `folder_structure` — derived from the provider schema description.
-enum WorkspaceswebSessionLoggerLogConfigurationS3FolderStructure
-    implements TerraformEnum {
+enum WorkspaceswebSessionLoggerFolderStructure implements TerraformEnum {
   flat('Flat'),
   nestedbydate('NestedByDate');
 
-  const WorkspaceswebSessionLoggerLogConfigurationS3FolderStructure(
-    this.terraformValue,
-  );
+  const WorkspaceswebSessionLoggerFolderStructure(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `log_file_format` — derived from the provider schema description.
-enum WorkspaceswebSessionLoggerLogConfigurationS3LogFileFormat
-    implements TerraformEnum {
+enum WorkspaceswebSessionLoggerLogFileFormat implements TerraformEnum {
   jsonlines('JSONLines'),
   json('Json');
 
-  const WorkspaceswebSessionLoggerLogConfigurationS3LogFileFormat(
-    this.terraformValue,
-  );
+  const WorkspaceswebSessionLoggerLogFileFormat(this.terraformValue);
   @override
   final String terraformValue;
 }

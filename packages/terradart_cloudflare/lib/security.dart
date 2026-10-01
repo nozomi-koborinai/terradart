@@ -24,9 +24,9 @@ export 'src/security/cloudflare_firewall_rule.dart'
     show
         CloudflareFirewallRule,
         FirewallRuleAction,
-        FirewallRuleActionMode,
-        FirewallRuleActionResponse,
-        FirewallRuleFilter;
+        FirewallRuleFilter,
+        FirewallRuleMode,
+        FirewallRuleResponse;
 export 'src/security/cloudflare_leaked_credential_check.dart'
     show CloudflareLeakedCredentialCheck;
 export 'src/security/cloudflare_leaked_credential_check_rule.dart'
@@ -37,20 +37,20 @@ export 'src/security/cloudflare_rate_limit.dart'
     show
         CloudflareRateLimit,
         RateLimitAction,
-        RateLimitActionMode,
         RateLimitActionResponse,
+        RateLimitHeaders,
         RateLimitMatch,
-        RateLimitMatchHeaders,
-        RateLimitMatchHeadersOp,
-        RateLimitMatchRequest,
-        RateLimitMatchRequestMethods,
-        RateLimitMatchResponse;
+        RateLimitMatchResponse,
+        RateLimitMethods,
+        RateLimitMode,
+        RateLimitOp,
+        RateLimitRequest;
 export 'src/security/cloudflare_user_agent_blocking_rule.dart'
     show
         CloudflareUserAgentBlockingRule,
         UserAgentBlockingRuleConfiguration,
-        UserAgentBlockingRuleConfigurationTarget,
-        UserAgentBlockingRuleMode;
+        UserAgentBlockingRuleMode,
+        UserAgentBlockingRuleTarget;
 export 'src/security/cloudflare_vulnerability_scanner_credential.dart'
     show
         CloudflareVulnerabilityScannerCredential,
@@ -61,4 +61,4 @@ export 'src/security/cloudflare_vulnerability_scanner_target_environment.dart'
     show
         CloudflareVulnerabilityScannerTargetEnvironment,
         VulnerabilityScannerTargetEnvironmentTarget,
-        VulnerabilityScannerTargetEnvironmentTargetType;
+        VulnerabilityScannerTargetEnvironmentType;

@@ -48,7 +48,7 @@ final class ManagedKafkaClusterGcpConfig {
 
   final RefTo<GoogleKmsCryptoKey>? kmsKey;
 
-  final ManagedKafkaClusterGcpConfigAccessConfig accessConfig;
+  final ManagedKafkaClusterAccessConfig accessConfig;
 
   Map<String, Object?> encode() => {
     'kms_key': ?kmsKey?.encodeAs('id').toTfJson(),
@@ -59,17 +59,15 @@ final class ManagedKafkaClusterGcpConfig {
 /// Typed helper for the `gcp_config.access_config` block of
 /// `google_managed_kafka_cluster` (derived from provider schema).
 @immutable
-final class ManagedKafkaClusterGcpConfigAccessConfig {
-  const ManagedKafkaClusterGcpConfigAccessConfig({
+final class ManagedKafkaClusterAccessConfig {
+  const ManagedKafkaClusterAccessConfig({
     required this.networkConfigs,
     this.publicClusterConfig,
   });
 
-  final List<ManagedKafkaClusterGcpConfigAccessConfigNetworkConfigs>
-  networkConfigs;
+  final List<ManagedKafkaClusterNetworkConfigs> networkConfigs;
 
-  final ManagedKafkaClusterGcpConfigAccessConfigPublicClusterConfig?
-  publicClusterConfig;
+  final ManagedKafkaClusterPublicClusterConfig? publicClusterConfig;
 
   Map<String, Object?> encode() => {
     'network_configs': [for (final e in networkConfigs) e.encode()],
@@ -80,10 +78,8 @@ final class ManagedKafkaClusterGcpConfigAccessConfig {
 /// Typed helper for the `gcp_config.access_config.network_configs` block of
 /// `google_managed_kafka_cluster` (derived from provider schema).
 @immutable
-final class ManagedKafkaClusterGcpConfigAccessConfigNetworkConfigs {
-  const ManagedKafkaClusterGcpConfigAccessConfigNetworkConfigs({
-    required this.subnet,
-  });
+final class ManagedKafkaClusterNetworkConfigs {
+  const ManagedKafkaClusterNetworkConfigs({required this.subnet});
 
   final RefTo<GoogleComputeSubnetwork> subnet;
 
@@ -93,8 +89,8 @@ final class ManagedKafkaClusterGcpConfigAccessConfigNetworkConfigs {
 /// Typed helper for the `gcp_config.access_config.public_cluster_config` block of
 /// `google_managed_kafka_cluster` (derived from provider schema).
 @immutable
-final class ManagedKafkaClusterGcpConfigAccessConfigPublicClusterConfig {
-  const ManagedKafkaClusterGcpConfigAccessConfigPublicClusterConfig({
+final class ManagedKafkaClusterPublicClusterConfig {
+  const ManagedKafkaClusterPublicClusterConfig({
     required this.allowedSourceIpRanges,
   });
 
@@ -127,7 +123,7 @@ final class ManagedKafkaClusterTlsConfig {
 
   final TfArg<String>? sslPrincipalMappingRules;
 
-  final ManagedKafkaClusterTlsConfigTrustConfig? trustConfig;
+  final ManagedKafkaClusterTrustConfig? trustConfig;
 
   Map<String, Object?> encode() => {
     'ssl_principal_mapping_rules': ?sslPrincipalMappingRules?.toTfJson(),
@@ -138,10 +134,10 @@ final class ManagedKafkaClusterTlsConfig {
 /// Typed helper for the `tls_config.trust_config` block of
 /// `google_managed_kafka_cluster` (derived from provider schema).
 @immutable
-final class ManagedKafkaClusterTlsConfigTrustConfig {
-  const ManagedKafkaClusterTlsConfigTrustConfig({this.casConfigs});
+final class ManagedKafkaClusterTrustConfig {
+  const ManagedKafkaClusterTrustConfig({this.casConfigs});
 
-  final List<ManagedKafkaClusterTlsConfigTrustConfigCasConfigs>? casConfigs;
+  final List<ManagedKafkaClusterCasConfigs>? casConfigs;
 
   Map<String, Object?> encode() => {
     if (casConfigs != null)
@@ -152,10 +148,8 @@ final class ManagedKafkaClusterTlsConfigTrustConfig {
 /// Typed helper for the `tls_config.trust_config.cas_configs` block of
 /// `google_managed_kafka_cluster` (derived from provider schema).
 @immutable
-final class ManagedKafkaClusterTlsConfigTrustConfigCasConfigs {
-  const ManagedKafkaClusterTlsConfigTrustConfigCasConfigs({
-    required this.caPool,
-  });
+final class ManagedKafkaClusterCasConfigs {
+  const ManagedKafkaClusterCasConfigs({required this.caPool});
 
   final TfArg<String> caPool;
 
@@ -191,9 +185,9 @@ final class ManagedKafkaClusterTlsConfigTrustConfigCasConfigs {
 ///     memoryBytes: TfArg.literal('3221225472'), // 3 GiB
 ///   ),
 ///   gcpConfig: ManagedKafkaClusterGcpConfig(
-///     accessConfig: ManagedKafkaClusterGcpConfigAccessConfig(
+///     accessConfig: ManagedKafkaClusterAccessConfig(
 ///       networkConfigs: [
-///         ManagedKafkaClusterGcpConfigAccessConfigNetworkConfigs(
+///         ManagedKafkaClusterNetworkConfigs(
 ///           subnet: subnet.ref,
 ///         ),
 ///       ],

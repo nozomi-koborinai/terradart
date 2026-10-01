@@ -653,6 +653,10 @@ class WrapCommand extends Command<int> {
               entry.value,
             ),
             references: references[entry.key] ?? const {},
+            reservedTypeNames: providerEnums.rootSealedNames(
+              entry.key,
+              entry.value,
+            ),
           ),
         );
       }

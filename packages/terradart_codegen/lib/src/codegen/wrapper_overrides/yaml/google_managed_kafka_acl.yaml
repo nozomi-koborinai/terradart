@@ -26,7 +26,7 @@ curatedDoc: |-
   ///   cluster: TfArg.ref(cluster.clusterIdRef),
   ///   location: TfArg.literal('us-central1'),
   ///   aclEntries: [
-  ///     ManagedKafkaAclAclEntries(
+  ///     ManagedKafkaAclEntries(
   ///       principal: TfArg.literal('User:serviceAccount:sa@proj.iam.gserviceaccount.com'),
   ///       operation: TfArg.literal('ALL'),
   ///       permissionType: TfArg.literal('ALLOW'),

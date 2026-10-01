@@ -47,7 +47,7 @@ final class AppsyncDatasourceDynamodbConfig {
 
   final TfArg<bool>? versioned;
 
-  final AppsyncDatasourceDynamodbConfigDeltaSyncConfig? deltaSyncConfig;
+  final AppsyncDatasourceDeltaSyncConfig? deltaSyncConfig;
 
   Map<String, Object?> encode() => {
     'region': ?region?.toTfJson(),
@@ -61,8 +61,8 @@ final class AppsyncDatasourceDynamodbConfig {
 /// Typed helper for the `dynamodb_config.delta_sync_config` block of
 /// `aws_appsync_datasource` (derived from provider schema).
 @immutable
-final class AppsyncDatasourceDynamodbConfigDeltaSyncConfig {
-  const AppsyncDatasourceDynamodbConfigDeltaSyncConfig({
+final class AppsyncDatasourceDeltaSyncConfig {
+  const AppsyncDatasourceDeltaSyncConfig({
     this.baseTableTtl,
     required this.deltaSyncTableName,
     this.deltaSyncTableTtl,
@@ -122,7 +122,7 @@ final class AppsyncDatasourceHttpConfig {
 
   final TfArg<String> endpoint;
 
-  final AppsyncDatasourceHttpConfigAuthorizationConfig? authorizationConfig;
+  final AppsyncDatasourceAuthorizationConfig? authorizationConfig;
 
   Map<String, Object?> encode() => {
     'endpoint': endpoint.toTfJson(),
@@ -133,17 +133,15 @@ final class AppsyncDatasourceHttpConfig {
 /// Typed helper for the `http_config.authorization_config` block of
 /// `aws_appsync_datasource` (derived from provider schema).
 @immutable
-final class AppsyncDatasourceHttpConfigAuthorizationConfig {
-  const AppsyncDatasourceHttpConfigAuthorizationConfig({
+final class AppsyncDatasourceAuthorizationConfig {
+  const AppsyncDatasourceAuthorizationConfig({
     this.authorizationType,
     this.awsIamConfig,
   });
 
-  final TfArg<AppsyncDatasourceHttpConfigAuthorizationConfigAuthorizationType>?
-  authorizationType;
+  final TfArg<AppsyncDatasourceAuthorizationType>? authorizationType;
 
-  final AppsyncDatasourceHttpConfigAuthorizationConfigAwsIamConfig?
-  awsIamConfig;
+  final AppsyncDatasourceAwsIamConfig? awsIamConfig;
 
   Map<String, Object?> encode() => {
     'authorization_type': ?authorizationType?.toTfJson(),
@@ -152,13 +150,10 @@ final class AppsyncDatasourceHttpConfigAuthorizationConfig {
 }
 
 /// `authorization_type` — derived from the provider schema description.
-enum AppsyncDatasourceHttpConfigAuthorizationConfigAuthorizationType
-    implements TerraformEnum {
+enum AppsyncDatasourceAuthorizationType implements TerraformEnum {
   awsIam('AWS_IAM');
 
-  const AppsyncDatasourceHttpConfigAuthorizationConfigAuthorizationType(
-    this.terraformValue,
-  );
+  const AppsyncDatasourceAuthorizationType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -166,8 +161,8 @@ enum AppsyncDatasourceHttpConfigAuthorizationConfigAuthorizationType
 /// Typed helper for the `http_config.authorization_config.aws_iam_config` block of
 /// `aws_appsync_datasource` (derived from provider schema).
 @immutable
-final class AppsyncDatasourceHttpConfigAuthorizationConfigAwsIamConfig {
-  const AppsyncDatasourceHttpConfigAuthorizationConfigAwsIamConfig({
+final class AppsyncDatasourceAwsIamConfig {
+  const AppsyncDatasourceAwsIamConfig({
     this.signingRegion,
     this.signingServiceName,
   });
@@ -223,10 +218,9 @@ final class AppsyncDatasourceRelationalDatabaseConfig {
     this.httpEndpointConfig,
   });
 
-  final TfArg<AppsyncDatasourceRelationalDatabaseConfigSourceType>? sourceType;
+  final TfArg<AppsyncDatasourceSourceType>? sourceType;
 
-  final AppsyncDatasourceRelationalDatabaseConfigHttpEndpointConfig?
-  httpEndpointConfig;
+  final AppsyncDatasourceHttpEndpointConfig? httpEndpointConfig;
 
   Map<String, Object?> encode() => {
     'source_type': ?sourceType?.toTfJson(),
@@ -235,13 +229,10 @@ final class AppsyncDatasourceRelationalDatabaseConfig {
 }
 
 /// `source_type` — derived from the provider schema description.
-enum AppsyncDatasourceRelationalDatabaseConfigSourceType
-    implements TerraformEnum {
+enum AppsyncDatasourceSourceType implements TerraformEnum {
   rdsHttpEndpoint('RDS_HTTP_ENDPOINT');
 
-  const AppsyncDatasourceRelationalDatabaseConfigSourceType(
-    this.terraformValue,
-  );
+  const AppsyncDatasourceSourceType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -249,8 +240,8 @@ enum AppsyncDatasourceRelationalDatabaseConfigSourceType
 /// Typed helper for the `relational_database_config.http_endpoint_config` block of
 /// `aws_appsync_datasource` (derived from provider schema).
 @immutable
-final class AppsyncDatasourceRelationalDatabaseConfigHttpEndpointConfig {
-  const AppsyncDatasourceRelationalDatabaseConfigHttpEndpointConfig({
+final class AppsyncDatasourceHttpEndpointConfig {
+  const AppsyncDatasourceHttpEndpointConfig({
     required this.awsSecretStoreArn,
     this.databaseName,
     required this.dbClusterIdentifier,

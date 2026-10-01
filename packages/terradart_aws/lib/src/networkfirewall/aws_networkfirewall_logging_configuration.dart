@@ -15,9 +15,7 @@ final class NetworkfirewallLoggingConfigurationLoggingConfiguration {
     required this.logDestinationConfig,
   });
 
-  final List<
-    NetworkfirewallLoggingConfigurationLoggingConfigurationLogDestinationConfig
-  >
+  final List<NetworkfirewallLoggingConfigurationLogDestinationConfig>
   logDestinationConfig;
 
   Map<String, Object?> encode() => {
@@ -30,8 +28,8 @@ final class NetworkfirewallLoggingConfigurationLoggingConfiguration {
 /// Typed helper for the `logging_configuration.log_destination_config` block of
 /// `aws_networkfirewall_logging_configuration` (derived from provider schema).
 @immutable
-final class NetworkfirewallLoggingConfigurationLoggingConfigurationLogDestinationConfig {
-  const NetworkfirewallLoggingConfigurationLoggingConfigurationLogDestinationConfig({
+final class NetworkfirewallLoggingConfigurationLogDestinationConfig {
+  const NetworkfirewallLoggingConfigurationLogDestinationConfig({
     required this.logDestination,
     required this.logDestinationType,
     required this.logType,
@@ -39,15 +37,10 @@ final class NetworkfirewallLoggingConfigurationLoggingConfigurationLogDestinatio
 
   final TfArg<Map<String, String>> logDestination;
 
-  final TfArg<
-    NetworkfirewallLoggingConfigurationLoggingConfigurationLogDestinationConfigLogDestinationType
-  >
+  final TfArg<NetworkfirewallLoggingConfigurationLogDestinationType>
   logDestinationType;
 
-  final TfArg<
-    NetworkfirewallLoggingConfigurationLoggingConfigurationLogDestinationConfigLogType
-  >
-  logType;
+  final TfArg<NetworkfirewallLoggingConfigurationLogType> logType;
 
   Map<String, Object?> encode() => {
     'log_destination': logDestination.toTfJson(),
@@ -57,13 +50,13 @@ final class NetworkfirewallLoggingConfigurationLoggingConfigurationLogDestinatio
 }
 
 /// `log_destination_type` — derived from the provider schema description.
-enum NetworkfirewallLoggingConfigurationLoggingConfigurationLogDestinationConfigLogDestinationType
+enum NetworkfirewallLoggingConfigurationLogDestinationType
     implements TerraformEnum {
   s3('S3'),
   cloudwatchlogs('CloudWatchLogs'),
   kinesisdatafirehose('KinesisDataFirehose');
 
-  const NetworkfirewallLoggingConfigurationLoggingConfigurationLogDestinationConfigLogDestinationType(
+  const NetworkfirewallLoggingConfigurationLogDestinationType(
     this.terraformValue,
   );
   @override
@@ -71,15 +64,12 @@ enum NetworkfirewallLoggingConfigurationLoggingConfigurationLogDestinationConfig
 }
 
 /// `log_type` — derived from the provider schema description.
-enum NetworkfirewallLoggingConfigurationLoggingConfigurationLogDestinationConfigLogType
-    implements TerraformEnum {
+enum NetworkfirewallLoggingConfigurationLogType implements TerraformEnum {
   alert('ALERT'),
   flow('FLOW'),
   tls('TLS');
 
-  const NetworkfirewallLoggingConfigurationLoggingConfigurationLogDestinationConfigLogType(
-    this.terraformValue,
-  );
+  const NetworkfirewallLoggingConfigurationLogType(this.terraformValue);
   @override
   final String terraformValue;
 }

@@ -30,8 +30,7 @@ final class CloudtrailEventDataStoreAdvancedEventSelector {
 
   final TfArg<String>? name;
 
-  final List<CloudtrailEventDataStoreAdvancedEventSelectorFieldSelector>?
-  fieldSelector;
+  final List<CloudtrailEventDataStoreFieldSelector>? fieldSelector;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
@@ -43,8 +42,8 @@ final class CloudtrailEventDataStoreAdvancedEventSelector {
 /// Typed helper for the `advanced_event_selector.field_selector` block of
 /// `aws_cloudtrail_event_data_store` (derived from provider schema).
 @immutable
-final class CloudtrailEventDataStoreAdvancedEventSelectorFieldSelector {
-  const CloudtrailEventDataStoreAdvancedEventSelectorFieldSelector({
+final class CloudtrailEventDataStoreFieldSelector {
+  const CloudtrailEventDataStoreFieldSelector({
     this.endsWith,
     this.equals,
     this.field,
@@ -58,8 +57,7 @@ final class CloudtrailEventDataStoreAdvancedEventSelectorFieldSelector {
 
   final TfArg<List<String>>? equals;
 
-  final TfArg<CloudtrailEventDataStoreAdvancedEventSelectorFieldSelectorField>?
-  field;
+  final TfArg<CloudtrailEventDataStoreField>? field;
 
   final TfArg<List<String>>? notEndsWith;
 
@@ -81,8 +79,7 @@ final class CloudtrailEventDataStoreAdvancedEventSelectorFieldSelector {
 }
 
 /// `field` — derived from the provider schema description.
-enum CloudtrailEventDataStoreAdvancedEventSelectorFieldSelectorField
-    implements TerraformEnum {
+enum CloudtrailEventDataStoreField implements TerraformEnum {
   errorcode('errorCode'),
   eventcategory('eventCategory'),
   eventname('eventName'),
@@ -95,9 +92,7 @@ enum CloudtrailEventDataStoreAdvancedEventSelectorFieldSelectorField
   useridentityArn('userIdentity.arn'),
   vpcendpointid('vpcEndpointId');
 
-  const CloudtrailEventDataStoreAdvancedEventSelectorFieldSelectorField(
-    this.terraformValue,
-  );
+  const CloudtrailEventDataStoreField(this.terraformValue);
   @override
   final String terraformValue;
 }

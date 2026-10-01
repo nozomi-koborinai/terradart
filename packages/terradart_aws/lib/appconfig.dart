@@ -22,10 +22,10 @@ export 'src/appconfig/aws_appconfig_environment.dart'
     show AppconfigEnvironmentMonitor, AwsAppconfigEnvironment;
 export 'src/appconfig/aws_appconfig_extension.dart'
     show
+        AppconfigExtensionAction,
         AppconfigExtensionActionPoint,
-        AppconfigExtensionActionPointAction,
-        AppconfigExtensionActionPointPoint,
         AppconfigExtensionParameter,
+        AppconfigExtensionPoint,
         AwsAppconfigExtension;
 export 'src/appconfig/aws_appconfig_extension_association.dart'
     show AwsAppconfigExtensionAssociation;

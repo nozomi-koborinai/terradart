@@ -18,8 +18,7 @@ final class CognitoRiskConfigurationAccountTakeoverRiskConfiguration {
 
   final CognitoRiskConfigurationAccountTakeoverRiskConfigurationActions actions;
 
-  final CognitoRiskConfigurationAccountTakeoverRiskConfigurationNotifyConfiguration?
-  notifyConfiguration;
+  final CognitoRiskConfigurationNotifyConfiguration? notifyConfiguration;
 
   Map<String, Object?> encode() => {
     'actions': actions.encode(),
@@ -37,14 +36,11 @@ final class CognitoRiskConfigurationAccountTakeoverRiskConfigurationActions {
     this.mediumAction,
   });
 
-  final CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsHighAction?
-  highAction;
+  final CognitoRiskConfigurationHighAction? highAction;
 
-  final CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsLowAction?
-  lowAction;
+  final CognitoRiskConfigurationLowAction? lowAction;
 
-  final CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsMediumAction?
-  mediumAction;
+  final CognitoRiskConfigurationMediumAction? mediumAction;
 
   Map<String, Object?> encode() => {
     'high_action': ?highAction?.encode(),
@@ -56,16 +52,13 @@ final class CognitoRiskConfigurationAccountTakeoverRiskConfigurationActions {
 /// Typed helper for the `account_takeover_risk_configuration.actions.high_action` block of
 /// `aws_cognito_risk_configuration` (derived from provider schema).
 @immutable
-final class CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsHighAction {
-  const CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsHighAction({
+final class CognitoRiskConfigurationHighAction {
+  const CognitoRiskConfigurationHighAction({
     required this.eventAction,
     required this.notify,
   });
 
-  final TfArg<
-    CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsHighActionEventAction
-  >
-  eventAction;
+  final TfArg<CognitoRiskConfigurationHighActionEventAction> eventAction;
 
   final TfArg<bool> notify;
 
@@ -76,16 +69,13 @@ final class CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsHighA
 }
 
 /// `event_action` — derived from the provider schema description.
-enum CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsHighActionEventAction
-    implements TerraformEnum {
+enum CognitoRiskConfigurationHighActionEventAction implements TerraformEnum {
   block('BLOCK'),
   mfaIfConfigured('MFA_IF_CONFIGURED'),
   mfaRequired('MFA_REQUIRED'),
   noAction('NO_ACTION');
 
-  const CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsHighActionEventAction(
-    this.terraformValue,
-  );
+  const CognitoRiskConfigurationHighActionEventAction(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -93,16 +83,13 @@ enum CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsHighActionEv
 /// Typed helper for the `account_takeover_risk_configuration.actions.low_action` block of
 /// `aws_cognito_risk_configuration` (derived from provider schema).
 @immutable
-final class CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsLowAction {
-  const CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsLowAction({
+final class CognitoRiskConfigurationLowAction {
+  const CognitoRiskConfigurationLowAction({
     required this.eventAction,
     required this.notify,
   });
 
-  final TfArg<
-    CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsLowActionEventAction
-  >
-  eventAction;
+  final TfArg<CognitoRiskConfigurationHighActionEventAction> eventAction;
 
   final TfArg<bool> notify;
 
@@ -110,36 +97,18 @@ final class CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsLowAc
     'event_action': eventAction.toTfJson(),
     'notify': notify.toTfJson(),
   };
-}
-
-/// `event_action` — derived from the provider schema description.
-enum CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsLowActionEventAction
-    implements TerraformEnum {
-  block('BLOCK'),
-  mfaIfConfigured('MFA_IF_CONFIGURED'),
-  mfaRequired('MFA_REQUIRED'),
-  noAction('NO_ACTION');
-
-  const CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsLowActionEventAction(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `account_takeover_risk_configuration.actions.medium_action` block of
 /// `aws_cognito_risk_configuration` (derived from provider schema).
 @immutable
-final class CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsMediumAction {
-  const CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsMediumAction({
+final class CognitoRiskConfigurationMediumAction {
+  const CognitoRiskConfigurationMediumAction({
     required this.eventAction,
     required this.notify,
   });
 
-  final TfArg<
-    CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsMediumActionEventAction
-  >
-  eventAction;
+  final TfArg<CognitoRiskConfigurationHighActionEventAction> eventAction;
 
   final TfArg<bool> notify;
 
@@ -149,26 +118,11 @@ final class CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsMediu
   };
 }
 
-/// `event_action` — derived from the provider schema description.
-enum CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsMediumActionEventAction
-    implements TerraformEnum {
-  block('BLOCK'),
-  mfaIfConfigured('MFA_IF_CONFIGURED'),
-  mfaRequired('MFA_REQUIRED'),
-  noAction('NO_ACTION');
-
-  const CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsMediumActionEventAction(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `account_takeover_risk_configuration.notify_configuration` block of
 /// `aws_cognito_risk_configuration` (derived from provider schema).
 @immutable
-final class CognitoRiskConfigurationAccountTakeoverRiskConfigurationNotifyConfiguration {
-  const CognitoRiskConfigurationAccountTakeoverRiskConfigurationNotifyConfiguration({
+final class CognitoRiskConfigurationNotifyConfiguration {
+  const CognitoRiskConfigurationNotifyConfiguration({
     this.from,
     this.replyTo,
     required this.sourceArn,
@@ -183,14 +137,11 @@ final class CognitoRiskConfigurationAccountTakeoverRiskConfigurationNotifyConfig
 
   final TfArg<String> sourceArn;
 
-  final CognitoRiskConfigurationAccountTakeoverRiskConfigurationNotifyConfigurationBlockEmail?
-  blockEmail;
+  final CognitoRiskConfigurationBlockEmail? blockEmail;
 
-  final CognitoRiskConfigurationAccountTakeoverRiskConfigurationNotifyConfigurationMfaEmail?
-  mfaEmail;
+  final CognitoRiskConfigurationMfaEmail? mfaEmail;
 
-  final CognitoRiskConfigurationAccountTakeoverRiskConfigurationNotifyConfigurationNoActionEmail?
-  noActionEmail;
+  final CognitoRiskConfigurationNoActionEmail? noActionEmail;
 
   Map<String, Object?> encode() => {
     'from': ?from?.toTfJson(),
@@ -205,8 +156,8 @@ final class CognitoRiskConfigurationAccountTakeoverRiskConfigurationNotifyConfig
 /// Typed helper for the `account_takeover_risk_configuration.notify_configuration.block_email` block of
 /// `aws_cognito_risk_configuration` (derived from provider schema).
 @immutable
-final class CognitoRiskConfigurationAccountTakeoverRiskConfigurationNotifyConfigurationBlockEmail {
-  const CognitoRiskConfigurationAccountTakeoverRiskConfigurationNotifyConfigurationBlockEmail({
+final class CognitoRiskConfigurationBlockEmail {
+  const CognitoRiskConfigurationBlockEmail({
     required this.htmlBody,
     required this.subject,
     required this.textBody,
@@ -228,8 +179,8 @@ final class CognitoRiskConfigurationAccountTakeoverRiskConfigurationNotifyConfig
 /// Typed helper for the `account_takeover_risk_configuration.notify_configuration.mfa_email` block of
 /// `aws_cognito_risk_configuration` (derived from provider schema).
 @immutable
-final class CognitoRiskConfigurationAccountTakeoverRiskConfigurationNotifyConfigurationMfaEmail {
-  const CognitoRiskConfigurationAccountTakeoverRiskConfigurationNotifyConfigurationMfaEmail({
+final class CognitoRiskConfigurationMfaEmail {
+  const CognitoRiskConfigurationMfaEmail({
     required this.htmlBody,
     required this.subject,
     required this.textBody,
@@ -251,8 +202,8 @@ final class CognitoRiskConfigurationAccountTakeoverRiskConfigurationNotifyConfig
 /// Typed helper for the `account_takeover_risk_configuration.notify_configuration.no_action_email` block of
 /// `aws_cognito_risk_configuration` (derived from provider schema).
 @immutable
-final class CognitoRiskConfigurationAccountTakeoverRiskConfigurationNotifyConfigurationNoActionEmail {
-  const CognitoRiskConfigurationAccountTakeoverRiskConfigurationNotifyConfigurationNoActionEmail({
+final class CognitoRiskConfigurationNoActionEmail {
+  const CognitoRiskConfigurationNoActionEmail({
     required this.htmlBody,
     required this.subject,
     required this.textBody,
@@ -280,12 +231,7 @@ final class CognitoRiskConfigurationCompromisedCredentialsRiskConfiguration {
     required this.actions,
   });
 
-  final List<
-    TfArg<
-      CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationEventFilter
-    >
-  >?
-  eventFilter;
+  final List<TfArg<CognitoRiskConfigurationEventFilter>>? eventFilter;
 
   final CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationActions
   actions;
@@ -298,15 +244,12 @@ final class CognitoRiskConfigurationCompromisedCredentialsRiskConfiguration {
 }
 
 /// `event_filter` — derived from the provider schema description.
-enum CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationEventFilter
-    implements TerraformEnum {
+enum CognitoRiskConfigurationEventFilter implements TerraformEnum {
   signIn('SIGN_IN'),
   passwordChange('PASSWORD_CHANGE'),
   signUp('SIGN_UP');
 
-  const CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationEventFilter(
-    this.terraformValue,
-  );
+  const CognitoRiskConfigurationEventFilter(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -319,23 +262,17 @@ final class CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationActio
     required this.eventAction,
   });
 
-  final TfArg<
-    CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationActionsEventAction
-  >
-  eventAction;
+  final TfArg<CognitoRiskConfigurationEventAction> eventAction;
 
   Map<String, Object?> encode() => {'event_action': eventAction.toTfJson()};
 }
 
 /// `event_action` — derived from the provider schema description.
-enum CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationActionsEventAction
-    implements TerraformEnum {
+enum CognitoRiskConfigurationEventAction implements TerraformEnum {
   block('BLOCK'),
   noAction('NO_ACTION');
 
-  const CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationActionsEventAction(
-    this.terraformValue,
-  );
+  const CognitoRiskConfigurationEventAction(this.terraformValue);
   @override
   final String terraformValue;
 }

@@ -15,7 +15,7 @@ sealed class ServicequotasTemplateRegion {
 
   /// Sets `aws_region`.
   const factory ServicequotasTemplateRegion.awsRegion(TfArg<String> awsRegion) =
-      ServicequotasTemplateRegionAwsRegion;
+      ServicequotasTemplateAwsRegion;
 
   /// Sets `region`.
   const factory ServicequotasTemplateRegion.region(TfArg<String> region) =
@@ -32,9 +32,8 @@ sealed class ServicequotasTemplateRegion {
 }
 
 /// The [ServicequotasTemplateRegion.awsRegion] choice: sets `aws_region`.
-final class ServicequotasTemplateRegionAwsRegion
-    extends ServicequotasTemplateRegion {
-  const ServicequotasTemplateRegionAwsRegion(this.awsRegion);
+final class ServicequotasTemplateAwsRegion extends ServicequotasTemplateRegion {
+  const ServicequotasTemplateAwsRegion(this.awsRegion);
 
   final TfArg<String> awsRegion;
 

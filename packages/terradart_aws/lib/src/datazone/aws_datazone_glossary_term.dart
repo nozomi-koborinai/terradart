@@ -20,8 +20,8 @@ enum DatazoneGlossaryTermStatus implements TerraformEnum {
 /// Typed helper for the `term_relations` block of
 /// `aws_datazone_glossary_term` (derived from provider schema).
 @immutable
-final class DatazoneGlossaryTermTermRelations {
-  const DatazoneGlossaryTermTermRelations({this.classifies, this.isA});
+final class DatazoneGlossaryTermRelations {
+  const DatazoneGlossaryTermRelations({this.classifies, this.isA});
 
   final TfArg<List<String>>? classifies;
 
@@ -46,7 +46,7 @@ final class AwsDatazoneGlossaryTerm extends Resource {
     TfArg<String>? region,
     TfArg<String>? shortDescription,
     TfArg<DatazoneGlossaryTermStatus>? status,
-    List<DatazoneGlossaryTermTermRelations>? termRelations,
+    List<DatazoneGlossaryTermRelations>? termRelations,
     super.lifecycle,
     super.dependsOn,
     super.provider,

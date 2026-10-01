@@ -8,8 +8,8 @@ export 'src/saas_runtime/google_saas_runtime_release.dart'
         GoogleSaasRuntimeRelease,
         SaasRuntimeReleaseBlueprint,
         SaasRuntimeReleaseInputVariableDefaults,
-        SaasRuntimeReleaseInputVariableDefaultsType,
-        SaasRuntimeReleaseReleaseRequirements;
+        SaasRuntimeReleaseRequirements,
+        SaasRuntimeReleaseType;
 export 'src/saas_runtime/google_saas_runtime_rollout_kind.dart'
     show
         GoogleSaasRuntimeRolloutKind,
@@ -25,17 +25,14 @@ export 'src/saas_runtime/google_saas_runtime_unit_kind.dart'
     show
         GoogleSaasRuntimeUnitKind,
         SaasRuntimeUnitKindDependencies,
+        SaasRuntimeUnitKindFrom,
         SaasRuntimeUnitKindInputVariableMappings,
-        SaasRuntimeUnitKindInputVariableMappingsFrom,
-        SaasRuntimeUnitKindInputVariableMappingsTo,
         SaasRuntimeUnitKindOutputVariableMappings,
-        SaasRuntimeUnitKindOutputVariableMappingsFrom,
-        SaasRuntimeUnitKindOutputVariableMappingsTo;
+        SaasRuntimeUnitKindTo;
 export 'src/saas_runtime/google_saas_runtime_unit_operation.dart'
     show
         GoogleSaasRuntimeUnitOperation,
         SaasRuntimeUnitOperationDeprovision,
+        SaasRuntimeUnitOperationInputVariables,
         SaasRuntimeUnitOperationProvision,
-        SaasRuntimeUnitOperationProvisionInputVariables,
-        SaasRuntimeUnitOperationUpgrade,
-        SaasRuntimeUnitOperationUpgradeInputVariables;
+        SaasRuntimeUnitOperationUpgrade;

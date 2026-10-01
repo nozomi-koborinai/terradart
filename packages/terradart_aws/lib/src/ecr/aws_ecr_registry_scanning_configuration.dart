@@ -26,10 +26,9 @@ final class EcrRegistryScanningConfigurationRule {
     required this.repositoryFilter,
   });
 
-  final TfArg<EcrRegistryScanningConfigurationRuleScanFrequency> scanFrequency;
+  final TfArg<EcrRegistryScanningConfigurationScanFrequency> scanFrequency;
 
-  final List<EcrRegistryScanningConfigurationRuleRepositoryFilter>
-  repositoryFilter;
+  final List<EcrRegistryScanningConfigurationRepositoryFilter> repositoryFilter;
 
   Map<String, Object?> encode() => {
     'scan_frequency': scanFrequency.toTfJson(),
@@ -38,13 +37,12 @@ final class EcrRegistryScanningConfigurationRule {
 }
 
 /// `scan_frequency` — derived from the provider schema description.
-enum EcrRegistryScanningConfigurationRuleScanFrequency
-    implements TerraformEnum {
+enum EcrRegistryScanningConfigurationScanFrequency implements TerraformEnum {
   scanOnPush('SCAN_ON_PUSH'),
   continuousScan('CONTINUOUS_SCAN'),
   manual('MANUAL');
 
-  const EcrRegistryScanningConfigurationRuleScanFrequency(this.terraformValue);
+  const EcrRegistryScanningConfigurationScanFrequency(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -52,16 +50,15 @@ enum EcrRegistryScanningConfigurationRuleScanFrequency
 /// Typed helper for the `rule.repository_filter` block of
 /// `aws_ecr_registry_scanning_configuration` (derived from provider schema).
 @immutable
-final class EcrRegistryScanningConfigurationRuleRepositoryFilter {
-  const EcrRegistryScanningConfigurationRuleRepositoryFilter({
+final class EcrRegistryScanningConfigurationRepositoryFilter {
+  const EcrRegistryScanningConfigurationRepositoryFilter({
     required this.filter,
     required this.filterType,
   });
 
   final TfArg<String> filter;
 
-  final TfArg<EcrRegistryScanningConfigurationRuleRepositoryFilterFilterType>
-  filterType;
+  final TfArg<EcrRegistryScanningConfigurationFilterType> filterType;
 
   Map<String, Object?> encode() => {
     'filter': filter.toTfJson(),
@@ -70,13 +67,10 @@ final class EcrRegistryScanningConfigurationRuleRepositoryFilter {
 }
 
 /// `filter_type` — derived from the provider schema description.
-enum EcrRegistryScanningConfigurationRuleRepositoryFilterFilterType
-    implements TerraformEnum {
+enum EcrRegistryScanningConfigurationFilterType implements TerraformEnum {
   wildcard('WILDCARD');
 
-  const EcrRegistryScanningConfigurationRuleRepositoryFilterFilterType(
-    this.terraformValue,
-  );
+  const EcrRegistryScanningConfigurationFilterType(this.terraformValue);
   @override
   final String terraformValue;
 }

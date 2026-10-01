@@ -26,17 +26,17 @@ final class CloudwatchEventEndpointEventBus {
 final class CloudwatchEventEndpointReplicationConfig {
   const CloudwatchEventEndpointReplicationConfig({this.state});
 
-  final TfArg<CloudwatchEventEndpointReplicationConfigState>? state;
+  final TfArg<CloudwatchEventEndpointState>? state;
 
   Map<String, Object?> encode() => {'state': ?state?.toTfJson()};
 }
 
 /// `state` — derived from the provider schema description.
-enum CloudwatchEventEndpointReplicationConfigState implements TerraformEnum {
+enum CloudwatchEventEndpointState implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const CloudwatchEventEndpointReplicationConfigState(this.terraformValue);
+  const CloudwatchEventEndpointState(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -47,7 +47,7 @@ enum CloudwatchEventEndpointReplicationConfigState implements TerraformEnum {
 final class CloudwatchEventEndpointRoutingConfig {
   const CloudwatchEventEndpointRoutingConfig({required this.failoverConfig});
 
-  final CloudwatchEventEndpointRoutingConfigFailoverConfig failoverConfig;
+  final CloudwatchEventEndpointFailoverConfig failoverConfig;
 
   Map<String, Object?> encode() => {'failover_config': failoverConfig.encode()};
 }
@@ -55,15 +55,15 @@ final class CloudwatchEventEndpointRoutingConfig {
 /// Typed helper for the `routing_config.failover_config` block of
 /// `aws_cloudwatch_event_endpoint` (derived from provider schema).
 @immutable
-final class CloudwatchEventEndpointRoutingConfigFailoverConfig {
-  const CloudwatchEventEndpointRoutingConfigFailoverConfig({
+final class CloudwatchEventEndpointFailoverConfig {
+  const CloudwatchEventEndpointFailoverConfig({
     required this.primary,
     required this.secondary,
   });
 
-  final CloudwatchEventEndpointRoutingConfigFailoverConfigPrimary primary;
+  final CloudwatchEventEndpointPrimary primary;
 
-  final CloudwatchEventEndpointRoutingConfigFailoverConfigSecondary secondary;
+  final CloudwatchEventEndpointSecondary secondary;
 
   Map<String, Object?> encode() => {
     'primary': primary.encode(),
@@ -74,10 +74,8 @@ final class CloudwatchEventEndpointRoutingConfigFailoverConfig {
 /// Typed helper for the `routing_config.failover_config.primary` block of
 /// `aws_cloudwatch_event_endpoint` (derived from provider schema).
 @immutable
-final class CloudwatchEventEndpointRoutingConfigFailoverConfigPrimary {
-  const CloudwatchEventEndpointRoutingConfigFailoverConfigPrimary({
-    this.healthCheck,
-  });
+final class CloudwatchEventEndpointPrimary {
+  const CloudwatchEventEndpointPrimary({this.healthCheck});
 
   final TfArg<String>? healthCheck;
 
@@ -87,10 +85,8 @@ final class CloudwatchEventEndpointRoutingConfigFailoverConfigPrimary {
 /// Typed helper for the `routing_config.failover_config.secondary` block of
 /// `aws_cloudwatch_event_endpoint` (derived from provider schema).
 @immutable
-final class CloudwatchEventEndpointRoutingConfigFailoverConfigSecondary {
-  const CloudwatchEventEndpointRoutingConfigFailoverConfigSecondary({
-    this.route,
-  });
+final class CloudwatchEventEndpointSecondary {
+  const CloudwatchEventEndpointSecondary({this.route});
 
   final TfArg<String>? route;
 

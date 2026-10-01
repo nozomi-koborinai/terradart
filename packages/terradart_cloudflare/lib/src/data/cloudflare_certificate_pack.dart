@@ -15,7 +15,7 @@ const Set<String> _cloudflareCertificatePackSensitive = <String>{};
 final class DataCertificatePackFilter {
   const DataCertificatePackFilter({this.deploy, this.status});
 
-  final TfArg<DataCertificatePackFilterDeploy>? deploy;
+  final TfArg<DataCertificatePackDeploy>? deploy;
 
   final TfArg<DataCertificatePackFilterStatus>? status;
 
@@ -26,11 +26,11 @@ final class DataCertificatePackFilter {
 }
 
 /// `deploy` — derived from the provider schema description.
-enum DataCertificatePackFilterDeploy implements TerraformEnum {
+enum DataCertificatePackDeploy implements TerraformEnum {
   staging('staging'),
   production('production');
 
-  const DataCertificatePackFilterDeploy(this.terraformValue);
+  const DataCertificatePackDeploy(this.terraformValue);
   @override
   final String terraformValue;
 }

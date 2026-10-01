@@ -6,8 +6,8 @@ library;
 export 'src/binary_authorization/google_binary_authorization_attestor.dart'
     show
         BinaryAuthorizationAttestorAttestationAuthorityNote,
-        BinaryAuthorizationAttestorAttestationAuthorityNotePublicKeys,
-        BinaryAuthorizationAttestorAttestationAuthorityNotePublicKeysPkixPublicKey,
+        BinaryAuthorizationAttestorPkixPublicKey,
+        BinaryAuthorizationAttestorPublicKeys,
         GoogleBinaryAuthorizationAttestor;
 export 'src/binary_authorization/google_binary_authorization_attestor_iam_binding.dart'
     show
@@ -23,9 +23,7 @@ export 'src/binary_authorization/google_binary_authorization_policy.dart'
     show
         BinaryAuthorizationPolicyAdmissionWhitelistPatterns,
         BinaryAuthorizationPolicyClusterAdmissionRules,
-        BinaryAuthorizationPolicyClusterAdmissionRulesEnforcementMode,
-        BinaryAuthorizationPolicyClusterAdmissionRulesEvaluationMode,
         BinaryAuthorizationPolicyDefaultAdmissionRule,
-        BinaryAuthorizationPolicyDefaultAdmissionRuleEnforcementMode,
-        BinaryAuthorizationPolicyDefaultAdmissionRuleEvaluationMode,
+        BinaryAuthorizationPolicyEnforcementMode,
+        BinaryAuthorizationPolicyEvaluationMode,
         GoogleBinaryAuthorizationPolicy;

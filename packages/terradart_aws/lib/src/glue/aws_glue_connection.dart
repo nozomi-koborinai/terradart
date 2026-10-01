@@ -42,11 +42,10 @@ final class GlueConnectionAuthenticationConfiguration {
 
   final TfArg<String>? secretArn;
 
-  final GlueConnectionAuthenticationConfigurationBasicAuthenticationCredentials?
+  final GlueConnectionBasicAuthenticationCredentials?
   basicAuthenticationCredentials;
 
-  final GlueConnectionAuthenticationConfigurationOauth2Properties?
-  oauth2Properties;
+  final GlueConnectionOauth2Properties? oauth2Properties;
 
   Map<String, Object?> encode() => {
     'authentication_type': authenticationType.toTfJson(),
@@ -63,8 +62,8 @@ final class GlueConnectionAuthenticationConfiguration {
 /// Typed helper for the `authentication_configuration.basic_authentication_credentials` block of
 /// `aws_glue_connection` (derived from provider schema).
 @immutable
-final class GlueConnectionAuthenticationConfigurationBasicAuthenticationCredentials {
-  const GlueConnectionAuthenticationConfigurationBasicAuthenticationCredentials({
+final class GlueConnectionBasicAuthenticationCredentials {
+  const GlueConnectionBasicAuthenticationCredentials({
     required this.password,
     required this.username,
   });
@@ -82,8 +81,8 @@ final class GlueConnectionAuthenticationConfigurationBasicAuthenticationCredenti
 /// Typed helper for the `authentication_configuration.oauth2_properties` block of
 /// `aws_glue_connection` (derived from provider schema).
 @immutable
-final class GlueConnectionAuthenticationConfigurationOauth2Properties {
-  const GlueConnectionAuthenticationConfigurationOauth2Properties({
+final class GlueConnectionOauth2Properties {
+  const GlueConnectionOauth2Properties({
     this.oauth2GrantType,
     this.tokenUrl,
     this.tokenUrlParametersMap,
@@ -98,14 +97,11 @@ final class GlueConnectionAuthenticationConfigurationOauth2Properties {
 
   final TfArg<Map<String, String>>? tokenUrlParametersMap;
 
-  final GlueConnectionAuthenticationConfigurationOauth2PropertiesAuthorizationCodeProperties?
-  authorizationCodeProperties;
+  final GlueConnectionAuthorizationCodeProperties? authorizationCodeProperties;
 
-  final GlueConnectionAuthenticationConfigurationOauth2PropertiesOauth2ClientApplication?
-  oauth2ClientApplication;
+  final GlueConnectionOauth2ClientApplication? oauth2ClientApplication;
 
-  final GlueConnectionAuthenticationConfigurationOauth2PropertiesOauth2Credentials?
-  oauth2Credentials;
+  final GlueConnectionOauth2Credentials? oauth2Credentials;
 
   Map<String, Object?> encode() => {
     'oauth2_grant_type': ?oauth2GrantType?.toTfJson(),
@@ -120,8 +116,8 @@ final class GlueConnectionAuthenticationConfigurationOauth2Properties {
 /// Typed helper for the `authentication_configuration.oauth2_properties.authorization_code_properties` block of
 /// `aws_glue_connection` (derived from provider schema).
 @immutable
-final class GlueConnectionAuthenticationConfigurationOauth2PropertiesAuthorizationCodeProperties {
-  const GlueConnectionAuthenticationConfigurationOauth2PropertiesAuthorizationCodeProperties({
+final class GlueConnectionAuthorizationCodeProperties {
+  const GlueConnectionAuthorizationCodeProperties({
     required this.authorizationCode,
     required this.redirectUri,
   });
@@ -139,8 +135,8 @@ final class GlueConnectionAuthenticationConfigurationOauth2PropertiesAuthorizati
 /// Typed helper for the `authentication_configuration.oauth2_properties.oauth2_client_application` block of
 /// `aws_glue_connection` (derived from provider schema).
 @immutable
-final class GlueConnectionAuthenticationConfigurationOauth2PropertiesOauth2ClientApplication {
-  const GlueConnectionAuthenticationConfigurationOauth2PropertiesOauth2ClientApplication({
+final class GlueConnectionOauth2ClientApplication {
+  const GlueConnectionOauth2ClientApplication({
     this.awsManagedClientApplicationReference,
     this.userManagedClientApplicationClientId,
   });
@@ -160,8 +156,8 @@ final class GlueConnectionAuthenticationConfigurationOauth2PropertiesOauth2Clien
 /// Typed helper for the `authentication_configuration.oauth2_properties.oauth2_credentials` block of
 /// `aws_glue_connection` (derived from provider schema).
 @immutable
-final class GlueConnectionAuthenticationConfigurationOauth2PropertiesOauth2Credentials {
-  const GlueConnectionAuthenticationConfigurationOauth2PropertiesOauth2Credentials({
+final class GlueConnectionOauth2Credentials {
+  const GlueConnectionOauth2Credentials({
     this.accessToken,
     this.jwtToken,
     this.refreshToken,

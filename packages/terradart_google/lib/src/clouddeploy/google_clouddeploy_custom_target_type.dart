@@ -18,7 +18,7 @@ sealed class ClouddeployCustomTargetTypeActions {
   /// Sets `custom_actions`.
   const factory ClouddeployCustomTargetTypeActions.customActions(
     ClouddeployCustomTargetTypeCustomActions customActions,
-  ) = ClouddeployCustomTargetTypeActionsCustomActions;
+  ) = ClouddeployCustomTargetTypeCustomActionsChoice;
 
   /// Sets `tasks`.
   const factory ClouddeployCustomTargetTypeActions.tasks(
@@ -36,9 +36,9 @@ sealed class ClouddeployCustomTargetTypeActions {
 }
 
 /// The [ClouddeployCustomTargetTypeActions.customActions] choice: sets `custom_actions`.
-final class ClouddeployCustomTargetTypeActionsCustomActions
+final class ClouddeployCustomTargetTypeCustomActionsChoice
     extends ClouddeployCustomTargetTypeActions {
-  const ClouddeployCustomTargetTypeActionsCustomActions(this.customActions);
+  const ClouddeployCustomTargetTypeCustomActionsChoice(this.customActions);
 
   final ClouddeployCustomTargetTypeCustomActions customActions;
 
@@ -87,7 +87,7 @@ final class ClouddeployCustomTargetTypeCustomActions {
 
   final TfArg<String>? renderAction;
 
-  final List<ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModules>?
+  final List<ClouddeployCustomTargetTypeIncludeSkaffoldModules>?
   includeSkaffoldModules;
 
   Map<String, Object?> encode() => {
@@ -103,16 +103,15 @@ final class ClouddeployCustomTargetTypeCustomActions {
 /// Typed helper for the `custom_actions.include_skaffold_modules` block of
 /// `google_clouddeploy_custom_target_type` (derived from provider schema).
 @immutable
-final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModules {
-  const ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModules({
+final class ClouddeployCustomTargetTypeIncludeSkaffoldModules {
+  const ClouddeployCustomTargetTypeIncludeSkaffoldModules({
     this.configs,
     required this.source,
   });
 
   final TfArg<List<String>>? configs;
 
-  final ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSource
-  source;
+  final ClouddeployCustomTargetTypeSource source;
 
   Map<String, Object?> encode() => {
     'configs': ?configs?.toTfJson(),
@@ -124,25 +123,23 @@ final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModules {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.git(...)`.
-sealed class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSource {
-  const ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSource();
+sealed class ClouddeployCustomTargetTypeSource {
+  const ClouddeployCustomTargetTypeSource();
 
   /// Sets `git`.
-  const factory ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSource.git(
-    ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGit git,
-  ) = ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSourceGit;
+  const factory ClouddeployCustomTargetTypeSource.git(
+    ClouddeployCustomTargetTypeGit git,
+  ) = ClouddeployCustomTargetTypeSourceGit;
 
   /// Sets `google_cloud_storage`.
-  const factory ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSource.googleCloudStorage(
-    ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGoogleCloudStorage
-    googleCloudStorage,
-  ) = ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSourceGoogleCloudStorage;
+  const factory ClouddeployCustomTargetTypeSource.googleCloudStorage(
+    ClouddeployCustomTargetTypeGoogleCloudStorage googleCloudStorage,
+  ) = ClouddeployCustomTargetTypeSourceGoogleCloudStorage;
 
   /// Sets `google_cloud_build_repo`.
-  const factory ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSource.googleCloudBuildRepo(
-    ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGoogleCloudBuildRepo
-    googleCloudBuildRepo,
-  ) = ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSourceGoogleCloudBuildRepo;
+  const factory ClouddeployCustomTargetTypeSource.googleCloudBuildRepo(
+    ClouddeployCustomTargetTypeGoogleCloudBuildRepo googleCloudBuildRepo,
+  ) = ClouddeployCustomTargetTypeSourceGoogleCloudBuildRepo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -150,15 +147,12 @@ sealed class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSourc
   Map<String, Object?> encode();
 }
 
-/// The [ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSource.git] choice: sets `git`.
-final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSourceGit
-    extends
-        ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSource {
-  const ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSourceGit(
-    this.git,
-  );
+/// The [ClouddeployCustomTargetTypeSource.git] choice: sets `git`.
+final class ClouddeployCustomTargetTypeSourceGit
+    extends ClouddeployCustomTargetTypeSource {
+  const ClouddeployCustomTargetTypeSourceGit(this.git);
 
-  final ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGit git;
+  final ClouddeployCustomTargetTypeGit git;
 
   @override
   String get blockKey => 'git';
@@ -167,16 +161,14 @@ final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSource
   Map<String, Object?> encode() => {'git': git.encode()};
 }
 
-/// The [ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSource.googleCloudStorage] choice: sets `google_cloud_storage`.
-final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSourceGoogleCloudStorage
-    extends
-        ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSource {
-  const ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSourceGoogleCloudStorage(
+/// The [ClouddeployCustomTargetTypeSource.googleCloudStorage] choice: sets `google_cloud_storage`.
+final class ClouddeployCustomTargetTypeSourceGoogleCloudStorage
+    extends ClouddeployCustomTargetTypeSource {
+  const ClouddeployCustomTargetTypeSourceGoogleCloudStorage(
     this.googleCloudStorage,
   );
 
-  final ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGoogleCloudStorage
-  googleCloudStorage;
+  final ClouddeployCustomTargetTypeGoogleCloudStorage googleCloudStorage;
 
   @override
   String get blockKey => 'google_cloud_storage';
@@ -187,16 +179,14 @@ final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSource
   };
 }
 
-/// The [ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSource.googleCloudBuildRepo] choice: sets `google_cloud_build_repo`.
-final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSourceGoogleCloudBuildRepo
-    extends
-        ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSource {
-  const ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSourceGoogleCloudBuildRepo(
+/// The [ClouddeployCustomTargetTypeSource.googleCloudBuildRepo] choice: sets `google_cloud_build_repo`.
+final class ClouddeployCustomTargetTypeSourceGoogleCloudBuildRepo
+    extends ClouddeployCustomTargetTypeSource {
+  const ClouddeployCustomTargetTypeSourceGoogleCloudBuildRepo(
     this.googleCloudBuildRepo,
   );
 
-  final ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGoogleCloudBuildRepo
-  googleCloudBuildRepo;
+  final ClouddeployCustomTargetTypeGoogleCloudBuildRepo googleCloudBuildRepo;
 
   @override
   String get blockKey => 'google_cloud_build_repo';
@@ -210,8 +200,8 @@ final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSource
 /// Typed helper for the `custom_actions.include_skaffold_modules.git` block of
 /// `google_clouddeploy_custom_target_type` (derived from provider schema).
 @immutable
-final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGit {
-  const ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGit({
+final class ClouddeployCustomTargetTypeGit {
+  const ClouddeployCustomTargetTypeGit({
     this.path,
     this.ref,
     required this.repo,
@@ -233,8 +223,8 @@ final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGit {
 /// Typed helper for the `custom_actions.include_skaffold_modules.google_cloud_build_repo` block of
 /// `google_clouddeploy_custom_target_type` (derived from provider schema).
 @immutable
-final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGoogleCloudBuildRepo {
-  const ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGoogleCloudBuildRepo({
+final class ClouddeployCustomTargetTypeGoogleCloudBuildRepo {
+  const ClouddeployCustomTargetTypeGoogleCloudBuildRepo({
     this.path,
     this.ref,
     required this.repository,
@@ -256,8 +246,8 @@ final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGoogle
 /// Typed helper for the `custom_actions.include_skaffold_modules.google_cloud_storage` block of
 /// `google_clouddeploy_custom_target_type` (derived from provider schema).
 @immutable
-final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGoogleCloudStorage {
-  const ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGoogleCloudStorage({
+final class ClouddeployCustomTargetTypeGoogleCloudStorage {
+  const ClouddeployCustomTargetTypeGoogleCloudStorage({
     this.path,
     required this.source,
   });
@@ -278,9 +268,9 @@ final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGoogle
 final class ClouddeployCustomTargetTypeTasks {
   const ClouddeployCustomTargetTypeTasks({required this.deploy, this.render});
 
-  final ClouddeployCustomTargetTypeTasksDeploy deploy;
+  final ClouddeployCustomTargetTypeDeploy deploy;
 
-  final ClouddeployCustomTargetTypeTasksRender? render;
+  final ClouddeployCustomTargetTypeRender? render;
 
   Map<String, Object?> encode() => {
     'deploy': deploy.encode(),
@@ -291,19 +281,20 @@ final class ClouddeployCustomTargetTypeTasks {
 /// Typed helper for the `tasks.deploy` block of
 /// `google_clouddeploy_custom_target_type` (derived from provider schema).
 @immutable
-final class ClouddeployCustomTargetTypeTasksDeploy {
-  const ClouddeployCustomTargetTypeTasksDeploy({this.container});
+final class ClouddeployCustomTargetTypeDeploy {
+  const ClouddeployCustomTargetTypeDeploy({this.container});
 
-  final ClouddeployCustomTargetTypeTasksDeployContainer? container;
+  final ClouddeployCustomTargetTypeContainer? container;
 
   Map<String, Object?> encode() => {'container': ?container?.encode()};
 }
 
 /// Typed helper for the `tasks.deploy.container` block of
 /// `google_clouddeploy_custom_target_type` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ClouddeployCustomTargetTypeTasksDeployContainer {
-  const ClouddeployCustomTargetTypeTasksDeployContainer({
+final class ClouddeployCustomTargetTypeContainer {
+  const ClouddeployCustomTargetTypeContainer({
     this.args,
     this.command,
     this.env,
@@ -329,39 +320,12 @@ final class ClouddeployCustomTargetTypeTasksDeployContainer {
 /// Typed helper for the `tasks.render` block of
 /// `google_clouddeploy_custom_target_type` (derived from provider schema).
 @immutable
-final class ClouddeployCustomTargetTypeTasksRender {
-  const ClouddeployCustomTargetTypeTasksRender({this.container});
+final class ClouddeployCustomTargetTypeRender {
+  const ClouddeployCustomTargetTypeRender({this.container});
 
-  final ClouddeployCustomTargetTypeTasksRenderContainer? container;
+  final ClouddeployCustomTargetTypeContainer? container;
 
   Map<String, Object?> encode() => {'container': ?container?.encode()};
-}
-
-/// Typed helper for the `tasks.render.container` block of
-/// `google_clouddeploy_custom_target_type` (derived from provider schema).
-@immutable
-final class ClouddeployCustomTargetTypeTasksRenderContainer {
-  const ClouddeployCustomTargetTypeTasksRenderContainer({
-    this.args,
-    this.command,
-    this.env,
-    required this.image,
-  });
-
-  final TfArg<List<String>>? args;
-
-  final TfArg<List<String>>? command;
-
-  final TfArg<Map<String, String>>? env;
-
-  final TfArg<String> image;
-
-  Map<String, Object?> encode() => {
-    'args': ?args?.toTfJson(),
-    'command': ?command?.toTfJson(),
-    'env': ?env?.toTfJson(),
-    'image': image.toTfJson(),
-  };
 }
 
 /// Factory wrapper for `google_clouddeploy_custom_target_type`.

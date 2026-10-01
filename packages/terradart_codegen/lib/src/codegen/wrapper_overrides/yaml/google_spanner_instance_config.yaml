@@ -33,7 +33,7 @@ curatedDoc: |-
   ///   replicas: [
   ///     SpannerInstanceConfigReplicas(
   ///       location: TfArg.literal('us-west1'),
-  ///       type: TfArg.literal(SpannerInstanceConfigReplicasType.readOnly),
+  ///       type: TfArg.literal(SpannerInstanceConfigType.readOnly),
   ///       defaultLeaderLocation: TfArg.literal(false),
   ///     ),
   ///   ],

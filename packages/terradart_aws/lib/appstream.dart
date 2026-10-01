@@ -6,8 +6,8 @@ library;
 export 'src/appstream/aws_appstream_directory_config.dart'
     show
         AppstreamDirectoryConfigCertificateBasedAuthProperties,
-        AppstreamDirectoryConfigCertificateBasedAuthPropertiesStatus,
         AppstreamDirectoryConfigServiceAccountCredentials,
+        AppstreamDirectoryConfigStatus,
         AwsAppstreamDirectoryConfig;
 export 'src/appstream/aws_appstream_fleet.dart'
     show
@@ -22,8 +22,8 @@ export 'src/appstream/aws_appstream_fleet_stack_association.dart'
 export 'src/appstream/aws_appstream_image_builder.dart'
     show
         AppstreamImageBuilderAccessEndpoint,
-        AppstreamImageBuilderAccessEndpointEndpointType,
         AppstreamImageBuilderDomainJoinInfo,
+        AppstreamImageBuilderEndpointType,
         AppstreamImageBuilderImage,
         AppstreamImageBuilderImageArn,
         AppstreamImageBuilderImageName,
@@ -32,15 +32,15 @@ export 'src/appstream/aws_appstream_image_builder.dart'
 export 'src/appstream/aws_appstream_stack.dart'
     show
         AppstreamStackAccessEndpoints,
-        AppstreamStackAccessEndpointsEndpointType,
+        AppstreamStackAction,
         AppstreamStackApplicationSettings,
+        AppstreamStackConnectorType,
+        AppstreamStackEndpointType,
+        AppstreamStackPermission,
+        AppstreamStackPreferredProtocol,
         AppstreamStackStorageConnectors,
-        AppstreamStackStorageConnectorsConnectorType,
         AppstreamStackStreamingExperienceSettings,
-        AppstreamStackStreamingExperienceSettingsPreferredProtocol,
         AppstreamStackUserSettings,
-        AppstreamStackUserSettingsAction,
-        AppstreamStackUserSettingsPermission,
         AwsAppstreamStack;
 export 'src/appstream/aws_appstream_user.dart'
     show AppstreamUserAuthenticationType, AwsAppstreamUser;

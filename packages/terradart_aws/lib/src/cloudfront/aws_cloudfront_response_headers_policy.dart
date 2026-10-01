@@ -27,16 +27,16 @@ final class CloudfrontResponseHeadersPolicyCorsConfig {
 
   final TfArg<bool> originOverride;
 
-  final CloudfrontResponseHeadersPolicyCorsConfigAccessControlAllowHeaders
+  final CloudfrontResponseHeadersPolicyAccessControlAllowHeaders
   accessControlAllowHeaders;
 
-  final CloudfrontResponseHeadersPolicyCorsConfigAccessControlAllowMethods
+  final CloudfrontResponseHeadersPolicyAccessControlAllowMethods
   accessControlAllowMethods;
 
-  final CloudfrontResponseHeadersPolicyCorsConfigAccessControlAllowOrigins
+  final CloudfrontResponseHeadersPolicyAccessControlAllowOrigins
   accessControlAllowOrigins;
 
-  final CloudfrontResponseHeadersPolicyCorsConfigAccessControlExposeHeaders?
+  final CloudfrontResponseHeadersPolicyAccessControlExposeHeaders?
   accessControlExposeHeaders;
 
   Map<String, Object?> encode() => {
@@ -54,10 +54,8 @@ final class CloudfrontResponseHeadersPolicyCorsConfig {
 /// Typed helper for the `cors_config.access_control_allow_headers` block of
 /// `aws_cloudfront_response_headers_policy` (derived from provider schema).
 @immutable
-final class CloudfrontResponseHeadersPolicyCorsConfigAccessControlAllowHeaders {
-  const CloudfrontResponseHeadersPolicyCorsConfigAccessControlAllowHeaders({
-    this.items,
-  });
+final class CloudfrontResponseHeadersPolicyAccessControlAllowHeaders {
+  const CloudfrontResponseHeadersPolicyAccessControlAllowHeaders({this.items});
 
   final TfArg<List<String>>? items;
 
@@ -67,10 +65,8 @@ final class CloudfrontResponseHeadersPolicyCorsConfigAccessControlAllowHeaders {
 /// Typed helper for the `cors_config.access_control_allow_methods` block of
 /// `aws_cloudfront_response_headers_policy` (derived from provider schema).
 @immutable
-final class CloudfrontResponseHeadersPolicyCorsConfigAccessControlAllowMethods {
-  const CloudfrontResponseHeadersPolicyCorsConfigAccessControlAllowMethods({
-    this.items,
-  });
+final class CloudfrontResponseHeadersPolicyAccessControlAllowMethods {
+  const CloudfrontResponseHeadersPolicyAccessControlAllowMethods({this.items});
 
   final TfArg<List<String>>? items;
 
@@ -80,10 +76,8 @@ final class CloudfrontResponseHeadersPolicyCorsConfigAccessControlAllowMethods {
 /// Typed helper for the `cors_config.access_control_allow_origins` block of
 /// `aws_cloudfront_response_headers_policy` (derived from provider schema).
 @immutable
-final class CloudfrontResponseHeadersPolicyCorsConfigAccessControlAllowOrigins {
-  const CloudfrontResponseHeadersPolicyCorsConfigAccessControlAllowOrigins({
-    this.items,
-  });
+final class CloudfrontResponseHeadersPolicyAccessControlAllowOrigins {
+  const CloudfrontResponseHeadersPolicyAccessControlAllowOrigins({this.items});
 
   final TfArg<List<String>>? items;
 
@@ -93,10 +87,8 @@ final class CloudfrontResponseHeadersPolicyCorsConfigAccessControlAllowOrigins {
 /// Typed helper for the `cors_config.access_control_expose_headers` block of
 /// `aws_cloudfront_response_headers_policy` (derived from provider schema).
 @immutable
-final class CloudfrontResponseHeadersPolicyCorsConfigAccessControlExposeHeaders {
-  const CloudfrontResponseHeadersPolicyCorsConfigAccessControlExposeHeaders({
-    this.items,
-  });
+final class CloudfrontResponseHeadersPolicyAccessControlExposeHeaders {
+  const CloudfrontResponseHeadersPolicyAccessControlExposeHeaders({this.items});
 
   final TfArg<List<String>>? items;
 
@@ -178,23 +170,19 @@ final class CloudfrontResponseHeadersPolicySecurityHeadersConfig {
     this.xssProtection,
   });
 
-  final CloudfrontResponseHeadersPolicySecurityHeadersConfigContentSecurityPolicy?
+  final CloudfrontResponseHeadersPolicyContentSecurityPolicy?
   contentSecurityPolicy;
 
-  final CloudfrontResponseHeadersPolicySecurityHeadersConfigContentTypeOptions?
-  contentTypeOptions;
+  final CloudfrontResponseHeadersPolicyContentTypeOptions? contentTypeOptions;
 
-  final CloudfrontResponseHeadersPolicySecurityHeadersConfigFrameOptions?
-  frameOptions;
+  final CloudfrontResponseHeadersPolicyFrameOptions? frameOptions;
 
-  final CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicy?
-  referrerPolicy;
+  final CloudfrontResponseHeadersPolicyReferrerPolicy? referrerPolicy;
 
-  final CloudfrontResponseHeadersPolicySecurityHeadersConfigStrictTransportSecurity?
+  final CloudfrontResponseHeadersPolicyStrictTransportSecurity?
   strictTransportSecurity;
 
-  final CloudfrontResponseHeadersPolicySecurityHeadersConfigXssProtection?
-  xssProtection;
+  final CloudfrontResponseHeadersPolicyXssProtection? xssProtection;
 
   Map<String, Object?> encode() => {
     'content_security_policy': ?contentSecurityPolicy?.encode(),
@@ -209,8 +197,8 @@ final class CloudfrontResponseHeadersPolicySecurityHeadersConfig {
 /// Typed helper for the `security_headers_config.content_security_policy` block of
 /// `aws_cloudfront_response_headers_policy` (derived from provider schema).
 @immutable
-final class CloudfrontResponseHeadersPolicySecurityHeadersConfigContentSecurityPolicy {
-  const CloudfrontResponseHeadersPolicySecurityHeadersConfigContentSecurityPolicy({
+final class CloudfrontResponseHeadersPolicyContentSecurityPolicy {
+  const CloudfrontResponseHeadersPolicyContentSecurityPolicy({
     required this.contentSecurityPolicy,
     required this.override,
   });
@@ -228,8 +216,8 @@ final class CloudfrontResponseHeadersPolicySecurityHeadersConfigContentSecurityP
 /// Typed helper for the `security_headers_config.content_type_options` block of
 /// `aws_cloudfront_response_headers_policy` (derived from provider schema).
 @immutable
-final class CloudfrontResponseHeadersPolicySecurityHeadersConfigContentTypeOptions {
-  const CloudfrontResponseHeadersPolicySecurityHeadersConfigContentTypeOptions({
+final class CloudfrontResponseHeadersPolicyContentTypeOptions {
+  const CloudfrontResponseHeadersPolicyContentTypeOptions({
     required this.override,
   });
 
@@ -241,16 +229,13 @@ final class CloudfrontResponseHeadersPolicySecurityHeadersConfigContentTypeOptio
 /// Typed helper for the `security_headers_config.frame_options` block of
 /// `aws_cloudfront_response_headers_policy` (derived from provider schema).
 @immutable
-final class CloudfrontResponseHeadersPolicySecurityHeadersConfigFrameOptions {
-  const CloudfrontResponseHeadersPolicySecurityHeadersConfigFrameOptions({
+final class CloudfrontResponseHeadersPolicyFrameOptions {
+  const CloudfrontResponseHeadersPolicyFrameOptions({
     required this.frameOption,
     required this.override,
   });
 
-  final TfArg<
-    CloudfrontResponseHeadersPolicySecurityHeadersConfigFrameOptionsFrameOption
-  >
-  frameOption;
+  final TfArg<CloudfrontResponseHeadersPolicyFrameOption> frameOption;
 
   final TfArg<bool> override;
 
@@ -261,14 +246,11 @@ final class CloudfrontResponseHeadersPolicySecurityHeadersConfigFrameOptions {
 }
 
 /// `frame_option` — derived from the provider schema description.
-enum CloudfrontResponseHeadersPolicySecurityHeadersConfigFrameOptionsFrameOption
-    implements TerraformEnum {
+enum CloudfrontResponseHeadersPolicyFrameOption implements TerraformEnum {
   deny('DENY'),
   sameorigin('SAMEORIGIN');
 
-  const CloudfrontResponseHeadersPolicySecurityHeadersConfigFrameOptionsFrameOption(
-    this.terraformValue,
-  );
+  const CloudfrontResponseHeadersPolicyFrameOption(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -276,17 +258,15 @@ enum CloudfrontResponseHeadersPolicySecurityHeadersConfigFrameOptionsFrameOption
 /// Typed helper for the `security_headers_config.referrer_policy` block of
 /// `aws_cloudfront_response_headers_policy` (derived from provider schema).
 @immutable
-final class CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicy {
-  const CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicy({
+final class CloudfrontResponseHeadersPolicyReferrerPolicy {
+  const CloudfrontResponseHeadersPolicyReferrerPolicy({
     required this.override,
     required this.referrerPolicy,
   });
 
   final TfArg<bool> override;
 
-  final TfArg<
-    CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicyReferrerPolicy
-  >
+  final TfArg<CloudfrontResponseHeadersPolicyReferrerPolicyReferrerPolicy>
   referrerPolicy;
 
   Map<String, Object?> encode() => {
@@ -296,7 +276,7 @@ final class CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicy {
 }
 
 /// `referrer_policy` — derived from the provider schema description.
-enum CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicyReferrerPolicy
+enum CloudfrontResponseHeadersPolicyReferrerPolicyReferrerPolicy
     implements TerraformEnum {
   noReferrer('no-referrer'),
   noReferrerWhenDowngrade('no-referrer-when-downgrade'),
@@ -307,7 +287,7 @@ enum CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicyReferrerP
   strictOriginWhenCrossOrigin('strict-origin-when-cross-origin'),
   unsafeUrl('unsafe-url');
 
-  const CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicyReferrerPolicy(
+  const CloudfrontResponseHeadersPolicyReferrerPolicyReferrerPolicy(
     this.terraformValue,
   );
   @override
@@ -317,8 +297,8 @@ enum CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicyReferrerP
 /// Typed helper for the `security_headers_config.strict_transport_security` block of
 /// `aws_cloudfront_response_headers_policy` (derived from provider schema).
 @immutable
-final class CloudfrontResponseHeadersPolicySecurityHeadersConfigStrictTransportSecurity {
-  const CloudfrontResponseHeadersPolicySecurityHeadersConfigStrictTransportSecurity({
+final class CloudfrontResponseHeadersPolicyStrictTransportSecurity {
+  const CloudfrontResponseHeadersPolicyStrictTransportSecurity({
     required this.accessControlMaxAgeSec,
     this.includeSubdomains,
     required this.override,
@@ -344,8 +324,8 @@ final class CloudfrontResponseHeadersPolicySecurityHeadersConfigStrictTransportS
 /// Typed helper for the `security_headers_config.xss_protection` block of
 /// `aws_cloudfront_response_headers_policy` (derived from provider schema).
 @immutable
-final class CloudfrontResponseHeadersPolicySecurityHeadersConfigXssProtection {
-  const CloudfrontResponseHeadersPolicySecurityHeadersConfigXssProtection({
+final class CloudfrontResponseHeadersPolicyXssProtection {
+  const CloudfrontResponseHeadersPolicyXssProtection({
     this.modeBlock,
     required this.override,
     required this.protection,

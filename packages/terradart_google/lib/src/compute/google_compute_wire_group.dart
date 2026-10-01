@@ -15,7 +15,7 @@ final class ComputeWireGroupEndpoints {
 
   final TfArg<String> endpoint;
 
-  final List<ComputeWireGroupEndpointsInterconnects>? interconnects;
+  final List<ComputeWireGroupInterconnects>? interconnects;
 
   Map<String, Object?> encode() => {
     'endpoint': endpoint.toTfJson(),
@@ -27,8 +27,8 @@ final class ComputeWireGroupEndpoints {
 /// Typed helper for the `endpoints.interconnects` block of
 /// `google_compute_wire_group` (derived from provider schema).
 @immutable
-final class ComputeWireGroupEndpointsInterconnects {
-  const ComputeWireGroupEndpointsInterconnects({
+final class ComputeWireGroupInterconnects {
+  const ComputeWireGroupInterconnects({
     this.interconnect,
     required this.interconnectName,
     this.vlanTags,

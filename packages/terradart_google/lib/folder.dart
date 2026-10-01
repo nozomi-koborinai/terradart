@@ -19,9 +19,9 @@ export 'src/folder/google_folder_iam_member.dart'
 export 'src/folder/google_folder_iam_policy.dart' show GoogleFolderIamPolicy;
 export 'src/folder/google_folder_organization_policy.dart'
     show
+        FolderOrganizationPolicyAllow,
         FolderOrganizationPolicyBooleanPolicy,
+        FolderOrganizationPolicyDeny,
         FolderOrganizationPolicyListPolicy,
-        FolderOrganizationPolicyListPolicyAllow,
-        FolderOrganizationPolicyListPolicyDeny,
         FolderOrganizationPolicyRestorePolicy,
         GoogleFolderOrganizationPolicy;

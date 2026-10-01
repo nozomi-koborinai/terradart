@@ -21,8 +21,7 @@ final class CloudConnectorRulesRules {
     this.parameters,
   });
 
-  final TfArg<CloudConnectorRulesRulesCloudConnectorRulesProvider>?
-  cloudConnectorRulesProvider;
+  final TfArg<CloudConnectorRulesProvider>? cloudConnectorRulesProvider;
 
   final TfArg<String>? description;
 
@@ -30,7 +29,7 @@ final class CloudConnectorRulesRules {
 
   final TfArg<String>? expression;
 
-  final CloudConnectorRulesRulesParameters? parameters;
+  final CloudConnectorRulesParameters? parameters;
 
   Map<String, Object?> encode() => {
     'cloud_connector_rules_provider': ?cloudConnectorRulesProvider?.toTfJson(),
@@ -42,17 +41,14 @@ final class CloudConnectorRulesRules {
 }
 
 /// `cloud_connector_rules_provider` — derived from the provider schema description.
-enum CloudConnectorRulesRulesCloudConnectorRulesProvider
-    implements TerraformEnum {
+enum CloudConnectorRulesProvider implements TerraformEnum {
   awsS3('aws_s3'),
   cloudflareR2('cloudflare_r2'),
   gcpStorage('gcp_storage'),
   azureStorage('azure_storage'),
   ociStorage('oci_storage');
 
-  const CloudConnectorRulesRulesCloudConnectorRulesProvider(
-    this.terraformValue,
-  );
+  const CloudConnectorRulesProvider(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -60,8 +56,8 @@ enum CloudConnectorRulesRulesCloudConnectorRulesProvider
 /// Typed helper for the `rules.parameters` block of
 /// `cloudflare_cloud_connector_rules` (derived from provider schema).
 @immutable
-final class CloudConnectorRulesRulesParameters {
-  const CloudConnectorRulesRulesParameters({this.host});
+final class CloudConnectorRulesParameters {
+  const CloudConnectorRulesParameters({this.host});
 
   final TfArg<String>? host;
 

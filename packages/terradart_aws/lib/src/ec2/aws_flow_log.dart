@@ -198,7 +198,7 @@ final class FlowLogDestinationOptions {
     this.perHourPartition,
   });
 
-  final TfArg<FlowLogDestinationOptionsFileFormat>? fileFormat;
+  final TfArg<FlowLogFileFormat>? fileFormat;
 
   final TfArg<bool>? hiveCompatiblePartitions;
 
@@ -212,11 +212,11 @@ final class FlowLogDestinationOptions {
 }
 
 /// `file_format` — derived from the provider schema description.
-enum FlowLogDestinationOptionsFileFormat implements TerraformEnum {
+enum FlowLogFileFormat implements TerraformEnum {
   plainText('plain-text'),
   parquet('parquet');
 
-  const FlowLogDestinationOptionsFileFormat(this.terraformValue);
+  const FlowLogFileFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -230,7 +230,7 @@ final class FlowLogTagFieldSpecification {
     required this.tagKeys,
   });
 
-  final TfArg<FlowLogTagFieldSpecificationResourceType> resourceType;
+  final TfArg<FlowLogResourceType> resourceType;
 
   final TfArg<List<String>> tagKeys;
 
@@ -241,12 +241,12 @@ final class FlowLogTagFieldSpecification {
 }
 
 /// `resource_type` — derived from the provider schema description.
-enum FlowLogTagFieldSpecificationResourceType implements TerraformEnum {
+enum FlowLogResourceType implements TerraformEnum {
   networkInterface('network-interface'),
   instance('instance'),
   autoScalingGroup('auto-scaling-group');
 
-  const FlowLogTagFieldSpecificationResourceType(this.terraformValue);
+  const FlowLogResourceType(this.terraformValue);
   @override
   final String terraformValue;
 }

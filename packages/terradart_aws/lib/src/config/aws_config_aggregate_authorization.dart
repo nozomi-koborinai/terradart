@@ -16,7 +16,7 @@ sealed class ConfigAggregateAuthorizationRegion {
   /// Sets `authorized_aws_region`.
   const factory ConfigAggregateAuthorizationRegion.authorizedAwsRegion(
     TfArg<String> authorizedAwsRegion,
-  ) = ConfigAggregateAuthorizationRegionAuthorizedAwsRegion;
+  ) = ConfigAggregateAuthorizationAuthorizedAwsRegion;
 
   /// Sets `region`.
   const factory ConfigAggregateAuthorizationRegion.region(
@@ -34,9 +34,9 @@ sealed class ConfigAggregateAuthorizationRegion {
 }
 
 /// The [ConfigAggregateAuthorizationRegion.authorizedAwsRegion] choice: sets `authorized_aws_region`.
-final class ConfigAggregateAuthorizationRegionAuthorizedAwsRegion
+final class ConfigAggregateAuthorizationAuthorizedAwsRegion
     extends ConfigAggregateAuthorizationRegion {
-  const ConfigAggregateAuthorizationRegionAuthorizedAwsRegion(
+  const ConfigAggregateAuthorizationAuthorizedAwsRegion(
     this.authorizedAwsRegion,
   );
 

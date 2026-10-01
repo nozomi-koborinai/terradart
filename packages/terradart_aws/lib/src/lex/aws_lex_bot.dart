@@ -46,7 +46,7 @@ final class LexBotAbortStatement {
 
   final TfArg<String>? responseCard;
 
-  final List<LexBotAbortStatementMessage> message;
+  final List<LexBotMessage> message;
 
   Map<String, Object?> encode() => {
     'response_card': ?responseCard?.toTfJson(),
@@ -56,9 +56,10 @@ final class LexBotAbortStatement {
 
 /// Typed helper for the `abort_statement.message` block of
 /// `aws_lex_bot` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class LexBotAbortStatementMessage {
-  const LexBotAbortStatementMessage({
+final class LexBotMessage {
+  const LexBotMessage({
     required this.content,
     required this.contentType,
     this.groupNumber,
@@ -91,35 +92,12 @@ final class LexBotClarificationPrompt {
 
   final TfArg<String>? responseCard;
 
-  final List<LexBotClarificationPromptMessage> message;
+  final List<LexBotMessage> message;
 
   Map<String, Object?> encode() => {
     'max_attempts': maxAttempts.toTfJson(),
     'response_card': ?responseCard?.toTfJson(),
     'message': [for (final e in message) e.encode()],
-  };
-}
-
-/// Typed helper for the `clarification_prompt.message` block of
-/// `aws_lex_bot` (derived from provider schema).
-@immutable
-final class LexBotClarificationPromptMessage {
-  const LexBotClarificationPromptMessage({
-    required this.content,
-    required this.contentType,
-    this.groupNumber,
-  });
-
-  final TfArg<String> content;
-
-  final TfArg<String> contentType;
-
-  final TfArg<num>? groupNumber;
-
-  Map<String, Object?> encode() => {
-    'content': content.toTfJson(),
-    'content_type': contentType.toTfJson(),
-    'group_number': ?groupNumber?.toTfJson(),
   };
 }
 

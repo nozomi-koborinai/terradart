@@ -9,8 +9,8 @@ export 'src/gemini/google_gemini_code_repository_index.dart'
     show GoogleGeminiCodeRepositoryIndex;
 export 'src/gemini/google_gemini_code_tools_setting.dart'
     show
+        GeminiCodeToolsSettingConfig,
         GeminiCodeToolsSettingEnabledTool,
-        GeminiCodeToolsSettingEnabledToolConfig,
         GoogleGeminiCodeToolsSetting;
 export 'src/gemini/google_gemini_code_tools_setting_binding.dart'
     show

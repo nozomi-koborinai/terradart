@@ -51,15 +51,15 @@ final class ElastictranscoderPresetAudio {
     this.sampleRate,
   });
 
-  final TfArg<ElastictranscoderPresetAudioAudioPackingMode>? audioPackingMode;
+  final TfArg<ElastictranscoderPresetAudioPackingMode>? audioPackingMode;
 
   final TfArg<String>? bitRate;
 
-  final TfArg<ElastictranscoderPresetAudioChannels>? channels;
+  final TfArg<ElastictranscoderPresetChannels>? channels;
 
   final TfArg<ElastictranscoderPresetAudioCodec>? codec;
 
-  final TfArg<ElastictranscoderPresetAudioSampleRate>? sampleRate;
+  final TfArg<ElastictranscoderPresetSampleRate>? sampleRate;
 
   Map<String, Object?> encode() => {
     'audio_packing_mode': ?audioPackingMode?.toTfJson(),
@@ -71,24 +71,24 @@ final class ElastictranscoderPresetAudio {
 }
 
 /// `audio_packing_mode` — derived from the provider schema description.
-enum ElastictranscoderPresetAudioAudioPackingMode implements TerraformEnum {
+enum ElastictranscoderPresetAudioPackingMode implements TerraformEnum {
   singletrack('SingleTrack'),
   onechannelpertrack('OneChannelPerTrack'),
   onechannelpertrackwithmosto8tracks('OneChannelPerTrackWithMosTo8Tracks');
 
-  const ElastictranscoderPresetAudioAudioPackingMode(this.terraformValue);
+  const ElastictranscoderPresetAudioPackingMode(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `channels` — derived from the provider schema description.
-enum ElastictranscoderPresetAudioChannels implements TerraformEnum {
+enum ElastictranscoderPresetChannels implements TerraformEnum {
   auto('auto'),
   v0('0'),
   v1('1'),
   v2('2');
 
-  const ElastictranscoderPresetAudioChannels(this.terraformValue);
+  const ElastictranscoderPresetChannels(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -108,7 +108,7 @@ enum ElastictranscoderPresetAudioCodec implements TerraformEnum {
 }
 
 /// `sample_rate` — derived from the provider schema description.
-enum ElastictranscoderPresetAudioSampleRate implements TerraformEnum {
+enum ElastictranscoderPresetSampleRate implements TerraformEnum {
   auto('auto'),
   v22050('22050'),
   v32000('32000'),
@@ -116,7 +116,7 @@ enum ElastictranscoderPresetAudioSampleRate implements TerraformEnum {
   v48000('48000'),
   v96000('96000');
 
-  const ElastictranscoderPresetAudioSampleRate(this.terraformValue);
+  const ElastictranscoderPresetSampleRate(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -132,13 +132,13 @@ final class ElastictranscoderPresetAudioCodecOptions {
     this.signed,
   });
 
-  final TfArg<ElastictranscoderPresetAudioCodecOptionsBitDepth>? bitDepth;
+  final TfArg<ElastictranscoderPresetBitDepth>? bitDepth;
 
-  final TfArg<ElastictranscoderPresetAudioCodecOptionsBitOrder>? bitOrder;
+  final TfArg<ElastictranscoderPresetBitOrder>? bitOrder;
 
-  final TfArg<ElastictranscoderPresetAudioCodecOptionsProfile>? profile;
+  final TfArg<ElastictranscoderPresetProfile>? profile;
 
-  final TfArg<ElastictranscoderPresetAudioCodecOptionsSigned>? signed;
+  final TfArg<ElastictranscoderPresetSigned>? signed;
 
   Map<String, Object?> encode() => {
     'bit_depth': ?bitDepth?.toTfJson(),
@@ -149,44 +149,44 @@ final class ElastictranscoderPresetAudioCodecOptions {
 }
 
 /// `bit_depth` — derived from the provider schema description.
-enum ElastictranscoderPresetAudioCodecOptionsBitDepth implements TerraformEnum {
+enum ElastictranscoderPresetBitDepth implements TerraformEnum {
   v8('8'),
   v16('16'),
   v24('24'),
   v32('32');
 
-  const ElastictranscoderPresetAudioCodecOptionsBitDepth(this.terraformValue);
+  const ElastictranscoderPresetBitDepth(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `bit_order` — derived from the provider schema description.
-enum ElastictranscoderPresetAudioCodecOptionsBitOrder implements TerraformEnum {
+enum ElastictranscoderPresetBitOrder implements TerraformEnum {
   littleendian('LittleEndian');
 
-  const ElastictranscoderPresetAudioCodecOptionsBitOrder(this.terraformValue);
+  const ElastictranscoderPresetBitOrder(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `profile` — derived from the provider schema description.
-enum ElastictranscoderPresetAudioCodecOptionsProfile implements TerraformEnum {
+enum ElastictranscoderPresetProfile implements TerraformEnum {
   auto('auto'),
   aacLc('AAC-LC'),
   heAac('HE-AAC'),
   heAacv2('HE-AACv2');
 
-  const ElastictranscoderPresetAudioCodecOptionsProfile(this.terraformValue);
+  const ElastictranscoderPresetProfile(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `signed` — derived from the provider schema description.
-enum ElastictranscoderPresetAudioCodecOptionsSigned implements TerraformEnum {
+enum ElastictranscoderPresetSigned implements TerraformEnum {
   signed('Signed'),
   unsigned('Unsigned');
 
-  const ElastictranscoderPresetAudioCodecOptionsSigned(this.terraformValue);
+  const ElastictranscoderPresetSigned(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -206,9 +206,9 @@ final class ElastictranscoderPresetThumbnails {
     this.sizingPolicy,
   });
 
-  final TfArg<ElastictranscoderPresetThumbnailsAspectRatio>? aspectRatio;
+  final TfArg<ElastictranscoderPresetAspectRatio>? aspectRatio;
 
-  final TfArg<ElastictranscoderPresetThumbnailsFormat>? format;
+  final TfArg<ElastictranscoderPresetFormat>? format;
 
   final TfArg<String>? interval;
 
@@ -216,7 +216,7 @@ final class ElastictranscoderPresetThumbnails {
 
   final TfArg<String>? maxWidth;
 
-  final TfArg<ElastictranscoderPresetThumbnailsPaddingPolicy>? paddingPolicy;
+  final TfArg<ElastictranscoderPresetPaddingPolicy>? paddingPolicy;
 
   final TfArg<String>? resolution;
 
@@ -235,34 +235,34 @@ final class ElastictranscoderPresetThumbnails {
 }
 
 /// `aspect_ratio` — derived from the provider schema description.
-enum ElastictranscoderPresetThumbnailsAspectRatio implements TerraformEnum {
+enum ElastictranscoderPresetAspectRatio implements TerraformEnum {
   auto('auto'),
   v1x1('1:1'),
   v4x3('4:3'),
   v3x2('3:2'),
   v16x9('16:9');
 
-  const ElastictranscoderPresetThumbnailsAspectRatio(this.terraformValue);
+  const ElastictranscoderPresetAspectRatio(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `format` — derived from the provider schema description.
-enum ElastictranscoderPresetThumbnailsFormat implements TerraformEnum {
+enum ElastictranscoderPresetFormat implements TerraformEnum {
   jpg('jpg'),
   png('png');
 
-  const ElastictranscoderPresetThumbnailsFormat(this.terraformValue);
+  const ElastictranscoderPresetFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `padding_policy` — derived from the provider schema description.
-enum ElastictranscoderPresetThumbnailsPaddingPolicy implements TerraformEnum {
+enum ElastictranscoderPresetPaddingPolicy implements TerraformEnum {
   pad('Pad'),
   nopad('NoPad');
 
-  const ElastictranscoderPresetThumbnailsPaddingPolicy(this.terraformValue);
+  const ElastictranscoderPresetPaddingPolicy(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -301,32 +301,31 @@ final class ElastictranscoderPresetVideo {
     this.sizingPolicy,
   });
 
-  final TfArg<ElastictranscoderPresetVideoAspectRatio>? aspectRatio;
+  final TfArg<ElastictranscoderPresetAspectRatio>? aspectRatio;
 
   final TfArg<String>? bitRate;
 
   final TfArg<ElastictranscoderPresetVideoCodec>? codec;
 
-  final TfArg<ElastictranscoderPresetVideoDisplayAspectRatio>?
-  displayAspectRatio;
+  final TfArg<ElastictranscoderPresetDisplayAspectRatio>? displayAspectRatio;
 
-  final TfArg<ElastictranscoderPresetVideoFixedGop>? fixedGop;
+  final TfArg<ElastictranscoderPresetFixedGop>? fixedGop;
 
-  final TfArg<ElastictranscoderPresetVideoFrameRate>? frameRate;
+  final TfArg<ElastictranscoderPresetFrameRate>? frameRate;
 
   final TfArg<String>? keyframesMaxDist;
 
-  final TfArg<ElastictranscoderPresetVideoMaxFrameRate>? maxFrameRate;
+  final TfArg<ElastictranscoderPresetMaxFrameRate>? maxFrameRate;
 
   final TfArg<String>? maxHeight;
 
   final TfArg<String>? maxWidth;
 
-  final TfArg<ElastictranscoderPresetVideoPaddingPolicy>? paddingPolicy;
+  final TfArg<ElastictranscoderPresetPaddingPolicy>? paddingPolicy;
 
   final TfArg<String>? resolution;
 
-  final TfArg<ElastictranscoderPresetVideoSizingPolicy>? sizingPolicy;
+  final TfArg<ElastictranscoderPresetThumbnailsSizingPolicy>? sizingPolicy;
 
   Map<String, Object?> encode() => {
     'aspect_ratio': ?aspectRatio?.toTfJson(),
@@ -345,19 +344,6 @@ final class ElastictranscoderPresetVideo {
   };
 }
 
-/// `aspect_ratio` — derived from the provider schema description.
-enum ElastictranscoderPresetVideoAspectRatio implements TerraformEnum {
-  auto('auto'),
-  v1x1('1:1'),
-  v4x3('4:3'),
-  v3x2('3:2'),
-  v16x9('16:9');
-
-  const ElastictranscoderPresetVideoAspectRatio(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
 /// `codec` — derived from the provider schema description.
 enum ElastictranscoderPresetVideoCodec implements TerraformEnum {
   gif('gif'),
@@ -372,30 +358,30 @@ enum ElastictranscoderPresetVideoCodec implements TerraformEnum {
 }
 
 /// `display_aspect_ratio` — derived from the provider schema description.
-enum ElastictranscoderPresetVideoDisplayAspectRatio implements TerraformEnum {
+enum ElastictranscoderPresetDisplayAspectRatio implements TerraformEnum {
   auto('auto'),
   v1x1('1:1'),
   v4x3('4:3'),
   v3x2('3:2'),
   v16x9('16:9');
 
-  const ElastictranscoderPresetVideoDisplayAspectRatio(this.terraformValue);
+  const ElastictranscoderPresetDisplayAspectRatio(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `fixed_gop` — derived from the provider schema description.
-enum ElastictranscoderPresetVideoFixedGop implements TerraformEnum {
+enum ElastictranscoderPresetFixedGop implements TerraformEnum {
   trueCase('true'),
   falseCase('false');
 
-  const ElastictranscoderPresetVideoFixedGop(this.terraformValue);
+  const ElastictranscoderPresetFixedGop(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `frame_rate` — derived from the provider schema description.
-enum ElastictranscoderPresetVideoFrameRate implements TerraformEnum {
+enum ElastictranscoderPresetFrameRate implements TerraformEnum {
   auto('auto'),
   v10('10'),
   v15('15'),
@@ -407,13 +393,13 @@ enum ElastictranscoderPresetVideoFrameRate implements TerraformEnum {
   v50('50'),
   v60('60');
 
-  const ElastictranscoderPresetVideoFrameRate(this.terraformValue);
+  const ElastictranscoderPresetFrameRate(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `max_frame_rate` — derived from the provider schema description.
-enum ElastictranscoderPresetVideoMaxFrameRate implements TerraformEnum {
+enum ElastictranscoderPresetMaxFrameRate implements TerraformEnum {
   v10('10'),
   v15('15'),
   v23p97('23.97'),
@@ -424,31 +410,7 @@ enum ElastictranscoderPresetVideoMaxFrameRate implements TerraformEnum {
   v50('50'),
   v60('60');
 
-  const ElastictranscoderPresetVideoMaxFrameRate(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
-/// `padding_policy` — derived from the provider schema description.
-enum ElastictranscoderPresetVideoPaddingPolicy implements TerraformEnum {
-  pad('Pad'),
-  nopad('NoPad');
-
-  const ElastictranscoderPresetVideoPaddingPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
-/// `sizing_policy` — derived from the provider schema description.
-enum ElastictranscoderPresetVideoSizingPolicy implements TerraformEnum {
-  fit('Fit'),
-  fill('Fill'),
-  stretch('Stretch'),
-  keep('Keep'),
-  shrinktofit('ShrinkToFit'),
-  shrinktofill('ShrinkToFill');
-
-  const ElastictranscoderPresetVideoSizingPolicy(this.terraformValue);
+  const ElastictranscoderPresetMaxFrameRate(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -470,8 +432,7 @@ final class ElastictranscoderPresetVideoWatermarks {
     this.verticalOffset,
   });
 
-  final TfArg<ElastictranscoderPresetVideoWatermarksHorizontalAlign>?
-  horizontalAlign;
+  final TfArg<ElastictranscoderPresetHorizontalAlign>? horizontalAlign;
 
   final TfArg<String>? horizontalOffset;
 
@@ -485,10 +446,9 @@ final class ElastictranscoderPresetVideoWatermarks {
 
   final TfArg<ElastictranscoderPresetVideoWatermarksSizingPolicy>? sizingPolicy;
 
-  final TfArg<ElastictranscoderPresetVideoWatermarksTarget>? target;
+  final TfArg<ElastictranscoderPresetTarget>? target;
 
-  final TfArg<ElastictranscoderPresetVideoWatermarksVerticalAlign>?
-  verticalAlign;
+  final TfArg<ElastictranscoderPresetVerticalAlign>? verticalAlign;
 
   final TfArg<String>? verticalOffset;
 
@@ -507,15 +467,12 @@ final class ElastictranscoderPresetVideoWatermarks {
 }
 
 /// `horizontal_align` — derived from the provider schema description.
-enum ElastictranscoderPresetVideoWatermarksHorizontalAlign
-    implements TerraformEnum {
+enum ElastictranscoderPresetHorizontalAlign implements TerraformEnum {
   left('Left'),
   right('Right'),
   center('Center');
 
-  const ElastictranscoderPresetVideoWatermarksHorizontalAlign(
-    this.terraformValue,
-  );
+  const ElastictranscoderPresetHorizontalAlign(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -533,25 +490,22 @@ enum ElastictranscoderPresetVideoWatermarksSizingPolicy
 }
 
 /// `target` — derived from the provider schema description.
-enum ElastictranscoderPresetVideoWatermarksTarget implements TerraformEnum {
+enum ElastictranscoderPresetTarget implements TerraformEnum {
   content('Content'),
   frame('Frame');
 
-  const ElastictranscoderPresetVideoWatermarksTarget(this.terraformValue);
+  const ElastictranscoderPresetTarget(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `vertical_align` — derived from the provider schema description.
-enum ElastictranscoderPresetVideoWatermarksVerticalAlign
-    implements TerraformEnum {
+enum ElastictranscoderPresetVerticalAlign implements TerraformEnum {
   top('Top'),
   bottom('Bottom'),
   center('Center');
 
-  const ElastictranscoderPresetVideoWatermarksVerticalAlign(
-    this.terraformValue,
-  );
+  const ElastictranscoderPresetVerticalAlign(this.terraformValue);
   @override
   final String terraformValue;
 }

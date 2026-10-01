@@ -12,13 +12,10 @@ const Set<String> _awsS3BucketVersioningSensitive = <String>{};
 /// Typed helper for the `versioning_configuration` block of
 /// `aws_s3_bucket_versioning` (derived from provider schema).
 @immutable
-final class S3BucketVersioningVersioningConfiguration {
-  const S3BucketVersioningVersioningConfiguration({
-    this.mfaDelete,
-    required this.status,
-  });
+final class S3BucketVersioningConfiguration {
+  const S3BucketVersioningConfiguration({this.mfaDelete, required this.status});
 
-  final TfArg<S3BucketVersioningVersioningConfigurationMfaDelete>? mfaDelete;
+  final TfArg<S3BucketVersioningMfaDelete>? mfaDelete;
 
   final TfArg<String> status;
 
@@ -29,12 +26,11 @@ final class S3BucketVersioningVersioningConfiguration {
 }
 
 /// `mfa_delete` — derived from the provider schema description.
-enum S3BucketVersioningVersioningConfigurationMfaDelete
-    implements TerraformEnum {
+enum S3BucketVersioningMfaDelete implements TerraformEnum {
   enabled('Enabled'),
   disabled('Disabled');
 
-  const S3BucketVersioningVersioningConfigurationMfaDelete(this.terraformValue);
+  const S3BucketVersioningMfaDelete(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -49,7 +45,7 @@ final class AwsS3BucketVersioning extends Resource {
     TfArg<String>? expectedBucketOwner,
     TfArg<String>? mfa,
     TfArg<String>? region,
-    required S3BucketVersioningVersioningConfiguration versioningConfiguration,
+    required S3BucketVersioningConfiguration versioningConfiguration,
     super.lifecycle,
     super.dependsOn,
     super.provider,

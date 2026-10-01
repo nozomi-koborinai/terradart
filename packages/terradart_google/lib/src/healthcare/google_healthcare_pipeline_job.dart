@@ -131,12 +131,11 @@ final class HealthcarePipelineJobMappingPipelineJob {
     required this.mappingConfig,
   });
 
-  final HealthcarePipelineJobMappingPipelineJobDestination? destination;
+  final HealthcarePipelineJobDestination? destination;
 
-  final HealthcarePipelineJobMappingPipelineJobFhirStreamingSource?
-  fhirStreamingSource;
+  final HealthcarePipelineJobFhirStreamingSource? fhirStreamingSource;
 
-  final HealthcarePipelineJobMappingPipelineJobMappingConfig mappingConfig;
+  final HealthcarePipelineJobMappingConfig mappingConfig;
 
   Map<String, Object?> encode() => {
     ...?destination?.encode(),
@@ -150,18 +149,18 @@ final class HealthcarePipelineJobMappingPipelineJob {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.fhirStoreDestination(...)`.
-sealed class HealthcarePipelineJobMappingPipelineJobDestination {
-  const HealthcarePipelineJobMappingPipelineJobDestination();
+sealed class HealthcarePipelineJobDestination {
+  const HealthcarePipelineJobDestination();
 
   /// Sets `fhir_store_destination`.
-  const factory HealthcarePipelineJobMappingPipelineJobDestination.fhirStoreDestination(
+  const factory HealthcarePipelineJobDestination.fhirStoreDestination(
     TfArg<String> fhirStoreDestination,
-  ) = HealthcarePipelineJobMappingPipelineJobDestinationFhirStoreDestination;
+  ) = HealthcarePipelineJobFhirStoreDestination;
 
   /// Sets `reconciliation_destination`.
-  const factory HealthcarePipelineJobMappingPipelineJobDestination.reconciliationDestination(
+  const factory HealthcarePipelineJobDestination.reconciliationDestination(
     TfArg<bool> reconciliationDestination,
-  ) = HealthcarePipelineJobMappingPipelineJobDestinationReconciliationDestination;
+  ) = HealthcarePipelineJobReconciliationDestination;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -169,12 +168,10 @@ sealed class HealthcarePipelineJobMappingPipelineJobDestination {
   Map<String, Object?> encode();
 }
 
-/// The [HealthcarePipelineJobMappingPipelineJobDestination.fhirStoreDestination] choice: sets `fhir_store_destination`.
-final class HealthcarePipelineJobMappingPipelineJobDestinationFhirStoreDestination
-    extends HealthcarePipelineJobMappingPipelineJobDestination {
-  const HealthcarePipelineJobMappingPipelineJobDestinationFhirStoreDestination(
-    this.fhirStoreDestination,
-  );
+/// The [HealthcarePipelineJobDestination.fhirStoreDestination] choice: sets `fhir_store_destination`.
+final class HealthcarePipelineJobFhirStoreDestination
+    extends HealthcarePipelineJobDestination {
+  const HealthcarePipelineJobFhirStoreDestination(this.fhirStoreDestination);
 
   final TfArg<String> fhirStoreDestination;
 
@@ -187,10 +184,10 @@ final class HealthcarePipelineJobMappingPipelineJobDestinationFhirStoreDestinati
   };
 }
 
-/// The [HealthcarePipelineJobMappingPipelineJobDestination.reconciliationDestination] choice: sets `reconciliation_destination`.
-final class HealthcarePipelineJobMappingPipelineJobDestinationReconciliationDestination
-    extends HealthcarePipelineJobMappingPipelineJobDestination {
-  const HealthcarePipelineJobMappingPipelineJobDestinationReconciliationDestination(
+/// The [HealthcarePipelineJobDestination.reconciliationDestination] choice: sets `reconciliation_destination`.
+final class HealthcarePipelineJobReconciliationDestination
+    extends HealthcarePipelineJobDestination {
+  const HealthcarePipelineJobReconciliationDestination(
     this.reconciliationDestination,
   );
 
@@ -208,8 +205,8 @@ final class HealthcarePipelineJobMappingPipelineJobDestinationReconciliationDest
 /// Typed helper for the `mapping_pipeline_job.fhir_streaming_source` block of
 /// `google_healthcare_pipeline_job` (derived from provider schema).
 @immutable
-final class HealthcarePipelineJobMappingPipelineJobFhirStreamingSource {
-  const HealthcarePipelineJobMappingPipelineJobFhirStreamingSource({
+final class HealthcarePipelineJobFhirStreamingSource {
+  const HealthcarePipelineJobFhirStreamingSource({
     this.description,
     required this.fhirStore,
   });
@@ -227,16 +224,15 @@ final class HealthcarePipelineJobMappingPipelineJobFhirStreamingSource {
 /// Typed helper for the `mapping_pipeline_job.mapping_config` block of
 /// `google_healthcare_pipeline_job` (derived from provider schema).
 @immutable
-final class HealthcarePipelineJobMappingPipelineJobMappingConfig {
-  const HealthcarePipelineJobMappingPipelineJobMappingConfig({
+final class HealthcarePipelineJobMappingConfig {
+  const HealthcarePipelineJobMappingConfig({
     this.description,
     this.whistleConfigSource,
   });
 
   final TfArg<String>? description;
 
-  final HealthcarePipelineJobMappingPipelineJobMappingConfigWhistleConfigSource?
-  whistleConfigSource;
+  final HealthcarePipelineJobWhistleConfigSource? whistleConfigSource;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -246,9 +242,10 @@ final class HealthcarePipelineJobMappingPipelineJobMappingConfig {
 
 /// Typed helper for the `mapping_pipeline_job.mapping_config.whistle_config_source` block of
 /// `google_healthcare_pipeline_job` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class HealthcarePipelineJobMappingPipelineJobMappingConfigWhistleConfigSource {
-  const HealthcarePipelineJobMappingPipelineJobMappingConfigWhistleConfigSource({
+final class HealthcarePipelineJobWhistleConfigSource {
+  const HealthcarePipelineJobWhistleConfigSource({
     required this.importUriPrefix,
     required this.uri,
   });
@@ -277,7 +274,7 @@ final class HealthcarePipelineJobReconciliationPipelineJob {
 
   final TfArg<String> matchingUriPrefix;
 
-  final HealthcarePipelineJobReconciliationPipelineJobMergeConfig mergeConfig;
+  final HealthcarePipelineJobMergeConfig mergeConfig;
 
   Map<String, Object?> encode() => {
     'fhir_store_destination': ?fhirStoreDestination?.toTfJson(),
@@ -289,39 +286,19 @@ final class HealthcarePipelineJobReconciliationPipelineJob {
 /// Typed helper for the `reconciliation_pipeline_job.merge_config` block of
 /// `google_healthcare_pipeline_job` (derived from provider schema).
 @immutable
-final class HealthcarePipelineJobReconciliationPipelineJobMergeConfig {
-  const HealthcarePipelineJobReconciliationPipelineJobMergeConfig({
+final class HealthcarePipelineJobMergeConfig {
+  const HealthcarePipelineJobMergeConfig({
     this.description,
     required this.whistleConfigSource,
   });
 
   final TfArg<String>? description;
 
-  final HealthcarePipelineJobReconciliationPipelineJobMergeConfigWhistleConfigSource
-  whistleConfigSource;
+  final HealthcarePipelineJobWhistleConfigSource whistleConfigSource;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'whistle_config_source': whistleConfigSource.encode(),
-  };
-}
-
-/// Typed helper for the `reconciliation_pipeline_job.merge_config.whistle_config_source` block of
-/// `google_healthcare_pipeline_job` (derived from provider schema).
-@immutable
-final class HealthcarePipelineJobReconciliationPipelineJobMergeConfigWhistleConfigSource {
-  const HealthcarePipelineJobReconciliationPipelineJobMergeConfigWhistleConfigSource({
-    required this.importUriPrefix,
-    required this.uri,
-  });
-
-  final TfArg<String> importUriPrefix;
-
-  final TfArg<String> uri;
-
-  Map<String, Object?> encode() => {
-    'import_uri_prefix': importUriPrefix.toTfJson(),
-    'uri': uri.toTfJson(),
   };
 }
 

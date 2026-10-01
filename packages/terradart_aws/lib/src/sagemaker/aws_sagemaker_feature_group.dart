@@ -21,15 +21,13 @@ final class SagemakerFeatureGroupFeatureDefinition {
     this.collectionConfig,
   });
 
-  final TfArg<SagemakerFeatureGroupFeatureDefinitionCollectionType>?
-  collectionType;
+  final TfArg<SagemakerFeatureGroupCollectionType>? collectionType;
 
   final TfArg<String>? featureName;
 
-  final TfArg<SagemakerFeatureGroupFeatureDefinitionFeatureType>? featureType;
+  final TfArg<SagemakerFeatureGroupFeatureType>? featureType;
 
-  final SagemakerFeatureGroupFeatureDefinitionCollectionConfig?
-  collectionConfig;
+  final SagemakerFeatureGroupCollectionConfig? collectionConfig;
 
   Map<String, Object?> encode() => {
     'collection_type': ?collectionType?.toTfJson(),
@@ -40,27 +38,23 @@ final class SagemakerFeatureGroupFeatureDefinition {
 }
 
 /// `collection_type` — derived from the provider schema description.
-enum SagemakerFeatureGroupFeatureDefinitionCollectionType
-    implements TerraformEnum {
+enum SagemakerFeatureGroupCollectionType implements TerraformEnum {
   list('List'),
   set('Set'),
   vector('Vector');
 
-  const SagemakerFeatureGroupFeatureDefinitionCollectionType(
-    this.terraformValue,
-  );
+  const SagemakerFeatureGroupCollectionType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `feature_type` — derived from the provider schema description.
-enum SagemakerFeatureGroupFeatureDefinitionFeatureType
-    implements TerraformEnum {
+enum SagemakerFeatureGroupFeatureType implements TerraformEnum {
   integral('Integral'),
   fractional('Fractional'),
   string('String');
 
-  const SagemakerFeatureGroupFeatureDefinitionFeatureType(this.terraformValue);
+  const SagemakerFeatureGroupFeatureType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -68,13 +62,10 @@ enum SagemakerFeatureGroupFeatureDefinitionFeatureType
 /// Typed helper for the `feature_definition.collection_config` block of
 /// `aws_sagemaker_feature_group` (derived from provider schema).
 @immutable
-final class SagemakerFeatureGroupFeatureDefinitionCollectionConfig {
-  const SagemakerFeatureGroupFeatureDefinitionCollectionConfig({
-    this.vectorConfig,
-  });
+final class SagemakerFeatureGroupCollectionConfig {
+  const SagemakerFeatureGroupCollectionConfig({this.vectorConfig});
 
-  final SagemakerFeatureGroupFeatureDefinitionCollectionConfigVectorConfig?
-  vectorConfig;
+  final SagemakerFeatureGroupVectorConfig? vectorConfig;
 
   Map<String, Object?> encode() => {'vector_config': ?vectorConfig?.encode()};
 }
@@ -82,10 +73,8 @@ final class SagemakerFeatureGroupFeatureDefinitionCollectionConfig {
 /// Typed helper for the `feature_definition.collection_config.vector_config` block of
 /// `aws_sagemaker_feature_group` (derived from provider schema).
 @immutable
-final class SagemakerFeatureGroupFeatureDefinitionCollectionConfigVectorConfig {
-  const SagemakerFeatureGroupFeatureDefinitionCollectionConfigVectorConfig({
-    this.dimension,
-  });
+final class SagemakerFeatureGroupVectorConfig {
+  const SagemakerFeatureGroupVectorConfig({this.dimension});
 
   final TfArg<num>? dimension;
 
@@ -105,12 +94,11 @@ final class SagemakerFeatureGroupOfflineStoreConfig {
 
   final TfArg<bool>? disableGlueTableCreation;
 
-  final TfArg<SagemakerFeatureGroupOfflineStoreConfigTableFormat>? tableFormat;
+  final TfArg<SagemakerFeatureGroupTableFormat>? tableFormat;
 
-  final SagemakerFeatureGroupOfflineStoreConfigDataCatalogConfig?
-  dataCatalogConfig;
+  final SagemakerFeatureGroupDataCatalogConfig? dataCatalogConfig;
 
-  final SagemakerFeatureGroupOfflineStoreConfigS3StorageConfig s3StorageConfig;
+  final SagemakerFeatureGroupS3StorageConfig s3StorageConfig;
 
   Map<String, Object?> encode() => {
     'disable_glue_table_creation': ?disableGlueTableCreation?.toTfJson(),
@@ -121,13 +109,12 @@ final class SagemakerFeatureGroupOfflineStoreConfig {
 }
 
 /// `table_format` — derived from the provider schema description.
-enum SagemakerFeatureGroupOfflineStoreConfigTableFormat
-    implements TerraformEnum {
+enum SagemakerFeatureGroupTableFormat implements TerraformEnum {
   defaultCase('Default'),
   glue('Glue'),
   iceberg('Iceberg');
 
-  const SagemakerFeatureGroupOfflineStoreConfigTableFormat(this.terraformValue);
+  const SagemakerFeatureGroupTableFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -135,8 +122,8 @@ enum SagemakerFeatureGroupOfflineStoreConfigTableFormat
 /// Typed helper for the `offline_store_config.data_catalog_config` block of
 /// `aws_sagemaker_feature_group` (derived from provider schema).
 @immutable
-final class SagemakerFeatureGroupOfflineStoreConfigDataCatalogConfig {
-  const SagemakerFeatureGroupOfflineStoreConfigDataCatalogConfig({
+final class SagemakerFeatureGroupDataCatalogConfig {
+  const SagemakerFeatureGroupDataCatalogConfig({
     this.catalog,
     this.database,
     this.tableName,
@@ -158,8 +145,8 @@ final class SagemakerFeatureGroupOfflineStoreConfigDataCatalogConfig {
 /// Typed helper for the `offline_store_config.s3_storage_config` block of
 /// `aws_sagemaker_feature_group` (derived from provider schema).
 @immutable
-final class SagemakerFeatureGroupOfflineStoreConfigS3StorageConfig {
-  const SagemakerFeatureGroupOfflineStoreConfigS3StorageConfig({
+final class SagemakerFeatureGroupS3StorageConfig {
+  const SagemakerFeatureGroupS3StorageConfig({
     this.kmsKeyId,
     this.resolvedOutputS3Uri,
     required this.s3Uri,
@@ -191,11 +178,11 @@ final class SagemakerFeatureGroupOnlineStoreConfig {
 
   final TfArg<bool>? enableOnlineStore;
 
-  final TfArg<SagemakerFeatureGroupOnlineStoreConfigStorageType>? storageType;
+  final TfArg<SagemakerFeatureGroupStorageType>? storageType;
 
-  final SagemakerFeatureGroupOnlineStoreConfigSecurityConfig? securityConfig;
+  final SagemakerFeatureGroupSecurityConfig? securityConfig;
 
-  final SagemakerFeatureGroupOnlineStoreConfigTtlDuration? ttlDuration;
+  final SagemakerFeatureGroupTtlDuration? ttlDuration;
 
   Map<String, Object?> encode() => {
     'enable_online_store': ?enableOnlineStore?.toTfJson(),
@@ -206,13 +193,12 @@ final class SagemakerFeatureGroupOnlineStoreConfig {
 }
 
 /// `storage_type` — derived from the provider schema description.
-enum SagemakerFeatureGroupOnlineStoreConfigStorageType
-    implements TerraformEnum {
+enum SagemakerFeatureGroupStorageType implements TerraformEnum {
   standard('Standard'),
   standardV2('Standard_V2'),
   inmemory('InMemory');
 
-  const SagemakerFeatureGroupOnlineStoreConfigStorageType(this.terraformValue);
+  const SagemakerFeatureGroupStorageType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -220,8 +206,8 @@ enum SagemakerFeatureGroupOnlineStoreConfigStorageType
 /// Typed helper for the `online_store_config.security_config` block of
 /// `aws_sagemaker_feature_group` (derived from provider schema).
 @immutable
-final class SagemakerFeatureGroupOnlineStoreConfigSecurityConfig {
-  const SagemakerFeatureGroupOnlineStoreConfigSecurityConfig({this.kmsKeyId});
+final class SagemakerFeatureGroupSecurityConfig {
+  const SagemakerFeatureGroupSecurityConfig({this.kmsKeyId});
 
   final RefTo<AwsKmsKey>? kmsKeyId;
 
@@ -233,13 +219,10 @@ final class SagemakerFeatureGroupOnlineStoreConfigSecurityConfig {
 /// Typed helper for the `online_store_config.ttl_duration` block of
 /// `aws_sagemaker_feature_group` (derived from provider schema).
 @immutable
-final class SagemakerFeatureGroupOnlineStoreConfigTtlDuration {
-  const SagemakerFeatureGroupOnlineStoreConfigTtlDuration({
-    this.unit,
-    this.value,
-  });
+final class SagemakerFeatureGroupTtlDuration {
+  const SagemakerFeatureGroupTtlDuration({this.unit, this.value});
 
-  final TfArg<SagemakerFeatureGroupOnlineStoreConfigTtlDurationUnit>? unit;
+  final TfArg<SagemakerFeatureGroupUnit>? unit;
 
   final TfArg<num>? value;
 
@@ -250,17 +233,14 @@ final class SagemakerFeatureGroupOnlineStoreConfigTtlDuration {
 }
 
 /// `unit` — derived from the provider schema description.
-enum SagemakerFeatureGroupOnlineStoreConfigTtlDurationUnit
-    implements TerraformEnum {
+enum SagemakerFeatureGroupUnit implements TerraformEnum {
   seconds('Seconds'),
   minutes('Minutes'),
   hours('Hours'),
   days('Days'),
   weeks('Weeks');
 
-  const SagemakerFeatureGroupOnlineStoreConfigTtlDurationUnit(
-    this.terraformValue,
-  );
+  const SagemakerFeatureGroupUnit(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -279,8 +259,7 @@ final class SagemakerFeatureGroupThroughputConfig {
 
   final TfArg<num>? provisionedWriteCapacityUnits;
 
-  final TfArg<SagemakerFeatureGroupThroughputConfigThroughputMode>?
-  throughputMode;
+  final TfArg<SagemakerFeatureGroupThroughputMode>? throughputMode;
 
   Map<String, Object?> encode() => {
     'provisioned_read_capacity_units': ?provisionedReadCapacityUnits
@@ -292,14 +271,11 @@ final class SagemakerFeatureGroupThroughputConfig {
 }
 
 /// `throughput_mode` — derived from the provider schema description.
-enum SagemakerFeatureGroupThroughputConfigThroughputMode
-    implements TerraformEnum {
+enum SagemakerFeatureGroupThroughputMode implements TerraformEnum {
   ondemand('OnDemand'),
   provisioned('Provisioned');
 
-  const SagemakerFeatureGroupThroughputConfigThroughputMode(
-    this.terraformValue,
-  );
+  const SagemakerFeatureGroupThroughputMode(this.terraformValue);
   @override
   final String terraformValue;
 }

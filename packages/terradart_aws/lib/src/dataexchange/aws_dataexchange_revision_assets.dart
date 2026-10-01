@@ -20,13 +20,12 @@ final class DataexchangeRevisionAssetsAsset {
     this.importAssetsFromSignedUrl,
   });
 
-  final List<DataexchangeRevisionAssetsAssetCreateS3DataAccessFromS3Bucket>?
+  final List<DataexchangeRevisionAssetsCreateS3DataAccessFromS3Bucket>?
   createS3DataAccessFromS3Bucket;
 
-  final List<DataexchangeRevisionAssetsAssetImportAssetsFromS3>?
-  importAssetsFromS3;
+  final List<DataexchangeRevisionAssetsImportAssetsFromS3>? importAssetsFromS3;
 
-  final List<DataexchangeRevisionAssetsAssetImportAssetsFromSignedUrl>?
+  final List<DataexchangeRevisionAssetsImportAssetsFromSignedUrl>?
   importAssetsFromSignedUrl;
 
   Map<String, Object?> encode() => {
@@ -48,13 +47,13 @@ final class DataexchangeRevisionAssetsAsset {
 /// Typed helper for the `asset.create_s3_data_access_from_s3_bucket` block of
 /// `aws_dataexchange_revision_assets` (derived from provider schema).
 @immutable
-final class DataexchangeRevisionAssetsAssetCreateS3DataAccessFromS3Bucket {
-  const DataexchangeRevisionAssetsAssetCreateS3DataAccessFromS3Bucket({
+final class DataexchangeRevisionAssetsCreateS3DataAccessFromS3Bucket {
+  const DataexchangeRevisionAssetsCreateS3DataAccessFromS3Bucket({
     this.assetSource,
   });
 
   final List<
-    DataexchangeRevisionAssetsAssetCreateS3DataAccessFromS3BucketAssetSource
+    DataexchangeRevisionAssetsCreateS3DataAccessFromS3BucketAssetSource
   >?
   assetSource;
 
@@ -67,8 +66,8 @@ final class DataexchangeRevisionAssetsAssetCreateS3DataAccessFromS3Bucket {
 /// Typed helper for the `asset.create_s3_data_access_from_s3_bucket.asset_source` block of
 /// `aws_dataexchange_revision_assets` (derived from provider schema).
 @immutable
-final class DataexchangeRevisionAssetsAssetCreateS3DataAccessFromS3BucketAssetSource {
-  const DataexchangeRevisionAssetsAssetCreateS3DataAccessFromS3BucketAssetSource({
+final class DataexchangeRevisionAssetsCreateS3DataAccessFromS3BucketAssetSource {
+  const DataexchangeRevisionAssetsCreateS3DataAccessFromS3BucketAssetSource({
     required this.bucket,
     this.keyPrefixes,
     this.keys,
@@ -81,10 +80,7 @@ final class DataexchangeRevisionAssetsAssetCreateS3DataAccessFromS3BucketAssetSo
 
   final TfArg<List<String>>? keys;
 
-  final List<
-    DataexchangeRevisionAssetsAssetCreateS3DataAccessFromS3BucketAssetSourceKmsKeysToGrant
-  >?
-  kmsKeysToGrant;
+  final List<DataexchangeRevisionAssetsKmsKeysToGrant>? kmsKeysToGrant;
 
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
@@ -98,10 +94,8 @@ final class DataexchangeRevisionAssetsAssetCreateS3DataAccessFromS3BucketAssetSo
 /// Typed helper for the `asset.create_s3_data_access_from_s3_bucket.asset_source.kms_keys_to_grant` block of
 /// `aws_dataexchange_revision_assets` (derived from provider schema).
 @immutable
-final class DataexchangeRevisionAssetsAssetCreateS3DataAccessFromS3BucketAssetSourceKmsKeysToGrant {
-  const DataexchangeRevisionAssetsAssetCreateS3DataAccessFromS3BucketAssetSourceKmsKeysToGrant({
-    required this.kmsKeyArn,
-  });
+final class DataexchangeRevisionAssetsKmsKeysToGrant {
+  const DataexchangeRevisionAssetsKmsKeysToGrant({required this.kmsKeyArn});
 
   final RefTo<AwsKmsKey> kmsKeyArn;
 
@@ -113,10 +107,10 @@ final class DataexchangeRevisionAssetsAssetCreateS3DataAccessFromS3BucketAssetSo
 /// Typed helper for the `asset.import_assets_from_s3` block of
 /// `aws_dataexchange_revision_assets` (derived from provider schema).
 @immutable
-final class DataexchangeRevisionAssetsAssetImportAssetsFromS3 {
-  const DataexchangeRevisionAssetsAssetImportAssetsFromS3({this.assetSource});
+final class DataexchangeRevisionAssetsImportAssetsFromS3 {
+  const DataexchangeRevisionAssetsImportAssetsFromS3({this.assetSource});
 
-  final List<DataexchangeRevisionAssetsAssetImportAssetsFromS3AssetSource>?
+  final List<DataexchangeRevisionAssetsImportAssetsFromS3AssetSource>?
   assetSource;
 
   Map<String, Object?> encode() => {
@@ -128,8 +122,8 @@ final class DataexchangeRevisionAssetsAssetImportAssetsFromS3 {
 /// Typed helper for the `asset.import_assets_from_s3.asset_source` block of
 /// `aws_dataexchange_revision_assets` (derived from provider schema).
 @immutable
-final class DataexchangeRevisionAssetsAssetImportAssetsFromS3AssetSource {
-  const DataexchangeRevisionAssetsAssetImportAssetsFromS3AssetSource({
+final class DataexchangeRevisionAssetsImportAssetsFromS3AssetSource {
+  const DataexchangeRevisionAssetsImportAssetsFromS3AssetSource({
     required this.bucket,
     required this.key,
   });
@@ -147,8 +141,8 @@ final class DataexchangeRevisionAssetsAssetImportAssetsFromS3AssetSource {
 /// Typed helper for the `asset.import_assets_from_signed_url` block of
 /// `aws_dataexchange_revision_assets` (derived from provider schema).
 @immutable
-final class DataexchangeRevisionAssetsAssetImportAssetsFromSignedUrl {
-  const DataexchangeRevisionAssetsAssetImportAssetsFromSignedUrl({
+final class DataexchangeRevisionAssetsImportAssetsFromSignedUrl {
+  const DataexchangeRevisionAssetsImportAssetsFromSignedUrl({
     required this.filename,
   });
 

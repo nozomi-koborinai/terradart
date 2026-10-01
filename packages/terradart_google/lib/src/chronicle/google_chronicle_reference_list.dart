@@ -24,7 +24,7 @@ final class ChronicleReferenceListEntries {
 final class ChronicleReferenceListScopeInfo {
   const ChronicleReferenceListScopeInfo({this.referenceListScope});
 
-  final ChronicleReferenceListScopeInfoReferenceListScope? referenceListScope;
+  final ChronicleReferenceListScope? referenceListScope;
 
   Map<String, Object?> encode() => {
     'reference_list_scope': ?referenceListScope?.encode(),
@@ -34,8 +34,8 @@ final class ChronicleReferenceListScopeInfo {
 /// Typed helper for the `scope_info.reference_list_scope` block of
 /// `google_chronicle_reference_list` (derived from provider schema).
 @immutable
-final class ChronicleReferenceListScopeInfoReferenceListScope {
-  const ChronicleReferenceListScopeInfoReferenceListScope({this.scopeNames});
+final class ChronicleReferenceListScope {
+  const ChronicleReferenceListScope({this.scopeNames});
 
   final TfArg<List<String>>? scopeNames;
 

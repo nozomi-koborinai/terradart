@@ -96,9 +96,9 @@ final class LoggingSavedQueryLoggingQuery {
 
   final TfArg<String> filter;
 
-  final LoggingSavedQueryLoggingQuerySummaryField? summaryField;
+  final LoggingSavedQuerySummaryField? summaryField;
 
-  final List<LoggingSavedQueryLoggingQuerySummaryFields>? summaryFields;
+  final List<LoggingSavedQuerySummaryFields>? summaryFields;
 
   Map<String, Object?> encode() => {
     'filter': filter.toTfJson(),
@@ -113,18 +113,18 @@ final class LoggingSavedQueryLoggingQuery {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.summaryFieldStart(...)`.
-sealed class LoggingSavedQueryLoggingQuerySummaryField {
-  const LoggingSavedQueryLoggingQuerySummaryField();
+sealed class LoggingSavedQuerySummaryField {
+  const LoggingSavedQuerySummaryField();
 
   /// Sets `summary_field_start`.
-  const factory LoggingSavedQueryLoggingQuerySummaryField.summaryFieldStart(
+  const factory LoggingSavedQuerySummaryField.summaryFieldStart(
     TfArg<num> summaryFieldStart,
-  ) = LoggingSavedQueryLoggingQuerySummaryFieldStart;
+  ) = LoggingSavedQuerySummaryFieldStart;
 
   /// Sets `summary_field_end`.
-  const factory LoggingSavedQueryLoggingQuerySummaryField.summaryFieldEnd(
+  const factory LoggingSavedQuerySummaryField.summaryFieldEnd(
     TfArg<num> summaryFieldEnd,
-  ) = LoggingSavedQueryLoggingQuerySummaryFieldEnd;
+  ) = LoggingSavedQuerySummaryFieldEnd;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -132,10 +132,10 @@ sealed class LoggingSavedQueryLoggingQuerySummaryField {
   Map<String, Object?> encode();
 }
 
-/// The [LoggingSavedQueryLoggingQuerySummaryField.summaryFieldStart] choice: sets `summary_field_start`.
-final class LoggingSavedQueryLoggingQuerySummaryFieldStart
-    extends LoggingSavedQueryLoggingQuerySummaryField {
-  const LoggingSavedQueryLoggingQuerySummaryFieldStart(this.summaryFieldStart);
+/// The [LoggingSavedQuerySummaryField.summaryFieldStart] choice: sets `summary_field_start`.
+final class LoggingSavedQuerySummaryFieldStart
+    extends LoggingSavedQuerySummaryField {
+  const LoggingSavedQuerySummaryFieldStart(this.summaryFieldStart);
 
   final TfArg<num> summaryFieldStart;
 
@@ -148,10 +148,10 @@ final class LoggingSavedQueryLoggingQuerySummaryFieldStart
   };
 }
 
-/// The [LoggingSavedQueryLoggingQuerySummaryField.summaryFieldEnd] choice: sets `summary_field_end`.
-final class LoggingSavedQueryLoggingQuerySummaryFieldEnd
-    extends LoggingSavedQueryLoggingQuerySummaryField {
-  const LoggingSavedQueryLoggingQuerySummaryFieldEnd(this.summaryFieldEnd);
+/// The [LoggingSavedQuerySummaryField.summaryFieldEnd] choice: sets `summary_field_end`.
+final class LoggingSavedQuerySummaryFieldEnd
+    extends LoggingSavedQuerySummaryField {
+  const LoggingSavedQuerySummaryFieldEnd(this.summaryFieldEnd);
 
   final TfArg<num> summaryFieldEnd;
 
@@ -167,8 +167,8 @@ final class LoggingSavedQueryLoggingQuerySummaryFieldEnd
 /// Typed helper for the `logging_query.summary_fields` block of
 /// `google_logging_saved_query` (derived from provider schema).
 @immutable
-final class LoggingSavedQueryLoggingQuerySummaryFields {
-  const LoggingSavedQueryLoggingQuerySummaryFields({this.field});
+final class LoggingSavedQuerySummaryFields {
+  const LoggingSavedQuerySummaryFields({this.field});
 
   final TfArg<String>? field;
 

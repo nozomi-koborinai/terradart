@@ -27,22 +27,17 @@ export 'src/iot/aws_iot_event_configurations.dart'
 export 'src/iot/aws_iot_indexing_configuration.dart'
     show
         AwsIotIndexingConfiguration,
+        IotIndexingConfigurationCustomField,
+        IotIndexingConfigurationDeviceDefenderIndexingMode,
+        IotIndexingConfigurationFilter,
+        IotIndexingConfigurationManagedField,
+        IotIndexingConfigurationNamedShadowIndexingMode,
+        IotIndexingConfigurationThingConnectivityIndexingMode,
         IotIndexingConfigurationThingGroupIndexingConfiguration,
-        IotIndexingConfigurationThingGroupIndexingConfigurationCustomField,
-        IotIndexingConfigurationThingGroupIndexingConfigurationCustomFieldType,
-        IotIndexingConfigurationThingGroupIndexingConfigurationManagedField,
-        IotIndexingConfigurationThingGroupIndexingConfigurationManagedFieldType,
-        IotIndexingConfigurationThingGroupIndexingConfigurationThingGroupIndexingMode,
+        IotIndexingConfigurationThingGroupIndexingMode,
         IotIndexingConfigurationThingIndexingConfiguration,
-        IotIndexingConfigurationThingIndexingConfigurationCustomField,
-        IotIndexingConfigurationThingIndexingConfigurationCustomFieldType,
-        IotIndexingConfigurationThingIndexingConfigurationDeviceDefenderIndexingMode,
-        IotIndexingConfigurationThingIndexingConfigurationFilter,
-        IotIndexingConfigurationThingIndexingConfigurationManagedField,
-        IotIndexingConfigurationThingIndexingConfigurationManagedFieldType,
-        IotIndexingConfigurationThingIndexingConfigurationNamedShadowIndexingMode,
-        IotIndexingConfigurationThingIndexingConfigurationThingConnectivityIndexingMode,
-        IotIndexingConfigurationThingIndexingConfigurationThingIndexingMode;
+        IotIndexingConfigurationThingIndexingMode,
+        IotIndexingConfigurationType;
 export 'src/iot/aws_iot_logging_options.dart'
     show AwsIotLoggingOptions, IotLoggingOptionsDefaultLogLevel;
 export 'src/iot/aws_iot_policy.dart' show AwsIotPolicy;
@@ -50,16 +45,16 @@ export 'src/iot/aws_iot_policy_attachment.dart' show AwsIotPolicyAttachment;
 export 'src/iot/aws_iot_provisioning_template.dart'
     show
         AwsIotProvisioningTemplate,
+        IotProvisioningTemplatePayloadVersion,
         IotProvisioningTemplatePreProvisioningHook,
-        IotProvisioningTemplatePreProvisioningHookPayloadVersion,
         IotProvisioningTemplateType;
 export 'src/iot/aws_iot_role_alias.dart' show AwsIotRoleAlias;
 export 'src/iot/aws_iot_thing.dart' show AwsIotThing;
 export 'src/iot/aws_iot_thing_group.dart'
     show
         AwsIotThingGroup,
-        IotThingGroupProperties,
-        IotThingGroupPropertiesAttributePayload;
+        IotThingGroupAttributePayload,
+        IotThingGroupProperties;
 export 'src/iot/aws_iot_thing_group_membership.dart'
     show AwsIotThingGroupMembership;
 export 'src/iot/aws_iot_thing_principal_attachment.dart'
@@ -71,60 +66,33 @@ export 'src/iot/aws_iot_thing_type.dart'
 export 'src/iot/aws_iot_topic_rule.dart'
     show
         AwsIotTopicRule,
+        IotTopicRuleCannedAcl,
         IotTopicRuleCloudwatchAlarm,
         IotTopicRuleCloudwatchLogs,
         IotTopicRuleCloudwatchMetric,
+        IotTopicRuleDimension,
         IotTopicRuleDynamodb,
-        IotTopicRuleDynamodbOperation,
         IotTopicRuleDynamodbv2,
-        IotTopicRuleDynamodbv2PutItem,
         IotTopicRuleElasticsearch,
         IotTopicRuleErrorAction,
-        IotTopicRuleErrorActionCloudwatchAlarm,
-        IotTopicRuleErrorActionCloudwatchLogs,
-        IotTopicRuleErrorActionCloudwatchMetric,
-        IotTopicRuleErrorActionDynamodb,
-        IotTopicRuleErrorActionDynamodbOperation,
-        IotTopicRuleErrorActionDynamodbv2,
-        IotTopicRuleErrorActionDynamodbv2PutItem,
-        IotTopicRuleErrorActionElasticsearch,
-        IotTopicRuleErrorActionFirehose,
-        IotTopicRuleErrorActionHttp,
-        IotTopicRuleErrorActionHttpHttpHeader,
-        IotTopicRuleErrorActionIotAnalytics,
-        IotTopicRuleErrorActionIotEvents,
-        IotTopicRuleErrorActionKafka,
-        IotTopicRuleErrorActionKafkaHeader,
-        IotTopicRuleErrorActionKinesis,
-        IotTopicRuleErrorActionLambda,
-        IotTopicRuleErrorActionRepublish,
-        IotTopicRuleErrorActionS3,
-        IotTopicRuleErrorActionS3CannedAcl,
-        IotTopicRuleErrorActionSns,
-        IotTopicRuleErrorActionSqs,
-        IotTopicRuleErrorActionStepFunctions,
-        IotTopicRuleErrorActionTimestream,
-        IotTopicRuleErrorActionTimestreamDimension,
-        IotTopicRuleErrorActionTimestreamTimestamp,
-        IotTopicRuleErrorActionTimestreamTimestampUnit,
         IotTopicRuleFirehose,
+        IotTopicRuleHeader,
         IotTopicRuleHttp,
-        IotTopicRuleHttpHttpHeader,
+        IotTopicRuleHttpHeader,
         IotTopicRuleIotAnalytics,
         IotTopicRuleIotEvents,
         IotTopicRuleKafka,
-        IotTopicRuleKafkaHeader,
         IotTopicRuleKinesis,
         IotTopicRuleLambda,
+        IotTopicRuleOperation,
+        IotTopicRulePutItem,
         IotTopicRuleRepublish,
         IotTopicRuleS3,
-        IotTopicRuleS3CannedAcl,
         IotTopicRuleSns,
         IotTopicRuleSqs,
         IotTopicRuleStepFunctions,
+        IotTopicRuleTimestamp,
         IotTopicRuleTimestream,
-        IotTopicRuleTimestreamDimension,
-        IotTopicRuleTimestreamTimestamp,
-        IotTopicRuleTimestreamTimestampUnit;
+        IotTopicRuleUnit;
 export 'src/iot/aws_iot_topic_rule_destination.dart'
     show AwsIotTopicRuleDestination, IotTopicRuleDestinationVpcConfiguration;

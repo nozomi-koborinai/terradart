@@ -18,7 +18,7 @@ final class GlacierVaultNotification {
     required this.snsTopic,
   });
 
-  final List<TfArg<GlacierVaultNotificationEvents>> events;
+  final List<TfArg<GlacierVaultEvents>> events;
 
   final RefTo<AwsSnsTopic> snsTopic;
 
@@ -29,11 +29,11 @@ final class GlacierVaultNotification {
 }
 
 /// `events` — derived from the provider schema description.
-enum GlacierVaultNotificationEvents implements TerraformEnum {
+enum GlacierVaultEvents implements TerraformEnum {
   archiveretrievalcompleted('ArchiveRetrievalCompleted'),
   inventoryretrievalcompleted('InventoryRetrievalCompleted');
 
-  const GlacierVaultNotificationEvents(this.terraformValue);
+  const GlacierVaultEvents(this.terraformValue);
   @override
   final String terraformValue;
 }

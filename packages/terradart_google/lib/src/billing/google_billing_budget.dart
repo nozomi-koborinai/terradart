@@ -62,13 +62,13 @@ sealed class BillingBudgetAmount {
 
   /// Sets `specified_amount`.
   const factory BillingBudgetAmount.specifiedAmount(
-    BillingBudgetAmountSpecifiedAmount specifiedAmount,
-  ) = BillingBudgetAmountSpecifiedAmountChoice;
+    BillingBudgetSpecifiedAmount specifiedAmount,
+  ) = BillingBudgetSpecifiedAmountChoice;
 
   /// Sets `last_period_amount`.
   const factory BillingBudgetAmount.lastPeriodAmount(
     TfArg<bool> lastPeriodAmount,
-  ) = BillingBudgetAmountLastPeriodAmount;
+  ) = BillingBudgetLastPeriodAmount;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -77,11 +77,10 @@ sealed class BillingBudgetAmount {
 }
 
 /// The [BillingBudgetAmount.specifiedAmount] choice: sets `specified_amount`.
-final class BillingBudgetAmountSpecifiedAmountChoice
-    extends BillingBudgetAmount {
-  const BillingBudgetAmountSpecifiedAmountChoice(this.specifiedAmount);
+final class BillingBudgetSpecifiedAmountChoice extends BillingBudgetAmount {
+  const BillingBudgetSpecifiedAmountChoice(this.specifiedAmount);
 
-  final BillingBudgetAmountSpecifiedAmount specifiedAmount;
+  final BillingBudgetSpecifiedAmount specifiedAmount;
 
   @override
   String get blockKey => 'specified_amount';
@@ -93,8 +92,8 @@ final class BillingBudgetAmountSpecifiedAmountChoice
 }
 
 /// The [BillingBudgetAmount.lastPeriodAmount] choice: sets `last_period_amount`.
-final class BillingBudgetAmountLastPeriodAmount extends BillingBudgetAmount {
-  const BillingBudgetAmountLastPeriodAmount(this.lastPeriodAmount);
+final class BillingBudgetLastPeriodAmount extends BillingBudgetAmount {
+  const BillingBudgetLastPeriodAmount(this.lastPeriodAmount);
 
   final TfArg<bool> lastPeriodAmount;
 
@@ -110,8 +109,8 @@ final class BillingBudgetAmountLastPeriodAmount extends BillingBudgetAmount {
 /// Typed helper for the `amount.specified_amount` block of
 /// `google_billing_budget` (derived from provider schema).
 @immutable
-final class BillingBudgetAmountSpecifiedAmount {
-  const BillingBudgetAmountSpecifiedAmount({
+final class BillingBudgetSpecifiedAmount {
+  const BillingBudgetSpecifiedAmount({
     this.currencyCode,
     this.nanos,
     this.units,
@@ -133,8 +132,8 @@ final class BillingBudgetAmountSpecifiedAmount {
 /// Typed helper for the `budget_filter` block of
 /// `google_billing_budget` (derived from provider schema).
 @immutable
-final class BillingBudgetBudgetFilter {
-  const BillingBudgetBudgetFilter({
+final class BillingBudgetFilter {
+  const BillingBudgetFilter({
     this.calendarPeriod,
     this.creditTypes,
     this.creditTypesTreatment,
@@ -146,12 +145,11 @@ final class BillingBudgetBudgetFilter {
     this.customPeriod,
   });
 
-  final TfArg<BillingBudgetBudgetFilterCalendarPeriod>? calendarPeriod;
+  final TfArg<BillingBudgetCalendarPeriod>? calendarPeriod;
 
   final TfArg<List<String>>? creditTypes;
 
-  final TfArg<BillingBudgetBudgetFilterCreditTypesTreatment>?
-  creditTypesTreatment;
+  final TfArg<BillingBudgetCreditTypesTreatment>? creditTypesTreatment;
 
   final TfArg<Map<String, String>>? labels;
 
@@ -163,7 +161,7 @@ final class BillingBudgetBudgetFilter {
 
   final TfArg<List<String>>? subaccounts;
 
-  final BillingBudgetBudgetFilterCustomPeriod? customPeriod;
+  final BillingBudgetCustomPeriod? customPeriod;
 
   Map<String, Object?> encode() => {
     'calendar_period': ?calendarPeriod?.toTfJson(),
@@ -179,24 +177,24 @@ final class BillingBudgetBudgetFilter {
 }
 
 /// `calendar_period` — derived from the provider schema description.
-enum BillingBudgetBudgetFilterCalendarPeriod implements TerraformEnum {
+enum BillingBudgetCalendarPeriod implements TerraformEnum {
   month('MONTH'),
   quarter('QUARTER'),
   year('YEAR'),
   calendarPeriodUnspecified('CALENDAR_PERIOD_UNSPECIFIED');
 
-  const BillingBudgetBudgetFilterCalendarPeriod(this.terraformValue);
+  const BillingBudgetCalendarPeriod(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `credit_types_treatment` — derived from the provider schema description.
-enum BillingBudgetBudgetFilterCreditTypesTreatment implements TerraformEnum {
+enum BillingBudgetCreditTypesTreatment implements TerraformEnum {
   includeAllCredits('INCLUDE_ALL_CREDITS'),
   excludeAllCredits('EXCLUDE_ALL_CREDITS'),
   includeSpecifiedCredits('INCLUDE_SPECIFIED_CREDITS');
 
-  const BillingBudgetBudgetFilterCreditTypesTreatment(this.terraformValue);
+  const BillingBudgetCreditTypesTreatment(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -204,15 +202,12 @@ enum BillingBudgetBudgetFilterCreditTypesTreatment implements TerraformEnum {
 /// Typed helper for the `budget_filter.custom_period` block of
 /// `google_billing_budget` (derived from provider schema).
 @immutable
-final class BillingBudgetBudgetFilterCustomPeriod {
-  const BillingBudgetBudgetFilterCustomPeriod({
-    this.endDate,
-    required this.startDate,
-  });
+final class BillingBudgetCustomPeriod {
+  const BillingBudgetCustomPeriod({this.endDate, required this.startDate});
 
-  final BillingBudgetBudgetFilterCustomPeriodEndDate? endDate;
+  final BillingBudgetEndDate? endDate;
 
-  final BillingBudgetBudgetFilterCustomPeriodStartDate startDate;
+  final BillingBudgetStartDate startDate;
 
   Map<String, Object?> encode() => {
     'end_date': ?endDate?.encode(),
@@ -223,8 +218,8 @@ final class BillingBudgetBudgetFilterCustomPeriod {
 /// Typed helper for the `budget_filter.custom_period.end_date` block of
 /// `google_billing_budget` (derived from provider schema).
 @immutable
-final class BillingBudgetBudgetFilterCustomPeriodEndDate {
-  const BillingBudgetBudgetFilterCustomPeriodEndDate({
+final class BillingBudgetEndDate {
+  const BillingBudgetEndDate({
     required this.day,
     required this.month,
     required this.year,
@@ -246,8 +241,8 @@ final class BillingBudgetBudgetFilterCustomPeriodEndDate {
 /// Typed helper for the `budget_filter.custom_period.start_date` block of
 /// `google_billing_budget` (derived from provider schema).
 @immutable
-final class BillingBudgetBudgetFilterCustomPeriodStartDate {
-  const BillingBudgetBudgetFilterCustomPeriodStartDate({
+final class BillingBudgetStartDate {
+  const BillingBudgetStartDate({
     required this.day,
     required this.month,
     required this.year,
@@ -275,7 +270,7 @@ final class BillingBudgetThresholdRules {
     required this.thresholdPercent,
   });
 
-  final TfArg<BillingBudgetThresholdRulesSpendBasis>? spendBasis;
+  final TfArg<BillingBudgetSpendBasis>? spendBasis;
 
   final TfArg<num> thresholdPercent;
 
@@ -286,11 +281,11 @@ final class BillingBudgetThresholdRules {
 }
 
 /// `spend_basis` — derived from the provider schema description.
-enum BillingBudgetThresholdRulesSpendBasis implements TerraformEnum {
+enum BillingBudgetSpendBasis implements TerraformEnum {
   currentSpend('CURRENT_SPEND'),
   forecastedSpend('FORECASTED_SPEND');
 
-  const BillingBudgetThresholdRulesSpendBasis(this.terraformValue);
+  const BillingBudgetSpendBasis(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -316,7 +311,7 @@ final class GoogleBillingBudget extends Resource {
     TfArg<BillingBudgetOwnershipScope>? ownershipScope,
     BillingBudgetAllUpdatesRule? allUpdatesRule,
     required BillingBudgetAmount amount,
-    BillingBudgetBudgetFilter? budgetFilter,
+    BillingBudgetFilter? budgetFilter,
     List<BillingBudgetThresholdRules>? thresholdRules,
     super.lifecycle,
     super.dependsOn,

@@ -78,7 +78,7 @@ final class NeptuneClusterParameterGroupParameter {
     required this.value,
   });
 
-  final TfArg<NeptuneClusterParameterGroupParameterApplyMethod>? applyMethod;
+  final TfArg<NeptuneClusterParameterGroupApplyMethod>? applyMethod;
 
   final TfArg<String> name;
 
@@ -92,11 +92,11 @@ final class NeptuneClusterParameterGroupParameter {
 }
 
 /// `apply_method` — derived from the provider schema description.
-enum NeptuneClusterParameterGroupParameterApplyMethod implements TerraformEnum {
+enum NeptuneClusterParameterGroupApplyMethod implements TerraformEnum {
   immediate('immediate'),
   pendingReboot('pending-reboot');
 
-  const NeptuneClusterParameterGroupParameterApplyMethod(this.terraformValue);
+  const NeptuneClusterParameterGroupApplyMethod(this.terraformValue);
   @override
   final String terraformValue;
 }

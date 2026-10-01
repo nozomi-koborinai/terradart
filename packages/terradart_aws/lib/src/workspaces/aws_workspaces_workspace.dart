@@ -10,8 +10,8 @@ const Set<String> _awsWorkspacesWorkspaceSensitive = <String>{};
 /// Typed helper for the `workspace_properties` block of
 /// `aws_workspaces_workspace` (derived from provider schema).
 @immutable
-final class WorkspacesWorkspaceWorkspaceProperties {
-  const WorkspacesWorkspaceWorkspaceProperties({
+final class WorkspacesWorkspaceProperties {
+  const WorkspacesWorkspaceProperties({
     this.computeTypeName,
     this.rootVolumeSizeGib,
     this.runningMode,
@@ -19,12 +19,11 @@ final class WorkspacesWorkspaceWorkspaceProperties {
     this.userVolumeSizeGib,
   });
 
-  final TfArg<WorkspacesWorkspaceWorkspacePropertiesComputeTypeName>?
-  computeTypeName;
+  final TfArg<WorkspacesWorkspaceComputeTypeName>? computeTypeName;
 
   final TfArg<num>? rootVolumeSizeGib;
 
-  final TfArg<WorkspacesWorkspaceWorkspacePropertiesRunningMode>? runningMode;
+  final TfArg<WorkspacesWorkspaceRunningMode>? runningMode;
 
   final TfArg<num>? runningModeAutoStopTimeoutInMinutes;
 
@@ -41,8 +40,7 @@ final class WorkspacesWorkspaceWorkspaceProperties {
 }
 
 /// `compute_type_name` — derived from the provider schema description.
-enum WorkspacesWorkspaceWorkspacePropertiesComputeTypeName
-    implements TerraformEnum {
+enum WorkspacesWorkspaceComputeTypeName implements TerraformEnum {
   value('VALUE'),
   standard('STANDARD'),
   performance('PERFORMANCE'),
@@ -67,20 +65,17 @@ enum WorkspacesWorkspaceWorkspacePropertiesComputeTypeName
   graphicsG6f4xlarge('GRAPHICS_G6F_4XLARGE'),
   graphicsGr6f4xlarge('GRAPHICS_GR6F_4XLARGE');
 
-  const WorkspacesWorkspaceWorkspacePropertiesComputeTypeName(
-    this.terraformValue,
-  );
+  const WorkspacesWorkspaceComputeTypeName(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `running_mode` — derived from the provider schema description.
-enum WorkspacesWorkspaceWorkspacePropertiesRunningMode
-    implements TerraformEnum {
+enum WorkspacesWorkspaceRunningMode implements TerraformEnum {
   alwaysOn('ALWAYS_ON'),
   autoStop('AUTO_STOP');
 
-  const WorkspacesWorkspaceWorkspacePropertiesRunningMode(this.terraformValue);
+  const WorkspacesWorkspaceRunningMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -99,7 +94,7 @@ final class AwsWorkspacesWorkspace extends Resource {
     required TfArg<String> userName,
     TfArg<bool>? userVolumeEncryptionEnabled,
     TfArg<String>? volumeEncryptionKey,
-    WorkspacesWorkspaceWorkspaceProperties? workspaceProperties,
+    WorkspacesWorkspaceProperties? workspaceProperties,
     super.lifecycle,
     super.dependsOn,
     super.provider,

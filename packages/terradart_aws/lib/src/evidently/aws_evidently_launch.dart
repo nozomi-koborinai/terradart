@@ -40,7 +40,7 @@ final class EvidentlyLaunchGroups {
 final class EvidentlyLaunchMetricMonitors {
   const EvidentlyLaunchMetricMonitors({required this.metricDefinition});
 
-  final EvidentlyLaunchMetricMonitorsMetricDefinition metricDefinition;
+  final EvidentlyLaunchMetricDefinition metricDefinition;
 
   Map<String, Object?> encode() => {
     'metric_definition': metricDefinition.encode(),
@@ -50,8 +50,8 @@ final class EvidentlyLaunchMetricMonitors {
 /// Typed helper for the `metric_monitors.metric_definition` block of
 /// `aws_evidently_launch` (derived from provider schema).
 @immutable
-final class EvidentlyLaunchMetricMonitorsMetricDefinition {
-  const EvidentlyLaunchMetricMonitorsMetricDefinition({
+final class EvidentlyLaunchMetricDefinition {
+  const EvidentlyLaunchMetricDefinition({
     required this.entityIdKey,
     this.eventPattern,
     required this.name,
@@ -84,7 +84,7 @@ final class EvidentlyLaunchMetricMonitorsMetricDefinition {
 final class EvidentlyLaunchScheduledSplitsConfig {
   const EvidentlyLaunchScheduledSplitsConfig({required this.steps});
 
-  final List<EvidentlyLaunchScheduledSplitsConfigSteps> steps;
+  final List<EvidentlyLaunchSteps> steps;
 
   Map<String, Object?> encode() => {
     'steps': [for (final e in steps) e.encode()],
@@ -94,8 +94,8 @@ final class EvidentlyLaunchScheduledSplitsConfig {
 /// Typed helper for the `scheduled_splits_config.steps` block of
 /// `aws_evidently_launch` (derived from provider schema).
 @immutable
-final class EvidentlyLaunchScheduledSplitsConfigSteps {
-  const EvidentlyLaunchScheduledSplitsConfigSteps({
+final class EvidentlyLaunchSteps {
+  const EvidentlyLaunchSteps({
     required this.groupWeights,
     required this.startTime,
     this.segmentOverrides,
@@ -105,8 +105,7 @@ final class EvidentlyLaunchScheduledSplitsConfigSteps {
 
   final TfArg<String> startTime;
 
-  final List<EvidentlyLaunchScheduledSplitsConfigStepsSegmentOverrides>?
-  segmentOverrides;
+  final List<EvidentlyLaunchSegmentOverrides>? segmentOverrides;
 
   Map<String, Object?> encode() => {
     'group_weights': groupWeights.toTfJson(),
@@ -119,8 +118,8 @@ final class EvidentlyLaunchScheduledSplitsConfigSteps {
 /// Typed helper for the `scheduled_splits_config.steps.segment_overrides` block of
 /// `aws_evidently_launch` (derived from provider schema).
 @immutable
-final class EvidentlyLaunchScheduledSplitsConfigStepsSegmentOverrides {
-  const EvidentlyLaunchScheduledSplitsConfigStepsSegmentOverrides({
+final class EvidentlyLaunchSegmentOverrides {
+  const EvidentlyLaunchSegmentOverrides({
     required this.evaluationOrder,
     required this.segment,
     required this.weights,

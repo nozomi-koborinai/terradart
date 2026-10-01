@@ -85,14 +85,13 @@ final class AppEngineFlexibleAppVersionApiConfig {
     this.url,
   });
 
-  final TfArg<AppEngineFlexibleAppVersionApiConfigAuthFailAction>?
-  authFailAction;
+  final TfArg<AppEngineFlexibleAppVersionAuthFailAction>? authFailAction;
 
-  final TfArg<AppEngineFlexibleAppVersionApiConfigLogin>? login;
+  final TfArg<AppEngineFlexibleAppVersionLogin>? login;
 
   final TfArg<String> script;
 
-  final TfArg<AppEngineFlexibleAppVersionApiConfigSecurityLevel>? securityLevel;
+  final TfArg<AppEngineFlexibleAppVersionSecurityLevel>? securityLevel;
 
   final TfArg<String>? url;
 
@@ -106,36 +105,34 @@ final class AppEngineFlexibleAppVersionApiConfig {
 }
 
 /// `auth_fail_action` — derived from the provider schema description.
-enum AppEngineFlexibleAppVersionApiConfigAuthFailAction
-    implements TerraformEnum {
+enum AppEngineFlexibleAppVersionAuthFailAction implements TerraformEnum {
   authFailActionRedirect('AUTH_FAIL_ACTION_REDIRECT'),
   authFailActionUnauthorized('AUTH_FAIL_ACTION_UNAUTHORIZED');
 
-  const AppEngineFlexibleAppVersionApiConfigAuthFailAction(this.terraformValue);
+  const AppEngineFlexibleAppVersionAuthFailAction(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `login` — derived from the provider schema description.
-enum AppEngineFlexibleAppVersionApiConfigLogin implements TerraformEnum {
+enum AppEngineFlexibleAppVersionLogin implements TerraformEnum {
   loginOptional('LOGIN_OPTIONAL'),
   loginAdmin('LOGIN_ADMIN'),
   loginRequired('LOGIN_REQUIRED');
 
-  const AppEngineFlexibleAppVersionApiConfigLogin(this.terraformValue);
+  const AppEngineFlexibleAppVersionLogin(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `security_level` — derived from the provider schema description.
-enum AppEngineFlexibleAppVersionApiConfigSecurityLevel
-    implements TerraformEnum {
+enum AppEngineFlexibleAppVersionSecurityLevel implements TerraformEnum {
   secureDefault('SECURE_DEFAULT'),
   secureNever('SECURE_NEVER'),
   secureOptional('SECURE_OPTIONAL'),
   secureAlways('SECURE_ALWAYS');
 
-  const AppEngineFlexibleAppVersionApiConfigSecurityLevel(this.terraformValue);
+  const AppEngineFlexibleAppVersionSecurityLevel(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -151,14 +148,13 @@ final class AppEngineFlexibleAppVersionDeployment {
     this.zip,
   });
 
-  final AppEngineFlexibleAppVersionDeploymentCloudBuildOptions?
-  cloudBuildOptions;
+  final AppEngineFlexibleAppVersionCloudBuildOptions? cloudBuildOptions;
 
-  final AppEngineFlexibleAppVersionDeploymentContainer? container;
+  final AppEngineFlexibleAppVersionContainer? container;
 
-  final List<AppEngineFlexibleAppVersionDeploymentFiles>? files;
+  final List<AppEngineFlexibleAppVersionFiles>? files;
 
-  final AppEngineFlexibleAppVersionDeploymentZip? zip;
+  final AppEngineFlexibleAppVersionZip? zip;
 
   Map<String, Object?> encode() => {
     'cloud_build_options': ?cloudBuildOptions?.encode(),
@@ -171,8 +167,8 @@ final class AppEngineFlexibleAppVersionDeployment {
 /// Typed helper for the `deployment.cloud_build_options` block of
 /// `google_app_engine_flexible_app_version` (derived from provider schema).
 @immutable
-final class AppEngineFlexibleAppVersionDeploymentCloudBuildOptions {
-  const AppEngineFlexibleAppVersionDeploymentCloudBuildOptions({
+final class AppEngineFlexibleAppVersionCloudBuildOptions {
+  const AppEngineFlexibleAppVersionCloudBuildOptions({
     required this.appYamlPath,
     this.cloudBuildTimeout,
   });
@@ -190,8 +186,8 @@ final class AppEngineFlexibleAppVersionDeploymentCloudBuildOptions {
 /// Typed helper for the `deployment.container` block of
 /// `google_app_engine_flexible_app_version` (derived from provider schema).
 @immutable
-final class AppEngineFlexibleAppVersionDeploymentContainer {
-  const AppEngineFlexibleAppVersionDeploymentContainer({required this.image});
+final class AppEngineFlexibleAppVersionContainer {
+  const AppEngineFlexibleAppVersionContainer({required this.image});
 
   final TfArg<String> image;
 
@@ -201,8 +197,8 @@ final class AppEngineFlexibleAppVersionDeploymentContainer {
 /// Typed helper for the `deployment.files` block of
 /// `google_app_engine_flexible_app_version` (derived from provider schema).
 @immutable
-final class AppEngineFlexibleAppVersionDeploymentFiles {
-  const AppEngineFlexibleAppVersionDeploymentFiles({
+final class AppEngineFlexibleAppVersionFiles {
+  const AppEngineFlexibleAppVersionFiles({
     required this.name,
     this.sha1Sum,
     required this.sourceUrl,
@@ -224,8 +220,8 @@ final class AppEngineFlexibleAppVersionDeploymentFiles {
 /// Typed helper for the `deployment.zip` block of
 /// `google_app_engine_flexible_app_version` (derived from provider schema).
 @immutable
-final class AppEngineFlexibleAppVersionDeploymentZip {
-  const AppEngineFlexibleAppVersionDeploymentZip({
+final class AppEngineFlexibleAppVersionZip {
+  const AppEngineFlexibleAppVersionZip({
     this.filesCount,
     required this.sourceUrl,
   });
@@ -257,8 +253,7 @@ final class AppEngineFlexibleAppVersionEndpointsApiService {
 
   final TfArg<String> name;
 
-  final TfArg<AppEngineFlexibleAppVersionEndpointsApiServiceRolloutStrategy>?
-  rolloutStrategy;
+  final TfArg<AppEngineFlexibleAppVersionRolloutStrategy>? rolloutStrategy;
 
   Map<String, Object?> encode() => {
     'config_id': ?configId?.toTfJson(),
@@ -269,14 +264,11 @@ final class AppEngineFlexibleAppVersionEndpointsApiService {
 }
 
 /// `rollout_strategy` — derived from the provider schema description.
-enum AppEngineFlexibleAppVersionEndpointsApiServiceRolloutStrategy
-    implements TerraformEnum {
+enum AppEngineFlexibleAppVersionRolloutStrategy implements TerraformEnum {
   fixed('FIXED'),
   managed('MANAGED');
 
-  const AppEngineFlexibleAppVersionEndpointsApiServiceRolloutStrategy(
-    this.terraformValue,
-  );
+  const AppEngineFlexibleAppVersionRolloutStrategy(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -325,21 +317,20 @@ final class AppEngineFlexibleAppVersionHandlers {
     this.staticFiles,
   });
 
-  final TfArg<AppEngineFlexibleAppVersionHandlersAuthFailAction>?
-  authFailAction;
+  final TfArg<AppEngineFlexibleAppVersionAuthFailAction>? authFailAction;
 
-  final TfArg<AppEngineFlexibleAppVersionHandlersLogin>? login;
+  final TfArg<AppEngineFlexibleAppVersionLogin>? login;
 
-  final TfArg<AppEngineFlexibleAppVersionHandlersRedirectHttpResponseCode>?
+  final TfArg<AppEngineFlexibleAppVersionRedirectHttpResponseCode>?
   redirectHttpResponseCode;
 
-  final TfArg<AppEngineFlexibleAppVersionHandlersSecurityLevel>? securityLevel;
+  final TfArg<AppEngineFlexibleAppVersionSecurityLevel>? securityLevel;
 
   final TfArg<String>? urlRegex;
 
-  final AppEngineFlexibleAppVersionHandlersScript? script;
+  final AppEngineFlexibleAppVersionScript? script;
 
-  final AppEngineFlexibleAppVersionHandlersStaticFiles? staticFiles;
+  final AppEngineFlexibleAppVersionStaticFiles? staticFiles;
 
   Map<String, Object?> encode() => {
     'auth_fail_action': ?authFailAction?.toTfJson(),
@@ -352,51 +343,17 @@ final class AppEngineFlexibleAppVersionHandlers {
   };
 }
 
-/// `auth_fail_action` — derived from the provider schema description.
-enum AppEngineFlexibleAppVersionHandlersAuthFailAction
-    implements TerraformEnum {
-  authFailActionRedirect('AUTH_FAIL_ACTION_REDIRECT'),
-  authFailActionUnauthorized('AUTH_FAIL_ACTION_UNAUTHORIZED');
-
-  const AppEngineFlexibleAppVersionHandlersAuthFailAction(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
-/// `login` — derived from the provider schema description.
-enum AppEngineFlexibleAppVersionHandlersLogin implements TerraformEnum {
-  loginOptional('LOGIN_OPTIONAL'),
-  loginAdmin('LOGIN_ADMIN'),
-  loginRequired('LOGIN_REQUIRED');
-
-  const AppEngineFlexibleAppVersionHandlersLogin(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
 /// `redirect_http_response_code` — derived from the provider schema description.
-enum AppEngineFlexibleAppVersionHandlersRedirectHttpResponseCode
+enum AppEngineFlexibleAppVersionRedirectHttpResponseCode
     implements TerraformEnum {
   redirectHttpResponseCode301('REDIRECT_HTTP_RESPONSE_CODE_301'),
   redirectHttpResponseCode302('REDIRECT_HTTP_RESPONSE_CODE_302'),
   redirectHttpResponseCode303('REDIRECT_HTTP_RESPONSE_CODE_303'),
   redirectHttpResponseCode307('REDIRECT_HTTP_RESPONSE_CODE_307');
 
-  const AppEngineFlexibleAppVersionHandlersRedirectHttpResponseCode(
+  const AppEngineFlexibleAppVersionRedirectHttpResponseCode(
     this.terraformValue,
   );
-  @override
-  final String terraformValue;
-}
-
-/// `security_level` — derived from the provider schema description.
-enum AppEngineFlexibleAppVersionHandlersSecurityLevel implements TerraformEnum {
-  secureDefault('SECURE_DEFAULT'),
-  secureNever('SECURE_NEVER'),
-  secureOptional('SECURE_OPTIONAL'),
-  secureAlways('SECURE_ALWAYS');
-
-  const AppEngineFlexibleAppVersionHandlersSecurityLevel(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -404,8 +361,8 @@ enum AppEngineFlexibleAppVersionHandlersSecurityLevel implements TerraformEnum {
 /// Typed helper for the `handlers.script` block of
 /// `google_app_engine_flexible_app_version` (derived from provider schema).
 @immutable
-final class AppEngineFlexibleAppVersionHandlersScript {
-  const AppEngineFlexibleAppVersionHandlersScript({required this.scriptPath});
+final class AppEngineFlexibleAppVersionScript {
+  const AppEngineFlexibleAppVersionScript({required this.scriptPath});
 
   final TfArg<String> scriptPath;
 
@@ -415,8 +372,8 @@ final class AppEngineFlexibleAppVersionHandlersScript {
 /// Typed helper for the `handlers.static_files` block of
 /// `google_app_engine_flexible_app_version` (derived from provider schema).
 @immutable
-final class AppEngineFlexibleAppVersionHandlersStaticFiles {
-  const AppEngineFlexibleAppVersionHandlersStaticFiles({
+final class AppEngineFlexibleAppVersionStaticFiles {
+  const AppEngineFlexibleAppVersionStaticFiles({
     this.applicationReadable,
     this.expiration,
     this.httpHeaders,
@@ -577,7 +534,7 @@ final class AppEngineFlexibleAppVersionResources {
 
   final TfArg<num>? memoryGb;
 
-  final List<AppEngineFlexibleAppVersionResourcesVolumes>? volumes;
+  final List<AppEngineFlexibleAppVersionVolumes>? volumes;
 
   Map<String, Object?> encode() => {
     'cpu': ?cpu?.toTfJson(),
@@ -590,8 +547,8 @@ final class AppEngineFlexibleAppVersionResources {
 /// Typed helper for the `resources.volumes` block of
 /// `google_app_engine_flexible_app_version` (derived from provider schema).
 @immutable
-final class AppEngineFlexibleAppVersionResourcesVolumes {
-  const AppEngineFlexibleAppVersionResourcesVolumes({
+final class AppEngineFlexibleAppVersionVolumes {
+  const AppEngineFlexibleAppVersionVolumes({
     required this.name,
     required this.sizeGb,
     required this.volumeType,

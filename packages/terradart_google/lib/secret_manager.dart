@@ -24,16 +24,15 @@ export 'src/secret_manager/google_secret_manager_regional_secret_version.dart'
 export 'src/secret_manager/google_secret_manager_secret.dart'
     show
         GoogleSecretManagerSecret,
+        SecretManagerSecretAuto,
+        SecretManagerSecretCustomerManagedEncryption,
+        SecretManagerSecretReplicas,
         SecretManagerSecretReplication,
         SecretManagerSecretReplicationAuto,
-        SecretManagerSecretReplicationAutoChoice,
-        SecretManagerSecretReplicationAutoCustomerManagedEncryption,
         SecretManagerSecretReplicationUserManaged,
-        SecretManagerSecretReplicationUserManagedChoice,
-        SecretManagerSecretReplicationUserManagedReplicas,
-        SecretManagerSecretReplicationUserManagedReplicasCustomerManagedEncryption,
         SecretManagerSecretRotation,
-        SecretManagerSecretTopics;
+        SecretManagerSecretTopics,
+        SecretManagerSecretUserManaged;
 export 'src/secret_manager/google_secret_manager_secret_iam_binding.dart'
     show
         GoogleSecretManagerSecretIamBinding,

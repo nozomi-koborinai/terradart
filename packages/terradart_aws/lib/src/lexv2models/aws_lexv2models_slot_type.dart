@@ -16,7 +16,7 @@ const Set<String> _awsLexv2modelsSlotTypeSensitive = <String>{};
 final class Lexv2modelsSlotTypeCompositeSlotTypeSetting {
   const Lexv2modelsSlotTypeCompositeSlotTypeSetting({this.subSlots});
 
-  final List<Lexv2modelsSlotTypeCompositeSlotTypeSettingSubSlots>? subSlots;
+  final List<Lexv2modelsSlotTypeSubSlots>? subSlots;
 
   Map<String, Object?> encode() => {
     if (subSlots != null) 'sub_slots': [for (final e in subSlots!) e.encode()],
@@ -26,8 +26,8 @@ final class Lexv2modelsSlotTypeCompositeSlotTypeSetting {
 /// Typed helper for the `composite_slot_type_setting.sub_slots` block of
 /// `aws_lexv2models_slot_type` (derived from provider schema).
 @immutable
-final class Lexv2modelsSlotTypeCompositeSlotTypeSettingSubSlots {
-  const Lexv2modelsSlotTypeCompositeSlotTypeSettingSubSlots({
+final class Lexv2modelsSlotTypeSubSlots {
+  const Lexv2modelsSlotTypeSubSlots({
     required this.name,
     required this.slotTypeId,
   });
@@ -48,8 +48,7 @@ final class Lexv2modelsSlotTypeCompositeSlotTypeSettingSubSlots {
 final class Lexv2modelsSlotTypeExternalSourceSetting {
   const Lexv2modelsSlotTypeExternalSourceSetting({this.grammarSlotTypeSetting});
 
-  final List<Lexv2modelsSlotTypeExternalSourceSettingGrammarSlotTypeSetting>?
-  grammarSlotTypeSetting;
+  final List<Lexv2modelsSlotTypeGrammarSlotTypeSetting>? grammarSlotTypeSetting;
 
   Map<String, Object?> encode() => {
     if (grammarSlotTypeSetting != null)
@@ -62,15 +61,10 @@ final class Lexv2modelsSlotTypeExternalSourceSetting {
 /// Typed helper for the `external_source_setting.grammar_slot_type_setting` block of
 /// `aws_lexv2models_slot_type` (derived from provider schema).
 @immutable
-final class Lexv2modelsSlotTypeExternalSourceSettingGrammarSlotTypeSetting {
-  const Lexv2modelsSlotTypeExternalSourceSettingGrammarSlotTypeSetting({
-    this.source,
-  });
+final class Lexv2modelsSlotTypeGrammarSlotTypeSetting {
+  const Lexv2modelsSlotTypeGrammarSlotTypeSetting({this.source});
 
-  final List<
-    Lexv2modelsSlotTypeExternalSourceSettingGrammarSlotTypeSettingSource
-  >?
-  source;
+  final List<Lexv2modelsSlotTypeSource>? source;
 
   Map<String, Object?> encode() => {
     if (source != null) 'source': [for (final e in source!) e.encode()],
@@ -80,8 +74,8 @@ final class Lexv2modelsSlotTypeExternalSourceSettingGrammarSlotTypeSetting {
 /// Typed helper for the `external_source_setting.grammar_slot_type_setting.source` block of
 /// `aws_lexv2models_slot_type` (derived from provider schema).
 @immutable
-final class Lexv2modelsSlotTypeExternalSourceSettingGrammarSlotTypeSettingSource {
-  const Lexv2modelsSlotTypeExternalSourceSettingGrammarSlotTypeSettingSource({
+final class Lexv2modelsSlotTypeSource {
+  const Lexv2modelsSlotTypeSource({
     required this.kmsKeyArn,
     required this.s3BucketName,
     required this.s3ObjectKey,
@@ -103,12 +97,12 @@ final class Lexv2modelsSlotTypeExternalSourceSettingGrammarSlotTypeSettingSource
 /// Typed helper for the `slot_type_values` block of
 /// `aws_lexv2models_slot_type` (derived from provider schema).
 @immutable
-final class Lexv2modelsSlotTypeSlotTypeValues {
-  const Lexv2modelsSlotTypeSlotTypeValues({this.sampleValue, this.synonyms});
+final class Lexv2modelsSlotTypeValues {
+  const Lexv2modelsSlotTypeValues({this.sampleValue, this.synonyms});
 
-  final List<Lexv2modelsSlotTypeSlotTypeValuesSampleValue>? sampleValue;
+  final List<Lexv2modelsSlotTypeSampleValue>? sampleValue;
 
-  final List<Lexv2modelsSlotTypeSlotTypeValuesSynonyms>? synonyms;
+  final List<Lexv2modelsSlotTypeSynonyms>? synonyms;
 
   Map<String, Object?> encode() => {
     if (sampleValue != null)
@@ -120,8 +114,8 @@ final class Lexv2modelsSlotTypeSlotTypeValues {
 /// Typed helper for the `slot_type_values.sample_value` block of
 /// `aws_lexv2models_slot_type` (derived from provider schema).
 @immutable
-final class Lexv2modelsSlotTypeSlotTypeValuesSampleValue {
-  const Lexv2modelsSlotTypeSlotTypeValuesSampleValue({required this.value});
+final class Lexv2modelsSlotTypeSampleValue {
+  const Lexv2modelsSlotTypeSampleValue({required this.value});
 
   final TfArg<String> value;
 
@@ -131,8 +125,8 @@ final class Lexv2modelsSlotTypeSlotTypeValuesSampleValue {
 /// Typed helper for the `slot_type_values.synonyms` block of
 /// `aws_lexv2models_slot_type` (derived from provider schema).
 @immutable
-final class Lexv2modelsSlotTypeSlotTypeValuesSynonyms {
-  const Lexv2modelsSlotTypeSlotTypeValuesSynonyms({required this.value});
+final class Lexv2modelsSlotTypeSynonyms {
+  const Lexv2modelsSlotTypeSynonyms({required this.value});
 
   final TfArg<String> value;
 
@@ -149,15 +143,12 @@ final class Lexv2modelsSlotTypeValueSelectionSetting {
     this.regexFilter,
   });
 
-  final TfArg<Lexv2modelsSlotTypeValueSelectionSettingResolutionStrategy>
-  resolutionStrategy;
+  final TfArg<Lexv2modelsSlotTypeResolutionStrategy> resolutionStrategy;
 
-  final List<
-    Lexv2modelsSlotTypeValueSelectionSettingAdvancedRecognitionSetting
-  >?
+  final List<Lexv2modelsSlotTypeAdvancedRecognitionSetting>?
   advancedRecognitionSetting;
 
-  final List<Lexv2modelsSlotTypeValueSelectionSettingRegexFilter>? regexFilter;
+  final List<Lexv2modelsSlotTypeRegexFilter>? regexFilter;
 
   Map<String, Object?> encode() => {
     'resolution_strategy': resolutionStrategy.toTfJson(),
@@ -171,15 +162,12 @@ final class Lexv2modelsSlotTypeValueSelectionSetting {
 }
 
 /// `resolution_strategy` — derived from the provider schema description.
-enum Lexv2modelsSlotTypeValueSelectionSettingResolutionStrategy
-    implements TerraformEnum {
+enum Lexv2modelsSlotTypeResolutionStrategy implements TerraformEnum {
   originalvalue('OriginalValue'),
   topresolution('TopResolution'),
   concatenation('Concatenation');
 
-  const Lexv2modelsSlotTypeValueSelectionSettingResolutionStrategy(
-    this.terraformValue,
-  );
+  const Lexv2modelsSlotTypeResolutionStrategy(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -187,14 +175,12 @@ enum Lexv2modelsSlotTypeValueSelectionSettingResolutionStrategy
 /// Typed helper for the `value_selection_setting.advanced_recognition_setting` block of
 /// `aws_lexv2models_slot_type` (derived from provider schema).
 @immutable
-final class Lexv2modelsSlotTypeValueSelectionSettingAdvancedRecognitionSetting {
-  const Lexv2modelsSlotTypeValueSelectionSettingAdvancedRecognitionSetting({
+final class Lexv2modelsSlotTypeAdvancedRecognitionSetting {
+  const Lexv2modelsSlotTypeAdvancedRecognitionSetting({
     this.audioRecognitionStrategy,
   });
 
-  final TfArg<
-    Lexv2modelsSlotTypeValueSelectionSettingAdvancedRecognitionSettingAudioRecognitionStrategy
-  >?
+  final TfArg<Lexv2modelsSlotTypeAudioRecognitionStrategy>?
   audioRecognitionStrategy;
 
   Map<String, Object?> encode() => {
@@ -203,13 +189,10 @@ final class Lexv2modelsSlotTypeValueSelectionSettingAdvancedRecognitionSetting {
 }
 
 /// `audio_recognition_strategy` — derived from the provider schema description.
-enum Lexv2modelsSlotTypeValueSelectionSettingAdvancedRecognitionSettingAudioRecognitionStrategy
-    implements TerraformEnum {
+enum Lexv2modelsSlotTypeAudioRecognitionStrategy implements TerraformEnum {
   useslotvaluesascustomvocabulary('UseSlotValuesAsCustomVocabulary');
 
-  const Lexv2modelsSlotTypeValueSelectionSettingAdvancedRecognitionSettingAudioRecognitionStrategy(
-    this.terraformValue,
-  );
+  const Lexv2modelsSlotTypeAudioRecognitionStrategy(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -217,10 +200,8 @@ enum Lexv2modelsSlotTypeValueSelectionSettingAdvancedRecognitionSettingAudioReco
 /// Typed helper for the `value_selection_setting.regex_filter` block of
 /// `aws_lexv2models_slot_type` (derived from provider schema).
 @immutable
-final class Lexv2modelsSlotTypeValueSelectionSettingRegexFilter {
-  const Lexv2modelsSlotTypeValueSelectionSettingRegexFilter({
-    required this.pattern,
-  });
+final class Lexv2modelsSlotTypeRegexFilter {
+  const Lexv2modelsSlotTypeRegexFilter({required this.pattern});
 
   final TfArg<String> pattern;
 
@@ -242,7 +223,7 @@ final class AwsLexv2modelsSlotType extends Resource {
     TfArg<String>? region,
     List<Lexv2modelsSlotTypeCompositeSlotTypeSetting>? compositeSlotTypeSetting,
     List<Lexv2modelsSlotTypeExternalSourceSetting>? externalSourceSetting,
-    List<Lexv2modelsSlotTypeSlotTypeValues>? slotTypeValues,
+    List<Lexv2modelsSlotTypeValues>? slotTypeValues,
     List<Lexv2modelsSlotTypeValueSelectionSetting>? valueSelectionSetting,
     super.lifecycle,
     super.dependsOn,

@@ -15,7 +15,7 @@ final class SsmcontactsPlanStage {
 
   final TfArg<num> durationInMinutes;
 
-  final List<SsmcontactsPlanStageTarget>? target;
+  final List<SsmcontactsPlanTarget>? target;
 
   Map<String, Object?> encode() => {
     'duration_in_minutes': durationInMinutes.toTfJson(),
@@ -26,15 +26,12 @@ final class SsmcontactsPlanStage {
 /// Typed helper for the `stage.target` block of
 /// `aws_ssmcontacts_plan` (derived from provider schema).
 @immutable
-final class SsmcontactsPlanStageTarget {
-  const SsmcontactsPlanStageTarget({
-    this.channelTargetInfo,
-    this.contactTargetInfo,
-  });
+final class SsmcontactsPlanTarget {
+  const SsmcontactsPlanTarget({this.channelTargetInfo, this.contactTargetInfo});
 
-  final SsmcontactsPlanStageTargetChannelTargetInfo? channelTargetInfo;
+  final SsmcontactsPlanChannelTargetInfo? channelTargetInfo;
 
-  final SsmcontactsPlanStageTargetContactTargetInfo? contactTargetInfo;
+  final SsmcontactsPlanContactTargetInfo? contactTargetInfo;
 
   Map<String, Object?> encode() => {
     'channel_target_info': ?channelTargetInfo?.encode(),
@@ -45,8 +42,8 @@ final class SsmcontactsPlanStageTarget {
 /// Typed helper for the `stage.target.channel_target_info` block of
 /// `aws_ssmcontacts_plan` (derived from provider schema).
 @immutable
-final class SsmcontactsPlanStageTargetChannelTargetInfo {
-  const SsmcontactsPlanStageTargetChannelTargetInfo({
+final class SsmcontactsPlanChannelTargetInfo {
+  const SsmcontactsPlanChannelTargetInfo({
     required this.contactChannelId,
     this.retryIntervalInMinutes,
   });
@@ -64,8 +61,8 @@ final class SsmcontactsPlanStageTargetChannelTargetInfo {
 /// Typed helper for the `stage.target.contact_target_info` block of
 /// `aws_ssmcontacts_plan` (derived from provider schema).
 @immutable
-final class SsmcontactsPlanStageTargetContactTargetInfo {
-  const SsmcontactsPlanStageTargetContactTargetInfo({
+final class SsmcontactsPlanContactTargetInfo {
+  const SsmcontactsPlanContactTargetInfo({
     this.contactId,
     required this.isEssential,
   });

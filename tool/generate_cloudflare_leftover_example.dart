@@ -792,8 +792,8 @@ const _literalByKey = <String, String>{
   'ShareResources.resourceType': "'custom-ruleset'",
   'AccountTokenPolicies.effect': "'allow'",
   'ApiTokenPolicies.effect': "'allow'",
-  'TokenValidationConfigCredentialsKeys.alg': "'RS256'",
-  'TokenValidationConfigCredentialsKeys.kty': "'RSA'",
+  'TokenValidationConfigKeys.alg': "'RS256'",
+  'TokenValidationConfigKeys.kty': "'RSA'",
   'HyperdriveConfigOrigin.scheme': "'postgres'",
   'AiGatewayDynamicRoutingElements.type': "'start'",
   'VulnerabilityScannerTargetEnvironmentTarget.type': "'zone'",
@@ -809,7 +809,7 @@ const _literalByKey = <String, String>{
 /// Number literals for slots whose provider validator bounds the value
 /// below the default `200`.
 const _numberByKey = <String, String>{
-  'ZoneTracingRulesRulesActionParameters.samplingRatio': '1',
+  'ZoneTracingRulesActionParameters.samplingRatio': '1',
   'CloudflareCertificatePack.validityDays': '90',
   'WorkersDeploymentVersions.percentage': '100',
 };

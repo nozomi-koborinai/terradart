@@ -21,8 +21,7 @@ final class BatchSchedulingPolicyFairSharePolicy {
 
   final TfArg<num>? shareDecaySeconds;
 
-  final List<BatchSchedulingPolicyFairSharePolicyShareDistribution>?
-  shareDistribution;
+  final List<BatchSchedulingPolicyShareDistribution>? shareDistribution;
 
   Map<String, Object?> encode() => {
     'compute_reservation': ?computeReservation?.toTfJson(),
@@ -35,8 +34,8 @@ final class BatchSchedulingPolicyFairSharePolicy {
 /// Typed helper for the `fair_share_policy.share_distribution` block of
 /// `aws_batch_scheduling_policy` (derived from provider schema).
 @immutable
-final class BatchSchedulingPolicyFairSharePolicyShareDistribution {
-  const BatchSchedulingPolicyFairSharePolicyShareDistribution({
+final class BatchSchedulingPolicyShareDistribution {
+  const BatchSchedulingPolicyShareDistribution({
     required this.shareIdentifier,
     this.weightFactor,
   });

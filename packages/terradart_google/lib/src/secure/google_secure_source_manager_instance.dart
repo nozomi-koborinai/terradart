@@ -50,8 +50,7 @@ final class SecureSourceManagerInstancePrivateConfig {
 
   final TfArg<List<String>>? pscAllowedProjects;
 
-  final SecureSourceManagerInstancePrivateConfigCustomHostConfig?
-  customHostConfig;
+  final SecureSourceManagerInstanceCustomHostConfig? customHostConfig;
 
   Map<String, Object?> encode() => {
     'ca_pool': ?caPool?.toTfJson(),
@@ -64,8 +63,8 @@ final class SecureSourceManagerInstancePrivateConfig {
 /// Typed helper for the `private_config.custom_host_config` block of
 /// `google_secure_source_manager_instance` (derived from provider schema).
 @immutable
-final class SecureSourceManagerInstancePrivateConfigCustomHostConfig {
-  const SecureSourceManagerInstancePrivateConfigCustomHostConfig({
+final class SecureSourceManagerInstanceCustomHostConfig {
+  const SecureSourceManagerInstanceCustomHostConfig({
     required this.api,
     required this.gitHttp,
     required this.gitSsh,

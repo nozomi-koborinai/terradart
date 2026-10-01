@@ -9,21 +9,21 @@ library;
 export 'src/vmwareengine/google_vmwareengine_cluster.dart'
     show
         GoogleVmwareengineCluster,
+        VmwareengineClusterAutoscalingPolicies,
         VmwareengineClusterAutoscalingSettings,
-        VmwareengineClusterAutoscalingSettingsAutoscalingPolicies,
-        VmwareengineClusterAutoscalingSettingsAutoscalingPoliciesConsumedMemoryThresholds,
-        VmwareengineClusterAutoscalingSettingsAutoscalingPoliciesCpuThresholds,
-        VmwareengineClusterAutoscalingSettingsAutoscalingPoliciesStorageThresholds,
+        VmwareengineClusterConsumedMemoryThresholds,
+        VmwareengineClusterCpuThresholds,
         VmwareengineClusterDatastoreMountConfig,
-        VmwareengineClusterDatastoreMountConfigDatastoreNetwork,
+        VmwareengineClusterDatastoreNetwork,
         VmwareengineClusterNodeTypeConfigs,
-        VmwareengineClusterState;
+        VmwareengineClusterState,
+        VmwareengineClusterStorageThresholds;
 export 'src/vmwareengine/google_vmwareengine_datastore.dart'
     show
         GoogleVmwareengineDatastore,
+        VmwareengineDatastoreGoogleFileService,
         VmwareengineDatastoreNfsDatastore,
-        VmwareengineDatastoreNfsDatastoreGoogleFileService,
-        VmwareengineDatastoreNfsDatastoreThirdPartyFileService;
+        VmwareengineDatastoreThirdPartyFileService;
 export 'src/vmwareengine/google_vmwareengine_external_access_rule.dart'
     show
         GoogleVmwareengineExternalAccessRule,
@@ -49,16 +49,16 @@ export 'src/vmwareengine/google_vmwareengine_network_policy.dart'
 export 'src/vmwareengine/google_vmwareengine_private_cloud.dart'
     show
         GoogleVmwareenginePrivateCloud,
+        VmwareenginePrivateCloudAutoscalingPolicies,
+        VmwareenginePrivateCloudAutoscalingSettings,
+        VmwareenginePrivateCloudConsumedMemoryThresholds,
+        VmwareenginePrivateCloudCpuThresholds,
         VmwareenginePrivateCloudManagementCluster,
-        VmwareenginePrivateCloudManagementClusterAutoscalingSettings,
-        VmwareenginePrivateCloudManagementClusterAutoscalingSettingsAutoscalingPolicies,
-        VmwareenginePrivateCloudManagementClusterAutoscalingSettingsAutoscalingPoliciesConsumedMemoryThresholds,
-        VmwareenginePrivateCloudManagementClusterAutoscalingSettingsAutoscalingPoliciesCpuThresholds,
-        VmwareenginePrivateCloudManagementClusterAutoscalingSettingsAutoscalingPoliciesStorageThresholds,
-        VmwareenginePrivateCloudManagementClusterNodeTypeConfigs,
-        VmwareenginePrivateCloudManagementClusterStretchedClusterConfig,
         VmwareenginePrivateCloudNetworkConfig,
+        VmwareenginePrivateCloudNodeTypeConfigs,
         VmwareenginePrivateCloudState,
+        VmwareenginePrivateCloudStorageThresholds,
+        VmwareenginePrivateCloudStretchedClusterConfig,
         VmwareenginePrivateCloudType;
 export 'src/vmwareengine/google_vmwareengine_subnet.dart'
     show GoogleVmwareengineSubnet;

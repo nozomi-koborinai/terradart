@@ -22,26 +22,25 @@ final class GkeBackupRestorePlanRestoreConfig {
     this.volumeDataRestorePolicyBindings,
   });
 
-  final GkeBackupRestorePlanRestoreConfigNamespaces namespaces;
+  final GkeBackupRestorePlanNamespaces namespaces;
 
-  final TfArg<GkeBackupRestorePlanRestoreConfigClusterResourceConflictPolicy>?
+  final TfArg<GkeBackupRestorePlanClusterResourceConflictPolicy>?
   clusterResourceConflictPolicy;
 
-  final TfArg<GkeBackupRestorePlanRestoreConfigNamespacedResourceRestoreMode>?
+  final TfArg<GkeBackupRestorePlanNamespacedResourceRestoreMode>?
   namespacedResourceRestoreMode;
 
-  final TfArg<GkeBackupRestorePlanRestoreConfigVolumeDataRestorePolicy>?
+  final TfArg<GkeBackupRestorePlanVolumeDataRestorePolicy>?
   volumeDataRestorePolicy;
 
-  final GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScope?
+  final GkeBackupRestorePlanClusterResourceRestoreScope?
   clusterResourceRestoreScope;
 
-  final GkeBackupRestorePlanRestoreConfigRestoreOrder? restoreOrder;
+  final GkeBackupRestorePlanRestoreOrder? restoreOrder;
 
-  final List<GkeBackupRestorePlanRestoreConfigTransformationRules>?
-  transformationRules;
+  final List<GkeBackupRestorePlanTransformationRules>? transformationRules;
 
-  final List<GkeBackupRestorePlanRestoreConfigVolumeDataRestorePolicyBindings>?
+  final List<GkeBackupRestorePlanVolumeDataRestorePolicyBindings>?
   volumeDataRestorePolicyBindings;
 
   Map<String, Object?> encode() => {
@@ -68,33 +67,33 @@ final class GkeBackupRestorePlanRestoreConfig {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.allNamespaces(...)`.
-sealed class GkeBackupRestorePlanRestoreConfigNamespaces {
-  const GkeBackupRestorePlanRestoreConfigNamespaces();
+sealed class GkeBackupRestorePlanNamespaces {
+  const GkeBackupRestorePlanNamespaces();
 
   /// Sets `all_namespaces`.
-  const factory GkeBackupRestorePlanRestoreConfigNamespaces.allNamespaces(
+  const factory GkeBackupRestorePlanNamespaces.allNamespaces(
     TfArg<bool> allNamespaces,
-  ) = GkeBackupRestorePlanRestoreConfigNamespacesAllNamespaces;
+  ) = GkeBackupRestorePlanAllNamespaces;
 
   /// Sets `excluded_namespaces`.
-  const factory GkeBackupRestorePlanRestoreConfigNamespaces.excludedNamespaces(
-    GkeBackupRestorePlanRestoreConfigExcludedNamespaces excludedNamespaces,
-  ) = GkeBackupRestorePlanRestoreConfigNamespacesExcludedNamespaces;
+  const factory GkeBackupRestorePlanNamespaces.excludedNamespaces(
+    GkeBackupRestorePlanExcludedNamespaces excludedNamespaces,
+  ) = GkeBackupRestorePlanExcludedNamespacesChoice;
 
   /// Sets `selected_namespaces`.
-  const factory GkeBackupRestorePlanRestoreConfigNamespaces.selectedNamespaces(
-    GkeBackupRestorePlanRestoreConfigSelectedNamespaces selectedNamespaces,
-  ) = GkeBackupRestorePlanRestoreConfigNamespacesSelectedNamespaces;
+  const factory GkeBackupRestorePlanNamespaces.selectedNamespaces(
+    GkeBackupRestorePlanSelectedNamespaces selectedNamespaces,
+  ) = GkeBackupRestorePlanSelectedNamespacesChoice;
 
   /// Sets `selected_applications`.
-  const factory GkeBackupRestorePlanRestoreConfigNamespaces.selectedApplications(
-    GkeBackupRestorePlanRestoreConfigSelectedApplications selectedApplications,
-  ) = GkeBackupRestorePlanRestoreConfigNamespacesSelectedApplications;
+  const factory GkeBackupRestorePlanNamespaces.selectedApplications(
+    GkeBackupRestorePlanSelectedApplications selectedApplications,
+  ) = GkeBackupRestorePlanNamespacesSelectedApplications;
 
   /// Sets `no_namespaces`.
-  const factory GkeBackupRestorePlanRestoreConfigNamespaces.noNamespaces(
+  const factory GkeBackupRestorePlanNamespaces.noNamespaces(
     TfArg<bool> noNamespaces,
-  ) = GkeBackupRestorePlanRestoreConfigNamespacesNoNamespaces;
+  ) = GkeBackupRestorePlanNoNamespaces;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -102,12 +101,10 @@ sealed class GkeBackupRestorePlanRestoreConfigNamespaces {
   Map<String, Object?> encode();
 }
 
-/// The [GkeBackupRestorePlanRestoreConfigNamespaces.allNamespaces] choice: sets `all_namespaces`.
-final class GkeBackupRestorePlanRestoreConfigNamespacesAllNamespaces
-    extends GkeBackupRestorePlanRestoreConfigNamespaces {
-  const GkeBackupRestorePlanRestoreConfigNamespacesAllNamespaces(
-    this.allNamespaces,
-  );
+/// The [GkeBackupRestorePlanNamespaces.allNamespaces] choice: sets `all_namespaces`.
+final class GkeBackupRestorePlanAllNamespaces
+    extends GkeBackupRestorePlanNamespaces {
+  const GkeBackupRestorePlanAllNamespaces(this.allNamespaces);
 
   final TfArg<bool> allNamespaces;
 
@@ -118,14 +115,12 @@ final class GkeBackupRestorePlanRestoreConfigNamespacesAllNamespaces
   Map<String, Object?> encode() => {'all_namespaces': allNamespaces.toTfJson()};
 }
 
-/// The [GkeBackupRestorePlanRestoreConfigNamespaces.excludedNamespaces] choice: sets `excluded_namespaces`.
-final class GkeBackupRestorePlanRestoreConfigNamespacesExcludedNamespaces
-    extends GkeBackupRestorePlanRestoreConfigNamespaces {
-  const GkeBackupRestorePlanRestoreConfigNamespacesExcludedNamespaces(
-    this.excludedNamespaces,
-  );
+/// The [GkeBackupRestorePlanNamespaces.excludedNamespaces] choice: sets `excluded_namespaces`.
+final class GkeBackupRestorePlanExcludedNamespacesChoice
+    extends GkeBackupRestorePlanNamespaces {
+  const GkeBackupRestorePlanExcludedNamespacesChoice(this.excludedNamespaces);
 
-  final GkeBackupRestorePlanRestoreConfigExcludedNamespaces excludedNamespaces;
+  final GkeBackupRestorePlanExcludedNamespaces excludedNamespaces;
 
   @override
   String get blockKey => 'excluded_namespaces';
@@ -136,14 +131,12 @@ final class GkeBackupRestorePlanRestoreConfigNamespacesExcludedNamespaces
   };
 }
 
-/// The [GkeBackupRestorePlanRestoreConfigNamespaces.selectedNamespaces] choice: sets `selected_namespaces`.
-final class GkeBackupRestorePlanRestoreConfigNamespacesSelectedNamespaces
-    extends GkeBackupRestorePlanRestoreConfigNamespaces {
-  const GkeBackupRestorePlanRestoreConfigNamespacesSelectedNamespaces(
-    this.selectedNamespaces,
-  );
+/// The [GkeBackupRestorePlanNamespaces.selectedNamespaces] choice: sets `selected_namespaces`.
+final class GkeBackupRestorePlanSelectedNamespacesChoice
+    extends GkeBackupRestorePlanNamespaces {
+  const GkeBackupRestorePlanSelectedNamespacesChoice(this.selectedNamespaces);
 
-  final GkeBackupRestorePlanRestoreConfigSelectedNamespaces selectedNamespaces;
+  final GkeBackupRestorePlanSelectedNamespaces selectedNamespaces;
 
   @override
   String get blockKey => 'selected_namespaces';
@@ -154,15 +147,14 @@ final class GkeBackupRestorePlanRestoreConfigNamespacesSelectedNamespaces
   };
 }
 
-/// The [GkeBackupRestorePlanRestoreConfigNamespaces.selectedApplications] choice: sets `selected_applications`.
-final class GkeBackupRestorePlanRestoreConfigNamespacesSelectedApplications
-    extends GkeBackupRestorePlanRestoreConfigNamespaces {
-  const GkeBackupRestorePlanRestoreConfigNamespacesSelectedApplications(
+/// The [GkeBackupRestorePlanNamespaces.selectedApplications] choice: sets `selected_applications`.
+final class GkeBackupRestorePlanNamespacesSelectedApplications
+    extends GkeBackupRestorePlanNamespaces {
+  const GkeBackupRestorePlanNamespacesSelectedApplications(
     this.selectedApplications,
   );
 
-  final GkeBackupRestorePlanRestoreConfigSelectedApplications
-  selectedApplications;
+  final GkeBackupRestorePlanSelectedApplications selectedApplications;
 
   @override
   String get blockKey => 'selected_applications';
@@ -173,12 +165,10 @@ final class GkeBackupRestorePlanRestoreConfigNamespacesSelectedApplications
   };
 }
 
-/// The [GkeBackupRestorePlanRestoreConfigNamespaces.noNamespaces] choice: sets `no_namespaces`.
-final class GkeBackupRestorePlanRestoreConfigNamespacesNoNamespaces
-    extends GkeBackupRestorePlanRestoreConfigNamespaces {
-  const GkeBackupRestorePlanRestoreConfigNamespacesNoNamespaces(
-    this.noNamespaces,
-  );
+/// The [GkeBackupRestorePlanNamespaces.noNamespaces] choice: sets `no_namespaces`.
+final class GkeBackupRestorePlanNoNamespaces
+    extends GkeBackupRestorePlanNamespaces {
+  const GkeBackupRestorePlanNoNamespaces(this.noNamespaces);
 
   final TfArg<bool> noNamespaces;
 
@@ -190,20 +180,18 @@ final class GkeBackupRestorePlanRestoreConfigNamespacesNoNamespaces
 }
 
 /// `cluster_resource_conflict_policy` — derived from the provider schema description.
-enum GkeBackupRestorePlanRestoreConfigClusterResourceConflictPolicy
+enum GkeBackupRestorePlanClusterResourceConflictPolicy
     implements TerraformEnum {
   useExistingVersion('USE_EXISTING_VERSION'),
   useBackupVersion('USE_BACKUP_VERSION');
 
-  const GkeBackupRestorePlanRestoreConfigClusterResourceConflictPolicy(
-    this.terraformValue,
-  );
+  const GkeBackupRestorePlanClusterResourceConflictPolicy(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `namespaced_resource_restore_mode` — derived from the provider schema description.
-enum GkeBackupRestorePlanRestoreConfigNamespacedResourceRestoreMode
+enum GkeBackupRestorePlanNamespacedResourceRestoreMode
     implements TerraformEnum {
   deleteAndRestore('DELETE_AND_RESTORE'),
   failOnConflict('FAIL_ON_CONFLICT'),
@@ -211,23 +199,18 @@ enum GkeBackupRestorePlanRestoreConfigNamespacedResourceRestoreMode
   mergeReplaceVolumeOnConflict('MERGE_REPLACE_VOLUME_ON_CONFLICT'),
   mergeReplaceOnConflict('MERGE_REPLACE_ON_CONFLICT');
 
-  const GkeBackupRestorePlanRestoreConfigNamespacedResourceRestoreMode(
-    this.terraformValue,
-  );
+  const GkeBackupRestorePlanNamespacedResourceRestoreMode(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `volume_data_restore_policy` — derived from the provider schema description.
-enum GkeBackupRestorePlanRestoreConfigVolumeDataRestorePolicy
-    implements TerraformEnum {
+enum GkeBackupRestorePlanVolumeDataRestorePolicy implements TerraformEnum {
   restoreVolumeDataFromBackup('RESTORE_VOLUME_DATA_FROM_BACKUP'),
   reuseVolumeHandleFromBackup('REUSE_VOLUME_HANDLE_FROM_BACKUP'),
   noVolumeDataRestoration('NO_VOLUME_DATA_RESTORATION');
 
-  const GkeBackupRestorePlanRestoreConfigVolumeDataRestorePolicy(
-    this.terraformValue,
-  );
+  const GkeBackupRestorePlanVolumeDataRestorePolicy(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -236,34 +219,28 @@ enum GkeBackupRestorePlanRestoreConfigVolumeDataRestorePolicy
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.allGroupKinds(...)`.
-sealed class GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScope {
-  const GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScope();
+sealed class GkeBackupRestorePlanClusterResourceRestoreScope {
+  const GkeBackupRestorePlanClusterResourceRestoreScope();
 
   /// Sets `all_group_kinds`.
-  const factory GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScope.allGroupKinds(
+  const factory GkeBackupRestorePlanClusterResourceRestoreScope.allGroupKinds(
     TfArg<bool> allGroupKinds,
-  ) = GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScopeAllGroupKinds;
+  ) = GkeBackupRestorePlanClusterResourceRestoreScopeAllGroupKinds;
 
   /// Sets `excluded_group_kinds`.
-  const factory GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScope.excludedGroupKinds(
-    List<
-      GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScopeExcludedGroupKinds
-    >
-    excludedGroupKinds,
-  ) = GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScopeExcludedGroupKindsChoice;
+  const factory GkeBackupRestorePlanClusterResourceRestoreScope.excludedGroupKinds(
+    List<GkeBackupRestorePlanExcludedGroupKinds> excludedGroupKinds,
+  ) = GkeBackupRestorePlanClusterResourceRestoreScopeExcludedGroupKinds;
 
   /// Sets `selected_group_kinds`.
-  const factory GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScope.selectedGroupKinds(
-    List<
-      GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScopeSelectedGroupKinds
-    >
-    selectedGroupKinds,
-  ) = GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScopeSelectedGroupKindsChoice;
+  const factory GkeBackupRestorePlanClusterResourceRestoreScope.selectedGroupKinds(
+    List<GkeBackupRestorePlanSelectedGroupKinds> selectedGroupKinds,
+  ) = GkeBackupRestorePlanClusterResourceRestoreScopeSelectedGroupKinds;
 
   /// Sets `no_group_kinds`.
-  const factory GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScope.noGroupKinds(
+  const factory GkeBackupRestorePlanClusterResourceRestoreScope.noGroupKinds(
     TfArg<bool> noGroupKinds,
-  ) = GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScopeNoGroupKinds;
+  ) = GkeBackupRestorePlanClusterResourceRestoreScopeNoGroupKinds;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -271,10 +248,10 @@ sealed class GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScope {
   Map<String, Object?> encode();
 }
 
-/// The [GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScope.allGroupKinds] choice: sets `all_group_kinds`.
-final class GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScopeAllGroupKinds
-    extends GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScope {
-  const GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScopeAllGroupKinds(
+/// The [GkeBackupRestorePlanClusterResourceRestoreScope.allGroupKinds] choice: sets `all_group_kinds`.
+final class GkeBackupRestorePlanClusterResourceRestoreScopeAllGroupKinds
+    extends GkeBackupRestorePlanClusterResourceRestoreScope {
+  const GkeBackupRestorePlanClusterResourceRestoreScopeAllGroupKinds(
     this.allGroupKinds,
   );
 
@@ -289,17 +266,14 @@ final class GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScopeAllGroup
   };
 }
 
-/// The [GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScope.excludedGroupKinds] choice: sets `excluded_group_kinds`.
-final class GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScopeExcludedGroupKindsChoice
-    extends GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScope {
-  const GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScopeExcludedGroupKindsChoice(
+/// The [GkeBackupRestorePlanClusterResourceRestoreScope.excludedGroupKinds] choice: sets `excluded_group_kinds`.
+final class GkeBackupRestorePlanClusterResourceRestoreScopeExcludedGroupKinds
+    extends GkeBackupRestorePlanClusterResourceRestoreScope {
+  const GkeBackupRestorePlanClusterResourceRestoreScopeExcludedGroupKinds(
     this.excludedGroupKinds,
   );
 
-  final List<
-    GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScopeExcludedGroupKinds
-  >
-  excludedGroupKinds;
+  final List<GkeBackupRestorePlanExcludedGroupKinds> excludedGroupKinds;
 
   @override
   String get blockKey => 'excluded_group_kinds';
@@ -310,17 +284,14 @@ final class GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScopeExcluded
   };
 }
 
-/// The [GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScope.selectedGroupKinds] choice: sets `selected_group_kinds`.
-final class GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScopeSelectedGroupKindsChoice
-    extends GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScope {
-  const GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScopeSelectedGroupKindsChoice(
+/// The [GkeBackupRestorePlanClusterResourceRestoreScope.selectedGroupKinds] choice: sets `selected_group_kinds`.
+final class GkeBackupRestorePlanClusterResourceRestoreScopeSelectedGroupKinds
+    extends GkeBackupRestorePlanClusterResourceRestoreScope {
+  const GkeBackupRestorePlanClusterResourceRestoreScopeSelectedGroupKinds(
     this.selectedGroupKinds,
   );
 
-  final List<
-    GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScopeSelectedGroupKinds
-  >
-  selectedGroupKinds;
+  final List<GkeBackupRestorePlanSelectedGroupKinds> selectedGroupKinds;
 
   @override
   String get blockKey => 'selected_group_kinds';
@@ -331,10 +302,10 @@ final class GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScopeSelected
   };
 }
 
-/// The [GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScope.noGroupKinds] choice: sets `no_group_kinds`.
-final class GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScopeNoGroupKinds
-    extends GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScope {
-  const GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScopeNoGroupKinds(
+/// The [GkeBackupRestorePlanClusterResourceRestoreScope.noGroupKinds] choice: sets `no_group_kinds`.
+final class GkeBackupRestorePlanClusterResourceRestoreScopeNoGroupKinds
+    extends GkeBackupRestorePlanClusterResourceRestoreScope {
+  const GkeBackupRestorePlanClusterResourceRestoreScopeNoGroupKinds(
     this.noGroupKinds,
   );
 
@@ -350,8 +321,8 @@ final class GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScopeNoGroupK
 /// Typed helper for the `restore_config.cluster_resource_restore_scope.excluded_group_kinds` block of
 /// `google_gke_backup_restore_plan` (derived from provider schema).
 @immutable
-final class GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScopeExcludedGroupKinds {
-  const GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScopeExcludedGroupKinds({
+final class GkeBackupRestorePlanExcludedGroupKinds {
+  const GkeBackupRestorePlanExcludedGroupKinds({
     this.resourceGroup,
     this.resourceKind,
   });
@@ -369,8 +340,8 @@ final class GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScopeExcluded
 /// Typed helper for the `restore_config.cluster_resource_restore_scope.selected_group_kinds` block of
 /// `google_gke_backup_restore_plan` (derived from provider schema).
 @immutable
-final class GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScopeSelectedGroupKinds {
-  const GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScopeSelectedGroupKinds({
+final class GkeBackupRestorePlanSelectedGroupKinds {
+  const GkeBackupRestorePlanSelectedGroupKinds({
     this.resourceGroup,
     this.resourceKind,
   });
@@ -388,10 +359,8 @@ final class GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScopeSelected
 /// Typed helper for the `restore_config.excluded_namespaces` block of
 /// `google_gke_backup_restore_plan` (derived from provider schema).
 @immutable
-final class GkeBackupRestorePlanRestoreConfigExcludedNamespaces {
-  const GkeBackupRestorePlanRestoreConfigExcludedNamespaces({
-    required this.namespaces,
-  });
+final class GkeBackupRestorePlanExcludedNamespaces {
+  const GkeBackupRestorePlanExcludedNamespaces({required this.namespaces});
 
   final TfArg<List<String>> namespaces;
 
@@ -401,13 +370,10 @@ final class GkeBackupRestorePlanRestoreConfigExcludedNamespaces {
 /// Typed helper for the `restore_config.restore_order` block of
 /// `google_gke_backup_restore_plan` (derived from provider schema).
 @immutable
-final class GkeBackupRestorePlanRestoreConfigRestoreOrder {
-  const GkeBackupRestorePlanRestoreConfigRestoreOrder({
-    required this.groupKindDependencies,
-  });
+final class GkeBackupRestorePlanRestoreOrder {
+  const GkeBackupRestorePlanRestoreOrder({required this.groupKindDependencies});
 
-  final List<GkeBackupRestorePlanRestoreConfigRestoreOrderGroupKindDependencies>
-  groupKindDependencies;
+  final List<GkeBackupRestorePlanGroupKindDependencies> groupKindDependencies;
 
   Map<String, Object?> encode() => {
     'group_kind_dependencies': [
@@ -419,17 +385,15 @@ final class GkeBackupRestorePlanRestoreConfigRestoreOrder {
 /// Typed helper for the `restore_config.restore_order.group_kind_dependencies` block of
 /// `google_gke_backup_restore_plan` (derived from provider schema).
 @immutable
-final class GkeBackupRestorePlanRestoreConfigRestoreOrderGroupKindDependencies {
-  const GkeBackupRestorePlanRestoreConfigRestoreOrderGroupKindDependencies({
+final class GkeBackupRestorePlanGroupKindDependencies {
+  const GkeBackupRestorePlanGroupKindDependencies({
     required this.requiring,
     required this.satisfying,
   });
 
-  final GkeBackupRestorePlanRestoreConfigRestoreOrderGroupKindDependenciesRequiring
-  requiring;
+  final GkeBackupRestorePlanRequiring requiring;
 
-  final GkeBackupRestorePlanRestoreConfigRestoreOrderGroupKindDependenciesSatisfying
-  satisfying;
+  final GkeBackupRestorePlanSatisfying satisfying;
 
   Map<String, Object?> encode() => {
     'requiring': requiring.encode(),
@@ -440,11 +404,8 @@ final class GkeBackupRestorePlanRestoreConfigRestoreOrderGroupKindDependencies {
 /// Typed helper for the `restore_config.restore_order.group_kind_dependencies.requiring` block of
 /// `google_gke_backup_restore_plan` (derived from provider schema).
 @immutable
-final class GkeBackupRestorePlanRestoreConfigRestoreOrderGroupKindDependenciesRequiring {
-  const GkeBackupRestorePlanRestoreConfigRestoreOrderGroupKindDependenciesRequiring({
-    this.resourceGroup,
-    this.resourceKind,
-  });
+final class GkeBackupRestorePlanRequiring {
+  const GkeBackupRestorePlanRequiring({this.resourceGroup, this.resourceKind});
 
   final TfArg<String>? resourceGroup;
 
@@ -459,11 +420,8 @@ final class GkeBackupRestorePlanRestoreConfigRestoreOrderGroupKindDependenciesRe
 /// Typed helper for the `restore_config.restore_order.group_kind_dependencies.satisfying` block of
 /// `google_gke_backup_restore_plan` (derived from provider schema).
 @immutable
-final class GkeBackupRestorePlanRestoreConfigRestoreOrderGroupKindDependenciesSatisfying {
-  const GkeBackupRestorePlanRestoreConfigRestoreOrderGroupKindDependenciesSatisfying({
-    this.resourceGroup,
-    this.resourceKind,
-  });
+final class GkeBackupRestorePlanSatisfying {
+  const GkeBackupRestorePlanSatisfying({this.resourceGroup, this.resourceKind});
 
   final TfArg<String>? resourceGroup;
 
@@ -478,15 +436,12 @@ final class GkeBackupRestorePlanRestoreConfigRestoreOrderGroupKindDependenciesSa
 /// Typed helper for the `restore_config.selected_applications` block of
 /// `google_gke_backup_restore_plan` (derived from provider schema).
 @immutable
-final class GkeBackupRestorePlanRestoreConfigSelectedApplications {
-  const GkeBackupRestorePlanRestoreConfigSelectedApplications({
+final class GkeBackupRestorePlanSelectedApplications {
+  const GkeBackupRestorePlanSelectedApplications({
     required this.namespacedNames,
   });
 
-  final List<
-    GkeBackupRestorePlanRestoreConfigSelectedApplicationsNamespacedNames
-  >
-  namespacedNames;
+  final List<GkeBackupRestorePlanNamespacedNames> namespacedNames;
 
   Map<String, Object?> encode() => {
     'namespaced_names': [for (final e in namespacedNames) e.encode()],
@@ -496,8 +451,8 @@ final class GkeBackupRestorePlanRestoreConfigSelectedApplications {
 /// Typed helper for the `restore_config.selected_applications.namespaced_names` block of
 /// `google_gke_backup_restore_plan` (derived from provider schema).
 @immutable
-final class GkeBackupRestorePlanRestoreConfigSelectedApplicationsNamespacedNames {
-  const GkeBackupRestorePlanRestoreConfigSelectedApplicationsNamespacedNames({
+final class GkeBackupRestorePlanNamespacedNames {
+  const GkeBackupRestorePlanNamespacedNames({
     required this.name,
     required this.namespace,
   });
@@ -515,10 +470,8 @@ final class GkeBackupRestorePlanRestoreConfigSelectedApplicationsNamespacedNames
 /// Typed helper for the `restore_config.selected_namespaces` block of
 /// `google_gke_backup_restore_plan` (derived from provider schema).
 @immutable
-final class GkeBackupRestorePlanRestoreConfigSelectedNamespaces {
-  const GkeBackupRestorePlanRestoreConfigSelectedNamespaces({
-    required this.namespaces,
-  });
+final class GkeBackupRestorePlanSelectedNamespaces {
+  const GkeBackupRestorePlanSelectedNamespaces({required this.namespaces});
 
   final TfArg<List<String>> namespaces;
 
@@ -528,8 +481,8 @@ final class GkeBackupRestorePlanRestoreConfigSelectedNamespaces {
 /// Typed helper for the `restore_config.transformation_rules` block of
 /// `google_gke_backup_restore_plan` (derived from provider schema).
 @immutable
-final class GkeBackupRestorePlanRestoreConfigTransformationRules {
-  const GkeBackupRestorePlanRestoreConfigTransformationRules({
+final class GkeBackupRestorePlanTransformationRules {
+  const GkeBackupRestorePlanTransformationRules({
     this.description,
     required this.fieldActions,
     this.resourceFilter,
@@ -537,11 +490,9 @@ final class GkeBackupRestorePlanRestoreConfigTransformationRules {
 
   final TfArg<String>? description;
 
-  final List<GkeBackupRestorePlanRestoreConfigTransformationRulesFieldActions>
-  fieldActions;
+  final List<GkeBackupRestorePlanFieldActions> fieldActions;
 
-  final GkeBackupRestorePlanRestoreConfigTransformationRulesResourceFilter?
-  resourceFilter;
+  final GkeBackupRestorePlanResourceFilter? resourceFilter;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -553,8 +504,8 @@ final class GkeBackupRestorePlanRestoreConfigTransformationRules {
 /// Typed helper for the `restore_config.transformation_rules.field_actions` block of
 /// `google_gke_backup_restore_plan` (derived from provider schema).
 @immutable
-final class GkeBackupRestorePlanRestoreConfigTransformationRulesFieldActions {
-  const GkeBackupRestorePlanRestoreConfigTransformationRulesFieldActions({
+final class GkeBackupRestorePlanFieldActions {
+  const GkeBackupRestorePlanFieldActions({
     this.fromPath,
     required this.op,
     this.path,
@@ -563,10 +514,7 @@ final class GkeBackupRestorePlanRestoreConfigTransformationRulesFieldActions {
 
   final TfArg<String>? fromPath;
 
-  final TfArg<
-    GkeBackupRestorePlanRestoreConfigTransformationRulesFieldActionsOp
-  >
-  op;
+  final TfArg<GkeBackupRestorePlanOp> op;
 
   final TfArg<String>? path;
 
@@ -581,8 +529,7 @@ final class GkeBackupRestorePlanRestoreConfigTransformationRulesFieldActions {
 }
 
 /// `op` — derived from the provider schema description.
-enum GkeBackupRestorePlanRestoreConfigTransformationRulesFieldActionsOp
-    implements TerraformEnum {
+enum GkeBackupRestorePlanOp implements TerraformEnum {
   remove('REMOVE'),
   move('MOVE'),
   copy('COPY'),
@@ -590,9 +537,7 @@ enum GkeBackupRestorePlanRestoreConfigTransformationRulesFieldActionsOp
   test('TEST'),
   replace('REPLACE');
 
-  const GkeBackupRestorePlanRestoreConfigTransformationRulesFieldActionsOp(
-    this.terraformValue,
-  );
+  const GkeBackupRestorePlanOp(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -600,8 +545,8 @@ enum GkeBackupRestorePlanRestoreConfigTransformationRulesFieldActionsOp
 /// Typed helper for the `restore_config.transformation_rules.resource_filter` block of
 /// `google_gke_backup_restore_plan` (derived from provider schema).
 @immutable
-final class GkeBackupRestorePlanRestoreConfigTransformationRulesResourceFilter {
-  const GkeBackupRestorePlanRestoreConfigTransformationRulesResourceFilter({
+final class GkeBackupRestorePlanResourceFilter {
+  const GkeBackupRestorePlanResourceFilter({
     this.jsonPath,
     this.namespaces,
     this.groupKinds,
@@ -611,10 +556,7 @@ final class GkeBackupRestorePlanRestoreConfigTransformationRulesResourceFilter {
 
   final TfArg<List<String>>? namespaces;
 
-  final List<
-    GkeBackupRestorePlanRestoreConfigTransformationRulesResourceFilterGroupKinds
-  >?
-  groupKinds;
+  final List<GkeBackupRestorePlanGroupKinds>? groupKinds;
 
   Map<String, Object?> encode() => {
     'json_path': ?jsonPath?.toTfJson(),
@@ -627,11 +569,8 @@ final class GkeBackupRestorePlanRestoreConfigTransformationRulesResourceFilter {
 /// Typed helper for the `restore_config.transformation_rules.resource_filter.group_kinds` block of
 /// `google_gke_backup_restore_plan` (derived from provider schema).
 @immutable
-final class GkeBackupRestorePlanRestoreConfigTransformationRulesResourceFilterGroupKinds {
-  const GkeBackupRestorePlanRestoreConfigTransformationRulesResourceFilterGroupKinds({
-    this.resourceGroup,
-    this.resourceKind,
-  });
+final class GkeBackupRestorePlanGroupKinds {
+  const GkeBackupRestorePlanGroupKinds({this.resourceGroup, this.resourceKind});
 
   final TfArg<String>? resourceGroup;
 
@@ -646,16 +585,13 @@ final class GkeBackupRestorePlanRestoreConfigTransformationRulesResourceFilterGr
 /// Typed helper for the `restore_config.volume_data_restore_policy_bindings` block of
 /// `google_gke_backup_restore_plan` (derived from provider schema).
 @immutable
-final class GkeBackupRestorePlanRestoreConfigVolumeDataRestorePolicyBindings {
-  const GkeBackupRestorePlanRestoreConfigVolumeDataRestorePolicyBindings({
+final class GkeBackupRestorePlanVolumeDataRestorePolicyBindings {
+  const GkeBackupRestorePlanVolumeDataRestorePolicyBindings({
     required this.policy,
     required this.volumeType,
   });
 
-  final TfArg<
-    GkeBackupRestorePlanRestoreConfigVolumeDataRestorePolicyBindingsPolicy
-  >
-  policy;
+  final TfArg<GkeBackupRestorePlanPolicy> policy;
 
   final TfArg<String> volumeType;
 
@@ -666,15 +602,12 @@ final class GkeBackupRestorePlanRestoreConfigVolumeDataRestorePolicyBindings {
 }
 
 /// `policy` — derived from the provider schema description.
-enum GkeBackupRestorePlanRestoreConfigVolumeDataRestorePolicyBindingsPolicy
-    implements TerraformEnum {
+enum GkeBackupRestorePlanPolicy implements TerraformEnum {
   restoreVolumeDataFromBackup('RESTORE_VOLUME_DATA_FROM_BACKUP'),
   reuseVolumeHandleFromBackup('REUSE_VOLUME_HANDLE_FROM_BACKUP'),
   noVolumeDataRestoration('NO_VOLUME_DATA_RESTORATION');
 
-  const GkeBackupRestorePlanRestoreConfigVolumeDataRestorePolicyBindingsPolicy(
-    this.terraformValue,
-  );
+  const GkeBackupRestorePlanPolicy(this.terraformValue);
   @override
   final String terraformValue;
 }

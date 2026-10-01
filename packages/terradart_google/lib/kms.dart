@@ -26,8 +26,8 @@ export 'src/kms/google_kms_ekm_connection.dart'
     show
         GoogleKmsEkmConnection,
         KmsEkmConnectionKeyManagementMode,
-        KmsEkmConnectionServiceResolvers,
-        KmsEkmConnectionServiceResolversServerCertificates;
+        KmsEkmConnectionServerCertificates,
+        KmsEkmConnectionServiceResolvers;
 export 'src/kms/google_kms_ekm_connection_iam_binding.dart'
     show GoogleKmsEkmConnectionIamBinding, KmsEkmConnectionIamBindingCondition;
 export 'src/kms/google_kms_ekm_connection_iam_member.dart'

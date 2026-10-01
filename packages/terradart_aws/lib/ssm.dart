@@ -17,9 +17,9 @@ export 'src/ssm/aws_ssm_document.dart'
     show
         AwsSsmDocument,
         SsmDocumentAttachmentsSource,
-        SsmDocumentAttachmentsSourceKey,
         SsmDocumentDocumentFormat,
-        SsmDocumentDocumentType;
+        SsmDocumentDocumentType,
+        SsmDocumentKey;
 export 'src/ssm/aws_ssm_maintenance_window.dart' show AwsSsmMaintenanceWindow;
 export 'src/ssm/aws_ssm_maintenance_window_target.dart'
     show
@@ -29,51 +29,49 @@ export 'src/ssm/aws_ssm_maintenance_window_target.dart'
 export 'src/ssm/aws_ssm_maintenance_window_task.dart'
     show
         AwsSsmMaintenanceWindowTask,
+        SsmMaintenanceWindowTaskAutomationParameters,
+        SsmMaintenanceWindowTaskCloudwatchConfig,
         SsmMaintenanceWindowTaskCutoffBehavior,
+        SsmMaintenanceWindowTaskDocumentHashType,
+        SsmMaintenanceWindowTaskInvocationParameters,
+        SsmMaintenanceWindowTaskLambdaParameters,
+        SsmMaintenanceWindowTaskNotificationConfig,
+        SsmMaintenanceWindowTaskNotificationEvents,
+        SsmMaintenanceWindowTaskNotificationType,
+        SsmMaintenanceWindowTaskParameter,
+        SsmMaintenanceWindowTaskRunCommandParameters,
+        SsmMaintenanceWindowTaskStepFunctionsParameters,
         SsmMaintenanceWindowTaskTargets,
-        SsmMaintenanceWindowTaskTaskInvocationParameters,
-        SsmMaintenanceWindowTaskTaskInvocationParametersAutomationParameters,
-        SsmMaintenanceWindowTaskTaskInvocationParametersAutomationParametersParameter,
-        SsmMaintenanceWindowTaskTaskInvocationParametersLambdaParameters,
-        SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParameters,
-        SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersCloudwatchConfig,
-        SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersDocumentHashType,
-        SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersNotificationConfig,
-        SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersNotificationConfigNotificationEvents,
-        SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersNotificationConfigNotificationType,
-        SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersParameter,
-        SsmMaintenanceWindowTaskTaskInvocationParametersStepFunctionsParameters,
         SsmMaintenanceWindowTaskTaskType;
 export 'src/ssm/aws_ssm_parameter.dart'
     show
         AwsSsmParameter,
         SsmParameterDataType,
+        SsmParameterInsecureValue,
         SsmParameterTier,
         SsmParameterType,
         SsmParameterValue,
         SsmParameterValueChoice,
-        SsmParameterValueInsecureValue,
         SsmParameterValueWo;
 export 'src/ssm/aws_ssm_patch_baseline.dart'
     show
         AwsSsmPatchBaseline,
         SsmPatchBaselineApprovalRule,
-        SsmPatchBaselineApprovalRuleComplianceLevel,
-        SsmPatchBaselineApprovalRulePatchFilter,
-        SsmPatchBaselineApprovalRulePatchFilterKey,
         SsmPatchBaselineApprovedPatchesComplianceLevel,
         SsmPatchBaselineAvailableSecurityUpdatesComplianceStatus,
+        SsmPatchBaselineComplianceLevel,
         SsmPatchBaselineGlobalFilter,
-        SsmPatchBaselineGlobalFilterKey,
+        SsmPatchBaselineKey,
         SsmPatchBaselineOperatingSystem,
+        SsmPatchBaselinePatchFilter,
         SsmPatchBaselineRejectedPatchesAction,
         SsmPatchBaselineSource;
 export 'src/ssm/aws_ssm_patch_group.dart' show AwsSsmPatchGroup;
 export 'src/ssm/aws_ssm_resource_data_sync.dart'
     show
         AwsSsmResourceDataSync,
-        SsmResourceDataSyncS3Destination,
-        SsmResourceDataSyncS3DestinationDestinationDataSharing,
-        SsmResourceDataSyncS3DestinationDestinationDataSharingDestinationDataSharingType,
-        SsmResourceDataSyncS3DestinationSyncFormat;
+        SsmResourceDataSyncDestinationDataSharing,
+        SsmResourceDataSyncDestinationDataSharingType,
+        SsmResourceDataSyncFormat,
+        SsmResourceDataSyncS3Destination;
 export 'src/ssm/aws_ssm_service_setting.dart' show AwsSsmServiceSetting;

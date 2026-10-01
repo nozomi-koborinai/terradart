@@ -32,8 +32,7 @@ final class ContainerAttachedClusterAuthorization {
 final class ContainerAttachedClusterBinaryAuthorization {
   const ContainerAttachedClusterBinaryAuthorization({this.evaluationMode});
 
-  final TfArg<ContainerAttachedClusterBinaryAuthorizationEvaluationMode>?
-  evaluationMode;
+  final TfArg<ContainerAttachedClusterEvaluationMode>? evaluationMode;
 
   Map<String, Object?> encode() => {
     'evaluation_mode': ?evaluationMode?.toTfJson(),
@@ -41,14 +40,11 @@ final class ContainerAttachedClusterBinaryAuthorization {
 }
 
 /// `evaluation_mode` — derived from the provider schema description.
-enum ContainerAttachedClusterBinaryAuthorizationEvaluationMode
-    implements TerraformEnum {
+enum ContainerAttachedClusterEvaluationMode implements TerraformEnum {
   disabled('DISABLED'),
   projectSingletonPolicyEnforce('PROJECT_SINGLETON_POLICY_ENFORCE');
 
-  const ContainerAttachedClusterBinaryAuthorizationEvaluationMode(
-    this.terraformValue,
-  );
+  const ContainerAttachedClusterEvaluationMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -70,7 +66,7 @@ final class ContainerAttachedClusterFleet {
 final class ContainerAttachedClusterLoggingConfig {
   const ContainerAttachedClusterLoggingConfig({this.componentConfig});
 
-  final ContainerAttachedClusterLoggingConfigComponentConfig? componentConfig;
+  final ContainerAttachedClusterComponentConfig? componentConfig;
 
   Map<String, Object?> encode() => {
     'component_config': ?componentConfig?.encode(),
@@ -80,15 +76,10 @@ final class ContainerAttachedClusterLoggingConfig {
 /// Typed helper for the `logging_config.component_config` block of
 /// `google_container_attached_cluster` (derived from provider schema).
 @immutable
-final class ContainerAttachedClusterLoggingConfigComponentConfig {
-  const ContainerAttachedClusterLoggingConfigComponentConfig({
-    this.enableComponents,
-  });
+final class ContainerAttachedClusterComponentConfig {
+  const ContainerAttachedClusterComponentConfig({this.enableComponents});
 
-  final List<
-    TfArg<ContainerAttachedClusterLoggingConfigComponentConfigEnableComponents>
-  >?
-  enableComponents;
+  final List<TfArg<ContainerAttachedClusterEnableComponents>>? enableComponents;
 
   Map<String, Object?> encode() => {
     if (enableComponents != null)
@@ -97,14 +88,11 @@ final class ContainerAttachedClusterLoggingConfigComponentConfig {
 }
 
 /// `enable_components` — derived from the provider schema description.
-enum ContainerAttachedClusterLoggingConfigComponentConfigEnableComponents
-    implements TerraformEnum {
+enum ContainerAttachedClusterEnableComponents implements TerraformEnum {
   systemComponents('SYSTEM_COMPONENTS'),
   workloads('WORKLOADS');
 
-  const ContainerAttachedClusterLoggingConfigComponentConfigEnableComponents(
-    this.terraformValue,
-  );
+  const ContainerAttachedClusterEnableComponents(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -117,7 +105,7 @@ final class ContainerAttachedClusterMonitoringConfig {
     this.managedPrometheusConfig,
   });
 
-  final ContainerAttachedClusterMonitoringConfigManagedPrometheusConfig?
+  final ContainerAttachedClusterManagedPrometheusConfig?
   managedPrometheusConfig;
 
   Map<String, Object?> encode() => {
@@ -128,10 +116,8 @@ final class ContainerAttachedClusterMonitoringConfig {
 /// Typed helper for the `monitoring_config.managed_prometheus_config` block of
 /// `google_container_attached_cluster` (derived from provider schema).
 @immutable
-final class ContainerAttachedClusterMonitoringConfigManagedPrometheusConfig {
-  const ContainerAttachedClusterMonitoringConfigManagedPrometheusConfig({
-    this.enabled,
-  });
+final class ContainerAttachedClusterManagedPrometheusConfig {
+  const ContainerAttachedClusterManagedPrometheusConfig({this.enabled});
 
   final TfArg<bool>? enabled;
 
@@ -163,7 +149,7 @@ final class ContainerAttachedClusterOidcConfig {
 final class ContainerAttachedClusterProxyConfig {
   const ContainerAttachedClusterProxyConfig({this.kubernetesSecret});
 
-  final ContainerAttachedClusterProxyConfigKubernetesSecret? kubernetesSecret;
+  final ContainerAttachedClusterKubernetesSecret? kubernetesSecret;
 
   Map<String, Object?> encode() => {
     'kubernetes_secret': ?kubernetesSecret?.encode(),
@@ -173,8 +159,8 @@ final class ContainerAttachedClusterProxyConfig {
 /// Typed helper for the `proxy_config.kubernetes_secret` block of
 /// `google_container_attached_cluster` (derived from provider schema).
 @immutable
-final class ContainerAttachedClusterProxyConfigKubernetesSecret {
-  const ContainerAttachedClusterProxyConfigKubernetesSecret({
+final class ContainerAttachedClusterKubernetesSecret {
+  const ContainerAttachedClusterKubernetesSecret({
     required this.name,
     required this.namespace,
   });
@@ -197,8 +183,7 @@ final class ContainerAttachedClusterSecurityPostureConfig {
     required this.vulnerabilityMode,
   });
 
-  final TfArg<ContainerAttachedClusterSecurityPostureConfigVulnerabilityMode>
-  vulnerabilityMode;
+  final TfArg<ContainerAttachedClusterVulnerabilityMode> vulnerabilityMode;
 
   Map<String, Object?> encode() => {
     'vulnerability_mode': vulnerabilityMode.toTfJson(),
@@ -206,14 +191,11 @@ final class ContainerAttachedClusterSecurityPostureConfig {
 }
 
 /// `vulnerability_mode` — derived from the provider schema description.
-enum ContainerAttachedClusterSecurityPostureConfigVulnerabilityMode
-    implements TerraformEnum {
+enum ContainerAttachedClusterVulnerabilityMode implements TerraformEnum {
   vulnerabilityDisabled('VULNERABILITY_DISABLED'),
   vulnerabilityEnterprise('VULNERABILITY_ENTERPRISE');
 
-  const ContainerAttachedClusterSecurityPostureConfigVulnerabilityMode(
-    this.terraformValue,
-  );
+  const ContainerAttachedClusterVulnerabilityMode(this.terraformValue);
   @override
   final String terraformValue;
 }

@@ -35,9 +35,9 @@ final class NetworkServicesEdgeCacheServiceRouting {
     required this.pathMatcher,
   });
 
-  final List<NetworkServicesEdgeCacheServiceRoutingHostRule> hostRule;
+  final List<NetworkServicesEdgeCacheServiceHostRule> hostRule;
 
-  final List<NetworkServicesEdgeCacheServiceRoutingPathMatcher> pathMatcher;
+  final List<NetworkServicesEdgeCacheServicePathMatcher> pathMatcher;
 
   Map<String, Object?> encode() => {
     'host_rule': [for (final e in hostRule) e.encode()],
@@ -48,8 +48,8 @@ final class NetworkServicesEdgeCacheServiceRouting {
 /// Typed helper for the `routing.host_rule` block of
 /// `google_network_services_edge_cache_service` (derived from provider schema).
 @immutable
-final class NetworkServicesEdgeCacheServiceRoutingHostRule {
-  const NetworkServicesEdgeCacheServiceRoutingHostRule({
+final class NetworkServicesEdgeCacheServiceHostRule {
+  const NetworkServicesEdgeCacheServiceHostRule({
     this.description,
     required this.hosts,
     required this.pathMatcher,
@@ -71,8 +71,8 @@ final class NetworkServicesEdgeCacheServiceRoutingHostRule {
 /// Typed helper for the `routing.path_matcher` block of
 /// `google_network_services_edge_cache_service` (derived from provider schema).
 @immutable
-final class NetworkServicesEdgeCacheServiceRoutingPathMatcher {
-  const NetworkServicesEdgeCacheServiceRoutingPathMatcher({
+final class NetworkServicesEdgeCacheServicePathMatcher {
+  const NetworkServicesEdgeCacheServicePathMatcher({
     this.description,
     required this.name,
     required this.routeRule,
@@ -82,8 +82,7 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcher {
 
   final TfArg<String> name;
 
-  final List<NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRule>
-  routeRule;
+  final List<NetworkServicesEdgeCacheServiceRouteRule> routeRule;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -95,8 +94,8 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcher {
 /// Typed helper for the `routing.path_matcher.route_rule` block of
 /// `google_network_services_edge_cache_service` (derived from provider schema).
 @immutable
-final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRule {
-  const NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRule({
+final class NetworkServicesEdgeCacheServiceRouteRule {
+  const NetworkServicesEdgeCacheServiceRouteRule({
     this.description,
     this.origin,
     required this.priority,
@@ -113,22 +112,15 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRule {
 
   final TfArg<String> priority;
 
-  final NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleHeaderAction?
-  headerAction;
+  final NetworkServicesEdgeCacheServiceHeaderAction? headerAction;
 
-  final List<
-    NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleMatchRule
-  >
-  matchRule;
+  final List<NetworkServicesEdgeCacheServiceMatchRule> matchRule;
 
-  final NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteAction?
-  routeAction;
+  final NetworkServicesEdgeCacheServiceRouteAction? routeAction;
 
-  final NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteMethods?
-  routeMethods;
+  final NetworkServicesEdgeCacheServiceRouteMethods? routeMethods;
 
-  final NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleUrlRedirect?
-  urlRedirect;
+  final NetworkServicesEdgeCacheServiceUrlRedirect? urlRedirect;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -145,32 +137,24 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRule {
 /// Typed helper for the `routing.path_matcher.route_rule.header_action` block of
 /// `google_network_services_edge_cache_service` (derived from provider schema).
 @immutable
-final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleHeaderAction {
-  const NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleHeaderAction({
+final class NetworkServicesEdgeCacheServiceHeaderAction {
+  const NetworkServicesEdgeCacheServiceHeaderAction({
     this.requestHeaderToAdd,
     this.requestHeaderToRemove,
     this.responseHeaderToAdd,
     this.responseHeaderToRemove,
   });
 
-  final List<
-    NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleHeaderActionRequestHeaderToAdd
-  >?
+  final List<NetworkServicesEdgeCacheServiceRequestHeaderToAdd>?
   requestHeaderToAdd;
 
-  final List<
-    NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleHeaderActionRequestHeaderToRemove
-  >?
+  final List<NetworkServicesEdgeCacheServiceRequestHeaderToRemove>?
   requestHeaderToRemove;
 
-  final List<
-    NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleHeaderActionResponseHeaderToAdd
-  >?
+  final List<NetworkServicesEdgeCacheServiceResponseHeaderToAdd>?
   responseHeaderToAdd;
 
-  final List<
-    NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleHeaderActionResponseHeaderToRemove
-  >?
+  final List<NetworkServicesEdgeCacheServiceResponseHeaderToRemove>?
   responseHeaderToRemove;
 
   Map<String, Object?> encode() => {
@@ -196,8 +180,8 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleHeaderActi
 /// Typed helper for the `routing.path_matcher.route_rule.header_action.request_header_to_add` block of
 /// `google_network_services_edge_cache_service` (derived from provider schema).
 @immutable
-final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleHeaderActionRequestHeaderToAdd {
-  const NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleHeaderActionRequestHeaderToAdd({
+final class NetworkServicesEdgeCacheServiceRequestHeaderToAdd {
+  const NetworkServicesEdgeCacheServiceRequestHeaderToAdd({
     required this.headerName,
     required this.headerValue,
     this.replace,
@@ -219,8 +203,8 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleHeaderActi
 /// Typed helper for the `routing.path_matcher.route_rule.header_action.request_header_to_remove` block of
 /// `google_network_services_edge_cache_service` (derived from provider schema).
 @immutable
-final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleHeaderActionRequestHeaderToRemove {
-  const NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleHeaderActionRequestHeaderToRemove({
+final class NetworkServicesEdgeCacheServiceRequestHeaderToRemove {
+  const NetworkServicesEdgeCacheServiceRequestHeaderToRemove({
     required this.headerName,
   });
 
@@ -232,8 +216,8 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleHeaderActi
 /// Typed helper for the `routing.path_matcher.route_rule.header_action.response_header_to_add` block of
 /// `google_network_services_edge_cache_service` (derived from provider schema).
 @immutable
-final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleHeaderActionResponseHeaderToAdd {
-  const NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleHeaderActionResponseHeaderToAdd({
+final class NetworkServicesEdgeCacheServiceResponseHeaderToAdd {
+  const NetworkServicesEdgeCacheServiceResponseHeaderToAdd({
     required this.headerName,
     required this.headerValue,
     this.replace,
@@ -255,8 +239,8 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleHeaderActi
 /// Typed helper for the `routing.path_matcher.route_rule.header_action.response_header_to_remove` block of
 /// `google_network_services_edge_cache_service` (derived from provider schema).
 @immutable
-final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleHeaderActionResponseHeaderToRemove {
-  const NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleHeaderActionResponseHeaderToRemove({
+final class NetworkServicesEdgeCacheServiceResponseHeaderToRemove {
+  const NetworkServicesEdgeCacheServiceResponseHeaderToRemove({
     required this.headerName,
   });
 
@@ -268,8 +252,8 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleHeaderActi
 /// Typed helper for the `routing.path_matcher.route_rule.match_rule` block of
 /// `google_network_services_edge_cache_service` (derived from provider schema).
 @immutable
-final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleMatchRule {
-  const NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleMatchRule({
+final class NetworkServicesEdgeCacheServiceMatchRule {
+  const NetworkServicesEdgeCacheServiceMatchRule({
     this.fullPathMatch,
     this.ignoreCase,
     this.pathTemplateMatch,
@@ -286,14 +270,9 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleMatchRule 
 
   final TfArg<String>? prefixMatch;
 
-  final List<
-    NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleMatchRuleHeaderMatch
-  >?
-  headerMatch;
+  final List<NetworkServicesEdgeCacheServiceHeaderMatch>? headerMatch;
 
-  final List<
-    NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleMatchRuleQueryParameterMatch
-  >?
+  final List<NetworkServicesEdgeCacheServiceQueryParameterMatch>?
   queryParameterMatch;
 
   Map<String, Object?> encode() => {
@@ -313,8 +292,8 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleMatchRule 
 /// Typed helper for the `routing.path_matcher.route_rule.match_rule.header_match` block of
 /// `google_network_services_edge_cache_service` (derived from provider schema).
 @immutable
-final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleMatchRuleHeaderMatch {
-  const NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleMatchRuleHeaderMatch({
+final class NetworkServicesEdgeCacheServiceHeaderMatch {
+  const NetworkServicesEdgeCacheServiceHeaderMatch({
     this.exactMatch,
     required this.headerName,
     this.invertMatch,
@@ -348,8 +327,8 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleMatchRuleH
 /// Typed helper for the `routing.path_matcher.route_rule.match_rule.query_parameter_match` block of
 /// `google_network_services_edge_cache_service` (derived from provider schema).
 @immutable
-final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleMatchRuleQueryParameterMatch {
-  const NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleMatchRuleQueryParameterMatch({
+final class NetworkServicesEdgeCacheServiceQueryParameterMatch {
+  const NetworkServicesEdgeCacheServiceQueryParameterMatch({
     this.exactMatch,
     required this.name,
     this.presentMatch,
@@ -371,27 +350,21 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleMatchRuleQ
 /// Typed helper for the `routing.path_matcher.route_rule.route_action` block of
 /// `google_network_services_edge_cache_service` (derived from provider schema).
 @immutable
-final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteAction {
-  const NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteAction({
+final class NetworkServicesEdgeCacheServiceRouteAction {
+  const NetworkServicesEdgeCacheServiceRouteAction({
     this.compressionMode,
     this.cdnPolicy,
     this.corsPolicy,
     this.urlRewrite,
   });
 
-  final TfArg<
-    NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCompressionMode
-  >?
-  compressionMode;
+  final TfArg<NetworkServicesEdgeCacheServiceCompressionMode>? compressionMode;
 
-  final NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPolicy?
-  cdnPolicy;
+  final NetworkServicesEdgeCacheServiceCdnPolicy? cdnPolicy;
 
-  final NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCorsPolicy?
-  corsPolicy;
+  final NetworkServicesEdgeCacheServiceCorsPolicy? corsPolicy;
 
-  final NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionUrlRewrite?
-  urlRewrite;
+  final NetworkServicesEdgeCacheServiceUrlRewrite? urlRewrite;
 
   Map<String, Object?> encode() => {
     'compression_mode': ?compressionMode?.toTfJson(),
@@ -402,14 +375,11 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActio
 }
 
 /// `compression_mode` — derived from the provider schema description.
-enum NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCompressionMode
-    implements TerraformEnum {
+enum NetworkServicesEdgeCacheServiceCompressionMode implements TerraformEnum {
   disabled('DISABLED'),
   automatic('AUTOMATIC');
 
-  const NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCompressionMode(
-    this.terraformValue,
-  );
+  const NetworkServicesEdgeCacheServiceCompressionMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -417,8 +387,8 @@ enum NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCompre
 /// Typed helper for the `routing.path_matcher.route_rule.route_action.cdn_policy` block of
 /// `google_network_services_edge_cache_service` (derived from provider schema).
 @immutable
-final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPolicy {
-  const NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPolicy({
+final class NetworkServicesEdgeCacheServiceCdnPolicy {
+  const NetworkServicesEdgeCacheServiceCdnPolicy({
     this.cacheMode,
     this.clientTtl,
     this.defaultTtl,
@@ -433,10 +403,7 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActio
     this.signedTokenOptions,
   });
 
-  final TfArg<
-    NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPolicyCacheMode
-  >?
-  cacheMode;
+  final TfArg<NetworkServicesEdgeCacheServiceCacheMode>? cacheMode;
 
   final TfArg<String>? clientTtl;
 
@@ -452,19 +419,14 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActio
 
   final TfArg<String>? signedRequestMaximumExpirationTtl;
 
-  final TfArg<
-    NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPolicySignedRequestMode
-  >?
+  final TfArg<NetworkServicesEdgeCacheServiceSignedRequestMode>?
   signedRequestMode;
 
-  final NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPolicyAddSignatures?
-  addSignatures;
+  final NetworkServicesEdgeCacheServiceAddSignatures? addSignatures;
 
-  final NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPolicyCacheKeyPolicy?
-  cacheKeyPolicy;
+  final NetworkServicesEdgeCacheServiceCacheKeyPolicy? cacheKeyPolicy;
 
-  final NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPolicySignedTokenOptions?
-  signedTokenOptions;
+  final NetworkServicesEdgeCacheServiceSignedTokenOptions? signedTokenOptions;
 
   Map<String, Object?> encode() => {
     'cache_mode': ?cacheMode?.toTfJson(),
@@ -484,30 +446,24 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActio
 }
 
 /// `cache_mode` — derived from the provider schema description.
-enum NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPolicyCacheMode
-    implements TerraformEnum {
+enum NetworkServicesEdgeCacheServiceCacheMode implements TerraformEnum {
   cacheAllStatic('CACHE_ALL_STATIC'),
   useOriginHeaders('USE_ORIGIN_HEADERS'),
   forceCacheAll('FORCE_CACHE_ALL'),
   bypassCache('BYPASS_CACHE');
 
-  const NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPolicyCacheMode(
-    this.terraformValue,
-  );
+  const NetworkServicesEdgeCacheServiceCacheMode(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `signed_request_mode` — derived from the provider schema description.
-enum NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPolicySignedRequestMode
-    implements TerraformEnum {
+enum NetworkServicesEdgeCacheServiceSignedRequestMode implements TerraformEnum {
   disabled('DISABLED'),
   requireSignatures('REQUIRE_SIGNATURES'),
   requireTokens('REQUIRE_TOKENS');
 
-  const NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPolicySignedRequestMode(
-    this.terraformValue,
-  );
+  const NetworkServicesEdgeCacheServiceSignedRequestMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -515,8 +471,8 @@ enum NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPol
 /// Typed helper for the `routing.path_matcher.route_rule.route_action.cdn_policy.add_signatures` block of
 /// `google_network_services_edge_cache_service` (derived from provider schema).
 @immutable
-final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPolicyAddSignatures {
-  const NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPolicyAddSignatures({
+final class NetworkServicesEdgeCacheServiceAddSignatures {
+  const NetworkServicesEdgeCacheServiceAddSignatures({
     required this.actions,
     this.copiedParameters,
     this.keyset,
@@ -524,12 +480,7 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActio
     this.tokenTtl,
   });
 
-  final List<
-    TfArg<
-      NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPolicyAddSignaturesActions
-    >
-  >
-  actions;
+  final List<TfArg<NetworkServicesEdgeCacheServiceActions>> actions;
 
   final TfArg<List<String>>? copiedParameters;
 
@@ -549,15 +500,12 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActio
 }
 
 /// `actions` — derived from the provider schema description.
-enum NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPolicyAddSignaturesActions
-    implements TerraformEnum {
+enum NetworkServicesEdgeCacheServiceActions implements TerraformEnum {
   generateCookie('GENERATE_COOKIE'),
   generateTokenHlsCookieless('GENERATE_TOKEN_HLS_COOKIELESS'),
   propagateTokenHlsCookieless('PROPAGATE_TOKEN_HLS_COOKIELESS');
 
-  const NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPolicyAddSignaturesActions(
-    this.terraformValue,
-  );
+  const NetworkServicesEdgeCacheServiceActions(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -565,8 +513,8 @@ enum NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPol
 /// Typed helper for the `routing.path_matcher.route_rule.route_action.cdn_policy.cache_key_policy` block of
 /// `google_network_services_edge_cache_service` (derived from provider schema).
 @immutable
-final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPolicyCacheKeyPolicy {
-  const NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPolicyCacheKeyPolicy({
+final class NetworkServicesEdgeCacheServiceCacheKeyPolicy {
+  const NetworkServicesEdgeCacheServiceCacheKeyPolicy({
     this.excludeHost,
     this.excludeQueryString,
     this.excludedQueryParameters,
@@ -604,17 +552,13 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActio
 /// Typed helper for the `routing.path_matcher.route_rule.route_action.cdn_policy.signed_token_options` block of
 /// `google_network_services_edge_cache_service` (derived from provider schema).
 @immutable
-final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPolicySignedTokenOptions {
-  const NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPolicySignedTokenOptions({
+final class NetworkServicesEdgeCacheServiceSignedTokenOptions {
+  const NetworkServicesEdgeCacheServiceSignedTokenOptions({
     this.allowedSignatureAlgorithms,
     this.tokenQueryParameter,
   });
 
-  final List<
-    TfArg<
-      NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPolicySignedTokenOptionsAllowedSignatureAlgorithms
-    >
-  >?
+  final List<TfArg<NetworkServicesEdgeCacheServiceAllowedSignatureAlgorithms>>?
   allowedSignatureAlgorithms;
 
   final TfArg<String>? tokenQueryParameter;
@@ -629,13 +573,13 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActio
 }
 
 /// `allowed_signature_algorithms` — derived from the provider schema description.
-enum NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPolicySignedTokenOptionsAllowedSignatureAlgorithms
+enum NetworkServicesEdgeCacheServiceAllowedSignatureAlgorithms
     implements TerraformEnum {
   ed25519('ED25519'),
   hmacSha256('HMAC_SHA_256'),
   hmacSha1('HMAC_SHA1');
 
-  const NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPolicySignedTokenOptionsAllowedSignatureAlgorithms(
+  const NetworkServicesEdgeCacheServiceAllowedSignatureAlgorithms(
     this.terraformValue,
   );
   @override
@@ -645,8 +589,8 @@ enum NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPol
 /// Typed helper for the `routing.path_matcher.route_rule.route_action.cors_policy` block of
 /// `google_network_services_edge_cache_service` (derived from provider schema).
 @immutable
-final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCorsPolicy {
-  const NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCorsPolicy({
+final class NetworkServicesEdgeCacheServiceCorsPolicy {
+  const NetworkServicesEdgeCacheServiceCorsPolicy({
     this.allowCredentials,
     this.allowHeaders,
     this.allowMethods,
@@ -684,8 +628,8 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActio
 /// Typed helper for the `routing.path_matcher.route_rule.route_action.url_rewrite` block of
 /// `google_network_services_edge_cache_service` (derived from provider schema).
 @immutable
-final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionUrlRewrite {
-  const NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionUrlRewrite({
+final class NetworkServicesEdgeCacheServiceUrlRewrite {
+  const NetworkServicesEdgeCacheServiceUrlRewrite({
     this.hostRewrite,
     this.pathPrefixRewrite,
     this.pathTemplateRewrite,
@@ -707,10 +651,8 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActio
 /// Typed helper for the `routing.path_matcher.route_rule.route_methods` block of
 /// `google_network_services_edge_cache_service` (derived from provider schema).
 @immutable
-final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteMethods {
-  const NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteMethods({
-    this.allowedMethods,
-  });
+final class NetworkServicesEdgeCacheServiceRouteMethods {
+  const NetworkServicesEdgeCacheServiceRouteMethods({this.allowedMethods});
 
   final TfArg<List<String>>? allowedMethods;
 
@@ -722,8 +664,8 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteMetho
 /// Typed helper for the `routing.path_matcher.route_rule.url_redirect` block of
 /// `google_network_services_edge_cache_service` (derived from provider schema).
 @immutable
-final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleUrlRedirect {
-  const NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleUrlRedirect({
+final class NetworkServicesEdgeCacheServiceUrlRedirect {
+  const NetworkServicesEdgeCacheServiceUrlRedirect({
     this.hostRedirect,
     this.httpsRedirect,
     this.pathRedirect,
@@ -740,9 +682,7 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleUrlRedirec
 
   final TfArg<String>? prefixRedirect;
 
-  final TfArg<
-    NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleUrlRedirectRedirectResponseCode
-  >?
+  final TfArg<NetworkServicesEdgeCacheServiceRedirectResponseCode>?
   redirectResponseCode;
 
   final TfArg<bool>? stripQuery;
@@ -758,7 +698,7 @@ final class NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleUrlRedirec
 }
 
 /// `redirect_response_code` — derived from the provider schema description.
-enum NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleUrlRedirectRedirectResponseCode
+enum NetworkServicesEdgeCacheServiceRedirectResponseCode
     implements TerraformEnum {
   movedPermanentlyDefault('MOVED_PERMANENTLY_DEFAULT'),
   found('FOUND'),
@@ -766,7 +706,7 @@ enum NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleUrlRedirectRedire
   temporaryRedirect('TEMPORARY_REDIRECT'),
   permanentRedirect('PERMANENT_REDIRECT');
 
-  const NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleUrlRedirectRedirectResponseCode(
+  const NetworkServicesEdgeCacheServiceRedirectResponseCode(
     this.terraformValue,
   );
   @override

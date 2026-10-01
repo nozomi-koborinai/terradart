@@ -22,7 +22,7 @@ enum S3tablesTableFormat implements TerraformEnum {
 final class S3tablesTableMetadata {
   const S3tablesTableMetadata({this.iceberg});
 
-  final List<S3tablesTableMetadataIceberg>? iceberg;
+  final List<S3tablesTableIceberg>? iceberg;
 
   Map<String, Object?> encode() => {
     if (iceberg != null) 'iceberg': [for (final e in iceberg!) e.encode()],
@@ -32,12 +32,12 @@ final class S3tablesTableMetadata {
 /// Typed helper for the `metadata.iceberg` block of
 /// `aws_s3tables_table` (derived from provider schema).
 @immutable
-final class S3tablesTableMetadataIceberg {
-  const S3tablesTableMetadataIceberg({this.properties, this.schema});
+final class S3tablesTableIceberg {
+  const S3tablesTableIceberg({this.properties, this.schema});
 
   final TfArg<Map<String, String>>? properties;
 
-  final List<S3tablesTableMetadataIcebergSchema>? schema;
+  final List<S3tablesTableSchema>? schema;
 
   Map<String, Object?> encode() => {
     'properties': ?properties?.toTfJson(),
@@ -48,10 +48,10 @@ final class S3tablesTableMetadataIceberg {
 /// Typed helper for the `metadata.iceberg.schema` block of
 /// `aws_s3tables_table` (derived from provider schema).
 @immutable
-final class S3tablesTableMetadataIcebergSchema {
-  const S3tablesTableMetadataIcebergSchema({this.field});
+final class S3tablesTableSchema {
+  const S3tablesTableSchema({this.field});
 
-  final List<S3tablesTableMetadataIcebergSchemaField>? field;
+  final List<S3tablesTableField>? field;
 
   Map<String, Object?> encode() => {
     if (field != null) 'field': [for (final e in field!) e.encode()],
@@ -61,8 +61,8 @@ final class S3tablesTableMetadataIcebergSchema {
 /// Typed helper for the `metadata.iceberg.schema.field` block of
 /// `aws_s3tables_table` (derived from provider schema).
 @immutable
-final class S3tablesTableMetadataIcebergSchemaField {
-  const S3tablesTableMetadataIcebergSchemaField({
+final class S3tablesTableField {
+  const S3tablesTableField({
     required this.name,
     this.required,
     required this.type,

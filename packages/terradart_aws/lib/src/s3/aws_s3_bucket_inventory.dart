@@ -73,11 +73,11 @@ final class S3BucketInventoryDestinationBucket {
 
   final RefTo<AwsS3Bucket> bucketArn;
 
-  final TfArg<S3BucketInventoryDestinationBucketFormat> format;
+  final TfArg<S3BucketInventoryFormat> format;
 
   final TfArg<String>? prefix;
 
-  final S3BucketInventoryDestinationBucketEncryption? encryption;
+  final S3BucketInventoryEncryption? encryption;
 
   Map<String, Object?> encode() => {
     'account_id': ?accountId?.toTfJson(),
@@ -89,12 +89,12 @@ final class S3BucketInventoryDestinationBucket {
 }
 
 /// `format` — derived from the provider schema description.
-enum S3BucketInventoryDestinationBucketFormat implements TerraformEnum {
+enum S3BucketInventoryFormat implements TerraformEnum {
   csv('CSV'),
   orc('ORC'),
   parquet('Parquet');
 
-  const S3BucketInventoryDestinationBucketFormat(this.terraformValue);
+  const S3BucketInventoryFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -104,18 +104,18 @@ enum S3BucketInventoryDestinationBucketFormat implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.sseKms(...)`.
-sealed class S3BucketInventoryDestinationBucketEncryption {
-  const S3BucketInventoryDestinationBucketEncryption();
+sealed class S3BucketInventoryEncryption {
+  const S3BucketInventoryEncryption();
 
   /// Sets `sse_kms`.
-  const factory S3BucketInventoryDestinationBucketEncryption.sseKms(
-    S3BucketInventoryDestinationBucketEncryptionSseKms sseKms,
-  ) = S3BucketInventoryDestinationBucketEncryptionSseKmsChoice;
+  const factory S3BucketInventoryEncryption.sseKms(
+    S3BucketInventorySseKms sseKms,
+  ) = S3BucketInventoryEncryptionSseKms;
 
   /// Sets `sse_s3`.
-  const factory S3BucketInventoryDestinationBucketEncryption.sseS3(
-    S3BucketInventoryDestinationBucketEncryptionSseS3 sseS3,
-  ) = S3BucketInventoryDestinationBucketEncryptionSseS3Choice;
+  const factory S3BucketInventoryEncryption.sseS3(
+    S3BucketInventorySseS3 sseS3,
+  ) = S3BucketInventoryEncryptionSseS3;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -123,12 +123,12 @@ sealed class S3BucketInventoryDestinationBucketEncryption {
   Map<String, Object?> encode();
 }
 
-/// The [S3BucketInventoryDestinationBucketEncryption.sseKms] choice: sets `sse_kms`.
-final class S3BucketInventoryDestinationBucketEncryptionSseKmsChoice
-    extends S3BucketInventoryDestinationBucketEncryption {
-  const S3BucketInventoryDestinationBucketEncryptionSseKmsChoice(this.sseKms);
+/// The [S3BucketInventoryEncryption.sseKms] choice: sets `sse_kms`.
+final class S3BucketInventoryEncryptionSseKms
+    extends S3BucketInventoryEncryption {
+  const S3BucketInventoryEncryptionSseKms(this.sseKms);
 
-  final S3BucketInventoryDestinationBucketEncryptionSseKms sseKms;
+  final S3BucketInventorySseKms sseKms;
 
   @override
   String get blockKey => 'sse_kms';
@@ -137,12 +137,12 @@ final class S3BucketInventoryDestinationBucketEncryptionSseKmsChoice
   Map<String, Object?> encode() => {'sse_kms': sseKms.encode()};
 }
 
-/// The [S3BucketInventoryDestinationBucketEncryption.sseS3] choice: sets `sse_s3`.
-final class S3BucketInventoryDestinationBucketEncryptionSseS3Choice
-    extends S3BucketInventoryDestinationBucketEncryption {
-  const S3BucketInventoryDestinationBucketEncryptionSseS3Choice(this.sseS3);
+/// The [S3BucketInventoryEncryption.sseS3] choice: sets `sse_s3`.
+final class S3BucketInventoryEncryptionSseS3
+    extends S3BucketInventoryEncryption {
+  const S3BucketInventoryEncryptionSseS3(this.sseS3);
 
-  final S3BucketInventoryDestinationBucketEncryptionSseS3 sseS3;
+  final S3BucketInventorySseS3 sseS3;
 
   @override
   String get blockKey => 'sse_s3';
@@ -154,10 +154,8 @@ final class S3BucketInventoryDestinationBucketEncryptionSseS3Choice
 /// Typed helper for the `destination.bucket.encryption.sse_kms` block of
 /// `aws_s3_bucket_inventory` (derived from provider schema).
 @immutable
-final class S3BucketInventoryDestinationBucketEncryptionSseKms {
-  const S3BucketInventoryDestinationBucketEncryptionSseKms({
-    required this.keyId,
-  });
+final class S3BucketInventorySseKms {
+  const S3BucketInventorySseKms({required this.keyId});
 
   final RefTo<AwsKmsKey> keyId;
 
@@ -167,8 +165,8 @@ final class S3BucketInventoryDestinationBucketEncryptionSseKms {
 /// Typed helper for the `destination.bucket.encryption.sse_s3` block of
 /// `aws_s3_bucket_inventory` (derived from provider schema).
 @immutable
-final class S3BucketInventoryDestinationBucketEncryptionSseS3 {
-  const S3BucketInventoryDestinationBucketEncryptionSseS3();
+final class S3BucketInventorySseS3 {
+  const S3BucketInventorySseS3();
 
   Map<String, Object?> encode() => {};
 }
@@ -190,17 +188,17 @@ final class S3BucketInventoryFilter {
 final class S3BucketInventorySchedule {
   const S3BucketInventorySchedule({required this.frequency});
 
-  final TfArg<S3BucketInventoryScheduleFrequency> frequency;
+  final TfArg<S3BucketInventoryFrequency> frequency;
 
   Map<String, Object?> encode() => {'frequency': frequency.toTfJson()};
 }
 
 /// `frequency` — derived from the provider schema description.
-enum S3BucketInventoryScheduleFrequency implements TerraformEnum {
+enum S3BucketInventoryFrequency implements TerraformEnum {
   daily('Daily'),
   weekly('Weekly');
 
-  const S3BucketInventoryScheduleFrequency(this.terraformValue);
+  const S3BucketInventoryFrequency(this.terraformValue);
   @override
   final String terraformValue;
 }

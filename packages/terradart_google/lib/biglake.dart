@@ -34,15 +34,15 @@ export 'src/biglake/google_biglake_hive_database_iam_policy.dart'
     show GoogleBiglakeHiveDatabaseIamPolicy;
 export 'src/biglake/google_biglake_hive_table.dart'
     show
+        BiglakeHiveTableColumns,
         BiglakeHiveTablePartitionKeys,
+        BiglakeHiveTableSerdeInfo,
+        BiglakeHiveTableSerdeType,
+        BiglakeHiveTableSkewedColValues,
+        BiglakeHiveTableSkewedInfo,
+        BiglakeHiveTableSkewedKeyValuesLocations,
+        BiglakeHiveTableSortCols,
         BiglakeHiveTableStorageDescriptor,
-        BiglakeHiveTableStorageDescriptorColumns,
-        BiglakeHiveTableStorageDescriptorSerdeInfo,
-        BiglakeHiveTableStorageDescriptorSerdeInfoSerdeType,
-        BiglakeHiveTableStorageDescriptorSkewedInfo,
-        BiglakeHiveTableStorageDescriptorSkewedInfoSkewedColValues,
-        BiglakeHiveTableStorageDescriptorSkewedInfoSkewedKeyValuesLocations,
-        BiglakeHiveTableStorageDescriptorSortCols,
         GoogleBiglakeHiveTable;
 export 'src/biglake/google_biglake_hive_table_iam_binding.dart'
     show BiglakeHiveTableIamBindingCondition, GoogleBiglakeHiveTableIamBinding;
@@ -55,12 +55,12 @@ export 'src/biglake/google_biglake_iceberg_catalog.dart'
         BiglakeIcebergCatalogCatalogType,
         BiglakeIcebergCatalogCredentialMode,
         BiglakeIcebergCatalogFederatedCatalogOptions,
-        BiglakeIcebergCatalogFederatedCatalogOptionsGlueCatalogInfo,
-        BiglakeIcebergCatalogFederatedCatalogOptionsRefreshOptions,
-        BiglakeIcebergCatalogFederatedCatalogOptionsRefreshOptionsRefreshSchedule,
-        BiglakeIcebergCatalogFederatedCatalogOptionsRefreshOptionsRefreshScope,
-        BiglakeIcebergCatalogFederatedCatalogOptionsUnityCatalogInfo,
+        BiglakeIcebergCatalogGlueCatalogInfo,
+        BiglakeIcebergCatalogRefreshOptions,
+        BiglakeIcebergCatalogRefreshSchedule,
+        BiglakeIcebergCatalogRefreshScope,
         BiglakeIcebergCatalogRestrictedLocationsConfig,
+        BiglakeIcebergCatalogUnityCatalogInfo,
         GoogleBiglakeIcebergCatalog;
 export 'src/biglake/google_biglake_iceberg_catalog_iam_binding.dart'
     show
@@ -106,6 +106,6 @@ export 'src/biglake/google_biglake_iceberg_table_iam_policy.dart'
 export 'src/biglake/google_biglake_table.dart'
     show
         BiglakeTableHiveOptions,
-        BiglakeTableHiveOptionsStorageDescriptor,
-        BiglakeTableHiveOptionsStorageDescriptorSerdeInfo,
+        BiglakeTableSerdeInfo,
+        BiglakeTableStorageDescriptor,
         GoogleBiglakeTable;

@@ -27,7 +27,7 @@ final class GeminiCodeToolsSettingEnabledTool {
 
   final TfArg<String>? uriOverride;
 
-  final List<GeminiCodeToolsSettingEnabledToolConfig>? config;
+  final List<GeminiCodeToolsSettingConfig>? config;
 
   Map<String, Object?> encode() => {
     'account_connector': ?accountConnector?.toTfJson(),
@@ -41,11 +41,8 @@ final class GeminiCodeToolsSettingEnabledTool {
 /// Typed helper for the `enabled_tool.config` block of
 /// `google_gemini_code_tools_setting` (derived from provider schema).
 @immutable
-final class GeminiCodeToolsSettingEnabledToolConfig {
-  const GeminiCodeToolsSettingEnabledToolConfig({
-    required this.key,
-    required this.value,
-  });
+final class GeminiCodeToolsSettingConfig {
+  const GeminiCodeToolsSettingConfig({required this.key, required this.value});
 
   final TfArg<String> key;
 

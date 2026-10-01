@@ -6,16 +6,16 @@ library;
 export 'src/recaptcha/google_recaptcha_enterprise_key.dart'
     show
         GoogleRecaptchaEnterpriseKey,
+        RecaptchaEnterpriseKeyActionSettings,
         RecaptchaEnterpriseKeyAndroidSettings,
+        RecaptchaEnterpriseKeyChallengeSecurityPreference,
+        RecaptchaEnterpriseKeyChallengeSettings,
+        RecaptchaEnterpriseKeyDefaultSettings,
+        RecaptchaEnterpriseKeyIntegrationType,
         RecaptchaEnterpriseKeyIosSettings,
+        RecaptchaEnterpriseKeyTestingChallenge,
         RecaptchaEnterpriseKeyTestingOptions,
-        RecaptchaEnterpriseKeyTestingOptionsTestingChallenge,
+        RecaptchaEnterpriseKeyWafFeature,
+        RecaptchaEnterpriseKeyWafService,
         RecaptchaEnterpriseKeyWafSettings,
-        RecaptchaEnterpriseKeyWafSettingsWafFeature,
-        RecaptchaEnterpriseKeyWafSettingsWafService,
-        RecaptchaEnterpriseKeyWebSettings,
-        RecaptchaEnterpriseKeyWebSettingsChallengeSecurityPreference,
-        RecaptchaEnterpriseKeyWebSettingsChallengeSettings,
-        RecaptchaEnterpriseKeyWebSettingsChallengeSettingsActionSettings,
-        RecaptchaEnterpriseKeyWebSettingsChallengeSettingsDefaultSettings,
-        RecaptchaEnterpriseKeyWebSettingsIntegrationType;
+        RecaptchaEnterpriseKeyWebSettings;

@@ -17,7 +17,7 @@ final class AddressMapMemberships {
 
   final TfArg<String>? identifier;
 
-  final TfArg<AddressMapMembershipsKind>? kind;
+  final TfArg<AddressMapKind>? kind;
 
   Map<String, Object?> encode() => {
     'identifier': ?identifier?.toTfJson(),
@@ -26,11 +26,11 @@ final class AddressMapMemberships {
 }
 
 /// `kind` — derived from the provider schema description.
-enum AddressMapMembershipsKind implements TerraformEnum {
+enum AddressMapKind implements TerraformEnum {
   zone('zone'),
   account('account');
 
-  const AddressMapMembershipsKind(this.terraformValue);
+  const AddressMapKind(this.terraformValue);
   @override
   final String terraformValue;
 }

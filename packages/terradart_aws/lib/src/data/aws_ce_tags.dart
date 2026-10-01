@@ -20,15 +20,15 @@ final class DataCeTagsFilter {
     this.tags,
   });
 
-  final List<DataCeTagsFilterAnd>? and;
+  final List<DataCeTagsAnd>? and;
 
-  final DataCeTagsFilterCostCategory? costCategory;
+  final DataCeTagsCostCategory? costCategory;
 
-  final DataCeTagsFilterDimension? dimension;
+  final DataCeTagsDimension? dimension;
 
-  final DataCeTagsFilterNot? not;
+  final DataCeTagsNot? not;
 
-  final List<DataCeTagsFilterOr>? or;
+  final List<DataCeTagsOr>? or;
 
   final DataCeTagsFilterTags? tags;
 
@@ -45,14 +45,14 @@ final class DataCeTagsFilter {
 /// Typed helper for the `filter.and` block of
 /// `aws_ce_tags` (derived from provider schema).
 @immutable
-final class DataCeTagsFilterAnd {
-  const DataCeTagsFilterAnd({this.costCategory, this.dimension, this.tags});
+final class DataCeTagsAnd {
+  const DataCeTagsAnd({this.costCategory, this.dimension, this.tags});
 
-  final DataCeTagsFilterAndCostCategory? costCategory;
+  final DataCeTagsCostCategory? costCategory;
 
-  final DataCeTagsFilterAndDimension? dimension;
+  final DataCeTagsDimension? dimension;
 
-  final DataCeTagsFilterAndTags? tags;
+  final DataCeTagsFilterTags? tags;
 
   Map<String, Object?> encode() => {
     'cost_category': ?costCategory?.encode(),
@@ -61,80 +61,12 @@ final class DataCeTagsFilterAnd {
   };
 }
 
-/// Typed helper for the `filter.and.cost_category` block of
-/// `aws_ce_tags` (derived from provider schema).
-@immutable
-final class DataCeTagsFilterAndCostCategory {
-  const DataCeTagsFilterAndCostCategory({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter.and.dimension` block of
-/// `aws_ce_tags` (derived from provider schema).
-@immutable
-final class DataCeTagsFilterAndDimension {
-  const DataCeTagsFilterAndDimension({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter.and.tags` block of
-/// `aws_ce_tags` (derived from provider schema).
-@immutable
-final class DataCeTagsFilterAndTags {
-  const DataCeTagsFilterAndTags({this.key, this.matchOptions, this.values});
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `filter.cost_category` block of
 /// `aws_ce_tags` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataCeTagsFilterCostCategory {
-  const DataCeTagsFilterCostCategory({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
+final class DataCeTagsCostCategory {
+  const DataCeTagsCostCategory({this.key, this.matchOptions, this.values});
 
   final TfArg<String>? key;
 
@@ -151,9 +83,30 @@ final class DataCeTagsFilterCostCategory {
 
 /// Typed helper for the `filter.dimension` block of
 /// `aws_ce_tags` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataCeTagsFilterDimension {
-  const DataCeTagsFilterDimension({this.key, this.matchOptions, this.values});
+final class DataCeTagsDimension {
+  const DataCeTagsDimension({this.key, this.matchOptions, this.values});
+
+  final TfArg<String>? key;
+
+  final TfArg<List<String>>? matchOptions;
+
+  final TfArg<List<String>>? values;
+
+  Map<String, Object?> encode() => {
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `filter.tags` block of
+/// `aws_ce_tags` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class DataCeTagsFilterTags {
+  const DataCeTagsFilterTags({this.key, this.matchOptions, this.values});
 
   final TfArg<String>? key;
 
@@ -171,183 +124,38 @@ final class DataCeTagsFilterDimension {
 /// Typed helper for the `filter.not` block of
 /// `aws_ce_tags` (derived from provider schema).
 @immutable
-final class DataCeTagsFilterNot {
-  const DataCeTagsFilterNot({this.costCategory, this.dimension, this.tags});
+final class DataCeTagsNot {
+  const DataCeTagsNot({this.costCategory, this.dimension, this.tags});
 
-  final DataCeTagsFilterNotCostCategory? costCategory;
+  final DataCeTagsCostCategory? costCategory;
 
-  final DataCeTagsFilterNotDimension? dimension;
+  final DataCeTagsDimension? dimension;
 
-  final DataCeTagsFilterNotTags? tags;
+  final DataCeTagsFilterTags? tags;
 
   Map<String, Object?> encode() => {
     'cost_category': ?costCategory?.encode(),
     'dimension': ?dimension?.encode(),
     'tags': ?tags?.encode(),
-  };
-}
-
-/// Typed helper for the `filter.not.cost_category` block of
-/// `aws_ce_tags` (derived from provider schema).
-@immutable
-final class DataCeTagsFilterNotCostCategory {
-  const DataCeTagsFilterNotCostCategory({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter.not.dimension` block of
-/// `aws_ce_tags` (derived from provider schema).
-@immutable
-final class DataCeTagsFilterNotDimension {
-  const DataCeTagsFilterNotDimension({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter.not.tags` block of
-/// `aws_ce_tags` (derived from provider schema).
-@immutable
-final class DataCeTagsFilterNotTags {
-  const DataCeTagsFilterNotTags({this.key, this.matchOptions, this.values});
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
   };
 }
 
 /// Typed helper for the `filter.or` block of
 /// `aws_ce_tags` (derived from provider schema).
 @immutable
-final class DataCeTagsFilterOr {
-  const DataCeTagsFilterOr({this.costCategory, this.dimension, this.tags});
+final class DataCeTagsOr {
+  const DataCeTagsOr({this.costCategory, this.dimension, this.tags});
 
-  final DataCeTagsFilterOrCostCategory? costCategory;
+  final DataCeTagsCostCategory? costCategory;
 
-  final DataCeTagsFilterOrDimension? dimension;
+  final DataCeTagsDimension? dimension;
 
-  final DataCeTagsFilterOrTags? tags;
+  final DataCeTagsFilterTags? tags;
 
   Map<String, Object?> encode() => {
     'cost_category': ?costCategory?.encode(),
     'dimension': ?dimension?.encode(),
     'tags': ?tags?.encode(),
-  };
-}
-
-/// Typed helper for the `filter.or.cost_category` block of
-/// `aws_ce_tags` (derived from provider schema).
-@immutable
-final class DataCeTagsFilterOrCostCategory {
-  const DataCeTagsFilterOrCostCategory({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter.or.dimension` block of
-/// `aws_ce_tags` (derived from provider schema).
-@immutable
-final class DataCeTagsFilterOrDimension {
-  const DataCeTagsFilterOrDimension({this.key, this.matchOptions, this.values});
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter.or.tags` block of
-/// `aws_ce_tags` (derived from provider schema).
-@immutable
-final class DataCeTagsFilterOrTags {
-  const DataCeTagsFilterOrTags({this.key, this.matchOptions, this.values});
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter.tags` block of
-/// `aws_ce_tags` (derived from provider schema).
-@immutable
-final class DataCeTagsFilterTags {
-  const DataCeTagsFilterTags({this.key, this.matchOptions, this.values});
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
   };
 }
 

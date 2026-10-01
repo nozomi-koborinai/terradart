@@ -52,7 +52,7 @@ final class DlpStack extends Stack {
         description: .literal('Quickstart inspect template'),
         inspectConfig: DataLossPreventionInspectTemplateInspectConfig(
           infoTypes: [
-            DataLossPreventionInspectTemplateInspectConfigInfoTypes(
+            DataLossPreventionInspectTemplateInfoTypes(
               name: .literal('EMAIL_ADDRESS'),
             ),
           ],
@@ -70,16 +70,16 @@ final class DlpStack extends Stack {
         displayName: .literal('terradart-email-redact'),
         description: .literal('Quickstart de-identify template'),
         deidentifyConfig: .infoTypeTransformations(
-          DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformations(
+          DataLossPreventionDeidentifyTemplateInfoTypeTransformations(
             transformations: [
-              DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformations(
+              DataLossPreventionDeidentifyTemplateTransformations(
                 infoTypes: [
-                  DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsInfoTypes(
+                  DataLossPreventionDeidentifyTemplateInfoTypes(
                     name: .literal('EMAIL_ADDRESS'),
                   ),
                 ],
                 primitiveTransformation:
-                    DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationsPrimitiveTransformation(
+                    DataLossPreventionDeidentifyTemplateTransformationsPrimitiveTransformation(
                       replaceWithInfoTypeConfig: .literal(true),
                     ),
               ),
@@ -129,16 +129,16 @@ final class DlpStack extends Stack {
         status: .literal(.paused),
         triggers: [
           DataLossPreventionJobTriggerTriggers(
-            schedule: DataLossPreventionJobTriggerTriggersSchedule(
+            schedule: DataLossPreventionJobTriggerSchedule(
               recurrencePeriodDuration: .literal('86400s'),
             ),
           ),
         ],
         inspectJob: DataLossPreventionJobTriggerInspectJob(
           inspectTemplateName: .ref(inspect.nameRef),
-          storageConfig: DataLossPreventionJobTriggerInspectJobStorageConfig(
+          storageConfig: DataLossPreventionJobTriggerStorageConfig(
             cloudStorageOptions:
-                DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptions(
+                DataLossPreventionJobTriggerCloudStorageOptions(
                   fileSet: .url(
                     .literal('gs://${scanBucket.nameRef.interpolation}/'),
                   ),
@@ -146,9 +146,9 @@ final class DlpStack extends Stack {
           ),
           // Empty notification action — avoids BigQuery save_findings deps.
           actions: [
-            DataLossPreventionJobTriggerInspectJobActions(
+            DataLossPreventionJobTriggerActions(
               jobNotificationEmails:
-                  DataLossPreventionJobTriggerInspectJobActionsJobNotificationEmails(),
+                  DataLossPreventionJobTriggerJobNotificationEmails(),
             ),
           ],
         ),
@@ -168,25 +168,24 @@ final class DlpStack extends Stack {
         displayName: .literal('terradart-block-emails'),
         inspectConfig: DataLossPreventionContentPolicyInspectConfig(
           infoTypes: [
-            DataLossPreventionContentPolicyInspectConfigInfoTypes(
+            DataLossPreventionContentPolicyInfoTypes(
               name: .literal('EMAIL_ADDRESS'),
             ),
           ],
         ),
         rules: [
           DataLossPreventionContentPolicyRules(
-            action: DataLossPreventionContentPolicyRulesAction(
+            action: DataLossPreventionContentPolicyAction(
               returnVerdict: .literal(.block),
             ),
             conditions: [
-              DataLossPreventionContentPolicyRulesConditions(
-                infoTypeCondition:
-                    DataLossPreventionContentPolicyRulesConditionsInfoTypeCondition(
-                      infoTypes:
-                          DataLossPreventionContentPolicyRulesConditionsInfoTypeConditionInfoTypes(
-                            infoTypeNames: .literal(['EMAIL_ADDRESS']),
-                          ),
-                    ),
+              DataLossPreventionContentPolicyConditions(
+                infoTypeCondition: DataLossPreventionContentPolicyInfoTypeCondition(
+                  infoTypes:
+                      DataLossPreventionContentPolicyInfoTypeConditionInfoTypes(
+                        infoTypeNames: .literal(['EMAIL_ADDRESS']),
+                      ),
+                ),
               ),
             ],
           ),

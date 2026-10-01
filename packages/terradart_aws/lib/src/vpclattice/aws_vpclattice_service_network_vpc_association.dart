@@ -19,9 +19,7 @@ final class VpclatticeServiceNetworkVpcAssociationDnsOptions {
     this.privateDnsSpecifiedDomains,
   });
 
-  final TfArg<
-    VpclatticeServiceNetworkVpcAssociationDnsOptionsPrivateDnsPreference
-  >?
+  final TfArg<VpclatticeServiceNetworkVpcAssociationPrivateDnsPreference>?
   privateDnsPreference;
 
   final TfArg<List<String>>? privateDnsSpecifiedDomains;
@@ -33,14 +31,14 @@ final class VpclatticeServiceNetworkVpcAssociationDnsOptions {
 }
 
 /// `private_dns_preference` — derived from the provider schema description.
-enum VpclatticeServiceNetworkVpcAssociationDnsOptionsPrivateDnsPreference
+enum VpclatticeServiceNetworkVpcAssociationPrivateDnsPreference
     implements TerraformEnum {
   verifiedDomainsOnly('VERIFIED_DOMAINS_ONLY'),
   allDomains('ALL_DOMAINS'),
   verifiedDomainsAndSpecifiedDomains('VERIFIED_DOMAINS_AND_SPECIFIED_DOMAINS'),
   specifiedDomainsOnly('SPECIFIED_DOMAINS_ONLY');
 
-  const VpclatticeServiceNetworkVpcAssociationDnsOptionsPrivateDnsPreference(
+  const VpclatticeServiceNetworkVpcAssociationPrivateDnsPreference(
     this.terraformValue,
   );
   @override

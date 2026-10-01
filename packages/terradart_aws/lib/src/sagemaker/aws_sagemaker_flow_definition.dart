@@ -18,7 +18,7 @@ final class SagemakerFlowDefinitionHumanLoopActivationConfig {
     this.humanLoopActivationConditionsConfig,
   });
 
-  final SagemakerFlowDefinitionHumanLoopActivationConfigHumanLoopActivationConditionsConfig?
+  final SagemakerFlowDefinitionHumanLoopActivationConditionsConfig?
   humanLoopActivationConditionsConfig;
 
   Map<String, Object?> encode() => {
@@ -30,8 +30,8 @@ final class SagemakerFlowDefinitionHumanLoopActivationConfig {
 /// Typed helper for the `human_loop_activation_config.human_loop_activation_conditions_config` block of
 /// `aws_sagemaker_flow_definition` (derived from provider schema).
 @immutable
-final class SagemakerFlowDefinitionHumanLoopActivationConfigHumanLoopActivationConditionsConfig {
-  const SagemakerFlowDefinitionHumanLoopActivationConfigHumanLoopActivationConditionsConfig({
+final class SagemakerFlowDefinitionHumanLoopActivationConditionsConfig {
+  const SagemakerFlowDefinitionHumanLoopActivationConditionsConfig({
     required this.humanLoopActivationConditions,
   });
 
@@ -75,7 +75,7 @@ final class SagemakerFlowDefinitionHumanLoopConfig {
 
   final TfArg<String> workteamArn;
 
-  final SagemakerFlowDefinitionHumanLoopConfigPublicWorkforceTaskPrice?
+  final SagemakerFlowDefinitionPublicWorkforceTaskPrice?
   publicWorkforceTaskPrice;
 
   Map<String, Object?> encode() => {
@@ -95,13 +95,10 @@ final class SagemakerFlowDefinitionHumanLoopConfig {
 /// Typed helper for the `human_loop_config.public_workforce_task_price` block of
 /// `aws_sagemaker_flow_definition` (derived from provider schema).
 @immutable
-final class SagemakerFlowDefinitionHumanLoopConfigPublicWorkforceTaskPrice {
-  const SagemakerFlowDefinitionHumanLoopConfigPublicWorkforceTaskPrice({
-    this.amountInUsd,
-  });
+final class SagemakerFlowDefinitionPublicWorkforceTaskPrice {
+  const SagemakerFlowDefinitionPublicWorkforceTaskPrice({this.amountInUsd});
 
-  final SagemakerFlowDefinitionHumanLoopConfigPublicWorkforceTaskPriceAmountInUsd?
-  amountInUsd;
+  final SagemakerFlowDefinitionAmountInUsd? amountInUsd;
 
   Map<String, Object?> encode() => {'amount_in_usd': ?amountInUsd?.encode()};
 }
@@ -109,8 +106,8 @@ final class SagemakerFlowDefinitionHumanLoopConfigPublicWorkforceTaskPrice {
 /// Typed helper for the `human_loop_config.public_workforce_task_price.amount_in_usd` block of
 /// `aws_sagemaker_flow_definition` (derived from provider schema).
 @immutable
-final class SagemakerFlowDefinitionHumanLoopConfigPublicWorkforceTaskPriceAmountInUsd {
-  const SagemakerFlowDefinitionHumanLoopConfigPublicWorkforceTaskPriceAmountInUsd({
+final class SagemakerFlowDefinitionAmountInUsd {
+  const SagemakerFlowDefinitionAmountInUsd({
     this.cents,
     this.dollars,
     this.tenthFractionsOfACent,
@@ -137,9 +134,7 @@ final class SagemakerFlowDefinitionHumanLoopRequestSource {
     required this.awsManagedHumanLoopRequestSource,
   });
 
-  final TfArg<
-    SagemakerFlowDefinitionHumanLoopRequestSourceAwsManagedHumanLoopRequestSource
-  >
+  final TfArg<SagemakerFlowDefinitionAwsManagedHumanLoopRequestSource>
   awsManagedHumanLoopRequestSource;
 
   Map<String, Object?> encode() => {
@@ -149,14 +144,14 @@ final class SagemakerFlowDefinitionHumanLoopRequestSource {
 }
 
 /// `aws_managed_human_loop_request_source` — derived from the provider schema description.
-enum SagemakerFlowDefinitionHumanLoopRequestSourceAwsManagedHumanLoopRequestSource
+enum SagemakerFlowDefinitionAwsManagedHumanLoopRequestSource
     implements TerraformEnum {
   awsRekognitionDetectmoderationlabelsImageV3(
     'AWS/Rekognition/DetectModerationLabels/Image/V3',
   ),
   awsTextractAnalyzedocumentFormsV1('AWS/Textract/AnalyzeDocument/Forms/V1');
 
-  const SagemakerFlowDefinitionHumanLoopRequestSourceAwsManagedHumanLoopRequestSource(
+  const SagemakerFlowDefinitionAwsManagedHumanLoopRequestSource(
     this.terraformValue,
   );
   @override

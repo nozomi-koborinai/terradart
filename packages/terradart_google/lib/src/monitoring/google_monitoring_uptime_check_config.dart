@@ -284,8 +284,7 @@ final class MonitoringUptimeCheckConfigContentMatchers {
 
   final TfArg<MonitoringUptimeCheckMatcher>? matcher;
 
-  final MonitoringUptimeCheckConfigContentMatchersJsonPathMatcher?
-  jsonPathMatcher;
+  final MonitoringUptimeCheckConfigJsonPathMatcher? jsonPathMatcher;
 
   Map<String, Object?> encode() => {
     'content': content.toTfJson(),
@@ -297,8 +296,8 @@ final class MonitoringUptimeCheckConfigContentMatchers {
 /// Typed helper for the `content_matchers.json_path_matcher` block of
 /// `google_monitoring_uptime_check_config` (derived from provider schema).
 @immutable
-final class MonitoringUptimeCheckConfigContentMatchersJsonPathMatcher {
-  const MonitoringUptimeCheckConfigContentMatchersJsonPathMatcher({
+final class MonitoringUptimeCheckConfigJsonPathMatcher {
+  const MonitoringUptimeCheckConfigJsonPathMatcher({
     this.jsonMatcher,
     required this.jsonPath,
   });
@@ -354,14 +353,14 @@ final class MonitoringUptimeCheckConfigHttpCheck {
 
   final TfArg<bool>? validateSsl;
 
-  final List<MonitoringUptimeCheckConfigHttpCheckAcceptedResponseStatusCodes>?
+  final List<MonitoringUptimeCheckConfigAcceptedResponseStatusCodes>?
   acceptedResponseStatusCodes;
 
-  final MonitoringUptimeCheckConfigHttpCheckAuthInfo? authInfo;
+  final MonitoringUptimeCheckConfigAuthInfo? authInfo;
 
-  final MonitoringUptimeCheckConfigHttpCheckPingConfig? pingConfig;
+  final MonitoringUptimeCheckConfigPingConfig? pingConfig;
 
-  final MonitoringUptimeCheckConfigHttpCheckServiceAgentAuthentication?
+  final MonitoringUptimeCheckConfigServiceAgentAuthentication?
   serviceAgentAuthentication;
 
   Map<String, Object?> encode() => {
@@ -388,8 +387,8 @@ final class MonitoringUptimeCheckConfigHttpCheck {
 /// Typed helper for the `http_check.accepted_response_status_codes` block of
 /// `google_monitoring_uptime_check_config` (derived from provider schema).
 @immutable
-final class MonitoringUptimeCheckConfigHttpCheckAcceptedResponseStatusCodes {
-  const MonitoringUptimeCheckConfigHttpCheckAcceptedResponseStatusCodes({
+final class MonitoringUptimeCheckConfigAcceptedResponseStatusCodes {
+  const MonitoringUptimeCheckConfigAcceptedResponseStatusCodes({
     this.statusClass,
     this.statusValue,
   });
@@ -407,14 +406,14 @@ final class MonitoringUptimeCheckConfigHttpCheckAcceptedResponseStatusCodes {
 /// Typed helper for the `http_check.auth_info` block of
 /// `google_monitoring_uptime_check_config` (derived from provider schema).
 @immutable
-final class MonitoringUptimeCheckConfigHttpCheckAuthInfo {
-  const MonitoringUptimeCheckConfigHttpCheckAuthInfo({
+final class MonitoringUptimeCheckConfigAuthInfo {
+  const MonitoringUptimeCheckConfigAuthInfo({
     required this.password,
     this.passwordWoVersion,
     required this.username,
   });
 
-  final MonitoringUptimeCheckConfigHttpCheckAuthInfoPassword password;
+  final MonitoringUptimeCheckConfigPassword password;
 
   final TfArg<String>? passwordWoVersion;
 
@@ -431,18 +430,18 @@ final class MonitoringUptimeCheckConfigHttpCheckAuthInfo {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.password(...)`.
-sealed class MonitoringUptimeCheckConfigHttpCheckAuthInfoPassword {
-  const MonitoringUptimeCheckConfigHttpCheckAuthInfoPassword();
+sealed class MonitoringUptimeCheckConfigPassword {
+  const MonitoringUptimeCheckConfigPassword();
 
   /// Sets `password`.
-  const factory MonitoringUptimeCheckConfigHttpCheckAuthInfoPassword.password(
+  const factory MonitoringUptimeCheckConfigPassword.password(
     TfArg<String> password,
-  ) = MonitoringUptimeCheckConfigHttpCheckAuthInfoPasswordChoice;
+  ) = MonitoringUptimeCheckConfigPasswordChoice;
 
   /// Sets `password_wo`.
-  const factory MonitoringUptimeCheckConfigHttpCheckAuthInfoPassword.passwordWo(
+  const factory MonitoringUptimeCheckConfigPassword.passwordWo(
     TfArg<String> passwordWo,
-  ) = MonitoringUptimeCheckConfigHttpCheckAuthInfoPasswordWo;
+  ) = MonitoringUptimeCheckConfigPasswordWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -450,12 +449,10 @@ sealed class MonitoringUptimeCheckConfigHttpCheckAuthInfoPassword {
   Map<String, Object?> encode();
 }
 
-/// The [MonitoringUptimeCheckConfigHttpCheckAuthInfoPassword.password] choice: sets `password`.
-final class MonitoringUptimeCheckConfigHttpCheckAuthInfoPasswordChoice
-    extends MonitoringUptimeCheckConfigHttpCheckAuthInfoPassword {
-  const MonitoringUptimeCheckConfigHttpCheckAuthInfoPasswordChoice(
-    this.password,
-  );
+/// The [MonitoringUptimeCheckConfigPassword.password] choice: sets `password`.
+final class MonitoringUptimeCheckConfigPasswordChoice
+    extends MonitoringUptimeCheckConfigPassword {
+  const MonitoringUptimeCheckConfigPasswordChoice(this.password);
 
   final TfArg<String> password;
 
@@ -466,10 +463,10 @@ final class MonitoringUptimeCheckConfigHttpCheckAuthInfoPasswordChoice
   Map<String, Object?> encode() => {'password': password.toTfJson()};
 }
 
-/// The [MonitoringUptimeCheckConfigHttpCheckAuthInfoPassword.passwordWo] choice: sets `password_wo`.
-final class MonitoringUptimeCheckConfigHttpCheckAuthInfoPasswordWo
-    extends MonitoringUptimeCheckConfigHttpCheckAuthInfoPassword {
-  const MonitoringUptimeCheckConfigHttpCheckAuthInfoPasswordWo(this.passwordWo);
+/// The [MonitoringUptimeCheckConfigPassword.passwordWo] choice: sets `password_wo`.
+final class MonitoringUptimeCheckConfigPasswordWo
+    extends MonitoringUptimeCheckConfigPassword {
+  const MonitoringUptimeCheckConfigPasswordWo(this.passwordWo);
 
   final TfArg<String> passwordWo;
 
@@ -482,11 +479,10 @@ final class MonitoringUptimeCheckConfigHttpCheckAuthInfoPasswordWo
 
 /// Typed helper for the `http_check.ping_config` block of
 /// `google_monitoring_uptime_check_config` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class MonitoringUptimeCheckConfigHttpCheckPingConfig {
-  const MonitoringUptimeCheckConfigHttpCheckPingConfig({
-    required this.pingsCount,
-  });
+final class MonitoringUptimeCheckConfigPingConfig {
+  const MonitoringUptimeCheckConfigPingConfig({required this.pingsCount});
 
   final TfArg<num> pingsCount;
 
@@ -496,10 +492,8 @@ final class MonitoringUptimeCheckConfigHttpCheckPingConfig {
 /// Typed helper for the `http_check.service_agent_authentication` block of
 /// `google_monitoring_uptime_check_config` (derived from provider schema).
 @immutable
-final class MonitoringUptimeCheckConfigHttpCheckServiceAgentAuthentication {
-  const MonitoringUptimeCheckConfigHttpCheckServiceAgentAuthentication({
-    this.type,
-  });
+final class MonitoringUptimeCheckConfigServiceAgentAuthentication {
+  const MonitoringUptimeCheckConfigServiceAgentAuthentication({this.type});
 
   final TfArg<MonitoringUptimeCheckServiceAgentAuthType>? type;
 
@@ -552,8 +546,7 @@ final class MonitoringUptimeCheckConfigSyntheticMonitor {
     required this.cloudFunctionV2,
   });
 
-  final MonitoringUptimeCheckConfigSyntheticMonitorCloudFunctionV2
-  cloudFunctionV2;
+  final MonitoringUptimeCheckConfigCloudFunctionV2 cloudFunctionV2;
 
   Map<String, Object?> encode() => {
     'cloud_function_v2': cloudFunctionV2.encode(),
@@ -563,10 +556,8 @@ final class MonitoringUptimeCheckConfigSyntheticMonitor {
 /// Typed helper for the `synthetic_monitor.cloud_function_v2` block of
 /// `google_monitoring_uptime_check_config` (derived from provider schema).
 @immutable
-final class MonitoringUptimeCheckConfigSyntheticMonitorCloudFunctionV2 {
-  const MonitoringUptimeCheckConfigSyntheticMonitorCloudFunctionV2({
-    required this.name,
-  });
+final class MonitoringUptimeCheckConfigCloudFunctionV2 {
+  const MonitoringUptimeCheckConfigCloudFunctionV2({required this.name});
 
   final TfArg<String> name;
 
@@ -584,25 +575,12 @@ final class MonitoringUptimeCheckConfigTcpCheck {
 
   final TfArg<num> port;
 
-  final MonitoringUptimeCheckConfigTcpCheckPingConfig? pingConfig;
+  final MonitoringUptimeCheckConfigPingConfig? pingConfig;
 
   Map<String, Object?> encode() => {
     'port': port.toTfJson(),
     'ping_config': ?pingConfig?.encode(),
   };
-}
-
-/// Typed helper for the `tcp_check.ping_config` block of
-/// `google_monitoring_uptime_check_config` (derived from provider schema).
-@immutable
-final class MonitoringUptimeCheckConfigTcpCheckPingConfig {
-  const MonitoringUptimeCheckConfigTcpCheckPingConfig({
-    required this.pingsCount,
-  });
-
-  final TfArg<num> pingsCount;
-
-  Map<String, Object?> encode() => {'pings_count': pingsCount.toTfJson()};
 }
 
 /// Factory wrapper for `google_monitoring_uptime_check_config`.

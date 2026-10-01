@@ -31,10 +31,10 @@ GoogleCloudRunV2Service addCloudRunService({
         serviceAccount: .of(identity.serviceAccount),
         maxInstanceRequestConcurrency: .literal(80),
         timeout: .literal('300s'),
-        vpcAccess: CloudRunV2ServiceTemplateVpcAccess(
+        vpcAccess: CloudRunV2ServiceVpcAccess(
           egress: .literal(.privateRangesOnly),
           connection: .networkInterfaces([
-            CloudRunV2ServiceTemplateVpcAccessNetworkInterfaces(
+            CloudRunV2ServiceNetworkInterfaces(
               network: .of(network.vpc),
               subnetwork: .of(network.subnet),
             ),
@@ -45,19 +45,19 @@ GoogleCloudRunV2Service addCloudRunService({
           maxInstanceCount: TfArgLiteral(2),
         ),
         containers: [
-          CloudRunV2ServiceTemplateContainers(
+          CloudRunV2ServiceContainers(
             name: .literal('app'),
             image: .literal(imageUri),
-            ports: const CloudRunV2ServiceTemplateContainersPorts(
+            ports: const CloudRunV2ServicePorts(
               containerPort: TfArgLiteral(8080),
             ),
-            resources: CloudRunV2ServiceTemplateContainersResources(
+            resources: CloudRunV2ServiceResources(
               limits: .literal({'cpu': '1', 'memory': '512Mi'}),
               cpuIdle: .literal(true),
               startupCpuBoost: .literal(true),
             ),
           ),
-          CloudRunV2ServiceTemplateContainers(
+          CloudRunV2ServiceContainers(
             name: .literal('cloud-sql-proxy'),
             image: .literal(cloudSqlProxyImage),
             args: .literal([
@@ -66,7 +66,7 @@ GoogleCloudRunV2Service addCloudRunService({
               '--auto-iam-authn',
               database.instanceConnectionName,
             ]),
-            resources: CloudRunV2ServiceTemplateContainersResources(
+            resources: CloudRunV2ServiceResources(
               limits: .literal({'cpu': '0.5', 'memory': '256Mi'}),
               cpuIdle: .literal(false),
             ),

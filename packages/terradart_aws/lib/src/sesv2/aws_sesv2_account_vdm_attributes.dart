@@ -23,8 +23,7 @@ enum Sesv2AccountVdmAttributesVdmEnabled implements TerraformEnum {
 final class Sesv2AccountVdmAttributesDashboardAttributes {
   const Sesv2AccountVdmAttributesDashboardAttributes({this.engagementMetrics});
 
-  final TfArg<Sesv2AccountVdmAttributesDashboardAttributesEngagementMetrics>?
-  engagementMetrics;
+  final TfArg<Sesv2AccountVdmAttributesEngagementMetrics>? engagementMetrics;
 
   Map<String, Object?> encode() => {
     'engagement_metrics': ?engagementMetrics?.toTfJson(),
@@ -32,14 +31,11 @@ final class Sesv2AccountVdmAttributesDashboardAttributes {
 }
 
 /// `engagement_metrics` — derived from the provider schema description.
-enum Sesv2AccountVdmAttributesDashboardAttributesEngagementMetrics
-    implements TerraformEnum {
+enum Sesv2AccountVdmAttributesEngagementMetrics implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const Sesv2AccountVdmAttributesDashboardAttributesEngagementMetrics(
-    this.terraformValue,
-  );
+  const Sesv2AccountVdmAttributesEngagementMetrics(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -52,9 +48,7 @@ final class Sesv2AccountVdmAttributesGuardianAttributes {
     this.optimizedSharedDelivery,
   });
 
-  final TfArg<
-    Sesv2AccountVdmAttributesGuardianAttributesOptimizedSharedDelivery
-  >?
+  final TfArg<Sesv2AccountVdmAttributesOptimizedSharedDelivery>?
   optimizedSharedDelivery;
 
   Map<String, Object?> encode() => {
@@ -63,14 +57,11 @@ final class Sesv2AccountVdmAttributesGuardianAttributes {
 }
 
 /// `optimized_shared_delivery` — derived from the provider schema description.
-enum Sesv2AccountVdmAttributesGuardianAttributesOptimizedSharedDelivery
-    implements TerraformEnum {
+enum Sesv2AccountVdmAttributesOptimizedSharedDelivery implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const Sesv2AccountVdmAttributesGuardianAttributesOptimizedSharedDelivery(
-    this.terraformValue,
-  );
+  const Sesv2AccountVdmAttributesOptimizedSharedDelivery(this.terraformValue);
   @override
   final String terraformValue;
 }

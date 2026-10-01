@@ -125,10 +125,10 @@ void main() {
       );
     });
 
-    test('PubsubSubscriptionPushConfigOidcToken nested under push_config', () {
+    test('PubsubSubscriptionOidcToken nested under push_config', () {
       final cfg = PubsubSubscriptionPushConfig(
         pushEndpoint: .literal('https://example.com/push'),
-        oidcToken: PubsubSubscriptionPushConfigOidcToken(
+        oidcToken: PubsubSubscriptionOidcToken(
           serviceAccountEmail: .literal('sa@example.iam.gserviceaccount.com'),
         ),
       );
@@ -138,15 +138,10 @@ void main() {
       );
     });
 
-    test(
-      'PubsubSubscriptionPushConfigNoWrapper round-trips write_metadata',
-      () {
-        final w = PubsubSubscriptionPushConfigNoWrapper(
-          writeMetadata: .literal(true),
-        );
-        expect(w.encode(), equals({'write_metadata': true}));
-      },
-    );
+    test('PubsubSubscriptionNoWrapper round-trips write_metadata', () {
+      final w = PubsubSubscriptionNoWrapper(writeMetadata: .literal(true));
+      expect(w.encode(), equals({'write_metadata': true}));
+    });
 
     test('PubsubSubscriptionBigqueryConfig snake_case keys', () {
       final cfg = PubsubSubscriptionBigqueryConfig(

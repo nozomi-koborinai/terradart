@@ -40,8 +40,8 @@ curatedDoc: |-
   ///     'cloudresourcemanager.googleapis.com/Project',
   ///   ]),
   ///   contentType: TfArg.literal(CloudAssetProjectFeedContentType.resource),
-  ///   feedOutputConfig: CloudAssetProjectFeedFeedOutputConfig(
-  ///     pubsubDestination: CloudAssetProjectFeedFeedOutputConfigPubsubDestination(
+  ///   feedOutputConfig: CloudAssetProjectFeedOutputConfig(
+  ///     pubsubDestination: CloudAssetProjectFeedPubsubDestination(
   ///       topic: topic.ref,
   ///     ),
   ///   ),

@@ -20,7 +20,7 @@ final class BedrockagentcoreMemoryIndexedKey {
 
   final TfArg<String> key;
 
-  final TfArg<BedrockagentcoreMemoryIndexedKeyType> type;
+  final TfArg<BedrockagentcoreMemoryType> type;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
@@ -29,12 +29,12 @@ final class BedrockagentcoreMemoryIndexedKey {
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockagentcoreMemoryIndexedKeyType implements TerraformEnum {
+enum BedrockagentcoreMemoryType implements TerraformEnum {
   string('STRING'),
   stringlist('STRINGLIST'),
   number('NUMBER');
 
-  const BedrockagentcoreMemoryIndexedKeyType(this.terraformValue);
+  const BedrockagentcoreMemoryType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -45,7 +45,7 @@ enum BedrockagentcoreMemoryIndexedKeyType implements TerraformEnum {
 final class BedrockagentcoreMemoryStreamDeliveryResources {
   const BedrockagentcoreMemoryStreamDeliveryResources({this.resource});
 
-  final List<BedrockagentcoreMemoryStreamDeliveryResourcesResource>? resource;
+  final List<BedrockagentcoreMemoryResource>? resource;
 
   Map<String, Object?> encode() => {
     if (resource != null) 'resource': [for (final e in resource!) e.encode()],
@@ -55,11 +55,10 @@ final class BedrockagentcoreMemoryStreamDeliveryResources {
 /// Typed helper for the `stream_delivery_resources.resource` block of
 /// `aws_bedrockagentcore_memory` (derived from provider schema).
 @immutable
-final class BedrockagentcoreMemoryStreamDeliveryResourcesResource {
-  const BedrockagentcoreMemoryStreamDeliveryResourcesResource({this.kinesis});
+final class BedrockagentcoreMemoryResource {
+  const BedrockagentcoreMemoryResource({this.kinesis});
 
-  final List<BedrockagentcoreMemoryStreamDeliveryResourcesResourceKinesis>?
-  kinesis;
+  final List<BedrockagentcoreMemoryKinesis>? kinesis;
 
   Map<String, Object?> encode() => {
     if (kinesis != null) 'kinesis': [for (final e in kinesis!) e.encode()],
@@ -69,18 +68,15 @@ final class BedrockagentcoreMemoryStreamDeliveryResourcesResource {
 /// Typed helper for the `stream_delivery_resources.resource.kinesis` block of
 /// `aws_bedrockagentcore_memory` (derived from provider schema).
 @immutable
-final class BedrockagentcoreMemoryStreamDeliveryResourcesResourceKinesis {
-  const BedrockagentcoreMemoryStreamDeliveryResourcesResourceKinesis({
+final class BedrockagentcoreMemoryKinesis {
+  const BedrockagentcoreMemoryKinesis({
     required this.dataStreamArn,
     this.contentConfiguration,
   });
 
   final TfArg<String> dataStreamArn;
 
-  final List<
-    BedrockagentcoreMemoryStreamDeliveryResourcesResourceKinesisContentConfiguration
-  >?
-  contentConfiguration;
+  final List<BedrockagentcoreMemoryContentConfiguration>? contentConfiguration;
 
   Map<String, Object?> encode() => {
     'data_stream_arn': dataStreamArn.toTfJson(),
@@ -94,21 +90,15 @@ final class BedrockagentcoreMemoryStreamDeliveryResourcesResourceKinesis {
 /// Typed helper for the `stream_delivery_resources.resource.kinesis.content_configuration` block of
 /// `aws_bedrockagentcore_memory` (derived from provider schema).
 @immutable
-final class BedrockagentcoreMemoryStreamDeliveryResourcesResourceKinesisContentConfiguration {
-  const BedrockagentcoreMemoryStreamDeliveryResourcesResourceKinesisContentConfiguration({
+final class BedrockagentcoreMemoryContentConfiguration {
+  const BedrockagentcoreMemoryContentConfiguration({
     this.level,
     required this.type,
   });
 
-  final TfArg<
-    BedrockagentcoreMemoryStreamDeliveryResourcesResourceKinesisContentConfigurationLevel
-  >?
-  level;
+  final TfArg<BedrockagentcoreMemoryLevel>? level;
 
-  final TfArg<
-    BedrockagentcoreMemoryStreamDeliveryResourcesResourceKinesisContentConfigurationType
-  >
-  type;
+  final TfArg<BedrockagentcoreMemoryContentConfigurationType> type;
 
   Map<String, Object?> encode() => {
     'level': ?level?.toTfJson(),
@@ -117,26 +107,20 @@ final class BedrockagentcoreMemoryStreamDeliveryResourcesResourceKinesisContentC
 }
 
 /// `level` — derived from the provider schema description.
-enum BedrockagentcoreMemoryStreamDeliveryResourcesResourceKinesisContentConfigurationLevel
-    implements TerraformEnum {
+enum BedrockagentcoreMemoryLevel implements TerraformEnum {
   metadataOnly('METADATA_ONLY'),
   fullContent('FULL_CONTENT');
 
-  const BedrockagentcoreMemoryStreamDeliveryResourcesResourceKinesisContentConfigurationLevel(
-    this.terraformValue,
-  );
+  const BedrockagentcoreMemoryLevel(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockagentcoreMemoryStreamDeliveryResourcesResourceKinesisContentConfigurationType
-    implements TerraformEnum {
+enum BedrockagentcoreMemoryContentConfigurationType implements TerraformEnum {
   memoryRecords('MEMORY_RECORDS');
 
-  const BedrockagentcoreMemoryStreamDeliveryResourcesResourceKinesisContentConfigurationType(
-    this.terraformValue,
-  );
+  const BedrockagentcoreMemoryContentConfigurationType(this.terraformValue);
   @override
   final String terraformValue;
 }

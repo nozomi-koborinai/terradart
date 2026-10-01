@@ -19,15 +19,15 @@ final class ApphubWorkloadAttributes {
     this.operatorOwners,
   });
 
-  final List<ApphubWorkloadAttributesBusinessOwners>? businessOwners;
+  final List<ApphubWorkloadBusinessOwners>? businessOwners;
 
-  final ApphubWorkloadAttributesCriticality? criticality;
+  final ApphubWorkloadCriticality? criticality;
 
-  final List<ApphubWorkloadAttributesDeveloperOwners>? developerOwners;
+  final List<ApphubWorkloadDeveloperOwners>? developerOwners;
 
-  final ApphubWorkloadAttributesEnvironment? environment;
+  final ApphubWorkloadEnvironment? environment;
 
-  final List<ApphubWorkloadAttributesOperatorOwners>? operatorOwners;
+  final List<ApphubWorkloadOperatorOwners>? operatorOwners;
 
   Map<String, Object?> encode() => {
     if (businessOwners != null)
@@ -44,11 +44,8 @@ final class ApphubWorkloadAttributes {
 /// Typed helper for the `attributes.business_owners` block of
 /// `google_apphub_workload` (derived from provider schema).
 @immutable
-final class ApphubWorkloadAttributesBusinessOwners {
-  const ApphubWorkloadAttributesBusinessOwners({
-    this.displayName,
-    required this.email,
-  });
+final class ApphubWorkloadBusinessOwners {
+  const ApphubWorkloadBusinessOwners({this.displayName, required this.email});
 
   final TfArg<String>? displayName;
 
@@ -63,22 +60,22 @@ final class ApphubWorkloadAttributesBusinessOwners {
 /// Typed helper for the `attributes.criticality` block of
 /// `google_apphub_workload` (derived from provider schema).
 @immutable
-final class ApphubWorkloadAttributesCriticality {
-  const ApphubWorkloadAttributesCriticality({required this.type});
+final class ApphubWorkloadCriticality {
+  const ApphubWorkloadCriticality({required this.type});
 
-  final TfArg<ApphubWorkloadAttributesCriticalityType> type;
+  final TfArg<ApphubWorkloadCriticalityType> type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum ApphubWorkloadAttributesCriticalityType implements TerraformEnum {
+enum ApphubWorkloadCriticalityType implements TerraformEnum {
   missionCritical('MISSION_CRITICAL'),
   high('HIGH'),
   medium('MEDIUM'),
   low('LOW');
 
-  const ApphubWorkloadAttributesCriticalityType(this.terraformValue);
+  const ApphubWorkloadCriticalityType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -86,11 +83,8 @@ enum ApphubWorkloadAttributesCriticalityType implements TerraformEnum {
 /// Typed helper for the `attributes.developer_owners` block of
 /// `google_apphub_workload` (derived from provider schema).
 @immutable
-final class ApphubWorkloadAttributesDeveloperOwners {
-  const ApphubWorkloadAttributesDeveloperOwners({
-    this.displayName,
-    required this.email,
-  });
+final class ApphubWorkloadDeveloperOwners {
+  const ApphubWorkloadDeveloperOwners({this.displayName, required this.email});
 
   final TfArg<String>? displayName;
 
@@ -105,22 +99,22 @@ final class ApphubWorkloadAttributesDeveloperOwners {
 /// Typed helper for the `attributes.environment` block of
 /// `google_apphub_workload` (derived from provider schema).
 @immutable
-final class ApphubWorkloadAttributesEnvironment {
-  const ApphubWorkloadAttributesEnvironment({required this.type});
+final class ApphubWorkloadEnvironment {
+  const ApphubWorkloadEnvironment({required this.type});
 
-  final TfArg<ApphubWorkloadAttributesEnvironmentType> type;
+  final TfArg<ApphubWorkloadEnvironmentType> type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum ApphubWorkloadAttributesEnvironmentType implements TerraformEnum {
+enum ApphubWorkloadEnvironmentType implements TerraformEnum {
   production('PRODUCTION'),
   staging('STAGING'),
   test('TEST'),
   development('DEVELOPMENT');
 
-  const ApphubWorkloadAttributesEnvironmentType(this.terraformValue);
+  const ApphubWorkloadEnvironmentType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -128,11 +122,8 @@ enum ApphubWorkloadAttributesEnvironmentType implements TerraformEnum {
 /// Typed helper for the `attributes.operator_owners` block of
 /// `google_apphub_workload` (derived from provider schema).
 @immutable
-final class ApphubWorkloadAttributesOperatorOwners {
-  const ApphubWorkloadAttributesOperatorOwners({
-    this.displayName,
-    required this.email,
-  });
+final class ApphubWorkloadOperatorOwners {
+  const ApphubWorkloadOperatorOwners({this.displayName, required this.email});
 
   final TfArg<String>? displayName;
 

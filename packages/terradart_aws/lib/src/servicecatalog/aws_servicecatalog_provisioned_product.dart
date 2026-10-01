@@ -250,11 +250,9 @@ final class ServicecatalogProvisionedProductStackSetProvisioningPreferences {
 
   final TfArg<List<String>>? accounts;
 
-  final ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureTolerance
-  failureTolerance;
+  final ServicecatalogProvisionedProductFailureTolerance failureTolerance;
 
-  final ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrency
-  maxConcurrency;
+  final ServicecatalogProvisionedProductMaxConcurrency maxConcurrency;
 
   final TfArg<List<String>>? regions;
 
@@ -270,18 +268,18 @@ final class ServicecatalogProvisionedProductStackSetProvisioningPreferences {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.failureToleranceCount(...)`.
-sealed class ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureTolerance {
-  const ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureTolerance();
+sealed class ServicecatalogProvisionedProductFailureTolerance {
+  const ServicecatalogProvisionedProductFailureTolerance();
 
   /// Sets `failure_tolerance_count`.
-  const factory ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureTolerance.failureToleranceCount(
+  const factory ServicecatalogProvisionedProductFailureTolerance.failureToleranceCount(
     TfArg<num> failureToleranceCount,
-  ) = ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureToleranceCount;
+  ) = ServicecatalogProvisionedProductFailureToleranceCount;
 
   /// Sets `failure_tolerance_percentage`.
-  const factory ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureTolerance.failureTolerancePercentage(
+  const factory ServicecatalogProvisionedProductFailureTolerance.failureTolerancePercentage(
     TfArg<num> failureTolerancePercentage,
-  ) = ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureTolerancePercentage;
+  ) = ServicecatalogProvisionedProductFailureTolerancePercentage;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -289,11 +287,10 @@ sealed class ServicecatalogProvisionedProductStackSetProvisioningPreferencesFail
   Map<String, Object?> encode();
 }
 
-/// The [ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureTolerance.failureToleranceCount] choice: sets `failure_tolerance_count`.
-final class ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureToleranceCount
-    extends
-        ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureTolerance {
-  const ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureToleranceCount(
+/// The [ServicecatalogProvisionedProductFailureTolerance.failureToleranceCount] choice: sets `failure_tolerance_count`.
+final class ServicecatalogProvisionedProductFailureToleranceCount
+    extends ServicecatalogProvisionedProductFailureTolerance {
+  const ServicecatalogProvisionedProductFailureToleranceCount(
     this.failureToleranceCount,
   );
 
@@ -308,11 +305,10 @@ final class ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailu
   };
 }
 
-/// The [ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureTolerance.failureTolerancePercentage] choice: sets `failure_tolerance_percentage`.
-final class ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureTolerancePercentage
-    extends
-        ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureTolerance {
-  const ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureTolerancePercentage(
+/// The [ServicecatalogProvisionedProductFailureTolerance.failureTolerancePercentage] choice: sets `failure_tolerance_percentage`.
+final class ServicecatalogProvisionedProductFailureTolerancePercentage
+    extends ServicecatalogProvisionedProductFailureTolerance {
+  const ServicecatalogProvisionedProductFailureTolerancePercentage(
     this.failureTolerancePercentage,
   );
 
@@ -331,18 +327,18 @@ final class ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailu
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.maxConcurrencyCount(...)`.
-sealed class ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrency {
-  const ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrency();
+sealed class ServicecatalogProvisionedProductMaxConcurrency {
+  const ServicecatalogProvisionedProductMaxConcurrency();
 
   /// Sets `max_concurrency_count`.
-  const factory ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrency.maxConcurrencyCount(
+  const factory ServicecatalogProvisionedProductMaxConcurrency.maxConcurrencyCount(
     TfArg<num> maxConcurrencyCount,
-  ) = ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyCount;
+  ) = ServicecatalogProvisionedProductMaxConcurrencyCount;
 
   /// Sets `max_concurrency_percentage`.
-  const factory ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrency.maxConcurrencyPercentage(
+  const factory ServicecatalogProvisionedProductMaxConcurrency.maxConcurrencyPercentage(
     TfArg<num> maxConcurrencyPercentage,
-  ) = ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyPercentage;
+  ) = ServicecatalogProvisionedProductMaxConcurrencyPercentage;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -350,11 +346,10 @@ sealed class ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxC
   Map<String, Object?> encode();
 }
 
-/// The [ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrency.maxConcurrencyCount] choice: sets `max_concurrency_count`.
-final class ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyCount
-    extends
-        ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrency {
-  const ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyCount(
+/// The [ServicecatalogProvisionedProductMaxConcurrency.maxConcurrencyCount] choice: sets `max_concurrency_count`.
+final class ServicecatalogProvisionedProductMaxConcurrencyCount
+    extends ServicecatalogProvisionedProductMaxConcurrency {
+  const ServicecatalogProvisionedProductMaxConcurrencyCount(
     this.maxConcurrencyCount,
   );
 
@@ -369,11 +364,10 @@ final class ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxCo
   };
 }
 
-/// The [ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrency.maxConcurrencyPercentage] choice: sets `max_concurrency_percentage`.
-final class ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyPercentage
-    extends
-        ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrency {
-  const ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyPercentage(
+/// The [ServicecatalogProvisionedProductMaxConcurrency.maxConcurrencyPercentage] choice: sets `max_concurrency_percentage`.
+final class ServicecatalogProvisionedProductMaxConcurrencyPercentage
+    extends ServicecatalogProvisionedProductMaxConcurrency {
+  const ServicecatalogProvisionedProductMaxConcurrencyPercentage(
     this.maxConcurrencyPercentage,
   );
 

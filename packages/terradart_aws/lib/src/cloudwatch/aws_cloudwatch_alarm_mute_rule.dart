@@ -24,7 +24,7 @@ final class CloudwatchAlarmMuteRuleMuteTargets {
 final class CloudwatchAlarmMuteRuleRule {
   const CloudwatchAlarmMuteRuleRule({this.schedule});
 
-  final List<CloudwatchAlarmMuteRuleRuleSchedule>? schedule;
+  final List<CloudwatchAlarmMuteRuleSchedule>? schedule;
 
   Map<String, Object?> encode() => {
     if (schedule != null) 'schedule': [for (final e in schedule!) e.encode()],
@@ -34,8 +34,8 @@ final class CloudwatchAlarmMuteRuleRule {
 /// Typed helper for the `rule.schedule` block of
 /// `aws_cloudwatch_alarm_mute_rule` (derived from provider schema).
 @immutable
-final class CloudwatchAlarmMuteRuleRuleSchedule {
-  const CloudwatchAlarmMuteRuleRuleSchedule({
+final class CloudwatchAlarmMuteRuleSchedule {
+  const CloudwatchAlarmMuteRuleSchedule({
     required this.duration,
     required this.expression,
     this.timezone,

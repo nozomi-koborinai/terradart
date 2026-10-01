@@ -15,7 +15,7 @@ final class IamDenyPolicyRules {
 
   final TfArg<String>? description;
 
-  final IamDenyPolicyRulesDenyRule? denyRule;
+  final IamDenyPolicyDenyRule? denyRule;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -26,8 +26,8 @@ final class IamDenyPolicyRules {
 /// Typed helper for the `rules.deny_rule` block of
 /// `google_iam_deny_policy` (derived from provider schema).
 @immutable
-final class IamDenyPolicyRulesDenyRule {
-  const IamDenyPolicyRulesDenyRule({
+final class IamDenyPolicyDenyRule {
+  const IamDenyPolicyDenyRule({
     this.deniedPermissions,
     this.deniedPrincipals,
     this.exceptionPermissions,
@@ -43,7 +43,7 @@ final class IamDenyPolicyRulesDenyRule {
 
   final TfArg<List<String>>? exceptionPrincipals;
 
-  final IamDenyPolicyRulesDenyRuleDenialCondition? denialCondition;
+  final IamDenyPolicyDenialCondition? denialCondition;
 
   Map<String, Object?> encode() => {
     'denied_permissions': ?deniedPermissions?.toTfJson(),
@@ -57,8 +57,8 @@ final class IamDenyPolicyRulesDenyRule {
 /// Typed helper for the `rules.deny_rule.denial_condition` block of
 /// `google_iam_deny_policy` (derived from provider schema).
 @immutable
-final class IamDenyPolicyRulesDenyRuleDenialCondition {
-  const IamDenyPolicyRulesDenyRuleDenialCondition({
+final class IamDenyPolicyDenialCondition {
+  const IamDenyPolicyDenialCondition({
     this.description,
     required this.expression,
     this.location,
@@ -111,7 +111,7 @@ final class IamDenyPolicyRulesDenyRuleDenialCondition {
 ///   name: TfArg.literal('terradart-storage-get-deny'),
 ///   rules: [
 ///     IamDenyPolicyRules(
-///       denyRule: IamDenyPolicyRulesDenyRule(
+///       denyRule: IamDenyPolicyDenyRule(
 ///         deniedPrincipals: TfArg.literal([
 ///           'principal://iam.googleapis.com/projects/-/serviceAccounts/${denied.email.interpolation}',
 ///         ]),

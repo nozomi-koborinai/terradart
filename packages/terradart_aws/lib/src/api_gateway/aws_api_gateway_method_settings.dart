@@ -32,7 +32,7 @@ final class ApiGatewayMethodSettingsSettings {
 
   final TfArg<bool>? dataTraceEnabled;
 
-  final TfArg<ApiGatewayMethodSettingsSettingsLoggingLevel>? loggingLevel;
+  final TfArg<ApiGatewayMethodSettingsLoggingLevel>? loggingLevel;
 
   final TfArg<bool>? metricsEnabled;
 
@@ -42,9 +42,7 @@ final class ApiGatewayMethodSettingsSettings {
 
   final TfArg<num>? throttlingRateLimit;
 
-  final TfArg<
-    ApiGatewayMethodSettingsSettingsUnauthorizedCacheControlHeaderStrategy
-  >?
+  final TfArg<ApiGatewayMethodSettingsUnauthorizedCacheControlHeaderStrategy>?
   unauthorizedCacheControlHeaderStrategy;
 
   Map<String, Object?> encode() => {
@@ -64,24 +62,24 @@ final class ApiGatewayMethodSettingsSettings {
 }
 
 /// `logging_level` — derived from the provider schema description.
-enum ApiGatewayMethodSettingsSettingsLoggingLevel implements TerraformEnum {
+enum ApiGatewayMethodSettingsLoggingLevel implements TerraformEnum {
   off('OFF'),
   error('ERROR'),
   info('INFO');
 
-  const ApiGatewayMethodSettingsSettingsLoggingLevel(this.terraformValue);
+  const ApiGatewayMethodSettingsLoggingLevel(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `unauthorized_cache_control_header_strategy` — derived from the provider schema description.
-enum ApiGatewayMethodSettingsSettingsUnauthorizedCacheControlHeaderStrategy
+enum ApiGatewayMethodSettingsUnauthorizedCacheControlHeaderStrategy
     implements TerraformEnum {
   failWith403('FAIL_WITH_403'),
   succeedWithResponseHeader('SUCCEED_WITH_RESPONSE_HEADER'),
   succeedWithoutResponseHeader('SUCCEED_WITHOUT_RESPONSE_HEADER');
 
-  const ApiGatewayMethodSettingsSettingsUnauthorizedCacheControlHeaderStrategy(
+  const ApiGatewayMethodSettingsUnauthorizedCacheControlHeaderStrategy(
     this.terraformValue,
   );
   @override

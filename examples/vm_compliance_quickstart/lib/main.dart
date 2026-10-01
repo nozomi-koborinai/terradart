@@ -53,12 +53,10 @@ final class VmComplianceStack extends Stack {
         description: .literal('TerraDart quickstart admission policy'),
         defaultAdmissionRule: BinaryAuthorizationPolicyDefaultAdmissionRule(
           evaluationMode: .literal(
-            BinaryAuthorizationPolicyDefaultAdmissionRuleEvaluationMode
-                .alwaysAllow,
+            BinaryAuthorizationPolicyEvaluationMode.alwaysAllow,
           ),
           enforcementMode: .literal(
-            BinaryAuthorizationPolicyDefaultAdmissionRuleEnforcementMode
-                .enforcedBlockAndAuditLog,
+            BinaryAuthorizationPolicyEnforcementMode.enforcedBlockAndAuditLog,
           ),
         ),
         dependsOn: apiDeps,
@@ -74,7 +72,7 @@ final class VmComplianceStack extends Stack {
             BinaryAuthorizationAttestorAttestationAuthorityNote(
               noteReference: .literal('projects/$projectId/notes/ci-attestor'),
               publicKeys: [
-                BinaryAuthorizationAttestorAttestationAuthorityNotePublicKeys(
+                BinaryAuthorizationAttestorPublicKeys(
                   comment: .literal('TerraDart quickstart test key'),
                   asciiArmoredPgpPublicKey: .literal(_quickstartPgpPublicKey),
                 ),
@@ -119,16 +117,15 @@ final class VmComplianceStack extends Stack {
             id: .literal('hello-probe'),
             mode: .literal(.validation),
             resourceGroups: [
-              OsConfigOsPolicyAssignmentOsPoliciesResourceGroups(
+              OsConfigOsPolicyAssignmentResourceGroups(
                 resources: [
-                  OsConfigOsPolicyAssignmentOsPoliciesResourceGroupsResources(
+                  OsConfigOsPolicyAssignmentResources(
                     id: .literal('hello-script'),
-                    exec: OsConfigOsPolicyAssignmentOsPoliciesResourceGroupsResourcesExec(
-                      validate:
-                          OsConfigOsPolicyAssignmentOsPoliciesResourceGroupsResourcesExecValidate(
-                            interpreter: .literal(.shell),
-                            script: .literal('echo hello-from-os-config'),
-                          ),
+                    exec: OsConfigOsPolicyAssignmentExec(
+                      validate: OsConfigOsPolicyAssignmentValidate(
+                        interpreter: .literal(.shell),
+                        script: .literal('echo hello-from-os-config'),
+                      ),
                     ),
                   ),
                 ],
@@ -137,7 +134,7 @@ final class VmComplianceStack extends Stack {
           ),
         ],
         rollout: OsConfigOsPolicyAssignmentRollout(
-          disruptionBudget: OsConfigOsPolicyAssignmentRolloutDisruptionBudget(
+          disruptionBudget: OsConfigOsPolicyAssignmentDisruptionBudget(
             percent: .literal(100),
           ),
           minWaitDuration: .literal('0s'),
@@ -177,45 +174,43 @@ final class VmComplianceStack extends Stack {
         action: .literal('UPSERT'),
         state: .literal('STOPPED'),
         orchestratedResource: OsConfigV2PolicyOrchestratorOrchestratedResource(
-          osPolicyAssignmentV1Payload: OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1Payload(
-            osPolicies: [
-              OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPolicies(
-                id: .literal('test-os-policy'),
-                mode: .literal('VALIDATION'),
-                resourceGroups: [
-                  OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroups(
-                    resources: [
-                      OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResources(
-                        id: .literal('resource-tf'),
-                        file:
-                            OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesFile(
+          osPolicyAssignmentV1Payload:
+              OsConfigV2PolicyOrchestratorOsPolicyAssignmentV1Payload(
+                osPolicies: [
+                  OsConfigV2PolicyOrchestratorOsPolicies(
+                    id: .literal('test-os-policy'),
+                    mode: .literal('VALIDATION'),
+                    resourceGroups: [
+                      OsConfigV2PolicyOrchestratorResourceGroups(
+                        resources: [
+                          OsConfigV2PolicyOrchestratorResources(
+                            id: .literal('resource-tf'),
+                            file: OsConfigV2PolicyOrchestratorFile(
                               content: .literal('file-content-tf'),
                               path: .literal('file-path-tf-1'),
                               state: .literal('PRESENT'),
                             ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
                 ],
-              ),
-            ],
-            instanceFilter:
-                OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilter(
+                instanceFilter: OsConfigV2PolicyOrchestratorInstanceFilter(
                   inventories: [
-                    OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilterInventories(
+                    OsConfigV2PolicyOrchestratorInventories(
                       osShortName: .literal('windows-10'),
                     ),
                   ],
                 ),
-            rollout:
-                OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadRollout(
+                rollout: OsConfigV2PolicyOrchestratorRollout(
                   disruptionBudget:
-                      OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadRolloutDisruptionBudget(
+                      OsConfigV2PolicyOrchestratorDisruptionBudget(
                         percent: .literal(100),
                       ),
                   minWaitDuration: .literal('60s'),
                 ),
-          ),
+              ),
         ),
         deletionPolicy: .literal('DELETE'),
         dependsOn: apiDeps,

@@ -22,24 +22,17 @@ final class CognitoLogDeliveryConfigurationLogConfigurations {
     this.s3Configuration,
   });
 
-  final TfArg<CognitoLogDeliveryConfigurationLogConfigurationsEventSource>
-  eventSource;
+  final TfArg<CognitoLogDeliveryConfigurationEventSource> eventSource;
 
-  final TfArg<CognitoLogDeliveryConfigurationLogConfigurationsLogLevel>
-  logLevel;
+  final TfArg<CognitoLogDeliveryConfigurationLogLevel> logLevel;
 
-  final List<
-    CognitoLogDeliveryConfigurationLogConfigurationsCloudWatchLogsConfiguration
-  >?
+  final List<CognitoLogDeliveryConfigurationCloudWatchLogsConfiguration>?
   cloudWatchLogsConfiguration;
 
-  final List<
-    CognitoLogDeliveryConfigurationLogConfigurationsFirehoseConfiguration
-  >?
+  final List<CognitoLogDeliveryConfigurationFirehoseConfiguration>?
   firehoseConfiguration;
 
-  final List<CognitoLogDeliveryConfigurationLogConfigurationsS3Configuration>?
-  s3Configuration;
+  final List<CognitoLogDeliveryConfigurationS3Configuration>? s3Configuration;
 
   Map<String, Object?> encode() => {
     'event_source': eventSource.toTfJson(),
@@ -58,27 +51,21 @@ final class CognitoLogDeliveryConfigurationLogConfigurations {
 }
 
 /// `event_source` — derived from the provider schema description.
-enum CognitoLogDeliveryConfigurationLogConfigurationsEventSource
-    implements TerraformEnum {
+enum CognitoLogDeliveryConfigurationEventSource implements TerraformEnum {
   usernotification('userNotification'),
   userauthevents('userAuthEvents');
 
-  const CognitoLogDeliveryConfigurationLogConfigurationsEventSource(
-    this.terraformValue,
-  );
+  const CognitoLogDeliveryConfigurationEventSource(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `log_level` — derived from the provider schema description.
-enum CognitoLogDeliveryConfigurationLogConfigurationsLogLevel
-    implements TerraformEnum {
+enum CognitoLogDeliveryConfigurationLogLevel implements TerraformEnum {
   error('ERROR'),
   info('INFO');
 
-  const CognitoLogDeliveryConfigurationLogConfigurationsLogLevel(
-    this.terraformValue,
-  );
+  const CognitoLogDeliveryConfigurationLogLevel(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -86,8 +73,8 @@ enum CognitoLogDeliveryConfigurationLogConfigurationsLogLevel
 /// Typed helper for the `log_configurations.cloud_watch_logs_configuration` block of
 /// `aws_cognito_log_delivery_configuration` (derived from provider schema).
 @immutable
-final class CognitoLogDeliveryConfigurationLogConfigurationsCloudWatchLogsConfiguration {
-  const CognitoLogDeliveryConfigurationLogConfigurationsCloudWatchLogsConfiguration({
+final class CognitoLogDeliveryConfigurationCloudWatchLogsConfiguration {
+  const CognitoLogDeliveryConfigurationCloudWatchLogsConfiguration({
     this.logGroupArn,
   });
 
@@ -101,10 +88,8 @@ final class CognitoLogDeliveryConfigurationLogConfigurationsCloudWatchLogsConfig
 /// Typed helper for the `log_configurations.firehose_configuration` block of
 /// `aws_cognito_log_delivery_configuration` (derived from provider schema).
 @immutable
-final class CognitoLogDeliveryConfigurationLogConfigurationsFirehoseConfiguration {
-  const CognitoLogDeliveryConfigurationLogConfigurationsFirehoseConfiguration({
-    this.streamArn,
-  });
+final class CognitoLogDeliveryConfigurationFirehoseConfiguration {
+  const CognitoLogDeliveryConfigurationFirehoseConfiguration({this.streamArn});
 
   final TfArg<String>? streamArn;
 
@@ -114,10 +99,8 @@ final class CognitoLogDeliveryConfigurationLogConfigurationsFirehoseConfiguratio
 /// Typed helper for the `log_configurations.s3_configuration` block of
 /// `aws_cognito_log_delivery_configuration` (derived from provider schema).
 @immutable
-final class CognitoLogDeliveryConfigurationLogConfigurationsS3Configuration {
-  const CognitoLogDeliveryConfigurationLogConfigurationsS3Configuration({
-    this.bucketArn,
-  });
+final class CognitoLogDeliveryConfigurationS3Configuration {
+  const CognitoLogDeliveryConfigurationS3Configuration({this.bucketArn});
 
   final RefTo<AwsS3Bucket>? bucketArn;
 

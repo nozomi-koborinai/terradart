@@ -60,7 +60,7 @@ final class AmplifyAppAutoBranchCreationConfig {
 
   final TfArg<String>? pullRequestEnvironmentName;
 
-  final TfArg<AmplifyAppAutoBranchCreationConfigStage>? stage;
+  final TfArg<AmplifyAppStage>? stage;
 
   Map<String, Object?> encode() => {
     'basic_auth_credentials': ?basicAuthCredentials?.toTfJson(),
@@ -77,14 +77,14 @@ final class AmplifyAppAutoBranchCreationConfig {
 }
 
 /// `stage` — derived from the provider schema description.
-enum AmplifyAppAutoBranchCreationConfigStage implements TerraformEnum {
+enum AmplifyAppStage implements TerraformEnum {
   production('PRODUCTION'),
   beta('BETA'),
   development('DEVELOPMENT'),
   experimental('EXPERIMENTAL'),
   pullRequest('PULL_REQUEST');
 
-  const AmplifyAppAutoBranchCreationConfigStage(this.terraformValue);
+  const AmplifyAppStage(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -95,17 +95,17 @@ enum AmplifyAppAutoBranchCreationConfigStage implements TerraformEnum {
 final class AmplifyAppCacheConfig {
   const AmplifyAppCacheConfig({required this.type});
 
-  final TfArg<AmplifyAppCacheConfigType> type;
+  final TfArg<AmplifyAppType> type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum AmplifyAppCacheConfigType implements TerraformEnum {
+enum AmplifyAppType implements TerraformEnum {
   amplifyManaged('AMPLIFY_MANAGED'),
   amplifyManagedNoCookies('AMPLIFY_MANAGED_NO_COOKIES');
 
-  const AmplifyAppCacheConfigType(this.terraformValue);
+  const AmplifyAppType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -125,7 +125,7 @@ final class AmplifyAppCustomRule {
 
   final TfArg<String> source;
 
-  final TfArg<AmplifyAppCustomRuleStatus>? status;
+  final TfArg<AmplifyAppStatus>? status;
 
   final TfArg<String> target;
 
@@ -138,14 +138,14 @@ final class AmplifyAppCustomRule {
 }
 
 /// `status` — derived from the provider schema description.
-enum AmplifyAppCustomRuleStatus implements TerraformEnum {
+enum AmplifyAppStatus implements TerraformEnum {
   v200('200'),
   v301('301'),
   v302('302'),
   v404('404'),
   v404x200('404-200');
 
-  const AmplifyAppCustomRuleStatus(this.terraformValue);
+  const AmplifyAppStatus(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -156,7 +156,7 @@ enum AmplifyAppCustomRuleStatus implements TerraformEnum {
 final class AmplifyAppJobConfig {
   const AmplifyAppJobConfig({this.buildComputeType});
 
-  final TfArg<AmplifyAppJobConfigBuildComputeType>? buildComputeType;
+  final TfArg<AmplifyAppBuildComputeType>? buildComputeType;
 
   Map<String, Object?> encode() => {
     'build_compute_type': ?buildComputeType?.toTfJson(),
@@ -164,12 +164,12 @@ final class AmplifyAppJobConfig {
 }
 
 /// `build_compute_type` — derived from the provider schema description.
-enum AmplifyAppJobConfigBuildComputeType implements TerraformEnum {
+enum AmplifyAppBuildComputeType implements TerraformEnum {
   standard8gb('STANDARD_8GB'),
   large16gb('LARGE_16GB'),
   xlarge72gb('XLARGE_72GB');
 
-  const AmplifyAppJobConfigBuildComputeType(this.terraformValue);
+  const AmplifyAppBuildComputeType(this.terraformValue);
   @override
   final String terraformValue;
 }

@@ -29,7 +29,7 @@ curatedDoc: |-
   ///   match: ComputeNetworkFirewallPolicyRuleMatch(
   ///     srcIpRanges: TfArg.literal(['0.0.0.0/0']),
   ///     layer4Configs: [
-  ///       ComputeNetworkFirewallPolicyRuleMatchLayer4Configs(
+  ///       ComputeNetworkFirewallPolicyRuleLayer4Configs(
   ///         ipProtocol: TfArg.literal('tcp'),
   ///         ports: TfArg.literal(['443']),
   ///       ),

@@ -42,7 +42,7 @@ final class ShareResources {
 
   final TfArg<String> resourceId;
 
-  final TfArg<ShareResourcesResourceType> resourceType;
+  final TfArg<ShareResourceType> resourceType;
 
   Map<String, Object?> encode() => {
     'meta': meta.toTfJson(),
@@ -53,7 +53,7 @@ final class ShareResources {
 }
 
 /// `resource_type` — derived from the provider schema description.
-enum ShareResourcesResourceType implements TerraformEnum {
+enum ShareResourceType implements TerraformEnum {
   customRuleset('custom-ruleset'),
   gatewayPolicy('gateway-policy'),
   gatewayDestinationIp('gateway-destination-ip'),
@@ -62,7 +62,7 @@ enum ShareResourcesResourceType implements TerraformEnum {
   idpFederationGrant('idp-federation-grant'),
   trustGrant('trust-grant');
 
-  const ShareResourcesResourceType(this.terraformValue);
+  const ShareResourceType(this.terraformValue);
   @override
   final String terraformValue;
 }

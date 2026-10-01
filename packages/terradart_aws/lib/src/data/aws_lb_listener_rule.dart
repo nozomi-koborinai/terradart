@@ -21,17 +21,17 @@ final class DataLbListenerRuleAction {
     this.redirect,
   });
 
-  final List<DataLbListenerRuleActionAuthenticateCognito>? authenticateCognito;
+  final List<DataLbListenerRuleAuthenticateCognito>? authenticateCognito;
 
-  final List<DataLbListenerRuleActionAuthenticateOidc>? authenticateOidc;
+  final List<DataLbListenerRuleAuthenticateOidc>? authenticateOidc;
 
-  final List<DataLbListenerRuleActionFixedResponse>? fixedResponse;
+  final List<DataLbListenerRuleFixedResponse>? fixedResponse;
 
-  final List<DataLbListenerRuleActionForward>? forward;
+  final List<DataLbListenerRuleForward>? forward;
 
-  final List<DataLbListenerRuleActionJwtValidation>? jwtValidation;
+  final List<DataLbListenerRuleJwtValidation>? jwtValidation;
 
-  final List<DataLbListenerRuleActionRedirect>? redirect;
+  final List<DataLbListenerRuleRedirect>? redirect;
 
   Map<String, Object?> encode() => {
     if (authenticateCognito != null)
@@ -52,8 +52,8 @@ final class DataLbListenerRuleAction {
 /// Typed helper for the `action.authenticate_cognito` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class DataLbListenerRuleActionAuthenticateCognito {
-  const DataLbListenerRuleActionAuthenticateCognito();
+final class DataLbListenerRuleAuthenticateCognito {
+  const DataLbListenerRuleAuthenticateCognito();
 
   Map<String, Object?> encode() => {};
 }
@@ -61,8 +61,8 @@ final class DataLbListenerRuleActionAuthenticateCognito {
 /// Typed helper for the `action.authenticate_oidc` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class DataLbListenerRuleActionAuthenticateOidc {
-  const DataLbListenerRuleActionAuthenticateOidc();
+final class DataLbListenerRuleAuthenticateOidc {
+  const DataLbListenerRuleAuthenticateOidc();
 
   Map<String, Object?> encode() => {};
 }
@@ -70,8 +70,8 @@ final class DataLbListenerRuleActionAuthenticateOidc {
 /// Typed helper for the `action.fixed_response` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class DataLbListenerRuleActionFixedResponse {
-  const DataLbListenerRuleActionFixedResponse();
+final class DataLbListenerRuleFixedResponse {
+  const DataLbListenerRuleFixedResponse();
 
   Map<String, Object?> encode() => {};
 }
@@ -79,12 +79,12 @@ final class DataLbListenerRuleActionFixedResponse {
 /// Typed helper for the `action.forward` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class DataLbListenerRuleActionForward {
-  const DataLbListenerRuleActionForward({this.stickiness, this.targetGroup});
+final class DataLbListenerRuleForward {
+  const DataLbListenerRuleForward({this.stickiness, this.targetGroup});
 
-  final List<DataLbListenerRuleActionForwardStickiness>? stickiness;
+  final List<DataLbListenerRuleStickiness>? stickiness;
 
-  final List<DataLbListenerRuleActionForwardTargetGroup>? targetGroup;
+  final List<DataLbListenerRuleTargetGroup>? targetGroup;
 
   Map<String, Object?> encode() => {
     if (stickiness != null)
@@ -97,8 +97,8 @@ final class DataLbListenerRuleActionForward {
 /// Typed helper for the `action.forward.stickiness` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class DataLbListenerRuleActionForwardStickiness {
-  const DataLbListenerRuleActionForwardStickiness();
+final class DataLbListenerRuleStickiness {
+  const DataLbListenerRuleStickiness();
 
   Map<String, Object?> encode() => {};
 }
@@ -106,8 +106,8 @@ final class DataLbListenerRuleActionForwardStickiness {
 /// Typed helper for the `action.forward.target_group` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class DataLbListenerRuleActionForwardTargetGroup {
-  const DataLbListenerRuleActionForwardTargetGroup();
+final class DataLbListenerRuleTargetGroup {
+  const DataLbListenerRuleTargetGroup();
 
   Map<String, Object?> encode() => {};
 }
@@ -115,11 +115,10 @@ final class DataLbListenerRuleActionForwardTargetGroup {
 /// Typed helper for the `action.jwt_validation` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class DataLbListenerRuleActionJwtValidation {
-  const DataLbListenerRuleActionJwtValidation({this.additionalClaim});
+final class DataLbListenerRuleJwtValidation {
+  const DataLbListenerRuleJwtValidation({this.additionalClaim});
 
-  final List<DataLbListenerRuleActionJwtValidationAdditionalClaim>?
-  additionalClaim;
+  final List<DataLbListenerRuleAdditionalClaim>? additionalClaim;
 
   Map<String, Object?> encode() => {
     if (additionalClaim != null)
@@ -130,8 +129,8 @@ final class DataLbListenerRuleActionJwtValidation {
 /// Typed helper for the `action.jwt_validation.additional_claim` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class DataLbListenerRuleActionJwtValidationAdditionalClaim {
-  const DataLbListenerRuleActionJwtValidationAdditionalClaim();
+final class DataLbListenerRuleAdditionalClaim {
+  const DataLbListenerRuleAdditionalClaim();
 
   Map<String, Object?> encode() => {};
 }
@@ -139,8 +138,8 @@ final class DataLbListenerRuleActionJwtValidationAdditionalClaim {
 /// Typed helper for the `action.redirect` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class DataLbListenerRuleActionRedirect {
-  const DataLbListenerRuleActionRedirect();
+final class DataLbListenerRuleRedirect {
+  const DataLbListenerRuleRedirect();
 
   Map<String, Object?> encode() => {};
 }
@@ -158,17 +157,17 @@ final class DataLbListenerRuleCondition {
     this.sourceIp,
   });
 
-  final List<DataLbListenerRuleConditionHostHeader>? hostHeader;
+  final List<DataLbListenerRuleHostHeader>? hostHeader;
 
-  final List<DataLbListenerRuleConditionHttpHeader>? httpHeader;
+  final List<DataLbListenerRuleHttpHeader>? httpHeader;
 
-  final List<DataLbListenerRuleConditionHttpRequestMethod>? httpRequestMethod;
+  final List<DataLbListenerRuleHttpRequestMethod>? httpRequestMethod;
 
-  final List<DataLbListenerRuleConditionPathPattern>? pathPattern;
+  final List<DataLbListenerRulePathPattern>? pathPattern;
 
-  final List<DataLbListenerRuleConditionQueryString>? queryString;
+  final List<DataLbListenerRuleQueryString>? queryString;
 
-  final List<DataLbListenerRuleConditionSourceIp>? sourceIp;
+  final List<DataLbListenerRuleSourceIp>? sourceIp;
 
   Map<String, Object?> encode() => {
     if (hostHeader != null)
@@ -188,8 +187,8 @@ final class DataLbListenerRuleCondition {
 /// Typed helper for the `condition.host_header` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class DataLbListenerRuleConditionHostHeader {
-  const DataLbListenerRuleConditionHostHeader();
+final class DataLbListenerRuleHostHeader {
+  const DataLbListenerRuleHostHeader();
 
   Map<String, Object?> encode() => {};
 }
@@ -197,8 +196,8 @@ final class DataLbListenerRuleConditionHostHeader {
 /// Typed helper for the `condition.http_header` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class DataLbListenerRuleConditionHttpHeader {
-  const DataLbListenerRuleConditionHttpHeader();
+final class DataLbListenerRuleHttpHeader {
+  const DataLbListenerRuleHttpHeader();
 
   Map<String, Object?> encode() => {};
 }
@@ -206,8 +205,8 @@ final class DataLbListenerRuleConditionHttpHeader {
 /// Typed helper for the `condition.http_request_method` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class DataLbListenerRuleConditionHttpRequestMethod {
-  const DataLbListenerRuleConditionHttpRequestMethod();
+final class DataLbListenerRuleHttpRequestMethod {
+  const DataLbListenerRuleHttpRequestMethod();
 
   Map<String, Object?> encode() => {};
 }
@@ -215,8 +214,8 @@ final class DataLbListenerRuleConditionHttpRequestMethod {
 /// Typed helper for the `condition.path_pattern` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class DataLbListenerRuleConditionPathPattern {
-  const DataLbListenerRuleConditionPathPattern();
+final class DataLbListenerRulePathPattern {
+  const DataLbListenerRulePathPattern();
 
   Map<String, Object?> encode() => {};
 }
@@ -224,10 +223,10 @@ final class DataLbListenerRuleConditionPathPattern {
 /// Typed helper for the `condition.query_string` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class DataLbListenerRuleConditionQueryString {
-  const DataLbListenerRuleConditionQueryString({this.values});
+final class DataLbListenerRuleQueryString {
+  const DataLbListenerRuleQueryString({this.values});
 
-  final List<DataLbListenerRuleConditionQueryStringValues>? values;
+  final List<DataLbListenerRuleValues>? values;
 
   Map<String, Object?> encode() => {
     if (values != null) 'values': [for (final e in values!) e.encode()],
@@ -237,8 +236,8 @@ final class DataLbListenerRuleConditionQueryString {
 /// Typed helper for the `condition.query_string.values` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class DataLbListenerRuleConditionQueryStringValues {
-  const DataLbListenerRuleConditionQueryStringValues();
+final class DataLbListenerRuleValues {
+  const DataLbListenerRuleValues();
 
   Map<String, Object?> encode() => {};
 }
@@ -246,8 +245,8 @@ final class DataLbListenerRuleConditionQueryStringValues {
 /// Typed helper for the `condition.source_ip` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class DataLbListenerRuleConditionSourceIp {
-  const DataLbListenerRuleConditionSourceIp();
+final class DataLbListenerRuleSourceIp {
+  const DataLbListenerRuleSourceIp();
 
   Map<String, Object?> encode() => {};
 }
@@ -261,10 +260,10 @@ final class DataLbListenerRuleTransform {
     this.urlRewriteConfig,
   });
 
-  final List<DataLbListenerRuleTransformHostHeaderRewriteConfig>?
+  final List<DataLbListenerRuleHostHeaderRewriteConfig>?
   hostHeaderRewriteConfig;
 
-  final List<DataLbListenerRuleTransformUrlRewriteConfig>? urlRewriteConfig;
+  final List<DataLbListenerRuleUrlRewriteConfig>? urlRewriteConfig;
 
   Map<String, Object?> encode() => {
     if (hostHeaderRewriteConfig != null)
@@ -279,11 +278,10 @@ final class DataLbListenerRuleTransform {
 /// Typed helper for the `transform.host_header_rewrite_config` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class DataLbListenerRuleTransformHostHeaderRewriteConfig {
-  const DataLbListenerRuleTransformHostHeaderRewriteConfig({this.rewrite});
+final class DataLbListenerRuleHostHeaderRewriteConfig {
+  const DataLbListenerRuleHostHeaderRewriteConfig({this.rewrite});
 
-  final List<DataLbListenerRuleTransformHostHeaderRewriteConfigRewrite>?
-  rewrite;
+  final List<DataLbListenerRuleRewrite>? rewrite;
 
   Map<String, Object?> encode() => {
     if (rewrite != null) 'rewrite': [for (final e in rewrite!) e.encode()],
@@ -292,9 +290,10 @@ final class DataLbListenerRuleTransformHostHeaderRewriteConfig {
 
 /// Typed helper for the `transform.host_header_rewrite_config.rewrite` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLbListenerRuleTransformHostHeaderRewriteConfigRewrite {
-  const DataLbListenerRuleTransformHostHeaderRewriteConfigRewrite();
+final class DataLbListenerRuleRewrite {
+  const DataLbListenerRuleRewrite();
 
   Map<String, Object?> encode() => {};
 }
@@ -302,23 +301,14 @@ final class DataLbListenerRuleTransformHostHeaderRewriteConfigRewrite {
 /// Typed helper for the `transform.url_rewrite_config` block of
 /// `aws_lb_listener_rule` (derived from provider schema).
 @immutable
-final class DataLbListenerRuleTransformUrlRewriteConfig {
-  const DataLbListenerRuleTransformUrlRewriteConfig({this.rewrite});
+final class DataLbListenerRuleUrlRewriteConfig {
+  const DataLbListenerRuleUrlRewriteConfig({this.rewrite});
 
-  final List<DataLbListenerRuleTransformUrlRewriteConfigRewrite>? rewrite;
+  final List<DataLbListenerRuleRewrite>? rewrite;
 
   Map<String, Object?> encode() => {
     if (rewrite != null) 'rewrite': [for (final e in rewrite!) e.encode()],
   };
-}
-
-/// Typed helper for the `transform.url_rewrite_config.rewrite` block of
-/// `aws_lb_listener_rule` (derived from provider schema).
-@immutable
-final class DataLbListenerRuleTransformUrlRewriteConfigRewrite {
-  const DataLbListenerRuleTransformUrlRewriteConfigRewrite();
-
-  Map<String, Object?> encode() => {};
 }
 
 /// Factory wrapper for `aws_lb_listener_rule`.

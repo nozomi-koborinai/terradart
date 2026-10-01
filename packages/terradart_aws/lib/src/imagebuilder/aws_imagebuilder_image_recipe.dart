@@ -26,7 +26,7 @@ final class ImagebuilderImageRecipeBlockDeviceMapping {
 
   final TfArg<String>? virtualName;
 
-  final ImagebuilderImageRecipeBlockDeviceMappingEbs? ebs;
+  final ImagebuilderImageRecipeEbs? ebs;
 
   Map<String, Object?> encode() => {
     'device_name': ?deviceName?.toTfJson(),
@@ -39,8 +39,8 @@ final class ImagebuilderImageRecipeBlockDeviceMapping {
 /// Typed helper for the `block_device_mapping.ebs` block of
 /// `aws_imagebuilder_image_recipe` (derived from provider schema).
 @immutable
-final class ImagebuilderImageRecipeBlockDeviceMappingEbs {
-  const ImagebuilderImageRecipeBlockDeviceMappingEbs({
+final class ImagebuilderImageRecipeEbs {
+  const ImagebuilderImageRecipeEbs({
     this.deleteOnTermination,
     this.encrypted,
     this.iops,
@@ -65,8 +65,7 @@ final class ImagebuilderImageRecipeBlockDeviceMappingEbs {
 
   final TfArg<num>? volumeSize;
 
-  final TfArg<ImagebuilderImageRecipeBlockDeviceMappingEbsVolumeType>?
-  volumeType;
+  final TfArg<ImagebuilderImageRecipeVolumeType>? volumeType;
 
   Map<String, Object?> encode() => {
     'delete_on_termination': ?deleteOnTermination?.toTfJson(),
@@ -81,8 +80,7 @@ final class ImagebuilderImageRecipeBlockDeviceMappingEbs {
 }
 
 /// `volume_type` — derived from the provider schema description.
-enum ImagebuilderImageRecipeBlockDeviceMappingEbsVolumeType
-    implements TerraformEnum {
+enum ImagebuilderImageRecipeVolumeType implements TerraformEnum {
   standard('standard'),
   io1('io1'),
   io2('io2'),
@@ -91,9 +89,7 @@ enum ImagebuilderImageRecipeBlockDeviceMappingEbsVolumeType
   sc1('sc1'),
   st1('st1');
 
-  const ImagebuilderImageRecipeBlockDeviceMappingEbsVolumeType(
-    this.terraformValue,
-  );
+  const ImagebuilderImageRecipeVolumeType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -109,7 +105,7 @@ final class ImagebuilderImageRecipeComponent {
 
   final TfArg<String> componentArn;
 
-  final List<ImagebuilderImageRecipeComponentParameter>? parameter;
+  final List<ImagebuilderImageRecipeParameter>? parameter;
 
   Map<String, Object?> encode() => {
     'component_arn': componentArn.toTfJson(),
@@ -121,8 +117,8 @@ final class ImagebuilderImageRecipeComponent {
 /// Typed helper for the `component.parameter` block of
 /// `aws_imagebuilder_image_recipe` (derived from provider schema).
 @immutable
-final class ImagebuilderImageRecipeComponentParameter {
-  const ImagebuilderImageRecipeComponentParameter({
+final class ImagebuilderImageRecipeParameter {
+  const ImagebuilderImageRecipeParameter({
     required this.name,
     required this.value,
   });

@@ -22,9 +22,9 @@ export 'src/dx/aws_dx_hosted_private_virtual_interface.dart'
 export 'src/dx/aws_dx_hosted_private_virtual_interface_accepter.dart'
     show
         AwsDxHostedPrivateVirtualInterfaceAccepter,
+        DxHostedPrivateVirtualInterfaceAccepterDxGatewayId,
         DxHostedPrivateVirtualInterfaceAccepterGatewayId,
-        DxHostedPrivateVirtualInterfaceAccepterGatewayIdDxGatewayId,
-        DxHostedPrivateVirtualInterfaceAccepterGatewayIdVpnGatewayId;
+        DxHostedPrivateVirtualInterfaceAccepterVpnGatewayId;
 export 'src/dx/aws_dx_hosted_public_virtual_interface.dart'
     show
         AwsDxHostedPublicVirtualInterface,
@@ -44,9 +44,9 @@ export 'src/dx/aws_dx_private_virtual_interface.dart'
     show
         AwsDxPrivateVirtualInterface,
         DxPrivateVirtualInterfaceAddressFamily,
+        DxPrivateVirtualInterfaceDxGatewayId,
         DxPrivateVirtualInterfaceGatewayId,
-        DxPrivateVirtualInterfaceGatewayIdDxGatewayId,
-        DxPrivateVirtualInterfaceGatewayIdVpnGatewayId;
+        DxPrivateVirtualInterfaceVpnGatewayId;
 export 'src/dx/aws_dx_public_virtual_interface.dart'
     show AwsDxPublicVirtualInterface, DxPublicVirtualInterfaceAddressFamily;
 export 'src/dx/aws_dx_transit_virtual_interface.dart'

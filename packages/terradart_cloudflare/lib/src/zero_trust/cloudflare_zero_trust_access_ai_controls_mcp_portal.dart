@@ -40,11 +40,9 @@ final class ZeroTrustAccessAiControlsMcpPortalServers {
 
   final TfArg<String> serverId;
 
-  final List<ZeroTrustAccessAiControlsMcpPortalServersUpdatedPrompts>?
-  updatedPrompts;
+  final List<ZeroTrustAccessAiControlsMcpPortalUpdatedPrompts>? updatedPrompts;
 
-  final List<ZeroTrustAccessAiControlsMcpPortalServersUpdatedTools>?
-  updatedTools;
+  final List<ZeroTrustAccessAiControlsMcpPortalUpdatedTools>? updatedTools;
 
   Map<String, Object?> encode() => {
     'default_disabled': ?defaultDisabled?.toTfJson(),
@@ -60,8 +58,8 @@ final class ZeroTrustAccessAiControlsMcpPortalServers {
 /// Typed helper for the `servers.updated_prompts` block of
 /// `cloudflare_zero_trust_access_ai_controls_mcp_portal` (derived from provider schema).
 @immutable
-final class ZeroTrustAccessAiControlsMcpPortalServersUpdatedPrompts {
-  const ZeroTrustAccessAiControlsMcpPortalServersUpdatedPrompts({
+final class ZeroTrustAccessAiControlsMcpPortalUpdatedPrompts {
+  const ZeroTrustAccessAiControlsMcpPortalUpdatedPrompts({
     this.alias,
     this.description,
     this.enabled,
@@ -87,8 +85,8 @@ final class ZeroTrustAccessAiControlsMcpPortalServersUpdatedPrompts {
 /// Typed helper for the `servers.updated_tools` block of
 /// `cloudflare_zero_trust_access_ai_controls_mcp_portal` (derived from provider schema).
 @immutable
-final class ZeroTrustAccessAiControlsMcpPortalServersUpdatedTools {
-  const ZeroTrustAccessAiControlsMcpPortalServersUpdatedTools({
+final class ZeroTrustAccessAiControlsMcpPortalUpdatedTools {
+  const ZeroTrustAccessAiControlsMcpPortalUpdatedTools({
     this.alias,
     this.description,
     this.enabled,

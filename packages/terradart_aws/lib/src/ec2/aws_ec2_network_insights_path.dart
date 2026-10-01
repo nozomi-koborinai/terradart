@@ -32,11 +32,9 @@ final class Ec2NetworkInsightsPathFilterAtDestination {
 
   final TfArg<String>? sourceAddress;
 
-  final Ec2NetworkInsightsPathFilterAtDestinationDestinationPortRange?
-  destinationPortRange;
+  final Ec2NetworkInsightsPathDestinationPortRange? destinationPortRange;
 
-  final Ec2NetworkInsightsPathFilterAtDestinationSourcePortRange?
-  sourcePortRange;
+  final Ec2NetworkInsightsPathSourcePortRange? sourcePortRange;
 
   Map<String, Object?> encode() => {
     'destination_address': ?destinationAddress?.toTfJson(),
@@ -48,9 +46,10 @@ final class Ec2NetworkInsightsPathFilterAtDestination {
 
 /// Typed helper for the `filter_at_destination.destination_port_range` block of
 /// `aws_ec2_network_insights_path` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class Ec2NetworkInsightsPathFilterAtDestinationDestinationPortRange {
-  const Ec2NetworkInsightsPathFilterAtDestinationDestinationPortRange({
+final class Ec2NetworkInsightsPathDestinationPortRange {
+  const Ec2NetworkInsightsPathDestinationPortRange({
     this.fromPort,
     this.toPort,
   });
@@ -67,12 +66,10 @@ final class Ec2NetworkInsightsPathFilterAtDestinationDestinationPortRange {
 
 /// Typed helper for the `filter_at_destination.source_port_range` block of
 /// `aws_ec2_network_insights_path` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class Ec2NetworkInsightsPathFilterAtDestinationSourcePortRange {
-  const Ec2NetworkInsightsPathFilterAtDestinationSourcePortRange({
-    this.fromPort,
-    this.toPort,
-  });
+final class Ec2NetworkInsightsPathSourcePortRange {
+  const Ec2NetworkInsightsPathSourcePortRange({this.fromPort, this.toPort});
 
   final TfArg<num>? fromPort;
 
@@ -99,54 +96,15 @@ final class Ec2NetworkInsightsPathFilterAtSource {
 
   final TfArg<String>? sourceAddress;
 
-  final Ec2NetworkInsightsPathFilterAtSourceDestinationPortRange?
-  destinationPortRange;
+  final Ec2NetworkInsightsPathDestinationPortRange? destinationPortRange;
 
-  final Ec2NetworkInsightsPathFilterAtSourceSourcePortRange? sourcePortRange;
+  final Ec2NetworkInsightsPathSourcePortRange? sourcePortRange;
 
   Map<String, Object?> encode() => {
     'destination_address': ?destinationAddress?.toTfJson(),
     'source_address': ?sourceAddress?.toTfJson(),
     'destination_port_range': ?destinationPortRange?.encode(),
     'source_port_range': ?sourcePortRange?.encode(),
-  };
-}
-
-/// Typed helper for the `filter_at_source.destination_port_range` block of
-/// `aws_ec2_network_insights_path` (derived from provider schema).
-@immutable
-final class Ec2NetworkInsightsPathFilterAtSourceDestinationPortRange {
-  const Ec2NetworkInsightsPathFilterAtSourceDestinationPortRange({
-    this.fromPort,
-    this.toPort,
-  });
-
-  final TfArg<num>? fromPort;
-
-  final TfArg<num>? toPort;
-
-  Map<String, Object?> encode() => {
-    'from_port': ?fromPort?.toTfJson(),
-    'to_port': ?toPort?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `filter_at_source.source_port_range` block of
-/// `aws_ec2_network_insights_path` (derived from provider schema).
-@immutable
-final class Ec2NetworkInsightsPathFilterAtSourceSourcePortRange {
-  const Ec2NetworkInsightsPathFilterAtSourceSourcePortRange({
-    this.fromPort,
-    this.toPort,
-  });
-
-  final TfArg<num>? fromPort;
-
-  final TfArg<num>? toPort;
-
-  Map<String, Object?> encode() => {
-    'from_port': ?fromPort?.toTfJson(),
-    'to_port': ?toPort?.toTfJson(),
   };
 }
 

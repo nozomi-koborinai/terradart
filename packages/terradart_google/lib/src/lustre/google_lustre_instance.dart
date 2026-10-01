@@ -27,7 +27,7 @@ final class LustreInstanceAccessRulesOptions {
 
   final TfArg<num>? defaultSquashUid;
 
-  final List<LustreInstanceAccessRulesOptionsAccessRules>? accessRules;
+  final List<LustreInstanceAccessRules>? accessRules;
 
   Map<String, Object?> encode() => {
     'default_squash_gid': ?defaultSquashGid?.toTfJson(),
@@ -41,8 +41,8 @@ final class LustreInstanceAccessRulesOptions {
 /// Typed helper for the `access_rules_options.access_rules` block of
 /// `google_lustre_instance` (derived from provider schema).
 @immutable
-final class LustreInstanceAccessRulesOptionsAccessRules {
-  const LustreInstanceAccessRulesOptionsAccessRules({
+final class LustreInstanceAccessRules {
+  const LustreInstanceAccessRules({
     required this.ipAddressRanges,
     required this.name,
     required this.squashMode,
@@ -81,11 +81,9 @@ final class LustreInstanceMaintenancePolicy {
     required this.weeklyMaintenanceWindows,
   });
 
-  final LustreInstanceMaintenancePolicyMaintenanceExclusionWindow?
-  maintenanceExclusionWindow;
+  final LustreInstanceMaintenanceExclusionWindow? maintenanceExclusionWindow;
 
-  final LustreInstanceMaintenancePolicyWeeklyMaintenanceWindows
-  weeklyMaintenanceWindows;
+  final LustreInstanceWeeklyMaintenanceWindows weeklyMaintenanceWindows;
 
   Map<String, Object?> encode() => {
     'maintenance_exclusion_window': ?maintenanceExclusionWindow?.encode(),
@@ -96,20 +94,18 @@ final class LustreInstanceMaintenancePolicy {
 /// Typed helper for the `maintenance_policy.maintenance_exclusion_window` block of
 /// `google_lustre_instance` (derived from provider schema).
 @immutable
-final class LustreInstanceMaintenancePolicyMaintenanceExclusionWindow {
-  const LustreInstanceMaintenancePolicyMaintenanceExclusionWindow({
+final class LustreInstanceMaintenanceExclusionWindow {
+  const LustreInstanceMaintenanceExclusionWindow({
     required this.endDate,
     required this.startDate,
     required this.time,
   });
 
-  final LustreInstanceMaintenancePolicyMaintenanceExclusionWindowEndDate
-  endDate;
+  final LustreInstanceEndDate endDate;
 
-  final LustreInstanceMaintenancePolicyMaintenanceExclusionWindowStartDate
-  startDate;
+  final LustreInstanceStartDate startDate;
 
-  final LustreInstanceMaintenancePolicyMaintenanceExclusionWindowTime time;
+  final LustreInstanceTime time;
 
   Map<String, Object?> encode() => {
     'end_date': endDate.encode(),
@@ -121,12 +117,8 @@ final class LustreInstanceMaintenancePolicyMaintenanceExclusionWindow {
 /// Typed helper for the `maintenance_policy.maintenance_exclusion_window.end_date` block of
 /// `google_lustre_instance` (derived from provider schema).
 @immutable
-final class LustreInstanceMaintenancePolicyMaintenanceExclusionWindowEndDate {
-  const LustreInstanceMaintenancePolicyMaintenanceExclusionWindowEndDate({
-    this.day,
-    this.month,
-    this.year,
-  });
+final class LustreInstanceEndDate {
+  const LustreInstanceEndDate({this.day, this.month, this.year});
 
   final TfArg<num>? day;
 
@@ -144,12 +136,8 @@ final class LustreInstanceMaintenancePolicyMaintenanceExclusionWindowEndDate {
 /// Typed helper for the `maintenance_policy.maintenance_exclusion_window.start_date` block of
 /// `google_lustre_instance` (derived from provider schema).
 @immutable
-final class LustreInstanceMaintenancePolicyMaintenanceExclusionWindowStartDate {
-  const LustreInstanceMaintenancePolicyMaintenanceExclusionWindowStartDate({
-    this.day,
-    this.month,
-    this.year,
-  });
+final class LustreInstanceStartDate {
+  const LustreInstanceStartDate({this.day, this.month, this.year});
 
   final TfArg<num>? day;
 
@@ -167,8 +155,8 @@ final class LustreInstanceMaintenancePolicyMaintenanceExclusionWindowStartDate {
 /// Typed helper for the `maintenance_policy.maintenance_exclusion_window.time` block of
 /// `google_lustre_instance` (derived from provider schema).
 @immutable
-final class LustreInstanceMaintenancePolicyMaintenanceExclusionWindowTime {
-  const LustreInstanceMaintenancePolicyMaintenanceExclusionWindowTime({
+final class LustreInstanceTime {
+  const LustreInstanceTime({
     this.hours,
     this.minutes,
     this.nanos,
@@ -194,16 +182,15 @@ final class LustreInstanceMaintenancePolicyMaintenanceExclusionWindowTime {
 /// Typed helper for the `maintenance_policy.weekly_maintenance_windows` block of
 /// `google_lustre_instance` (derived from provider schema).
 @immutable
-final class LustreInstanceMaintenancePolicyWeeklyMaintenanceWindows {
-  const LustreInstanceMaintenancePolicyWeeklyMaintenanceWindows({
+final class LustreInstanceWeeklyMaintenanceWindows {
+  const LustreInstanceWeeklyMaintenanceWindows({
     required this.dayOfWeek,
     required this.startTime,
   });
 
   final TfArg<String> dayOfWeek;
 
-  final LustreInstanceMaintenancePolicyWeeklyMaintenanceWindowsStartTime
-  startTime;
+  final LustreInstanceStartTime startTime;
 
   Map<String, Object?> encode() => {
     'day_of_week': dayOfWeek.toTfJson(),
@@ -214,8 +201,8 @@ final class LustreInstanceMaintenancePolicyWeeklyMaintenanceWindows {
 /// Typed helper for the `maintenance_policy.weekly_maintenance_windows.start_time` block of
 /// `google_lustre_instance` (derived from provider schema).
 @immutable
-final class LustreInstanceMaintenancePolicyWeeklyMaintenanceWindowsStartTime {
-  const LustreInstanceMaintenancePolicyWeeklyMaintenanceWindowsStartTime({
+final class LustreInstanceStartTime {
+  const LustreInstanceStartTime({
     this.hours,
     this.minutes,
     this.nanos,

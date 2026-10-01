@@ -36,16 +36,13 @@ final class BedrockagentcoreMemoryStrategyConfiguration {
 
   final TfArg<BedrockagentcoreMemoryStrategyConfigurationType> type;
 
-  final List<BedrockagentcoreMemoryStrategyConfigurationConsolidation>?
-  consolidation;
+  final List<BedrockagentcoreMemoryStrategyConsolidation>? consolidation;
 
-  final List<BedrockagentcoreMemoryStrategyConfigurationExtraction>? extraction;
+  final List<BedrockagentcoreMemoryStrategyExtraction>? extraction;
 
-  final List<BedrockagentcoreMemoryStrategyConfigurationReflection>? reflection;
+  final List<BedrockagentcoreMemoryStrategyReflection>? reflection;
 
-  final List<
-    BedrockagentcoreMemoryStrategyConfigurationSelfManagedConfiguration
-  >?
+  final List<BedrockagentcoreMemoryStrategySelfManagedConfiguration>?
   selfManagedConfiguration;
 
   Map<String, Object?> encode() => {
@@ -79,8 +76,8 @@ enum BedrockagentcoreMemoryStrategyConfigurationType implements TerraformEnum {
 /// Typed helper for the `configuration.consolidation` block of
 /// `aws_bedrockagentcore_memory_strategy` (derived from provider schema).
 @immutable
-final class BedrockagentcoreMemoryStrategyConfigurationConsolidation {
-  const BedrockagentcoreMemoryStrategyConfigurationConsolidation({
+final class BedrockagentcoreMemoryStrategyConsolidation {
+  const BedrockagentcoreMemoryStrategyConsolidation({
     required this.appendToPrompt,
     required this.modelId,
   });
@@ -98,8 +95,8 @@ final class BedrockagentcoreMemoryStrategyConfigurationConsolidation {
 /// Typed helper for the `configuration.extraction` block of
 /// `aws_bedrockagentcore_memory_strategy` (derived from provider schema).
 @immutable
-final class BedrockagentcoreMemoryStrategyConfigurationExtraction {
-  const BedrockagentcoreMemoryStrategyConfigurationExtraction({
+final class BedrockagentcoreMemoryStrategyExtraction {
+  const BedrockagentcoreMemoryStrategyExtraction({
     required this.appendToPrompt,
     required this.modelId,
   });
@@ -117,8 +114,8 @@ final class BedrockagentcoreMemoryStrategyConfigurationExtraction {
 /// Typed helper for the `configuration.reflection` block of
 /// `aws_bedrockagentcore_memory_strategy` (derived from provider schema).
 @immutable
-final class BedrockagentcoreMemoryStrategyConfigurationReflection {
-  const BedrockagentcoreMemoryStrategyConfigurationReflection({
+final class BedrockagentcoreMemoryStrategyReflection {
+  const BedrockagentcoreMemoryStrategyReflection({
     required this.appendToPrompt,
     required this.modelId,
     required this.namespaceTemplates,
@@ -140,8 +137,8 @@ final class BedrockagentcoreMemoryStrategyConfigurationReflection {
 /// Typed helper for the `configuration.self_managed_configuration` block of
 /// `aws_bedrockagentcore_memory_strategy` (derived from provider schema).
 @immutable
-final class BedrockagentcoreMemoryStrategyConfigurationSelfManagedConfiguration {
-  const BedrockagentcoreMemoryStrategyConfigurationSelfManagedConfiguration({
+final class BedrockagentcoreMemoryStrategySelfManagedConfiguration {
+  const BedrockagentcoreMemoryStrategySelfManagedConfiguration({
     this.historicalContextWindowSize,
     this.invocationConfiguration,
     this.triggerConditions,
@@ -149,14 +146,10 @@ final class BedrockagentcoreMemoryStrategyConfigurationSelfManagedConfiguration 
 
   final TfArg<num>? historicalContextWindowSize;
 
-  final List<
-    BedrockagentcoreMemoryStrategyConfigurationSelfManagedConfigurationInvocationConfiguration
-  >?
+  final List<BedrockagentcoreMemoryStrategyInvocationConfiguration>?
   invocationConfiguration;
 
-  final List<
-    BedrockagentcoreMemoryStrategyConfigurationSelfManagedConfigurationTriggerConditions
-  >?
+  final List<BedrockagentcoreMemoryStrategyTriggerConditions>?
   triggerConditions;
 
   Map<String, Object?> encode() => {
@@ -173,8 +166,8 @@ final class BedrockagentcoreMemoryStrategyConfigurationSelfManagedConfiguration 
 /// Typed helper for the `configuration.self_managed_configuration.invocation_configuration` block of
 /// `aws_bedrockagentcore_memory_strategy` (derived from provider schema).
 @immutable
-final class BedrockagentcoreMemoryStrategyConfigurationSelfManagedConfigurationInvocationConfiguration {
-  const BedrockagentcoreMemoryStrategyConfigurationSelfManagedConfigurationInvocationConfiguration({
+final class BedrockagentcoreMemoryStrategyInvocationConfiguration {
+  const BedrockagentcoreMemoryStrategyInvocationConfiguration({
     required this.payloadDeliveryBucketName,
     required this.topicArn,
   });
@@ -192,26 +185,19 @@ final class BedrockagentcoreMemoryStrategyConfigurationSelfManagedConfigurationI
 /// Typed helper for the `configuration.self_managed_configuration.trigger_conditions` block of
 /// `aws_bedrockagentcore_memory_strategy` (derived from provider schema).
 @immutable
-final class BedrockagentcoreMemoryStrategyConfigurationSelfManagedConfigurationTriggerConditions {
-  const BedrockagentcoreMemoryStrategyConfigurationSelfManagedConfigurationTriggerConditions({
+final class BedrockagentcoreMemoryStrategyTriggerConditions {
+  const BedrockagentcoreMemoryStrategyTriggerConditions({
     this.messageBasedTrigger,
     this.timeBasedTrigger,
     this.tokenBasedTrigger,
   });
 
-  final List<
-    BedrockagentcoreMemoryStrategyConfigurationSelfManagedConfigurationTriggerConditionsMessageBasedTrigger
-  >?
+  final List<BedrockagentcoreMemoryStrategyMessageBasedTrigger>?
   messageBasedTrigger;
 
-  final List<
-    BedrockagentcoreMemoryStrategyConfigurationSelfManagedConfigurationTriggerConditionsTimeBasedTrigger
-  >?
-  timeBasedTrigger;
+  final List<BedrockagentcoreMemoryStrategyTimeBasedTrigger>? timeBasedTrigger;
 
-  final List<
-    BedrockagentcoreMemoryStrategyConfigurationSelfManagedConfigurationTriggerConditionsTokenBasedTrigger
-  >?
+  final List<BedrockagentcoreMemoryStrategyTokenBasedTrigger>?
   tokenBasedTrigger;
 
   Map<String, Object?> encode() => {
@@ -229,8 +215,8 @@ final class BedrockagentcoreMemoryStrategyConfigurationSelfManagedConfigurationT
 /// Typed helper for the `configuration.self_managed_configuration.trigger_conditions.message_based_trigger` block of
 /// `aws_bedrockagentcore_memory_strategy` (derived from provider schema).
 @immutable
-final class BedrockagentcoreMemoryStrategyConfigurationSelfManagedConfigurationTriggerConditionsMessageBasedTrigger {
-  const BedrockagentcoreMemoryStrategyConfigurationSelfManagedConfigurationTriggerConditionsMessageBasedTrigger({
+final class BedrockagentcoreMemoryStrategyMessageBasedTrigger {
+  const BedrockagentcoreMemoryStrategyMessageBasedTrigger({
     required this.messageCount,
   });
 
@@ -242,8 +228,8 @@ final class BedrockagentcoreMemoryStrategyConfigurationSelfManagedConfigurationT
 /// Typed helper for the `configuration.self_managed_configuration.trigger_conditions.time_based_trigger` block of
 /// `aws_bedrockagentcore_memory_strategy` (derived from provider schema).
 @immutable
-final class BedrockagentcoreMemoryStrategyConfigurationSelfManagedConfigurationTriggerConditionsTimeBasedTrigger {
-  const BedrockagentcoreMemoryStrategyConfigurationSelfManagedConfigurationTriggerConditionsTimeBasedTrigger({
+final class BedrockagentcoreMemoryStrategyTimeBasedTrigger {
+  const BedrockagentcoreMemoryStrategyTimeBasedTrigger({
     required this.idleSessionTimeout,
   });
 
@@ -257,8 +243,8 @@ final class BedrockagentcoreMemoryStrategyConfigurationSelfManagedConfigurationT
 /// Typed helper for the `configuration.self_managed_configuration.trigger_conditions.token_based_trigger` block of
 /// `aws_bedrockagentcore_memory_strategy` (derived from provider schema).
 @immutable
-final class BedrockagentcoreMemoryStrategyConfigurationSelfManagedConfigurationTriggerConditionsTokenBasedTrigger {
-  const BedrockagentcoreMemoryStrategyConfigurationSelfManagedConfigurationTriggerConditionsTokenBasedTrigger({
+final class BedrockagentcoreMemoryStrategyTokenBasedTrigger {
+  const BedrockagentcoreMemoryStrategyTokenBasedTrigger({
     required this.tokenCount,
   });
 
@@ -273,8 +259,7 @@ final class BedrockagentcoreMemoryStrategyConfigurationSelfManagedConfigurationT
 final class BedrockagentcoreMemoryStrategyMemoryRecordSchema {
   const BedrockagentcoreMemoryStrategyMemoryRecordSchema({this.metadataSchema});
 
-  final List<BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchema>?
-  metadataSchema;
+  final List<BedrockagentcoreMemoryStrategyMetadataSchema>? metadataSchema;
 
   Map<String, Object?> encode() => {
     if (metadataSchema != null)
@@ -285,30 +270,21 @@ final class BedrockagentcoreMemoryStrategyMemoryRecordSchema {
 /// Typed helper for the `memory_record_schema.metadata_schema` block of
 /// `aws_bedrockagentcore_memory_strategy` (derived from provider schema).
 @immutable
-final class BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchema {
-  const BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchema({
+final class BedrockagentcoreMemoryStrategyMetadataSchema {
+  const BedrockagentcoreMemoryStrategyMetadataSchema({
     this.extractionType,
     required this.key,
     this.type,
     this.extractionConfig,
   });
 
-  final TfArg<
-    BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtractionType
-  >?
-  extractionType;
+  final TfArg<BedrockagentcoreMemoryStrategyExtractionType>? extractionType;
 
   final TfArg<String> key;
 
-  final TfArg<
-    BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaType
-  >?
-  type;
+  final TfArg<BedrockagentcoreMemoryStrategyMetadataSchemaType>? type;
 
-  final List<
-    BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtractionConfig
-  >?
-  extractionConfig;
+  final List<BedrockagentcoreMemoryStrategyExtractionConfig>? extractionConfig;
 
   Map<String, Object?> encode() => {
     'extraction_type': ?extractionType?.toTfJson(),
@@ -320,28 +296,22 @@ final class BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchema {
 }
 
 /// `extraction_type` — derived from the provider schema description.
-enum BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtractionType
-    implements TerraformEnum {
+enum BedrockagentcoreMemoryStrategyExtractionType implements TerraformEnum {
   llmInferred('LLM_INFERRED'),
   strictlyConsistent('STRICTLY_CONSISTENT');
 
-  const BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtractionType(
-    this.terraformValue,
-  );
+  const BedrockagentcoreMemoryStrategyExtractionType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaType
-    implements TerraformEnum {
+enum BedrockagentcoreMemoryStrategyMetadataSchemaType implements TerraformEnum {
   string('STRING'),
   stringlist('STRINGLIST'),
   number('NUMBER');
 
-  const BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaType(
-    this.terraformValue,
-  );
+  const BedrockagentcoreMemoryStrategyMetadataSchemaType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -349,14 +319,12 @@ enum BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaType
 /// Typed helper for the `memory_record_schema.metadata_schema.extraction_config` block of
 /// `aws_bedrockagentcore_memory_strategy` (derived from provider schema).
 @immutable
-final class BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtractionConfig {
-  const BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtractionConfig({
+final class BedrockagentcoreMemoryStrategyExtractionConfig {
+  const BedrockagentcoreMemoryStrategyExtractionConfig({
     this.llmExtractionConfig,
   });
 
-  final List<
-    BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtractionConfigLlmExtractionConfig
-  >?
+  final List<BedrockagentcoreMemoryStrategyLlmExtractionConfig>?
   llmExtractionConfig;
 
   Map<String, Object?> encode() => {
@@ -370,8 +338,8 @@ final class BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtrac
 /// Typed helper for the `memory_record_schema.metadata_schema.extraction_config.llm_extraction_config` block of
 /// `aws_bedrockagentcore_memory_strategy` (derived from provider schema).
 @immutable
-final class BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtractionConfigLlmExtractionConfig {
-  const BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtractionConfigLlmExtractionConfig({
+final class BedrockagentcoreMemoryStrategyLlmExtractionConfig {
+  const BedrockagentcoreMemoryStrategyLlmExtractionConfig({
     required this.definition,
     this.llmExtractionInstruction,
     this.validation,
@@ -381,10 +349,7 @@ final class BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtrac
 
   final TfArg<String>? llmExtractionInstruction;
 
-  final List<
-    BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtractionConfigLlmExtractionConfigValidation
-  >?
-  validation;
+  final List<BedrockagentcoreMemoryStrategyValidation>? validation;
 
   Map<String, Object?> encode() => {
     'definition': definition.toTfJson(),
@@ -397,27 +362,19 @@ final class BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtrac
 /// Typed helper for the `memory_record_schema.metadata_schema.extraction_config.llm_extraction_config.validation` block of
 /// `aws_bedrockagentcore_memory_strategy` (derived from provider schema).
 @immutable
-final class BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtractionConfigLlmExtractionConfigValidation {
-  const BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtractionConfigLlmExtractionConfigValidation({
+final class BedrockagentcoreMemoryStrategyValidation {
+  const BedrockagentcoreMemoryStrategyValidation({
     this.numberValidation,
     this.stringListValidation,
     this.stringValidation,
   });
 
-  final List<
-    BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtractionConfigLlmExtractionConfigValidationNumberValidation
-  >?
-  numberValidation;
+  final List<BedrockagentcoreMemoryStrategyNumberValidation>? numberValidation;
 
-  final List<
-    BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtractionConfigLlmExtractionConfigValidationStringListValidation
-  >?
+  final List<BedrockagentcoreMemoryStrategyStringListValidation>?
   stringListValidation;
 
-  final List<
-    BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtractionConfigLlmExtractionConfigValidationStringValidation
-  >?
-  stringValidation;
+  final List<BedrockagentcoreMemoryStrategyStringValidation>? stringValidation;
 
   Map<String, Object?> encode() => {
     if (numberValidation != null)
@@ -434,8 +391,8 @@ final class BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtrac
 /// Typed helper for the `memory_record_schema.metadata_schema.extraction_config.llm_extraction_config.validation.number_validation` block of
 /// `aws_bedrockagentcore_memory_strategy` (derived from provider schema).
 @immutable
-final class BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtractionConfigLlmExtractionConfigValidationNumberValidation {
-  const BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtractionConfigLlmExtractionConfigValidationNumberValidation({
+final class BedrockagentcoreMemoryStrategyNumberValidation {
+  const BedrockagentcoreMemoryStrategyNumberValidation({
     this.maxValue,
     this.minValue,
   });
@@ -453,8 +410,8 @@ final class BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtrac
 /// Typed helper for the `memory_record_schema.metadata_schema.extraction_config.llm_extraction_config.validation.string_list_validation` block of
 /// `aws_bedrockagentcore_memory_strategy` (derived from provider schema).
 @immutable
-final class BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtractionConfigLlmExtractionConfigValidationStringListValidation {
-  const BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtractionConfigLlmExtractionConfigValidationStringListValidation({
+final class BedrockagentcoreMemoryStrategyStringListValidation {
+  const BedrockagentcoreMemoryStrategyStringListValidation({
     this.allowedValues,
     this.maxItems,
   });
@@ -472,8 +429,8 @@ final class BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtrac
 /// Typed helper for the `memory_record_schema.metadata_schema.extraction_config.llm_extraction_config.validation.string_validation` block of
 /// `aws_bedrockagentcore_memory_strategy` (derived from provider schema).
 @immutable
-final class BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtractionConfigLlmExtractionConfigValidationStringValidation {
-  const BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtractionConfigLlmExtractionConfigValidationStringValidation({
+final class BedrockagentcoreMemoryStrategyStringValidation {
+  const BedrockagentcoreMemoryStrategyStringValidation({
     required this.allowedValues,
   });
 

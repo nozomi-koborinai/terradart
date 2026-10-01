@@ -32,9 +32,7 @@ final class PrometheusScraperLoggingConfigurationLoggingDestination {
     this.cloudwatchLogs,
   });
 
-  final List<
-    PrometheusScraperLoggingConfigurationLoggingDestinationCloudwatchLogs
-  >?
+  final List<PrometheusScraperLoggingConfigurationCloudwatchLogs>?
   cloudwatchLogs;
 
   Map<String, Object?> encode() => {
@@ -46,8 +44,8 @@ final class PrometheusScraperLoggingConfigurationLoggingDestination {
 /// Typed helper for the `logging_destination.cloudwatch_logs` block of
 /// `aws_prometheus_scraper_logging_configuration` (derived from provider schema).
 @immutable
-final class PrometheusScraperLoggingConfigurationLoggingDestinationCloudwatchLogs {
-  const PrometheusScraperLoggingConfigurationLoggingDestinationCloudwatchLogs({
+final class PrometheusScraperLoggingConfigurationCloudwatchLogs {
+  const PrometheusScraperLoggingConfigurationCloudwatchLogs({
     required this.logGroupArn,
   });
 

@@ -20,11 +20,11 @@ final class DataZeroTrustDnsLocationFilter {
     this.search,
   });
 
-  final TfArg<DataZeroTrustDnsLocationFilterDirection>? direction;
+  final TfArg<DataZeroTrustDnsLocationDirection>? direction;
 
   final TfArg<List<String>>? filter;
 
-  final TfArg<DataZeroTrustDnsLocationFilterOrderBy>? orderBy;
+  final TfArg<DataZeroTrustDnsLocationOrderBy>? orderBy;
 
   final TfArg<String>? search;
 
@@ -37,22 +37,22 @@ final class DataZeroTrustDnsLocationFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataZeroTrustDnsLocationFilterDirection implements TerraformEnum {
+enum DataZeroTrustDnsLocationDirection implements TerraformEnum {
   asc('asc'),
   desc('desc');
 
-  const DataZeroTrustDnsLocationFilterDirection(this.terraformValue);
+  const DataZeroTrustDnsLocationDirection(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `order_by` — derived from the provider schema description.
-enum DataZeroTrustDnsLocationFilterOrderBy implements TerraformEnum {
+enum DataZeroTrustDnsLocationOrderBy implements TerraformEnum {
   name('name'),
   createdAt('created_at'),
   updatedAt('updated_at');
 
-  const DataZeroTrustDnsLocationFilterOrderBy(this.terraformValue);
+  const DataZeroTrustDnsLocationOrderBy(this.terraformValue);
   @override
   final String terraformValue;
 }

@@ -42,8 +42,7 @@ final class SecureSourceManagerRepositoryInitialConfig {
 final class SecureSourceManagerRepositoryScanConfig {
   const SecureSourceManagerRepositoryScanConfig({this.secretScanConfig});
 
-  final SecureSourceManagerRepositoryScanConfigSecretScanConfig?
-  secretScanConfig;
+  final SecureSourceManagerRepositorySecretScanConfig? secretScanConfig;
 
   Map<String, Object?> encode() => {
     'secret_scan_config': ?secretScanConfig?.encode(),
@@ -53,8 +52,8 @@ final class SecureSourceManagerRepositoryScanConfig {
 /// Typed helper for the `scan_config.secret_scan_config` block of
 /// `google_secure_source_manager_repository` (derived from provider schema).
 @immutable
-final class SecureSourceManagerRepositoryScanConfigSecretScanConfig {
-  const SecureSourceManagerRepositoryScanConfigSecretScanConfig({
+final class SecureSourceManagerRepositorySecretScanConfig {
+  const SecureSourceManagerRepositorySecretScanConfig({
     this.enabled,
     this.inspectTemplate,
   });

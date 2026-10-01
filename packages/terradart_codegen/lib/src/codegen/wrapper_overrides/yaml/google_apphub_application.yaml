@@ -22,7 +22,7 @@ curatedDoc: |-
   ///   location: TfArg.literal('us-central1'),
   ///   applicationId: TfArg.literal('terradart-orders'),
   ///   scope: ApphubApplicationScope(
-  ///     type: TfArg.literal(ApphubApplicationScopeType.regional),
+  ///     type: TfArg.literal(ApphubApplicationType.regional),
   ///   ),
   /// );
   /// ```

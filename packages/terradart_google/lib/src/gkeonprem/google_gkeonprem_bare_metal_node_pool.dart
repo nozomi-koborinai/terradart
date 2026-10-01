@@ -25,8 +25,8 @@ enum GkeonpremBareMetalNodePoolState implements TerraformEnum {
 /// Typed helper for the `node_pool_config` block of
 /// `google_gkeonprem_bare_metal_node_pool` (derived from provider schema).
 @immutable
-final class GkeonpremBareMetalNodePoolNodePoolConfig {
-  const GkeonpremBareMetalNodePoolNodePoolConfig({
+final class GkeonpremBareMetalNodePoolConfig {
+  const GkeonpremBareMetalNodePoolConfig({
     this.labels,
     this.operatingSystem,
     required this.nodeConfigs,
@@ -37,9 +37,9 @@ final class GkeonpremBareMetalNodePoolNodePoolConfig {
 
   final TfArg<String>? operatingSystem;
 
-  final List<GkeonpremBareMetalNodePoolNodePoolConfigNodeConfigs> nodeConfigs;
+  final List<GkeonpremBareMetalNodePoolNodeConfigs> nodeConfigs;
 
-  final List<GkeonpremBareMetalNodePoolNodePoolConfigTaints>? taints;
+  final List<GkeonpremBareMetalNodePoolTaints>? taints;
 
   Map<String, Object?> encode() => {
     'labels': ?labels?.toTfJson(),
@@ -52,11 +52,8 @@ final class GkeonpremBareMetalNodePoolNodePoolConfig {
 /// Typed helper for the `node_pool_config.node_configs` block of
 /// `google_gkeonprem_bare_metal_node_pool` (derived from provider schema).
 @immutable
-final class GkeonpremBareMetalNodePoolNodePoolConfigNodeConfigs {
-  const GkeonpremBareMetalNodePoolNodePoolConfigNodeConfigs({
-    this.labels,
-    this.nodeIp,
-  });
+final class GkeonpremBareMetalNodePoolNodeConfigs {
+  const GkeonpremBareMetalNodePoolNodeConfigs({this.labels, this.nodeIp});
 
   final TfArg<Map<String, String>>? labels;
 
@@ -71,14 +68,10 @@ final class GkeonpremBareMetalNodePoolNodePoolConfigNodeConfigs {
 /// Typed helper for the `node_pool_config.taints` block of
 /// `google_gkeonprem_bare_metal_node_pool` (derived from provider schema).
 @immutable
-final class GkeonpremBareMetalNodePoolNodePoolConfigTaints {
-  const GkeonpremBareMetalNodePoolNodePoolConfigTaints({
-    this.effect,
-    this.key,
-    this.value,
-  });
+final class GkeonpremBareMetalNodePoolTaints {
+  const GkeonpremBareMetalNodePoolTaints({this.effect, this.key, this.value});
 
-  final TfArg<GkeonpremBareMetalNodePoolNodePoolConfigTaintsEffect>? effect;
+  final TfArg<GkeonpremBareMetalNodePoolEffect>? effect;
 
   final TfArg<String>? key;
 
@@ -92,15 +85,12 @@ final class GkeonpremBareMetalNodePoolNodePoolConfigTaints {
 }
 
 /// `effect` — derived from the provider schema description.
-enum GkeonpremBareMetalNodePoolNodePoolConfigTaintsEffect
-    implements TerraformEnum {
+enum GkeonpremBareMetalNodePoolEffect implements TerraformEnum {
   effectUnspecified('EFFECT_UNSPECIFIED'),
   preferNoSchedule('PREFER_NO_SCHEDULE'),
   noExecute('NO_EXECUTE');
 
-  const GkeonpremBareMetalNodePoolNodePoolConfigTaintsEffect(
-    this.terraformValue,
-  );
+  const GkeonpremBareMetalNodePoolEffect(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -127,7 +117,7 @@ final class GoogleGkeonpremBareMetalNodePool extends Resource {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<String> bareMetalCluster,
-    required GkeonpremBareMetalNodePoolNodePoolConfig nodePoolConfig,
+    required GkeonpremBareMetalNodePoolConfig nodePoolConfig,
     TfArg<String>? displayName,
     TfArg<Map<String, String>>? annotations,
     TfArg<String>? deletionPolicy,

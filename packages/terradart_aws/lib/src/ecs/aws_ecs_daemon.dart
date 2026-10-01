@@ -31,7 +31,7 @@ final class EcsDaemonDeploymentConfiguration {
 
   final TfArg<num>? drainPercent;
 
-  final List<EcsDaemonDeploymentConfigurationAlarms>? alarms;
+  final List<EcsDaemonAlarms>? alarms;
 
   Map<String, Object?> encode() => {
     'bake_time_in_minutes': ?bakeTimeInMinutes?.toTfJson(),
@@ -43,8 +43,8 @@ final class EcsDaemonDeploymentConfiguration {
 /// Typed helper for the `deployment_configuration.alarms` block of
 /// `aws_ecs_daemon` (derived from provider schema).
 @immutable
-final class EcsDaemonDeploymentConfigurationAlarms {
-  const EcsDaemonDeploymentConfigurationAlarms({this.alarmNames, this.enable});
+final class EcsDaemonAlarms {
+  const EcsDaemonAlarms({this.alarmNames, this.enable});
 
   final TfArg<List<String>>? alarmNames;
 

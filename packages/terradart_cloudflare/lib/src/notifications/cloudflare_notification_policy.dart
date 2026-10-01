@@ -183,7 +183,7 @@ final class NotificationPolicyFilters {
 
   final TfArg<List<String>>? healthCheckId;
 
-  final List<TfArg<NotificationPolicyFiltersIncidentImpact>>? incidentImpact;
+  final List<TfArg<NotificationPolicyIncidentImpact>>? incidentImpact;
 
   final TfArg<List<String>>? inputId;
 
@@ -231,8 +231,7 @@ final class NotificationPolicyFilters {
 
   final TfArg<List<String>>? tokenId;
 
-  final List<TfArg<NotificationPolicyFiltersTrafficExclusions>>?
-  trafficExclusions;
+  final List<TfArg<NotificationPolicyTrafficExclusions>>? trafficExclusions;
 
   final TfArg<List<String>>? tunnelId;
 
@@ -296,22 +295,22 @@ final class NotificationPolicyFilters {
 }
 
 /// `incident_impact` — derived from the provider schema description.
-enum NotificationPolicyFiltersIncidentImpact implements TerraformEnum {
+enum NotificationPolicyIncidentImpact implements TerraformEnum {
   incidentImpactNone('INCIDENT_IMPACT_NONE'),
   incidentImpactMinor('INCIDENT_IMPACT_MINOR'),
   incidentImpactMajor('INCIDENT_IMPACT_MAJOR'),
   incidentImpactCritical('INCIDENT_IMPACT_CRITICAL');
 
-  const NotificationPolicyFiltersIncidentImpact(this.terraformValue);
+  const NotificationPolicyIncidentImpact(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `traffic_exclusions` — derived from the provider schema description.
-enum NotificationPolicyFiltersTrafficExclusions implements TerraformEnum {
+enum NotificationPolicyTrafficExclusions implements TerraformEnum {
   securityEvents('security_events');
 
-  const NotificationPolicyFiltersTrafficExclusions(this.terraformValue);
+  const NotificationPolicyTrafficExclusions(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -326,11 +325,11 @@ final class NotificationPolicyMechanisms {
     this.webhooks,
   });
 
-  final List<NotificationPolicyMechanismsEmail>? email;
+  final List<NotificationPolicyEmail>? email;
 
-  final List<NotificationPolicyMechanismsPagerduty>? pagerduty;
+  final List<NotificationPolicyPagerduty>? pagerduty;
 
-  final List<NotificationPolicyMechanismsWebhooks>? webhooks;
+  final List<NotificationPolicyWebhooks>? webhooks;
 
   Map<String, Object?> encode() => {
     if (email != null) 'email': [for (final e in email!) e.encode()],
@@ -343,8 +342,8 @@ final class NotificationPolicyMechanisms {
 /// Typed helper for the `mechanisms.email` block of
 /// `cloudflare_notification_policy` (derived from provider schema).
 @immutable
-final class NotificationPolicyMechanismsEmail {
-  const NotificationPolicyMechanismsEmail({this.id});
+final class NotificationPolicyEmail {
+  const NotificationPolicyEmail({this.id});
 
   final TfArg<String>? id;
 
@@ -354,8 +353,8 @@ final class NotificationPolicyMechanismsEmail {
 /// Typed helper for the `mechanisms.pagerduty` block of
 /// `cloudflare_notification_policy` (derived from provider schema).
 @immutable
-final class NotificationPolicyMechanismsPagerduty {
-  const NotificationPolicyMechanismsPagerduty({this.id});
+final class NotificationPolicyPagerduty {
+  const NotificationPolicyPagerduty({this.id});
 
   final TfArg<String>? id;
 
@@ -365,8 +364,8 @@ final class NotificationPolicyMechanismsPagerduty {
 /// Typed helper for the `mechanisms.webhooks` block of
 /// `cloudflare_notification_policy` (derived from provider schema).
 @immutable
-final class NotificationPolicyMechanismsWebhooks {
-  const NotificationPolicyMechanismsWebhooks({this.id});
+final class NotificationPolicyWebhooks {
+  const NotificationPolicyWebhooks({this.id});
 
   final TfArg<String>? id;
 

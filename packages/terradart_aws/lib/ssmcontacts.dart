@@ -10,22 +10,21 @@ export 'src/ssmcontacts/aws_ssmcontacts_contact_channel.dart'
 export 'src/ssmcontacts/aws_ssmcontacts_plan.dart'
     show
         AwsSsmcontactsPlan,
+        SsmcontactsPlanChannelTargetInfo,
+        SsmcontactsPlanContactTargetInfo,
         SsmcontactsPlanStage,
-        SsmcontactsPlanStageTarget,
-        SsmcontactsPlanStageTargetChannelTargetInfo,
-        SsmcontactsPlanStageTargetContactTargetInfo;
+        SsmcontactsPlanTarget;
 export 'src/ssmcontacts/aws_ssmcontacts_rotation.dart'
     show
         AwsSsmcontactsRotation,
+        SsmcontactsRotationCoverageTimes,
+        SsmcontactsRotationDailySettings,
+        SsmcontactsRotationDayOfWeek,
+        SsmcontactsRotationEnd,
+        SsmcontactsRotationHandOffTime,
+        SsmcontactsRotationMapBlockKey,
+        SsmcontactsRotationMonthlySettings,
         SsmcontactsRotationRecurrence,
-        SsmcontactsRotationRecurrenceDailySettings,
-        SsmcontactsRotationRecurrenceMonthlySettings,
-        SsmcontactsRotationRecurrenceMonthlySettingsHandOffTime,
-        SsmcontactsRotationRecurrenceShiftCoverages,
-        SsmcontactsRotationRecurrenceShiftCoveragesCoverageTimes,
-        SsmcontactsRotationRecurrenceShiftCoveragesCoverageTimesEnd,
-        SsmcontactsRotationRecurrenceShiftCoveragesCoverageTimesStart,
-        SsmcontactsRotationRecurrenceShiftCoveragesMapBlockKey,
-        SsmcontactsRotationRecurrenceWeeklySettings,
-        SsmcontactsRotationRecurrenceWeeklySettingsDayOfWeek,
-        SsmcontactsRotationRecurrenceWeeklySettingsHandOffTime;
+        SsmcontactsRotationShiftCoverages,
+        SsmcontactsRotationStart,
+        SsmcontactsRotationWeeklySettings;

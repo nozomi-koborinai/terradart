@@ -8,26 +8,26 @@ library;
 
 export 'src/discovery_engine/google_discovery_engine_acl_config.dart'
     show
+        DiscoveryEngineAclConfigExternalIdpConfig,
         DiscoveryEngineAclConfigIdpConfig,
-        DiscoveryEngineAclConfigIdpConfigExternalIdpConfig,
-        DiscoveryEngineAclConfigIdpConfigIdpType,
+        DiscoveryEngineAclConfigIdpType,
         GoogleDiscoveryEngineAclConfig;
 export 'src/discovery_engine/google_discovery_engine_assistant.dart'
     show
+        DiscoveryEngineAssistantBannedPhrases,
         DiscoveryEngineAssistantCustomerPolicy,
-        DiscoveryEngineAssistantCustomerPolicyBannedPhrases,
-        DiscoveryEngineAssistantCustomerPolicyModelArmorConfig,
         DiscoveryEngineAssistantGenerationConfig,
-        DiscoveryEngineAssistantGenerationConfigSystemInstruction,
+        DiscoveryEngineAssistantModelArmorConfig,
+        DiscoveryEngineAssistantSystemInstruction,
         GoogleDiscoveryEngineAssistant;
 export 'src/discovery_engine/google_discovery_engine_chat_engine.dart'
     show
-        DiscoveryEngineChatEngineChatEngineConfig,
-        DiscoveryEngineChatEngineChatEngineConfigAgent,
-        DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfig,
-        DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigChoice,
-        DiscoveryEngineChatEngineChatEngineConfigAgentDialogflowAgentToLink,
+        DiscoveryEngineChatEngineAgent,
+        DiscoveryEngineChatEngineAgentCreationConfig,
+        DiscoveryEngineChatEngineAgentCreationConfigChoice,
+        DiscoveryEngineChatEngineAgentDialogflowAgentToLink,
         DiscoveryEngineChatEngineCommonConfig,
+        DiscoveryEngineChatEngineConfig,
         DiscoveryEngineChatEngineIndustryVertical,
         GoogleDiscoveryEngineChatEngine;
 export 'src/discovery_engine/google_discovery_engine_cmek_config.dart'
@@ -37,56 +37,53 @@ export 'src/discovery_engine/google_discovery_engine_cmek_config.dart'
 export 'src/discovery_engine/google_discovery_engine_control.dart'
     show
         DiscoveryEngineControlAction,
-        DiscoveryEngineControlActionBoostAction,
-        DiscoveryEngineControlActionFilterAction,
-        DiscoveryEngineControlActionPromoteAction,
-        DiscoveryEngineControlActionRedirectAction,
-        DiscoveryEngineControlActionSynonymsAction,
+        DiscoveryEngineControlActiveTimeRange,
+        DiscoveryEngineControlAttributeType,
+        DiscoveryEngineControlBoost,
         DiscoveryEngineControlBoostAction,
-        DiscoveryEngineControlBoostActionBoost,
-        DiscoveryEngineControlBoostActionBoostFixedBoost,
-        DiscoveryEngineControlBoostActionBoostInterpolationBoostSpec,
-        DiscoveryEngineControlBoostActionInterpolationBoostSpec,
-        DiscoveryEngineControlBoostActionInterpolationBoostSpecAttributeType,
-        DiscoveryEngineControlBoostActionInterpolationBoostSpecControlPoint,
+        DiscoveryEngineControlBoostActionChoice,
+        DiscoveryEngineControlBoostInterpolationBoostSpec,
         DiscoveryEngineControlConditions,
-        DiscoveryEngineControlConditionsActiveTimeRange,
-        DiscoveryEngineControlConditionsQueryTerms,
         DiscoveryEngineControlFilterAction,
+        DiscoveryEngineControlFilterActionChoice,
+        DiscoveryEngineControlFixedBoost,
+        DiscoveryEngineControlInterpolationBoostSpec,
+        DiscoveryEngineControlPoint,
         DiscoveryEngineControlPromoteAction,
-        DiscoveryEngineControlPromoteActionSearchLinkPromotion,
+        DiscoveryEngineControlPromoteActionChoice,
+        DiscoveryEngineControlQueryTerms,
         DiscoveryEngineControlRedirectAction,
+        DiscoveryEngineControlRedirectActionChoice,
+        DiscoveryEngineControlSearchLinkPromotion,
         DiscoveryEngineControlSolutionType,
         DiscoveryEngineControlSynonymsAction,
+        DiscoveryEngineControlSynonymsActionChoice,
         GoogleDiscoveryEngineControl;
 export 'src/discovery_engine/google_discovery_engine_data_connector.dart'
     show
         DiscoveryEngineDataConnectorActionConfig,
         DiscoveryEngineDataConnectorBapConfig,
         DiscoveryEngineDataConnectorDestinationConfigs,
-        DiscoveryEngineDataConnectorDestinationConfigsDestinations,
+        DiscoveryEngineDataConnectorDestinations,
         DiscoveryEngineDataConnectorEntities,
+        DiscoveryEngineDataConnectorJsonParams,
         DiscoveryEngineDataConnectorMetadata,
         DiscoveryEngineDataConnectorParams,
         DiscoveryEngineDataConnectorParamsChoice,
-        DiscoveryEngineDataConnectorParamsJsonParams,
         GoogleDiscoveryEngineDataConnector;
 export 'src/discovery_engine/google_discovery_engine_data_store.dart'
     show
         DiscoveryEngineDataStoreAdvancedSiteSearchConfig,
+        DiscoveryEngineDataStoreChunkingConfig,
         DiscoveryEngineDataStoreContentConfig,
+        DiscoveryEngineDataStoreDefaultParsingConfig,
+        DiscoveryEngineDataStoreDigitalParsingConfig,
         DiscoveryEngineDataStoreDocumentProcessingConfig,
-        DiscoveryEngineDataStoreDocumentProcessingConfigChunkingConfig,
-        DiscoveryEngineDataStoreDocumentProcessingConfigChunkingConfigLayoutBasedChunkingConfig,
-        DiscoveryEngineDataStoreDocumentProcessingConfigDefaultParsingConfig,
-        DiscoveryEngineDataStoreDocumentProcessingConfigDefaultParsingConfigDigitalParsingConfig,
-        DiscoveryEngineDataStoreDocumentProcessingConfigDefaultParsingConfigLayoutParsingConfig,
-        DiscoveryEngineDataStoreDocumentProcessingConfigDefaultParsingConfigOcrParsingConfig,
-        DiscoveryEngineDataStoreDocumentProcessingConfigParsingConfigOverrides,
-        DiscoveryEngineDataStoreDocumentProcessingConfigParsingConfigOverridesDigitalParsingConfig,
-        DiscoveryEngineDataStoreDocumentProcessingConfigParsingConfigOverridesLayoutParsingConfig,
-        DiscoveryEngineDataStoreDocumentProcessingConfigParsingConfigOverridesOcrParsingConfig,
         DiscoveryEngineDataStoreIndustryVertical,
+        DiscoveryEngineDataStoreLayoutBasedChunkingConfig,
+        DiscoveryEngineDataStoreLayoutParsingConfig,
+        DiscoveryEngineDataStoreOcrParsingConfig,
+        DiscoveryEngineDataStoreParsingConfigOverrides,
         GoogleDiscoveryEngineDataStore;
 export 'src/discovery_engine/google_discovery_engine_license_config.dart'
     show
@@ -98,24 +95,24 @@ export 'src/discovery_engine/google_discovery_engine_license_config.dart'
 export 'src/discovery_engine/google_discovery_engine_recommendation_engine.dart'
     show
         DiscoveryEngineRecommendationEngineCommonConfig,
+        DiscoveryEngineRecommendationEngineFeaturesConfig,
         DiscoveryEngineRecommendationEngineIndustryVertical,
         DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfig,
-        DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfigEngineFeaturesConfig,
-        DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfigEngineFeaturesConfigMostPopularConfig,
-        DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfigEngineFeaturesConfigRecommendedForYouConfig,
-        DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfigOptimizationObjectiveConfig,
-        DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfigTrainingState,
+        DiscoveryEngineRecommendationEngineMostPopularConfig,
+        DiscoveryEngineRecommendationEngineOptimizationObjectiveConfig,
+        DiscoveryEngineRecommendationEngineRecommendedForYouConfig,
+        DiscoveryEngineRecommendationEngineTrainingState,
         GoogleDiscoveryEngineRecommendationEngine;
 export 'src/discovery_engine/google_discovery_engine_schema.dart'
     show GoogleDiscoveryEngineSchema;
 export 'src/discovery_engine/google_discovery_engine_search_engine.dart'
     show
         DiscoveryEngineSearchEngineCommonConfig,
+        DiscoveryEngineSearchEngineConfig,
+        DiscoveryEngineSearchEngineFeatureConfig,
         DiscoveryEngineSearchEngineIndustryVertical,
         DiscoveryEngineSearchEngineKnowledgeGraphConfig,
-        DiscoveryEngineSearchEngineKnowledgeGraphConfigFeatureConfig,
-        DiscoveryEngineSearchEngineSearchEngineConfig,
-        DiscoveryEngineSearchEngineSearchEngineConfigRequiredSubscriptionTier,
+        DiscoveryEngineSearchEngineRequiredSubscriptionTier,
         DiscoveryEngineSearchEngineSearchTier,
         GoogleDiscoveryEngineSearchEngine;
 export 'src/discovery_engine/google_discovery_engine_search_engine_iam_binding.dart'
@@ -142,19 +139,19 @@ export 'src/discovery_engine/google_discovery_engine_user_store.dart'
 export 'src/discovery_engine/google_discovery_engine_widget_config.dart'
     show
         DiscoveryEngineWidgetConfigAccessSettings,
+        DiscoveryEngineWidgetConfigDataStoreUiConfigs,
+        DiscoveryEngineWidgetConfigDeviceVisibility,
+        DiscoveryEngineWidgetConfigFacetField,
+        DiscoveryEngineWidgetConfigFieldsUiComponentsMap,
+        DiscoveryEngineWidgetConfigGenerativeAnswerConfig,
         DiscoveryEngineWidgetConfigHomepageSetting,
-        DiscoveryEngineWidgetConfigHomepageSettingShortcuts,
-        DiscoveryEngineWidgetConfigHomepageSettingShortcutsIcon,
+        DiscoveryEngineWidgetConfigIcon,
+        DiscoveryEngineWidgetConfigImageSource,
+        DiscoveryEngineWidgetConfigInteractionType,
+        DiscoveryEngineWidgetConfigLogo,
+        DiscoveryEngineWidgetConfigResultDescriptionType,
+        DiscoveryEngineWidgetConfigSearchAddonSpec,
+        DiscoveryEngineWidgetConfigShortcuts,
         DiscoveryEngineWidgetConfigUiBranding,
-        DiscoveryEngineWidgetConfigUiBrandingLogo,
         DiscoveryEngineWidgetConfigUiSettings,
-        DiscoveryEngineWidgetConfigUiSettingsDataStoreUiConfigs,
-        DiscoveryEngineWidgetConfigUiSettingsDataStoreUiConfigsFacetField,
-        DiscoveryEngineWidgetConfigUiSettingsDataStoreUiConfigsFieldsUiComponentsMap,
-        DiscoveryEngineWidgetConfigUiSettingsDataStoreUiConfigsFieldsUiComponentsMapDeviceVisibility,
-        DiscoveryEngineWidgetConfigUiSettingsGenerativeAnswerConfig,
-        DiscoveryEngineWidgetConfigUiSettingsGenerativeAnswerConfigImageSource,
-        DiscoveryEngineWidgetConfigUiSettingsInteractionType,
-        DiscoveryEngineWidgetConfigUiSettingsResultDescriptionType,
-        DiscoveryEngineWidgetConfigUiSettingsSearchAddonSpec,
         GoogleDiscoveryEngineWidgetConfig;

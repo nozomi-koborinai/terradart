@@ -102,20 +102,20 @@ final class KinesisStreamCapacityWarmThroughputMibPs
 /// Typed helper for the `stream_mode_details` block of
 /// `aws_kinesis_stream` (derived from provider schema).
 @immutable
-final class KinesisStreamStreamModeDetails {
-  const KinesisStreamStreamModeDetails({required this.streamMode});
+final class KinesisStreamModeDetails {
+  const KinesisStreamModeDetails({required this.streamMode});
 
-  final TfArg<KinesisStreamStreamModeDetailsStreamMode> streamMode;
+  final TfArg<KinesisStreamMode> streamMode;
 
   Map<String, Object?> encode() => {'stream_mode': streamMode.toTfJson()};
 }
 
 /// `stream_mode` — derived from the provider schema description.
-enum KinesisStreamStreamModeDetailsStreamMode implements TerraformEnum {
+enum KinesisStreamMode implements TerraformEnum {
   provisioned('PROVISIONED'),
   onDemand('ON_DEMAND');
 
-  const KinesisStreamStreamModeDetailsStreamMode(this.terraformValue);
+  const KinesisStreamMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -137,7 +137,7 @@ final class AwsKinesisStream extends Resource {
     KinesisStreamCapacity? capacity,
     List<TfArg<KinesisStreamShardLevelMetrics>>? shardLevelMetrics,
     TfArg<Map<String, String>>? tags,
-    KinesisStreamStreamModeDetails? streamModeDetails,
+    KinesisStreamModeDetails? streamModeDetails,
     super.lifecycle,
     super.dependsOn,
     super.provider,

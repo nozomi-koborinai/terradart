@@ -31,7 +31,7 @@ final class AlloydbInstanceClientConnectionConfig {
 
   final TfArg<bool>? requireConnectors;
 
-  final AlloydbInstanceClientConnectionConfigSslConfig? sslConfig;
+  final AlloydbInstanceSslConfig? sslConfig;
 
   Map<String, Object?> encode() => {
     'require_connectors': ?requireConnectors?.toTfJson(),
@@ -42,23 +42,20 @@ final class AlloydbInstanceClientConnectionConfig {
 /// Typed helper for the `client_connection_config.ssl_config` block of
 /// `google_alloydb_instance` (derived from provider schema).
 @immutable
-final class AlloydbInstanceClientConnectionConfigSslConfig {
-  const AlloydbInstanceClientConnectionConfigSslConfig({this.sslMode});
+final class AlloydbInstanceSslConfig {
+  const AlloydbInstanceSslConfig({this.sslMode});
 
-  final TfArg<AlloydbInstanceClientConnectionConfigSslConfigSslMode>? sslMode;
+  final TfArg<AlloydbInstanceSslMode>? sslMode;
 
   Map<String, Object?> encode() => {'ssl_mode': ?sslMode?.toTfJson()};
 }
 
 /// `ssl_mode` — derived from the provider schema description.
-enum AlloydbInstanceClientConnectionConfigSslConfigSslMode
-    implements TerraformEnum {
+enum AlloydbInstanceSslMode implements TerraformEnum {
   encryptedOnly('ENCRYPTED_ONLY'),
   allowUnencryptedAndEncrypted('ALLOW_UNENCRYPTED_AND_ENCRYPTED');
 
-  const AlloydbInstanceClientConnectionConfigSslConfigSslMode(
-    this.terraformValue,
-  );
+  const AlloydbInstanceSslMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -115,7 +112,7 @@ final class AlloydbInstanceNetworkConfig {
 
   final TfArg<bool>? enablePublicIp;
 
-  final List<AlloydbInstanceNetworkConfigAuthorizedExternalNetworks>?
+  final List<AlloydbInstanceAuthorizedExternalNetworks>?
   authorizedExternalNetworks;
 
   Map<String, Object?> encode() => {
@@ -132,10 +129,8 @@ final class AlloydbInstanceNetworkConfig {
 /// Typed helper for the `network_config.authorized_external_networks` block of
 /// `google_alloydb_instance` (derived from provider schema).
 @immutable
-final class AlloydbInstanceNetworkConfigAuthorizedExternalNetworks {
-  const AlloydbInstanceNetworkConfigAuthorizedExternalNetworks({
-    this.cidrRange,
-  });
+final class AlloydbInstanceAuthorizedExternalNetworks {
+  const AlloydbInstanceAuthorizedExternalNetworks({this.cidrRange});
 
   final TfArg<String>? cidrRange;
 
@@ -154,11 +149,9 @@ final class AlloydbInstancePscInstanceConfig {
 
   final TfArg<List<String>>? allowedConsumerProjects;
 
-  final List<AlloydbInstancePscInstanceConfigPscAutoConnections>?
-  pscAutoConnections;
+  final List<AlloydbInstancePscAutoConnections>? pscAutoConnections;
 
-  final List<AlloydbInstancePscInstanceConfigPscInterfaceConfigs>?
-  pscInterfaceConfigs;
+  final List<AlloydbInstancePscInterfaceConfigs>? pscInterfaceConfigs;
 
   Map<String, Object?> encode() => {
     'allowed_consumer_projects': ?allowedConsumerProjects?.toTfJson(),
@@ -174,8 +167,8 @@ final class AlloydbInstancePscInstanceConfig {
 /// Typed helper for the `psc_instance_config.psc_auto_connections` block of
 /// `google_alloydb_instance` (derived from provider schema).
 @immutable
-final class AlloydbInstancePscInstanceConfigPscAutoConnections {
-  const AlloydbInstancePscInstanceConfigPscAutoConnections({
+final class AlloydbInstancePscAutoConnections {
+  const AlloydbInstancePscAutoConnections({
     this.consumerNetwork,
     this.consumerProject,
   });
@@ -193,10 +186,8 @@ final class AlloydbInstancePscInstanceConfigPscAutoConnections {
 /// Typed helper for the `psc_instance_config.psc_interface_configs` block of
 /// `google_alloydb_instance` (derived from provider schema).
 @immutable
-final class AlloydbInstancePscInstanceConfigPscInterfaceConfigs {
-  const AlloydbInstancePscInstanceConfigPscInterfaceConfigs({
-    this.networkAttachmentResource,
-  });
+final class AlloydbInstancePscInterfaceConfigs {
+  const AlloydbInstancePscInterfaceConfigs({this.networkAttachmentResource});
 
   final TfArg<String>? networkAttachmentResource;
 

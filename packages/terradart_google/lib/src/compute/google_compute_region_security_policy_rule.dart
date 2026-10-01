@@ -161,7 +161,7 @@ final class ComputeRegionSecurityPolicyRuleNetworkMatch {
 
   final TfArg<List<String>>? srcRegionCodes;
 
-  final List<ComputeRegionSecurityPolicyRuleNetworkMatchUserDefinedFields>?
+  final List<ComputeRegionSecurityPolicyRuleUserDefinedFields>?
   userDefinedFields;
 
   Map<String, Object?> encode() => {
@@ -180,8 +180,8 @@ final class ComputeRegionSecurityPolicyRuleNetworkMatch {
 /// Typed helper for the `network_match.user_defined_fields` block of
 /// `google_compute_region_security_policy_rule` (derived from provider schema).
 @immutable
-final class ComputeRegionSecurityPolicyRuleNetworkMatchUserDefinedFields {
-  const ComputeRegionSecurityPolicyRuleNetworkMatchUserDefinedFields({
+final class ComputeRegionSecurityPolicyRuleUserDefinedFields {
+  const ComputeRegionSecurityPolicyRuleUserDefinedFields({
     this.name,
     this.values,
   });

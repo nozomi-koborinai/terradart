@@ -17,12 +17,11 @@ final class Ec2NetworkInsightsAccessScopeExcludePaths {
     this.throughResources,
   });
 
-  final List<Ec2NetworkInsightsAccessScopeExcludePathsDestination>? destination;
+  final List<Ec2NetworkInsightsAccessScopeDestination>? destination;
 
-  final List<Ec2NetworkInsightsAccessScopeExcludePathsSource>? source;
+  final List<Ec2NetworkInsightsAccessScopeSource>? source;
 
-  final List<Ec2NetworkInsightsAccessScopeExcludePathsThroughResources>?
-  throughResources;
+  final List<Ec2NetworkInsightsAccessScopeThroughResources>? throughResources;
 
   Map<String, Object?> encode() => {
     if (destination != null)
@@ -35,22 +34,18 @@ final class Ec2NetworkInsightsAccessScopeExcludePaths {
 
 /// Typed helper for the `exclude_paths.destination` block of
 /// `aws_ec2_network_insights_access_scope` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class Ec2NetworkInsightsAccessScopeExcludePathsDestination {
-  const Ec2NetworkInsightsAccessScopeExcludePathsDestination({
+final class Ec2NetworkInsightsAccessScopeDestination {
+  const Ec2NetworkInsightsAccessScopeDestination({
     this.packetHeaderStatement,
     this.resourceStatement,
   });
 
-  final List<
-    Ec2NetworkInsightsAccessScopeExcludePathsDestinationPacketHeaderStatement
-  >?
+  final List<Ec2NetworkInsightsAccessScopePacketHeaderStatement>?
   packetHeaderStatement;
 
-  final List<
-    Ec2NetworkInsightsAccessScopeExcludePathsDestinationResourceStatement
-  >?
-  resourceStatement;
+  final List<Ec2NetworkInsightsAccessScopeResourceStatement>? resourceStatement;
 
   Map<String, Object?> encode() => {
     if (packetHeaderStatement != null)
@@ -64,9 +59,10 @@ final class Ec2NetworkInsightsAccessScopeExcludePathsDestination {
 
 /// Typed helper for the `exclude_paths.destination.packet_header_statement` block of
 /// `aws_ec2_network_insights_access_scope` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class Ec2NetworkInsightsAccessScopeExcludePathsDestinationPacketHeaderStatement {
-  const Ec2NetworkInsightsAccessScopeExcludePathsDestinationPacketHeaderStatement({
+final class Ec2NetworkInsightsAccessScopePacketHeaderStatement {
+  const Ec2NetworkInsightsAccessScopePacketHeaderStatement({
     this.destinationAddresses,
     this.destinationPorts,
     this.destinationPrefixLists,
@@ -103,9 +99,10 @@ final class Ec2NetworkInsightsAccessScopeExcludePathsDestinationPacketHeaderStat
 
 /// Typed helper for the `exclude_paths.destination.resource_statement` block of
 /// `aws_ec2_network_insights_access_scope` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class Ec2NetworkInsightsAccessScopeExcludePathsDestinationResourceStatement {
-  const Ec2NetworkInsightsAccessScopeExcludePathsDestinationResourceStatement({
+final class Ec2NetworkInsightsAccessScopeResourceStatement {
+  const Ec2NetworkInsightsAccessScopeResourceStatement({
     this.resourceTypes,
     this.resources,
   });
@@ -122,20 +119,18 @@ final class Ec2NetworkInsightsAccessScopeExcludePathsDestinationResourceStatemen
 
 /// Typed helper for the `exclude_paths.source` block of
 /// `aws_ec2_network_insights_access_scope` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class Ec2NetworkInsightsAccessScopeExcludePathsSource {
-  const Ec2NetworkInsightsAccessScopeExcludePathsSource({
+final class Ec2NetworkInsightsAccessScopeSource {
+  const Ec2NetworkInsightsAccessScopeSource({
     this.packetHeaderStatement,
     this.resourceStatement,
   });
 
-  final List<
-    Ec2NetworkInsightsAccessScopeExcludePathsSourcePacketHeaderStatement
-  >?
+  final List<Ec2NetworkInsightsAccessScopePacketHeaderStatement>?
   packetHeaderStatement;
 
-  final List<Ec2NetworkInsightsAccessScopeExcludePathsSourceResourceStatement>?
-  resourceStatement;
+  final List<Ec2NetworkInsightsAccessScopeResourceStatement>? resourceStatement;
 
   Map<String, Object?> encode() => {
     if (packetHeaderStatement != null)
@@ -147,99 +142,17 @@ final class Ec2NetworkInsightsAccessScopeExcludePathsSource {
   };
 }
 
-/// Typed helper for the `exclude_paths.source.packet_header_statement` block of
-/// `aws_ec2_network_insights_access_scope` (derived from provider schema).
-@immutable
-final class Ec2NetworkInsightsAccessScopeExcludePathsSourcePacketHeaderStatement {
-  const Ec2NetworkInsightsAccessScopeExcludePathsSourcePacketHeaderStatement({
-    this.destinationAddresses,
-    this.destinationPorts,
-    this.destinationPrefixLists,
-    this.protocols,
-    this.sourceAddresses,
-    this.sourcePorts,
-    this.sourcePrefixLists,
-  });
-
-  final TfArg<List<String>>? destinationAddresses;
-
-  final TfArg<List<String>>? destinationPorts;
-
-  final TfArg<List<String>>? destinationPrefixLists;
-
-  final TfArg<List<String>>? protocols;
-
-  final TfArg<List<String>>? sourceAddresses;
-
-  final TfArg<List<String>>? sourcePorts;
-
-  final TfArg<List<String>>? sourcePrefixLists;
-
-  Map<String, Object?> encode() => {
-    'destination_addresses': ?destinationAddresses?.toTfJson(),
-    'destination_ports': ?destinationPorts?.toTfJson(),
-    'destination_prefix_lists': ?destinationPrefixLists?.toTfJson(),
-    'protocols': ?protocols?.toTfJson(),
-    'source_addresses': ?sourceAddresses?.toTfJson(),
-    'source_ports': ?sourcePorts?.toTfJson(),
-    'source_prefix_lists': ?sourcePrefixLists?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `exclude_paths.source.resource_statement` block of
-/// `aws_ec2_network_insights_access_scope` (derived from provider schema).
-@immutable
-final class Ec2NetworkInsightsAccessScopeExcludePathsSourceResourceStatement {
-  const Ec2NetworkInsightsAccessScopeExcludePathsSourceResourceStatement({
-    this.resourceTypes,
-    this.resources,
-  });
-
-  final TfArg<List<String>>? resourceTypes;
-
-  final TfArg<List<String>>? resources;
-
-  Map<String, Object?> encode() => {
-    'resource_types': ?resourceTypes?.toTfJson(),
-    'resources': ?resources?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `exclude_paths.through_resources` block of
 /// `aws_ec2_network_insights_access_scope` (derived from provider schema).
 @immutable
-final class Ec2NetworkInsightsAccessScopeExcludePathsThroughResources {
-  const Ec2NetworkInsightsAccessScopeExcludePathsThroughResources({
-    this.resourceStatement,
-  });
+final class Ec2NetworkInsightsAccessScopeThroughResources {
+  const Ec2NetworkInsightsAccessScopeThroughResources({this.resourceStatement});
 
-  final List<
-    Ec2NetworkInsightsAccessScopeExcludePathsThroughResourcesResourceStatement
-  >?
-  resourceStatement;
+  final List<Ec2NetworkInsightsAccessScopeResourceStatement>? resourceStatement;
 
   Map<String, Object?> encode() => {
     if (resourceStatement != null)
       'resource_statement': [for (final e in resourceStatement!) e.encode()],
-  };
-}
-
-/// Typed helper for the `exclude_paths.through_resources.resource_statement` block of
-/// `aws_ec2_network_insights_access_scope` (derived from provider schema).
-@immutable
-final class Ec2NetworkInsightsAccessScopeExcludePathsThroughResourcesResourceStatement {
-  const Ec2NetworkInsightsAccessScopeExcludePathsThroughResourcesResourceStatement({
-    this.resourceTypes,
-    this.resources,
-  });
-
-  final TfArg<List<String>>? resourceTypes;
-
-  final TfArg<List<String>>? resources;
-
-  Map<String, Object?> encode() => {
-    'resource_types': ?resourceTypes?.toTfJson(),
-    'resources': ?resources?.toTfJson(),
   };
 }
 
@@ -252,186 +165,14 @@ final class Ec2NetworkInsightsAccessScopeMatchPaths {
     this.source,
   });
 
-  final List<Ec2NetworkInsightsAccessScopeMatchPathsDestination>? destination;
+  final List<Ec2NetworkInsightsAccessScopeDestination>? destination;
 
-  final List<Ec2NetworkInsightsAccessScopeMatchPathsSource>? source;
+  final List<Ec2NetworkInsightsAccessScopeSource>? source;
 
   Map<String, Object?> encode() => {
     if (destination != null)
       'destination': [for (final e in destination!) e.encode()],
     if (source != null) 'source': [for (final e in source!) e.encode()],
-  };
-}
-
-/// Typed helper for the `match_paths.destination` block of
-/// `aws_ec2_network_insights_access_scope` (derived from provider schema).
-@immutable
-final class Ec2NetworkInsightsAccessScopeMatchPathsDestination {
-  const Ec2NetworkInsightsAccessScopeMatchPathsDestination({
-    this.packetHeaderStatement,
-    this.resourceStatement,
-  });
-
-  final List<
-    Ec2NetworkInsightsAccessScopeMatchPathsDestinationPacketHeaderStatement
-  >?
-  packetHeaderStatement;
-
-  final List<
-    Ec2NetworkInsightsAccessScopeMatchPathsDestinationResourceStatement
-  >?
-  resourceStatement;
-
-  Map<String, Object?> encode() => {
-    if (packetHeaderStatement != null)
-      'packet_header_statement': [
-        for (final e in packetHeaderStatement!) e.encode(),
-      ],
-    if (resourceStatement != null)
-      'resource_statement': [for (final e in resourceStatement!) e.encode()],
-  };
-}
-
-/// Typed helper for the `match_paths.destination.packet_header_statement` block of
-/// `aws_ec2_network_insights_access_scope` (derived from provider schema).
-@immutable
-final class Ec2NetworkInsightsAccessScopeMatchPathsDestinationPacketHeaderStatement {
-  const Ec2NetworkInsightsAccessScopeMatchPathsDestinationPacketHeaderStatement({
-    this.destinationAddresses,
-    this.destinationPorts,
-    this.destinationPrefixLists,
-    this.protocols,
-    this.sourceAddresses,
-    this.sourcePorts,
-    this.sourcePrefixLists,
-  });
-
-  final TfArg<List<String>>? destinationAddresses;
-
-  final TfArg<List<String>>? destinationPorts;
-
-  final TfArg<List<String>>? destinationPrefixLists;
-
-  final TfArg<List<String>>? protocols;
-
-  final TfArg<List<String>>? sourceAddresses;
-
-  final TfArg<List<String>>? sourcePorts;
-
-  final TfArg<List<String>>? sourcePrefixLists;
-
-  Map<String, Object?> encode() => {
-    'destination_addresses': ?destinationAddresses?.toTfJson(),
-    'destination_ports': ?destinationPorts?.toTfJson(),
-    'destination_prefix_lists': ?destinationPrefixLists?.toTfJson(),
-    'protocols': ?protocols?.toTfJson(),
-    'source_addresses': ?sourceAddresses?.toTfJson(),
-    'source_ports': ?sourcePorts?.toTfJson(),
-    'source_prefix_lists': ?sourcePrefixLists?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `match_paths.destination.resource_statement` block of
-/// `aws_ec2_network_insights_access_scope` (derived from provider schema).
-@immutable
-final class Ec2NetworkInsightsAccessScopeMatchPathsDestinationResourceStatement {
-  const Ec2NetworkInsightsAccessScopeMatchPathsDestinationResourceStatement({
-    this.resourceTypes,
-    this.resources,
-  });
-
-  final TfArg<List<String>>? resourceTypes;
-
-  final TfArg<List<String>>? resources;
-
-  Map<String, Object?> encode() => {
-    'resource_types': ?resourceTypes?.toTfJson(),
-    'resources': ?resources?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `match_paths.source` block of
-/// `aws_ec2_network_insights_access_scope` (derived from provider schema).
-@immutable
-final class Ec2NetworkInsightsAccessScopeMatchPathsSource {
-  const Ec2NetworkInsightsAccessScopeMatchPathsSource({
-    this.packetHeaderStatement,
-    this.resourceStatement,
-  });
-
-  final List<
-    Ec2NetworkInsightsAccessScopeMatchPathsSourcePacketHeaderStatement
-  >?
-  packetHeaderStatement;
-
-  final List<Ec2NetworkInsightsAccessScopeMatchPathsSourceResourceStatement>?
-  resourceStatement;
-
-  Map<String, Object?> encode() => {
-    if (packetHeaderStatement != null)
-      'packet_header_statement': [
-        for (final e in packetHeaderStatement!) e.encode(),
-      ],
-    if (resourceStatement != null)
-      'resource_statement': [for (final e in resourceStatement!) e.encode()],
-  };
-}
-
-/// Typed helper for the `match_paths.source.packet_header_statement` block of
-/// `aws_ec2_network_insights_access_scope` (derived from provider schema).
-@immutable
-final class Ec2NetworkInsightsAccessScopeMatchPathsSourcePacketHeaderStatement {
-  const Ec2NetworkInsightsAccessScopeMatchPathsSourcePacketHeaderStatement({
-    this.destinationAddresses,
-    this.destinationPorts,
-    this.destinationPrefixLists,
-    this.protocols,
-    this.sourceAddresses,
-    this.sourcePorts,
-    this.sourcePrefixLists,
-  });
-
-  final TfArg<List<String>>? destinationAddresses;
-
-  final TfArg<List<String>>? destinationPorts;
-
-  final TfArg<List<String>>? destinationPrefixLists;
-
-  final TfArg<List<String>>? protocols;
-
-  final TfArg<List<String>>? sourceAddresses;
-
-  final TfArg<List<String>>? sourcePorts;
-
-  final TfArg<List<String>>? sourcePrefixLists;
-
-  Map<String, Object?> encode() => {
-    'destination_addresses': ?destinationAddresses?.toTfJson(),
-    'destination_ports': ?destinationPorts?.toTfJson(),
-    'destination_prefix_lists': ?destinationPrefixLists?.toTfJson(),
-    'protocols': ?protocols?.toTfJson(),
-    'source_addresses': ?sourceAddresses?.toTfJson(),
-    'source_ports': ?sourcePorts?.toTfJson(),
-    'source_prefix_lists': ?sourcePrefixLists?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `match_paths.source.resource_statement` block of
-/// `aws_ec2_network_insights_access_scope` (derived from provider schema).
-@immutable
-final class Ec2NetworkInsightsAccessScopeMatchPathsSourceResourceStatement {
-  const Ec2NetworkInsightsAccessScopeMatchPathsSourceResourceStatement({
-    this.resourceTypes,
-    this.resources,
-  });
-
-  final TfArg<List<String>>? resourceTypes;
-
-  final TfArg<List<String>>? resources;
-
-  Map<String, Object?> encode() => {
-    'resource_types': ?resourceTypes?.toTfJson(),
-    'resources': ?resources?.toTfJson(),
   };
 }
 

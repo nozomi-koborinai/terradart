@@ -36,8 +36,7 @@ final class ComputeGlobalVmExtensionPolicyExtensionPolicies {
 final class ComputeGlobalVmExtensionPolicyInstanceSelectors {
   const ComputeGlobalVmExtensionPolicyInstanceSelectors({this.labelSelector});
 
-  final ComputeGlobalVmExtensionPolicyInstanceSelectorsLabelSelector?
-  labelSelector;
+  final ComputeGlobalVmExtensionPolicyLabelSelector? labelSelector;
 
   Map<String, Object?> encode() => {'label_selector': ?labelSelector?.encode()};
 }
@@ -45,10 +44,8 @@ final class ComputeGlobalVmExtensionPolicyInstanceSelectors {
 /// Typed helper for the `instance_selectors.label_selector` block of
 /// `google_compute_global_vm_extension_policy` (derived from provider schema).
 @immutable
-final class ComputeGlobalVmExtensionPolicyInstanceSelectorsLabelSelector {
-  const ComputeGlobalVmExtensionPolicyInstanceSelectorsLabelSelector({
-    this.inclusionLabels,
-  });
+final class ComputeGlobalVmExtensionPolicyLabelSelector {
+  const ComputeGlobalVmExtensionPolicyLabelSelector({this.inclusionLabels});
 
   final TfArg<Map<String, String>>? inclusionLabels;
 
@@ -65,7 +62,7 @@ final class ComputeGlobalVmExtensionPolicyRolloutOperation {
     required this.rolloutInput,
   });
 
-  final ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInput rolloutInput;
+  final ComputeGlobalVmExtensionPolicyRolloutInput rolloutInput;
 
   Map<String, Object?> encode() => {'rollout_input': rolloutInput.encode()};
 }
@@ -73,8 +70,8 @@ final class ComputeGlobalVmExtensionPolicyRolloutOperation {
 /// Typed helper for the `rollout_operation.rollout_input` block of
 /// `google_compute_global_vm_extension_policy` (derived from provider schema).
 @immutable
-final class ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInput {
-  const ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInput({
+final class ComputeGlobalVmExtensionPolicyRolloutInput {
+  const ComputeGlobalVmExtensionPolicyRolloutInput({
     this.conflictBehavior,
     required this.plan,
     this.retryUuid,
@@ -82,7 +79,7 @@ final class ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInput {
 
   final TfArg<String>? conflictBehavior;
 
-  final ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPlan plan;
+  final ComputeGlobalVmExtensionPolicyPlan plan;
 
   final TfArg<String>? retryUuid;
 
@@ -97,18 +94,17 @@ final class ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInput {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPlan {
-  const ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPlan();
+sealed class ComputeGlobalVmExtensionPolicyPlan {
+  const ComputeGlobalVmExtensionPolicyPlan();
 
   /// Sets `name`.
-  const factory ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPlan.name(
-    TfArg<String> name,
-  ) = ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPlanName;
+  const factory ComputeGlobalVmExtensionPolicyPlan.name(TfArg<String> name) =
+      ComputeGlobalVmExtensionPolicyPlanName;
 
   /// Sets `predefined_rollout_plan`.
-  const factory ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPlan.predefinedRolloutPlan(
+  const factory ComputeGlobalVmExtensionPolicyPlan.predefinedRolloutPlan(
     TfArg<String> predefinedRolloutPlan,
-  ) = ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPlanPredefinedRolloutPlan;
+  ) = ComputeGlobalVmExtensionPolicyPredefinedRolloutPlan;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -116,12 +112,10 @@ sealed class ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPlan {
   Map<String, Object?> encode();
 }
 
-/// The [ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPlan.name] choice: sets `name`.
-final class ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPlanName
-    extends ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPlan {
-  const ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPlanName(
-    this.name,
-  );
+/// The [ComputeGlobalVmExtensionPolicyPlan.name] choice: sets `name`.
+final class ComputeGlobalVmExtensionPolicyPlanName
+    extends ComputeGlobalVmExtensionPolicyPlan {
+  const ComputeGlobalVmExtensionPolicyPlanName(this.name);
 
   final TfArg<String> name;
 
@@ -132,10 +126,10 @@ final class ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPlanName
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
-/// The [ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPlan.predefinedRolloutPlan] choice: sets `predefined_rollout_plan`.
-final class ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPlanPredefinedRolloutPlan
-    extends ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPlan {
-  const ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPlanPredefinedRolloutPlan(
+/// The [ComputeGlobalVmExtensionPolicyPlan.predefinedRolloutPlan] choice: sets `predefined_rollout_plan`.
+final class ComputeGlobalVmExtensionPolicyPredefinedRolloutPlan
+    extends ComputeGlobalVmExtensionPolicyPlan {
+  const ComputeGlobalVmExtensionPolicyPredefinedRolloutPlan(
     this.predefinedRolloutPlan,
   );
 

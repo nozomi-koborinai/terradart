@@ -15,40 +15,40 @@ export 'src/vpclattice/aws_vpclattice_listener.dart'
     show
         AwsVpclatticeListener,
         VpclatticeListenerDefaultAction,
-        VpclatticeListenerDefaultActionFixedResponse,
-        VpclatticeListenerDefaultActionForward,
-        VpclatticeListenerDefaultActionForwardTargetGroups,
-        VpclatticeListenerProtocol;
+        VpclatticeListenerFixedResponse,
+        VpclatticeListenerForward,
+        VpclatticeListenerProtocol,
+        VpclatticeListenerTargetGroups;
 export 'src/vpclattice/aws_vpclattice_listener_rule.dart'
     show
         AwsVpclatticeListenerRule,
         VpclatticeListenerRuleAction,
         VpclatticeListenerRuleActionFixedResponse,
-        VpclatticeListenerRuleActionFixedResponseChoice,
         VpclatticeListenerRuleActionForward,
-        VpclatticeListenerRuleActionForwardChoice,
-        VpclatticeListenerRuleActionForwardTargetGroups,
+        VpclatticeListenerRuleFixedResponse,
+        VpclatticeListenerRuleForward,
+        VpclatticeListenerRuleHeaderMatches,
+        VpclatticeListenerRuleHeaderMatchesMatch,
+        VpclatticeListenerRuleHttpMatch,
         VpclatticeListenerRuleMatch,
-        VpclatticeListenerRuleMatchHttpMatch,
-        VpclatticeListenerRuleMatchHttpMatchHeaderMatches,
-        VpclatticeListenerRuleMatchHttpMatchHeaderMatchesMatch,
-        VpclatticeListenerRuleMatchHttpMatchPathMatch,
-        VpclatticeListenerRuleMatchHttpMatchPathMatchMatch;
+        VpclatticeListenerRulePathMatch,
+        VpclatticeListenerRulePathMatchMatch,
+        VpclatticeListenerRuleTargetGroups;
 export 'src/vpclattice/aws_vpclattice_resource_configuration.dart'
     show
         AwsVpclatticeResourceConfiguration,
+        VpclatticeResourceConfigurationArnResource,
+        VpclatticeResourceConfigurationDefinition,
+        VpclatticeResourceConfigurationDefinitionArnResource,
+        VpclatticeResourceConfigurationDefinitionDnsResource,
+        VpclatticeResourceConfigurationDefinitionIpResource,
+        VpclatticeResourceConfigurationDnsResource,
+        VpclatticeResourceConfigurationIpAddressType,
+        VpclatticeResourceConfigurationIpResource,
         VpclatticeResourceConfigurationParent,
         VpclatticeResourceConfigurationParentResourceConfigurationGroupId,
         VpclatticeResourceConfigurationParentResourceGatewayIdentifier,
-        VpclatticeResourceConfigurationProtocol,
-        VpclatticeResourceConfigurationResourceConfigurationDefinition,
-        VpclatticeResourceConfigurationResourceConfigurationDefinitionArnResource,
-        VpclatticeResourceConfigurationResourceConfigurationDefinitionArnResourceChoice,
-        VpclatticeResourceConfigurationResourceConfigurationDefinitionDnsResource,
-        VpclatticeResourceConfigurationResourceConfigurationDefinitionDnsResourceChoice,
-        VpclatticeResourceConfigurationResourceConfigurationDefinitionDnsResourceIpAddressType,
-        VpclatticeResourceConfigurationResourceConfigurationDefinitionIpResource,
-        VpclatticeResourceConfigurationResourceConfigurationDefinitionIpResourceChoice;
+        VpclatticeResourceConfigurationProtocol;
 export 'src/vpclattice/aws_vpclattice_resource_gateway.dart'
     show
         AwsVpclatticeResourceGateway,
@@ -68,19 +68,18 @@ export 'src/vpclattice/aws_vpclattice_service_network_vpc_association.dart'
     show
         AwsVpclatticeServiceNetworkVpcAssociation,
         VpclatticeServiceNetworkVpcAssociationDnsOptions,
-        VpclatticeServiceNetworkVpcAssociationDnsOptionsPrivateDnsPreference;
+        VpclatticeServiceNetworkVpcAssociationPrivateDnsPreference;
 export 'src/vpclattice/aws_vpclattice_target_group.dart'
     show
         AwsVpclatticeTargetGroup,
         VpclatticeTargetGroupConfig,
-        VpclatticeTargetGroupConfigHealthCheck,
-        VpclatticeTargetGroupConfigHealthCheckMatcher,
-        VpclatticeTargetGroupConfigHealthCheckProtocol,
-        VpclatticeTargetGroupConfigHealthCheckProtocolVersion,
-        VpclatticeTargetGroupConfigIpAddressType,
-        VpclatticeTargetGroupConfigLambdaEventStructureVersion,
-        VpclatticeTargetGroupConfigProtocol,
-        VpclatticeTargetGroupConfigProtocolVersion,
+        VpclatticeTargetGroupHealthCheck,
+        VpclatticeTargetGroupHealthCheckProtocolVersion,
+        VpclatticeTargetGroupIpAddressType,
+        VpclatticeTargetGroupLambdaEventStructureVersion,
+        VpclatticeTargetGroupMatcher,
+        VpclatticeTargetGroupProtocol,
+        VpclatticeTargetGroupProtocolVersion,
         VpclatticeTargetGroupType;
 export 'src/vpclattice/aws_vpclattice_target_group_attachment.dart'
     show

@@ -9,29 +9,29 @@ export 'src/securitylake/aws_securitylake_custom_log_source.dart'
     show
         AwsSecuritylakeCustomLogSource,
         SecuritylakeCustomLogSourceConfiguration,
-        SecuritylakeCustomLogSourceConfigurationCrawlerConfiguration,
-        SecuritylakeCustomLogSourceConfigurationProviderIdentity;
+        SecuritylakeCustomLogSourceCrawlerConfiguration,
+        SecuritylakeCustomLogSourceProviderIdentity;
 export 'src/securitylake/aws_securitylake_data_lake.dart'
     show
         AwsSecuritylakeDataLake,
         SecuritylakeDataLakeConfiguration,
-        SecuritylakeDataLakeConfigurationLifecycleConfiguration,
-        SecuritylakeDataLakeConfigurationLifecycleConfigurationExpiration,
-        SecuritylakeDataLakeConfigurationLifecycleConfigurationTransition,
-        SecuritylakeDataLakeConfigurationReplicationConfiguration;
+        SecuritylakeDataLakeExpiration,
+        SecuritylakeDataLakeLifecycleConfiguration,
+        SecuritylakeDataLakeReplicationConfiguration,
+        SecuritylakeDataLakeTransition;
 export 'src/securitylake/aws_securitylake_subscriber.dart'
     show
         AwsSecuritylakeSubscriber,
         SecuritylakeSubscriberAccessType,
+        SecuritylakeSubscriberAwsLogSourceResource,
+        SecuritylakeSubscriberCustomLogSourceResource,
+        SecuritylakeSubscriberIdentity,
         SecuritylakeSubscriberSource,
-        SecuritylakeSubscriberSourceAwsLogSourceResource,
-        SecuritylakeSubscriberSourceAwsLogSourceResourceSourceName,
-        SecuritylakeSubscriberSourceCustomLogSourceResource,
-        SecuritylakeSubscriberSubscriberIdentity;
+        SecuritylakeSubscriberSourceName;
 export 'src/securitylake/aws_securitylake_subscriber_notification.dart'
     show
         AwsSecuritylakeSubscriberNotification,
         SecuritylakeSubscriberNotificationConfiguration,
-        SecuritylakeSubscriberNotificationConfigurationHttpsNotificationConfiguration,
-        SecuritylakeSubscriberNotificationConfigurationHttpsNotificationConfigurationHttpMethod,
-        SecuritylakeSubscriberNotificationConfigurationSqsNotificationConfiguration;
+        SecuritylakeSubscriberNotificationHttpMethod,
+        SecuritylakeSubscriberNotificationHttpsNotificationConfiguration,
+        SecuritylakeSubscriberNotificationSqsNotificationConfiguration;

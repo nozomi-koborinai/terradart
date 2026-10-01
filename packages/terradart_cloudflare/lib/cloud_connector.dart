@@ -5,7 +5,7 @@ library;
 
 export 'src/cloud_connector/cloudflare_cloud_connector_rules.dart'
     show
+        CloudConnectorRulesParameters,
+        CloudConnectorRulesProvider,
         CloudConnectorRulesRules,
-        CloudConnectorRulesRulesCloudConnectorRulesProvider,
-        CloudConnectorRulesRulesParameters,
         CloudflareCloudConnectorRules;

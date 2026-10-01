@@ -194,11 +194,11 @@ final class AlloydbClusterAutomatedBackupPolicy {
 
   final TfArg<String>? location;
 
-  final AlloydbClusterAutomatedBackupPolicyEncryptionConfig? encryptionConfig;
+  final AlloydbClusterEncryptionConfig? encryptionConfig;
 
-  final AlloydbClusterAutomatedBackupPolicyRetention? retention;
+  final AlloydbClusterRetention? retention;
 
-  final AlloydbClusterAutomatedBackupPolicyWeeklySchedule? weeklySchedule;
+  final AlloydbClusterWeeklySchedule? weeklySchedule;
 
   Map<String, Object?> encode() => {
     'backup_window': ?backupWindow?.toTfJson(),
@@ -216,19 +216,18 @@ final class AlloydbClusterAutomatedBackupPolicy {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.timeBasedRetention(...)`.
-sealed class AlloydbClusterAutomatedBackupPolicyRetention {
-  const AlloydbClusterAutomatedBackupPolicyRetention();
+sealed class AlloydbClusterRetention {
+  const AlloydbClusterRetention();
 
   /// Sets `time_based_retention`.
-  const factory AlloydbClusterAutomatedBackupPolicyRetention.timeBasedRetention(
-    AlloydbClusterAutomatedBackupPolicyTimeBasedRetention timeBasedRetention,
-  ) = AlloydbClusterAutomatedBackupPolicyRetentionTimeBasedRetention;
+  const factory AlloydbClusterRetention.timeBasedRetention(
+    AlloydbClusterTimeBasedRetention timeBasedRetention,
+  ) = AlloydbClusterTimeBasedRetentionChoice;
 
   /// Sets `quantity_based_retention`.
-  const factory AlloydbClusterAutomatedBackupPolicyRetention.quantityBasedRetention(
-    AlloydbClusterAutomatedBackupPolicyQuantityBasedRetention
-    quantityBasedRetention,
-  ) = AlloydbClusterAutomatedBackupPolicyRetentionQuantityBasedRetention;
+  const factory AlloydbClusterRetention.quantityBasedRetention(
+    AlloydbClusterQuantityBasedRetention quantityBasedRetention,
+  ) = AlloydbClusterQuantityBasedRetentionChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -236,15 +235,12 @@ sealed class AlloydbClusterAutomatedBackupPolicyRetention {
   Map<String, Object?> encode();
 }
 
-/// The [AlloydbClusterAutomatedBackupPolicyRetention.timeBasedRetention] choice: sets `time_based_retention`.
-final class AlloydbClusterAutomatedBackupPolicyRetentionTimeBasedRetention
-    extends AlloydbClusterAutomatedBackupPolicyRetention {
-  const AlloydbClusterAutomatedBackupPolicyRetentionTimeBasedRetention(
-    this.timeBasedRetention,
-  );
+/// The [AlloydbClusterRetention.timeBasedRetention] choice: sets `time_based_retention`.
+final class AlloydbClusterTimeBasedRetentionChoice
+    extends AlloydbClusterRetention {
+  const AlloydbClusterTimeBasedRetentionChoice(this.timeBasedRetention);
 
-  final AlloydbClusterAutomatedBackupPolicyTimeBasedRetention
-  timeBasedRetention;
+  final AlloydbClusterTimeBasedRetention timeBasedRetention;
 
   @override
   String get blockKey => 'time_based_retention';
@@ -255,15 +251,12 @@ final class AlloydbClusterAutomatedBackupPolicyRetentionTimeBasedRetention
   };
 }
 
-/// The [AlloydbClusterAutomatedBackupPolicyRetention.quantityBasedRetention] choice: sets `quantity_based_retention`.
-final class AlloydbClusterAutomatedBackupPolicyRetentionQuantityBasedRetention
-    extends AlloydbClusterAutomatedBackupPolicyRetention {
-  const AlloydbClusterAutomatedBackupPolicyRetentionQuantityBasedRetention(
-    this.quantityBasedRetention,
-  );
+/// The [AlloydbClusterRetention.quantityBasedRetention] choice: sets `quantity_based_retention`.
+final class AlloydbClusterQuantityBasedRetentionChoice
+    extends AlloydbClusterRetention {
+  const AlloydbClusterQuantityBasedRetentionChoice(this.quantityBasedRetention);
 
-  final AlloydbClusterAutomatedBackupPolicyQuantityBasedRetention
-  quantityBasedRetention;
+  final AlloydbClusterQuantityBasedRetention quantityBasedRetention;
 
   @override
   String get blockKey => 'quantity_based_retention';
@@ -274,11 +267,12 @@ final class AlloydbClusterAutomatedBackupPolicyRetentionQuantityBasedRetention
   };
 }
 
-/// Typed helper for the `automated_backup_policy.encryption_config` block of
+/// Typed helper for the `encryption_config` block of
 /// `google_alloydb_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AlloydbClusterAutomatedBackupPolicyEncryptionConfig {
-  const AlloydbClusterAutomatedBackupPolicyEncryptionConfig({this.kmsKeyName});
+final class AlloydbClusterEncryptionConfig {
+  const AlloydbClusterEncryptionConfig({this.kmsKeyName});
 
   final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
 
@@ -290,8 +284,8 @@ final class AlloydbClusterAutomatedBackupPolicyEncryptionConfig {
 /// Typed helper for the `automated_backup_policy.quantity_based_retention` block of
 /// `google_alloydb_cluster` (derived from provider schema).
 @immutable
-final class AlloydbClusterAutomatedBackupPolicyQuantityBasedRetention {
-  const AlloydbClusterAutomatedBackupPolicyQuantityBasedRetention({this.count});
+final class AlloydbClusterQuantityBasedRetention {
+  const AlloydbClusterQuantityBasedRetention({this.count});
 
   final TfArg<num>? count;
 
@@ -301,10 +295,8 @@ final class AlloydbClusterAutomatedBackupPolicyQuantityBasedRetention {
 /// Typed helper for the `automated_backup_policy.time_based_retention` block of
 /// `google_alloydb_cluster` (derived from provider schema).
 @immutable
-final class AlloydbClusterAutomatedBackupPolicyTimeBasedRetention {
-  const AlloydbClusterAutomatedBackupPolicyTimeBasedRetention({
-    this.retentionPeriod,
-  });
+final class AlloydbClusterTimeBasedRetention {
+  const AlloydbClusterTimeBasedRetention({this.retentionPeriod});
 
   final TfArg<String>? retentionPeriod;
 
@@ -316,19 +308,15 @@ final class AlloydbClusterAutomatedBackupPolicyTimeBasedRetention {
 /// Typed helper for the `automated_backup_policy.weekly_schedule` block of
 /// `google_alloydb_cluster` (derived from provider schema).
 @immutable
-final class AlloydbClusterAutomatedBackupPolicyWeeklySchedule {
-  const AlloydbClusterAutomatedBackupPolicyWeeklySchedule({
+final class AlloydbClusterWeeklySchedule {
+  const AlloydbClusterWeeklySchedule({
     this.daysOfWeek,
     required this.startTimes,
   });
 
-  final List<
-    TfArg<AlloydbClusterAutomatedBackupPolicyWeeklyScheduleDaysOfWeek>
-  >?
-  daysOfWeek;
+  final List<TfArg<AlloydbClusterDaysOfWeek>>? daysOfWeek;
 
-  final List<AlloydbClusterAutomatedBackupPolicyWeeklyScheduleStartTimes>
-  startTimes;
+  final List<AlloydbClusterStartTimes> startTimes;
 
   Map<String, Object?> encode() => {
     if (daysOfWeek != null)
@@ -338,8 +326,7 @@ final class AlloydbClusterAutomatedBackupPolicyWeeklySchedule {
 }
 
 /// `days_of_week` — derived from the provider schema description.
-enum AlloydbClusterAutomatedBackupPolicyWeeklyScheduleDaysOfWeek
-    implements TerraformEnum {
+enum AlloydbClusterDaysOfWeek implements TerraformEnum {
   monday('MONDAY'),
   tuesday('TUESDAY'),
   wednesday('WEDNESDAY'),
@@ -348,9 +335,7 @@ enum AlloydbClusterAutomatedBackupPolicyWeeklyScheduleDaysOfWeek
   saturday('SATURDAY'),
   sunday('SUNDAY');
 
-  const AlloydbClusterAutomatedBackupPolicyWeeklyScheduleDaysOfWeek(
-    this.terraformValue,
-  );
+  const AlloydbClusterDaysOfWeek(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -358,8 +343,8 @@ enum AlloydbClusterAutomatedBackupPolicyWeeklyScheduleDaysOfWeek
 /// Typed helper for the `automated_backup_policy.weekly_schedule.start_times` block of
 /// `google_alloydb_cluster` (derived from provider schema).
 @immutable
-final class AlloydbClusterAutomatedBackupPolicyWeeklyScheduleStartTimes {
-  const AlloydbClusterAutomatedBackupPolicyWeeklyScheduleStartTimes({
+final class AlloydbClusterStartTimes {
+  const AlloydbClusterStartTimes({
     this.hours,
     this.minutes,
     this.nanos,
@@ -396,25 +381,12 @@ final class AlloydbClusterContinuousBackupConfig {
 
   final TfArg<num>? recoveryWindowDays;
 
-  final AlloydbClusterContinuousBackupConfigEncryptionConfig? encryptionConfig;
+  final AlloydbClusterEncryptionConfig? encryptionConfig;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'recovery_window_days': ?recoveryWindowDays?.toTfJson(),
     'encryption_config': ?encryptionConfig?.encode(),
-  };
-}
-
-/// Typed helper for the `continuous_backup_config.encryption_config` block of
-/// `google_alloydb_cluster` (derived from provider schema).
-@immutable
-final class AlloydbClusterContinuousBackupConfigEncryptionConfig {
-  const AlloydbClusterContinuousBackupConfigEncryptionConfig({this.kmsKeyName});
-
-  final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
-
-  Map<String, Object?> encode() => {
-    'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
   };
 }
 
@@ -429,19 +401,6 @@ final class AlloydbClusterDataplexConfig {
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
-/// Typed helper for the `encryption_config` block of
-/// `google_alloydb_cluster` (derived from provider schema).
-@immutable
-final class AlloydbClusterEncryptionConfig {
-  const AlloydbClusterEncryptionConfig({this.kmsKeyName});
-
-  final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
-
-  Map<String, Object?> encode() => {
-    'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
-  };
-}
-
 /// Typed helper for the `initial_user` block of
 /// `google_alloydb_cluster` (derived from provider schema).
 @immutable
@@ -452,7 +411,7 @@ final class AlloydbClusterInitialUser {
     this.user,
   });
 
-  final AlloydbClusterInitialUserPassword? password;
+  final AlloydbClusterPassword? password;
 
   final TfArg<String>? passwordWoVersion;
 
@@ -470,18 +429,16 @@ final class AlloydbClusterInitialUser {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.password(...)`.
-sealed class AlloydbClusterInitialUserPassword {
-  const AlloydbClusterInitialUserPassword();
+sealed class AlloydbClusterPassword {
+  const AlloydbClusterPassword();
 
   /// Sets `password`.
-  const factory AlloydbClusterInitialUserPassword.password(
-    TfArg<String> password,
-  ) = AlloydbClusterInitialUserPasswordChoice;
+  const factory AlloydbClusterPassword.password(TfArg<String> password) =
+      AlloydbClusterPasswordChoice;
 
   /// Sets `password_wo`.
-  const factory AlloydbClusterInitialUserPassword.passwordWo(
-    TfArg<String> passwordWo,
-  ) = AlloydbClusterInitialUserPasswordWo;
+  const factory AlloydbClusterPassword.passwordWo(TfArg<String> passwordWo) =
+      AlloydbClusterPasswordWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -489,10 +446,9 @@ sealed class AlloydbClusterInitialUserPassword {
   Map<String, Object?> encode();
 }
 
-/// The [AlloydbClusterInitialUserPassword.password] choice: sets `password`.
-final class AlloydbClusterInitialUserPasswordChoice
-    extends AlloydbClusterInitialUserPassword {
-  const AlloydbClusterInitialUserPasswordChoice(this.password);
+/// The [AlloydbClusterPassword.password] choice: sets `password`.
+final class AlloydbClusterPasswordChoice extends AlloydbClusterPassword {
+  const AlloydbClusterPasswordChoice(this.password);
 
   final TfArg<String> password;
 
@@ -503,10 +459,9 @@ final class AlloydbClusterInitialUserPasswordChoice
   Map<String, Object?> encode() => {'password': password.toTfJson()};
 }
 
-/// The [AlloydbClusterInitialUserPassword.passwordWo] choice: sets `password_wo`.
-final class AlloydbClusterInitialUserPasswordWo
-    extends AlloydbClusterInitialUserPassword {
-  const AlloydbClusterInitialUserPasswordWo(this.passwordWo);
+/// The [AlloydbClusterPassword.passwordWo] choice: sets `password_wo`.
+final class AlloydbClusterPasswordWo extends AlloydbClusterPassword {
+  const AlloydbClusterPasswordWo(this.passwordWo);
 
   final TfArg<String> passwordWo;
 
@@ -523,8 +478,7 @@ final class AlloydbClusterInitialUserPasswordWo
 final class AlloydbClusterMaintenanceUpdatePolicy {
   const AlloydbClusterMaintenanceUpdatePolicy({this.maintenanceWindows});
 
-  final List<AlloydbClusterMaintenanceUpdatePolicyMaintenanceWindows>?
-  maintenanceWindows;
+  final List<AlloydbClusterMaintenanceWindows>? maintenanceWindows;
 
   Map<String, Object?> encode() => {
     if (maintenanceWindows != null)
@@ -535,16 +489,15 @@ final class AlloydbClusterMaintenanceUpdatePolicy {
 /// Typed helper for the `maintenance_update_policy.maintenance_windows` block of
 /// `google_alloydb_cluster` (derived from provider schema).
 @immutable
-final class AlloydbClusterMaintenanceUpdatePolicyMaintenanceWindows {
-  const AlloydbClusterMaintenanceUpdatePolicyMaintenanceWindows({
+final class AlloydbClusterMaintenanceWindows {
+  const AlloydbClusterMaintenanceWindows({
     required this.day,
     required this.startTime,
   });
 
   final TfArg<AlloydbClusterDayOfWeek> day;
 
-  final AlloydbClusterMaintenanceUpdatePolicyMaintenanceWindowsStartTime
-  startTime;
+  final AlloydbClusterStartTime startTime;
 
   Map<String, Object?> encode() => {
     'day': day.toTfJson(),
@@ -555,8 +508,8 @@ final class AlloydbClusterMaintenanceUpdatePolicyMaintenanceWindows {
 /// Typed helper for the `maintenance_update_policy.maintenance_windows.start_time` block of
 /// `google_alloydb_cluster` (derived from provider schema).
 @immutable
-final class AlloydbClusterMaintenanceUpdatePolicyMaintenanceWindowsStartTime {
-  const AlloydbClusterMaintenanceUpdatePolicyMaintenanceWindowsStartTime({
+final class AlloydbClusterStartTime {
+  const AlloydbClusterStartTime({
     required this.hours,
     this.minutes,
     this.nanos,

@@ -52,7 +52,7 @@ enum EmailRoutingRuleActionsType implements TerraformEnum {
 final class EmailRoutingRuleMatchers {
   const EmailRoutingRuleMatchers({this.field, required this.type, this.value});
 
-  final TfArg<EmailRoutingRuleMatchersField>? field;
+  final TfArg<EmailRoutingRuleField>? field;
 
   final TfArg<EmailRoutingRuleMatchersType> type;
 
@@ -66,10 +66,10 @@ final class EmailRoutingRuleMatchers {
 }
 
 /// `field` — derived from the provider schema description.
-enum EmailRoutingRuleMatchersField implements TerraformEnum {
+enum EmailRoutingRuleField implements TerraformEnum {
   to('to');
 
-  const EmailRoutingRuleMatchersField(this.terraformValue);
+  const EmailRoutingRuleField(this.terraformValue);
   @override
   final String terraformValue;
 }

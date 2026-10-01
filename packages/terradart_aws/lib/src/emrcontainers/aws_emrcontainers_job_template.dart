@@ -14,8 +14,8 @@ const Set<String> _awsEmrcontainersJobTemplateSensitive = <String>{};
 /// Typed helper for the `job_template_data` block of
 /// `aws_emrcontainers_job_template` (derived from provider schema).
 @immutable
-final class EmrcontainersJobTemplateJobTemplateData {
-  const EmrcontainersJobTemplateJobTemplateData({
+final class EmrcontainersJobTemplateData {
+  const EmrcontainersJobTemplateData({
     required this.executionRoleArn,
     this.jobTags,
     required this.releaseLabel,
@@ -29,10 +29,9 @@ final class EmrcontainersJobTemplateJobTemplateData {
 
   final TfArg<String> releaseLabel;
 
-  final EmrcontainersJobTemplateJobTemplateDataConfigurationOverrides?
-  configurationOverrides;
+  final EmrcontainersJobTemplateConfigurationOverrides? configurationOverrides;
 
-  final EmrcontainersJobTemplateJobTemplateDataJobDriver jobDriver;
+  final EmrcontainersJobTemplateJobDriver jobDriver;
 
   Map<String, Object?> encode() => {
     'execution_role_arn': executionRoleArn.encodeAs('arn').toTfJson(),
@@ -46,18 +45,16 @@ final class EmrcontainersJobTemplateJobTemplateData {
 /// Typed helper for the `job_template_data.configuration_overrides` block of
 /// `aws_emrcontainers_job_template` (derived from provider schema).
 @immutable
-final class EmrcontainersJobTemplateJobTemplateDataConfigurationOverrides {
-  const EmrcontainersJobTemplateJobTemplateDataConfigurationOverrides({
+final class EmrcontainersJobTemplateConfigurationOverrides {
+  const EmrcontainersJobTemplateConfigurationOverrides({
     this.applicationConfiguration,
     this.monitoringConfiguration,
   });
 
-  final List<
-    EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesApplicationConfiguration
-  >?
+  final List<EmrcontainersJobTemplateApplicationConfiguration>?
   applicationConfiguration;
 
-  final EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesMonitoringConfiguration?
+  final EmrcontainersJobTemplateMonitoringConfiguration?
   monitoringConfiguration;
 
   Map<String, Object?> encode() => {
@@ -72,8 +69,8 @@ final class EmrcontainersJobTemplateJobTemplateDataConfigurationOverrides {
 /// Typed helper for the `job_template_data.configuration_overrides.application_configuration` block of
 /// `aws_emrcontainers_job_template` (derived from provider schema).
 @immutable
-final class EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesApplicationConfiguration {
-  const EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesApplicationConfiguration({
+final class EmrcontainersJobTemplateApplicationConfiguration {
+  const EmrcontainersJobTemplateApplicationConfiguration({
     required this.classification,
     this.properties,
     this.configurations,
@@ -83,10 +80,7 @@ final class EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesApplica
 
   final TfArg<Map<String, String>>? properties;
 
-  final List<
-    EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesApplicationConfigurationConfigurations
-  >?
-  configurations;
+  final List<EmrcontainersJobTemplateConfigurations>? configurations;
 
   Map<String, Object?> encode() => {
     'classification': classification.toTfJson(),
@@ -99,8 +93,8 @@ final class EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesApplica
 /// Typed helper for the `job_template_data.configuration_overrides.application_configuration.configurations` block of
 /// `aws_emrcontainers_job_template` (derived from provider schema).
 @immutable
-final class EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesApplicationConfigurationConfigurations {
-  const EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesApplicationConfigurationConfigurations({
+final class EmrcontainersJobTemplateConfigurations {
+  const EmrcontainersJobTemplateConfigurations({
     this.classification,
     this.properties,
   });
@@ -118,22 +112,19 @@ final class EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesApplica
 /// Typed helper for the `job_template_data.configuration_overrides.monitoring_configuration` block of
 /// `aws_emrcontainers_job_template` (derived from provider schema).
 @immutable
-final class EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesMonitoringConfiguration {
-  const EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesMonitoringConfiguration({
+final class EmrcontainersJobTemplateMonitoringConfiguration {
+  const EmrcontainersJobTemplateMonitoringConfiguration({
     this.persistentAppUi,
     this.cloudWatchMonitoringConfiguration,
     this.s3MonitoringConfiguration,
   });
 
-  final TfArg<
-    EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesMonitoringConfigurationPersistentAppUi
-  >?
-  persistentAppUi;
+  final TfArg<EmrcontainersJobTemplatePersistentAppUi>? persistentAppUi;
 
-  final EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesMonitoringConfigurationCloudWatchMonitoringConfiguration?
+  final EmrcontainersJobTemplateCloudWatchMonitoringConfiguration?
   cloudWatchMonitoringConfiguration;
 
-  final EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesMonitoringConfigurationS3MonitoringConfiguration?
+  final EmrcontainersJobTemplateS3MonitoringConfiguration?
   s3MonitoringConfiguration;
 
   Map<String, Object?> encode() => {
@@ -145,14 +136,11 @@ final class EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesMonitor
 }
 
 /// `persistent_app_ui` — derived from the provider schema description.
-enum EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesMonitoringConfigurationPersistentAppUi
-    implements TerraformEnum {
+enum EmrcontainersJobTemplatePersistentAppUi implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesMonitoringConfigurationPersistentAppUi(
-    this.terraformValue,
-  );
+  const EmrcontainersJobTemplatePersistentAppUi(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -160,8 +148,8 @@ enum EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesMonitoringConf
 /// Typed helper for the `job_template_data.configuration_overrides.monitoring_configuration.cloud_watch_monitoring_configuration` block of
 /// `aws_emrcontainers_job_template` (derived from provider schema).
 @immutable
-final class EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesMonitoringConfigurationCloudWatchMonitoringConfiguration {
-  const EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesMonitoringConfigurationCloudWatchMonitoringConfiguration({
+final class EmrcontainersJobTemplateCloudWatchMonitoringConfiguration {
+  const EmrcontainersJobTemplateCloudWatchMonitoringConfiguration({
     required this.logGroupName,
     this.logStreamNamePrefix,
   });
@@ -179,8 +167,8 @@ final class EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesMonitor
 /// Typed helper for the `job_template_data.configuration_overrides.monitoring_configuration.s3_monitoring_configuration` block of
 /// `aws_emrcontainers_job_template` (derived from provider schema).
 @immutable
-final class EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesMonitoringConfigurationS3MonitoringConfiguration {
-  const EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesMonitoringConfigurationS3MonitoringConfiguration({
+final class EmrcontainersJobTemplateS3MonitoringConfiguration {
+  const EmrcontainersJobTemplateS3MonitoringConfiguration({
     required this.logUri,
   });
 
@@ -193,20 +181,18 @@ final class EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesMonitor
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.sparkSqlJobDriver(...)`.
-sealed class EmrcontainersJobTemplateJobTemplateDataJobDriver {
-  const EmrcontainersJobTemplateJobTemplateDataJobDriver();
+sealed class EmrcontainersJobTemplateJobDriver {
+  const EmrcontainersJobTemplateJobDriver();
 
   /// Sets `spark_sql_job_driver`.
-  const factory EmrcontainersJobTemplateJobTemplateDataJobDriver.sparkSqlJobDriver(
-    EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriver
-    sparkSqlJobDriver,
-  ) = EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriverChoice;
+  const factory EmrcontainersJobTemplateJobDriver.sparkSqlJobDriver(
+    EmrcontainersJobTemplateSparkSqlJobDriver sparkSqlJobDriver,
+  ) = EmrcontainersJobTemplateSparkSqlJobDriverChoice;
 
   /// Sets `spark_submit_job_driver`.
-  const factory EmrcontainersJobTemplateJobTemplateDataJobDriver.sparkSubmitJobDriver(
-    EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSubmitJobDriver
-    sparkSubmitJobDriver,
-  ) = EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSubmitJobDriverChoice;
+  const factory EmrcontainersJobTemplateJobDriver.sparkSubmitJobDriver(
+    EmrcontainersJobTemplateSparkSubmitJobDriver sparkSubmitJobDriver,
+  ) = EmrcontainersJobTemplateSparkSubmitJobDriverChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -214,15 +200,12 @@ sealed class EmrcontainersJobTemplateJobTemplateDataJobDriver {
   Map<String, Object?> encode();
 }
 
-/// The [EmrcontainersJobTemplateJobTemplateDataJobDriver.sparkSqlJobDriver] choice: sets `spark_sql_job_driver`.
-final class EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriverChoice
-    extends EmrcontainersJobTemplateJobTemplateDataJobDriver {
-  const EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriverChoice(
-    this.sparkSqlJobDriver,
-  );
+/// The [EmrcontainersJobTemplateJobDriver.sparkSqlJobDriver] choice: sets `spark_sql_job_driver`.
+final class EmrcontainersJobTemplateSparkSqlJobDriverChoice
+    extends EmrcontainersJobTemplateJobDriver {
+  const EmrcontainersJobTemplateSparkSqlJobDriverChoice(this.sparkSqlJobDriver);
 
-  final EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriver
-  sparkSqlJobDriver;
+  final EmrcontainersJobTemplateSparkSqlJobDriver sparkSqlJobDriver;
 
   @override
   String get blockKey => 'spark_sql_job_driver';
@@ -233,15 +216,14 @@ final class EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriverCho
   };
 }
 
-/// The [EmrcontainersJobTemplateJobTemplateDataJobDriver.sparkSubmitJobDriver] choice: sets `spark_submit_job_driver`.
-final class EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSubmitJobDriverChoice
-    extends EmrcontainersJobTemplateJobTemplateDataJobDriver {
-  const EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSubmitJobDriverChoice(
+/// The [EmrcontainersJobTemplateJobDriver.sparkSubmitJobDriver] choice: sets `spark_submit_job_driver`.
+final class EmrcontainersJobTemplateSparkSubmitJobDriverChoice
+    extends EmrcontainersJobTemplateJobDriver {
+  const EmrcontainersJobTemplateSparkSubmitJobDriverChoice(
     this.sparkSubmitJobDriver,
   );
 
-  final EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSubmitJobDriver
-  sparkSubmitJobDriver;
+  final EmrcontainersJobTemplateSparkSubmitJobDriver sparkSubmitJobDriver;
 
   @override
   String get blockKey => 'spark_submit_job_driver';
@@ -255,8 +237,8 @@ final class EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSubmitJobDriver
 /// Typed helper for the `job_template_data.job_driver.spark_sql_job_driver` block of
 /// `aws_emrcontainers_job_template` (derived from provider schema).
 @immutable
-final class EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriver {
-  const EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriver({
+final class EmrcontainersJobTemplateSparkSqlJobDriver {
+  const EmrcontainersJobTemplateSparkSqlJobDriver({
     this.entryPoint,
     this.sparkSqlParameters,
   });
@@ -274,8 +256,8 @@ final class EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriver {
 /// Typed helper for the `job_template_data.job_driver.spark_submit_job_driver` block of
 /// `aws_emrcontainers_job_template` (derived from provider schema).
 @immutable
-final class EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSubmitJobDriver {
-  const EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSubmitJobDriver({
+final class EmrcontainersJobTemplateSparkSubmitJobDriver {
+  const EmrcontainersJobTemplateSparkSubmitJobDriver({
     required this.entryPoint,
     this.entryPointArguments,
     this.sparkSubmitParameters,
@@ -304,7 +286,7 @@ final class AwsEmrcontainersJobTemplate extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required EmrcontainersJobTemplateJobTemplateData jobTemplateData,
+    required EmrcontainersJobTemplateData jobTemplateData,
     super.lifecycle,
     super.dependsOn,
     super.provider,

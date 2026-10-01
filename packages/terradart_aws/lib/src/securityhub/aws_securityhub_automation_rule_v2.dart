@@ -27,12 +27,12 @@ final class SecurityhubAutomationRuleV2Action {
     this.findingFieldsUpdate,
   });
 
-  final TfArg<SecurityhubAutomationRuleV2ActionType> type;
+  final TfArg<SecurityhubAutomationRuleV2Type> type;
 
-  final List<SecurityhubAutomationRuleV2ActionExternalIntegrationConfiguration>?
+  final List<SecurityhubAutomationRuleV2ExternalIntegrationConfiguration>?
   externalIntegrationConfiguration;
 
-  final List<SecurityhubAutomationRuleV2ActionFindingFieldsUpdate>?
+  final List<SecurityhubAutomationRuleV2FindingFieldsUpdate>?
   findingFieldsUpdate;
 
   Map<String, Object?> encode() => {
@@ -49,11 +49,11 @@ final class SecurityhubAutomationRuleV2Action {
 }
 
 /// `type` — derived from the provider schema description.
-enum SecurityhubAutomationRuleV2ActionType implements TerraformEnum {
+enum SecurityhubAutomationRuleV2Type implements TerraformEnum {
   findingFieldsUpdate('FINDING_FIELDS_UPDATE'),
   externalIntegration('EXTERNAL_INTEGRATION');
 
-  const SecurityhubAutomationRuleV2ActionType(this.terraformValue);
+  const SecurityhubAutomationRuleV2Type(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -61,8 +61,8 @@ enum SecurityhubAutomationRuleV2ActionType implements TerraformEnum {
 /// Typed helper for the `action.external_integration_configuration` block of
 /// `aws_securityhub_automation_rule_v2` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleV2ActionExternalIntegrationConfiguration {
-  const SecurityhubAutomationRuleV2ActionExternalIntegrationConfiguration({
+final class SecurityhubAutomationRuleV2ExternalIntegrationConfiguration {
+  const SecurityhubAutomationRuleV2ExternalIntegrationConfiguration({
     required this.connectorArn,
   });
 
@@ -74,8 +74,8 @@ final class SecurityhubAutomationRuleV2ActionExternalIntegrationConfiguration {
 /// Typed helper for the `action.finding_fields_update` block of
 /// `aws_securityhub_automation_rule_v2` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleV2ActionFindingFieldsUpdate {
-  const SecurityhubAutomationRuleV2ActionFindingFieldsUpdate({
+final class SecurityhubAutomationRuleV2FindingFieldsUpdate {
+  const SecurityhubAutomationRuleV2FindingFieldsUpdate({
     this.comment,
     this.severityId,
     this.statusId,

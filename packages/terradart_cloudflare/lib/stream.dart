@@ -15,8 +15,8 @@ export 'src/stream/cloudflare_stream_key.dart' show CloudflareStreamKey;
 export 'src/stream/cloudflare_stream_live_input.dart'
     show
         CloudflareStreamLiveInput,
-        StreamLiveInputRecording,
-        StreamLiveInputRecordingMode;
+        StreamLiveInputMode,
+        StreamLiveInputRecording;
 export 'src/stream/cloudflare_stream_watermark.dart'
     show CloudflareStreamWatermark;
 export 'src/stream/cloudflare_stream_webhook.dart' show CloudflareStreamWebhook;

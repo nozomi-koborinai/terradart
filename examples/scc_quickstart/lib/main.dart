@@ -235,13 +235,12 @@ final class SccLeftoverStack extends Stack {
         customConfig: SccOrganizationCustomModuleCustomConfig(
           recommendation: .literal('Review the finding.'),
           severity: .literal(.low),
-          predicate: SccOrganizationCustomModuleCustomConfigPredicate(
+          predicate: SccOrganizationCustomModulePredicate(
             expression: .literal('resource.rotationPeriod > duration("365d")'),
           ),
-          resourceSelector:
-              SccOrganizationCustomModuleCustomConfigResourceSelector(
-                resourceTypes: .literal(['cloudkms.googleapis.com/CryptoKey']),
-              ),
+          resourceSelector: SccOrganizationCustomModuleResourceSelector(
+            resourceTypes: .literal(['cloudkms.googleapis.com/CryptoKey']),
+          ),
         ),
         deletionPolicy: .literal('DELETE'),
         dependsOn: apiDeps,
@@ -256,10 +255,10 @@ final class SccLeftoverStack extends Stack {
         customConfig: SccFolderCustomModuleCustomConfig(
           recommendation: .literal('Review the finding.'),
           severity: .literal(.low),
-          predicate: SccFolderCustomModuleCustomConfigPredicate(
+          predicate: SccFolderCustomModulePredicate(
             expression: .literal('resource.rotationPeriod > duration("365d")'),
           ),
-          resourceSelector: SccFolderCustomModuleCustomConfigResourceSelector(
+          resourceSelector: SccFolderCustomModuleResourceSelector(
             resourceTypes: .literal(['cloudkms.googleapis.com/CryptoKey']),
           ),
         ),
@@ -275,10 +274,10 @@ final class SccLeftoverStack extends Stack {
         customConfig: SccProjectCustomModuleCustomConfig(
           recommendation: .literal('Review the finding.'),
           severity: .literal(.low),
-          predicate: SccProjectCustomModuleCustomConfigPredicate(
+          predicate: SccProjectCustomModulePredicate(
             expression: .literal('resource.rotationPeriod > duration("365d")'),
           ),
-          resourceSelector: SccProjectCustomModuleCustomConfigResourceSelector(
+          resourceSelector: SccProjectCustomModuleResourceSelector(
             resourceTypes: .literal(['cloudkms.googleapis.com/CryptoKey']),
           ),
         ),

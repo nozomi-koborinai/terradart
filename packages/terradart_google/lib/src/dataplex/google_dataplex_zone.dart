@@ -39,9 +39,9 @@ final class DataplexZoneDiscoverySpec {
 
   final TfArg<String>? schedule;
 
-  final DataplexZoneDiscoverySpecCsvOptions? csvOptions;
+  final DataplexZoneCsvOptions? csvOptions;
 
-  final DataplexZoneDiscoverySpecJsonOptions? jsonOptions;
+  final DataplexZoneJsonOptions? jsonOptions;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
@@ -56,8 +56,8 @@ final class DataplexZoneDiscoverySpec {
 /// Typed helper for the `discovery_spec.csv_options` block of
 /// `google_dataplex_zone` (derived from provider schema).
 @immutable
-final class DataplexZoneDiscoverySpecCsvOptions {
-  const DataplexZoneDiscoverySpecCsvOptions({
+final class DataplexZoneCsvOptions {
+  const DataplexZoneCsvOptions({
     this.delimiter,
     this.disableTypeInference,
     this.encoding,
@@ -83,11 +83,8 @@ final class DataplexZoneDiscoverySpecCsvOptions {
 /// Typed helper for the `discovery_spec.json_options` block of
 /// `google_dataplex_zone` (derived from provider schema).
 @immutable
-final class DataplexZoneDiscoverySpecJsonOptions {
-  const DataplexZoneDiscoverySpecJsonOptions({
-    this.disableTypeInference,
-    this.encoding,
-  });
+final class DataplexZoneJsonOptions {
+  const DataplexZoneJsonOptions({this.disableTypeInference, this.encoding});
 
   final TfArg<bool>? disableTypeInference;
 
@@ -105,18 +102,18 @@ final class DataplexZoneDiscoverySpecJsonOptions {
 final class DataplexZoneResourceSpec {
   const DataplexZoneResourceSpec({required this.locationType});
 
-  final TfArg<DataplexZoneResourceSpecLocationType> locationType;
+  final TfArg<DataplexZoneLocationType> locationType;
 
   Map<String, Object?> encode() => {'location_type': locationType.toTfJson()};
 }
 
 /// `location_type` — derived from the provider schema description.
-enum DataplexZoneResourceSpecLocationType implements TerraformEnum {
+enum DataplexZoneLocationType implements TerraformEnum {
   locationTypeUnspecified('LOCATION_TYPE_UNSPECIFIED'),
   singleRegion('SINGLE_REGION'),
   multiRegion('MULTI_REGION');
 
-  const DataplexZoneResourceSpecLocationType(this.terraformValue);
+  const DataplexZoneLocationType(this.terraformValue);
   @override
   final String terraformValue;
 }

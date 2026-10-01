@@ -41,7 +41,7 @@ final class CodebuildProjectArtifacts {
 
   final TfArg<String>? artifactIdentifier;
 
-  final TfArg<CodebuildProjectArtifactsBucketOwnerAccess>? bucketOwnerAccess;
+  final TfArg<CodebuildProjectBucketOwnerAccess>? bucketOwnerAccess;
 
   final TfArg<bool>? encryptionDisabled;
 
@@ -49,11 +49,11 @@ final class CodebuildProjectArtifacts {
 
   final TfArg<String>? name;
 
-  final TfArg<CodebuildProjectArtifactsNamespaceType>? namespaceType;
+  final TfArg<CodebuildProjectNamespaceType>? namespaceType;
 
   final TfArg<bool>? overrideArtifactName;
 
-  final TfArg<CodebuildProjectArtifactsPackaging>? packaging;
+  final TfArg<CodebuildProjectPackaging>? packaging;
 
   final TfArg<String>? path;
 
@@ -74,32 +74,32 @@ final class CodebuildProjectArtifacts {
 }
 
 /// `bucket_owner_access` — derived from the provider schema description.
-enum CodebuildProjectArtifactsBucketOwnerAccess implements TerraformEnum {
+enum CodebuildProjectBucketOwnerAccess implements TerraformEnum {
   none('NONE'),
   readOnly('READ_ONLY'),
   full('FULL');
 
-  const CodebuildProjectArtifactsBucketOwnerAccess(this.terraformValue);
+  const CodebuildProjectBucketOwnerAccess(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `namespace_type` — derived from the provider schema description.
-enum CodebuildProjectArtifactsNamespaceType implements TerraformEnum {
+enum CodebuildProjectNamespaceType implements TerraformEnum {
   none('NONE'),
   buildId('BUILD_ID');
 
-  const CodebuildProjectArtifactsNamespaceType(this.terraformValue);
+  const CodebuildProjectNamespaceType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `packaging` — derived from the provider schema description.
-enum CodebuildProjectArtifactsPackaging implements TerraformEnum {
+enum CodebuildProjectPackaging implements TerraformEnum {
   none('NONE'),
   zip('ZIP');
 
-  const CodebuildProjectArtifactsPackaging(this.terraformValue);
+  const CodebuildProjectPackaging(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -132,7 +132,7 @@ final class CodebuildProjectBuildBatchConfig {
 
   final TfArg<num>? timeoutInMins;
 
-  final CodebuildProjectBuildBatchConfigRestrictions? restrictions;
+  final CodebuildProjectRestrictions? restrictions;
 
   Map<String, Object?> encode() => {
     'combine_artifacts': ?combineArtifacts?.toTfJson(),
@@ -145,16 +145,13 @@ final class CodebuildProjectBuildBatchConfig {
 /// Typed helper for the `build_batch_config.restrictions` block of
 /// `aws_codebuild_project` (derived from provider schema).
 @immutable
-final class CodebuildProjectBuildBatchConfigRestrictions {
-  const CodebuildProjectBuildBatchConfigRestrictions({
+final class CodebuildProjectRestrictions {
+  const CodebuildProjectRestrictions({
     this.computeTypesAllowed,
     this.maximumBuildsAllowed,
   });
 
-  final List<
-    TfArg<CodebuildProjectBuildBatchConfigRestrictionsComputeTypesAllowed>
-  >?
-  computeTypesAllowed;
+  final List<TfArg<CodebuildProjectComputeTypesAllowed>>? computeTypesAllowed;
 
   final TfArg<num>? maximumBuildsAllowed;
 
@@ -168,8 +165,7 @@ final class CodebuildProjectBuildBatchConfigRestrictions {
 }
 
 /// `compute_types_allowed` — derived from the provider schema description.
-enum CodebuildProjectBuildBatchConfigRestrictionsComputeTypesAllowed
-    implements TerraformEnum {
+enum CodebuildProjectComputeTypesAllowed implements TerraformEnum {
   buildGeneral1Small('BUILD_GENERAL1_SMALL'),
   buildGeneral1Medium('BUILD_GENERAL1_MEDIUM'),
   buildGeneral1Large('BUILD_GENERAL1_LARGE'),
@@ -183,9 +179,7 @@ enum CodebuildProjectBuildBatchConfigRestrictionsComputeTypesAllowed
   attributeBasedCompute('ATTRIBUTE_BASED_COMPUTE'),
   customInstanceType('CUSTOM_INSTANCE_TYPE');
 
-  const CodebuildProjectBuildBatchConfigRestrictionsComputeTypesAllowed(
-    this.terraformValue,
-  );
+  const CodebuildProjectComputeTypesAllowed(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -205,7 +199,7 @@ final class CodebuildProjectCache {
 
   final TfArg<String>? location;
 
-  final List<TfArg<CodebuildProjectCacheModes>>? modes;
+  final List<TfArg<CodebuildProjectModes>>? modes;
 
   final TfArg<CodebuildProjectCacheType>? type;
 
@@ -218,12 +212,12 @@ final class CodebuildProjectCache {
 }
 
 /// `modes` — derived from the provider schema description.
-enum CodebuildProjectCacheModes implements TerraformEnum {
+enum CodebuildProjectModes implements TerraformEnum {
   localDockerLayerCache('LOCAL_DOCKER_LAYER_CACHE'),
   localSourceCache('LOCAL_SOURCE_CACHE'),
   localCustomCache('LOCAL_CUSTOM_CACHE');
 
-  const CodebuildProjectCacheModes(this.terraformValue);
+  const CodebuildProjectModes(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -259,27 +253,26 @@ final class CodebuildProjectEnvironment {
 
   final TfArg<String>? certificate;
 
-  final TfArg<CodebuildProjectEnvironmentComputeType> computeType;
+  final TfArg<CodebuildProjectComputeType> computeType;
 
-  final TfArg<CodebuildProjectEnvironmentHostKernel>? hostKernel;
+  final TfArg<CodebuildProjectHostKernel>? hostKernel;
 
   final TfArg<String> image;
 
-  final TfArg<CodebuildProjectEnvironmentImagePullCredentialsType>?
+  final TfArg<CodebuildProjectImagePullCredentialsType>?
   imagePullCredentialsType;
 
   final TfArg<bool>? privilegedMode;
 
   final TfArg<CodebuildProjectEnvironmentType> type;
 
-  final CodebuildProjectEnvironmentDockerServer? dockerServer;
+  final CodebuildProjectDockerServer? dockerServer;
 
-  final List<CodebuildProjectEnvironmentEnvironmentVariable>?
-  environmentVariable;
+  final List<CodebuildProjectEnvironmentVariable>? environmentVariable;
 
-  final CodebuildProjectEnvironmentFleet? fleet;
+  final CodebuildProjectFleet? fleet;
 
-  final CodebuildProjectEnvironmentRegistryCredential? registryCredential;
+  final CodebuildProjectRegistryCredential? registryCredential;
 
   Map<String, Object?> encode() => {
     'certificate': ?certificate?.toTfJson(),
@@ -300,7 +293,7 @@ final class CodebuildProjectEnvironment {
 }
 
 /// `compute_type` — derived from the provider schema description.
-enum CodebuildProjectEnvironmentComputeType implements TerraformEnum {
+enum CodebuildProjectComputeType implements TerraformEnum {
   buildGeneral1Small('BUILD_GENERAL1_SMALL'),
   buildGeneral1Medium('BUILD_GENERAL1_MEDIUM'),
   buildGeneral1Large('BUILD_GENERAL1_LARGE'),
@@ -314,31 +307,28 @@ enum CodebuildProjectEnvironmentComputeType implements TerraformEnum {
   attributeBasedCompute('ATTRIBUTE_BASED_COMPUTE'),
   customInstanceType('CUSTOM_INSTANCE_TYPE');
 
-  const CodebuildProjectEnvironmentComputeType(this.terraformValue);
+  const CodebuildProjectComputeType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `host_kernel` — derived from the provider schema description.
-enum CodebuildProjectEnvironmentHostKernel implements TerraformEnum {
+enum CodebuildProjectHostKernel implements TerraformEnum {
   linuxKernel4('LINUX_KERNEL_4'),
   linuxKernel6('LINUX_KERNEL_6'),
   linuxKernelLatest('LINUX_KERNEL_LATEST');
 
-  const CodebuildProjectEnvironmentHostKernel(this.terraformValue);
+  const CodebuildProjectHostKernel(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `image_pull_credentials_type` — derived from the provider schema description.
-enum CodebuildProjectEnvironmentImagePullCredentialsType
-    implements TerraformEnum {
+enum CodebuildProjectImagePullCredentialsType implements TerraformEnum {
   codebuild('CODEBUILD'),
   serviceRole('SERVICE_ROLE');
 
-  const CodebuildProjectEnvironmentImagePullCredentialsType(
-    this.terraformValue,
-  );
+  const CodebuildProjectImagePullCredentialsType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -366,13 +356,13 @@ enum CodebuildProjectEnvironmentType implements TerraformEnum {
 /// Typed helper for the `environment.docker_server` block of
 /// `aws_codebuild_project` (derived from provider schema).
 @immutable
-final class CodebuildProjectEnvironmentDockerServer {
-  const CodebuildProjectEnvironmentDockerServer({
+final class CodebuildProjectDockerServer {
+  const CodebuildProjectDockerServer({
     required this.computeType,
     this.securityGroupIds,
   });
 
-  final TfArg<CodebuildProjectEnvironmentDockerServerComputeType> computeType;
+  final TfArg<CodebuildProjectComputeType> computeType;
 
   final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
 
@@ -382,32 +372,11 @@ final class CodebuildProjectEnvironmentDockerServer {
   };
 }
 
-/// `compute_type` — derived from the provider schema description.
-enum CodebuildProjectEnvironmentDockerServerComputeType
-    implements TerraformEnum {
-  buildGeneral1Small('BUILD_GENERAL1_SMALL'),
-  buildGeneral1Medium('BUILD_GENERAL1_MEDIUM'),
-  buildGeneral1Large('BUILD_GENERAL1_LARGE'),
-  buildGeneral1Xlarge('BUILD_GENERAL1_XLARGE'),
-  buildGeneral12xlarge('BUILD_GENERAL1_2XLARGE'),
-  buildLambda1gb('BUILD_LAMBDA_1GB'),
-  buildLambda2gb('BUILD_LAMBDA_2GB'),
-  buildLambda4gb('BUILD_LAMBDA_4GB'),
-  buildLambda8gb('BUILD_LAMBDA_8GB'),
-  buildLambda10gb('BUILD_LAMBDA_10GB'),
-  attributeBasedCompute('ATTRIBUTE_BASED_COMPUTE'),
-  customInstanceType('CUSTOM_INSTANCE_TYPE');
-
-  const CodebuildProjectEnvironmentDockerServerComputeType(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `environment.environment_variable` block of
 /// `aws_codebuild_project` (derived from provider schema).
 @immutable
-final class CodebuildProjectEnvironmentEnvironmentVariable {
-  const CodebuildProjectEnvironmentEnvironmentVariable({
+final class CodebuildProjectEnvironmentVariable {
+  const CodebuildProjectEnvironmentVariable({
     required this.name,
     this.type,
     required this.value,
@@ -415,7 +384,7 @@ final class CodebuildProjectEnvironmentEnvironmentVariable {
 
   final TfArg<String> name;
 
-  final TfArg<CodebuildProjectEnvironmentEnvironmentVariableType>? type;
+  final TfArg<CodebuildProjectEnvironmentVariableType>? type;
 
   final TfArg<String> value;
 
@@ -427,13 +396,12 @@ final class CodebuildProjectEnvironmentEnvironmentVariable {
 }
 
 /// `type` — derived from the provider schema description.
-enum CodebuildProjectEnvironmentEnvironmentVariableType
-    implements TerraformEnum {
+enum CodebuildProjectEnvironmentVariableType implements TerraformEnum {
   plaintext('PLAINTEXT'),
   parameterStore('PARAMETER_STORE'),
   secretsManager('SECRETS_MANAGER');
 
-  const CodebuildProjectEnvironmentEnvironmentVariableType(this.terraformValue);
+  const CodebuildProjectEnvironmentVariableType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -441,8 +409,8 @@ enum CodebuildProjectEnvironmentEnvironmentVariableType
 /// Typed helper for the `environment.fleet` block of
 /// `aws_codebuild_project` (derived from provider schema).
 @immutable
-final class CodebuildProjectEnvironmentFleet {
-  const CodebuildProjectEnvironmentFleet({this.fleetArn});
+final class CodebuildProjectFleet {
+  const CodebuildProjectFleet({this.fleetArn});
 
   final TfArg<String>? fleetArn;
 
@@ -452,16 +420,15 @@ final class CodebuildProjectEnvironmentFleet {
 /// Typed helper for the `environment.registry_credential` block of
 /// `aws_codebuild_project` (derived from provider schema).
 @immutable
-final class CodebuildProjectEnvironmentRegistryCredential {
-  const CodebuildProjectEnvironmentRegistryCredential({
+final class CodebuildProjectRegistryCredential {
+  const CodebuildProjectRegistryCredential({
     required this.credential,
     required this.credentialProvider,
   });
 
   final TfArg<String> credential;
 
-  final TfArg<CodebuildProjectEnvironmentRegistryCredentialCredentialProvider>
-  credentialProvider;
+  final TfArg<CodebuildProjectCredentialProvider> credentialProvider;
 
   Map<String, Object?> encode() => {
     'credential': credential.toTfJson(),
@@ -470,13 +437,10 @@ final class CodebuildProjectEnvironmentRegistryCredential {
 }
 
 /// `credential_provider` — derived from the provider schema description.
-enum CodebuildProjectEnvironmentRegistryCredentialCredentialProvider
-    implements TerraformEnum {
+enum CodebuildProjectCredentialProvider implements TerraformEnum {
   secretsManager('SECRETS_MANAGER');
 
-  const CodebuildProjectEnvironmentRegistryCredentialCredentialProvider(
-    this.terraformValue,
-  );
+  const CodebuildProjectCredentialProvider(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -527,9 +491,9 @@ enum CodebuildProjectFileSystemLocationsType implements TerraformEnum {
 final class CodebuildProjectLogsConfig {
   const CodebuildProjectLogsConfig({this.cloudwatchLogs, this.s3Logs});
 
-  final CodebuildProjectLogsConfigCloudwatchLogs? cloudwatchLogs;
+  final CodebuildProjectCloudwatchLogs? cloudwatchLogs;
 
-  final CodebuildProjectLogsConfigS3Logs? s3Logs;
+  final CodebuildProjectS3Logs? s3Logs;
 
   Map<String, Object?> encode() => {
     'cloudwatch_logs': ?cloudwatchLogs?.encode(),
@@ -540,8 +504,8 @@ final class CodebuildProjectLogsConfig {
 /// Typed helper for the `logs_config.cloudwatch_logs` block of
 /// `aws_codebuild_project` (derived from provider schema).
 @immutable
-final class CodebuildProjectLogsConfigCloudwatchLogs {
-  const CodebuildProjectLogsConfigCloudwatchLogs({
+final class CodebuildProjectCloudwatchLogs {
+  const CodebuildProjectCloudwatchLogs({
     this.groupName,
     this.status,
     this.streamName,
@@ -549,7 +513,7 @@ final class CodebuildProjectLogsConfigCloudwatchLogs {
 
   final TfArg<String>? groupName;
 
-  final TfArg<CodebuildProjectLogsConfigCloudwatchLogsStatus>? status;
+  final TfArg<CodebuildProjectStatus>? status;
 
   final TfArg<String>? streamName;
 
@@ -561,11 +525,11 @@ final class CodebuildProjectLogsConfigCloudwatchLogs {
 }
 
 /// `status` — derived from the provider schema description.
-enum CodebuildProjectLogsConfigCloudwatchLogsStatus implements TerraformEnum {
+enum CodebuildProjectStatus implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const CodebuildProjectLogsConfigCloudwatchLogsStatus(this.terraformValue);
+  const CodebuildProjectStatus(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -573,22 +537,21 @@ enum CodebuildProjectLogsConfigCloudwatchLogsStatus implements TerraformEnum {
 /// Typed helper for the `logs_config.s3_logs` block of
 /// `aws_codebuild_project` (derived from provider schema).
 @immutable
-final class CodebuildProjectLogsConfigS3Logs {
-  const CodebuildProjectLogsConfigS3Logs({
+final class CodebuildProjectS3Logs {
+  const CodebuildProjectS3Logs({
     this.bucketOwnerAccess,
     this.encryptionDisabled,
     this.location,
     this.status,
   });
 
-  final TfArg<CodebuildProjectLogsConfigS3LogsBucketOwnerAccess>?
-  bucketOwnerAccess;
+  final TfArg<CodebuildProjectBucketOwnerAccess>? bucketOwnerAccess;
 
   final TfArg<bool>? encryptionDisabled;
 
   final TfArg<String>? location;
 
-  final TfArg<CodebuildProjectLogsConfigS3LogsStatus>? status;
+  final TfArg<CodebuildProjectStatus>? status;
 
   Map<String, Object?> encode() => {
     'bucket_owner_access': ?bucketOwnerAccess?.toTfJson(),
@@ -596,28 +559,6 @@ final class CodebuildProjectLogsConfigS3Logs {
     'location': ?location?.toTfJson(),
     'status': ?status?.toTfJson(),
   };
-}
-
-/// `bucket_owner_access` — derived from the provider schema description.
-enum CodebuildProjectLogsConfigS3LogsBucketOwnerAccess
-    implements TerraformEnum {
-  none('NONE'),
-  readOnly('READ_ONLY'),
-  full('FULL');
-
-  const CodebuildProjectLogsConfigS3LogsBucketOwnerAccess(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
-/// `status` — derived from the provider schema description.
-enum CodebuildProjectLogsConfigS3LogsStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
-
-  const CodebuildProjectLogsConfigS3LogsStatus(this.terraformValue);
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `secondary_artifacts` block of
@@ -639,8 +580,7 @@ final class CodebuildProjectSecondaryArtifacts {
 
   final TfArg<String> artifactIdentifier;
 
-  final TfArg<CodebuildProjectSecondaryArtifactsBucketOwnerAccess>?
-  bucketOwnerAccess;
+  final TfArg<CodebuildProjectBucketOwnerAccess>? bucketOwnerAccess;
 
   final TfArg<bool>? encryptionDisabled;
 
@@ -648,15 +588,15 @@ final class CodebuildProjectSecondaryArtifacts {
 
   final TfArg<String>? name;
 
-  final TfArg<CodebuildProjectSecondaryArtifactsNamespaceType>? namespaceType;
+  final TfArg<CodebuildProjectNamespaceType>? namespaceType;
 
   final TfArg<bool>? overrideArtifactName;
 
-  final TfArg<CodebuildProjectSecondaryArtifactsPackaging>? packaging;
+  final TfArg<CodebuildProjectPackaging>? packaging;
 
   final TfArg<String>? path;
 
-  final TfArg<CodebuildProjectSecondaryArtifactsType> type;
+  final TfArg<CodebuildProjectArtifactsType> type;
 
   Map<String, Object?> encode() => {
     'artifact_identifier': artifactIdentifier.toTfJson(),
@@ -670,51 +610,6 @@ final class CodebuildProjectSecondaryArtifacts {
     'path': ?path?.toTfJson(),
     'type': type.toTfJson(),
   };
-}
-
-/// `bucket_owner_access` — derived from the provider schema description.
-enum CodebuildProjectSecondaryArtifactsBucketOwnerAccess
-    implements TerraformEnum {
-  none('NONE'),
-  readOnly('READ_ONLY'),
-  full('FULL');
-
-  const CodebuildProjectSecondaryArtifactsBucketOwnerAccess(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `namespace_type` — derived from the provider schema description.
-enum CodebuildProjectSecondaryArtifactsNamespaceType implements TerraformEnum {
-  none('NONE'),
-  buildId('BUILD_ID');
-
-  const CodebuildProjectSecondaryArtifactsNamespaceType(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
-/// `packaging` — derived from the provider schema description.
-enum CodebuildProjectSecondaryArtifactsPackaging implements TerraformEnum {
-  none('NONE'),
-  zip('ZIP');
-
-  const CodebuildProjectSecondaryArtifactsPackaging(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
-/// `type` — derived from the provider schema description.
-enum CodebuildProjectSecondaryArtifactsType implements TerraformEnum {
-  codepipeline('CODEPIPELINE'),
-  s3('S3'),
-  noArtifacts('NO_ARTIFACTS');
-
-  const CodebuildProjectSecondaryArtifactsType(this.terraformValue);
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `secondary_source_version` block of
@@ -767,12 +662,11 @@ final class CodebuildProjectSecondarySources {
 
   final TfArg<CodebuildProjectSecondarySourcesType> type;
 
-  final CodebuildProjectSecondarySourcesAuth? auth;
+  final CodebuildProjectAuth? auth;
 
-  final CodebuildProjectSecondarySourcesBuildStatusConfig? buildStatusConfig;
+  final CodebuildProjectBuildStatusConfig? buildStatusConfig;
 
-  final CodebuildProjectSecondarySourcesGitSubmodulesConfig?
-  gitSubmodulesConfig;
+  final CodebuildProjectGitSubmodulesConfig? gitSubmodulesConfig;
 
   Map<String, Object?> encode() => {
     'buildspec': ?buildspec?.toTfJson(),
@@ -807,16 +701,14 @@ enum CodebuildProjectSecondarySourcesType implements TerraformEnum {
 
 /// Typed helper for the `secondary_sources.auth` block of
 /// `aws_codebuild_project` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CodebuildProjectSecondarySourcesAuth {
-  const CodebuildProjectSecondarySourcesAuth({
-    required this.resource,
-    required this.type,
-  });
+final class CodebuildProjectAuth {
+  const CodebuildProjectAuth({required this.resource, required this.type});
 
   final TfArg<String> resource;
 
-  final TfArg<CodebuildProjectSecondarySourcesAuthType> type;
+  final TfArg<CodebuildProjectAuthType> type;
 
   Map<String, Object?> encode() => {
     'resource': resource.toTfJson(),
@@ -825,26 +717,24 @@ final class CodebuildProjectSecondarySourcesAuth {
 }
 
 /// `type` — derived from the provider schema description.
-enum CodebuildProjectSecondarySourcesAuthType implements TerraformEnum {
+enum CodebuildProjectAuthType implements TerraformEnum {
   oauth('OAUTH'),
   basicAuth('BASIC_AUTH'),
   personalAccessToken('PERSONAL_ACCESS_TOKEN'),
   codeconnections('CODECONNECTIONS'),
   secretsManager('SECRETS_MANAGER');
 
-  const CodebuildProjectSecondarySourcesAuthType(this.terraformValue);
+  const CodebuildProjectAuthType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `secondary_sources.build_status_config` block of
 /// `aws_codebuild_project` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CodebuildProjectSecondarySourcesBuildStatusConfig {
-  const CodebuildProjectSecondarySourcesBuildStatusConfig({
-    this.context,
-    this.targetUrl,
-  });
+final class CodebuildProjectBuildStatusConfig {
+  const CodebuildProjectBuildStatusConfig({this.context, this.targetUrl});
 
   final TfArg<String>? context;
 
@@ -858,11 +748,10 @@ final class CodebuildProjectSecondarySourcesBuildStatusConfig {
 
 /// Typed helper for the `secondary_sources.git_submodules_config` block of
 /// `aws_codebuild_project` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CodebuildProjectSecondarySourcesGitSubmodulesConfig {
-  const CodebuildProjectSecondarySourcesGitSubmodulesConfig({
-    required this.fetchSubmodules,
-  });
+final class CodebuildProjectGitSubmodulesConfig {
+  const CodebuildProjectGitSubmodulesConfig({required this.fetchSubmodules});
 
   final TfArg<bool> fetchSubmodules;
 
@@ -897,13 +786,13 @@ final class CodebuildProjectSource {
 
   final TfArg<bool>? reportBuildStatus;
 
-  final TfArg<CodebuildProjectSourceType> type;
+  final TfArg<CodebuildProjectSecondarySourcesType> type;
 
-  final CodebuildProjectSourceAuth? auth;
+  final CodebuildProjectAuth? auth;
 
-  final CodebuildProjectSourceBuildStatusConfig? buildStatusConfig;
+  final CodebuildProjectBuildStatusConfig? buildStatusConfig;
 
-  final CodebuildProjectSourceGitSubmodulesConfig? gitSubmodulesConfig;
+  final CodebuildProjectGitSubmodulesConfig? gitSubmodulesConfig;
 
   Map<String, Object?> encode() => {
     'buildspec': ?buildspec?.toTfJson(),
@@ -915,86 +804,6 @@ final class CodebuildProjectSource {
     'auth': ?auth?.encode(),
     'build_status_config': ?buildStatusConfig?.encode(),
     'git_submodules_config': ?gitSubmodulesConfig?.encode(),
-  };
-}
-
-/// `type` — derived from the provider schema description.
-enum CodebuildProjectSourceType implements TerraformEnum {
-  codecommit('CODECOMMIT'),
-  codepipeline('CODEPIPELINE'),
-  github('GITHUB'),
-  gitlab('GITLAB'),
-  gitlabSelfManaged('GITLAB_SELF_MANAGED'),
-  s3('S3'),
-  bitbucket('BITBUCKET'),
-  githubEnterprise('GITHUB_ENTERPRISE'),
-  noSource('NO_SOURCE');
-
-  const CodebuildProjectSourceType(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `source.auth` block of
-/// `aws_codebuild_project` (derived from provider schema).
-@immutable
-final class CodebuildProjectSourceAuth {
-  const CodebuildProjectSourceAuth({
-    required this.resource,
-    required this.type,
-  });
-
-  final TfArg<String> resource;
-
-  final TfArg<CodebuildProjectSourceAuthType> type;
-
-  Map<String, Object?> encode() => {
-    'resource': resource.toTfJson(),
-    'type': type.toTfJson(),
-  };
-}
-
-/// `type` — derived from the provider schema description.
-enum CodebuildProjectSourceAuthType implements TerraformEnum {
-  oauth('OAUTH'),
-  basicAuth('BASIC_AUTH'),
-  personalAccessToken('PERSONAL_ACCESS_TOKEN'),
-  codeconnections('CODECONNECTIONS'),
-  secretsManager('SECRETS_MANAGER');
-
-  const CodebuildProjectSourceAuthType(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `source.build_status_config` block of
-/// `aws_codebuild_project` (derived from provider schema).
-@immutable
-final class CodebuildProjectSourceBuildStatusConfig {
-  const CodebuildProjectSourceBuildStatusConfig({this.context, this.targetUrl});
-
-  final TfArg<String>? context;
-
-  final TfArg<String>? targetUrl;
-
-  Map<String, Object?> encode() => {
-    'context': ?context?.toTfJson(),
-    'target_url': ?targetUrl?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `source.git_submodules_config` block of
-/// `aws_codebuild_project` (derived from provider schema).
-@immutable
-final class CodebuildProjectSourceGitSubmodulesConfig {
-  const CodebuildProjectSourceGitSubmodulesConfig({
-    required this.fetchSubmodules,
-  });
-
-  final TfArg<bool> fetchSubmodules;
-
-  Map<String, Object?> encode() => {
-    'fetch_submodules': fetchSubmodules.toTfJson(),
   };
 }
 

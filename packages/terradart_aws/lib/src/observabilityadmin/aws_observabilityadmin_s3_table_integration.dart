@@ -22,8 +22,7 @@ final class ObservabilityadminS3TableIntegrationEncryption {
 
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
-  final TfArg<ObservabilityadminS3TableIntegrationEncryptionSseAlgorithm>
-  sseAlgorithm;
+  final TfArg<ObservabilityadminS3TableIntegrationSseAlgorithm> sseAlgorithm;
 
   Map<String, Object?> encode() => {
     'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
@@ -32,14 +31,11 @@ final class ObservabilityadminS3TableIntegrationEncryption {
 }
 
 /// `sse_algorithm` — derived from the provider schema description.
-enum ObservabilityadminS3TableIntegrationEncryptionSseAlgorithm
-    implements TerraformEnum {
+enum ObservabilityadminS3TableIntegrationSseAlgorithm implements TerraformEnum {
   awsKms('aws:kms'),
   aes256('AES256');
 
-  const ObservabilityadminS3TableIntegrationEncryptionSseAlgorithm(
-    this.terraformValue,
-  );
+  const ObservabilityadminS3TableIntegrationSseAlgorithm(this.terraformValue);
   @override
   final String terraformValue;
 }

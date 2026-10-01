@@ -110,7 +110,7 @@ final class LogpushJobOutputOptions {
 
   final TfArg<bool>? mergeSubrequests;
 
-  final TfArg<LogpushJobOutputOptionsOutputType>? outputType;
+  final TfArg<LogpushJobOutputType>? outputType;
 
   final TfArg<String>? recordDelimiter;
 
@@ -122,7 +122,7 @@ final class LogpushJobOutputOptions {
 
   final TfArg<num>? sampleRate;
 
-  final TfArg<LogpushJobOutputOptionsTimestampFormat>? timestampFormat;
+  final TfArg<LogpushJobTimestampFormat>? timestampFormat;
 
   Map<String, Object?> encode() => {
     'batch_prefix': ?batchPrefix?.toTfJson(),
@@ -142,24 +142,24 @@ final class LogpushJobOutputOptions {
 }
 
 /// `output_type` — derived from the provider schema description.
-enum LogpushJobOutputOptionsOutputType implements TerraformEnum {
+enum LogpushJobOutputType implements TerraformEnum {
   ndjson('ndjson'),
   csv('csv');
 
-  const LogpushJobOutputOptionsOutputType(this.terraformValue);
+  const LogpushJobOutputType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `timestamp_format` — derived from the provider schema description.
-enum LogpushJobOutputOptionsTimestampFormat implements TerraformEnum {
+enum LogpushJobTimestampFormat implements TerraformEnum {
   unixnano('unixnano'),
   unix('unix'),
   rfc3339('rfc3339'),
   rfc3339ms('rfc3339ms'),
   rfc3339ns('rfc3339ns');
 
-  const LogpushJobOutputOptionsTimestampFormat(this.terraformValue);
+  const LogpushJobTimestampFormat(this.terraformValue);
   @override
   final String terraformValue;
 }

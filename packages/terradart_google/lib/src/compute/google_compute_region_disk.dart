@@ -60,8 +60,8 @@ final class ComputeRegionDiskAsyncPrimaryDisk {
 /// Typed helper for the `disk_encryption_key` block of
 /// `google_compute_region_disk` (derived from provider schema).
 @immutable
-final class ComputeRegionDiskDiskEncryptionKey {
-  const ComputeRegionDiskDiskEncryptionKey({
+final class ComputeRegionDiskEncryptionKey {
+  const ComputeRegionDiskEncryptionKey({
     this.kmsKeyName,
     this.rawKey,
     this.rsaEncryptedKey,
@@ -150,7 +150,7 @@ final class GoogleComputeRegionDisk extends Resource {
     List<ComputeRegionDiskGuestOsFeature>? guestOsFeatures,
     TfArg<String>? region,
     TfArg<String>? project,
-    ComputeRegionDiskDiskEncryptionKey? diskEncryptionKey,
+    ComputeRegionDiskEncryptionKey? diskEncryptionKey,
     ComputeRegionDiskSourceImageEncryptionKey? sourceImageEncryptionKey,
     ComputeRegionDiskSourceSnapshotEncryptionKey? sourceSnapshotEncryptionKey,
     ComputeRegionDiskAsyncPrimaryDisk? asyncPrimaryDisk,

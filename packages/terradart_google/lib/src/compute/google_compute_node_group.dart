@@ -21,7 +21,7 @@ final class ComputeNodeGroupAutoscalingPolicy {
 
   final TfArg<num>? minNodes;
 
-  final TfArg<ComputeNodeGroupAutoscalingPolicyMode>? mode;
+  final TfArg<ComputeNodeGroupMode>? mode;
 
   Map<String, Object?> encode() => {
     'max_nodes': ?maxNodes?.toTfJson(),
@@ -31,12 +31,12 @@ final class ComputeNodeGroupAutoscalingPolicy {
 }
 
 /// `mode` — derived from the provider schema description.
-enum ComputeNodeGroupAutoscalingPolicyMode implements TerraformEnum {
+enum ComputeNodeGroupMode implements TerraformEnum {
   off('OFF'),
   on('ON'),
   onlyScaleOut('ONLY_SCALE_OUT');
 
-  const ComputeNodeGroupAutoscalingPolicyMode(this.terraformValue);
+  const ComputeNodeGroupMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -61,9 +61,9 @@ final class ComputeNodeGroupShareSettings {
     this.projectMap,
   });
 
-  final TfArg<ComputeNodeGroupShareSettingsShareType> shareType;
+  final TfArg<ComputeNodeGroupShareType> shareType;
 
-  final List<ComputeNodeGroupShareSettingsProjectMap>? projectMap;
+  final List<ComputeNodeGroupProjectMap>? projectMap;
 
   Map<String, Object?> encode() => {
     'share_type': shareType.toTfJson(),
@@ -73,12 +73,12 @@ final class ComputeNodeGroupShareSettings {
 }
 
 /// `share_type` — derived from the provider schema description.
-enum ComputeNodeGroupShareSettingsShareType implements TerraformEnum {
+enum ComputeNodeGroupShareType implements TerraformEnum {
   organization('ORGANIZATION'),
   specificProjects('SPECIFIC_PROJECTS'),
   local('LOCAL');
 
-  const ComputeNodeGroupShareSettingsShareType(this.terraformValue);
+  const ComputeNodeGroupShareType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -86,11 +86,8 @@ enum ComputeNodeGroupShareSettingsShareType implements TerraformEnum {
 /// Typed helper for the `share_settings.project_map` block of
 /// `google_compute_node_group` (derived from provider schema).
 @immutable
-final class ComputeNodeGroupShareSettingsProjectMap {
-  const ComputeNodeGroupShareSettingsProjectMap({
-    required this.id,
-    required this.projectId,
-  });
+final class ComputeNodeGroupProjectMap {
+  const ComputeNodeGroupProjectMap({required this.id, required this.projectId});
 
   final TfArg<String> id;
 

@@ -47,8 +47,7 @@ enum ApigeeEnvironmentType implements TerraformEnum {
 final class ApigeeEnvironmentClientIpResolutionConfig {
   const ApigeeEnvironmentClientIpResolutionConfig({this.headerIndexAlgorithm});
 
-  final ApigeeEnvironmentClientIpResolutionConfigHeaderIndexAlgorithm?
-  headerIndexAlgorithm;
+  final ApigeeEnvironmentHeaderIndexAlgorithm? headerIndexAlgorithm;
 
   Map<String, Object?> encode() => {
     'header_index_algorithm': ?headerIndexAlgorithm?.encode(),
@@ -58,8 +57,8 @@ final class ApigeeEnvironmentClientIpResolutionConfig {
 /// Typed helper for the `client_ip_resolution_config.header_index_algorithm` block of
 /// `google_apigee_environment` (derived from provider schema).
 @immutable
-final class ApigeeEnvironmentClientIpResolutionConfigHeaderIndexAlgorithm {
-  const ApigeeEnvironmentClientIpResolutionConfigHeaderIndexAlgorithm({
+final class ApigeeEnvironmentHeaderIndexAlgorithm {
+  const ApigeeEnvironmentHeaderIndexAlgorithm({
     required this.ipHeaderIndex,
     required this.ipHeaderName,
   });
@@ -96,7 +95,7 @@ final class ApigeeEnvironmentNodeConfig {
 final class ApigeeEnvironmentProperties {
   const ApigeeEnvironmentProperties({this.property});
 
-  final List<ApigeeEnvironmentPropertiesProperty>? property;
+  final List<ApigeeEnvironmentProperty>? property;
 
   Map<String, Object?> encode() => {
     if (property != null) 'property': [for (final e in property!) e.encode()],
@@ -106,8 +105,8 @@ final class ApigeeEnvironmentProperties {
 /// Typed helper for the `properties.property` block of
 /// `google_apigee_environment` (derived from provider schema).
 @immutable
-final class ApigeeEnvironmentPropertiesProperty {
-  const ApigeeEnvironmentPropertiesProperty({this.name, this.value});
+final class ApigeeEnvironmentProperty {
+  const ApigeeEnvironmentProperty({this.name, this.value});
 
   final TfArg<String>? name;
 

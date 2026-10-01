@@ -6,42 +6,41 @@ library;
 export 'src/config/aws_config_aggregate_authorization.dart'
     show
         AwsConfigAggregateAuthorization,
+        ConfigAggregateAuthorizationAuthorizedAwsRegion,
         ConfigAggregateAuthorizationRegion,
-        ConfigAggregateAuthorizationRegionAuthorizedAwsRegion,
         ConfigAggregateAuthorizationRegionChoice;
 export 'src/config/aws_config_config_rule.dart'
     show
         AwsConfigConfigRule,
+        ConfigConfigRuleCustomPolicyDetails,
         ConfigConfigRuleEvaluationMode,
-        ConfigConfigRuleEvaluationModeMode,
+        ConfigConfigRuleEventSource,
         ConfigConfigRuleMaximumExecutionFrequency,
+        ConfigConfigRuleMessageType,
+        ConfigConfigRuleMode,
+        ConfigConfigRuleOwner,
         ConfigConfigRuleScope,
         ConfigConfigRuleSource,
-        ConfigConfigRuleSourceCustomPolicyDetails,
-        ConfigConfigRuleSourceOwner,
-        ConfigConfigRuleSourceSourceDetail,
-        ConfigConfigRuleSourceSourceDetailEventSource,
-        ConfigConfigRuleSourceSourceDetailMaximumExecutionFrequency,
-        ConfigConfigRuleSourceSourceDetailMessageType;
+        ConfigConfigRuleSourceDetail,
+        ConfigConfigRuleSourceDetailMaximumExecutionFrequency;
 export 'src/config/aws_config_configuration_aggregator.dart'
     show
         AwsConfigConfigurationAggregator,
         ConfigConfigurationAggregatorAccountAggregationSource,
+        ConfigConfigurationAggregatorAccountAggregationSourceChoice,
         ConfigConfigurationAggregatorAggregationSource,
-        ConfigConfigurationAggregatorAggregationSourceAccountAggregationSource,
-        ConfigConfigurationAggregatorAggregationSourceOrganizationAggregationSource,
-        ConfigConfigurationAggregatorOrganizationAggregationSource;
+        ConfigConfigurationAggregatorOrganizationAggregationSource,
+        ConfigConfigurationAggregatorOrganizationAggregationSourceChoice;
 export 'src/config/aws_config_configuration_recorder.dart'
     show
         AwsConfigConfigurationRecorder,
+        ConfigConfigurationRecorderExclusionByResourceTypes,
+        ConfigConfigurationRecorderRecordingFrequency,
         ConfigConfigurationRecorderRecordingGroup,
-        ConfigConfigurationRecorderRecordingGroupExclusionByResourceTypes,
-        ConfigConfigurationRecorderRecordingGroupRecordingStrategy,
-        ConfigConfigurationRecorderRecordingGroupRecordingStrategyUseOnly,
         ConfigConfigurationRecorderRecordingMode,
-        ConfigConfigurationRecorderRecordingModeRecordingFrequency,
-        ConfigConfigurationRecorderRecordingModeRecordingModeOverride,
-        ConfigConfigurationRecorderRecordingModeRecordingModeOverrideRecordingFrequency;
+        ConfigConfigurationRecorderRecordingModeOverride,
+        ConfigConfigurationRecorderRecordingStrategy,
+        ConfigConfigurationRecorderUseOnly;
 export 'src/config/aws_config_configuration_recorder_status.dart'
     show AwsConfigConfigurationRecorderStatus;
 export 'src/config/aws_config_conformance_pack.dart'
@@ -49,8 +48,8 @@ export 'src/config/aws_config_conformance_pack.dart'
 export 'src/config/aws_config_delivery_channel.dart'
     show
         AwsConfigDeliveryChannel,
-        ConfigDeliveryChannelSnapshotDeliveryProperties,
-        ConfigDeliveryChannelSnapshotDeliveryPropertiesDeliveryFrequency;
+        ConfigDeliveryChannelDeliveryFrequency,
+        ConfigDeliveryChannelSnapshotDeliveryProperties;
 export 'src/config/aws_config_organization_conformance_pack.dart'
     show
         AwsConfigOrganizationConformancePack,
@@ -76,8 +75,8 @@ export 'src/config/aws_config_remediation_configuration.dart'
     show
         AwsConfigRemediationConfiguration,
         ConfigRemediationConfigurationExecutionControls,
-        ConfigRemediationConfigurationExecutionControlsSsmControls,
         ConfigRemediationConfigurationParameter,
+        ConfigRemediationConfigurationSsmControls,
         ConfigRemediationConfigurationTargetType;
 export 'src/config/aws_config_retention_configuration.dart'
     show AwsConfigRetentionConfiguration;

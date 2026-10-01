@@ -16,9 +16,9 @@ final class ContainerAwsClusterAuthorization {
     required this.adminUsers,
   });
 
-  final List<ContainerAwsClusterAuthorizationAdminGroups>? adminGroups;
+  final List<ContainerAwsClusterAdminGroups>? adminGroups;
 
-  final List<ContainerAwsClusterAuthorizationAdminUsers> adminUsers;
+  final List<ContainerAwsClusterAdminUsers> adminUsers;
 
   Map<String, Object?> encode() => {
     if (adminGroups != null)
@@ -30,8 +30,8 @@ final class ContainerAwsClusterAuthorization {
 /// Typed helper for the `authorization.admin_groups` block of
 /// `google_container_aws_cluster` (derived from provider schema).
 @immutable
-final class ContainerAwsClusterAuthorizationAdminGroups {
-  const ContainerAwsClusterAuthorizationAdminGroups({required this.group});
+final class ContainerAwsClusterAdminGroups {
+  const ContainerAwsClusterAdminGroups({required this.group});
 
   final TfArg<String> group;
 
@@ -41,8 +41,8 @@ final class ContainerAwsClusterAuthorizationAdminGroups {
 /// Typed helper for the `authorization.admin_users` block of
 /// `google_container_aws_cluster` (derived from provider schema).
 @immutable
-final class ContainerAwsClusterAuthorizationAdminUsers {
-  const ContainerAwsClusterAuthorizationAdminUsers({required this.username});
+final class ContainerAwsClusterAdminUsers {
+  const ContainerAwsClusterAdminUsers({required this.username});
 
   final TfArg<String> username;
 
@@ -55,8 +55,7 @@ final class ContainerAwsClusterAuthorizationAdminUsers {
 final class ContainerAwsClusterBinaryAuthorization {
   const ContainerAwsClusterBinaryAuthorization({this.evaluationMode});
 
-  final TfArg<ContainerAwsClusterBinaryAuthorizationEvaluationMode>?
-  evaluationMode;
+  final TfArg<ContainerAwsClusterEvaluationMode>? evaluationMode;
 
   Map<String, Object?> encode() => {
     'evaluation_mode': ?evaluationMode?.toTfJson(),
@@ -64,14 +63,11 @@ final class ContainerAwsClusterBinaryAuthorization {
 }
 
 /// `evaluation_mode` — derived from the provider schema description.
-enum ContainerAwsClusterBinaryAuthorizationEvaluationMode
-    implements TerraformEnum {
+enum ContainerAwsClusterEvaluationMode implements TerraformEnum {
   disabled('DISABLED'),
   projectSingletonPolicyEnforce('PROJECT_SINGLETON_POLICY_ENFORCE');
 
-  const ContainerAwsClusterBinaryAuthorizationEvaluationMode(
-    this.terraformValue,
-  );
+  const ContainerAwsClusterEvaluationMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -108,20 +104,19 @@ final class ContainerAwsClusterControlPlane {
 
   final TfArg<String> version;
 
-  final ContainerAwsClusterControlPlaneAwsServicesAuthentication
-  awsServicesAuthentication;
+  final ContainerAwsClusterAwsServicesAuthentication awsServicesAuthentication;
 
-  final ContainerAwsClusterControlPlaneConfigEncryption configEncryption;
+  final ContainerAwsClusterConfigEncryption configEncryption;
 
-  final ContainerAwsClusterControlPlaneDatabaseEncryption databaseEncryption;
+  final ContainerAwsClusterDatabaseEncryption databaseEncryption;
 
-  final ContainerAwsClusterControlPlaneMainVolume? mainVolume;
+  final ContainerAwsClusterMainVolume? mainVolume;
 
-  final ContainerAwsClusterControlPlaneProxyConfig? proxyConfig;
+  final ContainerAwsClusterProxyConfig? proxyConfig;
 
-  final ContainerAwsClusterControlPlaneRootVolume? rootVolume;
+  final ContainerAwsClusterRootVolume? rootVolume;
 
-  final ContainerAwsClusterControlPlaneSshConfig? sshConfig;
+  final ContainerAwsClusterSshConfig? sshConfig;
 
   Map<String, Object?> encode() => {
     'iam_instance_profile': iamInstanceProfile.toTfJson(),
@@ -143,8 +138,8 @@ final class ContainerAwsClusterControlPlane {
 /// Typed helper for the `control_plane.aws_services_authentication` block of
 /// `google_container_aws_cluster` (derived from provider schema).
 @immutable
-final class ContainerAwsClusterControlPlaneAwsServicesAuthentication {
-  const ContainerAwsClusterControlPlaneAwsServicesAuthentication({
+final class ContainerAwsClusterAwsServicesAuthentication {
+  const ContainerAwsClusterAwsServicesAuthentication({
     required this.roleArn,
     this.roleSessionName,
   });
@@ -162,10 +157,8 @@ final class ContainerAwsClusterControlPlaneAwsServicesAuthentication {
 /// Typed helper for the `control_plane.config_encryption` block of
 /// `google_container_aws_cluster` (derived from provider schema).
 @immutable
-final class ContainerAwsClusterControlPlaneConfigEncryption {
-  const ContainerAwsClusterControlPlaneConfigEncryption({
-    required this.kmsKeyArn,
-  });
+final class ContainerAwsClusterConfigEncryption {
+  const ContainerAwsClusterConfigEncryption({required this.kmsKeyArn});
 
   final TfArg<String> kmsKeyArn;
 
@@ -175,10 +168,8 @@ final class ContainerAwsClusterControlPlaneConfigEncryption {
 /// Typed helper for the `control_plane.database_encryption` block of
 /// `google_container_aws_cluster` (derived from provider schema).
 @immutable
-final class ContainerAwsClusterControlPlaneDatabaseEncryption {
-  const ContainerAwsClusterControlPlaneDatabaseEncryption({
-    required this.kmsKeyArn,
-  });
+final class ContainerAwsClusterDatabaseEncryption {
+  const ContainerAwsClusterDatabaseEncryption({required this.kmsKeyArn});
 
   final TfArg<String> kmsKeyArn;
 
@@ -188,8 +179,8 @@ final class ContainerAwsClusterControlPlaneDatabaseEncryption {
 /// Typed helper for the `control_plane.main_volume` block of
 /// `google_container_aws_cluster` (derived from provider schema).
 @immutable
-final class ContainerAwsClusterControlPlaneMainVolume {
-  const ContainerAwsClusterControlPlaneMainVolume({
+final class ContainerAwsClusterMainVolume {
+  const ContainerAwsClusterMainVolume({
     this.iops,
     this.kmsKeyArn,
     this.sizeGib,
@@ -205,7 +196,7 @@ final class ContainerAwsClusterControlPlaneMainVolume {
 
   final TfArg<num>? throughput;
 
-  final TfArg<ContainerAwsClusterControlPlaneMainVolumeVolumeType>? volumeType;
+  final TfArg<ContainerAwsClusterVolumeType>? volumeType;
 
   Map<String, Object?> encode() => {
     'iops': ?iops?.toTfJson(),
@@ -217,15 +208,12 @@ final class ContainerAwsClusterControlPlaneMainVolume {
 }
 
 /// `volume_type` — derived from the provider schema description.
-enum ContainerAwsClusterControlPlaneMainVolumeVolumeType
-    implements TerraformEnum {
+enum ContainerAwsClusterVolumeType implements TerraformEnum {
   volumeTypeUnspecified('VOLUME_TYPE_UNSPECIFIED'),
   gp2('GP2'),
   gp3('GP3');
 
-  const ContainerAwsClusterControlPlaneMainVolumeVolumeType(
-    this.terraformValue,
-  );
+  const ContainerAwsClusterVolumeType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -233,8 +221,8 @@ enum ContainerAwsClusterControlPlaneMainVolumeVolumeType
 /// Typed helper for the `control_plane.proxy_config` block of
 /// `google_container_aws_cluster` (derived from provider schema).
 @immutable
-final class ContainerAwsClusterControlPlaneProxyConfig {
-  const ContainerAwsClusterControlPlaneProxyConfig({
+final class ContainerAwsClusterProxyConfig {
+  const ContainerAwsClusterProxyConfig({
     required this.secretArn,
     required this.secretVersion,
   });
@@ -252,8 +240,8 @@ final class ContainerAwsClusterControlPlaneProxyConfig {
 /// Typed helper for the `control_plane.root_volume` block of
 /// `google_container_aws_cluster` (derived from provider schema).
 @immutable
-final class ContainerAwsClusterControlPlaneRootVolume {
-  const ContainerAwsClusterControlPlaneRootVolume({
+final class ContainerAwsClusterRootVolume {
+  const ContainerAwsClusterRootVolume({
     this.iops,
     this.kmsKeyArn,
     this.sizeGib,
@@ -269,7 +257,7 @@ final class ContainerAwsClusterControlPlaneRootVolume {
 
   final TfArg<num>? throughput;
 
-  final TfArg<ContainerAwsClusterControlPlaneRootVolumeVolumeType>? volumeType;
+  final TfArg<ContainerAwsClusterVolumeType>? volumeType;
 
   Map<String, Object?> encode() => {
     'iops': ?iops?.toTfJson(),
@@ -280,25 +268,11 @@ final class ContainerAwsClusterControlPlaneRootVolume {
   };
 }
 
-/// `volume_type` — derived from the provider schema description.
-enum ContainerAwsClusterControlPlaneRootVolumeVolumeType
-    implements TerraformEnum {
-  volumeTypeUnspecified('VOLUME_TYPE_UNSPECIFIED'),
-  gp2('GP2'),
-  gp3('GP3');
-
-  const ContainerAwsClusterControlPlaneRootVolumeVolumeType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `control_plane.ssh_config` block of
 /// `google_container_aws_cluster` (derived from provider schema).
 @immutable
-final class ContainerAwsClusterControlPlaneSshConfig {
-  const ContainerAwsClusterControlPlaneSshConfig({required this.ec2KeyPair});
+final class ContainerAwsClusterSshConfig {
+  const ContainerAwsClusterSshConfig({required this.ec2KeyPair});
 
   final TfArg<String> ec2KeyPair;
 

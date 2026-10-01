@@ -21,8 +21,8 @@ enum Apigatewayv2DomainNameRoutingMode implements TerraformEnum {
 /// Typed helper for the `domain_name_configuration` block of
 /// `aws_apigatewayv2_domain_name` (derived from provider schema).
 @immutable
-final class Apigatewayv2DomainNameDomainNameConfiguration {
-  const Apigatewayv2DomainNameDomainNameConfiguration({
+final class Apigatewayv2DomainNameConfiguration {
+  const Apigatewayv2DomainNameConfiguration({
     required this.certificateArn,
     required this.endpointType,
     this.ipAddressType,
@@ -32,16 +32,13 @@ final class Apigatewayv2DomainNameDomainNameConfiguration {
 
   final TfArg<String> certificateArn;
 
-  final TfArg<Apigatewayv2DomainNameDomainNameConfigurationEndpointType>
-  endpointType;
+  final TfArg<Apigatewayv2DomainNameEndpointType> endpointType;
 
-  final TfArg<Apigatewayv2DomainNameDomainNameConfigurationIpAddressType>?
-  ipAddressType;
+  final TfArg<Apigatewayv2DomainNameIpAddressType>? ipAddressType;
 
   final TfArg<String>? ownershipVerificationCertificateArn;
 
-  final TfArg<Apigatewayv2DomainNameDomainNameConfigurationSecurityPolicy>
-  securityPolicy;
+  final TfArg<Apigatewayv2DomainNameSecurityPolicy> securityPolicy;
 
   Map<String, Object?> encode() => {
     'certificate_arn': certificateArn.toTfJson(),
@@ -54,38 +51,29 @@ final class Apigatewayv2DomainNameDomainNameConfiguration {
 }
 
 /// `endpoint_type` — derived from the provider schema description.
-enum Apigatewayv2DomainNameDomainNameConfigurationEndpointType
-    implements TerraformEnum {
+enum Apigatewayv2DomainNameEndpointType implements TerraformEnum {
   regional('REGIONAL');
 
-  const Apigatewayv2DomainNameDomainNameConfigurationEndpointType(
-    this.terraformValue,
-  );
+  const Apigatewayv2DomainNameEndpointType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `ip_address_type` — derived from the provider schema description.
-enum Apigatewayv2DomainNameDomainNameConfigurationIpAddressType
-    implements TerraformEnum {
+enum Apigatewayv2DomainNameIpAddressType implements TerraformEnum {
   ipv4('ipv4'),
   dualstack('dualstack');
 
-  const Apigatewayv2DomainNameDomainNameConfigurationIpAddressType(
-    this.terraformValue,
-  );
+  const Apigatewayv2DomainNameIpAddressType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `security_policy` — derived from the provider schema description.
-enum Apigatewayv2DomainNameDomainNameConfigurationSecurityPolicy
-    implements TerraformEnum {
+enum Apigatewayv2DomainNameSecurityPolicy implements TerraformEnum {
   tls12('TLS_1_2');
 
-  const Apigatewayv2DomainNameDomainNameConfigurationSecurityPolicy(
-    this.terraformValue,
-  );
+  const Apigatewayv2DomainNameSecurityPolicy(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -119,8 +107,7 @@ final class AwsApigatewayv2DomainName extends Resource {
     TfArg<String>? region,
     TfArg<Apigatewayv2DomainNameRoutingMode>? routingMode,
     TfArg<Map<String, String>>? tags,
-    required Apigatewayv2DomainNameDomainNameConfiguration
-    domainNameConfiguration,
+    required Apigatewayv2DomainNameConfiguration domainNameConfiguration,
     Apigatewayv2DomainNameMutualTlsAuthentication? mutualTlsAuthentication,
     super.lifecycle,
     super.dependsOn,

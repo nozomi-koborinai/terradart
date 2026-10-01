@@ -22,19 +22,19 @@ final class DataZoneFilter {
     this.account,
   });
 
-  final TfArg<DataZoneFilterDirection>? direction;
+  final TfArg<DataZoneDirection>? direction;
 
-  final TfArg<DataZoneFilterMatch>? match;
+  final TfArg<DataZoneMatch>? match;
 
   final TfArg<String>? name;
 
-  final TfArg<DataZoneFilterOrder>? order;
+  final TfArg<DataZoneOrder>? order;
 
   final TfArg<DataZoneFilterStatus>? status;
 
   final TfArg<List<String>>? type;
 
-  final DataZoneFilterAccount? account;
+  final DataZoneAccount? account;
 
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
@@ -48,34 +48,34 @@ final class DataZoneFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataZoneFilterDirection implements TerraformEnum {
+enum DataZoneDirection implements TerraformEnum {
   asc('asc'),
   desc('desc');
 
-  const DataZoneFilterDirection(this.terraformValue);
+  const DataZoneDirection(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `match` — derived from the provider schema description.
-enum DataZoneFilterMatch implements TerraformEnum {
+enum DataZoneMatch implements TerraformEnum {
   any('any'),
   all('all');
 
-  const DataZoneFilterMatch(this.terraformValue);
+  const DataZoneMatch(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `order` — derived from the provider schema description.
-enum DataZoneFilterOrder implements TerraformEnum {
+enum DataZoneOrder implements TerraformEnum {
   name('name'),
   status('status'),
   accountId('account.id'),
   accountName('account.name'),
   planId('plan.id');
 
-  const DataZoneFilterOrder(this.terraformValue);
+  const DataZoneOrder(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -95,8 +95,8 @@ enum DataZoneFilterStatus implements TerraformEnum {
 /// Typed helper for the `filter.account` block of
 /// `cloudflare_zone` (derived from provider schema).
 @immutable
-final class DataZoneFilterAccount {
-  const DataZoneFilterAccount({this.id, this.name});
+final class DataZoneAccount {
+  const DataZoneAccount({this.id, this.name});
 
   final TfArg<String>? id;
 

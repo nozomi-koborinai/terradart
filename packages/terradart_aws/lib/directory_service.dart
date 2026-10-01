@@ -26,7 +26,7 @@ export 'src/directory_service/aws_directory_service_shared_directory.dart'
         AwsDirectoryServiceSharedDirectory,
         DirectoryServiceSharedDirectoryMethod,
         DirectoryServiceSharedDirectoryTarget,
-        DirectoryServiceSharedDirectoryTargetType;
+        DirectoryServiceSharedDirectoryType;
 export 'src/directory_service/aws_directory_service_shared_directory_accepter.dart'
     show AwsDirectoryServiceSharedDirectoryAccepter;
 export 'src/directory_service/aws_directory_service_trust.dart'

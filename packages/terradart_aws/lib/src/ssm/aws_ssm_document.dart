@@ -53,7 +53,7 @@ final class SsmDocumentAttachmentsSource {
     required this.values,
   });
 
-  final TfArg<SsmDocumentAttachmentsSourceKey> key;
+  final TfArg<SsmDocumentKey> key;
 
   final TfArg<String>? name;
 
@@ -67,12 +67,12 @@ final class SsmDocumentAttachmentsSource {
 }
 
 /// `key` — derived from the provider schema description.
-enum SsmDocumentAttachmentsSourceKey implements TerraformEnum {
+enum SsmDocumentKey implements TerraformEnum {
   sourceurl('SourceUrl'),
   s3fileurl('S3FileUrl'),
   attachmentreference('AttachmentReference');
 
-  const SsmDocumentAttachmentsSourceKey(this.terraformValue);
+  const SsmDocumentKey(this.terraformValue);
   @override
   final String terraformValue;
 }

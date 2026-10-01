@@ -76,7 +76,7 @@ final class AppHostingStack extends Stack {
         location: .literal('us-central1'),
         buildId: .literal('release-1'),
         source: .codebase(
-          FirebaseAppHostingBuildSourceCodebase(branch: .literal('main')),
+          FirebaseAppHostingBuildCodebase(branch: .literal('main')),
         ),
         displayName: .literal('Initial release build'),
       ),

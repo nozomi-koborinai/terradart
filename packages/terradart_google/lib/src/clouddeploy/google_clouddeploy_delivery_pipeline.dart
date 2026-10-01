@@ -13,7 +13,7 @@ const Set<String> _googleClouddeployDeliveryPipelineSensitive = <String>{};
 final class ClouddeployDeliveryPipelineSerialPipeline {
   const ClouddeployDeliveryPipelineSerialPipeline({this.stages});
 
-  final List<ClouddeployDeliveryPipelineSerialPipelineStages>? stages;
+  final List<ClouddeployDeliveryPipelineStages>? stages;
 
   Map<String, Object?> encode() => {
     if (stages != null) 'stages': [for (final e in stages!) e.encode()],
@@ -23,8 +23,8 @@ final class ClouddeployDeliveryPipelineSerialPipeline {
 /// Typed helper for the `serial_pipeline.stages` block of
 /// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
 @immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStages {
-  const ClouddeployDeliveryPipelineSerialPipelineStages({
+final class ClouddeployDeliveryPipelineStages {
+  const ClouddeployDeliveryPipelineStages({
     this.profiles,
     this.targetId,
     this.deployParameters,
@@ -35,10 +35,9 @@ final class ClouddeployDeliveryPipelineSerialPipelineStages {
 
   final TfArg<String>? targetId;
 
-  final List<ClouddeployDeliveryPipelineSerialPipelineStagesDeployParameters>?
-  deployParameters;
+  final List<ClouddeployDeliveryPipelineDeployParameters>? deployParameters;
 
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategy? strategy;
+  final ClouddeployDeliveryPipelineStrategy? strategy;
 
   Map<String, Object?> encode() => {
     'profiles': ?profiles?.toTfJson(),
@@ -52,8 +51,8 @@ final class ClouddeployDeliveryPipelineSerialPipelineStages {
 /// Typed helper for the `serial_pipeline.stages.deploy_parameters` block of
 /// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
 @immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesDeployParameters {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesDeployParameters({
+final class ClouddeployDeliveryPipelineDeployParameters {
+  const ClouddeployDeliveryPipelineDeployParameters({
     this.matchTargetLabels,
     required this.values,
   });
@@ -71,16 +70,12 @@ final class ClouddeployDeliveryPipelineSerialPipelineStagesDeployParameters {
 /// Typed helper for the `serial_pipeline.stages.strategy` block of
 /// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
 @immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategy {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategy({
-    this.canary,
-    this.standard,
-  });
+final class ClouddeployDeliveryPipelineStrategy {
+  const ClouddeployDeliveryPipelineStrategy({this.canary, this.standard});
 
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanary? canary;
+  final ClouddeployDeliveryPipelineCanary? canary;
 
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandard?
-  standard;
+  final ClouddeployDeliveryPipelineStandard? standard;
 
   Map<String, Object?> encode() => {
     'canary': ?canary?.encode(),
@@ -91,21 +86,19 @@ final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategy {
 /// Typed helper for the `serial_pipeline.stages.strategy.canary` block of
 /// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
 @immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanary {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanary({
+final class ClouddeployDeliveryPipelineCanary {
+  const ClouddeployDeliveryPipelineCanary({
     this.canaryDeployment,
     this.customCanaryDeployment,
     this.runtimeConfig,
   });
 
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeployment?
-  canaryDeployment;
+  final ClouddeployDeliveryPipelineCanaryDeployment? canaryDeployment;
 
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeployment?
+  final ClouddeployDeliveryPipelineCustomCanaryDeployment?
   customCanaryDeployment;
 
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryRuntimeConfig?
-  runtimeConfig;
+  final ClouddeployDeliveryPipelineRuntimeConfig? runtimeConfig;
 
   Map<String, Object?> encode() => {
     'canary_deployment': ?canaryDeployment?.encode(),
@@ -117,8 +110,8 @@ final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanary {
 /// Typed helper for the `serial_pipeline.stages.strategy.canary.canary_deployment` block of
 /// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
 @immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeployment {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeployment({
+final class ClouddeployDeliveryPipelineCanaryDeployment {
+  const ClouddeployDeliveryPipelineCanaryDeployment({
     required this.percentages,
     this.verify,
     this.analysis,
@@ -131,17 +124,13 @@ final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryD
 
   final TfArg<bool>? verify;
 
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentAnalysis?
-  analysis;
+  final ClouddeployDeliveryPipelineAnalysis? analysis;
 
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentPostdeploy?
-  postdeploy;
+  final ClouddeployDeliveryPipelineCanaryDeploymentPostdeploy? postdeploy;
 
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentPredeploy?
-  predeploy;
+  final ClouddeployDeliveryPipelineCanaryDeploymentPredeploy? predeploy;
 
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentVerifyConfig?
-  verifyConfig;
+  final ClouddeployDeliveryPipelineVerifyConfig? verifyConfig;
 
   Map<String, Object?> encode() => {
     'percentages': percentages.toTfJson(),
@@ -153,11 +142,12 @@ final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryD
   };
 }
 
-/// Typed helper for the `serial_pipeline.stages.strategy.canary.canary_deployment.analysis` block of
+/// Typed helper for the `serial_pipeline.stages.strategy.standard.analysis` block of
 /// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentAnalysis {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentAnalysis({
+final class ClouddeployDeliveryPipelineAnalysis {
+  const ClouddeployDeliveryPipelineAnalysis({
     required this.duration,
     this.customChecks,
     this.googleCloud,
@@ -165,13 +155,9 @@ final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryD
 
   final TfArg<String> duration;
 
-  final List<
-    ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentAnalysisCustomChecks
-  >?
-  customChecks;
+  final List<ClouddeployDeliveryPipelineCustomChecks>? customChecks;
 
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentAnalysisGoogleCloud?
-  googleCloud;
+  final ClouddeployDeliveryPipelineGoogleCloud? googleCloud;
 
   Map<String, Object?> encode() => {
     'duration': duration.toTfJson(),
@@ -181,11 +167,12 @@ final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryD
   };
 }
 
-/// Typed helper for the `serial_pipeline.stages.strategy.canary.canary_deployment.analysis.custom_checks` block of
+/// Typed helper for the `serial_pipeline.stages.strategy.standard.analysis.custom_checks` block of
 /// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentAnalysisCustomChecks {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentAnalysisCustomChecks({
+final class ClouddeployDeliveryPipelineCustomChecks {
+  const ClouddeployDeliveryPipelineCustomChecks({
     this.frequency,
     required this.id,
     this.task,
@@ -195,8 +182,7 @@ final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryD
 
   final TfArg<String> id;
 
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentAnalysisCustomChecksTask?
-  task;
+  final ClouddeployDeliveryPipelineTask? task;
 
   Map<String, Object?> encode() => {
     'frequency': ?frequency?.toTfJson(),
@@ -205,25 +191,24 @@ final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryD
   };
 }
 
-/// Typed helper for the `serial_pipeline.stages.strategy.canary.canary_deployment.analysis.custom_checks.task` block of
+/// Typed helper for the `serial_pipeline.stages.strategy.standard.analysis.custom_checks.task` block of
 /// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentAnalysisCustomChecksTask {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentAnalysisCustomChecksTask({
-    this.container,
-  });
+final class ClouddeployDeliveryPipelineTask {
+  const ClouddeployDeliveryPipelineTask({this.container});
 
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentAnalysisCustomChecksTaskContainer?
-  container;
+  final ClouddeployDeliveryPipelineContainer? container;
 
   Map<String, Object?> encode() => {'container': ?container?.encode()};
 }
 
-/// Typed helper for the `serial_pipeline.stages.strategy.canary.canary_deployment.analysis.custom_checks.task.container` block of
+/// Typed helper for the `serial_pipeline.stages.strategy.standard.postdeploy.tasks.container` block of
 /// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentAnalysisCustomChecksTaskContainer {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentAnalysisCustomChecksTaskContainer({
+final class ClouddeployDeliveryPipelineContainer {
+  const ClouddeployDeliveryPipelineContainer({
     this.args,
     this.command,
     this.env,
@@ -246,18 +231,14 @@ final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryD
   };
 }
 
-/// Typed helper for the `serial_pipeline.stages.strategy.canary.canary_deployment.analysis.google_cloud` block of
+/// Typed helper for the `serial_pipeline.stages.strategy.standard.analysis.google_cloud` block of
 /// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentAnalysisGoogleCloud {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentAnalysisGoogleCloud({
-    this.alertPolicyChecks,
-  });
+final class ClouddeployDeliveryPipelineGoogleCloud {
+  const ClouddeployDeliveryPipelineGoogleCloud({this.alertPolicyChecks});
 
-  final List<
-    ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentAnalysisGoogleCloudAlertPolicyChecks
-  >?
-  alertPolicyChecks;
+  final List<ClouddeployDeliveryPipelineAlertPolicyChecks>? alertPolicyChecks;
 
   Map<String, Object?> encode() => {
     if (alertPolicyChecks != null)
@@ -265,11 +246,12 @@ final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryD
   };
 }
 
-/// Typed helper for the `serial_pipeline.stages.strategy.canary.canary_deployment.analysis.google_cloud.alert_policy_checks` block of
+/// Typed helper for the `serial_pipeline.stages.strategy.standard.analysis.google_cloud.alert_policy_checks` block of
 /// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentAnalysisGoogleCloudAlertPolicyChecks {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentAnalysisGoogleCloudAlertPolicyChecks({
+final class ClouddeployDeliveryPipelineAlertPolicyChecks {
+  const ClouddeployDeliveryPipelineAlertPolicyChecks({
     required this.alertPolicies,
     required this.id,
     this.labels,
@@ -290,11 +272,10 @@ final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryD
 
 /// Typed helper for the `serial_pipeline.stages.strategy.canary.canary_deployment.postdeploy` block of
 /// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentPostdeploy {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentPostdeploy({
-    this.actions,
-  });
+final class ClouddeployDeliveryPipelineCanaryDeploymentPostdeploy {
+  const ClouddeployDeliveryPipelineCanaryDeploymentPostdeploy({this.actions});
 
   final TfArg<List<String>>? actions;
 
@@ -303,88 +284,51 @@ final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryD
 
 /// Typed helper for the `serial_pipeline.stages.strategy.canary.canary_deployment.predeploy` block of
 /// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentPredeploy {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentPredeploy({
-    this.actions,
-  });
+final class ClouddeployDeliveryPipelineCanaryDeploymentPredeploy {
+  const ClouddeployDeliveryPipelineCanaryDeploymentPredeploy({this.actions});
 
   final TfArg<List<String>>? actions;
 
   Map<String, Object?> encode() => {'actions': ?actions?.toTfJson()};
 }
 
-/// Typed helper for the `serial_pipeline.stages.strategy.canary.canary_deployment.verify_config` block of
+/// Typed helper for the `serial_pipeline.stages.strategy.standard.verify_config` block of
 /// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentVerifyConfig {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentVerifyConfig({
-    this.tasks,
-  });
+final class ClouddeployDeliveryPipelineVerifyConfig {
+  const ClouddeployDeliveryPipelineVerifyConfig({this.tasks});
 
-  final List<
-    ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentVerifyConfigTasks
-  >?
-  tasks;
+  final List<ClouddeployDeliveryPipelineTasks>? tasks;
 
   Map<String, Object?> encode() => {
     if (tasks != null) 'tasks': [for (final e in tasks!) e.encode()],
   };
 }
 
-/// Typed helper for the `serial_pipeline.stages.strategy.canary.canary_deployment.verify_config.tasks` block of
+/// Typed helper for the `serial_pipeline.stages.strategy.standard.postdeploy.tasks` block of
 /// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentVerifyConfigTasks {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentVerifyConfigTasks({
-    this.container,
-  });
+final class ClouddeployDeliveryPipelineTasks {
+  const ClouddeployDeliveryPipelineTasks({this.container});
 
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentVerifyConfigTasksContainer?
-  container;
+  final ClouddeployDeliveryPipelineContainer? container;
 
   Map<String, Object?> encode() => {'container': ?container?.encode()};
-}
-
-/// Typed helper for the `serial_pipeline.stages.strategy.canary.canary_deployment.verify_config.tasks.container` block of
-/// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
-@immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentVerifyConfigTasksContainer {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentVerifyConfigTasksContainer({
-    this.args,
-    this.command,
-    this.env,
-    required this.image,
-  });
-
-  final TfArg<List<String>>? args;
-
-  final TfArg<List<String>>? command;
-
-  final TfArg<Map<String, String>>? env;
-
-  final TfArg<String> image;
-
-  Map<String, Object?> encode() => {
-    'args': ?args?.toTfJson(),
-    'command': ?command?.toTfJson(),
-    'env': ?env?.toTfJson(),
-    'image': image.toTfJson(),
-  };
 }
 
 /// Typed helper for the `serial_pipeline.stages.strategy.canary.custom_canary_deployment` block of
 /// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
 @immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeployment {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeployment({
+final class ClouddeployDeliveryPipelineCustomCanaryDeployment {
+  const ClouddeployDeliveryPipelineCustomCanaryDeployment({
     required this.phaseConfigs,
   });
 
-  final List<
-    ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigs
-  >
-  phaseConfigs;
+  final List<ClouddeployDeliveryPipelinePhaseConfigs> phaseConfigs;
 
   Map<String, Object?> encode() => {
     'phase_configs': [for (final e in phaseConfigs) e.encode()],
@@ -394,8 +338,8 @@ final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomC
 /// Typed helper for the `serial_pipeline.stages.strategy.canary.custom_canary_deployment.phase_configs` block of
 /// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
 @immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigs {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigs({
+final class ClouddeployDeliveryPipelinePhaseConfigs {
+  const ClouddeployDeliveryPipelinePhaseConfigs({
     required this.percentage,
     required this.phaseId,
     this.profiles,
@@ -414,17 +358,13 @@ final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomC
 
   final TfArg<bool>? verify;
 
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsAnalysis?
-  analysis;
+  final ClouddeployDeliveryPipelineAnalysis? analysis;
 
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsPostdeploy?
-  postdeploy;
+  final ClouddeployDeliveryPipelineCanaryDeploymentPostdeploy? postdeploy;
 
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsPredeploy?
-  predeploy;
+  final ClouddeployDeliveryPipelineCanaryDeploymentPredeploy? predeploy;
 
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsVerifyConfig?
-  verifyConfig;
+  final ClouddeployDeliveryPipelineVerifyConfig? verifyConfig;
 
   Map<String, Object?> encode() => {
     'percentage': percentage.toTfJson(),
@@ -438,240 +378,18 @@ final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomC
   };
 }
 
-/// Typed helper for the `serial_pipeline.stages.strategy.canary.custom_canary_deployment.phase_configs.analysis` block of
-/// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
-@immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsAnalysis {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsAnalysis({
-    required this.duration,
-    this.customChecks,
-    this.googleCloud,
-  });
-
-  final TfArg<String> duration;
-
-  final List<
-    ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsAnalysisCustomChecks
-  >?
-  customChecks;
-
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsAnalysisGoogleCloud?
-  googleCloud;
-
-  Map<String, Object?> encode() => {
-    'duration': duration.toTfJson(),
-    if (customChecks != null)
-      'custom_checks': [for (final e in customChecks!) e.encode()],
-    'google_cloud': ?googleCloud?.encode(),
-  };
-}
-
-/// Typed helper for the `serial_pipeline.stages.strategy.canary.custom_canary_deployment.phase_configs.analysis.custom_checks` block of
-/// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
-@immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsAnalysisCustomChecks {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsAnalysisCustomChecks({
-    this.frequency,
-    required this.id,
-    this.task,
-  });
-
-  final TfArg<String>? frequency;
-
-  final TfArg<String> id;
-
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsAnalysisCustomChecksTask?
-  task;
-
-  Map<String, Object?> encode() => {
-    'frequency': ?frequency?.toTfJson(),
-    'id': id.toTfJson(),
-    'task': ?task?.encode(),
-  };
-}
-
-/// Typed helper for the `serial_pipeline.stages.strategy.canary.custom_canary_deployment.phase_configs.analysis.custom_checks.task` block of
-/// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
-@immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsAnalysisCustomChecksTask {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsAnalysisCustomChecksTask({
-    this.container,
-  });
-
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsAnalysisCustomChecksTaskContainer?
-  container;
-
-  Map<String, Object?> encode() => {'container': ?container?.encode()};
-}
-
-/// Typed helper for the `serial_pipeline.stages.strategy.canary.custom_canary_deployment.phase_configs.analysis.custom_checks.task.container` block of
-/// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
-@immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsAnalysisCustomChecksTaskContainer {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsAnalysisCustomChecksTaskContainer({
-    this.args,
-    this.command,
-    this.env,
-    required this.image,
-  });
-
-  final TfArg<List<String>>? args;
-
-  final TfArg<List<String>>? command;
-
-  final TfArg<Map<String, String>>? env;
-
-  final TfArg<String> image;
-
-  Map<String, Object?> encode() => {
-    'args': ?args?.toTfJson(),
-    'command': ?command?.toTfJson(),
-    'env': ?env?.toTfJson(),
-    'image': image.toTfJson(),
-  };
-}
-
-/// Typed helper for the `serial_pipeline.stages.strategy.canary.custom_canary_deployment.phase_configs.analysis.google_cloud` block of
-/// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
-@immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsAnalysisGoogleCloud {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsAnalysisGoogleCloud({
-    this.alertPolicyChecks,
-  });
-
-  final List<
-    ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsAnalysisGoogleCloudAlertPolicyChecks
-  >?
-  alertPolicyChecks;
-
-  Map<String, Object?> encode() => {
-    if (alertPolicyChecks != null)
-      'alert_policy_checks': [for (final e in alertPolicyChecks!) e.encode()],
-  };
-}
-
-/// Typed helper for the `serial_pipeline.stages.strategy.canary.custom_canary_deployment.phase_configs.analysis.google_cloud.alert_policy_checks` block of
-/// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
-@immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsAnalysisGoogleCloudAlertPolicyChecks {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsAnalysisGoogleCloudAlertPolicyChecks({
-    required this.alertPolicies,
-    required this.id,
-    this.labels,
-  });
-
-  final TfArg<List<String>> alertPolicies;
-
-  final TfArg<String> id;
-
-  final TfArg<Map<String, String>>? labels;
-
-  Map<String, Object?> encode() => {
-    'alert_policies': alertPolicies.toTfJson(),
-    'id': id.toTfJson(),
-    'labels': ?labels?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `serial_pipeline.stages.strategy.canary.custom_canary_deployment.phase_configs.postdeploy` block of
-/// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
-@immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsPostdeploy {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsPostdeploy({
-    this.actions,
-  });
-
-  final TfArg<List<String>>? actions;
-
-  Map<String, Object?> encode() => {'actions': ?actions?.toTfJson()};
-}
-
-/// Typed helper for the `serial_pipeline.stages.strategy.canary.custom_canary_deployment.phase_configs.predeploy` block of
-/// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
-@immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsPredeploy {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsPredeploy({
-    this.actions,
-  });
-
-  final TfArg<List<String>>? actions;
-
-  Map<String, Object?> encode() => {'actions': ?actions?.toTfJson()};
-}
-
-/// Typed helper for the `serial_pipeline.stages.strategy.canary.custom_canary_deployment.phase_configs.verify_config` block of
-/// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
-@immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsVerifyConfig {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsVerifyConfig({
-    this.tasks,
-  });
-
-  final List<
-    ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsVerifyConfigTasks
-  >?
-  tasks;
-
-  Map<String, Object?> encode() => {
-    if (tasks != null) 'tasks': [for (final e in tasks!) e.encode()],
-  };
-}
-
-/// Typed helper for the `serial_pipeline.stages.strategy.canary.custom_canary_deployment.phase_configs.verify_config.tasks` block of
-/// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
-@immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsVerifyConfigTasks {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsVerifyConfigTasks({
-    this.container,
-  });
-
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsVerifyConfigTasksContainer?
-  container;
-
-  Map<String, Object?> encode() => {'container': ?container?.encode()};
-}
-
-/// Typed helper for the `serial_pipeline.stages.strategy.canary.custom_canary_deployment.phase_configs.verify_config.tasks.container` block of
-/// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
-@immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsVerifyConfigTasksContainer {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsVerifyConfigTasksContainer({
-    this.args,
-    this.command,
-    this.env,
-    required this.image,
-  });
-
-  final TfArg<List<String>>? args;
-
-  final TfArg<List<String>>? command;
-
-  final TfArg<Map<String, String>>? env;
-
-  final TfArg<String> image;
-
-  Map<String, Object?> encode() => {
-    'args': ?args?.toTfJson(),
-    'command': ?command?.toTfJson(),
-    'env': ?env?.toTfJson(),
-    'image': image.toTfJson(),
-  };
-}
-
 /// Typed helper for the `serial_pipeline.stages.strategy.canary.runtime_config` block of
 /// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
 @immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryRuntimeConfig {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryRuntimeConfig({
+final class ClouddeployDeliveryPipelineRuntimeConfig {
+  const ClouddeployDeliveryPipelineRuntimeConfig({
     this.cloudRun,
     this.kubernetes,
   });
 
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryRuntimeConfigCloudRun?
-  cloudRun;
+  final ClouddeployDeliveryPipelineCloudRun? cloudRun;
 
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryRuntimeConfigKubernetes?
-  kubernetes;
+  final ClouddeployDeliveryPipelineKubernetes? kubernetes;
 
   Map<String, Object?> encode() => {
     'cloud_run': ?cloudRun?.encode(),
@@ -682,8 +400,8 @@ final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryRuntime
 /// Typed helper for the `serial_pipeline.stages.strategy.canary.runtime_config.cloud_run` block of
 /// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
 @immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryRuntimeConfigCloudRun {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryRuntimeConfigCloudRun({
+final class ClouddeployDeliveryPipelineCloudRun {
+  const ClouddeployDeliveryPipelineCloudRun({
     this.automaticTrafficControl,
     this.canaryRevisionTags,
     this.priorRevisionTags,
@@ -709,17 +427,15 @@ final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryRuntime
 /// Typed helper for the `serial_pipeline.stages.strategy.canary.runtime_config.kubernetes` block of
 /// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
 @immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryRuntimeConfigKubernetes {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryRuntimeConfigKubernetes({
+final class ClouddeployDeliveryPipelineKubernetes {
+  const ClouddeployDeliveryPipelineKubernetes({
     this.gatewayServiceMesh,
     this.serviceNetworking,
   });
 
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryRuntimeConfigKubernetesGatewayServiceMesh?
-  gatewayServiceMesh;
+  final ClouddeployDeliveryPipelineGatewayServiceMesh? gatewayServiceMesh;
 
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryRuntimeConfigKubernetesServiceNetworking?
-  serviceNetworking;
+  final ClouddeployDeliveryPipelineServiceNetworking? serviceNetworking;
 
   Map<String, Object?> encode() => {
     'gateway_service_mesh': ?gatewayServiceMesh?.encode(),
@@ -730,8 +446,8 @@ final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryRuntime
 /// Typed helper for the `serial_pipeline.stages.strategy.canary.runtime_config.kubernetes.gateway_service_mesh` block of
 /// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
 @immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryRuntimeConfigKubernetesGatewayServiceMesh {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryRuntimeConfigKubernetesGatewayServiceMesh({
+final class ClouddeployDeliveryPipelineGatewayServiceMesh {
+  const ClouddeployDeliveryPipelineGatewayServiceMesh({
     required this.deployment,
     required this.httpRoute,
     this.podSelectorLabel,
@@ -753,8 +469,7 @@ final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryRuntime
 
   final TfArg<String>? stableCutbackDuration;
 
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryRuntimeConfigKubernetesGatewayServiceMeshRouteDestinations?
-  routeDestinations;
+  final ClouddeployDeliveryPipelineRouteDestinations? routeDestinations;
 
   Map<String, Object?> encode() => {
     'deployment': deployment.toTfJson(),
@@ -770,8 +485,8 @@ final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryRuntime
 /// Typed helper for the `serial_pipeline.stages.strategy.canary.runtime_config.kubernetes.gateway_service_mesh.route_destinations` block of
 /// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
 @immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryRuntimeConfigKubernetesGatewayServiceMeshRouteDestinations {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryRuntimeConfigKubernetesGatewayServiceMeshRouteDestinations({
+final class ClouddeployDeliveryPipelineRouteDestinations {
+  const ClouddeployDeliveryPipelineRouteDestinations({
     required this.destinationIds,
     this.propagateService,
   });
@@ -789,8 +504,8 @@ final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryRuntime
 /// Typed helper for the `serial_pipeline.stages.strategy.canary.runtime_config.kubernetes.service_networking` block of
 /// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
 @immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryRuntimeConfigKubernetesServiceNetworking {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryRuntimeConfigKubernetesServiceNetworking({
+final class ClouddeployDeliveryPipelineServiceNetworking {
+  const ClouddeployDeliveryPipelineServiceNetworking({
     required this.deployment,
     this.disablePodOverprovisioning,
     this.podSelectorLabel,
@@ -816,8 +531,8 @@ final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryRuntime
 /// Typed helper for the `serial_pipeline.stages.strategy.standard` block of
 /// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
 @immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandard {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandard({
+final class ClouddeployDeliveryPipelineStandard {
+  const ClouddeployDeliveryPipelineStandard({
     this.verify,
     this.analysis,
     this.postdeploy,
@@ -827,17 +542,13 @@ final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandard {
 
   final TfArg<bool>? verify;
 
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardAnalysis?
-  analysis;
+  final ClouddeployDeliveryPipelineAnalysis? analysis;
 
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardPostdeploy?
-  postdeploy;
+  final ClouddeployDeliveryPipelinePostdeploy? postdeploy;
 
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardPredeploy?
-  predeploy;
+  final ClouddeployDeliveryPipelinePredeploy? predeploy;
 
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardVerifyConfig?
-  verifyConfig;
+  final ClouddeployDeliveryPipelineVerifyConfig? verifyConfig;
 
   Map<String, Object?> encode() => {
     'verify': ?verify?.toTfJson(),
@@ -848,323 +559,35 @@ final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandard {
   };
 }
 
-/// Typed helper for the `serial_pipeline.stages.strategy.standard.analysis` block of
-/// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
-@immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardAnalysis {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardAnalysis({
-    required this.duration,
-    this.customChecks,
-    this.googleCloud,
-  });
-
-  final TfArg<String> duration;
-
-  final List<
-    ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardAnalysisCustomChecks
-  >?
-  customChecks;
-
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardAnalysisGoogleCloud?
-  googleCloud;
-
-  Map<String, Object?> encode() => {
-    'duration': duration.toTfJson(),
-    if (customChecks != null)
-      'custom_checks': [for (final e in customChecks!) e.encode()],
-    'google_cloud': ?googleCloud?.encode(),
-  };
-}
-
-/// Typed helper for the `serial_pipeline.stages.strategy.standard.analysis.custom_checks` block of
-/// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
-@immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardAnalysisCustomChecks {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardAnalysisCustomChecks({
-    this.frequency,
-    required this.id,
-    this.task,
-  });
-
-  final TfArg<String>? frequency;
-
-  final TfArg<String> id;
-
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardAnalysisCustomChecksTask?
-  task;
-
-  Map<String, Object?> encode() => {
-    'frequency': ?frequency?.toTfJson(),
-    'id': id.toTfJson(),
-    'task': ?task?.encode(),
-  };
-}
-
-/// Typed helper for the `serial_pipeline.stages.strategy.standard.analysis.custom_checks.task` block of
-/// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
-@immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardAnalysisCustomChecksTask {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardAnalysisCustomChecksTask({
-    this.container,
-  });
-
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardAnalysisCustomChecksTaskContainer?
-  container;
-
-  Map<String, Object?> encode() => {'container': ?container?.encode()};
-}
-
-/// Typed helper for the `serial_pipeline.stages.strategy.standard.analysis.custom_checks.task.container` block of
-/// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
-@immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardAnalysisCustomChecksTaskContainer {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardAnalysisCustomChecksTaskContainer({
-    this.args,
-    this.command,
-    this.env,
-    required this.image,
-  });
-
-  final TfArg<List<String>>? args;
-
-  final TfArg<List<String>>? command;
-
-  final TfArg<Map<String, String>>? env;
-
-  final TfArg<String> image;
-
-  Map<String, Object?> encode() => {
-    'args': ?args?.toTfJson(),
-    'command': ?command?.toTfJson(),
-    'env': ?env?.toTfJson(),
-    'image': image.toTfJson(),
-  };
-}
-
-/// Typed helper for the `serial_pipeline.stages.strategy.standard.analysis.google_cloud` block of
-/// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
-@immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardAnalysisGoogleCloud {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardAnalysisGoogleCloud({
-    this.alertPolicyChecks,
-  });
-
-  final List<
-    ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardAnalysisGoogleCloudAlertPolicyChecks
-  >?
-  alertPolicyChecks;
-
-  Map<String, Object?> encode() => {
-    if (alertPolicyChecks != null)
-      'alert_policy_checks': [for (final e in alertPolicyChecks!) e.encode()],
-  };
-}
-
-/// Typed helper for the `serial_pipeline.stages.strategy.standard.analysis.google_cloud.alert_policy_checks` block of
-/// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
-@immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardAnalysisGoogleCloudAlertPolicyChecks {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardAnalysisGoogleCloudAlertPolicyChecks({
-    required this.alertPolicies,
-    required this.id,
-    this.labels,
-  });
-
-  final TfArg<List<String>> alertPolicies;
-
-  final TfArg<String> id;
-
-  final TfArg<Map<String, String>>? labels;
-
-  Map<String, Object?> encode() => {
-    'alert_policies': alertPolicies.toTfJson(),
-    'id': id.toTfJson(),
-    'labels': ?labels?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `serial_pipeline.stages.strategy.standard.postdeploy` block of
 /// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
 @immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardPostdeploy {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardPostdeploy({
-    this.actions,
-    this.tasks,
-  });
+final class ClouddeployDeliveryPipelinePostdeploy {
+  const ClouddeployDeliveryPipelinePostdeploy({this.actions, this.tasks});
 
   final TfArg<List<String>>? actions;
 
-  final List<
-    ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardPostdeployTasks
-  >?
-  tasks;
+  final List<ClouddeployDeliveryPipelineTasks>? tasks;
 
   Map<String, Object?> encode() => {
     'actions': ?actions?.toTfJson(),
     if (tasks != null) 'tasks': [for (final e in tasks!) e.encode()],
-  };
-}
-
-/// Typed helper for the `serial_pipeline.stages.strategy.standard.postdeploy.tasks` block of
-/// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
-@immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardPostdeployTasks {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardPostdeployTasks({
-    this.container,
-  });
-
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardPostdeployTasksContainer?
-  container;
-
-  Map<String, Object?> encode() => {'container': ?container?.encode()};
-}
-
-/// Typed helper for the `serial_pipeline.stages.strategy.standard.postdeploy.tasks.container` block of
-/// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
-@immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardPostdeployTasksContainer {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardPostdeployTasksContainer({
-    this.args,
-    this.command,
-    this.env,
-    required this.image,
-  });
-
-  final TfArg<List<String>>? args;
-
-  final TfArg<List<String>>? command;
-
-  final TfArg<Map<String, String>>? env;
-
-  final TfArg<String> image;
-
-  Map<String, Object?> encode() => {
-    'args': ?args?.toTfJson(),
-    'command': ?command?.toTfJson(),
-    'env': ?env?.toTfJson(),
-    'image': image.toTfJson(),
   };
 }
 
 /// Typed helper for the `serial_pipeline.stages.strategy.standard.predeploy` block of
 /// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
 @immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardPredeploy {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardPredeploy({
-    this.actions,
-    this.tasks,
-  });
+final class ClouddeployDeliveryPipelinePredeploy {
+  const ClouddeployDeliveryPipelinePredeploy({this.actions, this.tasks});
 
   final TfArg<List<String>>? actions;
 
-  final List<
-    ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardPredeployTasks
-  >?
-  tasks;
+  final List<ClouddeployDeliveryPipelineTasks>? tasks;
 
   Map<String, Object?> encode() => {
     'actions': ?actions?.toTfJson(),
     if (tasks != null) 'tasks': [for (final e in tasks!) e.encode()],
-  };
-}
-
-/// Typed helper for the `serial_pipeline.stages.strategy.standard.predeploy.tasks` block of
-/// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
-@immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardPredeployTasks {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardPredeployTasks({
-    this.container,
-  });
-
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardPredeployTasksContainer?
-  container;
-
-  Map<String, Object?> encode() => {'container': ?container?.encode()};
-}
-
-/// Typed helper for the `serial_pipeline.stages.strategy.standard.predeploy.tasks.container` block of
-/// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
-@immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardPredeployTasksContainer {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardPredeployTasksContainer({
-    this.args,
-    this.command,
-    this.env,
-    required this.image,
-  });
-
-  final TfArg<List<String>>? args;
-
-  final TfArg<List<String>>? command;
-
-  final TfArg<Map<String, String>>? env;
-
-  final TfArg<String> image;
-
-  Map<String, Object?> encode() => {
-    'args': ?args?.toTfJson(),
-    'command': ?command?.toTfJson(),
-    'env': ?env?.toTfJson(),
-    'image': image.toTfJson(),
-  };
-}
-
-/// Typed helper for the `serial_pipeline.stages.strategy.standard.verify_config` block of
-/// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
-@immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardVerifyConfig {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardVerifyConfig({
-    this.tasks,
-  });
-
-  final List<
-    ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardVerifyConfigTasks
-  >?
-  tasks;
-
-  Map<String, Object?> encode() => {
-    if (tasks != null) 'tasks': [for (final e in tasks!) e.encode()],
-  };
-}
-
-/// Typed helper for the `serial_pipeline.stages.strategy.standard.verify_config.tasks` block of
-/// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
-@immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardVerifyConfigTasks {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardVerifyConfigTasks({
-    this.container,
-  });
-
-  final ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardVerifyConfigTasksContainer?
-  container;
-
-  Map<String, Object?> encode() => {'container': ?container?.encode()};
-}
-
-/// Typed helper for the `serial_pipeline.stages.strategy.standard.verify_config.tasks.container` block of
-/// `google_clouddeploy_delivery_pipeline` (derived from provider schema).
-@immutable
-final class ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardVerifyConfigTasksContainer {
-  const ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardVerifyConfigTasksContainer({
-    this.args,
-    this.command,
-    this.env,
-    required this.image,
-  });
-
-  final TfArg<List<String>>? args;
-
-  final TfArg<List<String>>? command;
-
-  final TfArg<Map<String, String>>? env;
-
-  final TfArg<String> image;
-
-  Map<String, Object?> encode() => {
-    'args': ?args?.toTfJson(),
-    'command': ?command?.toTfJson(),
-    'env': ?env?.toTfJson(),
-    'image': image.toTfJson(),
   };
 }
 

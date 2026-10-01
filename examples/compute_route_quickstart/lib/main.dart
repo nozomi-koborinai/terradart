@@ -224,16 +224,15 @@ final class NetworkRouteStack extends Stack {
         kind: .snapshotSchedulePolicy(
           ComputeResourcePolicySnapshotSchedulePolicy(
             schedule: .dailySchedule(
-              ComputeResourcePolicySnapshotSchedulePolicyScheduleDailySchedule(
+              ComputeResourcePolicyDailySchedule(
                 daysInCycle: .literal(1),
                 startTime: .literal('04:00'),
               ),
             ),
-            retentionPolicy:
-                ComputeResourcePolicySnapshotSchedulePolicyRetentionPolicy(
-                  maxRetentionDays: .literal(7),
-                  onSourceDiskDelete: .literal(.applyRetentionPolicy),
-                ),
+            retentionPolicy: ComputeResourcePolicyRetentionPolicy(
+              maxRetentionDays: .literal(7),
+              onSourceDiskDelete: .literal(.applyRetentionPolicy),
+            ),
           ),
         ),
         dependsOn: [ResourceDependency(apiCompute)],

@@ -32,7 +32,7 @@ final class FisExperimentTemplateAction {
 
   final TfArg<List<String>>? startAfter;
 
-  final List<FisExperimentTemplateActionParameter>? parameter;
+  final List<FisExperimentTemplateParameter>? parameter;
 
   final FisExperimentTemplateActionTarget? target;
 
@@ -50,8 +50,8 @@ final class FisExperimentTemplateAction {
 /// Typed helper for the `action.parameter` block of
 /// `aws_fis_experiment_template` (derived from provider schema).
 @immutable
-final class FisExperimentTemplateActionParameter {
-  const FisExperimentTemplateActionParameter({
+final class FisExperimentTemplateParameter {
+  const FisExperimentTemplateParameter({
     required this.key,
     required this.value,
   });
@@ -94,10 +94,9 @@ final class FisExperimentTemplateExperimentOptions {
     this.emptyTargetResolutionMode,
   });
 
-  final TfArg<FisExperimentTemplateExperimentOptionsAccountTargeting>?
-  accountTargeting;
+  final TfArg<FisExperimentTemplateAccountTargeting>? accountTargeting;
 
-  final TfArg<FisExperimentTemplateExperimentOptionsEmptyTargetResolutionMode>?
+  final TfArg<FisExperimentTemplateEmptyTargetResolutionMode>?
   emptyTargetResolutionMode;
 
   Map<String, Object?> encode() => {
@@ -107,27 +106,21 @@ final class FisExperimentTemplateExperimentOptions {
 }
 
 /// `account_targeting` — derived from the provider schema description.
-enum FisExperimentTemplateExperimentOptionsAccountTargeting
-    implements TerraformEnum {
+enum FisExperimentTemplateAccountTargeting implements TerraformEnum {
   singleAccount('single-account'),
   multiAccount('multi-account');
 
-  const FisExperimentTemplateExperimentOptionsAccountTargeting(
-    this.terraformValue,
-  );
+  const FisExperimentTemplateAccountTargeting(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `empty_target_resolution_mode` — derived from the provider schema description.
-enum FisExperimentTemplateExperimentOptionsEmptyTargetResolutionMode
-    implements TerraformEnum {
+enum FisExperimentTemplateEmptyTargetResolutionMode implements TerraformEnum {
   fail('fail'),
   skip('skip');
 
-  const FisExperimentTemplateExperimentOptionsEmptyTargetResolutionMode(
-    this.terraformValue,
-  );
+  const FisExperimentTemplateEmptyTargetResolutionMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -147,10 +140,9 @@ final class FisExperimentTemplateExperimentReportConfiguration {
 
   final TfArg<String>? preExperimentDuration;
 
-  final FisExperimentTemplateExperimentReportConfigurationDataSources?
-  dataSources;
+  final FisExperimentTemplateDataSources? dataSources;
 
-  final FisExperimentTemplateExperimentReportConfigurationOutputs? outputs;
+  final FisExperimentTemplateOutputs? outputs;
 
   Map<String, Object?> encode() => {
     'post_experiment_duration': ?postExperimentDuration?.toTfJson(),
@@ -163,15 +155,10 @@ final class FisExperimentTemplateExperimentReportConfiguration {
 /// Typed helper for the `experiment_report_configuration.data_sources` block of
 /// `aws_fis_experiment_template` (derived from provider schema).
 @immutable
-final class FisExperimentTemplateExperimentReportConfigurationDataSources {
-  const FisExperimentTemplateExperimentReportConfigurationDataSources({
-    this.cloudwatchDashboard,
-  });
+final class FisExperimentTemplateDataSources {
+  const FisExperimentTemplateDataSources({this.cloudwatchDashboard});
 
-  final List<
-    FisExperimentTemplateExperimentReportConfigurationDataSourcesCloudwatchDashboard
-  >?
-  cloudwatchDashboard;
+  final List<FisExperimentTemplateCloudwatchDashboard>? cloudwatchDashboard;
 
   Map<String, Object?> encode() => {
     if (cloudwatchDashboard != null)
@@ -184,10 +171,8 @@ final class FisExperimentTemplateExperimentReportConfigurationDataSources {
 /// Typed helper for the `experiment_report_configuration.data_sources.cloudwatch_dashboard` block of
 /// `aws_fis_experiment_template` (derived from provider schema).
 @immutable
-final class FisExperimentTemplateExperimentReportConfigurationDataSourcesCloudwatchDashboard {
-  const FisExperimentTemplateExperimentReportConfigurationDataSourcesCloudwatchDashboard({
-    this.dashboardArn,
-  });
+final class FisExperimentTemplateCloudwatchDashboard {
+  const FisExperimentTemplateCloudwatchDashboard({this.dashboardArn});
 
   final TfArg<String>? dashboardArn;
 
@@ -197,24 +182,22 @@ final class FisExperimentTemplateExperimentReportConfigurationDataSourcesCloudwa
 /// Typed helper for the `experiment_report_configuration.outputs` block of
 /// `aws_fis_experiment_template` (derived from provider schema).
 @immutable
-final class FisExperimentTemplateExperimentReportConfigurationOutputs {
-  const FisExperimentTemplateExperimentReportConfigurationOutputs({
-    this.s3Configuration,
-  });
+final class FisExperimentTemplateOutputs {
+  const FisExperimentTemplateOutputs({this.s3Configuration});
 
-  final FisExperimentTemplateExperimentReportConfigurationOutputsS3Configuration?
-  s3Configuration;
+  final FisExperimentTemplateS3Configuration? s3Configuration;
 
   Map<String, Object?> encode() => {
     's3_configuration': ?s3Configuration?.encode(),
   };
 }
 
-/// Typed helper for the `experiment_report_configuration.outputs.s3_configuration` block of
+/// Typed helper for the `log_configuration.s3_configuration` block of
 /// `aws_fis_experiment_template` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class FisExperimentTemplateExperimentReportConfigurationOutputsS3Configuration {
-  const FisExperimentTemplateExperimentReportConfigurationOutputsS3Configuration({
+final class FisExperimentTemplateS3Configuration {
+  const FisExperimentTemplateS3Configuration({
     required this.bucketName,
     this.prefix,
   });
@@ -241,10 +224,10 @@ final class FisExperimentTemplateLogConfiguration {
 
   final TfArg<num> logSchemaVersion;
 
-  final FisExperimentTemplateLogConfigurationCloudwatchLogsConfiguration?
+  final FisExperimentTemplateCloudwatchLogsConfiguration?
   cloudwatchLogsConfiguration;
 
-  final FisExperimentTemplateLogConfigurationS3Configuration? s3Configuration;
+  final FisExperimentTemplateS3Configuration? s3Configuration;
 
   Map<String, Object?> encode() => {
     'log_schema_version': logSchemaVersion.toTfJson(),
@@ -256,8 +239,8 @@ final class FisExperimentTemplateLogConfiguration {
 /// Typed helper for the `log_configuration.cloudwatch_logs_configuration` block of
 /// `aws_fis_experiment_template` (derived from provider schema).
 @immutable
-final class FisExperimentTemplateLogConfigurationCloudwatchLogsConfiguration {
-  const FisExperimentTemplateLogConfigurationCloudwatchLogsConfiguration({
+final class FisExperimentTemplateCloudwatchLogsConfiguration {
+  const FisExperimentTemplateCloudwatchLogsConfiguration({
     required this.logGroupArn,
   });
 
@@ -265,25 +248,6 @@ final class FisExperimentTemplateLogConfigurationCloudwatchLogsConfiguration {
 
   Map<String, Object?> encode() => {
     'log_group_arn': logGroupArn.encodeAs('arn').toTfJson(),
-  };
-}
-
-/// Typed helper for the `log_configuration.s3_configuration` block of
-/// `aws_fis_experiment_template` (derived from provider schema).
-@immutable
-final class FisExperimentTemplateLogConfigurationS3Configuration {
-  const FisExperimentTemplateLogConfigurationS3Configuration({
-    required this.bucketName,
-    this.prefix,
-  });
-
-  final RefTo<AwsS3Bucket> bucketName;
-
-  final TfArg<String>? prefix;
-
-  Map<String, Object?> encode() => {
-    'bucket_name': bucketName.encodeAs('id').toTfJson(),
-    'prefix': ?prefix?.toTfJson(),
   };
 }
 
@@ -327,9 +291,9 @@ final class FisExperimentTemplateTarget {
 
   final TfArg<String> selectionMode;
 
-  final List<FisExperimentTemplateTargetFilter>? filter;
+  final List<FisExperimentTemplateFilter>? filter;
 
-  final List<FisExperimentTemplateTargetResourceTag>? resourceTag;
+  final List<FisExperimentTemplateResourceTag>? resourceTag;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -346,11 +310,8 @@ final class FisExperimentTemplateTarget {
 /// Typed helper for the `target.filter` block of
 /// `aws_fis_experiment_template` (derived from provider schema).
 @immutable
-final class FisExperimentTemplateTargetFilter {
-  const FisExperimentTemplateTargetFilter({
-    required this.path,
-    required this.values,
-  });
+final class FisExperimentTemplateFilter {
+  const FisExperimentTemplateFilter({required this.path, required this.values});
 
   final TfArg<String> path;
 
@@ -365,8 +326,8 @@ final class FisExperimentTemplateTargetFilter {
 /// Typed helper for the `target.resource_tag` block of
 /// `aws_fis_experiment_template` (derived from provider schema).
 @immutable
-final class FisExperimentTemplateTargetResourceTag {
-  const FisExperimentTemplateTargetResourceTag({
+final class FisExperimentTemplateResourceTag {
+  const FisExperimentTemplateResourceTag({
     required this.key,
     required this.value,
   });

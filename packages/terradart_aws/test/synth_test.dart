@@ -61,7 +61,7 @@ final class _TestStack extends Stack {
         DataIamPolicyDocumentStatement(
           actions: .literal(['sts:AssumeRole']),
           principals: [
-            DataIamPolicyDocumentStatementPrincipals(
+            DataIamPolicyDocumentPrincipals(
               type: .literal('Service'),
               identifiers: .literal(['lambda.amazonaws.com']),
             ),

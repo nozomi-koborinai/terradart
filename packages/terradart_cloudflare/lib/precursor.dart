@@ -8,4 +8,4 @@ export 'src/precursor/cloudflare_precursor.dart'
         CloudflarePrecursor,
         PrecursorDefaultMode,
         PrecursorEnforcementRules,
-        PrecursorEnforcementRulesMode;
+        PrecursorMode;

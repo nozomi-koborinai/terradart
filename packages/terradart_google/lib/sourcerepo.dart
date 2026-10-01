@@ -6,8 +6,8 @@ library;
 export 'src/sourcerepo/google_sourcerepo_repository.dart'
     show
         GoogleSourcerepoRepository,
-        SourcerepoRepositoryPubsubConfigs,
-        SourcerepoRepositoryPubsubConfigsMessageFormat;
+        SourcerepoRepositoryMessageFormat,
+        SourcerepoRepositoryPubsubConfigs;
 export 'src/sourcerepo/google_sourcerepo_repository_iam_binding.dart'
     show
         GoogleSourcerepoRepositoryIamBinding,

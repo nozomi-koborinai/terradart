@@ -21,28 +21,29 @@ export 'src/datasync/aws_datasync_location_fsx_lustre_file_system.dart'
 export 'src/datasync/aws_datasync_location_fsx_ontap_file_system.dart'
     show
         AwsDatasyncLocationFsxOntapFileSystem,
+        DatasyncLocationFsxOntapFileSystemNfs,
+        DatasyncLocationFsxOntapFileSystemNfsMountOptions,
+        DatasyncLocationFsxOntapFileSystemNfsVersion,
         DatasyncLocationFsxOntapFileSystemProtocol,
         DatasyncLocationFsxOntapFileSystemProtocolNfs,
-        DatasyncLocationFsxOntapFileSystemProtocolNfsChoice,
-        DatasyncLocationFsxOntapFileSystemProtocolNfsMountOptions,
-        DatasyncLocationFsxOntapFileSystemProtocolNfsMountOptionsVersion,
         DatasyncLocationFsxOntapFileSystemProtocolSmb,
-        DatasyncLocationFsxOntapFileSystemProtocolSmbChoice,
-        DatasyncLocationFsxOntapFileSystemProtocolSmbMountOptions,
-        DatasyncLocationFsxOntapFileSystemProtocolSmbMountOptionsVersion;
+        DatasyncLocationFsxOntapFileSystemSmb,
+        DatasyncLocationFsxOntapFileSystemSmbMountOptions,
+        DatasyncLocationFsxOntapFileSystemSmbVersion;
 export 'src/datasync/aws_datasync_location_fsx_openzfs_file_system.dart'
     show
         AwsDatasyncLocationFsxOpenzfsFileSystem,
+        DatasyncLocationFsxOpenzfsFileSystemMountOptions,
+        DatasyncLocationFsxOpenzfsFileSystemNfs,
         DatasyncLocationFsxOpenzfsFileSystemProtocol,
-        DatasyncLocationFsxOpenzfsFileSystemProtocolNfs,
-        DatasyncLocationFsxOpenzfsFileSystemProtocolNfsMountOptions,
-        DatasyncLocationFsxOpenzfsFileSystemProtocolNfsMountOptionsVersion;
+        DatasyncLocationFsxOpenzfsFileSystemVersion;
 export 'src/datasync/aws_datasync_location_fsx_windows_file_system.dart'
     show AwsDatasyncLocationFsxWindowsFileSystem;
 export 'src/datasync/aws_datasync_location_hdfs.dart'
     show
         AwsDatasyncLocationHdfs,
         DatasyncLocationHdfsAuthenticationType,
+        DatasyncLocationHdfsDataTransferProtection,
         DatasyncLocationHdfsKerberosKeytab,
         DatasyncLocationHdfsKerberosKeytabBase64,
         DatasyncLocationHdfsKerberosKeytabChoice,
@@ -51,14 +52,13 @@ export 'src/datasync/aws_datasync_location_hdfs.dart'
         DatasyncLocationHdfsKerberosKrb5ConfChoice,
         DatasyncLocationHdfsNameNode,
         DatasyncLocationHdfsQopConfiguration,
-        DatasyncLocationHdfsQopConfigurationDataTransferProtection,
-        DatasyncLocationHdfsQopConfigurationRpcProtection;
+        DatasyncLocationHdfsRpcProtection;
 export 'src/datasync/aws_datasync_location_nfs.dart'
     show
         AwsDatasyncLocationNfs,
         DatasyncLocationNfsMountOptions,
-        DatasyncLocationNfsMountOptionsVersion,
-        DatasyncLocationNfsOnPremConfig;
+        DatasyncLocationNfsOnPremConfig,
+        DatasyncLocationNfsVersion;
 export 'src/datasync/aws_datasync_location_object_storage.dart'
     show
         AwsDatasyncLocationObjectStorage,
@@ -66,45 +66,44 @@ export 'src/datasync/aws_datasync_location_object_storage.dart'
 export 'src/datasync/aws_datasync_location_s3.dart'
     show
         AwsDatasyncLocationS3,
-        DatasyncLocationS3S3Config,
+        DatasyncLocationS3Config,
         DatasyncLocationS3S3StorageClass;
 export 'src/datasync/aws_datasync_location_smb.dart'
     show
         AwsDatasyncLocationSmb,
         DatasyncLocationSmbMountOptions,
-        DatasyncLocationSmbMountOptionsVersion;
+        DatasyncLocationSmbVersion;
 export 'src/datasync/aws_datasync_task.dart'
     show
         AwsDatasyncTask,
+        DatasyncTaskAtime,
+        DatasyncTaskDeletedOverride,
         DatasyncTaskExcludes,
-        DatasyncTaskExcludesFilterType,
+        DatasyncTaskFilterType,
+        DatasyncTaskGid,
         DatasyncTaskIncludes,
-        DatasyncTaskIncludesFilterType,
+        DatasyncTaskLogLevel,
+        DatasyncTaskMtime,
+        DatasyncTaskObjectTags,
         DatasyncTaskOptions,
-        DatasyncTaskOptionsAtime,
-        DatasyncTaskOptionsGid,
-        DatasyncTaskOptionsLogLevel,
-        DatasyncTaskOptionsMtime,
-        DatasyncTaskOptionsObjectTags,
-        DatasyncTaskOptionsOverwriteMode,
-        DatasyncTaskOptionsPosixPermissions,
-        DatasyncTaskOptionsPreserveDeletedFiles,
-        DatasyncTaskOptionsPreserveDevices,
-        DatasyncTaskOptionsSecurityDescriptorCopyFlags,
-        DatasyncTaskOptionsTaskQueueing,
-        DatasyncTaskOptionsTransferMode,
-        DatasyncTaskOptionsUid,
-        DatasyncTaskOptionsVerifyMode,
+        DatasyncTaskOutputType,
+        DatasyncTaskOverwriteMode,
+        DatasyncTaskPosixPermissions,
+        DatasyncTaskPreserveDeletedFiles,
+        DatasyncTaskPreserveDevices,
+        DatasyncTaskQueueing,
+        DatasyncTaskReportConfig,
+        DatasyncTaskReportLevel,
+        DatasyncTaskReportOverrides,
+        DatasyncTaskS3Destination,
+        DatasyncTaskS3ObjectVersioning,
         DatasyncTaskSchedule,
-        DatasyncTaskScheduleStatus,
+        DatasyncTaskSecurityDescriptorCopyFlags,
+        DatasyncTaskSkippedOverride,
+        DatasyncTaskStatus,
         DatasyncTaskTaskMode,
-        DatasyncTaskTaskReportConfig,
-        DatasyncTaskTaskReportConfigOutputType,
-        DatasyncTaskTaskReportConfigReportLevel,
-        DatasyncTaskTaskReportConfigReportOverrides,
-        DatasyncTaskTaskReportConfigReportOverridesDeletedOverride,
-        DatasyncTaskTaskReportConfigReportOverridesSkippedOverride,
-        DatasyncTaskTaskReportConfigReportOverridesTransferredOverride,
-        DatasyncTaskTaskReportConfigReportOverridesVerifiedOverride,
-        DatasyncTaskTaskReportConfigS3Destination,
-        DatasyncTaskTaskReportConfigS3ObjectVersioning;
+        DatasyncTaskTransferMode,
+        DatasyncTaskTransferredOverride,
+        DatasyncTaskUid,
+        DatasyncTaskVerifiedOverride,
+        DatasyncTaskVerifyMode;

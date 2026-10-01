@@ -27,13 +27,13 @@ final class VerifiedaccessInstanceLoggingConfigurationAccessLogs {
 
   final TfArg<String>? logVersion;
 
-  final VerifiedaccessInstanceLoggingConfigurationAccessLogsCloudwatchLogs?
+  final VerifiedaccessInstanceLoggingConfigurationCloudwatchLogs?
   cloudwatchLogs;
 
-  final VerifiedaccessInstanceLoggingConfigurationAccessLogsKinesisDataFirehose?
+  final VerifiedaccessInstanceLoggingConfigurationKinesisDataFirehose?
   kinesisDataFirehose;
 
-  final VerifiedaccessInstanceLoggingConfigurationAccessLogsS3? s3;
+  final VerifiedaccessInstanceLoggingConfigurationS3? s3;
 
   Map<String, Object?> encode() => {
     'include_trust_context': ?includeTrustContext?.toTfJson(),
@@ -47,8 +47,8 @@ final class VerifiedaccessInstanceLoggingConfigurationAccessLogs {
 /// Typed helper for the `access_logs.cloudwatch_logs` block of
 /// `aws_verifiedaccess_instance_logging_configuration` (derived from provider schema).
 @immutable
-final class VerifiedaccessInstanceLoggingConfigurationAccessLogsCloudwatchLogs {
-  const VerifiedaccessInstanceLoggingConfigurationAccessLogsCloudwatchLogs({
+final class VerifiedaccessInstanceLoggingConfigurationCloudwatchLogs {
+  const VerifiedaccessInstanceLoggingConfigurationCloudwatchLogs({
     required this.enabled,
     this.logGroup,
   });
@@ -66,8 +66,8 @@ final class VerifiedaccessInstanceLoggingConfigurationAccessLogsCloudwatchLogs {
 /// Typed helper for the `access_logs.kinesis_data_firehose` block of
 /// `aws_verifiedaccess_instance_logging_configuration` (derived from provider schema).
 @immutable
-final class VerifiedaccessInstanceLoggingConfigurationAccessLogsKinesisDataFirehose {
-  const VerifiedaccessInstanceLoggingConfigurationAccessLogsKinesisDataFirehose({
+final class VerifiedaccessInstanceLoggingConfigurationKinesisDataFirehose {
+  const VerifiedaccessInstanceLoggingConfigurationKinesisDataFirehose({
     this.deliveryStream,
     required this.enabled,
   });
@@ -85,8 +85,8 @@ final class VerifiedaccessInstanceLoggingConfigurationAccessLogsKinesisDataFireh
 /// Typed helper for the `access_logs.s3` block of
 /// `aws_verifiedaccess_instance_logging_configuration` (derived from provider schema).
 @immutable
-final class VerifiedaccessInstanceLoggingConfigurationAccessLogsS3 {
-  const VerifiedaccessInstanceLoggingConfigurationAccessLogsS3({
+final class VerifiedaccessInstanceLoggingConfigurationS3 {
+  const VerifiedaccessInstanceLoggingConfigurationS3({
     this.bucketName,
     this.bucketOwner,
     required this.enabled,

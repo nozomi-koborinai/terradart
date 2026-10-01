@@ -8,27 +8,27 @@ export 'src/workspaces/aws_workspaces_connection_alias.dart'
 export 'src/workspaces/aws_workspaces_directory.dart'
     show
         AwsWorkspacesDirectory,
+        WorkspacesDirectoryAccessEndpointConfig,
+        WorkspacesDirectoryAccessEndpointType,
+        WorkspacesDirectoryAccessEndpoints,
         WorkspacesDirectoryActiveDirectoryConfig,
         WorkspacesDirectoryCertificateBasedAuthProperties,
         WorkspacesDirectoryCertificateBasedAuthPropertiesStatus,
+        WorkspacesDirectoryDeviceTypeAndroid,
+        WorkspacesDirectoryDeviceTypeChromeos,
+        WorkspacesDirectoryDeviceTypeIos,
+        WorkspacesDirectoryDeviceTypeLinux,
+        WorkspacesDirectoryDeviceTypeOsx,
+        WorkspacesDirectoryDeviceTypeWeb,
+        WorkspacesDirectoryDeviceTypeWindows,
+        WorkspacesDirectoryDeviceTypeZeroclient,
+        WorkspacesDirectoryInternetFallbackProtocols,
         WorkspacesDirectorySamlProperties,
         WorkspacesDirectorySamlPropertiesStatus,
         WorkspacesDirectorySelfServicePermissions,
         WorkspacesDirectoryTenancy,
         WorkspacesDirectoryUserIdentityType,
         WorkspacesDirectoryWorkspaceAccessProperties,
-        WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfig,
-        WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfigAccessEndpoints,
-        WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfigAccessEndpointsAccessEndpointType,
-        WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfigInternetFallbackProtocols,
-        WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeAndroid,
-        WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeChromeos,
-        WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeIos,
-        WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeLinux,
-        WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeOsx,
-        WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeWeb,
-        WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeWindows,
-        WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeZeroclient,
         WorkspacesDirectoryWorkspaceCreationProperties,
         WorkspacesDirectoryWorkspaceType;
 export 'src/workspaces/aws_workspaces_ip_group.dart'
@@ -38,6 +38,6 @@ export 'src/workspaces/aws_workspaces_pool.dart'
 export 'src/workspaces/aws_workspaces_workspace.dart'
     show
         AwsWorkspacesWorkspace,
-        WorkspacesWorkspaceWorkspaceProperties,
-        WorkspacesWorkspaceWorkspacePropertiesComputeTypeName,
-        WorkspacesWorkspaceWorkspacePropertiesRunningMode;
+        WorkspacesWorkspaceComputeTypeName,
+        WorkspacesWorkspaceProperties,
+        WorkspacesWorkspaceRunningMode;

@@ -39,9 +39,9 @@ final class LambdamicrovmsMicrovmIdlePolicy {
 final class LambdamicrovmsMicrovmLogging {
   const LambdamicrovmsMicrovmLogging({this.cloudwatch, this.disabled});
 
-  final List<LambdamicrovmsMicrovmLoggingCloudwatch>? cloudwatch;
+  final List<LambdamicrovmsMicrovmCloudwatch>? cloudwatch;
 
-  final List<LambdamicrovmsMicrovmLoggingDisabled>? disabled;
+  final List<LambdamicrovmsMicrovmDisabled>? disabled;
 
   Map<String, Object?> encode() => {
     if (cloudwatch != null)
@@ -53,8 +53,8 @@ final class LambdamicrovmsMicrovmLogging {
 /// Typed helper for the `logging.cloudwatch` block of
 /// `aws_lambdamicrovms_microvm` (derived from provider schema).
 @immutable
-final class LambdamicrovmsMicrovmLoggingCloudwatch {
-  const LambdamicrovmsMicrovmLoggingCloudwatch({this.logGroup, this.logStream});
+final class LambdamicrovmsMicrovmCloudwatch {
+  const LambdamicrovmsMicrovmCloudwatch({this.logGroup, this.logStream});
 
   final RefTo<AwsCloudwatchLogGroup>? logGroup;
 
@@ -69,8 +69,8 @@ final class LambdamicrovmsMicrovmLoggingCloudwatch {
 /// Typed helper for the `logging.disabled` block of
 /// `aws_lambdamicrovms_microvm` (derived from provider schema).
 @immutable
-final class LambdamicrovmsMicrovmLoggingDisabled {
-  const LambdamicrovmsMicrovmLoggingDisabled();
+final class LambdamicrovmsMicrovmDisabled {
+  const LambdamicrovmsMicrovmDisabled();
 
   Map<String, Object?> encode() => {};
 }

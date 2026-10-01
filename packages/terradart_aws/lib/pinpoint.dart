@@ -16,8 +16,8 @@ export 'src/pinpoint/aws_pinpoint_app.dart'
     show
         AwsPinpointApp,
         PinpointAppCampaignHook,
-        PinpointAppCampaignHookMode,
         PinpointAppLimits,
+        PinpointAppMode,
         PinpointAppName,
         PinpointAppNameChoice,
         PinpointAppNamePrefix,
@@ -30,7 +30,7 @@ export 'src/pinpoint/aws_pinpoint_email_template.dart'
     show
         AwsPinpointEmailTemplate,
         PinpointEmailTemplateEmailTemplate,
-        PinpointEmailTemplateEmailTemplateHeader;
+        PinpointEmailTemplateHeader;
 export 'src/pinpoint/aws_pinpoint_event_stream.dart'
     show AwsPinpointEventStream;
 export 'src/pinpoint/aws_pinpoint_gcm_channel.dart'

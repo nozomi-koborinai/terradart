@@ -157,10 +157,9 @@ final class EmrClusterCoreInstanceFleet {
 
   final TfArg<num>? targetSpotCapacity;
 
-  final List<EmrClusterCoreInstanceFleetInstanceTypeConfigs>?
-  instanceTypeConfigs;
+  final List<EmrClusterInstanceTypeConfigs>? instanceTypeConfigs;
 
-  final EmrClusterCoreInstanceFleetLaunchSpecifications? launchSpecifications;
+  final EmrClusterLaunchSpecifications? launchSpecifications;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
@@ -176,9 +175,10 @@ final class EmrClusterCoreInstanceFleet {
 
 /// Typed helper for the `core_instance_fleet.instance_type_configs` block of
 /// `aws_emr_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class EmrClusterCoreInstanceFleetInstanceTypeConfigs {
-  const EmrClusterCoreInstanceFleetInstanceTypeConfigs({
+final class EmrClusterInstanceTypeConfigs {
+  const EmrClusterInstanceTypeConfigs({
     this.bidPrice,
     this.bidPriceAsPercentageOfOnDemandPrice,
     required this.instanceType,
@@ -194,8 +194,7 @@ final class EmrClusterCoreInstanceFleetInstanceTypeConfigs {
 
   final TfArg<num>? weightedCapacity;
 
-  final List<EmrClusterCoreInstanceFleetInstanceTypeConfigsEbsConfig>?
-  ebsConfig;
+  final List<EmrClusterInstanceTypeConfigsEbsConfig>? ebsConfig;
 
   Map<String, Object?> encode() => {
     'bid_price': ?bidPrice?.toTfJson(),
@@ -210,9 +209,10 @@ final class EmrClusterCoreInstanceFleetInstanceTypeConfigs {
 
 /// Typed helper for the `core_instance_fleet.instance_type_configs.ebs_config` block of
 /// `aws_emr_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class EmrClusterCoreInstanceFleetInstanceTypeConfigsEbsConfig {
-  const EmrClusterCoreInstanceFleetInstanceTypeConfigsEbsConfig({
+final class EmrClusterInstanceTypeConfigsEbsConfig {
+  const EmrClusterInstanceTypeConfigsEbsConfig({
     this.iops,
     required this.size,
     required this.type,
@@ -237,20 +237,17 @@ final class EmrClusterCoreInstanceFleetInstanceTypeConfigsEbsConfig {
 
 /// Typed helper for the `core_instance_fleet.launch_specifications` block of
 /// `aws_emr_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class EmrClusterCoreInstanceFleetLaunchSpecifications {
-  const EmrClusterCoreInstanceFleetLaunchSpecifications({
+final class EmrClusterLaunchSpecifications {
+  const EmrClusterLaunchSpecifications({
     this.onDemandSpecification,
     this.spotSpecification,
   });
 
-  final List<
-    EmrClusterCoreInstanceFleetLaunchSpecificationsOnDemandSpecification
-  >?
-  onDemandSpecification;
+  final List<EmrClusterOnDemandSpecification>? onDemandSpecification;
 
-  final List<EmrClusterCoreInstanceFleetLaunchSpecificationsSpotSpecification>?
-  spotSpecification;
+  final List<EmrClusterSpotSpecification>? spotSpecification;
 
   Map<String, Object?> encode() => {
     if (onDemandSpecification != null)
@@ -264,11 +261,10 @@ final class EmrClusterCoreInstanceFleetLaunchSpecifications {
 
 /// Typed helper for the `core_instance_fleet.launch_specifications.on_demand_specification` block of
 /// `aws_emr_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class EmrClusterCoreInstanceFleetLaunchSpecificationsOnDemandSpecification {
-  const EmrClusterCoreInstanceFleetLaunchSpecificationsOnDemandSpecification({
-    required this.allocationStrategy,
-  });
+final class EmrClusterOnDemandSpecification {
+  const EmrClusterOnDemandSpecification({required this.allocationStrategy});
 
   final TfArg<String> allocationStrategy;
 
@@ -279,9 +275,10 @@ final class EmrClusterCoreInstanceFleetLaunchSpecificationsOnDemandSpecification
 
 /// Typed helper for the `core_instance_fleet.launch_specifications.spot_specification` block of
 /// `aws_emr_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class EmrClusterCoreInstanceFleetLaunchSpecificationsSpotSpecification {
-  const EmrClusterCoreInstanceFleetLaunchSpecificationsSpotSpecification({
+final class EmrClusterSpotSpecification {
+  const EmrClusterSpotSpecification({
     required this.allocationStrategy,
     this.blockDurationMinutes,
     required this.timeoutAction,
@@ -327,7 +324,7 @@ final class EmrClusterCoreInstanceGroup {
 
   final TfArg<String>? name;
 
-  final List<EmrClusterCoreInstanceGroupEbsConfig>? ebsConfig;
+  final List<EmrClusterEbsConfig>? ebsConfig;
 
   Map<String, Object?> encode() => {
     'autoscaling_policy': ?autoscalingPolicy?.toTfJson(),
@@ -342,9 +339,10 @@ final class EmrClusterCoreInstanceGroup {
 
 /// Typed helper for the `core_instance_group.ebs_config` block of
 /// `aws_emr_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class EmrClusterCoreInstanceGroupEbsConfig {
-  const EmrClusterCoreInstanceGroupEbsConfig({
+final class EmrClusterEbsConfig {
+  const EmrClusterEbsConfig({
     this.iops,
     required this.size,
     this.throughput,
@@ -400,7 +398,7 @@ final class EmrClusterEc2Attributes {
 
   final TfArg<String>? serviceAccessSecurityGroup;
 
-  final EmrClusterEc2AttributesSubnet? subnet;
+  final EmrClusterSubnet? subnet;
 
   Map<String, Object?> encode() => {
     'additional_master_security_groups': ?additionalMasterSecurityGroups
@@ -423,18 +421,17 @@ final class EmrClusterEc2Attributes {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.subnetId(...)`.
-sealed class EmrClusterEc2AttributesSubnet {
-  const EmrClusterEc2AttributesSubnet();
+sealed class EmrClusterSubnet {
+  const EmrClusterSubnet();
 
   /// Sets `subnet_id`.
-  const factory EmrClusterEc2AttributesSubnet.subnetId(
-    RefTo<AwsSubnet> subnetId,
-  ) = EmrClusterEc2AttributesSubnetId;
+  const factory EmrClusterSubnet.subnetId(RefTo<AwsSubnet> subnetId) =
+      EmrClusterSubnetId;
 
   /// Sets `subnet_ids`.
-  const factory EmrClusterEc2AttributesSubnet.subnetIds(
+  const factory EmrClusterSubnet.subnetIds(
     TfArg<List<RefTo<AwsSubnet>>> subnetIds,
-  ) = EmrClusterEc2AttributesSubnetIds;
+  ) = EmrClusterSubnetIds;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -442,10 +439,9 @@ sealed class EmrClusterEc2AttributesSubnet {
   Map<String, Object?> encode();
 }
 
-/// The [EmrClusterEc2AttributesSubnet.subnetId] choice: sets `subnet_id`.
-final class EmrClusterEc2AttributesSubnetId
-    extends EmrClusterEc2AttributesSubnet {
-  const EmrClusterEc2AttributesSubnetId(this.subnetId);
+/// The [EmrClusterSubnet.subnetId] choice: sets `subnet_id`.
+final class EmrClusterSubnetId extends EmrClusterSubnet {
+  const EmrClusterSubnetId(this.subnetId);
 
   final RefTo<AwsSubnet> subnetId;
 
@@ -458,10 +454,9 @@ final class EmrClusterEc2AttributesSubnetId
   };
 }
 
-/// The [EmrClusterEc2AttributesSubnet.subnetIds] choice: sets `subnet_ids`.
-final class EmrClusterEc2AttributesSubnetIds
-    extends EmrClusterEc2AttributesSubnet {
-  const EmrClusterEc2AttributesSubnetIds(this.subnetIds);
+/// The [EmrClusterSubnet.subnetIds] choice: sets `subnet_ids`.
+final class EmrClusterSubnetIds extends EmrClusterSubnet {
+  const EmrClusterSubnetIds(this.subnetIds);
 
   final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
@@ -524,10 +519,9 @@ final class EmrClusterMasterInstanceFleet {
 
   final TfArg<num>? targetSpotCapacity;
 
-  final List<EmrClusterMasterInstanceFleetInstanceTypeConfigs>?
-  instanceTypeConfigs;
+  final List<EmrClusterInstanceTypeConfigs>? instanceTypeConfigs;
 
-  final EmrClusterMasterInstanceFleetLaunchSpecifications? launchSpecifications;
+  final EmrClusterLaunchSpecifications? launchSpecifications;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
@@ -538,138 +532,6 @@ final class EmrClusterMasterInstanceFleet {
         for (final e in instanceTypeConfigs!) e.encode(),
       ],
     'launch_specifications': ?launchSpecifications?.encode(),
-  };
-}
-
-/// Typed helper for the `master_instance_fleet.instance_type_configs` block of
-/// `aws_emr_cluster` (derived from provider schema).
-@immutable
-final class EmrClusterMasterInstanceFleetInstanceTypeConfigs {
-  const EmrClusterMasterInstanceFleetInstanceTypeConfigs({
-    this.bidPrice,
-    this.bidPriceAsPercentageOfOnDemandPrice,
-    required this.instanceType,
-    this.weightedCapacity,
-    this.ebsConfig,
-  });
-
-  final TfArg<String>? bidPrice;
-
-  final TfArg<num>? bidPriceAsPercentageOfOnDemandPrice;
-
-  final TfArg<String> instanceType;
-
-  final TfArg<num>? weightedCapacity;
-
-  final List<EmrClusterMasterInstanceFleetInstanceTypeConfigsEbsConfig>?
-  ebsConfig;
-
-  Map<String, Object?> encode() => {
-    'bid_price': ?bidPrice?.toTfJson(),
-    'bid_price_as_percentage_of_on_demand_price':
-        ?bidPriceAsPercentageOfOnDemandPrice?.toTfJson(),
-    'instance_type': instanceType.toTfJson(),
-    'weighted_capacity': ?weightedCapacity?.toTfJson(),
-    if (ebsConfig != null)
-      'ebs_config': [for (final e in ebsConfig!) e.encode()],
-  };
-}
-
-/// Typed helper for the `master_instance_fleet.instance_type_configs.ebs_config` block of
-/// `aws_emr_cluster` (derived from provider schema).
-@immutable
-final class EmrClusterMasterInstanceFleetInstanceTypeConfigsEbsConfig {
-  const EmrClusterMasterInstanceFleetInstanceTypeConfigsEbsConfig({
-    this.iops,
-    required this.size,
-    required this.type,
-    this.volumesPerInstance,
-  });
-
-  final TfArg<num>? iops;
-
-  final TfArg<num> size;
-
-  final TfArg<String> type;
-
-  final TfArg<num>? volumesPerInstance;
-
-  Map<String, Object?> encode() => {
-    'iops': ?iops?.toTfJson(),
-    'size': size.toTfJson(),
-    'type': type.toTfJson(),
-    'volumes_per_instance': ?volumesPerInstance?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `master_instance_fleet.launch_specifications` block of
-/// `aws_emr_cluster` (derived from provider schema).
-@immutable
-final class EmrClusterMasterInstanceFleetLaunchSpecifications {
-  const EmrClusterMasterInstanceFleetLaunchSpecifications({
-    this.onDemandSpecification,
-    this.spotSpecification,
-  });
-
-  final List<
-    EmrClusterMasterInstanceFleetLaunchSpecificationsOnDemandSpecification
-  >?
-  onDemandSpecification;
-
-  final List<
-    EmrClusterMasterInstanceFleetLaunchSpecificationsSpotSpecification
-  >?
-  spotSpecification;
-
-  Map<String, Object?> encode() => {
-    if (onDemandSpecification != null)
-      'on_demand_specification': [
-        for (final e in onDemandSpecification!) e.encode(),
-      ],
-    if (spotSpecification != null)
-      'spot_specification': [for (final e in spotSpecification!) e.encode()],
-  };
-}
-
-/// Typed helper for the `master_instance_fleet.launch_specifications.on_demand_specification` block of
-/// `aws_emr_cluster` (derived from provider schema).
-@immutable
-final class EmrClusterMasterInstanceFleetLaunchSpecificationsOnDemandSpecification {
-  const EmrClusterMasterInstanceFleetLaunchSpecificationsOnDemandSpecification({
-    required this.allocationStrategy,
-  });
-
-  final TfArg<String> allocationStrategy;
-
-  Map<String, Object?> encode() => {
-    'allocation_strategy': allocationStrategy.toTfJson(),
-  };
-}
-
-/// Typed helper for the `master_instance_fleet.launch_specifications.spot_specification` block of
-/// `aws_emr_cluster` (derived from provider schema).
-@immutable
-final class EmrClusterMasterInstanceFleetLaunchSpecificationsSpotSpecification {
-  const EmrClusterMasterInstanceFleetLaunchSpecificationsSpotSpecification({
-    required this.allocationStrategy,
-    this.blockDurationMinutes,
-    required this.timeoutAction,
-    required this.timeoutDurationMinutes,
-  });
-
-  final TfArg<String> allocationStrategy;
-
-  final TfArg<num>? blockDurationMinutes;
-
-  final TfArg<String> timeoutAction;
-
-  final TfArg<num> timeoutDurationMinutes;
-
-  Map<String, Object?> encode() => {
-    'allocation_strategy': allocationStrategy.toTfJson(),
-    'block_duration_minutes': ?blockDurationMinutes?.toTfJson(),
-    'timeout_action': timeoutAction.toTfJson(),
-    'timeout_duration_minutes': timeoutDurationMinutes.toTfJson(),
   };
 }
 
@@ -693,7 +555,7 @@ final class EmrClusterMasterInstanceGroup {
 
   final TfArg<String>? name;
 
-  final List<EmrClusterMasterInstanceGroupEbsConfig>? ebsConfig;
+  final List<EmrClusterEbsConfig>? ebsConfig;
 
   Map<String, Object?> encode() => {
     'bid_price': ?bidPrice?.toTfJson(),
@@ -702,37 +564,6 @@ final class EmrClusterMasterInstanceGroup {
     'name': ?name?.toTfJson(),
     if (ebsConfig != null)
       'ebs_config': [for (final e in ebsConfig!) e.encode()],
-  };
-}
-
-/// Typed helper for the `master_instance_group.ebs_config` block of
-/// `aws_emr_cluster` (derived from provider schema).
-@immutable
-final class EmrClusterMasterInstanceGroupEbsConfig {
-  const EmrClusterMasterInstanceGroupEbsConfig({
-    this.iops,
-    required this.size,
-    this.throughput,
-    required this.type,
-    this.volumesPerInstance,
-  });
-
-  final TfArg<num>? iops;
-
-  final TfArg<num> size;
-
-  final TfArg<num>? throughput;
-
-  final TfArg<String> type;
-
-  final TfArg<num>? volumesPerInstance;
-
-  Map<String, Object?> encode() => {
-    'iops': ?iops?.toTfJson(),
-    'size': size.toTfJson(),
-    'throughput': ?throughput?.toTfJson(),
-    'type': type.toTfJson(),
-    'volumes_per_instance': ?volumesPerInstance?.toTfJson(),
   };
 }
 

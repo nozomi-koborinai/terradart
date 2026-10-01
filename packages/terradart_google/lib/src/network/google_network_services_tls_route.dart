@@ -16,9 +16,9 @@ final class NetworkServicesTlsRouteRules {
     required this.matches,
   });
 
-  final NetworkServicesTlsRouteRulesAction action;
+  final NetworkServicesTlsRouteAction action;
 
-  final List<NetworkServicesTlsRouteRulesMatches> matches;
+  final List<NetworkServicesTlsRouteMatches> matches;
 
   Map<String, Object?> encode() => {
     'action': action.encode(),
@@ -29,10 +29,10 @@ final class NetworkServicesTlsRouteRules {
 /// Typed helper for the `rules.action` block of
 /// `google_network_services_tls_route` (derived from provider schema).
 @immutable
-final class NetworkServicesTlsRouteRulesAction {
-  const NetworkServicesTlsRouteRulesAction({this.destinations});
+final class NetworkServicesTlsRouteAction {
+  const NetworkServicesTlsRouteAction({this.destinations});
 
-  final List<NetworkServicesTlsRouteRulesActionDestinations>? destinations;
+  final List<NetworkServicesTlsRouteDestinations>? destinations;
 
   Map<String, Object?> encode() => {
     if (destinations != null)
@@ -43,11 +43,8 @@ final class NetworkServicesTlsRouteRulesAction {
 /// Typed helper for the `rules.action.destinations` block of
 /// `google_network_services_tls_route` (derived from provider schema).
 @immutable
-final class NetworkServicesTlsRouteRulesActionDestinations {
-  const NetworkServicesTlsRouteRulesActionDestinations({
-    this.serviceName,
-    this.weight,
-  });
+final class NetworkServicesTlsRouteDestinations {
+  const NetworkServicesTlsRouteDestinations({this.serviceName, this.weight});
 
   final TfArg<String>? serviceName;
 
@@ -62,8 +59,8 @@ final class NetworkServicesTlsRouteRulesActionDestinations {
 /// Typed helper for the `rules.matches` block of
 /// `google_network_services_tls_route` (derived from provider schema).
 @immutable
-final class NetworkServicesTlsRouteRulesMatches {
-  const NetworkServicesTlsRouteRulesMatches({this.alpn, this.sniHost});
+final class NetworkServicesTlsRouteMatches {
+  const NetworkServicesTlsRouteMatches({this.alpn, this.sniHost});
 
   final TfArg<List<String>>? alpn;
 

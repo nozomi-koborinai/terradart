@@ -10,21 +10,21 @@ const Set<String> _googleIamWorkforcePoolProviderKeySensitive = <String>{};
 /// Typed helper for the `key_data` block of
 /// `google_iam_workforce_pool_provider_key` (derived from provider schema).
 @immutable
-final class IamWorkforcePoolProviderKeyKeyData {
-  const IamWorkforcePoolProviderKeyKeyData({required this.keySpec});
+final class IamWorkforcePoolProviderKeyData {
+  const IamWorkforcePoolProviderKeyData({required this.keySpec});
 
-  final TfArg<IamWorkforcePoolProviderKeyKeyDataKeySpec> keySpec;
+  final TfArg<IamWorkforcePoolProviderKeySpec> keySpec;
 
   Map<String, Object?> encode() => {'key_spec': keySpec.toTfJson()};
 }
 
 /// `key_spec` — derived from the provider schema description.
-enum IamWorkforcePoolProviderKeyKeyDataKeySpec implements TerraformEnum {
+enum IamWorkforcePoolProviderKeySpec implements TerraformEnum {
   rsa2048('RSA_2048'),
   rsa3072('RSA_3072'),
   rsa4096('RSA_4096');
 
-  const IamWorkforcePoolProviderKeyKeyDataKeySpec(this.terraformValue);
+  const IamWorkforcePoolProviderKeySpec(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -52,7 +52,7 @@ final class GoogleIamWorkforcePoolProviderKey extends Resource {
     required TfArg<String> providerId,
     required TfArg<String> use,
     required TfArg<String> workforcePoolId,
-    required IamWorkforcePoolProviderKeyKeyData keyData,
+    required IamWorkforcePoolProviderKeyData keyData,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -27,11 +27,11 @@ final class DataOrganizationFilter {
 
   final TfArg<String>? pageToken;
 
-  final DataOrganizationFilterContaining? containing;
+  final DataOrganizationContaining? containing;
 
   final DataOrganizationFilterName? name;
 
-  final DataOrganizationFilterParent? parent;
+  final DataOrganizationParent? parent;
 
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
@@ -46,8 +46,8 @@ final class DataOrganizationFilter {
 /// Typed helper for the `filter.containing` block of
 /// `cloudflare_organization` (derived from provider schema).
 @immutable
-final class DataOrganizationFilterContaining {
-  const DataOrganizationFilterContaining({
+final class DataOrganizationContaining {
+  const DataOrganizationContaining({
     this.account,
     this.organization,
     this.user,
@@ -92,8 +92,8 @@ final class DataOrganizationFilterName {
 /// Typed helper for the `filter.parent` block of
 /// `cloudflare_organization` (derived from provider schema).
 @immutable
-final class DataOrganizationFilterParent {
-  const DataOrganizationFilterParent({this.id});
+final class DataOrganizationParent {
+  const DataOrganizationParent({this.id});
 
   final TfArg<String>? id;
 

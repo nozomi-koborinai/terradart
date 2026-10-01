@@ -29,7 +29,7 @@ void main() {
         CloudSchedulerJobHttpTarget(
           uri: .literal('https://example.com'),
           httpMethod: .literal('POST'),
-          oidcToken: CloudSchedulerJobHttpTargetOidcToken(
+          oidcToken: CloudSchedulerJobOidcToken(
             serviceAccountEmail: .literal('sa@p.iam.gserviceaccount.com'),
           ),
         ),
@@ -52,11 +52,10 @@ void main() {
         CloudSchedulerJobAppEngineHttpTarget(
           relativeUri: .literal('/cron'),
           httpMethod: .literal('POST'),
-          appEngineRouting:
-              CloudSchedulerJobAppEngineHttpTargetAppEngineRouting(
-                service: .literal('default'),
-                version: .literal('v1'),
-              ),
+          appEngineRouting: CloudSchedulerJobAppEngineRouting(
+            service: .literal('default'),
+            version: .literal('v1'),
+          ),
         ),
       );
       expect(t.blockKey, equals('app_engine_http_target'));

@@ -58,12 +58,9 @@ final class IamWorkloadIdentityPoolInlineCertificateIssuanceConfig {
     this.rotationWindowPercentage,
   });
 
-  final IamWorkloadIdentityPoolInlineCertificateIssuanceConfigCa ca;
+  final IamWorkloadIdentityPoolCa ca;
 
-  final TfArg<
-    IamWorkloadIdentityPoolInlineCertificateIssuanceConfigKeyAlgorithm
-  >?
-  keyAlgorithm;
+  final TfArg<IamWorkloadIdentityPoolKeyAlgorithm>? keyAlgorithm;
 
   final TfArg<String>? lifetime;
 
@@ -81,18 +78,18 @@ final class IamWorkloadIdentityPoolInlineCertificateIssuanceConfig {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.caPools(...)`.
-sealed class IamWorkloadIdentityPoolInlineCertificateIssuanceConfigCa {
-  const IamWorkloadIdentityPoolInlineCertificateIssuanceConfigCa();
+sealed class IamWorkloadIdentityPoolCa {
+  const IamWorkloadIdentityPoolCa();
 
   /// Sets `ca_pools`.
-  const factory IamWorkloadIdentityPoolInlineCertificateIssuanceConfigCa.caPools(
+  const factory IamWorkloadIdentityPoolCa.caPools(
     TfArg<Map<String, String>> caPools,
-  ) = IamWorkloadIdentityPoolInlineCertificateIssuanceConfigCaPools;
+  ) = IamWorkloadIdentityPoolCaPools;
 
   /// Sets `use_default_shared_ca`.
-  const factory IamWorkloadIdentityPoolInlineCertificateIssuanceConfigCa.useDefaultSharedCa(
+  const factory IamWorkloadIdentityPoolCa.useDefaultSharedCa(
     TfArg<bool> useDefaultSharedCa,
-  ) = IamWorkloadIdentityPoolInlineCertificateIssuanceConfigCaUseDefaultSharedCa;
+  ) = IamWorkloadIdentityPoolUseDefaultSharedCa;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -100,12 +97,9 @@ sealed class IamWorkloadIdentityPoolInlineCertificateIssuanceConfigCa {
   Map<String, Object?> encode();
 }
 
-/// The [IamWorkloadIdentityPoolInlineCertificateIssuanceConfigCa.caPools] choice: sets `ca_pools`.
-final class IamWorkloadIdentityPoolInlineCertificateIssuanceConfigCaPools
-    extends IamWorkloadIdentityPoolInlineCertificateIssuanceConfigCa {
-  const IamWorkloadIdentityPoolInlineCertificateIssuanceConfigCaPools(
-    this.caPools,
-  );
+/// The [IamWorkloadIdentityPoolCa.caPools] choice: sets `ca_pools`.
+final class IamWorkloadIdentityPoolCaPools extends IamWorkloadIdentityPoolCa {
+  const IamWorkloadIdentityPoolCaPools(this.caPools);
 
   final TfArg<Map<String, String>> caPools;
 
@@ -116,12 +110,10 @@ final class IamWorkloadIdentityPoolInlineCertificateIssuanceConfigCaPools
   Map<String, Object?> encode() => {'ca_pools': caPools.toTfJson()};
 }
 
-/// The [IamWorkloadIdentityPoolInlineCertificateIssuanceConfigCa.useDefaultSharedCa] choice: sets `use_default_shared_ca`.
-final class IamWorkloadIdentityPoolInlineCertificateIssuanceConfigCaUseDefaultSharedCa
-    extends IamWorkloadIdentityPoolInlineCertificateIssuanceConfigCa {
-  const IamWorkloadIdentityPoolInlineCertificateIssuanceConfigCaUseDefaultSharedCa(
-    this.useDefaultSharedCa,
-  );
+/// The [IamWorkloadIdentityPoolCa.useDefaultSharedCa] choice: sets `use_default_shared_ca`.
+final class IamWorkloadIdentityPoolUseDefaultSharedCa
+    extends IamWorkloadIdentityPoolCa {
+  const IamWorkloadIdentityPoolUseDefaultSharedCa(this.useDefaultSharedCa);
 
   final TfArg<bool> useDefaultSharedCa;
 
@@ -135,17 +127,14 @@ final class IamWorkloadIdentityPoolInlineCertificateIssuanceConfigCaUseDefaultSh
 }
 
 /// `key_algorithm` — derived from the provider schema description.
-enum IamWorkloadIdentityPoolInlineCertificateIssuanceConfigKeyAlgorithm
-    implements TerraformEnum {
+enum IamWorkloadIdentityPoolKeyAlgorithm implements TerraformEnum {
   rsa2048('RSA_2048'),
   rsa3072('RSA_3072'),
   rsa4096('RSA_4096'),
   ecdsaP256('ECDSA_P256'),
   ecdsaP384('ECDSA_P384');
 
-  const IamWorkloadIdentityPoolInlineCertificateIssuanceConfigKeyAlgorithm(
-    this.terraformValue,
-  );
+  const IamWorkloadIdentityPoolKeyAlgorithm(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -156,7 +145,7 @@ enum IamWorkloadIdentityPoolInlineCertificateIssuanceConfigKeyAlgorithm
 final class IamWorkloadIdentityPoolInlineTrustConfig {
   const IamWorkloadIdentityPoolInlineTrustConfig({this.additionalTrustBundles});
 
-  final List<IamWorkloadIdentityPoolInlineTrustConfigAdditionalTrustBundles>?
+  final List<IamWorkloadIdentityPoolAdditionalTrustBundles>?
   additionalTrustBundles;
 
   Map<String, Object?> encode() => {
@@ -170,8 +159,8 @@ final class IamWorkloadIdentityPoolInlineTrustConfig {
 /// Typed helper for the `inline_trust_config.additional_trust_bundles` block of
 /// `google_iam_workload_identity_pool` (derived from provider schema).
 @immutable
-final class IamWorkloadIdentityPoolInlineTrustConfigAdditionalTrustBundles {
-  const IamWorkloadIdentityPoolInlineTrustConfigAdditionalTrustBundles({
+final class IamWorkloadIdentityPoolAdditionalTrustBundles {
+  const IamWorkloadIdentityPoolAdditionalTrustBundles({
     this.trustDefaultSharedCa,
     required this.trustDomain,
     required this.trustAnchors,
@@ -181,10 +170,7 @@ final class IamWorkloadIdentityPoolInlineTrustConfigAdditionalTrustBundles {
 
   final TfArg<String> trustDomain;
 
-  final List<
-    IamWorkloadIdentityPoolInlineTrustConfigAdditionalTrustBundlesTrustAnchors
-  >
-  trustAnchors;
+  final List<IamWorkloadIdentityPoolTrustAnchors> trustAnchors;
 
   Map<String, Object?> encode() => {
     'trust_default_shared_ca': ?trustDefaultSharedCa?.toTfJson(),
@@ -196,10 +182,8 @@ final class IamWorkloadIdentityPoolInlineTrustConfigAdditionalTrustBundles {
 /// Typed helper for the `inline_trust_config.additional_trust_bundles.trust_anchors` block of
 /// `google_iam_workload_identity_pool` (derived from provider schema).
 @immutable
-final class IamWorkloadIdentityPoolInlineTrustConfigAdditionalTrustBundlesTrustAnchors {
-  const IamWorkloadIdentityPoolInlineTrustConfigAdditionalTrustBundlesTrustAnchors({
-    required this.pemCertificate,
-  });
+final class IamWorkloadIdentityPoolTrustAnchors {
+  const IamWorkloadIdentityPoolTrustAnchors({required this.pemCertificate});
 
   final TfArg<String> pemCertificate;
 

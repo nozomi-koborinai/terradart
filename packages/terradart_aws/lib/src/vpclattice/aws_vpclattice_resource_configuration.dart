@@ -93,32 +93,23 @@ final class VpclatticeResourceConfigurationParentResourceGatewayIdentifier
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.arnResource(...)`.
-sealed class VpclatticeResourceConfigurationResourceConfigurationDefinition {
-  const VpclatticeResourceConfigurationResourceConfigurationDefinition();
+sealed class VpclatticeResourceConfigurationDefinition {
+  const VpclatticeResourceConfigurationDefinition();
 
   /// Sets `arn_resource`.
-  const factory VpclatticeResourceConfigurationResourceConfigurationDefinition.arnResource(
-    List<
-      VpclatticeResourceConfigurationResourceConfigurationDefinitionArnResource
-    >
-    arnResource,
-  ) = VpclatticeResourceConfigurationResourceConfigurationDefinitionArnResourceChoice;
+  const factory VpclatticeResourceConfigurationDefinition.arnResource(
+    List<VpclatticeResourceConfigurationArnResource> arnResource,
+  ) = VpclatticeResourceConfigurationDefinitionArnResource;
 
   /// Sets `dns_resource`.
-  const factory VpclatticeResourceConfigurationResourceConfigurationDefinition.dnsResource(
-    List<
-      VpclatticeResourceConfigurationResourceConfigurationDefinitionDnsResource
-    >
-    dnsResource,
-  ) = VpclatticeResourceConfigurationResourceConfigurationDefinitionDnsResourceChoice;
+  const factory VpclatticeResourceConfigurationDefinition.dnsResource(
+    List<VpclatticeResourceConfigurationDnsResource> dnsResource,
+  ) = VpclatticeResourceConfigurationDefinitionDnsResource;
 
   /// Sets `ip_resource`.
-  const factory VpclatticeResourceConfigurationResourceConfigurationDefinition.ipResource(
-    List<
-      VpclatticeResourceConfigurationResourceConfigurationDefinitionIpResource
-    >
-    ipResource,
-  ) = VpclatticeResourceConfigurationResourceConfigurationDefinitionIpResourceChoice;
+  const factory VpclatticeResourceConfigurationDefinition.ipResource(
+    List<VpclatticeResourceConfigurationIpResource> ipResource,
+  ) = VpclatticeResourceConfigurationDefinitionIpResource;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -126,17 +117,12 @@ sealed class VpclatticeResourceConfigurationResourceConfigurationDefinition {
   Map<String, Object?> encode();
 }
 
-/// The [VpclatticeResourceConfigurationResourceConfigurationDefinition.arnResource] choice: sets `arn_resource`.
-final class VpclatticeResourceConfigurationResourceConfigurationDefinitionArnResourceChoice
-    extends VpclatticeResourceConfigurationResourceConfigurationDefinition {
-  const VpclatticeResourceConfigurationResourceConfigurationDefinitionArnResourceChoice(
-    this.arnResource,
-  );
+/// The [VpclatticeResourceConfigurationDefinition.arnResource] choice: sets `arn_resource`.
+final class VpclatticeResourceConfigurationDefinitionArnResource
+    extends VpclatticeResourceConfigurationDefinition {
+  const VpclatticeResourceConfigurationDefinitionArnResource(this.arnResource);
 
-  final List<
-    VpclatticeResourceConfigurationResourceConfigurationDefinitionArnResource
-  >
-  arnResource;
+  final List<VpclatticeResourceConfigurationArnResource> arnResource;
 
   @override
   String get blockKey => 'arn_resource';
@@ -147,17 +133,12 @@ final class VpclatticeResourceConfigurationResourceConfigurationDefinitionArnRes
   };
 }
 
-/// The [VpclatticeResourceConfigurationResourceConfigurationDefinition.dnsResource] choice: sets `dns_resource`.
-final class VpclatticeResourceConfigurationResourceConfigurationDefinitionDnsResourceChoice
-    extends VpclatticeResourceConfigurationResourceConfigurationDefinition {
-  const VpclatticeResourceConfigurationResourceConfigurationDefinitionDnsResourceChoice(
-    this.dnsResource,
-  );
+/// The [VpclatticeResourceConfigurationDefinition.dnsResource] choice: sets `dns_resource`.
+final class VpclatticeResourceConfigurationDefinitionDnsResource
+    extends VpclatticeResourceConfigurationDefinition {
+  const VpclatticeResourceConfigurationDefinitionDnsResource(this.dnsResource);
 
-  final List<
-    VpclatticeResourceConfigurationResourceConfigurationDefinitionDnsResource
-  >
-  dnsResource;
+  final List<VpclatticeResourceConfigurationDnsResource> dnsResource;
 
   @override
   String get blockKey => 'dns_resource';
@@ -168,17 +149,12 @@ final class VpclatticeResourceConfigurationResourceConfigurationDefinitionDnsRes
   };
 }
 
-/// The [VpclatticeResourceConfigurationResourceConfigurationDefinition.ipResource] choice: sets `ip_resource`.
-final class VpclatticeResourceConfigurationResourceConfigurationDefinitionIpResourceChoice
-    extends VpclatticeResourceConfigurationResourceConfigurationDefinition {
-  const VpclatticeResourceConfigurationResourceConfigurationDefinitionIpResourceChoice(
-    this.ipResource,
-  );
+/// The [VpclatticeResourceConfigurationDefinition.ipResource] choice: sets `ip_resource`.
+final class VpclatticeResourceConfigurationDefinitionIpResource
+    extends VpclatticeResourceConfigurationDefinition {
+  const VpclatticeResourceConfigurationDefinitionIpResource(this.ipResource);
 
-  final List<
-    VpclatticeResourceConfigurationResourceConfigurationDefinitionIpResource
-  >
-  ipResource;
+  final List<VpclatticeResourceConfigurationIpResource> ipResource;
 
   @override
   String get blockKey => 'ip_resource';
@@ -192,10 +168,8 @@ final class VpclatticeResourceConfigurationResourceConfigurationDefinitionIpReso
 /// Typed helper for the `resource_configuration_definition.arn_resource` block of
 /// `aws_vpclattice_resource_configuration` (derived from provider schema).
 @immutable
-final class VpclatticeResourceConfigurationResourceConfigurationDefinitionArnResource {
-  const VpclatticeResourceConfigurationResourceConfigurationDefinitionArnResource({
-    required this.arn,
-  });
+final class VpclatticeResourceConfigurationArnResource {
+  const VpclatticeResourceConfigurationArnResource({required this.arn});
 
   final TfArg<String> arn;
 
@@ -205,18 +179,15 @@ final class VpclatticeResourceConfigurationResourceConfigurationDefinitionArnRes
 /// Typed helper for the `resource_configuration_definition.dns_resource` block of
 /// `aws_vpclattice_resource_configuration` (derived from provider schema).
 @immutable
-final class VpclatticeResourceConfigurationResourceConfigurationDefinitionDnsResource {
-  const VpclatticeResourceConfigurationResourceConfigurationDefinitionDnsResource({
+final class VpclatticeResourceConfigurationDnsResource {
+  const VpclatticeResourceConfigurationDnsResource({
     required this.domainName,
     required this.ipAddressType,
   });
 
   final TfArg<String> domainName;
 
-  final TfArg<
-    VpclatticeResourceConfigurationResourceConfigurationDefinitionDnsResourceIpAddressType
-  >
-  ipAddressType;
+  final TfArg<VpclatticeResourceConfigurationIpAddressType> ipAddressType;
 
   Map<String, Object?> encode() => {
     'domain_name': domainName.toTfJson(),
@@ -225,14 +196,11 @@ final class VpclatticeResourceConfigurationResourceConfigurationDefinitionDnsRes
 }
 
 /// `ip_address_type` — derived from the provider schema description.
-enum VpclatticeResourceConfigurationResourceConfigurationDefinitionDnsResourceIpAddressType
-    implements TerraformEnum {
+enum VpclatticeResourceConfigurationIpAddressType implements TerraformEnum {
   ipv4('IPV4'),
   ipv6('IPV6');
 
-  const VpclatticeResourceConfigurationResourceConfigurationDefinitionDnsResourceIpAddressType(
-    this.terraformValue,
-  );
+  const VpclatticeResourceConfigurationIpAddressType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -240,10 +208,8 @@ enum VpclatticeResourceConfigurationResourceConfigurationDefinitionDnsResourceIp
 /// Typed helper for the `resource_configuration_definition.ip_resource` block of
 /// `aws_vpclattice_resource_configuration` (derived from provider schema).
 @immutable
-final class VpclatticeResourceConfigurationResourceConfigurationDefinitionIpResource {
-  const VpclatticeResourceConfigurationResourceConfigurationDefinitionIpResource({
-    required this.ipAddress,
-  });
+final class VpclatticeResourceConfigurationIpResource {
+  const VpclatticeResourceConfigurationIpResource({required this.ipAddress});
 
   final TfArg<String> ipAddress;
 
@@ -266,7 +232,7 @@ final class AwsVpclatticeResourceConfiguration extends Resource {
     required VpclatticeResourceConfigurationParent parent,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? type,
-    List<VpclatticeResourceConfigurationResourceConfigurationDefinition>?
+    List<VpclatticeResourceConfigurationDefinition>?
     resourceConfigurationDefinition,
     super.lifecycle,
     super.dependsOn,

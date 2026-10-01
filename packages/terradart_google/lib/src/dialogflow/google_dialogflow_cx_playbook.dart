@@ -26,7 +26,7 @@ final class DialogflowCxPlaybookInstruction {
 
   final TfArg<String>? guidelines;
 
-  final List<DialogflowCxPlaybookInstructionSteps>? steps;
+  final List<DialogflowCxPlaybookSteps>? steps;
 
   Map<String, Object?> encode() => {
     'guidelines': ?guidelines?.toTfJson(),
@@ -37,8 +37,8 @@ final class DialogflowCxPlaybookInstruction {
 /// Typed helper for the `instruction.steps` block of
 /// `google_dialogflow_cx_playbook` (derived from provider schema).
 @immutable
-final class DialogflowCxPlaybookInstructionSteps {
-  const DialogflowCxPlaybookInstructionSteps({this.steps, this.text});
+final class DialogflowCxPlaybookSteps {
+  const DialogflowCxPlaybookSteps({this.steps, this.text});
 
   final TfArg<String>? steps;
 

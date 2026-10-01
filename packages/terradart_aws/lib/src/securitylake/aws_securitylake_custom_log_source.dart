@@ -18,11 +18,10 @@ final class SecuritylakeCustomLogSourceConfiguration {
     this.providerIdentity,
   });
 
-  final List<SecuritylakeCustomLogSourceConfigurationCrawlerConfiguration>?
+  final List<SecuritylakeCustomLogSourceCrawlerConfiguration>?
   crawlerConfiguration;
 
-  final List<SecuritylakeCustomLogSourceConfigurationProviderIdentity>?
-  providerIdentity;
+  final List<SecuritylakeCustomLogSourceProviderIdentity>? providerIdentity;
 
   Map<String, Object?> encode() => {
     if (crawlerConfiguration != null)
@@ -37,8 +36,8 @@ final class SecuritylakeCustomLogSourceConfiguration {
 /// Typed helper for the `configuration.crawler_configuration` block of
 /// `aws_securitylake_custom_log_source` (derived from provider schema).
 @immutable
-final class SecuritylakeCustomLogSourceConfigurationCrawlerConfiguration {
-  const SecuritylakeCustomLogSourceConfigurationCrawlerConfiguration({
+final class SecuritylakeCustomLogSourceCrawlerConfiguration {
+  const SecuritylakeCustomLogSourceCrawlerConfiguration({
     required this.roleArn,
   });
 
@@ -52,8 +51,8 @@ final class SecuritylakeCustomLogSourceConfigurationCrawlerConfiguration {
 /// Typed helper for the `configuration.provider_identity` block of
 /// `aws_securitylake_custom_log_source` (derived from provider schema).
 @immutable
-final class SecuritylakeCustomLogSourceConfigurationProviderIdentity {
-  const SecuritylakeCustomLogSourceConfigurationProviderIdentity({
+final class SecuritylakeCustomLogSourceProviderIdentity {
+  const SecuritylakeCustomLogSourceProviderIdentity({
     required this.externalId,
     required this.principal,
   });

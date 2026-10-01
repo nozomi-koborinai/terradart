@@ -64,10 +64,9 @@ final class SpannerBackupScheduleEncryptionConfig {
     this.kmsKeyName,
   });
 
-  final TfArg<SpannerBackupScheduleEncryptionConfigEncryptionType>
-  encryptionType;
+  final TfArg<SpannerBackupScheduleEncryptionType> encryptionType;
 
-  final SpannerBackupScheduleEncryptionConfigKmsKeyName? kmsKeyName;
+  final SpannerBackupScheduleKmsKeyName? kmsKeyName;
 
   Map<String, Object?> encode() => {
     'encryption_type': encryptionType.toTfJson(),
@@ -80,18 +79,18 @@ final class SpannerBackupScheduleEncryptionConfig {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.kmsKeyName(...)`.
-sealed class SpannerBackupScheduleEncryptionConfigKmsKeyName {
-  const SpannerBackupScheduleEncryptionConfigKmsKeyName();
+sealed class SpannerBackupScheduleKmsKeyName {
+  const SpannerBackupScheduleKmsKeyName();
 
   /// Sets `kms_key_name`.
-  const factory SpannerBackupScheduleEncryptionConfigKmsKeyName.kmsKeyName(
+  const factory SpannerBackupScheduleKmsKeyName.kmsKeyName(
     RefTo<GoogleKmsCryptoKey> kmsKeyName,
-  ) = SpannerBackupScheduleEncryptionConfigKmsKeyNameChoice;
+  ) = SpannerBackupScheduleKmsKeyNameChoice;
 
   /// Sets `kms_key_names`.
-  const factory SpannerBackupScheduleEncryptionConfigKmsKeyName.kmsKeyNames(
+  const factory SpannerBackupScheduleKmsKeyName.kmsKeyNames(
     TfArg<List<String>> kmsKeyNames,
-  ) = SpannerBackupScheduleEncryptionConfigKmsKeyNameKmsKeyNames;
+  ) = SpannerBackupScheduleKmsKeyNameKmsKeyNames;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -99,10 +98,10 @@ sealed class SpannerBackupScheduleEncryptionConfigKmsKeyName {
   Map<String, Object?> encode();
 }
 
-/// The [SpannerBackupScheduleEncryptionConfigKmsKeyName.kmsKeyName] choice: sets `kms_key_name`.
-final class SpannerBackupScheduleEncryptionConfigKmsKeyNameChoice
-    extends SpannerBackupScheduleEncryptionConfigKmsKeyName {
-  const SpannerBackupScheduleEncryptionConfigKmsKeyNameChoice(this.kmsKeyName);
+/// The [SpannerBackupScheduleKmsKeyName.kmsKeyName] choice: sets `kms_key_name`.
+final class SpannerBackupScheduleKmsKeyNameChoice
+    extends SpannerBackupScheduleKmsKeyName {
+  const SpannerBackupScheduleKmsKeyNameChoice(this.kmsKeyName);
 
   final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
@@ -115,12 +114,10 @@ final class SpannerBackupScheduleEncryptionConfigKmsKeyNameChoice
   };
 }
 
-/// The [SpannerBackupScheduleEncryptionConfigKmsKeyName.kmsKeyNames] choice: sets `kms_key_names`.
-final class SpannerBackupScheduleEncryptionConfigKmsKeyNameKmsKeyNames
-    extends SpannerBackupScheduleEncryptionConfigKmsKeyName {
-  const SpannerBackupScheduleEncryptionConfigKmsKeyNameKmsKeyNames(
-    this.kmsKeyNames,
-  );
+/// The [SpannerBackupScheduleKmsKeyName.kmsKeyNames] choice: sets `kms_key_names`.
+final class SpannerBackupScheduleKmsKeyNameKmsKeyNames
+    extends SpannerBackupScheduleKmsKeyName {
+  const SpannerBackupScheduleKmsKeyNameKmsKeyNames(this.kmsKeyNames);
 
   final TfArg<List<String>> kmsKeyNames;
 
@@ -132,15 +129,12 @@ final class SpannerBackupScheduleEncryptionConfigKmsKeyNameKmsKeyNames
 }
 
 /// `encryption_type` — derived from the provider schema description.
-enum SpannerBackupScheduleEncryptionConfigEncryptionType
-    implements TerraformEnum {
+enum SpannerBackupScheduleEncryptionType implements TerraformEnum {
   useDatabaseEncryption('USE_DATABASE_ENCRYPTION'),
   googleDefaultEncryption('GOOGLE_DEFAULT_ENCRYPTION'),
   customerManagedEncryption('CUSTOMER_MANAGED_ENCRYPTION');
 
-  const SpannerBackupScheduleEncryptionConfigEncryptionType(
-    this.terraformValue,
-  );
+  const SpannerBackupScheduleEncryptionType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -151,7 +145,7 @@ enum SpannerBackupScheduleEncryptionConfigEncryptionType
 final class SpannerBackupScheduleSpec {
   const SpannerBackupScheduleSpec({this.cronSpec});
 
-  final SpannerBackupScheduleSpecCronSpec? cronSpec;
+  final SpannerBackupScheduleCronSpec? cronSpec;
 
   Map<String, Object?> encode() => {'cron_spec': ?cronSpec?.encode()};
 }
@@ -159,8 +153,8 @@ final class SpannerBackupScheduleSpec {
 /// Typed helper for the `spec.cron_spec` block of
 /// `google_spanner_backup_schedule` (derived from provider schema).
 @immutable
-final class SpannerBackupScheduleSpecCronSpec {
-  const SpannerBackupScheduleSpecCronSpec({this.text});
+final class SpannerBackupScheduleCronSpec {
+  const SpannerBackupScheduleCronSpec({this.text});
 
   final TfArg<String>? text;
 

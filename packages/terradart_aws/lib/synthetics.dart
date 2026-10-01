@@ -7,11 +7,11 @@ export 'src/synthetics/aws_synthetics_canary.dart'
     show
         AwsSyntheticsCanary,
         SyntheticsCanaryArtifactConfig,
-        SyntheticsCanaryArtifactConfigS3Encryption,
-        SyntheticsCanaryArtifactConfigS3EncryptionEncryptionMode,
+        SyntheticsCanaryEncryptionMode,
+        SyntheticsCanaryRetryConfig,
         SyntheticsCanaryRunConfig,
+        SyntheticsCanaryS3Encryption,
         SyntheticsCanarySchedule,
-        SyntheticsCanaryScheduleRetryConfig,
         SyntheticsCanaryVpcConfig;
 export 'src/synthetics/aws_synthetics_group.dart' show AwsSyntheticsGroup;
 export 'src/synthetics/aws_synthetics_group_association.dart'

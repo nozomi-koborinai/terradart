@@ -125,7 +125,7 @@ final class FsxOntapFileSystemDiskIopsConfiguration {
 
   final TfArg<num>? iops;
 
-  final TfArg<FsxOntapFileSystemDiskIopsConfigurationMode>? mode;
+  final TfArg<FsxOntapFileSystemMode>? mode;
 
   Map<String, Object?> encode() => {
     'iops': ?iops?.toTfJson(),
@@ -134,11 +134,11 @@ final class FsxOntapFileSystemDiskIopsConfiguration {
 }
 
 /// `mode` — derived from the provider schema description.
-enum FsxOntapFileSystemDiskIopsConfigurationMode implements TerraformEnum {
+enum FsxOntapFileSystemMode implements TerraformEnum {
   automatic('AUTOMATIC'),
   userProvisioned('USER_PROVISIONED');
 
-  const FsxOntapFileSystemDiskIopsConfigurationMode(this.terraformValue);
+  const FsxOntapFileSystemMode(this.terraformValue);
   @override
   final String terraformValue;
 }

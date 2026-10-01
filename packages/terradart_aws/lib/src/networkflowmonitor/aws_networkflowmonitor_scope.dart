@@ -18,7 +18,7 @@ final class NetworkflowmonitorScopeTarget {
 
   final TfArg<String> region;
 
-  final List<NetworkflowmonitorScopeTargetTargetIdentifier>? targetIdentifier;
+  final List<NetworkflowmonitorScopeTargetIdentifier>? targetIdentifier;
 
   Map<String, Object?> encode() => {
     'region': region.toTfJson(),
@@ -30,16 +30,15 @@ final class NetworkflowmonitorScopeTarget {
 /// Typed helper for the `target.target_identifier` block of
 /// `aws_networkflowmonitor_scope` (derived from provider schema).
 @immutable
-final class NetworkflowmonitorScopeTargetTargetIdentifier {
-  const NetworkflowmonitorScopeTargetTargetIdentifier({
+final class NetworkflowmonitorScopeTargetIdentifier {
+  const NetworkflowmonitorScopeTargetIdentifier({
     required this.targetType,
     this.targetId,
   });
 
-  final TfArg<NetworkflowmonitorScopeTargetTargetIdentifierTargetType>
-  targetType;
+  final TfArg<NetworkflowmonitorScopeTargetType> targetType;
 
-  final List<NetworkflowmonitorScopeTargetTargetIdentifierTargetId>? targetId;
+  final List<NetworkflowmonitorScopeTargetId>? targetId;
 
   Map<String, Object?> encode() => {
     'target_type': targetType.toTfJson(),
@@ -48,13 +47,10 @@ final class NetworkflowmonitorScopeTargetTargetIdentifier {
 }
 
 /// `target_type` — derived from the provider schema description.
-enum NetworkflowmonitorScopeTargetTargetIdentifierTargetType
-    implements TerraformEnum {
+enum NetworkflowmonitorScopeTargetType implements TerraformEnum {
   account('ACCOUNT');
 
-  const NetworkflowmonitorScopeTargetTargetIdentifierTargetType(
-    this.terraformValue,
-  );
+  const NetworkflowmonitorScopeTargetType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -62,10 +58,8 @@ enum NetworkflowmonitorScopeTargetTargetIdentifierTargetType
 /// Typed helper for the `target.target_identifier.target_id` block of
 /// `aws_networkflowmonitor_scope` (derived from provider schema).
 @immutable
-final class NetworkflowmonitorScopeTargetTargetIdentifierTargetId {
-  const NetworkflowmonitorScopeTargetTargetIdentifierTargetId({
-    required this.accountId,
-  });
+final class NetworkflowmonitorScopeTargetId {
+  const NetworkflowmonitorScopeTargetId({required this.accountId});
 
   final TfArg<String> accountId;
 

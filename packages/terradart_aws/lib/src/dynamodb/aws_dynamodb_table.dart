@@ -168,7 +168,7 @@ final class DynamodbTableAttribute {
 
   final TfArg<String> name;
 
-  final TfArg<DynamodbTableAttributeType> type;
+  final TfArg<DynamodbTableType> type;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -177,12 +177,12 @@ final class DynamodbTableAttribute {
 }
 
 /// `type` — derived from the provider schema description.
-enum DynamodbTableAttributeType implements TerraformEnum {
+enum DynamodbTableType implements TerraformEnum {
   s('S'),
   n('N'),
   b('B');
 
-  const DynamodbTableAttributeType(this.terraformValue);
+  const DynamodbTableType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -210,7 +210,7 @@ final class DynamodbTableGlobalSecondaryIndex {
 
   final TfArg<List<String>>? nonKeyAttributes;
 
-  final TfArg<DynamodbTableGlobalSecondaryIndexProjectionType> projectionType;
+  final TfArg<DynamodbTableProjectionType> projectionType;
 
   final TfArg<String>? rangeKey;
 
@@ -218,11 +218,11 @@ final class DynamodbTableGlobalSecondaryIndex {
 
   final TfArg<num>? writeCapacity;
 
-  final List<DynamodbTableGlobalSecondaryIndexKeySchema>? keySchema;
+  final List<DynamodbTableKeySchema>? keySchema;
 
-  final DynamodbTableGlobalSecondaryIndexOnDemandThroughput? onDemandThroughput;
+  final DynamodbTableOnDemandThroughput? onDemandThroughput;
 
-  final DynamodbTableGlobalSecondaryIndexWarmThroughput? warmThroughput;
+  final DynamodbTableWarmThroughput? warmThroughput;
 
   Map<String, Object?> encode() => {
     'hash_key': ?hashKey?.toTfJson(),
@@ -240,12 +240,12 @@ final class DynamodbTableGlobalSecondaryIndex {
 }
 
 /// `projection_type` — derived from the provider schema description.
-enum DynamodbTableGlobalSecondaryIndexProjectionType implements TerraformEnum {
+enum DynamodbTableProjectionType implements TerraformEnum {
   all('ALL'),
   keysOnly('KEYS_ONLY'),
   include('INCLUDE');
 
-  const DynamodbTableGlobalSecondaryIndexProjectionType(this.terraformValue);
+  const DynamodbTableProjectionType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -253,15 +253,15 @@ enum DynamodbTableGlobalSecondaryIndexProjectionType implements TerraformEnum {
 /// Typed helper for the `global_secondary_index.key_schema` block of
 /// `aws_dynamodb_table` (derived from provider schema).
 @immutable
-final class DynamodbTableGlobalSecondaryIndexKeySchema {
-  const DynamodbTableGlobalSecondaryIndexKeySchema({
+final class DynamodbTableKeySchema {
+  const DynamodbTableKeySchema({
     required this.attributeName,
     required this.keyType,
   });
 
   final TfArg<String> attributeName;
 
-  final TfArg<DynamodbTableGlobalSecondaryIndexKeySchemaKeyType> keyType;
+  final TfArg<DynamodbTableKeyType> keyType;
 
   Map<String, Object?> encode() => {
     'attribute_name': attributeName.toTfJson(),
@@ -270,21 +270,21 @@ final class DynamodbTableGlobalSecondaryIndexKeySchema {
 }
 
 /// `key_type` — derived from the provider schema description.
-enum DynamodbTableGlobalSecondaryIndexKeySchemaKeyType
-    implements TerraformEnum {
+enum DynamodbTableKeyType implements TerraformEnum {
   hash('HASH'),
   range('RANGE');
 
-  const DynamodbTableGlobalSecondaryIndexKeySchemaKeyType(this.terraformValue);
+  const DynamodbTableKeyType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
-/// Typed helper for the `global_secondary_index.on_demand_throughput` block of
+/// Typed helper for the `on_demand_throughput` block of
 /// `aws_dynamodb_table` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DynamodbTableGlobalSecondaryIndexOnDemandThroughput {
-  const DynamodbTableGlobalSecondaryIndexOnDemandThroughput({
+final class DynamodbTableOnDemandThroughput {
+  const DynamodbTableOnDemandThroughput({
     this.maxReadRequestUnits,
     this.maxWriteRequestUnits,
   });
@@ -299,11 +299,12 @@ final class DynamodbTableGlobalSecondaryIndexOnDemandThroughput {
   };
 }
 
-/// Typed helper for the `global_secondary_index.warm_throughput` block of
+/// Typed helper for the `warm_throughput` block of
 /// `aws_dynamodb_table` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DynamodbTableGlobalSecondaryIndexWarmThroughput {
-  const DynamodbTableGlobalSecondaryIndexWarmThroughput({
+final class DynamodbTableWarmThroughput {
+  const DynamodbTableWarmThroughput({
     this.readUnitsPerSecond,
     this.writeUnitsPerSecond,
   });
@@ -340,14 +341,13 @@ final class DynamodbTableImportTable {
     required this.s3BucketSource,
   });
 
-  final TfArg<DynamodbTableImportTableInputCompressionType>?
-  inputCompressionType;
+  final TfArg<DynamodbTableInputCompressionType>? inputCompressionType;
 
-  final TfArg<DynamodbTableImportTableInputFormat> inputFormat;
+  final TfArg<DynamodbTableInputFormat> inputFormat;
 
-  final DynamodbTableImportTableInputFormatOptions? inputFormatOptions;
+  final DynamodbTableInputFormatOptions? inputFormatOptions;
 
-  final DynamodbTableImportTableS3BucketSource s3BucketSource;
+  final DynamodbTableS3BucketSource s3BucketSource;
 
   Map<String, Object?> encode() => {
     'input_compression_type': ?inputCompressionType?.toTfJson(),
@@ -358,23 +358,23 @@ final class DynamodbTableImportTable {
 }
 
 /// `input_compression_type` — derived from the provider schema description.
-enum DynamodbTableImportTableInputCompressionType implements TerraformEnum {
+enum DynamodbTableInputCompressionType implements TerraformEnum {
   gzip('GZIP'),
   zstd('ZSTD'),
   none('NONE');
 
-  const DynamodbTableImportTableInputCompressionType(this.terraformValue);
+  const DynamodbTableInputCompressionType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `input_format` — derived from the provider schema description.
-enum DynamodbTableImportTableInputFormat implements TerraformEnum {
+enum DynamodbTableInputFormat implements TerraformEnum {
   dynamodbJson('DYNAMODB_JSON'),
   ion('ION'),
   csv('CSV');
 
-  const DynamodbTableImportTableInputFormat(this.terraformValue);
+  const DynamodbTableInputFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -382,10 +382,10 @@ enum DynamodbTableImportTableInputFormat implements TerraformEnum {
 /// Typed helper for the `import_table.input_format_options` block of
 /// `aws_dynamodb_table` (derived from provider schema).
 @immutable
-final class DynamodbTableImportTableInputFormatOptions {
-  const DynamodbTableImportTableInputFormatOptions({this.csv});
+final class DynamodbTableInputFormatOptions {
+  const DynamodbTableInputFormatOptions({this.csv});
 
-  final DynamodbTableImportTableInputFormatOptionsCsv? csv;
+  final DynamodbTableCsv? csv;
 
   Map<String, Object?> encode() => {'csv': ?csv?.encode()};
 }
@@ -393,11 +393,8 @@ final class DynamodbTableImportTableInputFormatOptions {
 /// Typed helper for the `import_table.input_format_options.csv` block of
 /// `aws_dynamodb_table` (derived from provider schema).
 @immutable
-final class DynamodbTableImportTableInputFormatOptionsCsv {
-  const DynamodbTableImportTableInputFormatOptionsCsv({
-    this.delimiter,
-    this.headerList,
-  });
+final class DynamodbTableCsv {
+  const DynamodbTableCsv({this.delimiter, this.headerList});
 
   final TfArg<String>? delimiter;
 
@@ -412,8 +409,8 @@ final class DynamodbTableImportTableInputFormatOptionsCsv {
 /// Typed helper for the `import_table.s3_bucket_source` block of
 /// `aws_dynamodb_table` (derived from provider schema).
 @immutable
-final class DynamodbTableImportTableS3BucketSource {
-  const DynamodbTableImportTableS3BucketSource({
+final class DynamodbTableS3BucketSource {
+  const DynamodbTableS3BucketSource({
     required this.bucket,
     this.bucketOwner,
     this.keyPrefix,
@@ -447,7 +444,7 @@ final class DynamodbTableLocalSecondaryIndex {
 
   final TfArg<List<String>>? nonKeyAttributes;
 
-  final TfArg<DynamodbTableLocalSecondaryIndexProjectionType> projectionType;
+  final TfArg<DynamodbTableProjectionType> projectionType;
 
   final TfArg<String> rangeKey;
 
@@ -456,36 +453,6 @@ final class DynamodbTableLocalSecondaryIndex {
     'non_key_attributes': ?nonKeyAttributes?.toTfJson(),
     'projection_type': projectionType.toTfJson(),
     'range_key': rangeKey.toTfJson(),
-  };
-}
-
-/// `projection_type` — derived from the provider schema description.
-enum DynamodbTableLocalSecondaryIndexProjectionType implements TerraformEnum {
-  all('ALL'),
-  keysOnly('KEYS_ONLY'),
-  include('INCLUDE');
-
-  const DynamodbTableLocalSecondaryIndexProjectionType(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `on_demand_throughput` block of
-/// `aws_dynamodb_table` (derived from provider schema).
-@immutable
-final class DynamodbTableOnDemandThroughput {
-  const DynamodbTableOnDemandThroughput({
-    this.maxReadRequestUnits,
-    this.maxWriteRequestUnits,
-  });
-
-  final TfArg<num>? maxReadRequestUnits;
-
-  final TfArg<num>? maxWriteRequestUnits;
-
-  Map<String, Object?> encode() => {
-    'max_read_request_units': ?maxReadRequestUnits?.toTfJson(),
-    'max_write_request_units': ?maxWriteRequestUnits?.toTfJson(),
   };
 }
 
@@ -521,7 +488,7 @@ final class DynamodbTableReplica {
     required this.regionName,
   });
 
-  final TfArg<DynamodbTableReplicaConsistencyMode>? consistencyMode;
+  final TfArg<DynamodbTableConsistencyMode>? consistencyMode;
 
   final TfArg<bool>? deletionProtectionEnabled;
 
@@ -544,11 +511,11 @@ final class DynamodbTableReplica {
 }
 
 /// `consistency_mode` — derived from the provider schema description.
-enum DynamodbTableReplicaConsistencyMode implements TerraformEnum {
+enum DynamodbTableConsistencyMode implements TerraformEnum {
   eventual('EVENTUAL'),
   strong('STRONG');
 
-  const DynamodbTableReplicaConsistencyMode(this.terraformValue);
+  const DynamodbTableConsistencyMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -585,25 +552,6 @@ final class DynamodbTableTtl {
   Map<String, Object?> encode() => {
     'attribute_name': ?attributeName?.toTfJson(),
     'enabled': ?enabled?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `warm_throughput` block of
-/// `aws_dynamodb_table` (derived from provider schema).
-@immutable
-final class DynamodbTableWarmThroughput {
-  const DynamodbTableWarmThroughput({
-    this.readUnitsPerSecond,
-    this.writeUnitsPerSecond,
-  });
-
-  final TfArg<num>? readUnitsPerSecond;
-
-  final TfArg<num>? writeUnitsPerSecond;
-
-  Map<String, Object?> encode() => {
-    'read_units_per_second': ?readUnitsPerSecond?.toTfJson(),
-    'write_units_per_second': ?writeUnitsPerSecond?.toTfJson(),
   };
 }
 

@@ -21,7 +21,7 @@ final class OrgPolicyPolicyDryRunSpec {
 
   final TfArg<bool>? reset;
 
-  final List<OrgPolicyPolicyDryRunSpecRules>? rules;
+  final List<OrgPolicyPolicyRules>? rules;
 
   Map<String, Object?> encode() => {
     'inherit_from_parent': ?inheritFromParent?.toTfJson(),
@@ -32,9 +32,10 @@ final class OrgPolicyPolicyDryRunSpec {
 
 /// Typed helper for the `dry_run_spec.rules` block of
 /// `google_org_policy_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class OrgPolicyPolicyDryRunSpecRules {
-  const OrgPolicyPolicyDryRunSpecRules({
+final class OrgPolicyPolicyRules {
+  const OrgPolicyPolicyRules({
     this.allowAll,
     this.denyAll,
     this.enforce,
@@ -51,9 +52,9 @@ final class OrgPolicyPolicyDryRunSpecRules {
 
   final TfArg<String>? parameters;
 
-  final OrgPolicyPolicyDryRunSpecRulesCondition? condition;
+  final OrgPolicyPolicyCondition? condition;
 
-  final OrgPolicyPolicyDryRunSpecRulesValues? values;
+  final OrgPolicyPolicyValues? values;
 
   Map<String, Object?> encode() => {
     'allow_all': ?allowAll?.toTfJson(),
@@ -67,9 +68,10 @@ final class OrgPolicyPolicyDryRunSpecRules {
 
 /// Typed helper for the `dry_run_spec.rules.condition` block of
 /// `google_org_policy_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class OrgPolicyPolicyDryRunSpecRulesCondition {
-  const OrgPolicyPolicyDryRunSpecRulesCondition({
+final class OrgPolicyPolicyCondition {
+  const OrgPolicyPolicyCondition({
     this.description,
     this.expression,
     this.location,
@@ -94,12 +96,10 @@ final class OrgPolicyPolicyDryRunSpecRulesCondition {
 
 /// Typed helper for the `dry_run_spec.rules.values` block of
 /// `google_org_policy_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class OrgPolicyPolicyDryRunSpecRulesValues {
-  const OrgPolicyPolicyDryRunSpecRulesValues({
-    this.allowedValues,
-    this.deniedValues,
-  });
+final class OrgPolicyPolicyValues {
+  const OrgPolicyPolicyValues({this.allowedValues, this.deniedValues});
 
   final TfArg<List<String>>? allowedValues;
 
@@ -121,90 +121,12 @@ final class OrgPolicyPolicySpec {
 
   final TfArg<bool>? reset;
 
-  final List<OrgPolicyPolicySpecRules>? rules;
+  final List<OrgPolicyPolicyRules>? rules;
 
   Map<String, Object?> encode() => {
     'inherit_from_parent': ?inheritFromParent?.toTfJson(),
     'reset': ?reset?.toTfJson(),
     if (rules != null) 'rules': [for (final e in rules!) e.encode()],
-  };
-}
-
-/// Typed helper for the `spec.rules` block of
-/// `google_org_policy_policy` (derived from provider schema).
-@immutable
-final class OrgPolicyPolicySpecRules {
-  const OrgPolicyPolicySpecRules({
-    this.allowAll,
-    this.denyAll,
-    this.enforce,
-    this.parameters,
-    this.condition,
-    this.values,
-  });
-
-  final TfArg<String>? allowAll;
-
-  final TfArg<String>? denyAll;
-
-  final TfArg<String>? enforce;
-
-  final TfArg<String>? parameters;
-
-  final OrgPolicyPolicySpecRulesCondition? condition;
-
-  final OrgPolicyPolicySpecRulesValues? values;
-
-  Map<String, Object?> encode() => {
-    'allow_all': ?allowAll?.toTfJson(),
-    'deny_all': ?denyAll?.toTfJson(),
-    'enforce': ?enforce?.toTfJson(),
-    'parameters': ?parameters?.toTfJson(),
-    'condition': ?condition?.encode(),
-    'values': ?values?.encode(),
-  };
-}
-
-/// Typed helper for the `spec.rules.condition` block of
-/// `google_org_policy_policy` (derived from provider schema).
-@immutable
-final class OrgPolicyPolicySpecRulesCondition {
-  const OrgPolicyPolicySpecRulesCondition({
-    this.description,
-    this.expression,
-    this.location,
-    this.title,
-  });
-
-  final TfArg<String>? description;
-
-  final TfArg<String>? expression;
-
-  final TfArg<String>? location;
-
-  final TfArg<String>? title;
-
-  Map<String, Object?> encode() => {
-    'description': ?description?.toTfJson(),
-    'expression': ?expression?.toTfJson(),
-    'location': ?location?.toTfJson(),
-    'title': ?title?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `spec.rules.values` block of
-/// `google_org_policy_policy` (derived from provider schema).
-@immutable
-final class OrgPolicyPolicySpecRulesValues {
-  const OrgPolicyPolicySpecRulesValues({this.allowedValues, this.deniedValues});
-
-  final TfArg<List<String>>? allowedValues;
-
-  final TfArg<List<String>>? deniedValues;
-
-  Map<String, Object?> encode() => {
-    'allowed_values': ?allowedValues?.toTfJson(),
-    'denied_values': ?deniedValues?.toTfJson(),
   };
 }
 

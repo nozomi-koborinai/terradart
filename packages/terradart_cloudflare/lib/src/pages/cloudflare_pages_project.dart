@@ -58,9 +58,9 @@ final class PagesProjectBuildConfig {
 final class PagesProjectDeploymentConfigs {
   const PagesProjectDeploymentConfigs({this.preview, this.production});
 
-  final PagesProjectDeploymentConfigsPreview? preview;
+  final PagesProjectPreview? preview;
 
-  final PagesProjectDeploymentConfigsProduction? production;
+  final PagesProjectProduction? production;
 
   Map<String, Object?> encode() => {
     'preview': ?preview?.encode(),
@@ -71,8 +71,8 @@ final class PagesProjectDeploymentConfigs {
 /// Typed helper for the `deployment_configs.preview` block of
 /// `cloudflare_pages_project` (derived from provider schema).
 @immutable
-final class PagesProjectDeploymentConfigsPreview {
-  const PagesProjectDeploymentConfigsPreview({
+final class PagesProjectPreview {
+  const PagesProjectPreview({
     this.alwaysUseLatestCompatibilityDate,
     this.buildImageMajorVersion,
     this.compatibilityDate,
@@ -107,53 +107,41 @@ final class PagesProjectDeploymentConfigsPreview {
 
   final TfArg<bool>? failOpen;
 
-  final TfArg<PagesProjectDeploymentConfigsPreviewUsageModel>? usageModel;
+  final TfArg<PagesProjectUsageModel>? usageModel;
 
   final TfArg<String>? wranglerConfigHash;
 
-  final Map<String, PagesProjectDeploymentConfigsPreviewAiBindings>? aiBindings;
+  final Map<String, PagesProjectAiBindings>? aiBindings;
 
-  final Map<
-    String,
-    PagesProjectDeploymentConfigsPreviewAnalyticsEngineDatasets
-  >?
+  final Map<String, PagesProjectAnalyticsEngineDatasets>?
   analyticsEngineDatasets;
 
-  final Map<String, PagesProjectDeploymentConfigsPreviewBrowsers>? browsers;
+  final Map<String, PagesProjectBrowsers>? browsers;
 
-  final Map<String, PagesProjectDeploymentConfigsPreviewD1Databases>?
-  d1Databases;
+  final Map<String, PagesProjectD1Databases>? d1Databases;
 
-  final Map<
-    String,
-    PagesProjectDeploymentConfigsPreviewDurableObjectNamespaces
-  >?
+  final Map<String, PagesProjectDurableObjectNamespaces>?
   durableObjectNamespaces;
 
-  final Map<String, PagesProjectDeploymentConfigsPreviewEnvVars>? envVars;
+  final Map<String, PagesProjectEnvVars>? envVars;
 
-  final Map<String, PagesProjectDeploymentConfigsPreviewHyperdriveBindings>?
-  hyperdriveBindings;
+  final Map<String, PagesProjectHyperdriveBindings>? hyperdriveBindings;
 
-  final Map<String, PagesProjectDeploymentConfigsPreviewKvNamespaces>?
-  kvNamespaces;
+  final Map<String, PagesProjectKvNamespaces>? kvNamespaces;
 
-  final PagesProjectDeploymentConfigsPreviewLimits? limits;
+  final PagesProjectLimits? limits;
 
-  final Map<String, PagesProjectDeploymentConfigsPreviewMtlsCertificates>?
-  mtlsCertificates;
+  final Map<String, PagesProjectMtlsCertificates>? mtlsCertificates;
 
-  final PagesProjectDeploymentConfigsPreviewPlacement? placement;
+  final PagesProjectPlacement? placement;
 
-  final Map<String, PagesProjectDeploymentConfigsPreviewQueueProducers>?
-  queueProducers;
+  final Map<String, PagesProjectQueueProducers>? queueProducers;
 
-  final Map<String, PagesProjectDeploymentConfigsPreviewR2Buckets>? r2Buckets;
+  final Map<String, PagesProjectR2Buckets>? r2Buckets;
 
-  final Map<String, PagesProjectDeploymentConfigsPreviewServices>? services;
+  final Map<String, PagesProjectServices>? services;
 
-  final Map<String, PagesProjectDeploymentConfigsPreviewVectorizeBindings>?
-  vectorizeBindings;
+  final Map<String, PagesProjectVectorizeBindings>? vectorizeBindings;
 
   Map<String, Object?> encode() => {
     'always_use_latest_compatibility_date': ?alwaysUseLatestCompatibilityDate
@@ -218,23 +206,22 @@ final class PagesProjectDeploymentConfigsPreview {
 }
 
 /// `usage_model` — derived from the provider schema description.
-enum PagesProjectDeploymentConfigsPreviewUsageModel implements TerraformEnum {
+enum PagesProjectUsageModel implements TerraformEnum {
   standard('standard'),
   bundled('bundled'),
   unbound('unbound');
 
-  const PagesProjectDeploymentConfigsPreviewUsageModel(this.terraformValue);
+  const PagesProjectUsageModel(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `deployment_configs.preview.ai_bindings` block of
 /// `cloudflare_pages_project` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class PagesProjectDeploymentConfigsPreviewAiBindings {
-  const PagesProjectDeploymentConfigsPreviewAiBindings({
-    required this.projectId,
-  });
+final class PagesProjectAiBindings {
+  const PagesProjectAiBindings({required this.projectId});
 
   final TfArg<String> projectId;
 
@@ -243,11 +230,10 @@ final class PagesProjectDeploymentConfigsPreviewAiBindings {
 
 /// Typed helper for the `deployment_configs.preview.analytics_engine_datasets` block of
 /// `cloudflare_pages_project` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class PagesProjectDeploymentConfigsPreviewAnalyticsEngineDatasets {
-  const PagesProjectDeploymentConfigsPreviewAnalyticsEngineDatasets({
-    required this.dataset,
-  });
+final class PagesProjectAnalyticsEngineDatasets {
+  const PagesProjectAnalyticsEngineDatasets({required this.dataset});
 
   final TfArg<String> dataset;
 
@@ -256,18 +242,20 @@ final class PagesProjectDeploymentConfigsPreviewAnalyticsEngineDatasets {
 
 /// Typed helper for the `deployment_configs.preview.browsers` block of
 /// `cloudflare_pages_project` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class PagesProjectDeploymentConfigsPreviewBrowsers {
-  const PagesProjectDeploymentConfigsPreviewBrowsers();
+final class PagesProjectBrowsers {
+  const PagesProjectBrowsers();
 
   Map<String, Object?> encode() => {};
 }
 
 /// Typed helper for the `deployment_configs.preview.d1_databases` block of
 /// `cloudflare_pages_project` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class PagesProjectDeploymentConfigsPreviewD1Databases {
-  const PagesProjectDeploymentConfigsPreviewD1Databases({required this.id});
+final class PagesProjectD1Databases {
+  const PagesProjectD1Databases({required this.id});
 
   final TfArg<String> id;
 
@@ -276,11 +264,10 @@ final class PagesProjectDeploymentConfigsPreviewD1Databases {
 
 /// Typed helper for the `deployment_configs.preview.durable_object_namespaces` block of
 /// `cloudflare_pages_project` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class PagesProjectDeploymentConfigsPreviewDurableObjectNamespaces {
-  const PagesProjectDeploymentConfigsPreviewDurableObjectNamespaces({
-    required this.namespaceId,
-  });
+final class PagesProjectDurableObjectNamespaces {
+  const PagesProjectDurableObjectNamespaces({required this.namespaceId});
 
   final TfArg<String> namespaceId;
 
@@ -289,14 +276,12 @@ final class PagesProjectDeploymentConfigsPreviewDurableObjectNamespaces {
 
 /// Typed helper for the `deployment_configs.preview.env_vars` block of
 /// `cloudflare_pages_project` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class PagesProjectDeploymentConfigsPreviewEnvVars {
-  const PagesProjectDeploymentConfigsPreviewEnvVars({
-    required this.type,
-    required this.value,
-  });
+final class PagesProjectEnvVars {
+  const PagesProjectEnvVars({required this.type, required this.value});
 
-  final TfArg<PagesProjectDeploymentConfigsPreviewEnvVarsType> type;
+  final TfArg<PagesProjectEnvVarsType> type;
 
   final TfArg<String> value;
 
@@ -307,22 +292,21 @@ final class PagesProjectDeploymentConfigsPreviewEnvVars {
 }
 
 /// `type` — derived from the provider schema description.
-enum PagesProjectDeploymentConfigsPreviewEnvVarsType implements TerraformEnum {
+enum PagesProjectEnvVarsType implements TerraformEnum {
   plainText('plain_text'),
   secretText('secret_text');
 
-  const PagesProjectDeploymentConfigsPreviewEnvVarsType(this.terraformValue);
+  const PagesProjectEnvVarsType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `deployment_configs.preview.hyperdrive_bindings` block of
 /// `cloudflare_pages_project` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class PagesProjectDeploymentConfigsPreviewHyperdriveBindings {
-  const PagesProjectDeploymentConfigsPreviewHyperdriveBindings({
-    required this.id,
-  });
+final class PagesProjectHyperdriveBindings {
+  const PagesProjectHyperdriveBindings({required this.id});
 
   final TfArg<String> id;
 
@@ -331,11 +315,10 @@ final class PagesProjectDeploymentConfigsPreviewHyperdriveBindings {
 
 /// Typed helper for the `deployment_configs.preview.kv_namespaces` block of
 /// `cloudflare_pages_project` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class PagesProjectDeploymentConfigsPreviewKvNamespaces {
-  const PagesProjectDeploymentConfigsPreviewKvNamespaces({
-    required this.namespaceId,
-  });
+final class PagesProjectKvNamespaces {
+  const PagesProjectKvNamespaces({required this.namespaceId});
 
   final TfArg<String> namespaceId;
 
@@ -344,9 +327,10 @@ final class PagesProjectDeploymentConfigsPreviewKvNamespaces {
 
 /// Typed helper for the `deployment_configs.preview.limits` block of
 /// `cloudflare_pages_project` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class PagesProjectDeploymentConfigsPreviewLimits {
-  const PagesProjectDeploymentConfigsPreviewLimits({required this.cpuMs});
+final class PagesProjectLimits {
+  const PagesProjectLimits({required this.cpuMs});
 
   final TfArg<num> cpuMs;
 
@@ -355,11 +339,10 @@ final class PagesProjectDeploymentConfigsPreviewLimits {
 
 /// Typed helper for the `deployment_configs.preview.mtls_certificates` block of
 /// `cloudflare_pages_project` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class PagesProjectDeploymentConfigsPreviewMtlsCertificates {
-  const PagesProjectDeploymentConfigsPreviewMtlsCertificates({
-    required this.certificateId,
-  });
+final class PagesProjectMtlsCertificates {
+  const PagesProjectMtlsCertificates({required this.certificateId});
 
   final TfArg<String> certificateId;
 
@@ -368,9 +351,10 @@ final class PagesProjectDeploymentConfigsPreviewMtlsCertificates {
 
 /// Typed helper for the `deployment_configs.preview.placement` block of
 /// `cloudflare_pages_project` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class PagesProjectDeploymentConfigsPreviewPlacement {
-  const PagesProjectDeploymentConfigsPreviewPlacement({this.mode});
+final class PagesProjectPlacement {
+  const PagesProjectPlacement({this.mode});
 
   final TfArg<String>? mode;
 
@@ -379,11 +363,10 @@ final class PagesProjectDeploymentConfigsPreviewPlacement {
 
 /// Typed helper for the `deployment_configs.preview.queue_producers` block of
 /// `cloudflare_pages_project` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class PagesProjectDeploymentConfigsPreviewQueueProducers {
-  const PagesProjectDeploymentConfigsPreviewQueueProducers({
-    required this.name,
-  });
+final class PagesProjectQueueProducers {
+  const PagesProjectQueueProducers({required this.name});
 
   final TfArg<String> name;
 
@@ -392,12 +375,10 @@ final class PagesProjectDeploymentConfigsPreviewQueueProducers {
 
 /// Typed helper for the `deployment_configs.preview.r2_buckets` block of
 /// `cloudflare_pages_project` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class PagesProjectDeploymentConfigsPreviewR2Buckets {
-  const PagesProjectDeploymentConfigsPreviewR2Buckets({
-    this.jurisdiction,
-    required this.name,
-  });
+final class PagesProjectR2Buckets {
+  const PagesProjectR2Buckets({this.jurisdiction, required this.name});
 
   final TfArg<String>? jurisdiction;
 
@@ -411,9 +392,10 @@ final class PagesProjectDeploymentConfigsPreviewR2Buckets {
 
 /// Typed helper for the `deployment_configs.preview.services` block of
 /// `cloudflare_pages_project` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class PagesProjectDeploymentConfigsPreviewServices {
-  const PagesProjectDeploymentConfigsPreviewServices({
+final class PagesProjectServices {
+  const PagesProjectServices({
     this.entrypoint,
     this.environment,
     required this.service,
@@ -434,11 +416,10 @@ final class PagesProjectDeploymentConfigsPreviewServices {
 
 /// Typed helper for the `deployment_configs.preview.vectorize_bindings` block of
 /// `cloudflare_pages_project` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class PagesProjectDeploymentConfigsPreviewVectorizeBindings {
-  const PagesProjectDeploymentConfigsPreviewVectorizeBindings({
-    required this.indexName,
-  });
+final class PagesProjectVectorizeBindings {
+  const PagesProjectVectorizeBindings({required this.indexName});
 
   final TfArg<String> indexName;
 
@@ -448,8 +429,8 @@ final class PagesProjectDeploymentConfigsPreviewVectorizeBindings {
 /// Typed helper for the `deployment_configs.production` block of
 /// `cloudflare_pages_project` (derived from provider schema).
 @immutable
-final class PagesProjectDeploymentConfigsProduction {
-  const PagesProjectDeploymentConfigsProduction({
+final class PagesProjectProduction {
+  const PagesProjectProduction({
     this.alwaysUseLatestCompatibilityDate,
     this.buildImageMajorVersion,
     this.compatibilityDate,
@@ -484,55 +465,41 @@ final class PagesProjectDeploymentConfigsProduction {
 
   final TfArg<bool>? failOpen;
 
-  final TfArg<PagesProjectDeploymentConfigsProductionUsageModel>? usageModel;
+  final TfArg<PagesProjectUsageModel>? usageModel;
 
   final TfArg<String>? wranglerConfigHash;
 
-  final Map<String, PagesProjectDeploymentConfigsProductionAiBindings>?
-  aiBindings;
+  final Map<String, PagesProjectAiBindings>? aiBindings;
 
-  final Map<
-    String,
-    PagesProjectDeploymentConfigsProductionAnalyticsEngineDatasets
-  >?
+  final Map<String, PagesProjectAnalyticsEngineDatasets>?
   analyticsEngineDatasets;
 
-  final Map<String, PagesProjectDeploymentConfigsProductionBrowsers>? browsers;
+  final Map<String, PagesProjectBrowsers>? browsers;
 
-  final Map<String, PagesProjectDeploymentConfigsProductionD1Databases>?
-  d1Databases;
+  final Map<String, PagesProjectD1Databases>? d1Databases;
 
-  final Map<
-    String,
-    PagesProjectDeploymentConfigsProductionDurableObjectNamespaces
-  >?
+  final Map<String, PagesProjectDurableObjectNamespaces>?
   durableObjectNamespaces;
 
-  final Map<String, PagesProjectDeploymentConfigsProductionEnvVars>? envVars;
+  final Map<String, PagesProjectEnvVars>? envVars;
 
-  final Map<String, PagesProjectDeploymentConfigsProductionHyperdriveBindings>?
-  hyperdriveBindings;
+  final Map<String, PagesProjectHyperdriveBindings>? hyperdriveBindings;
 
-  final Map<String, PagesProjectDeploymentConfigsProductionKvNamespaces>?
-  kvNamespaces;
+  final Map<String, PagesProjectKvNamespaces>? kvNamespaces;
 
-  final PagesProjectDeploymentConfigsProductionLimits? limits;
+  final PagesProjectLimits? limits;
 
-  final Map<String, PagesProjectDeploymentConfigsProductionMtlsCertificates>?
-  mtlsCertificates;
+  final Map<String, PagesProjectMtlsCertificates>? mtlsCertificates;
 
-  final PagesProjectDeploymentConfigsProductionPlacement? placement;
+  final PagesProjectPlacement? placement;
 
-  final Map<String, PagesProjectDeploymentConfigsProductionQueueProducers>?
-  queueProducers;
+  final Map<String, PagesProjectQueueProducers>? queueProducers;
 
-  final Map<String, PagesProjectDeploymentConfigsProductionR2Buckets>?
-  r2Buckets;
+  final Map<String, PagesProjectR2Buckets>? r2Buckets;
 
-  final Map<String, PagesProjectDeploymentConfigsProductionServices>? services;
+  final Map<String, PagesProjectServices>? services;
 
-  final Map<String, PagesProjectDeploymentConfigsProductionVectorizeBindings>?
-  vectorizeBindings;
+  final Map<String, PagesProjectVectorizeBindings>? vectorizeBindings;
 
   Map<String, Object?> encode() => {
     'always_use_latest_compatibility_date': ?alwaysUseLatestCompatibilityDate
@@ -596,245 +563,15 @@ final class PagesProjectDeploymentConfigsProduction {
   };
 }
 
-/// `usage_model` — derived from the provider schema description.
-enum PagesProjectDeploymentConfigsProductionUsageModel
-    implements TerraformEnum {
-  standard('standard'),
-  bundled('bundled'),
-  unbound('unbound');
-
-  const PagesProjectDeploymentConfigsProductionUsageModel(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `deployment_configs.production.ai_bindings` block of
-/// `cloudflare_pages_project` (derived from provider schema).
-@immutable
-final class PagesProjectDeploymentConfigsProductionAiBindings {
-  const PagesProjectDeploymentConfigsProductionAiBindings({
-    required this.projectId,
-  });
-
-  final TfArg<String> projectId;
-
-  Map<String, Object?> encode() => {'project_id': projectId.toTfJson()};
-}
-
-/// Typed helper for the `deployment_configs.production.analytics_engine_datasets` block of
-/// `cloudflare_pages_project` (derived from provider schema).
-@immutable
-final class PagesProjectDeploymentConfigsProductionAnalyticsEngineDatasets {
-  const PagesProjectDeploymentConfigsProductionAnalyticsEngineDatasets({
-    required this.dataset,
-  });
-
-  final TfArg<String> dataset;
-
-  Map<String, Object?> encode() => {'dataset': dataset.toTfJson()};
-}
-
-/// Typed helper for the `deployment_configs.production.browsers` block of
-/// `cloudflare_pages_project` (derived from provider schema).
-@immutable
-final class PagesProjectDeploymentConfigsProductionBrowsers {
-  const PagesProjectDeploymentConfigsProductionBrowsers();
-
-  Map<String, Object?> encode() => {};
-}
-
-/// Typed helper for the `deployment_configs.production.d1_databases` block of
-/// `cloudflare_pages_project` (derived from provider schema).
-@immutable
-final class PagesProjectDeploymentConfigsProductionD1Databases {
-  const PagesProjectDeploymentConfigsProductionD1Databases({required this.id});
-
-  final TfArg<String> id;
-
-  Map<String, Object?> encode() => {'id': id.toTfJson()};
-}
-
-/// Typed helper for the `deployment_configs.production.durable_object_namespaces` block of
-/// `cloudflare_pages_project` (derived from provider schema).
-@immutable
-final class PagesProjectDeploymentConfigsProductionDurableObjectNamespaces {
-  const PagesProjectDeploymentConfigsProductionDurableObjectNamespaces({
-    required this.namespaceId,
-  });
-
-  final TfArg<String> namespaceId;
-
-  Map<String, Object?> encode() => {'namespace_id': namespaceId.toTfJson()};
-}
-
-/// Typed helper for the `deployment_configs.production.env_vars` block of
-/// `cloudflare_pages_project` (derived from provider schema).
-@immutable
-final class PagesProjectDeploymentConfigsProductionEnvVars {
-  const PagesProjectDeploymentConfigsProductionEnvVars({
-    required this.type,
-    required this.value,
-  });
-
-  final TfArg<PagesProjectDeploymentConfigsProductionEnvVarsType> type;
-
-  final TfArg<String> value;
-
-  Map<String, Object?> encode() => {
-    'type': type.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
-
-/// `type` — derived from the provider schema description.
-enum PagesProjectDeploymentConfigsProductionEnvVarsType
-    implements TerraformEnum {
-  plainText('plain_text'),
-  secretText('secret_text');
-
-  const PagesProjectDeploymentConfigsProductionEnvVarsType(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `deployment_configs.production.hyperdrive_bindings` block of
-/// `cloudflare_pages_project` (derived from provider schema).
-@immutable
-final class PagesProjectDeploymentConfigsProductionHyperdriveBindings {
-  const PagesProjectDeploymentConfigsProductionHyperdriveBindings({
-    required this.id,
-  });
-
-  final TfArg<String> id;
-
-  Map<String, Object?> encode() => {'id': id.toTfJson()};
-}
-
-/// Typed helper for the `deployment_configs.production.kv_namespaces` block of
-/// `cloudflare_pages_project` (derived from provider schema).
-@immutable
-final class PagesProjectDeploymentConfigsProductionKvNamespaces {
-  const PagesProjectDeploymentConfigsProductionKvNamespaces({
-    required this.namespaceId,
-  });
-
-  final TfArg<String> namespaceId;
-
-  Map<String, Object?> encode() => {'namespace_id': namespaceId.toTfJson()};
-}
-
-/// Typed helper for the `deployment_configs.production.limits` block of
-/// `cloudflare_pages_project` (derived from provider schema).
-@immutable
-final class PagesProjectDeploymentConfigsProductionLimits {
-  const PagesProjectDeploymentConfigsProductionLimits({required this.cpuMs});
-
-  final TfArg<num> cpuMs;
-
-  Map<String, Object?> encode() => {'cpu_ms': cpuMs.toTfJson()};
-}
-
-/// Typed helper for the `deployment_configs.production.mtls_certificates` block of
-/// `cloudflare_pages_project` (derived from provider schema).
-@immutable
-final class PagesProjectDeploymentConfigsProductionMtlsCertificates {
-  const PagesProjectDeploymentConfigsProductionMtlsCertificates({
-    required this.certificateId,
-  });
-
-  final TfArg<String> certificateId;
-
-  Map<String, Object?> encode() => {'certificate_id': certificateId.toTfJson()};
-}
-
-/// Typed helper for the `deployment_configs.production.placement` block of
-/// `cloudflare_pages_project` (derived from provider schema).
-@immutable
-final class PagesProjectDeploymentConfigsProductionPlacement {
-  const PagesProjectDeploymentConfigsProductionPlacement({this.mode});
-
-  final TfArg<String>? mode;
-
-  Map<String, Object?> encode() => {'mode': ?mode?.toTfJson()};
-}
-
-/// Typed helper for the `deployment_configs.production.queue_producers` block of
-/// `cloudflare_pages_project` (derived from provider schema).
-@immutable
-final class PagesProjectDeploymentConfigsProductionQueueProducers {
-  const PagesProjectDeploymentConfigsProductionQueueProducers({
-    required this.name,
-  });
-
-  final TfArg<String> name;
-
-  Map<String, Object?> encode() => {'name': name.toTfJson()};
-}
-
-/// Typed helper for the `deployment_configs.production.r2_buckets` block of
-/// `cloudflare_pages_project` (derived from provider schema).
-@immutable
-final class PagesProjectDeploymentConfigsProductionR2Buckets {
-  const PagesProjectDeploymentConfigsProductionR2Buckets({
-    this.jurisdiction,
-    required this.name,
-  });
-
-  final TfArg<String>? jurisdiction;
-
-  final TfArg<String> name;
-
-  Map<String, Object?> encode() => {
-    'jurisdiction': ?jurisdiction?.toTfJson(),
-    'name': name.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deployment_configs.production.services` block of
-/// `cloudflare_pages_project` (derived from provider schema).
-@immutable
-final class PagesProjectDeploymentConfigsProductionServices {
-  const PagesProjectDeploymentConfigsProductionServices({
-    this.entrypoint,
-    this.environment,
-    required this.service,
-  });
-
-  final TfArg<String>? entrypoint;
-
-  final TfArg<String>? environment;
-
-  final TfArg<String> service;
-
-  Map<String, Object?> encode() => {
-    'entrypoint': ?entrypoint?.toTfJson(),
-    'environment': ?environment?.toTfJson(),
-    'service': service.toTfJson(),
-  };
-}
-
-/// Typed helper for the `deployment_configs.production.vectorize_bindings` block of
-/// `cloudflare_pages_project` (derived from provider schema).
-@immutable
-final class PagesProjectDeploymentConfigsProductionVectorizeBindings {
-  const PagesProjectDeploymentConfigsProductionVectorizeBindings({
-    required this.indexName,
-  });
-
-  final TfArg<String> indexName;
-
-  Map<String, Object?> encode() => {'index_name': indexName.toTfJson()};
-}
-
 /// Typed helper for the `source` block of
 /// `cloudflare_pages_project` (derived from provider schema).
 @immutable
 final class PagesProjectSource {
   const PagesProjectSource({required this.type, required this.config});
 
-  final TfArg<PagesProjectSourceType> type;
+  final TfArg<PagesProjectType> type;
 
-  final PagesProjectSourceConfig config;
+  final PagesProjectConfig config;
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
@@ -843,11 +580,11 @@ final class PagesProjectSource {
 }
 
 /// `type` — derived from the provider schema description.
-enum PagesProjectSourceType implements TerraformEnum {
+enum PagesProjectType implements TerraformEnum {
   github('github'),
   gitlab('gitlab');
 
-  const PagesProjectSourceType(this.terraformValue);
+  const PagesProjectType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -855,8 +592,8 @@ enum PagesProjectSourceType implements TerraformEnum {
 /// Typed helper for the `source.config` block of
 /// `cloudflare_pages_project` (derived from provider schema).
 @immutable
-final class PagesProjectSourceConfig {
-  const PagesProjectSourceConfig({
+final class PagesProjectConfig {
+  const PagesProjectConfig({
     this.deploymentsEnabled,
     this.owner,
     this.ownerId,
@@ -888,8 +625,7 @@ final class PagesProjectSourceConfig {
 
   final TfArg<List<String>>? previewBranchIncludes;
 
-  final TfArg<PagesProjectSourceConfigPreviewDeploymentSetting>?
-  previewDeploymentSetting;
+  final TfArg<PagesProjectPreviewDeploymentSetting>? previewDeploymentSetting;
 
   final TfArg<String>? productionBranch;
 
@@ -917,12 +653,12 @@ final class PagesProjectSourceConfig {
 }
 
 /// `preview_deployment_setting` — derived from the provider schema description.
-enum PagesProjectSourceConfigPreviewDeploymentSetting implements TerraformEnum {
+enum PagesProjectPreviewDeploymentSetting implements TerraformEnum {
   all('all'),
   none('none'),
   custom('custom');
 
-  const PagesProjectSourceConfigPreviewDeploymentSetting(this.terraformValue);
+  const PagesProjectPreviewDeploymentSetting(this.terraformValue);
   @override
   final String terraformValue;
 }

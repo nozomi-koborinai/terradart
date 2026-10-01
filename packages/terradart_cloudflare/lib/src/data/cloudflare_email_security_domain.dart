@@ -24,19 +24,17 @@ final class DataEmailSecurityDomainFilter {
     this.status,
   });
 
-  final TfArg<DataEmailSecurityDomainFilterActiveDeliveryMode>?
-  activeDeliveryMode;
+  final TfArg<DataEmailSecurityDomainActiveDeliveryMode>? activeDeliveryMode;
 
-  final TfArg<DataEmailSecurityDomainFilterAllowedDeliveryMode>?
-  allowedDeliveryMode;
+  final TfArg<DataEmailSecurityDomainAllowedDeliveryMode>? allowedDeliveryMode;
 
-  final TfArg<DataEmailSecurityDomainFilterDirection>? direction;
+  final TfArg<DataEmailSecurityDomainDirection>? direction;
 
   final TfArg<List<String>>? domain;
 
   final TfArg<String>? integrationId;
 
-  final TfArg<DataEmailSecurityDomainFilterOrder>? order;
+  final TfArg<DataEmailSecurityDomainOrder>? order;
 
   final TfArg<String>? search;
 
@@ -55,47 +53,47 @@ final class DataEmailSecurityDomainFilter {
 }
 
 /// `active_delivery_mode` — derived from the provider schema description.
-enum DataEmailSecurityDomainFilterActiveDeliveryMode implements TerraformEnum {
+enum DataEmailSecurityDomainActiveDeliveryMode implements TerraformEnum {
   direct('DIRECT'),
   bcc('BCC'),
   journal('JOURNAL'),
   api('API'),
   retroScan('RETRO_SCAN');
 
-  const DataEmailSecurityDomainFilterActiveDeliveryMode(this.terraformValue);
+  const DataEmailSecurityDomainActiveDeliveryMode(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `allowed_delivery_mode` — derived from the provider schema description.
-enum DataEmailSecurityDomainFilterAllowedDeliveryMode implements TerraformEnum {
+enum DataEmailSecurityDomainAllowedDeliveryMode implements TerraformEnum {
   direct('DIRECT'),
   bcc('BCC'),
   journal('JOURNAL'),
   api('API'),
   retroScan('RETRO_SCAN');
 
-  const DataEmailSecurityDomainFilterAllowedDeliveryMode(this.terraformValue);
+  const DataEmailSecurityDomainAllowedDeliveryMode(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataEmailSecurityDomainFilterDirection implements TerraformEnum {
+enum DataEmailSecurityDomainDirection implements TerraformEnum {
   asc('asc'),
   desc('desc');
 
-  const DataEmailSecurityDomainFilterDirection(this.terraformValue);
+  const DataEmailSecurityDomainDirection(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `order` — derived from the provider schema description.
-enum DataEmailSecurityDomainFilterOrder implements TerraformEnum {
+enum DataEmailSecurityDomainOrder implements TerraformEnum {
   domain('domain'),
   createdAt('created_at');
 
-  const DataEmailSecurityDomainFilterOrder(this.terraformValue);
+  const DataEmailSecurityDomainOrder(this.terraformValue);
   @override
   final String terraformValue;
 }

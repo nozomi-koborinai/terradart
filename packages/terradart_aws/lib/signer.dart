@@ -18,8 +18,8 @@ export 'src/signer/aws_signer_signing_profile.dart'
         SignerSigningProfileNamePrefix,
         SignerSigningProfilePlatformId,
         SignerSigningProfileSignatureValidityPeriod,
-        SignerSigningProfileSignatureValidityPeriodType,
-        SignerSigningProfileSigningMaterial;
+        SignerSigningProfileSigningMaterial,
+        SignerSigningProfileType;
 export 'src/signer/aws_signer_signing_profile_permission.dart'
     show
         AwsSignerSigningProfilePermission,

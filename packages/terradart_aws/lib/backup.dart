@@ -7,8 +7,8 @@ export 'src/backup/aws_backup_framework.dart'
     show
         AwsBackupFramework,
         BackupFrameworkControl,
-        BackupFrameworkControlInputParameter,
-        BackupFrameworkControlScope;
+        BackupFrameworkInputParameter,
+        BackupFrameworkScope;
 export 'src/backup/aws_backup_global_settings.dart'
     show AwsBackupGlobalSettings;
 export 'src/backup/aws_backup_logically_air_gapped_vault.dart'
@@ -17,31 +17,29 @@ export 'src/backup/aws_backup_plan.dart'
     show
         AwsBackupPlan,
         BackupPlanAdvancedBackupSetting,
-        BackupPlanAdvancedBackupSettingResourceType,
+        BackupPlanCopyAction,
+        BackupPlanLifecycle,
+        BackupPlanMalwareScanner,
+        BackupPlanResourceType,
         BackupPlanRule,
-        BackupPlanRuleCopyAction,
-        BackupPlanRuleCopyActionLifecycle,
-        BackupPlanRuleLifecycle,
-        BackupPlanRuleScanAction,
-        BackupPlanRuleScanActionMalwareScanner,
-        BackupPlanRuleScanActionScanMode,
-        BackupPlanScanSetting,
-        BackupPlanScanSettingMalwareScanner;
+        BackupPlanScanAction,
+        BackupPlanScanMode,
+        BackupPlanScanSetting;
 export 'src/backup/aws_backup_region_settings.dart'
     show AwsBackupRegionSettings;
 export 'src/backup/aws_backup_report_plan.dart'
     show
         AwsBackupReportPlan,
+        BackupReportPlanFormats,
         BackupReportPlanReportDeliveryChannel,
-        BackupReportPlanReportDeliveryChannelFormats,
         BackupReportPlanReportSetting,
-        BackupReportPlanReportSettingReportTemplate;
+        BackupReportPlanReportTemplate;
 export 'src/backup/aws_backup_restore_testing_plan.dart'
     show
         AwsBackupRestoreTestingPlan,
+        BackupRestoreTestingPlanAlgorithm,
         BackupRestoreTestingPlanRecoveryPointSelection,
-        BackupRestoreTestingPlanRecoveryPointSelectionAlgorithm,
-        BackupRestoreTestingPlanRecoveryPointSelectionRecoveryPointTypes;
+        BackupRestoreTestingPlanRecoveryPointTypes;
 export 'src/backup/aws_backup_restore_testing_selection.dart'
     show
         AwsBackupRestoreTestingSelection,
@@ -49,18 +47,18 @@ export 'src/backup/aws_backup_restore_testing_selection.dart'
         BackupRestoreTestingSelectionProtectedResourceArns,
         BackupRestoreTestingSelectionProtectedResourceConditions,
         BackupRestoreTestingSelectionProtectedResourceConditionsChoice,
-        BackupRestoreTestingSelectionProtectedResourceConditionsStringEquals,
-        BackupRestoreTestingSelectionProtectedResourceConditionsStringNotEquals;
+        BackupRestoreTestingSelectionStringEquals,
+        BackupRestoreTestingSelectionStringNotEquals;
 export 'src/backup/aws_backup_selection.dart'
     show
         AwsBackupSelection,
         BackupSelectionCondition,
-        BackupSelectionConditionStringEquals,
-        BackupSelectionConditionStringLike,
-        BackupSelectionConditionStringNotEquals,
-        BackupSelectionConditionStringNotLike,
-        BackupSelectionSelectionTag,
-        BackupSelectionSelectionTagType;
+        BackupSelectionStringEquals,
+        BackupSelectionStringLike,
+        BackupSelectionStringNotEquals,
+        BackupSelectionStringNotLike,
+        BackupSelectionTag,
+        BackupSelectionType;
 export 'src/backup/aws_backup_vault.dart' show AwsBackupVault;
 export 'src/backup/aws_backup_vault_lock_configuration.dart'
     show AwsBackupVaultLockConfiguration;

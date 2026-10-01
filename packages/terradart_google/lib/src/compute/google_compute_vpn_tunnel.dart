@@ -146,9 +146,9 @@ final class ComputeVpnTunnelPeerGcpGateway extends ComputeVpnTunnelPeer {
 final class ComputeVpnTunnelCipherSuite {
   const ComputeVpnTunnelCipherSuite({this.phase1, this.phase2});
 
-  final ComputeVpnTunnelCipherSuitePhase1? phase1;
+  final ComputeVpnTunnelPhase1? phase1;
 
-  final ComputeVpnTunnelCipherSuitePhase2? phase2;
+  final ComputeVpnTunnelPhase2? phase2;
 
   Map<String, Object?> encode() => {
     'phase1': ?phase1?.encode(),
@@ -159,8 +159,8 @@ final class ComputeVpnTunnelCipherSuite {
 /// Typed helper for the `cipher_suite.phase1` block of
 /// `google_compute_vpn_tunnel` (derived from provider schema).
 @immutable
-final class ComputeVpnTunnelCipherSuitePhase1 {
-  const ComputeVpnTunnelCipherSuitePhase1({
+final class ComputeVpnTunnelPhase1 {
+  const ComputeVpnTunnelPhase1({
     this.dh,
     this.encryption,
     this.integrity,
@@ -186,12 +186,8 @@ final class ComputeVpnTunnelCipherSuitePhase1 {
 /// Typed helper for the `cipher_suite.phase2` block of
 /// `google_compute_vpn_tunnel` (derived from provider schema).
 @immutable
-final class ComputeVpnTunnelCipherSuitePhase2 {
-  const ComputeVpnTunnelCipherSuitePhase2({
-    this.encryption,
-    this.integrity,
-    this.pfs,
-  });
+final class ComputeVpnTunnelPhase2 {
+  const ComputeVpnTunnelPhase2({this.encryption, this.integrity, this.pfs});
 
   final TfArg<List<String>>? encryption;
 

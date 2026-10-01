@@ -23,23 +23,15 @@ final class SagemakerAlgorithmInferenceSpecification {
 
   final TfArg<List<String>>? supportedContentTypes;
 
-  final List<
-    TfArg<
-      SagemakerAlgorithmInferenceSpecificationSupportedRealtimeInferenceInstanceTypes
-    >
-  >?
+  final List<TfArg<SagemakerAlgorithmSupportedRealtimeInferenceInstanceTypes>>?
   supportedRealtimeInferenceInstanceTypes;
 
   final TfArg<List<String>>? supportedResponseMimeTypes;
 
-  final List<
-    TfArg<
-      SagemakerAlgorithmInferenceSpecificationSupportedTransformInstanceTypes
-    >
-  >?
+  final List<TfArg<SagemakerAlgorithmSupportedTransformInstanceTypes>>?
   supportedTransformInstanceTypes;
 
-  final List<SagemakerAlgorithmInferenceSpecificationContainers>? containers;
+  final List<SagemakerAlgorithmContainers>? containers;
 
   Map<String, Object?> encode() => {
     'supported_content_types': ?supportedContentTypes?.toTfJson(),
@@ -58,7 +50,7 @@ final class SagemakerAlgorithmInferenceSpecification {
 }
 
 /// `supported_realtime_inference_instance_types` — derived from the provider schema description.
-enum SagemakerAlgorithmInferenceSpecificationSupportedRealtimeInferenceInstanceTypes
+enum SagemakerAlgorithmSupportedRealtimeInferenceInstanceTypes
     implements TerraformEnum {
   mlT2Medium('ml.t2.medium'),
   mlT2Large('ml.t2.large'),
@@ -338,7 +330,7 @@ enum SagemakerAlgorithmInferenceSpecificationSupportedRealtimeInferenceInstanceT
   mlP6eGb200p36xlarge('ml.p6e-gb200.36xlarge'),
   mlP5p4xlarge('ml.p5.4xlarge');
 
-  const SagemakerAlgorithmInferenceSpecificationSupportedRealtimeInferenceInstanceTypes(
+  const SagemakerAlgorithmSupportedRealtimeInferenceInstanceTypes(
     this.terraformValue,
   );
   @override
@@ -346,7 +338,7 @@ enum SagemakerAlgorithmInferenceSpecificationSupportedRealtimeInferenceInstanceT
 }
 
 /// `supported_transform_instance_types` — derived from the provider schema description.
-enum SagemakerAlgorithmInferenceSpecificationSupportedTransformInstanceTypes
+enum SagemakerAlgorithmSupportedTransformInstanceTypes
     implements TerraformEnum {
   mlM4Xlarge('ml.m4.xlarge'),
   mlM4p2xlarge('ml.m4.2xlarge'),
@@ -465,9 +457,7 @@ enum SagemakerAlgorithmInferenceSpecificationSupportedTransformInstanceTypes
   mlG6e24xlarge('ml.g6e.24xlarge'),
   mlG6e48xlarge('ml.g6e.48xlarge');
 
-  const SagemakerAlgorithmInferenceSpecificationSupportedTransformInstanceTypes(
-    this.terraformValue,
-  );
+  const SagemakerAlgorithmSupportedTransformInstanceTypes(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -475,8 +465,8 @@ enum SagemakerAlgorithmInferenceSpecificationSupportedTransformInstanceTypes
 /// Typed helper for the `inference_specification.containers` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
 @immutable
-final class SagemakerAlgorithmInferenceSpecificationContainers {
-  const SagemakerAlgorithmInferenceSpecificationContainers({
+final class SagemakerAlgorithmContainers {
+  const SagemakerAlgorithmContainers({
     this.containerHostname,
     this.environment,
     this.framework,
@@ -516,19 +506,13 @@ final class SagemakerAlgorithmInferenceSpecificationContainers {
 
   final TfArg<String>? productId;
 
-  final List<
-    SagemakerAlgorithmInferenceSpecificationContainersAdditionalS3DataSource
-  >?
-  additionalS3DataSource;
+  final List<SagemakerAlgorithmAdditionalS3DataSource>? additionalS3DataSource;
 
-  final List<SagemakerAlgorithmInferenceSpecificationContainersBaseModel>?
-  baseModel;
+  final List<SagemakerAlgorithmBaseModel>? baseModel;
 
-  final List<SagemakerAlgorithmInferenceSpecificationContainersModelDataSource>?
-  modelDataSource;
+  final List<SagemakerAlgorithmModelDataSource>? modelDataSource;
 
-  final List<SagemakerAlgorithmInferenceSpecificationContainersModelInput>?
-  modelInput;
+  final List<SagemakerAlgorithmModelInput>? modelInput;
 
   Map<String, Object?> encode() => {
     'container_hostname': ?containerHostname?.toTfJson(),
@@ -555,28 +539,23 @@ final class SagemakerAlgorithmInferenceSpecificationContainers {
   };
 }
 
-/// Typed helper for the `inference_specification.containers.additional_s3_data_source` block of
+/// Typed helper for the `training_specification.additional_s3_data_source` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class SagemakerAlgorithmInferenceSpecificationContainersAdditionalS3DataSource {
-  const SagemakerAlgorithmInferenceSpecificationContainersAdditionalS3DataSource({
+final class SagemakerAlgorithmAdditionalS3DataSource {
+  const SagemakerAlgorithmAdditionalS3DataSource({
     this.compressionType,
     this.etag,
     required this.s3DataType,
     required this.s3Uri,
   });
 
-  final TfArg<
-    SagemakerAlgorithmInferenceSpecificationContainersAdditionalS3DataSourceCompressionType
-  >?
-  compressionType;
+  final TfArg<SagemakerAlgorithmCompressionType>? compressionType;
 
   final TfArg<String>? etag;
 
-  final TfArg<
-    SagemakerAlgorithmInferenceSpecificationContainersAdditionalS3DataSourceS3DataType
-  >
-  s3DataType;
+  final TfArg<SagemakerAlgorithmS3DataType> s3DataType;
 
   final TfArg<String> s3Uri;
 
@@ -589,27 +568,21 @@ final class SagemakerAlgorithmInferenceSpecificationContainersAdditionalS3DataSo
 }
 
 /// `compression_type` — derived from the provider schema description.
-enum SagemakerAlgorithmInferenceSpecificationContainersAdditionalS3DataSourceCompressionType
-    implements TerraformEnum {
+enum SagemakerAlgorithmCompressionType implements TerraformEnum {
   none('None'),
   gzip('Gzip');
 
-  const SagemakerAlgorithmInferenceSpecificationContainersAdditionalS3DataSourceCompressionType(
-    this.terraformValue,
-  );
+  const SagemakerAlgorithmCompressionType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `s3_data_type` — derived from the provider schema description.
-enum SagemakerAlgorithmInferenceSpecificationContainersAdditionalS3DataSourceS3DataType
-    implements TerraformEnum {
+enum SagemakerAlgorithmS3DataType implements TerraformEnum {
   s3object('S3Object'),
   s3prefix('S3Prefix');
 
-  const SagemakerAlgorithmInferenceSpecificationContainersAdditionalS3DataSourceS3DataType(
-    this.terraformValue,
-  );
+  const SagemakerAlgorithmS3DataType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -617,8 +590,8 @@ enum SagemakerAlgorithmInferenceSpecificationContainersAdditionalS3DataSourceS3D
 /// Typed helper for the `inference_specification.containers.base_model` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
 @immutable
-final class SagemakerAlgorithmInferenceSpecificationContainersBaseModel {
-  const SagemakerAlgorithmInferenceSpecificationContainersBaseModel({
+final class SagemakerAlgorithmBaseModel {
+  const SagemakerAlgorithmBaseModel({
     this.hubContentName,
     this.hubContentVersion,
     this.recipeName,
@@ -640,15 +613,10 @@ final class SagemakerAlgorithmInferenceSpecificationContainersBaseModel {
 /// Typed helper for the `inference_specification.containers.model_data_source` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
 @immutable
-final class SagemakerAlgorithmInferenceSpecificationContainersModelDataSource {
-  const SagemakerAlgorithmInferenceSpecificationContainersModelDataSource({
-    this.s3DataSource,
-  });
+final class SagemakerAlgorithmModelDataSource {
+  const SagemakerAlgorithmModelDataSource({this.s3DataSource});
 
-  final List<
-    SagemakerAlgorithmInferenceSpecificationContainersModelDataSourceS3DataSource
-  >?
-  s3DataSource;
+  final List<SagemakerAlgorithmS3DataSource>? s3DataSource;
 
   Map<String, Object?> encode() => {
     if (s3DataSource != null)
@@ -659,8 +627,8 @@ final class SagemakerAlgorithmInferenceSpecificationContainersModelDataSource {
 /// Typed helper for the `inference_specification.containers.model_data_source.s3_data_source` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
 @immutable
-final class SagemakerAlgorithmInferenceSpecificationContainersModelDataSourceS3DataSource {
-  const SagemakerAlgorithmInferenceSpecificationContainersModelDataSourceS3DataSource({
+final class SagemakerAlgorithmS3DataSource {
+  const SagemakerAlgorithmS3DataSource({
     required this.compressionType,
     this.etag,
     this.manifestEtag,
@@ -671,10 +639,7 @@ final class SagemakerAlgorithmInferenceSpecificationContainersModelDataSourceS3D
     this.modelAccessConfig,
   });
 
-  final TfArg<
-    SagemakerAlgorithmInferenceSpecificationContainersModelDataSourceS3DataSourceCompressionType
-  >
-  compressionType;
+  final TfArg<SagemakerAlgorithmCompressionType> compressionType;
 
   final TfArg<String>? etag;
 
@@ -682,22 +647,13 @@ final class SagemakerAlgorithmInferenceSpecificationContainersModelDataSourceS3D
 
   final TfArg<String>? manifestS3Uri;
 
-  final TfArg<
-    SagemakerAlgorithmInferenceSpecificationContainersModelDataSourceS3DataSourceS3DataType
-  >
-  s3DataType;
+  final TfArg<SagemakerAlgorithmS3DataSourceS3DataType> s3DataType;
 
   final TfArg<String> s3Uri;
 
-  final List<
-    SagemakerAlgorithmInferenceSpecificationContainersModelDataSourceS3DataSourceHubAccessConfig
-  >?
-  hubAccessConfig;
+  final List<SagemakerAlgorithmHubAccessConfig>? hubAccessConfig;
 
-  final List<
-    SagemakerAlgorithmInferenceSpecificationContainersModelDataSourceS3DataSourceModelAccessConfig
-  >?
-  modelAccessConfig;
+  final List<SagemakerAlgorithmModelAccessConfig>? modelAccessConfig;
 
   Map<String, Object?> encode() => {
     'compression_type': compressionType.toTfJson(),
@@ -713,39 +669,22 @@ final class SagemakerAlgorithmInferenceSpecificationContainersModelDataSourceS3D
   };
 }
 
-/// `compression_type` — derived from the provider schema description.
-enum SagemakerAlgorithmInferenceSpecificationContainersModelDataSourceS3DataSourceCompressionType
-    implements TerraformEnum {
-  none('None'),
-  gzip('Gzip');
-
-  const SagemakerAlgorithmInferenceSpecificationContainersModelDataSourceS3DataSourceCompressionType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// `s3_data_type` — derived from the provider schema description.
-enum SagemakerAlgorithmInferenceSpecificationContainersModelDataSourceS3DataSourceS3DataType
-    implements TerraformEnum {
+enum SagemakerAlgorithmS3DataSourceS3DataType implements TerraformEnum {
   s3prefix('S3Prefix'),
   s3object('S3Object');
 
-  const SagemakerAlgorithmInferenceSpecificationContainersModelDataSourceS3DataSourceS3DataType(
-    this.terraformValue,
-  );
+  const SagemakerAlgorithmS3DataSourceS3DataType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `inference_specification.containers.model_data_source.s3_data_source.hub_access_config` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class SagemakerAlgorithmInferenceSpecificationContainersModelDataSourceS3DataSourceHubAccessConfig {
-  const SagemakerAlgorithmInferenceSpecificationContainersModelDataSourceS3DataSourceHubAccessConfig({
-    this.hubContentArn,
-  });
+final class SagemakerAlgorithmHubAccessConfig {
+  const SagemakerAlgorithmHubAccessConfig({this.hubContentArn});
 
   final TfArg<String>? hubContentArn;
 
@@ -756,11 +695,10 @@ final class SagemakerAlgorithmInferenceSpecificationContainersModelDataSourceS3D
 
 /// Typed helper for the `inference_specification.containers.model_data_source.s3_data_source.model_access_config` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class SagemakerAlgorithmInferenceSpecificationContainersModelDataSourceS3DataSourceModelAccessConfig {
-  const SagemakerAlgorithmInferenceSpecificationContainersModelDataSourceS3DataSourceModelAccessConfig({
-    this.acceptEula,
-  });
+final class SagemakerAlgorithmModelAccessConfig {
+  const SagemakerAlgorithmModelAccessConfig({this.acceptEula});
 
   final TfArg<bool>? acceptEula;
 
@@ -770,10 +708,8 @@ final class SagemakerAlgorithmInferenceSpecificationContainersModelDataSourceS3D
 /// Typed helper for the `inference_specification.containers.model_input` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
 @immutable
-final class SagemakerAlgorithmInferenceSpecificationContainersModelInput {
-  const SagemakerAlgorithmInferenceSpecificationContainersModelInput({
-    this.dataInputConfig,
-  });
+final class SagemakerAlgorithmModelInput {
+  const SagemakerAlgorithmModelInput({this.dataInputConfig});
 
   final TfArg<String>? dataInputConfig;
 
@@ -798,9 +734,7 @@ final class SagemakerAlgorithmTrainingSpecification {
     this.trainingChannels,
   });
 
-  final List<
-    TfArg<SagemakerAlgorithmTrainingSpecificationSupportedTrainingInstanceTypes>
-  >
+  final List<TfArg<SagemakerAlgorithmSupportedTrainingInstanceTypes>>
   supportedTrainingInstanceTypes;
 
   final TfArg<bool>? supportsDistributedTraining;
@@ -809,22 +743,17 @@ final class SagemakerAlgorithmTrainingSpecification {
 
   final TfArg<String>? trainingImageDigest;
 
-  final List<SagemakerAlgorithmTrainingSpecificationAdditionalS3DataSource>?
-  additionalS3DataSource;
+  final List<SagemakerAlgorithmAdditionalS3DataSource>? additionalS3DataSource;
 
-  final List<SagemakerAlgorithmTrainingSpecificationMetricDefinitions>?
-  metricDefinitions;
+  final List<SagemakerAlgorithmMetricDefinitions>? metricDefinitions;
 
-  final List<SagemakerAlgorithmTrainingSpecificationSupportedHyperParameters>?
+  final List<SagemakerAlgorithmSupportedHyperParameters>?
   supportedHyperParameters;
 
-  final List<
-    SagemakerAlgorithmTrainingSpecificationSupportedTuningJobObjectiveMetrics
-  >?
+  final List<SagemakerAlgorithmSupportedTuningJobObjectiveMetrics>?
   supportedTuningJobObjectiveMetrics;
 
-  final List<SagemakerAlgorithmTrainingSpecificationTrainingChannels>?
-  trainingChannels;
+  final List<SagemakerAlgorithmTrainingChannels>? trainingChannels;
 
   Map<String, Object?> encode() => {
     'supported_training_instance_types': [
@@ -853,8 +782,7 @@ final class SagemakerAlgorithmTrainingSpecification {
 }
 
 /// `supported_training_instance_types` — derived from the provider schema description.
-enum SagemakerAlgorithmTrainingSpecificationSupportedTrainingInstanceTypes
-    implements TerraformEnum {
+enum SagemakerAlgorithmSupportedTrainingInstanceTypes implements TerraformEnum {
   mlM4Xlarge('ml.m4.xlarge'),
   mlM4p2xlarge('ml.m4.2xlarge'),
   mlM4p4xlarge('ml.m4.4xlarge'),
@@ -1007,68 +935,7 @@ enum SagemakerAlgorithmTrainingSpecificationSupportedTrainingInstanceTypes
   mlG7p24xlarge('ml.g7.24xlarge'),
   mlG7p48xlarge('ml.g7.48xlarge');
 
-  const SagemakerAlgorithmTrainingSpecificationSupportedTrainingInstanceTypes(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `training_specification.additional_s3_data_source` block of
-/// `aws_sagemaker_algorithm` (derived from provider schema).
-@immutable
-final class SagemakerAlgorithmTrainingSpecificationAdditionalS3DataSource {
-  const SagemakerAlgorithmTrainingSpecificationAdditionalS3DataSource({
-    this.compressionType,
-    this.etag,
-    required this.s3DataType,
-    required this.s3Uri,
-  });
-
-  final TfArg<
-    SagemakerAlgorithmTrainingSpecificationAdditionalS3DataSourceCompressionType
-  >?
-  compressionType;
-
-  final TfArg<String>? etag;
-
-  final TfArg<
-    SagemakerAlgorithmTrainingSpecificationAdditionalS3DataSourceS3DataType
-  >
-  s3DataType;
-
-  final TfArg<String> s3Uri;
-
-  Map<String, Object?> encode() => {
-    'compression_type': ?compressionType?.toTfJson(),
-    'etag': ?etag?.toTfJson(),
-    's3_data_type': s3DataType.toTfJson(),
-    's3_uri': s3Uri.toTfJson(),
-  };
-}
-
-/// `compression_type` — derived from the provider schema description.
-enum SagemakerAlgorithmTrainingSpecificationAdditionalS3DataSourceCompressionType
-    implements TerraformEnum {
-  none('None'),
-  gzip('Gzip');
-
-  const SagemakerAlgorithmTrainingSpecificationAdditionalS3DataSourceCompressionType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `s3_data_type` — derived from the provider schema description.
-enum SagemakerAlgorithmTrainingSpecificationAdditionalS3DataSourceS3DataType
-    implements TerraformEnum {
-  s3object('S3Object'),
-  s3prefix('S3Prefix');
-
-  const SagemakerAlgorithmTrainingSpecificationAdditionalS3DataSourceS3DataType(
-    this.terraformValue,
-  );
+  const SagemakerAlgorithmSupportedTrainingInstanceTypes(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1076,8 +943,8 @@ enum SagemakerAlgorithmTrainingSpecificationAdditionalS3DataSourceS3DataType
 /// Typed helper for the `training_specification.metric_definitions` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
 @immutable
-final class SagemakerAlgorithmTrainingSpecificationMetricDefinitions {
-  const SagemakerAlgorithmTrainingSpecificationMetricDefinitions({
+final class SagemakerAlgorithmMetricDefinitions {
+  const SagemakerAlgorithmMetricDefinitions({
     required this.name,
     required this.regex,
   });
@@ -1095,8 +962,8 @@ final class SagemakerAlgorithmTrainingSpecificationMetricDefinitions {
 /// Typed helper for the `training_specification.supported_hyper_parameters` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
 @immutable
-final class SagemakerAlgorithmTrainingSpecificationSupportedHyperParameters {
-  const SagemakerAlgorithmTrainingSpecificationSupportedHyperParameters({
+final class SagemakerAlgorithmSupportedHyperParameters {
+  const SagemakerAlgorithmSupportedHyperParameters({
     this.defaultValue,
     this.description,
     this.isRequired,
@@ -1116,15 +983,9 @@ final class SagemakerAlgorithmTrainingSpecificationSupportedHyperParameters {
 
   final TfArg<String> name;
 
-  final TfArg<
-    SagemakerAlgorithmTrainingSpecificationSupportedHyperParametersType
-  >
-  type;
+  final TfArg<SagemakerAlgorithmSupportedHyperParametersType> type;
 
-  final List<
-    SagemakerAlgorithmTrainingSpecificationSupportedHyperParametersRange
-  >?
-  range;
+  final List<SagemakerAlgorithmRange>? range;
 
   Map<String, Object?> encode() => {
     'default_value': ?defaultValue?.toTfJson(),
@@ -1138,16 +999,13 @@ final class SagemakerAlgorithmTrainingSpecificationSupportedHyperParameters {
 }
 
 /// `type` — derived from the provider schema description.
-enum SagemakerAlgorithmTrainingSpecificationSupportedHyperParametersType
-    implements TerraformEnum {
+enum SagemakerAlgorithmSupportedHyperParametersType implements TerraformEnum {
   integer('Integer'),
   continuous('Continuous'),
   categorical('Categorical'),
   freetext('FreeText');
 
-  const SagemakerAlgorithmTrainingSpecificationSupportedHyperParametersType(
-    this.terraformValue,
-  );
+  const SagemakerAlgorithmSupportedHyperParametersType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1155,26 +1013,20 @@ enum SagemakerAlgorithmTrainingSpecificationSupportedHyperParametersType
 /// Typed helper for the `training_specification.supported_hyper_parameters.range` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
 @immutable
-final class SagemakerAlgorithmTrainingSpecificationSupportedHyperParametersRange {
-  const SagemakerAlgorithmTrainingSpecificationSupportedHyperParametersRange({
+final class SagemakerAlgorithmRange {
+  const SagemakerAlgorithmRange({
     this.categoricalParameterRangeSpecification,
     this.continuousParameterRangeSpecification,
     this.integerParameterRangeSpecification,
   });
 
-  final List<
-    SagemakerAlgorithmTrainingSpecificationSupportedHyperParametersRangeCategoricalParameterRangeSpecification
-  >?
+  final List<SagemakerAlgorithmCategoricalParameterRangeSpecification>?
   categoricalParameterRangeSpecification;
 
-  final List<
-    SagemakerAlgorithmTrainingSpecificationSupportedHyperParametersRangeContinuousParameterRangeSpecification
-  >?
+  final List<SagemakerAlgorithmContinuousParameterRangeSpecification>?
   continuousParameterRangeSpecification;
 
-  final List<
-    SagemakerAlgorithmTrainingSpecificationSupportedHyperParametersRangeIntegerParameterRangeSpecification
-  >?
+  final List<SagemakerAlgorithmIntegerParameterRangeSpecification>?
   integerParameterRangeSpecification;
 
   Map<String, Object?> encode() => {
@@ -1196,8 +1048,8 @@ final class SagemakerAlgorithmTrainingSpecificationSupportedHyperParametersRange
 /// Typed helper for the `training_specification.supported_hyper_parameters.range.categorical_parameter_range_specification` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
 @immutable
-final class SagemakerAlgorithmTrainingSpecificationSupportedHyperParametersRangeCategoricalParameterRangeSpecification {
-  const SagemakerAlgorithmTrainingSpecificationSupportedHyperParametersRangeCategoricalParameterRangeSpecification({
+final class SagemakerAlgorithmCategoricalParameterRangeSpecification {
+  const SagemakerAlgorithmCategoricalParameterRangeSpecification({
     required this.values,
   });
 
@@ -1209,8 +1061,8 @@ final class SagemakerAlgorithmTrainingSpecificationSupportedHyperParametersRange
 /// Typed helper for the `training_specification.supported_hyper_parameters.range.continuous_parameter_range_specification` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
 @immutable
-final class SagemakerAlgorithmTrainingSpecificationSupportedHyperParametersRangeContinuousParameterRangeSpecification {
-  const SagemakerAlgorithmTrainingSpecificationSupportedHyperParametersRangeContinuousParameterRangeSpecification({
+final class SagemakerAlgorithmContinuousParameterRangeSpecification {
+  const SagemakerAlgorithmContinuousParameterRangeSpecification({
     required this.maxValue,
     required this.minValue,
   });
@@ -1228,8 +1080,8 @@ final class SagemakerAlgorithmTrainingSpecificationSupportedHyperParametersRange
 /// Typed helper for the `training_specification.supported_hyper_parameters.range.integer_parameter_range_specification` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
 @immutable
-final class SagemakerAlgorithmTrainingSpecificationSupportedHyperParametersRangeIntegerParameterRangeSpecification {
-  const SagemakerAlgorithmTrainingSpecificationSupportedHyperParametersRangeIntegerParameterRangeSpecification({
+final class SagemakerAlgorithmIntegerParameterRangeSpecification {
+  const SagemakerAlgorithmIntegerParameterRangeSpecification({
     required this.maxValue,
     required this.minValue,
   });
@@ -1247,18 +1099,15 @@ final class SagemakerAlgorithmTrainingSpecificationSupportedHyperParametersRange
 /// Typed helper for the `training_specification.supported_tuning_job_objective_metrics` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
 @immutable
-final class SagemakerAlgorithmTrainingSpecificationSupportedTuningJobObjectiveMetrics {
-  const SagemakerAlgorithmTrainingSpecificationSupportedTuningJobObjectiveMetrics({
+final class SagemakerAlgorithmSupportedTuningJobObjectiveMetrics {
+  const SagemakerAlgorithmSupportedTuningJobObjectiveMetrics({
     required this.metricName,
     required this.type,
   });
 
   final TfArg<String> metricName;
 
-  final TfArg<
-    SagemakerAlgorithmTrainingSpecificationSupportedTuningJobObjectiveMetricsType
-  >
-  type;
+  final TfArg<SagemakerAlgorithmSupportedTuningJobObjectiveMetricsType> type;
 
   Map<String, Object?> encode() => {
     'metric_name': metricName.toTfJson(),
@@ -1267,12 +1116,12 @@ final class SagemakerAlgorithmTrainingSpecificationSupportedTuningJobObjectiveMe
 }
 
 /// `type` — derived from the provider schema description.
-enum SagemakerAlgorithmTrainingSpecificationSupportedTuningJobObjectiveMetricsType
+enum SagemakerAlgorithmSupportedTuningJobObjectiveMetricsType
     implements TerraformEnum {
   maximize('Maximize'),
   minimize('Minimize');
 
-  const SagemakerAlgorithmTrainingSpecificationSupportedTuningJobObjectiveMetricsType(
+  const SagemakerAlgorithmSupportedTuningJobObjectiveMetricsType(
     this.terraformValue,
   );
   @override
@@ -1282,8 +1131,8 @@ enum SagemakerAlgorithmTrainingSpecificationSupportedTuningJobObjectiveMetricsTy
 /// Typed helper for the `training_specification.training_channels` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
 @immutable
-final class SagemakerAlgorithmTrainingSpecificationTrainingChannels {
-  const SagemakerAlgorithmTrainingSpecificationTrainingChannels({
+final class SagemakerAlgorithmTrainingChannels {
+  const SagemakerAlgorithmTrainingChannels({
     this.description,
     this.isRequired,
     required this.name,
@@ -1298,21 +1147,12 @@ final class SagemakerAlgorithmTrainingSpecificationTrainingChannels {
 
   final TfArg<String> name;
 
-  final List<
-    TfArg<
-      SagemakerAlgorithmTrainingSpecificationTrainingChannelsSupportedCompressionTypes
-    >
-  >?
+  final List<TfArg<SagemakerAlgorithmSupportedCompressionTypes>>?
   supportedCompressionTypes;
 
   final TfArg<List<String>> supportedContentTypes;
 
-  final List<
-    TfArg<
-      SagemakerAlgorithmTrainingSpecificationTrainingChannelsSupportedInputModes
-    >
-  >
-  supportedInputModes;
+  final List<TfArg<SagemakerAlgorithmSupportedInputModes>> supportedInputModes;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -1330,28 +1170,22 @@ final class SagemakerAlgorithmTrainingSpecificationTrainingChannels {
 }
 
 /// `supported_compression_types` — derived from the provider schema description.
-enum SagemakerAlgorithmTrainingSpecificationTrainingChannelsSupportedCompressionTypes
-    implements TerraformEnum {
+enum SagemakerAlgorithmSupportedCompressionTypes implements TerraformEnum {
   none('None'),
   gzip('Gzip');
 
-  const SagemakerAlgorithmTrainingSpecificationTrainingChannelsSupportedCompressionTypes(
-    this.terraformValue,
-  );
+  const SagemakerAlgorithmSupportedCompressionTypes(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `supported_input_modes` — derived from the provider schema description.
-enum SagemakerAlgorithmTrainingSpecificationTrainingChannelsSupportedInputModes
-    implements TerraformEnum {
+enum SagemakerAlgorithmSupportedInputModes implements TerraformEnum {
   pipe('Pipe'),
   file('File'),
   fastfile('FastFile');
 
-  const SagemakerAlgorithmTrainingSpecificationTrainingChannelsSupportedInputModes(
-    this.terraformValue,
-  );
+  const SagemakerAlgorithmSupportedInputModes(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1367,8 +1201,7 @@ final class SagemakerAlgorithmValidationSpecification {
 
   final TfArg<String> validationRole;
 
-  final List<SagemakerAlgorithmValidationSpecificationValidationProfiles>?
-  validationProfiles;
+  final List<SagemakerAlgorithmValidationProfiles>? validationProfiles;
 
   Map<String, Object?> encode() => {
     'validation_role': validationRole.toTfJson(),
@@ -1380,8 +1213,8 @@ final class SagemakerAlgorithmValidationSpecification {
 /// Typed helper for the `validation_specification.validation_profiles` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
 @immutable
-final class SagemakerAlgorithmValidationSpecificationValidationProfiles {
-  const SagemakerAlgorithmValidationSpecificationValidationProfiles({
+final class SagemakerAlgorithmValidationProfiles {
+  const SagemakerAlgorithmValidationProfiles({
     required this.profileName,
     this.trainingJobDefinition,
     this.transformJobDefinition,
@@ -1389,15 +1222,9 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfiles {
 
   final TfArg<String> profileName;
 
-  final List<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinition
-  >?
-  trainingJobDefinition;
+  final List<SagemakerAlgorithmTrainingJobDefinition>? trainingJobDefinition;
 
-  final List<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinition
-  >?
-  transformJobDefinition;
+  final List<SagemakerAlgorithmTransformJobDefinition>? transformJobDefinition;
 
   Map<String, Object?> encode() => {
     'profile_name': profileName.toTfJson(),
@@ -1415,8 +1242,8 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfiles {
 /// Typed helper for the `validation_specification.validation_profiles.training_job_definition` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
 @immutable
-final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinition {
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinition({
+final class SagemakerAlgorithmTrainingJobDefinition {
+  const SagemakerAlgorithmTrainingJobDefinition({
     this.hyperParameters,
     required this.trainingInputMode,
     this.inputDataConfig,
@@ -1427,30 +1254,15 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJ
 
   final TfArg<Map<String, String>>? hyperParameters;
 
-  final TfArg<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionTrainingInputMode
-  >
-  trainingInputMode;
+  final TfArg<SagemakerAlgorithmTrainingInputMode> trainingInputMode;
 
-  final List<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfig
-  >?
-  inputDataConfig;
+  final List<SagemakerAlgorithmInputDataConfig>? inputDataConfig;
 
-  final List<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionOutputDataConfig
-  >?
-  outputDataConfig;
+  final List<SagemakerAlgorithmOutputDataConfig>? outputDataConfig;
 
-  final List<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionResourceConfig
-  >?
-  resourceConfig;
+  final List<SagemakerAlgorithmResourceConfig>? resourceConfig;
 
-  final List<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionStoppingCondition
-  >?
-  stoppingCondition;
+  final List<SagemakerAlgorithmStoppingCondition>? stoppingCondition;
 
   Map<String, Object?> encode() => {
     'hyper_parameters': ?hyperParameters?.toTfJson(),
@@ -1467,15 +1279,12 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJ
 }
 
 /// `training_input_mode` — derived from the provider schema description.
-enum SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionTrainingInputMode
-    implements TerraformEnum {
+enum SagemakerAlgorithmTrainingInputMode implements TerraformEnum {
   pipe('Pipe'),
   file('File'),
   fastfile('FastFile');
 
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionTrainingInputMode(
-    this.terraformValue,
-  );
+  const SagemakerAlgorithmTrainingInputMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1483,8 +1292,8 @@ enum SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefin
 /// Typed helper for the `validation_specification.validation_profiles.training_job_definition.input_data_config` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
 @immutable
-final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfig {
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfig({
+final class SagemakerAlgorithmInputDataConfig {
+  const SagemakerAlgorithmInputDataConfig({
     required this.channelName,
     this.compressionType,
     this.contentType,
@@ -1496,32 +1305,17 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJ
 
   final TfArg<String> channelName;
 
-  final TfArg<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigCompressionType
-  >?
-  compressionType;
+  final TfArg<SagemakerAlgorithmCompressionType>? compressionType;
 
   final TfArg<String>? contentType;
 
-  final TfArg<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigInputMode
-  >?
-  inputMode;
+  final TfArg<SagemakerAlgorithmInputMode>? inputMode;
 
-  final TfArg<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigRecordWrapperType
-  >?
-  recordWrapperType;
+  final TfArg<SagemakerAlgorithmRecordWrapperType>? recordWrapperType;
 
-  final List<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigDataSource
-  >?
-  dataSource;
+  final List<SagemakerAlgorithmInputDataConfigDataSource>? dataSource;
 
-  final List<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigShuffleConfig
-  >?
-  shuffleConfig;
+  final List<SagemakerAlgorithmShuffleConfig>? shuffleConfig;
 
   Map<String, Object?> encode() => {
     'channel_name': channelName.toTfJson(),
@@ -1536,42 +1330,23 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJ
   };
 }
 
-/// `compression_type` — derived from the provider schema description.
-enum SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigCompressionType
-    implements TerraformEnum {
-  none('None'),
-  gzip('Gzip');
-
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigCompressionType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// `input_mode` — derived from the provider schema description.
-enum SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigInputMode
-    implements TerraformEnum {
+enum SagemakerAlgorithmInputMode implements TerraformEnum {
   pipe('Pipe'),
   file('File'),
   fastfile('FastFile');
 
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigInputMode(
-    this.terraformValue,
-  );
+  const SagemakerAlgorithmInputMode(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `record_wrapper_type` — derived from the provider schema description.
-enum SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigRecordWrapperType
-    implements TerraformEnum {
+enum SagemakerAlgorithmRecordWrapperType implements TerraformEnum {
   none('None'),
   recordio('RecordIO');
 
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigRecordWrapperType(
-    this.terraformValue,
-  );
+  const SagemakerAlgorithmRecordWrapperType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1579,21 +1354,15 @@ enum SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefin
 /// Typed helper for the `validation_specification.validation_profiles.training_job_definition.input_data_config.data_source` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
 @immutable
-final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigDataSource {
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigDataSource({
+final class SagemakerAlgorithmInputDataConfigDataSource {
+  const SagemakerAlgorithmInputDataConfigDataSource({
     this.fileSystemDataSource,
     this.s3DataSource,
   });
 
-  final List<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigDataSourceFileSystemDataSource
-  >?
-  fileSystemDataSource;
+  final List<SagemakerAlgorithmFileSystemDataSource>? fileSystemDataSource;
 
-  final List<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigDataSourceS3DataSource
-  >?
-  s3DataSource;
+  final List<SagemakerAlgorithmInputDataConfigS3DataSource>? s3DataSource;
 
   Map<String, Object?> encode() => {
     if (fileSystemDataSource != null)
@@ -1608,8 +1377,8 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJ
 /// Typed helper for the `validation_specification.validation_profiles.training_job_definition.input_data_config.data_source.file_system_data_source` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
 @immutable
-final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigDataSourceFileSystemDataSource {
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigDataSourceFileSystemDataSource({
+final class SagemakerAlgorithmFileSystemDataSource {
+  const SagemakerAlgorithmFileSystemDataSource({
     required this.directoryPath,
     required this.fileSystemAccessMode,
     required this.fileSystemId,
@@ -1618,17 +1387,11 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJ
 
   final TfArg<String> directoryPath;
 
-  final TfArg<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigDataSourceFileSystemDataSourceFileSystemAccessMode
-  >
-  fileSystemAccessMode;
+  final TfArg<SagemakerAlgorithmFileSystemAccessMode> fileSystemAccessMode;
 
   final TfArg<String> fileSystemId;
 
-  final TfArg<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigDataSourceFileSystemDataSourceFileSystemType
-  >
-  fileSystemType;
+  final TfArg<SagemakerAlgorithmFileSystemType> fileSystemType;
 
   Map<String, Object?> encode() => {
     'directory_path': directoryPath.toTfJson(),
@@ -1639,27 +1402,21 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJ
 }
 
 /// `file_system_access_mode` — derived from the provider schema description.
-enum SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigDataSourceFileSystemDataSourceFileSystemAccessMode
-    implements TerraformEnum {
+enum SagemakerAlgorithmFileSystemAccessMode implements TerraformEnum {
   rw('rw'),
   ro('ro');
 
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigDataSourceFileSystemDataSourceFileSystemAccessMode(
-    this.terraformValue,
-  );
+  const SagemakerAlgorithmFileSystemAccessMode(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `file_system_type` — derived from the provider schema description.
-enum SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigDataSourceFileSystemDataSourceFileSystemType
-    implements TerraformEnum {
+enum SagemakerAlgorithmFileSystemType implements TerraformEnum {
   efs('EFS'),
   fsxlustre('FSxLustre');
 
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigDataSourceFileSystemDataSourceFileSystemType(
-    this.terraformValue,
-  );
+  const SagemakerAlgorithmFileSystemType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1667,8 +1424,8 @@ enum SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefin
 /// Typed helper for the `validation_specification.validation_profiles.training_job_definition.input_data_config.data_source.s3_data_source` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
 @immutable
-final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigDataSourceS3DataSource {
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigDataSourceS3DataSource({
+final class SagemakerAlgorithmInputDataConfigS3DataSource {
+  const SagemakerAlgorithmInputDataConfigS3DataSource({
     this.attributeNames,
     this.instanceGroupNames,
     this.s3DataDistributionType,
@@ -1682,27 +1439,15 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJ
 
   final TfArg<List<String>>? instanceGroupNames;
 
-  final TfArg<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigDataSourceS3DataSourceS3DataDistributionType
-  >?
-  s3DataDistributionType;
+  final TfArg<SagemakerAlgorithmS3DataDistributionType>? s3DataDistributionType;
 
-  final TfArg<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigDataSourceS3DataSourceS3DataType
-  >
-  s3DataType;
+  final TfArg<SagemakerAlgorithmDataSourceS3DataType> s3DataType;
 
   final TfArg<String> s3Uri;
 
-  final List<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigDataSourceS3DataSourceHubAccessConfig
-  >?
-  hubAccessConfig;
+  final List<SagemakerAlgorithmHubAccessConfig>? hubAccessConfig;
 
-  final List<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigDataSourceS3DataSourceModelAccessConfig
-  >?
-  modelAccessConfig;
+  final List<SagemakerAlgorithmModelAccessConfig>? modelAccessConfig;
 
   Map<String, Object?> encode() => {
     'attribute_names': ?attributeNames?.toTfJson(),
@@ -1718,68 +1463,32 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJ
 }
 
 /// `s3_data_distribution_type` — derived from the provider schema description.
-enum SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigDataSourceS3DataSourceS3DataDistributionType
-    implements TerraformEnum {
+enum SagemakerAlgorithmS3DataDistributionType implements TerraformEnum {
   fullyreplicated('FullyReplicated'),
   shardedbys3key('ShardedByS3Key');
 
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigDataSourceS3DataSourceS3DataDistributionType(
-    this.terraformValue,
-  );
+  const SagemakerAlgorithmS3DataDistributionType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `s3_data_type` — derived from the provider schema description.
-enum SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigDataSourceS3DataSourceS3DataType
-    implements TerraformEnum {
+enum SagemakerAlgorithmDataSourceS3DataType implements TerraformEnum {
   manifestfile('ManifestFile'),
   s3prefix('S3Prefix'),
   augmentedmanifestfile('AugmentedManifestFile'),
   converse('Converse');
 
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigDataSourceS3DataSourceS3DataType(
-    this.terraformValue,
-  );
+  const SagemakerAlgorithmDataSourceS3DataType(this.terraformValue);
   @override
   final String terraformValue;
-}
-
-/// Typed helper for the `validation_specification.validation_profiles.training_job_definition.input_data_config.data_source.s3_data_source.hub_access_config` block of
-/// `aws_sagemaker_algorithm` (derived from provider schema).
-@immutable
-final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigDataSourceS3DataSourceHubAccessConfig {
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigDataSourceS3DataSourceHubAccessConfig({
-    this.hubContentArn,
-  });
-
-  final TfArg<String>? hubContentArn;
-
-  Map<String, Object?> encode() => {
-    'hub_content_arn': ?hubContentArn?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `validation_specification.validation_profiles.training_job_definition.input_data_config.data_source.s3_data_source.model_access_config` block of
-/// `aws_sagemaker_algorithm` (derived from provider schema).
-@immutable
-final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigDataSourceS3DataSourceModelAccessConfig {
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigDataSourceS3DataSourceModelAccessConfig({
-    this.acceptEula,
-  });
-
-  final TfArg<bool>? acceptEula;
-
-  Map<String, Object?> encode() => {'accept_eula': ?acceptEula?.toTfJson()};
 }
 
 /// Typed helper for the `validation_specification.validation_profiles.training_job_definition.input_data_config.shuffle_config` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
 @immutable
-final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigShuffleConfig {
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionInputDataConfigShuffleConfig({
-    required this.seed,
-  });
+final class SagemakerAlgorithmShuffleConfig {
+  const SagemakerAlgorithmShuffleConfig({required this.seed});
 
   final TfArg<num> seed;
 
@@ -1789,16 +1498,14 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJ
 /// Typed helper for the `validation_specification.validation_profiles.training_job_definition.output_data_config` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
 @immutable
-final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionOutputDataConfig {
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionOutputDataConfig({
+final class SagemakerAlgorithmOutputDataConfig {
+  const SagemakerAlgorithmOutputDataConfig({
     this.compressionType,
     this.kmsKeyId,
     required this.s3OutputPath,
   });
 
-  final TfArg<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionOutputDataConfigCompressionType
-  >?
+  final TfArg<SagemakerAlgorithmOutputDataConfigCompressionType>?
   compressionType;
 
   final RefTo<AwsKmsKey>? kmsKeyId;
@@ -1813,14 +1520,12 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJ
 }
 
 /// `compression_type` — derived from the provider schema description.
-enum SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionOutputDataConfigCompressionType
+enum SagemakerAlgorithmOutputDataConfigCompressionType
     implements TerraformEnum {
   gzip('GZIP'),
   none('NONE');
 
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionOutputDataConfigCompressionType(
-    this.terraformValue,
-  );
+  const SagemakerAlgorithmOutputDataConfigCompressionType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1828,8 +1533,8 @@ enum SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefin
 /// Typed helper for the `validation_specification.validation_profiles.training_job_definition.resource_config` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
 @immutable
-final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionResourceConfig {
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionResourceConfig({
+final class SagemakerAlgorithmResourceConfig {
+  const SagemakerAlgorithmResourceConfig({
     this.instanceCount,
     this.instanceType,
     this.keepAlivePeriodInSeconds,
@@ -1842,10 +1547,7 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJ
 
   final TfArg<num>? instanceCount;
 
-  final TfArg<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionResourceConfigInstanceType
-  >?
-  instanceType;
+  final TfArg<SagemakerAlgorithmResourceConfigInstanceType>? instanceType;
 
   final TfArg<num>? keepAlivePeriodInSeconds;
 
@@ -1855,14 +1557,9 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJ
 
   final TfArg<num>? volumeSizeInGb;
 
-  final List<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionResourceConfigInstanceGroups
-  >?
-  instanceGroups;
+  final List<SagemakerAlgorithmInstanceGroups>? instanceGroups;
 
-  final List<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionResourceConfigInstancePlacementConfig
-  >?
+  final List<SagemakerAlgorithmInstancePlacementConfig>?
   instancePlacementConfig;
 
   Map<String, Object?> encode() => {
@@ -1882,8 +1579,7 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJ
 }
 
 /// `instance_type` — derived from the provider schema description.
-enum SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionResourceConfigInstanceType
-    implements TerraformEnum {
+enum SagemakerAlgorithmResourceConfigInstanceType implements TerraformEnum {
   mlM4Xlarge('ml.m4.xlarge'),
   mlM4p2xlarge('ml.m4.2xlarge'),
   mlM4p4xlarge('ml.m4.4xlarge'),
@@ -2036,9 +1732,7 @@ enum SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefin
   mlG7p24xlarge('ml.g7.24xlarge'),
   mlG7p48xlarge('ml.g7.48xlarge');
 
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionResourceConfigInstanceType(
-    this.terraformValue,
-  );
+  const SagemakerAlgorithmResourceConfigInstanceType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -2046,8 +1740,8 @@ enum SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefin
 /// Typed helper for the `validation_specification.validation_profiles.training_job_definition.resource_config.instance_groups` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
 @immutable
-final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionResourceConfigInstanceGroups {
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionResourceConfigInstanceGroups({
+final class SagemakerAlgorithmInstanceGroups {
+  const SagemakerAlgorithmInstanceGroups({
     required this.instanceCount,
     required this.instanceGroupName,
     required this.instanceType,
@@ -2057,10 +1751,7 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJ
 
   final TfArg<String> instanceGroupName;
 
-  final TfArg<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionResourceConfigInstanceGroupsInstanceType
-  >
-  instanceType;
+  final TfArg<SagemakerAlgorithmResourceConfigInstanceType> instanceType;
 
   Map<String, Object?> encode() => {
     'instance_count': instanceCount.toTfJson(),
@@ -2069,182 +1760,18 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJ
   };
 }
 
-/// `instance_type` — derived from the provider schema description.
-enum SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionResourceConfigInstanceGroupsInstanceType
-    implements TerraformEnum {
-  mlM4Xlarge('ml.m4.xlarge'),
-  mlM4p2xlarge('ml.m4.2xlarge'),
-  mlM4p4xlarge('ml.m4.4xlarge'),
-  mlM4p10xlarge('ml.m4.10xlarge'),
-  mlM4p16xlarge('ml.m4.16xlarge'),
-  mlG4dnXlarge('ml.g4dn.xlarge'),
-  mlG4dn2xlarge('ml.g4dn.2xlarge'),
-  mlG4dn4xlarge('ml.g4dn.4xlarge'),
-  mlG4dn8xlarge('ml.g4dn.8xlarge'),
-  mlG4dn12xlarge('ml.g4dn.12xlarge'),
-  mlG4dn16xlarge('ml.g4dn.16xlarge'),
-  mlM5Large('ml.m5.large'),
-  mlM5Xlarge('ml.m5.xlarge'),
-  mlM5p2xlarge('ml.m5.2xlarge'),
-  mlM5p4xlarge('ml.m5.4xlarge'),
-  mlM5p12xlarge('ml.m5.12xlarge'),
-  mlM5p24xlarge('ml.m5.24xlarge'),
-  mlC4Xlarge('ml.c4.xlarge'),
-  mlC4p2xlarge('ml.c4.2xlarge'),
-  mlC4p4xlarge('ml.c4.4xlarge'),
-  mlC4p8xlarge('ml.c4.8xlarge'),
-  mlP2Xlarge('ml.p2.xlarge'),
-  mlP2p8xlarge('ml.p2.8xlarge'),
-  mlP2p16xlarge('ml.p2.16xlarge'),
-  mlP3p2xlarge('ml.p3.2xlarge'),
-  mlP3p8xlarge('ml.p3.8xlarge'),
-  mlP3p16xlarge('ml.p3.16xlarge'),
-  mlP3dn24xlarge('ml.p3dn.24xlarge'),
-  mlP4d24xlarge('ml.p4d.24xlarge'),
-  mlP4de24xlarge('ml.p4de.24xlarge'),
-  mlP5p48xlarge('ml.p5.48xlarge'),
-  mlP5e48xlarge('ml.p5e.48xlarge'),
-  mlP5en48xlarge('ml.p5en.48xlarge'),
-  mlC5Xlarge('ml.c5.xlarge'),
-  mlC5p2xlarge('ml.c5.2xlarge'),
-  mlC5p4xlarge('ml.c5.4xlarge'),
-  mlC5p9xlarge('ml.c5.9xlarge'),
-  mlC5p18xlarge('ml.c5.18xlarge'),
-  mlC5nXlarge('ml.c5n.xlarge'),
-  mlC5n2xlarge('ml.c5n.2xlarge'),
-  mlC5n4xlarge('ml.c5n.4xlarge'),
-  mlC5n9xlarge('ml.c5n.9xlarge'),
-  mlC5n18xlarge('ml.c5n.18xlarge'),
-  mlG5Xlarge('ml.g5.xlarge'),
-  mlG5p2xlarge('ml.g5.2xlarge'),
-  mlG5p4xlarge('ml.g5.4xlarge'),
-  mlG5p8xlarge('ml.g5.8xlarge'),
-  mlG5p16xlarge('ml.g5.16xlarge'),
-  mlG5p12xlarge('ml.g5.12xlarge'),
-  mlG5p24xlarge('ml.g5.24xlarge'),
-  mlG5p48xlarge('ml.g5.48xlarge'),
-  mlG6Xlarge('ml.g6.xlarge'),
-  mlG6p2xlarge('ml.g6.2xlarge'),
-  mlG6p4xlarge('ml.g6.4xlarge'),
-  mlG6p8xlarge('ml.g6.8xlarge'),
-  mlG6p16xlarge('ml.g6.16xlarge'),
-  mlG6p12xlarge('ml.g6.12xlarge'),
-  mlG6p24xlarge('ml.g6.24xlarge'),
-  mlG6p48xlarge('ml.g6.48xlarge'),
-  mlG6eXlarge('ml.g6e.xlarge'),
-  mlG6e2xlarge('ml.g6e.2xlarge'),
-  mlG6e4xlarge('ml.g6e.4xlarge'),
-  mlG6e8xlarge('ml.g6e.8xlarge'),
-  mlG6e16xlarge('ml.g6e.16xlarge'),
-  mlG6e12xlarge('ml.g6e.12xlarge'),
-  mlG6e24xlarge('ml.g6e.24xlarge'),
-  mlG6e48xlarge('ml.g6e.48xlarge'),
-  mlTrn1p2xlarge('ml.trn1.2xlarge'),
-  mlTrn1p32xlarge('ml.trn1.32xlarge'),
-  mlTrn1n32xlarge('ml.trn1n.32xlarge'),
-  mlTrn2p48xlarge('ml.trn2.48xlarge'),
-  mlM6iLarge('ml.m6i.large'),
-  mlM6iXlarge('ml.m6i.xlarge'),
-  mlM6i2xlarge('ml.m6i.2xlarge'),
-  mlM6i4xlarge('ml.m6i.4xlarge'),
-  mlM6i8xlarge('ml.m6i.8xlarge'),
-  mlM6i12xlarge('ml.m6i.12xlarge'),
-  mlM6i16xlarge('ml.m6i.16xlarge'),
-  mlM6i24xlarge('ml.m6i.24xlarge'),
-  mlM6i32xlarge('ml.m6i.32xlarge'),
-  mlC6iXlarge('ml.c6i.xlarge'),
-  mlC6i2xlarge('ml.c6i.2xlarge'),
-  mlC6i8xlarge('ml.c6i.8xlarge'),
-  mlC6i4xlarge('ml.c6i.4xlarge'),
-  mlC6i12xlarge('ml.c6i.12xlarge'),
-  mlC6i16xlarge('ml.c6i.16xlarge'),
-  mlC6i24xlarge('ml.c6i.24xlarge'),
-  mlC6i32xlarge('ml.c6i.32xlarge'),
-  mlR5dLarge('ml.r5d.large'),
-  mlR5dXlarge('ml.r5d.xlarge'),
-  mlR5d2xlarge('ml.r5d.2xlarge'),
-  mlR5d4xlarge('ml.r5d.4xlarge'),
-  mlR5d8xlarge('ml.r5d.8xlarge'),
-  mlR5d12xlarge('ml.r5d.12xlarge'),
-  mlR5d16xlarge('ml.r5d.16xlarge'),
-  mlR5d24xlarge('ml.r5d.24xlarge'),
-  mlT3Medium('ml.t3.medium'),
-  mlT3Large('ml.t3.large'),
-  mlT3Xlarge('ml.t3.xlarge'),
-  mlT3p2xlarge('ml.t3.2xlarge'),
-  mlR5Large('ml.r5.large'),
-  mlR5Xlarge('ml.r5.xlarge'),
-  mlR5p2xlarge('ml.r5.2xlarge'),
-  mlR5p4xlarge('ml.r5.4xlarge'),
-  mlR5p8xlarge('ml.r5.8xlarge'),
-  mlR5p12xlarge('ml.r5.12xlarge'),
-  mlR5p16xlarge('ml.r5.16xlarge'),
-  mlR5p24xlarge('ml.r5.24xlarge'),
-  mlP6B200p48xlarge('ml.p6-b200.48xlarge'),
-  mlM7iLarge('ml.m7i.large'),
-  mlM7iXlarge('ml.m7i.xlarge'),
-  mlM7i2xlarge('ml.m7i.2xlarge'),
-  mlM7i4xlarge('ml.m7i.4xlarge'),
-  mlM7i8xlarge('ml.m7i.8xlarge'),
-  mlM7i12xlarge('ml.m7i.12xlarge'),
-  mlM7i16xlarge('ml.m7i.16xlarge'),
-  mlM7i24xlarge('ml.m7i.24xlarge'),
-  mlM7i48xlarge('ml.m7i.48xlarge'),
-  mlC7iLarge('ml.c7i.large'),
-  mlC7iXlarge('ml.c7i.xlarge'),
-  mlC7i2xlarge('ml.c7i.2xlarge'),
-  mlC7i4xlarge('ml.c7i.4xlarge'),
-  mlC7i8xlarge('ml.c7i.8xlarge'),
-  mlC7i12xlarge('ml.c7i.12xlarge'),
-  mlC7i16xlarge('ml.c7i.16xlarge'),
-  mlC7i24xlarge('ml.c7i.24xlarge'),
-  mlC7i48xlarge('ml.c7i.48xlarge'),
-  mlR7iLarge('ml.r7i.large'),
-  mlR7iXlarge('ml.r7i.xlarge'),
-  mlR7i2xlarge('ml.r7i.2xlarge'),
-  mlR7i4xlarge('ml.r7i.4xlarge'),
-  mlR7i8xlarge('ml.r7i.8xlarge'),
-  mlR7i12xlarge('ml.r7i.12xlarge'),
-  mlR7i16xlarge('ml.r7i.16xlarge'),
-  mlR7i24xlarge('ml.r7i.24xlarge'),
-  mlR7i48xlarge('ml.r7i.48xlarge'),
-  mlP6eGb200p36xlarge('ml.p6e-gb200.36xlarge'),
-  mlP5p4xlarge('ml.p5.4xlarge'),
-  mlP6B300p48xlarge('ml.p6-b300.48xlarge'),
-  mlG7e2xlarge('ml.g7e.2xlarge'),
-  mlG7e4xlarge('ml.g7e.4xlarge'),
-  mlG7e8xlarge('ml.g7e.8xlarge'),
-  mlG7e12xlarge('ml.g7e.12xlarge'),
-  mlG7e24xlarge('ml.g7e.24xlarge'),
-  mlG7e48xlarge('ml.g7e.48xlarge'),
-  mlG7p2xlarge('ml.g7.2xlarge'),
-  mlG7p4xlarge('ml.g7.4xlarge'),
-  mlG7p8xlarge('ml.g7.8xlarge'),
-  mlG7p12xlarge('ml.g7.12xlarge'),
-  mlG7p24xlarge('ml.g7.24xlarge'),
-  mlG7p48xlarge('ml.g7.48xlarge');
-
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionResourceConfigInstanceGroupsInstanceType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `validation_specification.validation_profiles.training_job_definition.resource_config.instance_placement_config` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
 @immutable
-final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionResourceConfigInstancePlacementConfig {
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionResourceConfigInstancePlacementConfig({
+final class SagemakerAlgorithmInstancePlacementConfig {
+  const SagemakerAlgorithmInstancePlacementConfig({
     this.enableMultipleJobs,
     this.placementSpecifications,
   });
 
   final TfArg<bool>? enableMultipleJobs;
 
-  final List<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionResourceConfigInstancePlacementConfigPlacementSpecifications
-  >?
+  final List<SagemakerAlgorithmPlacementSpecifications>?
   placementSpecifications;
 
   Map<String, Object?> encode() => {
@@ -2259,8 +1786,8 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJ
 /// Typed helper for the `validation_specification.validation_profiles.training_job_definition.resource_config.instance_placement_config.placement_specifications` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
 @immutable
-final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionResourceConfigInstancePlacementConfigPlacementSpecifications {
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionResourceConfigInstancePlacementConfigPlacementSpecifications({
+final class SagemakerAlgorithmPlacementSpecifications {
+  const SagemakerAlgorithmPlacementSpecifications({
     required this.instanceCount,
     this.ultraServerId,
   });
@@ -2278,8 +1805,8 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJ
 /// Typed helper for the `validation_specification.validation_profiles.training_job_definition.stopping_condition` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
 @immutable
-final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionStoppingCondition {
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJobDefinitionStoppingCondition({
+final class SagemakerAlgorithmStoppingCondition {
+  const SagemakerAlgorithmStoppingCondition({
     this.maxPendingTimeInSeconds,
     this.maxRuntimeInSeconds,
     this.maxWaitTimeInSeconds,
@@ -2301,8 +1828,8 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJ
 /// Typed helper for the `validation_specification.validation_profiles.transform_job_definition` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
 @immutable
-final class SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinition {
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinition({
+final class SagemakerAlgorithmTransformJobDefinition {
+  const SagemakerAlgorithmTransformJobDefinition({
     this.batchStrategy,
     this.environment,
     this.maxConcurrentTransforms,
@@ -2312,10 +1839,7 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTransform
     this.transformResources,
   });
 
-  final TfArg<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinitionBatchStrategy
-  >?
-  batchStrategy;
+  final TfArg<SagemakerAlgorithmBatchStrategy>? batchStrategy;
 
   final TfArg<Map<String, String>>? environment;
 
@@ -2323,20 +1847,11 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTransform
 
   final TfArg<num>? maxPayloadInMb;
 
-  final List<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinitionTransformInput
-  >?
-  transformInput;
+  final List<SagemakerAlgorithmTransformInput>? transformInput;
 
-  final List<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinitionTransformOutput
-  >?
-  transformOutput;
+  final List<SagemakerAlgorithmTransformOutput>? transformOutput;
 
-  final List<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinitionTransformResources
-  >?
-  transformResources;
+  final List<SagemakerAlgorithmTransformResources>? transformResources;
 
   Map<String, Object?> encode() => {
     'batch_strategy': ?batchStrategy?.toTfJson(),
@@ -2353,14 +1868,11 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTransform
 }
 
 /// `batch_strategy` — derived from the provider schema description.
-enum SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinitionBatchStrategy
-    implements TerraformEnum {
+enum SagemakerAlgorithmBatchStrategy implements TerraformEnum {
   multirecord('MultiRecord'),
   singlerecord('SingleRecord');
 
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinitionBatchStrategy(
-    this.terraformValue,
-  );
+  const SagemakerAlgorithmBatchStrategy(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -2368,30 +1880,21 @@ enum SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefi
 /// Typed helper for the `validation_specification.validation_profiles.transform_job_definition.transform_input` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
 @immutable
-final class SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinitionTransformInput {
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinitionTransformInput({
+final class SagemakerAlgorithmTransformInput {
+  const SagemakerAlgorithmTransformInput({
     this.compressionType,
     this.contentType,
     this.splitType,
     this.dataSource,
   });
 
-  final TfArg<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinitionTransformInputCompressionType
-  >?
-  compressionType;
+  final TfArg<SagemakerAlgorithmCompressionType>? compressionType;
 
   final TfArg<String>? contentType;
 
-  final TfArg<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinitionTransformInputSplitType
-  >?
-  splitType;
+  final TfArg<SagemakerAlgorithmSplitType>? splitType;
 
-  final List<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinitionTransformInputDataSource
-  >?
-  dataSource;
+  final List<SagemakerAlgorithmTransformInputDataSource>? dataSource;
 
   Map<String, Object?> encode() => {
     'compression_type': ?compressionType?.toTfJson(),
@@ -2402,30 +1905,14 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTransform
   };
 }
 
-/// `compression_type` — derived from the provider schema description.
-enum SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinitionTransformInputCompressionType
-    implements TerraformEnum {
-  none('None'),
-  gzip('Gzip');
-
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinitionTransformInputCompressionType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// `split_type` — derived from the provider schema description.
-enum SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinitionTransformInputSplitType
-    implements TerraformEnum {
+enum SagemakerAlgorithmSplitType implements TerraformEnum {
   none('None'),
   line('Line'),
   recordio('RecordIO'),
   tfrecord('TFRecord');
 
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinitionTransformInputSplitType(
-    this.terraformValue,
-  );
+  const SagemakerAlgorithmSplitType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -2433,15 +1920,10 @@ enum SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefi
 /// Typed helper for the `validation_specification.validation_profiles.transform_job_definition.transform_input.data_source` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
 @immutable
-final class SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinitionTransformInputDataSource {
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinitionTransformInputDataSource({
-    this.s3DataSource,
-  });
+final class SagemakerAlgorithmTransformInputDataSource {
+  const SagemakerAlgorithmTransformInputDataSource({this.s3DataSource});
 
-  final List<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinitionTransformInputDataSourceS3DataSource
-  >?
-  s3DataSource;
+  final List<SagemakerAlgorithmTransformInputS3DataSource>? s3DataSource;
 
   Map<String, Object?> encode() => {
     if (s3DataSource != null)
@@ -2452,16 +1934,13 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTransform
 /// Typed helper for the `validation_specification.validation_profiles.transform_job_definition.transform_input.data_source.s3_data_source` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
 @immutable
-final class SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinitionTransformInputDataSourceS3DataSource {
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinitionTransformInputDataSourceS3DataSource({
+final class SagemakerAlgorithmTransformInputS3DataSource {
+  const SagemakerAlgorithmTransformInputS3DataSource({
     required this.s3DataType,
     required this.s3Uri,
   });
 
-  final TfArg<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinitionTransformInputDataSourceS3DataSourceS3DataType
-  >
-  s3DataType;
+  final TfArg<SagemakerAlgorithmDataSourceS3DataType> s3DataType;
 
   final TfArg<String> s3Uri;
 
@@ -2471,26 +1950,11 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTransform
   };
 }
 
-/// `s3_data_type` — derived from the provider schema description.
-enum SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinitionTransformInputDataSourceS3DataSourceS3DataType
-    implements TerraformEnum {
-  manifestfile('ManifestFile'),
-  s3prefix('S3Prefix'),
-  augmentedmanifestfile('AugmentedManifestFile'),
-  converse('Converse');
-
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinitionTransformInputDataSourceS3DataSourceS3DataType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `validation_specification.validation_profiles.transform_job_definition.transform_output` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
 @immutable
-final class SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinitionTransformOutput {
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinitionTransformOutput({
+final class SagemakerAlgorithmTransformOutput {
+  const SagemakerAlgorithmTransformOutput({
     this.accept,
     this.assembleWith,
     this.kmsKeyId,
@@ -2499,10 +1963,7 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTransform
 
   final TfArg<String>? accept;
 
-  final TfArg<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinitionTransformOutputAssembleWith
-  >?
-  assembleWith;
+  final TfArg<SagemakerAlgorithmAssembleWith>? assembleWith;
 
   final RefTo<AwsKmsKey>? kmsKeyId;
 
@@ -2517,14 +1978,11 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTransform
 }
 
 /// `assemble_with` — derived from the provider schema description.
-enum SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinitionTransformOutputAssembleWith
-    implements TerraformEnum {
+enum SagemakerAlgorithmAssembleWith implements TerraformEnum {
   none('None'),
   line('Line');
 
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinitionTransformOutputAssembleWith(
-    this.terraformValue,
-  );
+  const SagemakerAlgorithmAssembleWith(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -2532,8 +1990,8 @@ enum SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefi
 /// Typed helper for the `validation_specification.validation_profiles.transform_job_definition.transform_resources` block of
 /// `aws_sagemaker_algorithm` (derived from provider schema).
 @immutable
-final class SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinitionTransformResources {
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinitionTransformResources({
+final class SagemakerAlgorithmTransformResources {
+  const SagemakerAlgorithmTransformResources({
     required this.instanceCount,
     required this.instanceType,
     this.transformAmiVersion,
@@ -2542,10 +2000,7 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTransform
 
   final TfArg<num> instanceCount;
 
-  final TfArg<
-    SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinitionTransformResourcesInstanceType
-  >
-  instanceType;
+  final TfArg<SagemakerAlgorithmTransformResourcesInstanceType> instanceType;
 
   final TfArg<String>? transformAmiVersion;
 
@@ -2560,8 +2015,7 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTransform
 }
 
 /// `instance_type` — derived from the provider schema description.
-enum SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinitionTransformResourcesInstanceType
-    implements TerraformEnum {
+enum SagemakerAlgorithmTransformResourcesInstanceType implements TerraformEnum {
   mlM4Xlarge('ml.m4.xlarge'),
   mlM4p2xlarge('ml.m4.2xlarge'),
   mlM4p4xlarge('ml.m4.4xlarge'),
@@ -2679,9 +2133,7 @@ enum SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefi
   mlG6e24xlarge('ml.g6e.24xlarge'),
   mlG6e48xlarge('ml.g6e.48xlarge');
 
-  const SagemakerAlgorithmValidationSpecificationValidationProfilesTransformJobDefinitionTransformResourcesInstanceType(
-    this.terraformValue,
-  );
+  const SagemakerAlgorithmTransformResourcesInstanceType(this.terraformValue);
   @override
   final String terraformValue;
 }

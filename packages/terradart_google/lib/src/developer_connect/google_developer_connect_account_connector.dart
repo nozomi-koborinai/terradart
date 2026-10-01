@@ -42,7 +42,7 @@ final class DeveloperConnectAccountConnectorCustomOauthConfig {
 
   final TfArg<String> tokenUri;
 
-  final DeveloperConnectAccountConnectorCustomOauthConfigServiceDirectoryConfig?
+  final DeveloperConnectAccountConnectorServiceDirectoryConfig?
   serviceDirectoryConfig;
 
   Map<String, Object?> encode() => {
@@ -62,8 +62,8 @@ final class DeveloperConnectAccountConnectorCustomOauthConfig {
 /// Typed helper for the `custom_oauth_config.service_directory_config` block of
 /// `google_developer_connect_account_connector` (derived from provider schema).
 @immutable
-final class DeveloperConnectAccountConnectorCustomOauthConfigServiceDirectoryConfig {
-  const DeveloperConnectAccountConnectorCustomOauthConfigServiceDirectoryConfig({
+final class DeveloperConnectAccountConnectorServiceDirectoryConfig {
+  const DeveloperConnectAccountConnectorServiceDirectoryConfig({
     required this.service,
   });
 

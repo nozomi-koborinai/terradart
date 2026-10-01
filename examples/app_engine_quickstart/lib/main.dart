@@ -72,7 +72,7 @@ final class AppEngineStack extends Stack {
         versionId: .literal('v1'),
         runtime: .literal('python312'),
         deployment: AppEngineStandardAppVersionDeployment(
-          zip: AppEngineStandardAppVersionDeploymentZip(
+          zip: AppEngineStandardAppVersionZip(
             sourceUrl: .literal(
               'https://storage.googleapis.com/$projectId-terradart-appengine/app.zip',
             ),
@@ -146,7 +146,7 @@ final class AppEngineStack extends Stack {
         service: .literal('default'),
         networkSettings: AppEngineServiceNetworkSettingsNetworkSettings(
           ingressTrafficAllowed: .literal(
-            AppEngineServiceNetworkSettingsNetworkSettingsIngressTrafficAllowed
+            AppEngineServiceNetworkSettingsIngressTrafficAllowed
                 .ingressTrafficAllowedAll,
           ),
         ),

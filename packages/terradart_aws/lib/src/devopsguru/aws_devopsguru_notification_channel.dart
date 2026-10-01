@@ -18,10 +18,9 @@ final class DevopsguruNotificationChannelFilters {
     this.severities,
   });
 
-  final List<TfArg<DevopsguruNotificationChannelFiltersMessageTypes>>?
-  messageTypes;
+  final List<TfArg<DevopsguruNotificationChannelMessageTypes>>? messageTypes;
 
-  final List<TfArg<DevopsguruNotificationChannelFiltersSeverities>>? severities;
+  final List<TfArg<DevopsguruNotificationChannelSeverities>>? severities;
 
   Map<String, Object?> encode() => {
     if (messageTypes != null)
@@ -32,25 +31,25 @@ final class DevopsguruNotificationChannelFilters {
 }
 
 /// `message_types` — derived from the provider schema description.
-enum DevopsguruNotificationChannelFiltersMessageTypes implements TerraformEnum {
+enum DevopsguruNotificationChannelMessageTypes implements TerraformEnum {
   newInsight('NEW_INSIGHT'),
   closedInsight('CLOSED_INSIGHT'),
   newAssociation('NEW_ASSOCIATION'),
   severityUpgraded('SEVERITY_UPGRADED'),
   newRecommendation('NEW_RECOMMENDATION');
 
-  const DevopsguruNotificationChannelFiltersMessageTypes(this.terraformValue);
+  const DevopsguruNotificationChannelMessageTypes(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `severities` — derived from the provider schema description.
-enum DevopsguruNotificationChannelFiltersSeverities implements TerraformEnum {
+enum DevopsguruNotificationChannelSeverities implements TerraformEnum {
   low('LOW'),
   medium('MEDIUM'),
   high('HIGH');
 
-  const DevopsguruNotificationChannelFiltersSeverities(this.terraformValue);
+  const DevopsguruNotificationChannelSeverities(this.terraformValue);
   @override
   final String terraformValue;
 }

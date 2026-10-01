@@ -31,12 +31,9 @@ final class NetworkServicesAgentConnectivityTemplateEgressNetworkConfig {
 
   final TfArg<String>? networkAttachment;
 
-  final TfArg<
-    NetworkServicesAgentConnectivityTemplateEgressNetworkConfigVpcEgress
-  >?
-  vpcEgress;
+  final TfArg<NetworkServicesAgentConnectivityTemplateVpcEgress>? vpcEgress;
 
-  final NetworkServicesAgentConnectivityTemplateEgressNetworkConfigDnsPeeringConfig?
+  final NetworkServicesAgentConnectivityTemplateDnsPeeringConfig?
   dnsPeeringConfig;
 
   Map<String, Object?> encode() => {
@@ -47,14 +44,12 @@ final class NetworkServicesAgentConnectivityTemplateEgressNetworkConfig {
 }
 
 /// `vpc_egress` — derived from the provider schema description.
-enum NetworkServicesAgentConnectivityTemplateEgressNetworkConfigVpcEgress
+enum NetworkServicesAgentConnectivityTemplateVpcEgress
     implements TerraformEnum {
   allTraffic('ALL_TRAFFIC'),
   privateRangesOnly('PRIVATE_RANGES_ONLY');
 
-  const NetworkServicesAgentConnectivityTemplateEgressNetworkConfigVpcEgress(
-    this.terraformValue,
-  );
+  const NetworkServicesAgentConnectivityTemplateVpcEgress(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -62,8 +57,8 @@ enum NetworkServicesAgentConnectivityTemplateEgressNetworkConfigVpcEgress
 /// Typed helper for the `egress_network_config.dns_peering_config` block of
 /// `google_network_services_agent_connectivity_template` (derived from provider schema).
 @immutable
-final class NetworkServicesAgentConnectivityTemplateEgressNetworkConfigDnsPeeringConfig {
-  const NetworkServicesAgentConnectivityTemplateEgressNetworkConfigDnsPeeringConfig({
+final class NetworkServicesAgentConnectivityTemplateDnsPeeringConfig {
+  const NetworkServicesAgentConnectivityTemplateDnsPeeringConfig({
     required this.domain,
     required this.targetNetwork,
   });

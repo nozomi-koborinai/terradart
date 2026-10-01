@@ -16,15 +16,15 @@ sealed class PrivilegedAccessManagerSettingsEmailNotificationSettings {
 
   /// Sets `disable_all_notifications`.
   const factory PrivilegedAccessManagerSettingsEmailNotificationSettings.disableAllNotifications(
-    PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotifications
+    PrivilegedAccessManagerSettingsDisableAllNotifications
     disableAllNotifications,
-  ) = PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsChoice;
+  ) = PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotifications;
 
   /// Sets `custom_notification_behavior`.
   const factory PrivilegedAccessManagerSettingsEmailNotificationSettings.customNotificationBehavior(
-    PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehavior
+    PrivilegedAccessManagerSettingsCustomNotificationBehavior
     customNotificationBehavior,
-  ) = PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorChoice;
+  ) = PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehavior;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,13 +33,13 @@ sealed class PrivilegedAccessManagerSettingsEmailNotificationSettings {
 }
 
 /// The [PrivilegedAccessManagerSettingsEmailNotificationSettings.disableAllNotifications] choice: sets `disable_all_notifications`.
-final class PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsChoice
+final class PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotifications
     extends PrivilegedAccessManagerSettingsEmailNotificationSettings {
-  const PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsChoice(
+  const PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotifications(
     this.disableAllNotifications,
   );
 
-  final PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotifications
+  final PrivilegedAccessManagerSettingsDisableAllNotifications
   disableAllNotifications;
 
   @override
@@ -52,13 +52,13 @@ final class PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNo
 }
 
 /// The [PrivilegedAccessManagerSettingsEmailNotificationSettings.customNotificationBehavior] choice: sets `custom_notification_behavior`.
-final class PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorChoice
+final class PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehavior
     extends PrivilegedAccessManagerSettingsEmailNotificationSettings {
-  const PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorChoice(
+  const PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehavior(
     this.customNotificationBehavior,
   );
 
-  final PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehavior
+  final PrivilegedAccessManagerSettingsCustomNotificationBehavior
   customNotificationBehavior;
 
   @override
@@ -73,20 +73,19 @@ final class PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotifi
 /// Typed helper for the `email_notification_settings.custom_notification_behavior` block of
 /// `google_privileged_access_manager_settings` (derived from provider schema).
 @immutable
-final class PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehavior {
-  const PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehavior({
+final class PrivilegedAccessManagerSettingsCustomNotificationBehavior {
+  const PrivilegedAccessManagerSettingsCustomNotificationBehavior({
     this.adminNotifications,
     this.approverNotifications,
     this.requesterNotifications,
   });
 
-  final PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorAdminNotifications?
-  adminNotifications;
+  final PrivilegedAccessManagerSettingsAdminNotifications? adminNotifications;
 
-  final PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorApproverNotifications?
+  final PrivilegedAccessManagerSettingsApproverNotifications?
   approverNotifications;
 
-  final PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotifications?
+  final PrivilegedAccessManagerSettingsRequesterNotifications?
   requesterNotifications;
 
   Map<String, Object?> encode() => {
@@ -99,32 +98,22 @@ final class PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotifi
 /// Typed helper for the `email_notification_settings.custom_notification_behavior.admin_notifications` block of
 /// `google_privileged_access_manager_settings` (derived from provider schema).
 @immutable
-final class PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorAdminNotifications {
-  const PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorAdminNotifications({
+final class PrivilegedAccessManagerSettingsAdminNotifications {
+  const PrivilegedAccessManagerSettingsAdminNotifications({
     this.grantActivated,
     this.grantActivationFailed,
     this.grantEnded,
     this.grantExternallyModified,
   });
 
-  final TfArg<
-    PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorAdminNotificationsGrantActivated
-  >?
-  grantActivated;
+  final TfArg<PrivilegedAccessManagerSettingsGrantActivated>? grantActivated;
 
-  final TfArg<
-    PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorAdminNotificationsGrantActivationFailed
-  >?
+  final TfArg<PrivilegedAccessManagerSettingsGrantActivationFailed>?
   grantActivationFailed;
 
-  final TfArg<
-    PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorAdminNotificationsGrantEnded
-  >?
-  grantEnded;
+  final TfArg<PrivilegedAccessManagerSettingsGrantEnded>? grantEnded;
 
-  final TfArg<
-    PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorAdminNotificationsGrantExternallyModified
-  >?
+  final TfArg<PrivilegedAccessManagerSettingsGrantExternallyModified>?
   grantExternallyModified;
 
   Map<String, Object?> encode() => {
@@ -136,27 +125,24 @@ final class PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotifi
 }
 
 /// `grant_activated` — derived from the provider schema description.
-enum PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorAdminNotificationsGrantActivated
-    implements TerraformEnum {
+enum PrivilegedAccessManagerSettingsGrantActivated implements TerraformEnum {
   notificationModeUnspecified('NOTIFICATION_MODE_UNSPECIFIED'),
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorAdminNotificationsGrantActivated(
-    this.terraformValue,
-  );
+  const PrivilegedAccessManagerSettingsGrantActivated(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `grant_activation_failed` — derived from the provider schema description.
-enum PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorAdminNotificationsGrantActivationFailed
+enum PrivilegedAccessManagerSettingsGrantActivationFailed
     implements TerraformEnum {
   notificationModeUnspecified('NOTIFICATION_MODE_UNSPECIFIED'),
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorAdminNotificationsGrantActivationFailed(
+  const PrivilegedAccessManagerSettingsGrantActivationFailed(
     this.terraformValue,
   );
   @override
@@ -164,27 +150,24 @@ enum PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationB
 }
 
 /// `grant_ended` — derived from the provider schema description.
-enum PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorAdminNotificationsGrantEnded
-    implements TerraformEnum {
+enum PrivilegedAccessManagerSettingsGrantEnded implements TerraformEnum {
   notificationModeUnspecified('NOTIFICATION_MODE_UNSPECIFIED'),
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorAdminNotificationsGrantEnded(
-    this.terraformValue,
-  );
+  const PrivilegedAccessManagerSettingsGrantEnded(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `grant_externally_modified` — derived from the provider schema description.
-enum PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorAdminNotificationsGrantExternallyModified
+enum PrivilegedAccessManagerSettingsGrantExternallyModified
     implements TerraformEnum {
   notificationModeUnspecified('NOTIFICATION_MODE_UNSPECIFIED'),
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorAdminNotificationsGrantExternallyModified(
+  const PrivilegedAccessManagerSettingsGrantExternallyModified(
     this.terraformValue,
   );
   @override
@@ -194,15 +177,12 @@ enum PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationB
 /// Typed helper for the `email_notification_settings.custom_notification_behavior.approver_notifications` block of
 /// `google_privileged_access_manager_settings` (derived from provider schema).
 @immutable
-final class PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorApproverNotifications {
-  const PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorApproverNotifications({
+final class PrivilegedAccessManagerSettingsApproverNotifications {
+  const PrivilegedAccessManagerSettingsApproverNotifications({
     this.pendingApproval,
   });
 
-  final TfArg<
-    PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorApproverNotificationsPendingApproval
-  >?
-  pendingApproval;
+  final TfArg<PrivilegedAccessManagerSettingsPendingApproval>? pendingApproval;
 
   Map<String, Object?> encode() => {
     'pending_approval': ?pendingApproval?.toTfJson(),
@@ -210,15 +190,12 @@ final class PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotifi
 }
 
 /// `pending_approval` — derived from the provider schema description.
-enum PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorApproverNotificationsPendingApproval
-    implements TerraformEnum {
+enum PrivilegedAccessManagerSettingsPendingApproval implements TerraformEnum {
   notificationModeUnspecified('NOTIFICATION_MODE_UNSPECIFIED'),
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorApproverNotificationsPendingApproval(
-    this.terraformValue,
-  );
+  const PrivilegedAccessManagerSettingsPendingApproval(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -226,8 +203,8 @@ enum PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationB
 /// Typed helper for the `email_notification_settings.custom_notification_behavior.requester_notifications` block of
 /// `google_privileged_access_manager_settings` (derived from provider schema).
 @immutable
-final class PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotifications {
-  const PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotifications({
+final class PrivilegedAccessManagerSettingsRequesterNotifications {
+  const PrivilegedAccessManagerSettingsRequesterNotifications({
     this.entitlementAssigned,
     this.grantActivated,
     this.grantActivationFailed,
@@ -238,45 +215,24 @@ final class PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotifi
     this.grantRevoked,
   });
 
-  final TfArg<
-    PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsEntitlementAssigned
-  >?
+  final TfArg<PrivilegedAccessManagerSettingsEntitlementAssigned>?
   entitlementAssigned;
 
-  final TfArg<
-    PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantActivated
-  >?
-  grantActivated;
+  final TfArg<PrivilegedAccessManagerSettingsGrantActivated>? grantActivated;
 
-  final TfArg<
-    PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantActivationFailed
-  >?
+  final TfArg<PrivilegedAccessManagerSettingsGrantActivationFailed>?
   grantActivationFailed;
 
-  final TfArg<
-    PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantDenied
-  >?
-  grantDenied;
+  final TfArg<PrivilegedAccessManagerSettingsGrantDenied>? grantDenied;
 
-  final TfArg<
-    PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantEnded
-  >?
-  grantEnded;
+  final TfArg<PrivilegedAccessManagerSettingsGrantEnded>? grantEnded;
 
-  final TfArg<
-    PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantExpired
-  >?
-  grantExpired;
+  final TfArg<PrivilegedAccessManagerSettingsGrantExpired>? grantExpired;
 
-  final TfArg<
-    PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantExternallyModified
-  >?
+  final TfArg<PrivilegedAccessManagerSettingsGrantExternallyModified>?
   grantExternallyModified;
 
-  final TfArg<
-    PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantRevoked
-  >?
-  grantRevoked;
+  final TfArg<PrivilegedAccessManagerSettingsGrantRevoked>? grantRevoked;
 
   Map<String, Object?> encode() => {
     'entitlement_assigned': ?entitlementAssigned?.toTfJson(),
@@ -291,113 +247,46 @@ final class PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotifi
 }
 
 /// `entitlement_assigned` — derived from the provider schema description.
-enum PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsEntitlementAssigned
+enum PrivilegedAccessManagerSettingsEntitlementAssigned
     implements TerraformEnum {
   notificationModeUnspecified('NOTIFICATION_MODE_UNSPECIFIED'),
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsEntitlementAssigned(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `grant_activated` — derived from the provider schema description.
-enum PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantActivated
-    implements TerraformEnum {
-  notificationModeUnspecified('NOTIFICATION_MODE_UNSPECIFIED'),
-  enabled('ENABLED'),
-  disabled('DISABLED');
-
-  const PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantActivated(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `grant_activation_failed` — derived from the provider schema description.
-enum PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantActivationFailed
-    implements TerraformEnum {
-  notificationModeUnspecified('NOTIFICATION_MODE_UNSPECIFIED'),
-  enabled('ENABLED'),
-  disabled('DISABLED');
-
-  const PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantActivationFailed(
-    this.terraformValue,
-  );
+  const PrivilegedAccessManagerSettingsEntitlementAssigned(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `grant_denied` — derived from the provider schema description.
-enum PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantDenied
-    implements TerraformEnum {
+enum PrivilegedAccessManagerSettingsGrantDenied implements TerraformEnum {
   notificationModeUnspecified('NOTIFICATION_MODE_UNSPECIFIED'),
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantDenied(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `grant_ended` — derived from the provider schema description.
-enum PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantEnded
-    implements TerraformEnum {
-  notificationModeUnspecified('NOTIFICATION_MODE_UNSPECIFIED'),
-  enabled('ENABLED'),
-  disabled('DISABLED');
-
-  const PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantEnded(
-    this.terraformValue,
-  );
+  const PrivilegedAccessManagerSettingsGrantDenied(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `grant_expired` — derived from the provider schema description.
-enum PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantExpired
-    implements TerraformEnum {
+enum PrivilegedAccessManagerSettingsGrantExpired implements TerraformEnum {
   notificationModeUnspecified('NOTIFICATION_MODE_UNSPECIFIED'),
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantExpired(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `grant_externally_modified` — derived from the provider schema description.
-enum PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantExternallyModified
-    implements TerraformEnum {
-  notificationModeUnspecified('NOTIFICATION_MODE_UNSPECIFIED'),
-  enabled('ENABLED'),
-  disabled('DISABLED');
-
-  const PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantExternallyModified(
-    this.terraformValue,
-  );
+  const PrivilegedAccessManagerSettingsGrantExpired(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `grant_revoked` — derived from the provider schema description.
-enum PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantRevoked
-    implements TerraformEnum {
+enum PrivilegedAccessManagerSettingsGrantRevoked implements TerraformEnum {
   notificationModeUnspecified('NOTIFICATION_MODE_UNSPECIFIED'),
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehaviorRequesterNotificationsGrantRevoked(
-    this.terraformValue,
-  );
+  const PrivilegedAccessManagerSettingsGrantRevoked(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -405,8 +294,8 @@ enum PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationB
 /// Typed helper for the `email_notification_settings.disable_all_notifications` block of
 /// `google_privileged_access_manager_settings` (derived from provider schema).
 @immutable
-final class PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotifications {
-  const PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotifications();
+final class PrivilegedAccessManagerSettingsDisableAllNotifications {
+  const PrivilegedAccessManagerSettingsDisableAllNotifications();
 
   Map<String, Object?> encode() => {};
 }

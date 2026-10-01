@@ -15,7 +15,7 @@ const Set<String> _cloudflareAccessRulesSensitive = <String>{};
 final class DataAccessRulesConfiguration {
   const DataAccessRulesConfiguration({this.target, this.value});
 
-  final TfArg<DataAccessRulesConfigurationTarget>? target;
+  final TfArg<DataAccessRulesTarget>? target;
 
   final TfArg<String>? value;
 
@@ -26,13 +26,13 @@ final class DataAccessRulesConfiguration {
 }
 
 /// `target` — derived from the provider schema description.
-enum DataAccessRulesConfigurationTarget implements TerraformEnum {
+enum DataAccessRulesTarget implements TerraformEnum {
   ip('ip'),
   ipRange('ip_range'),
   asn('asn'),
   country('country');
 
-  const DataAccessRulesConfigurationTarget(this.terraformValue);
+  const DataAccessRulesTarget(this.terraformValue);
   @override
   final String terraformValue;
 }

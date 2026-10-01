@@ -17,7 +17,7 @@ final class NetworkfirewallTlsInspectionConfigurationTlsInspectionConfiguration 
   });
 
   final List<
-    NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfiguration
+    NetworkfirewallTlsInspectionConfigurationServerCertificateConfiguration
   >?
   serverCertificateConfiguration;
 
@@ -32,8 +32,8 @@ final class NetworkfirewallTlsInspectionConfigurationTlsInspectionConfiguration 
 /// Typed helper for the `tls_inspection_configuration.server_certificate_configuration` block of
 /// `aws_networkfirewall_tls_inspection_configuration` (derived from provider schema).
 @immutable
-final class NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfiguration {
-  const NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfiguration({
+final class NetworkfirewallTlsInspectionConfigurationServerCertificateConfiguration {
+  const NetworkfirewallTlsInspectionConfigurationServerCertificateConfiguration({
     this.certificateAuthorityArn,
     this.checkCertificateRevocationStatus,
     this.scope,
@@ -43,18 +43,13 @@ final class NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationS
   final TfArg<String>? certificateAuthorityArn;
 
   final List<
-    NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationCheckCertificateRevocationStatus
+    NetworkfirewallTlsInspectionConfigurationCheckCertificateRevocationStatus
   >?
   checkCertificateRevocationStatus;
 
-  final List<
-    NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationScope
-  >?
-  scope;
+  final List<NetworkfirewallTlsInspectionConfigurationScope>? scope;
 
-  final List<
-    NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationServerCertificate
-  >?
+  final List<NetworkfirewallTlsInspectionConfigurationServerCertificate>?
   serverCertificate;
 
   Map<String, Object?> encode() => {
@@ -72,20 +67,16 @@ final class NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationS
 /// Typed helper for the `tls_inspection_configuration.server_certificate_configuration.check_certificate_revocation_status` block of
 /// `aws_networkfirewall_tls_inspection_configuration` (derived from provider schema).
 @immutable
-final class NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationCheckCertificateRevocationStatus {
-  const NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationCheckCertificateRevocationStatus({
+final class NetworkfirewallTlsInspectionConfigurationCheckCertificateRevocationStatus {
+  const NetworkfirewallTlsInspectionConfigurationCheckCertificateRevocationStatus({
     this.revokedStatusAction,
     this.unknownStatusAction,
   });
 
-  final TfArg<
-    NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationCheckCertificateRevocationStatusRevokedStatusAction
-  >?
+  final TfArg<NetworkfirewallTlsInspectionConfigurationRevokedStatusAction>?
   revokedStatusAction;
 
-  final TfArg<
-    NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationCheckCertificateRevocationStatusUnknownStatusAction
-  >?
+  final TfArg<NetworkfirewallTlsInspectionConfigurationUnknownStatusAction>?
   unknownStatusAction;
 
   Map<String, Object?> encode() => {
@@ -95,13 +86,13 @@ final class NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationS
 }
 
 /// `revoked_status_action` — derived from the provider schema description.
-enum NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationCheckCertificateRevocationStatusRevokedStatusAction
+enum NetworkfirewallTlsInspectionConfigurationRevokedStatusAction
     implements TerraformEnum {
   pass('PASS'),
   drop('DROP'),
   reject('REJECT');
 
-  const NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationCheckCertificateRevocationStatusRevokedStatusAction(
+  const NetworkfirewallTlsInspectionConfigurationRevokedStatusAction(
     this.terraformValue,
   );
   @override
@@ -109,13 +100,13 @@ enum NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCe
 }
 
 /// `unknown_status_action` — derived from the provider schema description.
-enum NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationCheckCertificateRevocationStatusUnknownStatusAction
+enum NetworkfirewallTlsInspectionConfigurationUnknownStatusAction
     implements TerraformEnum {
   pass('PASS'),
   drop('DROP'),
   reject('REJECT');
 
-  const NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationCheckCertificateRevocationStatusUnknownStatusAction(
+  const NetworkfirewallTlsInspectionConfigurationUnknownStatusAction(
     this.terraformValue,
   );
   @override
@@ -125,8 +116,8 @@ enum NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCe
 /// Typed helper for the `tls_inspection_configuration.server_certificate_configuration.scope` block of
 /// `aws_networkfirewall_tls_inspection_configuration` (derived from provider schema).
 @immutable
-final class NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationScope {
-  const NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationScope({
+final class NetworkfirewallTlsInspectionConfigurationScope {
+  const NetworkfirewallTlsInspectionConfigurationScope({
     required this.protocols,
     this.destination,
     this.destinationPorts,
@@ -136,25 +127,14 @@ final class NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationS
 
   final TfArg<List<num>> protocols;
 
-  final List<
-    NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationScopeDestination
-  >?
-  destination;
+  final List<NetworkfirewallTlsInspectionConfigurationDestination>? destination;
 
-  final List<
-    NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationScopeDestinationPorts
-  >?
+  final List<NetworkfirewallTlsInspectionConfigurationDestinationPorts>?
   destinationPorts;
 
-  final List<
-    NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationScopeSource
-  >?
-  source;
+  final List<NetworkfirewallTlsInspectionConfigurationSource>? source;
 
-  final List<
-    NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationScopeSourcePorts
-  >?
-  sourcePorts;
+  final List<NetworkfirewallTlsInspectionConfigurationSourcePorts>? sourcePorts;
 
   Map<String, Object?> encode() => {
     'protocols': protocols.toTfJson(),
@@ -171,8 +151,8 @@ final class NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationS
 /// Typed helper for the `tls_inspection_configuration.server_certificate_configuration.scope.destination` block of
 /// `aws_networkfirewall_tls_inspection_configuration` (derived from provider schema).
 @immutable
-final class NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationScopeDestination {
-  const NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationScopeDestination({
+final class NetworkfirewallTlsInspectionConfigurationDestination {
+  const NetworkfirewallTlsInspectionConfigurationDestination({
     required this.addressDefinition,
   });
 
@@ -186,8 +166,8 @@ final class NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationS
 /// Typed helper for the `tls_inspection_configuration.server_certificate_configuration.scope.destination_ports` block of
 /// `aws_networkfirewall_tls_inspection_configuration` (derived from provider schema).
 @immutable
-final class NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationScopeDestinationPorts {
-  const NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationScopeDestinationPorts({
+final class NetworkfirewallTlsInspectionConfigurationDestinationPorts {
+  const NetworkfirewallTlsInspectionConfigurationDestinationPorts({
     required this.fromPort,
     required this.toPort,
   });
@@ -205,8 +185,8 @@ final class NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationS
 /// Typed helper for the `tls_inspection_configuration.server_certificate_configuration.scope.source` block of
 /// `aws_networkfirewall_tls_inspection_configuration` (derived from provider schema).
 @immutable
-final class NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationScopeSource {
-  const NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationScopeSource({
+final class NetworkfirewallTlsInspectionConfigurationSource {
+  const NetworkfirewallTlsInspectionConfigurationSource({
     required this.addressDefinition,
   });
 
@@ -220,8 +200,8 @@ final class NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationS
 /// Typed helper for the `tls_inspection_configuration.server_certificate_configuration.scope.source_ports` block of
 /// `aws_networkfirewall_tls_inspection_configuration` (derived from provider schema).
 @immutable
-final class NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationScopeSourcePorts {
-  const NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationScopeSourcePorts({
+final class NetworkfirewallTlsInspectionConfigurationSourcePorts {
+  const NetworkfirewallTlsInspectionConfigurationSourcePorts({
     required this.fromPort,
     required this.toPort,
   });
@@ -239,8 +219,8 @@ final class NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationS
 /// Typed helper for the `tls_inspection_configuration.server_certificate_configuration.server_certificate` block of
 /// `aws_networkfirewall_tls_inspection_configuration` (derived from provider schema).
 @immutable
-final class NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationServerCertificate {
-  const NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationServerCertificate({
+final class NetworkfirewallTlsInspectionConfigurationServerCertificate {
+  const NetworkfirewallTlsInspectionConfigurationServerCertificate({
     this.resourceArn,
   });
 

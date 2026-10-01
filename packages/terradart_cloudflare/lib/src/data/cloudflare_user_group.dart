@@ -20,7 +20,7 @@ final class DataUserGroupFilter {
     this.name,
   });
 
-  final TfArg<DataUserGroupFilterDirection>? direction;
+  final TfArg<DataUserGroupDirection>? direction;
 
   final TfArg<String>? fuzzyName;
 
@@ -37,11 +37,11 @@ final class DataUserGroupFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataUserGroupFilterDirection implements TerraformEnum {
+enum DataUserGroupDirection implements TerraformEnum {
   asc('asc'),
   desc('desc');
 
-  const DataUserGroupFilterDirection(this.terraformValue);
+  const DataUserGroupDirection(this.terraformValue);
   @override
   final String terraformValue;
 }

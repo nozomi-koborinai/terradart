@@ -5,11 +5,11 @@ library;
 
 export 'src/apikeys/google_apikeys_key.dart'
     show
+        ApikeysKeyAllowedApplications,
+        ApikeysKeyAndroidKeyRestrictions,
+        ApikeysKeyApiTargets,
+        ApikeysKeyBrowserKeyRestrictions,
+        ApikeysKeyIosKeyRestrictions,
         ApikeysKeyRestrictions,
-        ApikeysKeyRestrictionsAndroidKeyRestrictions,
-        ApikeysKeyRestrictionsAndroidKeyRestrictionsAllowedApplications,
-        ApikeysKeyRestrictionsApiTargets,
-        ApikeysKeyRestrictionsBrowserKeyRestrictions,
-        ApikeysKeyRestrictionsIosKeyRestrictions,
-        ApikeysKeyRestrictionsServerKeyRestrictions,
+        ApikeysKeyServerKeyRestrictions,
         GoogleApikeysKey;

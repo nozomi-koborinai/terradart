@@ -121,11 +121,11 @@ final class ZeroTrustAccessApplicationCorsHeaders {
     this.maxAge,
   });
 
-  final ZeroTrustAccessApplicationCorsHeadersRequestHeaders? requestHeaders;
+  final ZeroTrustAccessApplicationRequestHeaders? requestHeaders;
 
-  final ZeroTrustAccessApplicationCorsHeadersMethods methods;
+  final ZeroTrustAccessApplicationMethods methods;
 
-  final ZeroTrustAccessApplicationCorsHeadersOrigins origins;
+  final ZeroTrustAccessApplicationOrigins origins;
 
   final TfArg<bool>? allowCredentials;
 
@@ -144,19 +144,18 @@ final class ZeroTrustAccessApplicationCorsHeaders {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.allowAllMethods(...)`.
-sealed class ZeroTrustAccessApplicationCorsHeadersMethods {
-  const ZeroTrustAccessApplicationCorsHeadersMethods();
+sealed class ZeroTrustAccessApplicationMethods {
+  const ZeroTrustAccessApplicationMethods();
 
   /// Sets `allow_all_methods`.
-  const factory ZeroTrustAccessApplicationCorsHeadersMethods.allowAllMethods(
+  const factory ZeroTrustAccessApplicationMethods.allowAllMethods(
     TfArg<bool> allowAllMethods,
-  ) = ZeroTrustAccessApplicationCorsHeadersMethodsAllowAllMethods;
+  ) = ZeroTrustAccessApplicationAllowAllMethods;
 
   /// Sets `allowed_methods`.
-  const factory ZeroTrustAccessApplicationCorsHeadersMethods.allowedMethods(
-    List<TfArg<ZeroTrustAccessApplicationCorsHeadersAllowedMethods>>
-    allowedMethods,
-  ) = ZeroTrustAccessApplicationCorsHeadersMethodsAllowedMethods;
+  const factory ZeroTrustAccessApplicationMethods.allowedMethods(
+    List<TfArg<ZeroTrustAccessApplicationAllowedMethods>> allowedMethods,
+  ) = ZeroTrustAccessApplicationAllowedMethodsChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -164,12 +163,10 @@ sealed class ZeroTrustAccessApplicationCorsHeadersMethods {
   Map<String, Object?> encode();
 }
 
-/// The [ZeroTrustAccessApplicationCorsHeadersMethods.allowAllMethods] choice: sets `allow_all_methods`.
-final class ZeroTrustAccessApplicationCorsHeadersMethodsAllowAllMethods
-    extends ZeroTrustAccessApplicationCorsHeadersMethods {
-  const ZeroTrustAccessApplicationCorsHeadersMethodsAllowAllMethods(
-    this.allowAllMethods,
-  );
+/// The [ZeroTrustAccessApplicationMethods.allowAllMethods] choice: sets `allow_all_methods`.
+final class ZeroTrustAccessApplicationAllowAllMethods
+    extends ZeroTrustAccessApplicationMethods {
+  const ZeroTrustAccessApplicationAllowAllMethods(this.allowAllMethods);
 
   final TfArg<bool> allowAllMethods;
 
@@ -182,15 +179,12 @@ final class ZeroTrustAccessApplicationCorsHeadersMethodsAllowAllMethods
   };
 }
 
-/// The [ZeroTrustAccessApplicationCorsHeadersMethods.allowedMethods] choice: sets `allowed_methods`.
-final class ZeroTrustAccessApplicationCorsHeadersMethodsAllowedMethods
-    extends ZeroTrustAccessApplicationCorsHeadersMethods {
-  const ZeroTrustAccessApplicationCorsHeadersMethodsAllowedMethods(
-    this.allowedMethods,
-  );
+/// The [ZeroTrustAccessApplicationMethods.allowedMethods] choice: sets `allowed_methods`.
+final class ZeroTrustAccessApplicationAllowedMethodsChoice
+    extends ZeroTrustAccessApplicationMethods {
+  const ZeroTrustAccessApplicationAllowedMethodsChoice(this.allowedMethods);
 
-  final List<TfArg<ZeroTrustAccessApplicationCorsHeadersAllowedMethods>>
-  allowedMethods;
+  final List<TfArg<ZeroTrustAccessApplicationAllowedMethods>> allowedMethods;
 
   @override
   String get blockKey => 'allowed_methods';
@@ -205,18 +199,18 @@ final class ZeroTrustAccessApplicationCorsHeadersMethodsAllowedMethods
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.allowAllOrigins(...)`.
-sealed class ZeroTrustAccessApplicationCorsHeadersOrigins {
-  const ZeroTrustAccessApplicationCorsHeadersOrigins();
+sealed class ZeroTrustAccessApplicationOrigins {
+  const ZeroTrustAccessApplicationOrigins();
 
   /// Sets `allow_all_origins`.
-  const factory ZeroTrustAccessApplicationCorsHeadersOrigins.allowAllOrigins(
+  const factory ZeroTrustAccessApplicationOrigins.allowAllOrigins(
     TfArg<bool> allowAllOrigins,
-  ) = ZeroTrustAccessApplicationCorsHeadersOriginsAllowAllOrigins;
+  ) = ZeroTrustAccessApplicationAllowAllOrigins;
 
   /// Sets `allowed_origins`.
-  const factory ZeroTrustAccessApplicationCorsHeadersOrigins.allowedOrigins(
+  const factory ZeroTrustAccessApplicationOrigins.allowedOrigins(
     TfArg<List<String>> allowedOrigins,
-  ) = ZeroTrustAccessApplicationCorsHeadersOriginsAllowedOrigins;
+  ) = ZeroTrustAccessApplicationAllowedOrigins;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -224,12 +218,10 @@ sealed class ZeroTrustAccessApplicationCorsHeadersOrigins {
   Map<String, Object?> encode();
 }
 
-/// The [ZeroTrustAccessApplicationCorsHeadersOrigins.allowAllOrigins] choice: sets `allow_all_origins`.
-final class ZeroTrustAccessApplicationCorsHeadersOriginsAllowAllOrigins
-    extends ZeroTrustAccessApplicationCorsHeadersOrigins {
-  const ZeroTrustAccessApplicationCorsHeadersOriginsAllowAllOrigins(
-    this.allowAllOrigins,
-  );
+/// The [ZeroTrustAccessApplicationOrigins.allowAllOrigins] choice: sets `allow_all_origins`.
+final class ZeroTrustAccessApplicationAllowAllOrigins
+    extends ZeroTrustAccessApplicationOrigins {
+  const ZeroTrustAccessApplicationAllowAllOrigins(this.allowAllOrigins);
 
   final TfArg<bool> allowAllOrigins;
 
@@ -242,12 +234,10 @@ final class ZeroTrustAccessApplicationCorsHeadersOriginsAllowAllOrigins
   };
 }
 
-/// The [ZeroTrustAccessApplicationCorsHeadersOrigins.allowedOrigins] choice: sets `allowed_origins`.
-final class ZeroTrustAccessApplicationCorsHeadersOriginsAllowedOrigins
-    extends ZeroTrustAccessApplicationCorsHeadersOrigins {
-  const ZeroTrustAccessApplicationCorsHeadersOriginsAllowedOrigins(
-    this.allowedOrigins,
-  );
+/// The [ZeroTrustAccessApplicationOrigins.allowedOrigins] choice: sets `allowed_origins`.
+final class ZeroTrustAccessApplicationAllowedOrigins
+    extends ZeroTrustAccessApplicationOrigins {
+  const ZeroTrustAccessApplicationAllowedOrigins(this.allowedOrigins);
 
   final TfArg<List<String>> allowedOrigins;
 
@@ -265,18 +255,18 @@ final class ZeroTrustAccessApplicationCorsHeadersOriginsAllowedOrigins
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.allowAllHeaders(...)`.
-sealed class ZeroTrustAccessApplicationCorsHeadersRequestHeaders {
-  const ZeroTrustAccessApplicationCorsHeadersRequestHeaders();
+sealed class ZeroTrustAccessApplicationRequestHeaders {
+  const ZeroTrustAccessApplicationRequestHeaders();
 
   /// Sets `allow_all_headers`.
-  const factory ZeroTrustAccessApplicationCorsHeadersRequestHeaders.allowAllHeaders(
+  const factory ZeroTrustAccessApplicationRequestHeaders.allowAllHeaders(
     TfArg<bool> allowAllHeaders,
-  ) = ZeroTrustAccessApplicationCorsHeadersRequestHeadersAllowAllHeaders;
+  ) = ZeroTrustAccessApplicationRequestHeadersAllowAllHeaders;
 
   /// Sets `allowed_headers`.
-  const factory ZeroTrustAccessApplicationCorsHeadersRequestHeaders.allowedHeaders(
+  const factory ZeroTrustAccessApplicationRequestHeaders.allowedHeaders(
     TfArg<List<String>> allowedHeaders,
-  ) = ZeroTrustAccessApplicationCorsHeadersRequestHeadersAllowedHeaders;
+  ) = ZeroTrustAccessApplicationRequestHeadersAllowedHeaders;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -284,10 +274,10 @@ sealed class ZeroTrustAccessApplicationCorsHeadersRequestHeaders {
   Map<String, Object?> encode();
 }
 
-/// The [ZeroTrustAccessApplicationCorsHeadersRequestHeaders.allowAllHeaders] choice: sets `allow_all_headers`.
-final class ZeroTrustAccessApplicationCorsHeadersRequestHeadersAllowAllHeaders
-    extends ZeroTrustAccessApplicationCorsHeadersRequestHeaders {
-  const ZeroTrustAccessApplicationCorsHeadersRequestHeadersAllowAllHeaders(
+/// The [ZeroTrustAccessApplicationRequestHeaders.allowAllHeaders] choice: sets `allow_all_headers`.
+final class ZeroTrustAccessApplicationRequestHeadersAllowAllHeaders
+    extends ZeroTrustAccessApplicationRequestHeaders {
+  const ZeroTrustAccessApplicationRequestHeadersAllowAllHeaders(
     this.allowAllHeaders,
   );
 
@@ -302,10 +292,10 @@ final class ZeroTrustAccessApplicationCorsHeadersRequestHeadersAllowAllHeaders
   };
 }
 
-/// The [ZeroTrustAccessApplicationCorsHeadersRequestHeaders.allowedHeaders] choice: sets `allowed_headers`.
-final class ZeroTrustAccessApplicationCorsHeadersRequestHeadersAllowedHeaders
-    extends ZeroTrustAccessApplicationCorsHeadersRequestHeaders {
-  const ZeroTrustAccessApplicationCorsHeadersRequestHeadersAllowedHeaders(
+/// The [ZeroTrustAccessApplicationRequestHeaders.allowedHeaders] choice: sets `allowed_headers`.
+final class ZeroTrustAccessApplicationRequestHeadersAllowedHeaders
+    extends ZeroTrustAccessApplicationRequestHeaders {
+  const ZeroTrustAccessApplicationRequestHeadersAllowedHeaders(
     this.allowedHeaders,
   );
 
@@ -321,8 +311,7 @@ final class ZeroTrustAccessApplicationCorsHeadersRequestHeadersAllowedHeaders
 }
 
 /// `allowed_methods` — derived from the provider schema description.
-enum ZeroTrustAccessApplicationCorsHeadersAllowedMethods
-    implements TerraformEnum {
+enum ZeroTrustAccessApplicationAllowedMethods implements TerraformEnum {
   get('GET'),
   post('POST'),
   head('HEAD'),
@@ -333,9 +322,7 @@ enum ZeroTrustAccessApplicationCorsHeadersAllowedMethods
   trace('TRACE'),
   patch('PATCH');
 
-  const ZeroTrustAccessApplicationCorsHeadersAllowedMethods(
-    this.terraformValue,
-  );
+  const ZeroTrustAccessApplicationAllowedMethods(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -360,7 +347,7 @@ final class ZeroTrustAccessApplicationDestinations {
 
   final TfArg<String>? hostname;
 
-  final TfArg<ZeroTrustAccessApplicationDestinationsL4Protocol>? l4Protocol;
+  final TfArg<ZeroTrustAccessApplicationL4Protocol>? l4Protocol;
 
   final TfArg<String>? mcpServerId;
 
@@ -388,11 +375,11 @@ final class ZeroTrustAccessApplicationDestinations {
 }
 
 /// `l4_protocol` — derived from the provider schema description.
-enum ZeroTrustAccessApplicationDestinationsL4Protocol implements TerraformEnum {
+enum ZeroTrustAccessApplicationL4Protocol implements TerraformEnum {
   tcp('tcp'),
   udp('udp');
 
-  const ZeroTrustAccessApplicationDestinationsL4Protocol(this.terraformValue);
+  const ZeroTrustAccessApplicationL4Protocol(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -472,7 +459,7 @@ final class ZeroTrustAccessApplicationMfaConfig {
     this.sessionDuration,
   });
 
-  final List<TfArg<ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators>>?
+  final List<TfArg<ZeroTrustAccessApplicationAllowedAuthenticators>>?
   allowedAuthenticators;
 
   final TfArg<bool>? mfaDisabled;
@@ -490,15 +477,12 @@ final class ZeroTrustAccessApplicationMfaConfig {
 }
 
 /// `allowed_authenticators` — derived from the provider schema description.
-enum ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators
-    implements TerraformEnum {
+enum ZeroTrustAccessApplicationAllowedAuthenticators implements TerraformEnum {
   totp('totp'),
   biometrics('biometrics'),
   securityKey('security_key');
 
-  const ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators(
-    this.terraformValue,
-  );
+  const ZeroTrustAccessApplicationAllowedAuthenticators(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -515,10 +499,10 @@ final class ZeroTrustAccessApplicationOauthConfiguration {
 
   final TfArg<bool>? enabled;
 
-  final ZeroTrustAccessApplicationOauthConfigurationDynamicClientRegistration?
+  final ZeroTrustAccessApplicationDynamicClientRegistration?
   dynamicClientRegistration;
 
-  final ZeroTrustAccessApplicationOauthConfigurationGrant? grant;
+  final ZeroTrustAccessApplicationGrant? grant;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
@@ -530,8 +514,8 @@ final class ZeroTrustAccessApplicationOauthConfiguration {
 /// Typed helper for the `oauth_configuration.dynamic_client_registration` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
 @immutable
-final class ZeroTrustAccessApplicationOauthConfigurationDynamicClientRegistration {
-  const ZeroTrustAccessApplicationOauthConfigurationDynamicClientRegistration({
+final class ZeroTrustAccessApplicationDynamicClientRegistration {
+  const ZeroTrustAccessApplicationDynamicClientRegistration({
     this.allowAnyOnLocalhost,
     this.allowAnyOnLoopback,
     this.allowedUris,
@@ -557,8 +541,8 @@ final class ZeroTrustAccessApplicationOauthConfigurationDynamicClientRegistratio
 /// Typed helper for the `oauth_configuration.grant` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
 @immutable
-final class ZeroTrustAccessApplicationOauthConfigurationGrant {
-  const ZeroTrustAccessApplicationOauthConfigurationGrant({
+final class ZeroTrustAccessApplicationGrant {
+  const ZeroTrustAccessApplicationGrant({
     this.accessTokenLifetime,
     this.sessionDuration,
   });
@@ -588,21 +572,21 @@ final class ZeroTrustAccessApplicationPolicies {
     this.require,
   });
 
-  final TfArg<ZeroTrustAccessApplicationPoliciesDecision>? decision;
+  final TfArg<ZeroTrustAccessApplicationDecision>? decision;
 
-  final ZeroTrustAccessApplicationPoliciesPolicy policy;
+  final ZeroTrustAccessApplicationPolicy policy;
 
   final TfArg<String>? name;
 
   final TfArg<num>? precedence;
 
-  final ZeroTrustAccessApplicationPoliciesConnectionRules? connectionRules;
+  final ZeroTrustAccessApplicationConnectionRules? connectionRules;
 
-  final List<ZeroTrustAccessApplicationPoliciesExclude>? exclude;
+  final List<ZeroTrustAccessApplicationExclude>? exclude;
 
   final ZeroTrustAccessApplicationPoliciesMfaConfig? mfaConfig;
 
-  final List<ZeroTrustAccessApplicationPoliciesRequire>? require;
+  final List<ZeroTrustAccessApplicationRequire>? require;
 
   Map<String, Object?> encode() => {
     'decision': ?decision?.toTfJson(),
@@ -620,17 +604,17 @@ final class ZeroTrustAccessApplicationPolicies {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.id(...)`.
-sealed class ZeroTrustAccessApplicationPoliciesPolicy {
-  const ZeroTrustAccessApplicationPoliciesPolicy();
+sealed class ZeroTrustAccessApplicationPolicy {
+  const ZeroTrustAccessApplicationPolicy();
 
   /// Sets `id`.
-  const factory ZeroTrustAccessApplicationPoliciesPolicy.id(TfArg<String> id) =
-      ZeroTrustAccessApplicationPoliciesPolicyId;
+  const factory ZeroTrustAccessApplicationPolicy.id(TfArg<String> id) =
+      ZeroTrustAccessApplicationPolicyId;
 
   /// Sets `include`.
-  const factory ZeroTrustAccessApplicationPoliciesPolicy.include(
-    List<ZeroTrustAccessApplicationPoliciesInclude> include,
-  ) = ZeroTrustAccessApplicationPoliciesPolicyInclude;
+  const factory ZeroTrustAccessApplicationPolicy.include(
+    List<ZeroTrustAccessApplicationInclude> include,
+  ) = ZeroTrustAccessApplicationPolicyInclude;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -638,10 +622,10 @@ sealed class ZeroTrustAccessApplicationPoliciesPolicy {
   Map<String, Object?> encode();
 }
 
-/// The [ZeroTrustAccessApplicationPoliciesPolicy.id] choice: sets `id`.
-final class ZeroTrustAccessApplicationPoliciesPolicyId
-    extends ZeroTrustAccessApplicationPoliciesPolicy {
-  const ZeroTrustAccessApplicationPoliciesPolicyId(this.id);
+/// The [ZeroTrustAccessApplicationPolicy.id] choice: sets `id`.
+final class ZeroTrustAccessApplicationPolicyId
+    extends ZeroTrustAccessApplicationPolicy {
+  const ZeroTrustAccessApplicationPolicyId(this.id);
 
   final TfArg<String> id;
 
@@ -652,12 +636,12 @@ final class ZeroTrustAccessApplicationPoliciesPolicyId
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
-/// The [ZeroTrustAccessApplicationPoliciesPolicy.include] choice: sets `include`.
-final class ZeroTrustAccessApplicationPoliciesPolicyInclude
-    extends ZeroTrustAccessApplicationPoliciesPolicy {
-  const ZeroTrustAccessApplicationPoliciesPolicyInclude(this.include);
+/// The [ZeroTrustAccessApplicationPolicy.include] choice: sets `include`.
+final class ZeroTrustAccessApplicationPolicyInclude
+    extends ZeroTrustAccessApplicationPolicy {
+  const ZeroTrustAccessApplicationPolicyInclude(this.include);
 
-  final List<ZeroTrustAccessApplicationPoliciesInclude> include;
+  final List<ZeroTrustAccessApplicationInclude> include;
 
   @override
   String get blockKey => 'include';
@@ -669,13 +653,13 @@ final class ZeroTrustAccessApplicationPoliciesPolicyInclude
 }
 
 /// `decision` — derived from the provider schema description.
-enum ZeroTrustAccessApplicationPoliciesDecision implements TerraformEnum {
+enum ZeroTrustAccessApplicationDecision implements TerraformEnum {
   allow('allow'),
   deny('deny'),
   nonIdentity('non_identity'),
   bypass('bypass');
 
-  const ZeroTrustAccessApplicationPoliciesDecision(this.terraformValue);
+  const ZeroTrustAccessApplicationDecision(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -683,12 +667,12 @@ enum ZeroTrustAccessApplicationPoliciesDecision implements TerraformEnum {
 /// Typed helper for the `policies.connection_rules` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
 @immutable
-final class ZeroTrustAccessApplicationPoliciesConnectionRules {
-  const ZeroTrustAccessApplicationPoliciesConnectionRules({this.rdp, this.ssh});
+final class ZeroTrustAccessApplicationConnectionRules {
+  const ZeroTrustAccessApplicationConnectionRules({this.rdp, this.ssh});
 
-  final ZeroTrustAccessApplicationPoliciesConnectionRulesRdp? rdp;
+  final ZeroTrustAccessApplicationRdp? rdp;
 
-  final ZeroTrustAccessApplicationPoliciesConnectionRulesSsh? ssh;
+  final ZeroTrustAccessApplicationSsh? ssh;
 
   Map<String, Object?> encode() => {
     'rdp': ?rdp?.encode(),
@@ -699,23 +683,19 @@ final class ZeroTrustAccessApplicationPoliciesConnectionRules {
 /// Typed helper for the `policies.connection_rules.rdp` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
 @immutable
-final class ZeroTrustAccessApplicationPoliciesConnectionRulesRdp {
-  const ZeroTrustAccessApplicationPoliciesConnectionRulesRdp({
+final class ZeroTrustAccessApplicationRdp {
+  const ZeroTrustAccessApplicationRdp({
     this.allowedClipboardLocalToRemoteFormats,
     this.allowedClipboardRemoteToLocalFormats,
   });
 
   final List<
-    TfArg<
-      ZeroTrustAccessApplicationPoliciesConnectionRulesRdpAllowedClipboardLocalToRemoteFormats
-    >
+    TfArg<ZeroTrustAccessApplicationAllowedClipboardLocalToRemoteFormats>
   >?
   allowedClipboardLocalToRemoteFormats;
 
   final List<
-    TfArg<
-      ZeroTrustAccessApplicationPoliciesConnectionRulesRdpAllowedClipboardRemoteToLocalFormats
-    >
+    TfArg<ZeroTrustAccessApplicationAllowedClipboardRemoteToLocalFormats>
   >?
   allowedClipboardRemoteToLocalFormats;
 
@@ -732,12 +712,12 @@ final class ZeroTrustAccessApplicationPoliciesConnectionRulesRdp {
 }
 
 /// `allowed_clipboard_local_to_remote_formats` — derived from the provider schema description.
-enum ZeroTrustAccessApplicationPoliciesConnectionRulesRdpAllowedClipboardLocalToRemoteFormats
+enum ZeroTrustAccessApplicationAllowedClipboardLocalToRemoteFormats
     implements TerraformEnum {
   text('text'),
   file('file');
 
-  const ZeroTrustAccessApplicationPoliciesConnectionRulesRdpAllowedClipboardLocalToRemoteFormats(
+  const ZeroTrustAccessApplicationAllowedClipboardLocalToRemoteFormats(
     this.terraformValue,
   );
   @override
@@ -745,12 +725,12 @@ enum ZeroTrustAccessApplicationPoliciesConnectionRulesRdpAllowedClipboardLocalTo
 }
 
 /// `allowed_clipboard_remote_to_local_formats` — derived from the provider schema description.
-enum ZeroTrustAccessApplicationPoliciesConnectionRulesRdpAllowedClipboardRemoteToLocalFormats
+enum ZeroTrustAccessApplicationAllowedClipboardRemoteToLocalFormats
     implements TerraformEnum {
   text('text'),
   file('file');
 
-  const ZeroTrustAccessApplicationPoliciesConnectionRulesRdpAllowedClipboardRemoteToLocalFormats(
+  const ZeroTrustAccessApplicationAllowedClipboardRemoteToLocalFormats(
     this.terraformValue,
   );
   @override
@@ -760,8 +740,8 @@ enum ZeroTrustAccessApplicationPoliciesConnectionRulesRdpAllowedClipboardRemoteT
 /// Typed helper for the `policies.connection_rules.ssh` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
 @immutable
-final class ZeroTrustAccessApplicationPoliciesConnectionRulesSsh {
-  const ZeroTrustAccessApplicationPoliciesConnectionRulesSsh({
+final class ZeroTrustAccessApplicationSsh {
+  const ZeroTrustAccessApplicationSsh({
     this.allowEmailAlias,
     required this.usernames,
   });
@@ -779,8 +759,8 @@ final class ZeroTrustAccessApplicationPoliciesConnectionRulesSsh {
 /// Typed helper for the `policies.exclude` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
 @immutable
-final class ZeroTrustAccessApplicationPoliciesExclude {
-  const ZeroTrustAccessApplicationPoliciesExclude({
+final class ZeroTrustAccessApplicationExclude {
+  const ZeroTrustAccessApplicationExclude({
     this.anyValidServiceToken,
     this.authContext,
     this.authMethod,
@@ -807,56 +787,53 @@ final class ZeroTrustAccessApplicationPoliciesExclude {
     this.serviceToken,
   });
 
-  final ZeroTrustAccessApplicationPoliciesExcludeAnyValidServiceToken?
-  anyValidServiceToken;
+  final ZeroTrustAccessApplicationAnyValidServiceToken? anyValidServiceToken;
 
-  final ZeroTrustAccessApplicationPoliciesExcludeAuthContext? authContext;
+  final ZeroTrustAccessApplicationAuthContext? authContext;
 
-  final ZeroTrustAccessApplicationPoliciesExcludeAuthMethod? authMethod;
+  final ZeroTrustAccessApplicationAuthMethod? authMethod;
 
-  final ZeroTrustAccessApplicationPoliciesExcludeAzureAd? azureAd;
+  final ZeroTrustAccessApplicationAzureAd? azureAd;
 
-  final ZeroTrustAccessApplicationPoliciesExcludeCertificate? certificate;
+  final ZeroTrustAccessApplicationCertificate? certificate;
 
-  final ZeroTrustAccessApplicationPoliciesExcludeCommonName? commonName;
+  final ZeroTrustAccessApplicationCommonName? commonName;
 
-  final ZeroTrustAccessApplicationPoliciesExcludeDevicePosture? devicePosture;
+  final ZeroTrustAccessApplicationDevicePosture? devicePosture;
 
-  final ZeroTrustAccessApplicationPoliciesExcludeEmail? email;
+  final ZeroTrustAccessApplicationEmail? email;
 
-  final ZeroTrustAccessApplicationPoliciesExcludeEmailDomain? emailDomain;
+  final ZeroTrustAccessApplicationEmailDomain? emailDomain;
 
-  final ZeroTrustAccessApplicationPoliciesExcludeEmailList? emailList;
+  final ZeroTrustAccessApplicationEmailList? emailList;
 
-  final ZeroTrustAccessApplicationPoliciesExcludeEveryone? everyone;
+  final ZeroTrustAccessApplicationEveryone? everyone;
 
-  final ZeroTrustAccessApplicationPoliciesExcludeExternalEvaluation?
-  externalEvaluation;
+  final ZeroTrustAccessApplicationExternalEvaluation? externalEvaluation;
 
-  final ZeroTrustAccessApplicationPoliciesExcludeGeo? geo;
+  final ZeroTrustAccessApplicationGeo? geo;
 
-  final ZeroTrustAccessApplicationPoliciesExcludeGithubOrganization?
-  githubOrganization;
+  final ZeroTrustAccessApplicationGithubOrganization? githubOrganization;
 
-  final ZeroTrustAccessApplicationPoliciesExcludeGroup? group;
+  final ZeroTrustAccessApplicationGroup? group;
 
-  final ZeroTrustAccessApplicationPoliciesExcludeGsuite? gsuite;
+  final ZeroTrustAccessApplicationGsuite? gsuite;
 
-  final ZeroTrustAccessApplicationPoliciesExcludeIp? ip;
+  final ZeroTrustAccessApplicationIp? ip;
 
-  final ZeroTrustAccessApplicationPoliciesExcludeIpList? ipList;
+  final ZeroTrustAccessApplicationIpList? ipList;
 
-  final ZeroTrustAccessApplicationPoliciesExcludeLinkedAppToken? linkedAppToken;
+  final ZeroTrustAccessApplicationLinkedAppToken? linkedAppToken;
 
-  final ZeroTrustAccessApplicationPoliciesExcludeLoginMethod? loginMethod;
+  final ZeroTrustAccessApplicationLoginMethod? loginMethod;
 
-  final ZeroTrustAccessApplicationPoliciesExcludeOidc? oidc;
+  final ZeroTrustAccessApplicationOidc? oidc;
 
-  final ZeroTrustAccessApplicationPoliciesExcludeOkta? okta;
+  final ZeroTrustAccessApplicationOkta? okta;
 
-  final ZeroTrustAccessApplicationPoliciesExcludeSaml? saml;
+  final ZeroTrustAccessApplicationSaml? saml;
 
-  final ZeroTrustAccessApplicationPoliciesExcludeServiceToken? serviceToken;
+  final ZeroTrustAccessApplicationServiceToken? serviceToken;
 
   Map<String, Object?> encode() => {
     'any_valid_service_token': ?anyValidServiceToken?.encode(),
@@ -888,18 +865,20 @@ final class ZeroTrustAccessApplicationPoliciesExclude {
 
 /// Typed helper for the `policies.exclude.any_valid_service_token` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessApplicationPoliciesExcludeAnyValidServiceToken {
-  const ZeroTrustAccessApplicationPoliciesExcludeAnyValidServiceToken();
+final class ZeroTrustAccessApplicationAnyValidServiceToken {
+  const ZeroTrustAccessApplicationAnyValidServiceToken();
 
   Map<String, Object?> encode() => {};
 }
 
 /// Typed helper for the `policies.exclude.auth_context` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessApplicationPoliciesExcludeAuthContext {
-  const ZeroTrustAccessApplicationPoliciesExcludeAuthContext({
+final class ZeroTrustAccessApplicationAuthContext {
+  const ZeroTrustAccessApplicationAuthContext({
     required this.acId,
     required this.id,
     required this.identityProviderId,
@@ -920,11 +899,10 @@ final class ZeroTrustAccessApplicationPoliciesExcludeAuthContext {
 
 /// Typed helper for the `policies.exclude.auth_method` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessApplicationPoliciesExcludeAuthMethod {
-  const ZeroTrustAccessApplicationPoliciesExcludeAuthMethod({
-    required this.authMethod,
-  });
+final class ZeroTrustAccessApplicationAuthMethod {
+  const ZeroTrustAccessApplicationAuthMethod({required this.authMethod});
 
   final TfArg<String> authMethod;
 
@@ -933,9 +911,10 @@ final class ZeroTrustAccessApplicationPoliciesExcludeAuthMethod {
 
 /// Typed helper for the `policies.exclude.azure_ad` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessApplicationPoliciesExcludeAzureAd {
-  const ZeroTrustAccessApplicationPoliciesExcludeAzureAd({
+final class ZeroTrustAccessApplicationAzureAd {
+  const ZeroTrustAccessApplicationAzureAd({
     required this.id,
     required this.identityProviderId,
   });
@@ -952,20 +931,20 @@ final class ZeroTrustAccessApplicationPoliciesExcludeAzureAd {
 
 /// Typed helper for the `policies.exclude.certificate` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessApplicationPoliciesExcludeCertificate {
-  const ZeroTrustAccessApplicationPoliciesExcludeCertificate();
+final class ZeroTrustAccessApplicationCertificate {
+  const ZeroTrustAccessApplicationCertificate();
 
   Map<String, Object?> encode() => {};
 }
 
 /// Typed helper for the `policies.exclude.common_name` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessApplicationPoliciesExcludeCommonName {
-  const ZeroTrustAccessApplicationPoliciesExcludeCommonName({
-    required this.commonName,
-  });
+final class ZeroTrustAccessApplicationCommonName {
+  const ZeroTrustAccessApplicationCommonName({required this.commonName});
 
   final TfArg<String> commonName;
 
@@ -974,11 +953,10 @@ final class ZeroTrustAccessApplicationPoliciesExcludeCommonName {
 
 /// Typed helper for the `policies.exclude.device_posture` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessApplicationPoliciesExcludeDevicePosture {
-  const ZeroTrustAccessApplicationPoliciesExcludeDevicePosture({
-    required this.integrationUid,
-  });
+final class ZeroTrustAccessApplicationDevicePosture {
+  const ZeroTrustAccessApplicationDevicePosture({required this.integrationUid});
 
   final TfArg<String> integrationUid;
 
@@ -989,9 +967,10 @@ final class ZeroTrustAccessApplicationPoliciesExcludeDevicePosture {
 
 /// Typed helper for the `policies.exclude.email` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessApplicationPoliciesExcludeEmail {
-  const ZeroTrustAccessApplicationPoliciesExcludeEmail({required this.email});
+final class ZeroTrustAccessApplicationEmail {
+  const ZeroTrustAccessApplicationEmail({required this.email});
 
   final TfArg<String> email;
 
@@ -1000,11 +979,10 @@ final class ZeroTrustAccessApplicationPoliciesExcludeEmail {
 
 /// Typed helper for the `policies.exclude.email_domain` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessApplicationPoliciesExcludeEmailDomain {
-  const ZeroTrustAccessApplicationPoliciesExcludeEmailDomain({
-    required this.domain,
-  });
+final class ZeroTrustAccessApplicationEmailDomain {
+  const ZeroTrustAccessApplicationEmailDomain({required this.domain});
 
   final TfArg<String> domain;
 
@@ -1013,9 +991,10 @@ final class ZeroTrustAccessApplicationPoliciesExcludeEmailDomain {
 
 /// Typed helper for the `policies.exclude.email_list` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessApplicationPoliciesExcludeEmailList {
-  const ZeroTrustAccessApplicationPoliciesExcludeEmailList({required this.id});
+final class ZeroTrustAccessApplicationEmailList {
+  const ZeroTrustAccessApplicationEmailList({required this.id});
 
   final TfArg<String> id;
 
@@ -1024,18 +1003,20 @@ final class ZeroTrustAccessApplicationPoliciesExcludeEmailList {
 
 /// Typed helper for the `policies.exclude.everyone` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessApplicationPoliciesExcludeEveryone {
-  const ZeroTrustAccessApplicationPoliciesExcludeEveryone();
+final class ZeroTrustAccessApplicationEveryone {
+  const ZeroTrustAccessApplicationEveryone();
 
   Map<String, Object?> encode() => {};
 }
 
 /// Typed helper for the `policies.exclude.external_evaluation` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessApplicationPoliciesExcludeExternalEvaluation {
-  const ZeroTrustAccessApplicationPoliciesExcludeExternalEvaluation({
+final class ZeroTrustAccessApplicationExternalEvaluation {
+  const ZeroTrustAccessApplicationExternalEvaluation({
     required this.evaluateUrl,
     required this.keysUrl,
   });
@@ -1052,11 +1033,10 @@ final class ZeroTrustAccessApplicationPoliciesExcludeExternalEvaluation {
 
 /// Typed helper for the `policies.exclude.geo` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessApplicationPoliciesExcludeGeo {
-  const ZeroTrustAccessApplicationPoliciesExcludeGeo({
-    required this.countryCode,
-  });
+final class ZeroTrustAccessApplicationGeo {
+  const ZeroTrustAccessApplicationGeo({required this.countryCode});
 
   final TfArg<String> countryCode;
 
@@ -1065,9 +1045,10 @@ final class ZeroTrustAccessApplicationPoliciesExcludeGeo {
 
 /// Typed helper for the `policies.exclude.github_organization` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessApplicationPoliciesExcludeGithubOrganization {
-  const ZeroTrustAccessApplicationPoliciesExcludeGithubOrganization({
+final class ZeroTrustAccessApplicationGithubOrganization {
+  const ZeroTrustAccessApplicationGithubOrganization({
     required this.identityProviderId,
     required this.name,
     this.team,
@@ -1088,9 +1069,10 @@ final class ZeroTrustAccessApplicationPoliciesExcludeGithubOrganization {
 
 /// Typed helper for the `policies.exclude.group` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessApplicationPoliciesExcludeGroup {
-  const ZeroTrustAccessApplicationPoliciesExcludeGroup({required this.id});
+final class ZeroTrustAccessApplicationGroup {
+  const ZeroTrustAccessApplicationGroup({required this.id});
 
   final TfArg<String> id;
 
@@ -1099,9 +1081,10 @@ final class ZeroTrustAccessApplicationPoliciesExcludeGroup {
 
 /// Typed helper for the `policies.exclude.gsuite` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessApplicationPoliciesExcludeGsuite {
-  const ZeroTrustAccessApplicationPoliciesExcludeGsuite({
+final class ZeroTrustAccessApplicationGsuite {
+  const ZeroTrustAccessApplicationGsuite({
     required this.email,
     required this.identityProviderId,
   });
@@ -1118,9 +1101,10 @@ final class ZeroTrustAccessApplicationPoliciesExcludeGsuite {
 
 /// Typed helper for the `policies.exclude.ip` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessApplicationPoliciesExcludeIp {
-  const ZeroTrustAccessApplicationPoliciesExcludeIp({required this.ip});
+final class ZeroTrustAccessApplicationIp {
+  const ZeroTrustAccessApplicationIp({required this.ip});
 
   final TfArg<String> ip;
 
@@ -1129,9 +1113,10 @@ final class ZeroTrustAccessApplicationPoliciesExcludeIp {
 
 /// Typed helper for the `policies.exclude.ip_list` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessApplicationPoliciesExcludeIpList {
-  const ZeroTrustAccessApplicationPoliciesExcludeIpList({required this.id});
+final class ZeroTrustAccessApplicationIpList {
+  const ZeroTrustAccessApplicationIpList({required this.id});
 
   final TfArg<String> id;
 
@@ -1140,11 +1125,10 @@ final class ZeroTrustAccessApplicationPoliciesExcludeIpList {
 
 /// Typed helper for the `policies.exclude.linked_app_token` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessApplicationPoliciesExcludeLinkedAppToken {
-  const ZeroTrustAccessApplicationPoliciesExcludeLinkedAppToken({
-    required this.appUid,
-  });
+final class ZeroTrustAccessApplicationLinkedAppToken {
+  const ZeroTrustAccessApplicationLinkedAppToken({required this.appUid});
 
   final TfArg<String> appUid;
 
@@ -1153,11 +1137,10 @@ final class ZeroTrustAccessApplicationPoliciesExcludeLinkedAppToken {
 
 /// Typed helper for the `policies.exclude.login_method` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessApplicationPoliciesExcludeLoginMethod {
-  const ZeroTrustAccessApplicationPoliciesExcludeLoginMethod({
-    required this.id,
-  });
+final class ZeroTrustAccessApplicationLoginMethod {
+  const ZeroTrustAccessApplicationLoginMethod({required this.id});
 
   final TfArg<String> id;
 
@@ -1166,9 +1149,10 @@ final class ZeroTrustAccessApplicationPoliciesExcludeLoginMethod {
 
 /// Typed helper for the `policies.exclude.oidc` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessApplicationPoliciesExcludeOidc {
-  const ZeroTrustAccessApplicationPoliciesExcludeOidc({
+final class ZeroTrustAccessApplicationOidc {
+  const ZeroTrustAccessApplicationOidc({
     required this.claimName,
     required this.claimValue,
     required this.identityProviderId,
@@ -1189,9 +1173,10 @@ final class ZeroTrustAccessApplicationPoliciesExcludeOidc {
 
 /// Typed helper for the `policies.exclude.okta` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessApplicationPoliciesExcludeOkta {
-  const ZeroTrustAccessApplicationPoliciesExcludeOkta({
+final class ZeroTrustAccessApplicationOkta {
+  const ZeroTrustAccessApplicationOkta({
     required this.identityProviderId,
     required this.name,
   });
@@ -1208,9 +1193,10 @@ final class ZeroTrustAccessApplicationPoliciesExcludeOkta {
 
 /// Typed helper for the `policies.exclude.saml` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessApplicationPoliciesExcludeSaml {
-  const ZeroTrustAccessApplicationPoliciesExcludeSaml({
+final class ZeroTrustAccessApplicationSaml {
+  const ZeroTrustAccessApplicationSaml({
     required this.attributeName,
     required this.attributeValue,
     required this.identityProviderId,
@@ -1231,11 +1217,10 @@ final class ZeroTrustAccessApplicationPoliciesExcludeSaml {
 
 /// Typed helper for the `policies.exclude.service_token` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessApplicationPoliciesExcludeServiceToken {
-  const ZeroTrustAccessApplicationPoliciesExcludeServiceToken({
-    required this.tokenId,
-  });
+final class ZeroTrustAccessApplicationServiceToken {
+  const ZeroTrustAccessApplicationServiceToken({required this.tokenId});
 
   final TfArg<String> tokenId;
 
@@ -1245,8 +1230,8 @@ final class ZeroTrustAccessApplicationPoliciesExcludeServiceToken {
 /// Typed helper for the `policies.include` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
 @immutable
-final class ZeroTrustAccessApplicationPoliciesInclude {
-  const ZeroTrustAccessApplicationPoliciesInclude({
+final class ZeroTrustAccessApplicationInclude {
+  const ZeroTrustAccessApplicationInclude({
     this.anyValidServiceToken,
     this.authContext,
     this.authMethod,
@@ -1273,56 +1258,53 @@ final class ZeroTrustAccessApplicationPoliciesInclude {
     this.serviceToken,
   });
 
-  final ZeroTrustAccessApplicationPoliciesIncludeAnyValidServiceToken?
-  anyValidServiceToken;
+  final ZeroTrustAccessApplicationAnyValidServiceToken? anyValidServiceToken;
 
-  final ZeroTrustAccessApplicationPoliciesIncludeAuthContext? authContext;
+  final ZeroTrustAccessApplicationAuthContext? authContext;
 
-  final ZeroTrustAccessApplicationPoliciesIncludeAuthMethod? authMethod;
+  final ZeroTrustAccessApplicationAuthMethod? authMethod;
 
-  final ZeroTrustAccessApplicationPoliciesIncludeAzureAd? azureAd;
+  final ZeroTrustAccessApplicationAzureAd? azureAd;
 
-  final ZeroTrustAccessApplicationPoliciesIncludeCertificate? certificate;
+  final ZeroTrustAccessApplicationCertificate? certificate;
 
-  final ZeroTrustAccessApplicationPoliciesIncludeCommonName? commonName;
+  final ZeroTrustAccessApplicationCommonName? commonName;
 
-  final ZeroTrustAccessApplicationPoliciesIncludeDevicePosture? devicePosture;
+  final ZeroTrustAccessApplicationDevicePosture? devicePosture;
 
-  final ZeroTrustAccessApplicationPoliciesIncludeEmail? email;
+  final ZeroTrustAccessApplicationEmail? email;
 
-  final ZeroTrustAccessApplicationPoliciesIncludeEmailDomain? emailDomain;
+  final ZeroTrustAccessApplicationEmailDomain? emailDomain;
 
-  final ZeroTrustAccessApplicationPoliciesIncludeEmailList? emailList;
+  final ZeroTrustAccessApplicationEmailList? emailList;
 
-  final ZeroTrustAccessApplicationPoliciesIncludeEveryone? everyone;
+  final ZeroTrustAccessApplicationEveryone? everyone;
 
-  final ZeroTrustAccessApplicationPoliciesIncludeExternalEvaluation?
-  externalEvaluation;
+  final ZeroTrustAccessApplicationExternalEvaluation? externalEvaluation;
 
-  final ZeroTrustAccessApplicationPoliciesIncludeGeo? geo;
+  final ZeroTrustAccessApplicationGeo? geo;
 
-  final ZeroTrustAccessApplicationPoliciesIncludeGithubOrganization?
-  githubOrganization;
+  final ZeroTrustAccessApplicationGithubOrganization? githubOrganization;
 
-  final ZeroTrustAccessApplicationPoliciesIncludeGroup? group;
+  final ZeroTrustAccessApplicationGroup? group;
 
-  final ZeroTrustAccessApplicationPoliciesIncludeGsuite? gsuite;
+  final ZeroTrustAccessApplicationGsuite? gsuite;
 
-  final ZeroTrustAccessApplicationPoliciesIncludeIp? ip;
+  final ZeroTrustAccessApplicationIp? ip;
 
-  final ZeroTrustAccessApplicationPoliciesIncludeIpList? ipList;
+  final ZeroTrustAccessApplicationIpList? ipList;
 
-  final ZeroTrustAccessApplicationPoliciesIncludeLinkedAppToken? linkedAppToken;
+  final ZeroTrustAccessApplicationLinkedAppToken? linkedAppToken;
 
-  final ZeroTrustAccessApplicationPoliciesIncludeLoginMethod? loginMethod;
+  final ZeroTrustAccessApplicationLoginMethod? loginMethod;
 
-  final ZeroTrustAccessApplicationPoliciesIncludeOidc? oidc;
+  final ZeroTrustAccessApplicationOidc? oidc;
 
-  final ZeroTrustAccessApplicationPoliciesIncludeOkta? okta;
+  final ZeroTrustAccessApplicationOkta? okta;
 
-  final ZeroTrustAccessApplicationPoliciesIncludeSaml? saml;
+  final ZeroTrustAccessApplicationSaml? saml;
 
-  final ZeroTrustAccessApplicationPoliciesIncludeServiceToken? serviceToken;
+  final ZeroTrustAccessApplicationServiceToken? serviceToken;
 
   Map<String, Object?> encode() => {
     'any_valid_service_token': ?anyValidServiceToken?.encode(),
@@ -1352,362 +1334,6 @@ final class ZeroTrustAccessApplicationPoliciesInclude {
   };
 }
 
-/// Typed helper for the `policies.include.any_valid_service_token` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesIncludeAnyValidServiceToken {
-  const ZeroTrustAccessApplicationPoliciesIncludeAnyValidServiceToken();
-
-  Map<String, Object?> encode() => {};
-}
-
-/// Typed helper for the `policies.include.auth_context` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesIncludeAuthContext {
-  const ZeroTrustAccessApplicationPoliciesIncludeAuthContext({
-    required this.acId,
-    required this.id,
-    required this.identityProviderId,
-  });
-
-  final TfArg<String> acId;
-
-  final TfArg<String> id;
-
-  final TfArg<String> identityProviderId;
-
-  Map<String, Object?> encode() => {
-    'ac_id': acId.toTfJson(),
-    'id': id.toTfJson(),
-    'identity_provider_id': identityProviderId.toTfJson(),
-  };
-}
-
-/// Typed helper for the `policies.include.auth_method` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesIncludeAuthMethod {
-  const ZeroTrustAccessApplicationPoliciesIncludeAuthMethod({
-    required this.authMethod,
-  });
-
-  final TfArg<String> authMethod;
-
-  Map<String, Object?> encode() => {'auth_method': authMethod.toTfJson()};
-}
-
-/// Typed helper for the `policies.include.azure_ad` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesIncludeAzureAd {
-  const ZeroTrustAccessApplicationPoliciesIncludeAzureAd({
-    required this.id,
-    required this.identityProviderId,
-  });
-
-  final TfArg<String> id;
-
-  final TfArg<String> identityProviderId;
-
-  Map<String, Object?> encode() => {
-    'id': id.toTfJson(),
-    'identity_provider_id': identityProviderId.toTfJson(),
-  };
-}
-
-/// Typed helper for the `policies.include.certificate` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesIncludeCertificate {
-  const ZeroTrustAccessApplicationPoliciesIncludeCertificate();
-
-  Map<String, Object?> encode() => {};
-}
-
-/// Typed helper for the `policies.include.common_name` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesIncludeCommonName {
-  const ZeroTrustAccessApplicationPoliciesIncludeCommonName({
-    required this.commonName,
-  });
-
-  final TfArg<String> commonName;
-
-  Map<String, Object?> encode() => {'common_name': commonName.toTfJson()};
-}
-
-/// Typed helper for the `policies.include.device_posture` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesIncludeDevicePosture {
-  const ZeroTrustAccessApplicationPoliciesIncludeDevicePosture({
-    required this.integrationUid,
-  });
-
-  final TfArg<String> integrationUid;
-
-  Map<String, Object?> encode() => {
-    'integration_uid': integrationUid.toTfJson(),
-  };
-}
-
-/// Typed helper for the `policies.include.email` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesIncludeEmail {
-  const ZeroTrustAccessApplicationPoliciesIncludeEmail({required this.email});
-
-  final TfArg<String> email;
-
-  Map<String, Object?> encode() => {'email': email.toTfJson()};
-}
-
-/// Typed helper for the `policies.include.email_domain` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesIncludeEmailDomain {
-  const ZeroTrustAccessApplicationPoliciesIncludeEmailDomain({
-    required this.domain,
-  });
-
-  final TfArg<String> domain;
-
-  Map<String, Object?> encode() => {'domain': domain.toTfJson()};
-}
-
-/// Typed helper for the `policies.include.email_list` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesIncludeEmailList {
-  const ZeroTrustAccessApplicationPoliciesIncludeEmailList({required this.id});
-
-  final TfArg<String> id;
-
-  Map<String, Object?> encode() => {'id': id.toTfJson()};
-}
-
-/// Typed helper for the `policies.include.everyone` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesIncludeEveryone {
-  const ZeroTrustAccessApplicationPoliciesIncludeEveryone();
-
-  Map<String, Object?> encode() => {};
-}
-
-/// Typed helper for the `policies.include.external_evaluation` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesIncludeExternalEvaluation {
-  const ZeroTrustAccessApplicationPoliciesIncludeExternalEvaluation({
-    required this.evaluateUrl,
-    required this.keysUrl,
-  });
-
-  final TfArg<String> evaluateUrl;
-
-  final TfArg<String> keysUrl;
-
-  Map<String, Object?> encode() => {
-    'evaluate_url': evaluateUrl.toTfJson(),
-    'keys_url': keysUrl.toTfJson(),
-  };
-}
-
-/// Typed helper for the `policies.include.geo` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesIncludeGeo {
-  const ZeroTrustAccessApplicationPoliciesIncludeGeo({
-    required this.countryCode,
-  });
-
-  final TfArg<String> countryCode;
-
-  Map<String, Object?> encode() => {'country_code': countryCode.toTfJson()};
-}
-
-/// Typed helper for the `policies.include.github_organization` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesIncludeGithubOrganization {
-  const ZeroTrustAccessApplicationPoliciesIncludeGithubOrganization({
-    required this.identityProviderId,
-    required this.name,
-    this.team,
-  });
-
-  final TfArg<String> identityProviderId;
-
-  final TfArg<String> name;
-
-  final TfArg<String>? team;
-
-  Map<String, Object?> encode() => {
-    'identity_provider_id': identityProviderId.toTfJson(),
-    'name': name.toTfJson(),
-    'team': ?team?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `policies.include.group` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesIncludeGroup {
-  const ZeroTrustAccessApplicationPoliciesIncludeGroup({required this.id});
-
-  final TfArg<String> id;
-
-  Map<String, Object?> encode() => {'id': id.toTfJson()};
-}
-
-/// Typed helper for the `policies.include.gsuite` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesIncludeGsuite {
-  const ZeroTrustAccessApplicationPoliciesIncludeGsuite({
-    required this.email,
-    required this.identityProviderId,
-  });
-
-  final TfArg<String> email;
-
-  final TfArg<String> identityProviderId;
-
-  Map<String, Object?> encode() => {
-    'email': email.toTfJson(),
-    'identity_provider_id': identityProviderId.toTfJson(),
-  };
-}
-
-/// Typed helper for the `policies.include.ip` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesIncludeIp {
-  const ZeroTrustAccessApplicationPoliciesIncludeIp({required this.ip});
-
-  final TfArg<String> ip;
-
-  Map<String, Object?> encode() => {'ip': ip.toTfJson()};
-}
-
-/// Typed helper for the `policies.include.ip_list` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesIncludeIpList {
-  const ZeroTrustAccessApplicationPoliciesIncludeIpList({required this.id});
-
-  final TfArg<String> id;
-
-  Map<String, Object?> encode() => {'id': id.toTfJson()};
-}
-
-/// Typed helper for the `policies.include.linked_app_token` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesIncludeLinkedAppToken {
-  const ZeroTrustAccessApplicationPoliciesIncludeLinkedAppToken({
-    required this.appUid,
-  });
-
-  final TfArg<String> appUid;
-
-  Map<String, Object?> encode() => {'app_uid': appUid.toTfJson()};
-}
-
-/// Typed helper for the `policies.include.login_method` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesIncludeLoginMethod {
-  const ZeroTrustAccessApplicationPoliciesIncludeLoginMethod({
-    required this.id,
-  });
-
-  final TfArg<String> id;
-
-  Map<String, Object?> encode() => {'id': id.toTfJson()};
-}
-
-/// Typed helper for the `policies.include.oidc` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesIncludeOidc {
-  const ZeroTrustAccessApplicationPoliciesIncludeOidc({
-    required this.claimName,
-    required this.claimValue,
-    required this.identityProviderId,
-  });
-
-  final TfArg<String> claimName;
-
-  final TfArg<String> claimValue;
-
-  final TfArg<String> identityProviderId;
-
-  Map<String, Object?> encode() => {
-    'claim_name': claimName.toTfJson(),
-    'claim_value': claimValue.toTfJson(),
-    'identity_provider_id': identityProviderId.toTfJson(),
-  };
-}
-
-/// Typed helper for the `policies.include.okta` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesIncludeOkta {
-  const ZeroTrustAccessApplicationPoliciesIncludeOkta({
-    required this.identityProviderId,
-    required this.name,
-  });
-
-  final TfArg<String> identityProviderId;
-
-  final TfArg<String> name;
-
-  Map<String, Object?> encode() => {
-    'identity_provider_id': identityProviderId.toTfJson(),
-    'name': name.toTfJson(),
-  };
-}
-
-/// Typed helper for the `policies.include.saml` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesIncludeSaml {
-  const ZeroTrustAccessApplicationPoliciesIncludeSaml({
-    required this.attributeName,
-    required this.attributeValue,
-    required this.identityProviderId,
-  });
-
-  final TfArg<String> attributeName;
-
-  final TfArg<String> attributeValue;
-
-  final TfArg<String> identityProviderId;
-
-  Map<String, Object?> encode() => {
-    'attribute_name': attributeName.toTfJson(),
-    'attribute_value': attributeValue.toTfJson(),
-    'identity_provider_id': identityProviderId.toTfJson(),
-  };
-}
-
-/// Typed helper for the `policies.include.service_token` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesIncludeServiceToken {
-  const ZeroTrustAccessApplicationPoliciesIncludeServiceToken({
-    required this.tokenId,
-  });
-
-  final TfArg<String> tokenId;
-
-  Map<String, Object?> encode() => {'token_id': tokenId.toTfJson()};
-}
-
 /// Typed helper for the `policies.mfa_config` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
 @immutable
@@ -1718,9 +1344,7 @@ final class ZeroTrustAccessApplicationPoliciesMfaConfig {
     this.sessionDuration,
   });
 
-  final List<
-    TfArg<ZeroTrustAccessApplicationPoliciesMfaConfigAllowedAuthenticators>
-  >?
+  final List<TfArg<ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators>>?
   allowedAuthenticators;
 
   final TfArg<bool>? mfaDisabled;
@@ -1738,14 +1362,14 @@ final class ZeroTrustAccessApplicationPoliciesMfaConfig {
 }
 
 /// `allowed_authenticators` — derived from the provider schema description.
-enum ZeroTrustAccessApplicationPoliciesMfaConfigAllowedAuthenticators
+enum ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators
     implements TerraformEnum {
   totp('totp'),
   biometrics('biometrics'),
   securityKey('security_key'),
   sshPivKey('ssh_piv_key');
 
-  const ZeroTrustAccessApplicationPoliciesMfaConfigAllowedAuthenticators(
+  const ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators(
     this.terraformValue,
   );
   @override
@@ -1755,8 +1379,8 @@ enum ZeroTrustAccessApplicationPoliciesMfaConfigAllowedAuthenticators
 /// Typed helper for the `policies.require` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
 @immutable
-final class ZeroTrustAccessApplicationPoliciesRequire {
-  const ZeroTrustAccessApplicationPoliciesRequire({
+final class ZeroTrustAccessApplicationRequire {
+  const ZeroTrustAccessApplicationRequire({
     this.anyValidServiceToken,
     this.authContext,
     this.authMethod,
@@ -1783,56 +1407,53 @@ final class ZeroTrustAccessApplicationPoliciesRequire {
     this.serviceToken,
   });
 
-  final ZeroTrustAccessApplicationPoliciesRequireAnyValidServiceToken?
-  anyValidServiceToken;
+  final ZeroTrustAccessApplicationAnyValidServiceToken? anyValidServiceToken;
 
-  final ZeroTrustAccessApplicationPoliciesRequireAuthContext? authContext;
+  final ZeroTrustAccessApplicationAuthContext? authContext;
 
-  final ZeroTrustAccessApplicationPoliciesRequireAuthMethod? authMethod;
+  final ZeroTrustAccessApplicationAuthMethod? authMethod;
 
-  final ZeroTrustAccessApplicationPoliciesRequireAzureAd? azureAd;
+  final ZeroTrustAccessApplicationAzureAd? azureAd;
 
-  final ZeroTrustAccessApplicationPoliciesRequireCertificate? certificate;
+  final ZeroTrustAccessApplicationCertificate? certificate;
 
-  final ZeroTrustAccessApplicationPoliciesRequireCommonName? commonName;
+  final ZeroTrustAccessApplicationCommonName? commonName;
 
-  final ZeroTrustAccessApplicationPoliciesRequireDevicePosture? devicePosture;
+  final ZeroTrustAccessApplicationDevicePosture? devicePosture;
 
-  final ZeroTrustAccessApplicationPoliciesRequireEmail? email;
+  final ZeroTrustAccessApplicationEmail? email;
 
-  final ZeroTrustAccessApplicationPoliciesRequireEmailDomain? emailDomain;
+  final ZeroTrustAccessApplicationEmailDomain? emailDomain;
 
-  final ZeroTrustAccessApplicationPoliciesRequireEmailList? emailList;
+  final ZeroTrustAccessApplicationEmailList? emailList;
 
-  final ZeroTrustAccessApplicationPoliciesRequireEveryone? everyone;
+  final ZeroTrustAccessApplicationEveryone? everyone;
 
-  final ZeroTrustAccessApplicationPoliciesRequireExternalEvaluation?
-  externalEvaluation;
+  final ZeroTrustAccessApplicationExternalEvaluation? externalEvaluation;
 
-  final ZeroTrustAccessApplicationPoliciesRequireGeo? geo;
+  final ZeroTrustAccessApplicationGeo? geo;
 
-  final ZeroTrustAccessApplicationPoliciesRequireGithubOrganization?
-  githubOrganization;
+  final ZeroTrustAccessApplicationGithubOrganization? githubOrganization;
 
-  final ZeroTrustAccessApplicationPoliciesRequireGroup? group;
+  final ZeroTrustAccessApplicationGroup? group;
 
-  final ZeroTrustAccessApplicationPoliciesRequireGsuite? gsuite;
+  final ZeroTrustAccessApplicationGsuite? gsuite;
 
-  final ZeroTrustAccessApplicationPoliciesRequireIp? ip;
+  final ZeroTrustAccessApplicationIp? ip;
 
-  final ZeroTrustAccessApplicationPoliciesRequireIpList? ipList;
+  final ZeroTrustAccessApplicationIpList? ipList;
 
-  final ZeroTrustAccessApplicationPoliciesRequireLinkedAppToken? linkedAppToken;
+  final ZeroTrustAccessApplicationLinkedAppToken? linkedAppToken;
 
-  final ZeroTrustAccessApplicationPoliciesRequireLoginMethod? loginMethod;
+  final ZeroTrustAccessApplicationLoginMethod? loginMethod;
 
-  final ZeroTrustAccessApplicationPoliciesRequireOidc? oidc;
+  final ZeroTrustAccessApplicationOidc? oidc;
 
-  final ZeroTrustAccessApplicationPoliciesRequireOkta? okta;
+  final ZeroTrustAccessApplicationOkta? okta;
 
-  final ZeroTrustAccessApplicationPoliciesRequireSaml? saml;
+  final ZeroTrustAccessApplicationSaml? saml;
 
-  final ZeroTrustAccessApplicationPoliciesRequireServiceToken? serviceToken;
+  final ZeroTrustAccessApplicationServiceToken? serviceToken;
 
   Map<String, Object?> encode() => {
     'any_valid_service_token': ?anyValidServiceToken?.encode(),
@@ -1860,362 +1481,6 @@ final class ZeroTrustAccessApplicationPoliciesRequire {
     'saml': ?saml?.encode(),
     'service_token': ?serviceToken?.encode(),
   };
-}
-
-/// Typed helper for the `policies.require.any_valid_service_token` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesRequireAnyValidServiceToken {
-  const ZeroTrustAccessApplicationPoliciesRequireAnyValidServiceToken();
-
-  Map<String, Object?> encode() => {};
-}
-
-/// Typed helper for the `policies.require.auth_context` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesRequireAuthContext {
-  const ZeroTrustAccessApplicationPoliciesRequireAuthContext({
-    required this.acId,
-    required this.id,
-    required this.identityProviderId,
-  });
-
-  final TfArg<String> acId;
-
-  final TfArg<String> id;
-
-  final TfArg<String> identityProviderId;
-
-  Map<String, Object?> encode() => {
-    'ac_id': acId.toTfJson(),
-    'id': id.toTfJson(),
-    'identity_provider_id': identityProviderId.toTfJson(),
-  };
-}
-
-/// Typed helper for the `policies.require.auth_method` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesRequireAuthMethod {
-  const ZeroTrustAccessApplicationPoliciesRequireAuthMethod({
-    required this.authMethod,
-  });
-
-  final TfArg<String> authMethod;
-
-  Map<String, Object?> encode() => {'auth_method': authMethod.toTfJson()};
-}
-
-/// Typed helper for the `policies.require.azure_ad` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesRequireAzureAd {
-  const ZeroTrustAccessApplicationPoliciesRequireAzureAd({
-    required this.id,
-    required this.identityProviderId,
-  });
-
-  final TfArg<String> id;
-
-  final TfArg<String> identityProviderId;
-
-  Map<String, Object?> encode() => {
-    'id': id.toTfJson(),
-    'identity_provider_id': identityProviderId.toTfJson(),
-  };
-}
-
-/// Typed helper for the `policies.require.certificate` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesRequireCertificate {
-  const ZeroTrustAccessApplicationPoliciesRequireCertificate();
-
-  Map<String, Object?> encode() => {};
-}
-
-/// Typed helper for the `policies.require.common_name` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesRequireCommonName {
-  const ZeroTrustAccessApplicationPoliciesRequireCommonName({
-    required this.commonName,
-  });
-
-  final TfArg<String> commonName;
-
-  Map<String, Object?> encode() => {'common_name': commonName.toTfJson()};
-}
-
-/// Typed helper for the `policies.require.device_posture` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesRequireDevicePosture {
-  const ZeroTrustAccessApplicationPoliciesRequireDevicePosture({
-    required this.integrationUid,
-  });
-
-  final TfArg<String> integrationUid;
-
-  Map<String, Object?> encode() => {
-    'integration_uid': integrationUid.toTfJson(),
-  };
-}
-
-/// Typed helper for the `policies.require.email` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesRequireEmail {
-  const ZeroTrustAccessApplicationPoliciesRequireEmail({required this.email});
-
-  final TfArg<String> email;
-
-  Map<String, Object?> encode() => {'email': email.toTfJson()};
-}
-
-/// Typed helper for the `policies.require.email_domain` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesRequireEmailDomain {
-  const ZeroTrustAccessApplicationPoliciesRequireEmailDomain({
-    required this.domain,
-  });
-
-  final TfArg<String> domain;
-
-  Map<String, Object?> encode() => {'domain': domain.toTfJson()};
-}
-
-/// Typed helper for the `policies.require.email_list` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesRequireEmailList {
-  const ZeroTrustAccessApplicationPoliciesRequireEmailList({required this.id});
-
-  final TfArg<String> id;
-
-  Map<String, Object?> encode() => {'id': id.toTfJson()};
-}
-
-/// Typed helper for the `policies.require.everyone` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesRequireEveryone {
-  const ZeroTrustAccessApplicationPoliciesRequireEveryone();
-
-  Map<String, Object?> encode() => {};
-}
-
-/// Typed helper for the `policies.require.external_evaluation` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesRequireExternalEvaluation {
-  const ZeroTrustAccessApplicationPoliciesRequireExternalEvaluation({
-    required this.evaluateUrl,
-    required this.keysUrl,
-  });
-
-  final TfArg<String> evaluateUrl;
-
-  final TfArg<String> keysUrl;
-
-  Map<String, Object?> encode() => {
-    'evaluate_url': evaluateUrl.toTfJson(),
-    'keys_url': keysUrl.toTfJson(),
-  };
-}
-
-/// Typed helper for the `policies.require.geo` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesRequireGeo {
-  const ZeroTrustAccessApplicationPoliciesRequireGeo({
-    required this.countryCode,
-  });
-
-  final TfArg<String> countryCode;
-
-  Map<String, Object?> encode() => {'country_code': countryCode.toTfJson()};
-}
-
-/// Typed helper for the `policies.require.github_organization` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesRequireGithubOrganization {
-  const ZeroTrustAccessApplicationPoliciesRequireGithubOrganization({
-    required this.identityProviderId,
-    required this.name,
-    this.team,
-  });
-
-  final TfArg<String> identityProviderId;
-
-  final TfArg<String> name;
-
-  final TfArg<String>? team;
-
-  Map<String, Object?> encode() => {
-    'identity_provider_id': identityProviderId.toTfJson(),
-    'name': name.toTfJson(),
-    'team': ?team?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `policies.require.group` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesRequireGroup {
-  const ZeroTrustAccessApplicationPoliciesRequireGroup({required this.id});
-
-  final TfArg<String> id;
-
-  Map<String, Object?> encode() => {'id': id.toTfJson()};
-}
-
-/// Typed helper for the `policies.require.gsuite` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesRequireGsuite {
-  const ZeroTrustAccessApplicationPoliciesRequireGsuite({
-    required this.email,
-    required this.identityProviderId,
-  });
-
-  final TfArg<String> email;
-
-  final TfArg<String> identityProviderId;
-
-  Map<String, Object?> encode() => {
-    'email': email.toTfJson(),
-    'identity_provider_id': identityProviderId.toTfJson(),
-  };
-}
-
-/// Typed helper for the `policies.require.ip` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesRequireIp {
-  const ZeroTrustAccessApplicationPoliciesRequireIp({required this.ip});
-
-  final TfArg<String> ip;
-
-  Map<String, Object?> encode() => {'ip': ip.toTfJson()};
-}
-
-/// Typed helper for the `policies.require.ip_list` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesRequireIpList {
-  const ZeroTrustAccessApplicationPoliciesRequireIpList({required this.id});
-
-  final TfArg<String> id;
-
-  Map<String, Object?> encode() => {'id': id.toTfJson()};
-}
-
-/// Typed helper for the `policies.require.linked_app_token` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesRequireLinkedAppToken {
-  const ZeroTrustAccessApplicationPoliciesRequireLinkedAppToken({
-    required this.appUid,
-  });
-
-  final TfArg<String> appUid;
-
-  Map<String, Object?> encode() => {'app_uid': appUid.toTfJson()};
-}
-
-/// Typed helper for the `policies.require.login_method` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesRequireLoginMethod {
-  const ZeroTrustAccessApplicationPoliciesRequireLoginMethod({
-    required this.id,
-  });
-
-  final TfArg<String> id;
-
-  Map<String, Object?> encode() => {'id': id.toTfJson()};
-}
-
-/// Typed helper for the `policies.require.oidc` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesRequireOidc {
-  const ZeroTrustAccessApplicationPoliciesRequireOidc({
-    required this.claimName,
-    required this.claimValue,
-    required this.identityProviderId,
-  });
-
-  final TfArg<String> claimName;
-
-  final TfArg<String> claimValue;
-
-  final TfArg<String> identityProviderId;
-
-  Map<String, Object?> encode() => {
-    'claim_name': claimName.toTfJson(),
-    'claim_value': claimValue.toTfJson(),
-    'identity_provider_id': identityProviderId.toTfJson(),
-  };
-}
-
-/// Typed helper for the `policies.require.okta` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesRequireOkta {
-  const ZeroTrustAccessApplicationPoliciesRequireOkta({
-    required this.identityProviderId,
-    required this.name,
-  });
-
-  final TfArg<String> identityProviderId;
-
-  final TfArg<String> name;
-
-  Map<String, Object?> encode() => {
-    'identity_provider_id': identityProviderId.toTfJson(),
-    'name': name.toTfJson(),
-  };
-}
-
-/// Typed helper for the `policies.require.saml` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesRequireSaml {
-  const ZeroTrustAccessApplicationPoliciesRequireSaml({
-    required this.attributeName,
-    required this.attributeValue,
-    required this.identityProviderId,
-  });
-
-  final TfArg<String> attributeName;
-
-  final TfArg<String> attributeValue;
-
-  final TfArg<String> identityProviderId;
-
-  Map<String, Object?> encode() => {
-    'attribute_name': attributeName.toTfJson(),
-    'attribute_value': attributeValue.toTfJson(),
-    'identity_provider_id': identityProviderId.toTfJson(),
-  };
-}
-
-/// Typed helper for the `policies.require.service_token` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesRequireServiceToken {
-  const ZeroTrustAccessApplicationPoliciesRequireServiceToken({
-    required this.tokenId,
-  });
-
-  final TfArg<String> tokenId;
-
-  Map<String, Object?> encode() => {'token_id': tokenId.toTfJson()};
 }
 
 /// Typed helper for the `saas_app` block of
@@ -2251,19 +1516,19 @@ final class ZeroTrustAccessApplicationSaasApp {
 
   final TfArg<String>? appLauncherUrl;
 
-  final TfArg<ZeroTrustAccessApplicationSaasAppAuthType>? authType;
+  final TfArg<ZeroTrustAccessApplicationAuthType>? authType;
 
   final TfArg<String>? consumerServiceUrl;
 
   final TfArg<String>? defaultRelayState;
 
-  final List<TfArg<ZeroTrustAccessApplicationSaasAppGrantTypes>>? grantTypes;
+  final List<TfArg<ZeroTrustAccessApplicationGrantTypes>>? grantTypes;
 
   final TfArg<String>? groupFilterRegex;
 
   final TfArg<String>? idpEntityId;
 
-  final TfArg<ZeroTrustAccessApplicationSaasAppNameIdFormat>? nameIdFormat;
+  final TfArg<ZeroTrustAccessApplicationNameIdFormat>? nameIdFormat;
 
   final TfArg<String>? nameIdTransformJsonata;
 
@@ -2271,22 +1536,20 @@ final class ZeroTrustAccessApplicationSaasApp {
 
   final TfArg<String>? samlAttributeTransformJsonata;
 
-  final List<TfArg<ZeroTrustAccessApplicationSaasAppScopes>>? scopes;
+  final List<TfArg<ZeroTrustAccessApplicationScopes>>? scopes;
 
   final TfArg<String>? spEntityId;
 
   final TfArg<String>? ssoEndpoint;
 
-  final List<ZeroTrustAccessApplicationSaasAppCustomAttributes>?
-  customAttributes;
+  final List<ZeroTrustAccessApplicationCustomAttributes>? customAttributes;
 
-  final List<ZeroTrustAccessApplicationSaasAppCustomClaims>? customClaims;
+  final List<ZeroTrustAccessApplicationCustomClaims>? customClaims;
 
-  final ZeroTrustAccessApplicationSaasAppHybridAndImplicitOptions?
+  final ZeroTrustAccessApplicationHybridAndImplicitOptions?
   hybridAndImplicitOptions;
 
-  final ZeroTrustAccessApplicationSaasAppRefreshTokenOptions?
-  refreshTokenOptions;
+  final ZeroTrustAccessApplicationRefreshTokenOptions? refreshTokenOptions;
 
   Map<String, Object?> encode() => {
     'access_token_lifetime': ?accessTokenLifetime?.toTfJson(),
@@ -2318,46 +1581,46 @@ final class ZeroTrustAccessApplicationSaasApp {
 }
 
 /// `auth_type` — derived from the provider schema description.
-enum ZeroTrustAccessApplicationSaasAppAuthType implements TerraformEnum {
+enum ZeroTrustAccessApplicationAuthType implements TerraformEnum {
   saml('saml'),
   oidc('oidc');
 
-  const ZeroTrustAccessApplicationSaasAppAuthType(this.terraformValue);
+  const ZeroTrustAccessApplicationAuthType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `grant_types` — derived from the provider schema description.
-enum ZeroTrustAccessApplicationSaasAppGrantTypes implements TerraformEnum {
+enum ZeroTrustAccessApplicationGrantTypes implements TerraformEnum {
   authorizationCode('authorization_code'),
   authorizationCodeWithPkce('authorization_code_with_pkce'),
   refreshTokens('refresh_tokens'),
   hybrid('hybrid'),
   implicit('implicit');
 
-  const ZeroTrustAccessApplicationSaasAppGrantTypes(this.terraformValue);
+  const ZeroTrustAccessApplicationGrantTypes(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `name_id_format` — derived from the provider schema description.
-enum ZeroTrustAccessApplicationSaasAppNameIdFormat implements TerraformEnum {
+enum ZeroTrustAccessApplicationNameIdFormat implements TerraformEnum {
   id('id'),
   email('email');
 
-  const ZeroTrustAccessApplicationSaasAppNameIdFormat(this.terraformValue);
+  const ZeroTrustAccessApplicationNameIdFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `scopes` — derived from the provider schema description.
-enum ZeroTrustAccessApplicationSaasAppScopes implements TerraformEnum {
+enum ZeroTrustAccessApplicationScopes implements TerraformEnum {
   openid('openid'),
   groups('groups'),
   email('email'),
   profile('profile');
 
-  const ZeroTrustAccessApplicationSaasAppScopes(this.terraformValue);
+  const ZeroTrustAccessApplicationScopes(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -2365,8 +1628,8 @@ enum ZeroTrustAccessApplicationSaasAppScopes implements TerraformEnum {
 /// Typed helper for the `saas_app.custom_attributes` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
 @immutable
-final class ZeroTrustAccessApplicationSaasAppCustomAttributes {
-  const ZeroTrustAccessApplicationSaasAppCustomAttributes({
+final class ZeroTrustAccessApplicationCustomAttributes {
+  const ZeroTrustAccessApplicationCustomAttributes({
     this.friendlyName,
     this.name,
     this.nameFormat,
@@ -2378,12 +1641,11 @@ final class ZeroTrustAccessApplicationSaasAppCustomAttributes {
 
   final TfArg<String>? name;
 
-  final TfArg<ZeroTrustAccessApplicationSaasAppCustomAttributesNameFormat>?
-  nameFormat;
+  final TfArg<ZeroTrustAccessApplicationNameFormat>? nameFormat;
 
   final TfArg<bool>? required;
 
-  final ZeroTrustAccessApplicationSaasAppCustomAttributesSource? source;
+  final ZeroTrustAccessApplicationCustomAttributesSource? source;
 
   Map<String, Object?> encode() => {
     'friendly_name': ?friendlyName?.toTfJson(),
@@ -2395,8 +1657,7 @@ final class ZeroTrustAccessApplicationSaasAppCustomAttributes {
 }
 
 /// `name_format` — derived from the provider schema description.
-enum ZeroTrustAccessApplicationSaasAppCustomAttributesNameFormat
-    implements TerraformEnum {
+enum ZeroTrustAccessApplicationNameFormat implements TerraformEnum {
   urnOasisNamesTcSaml2p0AttrnameFormatUnspecified(
     'urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified',
   ),
@@ -2407,9 +1668,7 @@ enum ZeroTrustAccessApplicationSaasAppCustomAttributesNameFormat
     'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
   );
 
-  const ZeroTrustAccessApplicationSaasAppCustomAttributesNameFormat(
-    this.terraformValue,
-  );
+  const ZeroTrustAccessApplicationNameFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -2417,16 +1676,15 @@ enum ZeroTrustAccessApplicationSaasAppCustomAttributesNameFormat
 /// Typed helper for the `saas_app.custom_attributes.source` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
 @immutable
-final class ZeroTrustAccessApplicationSaasAppCustomAttributesSource {
-  const ZeroTrustAccessApplicationSaasAppCustomAttributesSource({
+final class ZeroTrustAccessApplicationCustomAttributesSource {
+  const ZeroTrustAccessApplicationCustomAttributesSource({
     this.name,
     this.nameByIdp,
   });
 
   final TfArg<String>? name;
 
-  final List<ZeroTrustAccessApplicationSaasAppCustomAttributesSourceNameByIdp>?
-  nameByIdp;
+  final List<ZeroTrustAccessApplicationNameByIdp>? nameByIdp;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
@@ -2438,11 +1696,8 @@ final class ZeroTrustAccessApplicationSaasAppCustomAttributesSource {
 /// Typed helper for the `saas_app.custom_attributes.source.name_by_idp` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
 @immutable
-final class ZeroTrustAccessApplicationSaasAppCustomAttributesSourceNameByIdp {
-  const ZeroTrustAccessApplicationSaasAppCustomAttributesSourceNameByIdp({
-    this.idpId,
-    this.sourceName,
-  });
+final class ZeroTrustAccessApplicationNameByIdp {
+  const ZeroTrustAccessApplicationNameByIdp({this.idpId, this.sourceName});
 
   final TfArg<String>? idpId;
 
@@ -2457,8 +1712,8 @@ final class ZeroTrustAccessApplicationSaasAppCustomAttributesSourceNameByIdp {
 /// Typed helper for the `saas_app.custom_claims` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
 @immutable
-final class ZeroTrustAccessApplicationSaasAppCustomClaims {
-  const ZeroTrustAccessApplicationSaasAppCustomClaims({
+final class ZeroTrustAccessApplicationCustomClaims {
+  const ZeroTrustAccessApplicationCustomClaims({
     this.name,
     this.required,
     this.scope,
@@ -2469,9 +1724,9 @@ final class ZeroTrustAccessApplicationSaasAppCustomClaims {
 
   final TfArg<bool>? required;
 
-  final TfArg<ZeroTrustAccessApplicationSaasAppCustomClaimsScope>? scope;
+  final TfArg<ZeroTrustAccessApplicationScope>? scope;
 
-  final ZeroTrustAccessApplicationSaasAppCustomClaimsSource? source;
+  final ZeroTrustAccessApplicationCustomClaimsSource? source;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
@@ -2482,14 +1737,13 @@ final class ZeroTrustAccessApplicationSaasAppCustomClaims {
 }
 
 /// `scope` — derived from the provider schema description.
-enum ZeroTrustAccessApplicationSaasAppCustomClaimsScope
-    implements TerraformEnum {
+enum ZeroTrustAccessApplicationScope implements TerraformEnum {
   groups('groups'),
   profile('profile'),
   email('email'),
   openid('openid');
 
-  const ZeroTrustAccessApplicationSaasAppCustomClaimsScope(this.terraformValue);
+  const ZeroTrustAccessApplicationScope(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -2497,8 +1751,8 @@ enum ZeroTrustAccessApplicationSaasAppCustomClaimsScope
 /// Typed helper for the `saas_app.custom_claims.source` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
 @immutable
-final class ZeroTrustAccessApplicationSaasAppCustomClaimsSource {
-  const ZeroTrustAccessApplicationSaasAppCustomClaimsSource({
+final class ZeroTrustAccessApplicationCustomClaimsSource {
+  const ZeroTrustAccessApplicationCustomClaimsSource({
     this.name,
     this.nameByIdp,
   });
@@ -2516,8 +1770,8 @@ final class ZeroTrustAccessApplicationSaasAppCustomClaimsSource {
 /// Typed helper for the `saas_app.hybrid_and_implicit_options` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
 @immutable
-final class ZeroTrustAccessApplicationSaasAppHybridAndImplicitOptions {
-  const ZeroTrustAccessApplicationSaasAppHybridAndImplicitOptions({
+final class ZeroTrustAccessApplicationHybridAndImplicitOptions {
+  const ZeroTrustAccessApplicationHybridAndImplicitOptions({
     this.returnAccessTokenFromAuthorizationEndpoint,
     this.returnIdTokenFromAuthorizationEndpoint,
   });
@@ -2537,8 +1791,8 @@ final class ZeroTrustAccessApplicationSaasAppHybridAndImplicitOptions {
 /// Typed helper for the `saas_app.refresh_token_options` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
 @immutable
-final class ZeroTrustAccessApplicationSaasAppRefreshTokenOptions {
-  const ZeroTrustAccessApplicationSaasAppRefreshTokenOptions({this.lifetime});
+final class ZeroTrustAccessApplicationRefreshTokenOptions {
+  const ZeroTrustAccessApplicationRefreshTokenOptions({this.lifetime});
 
   final TfArg<String>? lifetime;
 
@@ -2566,9 +1820,9 @@ final class ZeroTrustAccessApplicationScimConfig {
 
   final TfArg<String> remoteUri;
 
-  final ZeroTrustAccessApplicationScimConfigAuthentication? authentication;
+  final ZeroTrustAccessApplicationAuthentication? authentication;
 
-  final List<ZeroTrustAccessApplicationScimConfigMappings>? mappings;
+  final List<ZeroTrustAccessApplicationMappings>? mappings;
 
   Map<String, Object?> encode() => {
     'deactivate_on_delete': ?deactivateOnDelete?.toTfJson(),
@@ -2583,8 +1837,8 @@ final class ZeroTrustAccessApplicationScimConfig {
 /// Typed helper for the `scim_config.authentication` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
 @immutable
-final class ZeroTrustAccessApplicationScimConfigAuthentication {
-  const ZeroTrustAccessApplicationScimConfigAuthentication({
+final class ZeroTrustAccessApplicationAuthentication {
+  const ZeroTrustAccessApplicationAuthentication({
     this.authorizationUrl,
     this.clientId,
     this.clientSecret,
@@ -2604,7 +1858,7 @@ final class ZeroTrustAccessApplicationScimConfigAuthentication {
 
   final TfArg<String>? password;
 
-  final TfArg<ZeroTrustAccessApplicationScimConfigAuthenticationScheme> scheme;
+  final TfArg<ZeroTrustAccessApplicationScheme> scheme;
 
   final TfArg<List<String>>? scopes;
 
@@ -2628,16 +1882,13 @@ final class ZeroTrustAccessApplicationScimConfigAuthentication {
 }
 
 /// `scheme` — derived from the provider schema description.
-enum ZeroTrustAccessApplicationScimConfigAuthenticationScheme
-    implements TerraformEnum {
+enum ZeroTrustAccessApplicationScheme implements TerraformEnum {
   httpbasic('httpbasic'),
   oauthbearertoken('oauthbearertoken'),
   oauth2('oauth2'),
   accessServiceToken('access_service_token');
 
-  const ZeroTrustAccessApplicationScimConfigAuthenticationScheme(
-    this.terraformValue,
-  );
+  const ZeroTrustAccessApplicationScheme(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -2645,8 +1896,8 @@ enum ZeroTrustAccessApplicationScimConfigAuthenticationScheme
 /// Typed helper for the `scim_config.mappings` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
 @immutable
-final class ZeroTrustAccessApplicationScimConfigMappings {
-  const ZeroTrustAccessApplicationScimConfigMappings({
+final class ZeroTrustAccessApplicationMappings {
+  const ZeroTrustAccessApplicationMappings({
     this.enabled,
     this.filter,
     required this.schema,
@@ -2661,12 +1912,11 @@ final class ZeroTrustAccessApplicationScimConfigMappings {
 
   final TfArg<String> schema;
 
-  final TfArg<ZeroTrustAccessApplicationScimConfigMappingsStrictness>?
-  strictness;
+  final TfArg<ZeroTrustAccessApplicationStrictness>? strictness;
 
   final TfArg<String>? transformJsonata;
 
-  final ZeroTrustAccessApplicationScimConfigMappingsOperations? operations;
+  final ZeroTrustAccessApplicationOperations? operations;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
@@ -2679,14 +1929,11 @@ final class ZeroTrustAccessApplicationScimConfigMappings {
 }
 
 /// `strictness` — derived from the provider schema description.
-enum ZeroTrustAccessApplicationScimConfigMappingsStrictness
-    implements TerraformEnum {
+enum ZeroTrustAccessApplicationStrictness implements TerraformEnum {
   strict('strict'),
   passthrough('passthrough');
 
-  const ZeroTrustAccessApplicationScimConfigMappingsStrictness(
-    this.terraformValue,
-  );
+  const ZeroTrustAccessApplicationStrictness(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -2694,8 +1941,8 @@ enum ZeroTrustAccessApplicationScimConfigMappingsStrictness
 /// Typed helper for the `scim_config.mappings.operations` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
 @immutable
-final class ZeroTrustAccessApplicationScimConfigMappingsOperations {
-  const ZeroTrustAccessApplicationScimConfigMappingsOperations({
+final class ZeroTrustAccessApplicationOperations {
+  const ZeroTrustAccessApplicationOperations({
     this.create,
     this.delete,
     this.update,
@@ -2726,7 +1973,7 @@ final class ZeroTrustAccessApplicationTargetCriteria {
 
   final TfArg<num> port;
 
-  final TfArg<ZeroTrustAccessApplicationTargetCriteriaProtocol> protocol;
+  final TfArg<ZeroTrustAccessApplicationProtocol> protocol;
 
   final TfArg<Map<String, dynamic>> targetAttributes;
 
@@ -2738,11 +1985,11 @@ final class ZeroTrustAccessApplicationTargetCriteria {
 }
 
 /// `protocol` — derived from the provider schema description.
-enum ZeroTrustAccessApplicationTargetCriteriaProtocol implements TerraformEnum {
+enum ZeroTrustAccessApplicationProtocol implements TerraformEnum {
   ssh('SSH'),
   rdp('RDP');
 
-  const ZeroTrustAccessApplicationTargetCriteriaProtocol(this.terraformValue);
+  const ZeroTrustAccessApplicationProtocol(this.terraformValue);
   @override
   final String terraformValue;
 }

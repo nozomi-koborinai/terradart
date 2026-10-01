@@ -28,8 +28,7 @@ final class OdbCloudAutonomousVmClusterMaintenanceWindow {
 
   final TfArg<List<Object?>>? months;
 
-  final TfArg<OdbCloudAutonomousVmClusterMaintenanceWindowPreference>
-  preference;
+  final TfArg<OdbCloudAutonomousVmClusterPreference> preference;
 
   final TfArg<List<num>>? weeksOfMonth;
 
@@ -44,14 +43,11 @@ final class OdbCloudAutonomousVmClusterMaintenanceWindow {
 }
 
 /// `preference` — derived from the provider schema description.
-enum OdbCloudAutonomousVmClusterMaintenanceWindowPreference
-    implements TerraformEnum {
+enum OdbCloudAutonomousVmClusterPreference implements TerraformEnum {
   noPreference('NO_PREFERENCE'),
   customPreference('CUSTOM_PREFERENCE');
 
-  const OdbCloudAutonomousVmClusterMaintenanceWindowPreference(
-    this.terraformValue,
-  );
+  const OdbCloudAutonomousVmClusterPreference(this.terraformValue);
   @override
   final String terraformValue;
 }

@@ -51,7 +51,7 @@ final class VectorSearchStack extends Stack {
         vectorSchema: [
           VectorSearchCollectionVectorSchema(
             fieldName: .literal('text_embedding'),
-            denseVector: VectorSearchCollectionVectorSchemaDenseVector(
+            denseVector: VectorSearchCollectionDenseVector(
               dimensions: .literal(768),
             ),
           ),
@@ -73,9 +73,7 @@ final class VectorSearchStack extends Stack {
         vectors: [
           VectorSearchDataObjectVectors(
             fieldName: .literal('text_embedding'),
-            dense: VectorSearchDataObjectVectorsDense(
-              values: .literal(zeroEmbedding),
-            ),
+            dense: VectorSearchDataObjectDense(values: .literal(zeroEmbedding)),
           ),
         ],
         deletionPolicy: .literal('DELETE'),

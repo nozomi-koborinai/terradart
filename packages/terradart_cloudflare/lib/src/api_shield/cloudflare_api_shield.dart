@@ -20,7 +20,7 @@ final class ApiShieldAuthIdCharacteristics {
 
   final TfArg<String> name;
 
-  final TfArg<ApiShieldAuthIdCharacteristicsType> type;
+  final TfArg<ApiShieldType> type;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -29,12 +29,12 @@ final class ApiShieldAuthIdCharacteristics {
 }
 
 /// `type` — derived from the provider schema description.
-enum ApiShieldAuthIdCharacteristicsType implements TerraformEnum {
+enum ApiShieldType implements TerraformEnum {
   header('header'),
   cookie('cookie'),
   jwt('jwt');
 
-  const ApiShieldAuthIdCharacteristicsType(this.terraformValue);
+  const ApiShieldType(this.terraformValue);
   @override
   final String terraformValue;
 }

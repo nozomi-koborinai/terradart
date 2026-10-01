@@ -115,8 +115,7 @@ final class AssuredWorkloadsWorkloadResourceSettings {
 
   final TfArg<String>? resourceId;
 
-  final TfArg<AssuredWorkloadsWorkloadResourceSettingsResourceType>?
-  resourceType;
+  final TfArg<AssuredWorkloadsWorkloadResourceType>? resourceType;
 
   Map<String, Object?> encode() => {
     'display_name': ?displayName?.toTfJson(),
@@ -126,17 +125,14 @@ final class AssuredWorkloadsWorkloadResourceSettings {
 }
 
 /// `resource_type` — derived from the provider schema description.
-enum AssuredWorkloadsWorkloadResourceSettingsResourceType
-    implements TerraformEnum {
+enum AssuredWorkloadsWorkloadResourceType implements TerraformEnum {
   resourceTypeUnspecified('RESOURCE_TYPE_UNSPECIFIED'),
   consumerProject('CONSUMER_PROJECT'),
   encryptionKeysProject('ENCRYPTION_KEYS_PROJECT'),
   keyring('KEYRING'),
   consumerFolder('CONSUMER_FOLDER');
 
-  const AssuredWorkloadsWorkloadResourceSettingsResourceType(
-    this.terraformValue,
-  );
+  const AssuredWorkloadsWorkloadResourceType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -144,11 +140,10 @@ enum AssuredWorkloadsWorkloadResourceSettingsResourceType
 /// Typed helper for the `workload_options` block of
 /// `google_assured_workloads_workload` (derived from provider schema).
 @immutable
-final class AssuredWorkloadsWorkloadWorkloadOptions {
-  const AssuredWorkloadsWorkloadWorkloadOptions({this.kajEnrollmentType});
+final class AssuredWorkloadsWorkloadOptions {
+  const AssuredWorkloadsWorkloadOptions({this.kajEnrollmentType});
 
-  final TfArg<AssuredWorkloadsWorkloadWorkloadOptionsKajEnrollmentType>?
-  kajEnrollmentType;
+  final TfArg<AssuredWorkloadsWorkloadKajEnrollmentType>? kajEnrollmentType;
 
   Map<String, Object?> encode() => {
     'kaj_enrollment_type': ?kajEnrollmentType?.toTfJson(),
@@ -156,16 +151,13 @@ final class AssuredWorkloadsWorkloadWorkloadOptions {
 }
 
 /// `kaj_enrollment_type` — derived from the provider schema description.
-enum AssuredWorkloadsWorkloadWorkloadOptionsKajEnrollmentType
-    implements TerraformEnum {
+enum AssuredWorkloadsWorkloadKajEnrollmentType implements TerraformEnum {
   kajEnrollmentTypeUnspecified('KAJ_ENROLLMENT_TYPE_UNSPECIFIED'),
   fullKaj('FULL_KAJ'),
   ekmOnly('EKM_ONLY'),
   keyAccessTransparencyOff('KEY_ACCESS_TRANSPARENCY_OFF');
 
-  const AssuredWorkloadsWorkloadWorkloadOptionsKajEnrollmentType(
-    this.terraformValue,
-  );
+  const AssuredWorkloadsWorkloadKajEnrollmentType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -198,7 +190,7 @@ final class GoogleAssuredWorkloadsWorkload extends Resource {
     AssuredWorkloadsWorkloadKmsSettings? kmsSettings,
     AssuredWorkloadsWorkloadPartnerPermissions? partnerPermissions,
     List<AssuredWorkloadsWorkloadResourceSettings>? resourceSettings,
-    AssuredWorkloadsWorkloadWorkloadOptions? workloadOptions,
+    AssuredWorkloadsWorkloadOptions? workloadOptions,
     super.lifecycle,
     super.dependsOn,
     super.provider,

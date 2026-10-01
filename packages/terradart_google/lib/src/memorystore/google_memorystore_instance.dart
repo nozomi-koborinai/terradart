@@ -43,12 +43,12 @@ sealed class MemorystoreInstanceSource {
   /// Sets `gcs_source`.
   const factory MemorystoreInstanceSource.gcsSource(
     MemorystoreInstanceGcsSource gcsSource,
-  ) = MemorystoreInstanceSourceGcsSource;
+  ) = MemorystoreInstanceGcsSourceChoice;
 
   /// Sets `managed_backup_source`.
   const factory MemorystoreInstanceSource.managedBackupSource(
     MemorystoreInstanceManagedBackupSource managedBackupSource,
-  ) = MemorystoreInstanceSourceManagedBackupSource;
+  ) = MemorystoreInstanceManagedBackupSourceChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -61,9 +61,9 @@ sealed class MemorystoreInstanceSource {
 }
 
 /// The [MemorystoreInstanceSource.gcsSource] choice: sets `gcs_source`.
-final class MemorystoreInstanceSourceGcsSource
+final class MemorystoreInstanceGcsSourceChoice
     extends MemorystoreInstanceSource {
-  const MemorystoreInstanceSourceGcsSource(this.gcsSource);
+  const MemorystoreInstanceGcsSourceChoice(this.gcsSource);
 
   final MemorystoreInstanceGcsSource gcsSource;
 
@@ -80,9 +80,9 @@ final class MemorystoreInstanceSourceGcsSource
 }
 
 /// The [MemorystoreInstanceSource.managedBackupSource] choice: sets `managed_backup_source`.
-final class MemorystoreInstanceSourceManagedBackupSource
+final class MemorystoreInstanceManagedBackupSourceChoice
     extends MemorystoreInstanceSource {
-  const MemorystoreInstanceSourceManagedBackupSource(this.managedBackupSource);
+  const MemorystoreInstanceManagedBackupSourceChoice(this.managedBackupSource);
 
   final MemorystoreInstanceManagedBackupSource managedBackupSource;
 
@@ -111,8 +111,7 @@ final class MemorystoreInstanceAutomatedBackupConfig {
 
   final TfArg<String> retention;
 
-  final MemorystoreInstanceAutomatedBackupConfigFixedFrequencySchedule
-  fixedFrequencySchedule;
+  final MemorystoreInstanceFixedFrequencySchedule fixedFrequencySchedule;
 
   Map<String, Object?> encode() => {
     'retention': retention.toTfJson(),
@@ -123,13 +122,10 @@ final class MemorystoreInstanceAutomatedBackupConfig {
 /// Typed helper for the `automated_backup_config.fixed_frequency_schedule` block of
 /// `google_memorystore_instance` (derived from provider schema).
 @immutable
-final class MemorystoreInstanceAutomatedBackupConfigFixedFrequencySchedule {
-  const MemorystoreInstanceAutomatedBackupConfigFixedFrequencySchedule({
-    required this.startTime,
-  });
+final class MemorystoreInstanceFixedFrequencySchedule {
+  const MemorystoreInstanceFixedFrequencySchedule({required this.startTime});
 
-  final MemorystoreInstanceAutomatedBackupConfigFixedFrequencyScheduleStartTime
-  startTime;
+  final MemorystoreInstanceFixedFrequencyScheduleStartTime startTime;
 
   Map<String, Object?> encode() => {'start_time': startTime.encode()};
 }
@@ -137,8 +133,8 @@ final class MemorystoreInstanceAutomatedBackupConfigFixedFrequencySchedule {
 /// Typed helper for the `automated_backup_config.fixed_frequency_schedule.start_time` block of
 /// `google_memorystore_instance` (derived from provider schema).
 @immutable
-final class MemorystoreInstanceAutomatedBackupConfigFixedFrequencyScheduleStartTime {
-  const MemorystoreInstanceAutomatedBackupConfigFixedFrequencyScheduleStartTime({
+final class MemorystoreInstanceFixedFrequencyScheduleStartTime {
+  const MemorystoreInstanceFixedFrequencyScheduleStartTime({
     required this.hours,
   });
 
@@ -157,16 +153,11 @@ final class MemorystoreInstanceCrossInstanceReplicationConfig {
     this.secondaryInstances,
   });
 
-  final TfArg<MemorystoreInstanceCrossInstanceReplicationConfigInstanceRole>?
-  instanceRole;
+  final TfArg<MemorystoreInstanceRole>? instanceRole;
 
-  final MemorystoreInstanceCrossInstanceReplicationConfigPrimaryInstance?
-  primaryInstance;
+  final MemorystoreInstancePrimaryInstance? primaryInstance;
 
-  final List<
-    MemorystoreInstanceCrossInstanceReplicationConfigSecondaryInstances
-  >?
-  secondaryInstances;
+  final List<MemorystoreInstanceSecondaryInstances>? secondaryInstances;
 
   Map<String, Object?> encode() => {
     'instance_role': ?instanceRole?.toTfJson(),
@@ -177,16 +168,13 @@ final class MemorystoreInstanceCrossInstanceReplicationConfig {
 }
 
 /// `instance_role` — derived from the provider schema description.
-enum MemorystoreInstanceCrossInstanceReplicationConfigInstanceRole
-    implements TerraformEnum {
+enum MemorystoreInstanceRole implements TerraformEnum {
   instanceRoleUnspecified('INSTANCE_ROLE_UNSPECIFIED'),
   none('NONE'),
   primary('PRIMARY'),
   secondary('SECONDARY');
 
-  const MemorystoreInstanceCrossInstanceReplicationConfigInstanceRole(
-    this.terraformValue,
-  );
+  const MemorystoreInstanceRole(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -194,10 +182,8 @@ enum MemorystoreInstanceCrossInstanceReplicationConfigInstanceRole
 /// Typed helper for the `cross_instance_replication_config.primary_instance` block of
 /// `google_memorystore_instance` (derived from provider schema).
 @immutable
-final class MemorystoreInstanceCrossInstanceReplicationConfigPrimaryInstance {
-  const MemorystoreInstanceCrossInstanceReplicationConfigPrimaryInstance({
-    this.instance,
-  });
+final class MemorystoreInstancePrimaryInstance {
+  const MemorystoreInstancePrimaryInstance({this.instance});
 
   final TfArg<String>? instance;
 
@@ -207,10 +193,8 @@ final class MemorystoreInstanceCrossInstanceReplicationConfigPrimaryInstance {
 /// Typed helper for the `cross_instance_replication_config.secondary_instances` block of
 /// `google_memorystore_instance` (derived from provider schema).
 @immutable
-final class MemorystoreInstanceCrossInstanceReplicationConfigSecondaryInstances {
-  const MemorystoreInstanceCrossInstanceReplicationConfigSecondaryInstances({
-    this.instance,
-  });
+final class MemorystoreInstanceSecondaryInstances {
+  const MemorystoreInstanceSecondaryInstances({this.instance});
 
   final TfArg<String>? instance;
 
@@ -272,7 +256,7 @@ final class MemorystoreInstanceGcsSource {
 final class MemorystoreInstanceMaintenancePolicy {
   const MemorystoreInstanceMaintenancePolicy({this.weeklyMaintenanceWindow});
 
-  final List<MemorystoreInstanceMaintenancePolicyWeeklyMaintenanceWindow>?
+  final List<MemorystoreInstanceWeeklyMaintenanceWindow>?
   weeklyMaintenanceWindow;
 
   Map<String, Object?> encode() => {
@@ -286,17 +270,15 @@ final class MemorystoreInstanceMaintenancePolicy {
 /// Typed helper for the `maintenance_policy.weekly_maintenance_window` block of
 /// `google_memorystore_instance` (derived from provider schema).
 @immutable
-final class MemorystoreInstanceMaintenancePolicyWeeklyMaintenanceWindow {
-  const MemorystoreInstanceMaintenancePolicyWeeklyMaintenanceWindow({
+final class MemorystoreInstanceWeeklyMaintenanceWindow {
+  const MemorystoreInstanceWeeklyMaintenanceWindow({
     required this.day,
     required this.startTime,
   });
 
-  final TfArg<MemorystoreInstanceMaintenancePolicyWeeklyMaintenanceWindowDay>
-  day;
+  final TfArg<MemorystoreInstanceDay> day;
 
-  final MemorystoreInstanceMaintenancePolicyWeeklyMaintenanceWindowStartTime
-  startTime;
+  final MemorystoreInstanceWeeklyMaintenanceWindowStartTime startTime;
 
   Map<String, Object?> encode() => {
     'day': day.toTfJson(),
@@ -305,8 +287,7 @@ final class MemorystoreInstanceMaintenancePolicyWeeklyMaintenanceWindow {
 }
 
 /// `day` — derived from the provider schema description.
-enum MemorystoreInstanceMaintenancePolicyWeeklyMaintenanceWindowDay
-    implements TerraformEnum {
+enum MemorystoreInstanceDay implements TerraformEnum {
   dayOfWeekUnspecified('DAY_OF_WEEK_UNSPECIFIED'),
   monday('MONDAY'),
   tuesday('TUESDAY'),
@@ -316,9 +297,7 @@ enum MemorystoreInstanceMaintenancePolicyWeeklyMaintenanceWindowDay
   saturday('SATURDAY'),
   sunday('SUNDAY');
 
-  const MemorystoreInstanceMaintenancePolicyWeeklyMaintenanceWindowDay(
-    this.terraformValue,
-  );
+  const MemorystoreInstanceDay(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -326,8 +305,8 @@ enum MemorystoreInstanceMaintenancePolicyWeeklyMaintenanceWindowDay
 /// Typed helper for the `maintenance_policy.weekly_maintenance_window.start_time` block of
 /// `google_memorystore_instance` (derived from provider schema).
 @immutable
-final class MemorystoreInstanceMaintenancePolicyWeeklyMaintenanceWindowStartTime {
-  const MemorystoreInstanceMaintenancePolicyWeeklyMaintenanceWindowStartTime({
+final class MemorystoreInstanceWeeklyMaintenanceWindowStartTime {
+  const MemorystoreInstanceWeeklyMaintenanceWindowStartTime({
     this.hours,
     this.minutes,
     this.nanos,
@@ -373,9 +352,9 @@ final class MemorystoreInstancePersistenceConfig {
 
   final TfArg<MemorystoreInstancePersistenceConfigMode>? mode;
 
-  final MemorystoreInstancePersistenceConfigAofConfig? aofConfig;
+  final MemorystoreInstanceAofConfig? aofConfig;
 
-  final MemorystoreInstancePersistenceConfigRdbConfig? rdbConfig;
+  final MemorystoreInstanceRdbConfig? rdbConfig;
 
   Map<String, Object?> encode() => {
     'mode': ?mode?.toTfJson(),
@@ -398,8 +377,8 @@ enum MemorystoreInstancePersistenceConfigMode implements TerraformEnum {
 /// Typed helper for the `persistence_config.aof_config` block of
 /// `google_memorystore_instance` (derived from provider schema).
 @immutable
-final class MemorystoreInstancePersistenceConfigAofConfig {
-  const MemorystoreInstancePersistenceConfigAofConfig({this.appendFsync});
+final class MemorystoreInstanceAofConfig {
+  const MemorystoreInstanceAofConfig({this.appendFsync});
 
   final TfArg<String>? appendFsync;
 
@@ -409,8 +388,8 @@ final class MemorystoreInstancePersistenceConfigAofConfig {
 /// Typed helper for the `persistence_config.rdb_config` block of
 /// `google_memorystore_instance` (derived from provider schema).
 @immutable
-final class MemorystoreInstancePersistenceConfigRdbConfig {
-  const MemorystoreInstancePersistenceConfigRdbConfig({
+final class MemorystoreInstanceRdbConfig {
+  const MemorystoreInstanceRdbConfig({
     this.rdbSnapshotPeriod,
     this.rdbSnapshotStartTime,
   });

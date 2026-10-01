@@ -65,7 +65,7 @@ final class BigtableInstanceCluster {
 
   final TfArg<String>? zone;
 
-  final BigtableInstanceClusterAutoscalingConfig? autoscalingConfig;
+  final BigtableInstanceAutoscalingConfig? autoscalingConfig;
 
   Map<String, Object?> encode() => {
     'cluster_id': clusterId.toTfJson(),
@@ -81,8 +81,8 @@ final class BigtableInstanceCluster {
 /// Typed helper for the `cluster.autoscaling_config` block of
 /// `google_bigtable_instance` (derived from provider schema).
 @immutable
-final class BigtableInstanceClusterAutoscalingConfig {
-  const BigtableInstanceClusterAutoscalingConfig({
+final class BigtableInstanceAutoscalingConfig {
+  const BigtableInstanceAutoscalingConfig({
     required this.cpuTarget,
     required this.maxNodes,
     required this.minNodes,

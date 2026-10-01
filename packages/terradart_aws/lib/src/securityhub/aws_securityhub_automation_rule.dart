@@ -25,8 +25,7 @@ final class SecurityhubAutomationRuleActions {
 
   final TfArg<SecurityhubAutomationRuleActionsType>? type;
 
-  final List<SecurityhubAutomationRuleActionsFindingFieldsUpdate>?
-  findingFieldsUpdate;
+  final List<SecurityhubAutomationRuleFindingFieldsUpdate>? findingFieldsUpdate;
 
   Map<String, Object?> encode() => {
     'type': ?type?.toTfJson(),
@@ -49,8 +48,8 @@ enum SecurityhubAutomationRuleActionsType implements TerraformEnum {
 /// Typed helper for the `actions.finding_fields_update` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleActionsFindingFieldsUpdate {
-  const SecurityhubAutomationRuleActionsFindingFieldsUpdate({
+final class SecurityhubAutomationRuleFindingFieldsUpdate {
+  const SecurityhubAutomationRuleFindingFieldsUpdate({
     this.confidence,
     this.criticality,
     this.types,
@@ -70,23 +69,16 @@ final class SecurityhubAutomationRuleActionsFindingFieldsUpdate {
 
   final TfArg<Map<String, String>>? userDefinedFields;
 
-  final TfArg<
-    SecurityhubAutomationRuleActionsFindingFieldsUpdateVerificationState
-  >?
+  final TfArg<SecurityhubAutomationRuleFindingFieldsUpdateVerificationState>?
   verificationState;
 
-  final List<SecurityhubAutomationRuleActionsFindingFieldsUpdateNote>? note;
+  final List<SecurityhubAutomationRuleNote>? note;
 
-  final List<
-    SecurityhubAutomationRuleActionsFindingFieldsUpdateRelatedFindings
-  >?
-  relatedFindings;
+  final List<SecurityhubAutomationRuleRelatedFindings>? relatedFindings;
 
-  final List<SecurityhubAutomationRuleActionsFindingFieldsUpdateSeverity>?
-  severity;
+  final List<SecurityhubAutomationRuleSeverity>? severity;
 
-  final List<SecurityhubAutomationRuleActionsFindingFieldsUpdateWorkflow>?
-  workflow;
+  final List<SecurityhubAutomationRuleWorkflow>? workflow;
 
   Map<String, Object?> encode() => {
     'confidence': ?confidence?.toTfJson(),
@@ -103,14 +95,14 @@ final class SecurityhubAutomationRuleActionsFindingFieldsUpdate {
 }
 
 /// `verification_state` — derived from the provider schema description.
-enum SecurityhubAutomationRuleActionsFindingFieldsUpdateVerificationState
+enum SecurityhubAutomationRuleFindingFieldsUpdateVerificationState
     implements TerraformEnum {
   unknown('UNKNOWN'),
   truePositive('TRUE_POSITIVE'),
   falsePositive('FALSE_POSITIVE'),
   benignPositive('BENIGN_POSITIVE');
 
-  const SecurityhubAutomationRuleActionsFindingFieldsUpdateVerificationState(
+  const SecurityhubAutomationRuleFindingFieldsUpdateVerificationState(
     this.terraformValue,
   );
   @override
@@ -120,8 +112,8 @@ enum SecurityhubAutomationRuleActionsFindingFieldsUpdateVerificationState
 /// Typed helper for the `actions.finding_fields_update.note` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleActionsFindingFieldsUpdateNote {
-  const SecurityhubAutomationRuleActionsFindingFieldsUpdateNote({
+final class SecurityhubAutomationRuleNote {
+  const SecurityhubAutomationRuleNote({
     required this.text,
     required this.updatedBy,
   });
@@ -139,8 +131,8 @@ final class SecurityhubAutomationRuleActionsFindingFieldsUpdateNote {
 /// Typed helper for the `actions.finding_fields_update.related_findings` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleActionsFindingFieldsUpdateRelatedFindings {
-  const SecurityhubAutomationRuleActionsFindingFieldsUpdateRelatedFindings({
+final class SecurityhubAutomationRuleRelatedFindings {
+  const SecurityhubAutomationRuleRelatedFindings({
     required this.id,
     required this.productArn,
   });
@@ -158,14 +150,10 @@ final class SecurityhubAutomationRuleActionsFindingFieldsUpdateRelatedFindings {
 /// Typed helper for the `actions.finding_fields_update.severity` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleActionsFindingFieldsUpdateSeverity {
-  const SecurityhubAutomationRuleActionsFindingFieldsUpdateSeverity({
-    this.label,
-    this.product,
-  });
+final class SecurityhubAutomationRuleSeverity {
+  const SecurityhubAutomationRuleSeverity({this.label, this.product});
 
-  final TfArg<SecurityhubAutomationRuleActionsFindingFieldsUpdateSeverityLabel>?
-  label;
+  final TfArg<SecurityhubAutomationRuleLabel>? label;
 
   final TfArg<num>? product;
 
@@ -176,17 +164,14 @@ final class SecurityhubAutomationRuleActionsFindingFieldsUpdateSeverity {
 }
 
 /// `label` — derived from the provider schema description.
-enum SecurityhubAutomationRuleActionsFindingFieldsUpdateSeverityLabel
-    implements TerraformEnum {
+enum SecurityhubAutomationRuleLabel implements TerraformEnum {
   informational('INFORMATIONAL'),
   low('LOW'),
   medium('MEDIUM'),
   high('HIGH'),
   critical('CRITICAL');
 
-  const SecurityhubAutomationRuleActionsFindingFieldsUpdateSeverityLabel(
-    this.terraformValue,
-  );
+  const SecurityhubAutomationRuleLabel(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -194,30 +179,22 @@ enum SecurityhubAutomationRuleActionsFindingFieldsUpdateSeverityLabel
 /// Typed helper for the `actions.finding_fields_update.workflow` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleActionsFindingFieldsUpdateWorkflow {
-  const SecurityhubAutomationRuleActionsFindingFieldsUpdateWorkflow({
-    this.status,
-  });
+final class SecurityhubAutomationRuleWorkflow {
+  const SecurityhubAutomationRuleWorkflow({this.status});
 
-  final TfArg<
-    SecurityhubAutomationRuleActionsFindingFieldsUpdateWorkflowStatus
-  >?
-  status;
+  final TfArg<SecurityhubAutomationRuleStatus>? status;
 
   Map<String, Object?> encode() => {'status': ?status?.toTfJson()};
 }
 
 /// `status` — derived from the provider schema description.
-enum SecurityhubAutomationRuleActionsFindingFieldsUpdateWorkflowStatus
-    implements TerraformEnum {
+enum SecurityhubAutomationRuleStatus implements TerraformEnum {
   newCase('NEW'),
   notified('NOTIFIED'),
   resolved('RESOLVED'),
   suppressed('SUPPRESSED');
 
-  const SecurityhubAutomationRuleActionsFindingFieldsUpdateWorkflowStatus(
-    this.terraformValue,
-  );
+  const SecurityhubAutomationRuleStatus(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -267,92 +244,87 @@ final class SecurityhubAutomationRuleCriteria {
     this.workflowStatus,
   });
 
-  final List<SecurityhubAutomationRuleCriteriaAwsAccountId>? awsAccountId;
+  final List<SecurityhubAutomationRuleAwsAccountId>? awsAccountId;
 
-  final List<SecurityhubAutomationRuleCriteriaAwsAccountName>? awsAccountName;
+  final List<SecurityhubAutomationRuleAwsAccountName>? awsAccountName;
 
-  final List<SecurityhubAutomationRuleCriteriaCompanyName>? companyName;
+  final List<SecurityhubAutomationRuleCompanyName>? companyName;
 
-  final List<SecurityhubAutomationRuleCriteriaComplianceAssociatedStandardsId>?
+  final List<SecurityhubAutomationRuleComplianceAssociatedStandardsId>?
   complianceAssociatedStandardsId;
 
-  final List<SecurityhubAutomationRuleCriteriaComplianceSecurityControlId>?
+  final List<SecurityhubAutomationRuleComplianceSecurityControlId>?
   complianceSecurityControlId;
 
-  final List<SecurityhubAutomationRuleCriteriaComplianceStatus>?
-  complianceStatus;
+  final List<SecurityhubAutomationRuleComplianceStatus>? complianceStatus;
 
-  final List<SecurityhubAutomationRuleCriteriaConfidence>? confidence;
+  final List<SecurityhubAutomationRuleConfidence>? confidence;
 
-  final List<SecurityhubAutomationRuleCriteriaCreatedAt>? createdAt;
+  final List<SecurityhubAutomationRuleCreatedAt>? createdAt;
 
-  final List<SecurityhubAutomationRuleCriteriaCriticality>? criticality;
+  final List<SecurityhubAutomationRuleCriticality>? criticality;
 
   final List<SecurityhubAutomationRuleCriteriaDescription>? description;
 
-  final List<SecurityhubAutomationRuleCriteriaFirstObservedAt>? firstObservedAt;
+  final List<SecurityhubAutomationRuleFirstObservedAt>? firstObservedAt;
 
-  final List<SecurityhubAutomationRuleCriteriaGeneratorId>? generatorId;
+  final List<SecurityhubAutomationRuleGeneratorId>? generatorId;
 
   final List<SecurityhubAutomationRuleCriteriaId>? id;
 
-  final List<SecurityhubAutomationRuleCriteriaLastObservedAt>? lastObservedAt;
+  final List<SecurityhubAutomationRuleLastObservedAt>? lastObservedAt;
 
-  final List<SecurityhubAutomationRuleCriteriaNoteText>? noteText;
+  final List<SecurityhubAutomationRuleNoteText>? noteText;
 
-  final List<SecurityhubAutomationRuleCriteriaNoteUpdatedAt>? noteUpdatedAt;
+  final List<SecurityhubAutomationRuleNoteUpdatedAt>? noteUpdatedAt;
 
-  final List<SecurityhubAutomationRuleCriteriaNoteUpdatedBy>? noteUpdatedBy;
+  final List<SecurityhubAutomationRuleNoteUpdatedBy>? noteUpdatedBy;
 
-  final List<SecurityhubAutomationRuleCriteriaProductArn>? productArn;
+  final List<SecurityhubAutomationRuleProductArn>? productArn;
 
-  final List<SecurityhubAutomationRuleCriteriaProductName>? productName;
+  final List<SecurityhubAutomationRuleProductName>? productName;
 
-  final List<SecurityhubAutomationRuleCriteriaRecordState>? recordState;
+  final List<SecurityhubAutomationRuleRecordState>? recordState;
 
-  final List<SecurityhubAutomationRuleCriteriaRelatedFindingsId>?
-  relatedFindingsId;
+  final List<SecurityhubAutomationRuleRelatedFindingsId>? relatedFindingsId;
 
-  final List<SecurityhubAutomationRuleCriteriaRelatedFindingsProductArn>?
+  final List<SecurityhubAutomationRuleRelatedFindingsProductArn>?
   relatedFindingsProductArn;
 
-  final List<SecurityhubAutomationRuleCriteriaResourceApplicationArn>?
+  final List<SecurityhubAutomationRuleResourceApplicationArn>?
   resourceApplicationArn;
 
-  final List<SecurityhubAutomationRuleCriteriaResourceApplicationName>?
+  final List<SecurityhubAutomationRuleResourceApplicationName>?
   resourceApplicationName;
 
-  final List<SecurityhubAutomationRuleCriteriaResourceDetailsOther>?
+  final List<SecurityhubAutomationRuleResourceDetailsOther>?
   resourceDetailsOther;
 
-  final List<SecurityhubAutomationRuleCriteriaResourceId>? resourceId;
+  final List<SecurityhubAutomationRuleResourceId>? resourceId;
 
-  final List<SecurityhubAutomationRuleCriteriaResourcePartition>?
-  resourcePartition;
+  final List<SecurityhubAutomationRuleResourcePartition>? resourcePartition;
 
-  final List<SecurityhubAutomationRuleCriteriaResourceRegion>? resourceRegion;
+  final List<SecurityhubAutomationRuleResourceRegion>? resourceRegion;
 
-  final List<SecurityhubAutomationRuleCriteriaResourceTags>? resourceTags;
+  final List<SecurityhubAutomationRuleResourceTags>? resourceTags;
 
-  final List<SecurityhubAutomationRuleCriteriaResourceType>? resourceType;
+  final List<SecurityhubAutomationRuleResourceType>? resourceType;
 
-  final List<SecurityhubAutomationRuleCriteriaSeverityLabel>? severityLabel;
+  final List<SecurityhubAutomationRuleSeverityLabel>? severityLabel;
 
-  final List<SecurityhubAutomationRuleCriteriaSourceUrl>? sourceUrl;
+  final List<SecurityhubAutomationRuleSourceUrl>? sourceUrl;
 
-  final List<SecurityhubAutomationRuleCriteriaTitle>? title;
+  final List<SecurityhubAutomationRuleTitle>? title;
 
   final List<SecurityhubAutomationRuleCriteriaType>? type;
 
-  final List<SecurityhubAutomationRuleCriteriaUpdatedAt>? updatedAt;
+  final List<SecurityhubAutomationRuleUpdatedAt>? updatedAt;
 
-  final List<SecurityhubAutomationRuleCriteriaUserDefinedFields>?
-  userDefinedFields;
+  final List<SecurityhubAutomationRuleUserDefinedFields>? userDefinedFields;
 
-  final List<SecurityhubAutomationRuleCriteriaVerificationState>?
-  verificationState;
+  final List<SecurityhubAutomationRuleVerificationState>? verificationState;
 
-  final List<SecurityhubAutomationRuleCriteriaWorkflowStatus>? workflowStatus;
+  final List<SecurityhubAutomationRuleWorkflowStatus>? workflowStatus;
 
   Map<String, Object?> encode() => {
     if (awsAccountId != null)
@@ -445,14 +417,13 @@ final class SecurityhubAutomationRuleCriteria {
 /// Typed helper for the `criteria.aws_account_id` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaAwsAccountId {
-  const SecurityhubAutomationRuleCriteriaAwsAccountId({
+final class SecurityhubAutomationRuleAwsAccountId {
+  const SecurityhubAutomationRuleAwsAccountId({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleCriteriaAwsAccountIdComparison>
-  comparison;
+  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -463,8 +434,7 @@ final class SecurityhubAutomationRuleCriteriaAwsAccountId {
 }
 
 /// `comparison` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaAwsAccountIdComparison
-    implements TerraformEnum {
+enum SecurityhubAutomationRuleAwsAccountIdComparison implements TerraformEnum {
   equals('EQUALS'),
   prefix('PREFIX'),
   notEquals('NOT_EQUALS'),
@@ -473,9 +443,7 @@ enum SecurityhubAutomationRuleCriteriaAwsAccountIdComparison
   notContains('NOT_CONTAINS'),
   containsWord('CONTAINS_WORD');
 
-  const SecurityhubAutomationRuleCriteriaAwsAccountIdComparison(
-    this.terraformValue,
-  );
+  const SecurityhubAutomationRuleAwsAccountIdComparison(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -483,14 +451,13 @@ enum SecurityhubAutomationRuleCriteriaAwsAccountIdComparison
 /// Typed helper for the `criteria.aws_account_name` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaAwsAccountName {
-  const SecurityhubAutomationRuleCriteriaAwsAccountName({
+final class SecurityhubAutomationRuleAwsAccountName {
+  const SecurityhubAutomationRuleAwsAccountName({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleCriteriaAwsAccountNameComparison>
-  comparison;
+  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -498,37 +465,18 @@ final class SecurityhubAutomationRuleCriteriaAwsAccountName {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaAwsAccountNameComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS'),
-  prefixNotEquals('PREFIX_NOT_EQUALS'),
-  contains('CONTAINS'),
-  notContains('NOT_CONTAINS'),
-  containsWord('CONTAINS_WORD');
-
-  const SecurityhubAutomationRuleCriteriaAwsAccountNameComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.company_name` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaCompanyName {
-  const SecurityhubAutomationRuleCriteriaCompanyName({
+final class SecurityhubAutomationRuleCompanyName {
+  const SecurityhubAutomationRuleCompanyName({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleCriteriaCompanyNameComparison>
-  comparison;
+  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -536,39 +484,18 @@ final class SecurityhubAutomationRuleCriteriaCompanyName {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaCompanyNameComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS'),
-  prefixNotEquals('PREFIX_NOT_EQUALS'),
-  contains('CONTAINS'),
-  notContains('NOT_CONTAINS'),
-  containsWord('CONTAINS_WORD');
-
-  const SecurityhubAutomationRuleCriteriaCompanyNameComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.compliance_associated_standards_id` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaComplianceAssociatedStandardsId {
-  const SecurityhubAutomationRuleCriteriaComplianceAssociatedStandardsId({
+final class SecurityhubAutomationRuleComplianceAssociatedStandardsId {
+  const SecurityhubAutomationRuleComplianceAssociatedStandardsId({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<
-    SecurityhubAutomationRuleCriteriaComplianceAssociatedStandardsIdComparison
-  >
-  comparison;
+  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -576,39 +503,18 @@ final class SecurityhubAutomationRuleCriteriaComplianceAssociatedStandardsId {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaComplianceAssociatedStandardsIdComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS'),
-  prefixNotEquals('PREFIX_NOT_EQUALS'),
-  contains('CONTAINS'),
-  notContains('NOT_CONTAINS'),
-  containsWord('CONTAINS_WORD');
-
-  const SecurityhubAutomationRuleCriteriaComplianceAssociatedStandardsIdComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.compliance_security_control_id` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaComplianceSecurityControlId {
-  const SecurityhubAutomationRuleCriteriaComplianceSecurityControlId({
+final class SecurityhubAutomationRuleComplianceSecurityControlId {
+  const SecurityhubAutomationRuleComplianceSecurityControlId({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<
-    SecurityhubAutomationRuleCriteriaComplianceSecurityControlIdComparison
-  >
-  comparison;
+  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -616,37 +522,18 @@ final class SecurityhubAutomationRuleCriteriaComplianceSecurityControlId {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaComplianceSecurityControlIdComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS'),
-  prefixNotEquals('PREFIX_NOT_EQUALS'),
-  contains('CONTAINS'),
-  notContains('NOT_CONTAINS'),
-  containsWord('CONTAINS_WORD');
-
-  const SecurityhubAutomationRuleCriteriaComplianceSecurityControlIdComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.compliance_status` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaComplianceStatus {
-  const SecurityhubAutomationRuleCriteriaComplianceStatus({
+final class SecurityhubAutomationRuleComplianceStatus {
+  const SecurityhubAutomationRuleComplianceStatus({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleCriteriaComplianceStatusComparison>
-  comparison;
+  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -656,29 +543,11 @@ final class SecurityhubAutomationRuleCriteriaComplianceStatus {
   };
 }
 
-/// `comparison` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaComplianceStatusComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS'),
-  prefixNotEquals('PREFIX_NOT_EQUALS'),
-  contains('CONTAINS'),
-  notContains('NOT_CONTAINS'),
-  containsWord('CONTAINS_WORD');
-
-  const SecurityhubAutomationRuleCriteriaComplianceStatusComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `criteria.confidence` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaConfidence {
-  const SecurityhubAutomationRuleCriteriaConfidence({
+final class SecurityhubAutomationRuleConfidence {
+  const SecurityhubAutomationRuleConfidence({
     this.eq,
     this.gt,
     this.gte,
@@ -708,8 +577,8 @@ final class SecurityhubAutomationRuleCriteriaConfidence {
 /// Typed helper for the `criteria.created_at` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaCreatedAt {
-  const SecurityhubAutomationRuleCriteriaCreatedAt({
+final class SecurityhubAutomationRuleCreatedAt {
+  const SecurityhubAutomationRuleCreatedAt({
     this.end,
     this.start,
     this.dateRange,
@@ -719,7 +588,7 @@ final class SecurityhubAutomationRuleCriteriaCreatedAt {
 
   final TfArg<String>? start;
 
-  final List<SecurityhubAutomationRuleCriteriaCreatedAtDateRange>? dateRange;
+  final List<SecurityhubAutomationRuleDateRange>? dateRange;
 
   Map<String, Object?> encode() => {
     'end': ?end?.toTfJson(),
@@ -731,14 +600,15 @@ final class SecurityhubAutomationRuleCriteriaCreatedAt {
 
 /// Typed helper for the `criteria.created_at.date_range` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class SecurityhubAutomationRuleCriteriaCreatedAtDateRange {
-  const SecurityhubAutomationRuleCriteriaCreatedAtDateRange({
+final class SecurityhubAutomationRuleDateRange {
+  const SecurityhubAutomationRuleDateRange({
     required this.unit,
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleCriteriaCreatedAtDateRangeUnit> unit;
+  final TfArg<SecurityhubAutomationRuleUnit> unit;
 
   final TfArg<num> value;
 
@@ -749,13 +619,10 @@ final class SecurityhubAutomationRuleCriteriaCreatedAtDateRange {
 }
 
 /// `unit` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaCreatedAtDateRangeUnit
-    implements TerraformEnum {
+enum SecurityhubAutomationRuleUnit implements TerraformEnum {
   days('DAYS');
 
-  const SecurityhubAutomationRuleCriteriaCreatedAtDateRangeUnit(
-    this.terraformValue,
-  );
+  const SecurityhubAutomationRuleUnit(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -763,8 +630,8 @@ enum SecurityhubAutomationRuleCriteriaCreatedAtDateRangeUnit
 /// Typed helper for the `criteria.criticality` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaCriticality {
-  const SecurityhubAutomationRuleCriteriaCriticality({
+final class SecurityhubAutomationRuleCriticality {
+  const SecurityhubAutomationRuleCriticality({
     this.eq,
     this.gt,
     this.gte,
@@ -800,8 +667,7 @@ final class SecurityhubAutomationRuleCriteriaDescription {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleCriteriaDescriptionComparison>
-  comparison;
+  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -811,29 +677,11 @@ final class SecurityhubAutomationRuleCriteriaDescription {
   };
 }
 
-/// `comparison` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaDescriptionComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS'),
-  prefixNotEquals('PREFIX_NOT_EQUALS'),
-  contains('CONTAINS'),
-  notContains('NOT_CONTAINS'),
-  containsWord('CONTAINS_WORD');
-
-  const SecurityhubAutomationRuleCriteriaDescriptionComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `criteria.first_observed_at` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaFirstObservedAt {
-  const SecurityhubAutomationRuleCriteriaFirstObservedAt({
+final class SecurityhubAutomationRuleFirstObservedAt {
+  const SecurityhubAutomationRuleFirstObservedAt({
     this.end,
     this.start,
     this.dateRange,
@@ -843,8 +691,7 @@ final class SecurityhubAutomationRuleCriteriaFirstObservedAt {
 
   final TfArg<String>? start;
 
-  final List<SecurityhubAutomationRuleCriteriaFirstObservedAtDateRange>?
-  dateRange;
+  final List<SecurityhubAutomationRuleDateRange>? dateRange;
 
   Map<String, Object?> encode() => {
     'end': ?end?.toTfJson(),
@@ -854,49 +701,16 @@ final class SecurityhubAutomationRuleCriteriaFirstObservedAt {
   };
 }
 
-/// Typed helper for the `criteria.first_observed_at.date_range` block of
-/// `aws_securityhub_automation_rule` (derived from provider schema).
-@immutable
-final class SecurityhubAutomationRuleCriteriaFirstObservedAtDateRange {
-  const SecurityhubAutomationRuleCriteriaFirstObservedAtDateRange({
-    required this.unit,
-    required this.value,
-  });
-
-  final TfArg<SecurityhubAutomationRuleCriteriaFirstObservedAtDateRangeUnit>
-  unit;
-
-  final TfArg<num> value;
-
-  Map<String, Object?> encode() => {
-    'unit': unit.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
-
-/// `unit` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaFirstObservedAtDateRangeUnit
-    implements TerraformEnum {
-  days('DAYS');
-
-  const SecurityhubAutomationRuleCriteriaFirstObservedAtDateRangeUnit(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `criteria.generator_id` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaGeneratorId {
-  const SecurityhubAutomationRuleCriteriaGeneratorId({
+final class SecurityhubAutomationRuleGeneratorId {
+  const SecurityhubAutomationRuleGeneratorId({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleCriteriaGeneratorIdComparison>
-  comparison;
+  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -904,24 +718,6 @@ final class SecurityhubAutomationRuleCriteriaGeneratorId {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaGeneratorIdComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS'),
-  prefixNotEquals('PREFIX_NOT_EQUALS'),
-  contains('CONTAINS'),
-  notContains('NOT_CONTAINS'),
-  containsWord('CONTAINS_WORD');
-
-  const SecurityhubAutomationRuleCriteriaGeneratorIdComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.id` block of
@@ -933,7 +729,7 @@ final class SecurityhubAutomationRuleCriteriaId {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleCriteriaIdComparison> comparison;
+  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -941,28 +737,13 @@ final class SecurityhubAutomationRuleCriteriaId {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaIdComparison implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS'),
-  prefixNotEquals('PREFIX_NOT_EQUALS'),
-  contains('CONTAINS'),
-  notContains('NOT_CONTAINS'),
-  containsWord('CONTAINS_WORD');
-
-  const SecurityhubAutomationRuleCriteriaIdComparison(this.terraformValue);
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.last_observed_at` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaLastObservedAt {
-  const SecurityhubAutomationRuleCriteriaLastObservedAt({
+final class SecurityhubAutomationRuleLastObservedAt {
+  const SecurityhubAutomationRuleLastObservedAt({
     this.end,
     this.start,
     this.dateRange,
@@ -972,8 +753,7 @@ final class SecurityhubAutomationRuleCriteriaLastObservedAt {
 
   final TfArg<String>? start;
 
-  final List<SecurityhubAutomationRuleCriteriaLastObservedAtDateRange>?
-  dateRange;
+  final List<SecurityhubAutomationRuleDateRange>? dateRange;
 
   Map<String, Object?> encode() => {
     'end': ?end?.toTfJson(),
@@ -981,50 +761,18 @@ final class SecurityhubAutomationRuleCriteriaLastObservedAt {
     if (dateRange != null)
       'date_range': [for (final e in dateRange!) e.encode()],
   };
-}
-
-/// Typed helper for the `criteria.last_observed_at.date_range` block of
-/// `aws_securityhub_automation_rule` (derived from provider schema).
-@immutable
-final class SecurityhubAutomationRuleCriteriaLastObservedAtDateRange {
-  const SecurityhubAutomationRuleCriteriaLastObservedAtDateRange({
-    required this.unit,
-    required this.value,
-  });
-
-  final TfArg<SecurityhubAutomationRuleCriteriaLastObservedAtDateRangeUnit>
-  unit;
-
-  final TfArg<num> value;
-
-  Map<String, Object?> encode() => {
-    'unit': unit.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
-
-/// `unit` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaLastObservedAtDateRangeUnit
-    implements TerraformEnum {
-  days('DAYS');
-
-  const SecurityhubAutomationRuleCriteriaLastObservedAtDateRangeUnit(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.note_text` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaNoteText {
-  const SecurityhubAutomationRuleCriteriaNoteText({
+final class SecurityhubAutomationRuleNoteText {
+  const SecurityhubAutomationRuleNoteText({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleCriteriaNoteTextComparison> comparison;
+  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1034,29 +782,11 @@ final class SecurityhubAutomationRuleCriteriaNoteText {
   };
 }
 
-/// `comparison` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaNoteTextComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS'),
-  prefixNotEquals('PREFIX_NOT_EQUALS'),
-  contains('CONTAINS'),
-  notContains('NOT_CONTAINS'),
-  containsWord('CONTAINS_WORD');
-
-  const SecurityhubAutomationRuleCriteriaNoteTextComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `criteria.note_updated_at` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaNoteUpdatedAt {
-  const SecurityhubAutomationRuleCriteriaNoteUpdatedAt({
+final class SecurityhubAutomationRuleNoteUpdatedAt {
+  const SecurityhubAutomationRuleNoteUpdatedAt({
     this.end,
     this.start,
     this.dateRange,
@@ -1066,8 +796,7 @@ final class SecurityhubAutomationRuleCriteriaNoteUpdatedAt {
 
   final TfArg<String>? start;
 
-  final List<SecurityhubAutomationRuleCriteriaNoteUpdatedAtDateRange>?
-  dateRange;
+  final List<SecurityhubAutomationRuleDateRange>? dateRange;
 
   Map<String, Object?> encode() => {
     'end': ?end?.toTfJson(),
@@ -1077,48 +806,16 @@ final class SecurityhubAutomationRuleCriteriaNoteUpdatedAt {
   };
 }
 
-/// Typed helper for the `criteria.note_updated_at.date_range` block of
-/// `aws_securityhub_automation_rule` (derived from provider schema).
-@immutable
-final class SecurityhubAutomationRuleCriteriaNoteUpdatedAtDateRange {
-  const SecurityhubAutomationRuleCriteriaNoteUpdatedAtDateRange({
-    required this.unit,
-    required this.value,
-  });
-
-  final TfArg<SecurityhubAutomationRuleCriteriaNoteUpdatedAtDateRangeUnit> unit;
-
-  final TfArg<num> value;
-
-  Map<String, Object?> encode() => {
-    'unit': unit.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
-
-/// `unit` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaNoteUpdatedAtDateRangeUnit
-    implements TerraformEnum {
-  days('DAYS');
-
-  const SecurityhubAutomationRuleCriteriaNoteUpdatedAtDateRangeUnit(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `criteria.note_updated_by` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaNoteUpdatedBy {
-  const SecurityhubAutomationRuleCriteriaNoteUpdatedBy({
+final class SecurityhubAutomationRuleNoteUpdatedBy {
+  const SecurityhubAutomationRuleNoteUpdatedBy({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleCriteriaNoteUpdatedByComparison>
-  comparison;
+  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1126,36 +823,18 @@ final class SecurityhubAutomationRuleCriteriaNoteUpdatedBy {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaNoteUpdatedByComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS'),
-  prefixNotEquals('PREFIX_NOT_EQUALS'),
-  contains('CONTAINS'),
-  notContains('NOT_CONTAINS'),
-  containsWord('CONTAINS_WORD');
-
-  const SecurityhubAutomationRuleCriteriaNoteUpdatedByComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.product_arn` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaProductArn {
-  const SecurityhubAutomationRuleCriteriaProductArn({
+final class SecurityhubAutomationRuleProductArn {
+  const SecurityhubAutomationRuleProductArn({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleCriteriaProductArnComparison> comparison;
+  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1163,37 +842,18 @@ final class SecurityhubAutomationRuleCriteriaProductArn {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaProductArnComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS'),
-  prefixNotEquals('PREFIX_NOT_EQUALS'),
-  contains('CONTAINS'),
-  notContains('NOT_CONTAINS'),
-  containsWord('CONTAINS_WORD');
-
-  const SecurityhubAutomationRuleCriteriaProductArnComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.product_name` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaProductName {
-  const SecurityhubAutomationRuleCriteriaProductName({
+final class SecurityhubAutomationRuleProductName {
+  const SecurityhubAutomationRuleProductName({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleCriteriaProductNameComparison>
-  comparison;
+  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1201,37 +861,18 @@ final class SecurityhubAutomationRuleCriteriaProductName {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaProductNameComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS'),
-  prefixNotEquals('PREFIX_NOT_EQUALS'),
-  contains('CONTAINS'),
-  notContains('NOT_CONTAINS'),
-  containsWord('CONTAINS_WORD');
-
-  const SecurityhubAutomationRuleCriteriaProductNameComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.record_state` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaRecordState {
-  const SecurityhubAutomationRuleCriteriaRecordState({
+final class SecurityhubAutomationRuleRecordState {
+  const SecurityhubAutomationRuleRecordState({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleCriteriaRecordStateComparison>
-  comparison;
+  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1239,37 +880,18 @@ final class SecurityhubAutomationRuleCriteriaRecordState {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaRecordStateComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS'),
-  prefixNotEquals('PREFIX_NOT_EQUALS'),
-  contains('CONTAINS'),
-  notContains('NOT_CONTAINS'),
-  containsWord('CONTAINS_WORD');
-
-  const SecurityhubAutomationRuleCriteriaRecordStateComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.related_findings_id` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaRelatedFindingsId {
-  const SecurityhubAutomationRuleCriteriaRelatedFindingsId({
+final class SecurityhubAutomationRuleRelatedFindingsId {
+  const SecurityhubAutomationRuleRelatedFindingsId({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleCriteriaRelatedFindingsIdComparison>
-  comparison;
+  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1277,39 +899,18 @@ final class SecurityhubAutomationRuleCriteriaRelatedFindingsId {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaRelatedFindingsIdComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS'),
-  prefixNotEquals('PREFIX_NOT_EQUALS'),
-  contains('CONTAINS'),
-  notContains('NOT_CONTAINS'),
-  containsWord('CONTAINS_WORD');
-
-  const SecurityhubAutomationRuleCriteriaRelatedFindingsIdComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.related_findings_product_arn` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaRelatedFindingsProductArn {
-  const SecurityhubAutomationRuleCriteriaRelatedFindingsProductArn({
+final class SecurityhubAutomationRuleRelatedFindingsProductArn {
+  const SecurityhubAutomationRuleRelatedFindingsProductArn({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<
-    SecurityhubAutomationRuleCriteriaRelatedFindingsProductArnComparison
-  >
-  comparison;
+  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1317,37 +918,18 @@ final class SecurityhubAutomationRuleCriteriaRelatedFindingsProductArn {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaRelatedFindingsProductArnComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS'),
-  prefixNotEquals('PREFIX_NOT_EQUALS'),
-  contains('CONTAINS'),
-  notContains('NOT_CONTAINS'),
-  containsWord('CONTAINS_WORD');
-
-  const SecurityhubAutomationRuleCriteriaRelatedFindingsProductArnComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.resource_application_arn` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaResourceApplicationArn {
-  const SecurityhubAutomationRuleCriteriaResourceApplicationArn({
+final class SecurityhubAutomationRuleResourceApplicationArn {
+  const SecurityhubAutomationRuleResourceApplicationArn({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleCriteriaResourceApplicationArnComparison>
-  comparison;
+  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1355,39 +937,18 @@ final class SecurityhubAutomationRuleCriteriaResourceApplicationArn {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaResourceApplicationArnComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS'),
-  prefixNotEquals('PREFIX_NOT_EQUALS'),
-  contains('CONTAINS'),
-  notContains('NOT_CONTAINS'),
-  containsWord('CONTAINS_WORD');
-
-  const SecurityhubAutomationRuleCriteriaResourceApplicationArnComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.resource_application_name` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaResourceApplicationName {
-  const SecurityhubAutomationRuleCriteriaResourceApplicationName({
+final class SecurityhubAutomationRuleResourceApplicationName {
+  const SecurityhubAutomationRuleResourceApplicationName({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<
-    SecurityhubAutomationRuleCriteriaResourceApplicationNameComparison
-  >
-  comparison;
+  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1397,35 +958,17 @@ final class SecurityhubAutomationRuleCriteriaResourceApplicationName {
   };
 }
 
-/// `comparison` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaResourceApplicationNameComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS'),
-  prefixNotEquals('PREFIX_NOT_EQUALS'),
-  contains('CONTAINS'),
-  notContains('NOT_CONTAINS'),
-  containsWord('CONTAINS_WORD');
-
-  const SecurityhubAutomationRuleCriteriaResourceApplicationNameComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `criteria.resource_details_other` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaResourceDetailsOther {
-  const SecurityhubAutomationRuleCriteriaResourceDetailsOther({
+final class SecurityhubAutomationRuleResourceDetailsOther {
+  const SecurityhubAutomationRuleResourceDetailsOther({
     required this.comparison,
     required this.key,
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleCriteriaResourceDetailsOtherComparison>
+  final TfArg<SecurityhubAutomationRuleResourceDetailsOtherComparison>
   comparison;
 
   final TfArg<String> key;
@@ -1440,14 +983,14 @@ final class SecurityhubAutomationRuleCriteriaResourceDetailsOther {
 }
 
 /// `comparison` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaResourceDetailsOtherComparison
+enum SecurityhubAutomationRuleResourceDetailsOtherComparison
     implements TerraformEnum {
   equals('EQUALS'),
   notEquals('NOT_EQUALS'),
   contains('CONTAINS'),
   notContains('NOT_CONTAINS');
 
-  const SecurityhubAutomationRuleCriteriaResourceDetailsOtherComparison(
+  const SecurityhubAutomationRuleResourceDetailsOtherComparison(
     this.terraformValue,
   );
   @override
@@ -1457,13 +1000,13 @@ enum SecurityhubAutomationRuleCriteriaResourceDetailsOtherComparison
 /// Typed helper for the `criteria.resource_id` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaResourceId {
-  const SecurityhubAutomationRuleCriteriaResourceId({
+final class SecurityhubAutomationRuleResourceId {
+  const SecurityhubAutomationRuleResourceId({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleCriteriaResourceIdComparison> comparison;
+  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1471,37 +1014,18 @@ final class SecurityhubAutomationRuleCriteriaResourceId {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaResourceIdComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS'),
-  prefixNotEquals('PREFIX_NOT_EQUALS'),
-  contains('CONTAINS'),
-  notContains('NOT_CONTAINS'),
-  containsWord('CONTAINS_WORD');
-
-  const SecurityhubAutomationRuleCriteriaResourceIdComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.resource_partition` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaResourcePartition {
-  const SecurityhubAutomationRuleCriteriaResourcePartition({
+final class SecurityhubAutomationRuleResourcePartition {
+  const SecurityhubAutomationRuleResourcePartition({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleCriteriaResourcePartitionComparison>
-  comparison;
+  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1509,37 +1033,18 @@ final class SecurityhubAutomationRuleCriteriaResourcePartition {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaResourcePartitionComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS'),
-  prefixNotEquals('PREFIX_NOT_EQUALS'),
-  contains('CONTAINS'),
-  notContains('NOT_CONTAINS'),
-  containsWord('CONTAINS_WORD');
-
-  const SecurityhubAutomationRuleCriteriaResourcePartitionComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.resource_region` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaResourceRegion {
-  const SecurityhubAutomationRuleCriteriaResourceRegion({
+final class SecurityhubAutomationRuleResourceRegion {
+  const SecurityhubAutomationRuleResourceRegion({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleCriteriaResourceRegionComparison>
-  comparison;
+  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1549,35 +1054,17 @@ final class SecurityhubAutomationRuleCriteriaResourceRegion {
   };
 }
 
-/// `comparison` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaResourceRegionComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS'),
-  prefixNotEquals('PREFIX_NOT_EQUALS'),
-  contains('CONTAINS'),
-  notContains('NOT_CONTAINS'),
-  containsWord('CONTAINS_WORD');
-
-  const SecurityhubAutomationRuleCriteriaResourceRegionComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `criteria.resource_tags` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaResourceTags {
-  const SecurityhubAutomationRuleCriteriaResourceTags({
+final class SecurityhubAutomationRuleResourceTags {
+  const SecurityhubAutomationRuleResourceTags({
     required this.comparison,
     required this.key,
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleCriteriaResourceTagsComparison>
+  final TfArg<SecurityhubAutomationRuleResourceDetailsOtherComparison>
   comparison;
 
   final TfArg<String> key;
@@ -1591,32 +1078,16 @@ final class SecurityhubAutomationRuleCriteriaResourceTags {
   };
 }
 
-/// `comparison` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaResourceTagsComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  notEquals('NOT_EQUALS'),
-  contains('CONTAINS'),
-  notContains('NOT_CONTAINS');
-
-  const SecurityhubAutomationRuleCriteriaResourceTagsComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `criteria.resource_type` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaResourceType {
-  const SecurityhubAutomationRuleCriteriaResourceType({
+final class SecurityhubAutomationRuleResourceType {
+  const SecurityhubAutomationRuleResourceType({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleCriteriaResourceTypeComparison>
-  comparison;
+  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1624,37 +1095,18 @@ final class SecurityhubAutomationRuleCriteriaResourceType {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaResourceTypeComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS'),
-  prefixNotEquals('PREFIX_NOT_EQUALS'),
-  contains('CONTAINS'),
-  notContains('NOT_CONTAINS'),
-  containsWord('CONTAINS_WORD');
-
-  const SecurityhubAutomationRuleCriteriaResourceTypeComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.severity_label` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaSeverityLabel {
-  const SecurityhubAutomationRuleCriteriaSeverityLabel({
+final class SecurityhubAutomationRuleSeverityLabel {
+  const SecurityhubAutomationRuleSeverityLabel({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleCriteriaSeverityLabelComparison>
-  comparison;
+  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1662,36 +1114,18 @@ final class SecurityhubAutomationRuleCriteriaSeverityLabel {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaSeverityLabelComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS'),
-  prefixNotEquals('PREFIX_NOT_EQUALS'),
-  contains('CONTAINS'),
-  notContains('NOT_CONTAINS'),
-  containsWord('CONTAINS_WORD');
-
-  const SecurityhubAutomationRuleCriteriaSeverityLabelComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.source_url` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaSourceUrl {
-  const SecurityhubAutomationRuleCriteriaSourceUrl({
+final class SecurityhubAutomationRuleSourceUrl {
+  const SecurityhubAutomationRuleSourceUrl({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleCriteriaSourceUrlComparison> comparison;
+  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1699,36 +1133,18 @@ final class SecurityhubAutomationRuleCriteriaSourceUrl {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaSourceUrlComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS'),
-  prefixNotEquals('PREFIX_NOT_EQUALS'),
-  contains('CONTAINS'),
-  notContains('NOT_CONTAINS'),
-  containsWord('CONTAINS_WORD');
-
-  const SecurityhubAutomationRuleCriteriaSourceUrlComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.title` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaTitle {
-  const SecurityhubAutomationRuleCriteriaTitle({
+final class SecurityhubAutomationRuleTitle {
+  const SecurityhubAutomationRuleTitle({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleCriteriaTitleComparison> comparison;
+  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1736,21 +1152,6 @@ final class SecurityhubAutomationRuleCriteriaTitle {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaTitleComparison implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS'),
-  prefixNotEquals('PREFIX_NOT_EQUALS'),
-  contains('CONTAINS'),
-  notContains('NOT_CONTAINS'),
-  containsWord('CONTAINS_WORD');
-
-  const SecurityhubAutomationRuleCriteriaTitleComparison(this.terraformValue);
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.type` block of
@@ -1762,7 +1163,7 @@ final class SecurityhubAutomationRuleCriteriaType {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleCriteriaTypeComparison> comparison;
+  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1772,26 +1173,11 @@ final class SecurityhubAutomationRuleCriteriaType {
   };
 }
 
-/// `comparison` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaTypeComparison implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS'),
-  prefixNotEquals('PREFIX_NOT_EQUALS'),
-  contains('CONTAINS'),
-  notContains('NOT_CONTAINS'),
-  containsWord('CONTAINS_WORD');
-
-  const SecurityhubAutomationRuleCriteriaTypeComparison(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `criteria.updated_at` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaUpdatedAt {
-  const SecurityhubAutomationRuleCriteriaUpdatedAt({
+final class SecurityhubAutomationRuleUpdatedAt {
+  const SecurityhubAutomationRuleUpdatedAt({
     this.end,
     this.start,
     this.dateRange,
@@ -1801,7 +1187,7 @@ final class SecurityhubAutomationRuleCriteriaUpdatedAt {
 
   final TfArg<String>? start;
 
-  final List<SecurityhubAutomationRuleCriteriaUpdatedAtDateRange>? dateRange;
+  final List<SecurityhubAutomationRuleDateRange>? dateRange;
 
   Map<String, Object?> encode() => {
     'end': ?end?.toTfJson(),
@@ -1811,48 +1197,17 @@ final class SecurityhubAutomationRuleCriteriaUpdatedAt {
   };
 }
 
-/// Typed helper for the `criteria.updated_at.date_range` block of
-/// `aws_securityhub_automation_rule` (derived from provider schema).
-@immutable
-final class SecurityhubAutomationRuleCriteriaUpdatedAtDateRange {
-  const SecurityhubAutomationRuleCriteriaUpdatedAtDateRange({
-    required this.unit,
-    required this.value,
-  });
-
-  final TfArg<SecurityhubAutomationRuleCriteriaUpdatedAtDateRangeUnit> unit;
-
-  final TfArg<num> value;
-
-  Map<String, Object?> encode() => {
-    'unit': unit.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
-
-/// `unit` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaUpdatedAtDateRangeUnit
-    implements TerraformEnum {
-  days('DAYS');
-
-  const SecurityhubAutomationRuleCriteriaUpdatedAtDateRangeUnit(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `criteria.user_defined_fields` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaUserDefinedFields {
-  const SecurityhubAutomationRuleCriteriaUserDefinedFields({
+final class SecurityhubAutomationRuleUserDefinedFields {
+  const SecurityhubAutomationRuleUserDefinedFields({
     required this.comparison,
     required this.key,
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleCriteriaUserDefinedFieldsComparison>
+  final TfArg<SecurityhubAutomationRuleResourceDetailsOtherComparison>
   comparison;
 
   final TfArg<String> key;
@@ -1866,32 +1221,16 @@ final class SecurityhubAutomationRuleCriteriaUserDefinedFields {
   };
 }
 
-/// `comparison` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaUserDefinedFieldsComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  notEquals('NOT_EQUALS'),
-  contains('CONTAINS'),
-  notContains('NOT_CONTAINS');
-
-  const SecurityhubAutomationRuleCriteriaUserDefinedFieldsComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `criteria.verification_state` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaVerificationState {
-  const SecurityhubAutomationRuleCriteriaVerificationState({
+final class SecurityhubAutomationRuleVerificationState {
+  const SecurityhubAutomationRuleVerificationState({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleCriteriaVerificationStateComparison>
-  comparison;
+  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1899,37 +1238,18 @@ final class SecurityhubAutomationRuleCriteriaVerificationState {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaVerificationStateComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS'),
-  prefixNotEquals('PREFIX_NOT_EQUALS'),
-  contains('CONTAINS'),
-  notContains('NOT_CONTAINS'),
-  containsWord('CONTAINS_WORD');
-
-  const SecurityhubAutomationRuleCriteriaVerificationStateComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.workflow_status` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
-final class SecurityhubAutomationRuleCriteriaWorkflowStatus {
-  const SecurityhubAutomationRuleCriteriaWorkflowStatus({
+final class SecurityhubAutomationRuleWorkflowStatus {
+  const SecurityhubAutomationRuleWorkflowStatus({
     required this.comparison,
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleCriteriaWorkflowStatusComparison>
-  comparison;
+  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1937,24 +1257,6 @@ final class SecurityhubAutomationRuleCriteriaWorkflowStatus {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `comparison` — derived from the provider schema description.
-enum SecurityhubAutomationRuleCriteriaWorkflowStatusComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS'),
-  prefixNotEquals('PREFIX_NOT_EQUALS'),
-  contains('CONTAINS'),
-  notContains('NOT_CONTAINS'),
-  containsWord('CONTAINS_WORD');
-
-  const SecurityhubAutomationRuleCriteriaWorkflowStatusComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_securityhub_automation_rule`.

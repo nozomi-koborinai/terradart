@@ -12,5 +12,5 @@ export 'src/codecommit/aws_codecommit_repository.dart'
 export 'src/codecommit/aws_codecommit_trigger.dart'
     show
         AwsCodecommitTrigger,
-        CodecommitTriggerTrigger,
-        CodecommitTriggerTriggerEvents;
+        CodecommitTriggerEvents,
+        CodecommitTriggerTrigger;

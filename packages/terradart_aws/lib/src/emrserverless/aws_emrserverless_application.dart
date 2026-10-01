@@ -74,8 +74,7 @@ final class EmrserverlessApplicationInitialCapacity {
 
   final TfArg<String> initialCapacityType;
 
-  final EmrserverlessApplicationInitialCapacityInitialCapacityConfig?
-  initialCapacityConfig;
+  final EmrserverlessApplicationInitialCapacityConfig? initialCapacityConfig;
 
   Map<String, Object?> encode() => {
     'initial_capacity_type': initialCapacityType.toTfJson(),
@@ -86,16 +85,15 @@ final class EmrserverlessApplicationInitialCapacity {
 /// Typed helper for the `initial_capacity.initial_capacity_config` block of
 /// `aws_emrserverless_application` (derived from provider schema).
 @immutable
-final class EmrserverlessApplicationInitialCapacityInitialCapacityConfig {
-  const EmrserverlessApplicationInitialCapacityInitialCapacityConfig({
+final class EmrserverlessApplicationInitialCapacityConfig {
+  const EmrserverlessApplicationInitialCapacityConfig({
     required this.workerCount,
     this.workerConfiguration,
   });
 
   final TfArg<num> workerCount;
 
-  final EmrserverlessApplicationInitialCapacityInitialCapacityConfigWorkerConfiguration?
-  workerConfiguration;
+  final EmrserverlessApplicationWorkerConfiguration? workerConfiguration;
 
   Map<String, Object?> encode() => {
     'worker_count': workerCount.toTfJson(),
@@ -106,8 +104,8 @@ final class EmrserverlessApplicationInitialCapacityInitialCapacityConfig {
 /// Typed helper for the `initial_capacity.initial_capacity_config.worker_configuration` block of
 /// `aws_emrserverless_application` (derived from provider schema).
 @immutable
-final class EmrserverlessApplicationInitialCapacityInitialCapacityConfigWorkerConfiguration {
-  const EmrserverlessApplicationInitialCapacityInitialCapacityConfigWorkerConfiguration({
+final class EmrserverlessApplicationWorkerConfiguration {
+  const EmrserverlessApplicationWorkerConfiguration({
     required this.cpu,
     this.disk,
     required this.memory,
@@ -192,16 +190,16 @@ final class EmrserverlessApplicationMonitoringConfiguration {
     this.s3MonitoringConfiguration,
   });
 
-  final EmrserverlessApplicationMonitoringConfigurationCloudwatchLoggingConfiguration?
+  final EmrserverlessApplicationCloudwatchLoggingConfiguration?
   cloudwatchLoggingConfiguration;
 
-  final EmrserverlessApplicationMonitoringConfigurationManagedPersistenceMonitoringConfiguration?
+  final EmrserverlessApplicationManagedPersistenceMonitoringConfiguration?
   managedPersistenceMonitoringConfiguration;
 
-  final EmrserverlessApplicationMonitoringConfigurationPrometheusMonitoringConfiguration?
+  final EmrserverlessApplicationPrometheusMonitoringConfiguration?
   prometheusMonitoringConfiguration;
 
-  final EmrserverlessApplicationMonitoringConfigurationS3MonitoringConfiguration?
+  final EmrserverlessApplicationS3MonitoringConfiguration?
   s3MonitoringConfiguration;
 
   Map<String, Object?> encode() => {
@@ -218,8 +216,8 @@ final class EmrserverlessApplicationMonitoringConfiguration {
 /// Typed helper for the `monitoring_configuration.cloudwatch_logging_configuration` block of
 /// `aws_emrserverless_application` (derived from provider schema).
 @immutable
-final class EmrserverlessApplicationMonitoringConfigurationCloudwatchLoggingConfiguration {
-  const EmrserverlessApplicationMonitoringConfigurationCloudwatchLoggingConfiguration({
+final class EmrserverlessApplicationCloudwatchLoggingConfiguration {
+  const EmrserverlessApplicationCloudwatchLoggingConfiguration({
     required this.enabled,
     this.encryptionKeyArn,
     this.logGroupName,
@@ -235,10 +233,7 @@ final class EmrserverlessApplicationMonitoringConfigurationCloudwatchLoggingConf
 
   final TfArg<String>? logStreamNamePrefix;
 
-  final List<
-    EmrserverlessApplicationMonitoringConfigurationCloudwatchLoggingConfigurationLogTypes
-  >?
-  logTypes;
+  final List<EmrserverlessApplicationLogTypes>? logTypes;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
@@ -252,8 +247,8 @@ final class EmrserverlessApplicationMonitoringConfigurationCloudwatchLoggingConf
 /// Typed helper for the `monitoring_configuration.cloudwatch_logging_configuration.log_types` block of
 /// `aws_emrserverless_application` (derived from provider schema).
 @immutable
-final class EmrserverlessApplicationMonitoringConfigurationCloudwatchLoggingConfigurationLogTypes {
-  const EmrserverlessApplicationMonitoringConfigurationCloudwatchLoggingConfigurationLogTypes({
+final class EmrserverlessApplicationLogTypes {
+  const EmrserverlessApplicationLogTypes({
     required this.name,
     required this.values,
   });
@@ -271,8 +266,8 @@ final class EmrserverlessApplicationMonitoringConfigurationCloudwatchLoggingConf
 /// Typed helper for the `monitoring_configuration.managed_persistence_monitoring_configuration` block of
 /// `aws_emrserverless_application` (derived from provider schema).
 @immutable
-final class EmrserverlessApplicationMonitoringConfigurationManagedPersistenceMonitoringConfiguration {
-  const EmrserverlessApplicationMonitoringConfigurationManagedPersistenceMonitoringConfiguration({
+final class EmrserverlessApplicationManagedPersistenceMonitoringConfiguration {
+  const EmrserverlessApplicationManagedPersistenceMonitoringConfiguration({
     this.enabled,
     this.encryptionKeyArn,
   });
@@ -290,8 +285,8 @@ final class EmrserverlessApplicationMonitoringConfigurationManagedPersistenceMon
 /// Typed helper for the `monitoring_configuration.prometheus_monitoring_configuration` block of
 /// `aws_emrserverless_application` (derived from provider schema).
 @immutable
-final class EmrserverlessApplicationMonitoringConfigurationPrometheusMonitoringConfiguration {
-  const EmrserverlessApplicationMonitoringConfigurationPrometheusMonitoringConfiguration({
+final class EmrserverlessApplicationPrometheusMonitoringConfiguration {
+  const EmrserverlessApplicationPrometheusMonitoringConfiguration({
     this.remoteWriteUrl,
   });
 
@@ -305,8 +300,8 @@ final class EmrserverlessApplicationMonitoringConfigurationPrometheusMonitoringC
 /// Typed helper for the `monitoring_configuration.s3_monitoring_configuration` block of
 /// `aws_emrserverless_application` (derived from provider schema).
 @immutable
-final class EmrserverlessApplicationMonitoringConfigurationS3MonitoringConfiguration {
-  const EmrserverlessApplicationMonitoringConfigurationS3MonitoringConfiguration({
+final class EmrserverlessApplicationS3MonitoringConfiguration {
+  const EmrserverlessApplicationS3MonitoringConfiguration({
     this.encryptionKeyArn,
     this.logUri,
   });

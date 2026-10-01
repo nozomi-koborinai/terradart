@@ -96,6 +96,22 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ### Changed
 
+- **Generated type names are short** (**breaking**; `terradart_codegen`,
+  `terradart_google`, `terradart_google_beta`, `terradart_aws`,
+  `terradart_cloudflare`) — a derived helper, enum or nested sealed type is
+  named after its resource and its own block or attribute
+  (`CloudRunV2ServiceSecretKeyRef`, `QuicksightDashboardThousandsSeparator`)
+  instead of the whole block path
+  (`CloudRunV2ServiceTemplateContainersEnvValueSourceSecretKeyRef`). A name
+  two blocks of a resource would share takes the nearest parent that tells
+  them apart; blocks of the same name and shape share one helper, and enum
+  inputs of the same name and values one enum; a nested sealed type takes
+  its concept name (`CloudSecurityComplianceFrameworkDeploymentTargetResourceCreationConfig`).
+  5,239 google, 169 google-beta, 8,513 aws and 966 cloudflare types are
+  renamed, and 3,538 fewer are declared (27,684 → 24,146). Longest name 217
+  → 107 characters, p95 119 → 55, names over 80 characters 4,592 → 35.
+  Synth output is unchanged. See `MIGRATING.md`.
+
 - **Value lists inside helper classes take their element type**
   (**breaking**; `terradart_codegen`, `terradart_google`,
   `terradart_google_beta`, `terradart_aws`, `terradart_cloudflare`) — a list

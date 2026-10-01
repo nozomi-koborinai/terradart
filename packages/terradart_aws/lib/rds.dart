@@ -21,26 +21,26 @@ export 'src/rds/aws_rds_cluster.dart'
         RdsClusterMasterPasswordWo,
         RdsClusterNetworkType,
         RdsClusterRestoreToPointInTime,
-        RdsClusterRestoreToPointInTimeRestoreType,
-        RdsClusterRestoreToPointInTimeSourceCluster,
-        RdsClusterRestoreToPointInTimeSourceClusterIdentifier,
-        RdsClusterRestoreToPointInTimeSourceClusterResourceId,
-        RdsClusterRestoreToPointInTimeTarget,
-        RdsClusterRestoreToPointInTimeTargetRestoreToTime,
-        RdsClusterRestoreToPointInTimeTargetUseLatestRestorableTime,
+        RdsClusterRestoreType,
         RdsClusterS3Import,
         RdsClusterScalingConfiguration,
-        RdsClusterScalingConfigurationTimeoutAction,
-        RdsClusterServerlessv2ScalingConfiguration;
+        RdsClusterServerlessv2ScalingConfiguration,
+        RdsClusterSourceCluster,
+        RdsClusterSourceClusterIdentifier,
+        RdsClusterSourceClusterResourceId,
+        RdsClusterTarget,
+        RdsClusterTargetRestoreToTime,
+        RdsClusterTargetUseLatestRestorableTime,
+        RdsClusterTimeoutAction;
 export 'src/rds/aws_rds_cluster_activity_stream.dart'
     show AwsRdsClusterActivityStream, RdsClusterActivityStreamMode;
 export 'src/rds/aws_rds_cluster_endpoint.dart'
     show
         AwsRdsClusterEndpoint,
         RdsClusterEndpointCustomEndpointType,
+        RdsClusterEndpointExcludedMembers,
         RdsClusterEndpointMembers,
-        RdsClusterEndpointMembersExcludedMembers,
-        RdsClusterEndpointMembersStaticMembers;
+        RdsClusterEndpointStaticMembers;
 export 'src/rds/aws_rds_cluster_instance.dart'
     show
         AwsRdsClusterInstance,
@@ -50,11 +50,11 @@ export 'src/rds/aws_rds_cluster_instance.dart'
 export 'src/rds/aws_rds_cluster_parameter_group.dart'
     show
         AwsRdsClusterParameterGroup,
+        RdsClusterParameterGroupApplyMethod,
         RdsClusterParameterGroupName,
         RdsClusterParameterGroupNameChoice,
         RdsClusterParameterGroupNamePrefix,
-        RdsClusterParameterGroupParameter,
-        RdsClusterParameterGroupParameterApplyMethod;
+        RdsClusterParameterGroupParameter;
 export 'src/rds/aws_rds_cluster_role_association.dart'
     show AwsRdsClusterRoleAssociation;
 export 'src/rds/aws_rds_cluster_snapshot_copy.dart'

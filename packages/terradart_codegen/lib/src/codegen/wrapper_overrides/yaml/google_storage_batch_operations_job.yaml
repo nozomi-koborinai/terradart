@@ -20,10 +20,10 @@ curatedDoc: |-
   ///   jobId: .literal('stamp-meta'),
   ///   deleteProtection: .literal(false),
   ///   bucketList: StorageBatchOperationsJobBucketList(
-  ///     buckets: StorageBatchOperationsJobBucketListBuckets(
+  ///     buckets: StorageBatchOperationsJobBuckets(
   ///       bucket: assets.ref,
   ///       objects: .prefixList(
-  ///         StorageBatchOperationsJobBucketListBucketsPrefixList(
+  ///         StorageBatchOperationsJobPrefixList(
   ///           includedObjectPrefixes: .literal(['config/']),
   ///         ),
   ///       ),

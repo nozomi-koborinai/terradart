@@ -17,12 +17,12 @@ sealed class ComputeRegionTargetHttpsProxyCertificates {
   /// Sets `certificate_manager_certificates`.
   const factory ComputeRegionTargetHttpsProxyCertificates.certificateManagerCertificates(
     TfArg<List<String>> certificateManagerCertificates,
-  ) = ComputeRegionTargetHttpsProxyCertificatesCertificateManagerCertificates;
+  ) = ComputeRegionTargetHttpsProxyCertificateManagerCertificates;
 
   /// Sets `ssl_certificates`.
   const factory ComputeRegionTargetHttpsProxyCertificates.sslCertificates(
     TfArg<List<String>> sslCertificates,
-  ) = ComputeRegionTargetHttpsProxyCertificatesSslCertificates;
+  ) = ComputeRegionTargetHttpsProxySslCertificates;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -35,9 +35,9 @@ sealed class ComputeRegionTargetHttpsProxyCertificates {
 }
 
 /// The [ComputeRegionTargetHttpsProxyCertificates.certificateManagerCertificates] choice: sets `certificate_manager_certificates`.
-final class ComputeRegionTargetHttpsProxyCertificatesCertificateManagerCertificates
+final class ComputeRegionTargetHttpsProxyCertificateManagerCertificates
     extends ComputeRegionTargetHttpsProxyCertificates {
-  const ComputeRegionTargetHttpsProxyCertificatesCertificateManagerCertificates(
+  const ComputeRegionTargetHttpsProxyCertificateManagerCertificates(
     this.certificateManagerCertificates,
   );
 
@@ -59,11 +59,9 @@ final class ComputeRegionTargetHttpsProxyCertificatesCertificateManagerCertifica
 }
 
 /// The [ComputeRegionTargetHttpsProxyCertificates.sslCertificates] choice: sets `ssl_certificates`.
-final class ComputeRegionTargetHttpsProxyCertificatesSslCertificates
+final class ComputeRegionTargetHttpsProxySslCertificates
     extends ComputeRegionTargetHttpsProxyCertificates {
-  const ComputeRegionTargetHttpsProxyCertificatesSslCertificates(
-    this.sslCertificates,
-  );
+  const ComputeRegionTargetHttpsProxySslCertificates(this.sslCertificates);
 
   final TfArg<List<String>> sslCertificates;
 

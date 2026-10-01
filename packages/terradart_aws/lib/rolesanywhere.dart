@@ -8,9 +8,9 @@ export 'src/rolesanywhere/aws_rolesanywhere_profile.dart'
 export 'src/rolesanywhere/aws_rolesanywhere_trust_anchor.dart'
     show
         AwsRolesanywhereTrustAnchor,
+        RolesanywhereTrustAnchorChannel,
+        RolesanywhereTrustAnchorEvent,
         RolesanywhereTrustAnchorNotificationSettings,
-        RolesanywhereTrustAnchorNotificationSettingsChannel,
-        RolesanywhereTrustAnchorNotificationSettingsEvent,
         RolesanywhereTrustAnchorSource,
-        RolesanywhereTrustAnchorSourceSourceData,
-        RolesanywhereTrustAnchorSourceSourceType;
+        RolesanywhereTrustAnchorSourceData,
+        RolesanywhereTrustAnchorSourceType;

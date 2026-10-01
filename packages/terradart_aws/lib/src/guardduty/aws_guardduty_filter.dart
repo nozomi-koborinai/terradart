@@ -23,7 +23,7 @@ enum GuarddutyFilterAction implements TerraformEnum {
 final class GuarddutyFilterFindingCriteria {
   const GuarddutyFilterFindingCriteria({required this.criterion});
 
-  final List<GuarddutyFilterFindingCriteriaCriterion> criterion;
+  final List<GuarddutyFilterCriterion> criterion;
 
   Map<String, Object?> encode() => {
     'criterion': [for (final e in criterion) e.encode()],
@@ -33,8 +33,8 @@ final class GuarddutyFilterFindingCriteria {
 /// Typed helper for the `finding_criteria.criterion` block of
 /// `aws_guardduty_filter` (derived from provider schema).
 @immutable
-final class GuarddutyFilterFindingCriteriaCriterion {
-  const GuarddutyFilterFindingCriteriaCriterion({
+final class GuarddutyFilterCriterion {
+  const GuarddutyFilterCriterion({
     this.equals,
     required this.field,
     this.greaterThan,

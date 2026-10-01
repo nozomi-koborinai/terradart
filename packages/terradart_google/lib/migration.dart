@@ -28,16 +28,16 @@ export 'src/migration/google_migration_center_import_job.dart'
 export 'src/migration/google_migration_center_preference_set.dart'
     show
         GoogleMigrationCenterPreferenceSet,
+        MigrationCenterPreferenceSetAllowedMachineSeries,
+        MigrationCenterPreferenceSetComputeEnginePreferences,
         MigrationCenterPreferenceSetDeletionPolicy,
+        MigrationCenterPreferenceSetMachinePreferences,
+        MigrationCenterPreferenceSetNodeTypes,
+        MigrationCenterPreferenceSetPersistentDiskType,
+        MigrationCenterPreferenceSetRegionPreferences,
+        MigrationCenterPreferenceSetSoleTenancyPreferences,
         MigrationCenterPreferenceSetVirtualMachinePreferences,
-        MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferences,
-        MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferencesMachinePreferences,
-        MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferencesMachinePreferencesAllowedMachineSeries,
-        MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferencesPersistentDiskType,
-        MigrationCenterPreferenceSetVirtualMachinePreferencesRegionPreferences,
-        MigrationCenterPreferenceSetVirtualMachinePreferencesSoleTenancyPreferences,
-        MigrationCenterPreferenceSetVirtualMachinePreferencesSoleTenancyPreferencesNodeTypes,
-        MigrationCenterPreferenceSetVirtualMachinePreferencesVmwareEnginePreferences;
+        MigrationCenterPreferenceSetVmwareEnginePreferences;
 export 'src/migration/google_migration_center_report.dart'
     show
         GoogleMigrationCenterReport,

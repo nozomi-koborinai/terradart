@@ -112,13 +112,13 @@ sealed class DataLossPreventionStoredInfoTypeDictionary {
 
   /// Sets `word_list`.
   const factory DataLossPreventionStoredInfoTypeDictionary.wordList(
-    DataLossPreventionStoredInfoTypeDictionaryWordList wordList,
-  ) = DataLossPreventionStoredInfoTypeDictionaryWordListChoice;
+    DataLossPreventionStoredInfoTypeWordList wordList,
+  ) = DataLossPreventionStoredInfoTypeDictionaryWordList;
 
   /// Sets `cloud_storage_path`.
   const factory DataLossPreventionStoredInfoTypeDictionary.cloudStoragePath(
-    DataLossPreventionStoredInfoTypeDictionaryCloudStoragePath cloudStoragePath,
-  ) = DataLossPreventionStoredInfoTypeDictionaryCloudStoragePathChoice;
+    DataLossPreventionStoredInfoTypeCloudStoragePath cloudStoragePath,
+  ) = DataLossPreventionStoredInfoTypeDictionaryCloudStoragePath;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -127,11 +127,11 @@ sealed class DataLossPreventionStoredInfoTypeDictionary {
 }
 
 /// The [DataLossPreventionStoredInfoTypeDictionary.wordList] choice: sets `word_list`.
-final class DataLossPreventionStoredInfoTypeDictionaryWordListChoice
+final class DataLossPreventionStoredInfoTypeDictionaryWordList
     extends DataLossPreventionStoredInfoTypeDictionary {
-  const DataLossPreventionStoredInfoTypeDictionaryWordListChoice(this.wordList);
+  const DataLossPreventionStoredInfoTypeDictionaryWordList(this.wordList);
 
-  final DataLossPreventionStoredInfoTypeDictionaryWordList wordList;
+  final DataLossPreventionStoredInfoTypeWordList wordList;
 
   @override
   String get blockKey => 'word_list';
@@ -141,14 +141,13 @@ final class DataLossPreventionStoredInfoTypeDictionaryWordListChoice
 }
 
 /// The [DataLossPreventionStoredInfoTypeDictionary.cloudStoragePath] choice: sets `cloud_storage_path`.
-final class DataLossPreventionStoredInfoTypeDictionaryCloudStoragePathChoice
+final class DataLossPreventionStoredInfoTypeDictionaryCloudStoragePath
     extends DataLossPreventionStoredInfoTypeDictionary {
-  const DataLossPreventionStoredInfoTypeDictionaryCloudStoragePathChoice(
+  const DataLossPreventionStoredInfoTypeDictionaryCloudStoragePath(
     this.cloudStoragePath,
   );
 
-  final DataLossPreventionStoredInfoTypeDictionaryCloudStoragePath
-  cloudStoragePath;
+  final DataLossPreventionStoredInfoTypeCloudStoragePath cloudStoragePath;
 
   @override
   String get blockKey => 'cloud_storage_path';
@@ -162,10 +161,8 @@ final class DataLossPreventionStoredInfoTypeDictionaryCloudStoragePathChoice
 /// Typed helper for the `dictionary.cloud_storage_path` block of
 /// `google_data_loss_prevention_stored_info_type` (derived from provider schema).
 @immutable
-final class DataLossPreventionStoredInfoTypeDictionaryCloudStoragePath {
-  const DataLossPreventionStoredInfoTypeDictionaryCloudStoragePath({
-    required this.path,
-  });
+final class DataLossPreventionStoredInfoTypeCloudStoragePath {
+  const DataLossPreventionStoredInfoTypeCloudStoragePath({required this.path});
 
   final TfArg<String> path;
 
@@ -175,10 +172,8 @@ final class DataLossPreventionStoredInfoTypeDictionaryCloudStoragePath {
 /// Typed helper for the `dictionary.word_list` block of
 /// `google_data_loss_prevention_stored_info_type` (derived from provider schema).
 @immutable
-final class DataLossPreventionStoredInfoTypeDictionaryWordList {
-  const DataLossPreventionStoredInfoTypeDictionaryWordList({
-    required this.words,
-  });
+final class DataLossPreventionStoredInfoTypeWordList {
+  const DataLossPreventionStoredInfoTypeWordList({required this.words});
 
   final TfArg<List<String>> words;
 
@@ -194,10 +189,9 @@ final class DataLossPreventionStoredInfoTypeLargeCustomDictionary {
     required this.outputPath,
   });
 
-  final DataLossPreventionStoredInfoTypeLargeCustomDictionarySource source;
+  final DataLossPreventionStoredInfoTypeSource source;
 
-  final DataLossPreventionStoredInfoTypeLargeCustomDictionaryOutputPath
-  outputPath;
+  final DataLossPreventionStoredInfoTypeOutputPath outputPath;
 
   Map<String, Object?> encode() => {
     ...source.encode(),
@@ -209,20 +203,18 @@ final class DataLossPreventionStoredInfoTypeLargeCustomDictionary {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.cloudStorageFileSet(...)`.
-sealed class DataLossPreventionStoredInfoTypeLargeCustomDictionarySource {
-  const DataLossPreventionStoredInfoTypeLargeCustomDictionarySource();
+sealed class DataLossPreventionStoredInfoTypeSource {
+  const DataLossPreventionStoredInfoTypeSource();
 
   /// Sets `cloud_storage_file_set`.
-  const factory DataLossPreventionStoredInfoTypeLargeCustomDictionarySource.cloudStorageFileSet(
-    DataLossPreventionStoredInfoTypeLargeCustomDictionaryCloudStorageFileSet
-    cloudStorageFileSet,
-  ) = DataLossPreventionStoredInfoTypeLargeCustomDictionarySourceCloudStorageFileSet;
+  const factory DataLossPreventionStoredInfoTypeSource.cloudStorageFileSet(
+    DataLossPreventionStoredInfoTypeCloudStorageFileSet cloudStorageFileSet,
+  ) = DataLossPreventionStoredInfoTypeSourceCloudStorageFileSet;
 
   /// Sets `big_query_field`.
-  const factory DataLossPreventionStoredInfoTypeLargeCustomDictionarySource.bigQueryField(
-    DataLossPreventionStoredInfoTypeLargeCustomDictionaryBigQueryField
-    bigQueryField,
-  ) = DataLossPreventionStoredInfoTypeLargeCustomDictionarySourceBigQueryField;
+  const factory DataLossPreventionStoredInfoTypeSource.bigQueryField(
+    DataLossPreventionStoredInfoTypeBigQueryField bigQueryField,
+  ) = DataLossPreventionStoredInfoTypeSourceBigQueryField;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -230,15 +222,14 @@ sealed class DataLossPreventionStoredInfoTypeLargeCustomDictionarySource {
   Map<String, Object?> encode();
 }
 
-/// The [DataLossPreventionStoredInfoTypeLargeCustomDictionarySource.cloudStorageFileSet] choice: sets `cloud_storage_file_set`.
-final class DataLossPreventionStoredInfoTypeLargeCustomDictionarySourceCloudStorageFileSet
-    extends DataLossPreventionStoredInfoTypeLargeCustomDictionarySource {
-  const DataLossPreventionStoredInfoTypeLargeCustomDictionarySourceCloudStorageFileSet(
+/// The [DataLossPreventionStoredInfoTypeSource.cloudStorageFileSet] choice: sets `cloud_storage_file_set`.
+final class DataLossPreventionStoredInfoTypeSourceCloudStorageFileSet
+    extends DataLossPreventionStoredInfoTypeSource {
+  const DataLossPreventionStoredInfoTypeSourceCloudStorageFileSet(
     this.cloudStorageFileSet,
   );
 
-  final DataLossPreventionStoredInfoTypeLargeCustomDictionaryCloudStorageFileSet
-  cloudStorageFileSet;
+  final DataLossPreventionStoredInfoTypeCloudStorageFileSet cloudStorageFileSet;
 
   @override
   String get blockKey => 'cloud_storage_file_set';
@@ -249,15 +240,12 @@ final class DataLossPreventionStoredInfoTypeLargeCustomDictionarySourceCloudStor
   };
 }
 
-/// The [DataLossPreventionStoredInfoTypeLargeCustomDictionarySource.bigQueryField] choice: sets `big_query_field`.
-final class DataLossPreventionStoredInfoTypeLargeCustomDictionarySourceBigQueryField
-    extends DataLossPreventionStoredInfoTypeLargeCustomDictionarySource {
-  const DataLossPreventionStoredInfoTypeLargeCustomDictionarySourceBigQueryField(
-    this.bigQueryField,
-  );
+/// The [DataLossPreventionStoredInfoTypeSource.bigQueryField] choice: sets `big_query_field`.
+final class DataLossPreventionStoredInfoTypeSourceBigQueryField
+    extends DataLossPreventionStoredInfoTypeSource {
+  const DataLossPreventionStoredInfoTypeSourceBigQueryField(this.bigQueryField);
 
-  final DataLossPreventionStoredInfoTypeLargeCustomDictionaryBigQueryField
-  bigQueryField;
+  final DataLossPreventionStoredInfoTypeBigQueryField bigQueryField;
 
   @override
   String get blockKey => 'big_query_field';
@@ -269,17 +257,15 @@ final class DataLossPreventionStoredInfoTypeLargeCustomDictionarySourceBigQueryF
 /// Typed helper for the `large_custom_dictionary.big_query_field` block of
 /// `google_data_loss_prevention_stored_info_type` (derived from provider schema).
 @immutable
-final class DataLossPreventionStoredInfoTypeLargeCustomDictionaryBigQueryField {
-  const DataLossPreventionStoredInfoTypeLargeCustomDictionaryBigQueryField({
+final class DataLossPreventionStoredInfoTypeBigQueryField {
+  const DataLossPreventionStoredInfoTypeBigQueryField({
     required this.field,
     required this.table,
   });
 
-  final DataLossPreventionStoredInfoTypeLargeCustomDictionaryBigQueryFieldField
-  field;
+  final DataLossPreventionStoredInfoTypeField field;
 
-  final DataLossPreventionStoredInfoTypeLargeCustomDictionaryBigQueryFieldTable
-  table;
+  final DataLossPreventionStoredInfoTypeTable table;
 
   Map<String, Object?> encode() => {
     'field': field.encode(),
@@ -290,10 +276,8 @@ final class DataLossPreventionStoredInfoTypeLargeCustomDictionaryBigQueryField {
 /// Typed helper for the `large_custom_dictionary.big_query_field.field` block of
 /// `google_data_loss_prevention_stored_info_type` (derived from provider schema).
 @immutable
-final class DataLossPreventionStoredInfoTypeLargeCustomDictionaryBigQueryFieldField {
-  const DataLossPreventionStoredInfoTypeLargeCustomDictionaryBigQueryFieldField({
-    required this.name,
-  });
+final class DataLossPreventionStoredInfoTypeField {
+  const DataLossPreventionStoredInfoTypeField({required this.name});
 
   final TfArg<String> name;
 
@@ -303,8 +287,8 @@ final class DataLossPreventionStoredInfoTypeLargeCustomDictionaryBigQueryFieldFi
 /// Typed helper for the `large_custom_dictionary.big_query_field.table` block of
 /// `google_data_loss_prevention_stored_info_type` (derived from provider schema).
 @immutable
-final class DataLossPreventionStoredInfoTypeLargeCustomDictionaryBigQueryFieldTable {
-  const DataLossPreventionStoredInfoTypeLargeCustomDictionaryBigQueryFieldTable({
+final class DataLossPreventionStoredInfoTypeTable {
+  const DataLossPreventionStoredInfoTypeTable({
     required this.datasetId,
     required this.projectId,
     required this.tableId,
@@ -326,8 +310,8 @@ final class DataLossPreventionStoredInfoTypeLargeCustomDictionaryBigQueryFieldTa
 /// Typed helper for the `large_custom_dictionary.cloud_storage_file_set` block of
 /// `google_data_loss_prevention_stored_info_type` (derived from provider schema).
 @immutable
-final class DataLossPreventionStoredInfoTypeLargeCustomDictionaryCloudStorageFileSet {
-  const DataLossPreventionStoredInfoTypeLargeCustomDictionaryCloudStorageFileSet({
+final class DataLossPreventionStoredInfoTypeCloudStorageFileSet {
+  const DataLossPreventionStoredInfoTypeCloudStorageFileSet({
     required this.url,
   });
 
@@ -339,10 +323,8 @@ final class DataLossPreventionStoredInfoTypeLargeCustomDictionaryCloudStorageFil
 /// Typed helper for the `large_custom_dictionary.output_path` block of
 /// `google_data_loss_prevention_stored_info_type` (derived from provider schema).
 @immutable
-final class DataLossPreventionStoredInfoTypeLargeCustomDictionaryOutputPath {
-  const DataLossPreventionStoredInfoTypeLargeCustomDictionaryOutputPath({
-    required this.path,
-  });
+final class DataLossPreventionStoredInfoTypeOutputPath {
+  const DataLossPreventionStoredInfoTypeOutputPath({required this.path});
 
   final TfArg<String> path;
 

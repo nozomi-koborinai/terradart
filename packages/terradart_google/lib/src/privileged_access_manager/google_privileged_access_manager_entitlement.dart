@@ -35,8 +35,7 @@ final class PrivilegedAccessManagerEntitlementApprovalWorkflow {
     required this.manualApprovals,
   });
 
-  final PrivilegedAccessManagerEntitlementApprovalWorkflowManualApprovals
-  manualApprovals;
+  final PrivilegedAccessManagerEntitlementManualApprovals manualApprovals;
 
   Map<String, Object?> encode() => {
     'manual_approvals': manualApprovals.encode(),
@@ -46,18 +45,15 @@ final class PrivilegedAccessManagerEntitlementApprovalWorkflow {
 /// Typed helper for the `approval_workflow.manual_approvals` block of
 /// `google_privileged_access_manager_entitlement` (derived from provider schema).
 @immutable
-final class PrivilegedAccessManagerEntitlementApprovalWorkflowManualApprovals {
-  const PrivilegedAccessManagerEntitlementApprovalWorkflowManualApprovals({
+final class PrivilegedAccessManagerEntitlementManualApprovals {
+  const PrivilegedAccessManagerEntitlementManualApprovals({
     this.requireApproverJustification,
     required this.steps,
   });
 
   final TfArg<bool>? requireApproverJustification;
 
-  final List<
-    PrivilegedAccessManagerEntitlementApprovalWorkflowManualApprovalsSteps
-  >
-  steps;
+  final List<PrivilegedAccessManagerEntitlementSteps> steps;
 
   Map<String, Object?> encode() => {
     'require_approver_justification': ?requireApproverJustification?.toTfJson(),
@@ -68,8 +64,8 @@ final class PrivilegedAccessManagerEntitlementApprovalWorkflowManualApprovals {
 /// Typed helper for the `approval_workflow.manual_approvals.steps` block of
 /// `google_privileged_access_manager_entitlement` (derived from provider schema).
 @immutable
-final class PrivilegedAccessManagerEntitlementApprovalWorkflowManualApprovalsSteps {
-  const PrivilegedAccessManagerEntitlementApprovalWorkflowManualApprovalsSteps({
+final class PrivilegedAccessManagerEntitlementSteps {
+  const PrivilegedAccessManagerEntitlementSteps({
     this.approvalsNeeded,
     this.approverEmailRecipients,
     required this.approvers,
@@ -79,8 +75,7 @@ final class PrivilegedAccessManagerEntitlementApprovalWorkflowManualApprovalsSte
 
   final TfArg<List<String>>? approverEmailRecipients;
 
-  final PrivilegedAccessManagerEntitlementApprovalWorkflowManualApprovalsStepsApprovers
-  approvers;
+  final PrivilegedAccessManagerEntitlementApprovers approvers;
 
   Map<String, Object?> encode() => {
     'approvals_needed': ?approvalsNeeded?.toTfJson(),
@@ -92,10 +87,8 @@ final class PrivilegedAccessManagerEntitlementApprovalWorkflowManualApprovalsSte
 /// Typed helper for the `approval_workflow.manual_approvals.steps.approvers` block of
 /// `google_privileged_access_manager_entitlement` (derived from provider schema).
 @immutable
-final class PrivilegedAccessManagerEntitlementApprovalWorkflowManualApprovalsStepsApprovers {
-  const PrivilegedAccessManagerEntitlementApprovalWorkflowManualApprovalsStepsApprovers({
-    required this.principals,
-  });
+final class PrivilegedAccessManagerEntitlementApprovers {
+  const PrivilegedAccessManagerEntitlementApprovers({required this.principals});
 
   final TfArg<List<String>> principals;
 
@@ -123,8 +116,7 @@ final class PrivilegedAccessManagerEntitlementPrivilegedAccess {
     required this.gcpIamAccess,
   });
 
-  final PrivilegedAccessManagerEntitlementPrivilegedAccessGcpIamAccess
-  gcpIamAccess;
+  final PrivilegedAccessManagerEntitlementGcpIamAccess gcpIamAccess;
 
   Map<String, Object?> encode() => {'gcp_iam_access': gcpIamAccess.encode()};
 }
@@ -132,8 +124,8 @@ final class PrivilegedAccessManagerEntitlementPrivilegedAccess {
 /// Typed helper for the `privileged_access.gcp_iam_access` block of
 /// `google_privileged_access_manager_entitlement` (derived from provider schema).
 @immutable
-final class PrivilegedAccessManagerEntitlementPrivilegedAccessGcpIamAccess {
-  const PrivilegedAccessManagerEntitlementPrivilegedAccessGcpIamAccess({
+final class PrivilegedAccessManagerEntitlementGcpIamAccess {
+  const PrivilegedAccessManagerEntitlementGcpIamAccess({
     required this.resource,
     required this.resourceType,
     required this.roleBindings,
@@ -143,10 +135,7 @@ final class PrivilegedAccessManagerEntitlementPrivilegedAccessGcpIamAccess {
 
   final TfArg<String> resourceType;
 
-  final List<
-    PrivilegedAccessManagerEntitlementPrivilegedAccessGcpIamAccessRoleBindings
-  >
-  roleBindings;
+  final List<PrivilegedAccessManagerEntitlementRoleBindings> roleBindings;
 
   Map<String, Object?> encode() => {
     'resource': resource.toTfJson(),
@@ -158,8 +147,8 @@ final class PrivilegedAccessManagerEntitlementPrivilegedAccessGcpIamAccess {
 /// Typed helper for the `privileged_access.gcp_iam_access.role_bindings` block of
 /// `google_privileged_access_manager_entitlement` (derived from provider schema).
 @immutable
-final class PrivilegedAccessManagerEntitlementPrivilegedAccessGcpIamAccessRoleBindings {
-  const PrivilegedAccessManagerEntitlementPrivilegedAccessGcpIamAccessRoleBindings({
+final class PrivilegedAccessManagerEntitlementRoleBindings {
+  const PrivilegedAccessManagerEntitlementRoleBindings({
     this.conditionExpression,
     required this.role,
   });
@@ -198,14 +187,12 @@ sealed class PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequi
 
   /// Sets `not_mandatory`.
   const factory PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirement.notMandatory(
-    PrivilegedAccessManagerEntitlementRequesterJustificationConfigNotMandatory
-    notMandatory,
+    PrivilegedAccessManagerEntitlementNotMandatory notMandatory,
   ) = PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirementNotMandatory;
 
   /// Sets `unstructured`.
   const factory PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirement.unstructured(
-    PrivilegedAccessManagerEntitlementRequesterJustificationConfigUnstructured
-    unstructured,
+    PrivilegedAccessManagerEntitlementUnstructured unstructured,
   ) = PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirementUnstructured;
 
   /// The Terraform argument this choice sets.
@@ -222,8 +209,7 @@ final class PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequir
     this.notMandatory,
   );
 
-  final PrivilegedAccessManagerEntitlementRequesterJustificationConfigNotMandatory
-  notMandatory;
+  final PrivilegedAccessManagerEntitlementNotMandatory notMandatory;
 
   @override
   String get blockKey => 'not_mandatory';
@@ -240,8 +226,7 @@ final class PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequir
     this.unstructured,
   );
 
-  final PrivilegedAccessManagerEntitlementRequesterJustificationConfigUnstructured
-  unstructured;
+  final PrivilegedAccessManagerEntitlementUnstructured unstructured;
 
   @override
   String get blockKey => 'unstructured';
@@ -253,8 +238,8 @@ final class PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequir
 /// Typed helper for the `requester_justification_config.not_mandatory` block of
 /// `google_privileged_access_manager_entitlement` (derived from provider schema).
 @immutable
-final class PrivilegedAccessManagerEntitlementRequesterJustificationConfigNotMandatory {
-  const PrivilegedAccessManagerEntitlementRequesterJustificationConfigNotMandatory();
+final class PrivilegedAccessManagerEntitlementNotMandatory {
+  const PrivilegedAccessManagerEntitlementNotMandatory();
 
   Map<String, Object?> encode() => {};
 }
@@ -262,8 +247,8 @@ final class PrivilegedAccessManagerEntitlementRequesterJustificationConfigNotMan
 /// Typed helper for the `requester_justification_config.unstructured` block of
 /// `google_privileged_access_manager_entitlement` (derived from provider schema).
 @immutable
-final class PrivilegedAccessManagerEntitlementRequesterJustificationConfigUnstructured {
-  const PrivilegedAccessManagerEntitlementRequesterJustificationConfigUnstructured();
+final class PrivilegedAccessManagerEntitlementUnstructured {
+  const PrivilegedAccessManagerEntitlementUnstructured();
 
   Map<String, Object?> encode() => {};
 }
@@ -306,7 +291,7 @@ final class PrivilegedAccessManagerEntitlementRequesterJustificationConfigUnstru
 ///   privilegedAccess:
 ///       PrivilegedAccessManagerEntitlementPrivilegedAccess(
 ///     gcpIamAccess:
-///         PrivilegedAccessManagerEntitlementPrivilegedAccessGcpIamAccess(
+///         PrivilegedAccessManagerEntitlementGcpIamAccess(
 ///       resourceType: TfArg.literal(
 ///         'cloudresourcemanager.googleapis.com/Project',
 ///       ),
@@ -314,7 +299,7 @@ final class PrivilegedAccessManagerEntitlementRequesterJustificationConfigUnstru
 ///         '//cloudresourcemanager.googleapis.com/projects/my-project',
 ///       ),
 ///       roleBindings: [
-///         PrivilegedAccessManagerEntitlementPrivilegedAccessGcpIamAccessRoleBindings(
+///         PrivilegedAccessManagerEntitlementRoleBindings(
 ///           role: TfArg.literal('roles/browser'),
 ///         ),
 ///       ],
@@ -323,7 +308,7 @@ final class PrivilegedAccessManagerEntitlementRequesterJustificationConfigUnstru
 ///   requesterJustificationConfig:
 ///       PrivilegedAccessManagerEntitlementRequesterJustificationConfig(
 ///     requirement: .unstructured(
-///       const PrivilegedAccessManagerEntitlementRequesterJustificationConfigUnstructured(),
+///       const PrivilegedAccessManagerEntitlementUnstructured(),
 ///     ),
 ///   ),
 ///   deletionPolicy: TfArg.literal('DELETE'),

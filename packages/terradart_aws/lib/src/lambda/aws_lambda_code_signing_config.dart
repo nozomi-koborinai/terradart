@@ -30,7 +30,7 @@ final class LambdaCodeSigningConfigPolicies {
     required this.untrustedArtifactOnDeployment,
   });
 
-  final TfArg<LambdaCodeSigningConfigPoliciesUntrustedArtifactOnDeployment>
+  final TfArg<LambdaCodeSigningConfigUntrustedArtifactOnDeployment>
   untrustedArtifactOnDeployment;
 
   Map<String, Object?> encode() => {
@@ -40,12 +40,12 @@ final class LambdaCodeSigningConfigPolicies {
 }
 
 /// `untrusted_artifact_on_deployment` — derived from the provider schema description.
-enum LambdaCodeSigningConfigPoliciesUntrustedArtifactOnDeployment
+enum LambdaCodeSigningConfigUntrustedArtifactOnDeployment
     implements TerraformEnum {
   warn('Warn'),
   enforce('Enforce');
 
-  const LambdaCodeSigningConfigPoliciesUntrustedArtifactOnDeployment(
+  const LambdaCodeSigningConfigUntrustedArtifactOnDeployment(
     this.terraformValue,
   );
   @override

@@ -100,24 +100,19 @@ final class DatastreamStreamBackfillAll {
     this.sqlServerExcludedObjects,
   });
 
-  final DatastreamStreamBackfillAllMongodbExcludedObjects?
-  mongodbExcludedObjects;
+  final DatastreamStreamMongodbExcludedObjects? mongodbExcludedObjects;
 
-  final DatastreamStreamBackfillAllMysqlExcludedObjects? mysqlExcludedObjects;
+  final DatastreamStreamMysqlExcludedObjects? mysqlExcludedObjects;
 
-  final DatastreamStreamBackfillAllOracleExcludedObjects? oracleExcludedObjects;
+  final DatastreamStreamOracleExcludedObjects? oracleExcludedObjects;
 
-  final DatastreamStreamBackfillAllPostgresqlExcludedObjects?
-  postgresqlExcludedObjects;
+  final DatastreamStreamPostgresqlExcludedObjects? postgresqlExcludedObjects;
 
-  final DatastreamStreamBackfillAllSalesforceExcludedObjects?
-  salesforceExcludedObjects;
+  final DatastreamStreamSalesforceExcludedObjects? salesforceExcludedObjects;
 
-  final DatastreamStreamBackfillAllSpannerExcludedObjects?
-  spannerExcludedObjects;
+  final DatastreamStreamSpannerExcludedObjects? spannerExcludedObjects;
 
-  final DatastreamStreamBackfillAllSqlServerExcludedObjects?
-  sqlServerExcludedObjects;
+  final DatastreamStreamSqlServerExcludedObjects? sqlServerExcludedObjects;
 
   Map<String, Object?> encode() => {
     'mongodb_excluded_objects': ?mongodbExcludedObjects?.encode(),
@@ -133,13 +128,10 @@ final class DatastreamStreamBackfillAll {
 /// Typed helper for the `backfill_all.mongodb_excluded_objects` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamBackfillAllMongodbExcludedObjects {
-  const DatastreamStreamBackfillAllMongodbExcludedObjects({
-    required this.databases,
-  });
+final class DatastreamStreamMongodbExcludedObjects {
+  const DatastreamStreamMongodbExcludedObjects({required this.databases});
 
-  final List<DatastreamStreamBackfillAllMongodbExcludedObjectsDatabases>
-  databases;
+  final List<DatastreamStreamDatabases> databases;
 
   Map<String, Object?> encode() => {
     'databases': [for (final e in databases) e.encode()],
@@ -149,18 +141,12 @@ final class DatastreamStreamBackfillAllMongodbExcludedObjects {
 /// Typed helper for the `backfill_all.mongodb_excluded_objects.databases` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamBackfillAllMongodbExcludedObjectsDatabases {
-  const DatastreamStreamBackfillAllMongodbExcludedObjectsDatabases({
-    required this.database,
-    this.collections,
-  });
+final class DatastreamStreamDatabases {
+  const DatastreamStreamDatabases({required this.database, this.collections});
 
   final TfArg<String> database;
 
-  final List<
-    DatastreamStreamBackfillAllMongodbExcludedObjectsDatabasesCollections
-  >?
-  collections;
+  final List<DatastreamStreamCollections>? collections;
 
   Map<String, Object?> encode() => {
     'database': database.toTfJson(),
@@ -172,18 +158,12 @@ final class DatastreamStreamBackfillAllMongodbExcludedObjectsDatabases {
 /// Typed helper for the `backfill_all.mongodb_excluded_objects.databases.collections` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamBackfillAllMongodbExcludedObjectsDatabasesCollections {
-  const DatastreamStreamBackfillAllMongodbExcludedObjectsDatabasesCollections({
-    required this.collection,
-    this.fields,
-  });
+final class DatastreamStreamCollections {
+  const DatastreamStreamCollections({required this.collection, this.fields});
 
   final TfArg<String> collection;
 
-  final List<
-    DatastreamStreamBackfillAllMongodbExcludedObjectsDatabasesCollectionsFields
-  >?
-  fields;
+  final List<DatastreamStreamCollectionsFields>? fields;
 
   Map<String, Object?> encode() => {
     'collection': collection.toTfJson(),
@@ -193,11 +173,10 @@ final class DatastreamStreamBackfillAllMongodbExcludedObjectsDatabasesCollection
 
 /// Typed helper for the `backfill_all.mongodb_excluded_objects.databases.collections.fields` block of
 /// `google_datastream_stream` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DatastreamStreamBackfillAllMongodbExcludedObjectsDatabasesCollectionsFields {
-  const DatastreamStreamBackfillAllMongodbExcludedObjectsDatabasesCollectionsFields({
-    this.field,
-  });
+final class DatastreamStreamCollectionsFields {
+  const DatastreamStreamCollectionsFields({this.field});
 
   final TfArg<String>? field;
 
@@ -207,13 +186,10 @@ final class DatastreamStreamBackfillAllMongodbExcludedObjectsDatabasesCollection
 /// Typed helper for the `backfill_all.mysql_excluded_objects` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamBackfillAllMysqlExcludedObjects {
-  const DatastreamStreamBackfillAllMysqlExcludedObjects({
-    required this.mysqlDatabases,
-  });
+final class DatastreamStreamMysqlExcludedObjects {
+  const DatastreamStreamMysqlExcludedObjects({required this.mysqlDatabases});
 
-  final List<DatastreamStreamBackfillAllMysqlExcludedObjectsMysqlDatabases>
-  mysqlDatabases;
+  final List<DatastreamStreamMysqlDatabases> mysqlDatabases;
 
   Map<String, Object?> encode() => {
     'mysql_databases': [for (final e in mysqlDatabases) e.encode()],
@@ -222,19 +198,17 @@ final class DatastreamStreamBackfillAllMysqlExcludedObjects {
 
 /// Typed helper for the `backfill_all.mysql_excluded_objects.mysql_databases` block of
 /// `google_datastream_stream` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DatastreamStreamBackfillAllMysqlExcludedObjectsMysqlDatabases {
-  const DatastreamStreamBackfillAllMysqlExcludedObjectsMysqlDatabases({
+final class DatastreamStreamMysqlDatabases {
+  const DatastreamStreamMysqlDatabases({
     required this.database,
     this.mysqlTables,
   });
 
   final TfArg<String> database;
 
-  final List<
-    DatastreamStreamBackfillAllMysqlExcludedObjectsMysqlDatabasesMysqlTables
-  >?
-  mysqlTables;
+  final List<DatastreamStreamMysqlTables>? mysqlTables;
 
   Map<String, Object?> encode() => {
     'database': database.toTfJson(),
@@ -245,19 +219,14 @@ final class DatastreamStreamBackfillAllMysqlExcludedObjectsMysqlDatabases {
 
 /// Typed helper for the `backfill_all.mysql_excluded_objects.mysql_databases.mysql_tables` block of
 /// `google_datastream_stream` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DatastreamStreamBackfillAllMysqlExcludedObjectsMysqlDatabasesMysqlTables {
-  const DatastreamStreamBackfillAllMysqlExcludedObjectsMysqlDatabasesMysqlTables({
-    required this.table,
-    this.mysqlColumns,
-  });
+final class DatastreamStreamMysqlTables {
+  const DatastreamStreamMysqlTables({required this.table, this.mysqlColumns});
 
   final TfArg<String> table;
 
-  final List<
-    DatastreamStreamBackfillAllMysqlExcludedObjectsMysqlDatabasesMysqlTablesMysqlColumns
-  >?
-  mysqlColumns;
+  final List<DatastreamStreamMysqlColumns>? mysqlColumns;
 
   Map<String, Object?> encode() => {
     'table': table.toTfJson(),
@@ -268,9 +237,10 @@ final class DatastreamStreamBackfillAllMysqlExcludedObjectsMysqlDatabasesMysqlTa
 
 /// Typed helper for the `backfill_all.mysql_excluded_objects.mysql_databases.mysql_tables.mysql_columns` block of
 /// `google_datastream_stream` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DatastreamStreamBackfillAllMysqlExcludedObjectsMysqlDatabasesMysqlTablesMysqlColumns {
-  const DatastreamStreamBackfillAllMysqlExcludedObjectsMysqlDatabasesMysqlTablesMysqlColumns({
+final class DatastreamStreamMysqlColumns {
+  const DatastreamStreamMysqlColumns({
     this.collation,
     this.column,
     this.dataType,
@@ -304,13 +274,10 @@ final class DatastreamStreamBackfillAllMysqlExcludedObjectsMysqlDatabasesMysqlTa
 /// Typed helper for the `backfill_all.oracle_excluded_objects` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamBackfillAllOracleExcludedObjects {
-  const DatastreamStreamBackfillAllOracleExcludedObjects({
-    required this.oracleSchemas,
-  });
+final class DatastreamStreamOracleExcludedObjects {
+  const DatastreamStreamOracleExcludedObjects({required this.oracleSchemas});
 
-  final List<DatastreamStreamBackfillAllOracleExcludedObjectsOracleSchemas>
-  oracleSchemas;
+  final List<DatastreamStreamOracleSchemas> oracleSchemas;
 
   Map<String, Object?> encode() => {
     'oracle_schemas': [for (final e in oracleSchemas) e.encode()],
@@ -319,19 +286,17 @@ final class DatastreamStreamBackfillAllOracleExcludedObjects {
 
 /// Typed helper for the `backfill_all.oracle_excluded_objects.oracle_schemas` block of
 /// `google_datastream_stream` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DatastreamStreamBackfillAllOracleExcludedObjectsOracleSchemas {
-  const DatastreamStreamBackfillAllOracleExcludedObjectsOracleSchemas({
+final class DatastreamStreamOracleSchemas {
+  const DatastreamStreamOracleSchemas({
     required this.schema,
     this.oracleTables,
   });
 
   final TfArg<String> schema;
 
-  final List<
-    DatastreamStreamBackfillAllOracleExcludedObjectsOracleSchemasOracleTables
-  >?
-  oracleTables;
+  final List<DatastreamStreamOracleTables>? oracleTables;
 
   Map<String, Object?> encode() => {
     'schema': schema.toTfJson(),
@@ -342,19 +307,14 @@ final class DatastreamStreamBackfillAllOracleExcludedObjectsOracleSchemas {
 
 /// Typed helper for the `backfill_all.oracle_excluded_objects.oracle_schemas.oracle_tables` block of
 /// `google_datastream_stream` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DatastreamStreamBackfillAllOracleExcludedObjectsOracleSchemasOracleTables {
-  const DatastreamStreamBackfillAllOracleExcludedObjectsOracleSchemasOracleTables({
-    required this.table,
-    this.oracleColumns,
-  });
+final class DatastreamStreamOracleTables {
+  const DatastreamStreamOracleTables({required this.table, this.oracleColumns});
 
   final TfArg<String> table;
 
-  final List<
-    DatastreamStreamBackfillAllOracleExcludedObjectsOracleSchemasOracleTablesOracleColumns
-  >?
-  oracleColumns;
+  final List<DatastreamStreamOracleColumns>? oracleColumns;
 
   Map<String, Object?> encode() => {
     'table': table.toTfJson(),
@@ -365,12 +325,10 @@ final class DatastreamStreamBackfillAllOracleExcludedObjectsOracleSchemasOracleT
 
 /// Typed helper for the `backfill_all.oracle_excluded_objects.oracle_schemas.oracle_tables.oracle_columns` block of
 /// `google_datastream_stream` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DatastreamStreamBackfillAllOracleExcludedObjectsOracleSchemasOracleTablesOracleColumns {
-  const DatastreamStreamBackfillAllOracleExcludedObjectsOracleSchemasOracleTablesOracleColumns({
-    this.column,
-    this.dataType,
-  });
+final class DatastreamStreamOracleColumns {
+  const DatastreamStreamOracleColumns({this.column, this.dataType});
 
   final TfArg<String>? column;
 
@@ -385,15 +343,12 @@ final class DatastreamStreamBackfillAllOracleExcludedObjectsOracleSchemasOracleT
 /// Typed helper for the `backfill_all.postgresql_excluded_objects` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamBackfillAllPostgresqlExcludedObjects {
-  const DatastreamStreamBackfillAllPostgresqlExcludedObjects({
+final class DatastreamStreamPostgresqlExcludedObjects {
+  const DatastreamStreamPostgresqlExcludedObjects({
     required this.postgresqlSchemas,
   });
 
-  final List<
-    DatastreamStreamBackfillAllPostgresqlExcludedObjectsPostgresqlSchemas
-  >
-  postgresqlSchemas;
+  final List<DatastreamStreamPostgresqlSchemas> postgresqlSchemas;
 
   Map<String, Object?> encode() => {
     'postgresql_schemas': [for (final e in postgresqlSchemas) e.encode()],
@@ -402,19 +357,17 @@ final class DatastreamStreamBackfillAllPostgresqlExcludedObjects {
 
 /// Typed helper for the `backfill_all.postgresql_excluded_objects.postgresql_schemas` block of
 /// `google_datastream_stream` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DatastreamStreamBackfillAllPostgresqlExcludedObjectsPostgresqlSchemas {
-  const DatastreamStreamBackfillAllPostgresqlExcludedObjectsPostgresqlSchemas({
+final class DatastreamStreamPostgresqlSchemas {
+  const DatastreamStreamPostgresqlSchemas({
     required this.schema,
     this.postgresqlTables,
   });
 
   final TfArg<String> schema;
 
-  final List<
-    DatastreamStreamBackfillAllPostgresqlExcludedObjectsPostgresqlSchemasPostgresqlTables
-  >?
-  postgresqlTables;
+  final List<DatastreamStreamPostgresqlTables>? postgresqlTables;
 
   Map<String, Object?> encode() => {
     'schema': schema.toTfJson(),
@@ -425,19 +378,17 @@ final class DatastreamStreamBackfillAllPostgresqlExcludedObjectsPostgresqlSchema
 
 /// Typed helper for the `backfill_all.postgresql_excluded_objects.postgresql_schemas.postgresql_tables` block of
 /// `google_datastream_stream` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DatastreamStreamBackfillAllPostgresqlExcludedObjectsPostgresqlSchemasPostgresqlTables {
-  const DatastreamStreamBackfillAllPostgresqlExcludedObjectsPostgresqlSchemasPostgresqlTables({
+final class DatastreamStreamPostgresqlTables {
+  const DatastreamStreamPostgresqlTables({
     required this.table,
     this.postgresqlColumns,
   });
 
   final TfArg<String> table;
 
-  final List<
-    DatastreamStreamBackfillAllPostgresqlExcludedObjectsPostgresqlSchemasPostgresqlTablesPostgresqlColumns
-  >?
-  postgresqlColumns;
+  final List<DatastreamStreamPostgresqlColumns>? postgresqlColumns;
 
   Map<String, Object?> encode() => {
     'table': table.toTfJson(),
@@ -448,9 +399,10 @@ final class DatastreamStreamBackfillAllPostgresqlExcludedObjectsPostgresqlSchema
 
 /// Typed helper for the `backfill_all.postgresql_excluded_objects.postgresql_schemas.postgresql_tables.postgresql_columns` block of
 /// `google_datastream_stream` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DatastreamStreamBackfillAllPostgresqlExcludedObjectsPostgresqlSchemasPostgresqlTablesPostgresqlColumns {
-  const DatastreamStreamBackfillAllPostgresqlExcludedObjectsPostgresqlSchemasPostgresqlTablesPostgresqlColumns({
+final class DatastreamStreamPostgresqlColumns {
+  const DatastreamStreamPostgresqlColumns({
     this.column,
     this.dataType,
     this.nullable,
@@ -480,13 +432,10 @@ final class DatastreamStreamBackfillAllPostgresqlExcludedObjectsPostgresqlSchema
 /// Typed helper for the `backfill_all.salesforce_excluded_objects` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamBackfillAllSalesforceExcludedObjects {
-  const DatastreamStreamBackfillAllSalesforceExcludedObjects({
-    required this.objects,
-  });
+final class DatastreamStreamSalesforceExcludedObjects {
+  const DatastreamStreamSalesforceExcludedObjects({required this.objects});
 
-  final List<DatastreamStreamBackfillAllSalesforceExcludedObjectsObjects>
-  objects;
+  final List<DatastreamStreamObjects> objects;
 
   Map<String, Object?> encode() => {
     'objects': [for (final e in objects) e.encode()],
@@ -495,17 +444,14 @@ final class DatastreamStreamBackfillAllSalesforceExcludedObjects {
 
 /// Typed helper for the `backfill_all.salesforce_excluded_objects.objects` block of
 /// `google_datastream_stream` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DatastreamStreamBackfillAllSalesforceExcludedObjectsObjects {
-  const DatastreamStreamBackfillAllSalesforceExcludedObjectsObjects({
-    this.objectName,
-    this.fields,
-  });
+final class DatastreamStreamObjects {
+  const DatastreamStreamObjects({this.objectName, this.fields});
 
   final TfArg<String>? objectName;
 
-  final List<DatastreamStreamBackfillAllSalesforceExcludedObjectsObjectsFields>?
-  fields;
+  final List<DatastreamStreamFields>? fields;
 
   Map<String, Object?> encode() => {
     'object_name': ?objectName?.toTfJson(),
@@ -515,11 +461,10 @@ final class DatastreamStreamBackfillAllSalesforceExcludedObjectsObjects {
 
 /// Typed helper for the `backfill_all.salesforce_excluded_objects.objects.fields` block of
 /// `google_datastream_stream` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DatastreamStreamBackfillAllSalesforceExcludedObjectsObjectsFields {
-  const DatastreamStreamBackfillAllSalesforceExcludedObjectsObjectsFields({
-    this.name,
-  });
+final class DatastreamStreamFields {
+  const DatastreamStreamFields({this.name});
 
   final TfArg<String>? name;
 
@@ -529,12 +474,10 @@ final class DatastreamStreamBackfillAllSalesforceExcludedObjectsObjectsFields {
 /// Typed helper for the `backfill_all.spanner_excluded_objects` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamBackfillAllSpannerExcludedObjects {
-  const DatastreamStreamBackfillAllSpannerExcludedObjects({
-    required this.schemas,
-  });
+final class DatastreamStreamSpannerExcludedObjects {
+  const DatastreamStreamSpannerExcludedObjects({required this.schemas});
 
-  final List<DatastreamStreamBackfillAllSpannerExcludedObjectsSchemas> schemas;
+  final List<DatastreamStreamSpannerExcludedObjectsSchemas> schemas;
 
   Map<String, Object?> encode() => {
     'schemas': [for (final e in schemas) e.encode()],
@@ -544,16 +487,15 @@ final class DatastreamStreamBackfillAllSpannerExcludedObjects {
 /// Typed helper for the `backfill_all.spanner_excluded_objects.schemas` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamBackfillAllSpannerExcludedObjectsSchemas {
-  const DatastreamStreamBackfillAllSpannerExcludedObjectsSchemas({
+final class DatastreamStreamSpannerExcludedObjectsSchemas {
+  const DatastreamStreamSpannerExcludedObjectsSchemas({
     required this.schema,
     this.tables,
   });
 
   final TfArg<String> schema;
 
-  final List<DatastreamStreamBackfillAllSpannerExcludedObjectsSchemasTables>?
-  tables;
+  final List<DatastreamStreamSpannerExcludedObjectsTables>? tables;
 
   Map<String, Object?> encode() => {
     'schema': schema.toTfJson(),
@@ -564,18 +506,15 @@ final class DatastreamStreamBackfillAllSpannerExcludedObjectsSchemas {
 /// Typed helper for the `backfill_all.spanner_excluded_objects.schemas.tables` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamBackfillAllSpannerExcludedObjectsSchemasTables {
-  const DatastreamStreamBackfillAllSpannerExcludedObjectsSchemasTables({
+final class DatastreamStreamSpannerExcludedObjectsTables {
+  const DatastreamStreamSpannerExcludedObjectsTables({
     required this.table,
     this.columns,
   });
 
   final TfArg<String> table;
 
-  final List<
-    DatastreamStreamBackfillAllSpannerExcludedObjectsSchemasTablesColumns
-  >?
-  columns;
+  final List<DatastreamStreamSpannerExcludedObjectsColumns>? columns;
 
   Map<String, Object?> encode() => {
     'table': table.toTfJson(),
@@ -586,10 +525,8 @@ final class DatastreamStreamBackfillAllSpannerExcludedObjectsSchemasTables {
 /// Typed helper for the `backfill_all.spanner_excluded_objects.schemas.tables.columns` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamBackfillAllSpannerExcludedObjectsSchemasTablesColumns {
-  const DatastreamStreamBackfillAllSpannerExcludedObjectsSchemasTablesColumns({
-    required this.column,
-  });
+final class DatastreamStreamSpannerExcludedObjectsColumns {
+  const DatastreamStreamSpannerExcludedObjectsColumns({required this.column});
 
   final TfArg<String> column;
 
@@ -599,13 +536,10 @@ final class DatastreamStreamBackfillAllSpannerExcludedObjectsSchemasTablesColumn
 /// Typed helper for the `backfill_all.sql_server_excluded_objects` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamBackfillAllSqlServerExcludedObjects {
-  const DatastreamStreamBackfillAllSqlServerExcludedObjects({
-    required this.schemas,
-  });
+final class DatastreamStreamSqlServerExcludedObjects {
+  const DatastreamStreamSqlServerExcludedObjects({required this.schemas});
 
-  final List<DatastreamStreamBackfillAllSqlServerExcludedObjectsSchemas>
-  schemas;
+  final List<DatastreamStreamSqlServerExcludedObjectsSchemas> schemas;
 
   Map<String, Object?> encode() => {
     'schemas': [for (final e in schemas) e.encode()],
@@ -614,17 +548,17 @@ final class DatastreamStreamBackfillAllSqlServerExcludedObjects {
 
 /// Typed helper for the `backfill_all.sql_server_excluded_objects.schemas` block of
 /// `google_datastream_stream` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DatastreamStreamBackfillAllSqlServerExcludedObjectsSchemas {
-  const DatastreamStreamBackfillAllSqlServerExcludedObjectsSchemas({
+final class DatastreamStreamSqlServerExcludedObjectsSchemas {
+  const DatastreamStreamSqlServerExcludedObjectsSchemas({
     required this.schema,
     this.tables,
   });
 
   final TfArg<String> schema;
 
-  final List<DatastreamStreamBackfillAllSqlServerExcludedObjectsSchemasTables>?
-  tables;
+  final List<DatastreamStreamSqlServerExcludedObjectsTables>? tables;
 
   Map<String, Object?> encode() => {
     'schema': schema.toTfJson(),
@@ -634,19 +568,17 @@ final class DatastreamStreamBackfillAllSqlServerExcludedObjectsSchemas {
 
 /// Typed helper for the `backfill_all.sql_server_excluded_objects.schemas.tables` block of
 /// `google_datastream_stream` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DatastreamStreamBackfillAllSqlServerExcludedObjectsSchemasTables {
-  const DatastreamStreamBackfillAllSqlServerExcludedObjectsSchemasTables({
+final class DatastreamStreamSqlServerExcludedObjectsTables {
+  const DatastreamStreamSqlServerExcludedObjectsTables({
     required this.table,
     this.columns,
   });
 
   final TfArg<String> table;
 
-  final List<
-    DatastreamStreamBackfillAllSqlServerExcludedObjectsSchemasTablesColumns
-  >?
-  columns;
+  final List<DatastreamStreamSqlServerExcludedObjectsColumns>? columns;
 
   Map<String, Object?> encode() => {
     'table': table.toTfJson(),
@@ -656,9 +588,10 @@ final class DatastreamStreamBackfillAllSqlServerExcludedObjectsSchemasTables {
 
 /// Typed helper for the `backfill_all.sql_server_excluded_objects.schemas.tables.columns` block of
 /// `google_datastream_stream` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DatastreamStreamBackfillAllSqlServerExcludedObjectsSchemasTablesColumns {
-  const DatastreamStreamBackfillAllSqlServerExcludedObjectsSchemasTablesColumns({
+final class DatastreamStreamSqlServerExcludedObjectsColumns {
+  const DatastreamStreamSqlServerExcludedObjectsColumns({
     this.column,
     this.dataType,
   });
@@ -710,13 +643,12 @@ sealed class DatastreamStreamDestinationConfigSystem {
 
   /// Sets `gcs_destination_config`.
   const factory DatastreamStreamDestinationConfigSystem.gcsDestinationConfig(
-    DatastreamStreamDestinationConfigGcsDestinationConfig gcsDestinationConfig,
+    DatastreamStreamGcsDestinationConfig gcsDestinationConfig,
   ) = DatastreamStreamDestinationConfigSystemGcsDestinationConfig;
 
   /// Sets `bigquery_destination_config`.
   const factory DatastreamStreamDestinationConfigSystem.bigqueryDestinationConfig(
-    DatastreamStreamDestinationConfigBigqueryDestinationConfig
-    bigqueryDestinationConfig,
+    DatastreamStreamBigqueryDestinationConfig bigqueryDestinationConfig,
   ) = DatastreamStreamDestinationConfigSystemBigqueryDestinationConfig;
 
   /// The Terraform argument this choice sets.
@@ -732,8 +664,7 @@ final class DatastreamStreamDestinationConfigSystemGcsDestinationConfig
     this.gcsDestinationConfig,
   );
 
-  final DatastreamStreamDestinationConfigGcsDestinationConfig
-  gcsDestinationConfig;
+  final DatastreamStreamGcsDestinationConfig gcsDestinationConfig;
 
   @override
   String get blockKey => 'gcs_destination_config';
@@ -751,8 +682,7 @@ final class DatastreamStreamDestinationConfigSystemBigqueryDestinationConfig
     this.bigqueryDestinationConfig,
   );
 
-  final DatastreamStreamDestinationConfigBigqueryDestinationConfig
-  bigqueryDestinationConfig;
+  final DatastreamStreamBigqueryDestinationConfig bigqueryDestinationConfig;
 
   @override
   String get blockKey => 'bigquery_destination_config';
@@ -766,8 +696,8 @@ final class DatastreamStreamDestinationConfigSystemBigqueryDestinationConfig
 /// Typed helper for the `destination_config.bigquery_destination_config` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamDestinationConfigBigqueryDestinationConfig {
-  const DatastreamStreamDestinationConfigBigqueryDestinationConfig({
+final class DatastreamStreamBigqueryDestinationConfig {
+  const DatastreamStreamBigqueryDestinationConfig({
     this.dataFreshness,
     this.writeMode,
     this.blmtConfig,
@@ -776,14 +706,11 @@ final class DatastreamStreamDestinationConfigBigqueryDestinationConfig {
 
   final TfArg<String>? dataFreshness;
 
-  final DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteMode?
-  writeMode;
+  final DatastreamStreamWriteMode? writeMode;
 
-  final DatastreamStreamDestinationConfigBigqueryDestinationConfigBlmtConfig?
-  blmtConfig;
+  final DatastreamStreamBlmtConfig? blmtConfig;
 
-  final DatastreamStreamDestinationConfigBigqueryDestinationConfigDataset
-  dataset;
+  final DatastreamStreamDataset dataset;
 
   Map<String, Object?> encode() => {
     'data_freshness': ?dataFreshness?.toTfJson(),
@@ -797,20 +724,18 @@ final class DatastreamStreamDestinationConfigBigqueryDestinationConfig {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.singleTargetDataset(...)`.
-sealed class DatastreamStreamDestinationConfigBigqueryDestinationConfigDataset {
-  const DatastreamStreamDestinationConfigBigqueryDestinationConfigDataset();
+sealed class DatastreamStreamDataset {
+  const DatastreamStreamDataset();
 
   /// Sets `single_target_dataset`.
-  const factory DatastreamStreamDestinationConfigBigqueryDestinationConfigDataset.singleTargetDataset(
-    DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDataset
-    singleTargetDataset,
-  ) = DatastreamStreamDestinationConfigBigqueryDestinationConfigDatasetSingleTargetDataset;
+  const factory DatastreamStreamDataset.singleTargetDataset(
+    DatastreamStreamSingleTargetDataset singleTargetDataset,
+  ) = DatastreamStreamSingleTargetDatasetChoice;
 
   /// Sets `source_hierarchy_datasets`.
-  const factory DatastreamStreamDestinationConfigBigqueryDestinationConfigDataset.sourceHierarchyDatasets(
-    DatastreamStreamDestinationConfigBigqueryDestinationConfigSourceHierarchyDatasets
-    sourceHierarchyDatasets,
-  ) = DatastreamStreamDestinationConfigBigqueryDestinationConfigDatasetSourceHierarchyDatasets;
+  const factory DatastreamStreamDataset.sourceHierarchyDatasets(
+    DatastreamStreamSourceHierarchyDatasets sourceHierarchyDatasets,
+  ) = DatastreamStreamDatasetSourceHierarchyDatasets;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -818,15 +743,12 @@ sealed class DatastreamStreamDestinationConfigBigqueryDestinationConfigDataset {
   Map<String, Object?> encode();
 }
 
-/// The [DatastreamStreamDestinationConfigBigqueryDestinationConfigDataset.singleTargetDataset] choice: sets `single_target_dataset`.
-final class DatastreamStreamDestinationConfigBigqueryDestinationConfigDatasetSingleTargetDataset
-    extends DatastreamStreamDestinationConfigBigqueryDestinationConfigDataset {
-  const DatastreamStreamDestinationConfigBigqueryDestinationConfigDatasetSingleTargetDataset(
-    this.singleTargetDataset,
-  );
+/// The [DatastreamStreamDataset.singleTargetDataset] choice: sets `single_target_dataset`.
+final class DatastreamStreamSingleTargetDatasetChoice
+    extends DatastreamStreamDataset {
+  const DatastreamStreamSingleTargetDatasetChoice(this.singleTargetDataset);
 
-  final DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDataset
-  singleTargetDataset;
+  final DatastreamStreamSingleTargetDataset singleTargetDataset;
 
   @override
   String get blockKey => 'single_target_dataset';
@@ -837,15 +759,14 @@ final class DatastreamStreamDestinationConfigBigqueryDestinationConfigDatasetSin
   };
 }
 
-/// The [DatastreamStreamDestinationConfigBigqueryDestinationConfigDataset.sourceHierarchyDatasets] choice: sets `source_hierarchy_datasets`.
-final class DatastreamStreamDestinationConfigBigqueryDestinationConfigDatasetSourceHierarchyDatasets
-    extends DatastreamStreamDestinationConfigBigqueryDestinationConfigDataset {
-  const DatastreamStreamDestinationConfigBigqueryDestinationConfigDatasetSourceHierarchyDatasets(
+/// The [DatastreamStreamDataset.sourceHierarchyDatasets] choice: sets `source_hierarchy_datasets`.
+final class DatastreamStreamDatasetSourceHierarchyDatasets
+    extends DatastreamStreamDataset {
+  const DatastreamStreamDatasetSourceHierarchyDatasets(
     this.sourceHierarchyDatasets,
   );
 
-  final DatastreamStreamDestinationConfigBigqueryDestinationConfigSourceHierarchyDatasets
-  sourceHierarchyDatasets;
+  final DatastreamStreamSourceHierarchyDatasets sourceHierarchyDatasets;
 
   @override
   String get blockKey => 'source_hierarchy_datasets';
@@ -861,19 +782,17 @@ final class DatastreamStreamDestinationConfigBigqueryDestinationConfigDatasetSou
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.merge(...)`.
-sealed class DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteMode {
-  const DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteMode();
+sealed class DatastreamStreamWriteMode {
+  const DatastreamStreamWriteMode();
 
   /// Sets `merge`.
-  const factory DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteMode.merge(
-    DatastreamStreamDestinationConfigBigqueryDestinationConfigMerge merge,
-  ) = DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteModeMerge;
+  const factory DatastreamStreamWriteMode.merge(DatastreamStreamMerge merge) =
+      DatastreamStreamWriteModeMerge;
 
   /// Sets `append_only`.
-  const factory DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteMode.appendOnly(
-    DatastreamStreamDestinationConfigBigqueryDestinationConfigAppendOnly
-    appendOnly,
-  ) = DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteModeAppendOnly;
+  const factory DatastreamStreamWriteMode.appendOnly(
+    DatastreamStreamAppendOnly appendOnly,
+  ) = DatastreamStreamWriteModeAppendOnly;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -881,15 +800,11 @@ sealed class DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteMode
   Map<String, Object?> encode();
 }
 
-/// The [DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteMode.merge] choice: sets `merge`.
-final class DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteModeMerge
-    extends
-        DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteMode {
-  const DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteModeMerge(
-    this.merge,
-  );
+/// The [DatastreamStreamWriteMode.merge] choice: sets `merge`.
+final class DatastreamStreamWriteModeMerge extends DatastreamStreamWriteMode {
+  const DatastreamStreamWriteModeMerge(this.merge);
 
-  final DatastreamStreamDestinationConfigBigqueryDestinationConfigMerge merge;
+  final DatastreamStreamMerge merge;
 
   @override
   String get blockKey => 'merge';
@@ -898,16 +813,12 @@ final class DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteModeM
   Map<String, Object?> encode() => {'merge': merge.encode()};
 }
 
-/// The [DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteMode.appendOnly] choice: sets `append_only`.
-final class DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteModeAppendOnly
-    extends
-        DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteMode {
-  const DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteModeAppendOnly(
-    this.appendOnly,
-  );
+/// The [DatastreamStreamWriteMode.appendOnly] choice: sets `append_only`.
+final class DatastreamStreamWriteModeAppendOnly
+    extends DatastreamStreamWriteMode {
+  const DatastreamStreamWriteModeAppendOnly(this.appendOnly);
 
-  final DatastreamStreamDestinationConfigBigqueryDestinationConfigAppendOnly
-  appendOnly;
+  final DatastreamStreamAppendOnly appendOnly;
 
   @override
   String get blockKey => 'append_only';
@@ -919,8 +830,8 @@ final class DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteModeA
 /// Typed helper for the `destination_config.bigquery_destination_config.append_only` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamDestinationConfigBigqueryDestinationConfigAppendOnly {
-  const DatastreamStreamDestinationConfigBigqueryDestinationConfigAppendOnly();
+final class DatastreamStreamAppendOnly {
+  const DatastreamStreamAppendOnly();
 
   Map<String, Object?> encode() => {};
 }
@@ -928,8 +839,8 @@ final class DatastreamStreamDestinationConfigBigqueryDestinationConfigAppendOnly
 /// Typed helper for the `destination_config.bigquery_destination_config.blmt_config` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamDestinationConfigBigqueryDestinationConfigBlmtConfig {
-  const DatastreamStreamDestinationConfigBigqueryDestinationConfigBlmtConfig({
+final class DatastreamStreamBlmtConfig {
+  const DatastreamStreamBlmtConfig({
     required this.bucket,
     required this.connectionName,
     required this.fileFormat,
@@ -959,8 +870,8 @@ final class DatastreamStreamDestinationConfigBigqueryDestinationConfigBlmtConfig
 /// Typed helper for the `destination_config.bigquery_destination_config.merge` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamDestinationConfigBigqueryDestinationConfigMerge {
-  const DatastreamStreamDestinationConfigBigqueryDestinationConfigMerge();
+final class DatastreamStreamMerge {
+  const DatastreamStreamMerge();
 
   Map<String, Object?> encode() => {};
 }
@@ -968,10 +879,8 @@ final class DatastreamStreamDestinationConfigBigqueryDestinationConfigMerge {
 /// Typed helper for the `destination_config.bigquery_destination_config.single_target_dataset` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDataset {
-  const DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDataset({
-    required this.datasetId,
-  });
+final class DatastreamStreamSingleTargetDataset {
+  const DatastreamStreamSingleTargetDataset({required this.datasetId});
 
   final RefTo<GoogleBigqueryDataset> datasetId;
 
@@ -983,16 +892,15 @@ final class DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTarg
 /// Typed helper for the `destination_config.bigquery_destination_config.source_hierarchy_datasets` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamDestinationConfigBigqueryDestinationConfigSourceHierarchyDatasets {
-  const DatastreamStreamDestinationConfigBigqueryDestinationConfigSourceHierarchyDatasets({
+final class DatastreamStreamSourceHierarchyDatasets {
+  const DatastreamStreamSourceHierarchyDatasets({
     this.projectId,
     required this.datasetTemplate,
   });
 
   final TfArg<String>? projectId;
 
-  final DatastreamStreamDestinationConfigBigqueryDestinationConfigSourceHierarchyDatasetsDatasetTemplate
-  datasetTemplate;
+  final DatastreamStreamDatasetTemplate datasetTemplate;
 
   Map<String, Object?> encode() => {
     'project_id': ?projectId?.toTfJson(),
@@ -1003,8 +911,8 @@ final class DatastreamStreamDestinationConfigBigqueryDestinationConfigSourceHier
 /// Typed helper for the `destination_config.bigquery_destination_config.source_hierarchy_datasets.dataset_template` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamDestinationConfigBigqueryDestinationConfigSourceHierarchyDatasetsDatasetTemplate {
-  const DatastreamStreamDestinationConfigBigqueryDestinationConfigSourceHierarchyDatasetsDatasetTemplate({
+final class DatastreamStreamDatasetTemplate {
+  const DatastreamStreamDatasetTemplate({
     this.datasetIdPrefix,
     this.kmsKeyName,
     required this.location,
@@ -1026,8 +934,8 @@ final class DatastreamStreamDestinationConfigBigqueryDestinationConfigSourceHier
 /// Typed helper for the `destination_config.gcs_destination_config` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamDestinationConfigGcsDestinationConfig {
-  const DatastreamStreamDestinationConfigGcsDestinationConfig({
+final class DatastreamStreamGcsDestinationConfig {
+  const DatastreamStreamGcsDestinationConfig({
     this.fileRotationInterval,
     this.fileRotationMb,
     this.path,
@@ -1040,8 +948,7 @@ final class DatastreamStreamDestinationConfigGcsDestinationConfig {
 
   final TfArg<String>? path;
 
-  final DatastreamStreamDestinationConfigGcsDestinationConfigFileFormat
-  fileFormat;
+  final DatastreamStreamFileFormat fileFormat;
 
   Map<String, Object?> encode() => {
     'file_rotation_interval': ?fileRotationInterval?.toTfJson(),
@@ -1055,20 +962,18 @@ final class DatastreamStreamDestinationConfigGcsDestinationConfig {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.avroFileFormat(...)`.
-sealed class DatastreamStreamDestinationConfigGcsDestinationConfigFileFormat {
-  const DatastreamStreamDestinationConfigGcsDestinationConfigFileFormat();
+sealed class DatastreamStreamFileFormat {
+  const DatastreamStreamFileFormat();
 
   /// Sets `avro_file_format`.
-  const factory DatastreamStreamDestinationConfigGcsDestinationConfigFileFormat.avroFileFormat(
-    DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormat
-    avroFileFormat,
-  ) = DatastreamStreamDestinationConfigGcsDestinationConfigFileFormatAvroFileFormat;
+  const factory DatastreamStreamFileFormat.avroFileFormat(
+    DatastreamStreamAvroFileFormat avroFileFormat,
+  ) = DatastreamStreamAvroFileFormatChoice;
 
   /// Sets `json_file_format`.
-  const factory DatastreamStreamDestinationConfigGcsDestinationConfigFileFormat.jsonFileFormat(
-    DatastreamStreamDestinationConfigGcsDestinationConfigJsonFileFormat
-    jsonFileFormat,
-  ) = DatastreamStreamDestinationConfigGcsDestinationConfigFileFormatJsonFileFormat;
+  const factory DatastreamStreamFileFormat.jsonFileFormat(
+    DatastreamStreamJsonFileFormat jsonFileFormat,
+  ) = DatastreamStreamJsonFileFormatChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1076,15 +981,12 @@ sealed class DatastreamStreamDestinationConfigGcsDestinationConfigFileFormat {
   Map<String, Object?> encode();
 }
 
-/// The [DatastreamStreamDestinationConfigGcsDestinationConfigFileFormat.avroFileFormat] choice: sets `avro_file_format`.
-final class DatastreamStreamDestinationConfigGcsDestinationConfigFileFormatAvroFileFormat
-    extends DatastreamStreamDestinationConfigGcsDestinationConfigFileFormat {
-  const DatastreamStreamDestinationConfigGcsDestinationConfigFileFormatAvroFileFormat(
-    this.avroFileFormat,
-  );
+/// The [DatastreamStreamFileFormat.avroFileFormat] choice: sets `avro_file_format`.
+final class DatastreamStreamAvroFileFormatChoice
+    extends DatastreamStreamFileFormat {
+  const DatastreamStreamAvroFileFormatChoice(this.avroFileFormat);
 
-  final DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormat
-  avroFileFormat;
+  final DatastreamStreamAvroFileFormat avroFileFormat;
 
   @override
   String get blockKey => 'avro_file_format';
@@ -1095,15 +997,12 @@ final class DatastreamStreamDestinationConfigGcsDestinationConfigFileFormatAvroF
   };
 }
 
-/// The [DatastreamStreamDestinationConfigGcsDestinationConfigFileFormat.jsonFileFormat] choice: sets `json_file_format`.
-final class DatastreamStreamDestinationConfigGcsDestinationConfigFileFormatJsonFileFormat
-    extends DatastreamStreamDestinationConfigGcsDestinationConfigFileFormat {
-  const DatastreamStreamDestinationConfigGcsDestinationConfigFileFormatJsonFileFormat(
-    this.jsonFileFormat,
-  );
+/// The [DatastreamStreamFileFormat.jsonFileFormat] choice: sets `json_file_format`.
+final class DatastreamStreamJsonFileFormatChoice
+    extends DatastreamStreamFileFormat {
+  const DatastreamStreamJsonFileFormatChoice(this.jsonFileFormat);
 
-  final DatastreamStreamDestinationConfigGcsDestinationConfigJsonFileFormat
-  jsonFileFormat;
+  final DatastreamStreamJsonFileFormat jsonFileFormat;
 
   @override
   String get blockKey => 'json_file_format';
@@ -1117,8 +1016,8 @@ final class DatastreamStreamDestinationConfigGcsDestinationConfigFileFormatJsonF
 /// Typed helper for the `destination_config.gcs_destination_config.avro_file_format` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormat {
-  const DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormat();
+final class DatastreamStreamAvroFileFormat {
+  const DatastreamStreamAvroFileFormat();
 
   Map<String, Object?> encode() => {};
 }
@@ -1126,21 +1025,15 @@ final class DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormat 
 /// Typed helper for the `destination_config.gcs_destination_config.json_file_format` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamDestinationConfigGcsDestinationConfigJsonFileFormat {
-  const DatastreamStreamDestinationConfigGcsDestinationConfigJsonFileFormat({
+final class DatastreamStreamJsonFileFormat {
+  const DatastreamStreamJsonFileFormat({
     this.compression,
     this.schemaFileFormat,
   });
 
-  final TfArg<
-    DatastreamStreamDestinationConfigGcsDestinationConfigJsonFileFormatCompression
-  >?
-  compression;
+  final TfArg<DatastreamStreamCompression>? compression;
 
-  final TfArg<
-    DatastreamStreamDestinationConfigGcsDestinationConfigJsonFileFormatSchemaFileFormat
-  >?
-  schemaFileFormat;
+  final TfArg<DatastreamStreamSchemaFileFormat>? schemaFileFormat;
 
   Map<String, Object?> encode() => {
     'compression': ?compression?.toTfJson(),
@@ -1149,27 +1042,21 @@ final class DatastreamStreamDestinationConfigGcsDestinationConfigJsonFileFormat 
 }
 
 /// `compression` — derived from the provider schema description.
-enum DatastreamStreamDestinationConfigGcsDestinationConfigJsonFileFormatCompression
-    implements TerraformEnum {
+enum DatastreamStreamCompression implements TerraformEnum {
   noCompression('NO_COMPRESSION'),
   gzip('GZIP');
 
-  const DatastreamStreamDestinationConfigGcsDestinationConfigJsonFileFormatCompression(
-    this.terraformValue,
-  );
+  const DatastreamStreamCompression(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `schema_file_format` — derived from the provider schema description.
-enum DatastreamStreamDestinationConfigGcsDestinationConfigJsonFileFormatSchemaFileFormat
-    implements TerraformEnum {
+enum DatastreamStreamSchemaFileFormat implements TerraformEnum {
   noSchemaFile('NO_SCHEMA_FILE'),
   avroSchemaFile('AVRO_SCHEMA_FILE');
 
-  const DatastreamStreamDestinationConfigGcsDestinationConfigJsonFileFormatSchemaFileFormat(
-    this.terraformValue,
-  );
+  const DatastreamStreamSchemaFileFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1183,9 +1070,9 @@ final class DatastreamStreamRuleSets {
     required this.objectFilter,
   });
 
-  final List<DatastreamStreamRuleSetsCustomizationRules> customizationRules;
+  final List<DatastreamStreamCustomizationRules> customizationRules;
 
-  final DatastreamStreamRuleSetsObjectFilter objectFilter;
+  final DatastreamStreamObjectFilter objectFilter;
 
   Map<String, Object?> encode() => {
     'customization_rules': [for (final e in customizationRules) e.encode()],
@@ -1196,17 +1083,15 @@ final class DatastreamStreamRuleSets {
 /// Typed helper for the `rule_sets.customization_rules` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamRuleSetsCustomizationRules {
-  const DatastreamStreamRuleSetsCustomizationRules({
+final class DatastreamStreamCustomizationRules {
+  const DatastreamStreamCustomizationRules({
     this.bigqueryClustering,
     this.bigqueryPartitioning,
   });
 
-  final DatastreamStreamRuleSetsCustomizationRulesBigqueryClustering?
-  bigqueryClustering;
+  final DatastreamStreamBigqueryClustering? bigqueryClustering;
 
-  final DatastreamStreamRuleSetsCustomizationRulesBigqueryPartitioning?
-  bigqueryPartitioning;
+  final DatastreamStreamBigqueryPartitioning? bigqueryPartitioning;
 
   Map<String, Object?> encode() => {
     'bigquery_clustering': ?bigqueryClustering?.encode(),
@@ -1217,10 +1102,8 @@ final class DatastreamStreamRuleSetsCustomizationRules {
 /// Typed helper for the `rule_sets.customization_rules.bigquery_clustering` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamRuleSetsCustomizationRulesBigqueryClustering {
-  const DatastreamStreamRuleSetsCustomizationRulesBigqueryClustering({
-    required this.columns,
-  });
+final class DatastreamStreamBigqueryClustering {
+  const DatastreamStreamBigqueryClustering({required this.columns});
 
   final TfArg<List<String>> columns;
 
@@ -1230,8 +1113,8 @@ final class DatastreamStreamRuleSetsCustomizationRulesBigqueryClustering {
 /// Typed helper for the `rule_sets.customization_rules.bigquery_partitioning` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamRuleSetsCustomizationRulesBigqueryPartitioning {
-  const DatastreamStreamRuleSetsCustomizationRulesBigqueryPartitioning({
+final class DatastreamStreamBigqueryPartitioning {
+  const DatastreamStreamBigqueryPartitioning({
     this.requirePartitionFilter,
     this.ingestionTimePartition,
     this.integerRangePartition,
@@ -1240,14 +1123,11 @@ final class DatastreamStreamRuleSetsCustomizationRulesBigqueryPartitioning {
 
   final TfArg<bool>? requirePartitionFilter;
 
-  final DatastreamStreamRuleSetsCustomizationRulesBigqueryPartitioningIngestionTimePartition?
-  ingestionTimePartition;
+  final DatastreamStreamIngestionTimePartition? ingestionTimePartition;
 
-  final DatastreamStreamRuleSetsCustomizationRulesBigqueryPartitioningIntegerRangePartition?
-  integerRangePartition;
+  final DatastreamStreamIntegerRangePartition? integerRangePartition;
 
-  final DatastreamStreamRuleSetsCustomizationRulesBigqueryPartitioningTimeUnitPartition?
-  timeUnitPartition;
+  final DatastreamStreamTimeUnitPartition? timeUnitPartition;
 
   Map<String, Object?> encode() => {
     'require_partition_filter': ?requirePartitionFilter?.toTfJson(),
@@ -1260,14 +1140,12 @@ final class DatastreamStreamRuleSetsCustomizationRulesBigqueryPartitioning {
 /// Typed helper for the `rule_sets.customization_rules.bigquery_partitioning.ingestion_time_partition` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamRuleSetsCustomizationRulesBigqueryPartitioningIngestionTimePartition {
-  const DatastreamStreamRuleSetsCustomizationRulesBigqueryPartitioningIngestionTimePartition({
+final class DatastreamStreamIngestionTimePartition {
+  const DatastreamStreamIngestionTimePartition({
     this.partitioningTimeGranularity,
   });
 
-  final TfArg<
-    DatastreamStreamRuleSetsCustomizationRulesBigqueryPartitioningIngestionTimePartitionPartitioningTimeGranularity
-  >?
+  final TfArg<DatastreamStreamPartitioningTimeGranularity>?
   partitioningTimeGranularity;
 
   Map<String, Object?> encode() => {
@@ -1276,8 +1154,7 @@ final class DatastreamStreamRuleSetsCustomizationRulesBigqueryPartitioningIngest
 }
 
 /// `partitioning_time_granularity` — derived from the provider schema description.
-enum DatastreamStreamRuleSetsCustomizationRulesBigqueryPartitioningIngestionTimePartitionPartitioningTimeGranularity
-    implements TerraformEnum {
+enum DatastreamStreamPartitioningTimeGranularity implements TerraformEnum {
   partitioningTimeGranularityUnspecified(
     'PARTITIONING_TIME_GRANULARITY_UNSPECIFIED',
   ),
@@ -1286,9 +1163,7 @@ enum DatastreamStreamRuleSetsCustomizationRulesBigqueryPartitioningIngestionTime
   partitioningTimeGranularityMonth('PARTITIONING_TIME_GRANULARITY_MONTH'),
   partitioningTimeGranularityYear('PARTITIONING_TIME_GRANULARITY_YEAR');
 
-  const DatastreamStreamRuleSetsCustomizationRulesBigqueryPartitioningIngestionTimePartitionPartitioningTimeGranularity(
-    this.terraformValue,
-  );
+  const DatastreamStreamPartitioningTimeGranularity(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1296,8 +1171,8 @@ enum DatastreamStreamRuleSetsCustomizationRulesBigqueryPartitioningIngestionTime
 /// Typed helper for the `rule_sets.customization_rules.bigquery_partitioning.integer_range_partition` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamRuleSetsCustomizationRulesBigqueryPartitioningIntegerRangePartition {
-  const DatastreamStreamRuleSetsCustomizationRulesBigqueryPartitioningIntegerRangePartition({
+final class DatastreamStreamIntegerRangePartition {
+  const DatastreamStreamIntegerRangePartition({
     required this.column,
     required this.end,
     required this.interval,
@@ -1323,17 +1198,15 @@ final class DatastreamStreamRuleSetsCustomizationRulesBigqueryPartitioningIntege
 /// Typed helper for the `rule_sets.customization_rules.bigquery_partitioning.time_unit_partition` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamRuleSetsCustomizationRulesBigqueryPartitioningTimeUnitPartition {
-  const DatastreamStreamRuleSetsCustomizationRulesBigqueryPartitioningTimeUnitPartition({
+final class DatastreamStreamTimeUnitPartition {
+  const DatastreamStreamTimeUnitPartition({
     required this.column,
     this.partitioningTimeGranularity,
   });
 
   final TfArg<String> column;
 
-  final TfArg<
-    DatastreamStreamRuleSetsCustomizationRulesBigqueryPartitioningTimeUnitPartitionPartitioningTimeGranularity
-  >?
+  final TfArg<DatastreamStreamPartitioningTimeGranularity>?
   partitioningTimeGranularity;
 
   Map<String, Object?> encode() => {
@@ -1342,32 +1215,13 @@ final class DatastreamStreamRuleSetsCustomizationRulesBigqueryPartitioningTimeUn
   };
 }
 
-/// `partitioning_time_granularity` — derived from the provider schema description.
-enum DatastreamStreamRuleSetsCustomizationRulesBigqueryPartitioningTimeUnitPartitionPartitioningTimeGranularity
-    implements TerraformEnum {
-  partitioningTimeGranularityUnspecified(
-    'PARTITIONING_TIME_GRANULARITY_UNSPECIFIED',
-  ),
-  partitioningTimeGranularityHour('PARTITIONING_TIME_GRANULARITY_HOUR'),
-  partitioningTimeGranularityDay('PARTITIONING_TIME_GRANULARITY_DAY'),
-  partitioningTimeGranularityMonth('PARTITIONING_TIME_GRANULARITY_MONTH'),
-  partitioningTimeGranularityYear('PARTITIONING_TIME_GRANULARITY_YEAR');
-
-  const DatastreamStreamRuleSetsCustomizationRulesBigqueryPartitioningTimeUnitPartitionPartitioningTimeGranularity(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `rule_sets.object_filter` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamRuleSetsObjectFilter {
-  const DatastreamStreamRuleSetsObjectFilter({this.sourceObjectIdentifier});
+final class DatastreamStreamObjectFilter {
+  const DatastreamStreamObjectFilter({this.sourceObjectIdentifier});
 
-  final DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifier?
-  sourceObjectIdentifier;
+  final DatastreamStreamSourceObjectIdentifier? sourceObjectIdentifier;
 
   Map<String, Object?> encode() => {
     'source_object_identifier': ?sourceObjectIdentifier?.encode(),
@@ -1377,8 +1231,8 @@ final class DatastreamStreamRuleSetsObjectFilter {
 /// Typed helper for the `rule_sets.object_filter.source_object_identifier` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifier {
-  const DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifier({
+final class DatastreamStreamSourceObjectIdentifier {
+  const DatastreamStreamSourceObjectIdentifier({
     this.mongodbIdentifier,
     this.mysqlIdentifier,
     this.oracleIdentifier,
@@ -1388,26 +1242,19 @@ final class DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifier {
     this.sqlServerIdentifier,
   });
 
-  final DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifierMongodbIdentifier?
-  mongodbIdentifier;
+  final DatastreamStreamMongodbIdentifier? mongodbIdentifier;
 
-  final DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifierMysqlIdentifier?
-  mysqlIdentifier;
+  final DatastreamStreamMysqlIdentifier? mysqlIdentifier;
 
-  final DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifierOracleIdentifier?
-  oracleIdentifier;
+  final DatastreamStreamOracleIdentifier? oracleIdentifier;
 
-  final DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifierPostgresqlIdentifier?
-  postgresqlIdentifier;
+  final DatastreamStreamPostgresqlIdentifier? postgresqlIdentifier;
 
-  final DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifierSalesforceIdentifier?
-  salesforceIdentifier;
+  final DatastreamStreamSalesforceIdentifier? salesforceIdentifier;
 
-  final DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifierSpannerIdentifier?
-  spannerIdentifier;
+  final DatastreamStreamSpannerIdentifier? spannerIdentifier;
 
-  final DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifierSqlServerIdentifier?
-  sqlServerIdentifier;
+  final DatastreamStreamSqlServerIdentifier? sqlServerIdentifier;
 
   Map<String, Object?> encode() => {
     'mongodb_identifier': ?mongodbIdentifier?.encode(),
@@ -1423,8 +1270,8 @@ final class DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifier {
 /// Typed helper for the `rule_sets.object_filter.source_object_identifier.mongodb_identifier` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifierMongodbIdentifier {
-  const DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifierMongodbIdentifier({
+final class DatastreamStreamMongodbIdentifier {
+  const DatastreamStreamMongodbIdentifier({
     required this.collection,
     required this.database,
   });
@@ -1442,8 +1289,8 @@ final class DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifierMongodbIde
 /// Typed helper for the `rule_sets.object_filter.source_object_identifier.mysql_identifier` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifierMysqlIdentifier {
-  const DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifierMysqlIdentifier({
+final class DatastreamStreamMysqlIdentifier {
+  const DatastreamStreamMysqlIdentifier({
     required this.database,
     required this.table,
   });
@@ -1461,8 +1308,8 @@ final class DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifierMysqlIdent
 /// Typed helper for the `rule_sets.object_filter.source_object_identifier.oracle_identifier` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifierOracleIdentifier {
-  const DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifierOracleIdentifier({
+final class DatastreamStreamOracleIdentifier {
+  const DatastreamStreamOracleIdentifier({
     required this.schema,
     required this.table,
   });
@@ -1480,8 +1327,8 @@ final class DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifierOracleIden
 /// Typed helper for the `rule_sets.object_filter.source_object_identifier.postgresql_identifier` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifierPostgresqlIdentifier {
-  const DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifierPostgresqlIdentifier({
+final class DatastreamStreamPostgresqlIdentifier {
+  const DatastreamStreamPostgresqlIdentifier({
     required this.schema,
     required this.table,
   });
@@ -1499,10 +1346,8 @@ final class DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifierPostgresql
 /// Typed helper for the `rule_sets.object_filter.source_object_identifier.salesforce_identifier` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifierSalesforceIdentifier {
-  const DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifierSalesforceIdentifier({
-    required this.objectName,
-  });
+final class DatastreamStreamSalesforceIdentifier {
+  const DatastreamStreamSalesforceIdentifier({required this.objectName});
 
   final TfArg<String> objectName;
 
@@ -1512,11 +1357,8 @@ final class DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifierSalesforce
 /// Typed helper for the `rule_sets.object_filter.source_object_identifier.spanner_identifier` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifierSpannerIdentifier {
-  const DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifierSpannerIdentifier({
-    this.schema,
-    required this.table,
-  });
+final class DatastreamStreamSpannerIdentifier {
+  const DatastreamStreamSpannerIdentifier({this.schema, required this.table});
 
   final TfArg<String>? schema;
 
@@ -1531,8 +1373,8 @@ final class DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifierSpannerIde
 /// Typed helper for the `rule_sets.object_filter.source_object_identifier.sql_server_identifier` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifierSqlServerIdentifier {
-  const DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifierSqlServerIdentifier({
+final class DatastreamStreamSqlServerIdentifier {
+  const DatastreamStreamSqlServerIdentifier({
     required this.schema,
     required this.table,
   });
@@ -1575,37 +1417,37 @@ sealed class DatastreamStreamSourceConfigSystem {
 
   /// Sets `mysql_source_config`.
   const factory DatastreamStreamSourceConfigSystem.mysqlSourceConfig(
-    DatastreamStreamSourceConfigMysqlSourceConfig mysqlSourceConfig,
+    DatastreamStreamMysqlSourceConfig mysqlSourceConfig,
   ) = DatastreamStreamSourceConfigSystemMysqlSourceConfig;
 
   /// Sets `oracle_source_config`.
   const factory DatastreamStreamSourceConfigSystem.oracleSourceConfig(
-    DatastreamStreamSourceConfigOracleSourceConfig oracleSourceConfig,
+    DatastreamStreamOracleSourceConfig oracleSourceConfig,
   ) = DatastreamStreamSourceConfigSystemOracleSourceConfig;
 
   /// Sets `postgresql_source_config`.
   const factory DatastreamStreamSourceConfigSystem.postgresqlSourceConfig(
-    DatastreamStreamSourceConfigPostgresqlSourceConfig postgresqlSourceConfig,
+    DatastreamStreamPostgresqlSourceConfig postgresqlSourceConfig,
   ) = DatastreamStreamSourceConfigSystemPostgresqlSourceConfig;
 
   /// Sets `sql_server_source_config`.
   const factory DatastreamStreamSourceConfigSystem.sqlServerSourceConfig(
-    DatastreamStreamSourceConfigSqlServerSourceConfig sqlServerSourceConfig,
+    DatastreamStreamSqlServerSourceConfig sqlServerSourceConfig,
   ) = DatastreamStreamSourceConfigSystemSqlServerSourceConfig;
 
   /// Sets `salesforce_source_config`.
   const factory DatastreamStreamSourceConfigSystem.salesforceSourceConfig(
-    DatastreamStreamSourceConfigSalesforceSourceConfig salesforceSourceConfig,
+    DatastreamStreamSalesforceSourceConfig salesforceSourceConfig,
   ) = DatastreamStreamSourceConfigSystemSalesforceSourceConfig;
 
   /// Sets `spanner_source_config`.
   const factory DatastreamStreamSourceConfigSystem.spannerSourceConfig(
-    DatastreamStreamSourceConfigSpannerSourceConfig spannerSourceConfig,
+    DatastreamStreamSpannerSourceConfig spannerSourceConfig,
   ) = DatastreamStreamSourceConfigSystemSpannerSourceConfig;
 
   /// Sets `mongodb_source_config`.
   const factory DatastreamStreamSourceConfigSystem.mongodbSourceConfig(
-    DatastreamStreamSourceConfigMongodbSourceConfig mongodbSourceConfig,
+    DatastreamStreamMongodbSourceConfig mongodbSourceConfig,
   ) = DatastreamStreamSourceConfigSystemMongodbSourceConfig;
 
   /// The Terraform argument this choice sets.
@@ -1621,7 +1463,7 @@ final class DatastreamStreamSourceConfigSystemMysqlSourceConfig
     this.mysqlSourceConfig,
   );
 
-  final DatastreamStreamSourceConfigMysqlSourceConfig mysqlSourceConfig;
+  final DatastreamStreamMysqlSourceConfig mysqlSourceConfig;
 
   @override
   String get blockKey => 'mysql_source_config';
@@ -1639,7 +1481,7 @@ final class DatastreamStreamSourceConfigSystemOracleSourceConfig
     this.oracleSourceConfig,
   );
 
-  final DatastreamStreamSourceConfigOracleSourceConfig oracleSourceConfig;
+  final DatastreamStreamOracleSourceConfig oracleSourceConfig;
 
   @override
   String get blockKey => 'oracle_source_config';
@@ -1657,8 +1499,7 @@ final class DatastreamStreamSourceConfigSystemPostgresqlSourceConfig
     this.postgresqlSourceConfig,
   );
 
-  final DatastreamStreamSourceConfigPostgresqlSourceConfig
-  postgresqlSourceConfig;
+  final DatastreamStreamPostgresqlSourceConfig postgresqlSourceConfig;
 
   @override
   String get blockKey => 'postgresql_source_config';
@@ -1676,7 +1517,7 @@ final class DatastreamStreamSourceConfigSystemSqlServerSourceConfig
     this.sqlServerSourceConfig,
   );
 
-  final DatastreamStreamSourceConfigSqlServerSourceConfig sqlServerSourceConfig;
+  final DatastreamStreamSqlServerSourceConfig sqlServerSourceConfig;
 
   @override
   String get blockKey => 'sql_server_source_config';
@@ -1694,8 +1535,7 @@ final class DatastreamStreamSourceConfigSystemSalesforceSourceConfig
     this.salesforceSourceConfig,
   );
 
-  final DatastreamStreamSourceConfigSalesforceSourceConfig
-  salesforceSourceConfig;
+  final DatastreamStreamSalesforceSourceConfig salesforceSourceConfig;
 
   @override
   String get blockKey => 'salesforce_source_config';
@@ -1713,7 +1553,7 @@ final class DatastreamStreamSourceConfigSystemSpannerSourceConfig
     this.spannerSourceConfig,
   );
 
-  final DatastreamStreamSourceConfigSpannerSourceConfig spannerSourceConfig;
+  final DatastreamStreamSpannerSourceConfig spannerSourceConfig;
 
   @override
   String get blockKey => 'spanner_source_config';
@@ -1731,7 +1571,7 @@ final class DatastreamStreamSourceConfigSystemMongodbSourceConfig
     this.mongodbSourceConfig,
   );
 
-  final DatastreamStreamSourceConfigMongodbSourceConfig mongodbSourceConfig;
+  final DatastreamStreamMongodbSourceConfig mongodbSourceConfig;
 
   @override
   String get blockKey => 'mongodb_source_config';
@@ -1745,8 +1585,8 @@ final class DatastreamStreamSourceConfigSystemMongodbSourceConfig
 /// Typed helper for the `source_config.mongodb_source_config` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamSourceConfigMongodbSourceConfig {
-  const DatastreamStreamSourceConfigMongodbSourceConfig({
+final class DatastreamStreamMongodbSourceConfig {
+  const DatastreamStreamMongodbSourceConfig({
     this.maxConcurrentBackfillTasks,
     this.excludeObjects,
     this.includeObjects,
@@ -1754,11 +1594,9 @@ final class DatastreamStreamSourceConfigMongodbSourceConfig {
 
   final TfArg<num>? maxConcurrentBackfillTasks;
 
-  final DatastreamStreamSourceConfigMongodbSourceConfigExcludeObjects?
-  excludeObjects;
+  final DatastreamStreamMongodbSourceConfigExcludeObjects? excludeObjects;
 
-  final DatastreamStreamSourceConfigMongodbSourceConfigIncludeObjects?
-  includeObjects;
+  final DatastreamStreamMongodbSourceConfigIncludeObjects? includeObjects;
 
   Map<String, Object?> encode() => {
     'max_concurrent_backfill_tasks': ?maxConcurrentBackfillTasks?.toTfJson(),
@@ -1770,15 +1608,10 @@ final class DatastreamStreamSourceConfigMongodbSourceConfig {
 /// Typed helper for the `source_config.mongodb_source_config.exclude_objects` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamSourceConfigMongodbSourceConfigExcludeObjects {
-  const DatastreamStreamSourceConfigMongodbSourceConfigExcludeObjects({
-    this.databases,
-  });
+final class DatastreamStreamMongodbSourceConfigExcludeObjects {
+  const DatastreamStreamMongodbSourceConfigExcludeObjects({this.databases});
 
-  final List<
-    DatastreamStreamSourceConfigMongodbSourceConfigExcludeObjectsDatabases
-  >?
-  databases;
+  final List<DatastreamStreamExcludeObjectsDatabases>? databases;
 
   Map<String, Object?> encode() => {
     if (databases != null)
@@ -1788,19 +1621,17 @@ final class DatastreamStreamSourceConfigMongodbSourceConfigExcludeObjects {
 
 /// Typed helper for the `source_config.mongodb_source_config.exclude_objects.databases` block of
 /// `google_datastream_stream` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DatastreamStreamSourceConfigMongodbSourceConfigExcludeObjectsDatabases {
-  const DatastreamStreamSourceConfigMongodbSourceConfigExcludeObjectsDatabases({
+final class DatastreamStreamExcludeObjectsDatabases {
+  const DatastreamStreamExcludeObjectsDatabases({
     this.database,
     this.collections,
   });
 
   final TfArg<String>? database;
 
-  final List<
-    DatastreamStreamSourceConfigMongodbSourceConfigExcludeObjectsDatabasesCollections
-  >?
-  collections;
+  final List<DatastreamStreamDatabasesCollections>? collections;
 
   Map<String, Object?> encode() => {
     'database': ?database?.toTfJson(),
@@ -1811,19 +1642,14 @@ final class DatastreamStreamSourceConfigMongodbSourceConfigExcludeObjectsDatabas
 
 /// Typed helper for the `source_config.mongodb_source_config.exclude_objects.databases.collections` block of
 /// `google_datastream_stream` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DatastreamStreamSourceConfigMongodbSourceConfigExcludeObjectsDatabasesCollections {
-  const DatastreamStreamSourceConfigMongodbSourceConfigExcludeObjectsDatabasesCollections({
-    this.collection,
-    this.fields,
-  });
+final class DatastreamStreamDatabasesCollections {
+  const DatastreamStreamDatabasesCollections({this.collection, this.fields});
 
   final TfArg<String>? collection;
 
-  final List<
-    DatastreamStreamSourceConfigMongodbSourceConfigExcludeObjectsDatabasesCollectionsFields
-  >?
-  fields;
+  final List<DatastreamStreamCollectionsFields>? fields;
 
   Map<String, Object?> encode() => {
     'collection': ?collection?.toTfJson(),
@@ -1831,31 +1657,13 @@ final class DatastreamStreamSourceConfigMongodbSourceConfigExcludeObjectsDatabas
   };
 }
 
-/// Typed helper for the `source_config.mongodb_source_config.exclude_objects.databases.collections.fields` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigMongodbSourceConfigExcludeObjectsDatabasesCollectionsFields {
-  const DatastreamStreamSourceConfigMongodbSourceConfigExcludeObjectsDatabasesCollectionsFields({
-    this.field,
-  });
-
-  final TfArg<String>? field;
-
-  Map<String, Object?> encode() => {'field': ?field?.toTfJson()};
-}
-
 /// Typed helper for the `source_config.mongodb_source_config.include_objects` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamSourceConfigMongodbSourceConfigIncludeObjects {
-  const DatastreamStreamSourceConfigMongodbSourceConfigIncludeObjects({
-    this.databases,
-  });
+final class DatastreamStreamMongodbSourceConfigIncludeObjects {
+  const DatastreamStreamMongodbSourceConfigIncludeObjects({this.databases});
 
-  final List<
-    DatastreamStreamSourceConfigMongodbSourceConfigIncludeObjectsDatabases
-  >?
-  databases;
+  final List<DatastreamStreamExcludeObjectsDatabases>? databases;
 
   Map<String, Object?> encode() => {
     if (databases != null)
@@ -1863,69 +1671,11 @@ final class DatastreamStreamSourceConfigMongodbSourceConfigIncludeObjects {
   };
 }
 
-/// Typed helper for the `source_config.mongodb_source_config.include_objects.databases` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigMongodbSourceConfigIncludeObjectsDatabases {
-  const DatastreamStreamSourceConfigMongodbSourceConfigIncludeObjectsDatabases({
-    this.database,
-    this.collections,
-  });
-
-  final TfArg<String>? database;
-
-  final List<
-    DatastreamStreamSourceConfigMongodbSourceConfigIncludeObjectsDatabasesCollections
-  >?
-  collections;
-
-  Map<String, Object?> encode() => {
-    'database': ?database?.toTfJson(),
-    if (collections != null)
-      'collections': [for (final e in collections!) e.encode()],
-  };
-}
-
-/// Typed helper for the `source_config.mongodb_source_config.include_objects.databases.collections` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigMongodbSourceConfigIncludeObjectsDatabasesCollections {
-  const DatastreamStreamSourceConfigMongodbSourceConfigIncludeObjectsDatabasesCollections({
-    this.collection,
-    this.fields,
-  });
-
-  final TfArg<String>? collection;
-
-  final List<
-    DatastreamStreamSourceConfigMongodbSourceConfigIncludeObjectsDatabasesCollectionsFields
-  >?
-  fields;
-
-  Map<String, Object?> encode() => {
-    'collection': ?collection?.toTfJson(),
-    if (fields != null) 'fields': [for (final e in fields!) e.encode()],
-  };
-}
-
-/// Typed helper for the `source_config.mongodb_source_config.include_objects.databases.collections.fields` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigMongodbSourceConfigIncludeObjectsDatabasesCollectionsFields {
-  const DatastreamStreamSourceConfigMongodbSourceConfigIncludeObjectsDatabasesCollectionsFields({
-    this.field,
-  });
-
-  final TfArg<String>? field;
-
-  Map<String, Object?> encode() => {'field': ?field?.toTfJson()};
-}
-
 /// Typed helper for the `source_config.mysql_source_config` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamSourceConfigMysqlSourceConfig {
-  const DatastreamStreamSourceConfigMysqlSourceConfig({
+final class DatastreamStreamMysqlSourceConfig {
+  const DatastreamStreamMysqlSourceConfig({
     this.maxConcurrentBackfillTasks,
     this.maxConcurrentCdcTasks,
     this.cdcMethod,
@@ -1937,13 +1687,11 @@ final class DatastreamStreamSourceConfigMysqlSourceConfig {
 
   final TfArg<num>? maxConcurrentCdcTasks;
 
-  final DatastreamStreamSourceConfigMysqlSourceConfigCdcMethod? cdcMethod;
+  final DatastreamStreamCdcMethod? cdcMethod;
 
-  final DatastreamStreamSourceConfigMysqlSourceConfigExcludeObjects?
-  excludeObjects;
+  final DatastreamStreamMysqlSourceConfigExcludeObjects? excludeObjects;
 
-  final DatastreamStreamSourceConfigMysqlSourceConfigIncludeObjects?
-  includeObjects;
+  final DatastreamStreamMysqlSourceConfigIncludeObjects? includeObjects;
 
   Map<String, Object?> encode() => {
     'max_concurrent_backfill_tasks': ?maxConcurrentBackfillTasks?.toTfJson(),
@@ -1959,19 +1707,17 @@ final class DatastreamStreamSourceConfigMysqlSourceConfig {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.binaryLogPosition(...)`.
-sealed class DatastreamStreamSourceConfigMysqlSourceConfigCdcMethod {
-  const DatastreamStreamSourceConfigMysqlSourceConfigCdcMethod();
+sealed class DatastreamStreamCdcMethod {
+  const DatastreamStreamCdcMethod();
 
   /// Sets `binary_log_position`.
-  const factory DatastreamStreamSourceConfigMysqlSourceConfigCdcMethod.binaryLogPosition(
-    DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPosition
-    binaryLogPosition,
-  ) = DatastreamStreamSourceConfigMysqlSourceConfigCdcMethodBinaryLogPosition;
+  const factory DatastreamStreamCdcMethod.binaryLogPosition(
+    DatastreamStreamBinaryLogPosition binaryLogPosition,
+  ) = DatastreamStreamCdcMethodBinaryLogPosition;
 
   /// Sets `gtid`.
-  const factory DatastreamStreamSourceConfigMysqlSourceConfigCdcMethod.gtid(
-    DatastreamStreamSourceConfigMysqlSourceConfigGtid gtid,
-  ) = DatastreamStreamSourceConfigMysqlSourceConfigCdcMethodGtid;
+  const factory DatastreamStreamCdcMethod.gtid(DatastreamStreamGtid gtid) =
+      DatastreamStreamCdcMethodGtid;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1979,15 +1725,12 @@ sealed class DatastreamStreamSourceConfigMysqlSourceConfigCdcMethod {
   Map<String, Object?> encode();
 }
 
-/// The [DatastreamStreamSourceConfigMysqlSourceConfigCdcMethod.binaryLogPosition] choice: sets `binary_log_position`.
-final class DatastreamStreamSourceConfigMysqlSourceConfigCdcMethodBinaryLogPosition
-    extends DatastreamStreamSourceConfigMysqlSourceConfigCdcMethod {
-  const DatastreamStreamSourceConfigMysqlSourceConfigCdcMethodBinaryLogPosition(
-    this.binaryLogPosition,
-  );
+/// The [DatastreamStreamCdcMethod.binaryLogPosition] choice: sets `binary_log_position`.
+final class DatastreamStreamCdcMethodBinaryLogPosition
+    extends DatastreamStreamCdcMethod {
+  const DatastreamStreamCdcMethodBinaryLogPosition(this.binaryLogPosition);
 
-  final DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPosition
-  binaryLogPosition;
+  final DatastreamStreamBinaryLogPosition binaryLogPosition;
 
   @override
   String get blockKey => 'binary_log_position';
@@ -1998,12 +1741,11 @@ final class DatastreamStreamSourceConfigMysqlSourceConfigCdcMethodBinaryLogPosit
   };
 }
 
-/// The [DatastreamStreamSourceConfigMysqlSourceConfigCdcMethod.gtid] choice: sets `gtid`.
-final class DatastreamStreamSourceConfigMysqlSourceConfigCdcMethodGtid
-    extends DatastreamStreamSourceConfigMysqlSourceConfigCdcMethod {
-  const DatastreamStreamSourceConfigMysqlSourceConfigCdcMethodGtid(this.gtid);
+/// The [DatastreamStreamCdcMethod.gtid] choice: sets `gtid`.
+final class DatastreamStreamCdcMethodGtid extends DatastreamStreamCdcMethod {
+  const DatastreamStreamCdcMethodGtid(this.gtid);
 
-  final DatastreamStreamSourceConfigMysqlSourceConfigGtid gtid;
+  final DatastreamStreamGtid gtid;
 
   @override
   String get blockKey => 'gtid';
@@ -2015,8 +1757,8 @@ final class DatastreamStreamSourceConfigMysqlSourceConfigCdcMethodGtid
 /// Typed helper for the `source_config.mysql_source_config.binary_log_position` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPosition {
-  const DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPosition();
+final class DatastreamStreamBinaryLogPosition {
+  const DatastreamStreamBinaryLogPosition();
 
   Map<String, Object?> encode() => {};
 }
@@ -2024,107 +1766,23 @@ final class DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPosition {
 /// Typed helper for the `source_config.mysql_source_config.exclude_objects` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamSourceConfigMysqlSourceConfigExcludeObjects {
-  const DatastreamStreamSourceConfigMysqlSourceConfigExcludeObjects({
+final class DatastreamStreamMysqlSourceConfigExcludeObjects {
+  const DatastreamStreamMysqlSourceConfigExcludeObjects({
     required this.mysqlDatabases,
   });
 
-  final List<
-    DatastreamStreamSourceConfigMysqlSourceConfigExcludeObjectsMysqlDatabases
-  >
-  mysqlDatabases;
+  final List<DatastreamStreamMysqlDatabases> mysqlDatabases;
 
   Map<String, Object?> encode() => {
     'mysql_databases': [for (final e in mysqlDatabases) e.encode()],
   };
 }
 
-/// Typed helper for the `source_config.mysql_source_config.exclude_objects.mysql_databases` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigMysqlSourceConfigExcludeObjectsMysqlDatabases {
-  const DatastreamStreamSourceConfigMysqlSourceConfigExcludeObjectsMysqlDatabases({
-    required this.database,
-    this.mysqlTables,
-  });
-
-  final TfArg<String> database;
-
-  final List<
-    DatastreamStreamSourceConfigMysqlSourceConfigExcludeObjectsMysqlDatabasesMysqlTables
-  >?
-  mysqlTables;
-
-  Map<String, Object?> encode() => {
-    'database': database.toTfJson(),
-    if (mysqlTables != null)
-      'mysql_tables': [for (final e in mysqlTables!) e.encode()],
-  };
-}
-
-/// Typed helper for the `source_config.mysql_source_config.exclude_objects.mysql_databases.mysql_tables` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigMysqlSourceConfigExcludeObjectsMysqlDatabasesMysqlTables {
-  const DatastreamStreamSourceConfigMysqlSourceConfigExcludeObjectsMysqlDatabasesMysqlTables({
-    required this.table,
-    this.mysqlColumns,
-  });
-
-  final TfArg<String> table;
-
-  final List<
-    DatastreamStreamSourceConfigMysqlSourceConfigExcludeObjectsMysqlDatabasesMysqlTablesMysqlColumns
-  >?
-  mysqlColumns;
-
-  Map<String, Object?> encode() => {
-    'table': table.toTfJson(),
-    if (mysqlColumns != null)
-      'mysql_columns': [for (final e in mysqlColumns!) e.encode()],
-  };
-}
-
-/// Typed helper for the `source_config.mysql_source_config.exclude_objects.mysql_databases.mysql_tables.mysql_columns` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigMysqlSourceConfigExcludeObjectsMysqlDatabasesMysqlTablesMysqlColumns {
-  const DatastreamStreamSourceConfigMysqlSourceConfigExcludeObjectsMysqlDatabasesMysqlTablesMysqlColumns({
-    this.collation,
-    this.column,
-    this.dataType,
-    this.nullable,
-    this.ordinalPosition,
-    this.primaryKey,
-  });
-
-  final TfArg<String>? collation;
-
-  final TfArg<String>? column;
-
-  final TfArg<String>? dataType;
-
-  final TfArg<bool>? nullable;
-
-  final TfArg<num>? ordinalPosition;
-
-  final TfArg<bool>? primaryKey;
-
-  Map<String, Object?> encode() => {
-    'collation': ?collation?.toTfJson(),
-    'column': ?column?.toTfJson(),
-    'data_type': ?dataType?.toTfJson(),
-    'nullable': ?nullable?.toTfJson(),
-    'ordinal_position': ?ordinalPosition?.toTfJson(),
-    'primary_key': ?primaryKey?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `source_config.mysql_source_config.gtid` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamSourceConfigMysqlSourceConfigGtid {
-  const DatastreamStreamSourceConfigMysqlSourceConfigGtid();
+final class DatastreamStreamGtid {
+  const DatastreamStreamGtid();
 
   Map<String, Object?> encode() => {};
 }
@@ -2132,107 +1790,23 @@ final class DatastreamStreamSourceConfigMysqlSourceConfigGtid {
 /// Typed helper for the `source_config.mysql_source_config.include_objects` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamSourceConfigMysqlSourceConfigIncludeObjects {
-  const DatastreamStreamSourceConfigMysqlSourceConfigIncludeObjects({
+final class DatastreamStreamMysqlSourceConfigIncludeObjects {
+  const DatastreamStreamMysqlSourceConfigIncludeObjects({
     required this.mysqlDatabases,
   });
 
-  final List<
-    DatastreamStreamSourceConfigMysqlSourceConfigIncludeObjectsMysqlDatabases
-  >
-  mysqlDatabases;
+  final List<DatastreamStreamMysqlDatabases> mysqlDatabases;
 
   Map<String, Object?> encode() => {
     'mysql_databases': [for (final e in mysqlDatabases) e.encode()],
   };
 }
 
-/// Typed helper for the `source_config.mysql_source_config.include_objects.mysql_databases` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigMysqlSourceConfigIncludeObjectsMysqlDatabases {
-  const DatastreamStreamSourceConfigMysqlSourceConfigIncludeObjectsMysqlDatabases({
-    required this.database,
-    this.mysqlTables,
-  });
-
-  final TfArg<String> database;
-
-  final List<
-    DatastreamStreamSourceConfigMysqlSourceConfigIncludeObjectsMysqlDatabasesMysqlTables
-  >?
-  mysqlTables;
-
-  Map<String, Object?> encode() => {
-    'database': database.toTfJson(),
-    if (mysqlTables != null)
-      'mysql_tables': [for (final e in mysqlTables!) e.encode()],
-  };
-}
-
-/// Typed helper for the `source_config.mysql_source_config.include_objects.mysql_databases.mysql_tables` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigMysqlSourceConfigIncludeObjectsMysqlDatabasesMysqlTables {
-  const DatastreamStreamSourceConfigMysqlSourceConfigIncludeObjectsMysqlDatabasesMysqlTables({
-    required this.table,
-    this.mysqlColumns,
-  });
-
-  final TfArg<String> table;
-
-  final List<
-    DatastreamStreamSourceConfigMysqlSourceConfigIncludeObjectsMysqlDatabasesMysqlTablesMysqlColumns
-  >?
-  mysqlColumns;
-
-  Map<String, Object?> encode() => {
-    'table': table.toTfJson(),
-    if (mysqlColumns != null)
-      'mysql_columns': [for (final e in mysqlColumns!) e.encode()],
-  };
-}
-
-/// Typed helper for the `source_config.mysql_source_config.include_objects.mysql_databases.mysql_tables.mysql_columns` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigMysqlSourceConfigIncludeObjectsMysqlDatabasesMysqlTablesMysqlColumns {
-  const DatastreamStreamSourceConfigMysqlSourceConfigIncludeObjectsMysqlDatabasesMysqlTablesMysqlColumns({
-    this.collation,
-    this.column,
-    this.dataType,
-    this.nullable,
-    this.ordinalPosition,
-    this.primaryKey,
-  });
-
-  final TfArg<String>? collation;
-
-  final TfArg<String>? column;
-
-  final TfArg<String>? dataType;
-
-  final TfArg<bool>? nullable;
-
-  final TfArg<num>? ordinalPosition;
-
-  final TfArg<bool>? primaryKey;
-
-  Map<String, Object?> encode() => {
-    'collation': ?collation?.toTfJson(),
-    'column': ?column?.toTfJson(),
-    'data_type': ?dataType?.toTfJson(),
-    'nullable': ?nullable?.toTfJson(),
-    'ordinal_position': ?ordinalPosition?.toTfJson(),
-    'primary_key': ?primaryKey?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `source_config.oracle_source_config` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamSourceConfigOracleSourceConfig {
-  const DatastreamStreamSourceConfigOracleSourceConfig({
+final class DatastreamStreamOracleSourceConfig {
+  const DatastreamStreamOracleSourceConfig({
     this.maxConcurrentBackfillTasks,
     this.maxConcurrentCdcTasks,
     this.dropLargeObjects,
@@ -2245,17 +1819,13 @@ final class DatastreamStreamSourceConfigOracleSourceConfig {
 
   final TfArg<num>? maxConcurrentCdcTasks;
 
-  final DatastreamStreamSourceConfigOracleSourceConfigDropLargeObjects?
-  dropLargeObjects;
+  final DatastreamStreamDropLargeObjects? dropLargeObjects;
 
-  final DatastreamStreamSourceConfigOracleSourceConfigExcludeObjects?
-  excludeObjects;
+  final DatastreamStreamOracleSourceConfigExcludeObjects? excludeObjects;
 
-  final DatastreamStreamSourceConfigOracleSourceConfigIncludeObjects?
-  includeObjects;
+  final DatastreamStreamOracleSourceConfigIncludeObjects? includeObjects;
 
-  final DatastreamStreamSourceConfigOracleSourceConfigStreamLargeObjects?
-  streamLargeObjects;
+  final DatastreamStreamLargeObjects? streamLargeObjects;
 
   Map<String, Object?> encode() => {
     'max_concurrent_backfill_tasks': ?maxConcurrentBackfillTasks?.toTfJson(),
@@ -2270,8 +1840,8 @@ final class DatastreamStreamSourceConfigOracleSourceConfig {
 /// Typed helper for the `source_config.oracle_source_config.drop_large_objects` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamSourceConfigOracleSourceConfigDropLargeObjects {
-  const DatastreamStreamSourceConfigOracleSourceConfigDropLargeObjects();
+final class DatastreamStreamDropLargeObjects {
+  const DatastreamStreamDropLargeObjects();
 
   Map<String, Object?> encode() => {};
 }
@@ -2279,174 +1849,38 @@ final class DatastreamStreamSourceConfigOracleSourceConfigDropLargeObjects {
 /// Typed helper for the `source_config.oracle_source_config.exclude_objects` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamSourceConfigOracleSourceConfigExcludeObjects {
-  const DatastreamStreamSourceConfigOracleSourceConfigExcludeObjects({
+final class DatastreamStreamOracleSourceConfigExcludeObjects {
+  const DatastreamStreamOracleSourceConfigExcludeObjects({
     required this.oracleSchemas,
   });
 
-  final List<
-    DatastreamStreamSourceConfigOracleSourceConfigExcludeObjectsOracleSchemas
-  >
-  oracleSchemas;
+  final List<DatastreamStreamOracleSchemas> oracleSchemas;
 
   Map<String, Object?> encode() => {
     'oracle_schemas': [for (final e in oracleSchemas) e.encode()],
-  };
-}
-
-/// Typed helper for the `source_config.oracle_source_config.exclude_objects.oracle_schemas` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigOracleSourceConfigExcludeObjectsOracleSchemas {
-  const DatastreamStreamSourceConfigOracleSourceConfigExcludeObjectsOracleSchemas({
-    required this.schema,
-    this.oracleTables,
-  });
-
-  final TfArg<String> schema;
-
-  final List<
-    DatastreamStreamSourceConfigOracleSourceConfigExcludeObjectsOracleSchemasOracleTables
-  >?
-  oracleTables;
-
-  Map<String, Object?> encode() => {
-    'schema': schema.toTfJson(),
-    if (oracleTables != null)
-      'oracle_tables': [for (final e in oracleTables!) e.encode()],
-  };
-}
-
-/// Typed helper for the `source_config.oracle_source_config.exclude_objects.oracle_schemas.oracle_tables` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigOracleSourceConfigExcludeObjectsOracleSchemasOracleTables {
-  const DatastreamStreamSourceConfigOracleSourceConfigExcludeObjectsOracleSchemasOracleTables({
-    required this.table,
-    this.oracleColumns,
-  });
-
-  final TfArg<String> table;
-
-  final List<
-    DatastreamStreamSourceConfigOracleSourceConfigExcludeObjectsOracleSchemasOracleTablesOracleColumns
-  >?
-  oracleColumns;
-
-  Map<String, Object?> encode() => {
-    'table': table.toTfJson(),
-    if (oracleColumns != null)
-      'oracle_columns': [for (final e in oracleColumns!) e.encode()],
-  };
-}
-
-/// Typed helper for the `source_config.oracle_source_config.exclude_objects.oracle_schemas.oracle_tables.oracle_columns` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigOracleSourceConfigExcludeObjectsOracleSchemasOracleTablesOracleColumns {
-  const DatastreamStreamSourceConfigOracleSourceConfigExcludeObjectsOracleSchemasOracleTablesOracleColumns({
-    this.column,
-    this.dataType,
-  });
-
-  final TfArg<String>? column;
-
-  final TfArg<String>? dataType;
-
-  Map<String, Object?> encode() => {
-    'column': ?column?.toTfJson(),
-    'data_type': ?dataType?.toTfJson(),
   };
 }
 
 /// Typed helper for the `source_config.oracle_source_config.include_objects` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamSourceConfigOracleSourceConfigIncludeObjects {
-  const DatastreamStreamSourceConfigOracleSourceConfigIncludeObjects({
+final class DatastreamStreamOracleSourceConfigIncludeObjects {
+  const DatastreamStreamOracleSourceConfigIncludeObjects({
     required this.oracleSchemas,
   });
 
-  final List<
-    DatastreamStreamSourceConfigOracleSourceConfigIncludeObjectsOracleSchemas
-  >
-  oracleSchemas;
+  final List<DatastreamStreamOracleSchemas> oracleSchemas;
 
   Map<String, Object?> encode() => {
     'oracle_schemas': [for (final e in oracleSchemas) e.encode()],
   };
 }
 
-/// Typed helper for the `source_config.oracle_source_config.include_objects.oracle_schemas` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigOracleSourceConfigIncludeObjectsOracleSchemas {
-  const DatastreamStreamSourceConfigOracleSourceConfigIncludeObjectsOracleSchemas({
-    required this.schema,
-    this.oracleTables,
-  });
-
-  final TfArg<String> schema;
-
-  final List<
-    DatastreamStreamSourceConfigOracleSourceConfigIncludeObjectsOracleSchemasOracleTables
-  >?
-  oracleTables;
-
-  Map<String, Object?> encode() => {
-    'schema': schema.toTfJson(),
-    if (oracleTables != null)
-      'oracle_tables': [for (final e in oracleTables!) e.encode()],
-  };
-}
-
-/// Typed helper for the `source_config.oracle_source_config.include_objects.oracle_schemas.oracle_tables` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigOracleSourceConfigIncludeObjectsOracleSchemasOracleTables {
-  const DatastreamStreamSourceConfigOracleSourceConfigIncludeObjectsOracleSchemasOracleTables({
-    required this.table,
-    this.oracleColumns,
-  });
-
-  final TfArg<String> table;
-
-  final List<
-    DatastreamStreamSourceConfigOracleSourceConfigIncludeObjectsOracleSchemasOracleTablesOracleColumns
-  >?
-  oracleColumns;
-
-  Map<String, Object?> encode() => {
-    'table': table.toTfJson(),
-    if (oracleColumns != null)
-      'oracle_columns': [for (final e in oracleColumns!) e.encode()],
-  };
-}
-
-/// Typed helper for the `source_config.oracle_source_config.include_objects.oracle_schemas.oracle_tables.oracle_columns` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigOracleSourceConfigIncludeObjectsOracleSchemasOracleTablesOracleColumns {
-  const DatastreamStreamSourceConfigOracleSourceConfigIncludeObjectsOracleSchemasOracleTablesOracleColumns({
-    this.column,
-    this.dataType,
-  });
-
-  final TfArg<String>? column;
-
-  final TfArg<String>? dataType;
-
-  Map<String, Object?> encode() => {
-    'column': ?column?.toTfJson(),
-    'data_type': ?dataType?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `source_config.oracle_source_config.stream_large_objects` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamSourceConfigOracleSourceConfigStreamLargeObjects {
-  const DatastreamStreamSourceConfigOracleSourceConfigStreamLargeObjects();
+final class DatastreamStreamLargeObjects {
+  const DatastreamStreamLargeObjects();
 
   Map<String, Object?> encode() => {};
 }
@@ -2454,8 +1888,8 @@ final class DatastreamStreamSourceConfigOracleSourceConfigStreamLargeObjects {
 /// Typed helper for the `source_config.postgresql_source_config` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamSourceConfigPostgresqlSourceConfig {
-  const DatastreamStreamSourceConfigPostgresqlSourceConfig({
+final class DatastreamStreamPostgresqlSourceConfig {
+  const DatastreamStreamPostgresqlSourceConfig({
     this.maxConcurrentBackfillTasks,
     required this.publication,
     required this.replicationSlot,
@@ -2469,11 +1903,9 @@ final class DatastreamStreamSourceConfigPostgresqlSourceConfig {
 
   final TfArg<String> replicationSlot;
 
-  final DatastreamStreamSourceConfigPostgresqlSourceConfigExcludeObjects?
-  excludeObjects;
+  final DatastreamStreamPostgresqlSourceConfigExcludeObjects? excludeObjects;
 
-  final DatastreamStreamSourceConfigPostgresqlSourceConfigIncludeObjects?
-  includeObjects;
+  final DatastreamStreamPostgresqlSourceConfigIncludeObjects? includeObjects;
 
   Map<String, Object?> encode() => {
     'max_concurrent_backfill_tasks': ?maxConcurrentBackfillTasks?.toTfJson(),
@@ -2487,198 +1919,38 @@ final class DatastreamStreamSourceConfigPostgresqlSourceConfig {
 /// Typed helper for the `source_config.postgresql_source_config.exclude_objects` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamSourceConfigPostgresqlSourceConfigExcludeObjects {
-  const DatastreamStreamSourceConfigPostgresqlSourceConfigExcludeObjects({
+final class DatastreamStreamPostgresqlSourceConfigExcludeObjects {
+  const DatastreamStreamPostgresqlSourceConfigExcludeObjects({
     required this.postgresqlSchemas,
   });
 
-  final List<
-    DatastreamStreamSourceConfigPostgresqlSourceConfigExcludeObjectsPostgresqlSchemas
-  >
-  postgresqlSchemas;
+  final List<DatastreamStreamPostgresqlSchemas> postgresqlSchemas;
 
   Map<String, Object?> encode() => {
     'postgresql_schemas': [for (final e in postgresqlSchemas) e.encode()],
-  };
-}
-
-/// Typed helper for the `source_config.postgresql_source_config.exclude_objects.postgresql_schemas` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigPostgresqlSourceConfigExcludeObjectsPostgresqlSchemas {
-  const DatastreamStreamSourceConfigPostgresqlSourceConfigExcludeObjectsPostgresqlSchemas({
-    required this.schema,
-    this.postgresqlTables,
-  });
-
-  final TfArg<String> schema;
-
-  final List<
-    DatastreamStreamSourceConfigPostgresqlSourceConfigExcludeObjectsPostgresqlSchemasPostgresqlTables
-  >?
-  postgresqlTables;
-
-  Map<String, Object?> encode() => {
-    'schema': schema.toTfJson(),
-    if (postgresqlTables != null)
-      'postgresql_tables': [for (final e in postgresqlTables!) e.encode()],
-  };
-}
-
-/// Typed helper for the `source_config.postgresql_source_config.exclude_objects.postgresql_schemas.postgresql_tables` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigPostgresqlSourceConfigExcludeObjectsPostgresqlSchemasPostgresqlTables {
-  const DatastreamStreamSourceConfigPostgresqlSourceConfigExcludeObjectsPostgresqlSchemasPostgresqlTables({
-    required this.table,
-    this.postgresqlColumns,
-  });
-
-  final TfArg<String> table;
-
-  final List<
-    DatastreamStreamSourceConfigPostgresqlSourceConfigExcludeObjectsPostgresqlSchemasPostgresqlTablesPostgresqlColumns
-  >?
-  postgresqlColumns;
-
-  Map<String, Object?> encode() => {
-    'table': table.toTfJson(),
-    if (postgresqlColumns != null)
-      'postgresql_columns': [for (final e in postgresqlColumns!) e.encode()],
-  };
-}
-
-/// Typed helper for the `source_config.postgresql_source_config.exclude_objects.postgresql_schemas.postgresql_tables.postgresql_columns` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigPostgresqlSourceConfigExcludeObjectsPostgresqlSchemasPostgresqlTablesPostgresqlColumns {
-  const DatastreamStreamSourceConfigPostgresqlSourceConfigExcludeObjectsPostgresqlSchemasPostgresqlTablesPostgresqlColumns({
-    this.column,
-    this.dataType,
-    this.nullable,
-    this.ordinalPosition,
-    this.primaryKey,
-  });
-
-  final TfArg<String>? column;
-
-  final TfArg<String>? dataType;
-
-  final TfArg<bool>? nullable;
-
-  final TfArg<num>? ordinalPosition;
-
-  final TfArg<bool>? primaryKey;
-
-  Map<String, Object?> encode() => {
-    'column': ?column?.toTfJson(),
-    'data_type': ?dataType?.toTfJson(),
-    'nullable': ?nullable?.toTfJson(),
-    'ordinal_position': ?ordinalPosition?.toTfJson(),
-    'primary_key': ?primaryKey?.toTfJson(),
   };
 }
 
 /// Typed helper for the `source_config.postgresql_source_config.include_objects` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamSourceConfigPostgresqlSourceConfigIncludeObjects {
-  const DatastreamStreamSourceConfigPostgresqlSourceConfigIncludeObjects({
+final class DatastreamStreamPostgresqlSourceConfigIncludeObjects {
+  const DatastreamStreamPostgresqlSourceConfigIncludeObjects({
     required this.postgresqlSchemas,
   });
 
-  final List<
-    DatastreamStreamSourceConfigPostgresqlSourceConfigIncludeObjectsPostgresqlSchemas
-  >
-  postgresqlSchemas;
+  final List<DatastreamStreamPostgresqlSchemas> postgresqlSchemas;
 
   Map<String, Object?> encode() => {
     'postgresql_schemas': [for (final e in postgresqlSchemas) e.encode()],
   };
 }
 
-/// Typed helper for the `source_config.postgresql_source_config.include_objects.postgresql_schemas` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigPostgresqlSourceConfigIncludeObjectsPostgresqlSchemas {
-  const DatastreamStreamSourceConfigPostgresqlSourceConfigIncludeObjectsPostgresqlSchemas({
-    required this.schema,
-    this.postgresqlTables,
-  });
-
-  final TfArg<String> schema;
-
-  final List<
-    DatastreamStreamSourceConfigPostgresqlSourceConfigIncludeObjectsPostgresqlSchemasPostgresqlTables
-  >?
-  postgresqlTables;
-
-  Map<String, Object?> encode() => {
-    'schema': schema.toTfJson(),
-    if (postgresqlTables != null)
-      'postgresql_tables': [for (final e in postgresqlTables!) e.encode()],
-  };
-}
-
-/// Typed helper for the `source_config.postgresql_source_config.include_objects.postgresql_schemas.postgresql_tables` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigPostgresqlSourceConfigIncludeObjectsPostgresqlSchemasPostgresqlTables {
-  const DatastreamStreamSourceConfigPostgresqlSourceConfigIncludeObjectsPostgresqlSchemasPostgresqlTables({
-    required this.table,
-    this.postgresqlColumns,
-  });
-
-  final TfArg<String> table;
-
-  final List<
-    DatastreamStreamSourceConfigPostgresqlSourceConfigIncludeObjectsPostgresqlSchemasPostgresqlTablesPostgresqlColumns
-  >?
-  postgresqlColumns;
-
-  Map<String, Object?> encode() => {
-    'table': table.toTfJson(),
-    if (postgresqlColumns != null)
-      'postgresql_columns': [for (final e in postgresqlColumns!) e.encode()],
-  };
-}
-
-/// Typed helper for the `source_config.postgresql_source_config.include_objects.postgresql_schemas.postgresql_tables.postgresql_columns` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigPostgresqlSourceConfigIncludeObjectsPostgresqlSchemasPostgresqlTablesPostgresqlColumns {
-  const DatastreamStreamSourceConfigPostgresqlSourceConfigIncludeObjectsPostgresqlSchemasPostgresqlTablesPostgresqlColumns({
-    this.column,
-    this.dataType,
-    this.nullable,
-    this.ordinalPosition,
-    this.primaryKey,
-  });
-
-  final TfArg<String>? column;
-
-  final TfArg<String>? dataType;
-
-  final TfArg<bool>? nullable;
-
-  final TfArg<num>? ordinalPosition;
-
-  final TfArg<bool>? primaryKey;
-
-  Map<String, Object?> encode() => {
-    'column': ?column?.toTfJson(),
-    'data_type': ?dataType?.toTfJson(),
-    'nullable': ?nullable?.toTfJson(),
-    'ordinal_position': ?ordinalPosition?.toTfJson(),
-    'primary_key': ?primaryKey?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `source_config.salesforce_source_config` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamSourceConfigSalesforceSourceConfig {
-  const DatastreamStreamSourceConfigSalesforceSourceConfig({
+final class DatastreamStreamSalesforceSourceConfig {
+  const DatastreamStreamSalesforceSourceConfig({
     required this.pollingInterval,
     this.excludeObjects,
     this.includeObjects,
@@ -2686,11 +1958,9 @@ final class DatastreamStreamSourceConfigSalesforceSourceConfig {
 
   final TfArg<String> pollingInterval;
 
-  final DatastreamStreamSourceConfigSalesforceSourceConfigExcludeObjects?
-  excludeObjects;
+  final DatastreamStreamSalesforceSourceConfigExcludeObjects? excludeObjects;
 
-  final DatastreamStreamSourceConfigSalesforceSourceConfigIncludeObjects?
-  includeObjects;
+  final DatastreamStreamSalesforceSourceConfigIncludeObjects? includeObjects;
 
   Map<String, Object?> encode() => {
     'polling_interval': pollingInterval.toTfJson(),
@@ -2702,114 +1972,38 @@ final class DatastreamStreamSourceConfigSalesforceSourceConfig {
 /// Typed helper for the `source_config.salesforce_source_config.exclude_objects` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamSourceConfigSalesforceSourceConfigExcludeObjects {
-  const DatastreamStreamSourceConfigSalesforceSourceConfigExcludeObjects({
+final class DatastreamStreamSalesforceSourceConfigExcludeObjects {
+  const DatastreamStreamSalesforceSourceConfigExcludeObjects({
     required this.objects,
   });
 
-  final List<
-    DatastreamStreamSourceConfigSalesforceSourceConfigExcludeObjectsObjects
-  >
-  objects;
+  final List<DatastreamStreamObjects> objects;
 
   Map<String, Object?> encode() => {
     'objects': [for (final e in objects) e.encode()],
   };
-}
-
-/// Typed helper for the `source_config.salesforce_source_config.exclude_objects.objects` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigSalesforceSourceConfigExcludeObjectsObjects {
-  const DatastreamStreamSourceConfigSalesforceSourceConfigExcludeObjectsObjects({
-    this.objectName,
-    this.fields,
-  });
-
-  final TfArg<String>? objectName;
-
-  final List<
-    DatastreamStreamSourceConfigSalesforceSourceConfigExcludeObjectsObjectsFields
-  >?
-  fields;
-
-  Map<String, Object?> encode() => {
-    'object_name': ?objectName?.toTfJson(),
-    if (fields != null) 'fields': [for (final e in fields!) e.encode()],
-  };
-}
-
-/// Typed helper for the `source_config.salesforce_source_config.exclude_objects.objects.fields` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigSalesforceSourceConfigExcludeObjectsObjectsFields {
-  const DatastreamStreamSourceConfigSalesforceSourceConfigExcludeObjectsObjectsFields({
-    this.name,
-  });
-
-  final TfArg<String>? name;
-
-  Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
 /// Typed helper for the `source_config.salesforce_source_config.include_objects` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamSourceConfigSalesforceSourceConfigIncludeObjects {
-  const DatastreamStreamSourceConfigSalesforceSourceConfigIncludeObjects({
+final class DatastreamStreamSalesforceSourceConfigIncludeObjects {
+  const DatastreamStreamSalesforceSourceConfigIncludeObjects({
     required this.objects,
   });
 
-  final List<
-    DatastreamStreamSourceConfigSalesforceSourceConfigIncludeObjectsObjects
-  >
-  objects;
+  final List<DatastreamStreamObjects> objects;
 
   Map<String, Object?> encode() => {
     'objects': [for (final e in objects) e.encode()],
   };
 }
 
-/// Typed helper for the `source_config.salesforce_source_config.include_objects.objects` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigSalesforceSourceConfigIncludeObjectsObjects {
-  const DatastreamStreamSourceConfigSalesforceSourceConfigIncludeObjectsObjects({
-    this.objectName,
-    this.fields,
-  });
-
-  final TfArg<String>? objectName;
-
-  final List<
-    DatastreamStreamSourceConfigSalesforceSourceConfigIncludeObjectsObjectsFields
-  >?
-  fields;
-
-  Map<String, Object?> encode() => {
-    'object_name': ?objectName?.toTfJson(),
-    if (fields != null) 'fields': [for (final e in fields!) e.encode()],
-  };
-}
-
-/// Typed helper for the `source_config.salesforce_source_config.include_objects.objects.fields` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigSalesforceSourceConfigIncludeObjectsObjectsFields {
-  const DatastreamStreamSourceConfigSalesforceSourceConfigIncludeObjectsObjectsFields({
-    this.name,
-  });
-
-  final TfArg<String>? name;
-
-  Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
-}
-
 /// Typed helper for the `source_config.spanner_source_config` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamSourceConfigSpannerSourceConfig {
-  const DatastreamStreamSourceConfigSpannerSourceConfig({
+final class DatastreamStreamSpannerSourceConfig {
+  const DatastreamStreamSpannerSourceConfig({
     this.backfillDataBoostEnabled,
     this.changeStreamName,
     this.fgacRole,
@@ -2830,16 +2024,11 @@ final class DatastreamStreamSourceConfigSpannerSourceConfig {
 
   final TfArg<num>? maxConcurrentCdcTasks;
 
-  final TfArg<
-    DatastreamStreamSourceConfigSpannerSourceConfigSpannerRpcPriority
-  >?
-  spannerRpcPriority;
+  final TfArg<DatastreamStreamSpannerRpcPriority>? spannerRpcPriority;
 
-  final DatastreamStreamSourceConfigSpannerSourceConfigExcludeObjects?
-  excludeObjects;
+  final DatastreamStreamSpannerSourceConfigExcludeObjects? excludeObjects;
 
-  final DatastreamStreamSourceConfigSpannerSourceConfigIncludeObjects?
-  includeObjects;
+  final DatastreamStreamSpannerSourceConfigIncludeObjects? includeObjects;
 
   Map<String, Object?> encode() => {
     'backfill_data_boost_enabled': ?backfillDataBoostEnabled?.toTfJson(),
@@ -2854,15 +2043,12 @@ final class DatastreamStreamSourceConfigSpannerSourceConfig {
 }
 
 /// `spanner_rpc_priority` — derived from the provider schema description.
-enum DatastreamStreamSourceConfigSpannerSourceConfigSpannerRpcPriority
-    implements TerraformEnum {
+enum DatastreamStreamSpannerRpcPriority implements TerraformEnum {
   low('LOW'),
   medium('MEDIUM'),
   high('HIGH');
 
-  const DatastreamStreamSourceConfigSpannerSourceConfigSpannerRpcPriority(
-    this.terraformValue,
-  );
+  const DatastreamStreamSpannerRpcPriority(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -2870,15 +2056,12 @@ enum DatastreamStreamSourceConfigSpannerSourceConfigSpannerRpcPriority
 /// Typed helper for the `source_config.spanner_source_config.exclude_objects` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamSourceConfigSpannerSourceConfigExcludeObjects {
-  const DatastreamStreamSourceConfigSpannerSourceConfigExcludeObjects({
+final class DatastreamStreamSpannerSourceConfigExcludeObjects {
+  const DatastreamStreamSpannerSourceConfigExcludeObjects({
     required this.schemas,
   });
 
-  final List<
-    DatastreamStreamSourceConfigSpannerSourceConfigExcludeObjectsSchemas
-  >
-  schemas;
+  final List<DatastreamStreamExcludeObjectsSchemas> schemas;
 
   Map<String, Object?> encode() => {
     'schemas': [for (final e in schemas) e.encode()],
@@ -2887,19 +2070,17 @@ final class DatastreamStreamSourceConfigSpannerSourceConfigExcludeObjects {
 
 /// Typed helper for the `source_config.spanner_source_config.exclude_objects.schemas` block of
 /// `google_datastream_stream` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DatastreamStreamSourceConfigSpannerSourceConfigExcludeObjectsSchemas {
-  const DatastreamStreamSourceConfigSpannerSourceConfigExcludeObjectsSchemas({
+final class DatastreamStreamExcludeObjectsSchemas {
+  const DatastreamStreamExcludeObjectsSchemas({
     required this.schema,
     this.tables,
   });
 
   final TfArg<String> schema;
 
-  final List<
-    DatastreamStreamSourceConfigSpannerSourceConfigExcludeObjectsSchemasTables
-  >?
-  tables;
+  final List<DatastreamStreamExcludeObjectsTables>? tables;
 
   Map<String, Object?> encode() => {
     'schema': schema.toTfJson(),
@@ -2909,19 +2090,17 @@ final class DatastreamStreamSourceConfigSpannerSourceConfigExcludeObjectsSchemas
 
 /// Typed helper for the `source_config.spanner_source_config.exclude_objects.schemas.tables` block of
 /// `google_datastream_stream` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DatastreamStreamSourceConfigSpannerSourceConfigExcludeObjectsSchemasTables {
-  const DatastreamStreamSourceConfigSpannerSourceConfigExcludeObjectsSchemasTables({
+final class DatastreamStreamExcludeObjectsTables {
+  const DatastreamStreamExcludeObjectsTables({
     required this.table,
     this.columns,
   });
 
   final TfArg<String> table;
 
-  final List<
-    DatastreamStreamSourceConfigSpannerSourceConfigExcludeObjectsSchemasTablesColumns
-  >?
-  columns;
+  final List<DatastreamStreamExcludeObjectsColumns>? columns;
 
   Map<String, Object?> encode() => {
     'table': table.toTfJson(),
@@ -2931,11 +2110,10 @@ final class DatastreamStreamSourceConfigSpannerSourceConfigExcludeObjectsSchemas
 
 /// Typed helper for the `source_config.spanner_source_config.exclude_objects.schemas.tables.columns` block of
 /// `google_datastream_stream` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DatastreamStreamSourceConfigSpannerSourceConfigExcludeObjectsSchemasTablesColumns {
-  const DatastreamStreamSourceConfigSpannerSourceConfigExcludeObjectsSchemasTablesColumns({
-    this.column,
-  });
+final class DatastreamStreamExcludeObjectsColumns {
+  const DatastreamStreamExcludeObjectsColumns({this.column});
 
   final TfArg<String>? column;
 
@@ -2945,83 +2123,23 @@ final class DatastreamStreamSourceConfigSpannerSourceConfigExcludeObjectsSchemas
 /// Typed helper for the `source_config.spanner_source_config.include_objects` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamSourceConfigSpannerSourceConfigIncludeObjects {
-  const DatastreamStreamSourceConfigSpannerSourceConfigIncludeObjects({
+final class DatastreamStreamSpannerSourceConfigIncludeObjects {
+  const DatastreamStreamSpannerSourceConfigIncludeObjects({
     required this.schemas,
   });
 
-  final List<
-    DatastreamStreamSourceConfigSpannerSourceConfigIncludeObjectsSchemas
-  >
-  schemas;
+  final List<DatastreamStreamExcludeObjectsSchemas> schemas;
 
   Map<String, Object?> encode() => {
     'schemas': [for (final e in schemas) e.encode()],
   };
 }
 
-/// Typed helper for the `source_config.spanner_source_config.include_objects.schemas` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigSpannerSourceConfigIncludeObjectsSchemas {
-  const DatastreamStreamSourceConfigSpannerSourceConfigIncludeObjectsSchemas({
-    required this.schema,
-    this.tables,
-  });
-
-  final TfArg<String> schema;
-
-  final List<
-    DatastreamStreamSourceConfigSpannerSourceConfigIncludeObjectsSchemasTables
-  >?
-  tables;
-
-  Map<String, Object?> encode() => {
-    'schema': schema.toTfJson(),
-    if (tables != null) 'tables': [for (final e in tables!) e.encode()],
-  };
-}
-
-/// Typed helper for the `source_config.spanner_source_config.include_objects.schemas.tables` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigSpannerSourceConfigIncludeObjectsSchemasTables {
-  const DatastreamStreamSourceConfigSpannerSourceConfigIncludeObjectsSchemasTables({
-    required this.table,
-    this.columns,
-  });
-
-  final TfArg<String> table;
-
-  final List<
-    DatastreamStreamSourceConfigSpannerSourceConfigIncludeObjectsSchemasTablesColumns
-  >?
-  columns;
-
-  Map<String, Object?> encode() => {
-    'table': table.toTfJson(),
-    if (columns != null) 'columns': [for (final e in columns!) e.encode()],
-  };
-}
-
-/// Typed helper for the `source_config.spanner_source_config.include_objects.schemas.tables.columns` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigSpannerSourceConfigIncludeObjectsSchemasTablesColumns {
-  const DatastreamStreamSourceConfigSpannerSourceConfigIncludeObjectsSchemasTablesColumns({
-    this.column,
-  });
-
-  final TfArg<String>? column;
-
-  Map<String, Object?> encode() => {'column': ?column?.toTfJson()};
-}
-
 /// Typed helper for the `source_config.sql_server_source_config` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamSourceConfigSqlServerSourceConfig {
-  const DatastreamStreamSourceConfigSqlServerSourceConfig({
+final class DatastreamStreamSqlServerSourceConfig {
+  const DatastreamStreamSqlServerSourceConfig({
     this.maxConcurrentBackfillTasks,
     this.maxConcurrentCdcTasks,
     this.changeTables,
@@ -3034,17 +2152,13 @@ final class DatastreamStreamSourceConfigSqlServerSourceConfig {
 
   final TfArg<num>? maxConcurrentCdcTasks;
 
-  final DatastreamStreamSourceConfigSqlServerSourceConfigChangeTables?
-  changeTables;
+  final DatastreamStreamChangeTables? changeTables;
 
-  final DatastreamStreamSourceConfigSqlServerSourceConfigExcludeObjects?
-  excludeObjects;
+  final DatastreamStreamSqlServerSourceConfigExcludeObjects? excludeObjects;
 
-  final DatastreamStreamSourceConfigSqlServerSourceConfigIncludeObjects?
-  includeObjects;
+  final DatastreamStreamSqlServerSourceConfigIncludeObjects? includeObjects;
 
-  final DatastreamStreamSourceConfigSqlServerSourceConfigTransactionLogs?
-  transactionLogs;
+  final DatastreamStreamTransactionLogs? transactionLogs;
 
   Map<String, Object?> encode() => {
     'max_concurrent_backfill_tasks': ?maxConcurrentBackfillTasks?.toTfJson(),
@@ -3059,8 +2173,8 @@ final class DatastreamStreamSourceConfigSqlServerSourceConfig {
 /// Typed helper for the `source_config.sql_server_source_config.change_tables` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamSourceConfigSqlServerSourceConfigChangeTables {
-  const DatastreamStreamSourceConfigSqlServerSourceConfigChangeTables();
+final class DatastreamStreamChangeTables {
+  const DatastreamStreamChangeTables();
 
   Map<String, Object?> encode() => {};
 }
@@ -3068,170 +2182,38 @@ final class DatastreamStreamSourceConfigSqlServerSourceConfigChangeTables {
 /// Typed helper for the `source_config.sql_server_source_config.exclude_objects` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamSourceConfigSqlServerSourceConfigExcludeObjects {
-  const DatastreamStreamSourceConfigSqlServerSourceConfigExcludeObjects({
+final class DatastreamStreamSqlServerSourceConfigExcludeObjects {
+  const DatastreamStreamSqlServerSourceConfigExcludeObjects({
     required this.schemas,
   });
 
-  final List<
-    DatastreamStreamSourceConfigSqlServerSourceConfigExcludeObjectsSchemas
-  >
-  schemas;
+  final List<DatastreamStreamSqlServerExcludedObjectsSchemas> schemas;
 
   Map<String, Object?> encode() => {
     'schemas': [for (final e in schemas) e.encode()],
-  };
-}
-
-/// Typed helper for the `source_config.sql_server_source_config.exclude_objects.schemas` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigSqlServerSourceConfigExcludeObjectsSchemas {
-  const DatastreamStreamSourceConfigSqlServerSourceConfigExcludeObjectsSchemas({
-    required this.schema,
-    this.tables,
-  });
-
-  final TfArg<String> schema;
-
-  final List<
-    DatastreamStreamSourceConfigSqlServerSourceConfigExcludeObjectsSchemasTables
-  >?
-  tables;
-
-  Map<String, Object?> encode() => {
-    'schema': schema.toTfJson(),
-    if (tables != null) 'tables': [for (final e in tables!) e.encode()],
-  };
-}
-
-/// Typed helper for the `source_config.sql_server_source_config.exclude_objects.schemas.tables` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigSqlServerSourceConfigExcludeObjectsSchemasTables {
-  const DatastreamStreamSourceConfigSqlServerSourceConfigExcludeObjectsSchemasTables({
-    required this.table,
-    this.columns,
-  });
-
-  final TfArg<String> table;
-
-  final List<
-    DatastreamStreamSourceConfigSqlServerSourceConfigExcludeObjectsSchemasTablesColumns
-  >?
-  columns;
-
-  Map<String, Object?> encode() => {
-    'table': table.toTfJson(),
-    if (columns != null) 'columns': [for (final e in columns!) e.encode()],
-  };
-}
-
-/// Typed helper for the `source_config.sql_server_source_config.exclude_objects.schemas.tables.columns` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigSqlServerSourceConfigExcludeObjectsSchemasTablesColumns {
-  const DatastreamStreamSourceConfigSqlServerSourceConfigExcludeObjectsSchemasTablesColumns({
-    this.column,
-    this.dataType,
-  });
-
-  final TfArg<String>? column;
-
-  final TfArg<String>? dataType;
-
-  Map<String, Object?> encode() => {
-    'column': ?column?.toTfJson(),
-    'data_type': ?dataType?.toTfJson(),
   };
 }
 
 /// Typed helper for the `source_config.sql_server_source_config.include_objects` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamSourceConfigSqlServerSourceConfigIncludeObjects {
-  const DatastreamStreamSourceConfigSqlServerSourceConfigIncludeObjects({
+final class DatastreamStreamSqlServerSourceConfigIncludeObjects {
+  const DatastreamStreamSqlServerSourceConfigIncludeObjects({
     required this.schemas,
   });
 
-  final List<
-    DatastreamStreamSourceConfigSqlServerSourceConfigIncludeObjectsSchemas
-  >
-  schemas;
+  final List<DatastreamStreamSqlServerExcludedObjectsSchemas> schemas;
 
   Map<String, Object?> encode() => {
     'schemas': [for (final e in schemas) e.encode()],
   };
 }
 
-/// Typed helper for the `source_config.sql_server_source_config.include_objects.schemas` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigSqlServerSourceConfigIncludeObjectsSchemas {
-  const DatastreamStreamSourceConfigSqlServerSourceConfigIncludeObjectsSchemas({
-    required this.schema,
-    this.tables,
-  });
-
-  final TfArg<String> schema;
-
-  final List<
-    DatastreamStreamSourceConfigSqlServerSourceConfigIncludeObjectsSchemasTables
-  >?
-  tables;
-
-  Map<String, Object?> encode() => {
-    'schema': schema.toTfJson(),
-    if (tables != null) 'tables': [for (final e in tables!) e.encode()],
-  };
-}
-
-/// Typed helper for the `source_config.sql_server_source_config.include_objects.schemas.tables` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigSqlServerSourceConfigIncludeObjectsSchemasTables {
-  const DatastreamStreamSourceConfigSqlServerSourceConfigIncludeObjectsSchemasTables({
-    required this.table,
-    this.columns,
-  });
-
-  final TfArg<String> table;
-
-  final List<
-    DatastreamStreamSourceConfigSqlServerSourceConfigIncludeObjectsSchemasTablesColumns
-  >?
-  columns;
-
-  Map<String, Object?> encode() => {
-    'table': table.toTfJson(),
-    if (columns != null) 'columns': [for (final e in columns!) e.encode()],
-  };
-}
-
-/// Typed helper for the `source_config.sql_server_source_config.include_objects.schemas.tables.columns` block of
-/// `google_datastream_stream` (derived from provider schema).
-@immutable
-final class DatastreamStreamSourceConfigSqlServerSourceConfigIncludeObjectsSchemasTablesColumns {
-  const DatastreamStreamSourceConfigSqlServerSourceConfigIncludeObjectsSchemasTablesColumns({
-    this.column,
-    this.dataType,
-  });
-
-  final TfArg<String>? column;
-
-  final TfArg<String>? dataType;
-
-  Map<String, Object?> encode() => {
-    'column': ?column?.toTfJson(),
-    'data_type': ?dataType?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `source_config.sql_server_source_config.transaction_logs` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
-final class DatastreamStreamSourceConfigSqlServerSourceConfigTransactionLogs {
-  const DatastreamStreamSourceConfigSqlServerSourceConfigTransactionLogs();
+final class DatastreamStreamTransactionLogs {
+  const DatastreamStreamTransactionLogs();
 
   Map<String, Object?> encode() => {};
 }

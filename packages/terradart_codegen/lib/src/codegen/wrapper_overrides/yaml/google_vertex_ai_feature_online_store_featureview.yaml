@@ -31,7 +31,7 @@ curatedDoc: |-
   ///   source: .featureRegistrySource(
   ///     VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySource(
   ///       featureGroups: [
-  ///         VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySourceFeatureGroups(
+  ///         VertexAiFeatureOnlineStoreFeatureviewFeatureGroups(
   ///           featureGroupId: .literal('terradart_customer_features'),
   ///           featureIds: .literal(['feature_score']),
   ///         ),

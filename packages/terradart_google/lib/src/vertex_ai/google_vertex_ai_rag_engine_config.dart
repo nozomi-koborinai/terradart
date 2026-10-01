@@ -16,18 +16,18 @@ sealed class VertexAiRagEngineConfigRagManagedDbConfig {
 
   /// Sets `scaled`.
   const factory VertexAiRagEngineConfigRagManagedDbConfig.scaled(
-    VertexAiRagEngineConfigRagManagedDbConfigScaled scaled,
-  ) = VertexAiRagEngineConfigRagManagedDbConfigScaledChoice;
+    VertexAiRagEngineConfigScaled scaled,
+  ) = VertexAiRagEngineConfigRagManagedDbConfigScaled;
 
   /// Sets `basic`.
   const factory VertexAiRagEngineConfigRagManagedDbConfig.basic(
-    VertexAiRagEngineConfigRagManagedDbConfigBasic basic,
-  ) = VertexAiRagEngineConfigRagManagedDbConfigBasicChoice;
+    VertexAiRagEngineConfigBasic basic,
+  ) = VertexAiRagEngineConfigRagManagedDbConfigBasic;
 
   /// Sets `unprovisioned`.
   const factory VertexAiRagEngineConfigRagManagedDbConfig.unprovisioned(
-    VertexAiRagEngineConfigRagManagedDbConfigUnprovisioned unprovisioned,
-  ) = VertexAiRagEngineConfigRagManagedDbConfigUnprovisionedChoice;
+    VertexAiRagEngineConfigUnprovisioned unprovisioned,
+  ) = VertexAiRagEngineConfigRagManagedDbConfigUnprovisioned;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -36,11 +36,11 @@ sealed class VertexAiRagEngineConfigRagManagedDbConfig {
 }
 
 /// The [VertexAiRagEngineConfigRagManagedDbConfig.scaled] choice: sets `scaled`.
-final class VertexAiRagEngineConfigRagManagedDbConfigScaledChoice
+final class VertexAiRagEngineConfigRagManagedDbConfigScaled
     extends VertexAiRagEngineConfigRagManagedDbConfig {
-  const VertexAiRagEngineConfigRagManagedDbConfigScaledChoice(this.scaled);
+  const VertexAiRagEngineConfigRagManagedDbConfigScaled(this.scaled);
 
-  final VertexAiRagEngineConfigRagManagedDbConfigScaled scaled;
+  final VertexAiRagEngineConfigScaled scaled;
 
   @override
   String get blockKey => 'scaled';
@@ -50,11 +50,11 @@ final class VertexAiRagEngineConfigRagManagedDbConfigScaledChoice
 }
 
 /// The [VertexAiRagEngineConfigRagManagedDbConfig.basic] choice: sets `basic`.
-final class VertexAiRagEngineConfigRagManagedDbConfigBasicChoice
+final class VertexAiRagEngineConfigRagManagedDbConfigBasic
     extends VertexAiRagEngineConfigRagManagedDbConfig {
-  const VertexAiRagEngineConfigRagManagedDbConfigBasicChoice(this.basic);
+  const VertexAiRagEngineConfigRagManagedDbConfigBasic(this.basic);
 
-  final VertexAiRagEngineConfigRagManagedDbConfigBasic basic;
+  final VertexAiRagEngineConfigBasic basic;
 
   @override
   String get blockKey => 'basic';
@@ -64,13 +64,13 @@ final class VertexAiRagEngineConfigRagManagedDbConfigBasicChoice
 }
 
 /// The [VertexAiRagEngineConfigRagManagedDbConfig.unprovisioned] choice: sets `unprovisioned`.
-final class VertexAiRagEngineConfigRagManagedDbConfigUnprovisionedChoice
+final class VertexAiRagEngineConfigRagManagedDbConfigUnprovisioned
     extends VertexAiRagEngineConfigRagManagedDbConfig {
-  const VertexAiRagEngineConfigRagManagedDbConfigUnprovisionedChoice(
+  const VertexAiRagEngineConfigRagManagedDbConfigUnprovisioned(
     this.unprovisioned,
   );
 
-  final VertexAiRagEngineConfigRagManagedDbConfigUnprovisioned unprovisioned;
+  final VertexAiRagEngineConfigUnprovisioned unprovisioned;
 
   @override
   String get blockKey => 'unprovisioned';
@@ -82,8 +82,8 @@ final class VertexAiRagEngineConfigRagManagedDbConfigUnprovisionedChoice
 /// Typed helper for the `rag_managed_db_config.basic` block of
 /// `google_vertex_ai_rag_engine_config` (derived from provider schema).
 @immutable
-final class VertexAiRagEngineConfigRagManagedDbConfigBasic {
-  const VertexAiRagEngineConfigRagManagedDbConfigBasic();
+final class VertexAiRagEngineConfigBasic {
+  const VertexAiRagEngineConfigBasic();
 
   Map<String, Object?> encode() => {};
 }
@@ -91,8 +91,8 @@ final class VertexAiRagEngineConfigRagManagedDbConfigBasic {
 /// Typed helper for the `rag_managed_db_config.scaled` block of
 /// `google_vertex_ai_rag_engine_config` (derived from provider schema).
 @immutable
-final class VertexAiRagEngineConfigRagManagedDbConfigScaled {
-  const VertexAiRagEngineConfigRagManagedDbConfigScaled();
+final class VertexAiRagEngineConfigScaled {
+  const VertexAiRagEngineConfigScaled();
 
   Map<String, Object?> encode() => {};
 }
@@ -100,8 +100,8 @@ final class VertexAiRagEngineConfigRagManagedDbConfigScaled {
 /// Typed helper for the `rag_managed_db_config.unprovisioned` block of
 /// `google_vertex_ai_rag_engine_config` (derived from provider schema).
 @immutable
-final class VertexAiRagEngineConfigRagManagedDbConfigUnprovisioned {
-  const VertexAiRagEngineConfigRagManagedDbConfigUnprovisioned();
+final class VertexAiRagEngineConfigUnprovisioned {
+  const VertexAiRagEngineConfigUnprovisioned();
 
   Map<String, Object?> encode() => {};
 }
@@ -140,7 +140,7 @@ final class VertexAiRagEngineConfigRagManagedDbConfigUnprovisioned {
 ///   localName: 'rag',
 ///   region: TfArg.literal('us-central1'),
 ///   ragManagedDbConfig: const .basic(
-///     VertexAiRagEngineConfigRagManagedDbConfigBasic(),
+///     VertexAiRagEngineConfigBasic(),
 ///   ),
 /// );
 /// ```

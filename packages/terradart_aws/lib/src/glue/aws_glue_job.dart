@@ -45,9 +45,9 @@ final class GlueJobCommand {
 
   final TfArg<String>? name;
 
-  final TfArg<GlueJobCommandPythonVersion>? pythonVersion;
+  final TfArg<GlueJobPythonVersion>? pythonVersion;
 
-  final TfArg<GlueJobCommandRuntime>? runtime;
+  final TfArg<GlueJobRuntime>? runtime;
 
   final TfArg<String> scriptLocation;
 
@@ -60,21 +60,21 @@ final class GlueJobCommand {
 }
 
 /// `python_version` — derived from the provider schema description.
-enum GlueJobCommandPythonVersion implements TerraformEnum {
+enum GlueJobPythonVersion implements TerraformEnum {
   v2('2'),
   v3('3'),
   v3p9('3.9');
 
-  const GlueJobCommandPythonVersion(this.terraformValue);
+  const GlueJobPythonVersion(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `runtime` — derived from the provider schema description.
-enum GlueJobCommandRuntime implements TerraformEnum {
+enum GlueJobRuntime implements TerraformEnum {
   ray2p4('Ray2.4');
 
-  const GlueJobCommandRuntime(this.terraformValue);
+  const GlueJobRuntime(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -120,7 +120,7 @@ final class GlueJobSourceControlDetails {
     this.repository,
   });
 
-  final TfArg<GlueJobSourceControlDetailsAuthStrategy>? authStrategy;
+  final TfArg<GlueJobAuthStrategy>? authStrategy;
 
   final TfArg<String>? authToken;
 
@@ -132,7 +132,7 @@ final class GlueJobSourceControlDetails {
 
   final TfArg<String>? owner;
 
-  final TfArg<GlueJobSourceControlDetailsProvider>? provider;
+  final TfArg<GlueJobProvider>? provider;
 
   final TfArg<String>? repository;
 
@@ -149,23 +149,23 @@ final class GlueJobSourceControlDetails {
 }
 
 /// `auth_strategy` — derived from the provider schema description.
-enum GlueJobSourceControlDetailsAuthStrategy implements TerraformEnum {
+enum GlueJobAuthStrategy implements TerraformEnum {
   personalAccessToken('PERSONAL_ACCESS_TOKEN'),
   awsSecretsManager('AWS_SECRETS_MANAGER');
 
-  const GlueJobSourceControlDetailsAuthStrategy(this.terraformValue);
+  const GlueJobAuthStrategy(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `provider` — derived from the provider schema description.
-enum GlueJobSourceControlDetailsProvider implements TerraformEnum {
+enum GlueJobProvider implements TerraformEnum {
   github('GITHUB'),
   gitlab('GITLAB'),
   bitbucket('BITBUCKET'),
   awsCodeCommit('AWS_CODE_COMMIT');
 
-  const GlueJobSourceControlDetailsProvider(this.terraformValue);
+  const GlueJobProvider(this.terraformValue);
   @override
   final String terraformValue;
 }

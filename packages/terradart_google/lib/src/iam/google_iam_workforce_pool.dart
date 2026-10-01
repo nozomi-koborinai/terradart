@@ -18,8 +18,7 @@ final class IamWorkforcePoolAccessRestrictions {
 
   final TfArg<bool>? disableProgrammaticSignin;
 
-  final List<IamWorkforcePoolAccessRestrictionsAllowedServices>?
-  allowedServices;
+  final List<IamWorkforcePoolAllowedServices>? allowedServices;
 
   Map<String, Object?> encode() => {
     'disable_programmatic_signin': ?disableProgrammaticSignin?.toTfJson(),
@@ -31,8 +30,8 @@ final class IamWorkforcePoolAccessRestrictions {
 /// Typed helper for the `access_restrictions.allowed_services` block of
 /// `google_iam_workforce_pool` (derived from provider schema).
 @immutable
-final class IamWorkforcePoolAccessRestrictionsAllowedServices {
-  const IamWorkforcePoolAccessRestrictionsAllowedServices({this.domain});
+final class IamWorkforcePoolAllowedServices {
+  const IamWorkforcePoolAllowedServices({this.domain});
 
   final TfArg<String>? domain;
 

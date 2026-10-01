@@ -13,7 +13,7 @@ const Set<String> _awsGlueCatalogTableSensitive = <String>{};
 final class GlueCatalogTableOpenTableFormatInput {
   const GlueCatalogTableOpenTableFormatInput({required this.icebergInput});
 
-  final GlueCatalogTableOpenTableFormatInputIcebergInput icebergInput;
+  final GlueCatalogTableIcebergInput icebergInput;
 
   Map<String, Object?> encode() => {'iceberg_input': icebergInput.encode()};
 }
@@ -21,20 +21,18 @@ final class GlueCatalogTableOpenTableFormatInput {
 /// Typed helper for the `open_table_format_input.iceberg_input` block of
 /// `aws_glue_catalog_table` (derived from provider schema).
 @immutable
-final class GlueCatalogTableOpenTableFormatInputIcebergInput {
-  const GlueCatalogTableOpenTableFormatInputIcebergInput({
+final class GlueCatalogTableIcebergInput {
+  const GlueCatalogTableIcebergInput({
     required this.metadataOperation,
     this.version,
     this.icebergTableInput,
   });
 
-  final TfArg<GlueCatalogTableOpenTableFormatInputIcebergInputMetadataOperation>
-  metadataOperation;
+  final TfArg<GlueCatalogTableMetadataOperation> metadataOperation;
 
   final TfArg<String>? version;
 
-  final GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInput?
-  icebergTableInput;
+  final GlueCatalogTableIcebergTableInput? icebergTableInput;
 
   Map<String, Object?> encode() => {
     'metadata_operation': metadataOperation.toTfJson(),
@@ -44,13 +42,10 @@ final class GlueCatalogTableOpenTableFormatInputIcebergInput {
 }
 
 /// `metadata_operation` — derived from the provider schema description.
-enum GlueCatalogTableOpenTableFormatInputIcebergInputMetadataOperation
-    implements TerraformEnum {
+enum GlueCatalogTableMetadataOperation implements TerraformEnum {
   create('CREATE');
 
-  const GlueCatalogTableOpenTableFormatInputIcebergInputMetadataOperation(
-    this.terraformValue,
-  );
+  const GlueCatalogTableMetadataOperation(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -58,8 +53,8 @@ enum GlueCatalogTableOpenTableFormatInputIcebergInputMetadataOperation
 /// Typed helper for the `open_table_format_input.iceberg_input.iceberg_table_input` block of
 /// `aws_glue_catalog_table` (derived from provider schema).
 @immutable
-final class GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInput {
-  const GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInput({
+final class GlueCatalogTableIcebergTableInput {
+  const GlueCatalogTableIcebergTableInput({
     required this.location,
     this.properties,
     this.partitionSpec,
@@ -71,14 +66,11 @@ final class GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInput {
 
   final TfArg<Map<String, String>>? properties;
 
-  final GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputPartitionSpec?
-  partitionSpec;
+  final GlueCatalogTablePartitionSpec? partitionSpec;
 
-  final GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSchema
-  schema;
+  final GlueCatalogTableIcebergTableInputSchema schema;
 
-  final GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSortOrder?
-  sortOrder;
+  final GlueCatalogTableSortOrder? sortOrder;
 
   Map<String, Object?> encode() => {
     'location': location.toTfJson(),
@@ -92,18 +84,12 @@ final class GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInput {
 /// Typed helper for the `open_table_format_input.iceberg_input.iceberg_table_input.partition_spec` block of
 /// `aws_glue_catalog_table` (derived from provider schema).
 @immutable
-final class GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputPartitionSpec {
-  const GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputPartitionSpec({
-    this.specId,
-    required this.fields,
-  });
+final class GlueCatalogTablePartitionSpec {
+  const GlueCatalogTablePartitionSpec({this.specId, required this.fields});
 
   final TfArg<num>? specId;
 
-  final List<
-    GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputPartitionSpecFields
-  >
-  fields;
+  final List<GlueCatalogTablePartitionSpecFields> fields;
 
   Map<String, Object?> encode() => {
     'spec_id': ?specId?.toTfJson(),
@@ -114,8 +100,8 @@ final class GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputPar
 /// Typed helper for the `open_table_format_input.iceberg_input.iceberg_table_input.partition_spec.fields` block of
 /// `aws_glue_catalog_table` (derived from provider schema).
 @immutable
-final class GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputPartitionSpecFields {
-  const GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputPartitionSpecFields({
+final class GlueCatalogTablePartitionSpecFields {
+  const GlueCatalogTablePartitionSpecFields({
     this.fieldId,
     required this.name,
     required this.sourceId,
@@ -141,8 +127,8 @@ final class GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputPar
 /// Typed helper for the `open_table_format_input.iceberg_input.iceberg_table_input.schema` block of
 /// `aws_glue_catalog_table` (derived from provider schema).
 @immutable
-final class GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSchema {
-  const GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSchema({
+final class GlueCatalogTableIcebergTableInputSchema {
+  const GlueCatalogTableIcebergTableInputSchema({
     this.identifierFieldIds,
     this.schemaId,
     this.type,
@@ -153,15 +139,9 @@ final class GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSch
 
   final TfArg<num>? schemaId;
 
-  final TfArg<
-    GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSchemaType
-  >?
-  type;
+  final TfArg<GlueCatalogTableType>? type;
 
-  final List<
-    GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSchemaFields
-  >
-  fields;
+  final List<GlueCatalogTableSchemaFields> fields;
 
   Map<String, Object?> encode() => {
     'identifier_field_ids': ?identifierFieldIds?.toTfJson(),
@@ -172,13 +152,10 @@ final class GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSch
 }
 
 /// `type` — derived from the provider schema description.
-enum GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSchemaType
-    implements TerraformEnum {
+enum GlueCatalogTableType implements TerraformEnum {
   struct('struct');
 
-  const GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSchemaType(
-    this.terraformValue,
-  );
+  const GlueCatalogTableType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -186,8 +163,8 @@ enum GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSchemaType
 /// Typed helper for the `open_table_format_input.iceberg_input.iceberg_table_input.schema.fields` block of
 /// `aws_glue_catalog_table` (derived from provider schema).
 @immutable
-final class GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSchemaFields {
-  const GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSchemaFields({
+final class GlueCatalogTableSchemaFields {
+  const GlueCatalogTableSchemaFields({
     this.doc,
     required this.id,
     this.initialDefault,
@@ -225,18 +202,15 @@ final class GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSch
 /// Typed helper for the `open_table_format_input.iceberg_input.iceberg_table_input.sort_order` block of
 /// `aws_glue_catalog_table` (derived from provider schema).
 @immutable
-final class GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSortOrder {
-  const GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSortOrder({
+final class GlueCatalogTableSortOrder {
+  const GlueCatalogTableSortOrder({
     required this.orderId,
     required this.fields,
   });
 
   final TfArg<num> orderId;
 
-  final List<
-    GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSortOrderFields
-  >
-  fields;
+  final List<GlueCatalogTableSortOrderFields> fields;
 
   Map<String, Object?> encode() => {
     'order_id': orderId.toTfJson(),
@@ -247,23 +221,17 @@ final class GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSor
 /// Typed helper for the `open_table_format_input.iceberg_input.iceberg_table_input.sort_order.fields` block of
 /// `aws_glue_catalog_table` (derived from provider schema).
 @immutable
-final class GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSortOrderFields {
-  const GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSortOrderFields({
+final class GlueCatalogTableSortOrderFields {
+  const GlueCatalogTableSortOrderFields({
     required this.direction,
     required this.nullOrder,
     required this.sourceId,
     required this.transform,
   });
 
-  final TfArg<
-    GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSortOrderFieldsDirection
-  >
-  direction;
+  final TfArg<GlueCatalogTableDirection> direction;
 
-  final TfArg<
-    GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSortOrderFieldsNullOrder
-  >
-  nullOrder;
+  final TfArg<GlueCatalogTableNullOrder> nullOrder;
 
   final TfArg<num> sourceId;
 
@@ -278,27 +246,21 @@ final class GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSor
 }
 
 /// `direction` — derived from the provider schema description.
-enum GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSortOrderFieldsDirection
-    implements TerraformEnum {
+enum GlueCatalogTableDirection implements TerraformEnum {
   asc('asc'),
   desc('desc');
 
-  const GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSortOrderFieldsDirection(
-    this.terraformValue,
-  );
+  const GlueCatalogTableDirection(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `null_order` — derived from the provider schema description.
-enum GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSortOrderFieldsNullOrder
-    implements TerraformEnum {
+enum GlueCatalogTableNullOrder implements TerraformEnum {
   nullsFirst('nulls-first'),
   nullsLast('nulls-last');
 
-  const GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSortOrderFieldsNullOrder(
-    this.terraformValue,
-  );
+  const GlueCatalogTableNullOrder(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -388,15 +350,15 @@ final class GlueCatalogTableStorageDescriptor {
 
   final TfArg<bool>? storedAsSubDirectories;
 
-  final List<GlueCatalogTableStorageDescriptorColumns>? columns;
+  final List<GlueCatalogTableColumns>? columns;
 
-  final GlueCatalogTableStorageDescriptorSchemaReference? schemaReference;
+  final GlueCatalogTableSchemaReference? schemaReference;
 
-  final GlueCatalogTableStorageDescriptorSerDeInfo? serDeInfo;
+  final GlueCatalogTableSerDeInfo? serDeInfo;
 
-  final GlueCatalogTableStorageDescriptorSkewedInfo? skewedInfo;
+  final GlueCatalogTableSkewedInfo? skewedInfo;
 
-  final List<GlueCatalogTableStorageDescriptorSortColumns>? sortColumns;
+  final List<GlueCatalogTableSortColumns>? sortColumns;
 
   Map<String, Object?> encode() => {
     'additional_locations': ?additionalLocations?.toTfJson(),
@@ -420,8 +382,8 @@ final class GlueCatalogTableStorageDescriptor {
 /// Typed helper for the `storage_descriptor.columns` block of
 /// `aws_glue_catalog_table` (derived from provider schema).
 @immutable
-final class GlueCatalogTableStorageDescriptorColumns {
-  const GlueCatalogTableStorageDescriptorColumns({
+final class GlueCatalogTableColumns {
+  const GlueCatalogTableColumns({
     this.comment,
     required this.name,
     this.parameters,
@@ -447,13 +409,13 @@ final class GlueCatalogTableStorageDescriptorColumns {
 /// Typed helper for the `storage_descriptor.schema_reference` block of
 /// `aws_glue_catalog_table` (derived from provider schema).
 @immutable
-final class GlueCatalogTableStorageDescriptorSchemaReference {
-  const GlueCatalogTableStorageDescriptorSchemaReference({
+final class GlueCatalogTableSchemaReference {
+  const GlueCatalogTableSchemaReference({
     required this.schema,
     required this.schemaVersionNumber,
   });
 
-  final GlueCatalogTableStorageDescriptorSchemaReferenceSchema schema;
+  final GlueCatalogTableSchema schema;
 
   final TfArg<num> schemaVersionNumber;
 
@@ -467,18 +429,18 @@ final class GlueCatalogTableStorageDescriptorSchemaReference {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.schemaId(...)`.
-sealed class GlueCatalogTableStorageDescriptorSchemaReferenceSchema {
-  const GlueCatalogTableStorageDescriptorSchemaReferenceSchema();
+sealed class GlueCatalogTableSchema {
+  const GlueCatalogTableSchema();
 
   /// Sets `schema_id`.
-  const factory GlueCatalogTableStorageDescriptorSchemaReferenceSchema.schemaId(
-    GlueCatalogTableStorageDescriptorSchemaReferenceSchemaId schemaId,
-  ) = GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdChoice;
+  const factory GlueCatalogTableSchema.schemaId(
+    GlueCatalogTableSchemaId schemaId,
+  ) = GlueCatalogTableSchemaIdChoice;
 
   /// Sets `schema_version_id`.
-  const factory GlueCatalogTableStorageDescriptorSchemaReferenceSchema.schemaVersionId(
+  const factory GlueCatalogTableSchema.schemaVersionId(
     TfArg<String> schemaVersionId,
-  ) = GlueCatalogTableStorageDescriptorSchemaReferenceSchemaVersionId;
+  ) = GlueCatalogTableSchemaVersionId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -486,14 +448,11 @@ sealed class GlueCatalogTableStorageDescriptorSchemaReferenceSchema {
   Map<String, Object?> encode();
 }
 
-/// The [GlueCatalogTableStorageDescriptorSchemaReferenceSchema.schemaId] choice: sets `schema_id`.
-final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdChoice
-    extends GlueCatalogTableStorageDescriptorSchemaReferenceSchema {
-  const GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdChoice(
-    this.schemaId,
-  );
+/// The [GlueCatalogTableSchema.schemaId] choice: sets `schema_id`.
+final class GlueCatalogTableSchemaIdChoice extends GlueCatalogTableSchema {
+  const GlueCatalogTableSchemaIdChoice(this.schemaId);
 
-  final GlueCatalogTableStorageDescriptorSchemaReferenceSchemaId schemaId;
+  final GlueCatalogTableSchemaId schemaId;
 
   @override
   String get blockKey => 'schema_id';
@@ -502,12 +461,9 @@ final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdChoice
   Map<String, Object?> encode() => {'schema_id': schemaId.encode()};
 }
 
-/// The [GlueCatalogTableStorageDescriptorSchemaReferenceSchema.schemaVersionId] choice: sets `schema_version_id`.
-final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaVersionId
-    extends GlueCatalogTableStorageDescriptorSchemaReferenceSchema {
-  const GlueCatalogTableStorageDescriptorSchemaReferenceSchemaVersionId(
-    this.schemaVersionId,
-  );
+/// The [GlueCatalogTableSchema.schemaVersionId] choice: sets `schema_version_id`.
+final class GlueCatalogTableSchemaVersionId extends GlueCatalogTableSchema {
+  const GlueCatalogTableSchemaVersionId(this.schemaVersionId);
 
   final TfArg<String> schemaVersionId;
 
@@ -523,15 +479,12 @@ final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaVersionId
 /// Typed helper for the `storage_descriptor.schema_reference.schema_id` block of
 /// `aws_glue_catalog_table` (derived from provider schema).
 @immutable
-final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaId {
-  const GlueCatalogTableStorageDescriptorSchemaReferenceSchemaId({
-    this.registryName,
-    required this.schema,
-  });
+final class GlueCatalogTableSchemaId {
+  const GlueCatalogTableSchemaId({this.registryName, required this.schema});
 
   final TfArg<String>? registryName;
 
-  final GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchema schema;
+  final GlueCatalogTableSchemaIdSchema schema;
 
   Map<String, Object?> encode() => {
     'registry_name': ?registryName?.toTfJson(),
@@ -543,18 +496,18 @@ final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaId {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.schemaArn(...)`.
-sealed class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchema {
-  const GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchema();
+sealed class GlueCatalogTableSchemaIdSchema {
+  const GlueCatalogTableSchemaIdSchema();
 
   /// Sets `schema_arn`.
-  const factory GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchema.schemaArn(
+  const factory GlueCatalogTableSchemaIdSchema.schemaArn(
     TfArg<String> schemaArn,
-  ) = GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArn;
+  ) = GlueCatalogTableSchemaIdSchemaArn;
 
   /// Sets `schema_name`.
-  const factory GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchema.schemaName(
+  const factory GlueCatalogTableSchemaIdSchema.schemaName(
     TfArg<String> schemaName,
-  ) = GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaName;
+  ) = GlueCatalogTableSchemaIdSchemaName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -562,12 +515,10 @@ sealed class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchema {
   Map<String, Object?> encode();
 }
 
-/// The [GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchema.schemaArn] choice: sets `schema_arn`.
-final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArn
-    extends GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchema {
-  const GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArn(
-    this.schemaArn,
-  );
+/// The [GlueCatalogTableSchemaIdSchema.schemaArn] choice: sets `schema_arn`.
+final class GlueCatalogTableSchemaIdSchemaArn
+    extends GlueCatalogTableSchemaIdSchema {
+  const GlueCatalogTableSchemaIdSchemaArn(this.schemaArn);
 
   final TfArg<String> schemaArn;
 
@@ -578,12 +529,10 @@ final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArn
   Map<String, Object?> encode() => {'schema_arn': schemaArn.toTfJson()};
 }
 
-/// The [GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchema.schemaName] choice: sets `schema_name`.
-final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaName
-    extends GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchema {
-  const GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaName(
-    this.schemaName,
-  );
+/// The [GlueCatalogTableSchemaIdSchema.schemaName] choice: sets `schema_name`.
+final class GlueCatalogTableSchemaIdSchemaName
+    extends GlueCatalogTableSchemaIdSchema {
+  const GlueCatalogTableSchemaIdSchemaName(this.schemaName);
 
   final TfArg<String> schemaName;
 
@@ -597,8 +546,8 @@ final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaName
 /// Typed helper for the `storage_descriptor.ser_de_info` block of
 /// `aws_glue_catalog_table` (derived from provider schema).
 @immutable
-final class GlueCatalogTableStorageDescriptorSerDeInfo {
-  const GlueCatalogTableStorageDescriptorSerDeInfo({
+final class GlueCatalogTableSerDeInfo {
+  const GlueCatalogTableSerDeInfo({
     this.name,
     this.parameters,
     this.serializationLibrary,
@@ -620,8 +569,8 @@ final class GlueCatalogTableStorageDescriptorSerDeInfo {
 /// Typed helper for the `storage_descriptor.skewed_info` block of
 /// `aws_glue_catalog_table` (derived from provider schema).
 @immutable
-final class GlueCatalogTableStorageDescriptorSkewedInfo {
-  const GlueCatalogTableStorageDescriptorSkewedInfo({
+final class GlueCatalogTableSkewedInfo {
+  const GlueCatalogTableSkewedInfo({
     this.skewedColumnNames,
     this.skewedColumnValueLocationMaps,
     this.skewedColumnValues,
@@ -644,8 +593,8 @@ final class GlueCatalogTableStorageDescriptorSkewedInfo {
 /// Typed helper for the `storage_descriptor.sort_columns` block of
 /// `aws_glue_catalog_table` (derived from provider schema).
 @immutable
-final class GlueCatalogTableStorageDescriptorSortColumns {
-  const GlueCatalogTableStorageDescriptorSortColumns({
+final class GlueCatalogTableSortColumns {
+  const GlueCatalogTableSortColumns({
     required this.column,
     required this.sortOrder,
   });
@@ -707,7 +656,7 @@ final class GlueCatalogTableViewDefinition {
 
   final TfArg<bool>? isProtected;
 
-  final TfArg<GlueCatalogTableViewDefinitionLastRefreshType>? lastRefreshType;
+  final TfArg<GlueCatalogTableLastRefreshType>? lastRefreshType;
 
   final TfArg<num>? refreshSeconds;
 
@@ -719,7 +668,7 @@ final class GlueCatalogTableViewDefinition {
 
   final TfArg<String>? viewVersionToken;
 
-  final List<GlueCatalogTableViewDefinitionRepresentations>? representations;
+  final List<GlueCatalogTableRepresentations>? representations;
 
   Map<String, Object?> encode() => {
     'definer': ?definer?.toTfJson(),
@@ -736,11 +685,11 @@ final class GlueCatalogTableViewDefinition {
 }
 
 /// `last_refresh_type` — derived from the provider schema description.
-enum GlueCatalogTableViewDefinitionLastRefreshType implements TerraformEnum {
+enum GlueCatalogTableLastRefreshType implements TerraformEnum {
   full('FULL'),
   incremental('INCREMENTAL');
 
-  const GlueCatalogTableViewDefinitionLastRefreshType(this.terraformValue);
+  const GlueCatalogTableLastRefreshType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -748,8 +697,8 @@ enum GlueCatalogTableViewDefinitionLastRefreshType implements TerraformEnum {
 /// Typed helper for the `view_definition.representations` block of
 /// `aws_glue_catalog_table` (derived from provider schema).
 @immutable
-final class GlueCatalogTableViewDefinitionRepresentations {
-  const GlueCatalogTableViewDefinitionRepresentations({
+final class GlueCatalogTableRepresentations {
+  const GlueCatalogTableRepresentations({
     this.dialect,
     this.dialectVersion,
     this.validationConnection,
@@ -757,7 +706,7 @@ final class GlueCatalogTableViewDefinitionRepresentations {
     this.viewOriginalText,
   });
 
-  final TfArg<GlueCatalogTableViewDefinitionRepresentationsDialect>? dialect;
+  final TfArg<GlueCatalogTableDialect>? dialect;
 
   final TfArg<String>? dialectVersion;
 
@@ -777,15 +726,12 @@ final class GlueCatalogTableViewDefinitionRepresentations {
 }
 
 /// `dialect` — derived from the provider schema description.
-enum GlueCatalogTableViewDefinitionRepresentationsDialect
-    implements TerraformEnum {
+enum GlueCatalogTableDialect implements TerraformEnum {
   redshift('REDSHIFT'),
   athena('ATHENA'),
   spark('SPARK');
 
-  const GlueCatalogTableViewDefinitionRepresentationsDialect(
-    this.terraformValue,
-  );
+  const GlueCatalogTableDialect(this.terraformValue);
   @override
   final String terraformValue;
 }

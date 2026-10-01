@@ -107,236 +107,227 @@ final class SecurityhubInsightFilters {
     this.workflowStatus,
   });
 
-  final List<SecurityhubInsightFiltersAwsAccountId>? awsAccountId;
+  final List<SecurityhubInsightAwsAccountId>? awsAccountId;
 
-  final List<SecurityhubInsightFiltersAwsAccountName>? awsAccountName;
+  final List<SecurityhubInsightAwsAccountName>? awsAccountName;
 
-  final List<SecurityhubInsightFiltersCompanyName>? companyName;
+  final List<SecurityhubInsightCompanyName>? companyName;
 
-  final List<SecurityhubInsightFiltersComplianceAssociatedStandardsId>?
+  final List<SecurityhubInsightComplianceAssociatedStandardsId>?
   complianceAssociatedStandardsId;
 
-  final List<SecurityhubInsightFiltersComplianceSecurityControlId>?
+  final List<SecurityhubInsightComplianceSecurityControlId>?
   complianceSecurityControlId;
 
-  final List<SecurityhubInsightFiltersComplianceSecurityControlParametersName>?
+  final List<SecurityhubInsightComplianceSecurityControlParametersName>?
   complianceSecurityControlParametersName;
 
-  final List<SecurityhubInsightFiltersComplianceSecurityControlParametersValue>?
+  final List<SecurityhubInsightComplianceSecurityControlParametersValue>?
   complianceSecurityControlParametersValue;
 
-  final List<SecurityhubInsightFiltersComplianceStatus>? complianceStatus;
+  final List<SecurityhubInsightComplianceStatus>? complianceStatus;
 
-  final List<SecurityhubInsightFiltersConfidence>? confidence;
+  final List<SecurityhubInsightConfidence>? confidence;
 
-  final List<SecurityhubInsightFiltersCreatedAt>? createdAt;
+  final List<SecurityhubInsightCreatedAt>? createdAt;
 
-  final List<SecurityhubInsightFiltersCriticality>? criticality;
+  final List<SecurityhubInsightCriticality>? criticality;
 
-  final List<SecurityhubInsightFiltersDescription>? description;
+  final List<SecurityhubInsightDescription>? description;
 
-  final List<SecurityhubInsightFiltersFindingProviderFieldsConfidence>?
+  final List<SecurityhubInsightFindingProviderFieldsConfidence>?
   findingProviderFieldsConfidence;
 
-  final List<SecurityhubInsightFiltersFindingProviderFieldsCriticality>?
+  final List<SecurityhubInsightFindingProviderFieldsCriticality>?
   findingProviderFieldsCriticality;
 
-  final List<SecurityhubInsightFiltersFindingProviderFieldsRelatedFindingsId>?
+  final List<SecurityhubInsightFindingProviderFieldsRelatedFindingsId>?
   findingProviderFieldsRelatedFindingsId;
 
-  final List<
-    SecurityhubInsightFiltersFindingProviderFieldsRelatedFindingsProductArn
-  >?
+  final List<SecurityhubInsightFindingProviderFieldsRelatedFindingsProductArn>?
   findingProviderFieldsRelatedFindingsProductArn;
 
-  final List<SecurityhubInsightFiltersFindingProviderFieldsSeverityLabel>?
+  final List<SecurityhubInsightFindingProviderFieldsSeverityLabel>?
   findingProviderFieldsSeverityLabel;
 
-  final List<SecurityhubInsightFiltersFindingProviderFieldsSeverityOriginal>?
+  final List<SecurityhubInsightFindingProviderFieldsSeverityOriginal>?
   findingProviderFieldsSeverityOriginal;
 
-  final List<SecurityhubInsightFiltersFindingProviderFieldsTypes>?
+  final List<SecurityhubInsightFindingProviderFieldsTypes>?
   findingProviderFieldsTypes;
 
-  final List<SecurityhubInsightFiltersFirstObservedAt>? firstObservedAt;
+  final List<SecurityhubInsightFirstObservedAt>? firstObservedAt;
 
-  final List<SecurityhubInsightFiltersGeneratorId>? generatorId;
+  final List<SecurityhubInsightGeneratorId>? generatorId;
 
   final List<SecurityhubInsightFiltersId>? id;
 
-  final List<SecurityhubInsightFiltersKeyword>? keyword;
+  final List<SecurityhubInsightKeyword>? keyword;
 
-  final List<SecurityhubInsightFiltersLastObservedAt>? lastObservedAt;
+  final List<SecurityhubInsightLastObservedAt>? lastObservedAt;
 
-  final List<SecurityhubInsightFiltersMalwareName>? malwareName;
+  final List<SecurityhubInsightMalwareName>? malwareName;
 
-  final List<SecurityhubInsightFiltersMalwarePath>? malwarePath;
+  final List<SecurityhubInsightMalwarePath>? malwarePath;
 
-  final List<SecurityhubInsightFiltersMalwareState>? malwareState;
+  final List<SecurityhubInsightMalwareState>? malwareState;
 
-  final List<SecurityhubInsightFiltersMalwareType>? malwareType;
+  final List<SecurityhubInsightMalwareType>? malwareType;
 
-  final List<SecurityhubInsightFiltersNetworkDestinationDomain>?
+  final List<SecurityhubInsightNetworkDestinationDomain>?
   networkDestinationDomain;
 
-  final List<SecurityhubInsightFiltersNetworkDestinationIpv4>?
-  networkDestinationIpv4;
+  final List<SecurityhubInsightNetworkDestinationIpv4>? networkDestinationIpv4;
 
-  final List<SecurityhubInsightFiltersNetworkDestinationIpv6>?
-  networkDestinationIpv6;
+  final List<SecurityhubInsightNetworkDestinationIpv6>? networkDestinationIpv6;
 
-  final List<SecurityhubInsightFiltersNetworkDestinationPort>?
-  networkDestinationPort;
+  final List<SecurityhubInsightNetworkDestinationPort>? networkDestinationPort;
 
-  final List<SecurityhubInsightFiltersNetworkDirection>? networkDirection;
+  final List<SecurityhubInsightNetworkDirection>? networkDirection;
 
-  final List<SecurityhubInsightFiltersNetworkProtocol>? networkProtocol;
+  final List<SecurityhubInsightNetworkProtocol>? networkProtocol;
 
-  final List<SecurityhubInsightFiltersNetworkSourceDomain>? networkSourceDomain;
+  final List<SecurityhubInsightNetworkSourceDomain>? networkSourceDomain;
 
-  final List<SecurityhubInsightFiltersNetworkSourceIpv4>? networkSourceIpv4;
+  final List<SecurityhubInsightNetworkSourceIpv4>? networkSourceIpv4;
 
-  final List<SecurityhubInsightFiltersNetworkSourceIpv6>? networkSourceIpv6;
+  final List<SecurityhubInsightNetworkSourceIpv6>? networkSourceIpv6;
 
-  final List<SecurityhubInsightFiltersNetworkSourceMac>? networkSourceMac;
+  final List<SecurityhubInsightNetworkSourceMac>? networkSourceMac;
 
-  final List<SecurityhubInsightFiltersNetworkSourcePort>? networkSourcePort;
+  final List<SecurityhubInsightNetworkSourcePort>? networkSourcePort;
 
-  final List<SecurityhubInsightFiltersNoteText>? noteText;
+  final List<SecurityhubInsightNoteText>? noteText;
 
-  final List<SecurityhubInsightFiltersNoteUpdatedAt>? noteUpdatedAt;
+  final List<SecurityhubInsightNoteUpdatedAt>? noteUpdatedAt;
 
-  final List<SecurityhubInsightFiltersNoteUpdatedBy>? noteUpdatedBy;
+  final List<SecurityhubInsightNoteUpdatedBy>? noteUpdatedBy;
 
-  final List<SecurityhubInsightFiltersProcessLaunchedAt>? processLaunchedAt;
+  final List<SecurityhubInsightProcessLaunchedAt>? processLaunchedAt;
 
-  final List<SecurityhubInsightFiltersProcessName>? processName;
+  final List<SecurityhubInsightProcessName>? processName;
 
-  final List<SecurityhubInsightFiltersProcessParentPid>? processParentPid;
+  final List<SecurityhubInsightProcessParentPid>? processParentPid;
 
-  final List<SecurityhubInsightFiltersProcessPath>? processPath;
+  final List<SecurityhubInsightProcessPath>? processPath;
 
-  final List<SecurityhubInsightFiltersProcessPid>? processPid;
+  final List<SecurityhubInsightProcessPid>? processPid;
 
-  final List<SecurityhubInsightFiltersProcessTerminatedAt>? processTerminatedAt;
+  final List<SecurityhubInsightProcessTerminatedAt>? processTerminatedAt;
 
-  final List<SecurityhubInsightFiltersProductArn>? productArn;
+  final List<SecurityhubInsightProductArn>? productArn;
 
-  final List<SecurityhubInsightFiltersProductFields>? productFields;
+  final List<SecurityhubInsightProductFields>? productFields;
 
-  final List<SecurityhubInsightFiltersProductName>? productName;
+  final List<SecurityhubInsightProductName>? productName;
 
-  final List<SecurityhubInsightFiltersRecommendationText>? recommendationText;
+  final List<SecurityhubInsightRecommendationText>? recommendationText;
 
-  final List<SecurityhubInsightFiltersRecordState>? recordState;
+  final List<SecurityhubInsightRecordState>? recordState;
 
-  final List<SecurityhubInsightFiltersRelatedFindingsId>? relatedFindingsId;
+  final List<SecurityhubInsightRelatedFindingsId>? relatedFindingsId;
 
-  final List<SecurityhubInsightFiltersRelatedFindingsProductArn>?
+  final List<SecurityhubInsightRelatedFindingsProductArn>?
   relatedFindingsProductArn;
 
-  final List<
-    SecurityhubInsightFiltersResourceAwsEc2InstanceIamInstanceProfileArn
-  >?
+  final List<SecurityhubInsightResourceAwsEc2InstanceIamInstanceProfileArn>?
   resourceAwsEc2InstanceIamInstanceProfileArn;
 
-  final List<SecurityhubInsightFiltersResourceAwsEc2InstanceImageId>?
+  final List<SecurityhubInsightResourceAwsEc2InstanceImageId>?
   resourceAwsEc2InstanceImageId;
 
-  final List<SecurityhubInsightFiltersResourceAwsEc2InstanceIpv4Addresses>?
+  final List<SecurityhubInsightResourceAwsEc2InstanceIpv4Addresses>?
   resourceAwsEc2InstanceIpv4Addresses;
 
-  final List<SecurityhubInsightFiltersResourceAwsEc2InstanceIpv6Addresses>?
+  final List<SecurityhubInsightResourceAwsEc2InstanceIpv6Addresses>?
   resourceAwsEc2InstanceIpv6Addresses;
 
-  final List<SecurityhubInsightFiltersResourceAwsEc2InstanceKeyName>?
+  final List<SecurityhubInsightResourceAwsEc2InstanceKeyName>?
   resourceAwsEc2InstanceKeyName;
 
-  final List<SecurityhubInsightFiltersResourceAwsEc2InstanceLaunchedAt>?
+  final List<SecurityhubInsightResourceAwsEc2InstanceLaunchedAt>?
   resourceAwsEc2InstanceLaunchedAt;
 
-  final List<SecurityhubInsightFiltersResourceAwsEc2InstanceSubnetId>?
+  final List<SecurityhubInsightResourceAwsEc2InstanceSubnetId>?
   resourceAwsEc2InstanceSubnetId;
 
-  final List<SecurityhubInsightFiltersResourceAwsEc2InstanceType>?
+  final List<SecurityhubInsightResourceAwsEc2InstanceType>?
   resourceAwsEc2InstanceType;
 
-  final List<SecurityhubInsightFiltersResourceAwsEc2InstanceVpcId>?
+  final List<SecurityhubInsightResourceAwsEc2InstanceVpcId>?
   resourceAwsEc2InstanceVpcId;
 
-  final List<SecurityhubInsightFiltersResourceAwsIamAccessKeyCreatedAt>?
+  final List<SecurityhubInsightResourceAwsIamAccessKeyCreatedAt>?
   resourceAwsIamAccessKeyCreatedAt;
 
-  final List<SecurityhubInsightFiltersResourceAwsIamAccessKeyStatus>?
+  final List<SecurityhubInsightResourceAwsIamAccessKeyStatus>?
   resourceAwsIamAccessKeyStatus;
 
-  final List<SecurityhubInsightFiltersResourceAwsIamAccessKeyUserName>?
+  final List<SecurityhubInsightResourceAwsIamAccessKeyUserName>?
   resourceAwsIamAccessKeyUserName;
 
-  final List<SecurityhubInsightFiltersResourceAwsS3BucketOwnerId>?
+  final List<SecurityhubInsightResourceAwsS3BucketOwnerId>?
   resourceAwsS3BucketOwnerId;
 
-  final List<SecurityhubInsightFiltersResourceAwsS3BucketOwnerName>?
+  final List<SecurityhubInsightResourceAwsS3BucketOwnerName>?
   resourceAwsS3BucketOwnerName;
 
-  final List<SecurityhubInsightFiltersResourceContainerImageId>?
+  final List<SecurityhubInsightResourceContainerImageId>?
   resourceContainerImageId;
 
-  final List<SecurityhubInsightFiltersResourceContainerImageName>?
+  final List<SecurityhubInsightResourceContainerImageName>?
   resourceContainerImageName;
 
-  final List<SecurityhubInsightFiltersResourceContainerLaunchedAt>?
+  final List<SecurityhubInsightResourceContainerLaunchedAt>?
   resourceContainerLaunchedAt;
 
-  final List<SecurityhubInsightFiltersResourceContainerName>?
-  resourceContainerName;
+  final List<SecurityhubInsightResourceContainerName>? resourceContainerName;
 
-  final List<SecurityhubInsightFiltersResourceDetailsOther>?
-  resourceDetailsOther;
+  final List<SecurityhubInsightResourceDetailsOther>? resourceDetailsOther;
 
-  final List<SecurityhubInsightFiltersResourceId>? resourceId;
+  final List<SecurityhubInsightResourceId>? resourceId;
 
-  final List<SecurityhubInsightFiltersResourcePartition>? resourcePartition;
+  final List<SecurityhubInsightResourcePartition>? resourcePartition;
 
-  final List<SecurityhubInsightFiltersResourceRegion>? resourceRegion;
+  final List<SecurityhubInsightResourceRegion>? resourceRegion;
 
-  final List<SecurityhubInsightFiltersResourceTags>? resourceTags;
+  final List<SecurityhubInsightResourceTags>? resourceTags;
 
-  final List<SecurityhubInsightFiltersResourceType>? resourceType;
+  final List<SecurityhubInsightResourceType>? resourceType;
 
-  final List<SecurityhubInsightFiltersSeverityLabel>? severityLabel;
+  final List<SecurityhubInsightSeverityLabel>? severityLabel;
 
-  final List<SecurityhubInsightFiltersSourceUrl>? sourceUrl;
+  final List<SecurityhubInsightSourceUrl>? sourceUrl;
 
-  final List<SecurityhubInsightFiltersThreatIntelIndicatorCategory>?
+  final List<SecurityhubInsightThreatIntelIndicatorCategory>?
   threatIntelIndicatorCategory;
 
-  final List<SecurityhubInsightFiltersThreatIntelIndicatorLastObservedAt>?
+  final List<SecurityhubInsightThreatIntelIndicatorLastObservedAt>?
   threatIntelIndicatorLastObservedAt;
 
-  final List<SecurityhubInsightFiltersThreatIntelIndicatorSource>?
+  final List<SecurityhubInsightThreatIntelIndicatorSource>?
   threatIntelIndicatorSource;
 
-  final List<SecurityhubInsightFiltersThreatIntelIndicatorSourceUrl>?
+  final List<SecurityhubInsightThreatIntelIndicatorSourceUrl>?
   threatIntelIndicatorSourceUrl;
 
-  final List<SecurityhubInsightFiltersThreatIntelIndicatorType>?
+  final List<SecurityhubInsightThreatIntelIndicatorType>?
   threatIntelIndicatorType;
 
-  final List<SecurityhubInsightFiltersThreatIntelIndicatorValue>?
+  final List<SecurityhubInsightThreatIntelIndicatorValue>?
   threatIntelIndicatorValue;
 
-  final List<SecurityhubInsightFiltersTitle>? title;
+  final List<SecurityhubInsightTitle>? title;
 
-  final List<SecurityhubInsightFiltersType>? type;
+  final List<SecurityhubInsightType>? type;
 
-  final List<SecurityhubInsightFiltersUpdatedAt>? updatedAt;
+  final List<SecurityhubInsightUpdatedAt>? updatedAt;
 
-  final List<SecurityhubInsightFiltersUserDefinedValues>? userDefinedValues;
+  final List<SecurityhubInsightUserDefinedValues>? userDefinedValues;
 
-  final List<SecurityhubInsightFiltersVerificationState>? verificationState;
+  final List<SecurityhubInsightVerificationState>? verificationState;
 
-  final List<SecurityhubInsightFiltersWorkflowStatus>? workflowStatus;
+  final List<SecurityhubInsightWorkflowStatus>? workflowStatus;
 
   Map<String, Object?> encode() => {
     if (awsAccountId != null)
@@ -614,8 +605,8 @@ final class SecurityhubInsightFilters {
 /// Typed helper for the `filters.aws_account_id` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersAwsAccountId {
-  const SecurityhubInsightFiltersAwsAccountId({
+final class SecurityhubInsightAwsAccountId {
+  const SecurityhubInsightAwsAccountId({
     required this.comparison,
     required this.value,
   });
@@ -633,8 +624,8 @@ final class SecurityhubInsightFiltersAwsAccountId {
 /// Typed helper for the `filters.aws_account_name` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersAwsAccountName {
-  const SecurityhubInsightFiltersAwsAccountName({
+final class SecurityhubInsightAwsAccountName {
+  const SecurityhubInsightAwsAccountName({
     required this.comparison,
     required this.value,
   });
@@ -652,8 +643,8 @@ final class SecurityhubInsightFiltersAwsAccountName {
 /// Typed helper for the `filters.company_name` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersCompanyName {
-  const SecurityhubInsightFiltersCompanyName({
+final class SecurityhubInsightCompanyName {
+  const SecurityhubInsightCompanyName({
     required this.comparison,
     required this.value,
   });
@@ -671,8 +662,8 @@ final class SecurityhubInsightFiltersCompanyName {
 /// Typed helper for the `filters.compliance_associated_standards_id` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersComplianceAssociatedStandardsId {
-  const SecurityhubInsightFiltersComplianceAssociatedStandardsId({
+final class SecurityhubInsightComplianceAssociatedStandardsId {
+  const SecurityhubInsightComplianceAssociatedStandardsId({
     required this.comparison,
     required this.value,
   });
@@ -690,8 +681,8 @@ final class SecurityhubInsightFiltersComplianceAssociatedStandardsId {
 /// Typed helper for the `filters.compliance_security_control_id` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersComplianceSecurityControlId {
-  const SecurityhubInsightFiltersComplianceSecurityControlId({
+final class SecurityhubInsightComplianceSecurityControlId {
+  const SecurityhubInsightComplianceSecurityControlId({
     required this.comparison,
     required this.value,
   });
@@ -709,8 +700,8 @@ final class SecurityhubInsightFiltersComplianceSecurityControlId {
 /// Typed helper for the `filters.compliance_security_control_parameters_name` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersComplianceSecurityControlParametersName {
-  const SecurityhubInsightFiltersComplianceSecurityControlParametersName({
+final class SecurityhubInsightComplianceSecurityControlParametersName {
+  const SecurityhubInsightComplianceSecurityControlParametersName({
     required this.comparison,
     required this.value,
   });
@@ -728,8 +719,8 @@ final class SecurityhubInsightFiltersComplianceSecurityControlParametersName {
 /// Typed helper for the `filters.compliance_security_control_parameters_value` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersComplianceSecurityControlParametersValue {
-  const SecurityhubInsightFiltersComplianceSecurityControlParametersValue({
+final class SecurityhubInsightComplianceSecurityControlParametersValue {
+  const SecurityhubInsightComplianceSecurityControlParametersValue({
     required this.comparison,
     required this.value,
   });
@@ -747,8 +738,8 @@ final class SecurityhubInsightFiltersComplianceSecurityControlParametersValue {
 /// Typed helper for the `filters.compliance_status` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersComplianceStatus {
-  const SecurityhubInsightFiltersComplianceStatus({
+final class SecurityhubInsightComplianceStatus {
+  const SecurityhubInsightComplianceStatus({
     required this.comparison,
     required this.value,
   });
@@ -766,8 +757,8 @@ final class SecurityhubInsightFiltersComplianceStatus {
 /// Typed helper for the `filters.confidence` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersConfidence {
-  const SecurityhubInsightFiltersConfidence({this.eq, this.gte, this.lte});
+final class SecurityhubInsightConfidence {
+  const SecurityhubInsightConfidence({this.eq, this.gte, this.lte});
 
   final TfArg<String>? eq;
 
@@ -785,18 +776,14 @@ final class SecurityhubInsightFiltersConfidence {
 /// Typed helper for the `filters.created_at` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersCreatedAt {
-  const SecurityhubInsightFiltersCreatedAt({
-    this.end,
-    this.start,
-    this.dateRange,
-  });
+final class SecurityhubInsightCreatedAt {
+  const SecurityhubInsightCreatedAt({this.end, this.start, this.dateRange});
 
   final TfArg<String>? end;
 
   final TfArg<String>? start;
 
-  final SecurityhubInsightFiltersCreatedAtDateRange? dateRange;
+  final SecurityhubInsightDateRange? dateRange;
 
   Map<String, Object?> encode() => {
     'end': ?end?.toTfJson(),
@@ -807,12 +794,10 @@ final class SecurityhubInsightFiltersCreatedAt {
 
 /// Typed helper for the `filters.created_at.date_range` block of
 /// `aws_securityhub_insight` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class SecurityhubInsightFiltersCreatedAtDateRange {
-  const SecurityhubInsightFiltersCreatedAtDateRange({
-    required this.unit,
-    required this.value,
-  });
+final class SecurityhubInsightDateRange {
+  const SecurityhubInsightDateRange({required this.unit, required this.value});
 
   final TfArg<String> unit;
 
@@ -827,8 +812,8 @@ final class SecurityhubInsightFiltersCreatedAtDateRange {
 /// Typed helper for the `filters.criticality` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersCriticality {
-  const SecurityhubInsightFiltersCriticality({this.eq, this.gte, this.lte});
+final class SecurityhubInsightCriticality {
+  const SecurityhubInsightCriticality({this.eq, this.gte, this.lte});
 
   final TfArg<String>? eq;
 
@@ -846,8 +831,8 @@ final class SecurityhubInsightFiltersCriticality {
 /// Typed helper for the `filters.description` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersDescription {
-  const SecurityhubInsightFiltersDescription({
+final class SecurityhubInsightDescription {
+  const SecurityhubInsightDescription({
     required this.comparison,
     required this.value,
   });
@@ -865,8 +850,8 @@ final class SecurityhubInsightFiltersDescription {
 /// Typed helper for the `filters.finding_provider_fields_confidence` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersFindingProviderFieldsConfidence {
-  const SecurityhubInsightFiltersFindingProviderFieldsConfidence({
+final class SecurityhubInsightFindingProviderFieldsConfidence {
+  const SecurityhubInsightFindingProviderFieldsConfidence({
     this.eq,
     this.gte,
     this.lte,
@@ -888,8 +873,8 @@ final class SecurityhubInsightFiltersFindingProviderFieldsConfidence {
 /// Typed helper for the `filters.finding_provider_fields_criticality` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersFindingProviderFieldsCriticality {
-  const SecurityhubInsightFiltersFindingProviderFieldsCriticality({
+final class SecurityhubInsightFindingProviderFieldsCriticality {
+  const SecurityhubInsightFindingProviderFieldsCriticality({
     this.eq,
     this.gte,
     this.lte,
@@ -911,8 +896,8 @@ final class SecurityhubInsightFiltersFindingProviderFieldsCriticality {
 /// Typed helper for the `filters.finding_provider_fields_related_findings_id` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersFindingProviderFieldsRelatedFindingsId {
-  const SecurityhubInsightFiltersFindingProviderFieldsRelatedFindingsId({
+final class SecurityhubInsightFindingProviderFieldsRelatedFindingsId {
+  const SecurityhubInsightFindingProviderFieldsRelatedFindingsId({
     required this.comparison,
     required this.value,
   });
@@ -930,8 +915,8 @@ final class SecurityhubInsightFiltersFindingProviderFieldsRelatedFindingsId {
 /// Typed helper for the `filters.finding_provider_fields_related_findings_product_arn` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersFindingProviderFieldsRelatedFindingsProductArn {
-  const SecurityhubInsightFiltersFindingProviderFieldsRelatedFindingsProductArn({
+final class SecurityhubInsightFindingProviderFieldsRelatedFindingsProductArn {
+  const SecurityhubInsightFindingProviderFieldsRelatedFindingsProductArn({
     required this.comparison,
     required this.value,
   });
@@ -949,8 +934,8 @@ final class SecurityhubInsightFiltersFindingProviderFieldsRelatedFindingsProduct
 /// Typed helper for the `filters.finding_provider_fields_severity_label` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersFindingProviderFieldsSeverityLabel {
-  const SecurityhubInsightFiltersFindingProviderFieldsSeverityLabel({
+final class SecurityhubInsightFindingProviderFieldsSeverityLabel {
+  const SecurityhubInsightFindingProviderFieldsSeverityLabel({
     required this.comparison,
     required this.value,
   });
@@ -968,8 +953,8 @@ final class SecurityhubInsightFiltersFindingProviderFieldsSeverityLabel {
 /// Typed helper for the `filters.finding_provider_fields_severity_original` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersFindingProviderFieldsSeverityOriginal {
-  const SecurityhubInsightFiltersFindingProviderFieldsSeverityOriginal({
+final class SecurityhubInsightFindingProviderFieldsSeverityOriginal {
+  const SecurityhubInsightFindingProviderFieldsSeverityOriginal({
     required this.comparison,
     required this.value,
   });
@@ -987,8 +972,8 @@ final class SecurityhubInsightFiltersFindingProviderFieldsSeverityOriginal {
 /// Typed helper for the `filters.finding_provider_fields_types` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersFindingProviderFieldsTypes {
-  const SecurityhubInsightFiltersFindingProviderFieldsTypes({
+final class SecurityhubInsightFindingProviderFieldsTypes {
+  const SecurityhubInsightFindingProviderFieldsTypes({
     required this.comparison,
     required this.value,
   });
@@ -1006,8 +991,8 @@ final class SecurityhubInsightFiltersFindingProviderFieldsTypes {
 /// Typed helper for the `filters.first_observed_at` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersFirstObservedAt {
-  const SecurityhubInsightFiltersFirstObservedAt({
+final class SecurityhubInsightFirstObservedAt {
+  const SecurityhubInsightFirstObservedAt({
     this.end,
     this.start,
     this.dateRange,
@@ -1017,7 +1002,7 @@ final class SecurityhubInsightFiltersFirstObservedAt {
 
   final TfArg<String>? start;
 
-  final SecurityhubInsightFiltersFirstObservedAtDateRange? dateRange;
+  final SecurityhubInsightDateRange? dateRange;
 
   Map<String, Object?> encode() => {
     'end': ?end?.toTfJson(),
@@ -1026,30 +1011,11 @@ final class SecurityhubInsightFiltersFirstObservedAt {
   };
 }
 
-/// Typed helper for the `filters.first_observed_at.date_range` block of
-/// `aws_securityhub_insight` (derived from provider schema).
-@immutable
-final class SecurityhubInsightFiltersFirstObservedAtDateRange {
-  const SecurityhubInsightFiltersFirstObservedAtDateRange({
-    required this.unit,
-    required this.value,
-  });
-
-  final TfArg<String> unit;
-
-  final TfArg<num> value;
-
-  Map<String, Object?> encode() => {
-    'unit': unit.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
-
 /// Typed helper for the `filters.generator_id` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersGeneratorId {
-  const SecurityhubInsightFiltersGeneratorId({
+final class SecurityhubInsightGeneratorId {
+  const SecurityhubInsightGeneratorId({
     required this.comparison,
     required this.value,
   });
@@ -1086,8 +1052,8 @@ final class SecurityhubInsightFiltersId {
 /// Typed helper for the `filters.keyword` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersKeyword {
-  const SecurityhubInsightFiltersKeyword({required this.value});
+final class SecurityhubInsightKeyword {
+  const SecurityhubInsightKeyword({required this.value});
 
   final TfArg<String> value;
 
@@ -1097,8 +1063,8 @@ final class SecurityhubInsightFiltersKeyword {
 /// Typed helper for the `filters.last_observed_at` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersLastObservedAt {
-  const SecurityhubInsightFiltersLastObservedAt({
+final class SecurityhubInsightLastObservedAt {
+  const SecurityhubInsightLastObservedAt({
     this.end,
     this.start,
     this.dateRange,
@@ -1108,7 +1074,7 @@ final class SecurityhubInsightFiltersLastObservedAt {
 
   final TfArg<String>? start;
 
-  final SecurityhubInsightFiltersLastObservedAtDateRange? dateRange;
+  final SecurityhubInsightDateRange? dateRange;
 
   Map<String, Object?> encode() => {
     'end': ?end?.toTfJson(),
@@ -1117,30 +1083,11 @@ final class SecurityhubInsightFiltersLastObservedAt {
   };
 }
 
-/// Typed helper for the `filters.last_observed_at.date_range` block of
-/// `aws_securityhub_insight` (derived from provider schema).
-@immutable
-final class SecurityhubInsightFiltersLastObservedAtDateRange {
-  const SecurityhubInsightFiltersLastObservedAtDateRange({
-    required this.unit,
-    required this.value,
-  });
-
-  final TfArg<String> unit;
-
-  final TfArg<num> value;
-
-  Map<String, Object?> encode() => {
-    'unit': unit.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
-
 /// Typed helper for the `filters.malware_name` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersMalwareName {
-  const SecurityhubInsightFiltersMalwareName({
+final class SecurityhubInsightMalwareName {
+  const SecurityhubInsightMalwareName({
     required this.comparison,
     required this.value,
   });
@@ -1158,8 +1105,8 @@ final class SecurityhubInsightFiltersMalwareName {
 /// Typed helper for the `filters.malware_path` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersMalwarePath {
-  const SecurityhubInsightFiltersMalwarePath({
+final class SecurityhubInsightMalwarePath {
+  const SecurityhubInsightMalwarePath({
     required this.comparison,
     required this.value,
   });
@@ -1177,8 +1124,8 @@ final class SecurityhubInsightFiltersMalwarePath {
 /// Typed helper for the `filters.malware_state` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersMalwareState {
-  const SecurityhubInsightFiltersMalwareState({
+final class SecurityhubInsightMalwareState {
+  const SecurityhubInsightMalwareState({
     required this.comparison,
     required this.value,
   });
@@ -1196,8 +1143,8 @@ final class SecurityhubInsightFiltersMalwareState {
 /// Typed helper for the `filters.malware_type` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersMalwareType {
-  const SecurityhubInsightFiltersMalwareType({
+final class SecurityhubInsightMalwareType {
+  const SecurityhubInsightMalwareType({
     required this.comparison,
     required this.value,
   });
@@ -1215,8 +1162,8 @@ final class SecurityhubInsightFiltersMalwareType {
 /// Typed helper for the `filters.network_destination_domain` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersNetworkDestinationDomain {
-  const SecurityhubInsightFiltersNetworkDestinationDomain({
+final class SecurityhubInsightNetworkDestinationDomain {
+  const SecurityhubInsightNetworkDestinationDomain({
     required this.comparison,
     required this.value,
   });
@@ -1234,8 +1181,8 @@ final class SecurityhubInsightFiltersNetworkDestinationDomain {
 /// Typed helper for the `filters.network_destination_ipv4` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersNetworkDestinationIpv4 {
-  const SecurityhubInsightFiltersNetworkDestinationIpv4({required this.cidr});
+final class SecurityhubInsightNetworkDestinationIpv4 {
+  const SecurityhubInsightNetworkDestinationIpv4({required this.cidr});
 
   final TfArg<String> cidr;
 
@@ -1245,8 +1192,8 @@ final class SecurityhubInsightFiltersNetworkDestinationIpv4 {
 /// Typed helper for the `filters.network_destination_ipv6` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersNetworkDestinationIpv6 {
-  const SecurityhubInsightFiltersNetworkDestinationIpv6({required this.cidr});
+final class SecurityhubInsightNetworkDestinationIpv6 {
+  const SecurityhubInsightNetworkDestinationIpv6({required this.cidr});
 
   final TfArg<String> cidr;
 
@@ -1256,12 +1203,8 @@ final class SecurityhubInsightFiltersNetworkDestinationIpv6 {
 /// Typed helper for the `filters.network_destination_port` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersNetworkDestinationPort {
-  const SecurityhubInsightFiltersNetworkDestinationPort({
-    this.eq,
-    this.gte,
-    this.lte,
-  });
+final class SecurityhubInsightNetworkDestinationPort {
+  const SecurityhubInsightNetworkDestinationPort({this.eq, this.gte, this.lte});
 
   final TfArg<String>? eq;
 
@@ -1279,8 +1222,8 @@ final class SecurityhubInsightFiltersNetworkDestinationPort {
 /// Typed helper for the `filters.network_direction` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersNetworkDirection {
-  const SecurityhubInsightFiltersNetworkDirection({
+final class SecurityhubInsightNetworkDirection {
+  const SecurityhubInsightNetworkDirection({
     required this.comparison,
     required this.value,
   });
@@ -1298,8 +1241,8 @@ final class SecurityhubInsightFiltersNetworkDirection {
 /// Typed helper for the `filters.network_protocol` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersNetworkProtocol {
-  const SecurityhubInsightFiltersNetworkProtocol({
+final class SecurityhubInsightNetworkProtocol {
+  const SecurityhubInsightNetworkProtocol({
     required this.comparison,
     required this.value,
   });
@@ -1317,8 +1260,8 @@ final class SecurityhubInsightFiltersNetworkProtocol {
 /// Typed helper for the `filters.network_source_domain` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersNetworkSourceDomain {
-  const SecurityhubInsightFiltersNetworkSourceDomain({
+final class SecurityhubInsightNetworkSourceDomain {
+  const SecurityhubInsightNetworkSourceDomain({
     required this.comparison,
     required this.value,
   });
@@ -1336,8 +1279,8 @@ final class SecurityhubInsightFiltersNetworkSourceDomain {
 /// Typed helper for the `filters.network_source_ipv4` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersNetworkSourceIpv4 {
-  const SecurityhubInsightFiltersNetworkSourceIpv4({required this.cidr});
+final class SecurityhubInsightNetworkSourceIpv4 {
+  const SecurityhubInsightNetworkSourceIpv4({required this.cidr});
 
   final TfArg<String> cidr;
 
@@ -1347,8 +1290,8 @@ final class SecurityhubInsightFiltersNetworkSourceIpv4 {
 /// Typed helper for the `filters.network_source_ipv6` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersNetworkSourceIpv6 {
-  const SecurityhubInsightFiltersNetworkSourceIpv6({required this.cidr});
+final class SecurityhubInsightNetworkSourceIpv6 {
+  const SecurityhubInsightNetworkSourceIpv6({required this.cidr});
 
   final TfArg<String> cidr;
 
@@ -1358,8 +1301,8 @@ final class SecurityhubInsightFiltersNetworkSourceIpv6 {
 /// Typed helper for the `filters.network_source_mac` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersNetworkSourceMac {
-  const SecurityhubInsightFiltersNetworkSourceMac({
+final class SecurityhubInsightNetworkSourceMac {
+  const SecurityhubInsightNetworkSourceMac({
     required this.comparison,
     required this.value,
   });
@@ -1377,12 +1320,8 @@ final class SecurityhubInsightFiltersNetworkSourceMac {
 /// Typed helper for the `filters.network_source_port` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersNetworkSourcePort {
-  const SecurityhubInsightFiltersNetworkSourcePort({
-    this.eq,
-    this.gte,
-    this.lte,
-  });
+final class SecurityhubInsightNetworkSourcePort {
+  const SecurityhubInsightNetworkSourcePort({this.eq, this.gte, this.lte});
 
   final TfArg<String>? eq;
 
@@ -1400,8 +1339,8 @@ final class SecurityhubInsightFiltersNetworkSourcePort {
 /// Typed helper for the `filters.note_text` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersNoteText {
-  const SecurityhubInsightFiltersNoteText({
+final class SecurityhubInsightNoteText {
+  const SecurityhubInsightNoteText({
     required this.comparison,
     required this.value,
   });
@@ -1419,18 +1358,14 @@ final class SecurityhubInsightFiltersNoteText {
 /// Typed helper for the `filters.note_updated_at` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersNoteUpdatedAt {
-  const SecurityhubInsightFiltersNoteUpdatedAt({
-    this.end,
-    this.start,
-    this.dateRange,
-  });
+final class SecurityhubInsightNoteUpdatedAt {
+  const SecurityhubInsightNoteUpdatedAt({this.end, this.start, this.dateRange});
 
   final TfArg<String>? end;
 
   final TfArg<String>? start;
 
-  final SecurityhubInsightFiltersNoteUpdatedAtDateRange? dateRange;
+  final SecurityhubInsightDateRange? dateRange;
 
   Map<String, Object?> encode() => {
     'end': ?end?.toTfJson(),
@@ -1439,30 +1374,11 @@ final class SecurityhubInsightFiltersNoteUpdatedAt {
   };
 }
 
-/// Typed helper for the `filters.note_updated_at.date_range` block of
-/// `aws_securityhub_insight` (derived from provider schema).
-@immutable
-final class SecurityhubInsightFiltersNoteUpdatedAtDateRange {
-  const SecurityhubInsightFiltersNoteUpdatedAtDateRange({
-    required this.unit,
-    required this.value,
-  });
-
-  final TfArg<String> unit;
-
-  final TfArg<num> value;
-
-  Map<String, Object?> encode() => {
-    'unit': unit.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
-
 /// Typed helper for the `filters.note_updated_by` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersNoteUpdatedBy {
-  const SecurityhubInsightFiltersNoteUpdatedBy({
+final class SecurityhubInsightNoteUpdatedBy {
+  const SecurityhubInsightNoteUpdatedBy({
     required this.comparison,
     required this.value,
   });
@@ -1480,8 +1396,8 @@ final class SecurityhubInsightFiltersNoteUpdatedBy {
 /// Typed helper for the `filters.process_launched_at` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersProcessLaunchedAt {
-  const SecurityhubInsightFiltersProcessLaunchedAt({
+final class SecurityhubInsightProcessLaunchedAt {
+  const SecurityhubInsightProcessLaunchedAt({
     this.end,
     this.start,
     this.dateRange,
@@ -1491,7 +1407,7 @@ final class SecurityhubInsightFiltersProcessLaunchedAt {
 
   final TfArg<String>? start;
 
-  final SecurityhubInsightFiltersProcessLaunchedAtDateRange? dateRange;
+  final SecurityhubInsightDateRange? dateRange;
 
   Map<String, Object?> encode() => {
     'end': ?end?.toTfJson(),
@@ -1500,30 +1416,11 @@ final class SecurityhubInsightFiltersProcessLaunchedAt {
   };
 }
 
-/// Typed helper for the `filters.process_launched_at.date_range` block of
-/// `aws_securityhub_insight` (derived from provider schema).
-@immutable
-final class SecurityhubInsightFiltersProcessLaunchedAtDateRange {
-  const SecurityhubInsightFiltersProcessLaunchedAtDateRange({
-    required this.unit,
-    required this.value,
-  });
-
-  final TfArg<String> unit;
-
-  final TfArg<num> value;
-
-  Map<String, Object?> encode() => {
-    'unit': unit.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
-
 /// Typed helper for the `filters.process_name` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersProcessName {
-  const SecurityhubInsightFiltersProcessName({
+final class SecurityhubInsightProcessName {
+  const SecurityhubInsightProcessName({
     required this.comparison,
     required this.value,
   });
@@ -1541,12 +1438,8 @@ final class SecurityhubInsightFiltersProcessName {
 /// Typed helper for the `filters.process_parent_pid` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersProcessParentPid {
-  const SecurityhubInsightFiltersProcessParentPid({
-    this.eq,
-    this.gte,
-    this.lte,
-  });
+final class SecurityhubInsightProcessParentPid {
+  const SecurityhubInsightProcessParentPid({this.eq, this.gte, this.lte});
 
   final TfArg<String>? eq;
 
@@ -1564,8 +1457,8 @@ final class SecurityhubInsightFiltersProcessParentPid {
 /// Typed helper for the `filters.process_path` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersProcessPath {
-  const SecurityhubInsightFiltersProcessPath({
+final class SecurityhubInsightProcessPath {
+  const SecurityhubInsightProcessPath({
     required this.comparison,
     required this.value,
   });
@@ -1583,8 +1476,8 @@ final class SecurityhubInsightFiltersProcessPath {
 /// Typed helper for the `filters.process_pid` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersProcessPid {
-  const SecurityhubInsightFiltersProcessPid({this.eq, this.gte, this.lte});
+final class SecurityhubInsightProcessPid {
+  const SecurityhubInsightProcessPid({this.eq, this.gte, this.lte});
 
   final TfArg<String>? eq;
 
@@ -1602,8 +1495,8 @@ final class SecurityhubInsightFiltersProcessPid {
 /// Typed helper for the `filters.process_terminated_at` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersProcessTerminatedAt {
-  const SecurityhubInsightFiltersProcessTerminatedAt({
+final class SecurityhubInsightProcessTerminatedAt {
+  const SecurityhubInsightProcessTerminatedAt({
     this.end,
     this.start,
     this.dateRange,
@@ -1613,7 +1506,7 @@ final class SecurityhubInsightFiltersProcessTerminatedAt {
 
   final TfArg<String>? start;
 
-  final SecurityhubInsightFiltersProcessTerminatedAtDateRange? dateRange;
+  final SecurityhubInsightDateRange? dateRange;
 
   Map<String, Object?> encode() => {
     'end': ?end?.toTfJson(),
@@ -1622,30 +1515,11 @@ final class SecurityhubInsightFiltersProcessTerminatedAt {
   };
 }
 
-/// Typed helper for the `filters.process_terminated_at.date_range` block of
-/// `aws_securityhub_insight` (derived from provider schema).
-@immutable
-final class SecurityhubInsightFiltersProcessTerminatedAtDateRange {
-  const SecurityhubInsightFiltersProcessTerminatedAtDateRange({
-    required this.unit,
-    required this.value,
-  });
-
-  final TfArg<String> unit;
-
-  final TfArg<num> value;
-
-  Map<String, Object?> encode() => {
-    'unit': unit.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
-
 /// Typed helper for the `filters.product_arn` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersProductArn {
-  const SecurityhubInsightFiltersProductArn({
+final class SecurityhubInsightProductArn {
+  const SecurityhubInsightProductArn({
     required this.comparison,
     required this.value,
   });
@@ -1663,8 +1537,8 @@ final class SecurityhubInsightFiltersProductArn {
 /// Typed helper for the `filters.product_fields` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersProductFields {
-  const SecurityhubInsightFiltersProductFields({
+final class SecurityhubInsightProductFields {
+  const SecurityhubInsightProductFields({
     required this.comparison,
     required this.key,
     required this.value,
@@ -1686,8 +1560,8 @@ final class SecurityhubInsightFiltersProductFields {
 /// Typed helper for the `filters.product_name` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersProductName {
-  const SecurityhubInsightFiltersProductName({
+final class SecurityhubInsightProductName {
+  const SecurityhubInsightProductName({
     required this.comparison,
     required this.value,
   });
@@ -1705,8 +1579,8 @@ final class SecurityhubInsightFiltersProductName {
 /// Typed helper for the `filters.recommendation_text` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersRecommendationText {
-  const SecurityhubInsightFiltersRecommendationText({
+final class SecurityhubInsightRecommendationText {
+  const SecurityhubInsightRecommendationText({
     required this.comparison,
     required this.value,
   });
@@ -1724,8 +1598,8 @@ final class SecurityhubInsightFiltersRecommendationText {
 /// Typed helper for the `filters.record_state` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersRecordState {
-  const SecurityhubInsightFiltersRecordState({
+final class SecurityhubInsightRecordState {
+  const SecurityhubInsightRecordState({
     required this.comparison,
     required this.value,
   });
@@ -1743,8 +1617,8 @@ final class SecurityhubInsightFiltersRecordState {
 /// Typed helper for the `filters.related_findings_id` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersRelatedFindingsId {
-  const SecurityhubInsightFiltersRelatedFindingsId({
+final class SecurityhubInsightRelatedFindingsId {
+  const SecurityhubInsightRelatedFindingsId({
     required this.comparison,
     required this.value,
   });
@@ -1762,8 +1636,8 @@ final class SecurityhubInsightFiltersRelatedFindingsId {
 /// Typed helper for the `filters.related_findings_product_arn` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersRelatedFindingsProductArn {
-  const SecurityhubInsightFiltersRelatedFindingsProductArn({
+final class SecurityhubInsightRelatedFindingsProductArn {
+  const SecurityhubInsightRelatedFindingsProductArn({
     required this.comparison,
     required this.value,
   });
@@ -1781,8 +1655,8 @@ final class SecurityhubInsightFiltersRelatedFindingsProductArn {
 /// Typed helper for the `filters.resource_aws_ec2_instance_iam_instance_profile_arn` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersResourceAwsEc2InstanceIamInstanceProfileArn {
-  const SecurityhubInsightFiltersResourceAwsEc2InstanceIamInstanceProfileArn({
+final class SecurityhubInsightResourceAwsEc2InstanceIamInstanceProfileArn {
+  const SecurityhubInsightResourceAwsEc2InstanceIamInstanceProfileArn({
     required this.comparison,
     required this.value,
   });
@@ -1800,8 +1674,8 @@ final class SecurityhubInsightFiltersResourceAwsEc2InstanceIamInstanceProfileArn
 /// Typed helper for the `filters.resource_aws_ec2_instance_image_id` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersResourceAwsEc2InstanceImageId {
-  const SecurityhubInsightFiltersResourceAwsEc2InstanceImageId({
+final class SecurityhubInsightResourceAwsEc2InstanceImageId {
+  const SecurityhubInsightResourceAwsEc2InstanceImageId({
     required this.comparison,
     required this.value,
   });
@@ -1819,8 +1693,8 @@ final class SecurityhubInsightFiltersResourceAwsEc2InstanceImageId {
 /// Typed helper for the `filters.resource_aws_ec2_instance_ipv4_addresses` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersResourceAwsEc2InstanceIpv4Addresses {
-  const SecurityhubInsightFiltersResourceAwsEc2InstanceIpv4Addresses({
+final class SecurityhubInsightResourceAwsEc2InstanceIpv4Addresses {
+  const SecurityhubInsightResourceAwsEc2InstanceIpv4Addresses({
     required this.cidr,
   });
 
@@ -1832,8 +1706,8 @@ final class SecurityhubInsightFiltersResourceAwsEc2InstanceIpv4Addresses {
 /// Typed helper for the `filters.resource_aws_ec2_instance_ipv6_addresses` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersResourceAwsEc2InstanceIpv6Addresses {
-  const SecurityhubInsightFiltersResourceAwsEc2InstanceIpv6Addresses({
+final class SecurityhubInsightResourceAwsEc2InstanceIpv6Addresses {
+  const SecurityhubInsightResourceAwsEc2InstanceIpv6Addresses({
     required this.cidr,
   });
 
@@ -1845,8 +1719,8 @@ final class SecurityhubInsightFiltersResourceAwsEc2InstanceIpv6Addresses {
 /// Typed helper for the `filters.resource_aws_ec2_instance_key_name` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersResourceAwsEc2InstanceKeyName {
-  const SecurityhubInsightFiltersResourceAwsEc2InstanceKeyName({
+final class SecurityhubInsightResourceAwsEc2InstanceKeyName {
+  const SecurityhubInsightResourceAwsEc2InstanceKeyName({
     required this.comparison,
     required this.value,
   });
@@ -1864,8 +1738,8 @@ final class SecurityhubInsightFiltersResourceAwsEc2InstanceKeyName {
 /// Typed helper for the `filters.resource_aws_ec2_instance_launched_at` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersResourceAwsEc2InstanceLaunchedAt {
-  const SecurityhubInsightFiltersResourceAwsEc2InstanceLaunchedAt({
+final class SecurityhubInsightResourceAwsEc2InstanceLaunchedAt {
+  const SecurityhubInsightResourceAwsEc2InstanceLaunchedAt({
     this.end,
     this.start,
     this.dateRange,
@@ -1875,8 +1749,7 @@ final class SecurityhubInsightFiltersResourceAwsEc2InstanceLaunchedAt {
 
   final TfArg<String>? start;
 
-  final SecurityhubInsightFiltersResourceAwsEc2InstanceLaunchedAtDateRange?
-  dateRange;
+  final SecurityhubInsightDateRange? dateRange;
 
   Map<String, Object?> encode() => {
     'end': ?end?.toTfJson(),
@@ -1885,30 +1758,11 @@ final class SecurityhubInsightFiltersResourceAwsEc2InstanceLaunchedAt {
   };
 }
 
-/// Typed helper for the `filters.resource_aws_ec2_instance_launched_at.date_range` block of
-/// `aws_securityhub_insight` (derived from provider schema).
-@immutable
-final class SecurityhubInsightFiltersResourceAwsEc2InstanceLaunchedAtDateRange {
-  const SecurityhubInsightFiltersResourceAwsEc2InstanceLaunchedAtDateRange({
-    required this.unit,
-    required this.value,
-  });
-
-  final TfArg<String> unit;
-
-  final TfArg<num> value;
-
-  Map<String, Object?> encode() => {
-    'unit': unit.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
-
 /// Typed helper for the `filters.resource_aws_ec2_instance_subnet_id` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersResourceAwsEc2InstanceSubnetId {
-  const SecurityhubInsightFiltersResourceAwsEc2InstanceSubnetId({
+final class SecurityhubInsightResourceAwsEc2InstanceSubnetId {
+  const SecurityhubInsightResourceAwsEc2InstanceSubnetId({
     required this.comparison,
     required this.value,
   });
@@ -1926,8 +1780,8 @@ final class SecurityhubInsightFiltersResourceAwsEc2InstanceSubnetId {
 /// Typed helper for the `filters.resource_aws_ec2_instance_type` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersResourceAwsEc2InstanceType {
-  const SecurityhubInsightFiltersResourceAwsEc2InstanceType({
+final class SecurityhubInsightResourceAwsEc2InstanceType {
+  const SecurityhubInsightResourceAwsEc2InstanceType({
     required this.comparison,
     required this.value,
   });
@@ -1945,8 +1799,8 @@ final class SecurityhubInsightFiltersResourceAwsEc2InstanceType {
 /// Typed helper for the `filters.resource_aws_ec2_instance_vpc_id` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersResourceAwsEc2InstanceVpcId {
-  const SecurityhubInsightFiltersResourceAwsEc2InstanceVpcId({
+final class SecurityhubInsightResourceAwsEc2InstanceVpcId {
+  const SecurityhubInsightResourceAwsEc2InstanceVpcId({
     required this.comparison,
     required this.value,
   });
@@ -1964,8 +1818,8 @@ final class SecurityhubInsightFiltersResourceAwsEc2InstanceVpcId {
 /// Typed helper for the `filters.resource_aws_iam_access_key_created_at` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersResourceAwsIamAccessKeyCreatedAt {
-  const SecurityhubInsightFiltersResourceAwsIamAccessKeyCreatedAt({
+final class SecurityhubInsightResourceAwsIamAccessKeyCreatedAt {
+  const SecurityhubInsightResourceAwsIamAccessKeyCreatedAt({
     this.end,
     this.start,
     this.dateRange,
@@ -1975,8 +1829,7 @@ final class SecurityhubInsightFiltersResourceAwsIamAccessKeyCreatedAt {
 
   final TfArg<String>? start;
 
-  final SecurityhubInsightFiltersResourceAwsIamAccessKeyCreatedAtDateRange?
-  dateRange;
+  final SecurityhubInsightDateRange? dateRange;
 
   Map<String, Object?> encode() => {
     'end': ?end?.toTfJson(),
@@ -1985,30 +1838,11 @@ final class SecurityhubInsightFiltersResourceAwsIamAccessKeyCreatedAt {
   };
 }
 
-/// Typed helper for the `filters.resource_aws_iam_access_key_created_at.date_range` block of
-/// `aws_securityhub_insight` (derived from provider schema).
-@immutable
-final class SecurityhubInsightFiltersResourceAwsIamAccessKeyCreatedAtDateRange {
-  const SecurityhubInsightFiltersResourceAwsIamAccessKeyCreatedAtDateRange({
-    required this.unit,
-    required this.value,
-  });
-
-  final TfArg<String> unit;
-
-  final TfArg<num> value;
-
-  Map<String, Object?> encode() => {
-    'unit': unit.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
-
 /// Typed helper for the `filters.resource_aws_iam_access_key_status` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersResourceAwsIamAccessKeyStatus {
-  const SecurityhubInsightFiltersResourceAwsIamAccessKeyStatus({
+final class SecurityhubInsightResourceAwsIamAccessKeyStatus {
+  const SecurityhubInsightResourceAwsIamAccessKeyStatus({
     required this.comparison,
     required this.value,
   });
@@ -2026,8 +1860,8 @@ final class SecurityhubInsightFiltersResourceAwsIamAccessKeyStatus {
 /// Typed helper for the `filters.resource_aws_iam_access_key_user_name` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersResourceAwsIamAccessKeyUserName {
-  const SecurityhubInsightFiltersResourceAwsIamAccessKeyUserName({
+final class SecurityhubInsightResourceAwsIamAccessKeyUserName {
+  const SecurityhubInsightResourceAwsIamAccessKeyUserName({
     required this.comparison,
     required this.value,
   });
@@ -2045,8 +1879,8 @@ final class SecurityhubInsightFiltersResourceAwsIamAccessKeyUserName {
 /// Typed helper for the `filters.resource_aws_s3_bucket_owner_id` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersResourceAwsS3BucketOwnerId {
-  const SecurityhubInsightFiltersResourceAwsS3BucketOwnerId({
+final class SecurityhubInsightResourceAwsS3BucketOwnerId {
+  const SecurityhubInsightResourceAwsS3BucketOwnerId({
     required this.comparison,
     required this.value,
   });
@@ -2064,8 +1898,8 @@ final class SecurityhubInsightFiltersResourceAwsS3BucketOwnerId {
 /// Typed helper for the `filters.resource_aws_s3_bucket_owner_name` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersResourceAwsS3BucketOwnerName {
-  const SecurityhubInsightFiltersResourceAwsS3BucketOwnerName({
+final class SecurityhubInsightResourceAwsS3BucketOwnerName {
+  const SecurityhubInsightResourceAwsS3BucketOwnerName({
     required this.comparison,
     required this.value,
   });
@@ -2083,8 +1917,8 @@ final class SecurityhubInsightFiltersResourceAwsS3BucketOwnerName {
 /// Typed helper for the `filters.resource_container_image_id` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersResourceContainerImageId {
-  const SecurityhubInsightFiltersResourceContainerImageId({
+final class SecurityhubInsightResourceContainerImageId {
+  const SecurityhubInsightResourceContainerImageId({
     required this.comparison,
     required this.value,
   });
@@ -2102,8 +1936,8 @@ final class SecurityhubInsightFiltersResourceContainerImageId {
 /// Typed helper for the `filters.resource_container_image_name` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersResourceContainerImageName {
-  const SecurityhubInsightFiltersResourceContainerImageName({
+final class SecurityhubInsightResourceContainerImageName {
+  const SecurityhubInsightResourceContainerImageName({
     required this.comparison,
     required this.value,
   });
@@ -2121,8 +1955,8 @@ final class SecurityhubInsightFiltersResourceContainerImageName {
 /// Typed helper for the `filters.resource_container_launched_at` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersResourceContainerLaunchedAt {
-  const SecurityhubInsightFiltersResourceContainerLaunchedAt({
+final class SecurityhubInsightResourceContainerLaunchedAt {
+  const SecurityhubInsightResourceContainerLaunchedAt({
     this.end,
     this.start,
     this.dateRange,
@@ -2132,8 +1966,7 @@ final class SecurityhubInsightFiltersResourceContainerLaunchedAt {
 
   final TfArg<String>? start;
 
-  final SecurityhubInsightFiltersResourceContainerLaunchedAtDateRange?
-  dateRange;
+  final SecurityhubInsightDateRange? dateRange;
 
   Map<String, Object?> encode() => {
     'end': ?end?.toTfJson(),
@@ -2142,30 +1975,11 @@ final class SecurityhubInsightFiltersResourceContainerLaunchedAt {
   };
 }
 
-/// Typed helper for the `filters.resource_container_launched_at.date_range` block of
-/// `aws_securityhub_insight` (derived from provider schema).
-@immutable
-final class SecurityhubInsightFiltersResourceContainerLaunchedAtDateRange {
-  const SecurityhubInsightFiltersResourceContainerLaunchedAtDateRange({
-    required this.unit,
-    required this.value,
-  });
-
-  final TfArg<String> unit;
-
-  final TfArg<num> value;
-
-  Map<String, Object?> encode() => {
-    'unit': unit.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
-
 /// Typed helper for the `filters.resource_container_name` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersResourceContainerName {
-  const SecurityhubInsightFiltersResourceContainerName({
+final class SecurityhubInsightResourceContainerName {
+  const SecurityhubInsightResourceContainerName({
     required this.comparison,
     required this.value,
   });
@@ -2183,8 +1997,8 @@ final class SecurityhubInsightFiltersResourceContainerName {
 /// Typed helper for the `filters.resource_details_other` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersResourceDetailsOther {
-  const SecurityhubInsightFiltersResourceDetailsOther({
+final class SecurityhubInsightResourceDetailsOther {
+  const SecurityhubInsightResourceDetailsOther({
     required this.comparison,
     required this.key,
     required this.value,
@@ -2206,8 +2020,8 @@ final class SecurityhubInsightFiltersResourceDetailsOther {
 /// Typed helper for the `filters.resource_id` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersResourceId {
-  const SecurityhubInsightFiltersResourceId({
+final class SecurityhubInsightResourceId {
+  const SecurityhubInsightResourceId({
     required this.comparison,
     required this.value,
   });
@@ -2225,8 +2039,8 @@ final class SecurityhubInsightFiltersResourceId {
 /// Typed helper for the `filters.resource_partition` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersResourcePartition {
-  const SecurityhubInsightFiltersResourcePartition({
+final class SecurityhubInsightResourcePartition {
+  const SecurityhubInsightResourcePartition({
     required this.comparison,
     required this.value,
   });
@@ -2244,8 +2058,8 @@ final class SecurityhubInsightFiltersResourcePartition {
 /// Typed helper for the `filters.resource_region` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersResourceRegion {
-  const SecurityhubInsightFiltersResourceRegion({
+final class SecurityhubInsightResourceRegion {
+  const SecurityhubInsightResourceRegion({
     required this.comparison,
     required this.value,
   });
@@ -2263,8 +2077,8 @@ final class SecurityhubInsightFiltersResourceRegion {
 /// Typed helper for the `filters.resource_tags` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersResourceTags {
-  const SecurityhubInsightFiltersResourceTags({
+final class SecurityhubInsightResourceTags {
+  const SecurityhubInsightResourceTags({
     required this.comparison,
     required this.key,
     required this.value,
@@ -2286,8 +2100,8 @@ final class SecurityhubInsightFiltersResourceTags {
 /// Typed helper for the `filters.resource_type` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersResourceType {
-  const SecurityhubInsightFiltersResourceType({
+final class SecurityhubInsightResourceType {
+  const SecurityhubInsightResourceType({
     required this.comparison,
     required this.value,
   });
@@ -2305,8 +2119,8 @@ final class SecurityhubInsightFiltersResourceType {
 /// Typed helper for the `filters.severity_label` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersSeverityLabel {
-  const SecurityhubInsightFiltersSeverityLabel({
+final class SecurityhubInsightSeverityLabel {
+  const SecurityhubInsightSeverityLabel({
     required this.comparison,
     required this.value,
   });
@@ -2324,8 +2138,8 @@ final class SecurityhubInsightFiltersSeverityLabel {
 /// Typed helper for the `filters.source_url` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersSourceUrl {
-  const SecurityhubInsightFiltersSourceUrl({
+final class SecurityhubInsightSourceUrl {
+  const SecurityhubInsightSourceUrl({
     required this.comparison,
     required this.value,
   });
@@ -2343,8 +2157,8 @@ final class SecurityhubInsightFiltersSourceUrl {
 /// Typed helper for the `filters.threat_intel_indicator_category` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersThreatIntelIndicatorCategory {
-  const SecurityhubInsightFiltersThreatIntelIndicatorCategory({
+final class SecurityhubInsightThreatIntelIndicatorCategory {
+  const SecurityhubInsightThreatIntelIndicatorCategory({
     required this.comparison,
     required this.value,
   });
@@ -2362,8 +2176,8 @@ final class SecurityhubInsightFiltersThreatIntelIndicatorCategory {
 /// Typed helper for the `filters.threat_intel_indicator_last_observed_at` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersThreatIntelIndicatorLastObservedAt {
-  const SecurityhubInsightFiltersThreatIntelIndicatorLastObservedAt({
+final class SecurityhubInsightThreatIntelIndicatorLastObservedAt {
+  const SecurityhubInsightThreatIntelIndicatorLastObservedAt({
     this.end,
     this.start,
     this.dateRange,
@@ -2373,8 +2187,7 @@ final class SecurityhubInsightFiltersThreatIntelIndicatorLastObservedAt {
 
   final TfArg<String>? start;
 
-  final SecurityhubInsightFiltersThreatIntelIndicatorLastObservedAtDateRange?
-  dateRange;
+  final SecurityhubInsightDateRange? dateRange;
 
   Map<String, Object?> encode() => {
     'end': ?end?.toTfJson(),
@@ -2383,30 +2196,11 @@ final class SecurityhubInsightFiltersThreatIntelIndicatorLastObservedAt {
   };
 }
 
-/// Typed helper for the `filters.threat_intel_indicator_last_observed_at.date_range` block of
-/// `aws_securityhub_insight` (derived from provider schema).
-@immutable
-final class SecurityhubInsightFiltersThreatIntelIndicatorLastObservedAtDateRange {
-  const SecurityhubInsightFiltersThreatIntelIndicatorLastObservedAtDateRange({
-    required this.unit,
-    required this.value,
-  });
-
-  final TfArg<String> unit;
-
-  final TfArg<num> value;
-
-  Map<String, Object?> encode() => {
-    'unit': unit.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
-
 /// Typed helper for the `filters.threat_intel_indicator_source` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersThreatIntelIndicatorSource {
-  const SecurityhubInsightFiltersThreatIntelIndicatorSource({
+final class SecurityhubInsightThreatIntelIndicatorSource {
+  const SecurityhubInsightThreatIntelIndicatorSource({
     required this.comparison,
     required this.value,
   });
@@ -2424,8 +2218,8 @@ final class SecurityhubInsightFiltersThreatIntelIndicatorSource {
 /// Typed helper for the `filters.threat_intel_indicator_source_url` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersThreatIntelIndicatorSourceUrl {
-  const SecurityhubInsightFiltersThreatIntelIndicatorSourceUrl({
+final class SecurityhubInsightThreatIntelIndicatorSourceUrl {
+  const SecurityhubInsightThreatIntelIndicatorSourceUrl({
     required this.comparison,
     required this.value,
   });
@@ -2443,8 +2237,8 @@ final class SecurityhubInsightFiltersThreatIntelIndicatorSourceUrl {
 /// Typed helper for the `filters.threat_intel_indicator_type` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersThreatIntelIndicatorType {
-  const SecurityhubInsightFiltersThreatIntelIndicatorType({
+final class SecurityhubInsightThreatIntelIndicatorType {
+  const SecurityhubInsightThreatIntelIndicatorType({
     required this.comparison,
     required this.value,
   });
@@ -2462,8 +2256,8 @@ final class SecurityhubInsightFiltersThreatIntelIndicatorType {
 /// Typed helper for the `filters.threat_intel_indicator_value` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersThreatIntelIndicatorValue {
-  const SecurityhubInsightFiltersThreatIntelIndicatorValue({
+final class SecurityhubInsightThreatIntelIndicatorValue {
+  const SecurityhubInsightThreatIntelIndicatorValue({
     required this.comparison,
     required this.value,
   });
@@ -2481,8 +2275,8 @@ final class SecurityhubInsightFiltersThreatIntelIndicatorValue {
 /// Typed helper for the `filters.title` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersTitle {
-  const SecurityhubInsightFiltersTitle({
+final class SecurityhubInsightTitle {
+  const SecurityhubInsightTitle({
     required this.comparison,
     required this.value,
   });
@@ -2500,11 +2294,8 @@ final class SecurityhubInsightFiltersTitle {
 /// Typed helper for the `filters.type` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersType {
-  const SecurityhubInsightFiltersType({
-    required this.comparison,
-    required this.value,
-  });
+final class SecurityhubInsightType {
+  const SecurityhubInsightType({required this.comparison, required this.value});
 
   final TfArg<String> comparison;
 
@@ -2519,18 +2310,14 @@ final class SecurityhubInsightFiltersType {
 /// Typed helper for the `filters.updated_at` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersUpdatedAt {
-  const SecurityhubInsightFiltersUpdatedAt({
-    this.end,
-    this.start,
-    this.dateRange,
-  });
+final class SecurityhubInsightUpdatedAt {
+  const SecurityhubInsightUpdatedAt({this.end, this.start, this.dateRange});
 
   final TfArg<String>? end;
 
   final TfArg<String>? start;
 
-  final SecurityhubInsightFiltersUpdatedAtDateRange? dateRange;
+  final SecurityhubInsightDateRange? dateRange;
 
   Map<String, Object?> encode() => {
     'end': ?end?.toTfJson(),
@@ -2539,30 +2326,11 @@ final class SecurityhubInsightFiltersUpdatedAt {
   };
 }
 
-/// Typed helper for the `filters.updated_at.date_range` block of
-/// `aws_securityhub_insight` (derived from provider schema).
-@immutable
-final class SecurityhubInsightFiltersUpdatedAtDateRange {
-  const SecurityhubInsightFiltersUpdatedAtDateRange({
-    required this.unit,
-    required this.value,
-  });
-
-  final TfArg<String> unit;
-
-  final TfArg<num> value;
-
-  Map<String, Object?> encode() => {
-    'unit': unit.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
-
 /// Typed helper for the `filters.user_defined_values` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersUserDefinedValues {
-  const SecurityhubInsightFiltersUserDefinedValues({
+final class SecurityhubInsightUserDefinedValues {
+  const SecurityhubInsightUserDefinedValues({
     required this.comparison,
     required this.key,
     required this.value,
@@ -2584,8 +2352,8 @@ final class SecurityhubInsightFiltersUserDefinedValues {
 /// Typed helper for the `filters.verification_state` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersVerificationState {
-  const SecurityhubInsightFiltersVerificationState({
+final class SecurityhubInsightVerificationState {
+  const SecurityhubInsightVerificationState({
     required this.comparison,
     required this.value,
   });
@@ -2603,8 +2371,8 @@ final class SecurityhubInsightFiltersVerificationState {
 /// Typed helper for the `filters.workflow_status` block of
 /// `aws_securityhub_insight` (derived from provider schema).
 @immutable
-final class SecurityhubInsightFiltersWorkflowStatus {
-  const SecurityhubInsightFiltersWorkflowStatus({
+final class SecurityhubInsightWorkflowStatus {
+  const SecurityhubInsightWorkflowStatus({
     required this.comparison,
     required this.value,
   });

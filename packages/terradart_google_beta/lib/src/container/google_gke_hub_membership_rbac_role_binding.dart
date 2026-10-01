@@ -13,7 +13,7 @@ const Set<String> _googleGkeHubMembershipRbacRoleBindingSensitive = <String>{};
 final class GkeHubMembershipRbacRoleBindingRole {
   const GkeHubMembershipRbacRoleBindingRole({required this.predefinedRole});
 
-  final TfArg<GkeHubMembershipRbacRoleBindingRolePredefinedRole> predefinedRole;
+  final TfArg<GkeHubMembershipRbacRoleBindingPredefinedRole> predefinedRole;
 
   Map<String, Object?> encode() => {
     'predefined_role': predefinedRole.toTfJson(),
@@ -21,15 +21,14 @@ final class GkeHubMembershipRbacRoleBindingRole {
 }
 
 /// `predefined_role` — derived from the provider schema description.
-enum GkeHubMembershipRbacRoleBindingRolePredefinedRole
-    implements TerraformEnum {
+enum GkeHubMembershipRbacRoleBindingPredefinedRole implements TerraformEnum {
   unknown('UNKNOWN'),
   admin('ADMIN'),
   edit('EDIT'),
   view('VIEW'),
   anthosSupport('ANTHOS_SUPPORT');
 
-  const GkeHubMembershipRbacRoleBindingRolePredefinedRole(this.terraformValue);
+  const GkeHubMembershipRbacRoleBindingPredefinedRole(this.terraformValue);
   @override
   final String terraformValue;
 }

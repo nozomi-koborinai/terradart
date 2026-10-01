@@ -73,7 +73,7 @@ final class Ec2ClientVpnEndpointAuthenticationOptions {
 
   final TfArg<String>? selfServiceSamlProviderArn;
 
-  final TfArg<Ec2ClientVpnEndpointAuthenticationOptionsType> type;
+  final TfArg<Ec2ClientVpnEndpointType> type;
 
   Map<String, Object?> encode() => {
     'active_directory_id': ?activeDirectoryId?.toTfJson(),
@@ -85,12 +85,12 @@ final class Ec2ClientVpnEndpointAuthenticationOptions {
 }
 
 /// `type` — derived from the provider schema description.
-enum Ec2ClientVpnEndpointAuthenticationOptionsType implements TerraformEnum {
+enum Ec2ClientVpnEndpointType implements TerraformEnum {
   certificateAuthentication('certificate-authentication'),
   directoryServiceAuthentication('directory-service-authentication'),
   federatedAuthentication('federated-authentication');
 
-  const Ec2ClientVpnEndpointAuthenticationOptionsType(this.terraformValue);
+  const Ec2ClientVpnEndpointType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -176,8 +176,7 @@ final class Ec2ClientVpnEndpointTransitGatewayConfiguration {
     this.transitGatewayId,
   });
 
-  final Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZone?
-  availabilityZone;
+  final Ec2ClientVpnEndpointAvailabilityZone? availabilityZone;
 
   final TfArg<String>? transitGatewayId;
 
@@ -192,18 +191,18 @@ final class Ec2ClientVpnEndpointTransitGatewayConfiguration {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.availabilityZoneIds(...)`.
-sealed class Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZone {
-  const Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZone();
+sealed class Ec2ClientVpnEndpointAvailabilityZone {
+  const Ec2ClientVpnEndpointAvailabilityZone();
 
   /// Sets `availability_zone_ids`.
-  const factory Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZone.availabilityZoneIds(
+  const factory Ec2ClientVpnEndpointAvailabilityZone.availabilityZoneIds(
     TfArg<List<String>> availabilityZoneIds,
-  ) = Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneIds;
+  ) = Ec2ClientVpnEndpointAvailabilityZoneIds;
 
   /// Sets `availability_zones`.
-  const factory Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZone.availabilityZones(
+  const factory Ec2ClientVpnEndpointAvailabilityZone.availabilityZones(
     TfArg<List<String>> availabilityZones,
-  ) = Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneAvailabilityZones;
+  ) = Ec2ClientVpnEndpointAvailabilityZoneAvailabilityZones;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -211,12 +210,10 @@ sealed class Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZone {
   Map<String, Object?> encode();
 }
 
-/// The [Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZone.availabilityZoneIds] choice: sets `availability_zone_ids`.
-final class Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneIds
-    extends Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZone {
-  const Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneIds(
-    this.availabilityZoneIds,
-  );
+/// The [Ec2ClientVpnEndpointAvailabilityZone.availabilityZoneIds] choice: sets `availability_zone_ids`.
+final class Ec2ClientVpnEndpointAvailabilityZoneIds
+    extends Ec2ClientVpnEndpointAvailabilityZone {
+  const Ec2ClientVpnEndpointAvailabilityZoneIds(this.availabilityZoneIds);
 
   final TfArg<List<String>> availabilityZoneIds;
 
@@ -229,10 +226,10 @@ final class Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneIds
   };
 }
 
-/// The [Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZone.availabilityZones] choice: sets `availability_zones`.
-final class Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneAvailabilityZones
-    extends Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZone {
-  const Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneAvailabilityZones(
+/// The [Ec2ClientVpnEndpointAvailabilityZone.availabilityZones] choice: sets `availability_zones`.
+final class Ec2ClientVpnEndpointAvailabilityZoneAvailabilityZones
+    extends Ec2ClientVpnEndpointAvailabilityZone {
+  const Ec2ClientVpnEndpointAvailabilityZoneAvailabilityZones(
     this.availabilityZones,
   );
 

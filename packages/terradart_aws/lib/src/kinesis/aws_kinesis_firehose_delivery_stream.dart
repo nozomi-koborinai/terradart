@@ -171,9 +171,7 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfiguration {
 
   final TfArg<String> indexName;
 
-  final TfArg<
-    KinesisFirehoseDeliveryStreamElasticsearchConfigurationIndexRotationPeriod
-  >?
+  final TfArg<KinesisFirehoseDeliveryStreamIndexRotationPeriod>?
   indexRotationPeriod;
 
   final TfArg<num>? retryDuration;
@@ -187,17 +185,15 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfiguration {
 
   final TfArg<String>? typeName;
 
-  final KinesisFirehoseDeliveryStreamElasticsearchConfigurationCloudwatchLoggingOptions?
+  final KinesisFirehoseDeliveryStreamCloudwatchLoggingOptions?
   cloudwatchLoggingOptions;
 
-  final KinesisFirehoseDeliveryStreamElasticsearchConfigurationProcessingConfiguration?
+  final KinesisFirehoseDeliveryStreamProcessingConfiguration?
   processingConfiguration;
 
-  final KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3Configuration
-  s3Configuration;
+  final KinesisFirehoseDeliveryStreamS3Configuration s3Configuration;
 
-  final KinesisFirehoseDeliveryStreamElasticsearchConfigurationVpcConfig?
-  vpcConfig;
+  final KinesisFirehoseDeliveryStreamVpcConfig? vpcConfig;
 
   Map<String, Object?> encode() => {
     'buffering_interval': ?bufferingInterval?.toTfJson(),
@@ -275,17 +271,14 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomainArn
 }
 
 /// `index_rotation_period` — derived from the provider schema description.
-enum KinesisFirehoseDeliveryStreamElasticsearchConfigurationIndexRotationPeriod
-    implements TerraformEnum {
+enum KinesisFirehoseDeliveryStreamIndexRotationPeriod implements TerraformEnum {
   norotation('NoRotation'),
   onehour('OneHour'),
   oneday('OneDay'),
   oneweek('OneWeek'),
   onemonth('OneMonth');
 
-  const KinesisFirehoseDeliveryStreamElasticsearchConfigurationIndexRotationPeriod(
-    this.terraformValue,
-  );
+  const KinesisFirehoseDeliveryStreamIndexRotationPeriod(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -305,9 +298,10 @@ enum KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3BackupMode
 
 /// Typed helper for the `elasticsearch_configuration.cloudwatch_logging_options` block of
 /// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationCloudwatchLoggingOptions {
-  const KinesisFirehoseDeliveryStreamElasticsearchConfigurationCloudwatchLoggingOptions({
+final class KinesisFirehoseDeliveryStreamCloudwatchLoggingOptions {
+  const KinesisFirehoseDeliveryStreamCloudwatchLoggingOptions({
     this.enabled,
     this.logGroupName,
     this.logStreamName,
@@ -328,19 +322,17 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationCloudwatchLog
 
 /// Typed helper for the `elasticsearch_configuration.processing_configuration` block of
 /// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationProcessingConfiguration {
-  const KinesisFirehoseDeliveryStreamElasticsearchConfigurationProcessingConfiguration({
+final class KinesisFirehoseDeliveryStreamProcessingConfiguration {
+  const KinesisFirehoseDeliveryStreamProcessingConfiguration({
     this.enabled,
     this.processors,
   });
 
   final TfArg<bool>? enabled;
 
-  final List<
-    KinesisFirehoseDeliveryStreamElasticsearchConfigurationProcessingConfigurationProcessors
-  >?
-  processors;
+  final List<KinesisFirehoseDeliveryStreamProcessors>? processors;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
@@ -351,19 +343,17 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationProcessingCon
 
 /// Typed helper for the `elasticsearch_configuration.processing_configuration.processors` block of
 /// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationProcessingConfigurationProcessors {
-  const KinesisFirehoseDeliveryStreamElasticsearchConfigurationProcessingConfigurationProcessors({
+final class KinesisFirehoseDeliveryStreamProcessors {
+  const KinesisFirehoseDeliveryStreamProcessors({
     required this.type,
     this.parameters,
   });
 
   final TfArg<String> type;
 
-  final List<
-    KinesisFirehoseDeliveryStreamElasticsearchConfigurationProcessingConfigurationProcessorsParameters
-  >?
-  parameters;
+  final List<KinesisFirehoseDeliveryStreamParameters>? parameters;
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
@@ -374,9 +364,10 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationProcessingCon
 
 /// Typed helper for the `elasticsearch_configuration.processing_configuration.processors.parameters` block of
 /// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationProcessingConfigurationProcessorsParameters {
-  const KinesisFirehoseDeliveryStreamElasticsearchConfigurationProcessingConfigurationProcessorsParameters({
+final class KinesisFirehoseDeliveryStreamParameters {
+  const KinesisFirehoseDeliveryStreamParameters({
     required this.parameterName,
     required this.parameterValue,
   });
@@ -393,9 +384,10 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationProcessingCon
 
 /// Typed helper for the `elasticsearch_configuration.s3_configuration` block of
 /// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3Configuration {
-  const KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3Configuration({
+final class KinesisFirehoseDeliveryStreamS3Configuration {
+  const KinesisFirehoseDeliveryStreamS3Configuration({
     required this.bucketArn,
     this.bufferingInterval,
     this.bufferingSize,
@@ -423,7 +415,7 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3Configurati
 
   final RefTo<AwsIamRole> roleArn;
 
-  final KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3ConfigurationCloudwatchLoggingOptions?
+  final KinesisFirehoseDeliveryStreamCloudwatchLoggingOptions?
   cloudwatchLoggingOptions;
 
   Map<String, Object?> encode() => {
@@ -439,34 +431,12 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3Configurati
   };
 }
 
-/// Typed helper for the `elasticsearch_configuration.s3_configuration.cloudwatch_logging_options` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3ConfigurationCloudwatchLoggingOptions {
-  const KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3ConfigurationCloudwatchLoggingOptions({
-    this.enabled,
-    this.logGroupName,
-    this.logStreamName,
-  });
-
-  final TfArg<bool>? enabled;
-
-  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
-
-  final TfArg<String>? logStreamName;
-
-  Map<String, Object?> encode() => {
-    'enabled': ?enabled?.toTfJson(),
-    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
-    'log_stream_name': ?logStreamName?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `elasticsearch_configuration.vpc_config` block of
 /// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationVpcConfig {
-  const KinesisFirehoseDeliveryStreamElasticsearchConfigurationVpcConfig({
+final class KinesisFirehoseDeliveryStreamVpcConfig {
+  const KinesisFirehoseDeliveryStreamVpcConfig({
     required this.roleArn,
     required this.securityGroupIds,
     required this.subnetIds,
@@ -514,9 +484,7 @@ final class KinesisFirehoseDeliveryStreamExtendedS3Configuration {
 
   final TfArg<num>? bufferingSize;
 
-  final TfArg<
-    KinesisFirehoseDeliveryStreamExtendedS3ConfigurationCompressionFormat
-  >?
+  final TfArg<KinesisFirehoseDeliveryStreamCompressionFormat>?
   compressionFormat;
 
   final TfArg<String>? customTimeZone;
@@ -534,19 +502,19 @@ final class KinesisFirehoseDeliveryStreamExtendedS3Configuration {
   final TfArg<KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupMode>?
   s3BackupMode;
 
-  final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationCloudwatchLoggingOptions?
+  final KinesisFirehoseDeliveryStreamCloudwatchLoggingOptions?
   cloudwatchLoggingOptions;
 
-  final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfiguration?
+  final KinesisFirehoseDeliveryStreamDataFormatConversionConfiguration?
   dataFormatConversionConfiguration;
 
-  final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDynamicPartitioningConfiguration?
+  final KinesisFirehoseDeliveryStreamDynamicPartitioningConfiguration?
   dynamicPartitioningConfiguration;
 
-  final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationProcessingConfiguration?
+  final KinesisFirehoseDeliveryStreamProcessingConfiguration?
   processingConfiguration;
 
-  final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupConfiguration?
+  final KinesisFirehoseDeliveryStreamS3BackupConfiguration?
   s3BackupConfiguration;
 
   Map<String, Object?> encode() => {
@@ -572,17 +540,14 @@ final class KinesisFirehoseDeliveryStreamExtendedS3Configuration {
 }
 
 /// `compression_format` — derived from the provider schema description.
-enum KinesisFirehoseDeliveryStreamExtendedS3ConfigurationCompressionFormat
-    implements TerraformEnum {
+enum KinesisFirehoseDeliveryStreamCompressionFormat implements TerraformEnum {
   uncompressed('UNCOMPRESSED'),
   gzip('GZIP'),
   zip('ZIP'),
   snappy('Snappy'),
   hadoopSnappy('HADOOP_SNAPPY');
 
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationCompressionFormat(
-    this.terraformValue,
-  );
+  const KinesisFirehoseDeliveryStreamCompressionFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -600,34 +565,11 @@ enum KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupMode
   final String terraformValue;
 }
 
-/// Typed helper for the `extended_s3_configuration.cloudwatch_logging_options` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationCloudwatchLoggingOptions {
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationCloudwatchLoggingOptions({
-    this.enabled,
-    this.logGroupName,
-    this.logStreamName,
-  });
-
-  final TfArg<bool>? enabled;
-
-  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
-
-  final TfArg<String>? logStreamName;
-
-  Map<String, Object?> encode() => {
-    'enabled': ?enabled?.toTfJson(),
-    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
-    'log_stream_name': ?logStreamName?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `extended_s3_configuration.data_format_conversion_configuration` block of
 /// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
 @immutable
-final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfiguration {
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfiguration({
+final class KinesisFirehoseDeliveryStreamDataFormatConversionConfiguration {
+  const KinesisFirehoseDeliveryStreamDataFormatConversionConfiguration({
     this.enabled,
     required this.inputFormatConfiguration,
     required this.outputFormatConfiguration,
@@ -636,14 +578,13 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
 
   final TfArg<bool>? enabled;
 
-  final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfiguration
+  final KinesisFirehoseDeliveryStreamInputFormatConfiguration
   inputFormatConfiguration;
 
-  final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfiguration
+  final KinesisFirehoseDeliveryStreamOutputFormatConfiguration
   outputFormatConfiguration;
 
-  final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationSchemaConfiguration
-  schemaConfiguration;
+  final KinesisFirehoseDeliveryStreamSchemaConfiguration schemaConfiguration;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
@@ -656,13 +597,12 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
 /// Typed helper for the `extended_s3_configuration.data_format_conversion_configuration.input_format_configuration` block of
 /// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
 @immutable
-final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfiguration {
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfiguration({
+final class KinesisFirehoseDeliveryStreamInputFormatConfiguration {
+  const KinesisFirehoseDeliveryStreamInputFormatConfiguration({
     required this.deserializer,
   });
 
-  final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializer
-  deserializer;
+  final KinesisFirehoseDeliveryStreamDeserializer deserializer;
 
   Map<String, Object?> encode() => {'deserializer': deserializer.encode()};
 }
@@ -670,13 +610,10 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
 /// Typed helper for the `extended_s3_configuration.data_format_conversion_configuration.input_format_configuration.deserializer` block of
 /// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
 @immutable
-final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializer {
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializer({
-    this.jsonSerDe,
-  });
+final class KinesisFirehoseDeliveryStreamDeserializer {
+  const KinesisFirehoseDeliveryStreamDeserializer({this.jsonSerDe});
 
-  final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerJsonSerDe?
-  jsonSerDe;
+  final KinesisFirehoseDeliveryStreamDeserializerJsonSerDe? jsonSerDe;
 
   Map<String, Object?> encode() => {...?jsonSerDe?.encode()};
 }
@@ -686,20 +623,18 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.hiveJsonSerDe(...)`.
-sealed class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerJsonSerDe {
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerJsonSerDe();
+sealed class KinesisFirehoseDeliveryStreamDeserializerJsonSerDe {
+  const KinesisFirehoseDeliveryStreamDeserializerJsonSerDe();
 
   /// Sets `hive_json_ser_de`.
-  const factory KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerJsonSerDe.hiveJsonSerDe(
-    KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDe
-    hiveJsonSerDe,
-  ) = KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerJsonSerDeHiveJsonSerDe;
+  const factory KinesisFirehoseDeliveryStreamDeserializerJsonSerDe.hiveJsonSerDe(
+    KinesisFirehoseDeliveryStreamHiveJsonSerDe hiveJsonSerDe,
+  ) = KinesisFirehoseDeliveryStreamDeserializerHiveJsonSerDe;
 
   /// Sets `open_x_json_ser_de`.
-  const factory KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerJsonSerDe.openXJsonSerDe(
-    KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerOpenXJsonSerDe
-    openXJsonSerDe,
-  ) = KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerJsonSerDeOpenXJsonSerDe;
+  const factory KinesisFirehoseDeliveryStreamDeserializerJsonSerDe.openXJsonSerDe(
+    KinesisFirehoseDeliveryStreamOpenXJsonSerDe openXJsonSerDe,
+  ) = KinesisFirehoseDeliveryStreamDeserializerOpenXJsonSerDe;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -707,16 +642,14 @@ sealed class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConve
   Map<String, Object?> encode();
 }
 
-/// The [KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerJsonSerDe.hiveJsonSerDe] choice: sets `hive_json_ser_de`.
-final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerJsonSerDeHiveJsonSerDe
-    extends
-        KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerJsonSerDe {
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerJsonSerDeHiveJsonSerDe(
+/// The [KinesisFirehoseDeliveryStreamDeserializerJsonSerDe.hiveJsonSerDe] choice: sets `hive_json_ser_de`.
+final class KinesisFirehoseDeliveryStreamDeserializerHiveJsonSerDe
+    extends KinesisFirehoseDeliveryStreamDeserializerJsonSerDe {
+  const KinesisFirehoseDeliveryStreamDeserializerHiveJsonSerDe(
     this.hiveJsonSerDe,
   );
 
-  final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDe
-  hiveJsonSerDe;
+  final KinesisFirehoseDeliveryStreamHiveJsonSerDe hiveJsonSerDe;
 
   @override
   String get blockKey => 'hive_json_ser_de';
@@ -725,16 +658,14 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
   Map<String, Object?> encode() => {'hive_json_ser_de': hiveJsonSerDe.encode()};
 }
 
-/// The [KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerJsonSerDe.openXJsonSerDe] choice: sets `open_x_json_ser_de`.
-final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerJsonSerDeOpenXJsonSerDe
-    extends
-        KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerJsonSerDe {
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerJsonSerDeOpenXJsonSerDe(
+/// The [KinesisFirehoseDeliveryStreamDeserializerJsonSerDe.openXJsonSerDe] choice: sets `open_x_json_ser_de`.
+final class KinesisFirehoseDeliveryStreamDeserializerOpenXJsonSerDe
+    extends KinesisFirehoseDeliveryStreamDeserializerJsonSerDe {
+  const KinesisFirehoseDeliveryStreamDeserializerOpenXJsonSerDe(
     this.openXJsonSerDe,
   );
 
-  final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerOpenXJsonSerDe
-  openXJsonSerDe;
+  final KinesisFirehoseDeliveryStreamOpenXJsonSerDe openXJsonSerDe;
 
   @override
   String get blockKey => 'open_x_json_ser_de';
@@ -748,10 +679,8 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
 /// Typed helper for the `extended_s3_configuration.data_format_conversion_configuration.input_format_configuration.deserializer.hive_json_ser_de` block of
 /// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
 @immutable
-final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDe {
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDe({
-    this.timestampFormats,
-  });
+final class KinesisFirehoseDeliveryStreamHiveJsonSerDe {
+  const KinesisFirehoseDeliveryStreamHiveJsonSerDe({this.timestampFormats});
 
   final TfArg<List<String>>? timestampFormats;
 
@@ -763,8 +692,8 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
 /// Typed helper for the `extended_s3_configuration.data_format_conversion_configuration.input_format_configuration.deserializer.open_x_json_ser_de` block of
 /// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
 @immutable
-final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerOpenXJsonSerDe {
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerOpenXJsonSerDe({
+final class KinesisFirehoseDeliveryStreamOpenXJsonSerDe {
+  const KinesisFirehoseDeliveryStreamOpenXJsonSerDe({
     this.caseInsensitive,
     this.columnToJsonKeyMappings,
     this.convertDotsInJsonKeysToUnderscores,
@@ -787,13 +716,12 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
 /// Typed helper for the `extended_s3_configuration.data_format_conversion_configuration.output_format_configuration` block of
 /// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
 @immutable
-final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfiguration {
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfiguration({
+final class KinesisFirehoseDeliveryStreamOutputFormatConfiguration {
+  const KinesisFirehoseDeliveryStreamOutputFormatConfiguration({
     required this.serializer,
   });
 
-  final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializer
-  serializer;
+  final KinesisFirehoseDeliveryStreamSerializer serializer;
 
   Map<String, Object?> encode() => {'serializer': serializer.encode()};
 }
@@ -801,13 +729,10 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
 /// Typed helper for the `extended_s3_configuration.data_format_conversion_configuration.output_format_configuration.serializer` block of
 /// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
 @immutable
-final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializer {
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializer({
-    this.serDe,
-  });
+final class KinesisFirehoseDeliveryStreamSerializer {
+  const KinesisFirehoseDeliveryStreamSerializer({this.serDe});
 
-  final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerSerDe?
-  serDe;
+  final KinesisFirehoseDeliveryStreamSerializerSerDe? serDe;
 
   Map<String, Object?> encode() => {...?serDe?.encode()};
 }
@@ -817,20 +742,18 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.orcSerDe(...)`.
-sealed class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerSerDe {
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerSerDe();
+sealed class KinesisFirehoseDeliveryStreamSerializerSerDe {
+  const KinesisFirehoseDeliveryStreamSerializerSerDe();
 
   /// Sets `orc_ser_de`.
-  const factory KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerSerDe.orcSerDe(
-    KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDe
-    orcSerDe,
-  ) = KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerSerDeOrcSerDe;
+  const factory KinesisFirehoseDeliveryStreamSerializerSerDe.orcSerDe(
+    KinesisFirehoseDeliveryStreamOrcSerDe orcSerDe,
+  ) = KinesisFirehoseDeliveryStreamSerializerOrcSerDe;
 
   /// Sets `parquet_ser_de`.
-  const factory KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerSerDe.parquetSerDe(
-    KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerParquetSerDe
-    parquetSerDe,
-  ) = KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerSerDeParquetSerDe;
+  const factory KinesisFirehoseDeliveryStreamSerializerSerDe.parquetSerDe(
+    KinesisFirehoseDeliveryStreamParquetSerDe parquetSerDe,
+  ) = KinesisFirehoseDeliveryStreamSerializerParquetSerDe;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -838,16 +761,12 @@ sealed class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConve
   Map<String, Object?> encode();
 }
 
-/// The [KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerSerDe.orcSerDe] choice: sets `orc_ser_de`.
-final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerSerDeOrcSerDe
-    extends
-        KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerSerDe {
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerSerDeOrcSerDe(
-    this.orcSerDe,
-  );
+/// The [KinesisFirehoseDeliveryStreamSerializerSerDe.orcSerDe] choice: sets `orc_ser_de`.
+final class KinesisFirehoseDeliveryStreamSerializerOrcSerDe
+    extends KinesisFirehoseDeliveryStreamSerializerSerDe {
+  const KinesisFirehoseDeliveryStreamSerializerOrcSerDe(this.orcSerDe);
 
-  final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDe
-  orcSerDe;
+  final KinesisFirehoseDeliveryStreamOrcSerDe orcSerDe;
 
   @override
   String get blockKey => 'orc_ser_de';
@@ -856,16 +775,12 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
   Map<String, Object?> encode() => {'orc_ser_de': orcSerDe.encode()};
 }
 
-/// The [KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerSerDe.parquetSerDe] choice: sets `parquet_ser_de`.
-final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerSerDeParquetSerDe
-    extends
-        KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerSerDe {
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerSerDeParquetSerDe(
-    this.parquetSerDe,
-  );
+/// The [KinesisFirehoseDeliveryStreamSerializerSerDe.parquetSerDe] choice: sets `parquet_ser_de`.
+final class KinesisFirehoseDeliveryStreamSerializerParquetSerDe
+    extends KinesisFirehoseDeliveryStreamSerializerSerDe {
+  const KinesisFirehoseDeliveryStreamSerializerParquetSerDe(this.parquetSerDe);
 
-  final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerParquetSerDe
-  parquetSerDe;
+  final KinesisFirehoseDeliveryStreamParquetSerDe parquetSerDe;
 
   @override
   String get blockKey => 'parquet_ser_de';
@@ -877,8 +792,8 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
 /// Typed helper for the `extended_s3_configuration.data_format_conversion_configuration.output_format_configuration.serializer.orc_ser_de` block of
 /// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
 @immutable
-final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDe {
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDe({
+final class KinesisFirehoseDeliveryStreamOrcSerDe {
+  const KinesisFirehoseDeliveryStreamOrcSerDe({
     this.blockSizeBytes,
     this.bloomFilterColumns,
     this.bloomFilterFalsePositiveProbability,
@@ -897,19 +812,13 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
 
   final TfArg<num>? bloomFilterFalsePositiveProbability;
 
-  final TfArg<
-    KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeCompression
-  >?
-  compression;
+  final TfArg<KinesisFirehoseDeliveryStreamOrcSerDeCompression>? compression;
 
   final TfArg<num>? dictionaryKeyThreshold;
 
   final TfArg<bool>? enablePadding;
 
-  final TfArg<
-    KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeFormatVersion
-  >?
-  formatVersion;
+  final TfArg<KinesisFirehoseDeliveryStreamFormatVersion>? formatVersion;
 
   final TfArg<num>? paddingTolerance;
 
@@ -933,28 +842,22 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
 }
 
 /// `compression` — derived from the provider schema description.
-enum KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeCompression
-    implements TerraformEnum {
+enum KinesisFirehoseDeliveryStreamOrcSerDeCompression implements TerraformEnum {
   none('NONE'),
   zlib('ZLIB'),
   snappy('SNAPPY');
 
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeCompression(
-    this.terraformValue,
-  );
+  const KinesisFirehoseDeliveryStreamOrcSerDeCompression(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `format_version` — derived from the provider schema description.
-enum KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeFormatVersion
-    implements TerraformEnum {
+enum KinesisFirehoseDeliveryStreamFormatVersion implements TerraformEnum {
   v011('V0_11'),
   v012('V0_12');
 
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeFormatVersion(
-    this.terraformValue,
-  );
+  const KinesisFirehoseDeliveryStreamFormatVersion(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -962,8 +865,8 @@ enum KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionCon
 /// Typed helper for the `extended_s3_configuration.data_format_conversion_configuration.output_format_configuration.serializer.parquet_ser_de` block of
 /// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
 @immutable
-final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerParquetSerDe {
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerParquetSerDe({
+final class KinesisFirehoseDeliveryStreamParquetSerDe {
+  const KinesisFirehoseDeliveryStreamParquetSerDe({
     this.blockSizeBytes,
     this.compression,
     this.enableDictionaryCompression,
@@ -974,9 +877,7 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
 
   final TfArg<num>? blockSizeBytes;
 
-  final TfArg<
-    KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerParquetSerDeCompression
-  >?
+  final TfArg<KinesisFirehoseDeliveryStreamParquetSerDeCompression>?
   compression;
 
   final TfArg<bool>? enableDictionaryCompression;
@@ -985,10 +886,7 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
 
   final TfArg<num>? pageSizeBytes;
 
-  final TfArg<
-    KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerParquetSerDeWriterVersion
-  >?
-  writerVersion;
+  final TfArg<KinesisFirehoseDeliveryStreamWriterVersion>? writerVersion;
 
   Map<String, Object?> encode() => {
     'block_size_bytes': ?blockSizeBytes?.toTfJson(),
@@ -1001,13 +899,13 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
 }
 
 /// `compression` — derived from the provider schema description.
-enum KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerParquetSerDeCompression
+enum KinesisFirehoseDeliveryStreamParquetSerDeCompression
     implements TerraformEnum {
   uncompressed('UNCOMPRESSED'),
   gzip('GZIP'),
   snappy('SNAPPY');
 
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerParquetSerDeCompression(
+  const KinesisFirehoseDeliveryStreamParquetSerDeCompression(
     this.terraformValue,
   );
   @override
@@ -1015,14 +913,11 @@ enum KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionCon
 }
 
 /// `writer_version` — derived from the provider schema description.
-enum KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerParquetSerDeWriterVersion
-    implements TerraformEnum {
+enum KinesisFirehoseDeliveryStreamWriterVersion implements TerraformEnum {
   v1('V1'),
   v2('V2');
 
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerParquetSerDeWriterVersion(
-    this.terraformValue,
-  );
+  const KinesisFirehoseDeliveryStreamWriterVersion(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1030,8 +925,8 @@ enum KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionCon
 /// Typed helper for the `extended_s3_configuration.data_format_conversion_configuration.schema_configuration` block of
 /// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
 @immutable
-final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationSchemaConfiguration {
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationSchemaConfiguration({
+final class KinesisFirehoseDeliveryStreamSchemaConfiguration {
+  const KinesisFirehoseDeliveryStreamSchemaConfiguration({
     this.catalogId,
     required this.databaseName,
     this.region,
@@ -1065,8 +960,8 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
 /// Typed helper for the `extended_s3_configuration.dynamic_partitioning_configuration` block of
 /// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
 @immutable
-final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDynamicPartitioningConfiguration {
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDynamicPartitioningConfiguration({
+final class KinesisFirehoseDeliveryStreamDynamicPartitioningConfiguration {
+  const KinesisFirehoseDeliveryStreamDynamicPartitioningConfiguration({
     this.enabled,
     this.retryDuration,
   });
@@ -1081,76 +976,12 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDynamicPartition
   };
 }
 
-/// Typed helper for the `extended_s3_configuration.processing_configuration` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationProcessingConfiguration {
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationProcessingConfiguration({
-    this.enabled,
-    this.processors,
-  });
-
-  final TfArg<bool>? enabled;
-
-  final List<
-    KinesisFirehoseDeliveryStreamExtendedS3ConfigurationProcessingConfigurationProcessors
-  >?
-  processors;
-
-  Map<String, Object?> encode() => {
-    'enabled': ?enabled?.toTfJson(),
-    if (processors != null)
-      'processors': [for (final e in processors!) e.encode()],
-  };
-}
-
-/// Typed helper for the `extended_s3_configuration.processing_configuration.processors` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationProcessingConfigurationProcessors {
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationProcessingConfigurationProcessors({
-    required this.type,
-    this.parameters,
-  });
-
-  final TfArg<String> type;
-
-  final List<
-    KinesisFirehoseDeliveryStreamExtendedS3ConfigurationProcessingConfigurationProcessorsParameters
-  >?
-  parameters;
-
-  Map<String, Object?> encode() => {
-    'type': type.toTfJson(),
-    if (parameters != null)
-      'parameters': [for (final e in parameters!) e.encode()],
-  };
-}
-
-/// Typed helper for the `extended_s3_configuration.processing_configuration.processors.parameters` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationProcessingConfigurationProcessorsParameters {
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationProcessingConfigurationProcessorsParameters({
-    required this.parameterName,
-    required this.parameterValue,
-  });
-
-  final TfArg<String> parameterName;
-
-  final TfArg<String> parameterValue;
-
-  Map<String, Object?> encode() => {
-    'parameter_name': parameterName.toTfJson(),
-    'parameter_value': parameterValue.toTfJson(),
-  };
-}
-
 /// Typed helper for the `extended_s3_configuration.s3_backup_configuration` block of
 /// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupConfiguration {
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupConfiguration({
+final class KinesisFirehoseDeliveryStreamS3BackupConfiguration {
+  const KinesisFirehoseDeliveryStreamS3BackupConfiguration({
     required this.bucketArn,
     this.bufferingInterval,
     this.bufferingSize,
@@ -1178,7 +1009,7 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupConfigur
 
   final RefTo<AwsIamRole> roleArn;
 
-  final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupConfigurationCloudwatchLoggingOptions?
+  final KinesisFirehoseDeliveryStreamCloudwatchLoggingOptions?
   cloudwatchLoggingOptions;
 
   Map<String, Object?> encode() => {
@@ -1191,29 +1022,6 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupConfigur
     'prefix': ?prefix?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'cloudwatch_logging_options': ?cloudwatchLoggingOptions?.encode(),
-  };
-}
-
-/// Typed helper for the `extended_s3_configuration.s3_backup_configuration.cloudwatch_logging_options` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupConfigurationCloudwatchLoggingOptions {
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupConfigurationCloudwatchLoggingOptions({
-    this.enabled,
-    this.logGroupName,
-    this.logStreamName,
-  });
-
-  final TfArg<bool>? enabled;
-
-  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
-
-  final TfArg<String>? logStreamName;
-
-  Map<String, Object?> encode() => {
-    'enabled': ?enabled?.toTfJson(),
-    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
-    'log_stream_name': ?logStreamName?.toTfJson(),
   };
 }
 
@@ -1256,19 +1064,17 @@ final class KinesisFirehoseDeliveryStreamHttpEndpointConfiguration {
 
   final TfArg<String> url;
 
-  final KinesisFirehoseDeliveryStreamHttpEndpointConfigurationCloudwatchLoggingOptions?
+  final KinesisFirehoseDeliveryStreamCloudwatchLoggingOptions?
   cloudwatchLoggingOptions;
 
-  final KinesisFirehoseDeliveryStreamHttpEndpointConfigurationProcessingConfiguration?
+  final KinesisFirehoseDeliveryStreamProcessingConfiguration?
   processingConfiguration;
 
-  final KinesisFirehoseDeliveryStreamHttpEndpointConfigurationRequestConfiguration?
-  requestConfiguration;
+  final KinesisFirehoseDeliveryStreamRequestConfiguration? requestConfiguration;
 
-  final KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3Configuration
-  s3Configuration;
+  final KinesisFirehoseDeliveryStreamS3Configuration s3Configuration;
 
-  final KinesisFirehoseDeliveryStreamHttpEndpointConfigurationSecretsManagerConfiguration?
+  final KinesisFirehoseDeliveryStreamSecretsManagerConfiguration?
   secretsManagerConfiguration;
 
   Map<String, Object?> encode() => {
@@ -1301,109 +1107,18 @@ enum KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3BackupMode
   final String terraformValue;
 }
 
-/// Typed helper for the `http_endpoint_configuration.cloudwatch_logging_options` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamHttpEndpointConfigurationCloudwatchLoggingOptions {
-  const KinesisFirehoseDeliveryStreamHttpEndpointConfigurationCloudwatchLoggingOptions({
-    this.enabled,
-    this.logGroupName,
-    this.logStreamName,
-  });
-
-  final TfArg<bool>? enabled;
-
-  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
-
-  final TfArg<String>? logStreamName;
-
-  Map<String, Object?> encode() => {
-    'enabled': ?enabled?.toTfJson(),
-    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
-    'log_stream_name': ?logStreamName?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `http_endpoint_configuration.processing_configuration` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamHttpEndpointConfigurationProcessingConfiguration {
-  const KinesisFirehoseDeliveryStreamHttpEndpointConfigurationProcessingConfiguration({
-    this.enabled,
-    this.processors,
-  });
-
-  final TfArg<bool>? enabled;
-
-  final List<
-    KinesisFirehoseDeliveryStreamHttpEndpointConfigurationProcessingConfigurationProcessors
-  >?
-  processors;
-
-  Map<String, Object?> encode() => {
-    'enabled': ?enabled?.toTfJson(),
-    if (processors != null)
-      'processors': [for (final e in processors!) e.encode()],
-  };
-}
-
-/// Typed helper for the `http_endpoint_configuration.processing_configuration.processors` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamHttpEndpointConfigurationProcessingConfigurationProcessors {
-  const KinesisFirehoseDeliveryStreamHttpEndpointConfigurationProcessingConfigurationProcessors({
-    required this.type,
-    this.parameters,
-  });
-
-  final TfArg<String> type;
-
-  final List<
-    KinesisFirehoseDeliveryStreamHttpEndpointConfigurationProcessingConfigurationProcessorsParameters
-  >?
-  parameters;
-
-  Map<String, Object?> encode() => {
-    'type': type.toTfJson(),
-    if (parameters != null)
-      'parameters': [for (final e in parameters!) e.encode()],
-  };
-}
-
-/// Typed helper for the `http_endpoint_configuration.processing_configuration.processors.parameters` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamHttpEndpointConfigurationProcessingConfigurationProcessorsParameters {
-  const KinesisFirehoseDeliveryStreamHttpEndpointConfigurationProcessingConfigurationProcessorsParameters({
-    required this.parameterName,
-    required this.parameterValue,
-  });
-
-  final TfArg<String> parameterName;
-
-  final TfArg<String> parameterValue;
-
-  Map<String, Object?> encode() => {
-    'parameter_name': parameterName.toTfJson(),
-    'parameter_value': parameterValue.toTfJson(),
-  };
-}
-
 /// Typed helper for the `http_endpoint_configuration.request_configuration` block of
 /// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
 @immutable
-final class KinesisFirehoseDeliveryStreamHttpEndpointConfigurationRequestConfiguration {
-  const KinesisFirehoseDeliveryStreamHttpEndpointConfigurationRequestConfiguration({
+final class KinesisFirehoseDeliveryStreamRequestConfiguration {
+  const KinesisFirehoseDeliveryStreamRequestConfiguration({
     this.contentEncoding,
     this.commonAttributes,
   });
 
   final TfArg<String>? contentEncoding;
 
-  final List<
-    KinesisFirehoseDeliveryStreamHttpEndpointConfigurationRequestConfigurationCommonAttributes
-  >?
-  commonAttributes;
+  final List<KinesisFirehoseDeliveryStreamCommonAttributes>? commonAttributes;
 
   Map<String, Object?> encode() => {
     'content_encoding': ?contentEncoding?.toTfJson(),
@@ -1415,8 +1130,8 @@ final class KinesisFirehoseDeliveryStreamHttpEndpointConfigurationRequestConfigu
 /// Typed helper for the `http_endpoint_configuration.request_configuration.common_attributes` block of
 /// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
 @immutable
-final class KinesisFirehoseDeliveryStreamHttpEndpointConfigurationRequestConfigurationCommonAttributes {
-  const KinesisFirehoseDeliveryStreamHttpEndpointConfigurationRequestConfigurationCommonAttributes({
+final class KinesisFirehoseDeliveryStreamCommonAttributes {
+  const KinesisFirehoseDeliveryStreamCommonAttributes({
     required this.name,
     required this.value,
   });
@@ -1431,82 +1146,12 @@ final class KinesisFirehoseDeliveryStreamHttpEndpointConfigurationRequestConfigu
   };
 }
 
-/// Typed helper for the `http_endpoint_configuration.s3_configuration` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3Configuration {
-  const KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3Configuration({
-    required this.bucketArn,
-    this.bufferingInterval,
-    this.bufferingSize,
-    this.compressionFormat,
-    this.errorOutputPrefix,
-    this.kmsKeyArn,
-    this.prefix,
-    required this.roleArn,
-    this.cloudwatchLoggingOptions,
-  });
-
-  final RefTo<AwsS3Bucket> bucketArn;
-
-  final TfArg<num>? bufferingInterval;
-
-  final TfArg<num>? bufferingSize;
-
-  final TfArg<String>? compressionFormat;
-
-  final TfArg<String>? errorOutputPrefix;
-
-  final RefTo<AwsKmsKey>? kmsKeyArn;
-
-  final TfArg<String>? prefix;
-
-  final RefTo<AwsIamRole> roleArn;
-
-  final KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3ConfigurationCloudwatchLoggingOptions?
-  cloudwatchLoggingOptions;
-
-  Map<String, Object?> encode() => {
-    'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
-    'buffering_interval': ?bufferingInterval?.toTfJson(),
-    'buffering_size': ?bufferingSize?.toTfJson(),
-    'compression_format': ?compressionFormat?.toTfJson(),
-    'error_output_prefix': ?errorOutputPrefix?.toTfJson(),
-    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
-    'prefix': ?prefix?.toTfJson(),
-    'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    'cloudwatch_logging_options': ?cloudwatchLoggingOptions?.encode(),
-  };
-}
-
-/// Typed helper for the `http_endpoint_configuration.s3_configuration.cloudwatch_logging_options` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3ConfigurationCloudwatchLoggingOptions {
-  const KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3ConfigurationCloudwatchLoggingOptions({
-    this.enabled,
-    this.logGroupName,
-    this.logStreamName,
-  });
-
-  final TfArg<bool>? enabled;
-
-  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
-
-  final TfArg<String>? logStreamName;
-
-  Map<String, Object?> encode() => {
-    'enabled': ?enabled?.toTfJson(),
-    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
-    'log_stream_name': ?logStreamName?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `http_endpoint_configuration.secrets_manager_configuration` block of
 /// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class KinesisFirehoseDeliveryStreamHttpEndpointConfigurationSecretsManagerConfiguration {
-  const KinesisFirehoseDeliveryStreamHttpEndpointConfigurationSecretsManagerConfiguration({
+final class KinesisFirehoseDeliveryStreamSecretsManagerConfiguration {
+  const KinesisFirehoseDeliveryStreamSecretsManagerConfiguration({
     this.enabled,
     this.roleArn,
     this.secretArn,
@@ -1555,22 +1200,21 @@ final class KinesisFirehoseDeliveryStreamIcebergConfiguration {
 
   final RefTo<AwsIamRole> roleArn;
 
-  final TfArg<KinesisFirehoseDeliveryStreamIcebergConfigurationS3BackupMode>?
+  final TfArg<
+    KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3BackupMode
+  >?
   s3BackupMode;
 
-  final KinesisFirehoseDeliveryStreamIcebergConfigurationCloudwatchLoggingOptions?
+  final KinesisFirehoseDeliveryStreamCloudwatchLoggingOptions?
   cloudwatchLoggingOptions;
 
-  final List<
-    KinesisFirehoseDeliveryStreamIcebergConfigurationDestinationTableConfiguration
-  >?
+  final List<KinesisFirehoseDeliveryStreamDestinationTableConfiguration>?
   destinationTableConfiguration;
 
-  final KinesisFirehoseDeliveryStreamIcebergConfigurationProcessingConfiguration?
+  final KinesisFirehoseDeliveryStreamProcessingConfiguration?
   processingConfiguration;
 
-  final KinesisFirehoseDeliveryStreamIcebergConfigurationS3Configuration
-  s3Configuration;
+  final KinesisFirehoseDeliveryStreamS3Configuration s3Configuration;
 
   Map<String, Object?> encode() => {
     'append_only': ?appendOnly?.toTfJson(),
@@ -1590,47 +1234,11 @@ final class KinesisFirehoseDeliveryStreamIcebergConfiguration {
   };
 }
 
-/// `s3_backup_mode` — derived from the provider schema description.
-enum KinesisFirehoseDeliveryStreamIcebergConfigurationS3BackupMode
-    implements TerraformEnum {
-  faileddataonly('FailedDataOnly'),
-  alldata('AllData');
-
-  const KinesisFirehoseDeliveryStreamIcebergConfigurationS3BackupMode(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `iceberg_configuration.cloudwatch_logging_options` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamIcebergConfigurationCloudwatchLoggingOptions {
-  const KinesisFirehoseDeliveryStreamIcebergConfigurationCloudwatchLoggingOptions({
-    this.enabled,
-    this.logGroupName,
-    this.logStreamName,
-  });
-
-  final TfArg<bool>? enabled;
-
-  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
-
-  final TfArg<String>? logStreamName;
-
-  Map<String, Object?> encode() => {
-    'enabled': ?enabled?.toTfJson(),
-    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
-    'log_stream_name': ?logStreamName?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `iceberg_configuration.destination_table_configuration` block of
 /// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
 @immutable
-final class KinesisFirehoseDeliveryStreamIcebergConfigurationDestinationTableConfiguration {
-  const KinesisFirehoseDeliveryStreamIcebergConfigurationDestinationTableConfiguration({
+final class KinesisFirehoseDeliveryStreamDestinationTableConfiguration {
+  const KinesisFirehoseDeliveryStreamDestinationTableConfiguration({
     required this.databaseName,
     this.s3ErrorOutputPrefix,
     required this.tableName,
@@ -1650,142 +1258,6 @@ final class KinesisFirehoseDeliveryStreamIcebergConfigurationDestinationTableCon
     's3_error_output_prefix': ?s3ErrorOutputPrefix?.toTfJson(),
     'table_name': tableName.toTfJson(),
     'unique_keys': ?uniqueKeys?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `iceberg_configuration.processing_configuration` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamIcebergConfigurationProcessingConfiguration {
-  const KinesisFirehoseDeliveryStreamIcebergConfigurationProcessingConfiguration({
-    this.enabled,
-    this.processors,
-  });
-
-  final TfArg<bool>? enabled;
-
-  final List<
-    KinesisFirehoseDeliveryStreamIcebergConfigurationProcessingConfigurationProcessors
-  >?
-  processors;
-
-  Map<String, Object?> encode() => {
-    'enabled': ?enabled?.toTfJson(),
-    if (processors != null)
-      'processors': [for (final e in processors!) e.encode()],
-  };
-}
-
-/// Typed helper for the `iceberg_configuration.processing_configuration.processors` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamIcebergConfigurationProcessingConfigurationProcessors {
-  const KinesisFirehoseDeliveryStreamIcebergConfigurationProcessingConfigurationProcessors({
-    required this.type,
-    this.parameters,
-  });
-
-  final TfArg<String> type;
-
-  final List<
-    KinesisFirehoseDeliveryStreamIcebergConfigurationProcessingConfigurationProcessorsParameters
-  >?
-  parameters;
-
-  Map<String, Object?> encode() => {
-    'type': type.toTfJson(),
-    if (parameters != null)
-      'parameters': [for (final e in parameters!) e.encode()],
-  };
-}
-
-/// Typed helper for the `iceberg_configuration.processing_configuration.processors.parameters` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamIcebergConfigurationProcessingConfigurationProcessorsParameters {
-  const KinesisFirehoseDeliveryStreamIcebergConfigurationProcessingConfigurationProcessorsParameters({
-    required this.parameterName,
-    required this.parameterValue,
-  });
-
-  final TfArg<String> parameterName;
-
-  final TfArg<String> parameterValue;
-
-  Map<String, Object?> encode() => {
-    'parameter_name': parameterName.toTfJson(),
-    'parameter_value': parameterValue.toTfJson(),
-  };
-}
-
-/// Typed helper for the `iceberg_configuration.s3_configuration` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamIcebergConfigurationS3Configuration {
-  const KinesisFirehoseDeliveryStreamIcebergConfigurationS3Configuration({
-    required this.bucketArn,
-    this.bufferingInterval,
-    this.bufferingSize,
-    this.compressionFormat,
-    this.errorOutputPrefix,
-    this.kmsKeyArn,
-    this.prefix,
-    required this.roleArn,
-    this.cloudwatchLoggingOptions,
-  });
-
-  final RefTo<AwsS3Bucket> bucketArn;
-
-  final TfArg<num>? bufferingInterval;
-
-  final TfArg<num>? bufferingSize;
-
-  final TfArg<String>? compressionFormat;
-
-  final TfArg<String>? errorOutputPrefix;
-
-  final RefTo<AwsKmsKey>? kmsKeyArn;
-
-  final TfArg<String>? prefix;
-
-  final RefTo<AwsIamRole> roleArn;
-
-  final KinesisFirehoseDeliveryStreamIcebergConfigurationS3ConfigurationCloudwatchLoggingOptions?
-  cloudwatchLoggingOptions;
-
-  Map<String, Object?> encode() => {
-    'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
-    'buffering_interval': ?bufferingInterval?.toTfJson(),
-    'buffering_size': ?bufferingSize?.toTfJson(),
-    'compression_format': ?compressionFormat?.toTfJson(),
-    'error_output_prefix': ?errorOutputPrefix?.toTfJson(),
-    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
-    'prefix': ?prefix?.toTfJson(),
-    'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    'cloudwatch_logging_options': ?cloudwatchLoggingOptions?.encode(),
-  };
-}
-
-/// Typed helper for the `iceberg_configuration.s3_configuration.cloudwatch_logging_options` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamIcebergConfigurationS3ConfigurationCloudwatchLoggingOptions {
-  const KinesisFirehoseDeliveryStreamIcebergConfigurationS3ConfigurationCloudwatchLoggingOptions({
-    this.enabled,
-    this.logGroupName,
-    this.logStreamName,
-  });
-
-  final TfArg<bool>? enabled;
-
-  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
-
-  final TfArg<String>? logStreamName;
-
-  Map<String, Object?> encode() => {
-    'enabled': ?enabled?.toTfJson(),
-    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
-    'log_stream_name': ?logStreamName?.toTfJson(),
   };
 }
 
@@ -1825,7 +1297,7 @@ final class KinesisFirehoseDeliveryStreamMskSourceConfiguration {
 
   final TfArg<String> topicName;
 
-  final KinesisFirehoseDeliveryStreamMskSourceConfigurationAuthenticationConfiguration
+  final KinesisFirehoseDeliveryStreamAuthenticationConfiguration
   authenticationConfiguration;
 
   Map<String, Object?> encode() => {
@@ -1839,16 +1311,13 @@ final class KinesisFirehoseDeliveryStreamMskSourceConfiguration {
 /// Typed helper for the `msk_source_configuration.authentication_configuration` block of
 /// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
 @immutable
-final class KinesisFirehoseDeliveryStreamMskSourceConfigurationAuthenticationConfiguration {
-  const KinesisFirehoseDeliveryStreamMskSourceConfigurationAuthenticationConfiguration({
+final class KinesisFirehoseDeliveryStreamAuthenticationConfiguration {
+  const KinesisFirehoseDeliveryStreamAuthenticationConfiguration({
     required this.connectivity,
     required this.roleArn,
   });
 
-  final TfArg<
-    KinesisFirehoseDeliveryStreamMskSourceConfigurationAuthenticationConfigurationConnectivity
-  >
-  connectivity;
+  final TfArg<KinesisFirehoseDeliveryStreamConnectivity> connectivity;
 
   final RefTo<AwsIamRole> roleArn;
 
@@ -1859,14 +1328,11 @@ final class KinesisFirehoseDeliveryStreamMskSourceConfigurationAuthenticationCon
 }
 
 /// `connectivity` — derived from the provider schema description.
-enum KinesisFirehoseDeliveryStreamMskSourceConfigurationAuthenticationConfigurationConnectivity
-    implements TerraformEnum {
+enum KinesisFirehoseDeliveryStreamConnectivity implements TerraformEnum {
   public('PUBLIC'),
   private('PRIVATE');
 
-  const KinesisFirehoseDeliveryStreamMskSourceConfigurationAuthenticationConfigurationConnectivity(
-    this.terraformValue,
-  );
+  const KinesisFirehoseDeliveryStreamConnectivity(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1900,34 +1366,31 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfiguration {
 
   final TfArg<String> indexName;
 
-  final TfArg<
-    KinesisFirehoseDeliveryStreamOpensearchConfigurationIndexRotationPeriod
-  >?
+  final TfArg<KinesisFirehoseDeliveryStreamIndexRotationPeriod>?
   indexRotationPeriod;
 
   final TfArg<num>? retryDuration;
 
   final RefTo<AwsIamRole> roleArn;
 
-  final TfArg<KinesisFirehoseDeliveryStreamOpensearchConfigurationS3BackupMode>?
+  final TfArg<
+    KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3BackupMode
+  >?
   s3BackupMode;
 
   final TfArg<String>? typeName;
 
-  final KinesisFirehoseDeliveryStreamOpensearchConfigurationCloudwatchLoggingOptions?
+  final KinesisFirehoseDeliveryStreamCloudwatchLoggingOptions?
   cloudwatchLoggingOptions;
 
-  final KinesisFirehoseDeliveryStreamOpensearchConfigurationDocumentIdOptions?
-  documentIdOptions;
+  final KinesisFirehoseDeliveryStreamDocumentIdOptions? documentIdOptions;
 
-  final KinesisFirehoseDeliveryStreamOpensearchConfigurationProcessingConfiguration?
+  final KinesisFirehoseDeliveryStreamProcessingConfiguration?
   processingConfiguration;
 
-  final KinesisFirehoseDeliveryStreamOpensearchConfigurationS3Configuration
-  s3Configuration;
+  final KinesisFirehoseDeliveryStreamS3Configuration s3Configuration;
 
-  final KinesisFirehoseDeliveryStreamOpensearchConfigurationVpcConfig?
-  vpcConfig;
+  final KinesisFirehoseDeliveryStreamVpcConfig? vpcConfig;
 
   Map<String, Object?> encode() => {
     'buffering_interval': ?bufferingInterval?.toTfJson(),
@@ -2005,69 +1468,15 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfigurationDomainArn
   Map<String, Object?> encode() => {'domain_arn': domainArn.toTfJson()};
 }
 
-/// `index_rotation_period` — derived from the provider schema description.
-enum KinesisFirehoseDeliveryStreamOpensearchConfigurationIndexRotationPeriod
-    implements TerraformEnum {
-  norotation('NoRotation'),
-  onehour('OneHour'),
-  oneday('OneDay'),
-  oneweek('OneWeek'),
-  onemonth('OneMonth');
-
-  const KinesisFirehoseDeliveryStreamOpensearchConfigurationIndexRotationPeriod(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `s3_backup_mode` — derived from the provider schema description.
-enum KinesisFirehoseDeliveryStreamOpensearchConfigurationS3BackupMode
-    implements TerraformEnum {
-  faileddocumentsonly('FailedDocumentsOnly'),
-  alldocuments('AllDocuments');
-
-  const KinesisFirehoseDeliveryStreamOpensearchConfigurationS3BackupMode(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `opensearch_configuration.cloudwatch_logging_options` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamOpensearchConfigurationCloudwatchLoggingOptions {
-  const KinesisFirehoseDeliveryStreamOpensearchConfigurationCloudwatchLoggingOptions({
-    this.enabled,
-    this.logGroupName,
-    this.logStreamName,
-  });
-
-  final TfArg<bool>? enabled;
-
-  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
-
-  final TfArg<String>? logStreamName;
-
-  Map<String, Object?> encode() => {
-    'enabled': ?enabled?.toTfJson(),
-    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
-    'log_stream_name': ?logStreamName?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `opensearch_configuration.document_id_options` block of
 /// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
 @immutable
-final class KinesisFirehoseDeliveryStreamOpensearchConfigurationDocumentIdOptions {
-  const KinesisFirehoseDeliveryStreamOpensearchConfigurationDocumentIdOptions({
+final class KinesisFirehoseDeliveryStreamDocumentIdOptions {
+  const KinesisFirehoseDeliveryStreamDocumentIdOptions({
     required this.defaultDocumentIdFormat,
   });
 
-  final TfArg<
-    KinesisFirehoseDeliveryStreamOpensearchConfigurationDocumentIdOptionsDefaultDocumentIdFormat
-  >
+  final TfArg<KinesisFirehoseDeliveryStreamDefaultDocumentIdFormat>
   defaultDocumentIdFormat;
 
   Map<String, Object?> encode() => {
@@ -2076,175 +1485,16 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfigurationDocumentIdOption
 }
 
 /// `default_document_id_format` — derived from the provider schema description.
-enum KinesisFirehoseDeliveryStreamOpensearchConfigurationDocumentIdOptionsDefaultDocumentIdFormat
+enum KinesisFirehoseDeliveryStreamDefaultDocumentIdFormat
     implements TerraformEnum {
   firehoseDefault('FIREHOSE_DEFAULT'),
   noDocumentId('NO_DOCUMENT_ID');
 
-  const KinesisFirehoseDeliveryStreamOpensearchConfigurationDocumentIdOptionsDefaultDocumentIdFormat(
+  const KinesisFirehoseDeliveryStreamDefaultDocumentIdFormat(
     this.terraformValue,
   );
   @override
   final String terraformValue;
-}
-
-/// Typed helper for the `opensearch_configuration.processing_configuration` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamOpensearchConfigurationProcessingConfiguration {
-  const KinesisFirehoseDeliveryStreamOpensearchConfigurationProcessingConfiguration({
-    this.enabled,
-    this.processors,
-  });
-
-  final TfArg<bool>? enabled;
-
-  final List<
-    KinesisFirehoseDeliveryStreamOpensearchConfigurationProcessingConfigurationProcessors
-  >?
-  processors;
-
-  Map<String, Object?> encode() => {
-    'enabled': ?enabled?.toTfJson(),
-    if (processors != null)
-      'processors': [for (final e in processors!) e.encode()],
-  };
-}
-
-/// Typed helper for the `opensearch_configuration.processing_configuration.processors` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamOpensearchConfigurationProcessingConfigurationProcessors {
-  const KinesisFirehoseDeliveryStreamOpensearchConfigurationProcessingConfigurationProcessors({
-    required this.type,
-    this.parameters,
-  });
-
-  final TfArg<String> type;
-
-  final List<
-    KinesisFirehoseDeliveryStreamOpensearchConfigurationProcessingConfigurationProcessorsParameters
-  >?
-  parameters;
-
-  Map<String, Object?> encode() => {
-    'type': type.toTfJson(),
-    if (parameters != null)
-      'parameters': [for (final e in parameters!) e.encode()],
-  };
-}
-
-/// Typed helper for the `opensearch_configuration.processing_configuration.processors.parameters` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamOpensearchConfigurationProcessingConfigurationProcessorsParameters {
-  const KinesisFirehoseDeliveryStreamOpensearchConfigurationProcessingConfigurationProcessorsParameters({
-    required this.parameterName,
-    required this.parameterValue,
-  });
-
-  final TfArg<String> parameterName;
-
-  final TfArg<String> parameterValue;
-
-  Map<String, Object?> encode() => {
-    'parameter_name': parameterName.toTfJson(),
-    'parameter_value': parameterValue.toTfJson(),
-  };
-}
-
-/// Typed helper for the `opensearch_configuration.s3_configuration` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamOpensearchConfigurationS3Configuration {
-  const KinesisFirehoseDeliveryStreamOpensearchConfigurationS3Configuration({
-    required this.bucketArn,
-    this.bufferingInterval,
-    this.bufferingSize,
-    this.compressionFormat,
-    this.errorOutputPrefix,
-    this.kmsKeyArn,
-    this.prefix,
-    required this.roleArn,
-    this.cloudwatchLoggingOptions,
-  });
-
-  final RefTo<AwsS3Bucket> bucketArn;
-
-  final TfArg<num>? bufferingInterval;
-
-  final TfArg<num>? bufferingSize;
-
-  final TfArg<String>? compressionFormat;
-
-  final TfArg<String>? errorOutputPrefix;
-
-  final RefTo<AwsKmsKey>? kmsKeyArn;
-
-  final TfArg<String>? prefix;
-
-  final RefTo<AwsIamRole> roleArn;
-
-  final KinesisFirehoseDeliveryStreamOpensearchConfigurationS3ConfigurationCloudwatchLoggingOptions?
-  cloudwatchLoggingOptions;
-
-  Map<String, Object?> encode() => {
-    'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
-    'buffering_interval': ?bufferingInterval?.toTfJson(),
-    'buffering_size': ?bufferingSize?.toTfJson(),
-    'compression_format': ?compressionFormat?.toTfJson(),
-    'error_output_prefix': ?errorOutputPrefix?.toTfJson(),
-    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
-    'prefix': ?prefix?.toTfJson(),
-    'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    'cloudwatch_logging_options': ?cloudwatchLoggingOptions?.encode(),
-  };
-}
-
-/// Typed helper for the `opensearch_configuration.s3_configuration.cloudwatch_logging_options` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamOpensearchConfigurationS3ConfigurationCloudwatchLoggingOptions {
-  const KinesisFirehoseDeliveryStreamOpensearchConfigurationS3ConfigurationCloudwatchLoggingOptions({
-    this.enabled,
-    this.logGroupName,
-    this.logStreamName,
-  });
-
-  final TfArg<bool>? enabled;
-
-  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
-
-  final TfArg<String>? logStreamName;
-
-  Map<String, Object?> encode() => {
-    'enabled': ?enabled?.toTfJson(),
-    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
-    'log_stream_name': ?logStreamName?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `opensearch_configuration.vpc_config` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamOpensearchConfigurationVpcConfig {
-  const KinesisFirehoseDeliveryStreamOpensearchConfigurationVpcConfig({
-    required this.roleArn,
-    required this.securityGroupIds,
-    required this.subnetIds,
-  });
-
-  final RefTo<AwsIamRole> roleArn;
-
-  final TfArg<List<RefTo<AwsSecurityGroup>>> securityGroupIds;
-
-  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
-
-  Map<String, Object?> encode() => {
-    'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
-    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
-  };
 }
 
 /// Typed helper for the `opensearchserverless_configuration` block of
@@ -2278,21 +1528,19 @@ final class KinesisFirehoseDeliveryStreamOpensearchserverlessConfiguration {
   final RefTo<AwsIamRole> roleArn;
 
   final TfArg<
-    KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationS3BackupMode
+    KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3BackupMode
   >?
   s3BackupMode;
 
-  final KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationCloudwatchLoggingOptions?
+  final KinesisFirehoseDeliveryStreamCloudwatchLoggingOptions?
   cloudwatchLoggingOptions;
 
-  final KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationProcessingConfiguration?
+  final KinesisFirehoseDeliveryStreamProcessingConfiguration?
   processingConfiguration;
 
-  final KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationS3Configuration
-  s3Configuration;
+  final KinesisFirehoseDeliveryStreamS3Configuration s3Configuration;
 
-  final KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationVpcConfig?
-  vpcConfig;
+  final KinesisFirehoseDeliveryStreamVpcConfig? vpcConfig;
 
   Map<String, Object?> encode() => {
     'buffering_interval': ?bufferingInterval?.toTfJson(),
@@ -2306,201 +1554,6 @@ final class KinesisFirehoseDeliveryStreamOpensearchserverlessConfiguration {
     'processing_configuration': ?processingConfiguration?.encode(),
     's3_configuration': s3Configuration.encode(),
     'vpc_config': ?vpcConfig?.encode(),
-  };
-}
-
-/// `s3_backup_mode` — derived from the provider schema description.
-enum KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationS3BackupMode
-    implements TerraformEnum {
-  faileddocumentsonly('FailedDocumentsOnly'),
-  alldocuments('AllDocuments');
-
-  const KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationS3BackupMode(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `opensearchserverless_configuration.cloudwatch_logging_options` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationCloudwatchLoggingOptions {
-  const KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationCloudwatchLoggingOptions({
-    this.enabled,
-    this.logGroupName,
-    this.logStreamName,
-  });
-
-  final TfArg<bool>? enabled;
-
-  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
-
-  final TfArg<String>? logStreamName;
-
-  Map<String, Object?> encode() => {
-    'enabled': ?enabled?.toTfJson(),
-    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
-    'log_stream_name': ?logStreamName?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `opensearchserverless_configuration.processing_configuration` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationProcessingConfiguration {
-  const KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationProcessingConfiguration({
-    this.enabled,
-    this.processors,
-  });
-
-  final TfArg<bool>? enabled;
-
-  final List<
-    KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationProcessingConfigurationProcessors
-  >?
-  processors;
-
-  Map<String, Object?> encode() => {
-    'enabled': ?enabled?.toTfJson(),
-    if (processors != null)
-      'processors': [for (final e in processors!) e.encode()],
-  };
-}
-
-/// Typed helper for the `opensearchserverless_configuration.processing_configuration.processors` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationProcessingConfigurationProcessors {
-  const KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationProcessingConfigurationProcessors({
-    required this.type,
-    this.parameters,
-  });
-
-  final TfArg<String> type;
-
-  final List<
-    KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationProcessingConfigurationProcessorsParameters
-  >?
-  parameters;
-
-  Map<String, Object?> encode() => {
-    'type': type.toTfJson(),
-    if (parameters != null)
-      'parameters': [for (final e in parameters!) e.encode()],
-  };
-}
-
-/// Typed helper for the `opensearchserverless_configuration.processing_configuration.processors.parameters` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationProcessingConfigurationProcessorsParameters {
-  const KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationProcessingConfigurationProcessorsParameters({
-    required this.parameterName,
-    required this.parameterValue,
-  });
-
-  final TfArg<String> parameterName;
-
-  final TfArg<String> parameterValue;
-
-  Map<String, Object?> encode() => {
-    'parameter_name': parameterName.toTfJson(),
-    'parameter_value': parameterValue.toTfJson(),
-  };
-}
-
-/// Typed helper for the `opensearchserverless_configuration.s3_configuration` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationS3Configuration {
-  const KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationS3Configuration({
-    required this.bucketArn,
-    this.bufferingInterval,
-    this.bufferingSize,
-    this.compressionFormat,
-    this.errorOutputPrefix,
-    this.kmsKeyArn,
-    this.prefix,
-    required this.roleArn,
-    this.cloudwatchLoggingOptions,
-  });
-
-  final RefTo<AwsS3Bucket> bucketArn;
-
-  final TfArg<num>? bufferingInterval;
-
-  final TfArg<num>? bufferingSize;
-
-  final TfArg<String>? compressionFormat;
-
-  final TfArg<String>? errorOutputPrefix;
-
-  final RefTo<AwsKmsKey>? kmsKeyArn;
-
-  final TfArg<String>? prefix;
-
-  final RefTo<AwsIamRole> roleArn;
-
-  final KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationS3ConfigurationCloudwatchLoggingOptions?
-  cloudwatchLoggingOptions;
-
-  Map<String, Object?> encode() => {
-    'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
-    'buffering_interval': ?bufferingInterval?.toTfJson(),
-    'buffering_size': ?bufferingSize?.toTfJson(),
-    'compression_format': ?compressionFormat?.toTfJson(),
-    'error_output_prefix': ?errorOutputPrefix?.toTfJson(),
-    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
-    'prefix': ?prefix?.toTfJson(),
-    'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    'cloudwatch_logging_options': ?cloudwatchLoggingOptions?.encode(),
-  };
-}
-
-/// Typed helper for the `opensearchserverless_configuration.s3_configuration.cloudwatch_logging_options` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationS3ConfigurationCloudwatchLoggingOptions {
-  const KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationS3ConfigurationCloudwatchLoggingOptions({
-    this.enabled,
-    this.logGroupName,
-    this.logStreamName,
-  });
-
-  final TfArg<bool>? enabled;
-
-  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
-
-  final TfArg<String>? logStreamName;
-
-  Map<String, Object?> encode() => {
-    'enabled': ?enabled?.toTfJson(),
-    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
-    'log_stream_name': ?logStreamName?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `opensearchserverless_configuration.vpc_config` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationVpcConfig {
-  const KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationVpcConfig({
-    required this.roleArn,
-    required this.securityGroupIds,
-    required this.subnetIds,
-  });
-
-  final RefTo<AwsIamRole> roleArn;
-
-  final TfArg<List<RefTo<AwsSecurityGroup>>> securityGroupIds;
-
-  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
-
-  Map<String, Object?> encode() => {
-    'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
-    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
   };
 }
 
@@ -2539,24 +1592,23 @@ final class KinesisFirehoseDeliveryStreamRedshiftConfiguration {
 
   final RefTo<AwsIamRole> roleArn;
 
-  final TfArg<KinesisFirehoseDeliveryStreamRedshiftConfigurationS3BackupMode>?
+  final TfArg<KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupMode>?
   s3BackupMode;
 
   final TfArg<String>? username;
 
-  final KinesisFirehoseDeliveryStreamRedshiftConfigurationCloudwatchLoggingOptions?
+  final KinesisFirehoseDeliveryStreamCloudwatchLoggingOptions?
   cloudwatchLoggingOptions;
 
-  final KinesisFirehoseDeliveryStreamRedshiftConfigurationProcessingConfiguration?
+  final KinesisFirehoseDeliveryStreamProcessingConfiguration?
   processingConfiguration;
 
-  final KinesisFirehoseDeliveryStreamRedshiftConfigurationS3BackupConfiguration?
+  final KinesisFirehoseDeliveryStreamS3BackupConfiguration?
   s3BackupConfiguration;
 
-  final KinesisFirehoseDeliveryStreamRedshiftConfigurationS3Configuration
-  s3Configuration;
+  final KinesisFirehoseDeliveryStreamS3Configuration s3Configuration;
 
-  final KinesisFirehoseDeliveryStreamRedshiftConfigurationSecretsManagerConfiguration?
+  final KinesisFirehoseDeliveryStreamSecretsManagerConfiguration?
   secretsManagerConfiguration;
 
   Map<String, Object?> encode() => {
@@ -2577,272 +1629,6 @@ final class KinesisFirehoseDeliveryStreamRedshiftConfiguration {
   };
 }
 
-/// `s3_backup_mode` — derived from the provider schema description.
-enum KinesisFirehoseDeliveryStreamRedshiftConfigurationS3BackupMode
-    implements TerraformEnum {
-  disabled('Disabled'),
-  enabled('Enabled');
-
-  const KinesisFirehoseDeliveryStreamRedshiftConfigurationS3BackupMode(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `redshift_configuration.cloudwatch_logging_options` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamRedshiftConfigurationCloudwatchLoggingOptions {
-  const KinesisFirehoseDeliveryStreamRedshiftConfigurationCloudwatchLoggingOptions({
-    this.enabled,
-    this.logGroupName,
-    this.logStreamName,
-  });
-
-  final TfArg<bool>? enabled;
-
-  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
-
-  final TfArg<String>? logStreamName;
-
-  Map<String, Object?> encode() => {
-    'enabled': ?enabled?.toTfJson(),
-    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
-    'log_stream_name': ?logStreamName?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `redshift_configuration.processing_configuration` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamRedshiftConfigurationProcessingConfiguration {
-  const KinesisFirehoseDeliveryStreamRedshiftConfigurationProcessingConfiguration({
-    this.enabled,
-    this.processors,
-  });
-
-  final TfArg<bool>? enabled;
-
-  final List<
-    KinesisFirehoseDeliveryStreamRedshiftConfigurationProcessingConfigurationProcessors
-  >?
-  processors;
-
-  Map<String, Object?> encode() => {
-    'enabled': ?enabled?.toTfJson(),
-    if (processors != null)
-      'processors': [for (final e in processors!) e.encode()],
-  };
-}
-
-/// Typed helper for the `redshift_configuration.processing_configuration.processors` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamRedshiftConfigurationProcessingConfigurationProcessors {
-  const KinesisFirehoseDeliveryStreamRedshiftConfigurationProcessingConfigurationProcessors({
-    required this.type,
-    this.parameters,
-  });
-
-  final TfArg<String> type;
-
-  final List<
-    KinesisFirehoseDeliveryStreamRedshiftConfigurationProcessingConfigurationProcessorsParameters
-  >?
-  parameters;
-
-  Map<String, Object?> encode() => {
-    'type': type.toTfJson(),
-    if (parameters != null)
-      'parameters': [for (final e in parameters!) e.encode()],
-  };
-}
-
-/// Typed helper for the `redshift_configuration.processing_configuration.processors.parameters` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamRedshiftConfigurationProcessingConfigurationProcessorsParameters {
-  const KinesisFirehoseDeliveryStreamRedshiftConfigurationProcessingConfigurationProcessorsParameters({
-    required this.parameterName,
-    required this.parameterValue,
-  });
-
-  final TfArg<String> parameterName;
-
-  final TfArg<String> parameterValue;
-
-  Map<String, Object?> encode() => {
-    'parameter_name': parameterName.toTfJson(),
-    'parameter_value': parameterValue.toTfJson(),
-  };
-}
-
-/// Typed helper for the `redshift_configuration.s3_backup_configuration` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamRedshiftConfigurationS3BackupConfiguration {
-  const KinesisFirehoseDeliveryStreamRedshiftConfigurationS3BackupConfiguration({
-    required this.bucketArn,
-    this.bufferingInterval,
-    this.bufferingSize,
-    this.compressionFormat,
-    this.errorOutputPrefix,
-    this.kmsKeyArn,
-    this.prefix,
-    required this.roleArn,
-    this.cloudwatchLoggingOptions,
-  });
-
-  final RefTo<AwsS3Bucket> bucketArn;
-
-  final TfArg<num>? bufferingInterval;
-
-  final TfArg<num>? bufferingSize;
-
-  final TfArg<String>? compressionFormat;
-
-  final TfArg<String>? errorOutputPrefix;
-
-  final RefTo<AwsKmsKey>? kmsKeyArn;
-
-  final TfArg<String>? prefix;
-
-  final RefTo<AwsIamRole> roleArn;
-
-  final KinesisFirehoseDeliveryStreamRedshiftConfigurationS3BackupConfigurationCloudwatchLoggingOptions?
-  cloudwatchLoggingOptions;
-
-  Map<String, Object?> encode() => {
-    'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
-    'buffering_interval': ?bufferingInterval?.toTfJson(),
-    'buffering_size': ?bufferingSize?.toTfJson(),
-    'compression_format': ?compressionFormat?.toTfJson(),
-    'error_output_prefix': ?errorOutputPrefix?.toTfJson(),
-    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
-    'prefix': ?prefix?.toTfJson(),
-    'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    'cloudwatch_logging_options': ?cloudwatchLoggingOptions?.encode(),
-  };
-}
-
-/// Typed helper for the `redshift_configuration.s3_backup_configuration.cloudwatch_logging_options` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamRedshiftConfigurationS3BackupConfigurationCloudwatchLoggingOptions {
-  const KinesisFirehoseDeliveryStreamRedshiftConfigurationS3BackupConfigurationCloudwatchLoggingOptions({
-    this.enabled,
-    this.logGroupName,
-    this.logStreamName,
-  });
-
-  final TfArg<bool>? enabled;
-
-  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
-
-  final TfArg<String>? logStreamName;
-
-  Map<String, Object?> encode() => {
-    'enabled': ?enabled?.toTfJson(),
-    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
-    'log_stream_name': ?logStreamName?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `redshift_configuration.s3_configuration` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamRedshiftConfigurationS3Configuration {
-  const KinesisFirehoseDeliveryStreamRedshiftConfigurationS3Configuration({
-    required this.bucketArn,
-    this.bufferingInterval,
-    this.bufferingSize,
-    this.compressionFormat,
-    this.errorOutputPrefix,
-    this.kmsKeyArn,
-    this.prefix,
-    required this.roleArn,
-    this.cloudwatchLoggingOptions,
-  });
-
-  final RefTo<AwsS3Bucket> bucketArn;
-
-  final TfArg<num>? bufferingInterval;
-
-  final TfArg<num>? bufferingSize;
-
-  final TfArg<String>? compressionFormat;
-
-  final TfArg<String>? errorOutputPrefix;
-
-  final RefTo<AwsKmsKey>? kmsKeyArn;
-
-  final TfArg<String>? prefix;
-
-  final RefTo<AwsIamRole> roleArn;
-
-  final KinesisFirehoseDeliveryStreamRedshiftConfigurationS3ConfigurationCloudwatchLoggingOptions?
-  cloudwatchLoggingOptions;
-
-  Map<String, Object?> encode() => {
-    'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
-    'buffering_interval': ?bufferingInterval?.toTfJson(),
-    'buffering_size': ?bufferingSize?.toTfJson(),
-    'compression_format': ?compressionFormat?.toTfJson(),
-    'error_output_prefix': ?errorOutputPrefix?.toTfJson(),
-    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
-    'prefix': ?prefix?.toTfJson(),
-    'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    'cloudwatch_logging_options': ?cloudwatchLoggingOptions?.encode(),
-  };
-}
-
-/// Typed helper for the `redshift_configuration.s3_configuration.cloudwatch_logging_options` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamRedshiftConfigurationS3ConfigurationCloudwatchLoggingOptions {
-  const KinesisFirehoseDeliveryStreamRedshiftConfigurationS3ConfigurationCloudwatchLoggingOptions({
-    this.enabled,
-    this.logGroupName,
-    this.logStreamName,
-  });
-
-  final TfArg<bool>? enabled;
-
-  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
-
-  final TfArg<String>? logStreamName;
-
-  Map<String, Object?> encode() => {
-    'enabled': ?enabled?.toTfJson(),
-    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
-    'log_stream_name': ?logStreamName?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `redshift_configuration.secrets_manager_configuration` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamRedshiftConfigurationSecretsManagerConfiguration {
-  const KinesisFirehoseDeliveryStreamRedshiftConfigurationSecretsManagerConfiguration({
-    this.enabled,
-    this.roleArn,
-    this.secretArn,
-  });
-
-  final TfArg<bool>? enabled;
-
-  final RefTo<AwsIamRole>? roleArn;
-
-  final TfArg<String>? secretArn;
-
-  Map<String, Object?> encode() => {
-    'enabled': ?enabled?.toTfJson(),
-    'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
-    'secret_arn': ?secretArn?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `server_side_encryption` block of
 /// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
 @immutable
@@ -2857,8 +1643,7 @@ final class KinesisFirehoseDeliveryStreamServerSideEncryption {
 
   final RefTo<AwsKmsKey>? keyArn;
 
-  final TfArg<KinesisFirehoseDeliveryStreamServerSideEncryptionKeyType>?
-  keyType;
+  final TfArg<KinesisFirehoseDeliveryStreamKeyType>? keyType;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
@@ -2868,14 +1653,11 @@ final class KinesisFirehoseDeliveryStreamServerSideEncryption {
 }
 
 /// `key_type` — derived from the provider schema description.
-enum KinesisFirehoseDeliveryStreamServerSideEncryptionKeyType
-    implements TerraformEnum {
+enum KinesisFirehoseDeliveryStreamKeyType implements TerraformEnum {
   awsOwnedCmk('AWS_OWNED_CMK'),
   customerManagedCmk('CUSTOMER_MANAGED_CMK');
 
-  const KinesisFirehoseDeliveryStreamServerSideEncryptionKeyType(
-    this.terraformValue,
-  );
+  const KinesisFirehoseDeliveryStreamKeyType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -2916,9 +1698,7 @@ final class KinesisFirehoseDeliveryStreamSnowflakeConfiguration {
 
   final TfArg<String>? contentColumnName;
 
-  final TfArg<
-    KinesisFirehoseDeliveryStreamSnowflakeConfigurationDataLoadingOption
-  >?
+  final TfArg<KinesisFirehoseDeliveryStreamDataLoadingOption>?
   dataLoadingOption;
 
   final TfArg<String> database;
@@ -2933,7 +1713,9 @@ final class KinesisFirehoseDeliveryStreamSnowflakeConfiguration {
 
   final RefTo<AwsIamRole> roleArn;
 
-  final TfArg<KinesisFirehoseDeliveryStreamSnowflakeConfigurationS3BackupMode>?
+  final TfArg<
+    KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3BackupMode
+  >?
   s3BackupMode;
 
   final TfArg<String> schema;
@@ -2942,22 +1724,21 @@ final class KinesisFirehoseDeliveryStreamSnowflakeConfiguration {
 
   final TfArg<String>? user;
 
-  final KinesisFirehoseDeliveryStreamSnowflakeConfigurationCloudwatchLoggingOptions?
+  final KinesisFirehoseDeliveryStreamCloudwatchLoggingOptions?
   cloudwatchLoggingOptions;
 
-  final KinesisFirehoseDeliveryStreamSnowflakeConfigurationProcessingConfiguration?
+  final KinesisFirehoseDeliveryStreamProcessingConfiguration?
   processingConfiguration;
 
-  final KinesisFirehoseDeliveryStreamSnowflakeConfigurationS3Configuration
-  s3Configuration;
+  final KinesisFirehoseDeliveryStreamS3Configuration s3Configuration;
 
-  final KinesisFirehoseDeliveryStreamSnowflakeConfigurationSecretsManagerConfiguration?
+  final KinesisFirehoseDeliveryStreamSecretsManagerConfiguration?
   secretsManagerConfiguration;
 
-  final KinesisFirehoseDeliveryStreamSnowflakeConfigurationSnowflakeRoleConfiguration?
+  final KinesisFirehoseDeliveryStreamSnowflakeRoleConfiguration?
   snowflakeRoleConfiguration;
 
-  final KinesisFirehoseDeliveryStreamSnowflakeConfigurationSnowflakeVpcConfiguration?
+  final KinesisFirehoseDeliveryStreamSnowflakeVpcConfiguration?
   snowflakeVpcConfiguration;
 
   Map<String, Object?> encode() => {
@@ -2986,219 +1767,21 @@ final class KinesisFirehoseDeliveryStreamSnowflakeConfiguration {
 }
 
 /// `data_loading_option` — derived from the provider schema description.
-enum KinesisFirehoseDeliveryStreamSnowflakeConfigurationDataLoadingOption
-    implements TerraformEnum {
+enum KinesisFirehoseDeliveryStreamDataLoadingOption implements TerraformEnum {
   jsonMapping('JSON_MAPPING'),
   variantContentMapping('VARIANT_CONTENT_MAPPING'),
   variantContentAndMetadataMapping('VARIANT_CONTENT_AND_METADATA_MAPPING');
 
-  const KinesisFirehoseDeliveryStreamSnowflakeConfigurationDataLoadingOption(
-    this.terraformValue,
-  );
+  const KinesisFirehoseDeliveryStreamDataLoadingOption(this.terraformValue);
   @override
   final String terraformValue;
-}
-
-/// `s3_backup_mode` — derived from the provider schema description.
-enum KinesisFirehoseDeliveryStreamSnowflakeConfigurationS3BackupMode
-    implements TerraformEnum {
-  faileddataonly('FailedDataOnly'),
-  alldata('AllData');
-
-  const KinesisFirehoseDeliveryStreamSnowflakeConfigurationS3BackupMode(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `snowflake_configuration.cloudwatch_logging_options` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamSnowflakeConfigurationCloudwatchLoggingOptions {
-  const KinesisFirehoseDeliveryStreamSnowflakeConfigurationCloudwatchLoggingOptions({
-    this.enabled,
-    this.logGroupName,
-    this.logStreamName,
-  });
-
-  final TfArg<bool>? enabled;
-
-  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
-
-  final TfArg<String>? logStreamName;
-
-  Map<String, Object?> encode() => {
-    'enabled': ?enabled?.toTfJson(),
-    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
-    'log_stream_name': ?logStreamName?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `snowflake_configuration.processing_configuration` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamSnowflakeConfigurationProcessingConfiguration {
-  const KinesisFirehoseDeliveryStreamSnowflakeConfigurationProcessingConfiguration({
-    this.enabled,
-    this.processors,
-  });
-
-  final TfArg<bool>? enabled;
-
-  final List<
-    KinesisFirehoseDeliveryStreamSnowflakeConfigurationProcessingConfigurationProcessors
-  >?
-  processors;
-
-  Map<String, Object?> encode() => {
-    'enabled': ?enabled?.toTfJson(),
-    if (processors != null)
-      'processors': [for (final e in processors!) e.encode()],
-  };
-}
-
-/// Typed helper for the `snowflake_configuration.processing_configuration.processors` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamSnowflakeConfigurationProcessingConfigurationProcessors {
-  const KinesisFirehoseDeliveryStreamSnowflakeConfigurationProcessingConfigurationProcessors({
-    required this.type,
-    this.parameters,
-  });
-
-  final TfArg<String> type;
-
-  final List<
-    KinesisFirehoseDeliveryStreamSnowflakeConfigurationProcessingConfigurationProcessorsParameters
-  >?
-  parameters;
-
-  Map<String, Object?> encode() => {
-    'type': type.toTfJson(),
-    if (parameters != null)
-      'parameters': [for (final e in parameters!) e.encode()],
-  };
-}
-
-/// Typed helper for the `snowflake_configuration.processing_configuration.processors.parameters` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamSnowflakeConfigurationProcessingConfigurationProcessorsParameters {
-  const KinesisFirehoseDeliveryStreamSnowflakeConfigurationProcessingConfigurationProcessorsParameters({
-    required this.parameterName,
-    required this.parameterValue,
-  });
-
-  final TfArg<String> parameterName;
-
-  final TfArg<String> parameterValue;
-
-  Map<String, Object?> encode() => {
-    'parameter_name': parameterName.toTfJson(),
-    'parameter_value': parameterValue.toTfJson(),
-  };
-}
-
-/// Typed helper for the `snowflake_configuration.s3_configuration` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamSnowflakeConfigurationS3Configuration {
-  const KinesisFirehoseDeliveryStreamSnowflakeConfigurationS3Configuration({
-    required this.bucketArn,
-    this.bufferingInterval,
-    this.bufferingSize,
-    this.compressionFormat,
-    this.errorOutputPrefix,
-    this.kmsKeyArn,
-    this.prefix,
-    required this.roleArn,
-    this.cloudwatchLoggingOptions,
-  });
-
-  final RefTo<AwsS3Bucket> bucketArn;
-
-  final TfArg<num>? bufferingInterval;
-
-  final TfArg<num>? bufferingSize;
-
-  final TfArg<String>? compressionFormat;
-
-  final TfArg<String>? errorOutputPrefix;
-
-  final RefTo<AwsKmsKey>? kmsKeyArn;
-
-  final TfArg<String>? prefix;
-
-  final RefTo<AwsIamRole> roleArn;
-
-  final KinesisFirehoseDeliveryStreamSnowflakeConfigurationS3ConfigurationCloudwatchLoggingOptions?
-  cloudwatchLoggingOptions;
-
-  Map<String, Object?> encode() => {
-    'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
-    'buffering_interval': ?bufferingInterval?.toTfJson(),
-    'buffering_size': ?bufferingSize?.toTfJson(),
-    'compression_format': ?compressionFormat?.toTfJson(),
-    'error_output_prefix': ?errorOutputPrefix?.toTfJson(),
-    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
-    'prefix': ?prefix?.toTfJson(),
-    'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    'cloudwatch_logging_options': ?cloudwatchLoggingOptions?.encode(),
-  };
-}
-
-/// Typed helper for the `snowflake_configuration.s3_configuration.cloudwatch_logging_options` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamSnowflakeConfigurationS3ConfigurationCloudwatchLoggingOptions {
-  const KinesisFirehoseDeliveryStreamSnowflakeConfigurationS3ConfigurationCloudwatchLoggingOptions({
-    this.enabled,
-    this.logGroupName,
-    this.logStreamName,
-  });
-
-  final TfArg<bool>? enabled;
-
-  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
-
-  final TfArg<String>? logStreamName;
-
-  Map<String, Object?> encode() => {
-    'enabled': ?enabled?.toTfJson(),
-    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
-    'log_stream_name': ?logStreamName?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `snowflake_configuration.secrets_manager_configuration` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamSnowflakeConfigurationSecretsManagerConfiguration {
-  const KinesisFirehoseDeliveryStreamSnowflakeConfigurationSecretsManagerConfiguration({
-    this.enabled,
-    this.roleArn,
-    this.secretArn,
-  });
-
-  final TfArg<bool>? enabled;
-
-  final RefTo<AwsIamRole>? roleArn;
-
-  final TfArg<String>? secretArn;
-
-  Map<String, Object?> encode() => {
-    'enabled': ?enabled?.toTfJson(),
-    'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
-    'secret_arn': ?secretArn?.toTfJson(),
-  };
 }
 
 /// Typed helper for the `snowflake_configuration.snowflake_role_configuration` block of
 /// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
 @immutable
-final class KinesisFirehoseDeliveryStreamSnowflakeConfigurationSnowflakeRoleConfiguration {
-  const KinesisFirehoseDeliveryStreamSnowflakeConfigurationSnowflakeRoleConfiguration({
+final class KinesisFirehoseDeliveryStreamSnowflakeRoleConfiguration {
+  const KinesisFirehoseDeliveryStreamSnowflakeRoleConfiguration({
     this.enabled,
     this.snowflakeRole,
   });
@@ -3216,8 +1799,8 @@ final class KinesisFirehoseDeliveryStreamSnowflakeConfigurationSnowflakeRoleConf
 /// Typed helper for the `snowflake_configuration.snowflake_vpc_configuration` block of
 /// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
 @immutable
-final class KinesisFirehoseDeliveryStreamSnowflakeConfigurationSnowflakeVpcConfiguration {
-  const KinesisFirehoseDeliveryStreamSnowflakeConfigurationSnowflakeVpcConfiguration({
+final class KinesisFirehoseDeliveryStreamSnowflakeVpcConfiguration {
+  const KinesisFirehoseDeliveryStreamSnowflakeVpcConfiguration({
     required this.privateLinkVpceId,
   });
 
@@ -3255,8 +1838,7 @@ final class KinesisFirehoseDeliveryStreamSplunkConfiguration {
 
   final TfArg<String> hecEndpoint;
 
-  final TfArg<KinesisFirehoseDeliveryStreamSplunkConfigurationHecEndpointType>?
-  hecEndpointType;
+  final TfArg<KinesisFirehoseDeliveryStreamHecEndpointType>? hecEndpointType;
 
   final TfArg<String>? hecToken;
 
@@ -3265,16 +1847,15 @@ final class KinesisFirehoseDeliveryStreamSplunkConfiguration {
   final TfArg<KinesisFirehoseDeliveryStreamSplunkConfigurationS3BackupMode>?
   s3BackupMode;
 
-  final KinesisFirehoseDeliveryStreamSplunkConfigurationCloudwatchLoggingOptions?
+  final KinesisFirehoseDeliveryStreamCloudwatchLoggingOptions?
   cloudwatchLoggingOptions;
 
-  final KinesisFirehoseDeliveryStreamSplunkConfigurationProcessingConfiguration?
+  final KinesisFirehoseDeliveryStreamProcessingConfiguration?
   processingConfiguration;
 
-  final KinesisFirehoseDeliveryStreamSplunkConfigurationS3Configuration
-  s3Configuration;
+  final KinesisFirehoseDeliveryStreamS3Configuration s3Configuration;
 
-  final KinesisFirehoseDeliveryStreamSplunkConfigurationSecretsManagerConfiguration?
+  final KinesisFirehoseDeliveryStreamSecretsManagerConfiguration?
   secretsManagerConfiguration;
 
   Map<String, Object?> encode() => {
@@ -3294,14 +1875,11 @@ final class KinesisFirehoseDeliveryStreamSplunkConfiguration {
 }
 
 /// `hec_endpoint_type` — derived from the provider schema description.
-enum KinesisFirehoseDeliveryStreamSplunkConfigurationHecEndpointType
-    implements TerraformEnum {
+enum KinesisFirehoseDeliveryStreamHecEndpointType implements TerraformEnum {
   raw('Raw'),
   event('Event');
 
-  const KinesisFirehoseDeliveryStreamSplunkConfigurationHecEndpointType(
-    this.terraformValue,
-  );
+  const KinesisFirehoseDeliveryStreamHecEndpointType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -3317,188 +1895,6 @@ enum KinesisFirehoseDeliveryStreamSplunkConfigurationS3BackupMode
   );
   @override
   final String terraformValue;
-}
-
-/// Typed helper for the `splunk_configuration.cloudwatch_logging_options` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamSplunkConfigurationCloudwatchLoggingOptions {
-  const KinesisFirehoseDeliveryStreamSplunkConfigurationCloudwatchLoggingOptions({
-    this.enabled,
-    this.logGroupName,
-    this.logStreamName,
-  });
-
-  final TfArg<bool>? enabled;
-
-  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
-
-  final TfArg<String>? logStreamName;
-
-  Map<String, Object?> encode() => {
-    'enabled': ?enabled?.toTfJson(),
-    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
-    'log_stream_name': ?logStreamName?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `splunk_configuration.processing_configuration` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamSplunkConfigurationProcessingConfiguration {
-  const KinesisFirehoseDeliveryStreamSplunkConfigurationProcessingConfiguration({
-    this.enabled,
-    this.processors,
-  });
-
-  final TfArg<bool>? enabled;
-
-  final List<
-    KinesisFirehoseDeliveryStreamSplunkConfigurationProcessingConfigurationProcessors
-  >?
-  processors;
-
-  Map<String, Object?> encode() => {
-    'enabled': ?enabled?.toTfJson(),
-    if (processors != null)
-      'processors': [for (final e in processors!) e.encode()],
-  };
-}
-
-/// Typed helper for the `splunk_configuration.processing_configuration.processors` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamSplunkConfigurationProcessingConfigurationProcessors {
-  const KinesisFirehoseDeliveryStreamSplunkConfigurationProcessingConfigurationProcessors({
-    required this.type,
-    this.parameters,
-  });
-
-  final TfArg<String> type;
-
-  final List<
-    KinesisFirehoseDeliveryStreamSplunkConfigurationProcessingConfigurationProcessorsParameters
-  >?
-  parameters;
-
-  Map<String, Object?> encode() => {
-    'type': type.toTfJson(),
-    if (parameters != null)
-      'parameters': [for (final e in parameters!) e.encode()],
-  };
-}
-
-/// Typed helper for the `splunk_configuration.processing_configuration.processors.parameters` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamSplunkConfigurationProcessingConfigurationProcessorsParameters {
-  const KinesisFirehoseDeliveryStreamSplunkConfigurationProcessingConfigurationProcessorsParameters({
-    required this.parameterName,
-    required this.parameterValue,
-  });
-
-  final TfArg<String> parameterName;
-
-  final TfArg<String> parameterValue;
-
-  Map<String, Object?> encode() => {
-    'parameter_name': parameterName.toTfJson(),
-    'parameter_value': parameterValue.toTfJson(),
-  };
-}
-
-/// Typed helper for the `splunk_configuration.s3_configuration` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamSplunkConfigurationS3Configuration {
-  const KinesisFirehoseDeliveryStreamSplunkConfigurationS3Configuration({
-    required this.bucketArn,
-    this.bufferingInterval,
-    this.bufferingSize,
-    this.compressionFormat,
-    this.errorOutputPrefix,
-    this.kmsKeyArn,
-    this.prefix,
-    required this.roleArn,
-    this.cloudwatchLoggingOptions,
-  });
-
-  final RefTo<AwsS3Bucket> bucketArn;
-
-  final TfArg<num>? bufferingInterval;
-
-  final TfArg<num>? bufferingSize;
-
-  final TfArg<String>? compressionFormat;
-
-  final TfArg<String>? errorOutputPrefix;
-
-  final RefTo<AwsKmsKey>? kmsKeyArn;
-
-  final TfArg<String>? prefix;
-
-  final RefTo<AwsIamRole> roleArn;
-
-  final KinesisFirehoseDeliveryStreamSplunkConfigurationS3ConfigurationCloudwatchLoggingOptions?
-  cloudwatchLoggingOptions;
-
-  Map<String, Object?> encode() => {
-    'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
-    'buffering_interval': ?bufferingInterval?.toTfJson(),
-    'buffering_size': ?bufferingSize?.toTfJson(),
-    'compression_format': ?compressionFormat?.toTfJson(),
-    'error_output_prefix': ?errorOutputPrefix?.toTfJson(),
-    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
-    'prefix': ?prefix?.toTfJson(),
-    'role_arn': roleArn.encodeAs('arn').toTfJson(),
-    'cloudwatch_logging_options': ?cloudwatchLoggingOptions?.encode(),
-  };
-}
-
-/// Typed helper for the `splunk_configuration.s3_configuration.cloudwatch_logging_options` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamSplunkConfigurationS3ConfigurationCloudwatchLoggingOptions {
-  const KinesisFirehoseDeliveryStreamSplunkConfigurationS3ConfigurationCloudwatchLoggingOptions({
-    this.enabled,
-    this.logGroupName,
-    this.logStreamName,
-  });
-
-  final TfArg<bool>? enabled;
-
-  final RefTo<AwsCloudwatchLogGroup>? logGroupName;
-
-  final TfArg<String>? logStreamName;
-
-  Map<String, Object?> encode() => {
-    'enabled': ?enabled?.toTfJson(),
-    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
-    'log_stream_name': ?logStreamName?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `splunk_configuration.secrets_manager_configuration` block of
-/// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
-@immutable
-final class KinesisFirehoseDeliveryStreamSplunkConfigurationSecretsManagerConfiguration {
-  const KinesisFirehoseDeliveryStreamSplunkConfigurationSecretsManagerConfiguration({
-    this.enabled,
-    this.roleArn,
-    this.secretArn,
-  });
-
-  final TfArg<bool>? enabled;
-
-  final RefTo<AwsIamRole>? roleArn;
-
-  final TfArg<String>? secretArn;
-
-  Map<String, Object?> encode() => {
-    'enabled': ?enabled?.toTfJson(),
-    'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
-    'secret_arn': ?secretArn?.toTfJson(),
-  };
 }
 
 /// Factory wrapper for `aws_kinesis_firehose_delivery_stream`.

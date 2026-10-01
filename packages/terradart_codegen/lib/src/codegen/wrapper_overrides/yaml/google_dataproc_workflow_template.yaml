@@ -30,11 +30,11 @@ curatedDoc: |-
   ///   name: TfArg.literal('terradart-wf'),
   ///   location: TfArg.literal('us-central1'),
   ///   placement: DataprocWorkflowTemplatePlacement(
-  ///     managedCluster: DataprocWorkflowTemplatePlacementManagedCluster(
+  ///     managedCluster: DataprocWorkflowTemplateManagedCluster(
   ///       clusterName: TfArg.literal('terradart-wf-cluster'),
-  ///       config: DataprocWorkflowTemplatePlacementManagedClusterConfig(
+  ///       config: DataprocWorkflowTemplateConfig(
   ///         gceClusterConfig:
-  ///             DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfig(
+  ///             DataprocWorkflowTemplateGceClusterConfig(
   ///           zone: TfArg.literal('us-central1-a'),
   ///         ),
   ///       ),
@@ -43,7 +43,7 @@ curatedDoc: |-
   ///   jobs: [
   ///     DataprocWorkflowTemplateJobs(
   ///       stepId: TfArg.literal('sparkpi'),
-  ///       sparkJob: DataprocWorkflowTemplateJobsSparkJob(
+  ///       sparkJob: DataprocWorkflowTemplateSparkJob(
   ///         mainClass: TfArg.literal('org.apache.spark.examples.SparkPi'),
   ///       ),
   ///     ),

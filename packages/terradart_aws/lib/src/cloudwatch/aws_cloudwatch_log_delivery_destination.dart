@@ -38,8 +38,8 @@ enum CloudwatchLogDeliveryDestinationOutputFormat implements TerraformEnum {
 /// Typed helper for the `delivery_destination_configuration` block of
 /// `aws_cloudwatch_log_delivery_destination` (derived from provider schema).
 @immutable
-final class CloudwatchLogDeliveryDestinationDeliveryDestinationConfiguration {
-  const CloudwatchLogDeliveryDestinationDeliveryDestinationConfiguration({
+final class CloudwatchLogDeliveryDestinationConfiguration {
+  const CloudwatchLogDeliveryDestinationConfiguration({
     this.destinationResourceArn,
   });
 
@@ -62,7 +62,7 @@ final class AwsCloudwatchLogDeliveryDestination extends Resource {
     TfArg<CloudwatchLogDeliveryDestinationOutputFormat>? outputFormat,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    List<CloudwatchLogDeliveryDestinationDeliveryDestinationConfiguration>?
+    List<CloudwatchLogDeliveryDestinationConfiguration>?
     deliveryDestinationConfiguration,
     super.lifecycle,
     super.dependsOn,

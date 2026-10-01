@@ -8,12 +8,12 @@ export 'src/cloudfunctions/google_cloudfunctions_function.dart'
     show
         CloudfunctionsFunctionAutomaticUpdatePolicy,
         CloudfunctionsFunctionEventTrigger,
-        CloudfunctionsFunctionEventTriggerFailurePolicy,
+        CloudfunctionsFunctionFailurePolicy,
         CloudfunctionsFunctionOnDeployUpdatePolicy,
         CloudfunctionsFunctionSecretEnvironmentVariables,
         CloudfunctionsFunctionSecretVolumes,
-        CloudfunctionsFunctionSecretVolumesVersions,
         CloudfunctionsFunctionSourceRepository,
+        CloudfunctionsFunctionVersions,
         GoogleCloudfunctionsFunction;
 export 'src/cloudfunctions/google_cloudfunctions_function_iam_binding.dart'
     show

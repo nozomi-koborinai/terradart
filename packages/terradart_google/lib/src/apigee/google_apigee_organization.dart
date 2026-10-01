@@ -36,7 +36,7 @@ enum ApigeeOrganizationRetention implements TerraformEnum {
 final class ApigeeOrganizationProperties {
   const ApigeeOrganizationProperties({this.property});
 
-  final List<ApigeeOrganizationPropertiesProperty>? property;
+  final List<ApigeeOrganizationProperty>? property;
 
   Map<String, Object?> encode() => {
     if (property != null) 'property': [for (final e in property!) e.encode()],
@@ -46,8 +46,8 @@ final class ApigeeOrganizationProperties {
 /// Typed helper for the `properties.property` block of
 /// `google_apigee_organization` (derived from provider schema).
 @immutable
-final class ApigeeOrganizationPropertiesProperty {
-  const ApigeeOrganizationPropertiesProperty({this.name, this.value});
+final class ApigeeOrganizationProperty {
+  const ApigeeOrganizationProperty({this.name, this.value});
 
   final TfArg<String>? name;
 

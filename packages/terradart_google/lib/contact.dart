@@ -6,17 +6,17 @@ library;
 export 'src/contact/google_contact_center_insights_analysis_rule.dart'
     show
         ContactCenterInsightsAnalysisRuleAnnotatorSelector,
-        ContactCenterInsightsAnalysisRuleAnnotatorSelectorQaConfig,
-        ContactCenterInsightsAnalysisRuleAnnotatorSelectorQaConfigScorecardList,
-        ContactCenterInsightsAnalysisRuleAnnotatorSelectorSummarizationConfig,
-        ContactCenterInsightsAnalysisRuleAnnotatorSelectorSummarizationConfigSummarizationModel,
+        ContactCenterInsightsAnalysisRuleQaConfig,
+        ContactCenterInsightsAnalysisRuleScorecardList,
+        ContactCenterInsightsAnalysisRuleSummarizationConfig,
+        ContactCenterInsightsAnalysisRuleSummarizationModel,
         GoogleContactCenterInsightsAnalysisRule;
 export 'src/contact/google_contact_center_insights_assessment_rule.dart'
     show
+        ContactCenterInsightsAssessmentRuleAmount,
+        ContactCenterInsightsAssessmentRuleAmountSamplePercentage,
+        ContactCenterInsightsAssessmentRuleAmountSampleRow,
         ContactCenterInsightsAssessmentRuleSampleRule,
-        ContactCenterInsightsAssessmentRuleSampleRuleAmount,
-        ContactCenterInsightsAssessmentRuleSampleRuleAmountSamplePercentage,
-        ContactCenterInsightsAssessmentRuleSampleRuleAmountSampleRow,
         ContactCenterInsightsAssessmentRuleScheduleInfo,
         GoogleContactCenterInsightsAssessmentRule;
 export 'src/contact/google_contact_center_insights_auto_labeling_rule.dart'
@@ -29,9 +29,9 @@ export 'src/contact/google_contact_center_insights_encryption_spec.dart'
 export 'src/contact/google_contact_center_insights_qa_question.dart'
     show
         ContactCenterInsightsQaQuestionAnswerChoices,
+        ContactCenterInsightsQaQuestionConversationDataOptions,
+        ContactCenterInsightsQaQuestionDataOptions,
         ContactCenterInsightsQaQuestionPredefinedQuestionConfig,
-        ContactCenterInsightsQaQuestionQaQuestionDataOptions,
-        ContactCenterInsightsQaQuestionQaQuestionDataOptionsConversationDataOptions,
         ContactCenterInsightsQaQuestionTuningMetadata,
         GoogleContactCenterInsightsQaQuestion;
 export 'src/contact/google_contact_center_insights_qa_scorecard.dart'

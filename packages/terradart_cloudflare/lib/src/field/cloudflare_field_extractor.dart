@@ -23,7 +23,7 @@ final class FieldExtractorRules {
 
   final TfArg<String> ref;
 
-  final List<FieldExtractorRulesFields> fields;
+  final List<FieldExtractorFields> fields;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -35,11 +35,8 @@ final class FieldExtractorRules {
 /// Typed helper for the `rules.fields` block of
 /// `cloudflare_field_extractor` (derived from provider schema).
 @immutable
-final class FieldExtractorRulesFields {
-  const FieldExtractorRulesFields({
-    required this.expression,
-    required this.name,
-  });
+final class FieldExtractorFields {
+  const FieldExtractorFields({required this.expression, required this.name});
 
   final TfArg<String> expression;
 

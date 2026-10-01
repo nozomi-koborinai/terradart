@@ -16,11 +16,9 @@ final class DiscoveryEngineAssistantCustomerPolicy {
     this.modelArmorConfig,
   });
 
-  final List<DiscoveryEngineAssistantCustomerPolicyBannedPhrases>?
-  bannedPhrases;
+  final List<DiscoveryEngineAssistantBannedPhrases>? bannedPhrases;
 
-  final DiscoveryEngineAssistantCustomerPolicyModelArmorConfig?
-  modelArmorConfig;
+  final DiscoveryEngineAssistantModelArmorConfig? modelArmorConfig;
 
   Map<String, Object?> encode() => {
     if (bannedPhrases != null)
@@ -32,8 +30,8 @@ final class DiscoveryEngineAssistantCustomerPolicy {
 /// Typed helper for the `customer_policy.banned_phrases` block of
 /// `google_discovery_engine_assistant` (derived from provider schema).
 @immutable
-final class DiscoveryEngineAssistantCustomerPolicyBannedPhrases {
-  const DiscoveryEngineAssistantCustomerPolicyBannedPhrases({
+final class DiscoveryEngineAssistantBannedPhrases {
+  const DiscoveryEngineAssistantBannedPhrases({
     this.ignoreDiacritics,
     this.matchType,
     required this.phrase,
@@ -55,8 +53,8 @@ final class DiscoveryEngineAssistantCustomerPolicyBannedPhrases {
 /// Typed helper for the `customer_policy.model_armor_config` block of
 /// `google_discovery_engine_assistant` (derived from provider schema).
 @immutable
-final class DiscoveryEngineAssistantCustomerPolicyModelArmorConfig {
-  const DiscoveryEngineAssistantCustomerPolicyModelArmorConfig({
+final class DiscoveryEngineAssistantModelArmorConfig {
+  const DiscoveryEngineAssistantModelArmorConfig({
     this.failureMode,
     required this.responseTemplate,
     required this.userPromptTemplate,
@@ -86,8 +84,7 @@ final class DiscoveryEngineAssistantGenerationConfig {
 
   final TfArg<String>? defaultLanguage;
 
-  final DiscoveryEngineAssistantGenerationConfigSystemInstruction?
-  systemInstruction;
+  final DiscoveryEngineAssistantSystemInstruction? systemInstruction;
 
   Map<String, Object?> encode() => {
     'default_language': ?defaultLanguage?.toTfJson(),
@@ -98,8 +95,8 @@ final class DiscoveryEngineAssistantGenerationConfig {
 /// Typed helper for the `generation_config.system_instruction` block of
 /// `google_discovery_engine_assistant` (derived from provider schema).
 @immutable
-final class DiscoveryEngineAssistantGenerationConfigSystemInstruction {
-  const DiscoveryEngineAssistantGenerationConfigSystemInstruction({
+final class DiscoveryEngineAssistantSystemInstruction {
+  const DiscoveryEngineAssistantSystemInstruction({
     this.additionalSystemInstruction,
   });
 

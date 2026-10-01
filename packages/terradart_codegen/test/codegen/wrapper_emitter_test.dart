@@ -1065,8 +1065,7 @@ void main() {
         expect(
           out,
           contains(
-            'final List<OsConfigOsPolicyAssignmentOsPoliciesResourceGroupsResources> '
-            'resources;',
+            'final List<OsConfigOsPolicyAssignmentResources> resources;',
           ),
         );
       });

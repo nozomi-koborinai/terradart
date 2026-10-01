@@ -34,7 +34,7 @@ sealed class RedshiftClusterMasterPassword {
   /// Sets `manage_master_password`.
   const factory RedshiftClusterMasterPassword.manageMasterPassword(
     TfArg<bool> manageMasterPassword,
-  ) = RedshiftClusterMasterPasswordManageMasterPassword;
+  ) = RedshiftClusterManageMasterPassword;
 
   /// Sets `master_password`.
   const factory RedshiftClusterMasterPassword.masterPassword(
@@ -57,11 +57,9 @@ sealed class RedshiftClusterMasterPassword {
 }
 
 /// The [RedshiftClusterMasterPassword.manageMasterPassword] choice: sets `manage_master_password`.
-final class RedshiftClusterMasterPasswordManageMasterPassword
+final class RedshiftClusterManageMasterPassword
     extends RedshiftClusterMasterPassword {
-  const RedshiftClusterMasterPasswordManageMasterPassword(
-    this.manageMasterPassword,
-  );
+  const RedshiftClusterManageMasterPassword(this.manageMasterPassword);
 
   final TfArg<bool> manageMasterPassword;
 

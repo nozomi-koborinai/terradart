@@ -32,12 +32,12 @@ sealed class ArczonalshiftZonalAutoshiftConfigurationWindows {
   /// Sets `allowed_windows`.
   const factory ArczonalshiftZonalAutoshiftConfigurationWindows.allowedWindows(
     TfArg<List<String>> allowedWindows,
-  ) = ArczonalshiftZonalAutoshiftConfigurationWindowsAllowedWindows;
+  ) = ArczonalshiftZonalAutoshiftConfigurationAllowedWindows;
 
   /// Sets `blocked_windows`.
   const factory ArczonalshiftZonalAutoshiftConfigurationWindows.blockedWindows(
     TfArg<List<String>> blockedWindows,
-  ) = ArczonalshiftZonalAutoshiftConfigurationWindowsBlockedWindows;
+  ) = ArczonalshiftZonalAutoshiftConfigurationBlockedWindows;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -50,9 +50,9 @@ sealed class ArczonalshiftZonalAutoshiftConfigurationWindows {
 }
 
 /// The [ArczonalshiftZonalAutoshiftConfigurationWindows.allowedWindows] choice: sets `allowed_windows`.
-final class ArczonalshiftZonalAutoshiftConfigurationWindowsAllowedWindows
+final class ArczonalshiftZonalAutoshiftConfigurationAllowedWindows
     extends ArczonalshiftZonalAutoshiftConfigurationWindows {
-  const ArczonalshiftZonalAutoshiftConfigurationWindowsAllowedWindows(
+  const ArczonalshiftZonalAutoshiftConfigurationAllowedWindows(
     this.allowedWindows,
   );
 
@@ -71,9 +71,9 @@ final class ArczonalshiftZonalAutoshiftConfigurationWindowsAllowedWindows
 }
 
 /// The [ArczonalshiftZonalAutoshiftConfigurationWindows.blockedWindows] choice: sets `blocked_windows`.
-final class ArczonalshiftZonalAutoshiftConfigurationWindowsBlockedWindows
+final class ArczonalshiftZonalAutoshiftConfigurationBlockedWindows
     extends ArczonalshiftZonalAutoshiftConfigurationWindows {
-  const ArczonalshiftZonalAutoshiftConfigurationWindowsBlockedWindows(
+  const ArczonalshiftZonalAutoshiftConfigurationBlockedWindows(
     this.blockedWindows,
   );
 
@@ -102,7 +102,7 @@ final class ArczonalshiftZonalAutoshiftConfigurationBlockingAlarms {
 
   final TfArg<String> alarmIdentifier;
 
-  final TfArg<ArczonalshiftZonalAutoshiftConfigurationBlockingAlarmsType> type;
+  final TfArg<ArczonalshiftZonalAutoshiftConfigurationType> type;
 
   Map<String, Object?> encode() => {
     'alarm_identifier': alarmIdentifier.toTfJson(),
@@ -111,13 +111,10 @@ final class ArczonalshiftZonalAutoshiftConfigurationBlockingAlarms {
 }
 
 /// `type` — derived from the provider schema description.
-enum ArczonalshiftZonalAutoshiftConfigurationBlockingAlarmsType
-    implements TerraformEnum {
+enum ArczonalshiftZonalAutoshiftConfigurationType implements TerraformEnum {
   cloudwatch('CLOUDWATCH');
 
-  const ArczonalshiftZonalAutoshiftConfigurationBlockingAlarmsType(
-    this.terraformValue,
-  );
+  const ArczonalshiftZonalAutoshiftConfigurationType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -133,24 +130,12 @@ final class ArczonalshiftZonalAutoshiftConfigurationOutcomeAlarms {
 
   final TfArg<String> alarmIdentifier;
 
-  final TfArg<ArczonalshiftZonalAutoshiftConfigurationOutcomeAlarmsType> type;
+  final TfArg<ArczonalshiftZonalAutoshiftConfigurationType> type;
 
   Map<String, Object?> encode() => {
     'alarm_identifier': alarmIdentifier.toTfJson(),
     'type': type.toTfJson(),
   };
-}
-
-/// `type` — derived from the provider schema description.
-enum ArczonalshiftZonalAutoshiftConfigurationOutcomeAlarmsType
-    implements TerraformEnum {
-  cloudwatch('CLOUDWATCH');
-
-  const ArczonalshiftZonalAutoshiftConfigurationOutcomeAlarmsType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_arczonalshift_zonal_autoshift_configuration`.

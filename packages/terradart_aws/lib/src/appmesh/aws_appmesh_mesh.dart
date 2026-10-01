@@ -13,9 +13,9 @@ const Set<String> _awsAppmeshMeshSensitive = <String>{};
 final class AppmeshMeshSpec {
   const AppmeshMeshSpec({this.egressFilter, this.serviceDiscovery});
 
-  final AppmeshMeshSpecEgressFilter? egressFilter;
+  final AppmeshMeshEgressFilter? egressFilter;
 
-  final AppmeshMeshSpecServiceDiscovery? serviceDiscovery;
+  final AppmeshMeshServiceDiscovery? serviceDiscovery;
 
   Map<String, Object?> encode() => {
     'egress_filter': ?egressFilter?.encode(),
@@ -26,20 +26,20 @@ final class AppmeshMeshSpec {
 /// Typed helper for the `spec.egress_filter` block of
 /// `aws_appmesh_mesh` (derived from provider schema).
 @immutable
-final class AppmeshMeshSpecEgressFilter {
-  const AppmeshMeshSpecEgressFilter({this.type});
+final class AppmeshMeshEgressFilter {
+  const AppmeshMeshEgressFilter({this.type});
 
-  final TfArg<AppmeshMeshSpecEgressFilterType>? type;
+  final TfArg<AppmeshMeshType>? type;
 
   Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum AppmeshMeshSpecEgressFilterType implements TerraformEnum {
+enum AppmeshMeshType implements TerraformEnum {
   allowAll('ALLOW_ALL'),
   dropAll('DROP_ALL');
 
-  const AppmeshMeshSpecEgressFilterType(this.terraformValue);
+  const AppmeshMeshType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -47,22 +47,22 @@ enum AppmeshMeshSpecEgressFilterType implements TerraformEnum {
 /// Typed helper for the `spec.service_discovery` block of
 /// `aws_appmesh_mesh` (derived from provider schema).
 @immutable
-final class AppmeshMeshSpecServiceDiscovery {
-  const AppmeshMeshSpecServiceDiscovery({this.ipPreference});
+final class AppmeshMeshServiceDiscovery {
+  const AppmeshMeshServiceDiscovery({this.ipPreference});
 
-  final TfArg<AppmeshMeshSpecServiceDiscoveryIpPreference>? ipPreference;
+  final TfArg<AppmeshMeshIpPreference>? ipPreference;
 
   Map<String, Object?> encode() => {'ip_preference': ?ipPreference?.toTfJson()};
 }
 
 /// `ip_preference` — derived from the provider schema description.
-enum AppmeshMeshSpecServiceDiscoveryIpPreference implements TerraformEnum {
+enum AppmeshMeshIpPreference implements TerraformEnum {
   ipv6Preferred('IPv6_PREFERRED'),
   ipv4Preferred('IPv4_PREFERRED'),
   ipv4Only('IPv4_ONLY'),
   ipv6Only('IPv6_ONLY');
 
-  const AppmeshMeshSpecServiceDiscoveryIpPreference(this.terraformValue);
+  const AppmeshMeshIpPreference(this.terraformValue);
   @override
   final String terraformValue;
 }

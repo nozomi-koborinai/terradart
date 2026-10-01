@@ -105,14 +105,11 @@ final class AccessContextManagerGcpUserAccessBindingScopedAccessSettings {
     this.scope,
   });
 
-  final AccessContextManagerGcpUserAccessBindingScopedAccessSettingsActiveSettings?
-  activeSettings;
+  final AccessContextManagerGcpUserAccessBindingActiveSettings? activeSettings;
 
-  final AccessContextManagerGcpUserAccessBindingScopedAccessSettingsDryRunSettings?
-  dryRunSettings;
+  final AccessContextManagerGcpUserAccessBindingDryRunSettings? dryRunSettings;
 
-  final AccessContextManagerGcpUserAccessBindingScopedAccessSettingsScope?
-  scope;
+  final AccessContextManagerGcpUserAccessBindingScope? scope;
 
   Map<String, Object?> encode() => {
     'active_settings': ?activeSettings?.encode(),
@@ -124,15 +121,15 @@ final class AccessContextManagerGcpUserAccessBindingScopedAccessSettings {
 /// Typed helper for the `scoped_access_settings.active_settings` block of
 /// `google_access_context_manager_gcp_user_access_binding` (derived from provider schema).
 @immutable
-final class AccessContextManagerGcpUserAccessBindingScopedAccessSettingsActiveSettings {
-  const AccessContextManagerGcpUserAccessBindingScopedAccessSettingsActiveSettings({
+final class AccessContextManagerGcpUserAccessBindingActiveSettings {
+  const AccessContextManagerGcpUserAccessBindingActiveSettings({
     this.accessLevels,
     this.sessionSettings,
   });
 
   final TfArg<List<String>>? accessLevels;
 
-  final AccessContextManagerGcpUserAccessBindingScopedAccessSettingsActiveSettingsSessionSettings?
+  final AccessContextManagerGcpUserAccessBindingSessionSettings?
   sessionSettings;
 
   Map<String, Object?> encode() => {
@@ -141,118 +138,9 @@ final class AccessContextManagerGcpUserAccessBindingScopedAccessSettingsActiveSe
   };
 }
 
-/// Typed helper for the `scoped_access_settings.active_settings.session_settings` block of
-/// `google_access_context_manager_gcp_user_access_binding` (derived from provider schema).
-@immutable
-final class AccessContextManagerGcpUserAccessBindingScopedAccessSettingsActiveSettingsSessionSettings {
-  const AccessContextManagerGcpUserAccessBindingScopedAccessSettingsActiveSettingsSessionSettings({
-    this.maxInactivity,
-    this.sessionLength,
-    this.sessionLengthEnabled,
-    this.sessionReauthMethod,
-    this.useOidcMaxAge,
-  });
-
-  final TfArg<String>? maxInactivity;
-
-  final TfArg<String>? sessionLength;
-
-  final TfArg<bool>? sessionLengthEnabled;
-
-  final TfArg<
-    AccessContextManagerGcpUserAccessBindingScopedAccessSettingsActiveSettingsSessionSettingsSessionReauthMethod
-  >?
-  sessionReauthMethod;
-
-  final TfArg<bool>? useOidcMaxAge;
-
-  Map<String, Object?> encode() => {
-    'max_inactivity': ?maxInactivity?.toTfJson(),
-    'session_length': ?sessionLength?.toTfJson(),
-    'session_length_enabled': ?sessionLengthEnabled?.toTfJson(),
-    'session_reauth_method': ?sessionReauthMethod?.toTfJson(),
-    'use_oidc_max_age': ?useOidcMaxAge?.toTfJson(),
-  };
-}
-
-/// `session_reauth_method` — derived from the provider schema description.
-enum AccessContextManagerGcpUserAccessBindingScopedAccessSettingsActiveSettingsSessionSettingsSessionReauthMethod
-    implements TerraformEnum {
-  login('LOGIN'),
-  securityKey('SECURITY_KEY'),
-  password('PASSWORD');
-
-  const AccessContextManagerGcpUserAccessBindingScopedAccessSettingsActiveSettingsSessionSettingsSessionReauthMethod(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `scoped_access_settings.dry_run_settings` block of
-/// `google_access_context_manager_gcp_user_access_binding` (derived from provider schema).
-@immutable
-final class AccessContextManagerGcpUserAccessBindingScopedAccessSettingsDryRunSettings {
-  const AccessContextManagerGcpUserAccessBindingScopedAccessSettingsDryRunSettings({
-    this.accessLevels,
-  });
-
-  final TfArg<List<String>>? accessLevels;
-
-  Map<String, Object?> encode() => {'access_levels': ?accessLevels?.toTfJson()};
-}
-
-/// Typed helper for the `scoped_access_settings.scope` block of
-/// `google_access_context_manager_gcp_user_access_binding` (derived from provider schema).
-@immutable
-final class AccessContextManagerGcpUserAccessBindingScopedAccessSettingsScope {
-  const AccessContextManagerGcpUserAccessBindingScopedAccessSettingsScope({
-    this.clientScope,
-  });
-
-  final AccessContextManagerGcpUserAccessBindingScopedAccessSettingsScopeClientScope?
-  clientScope;
-
-  Map<String, Object?> encode() => {'client_scope': ?clientScope?.encode()};
-}
-
-/// Typed helper for the `scoped_access_settings.scope.client_scope` block of
-/// `google_access_context_manager_gcp_user_access_binding` (derived from provider schema).
-@immutable
-final class AccessContextManagerGcpUserAccessBindingScopedAccessSettingsScopeClientScope {
-  const AccessContextManagerGcpUserAccessBindingScopedAccessSettingsScopeClientScope({
-    this.restrictedClientApplication,
-  });
-
-  final AccessContextManagerGcpUserAccessBindingScopedAccessSettingsScopeClientScopeRestrictedClientApplication?
-  restrictedClientApplication;
-
-  Map<String, Object?> encode() => {
-    'restricted_client_application': ?restrictedClientApplication?.encode(),
-  };
-}
-
-/// Typed helper for the `scoped_access_settings.scope.client_scope.restricted_client_application` block of
-/// `google_access_context_manager_gcp_user_access_binding` (derived from provider schema).
-@immutable
-final class AccessContextManagerGcpUserAccessBindingScopedAccessSettingsScopeClientScopeRestrictedClientApplication {
-  const AccessContextManagerGcpUserAccessBindingScopedAccessSettingsScopeClientScopeRestrictedClientApplication({
-    this.clientId,
-    this.name,
-  });
-
-  final TfArg<String>? clientId;
-
-  final TfArg<String>? name;
-
-  Map<String, Object?> encode() => {
-    'client_id': ?clientId?.toTfJson(),
-    'name': ?name?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `session_settings` block of
 /// `google_access_context_manager_gcp_user_access_binding` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
 final class AccessContextManagerGcpUserAccessBindingSessionSettings {
   const AccessContextManagerGcpUserAccessBindingSessionSettings({
@@ -269,9 +157,7 @@ final class AccessContextManagerGcpUserAccessBindingSessionSettings {
 
   final TfArg<bool>? sessionLengthEnabled;
 
-  final TfArg<
-    AccessContextManagerGcpUserAccessBindingSessionSettingsSessionReauthMethod
-  >?
+  final TfArg<AccessContextManagerGcpUserAccessBindingSessionReauthMethod>?
   sessionReauthMethod;
 
   final TfArg<bool>? useOidcMaxAge;
@@ -286,17 +172,76 @@ final class AccessContextManagerGcpUserAccessBindingSessionSettings {
 }
 
 /// `session_reauth_method` — derived from the provider schema description.
-enum AccessContextManagerGcpUserAccessBindingSessionSettingsSessionReauthMethod
+enum AccessContextManagerGcpUserAccessBindingSessionReauthMethod
     implements TerraformEnum {
   login('LOGIN'),
   securityKey('SECURITY_KEY'),
   password('PASSWORD');
 
-  const AccessContextManagerGcpUserAccessBindingSessionSettingsSessionReauthMethod(
+  const AccessContextManagerGcpUserAccessBindingSessionReauthMethod(
     this.terraformValue,
   );
   @override
   final String terraformValue;
+}
+
+/// Typed helper for the `scoped_access_settings.dry_run_settings` block of
+/// `google_access_context_manager_gcp_user_access_binding` (derived from provider schema).
+@immutable
+final class AccessContextManagerGcpUserAccessBindingDryRunSettings {
+  const AccessContextManagerGcpUserAccessBindingDryRunSettings({
+    this.accessLevels,
+  });
+
+  final TfArg<List<String>>? accessLevels;
+
+  Map<String, Object?> encode() => {'access_levels': ?accessLevels?.toTfJson()};
+}
+
+/// Typed helper for the `scoped_access_settings.scope` block of
+/// `google_access_context_manager_gcp_user_access_binding` (derived from provider schema).
+@immutable
+final class AccessContextManagerGcpUserAccessBindingScope {
+  const AccessContextManagerGcpUserAccessBindingScope({this.clientScope});
+
+  final AccessContextManagerGcpUserAccessBindingClientScope? clientScope;
+
+  Map<String, Object?> encode() => {'client_scope': ?clientScope?.encode()};
+}
+
+/// Typed helper for the `scoped_access_settings.scope.client_scope` block of
+/// `google_access_context_manager_gcp_user_access_binding` (derived from provider schema).
+@immutable
+final class AccessContextManagerGcpUserAccessBindingClientScope {
+  const AccessContextManagerGcpUserAccessBindingClientScope({
+    this.restrictedClientApplication,
+  });
+
+  final AccessContextManagerGcpUserAccessBindingRestrictedClientApplication?
+  restrictedClientApplication;
+
+  Map<String, Object?> encode() => {
+    'restricted_client_application': ?restrictedClientApplication?.encode(),
+  };
+}
+
+/// Typed helper for the `scoped_access_settings.scope.client_scope.restricted_client_application` block of
+/// `google_access_context_manager_gcp_user_access_binding` (derived from provider schema).
+@immutable
+final class AccessContextManagerGcpUserAccessBindingRestrictedClientApplication {
+  const AccessContextManagerGcpUserAccessBindingRestrictedClientApplication({
+    this.clientId,
+    this.name,
+  });
+
+  final TfArg<String>? clientId;
+
+  final TfArg<String>? name;
+
+  Map<String, Object?> encode() => {
+    'client_id': ?clientId?.toTfJson(),
+    'name': ?name?.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_access_context_manager_gcp_user_access_binding`.

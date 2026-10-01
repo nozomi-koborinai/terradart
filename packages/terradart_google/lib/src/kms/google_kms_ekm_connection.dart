@@ -34,8 +34,7 @@ final class KmsEkmConnectionServiceResolvers {
 
   final TfArg<String> serviceDirectoryService;
 
-  final List<KmsEkmConnectionServiceResolversServerCertificates>
-  serverCertificates;
+  final List<KmsEkmConnectionServerCertificates> serverCertificates;
 
   Map<String, Object?> encode() => {
     'endpoint_filter': ?endpointFilter?.toTfJson(),
@@ -48,8 +47,8 @@ final class KmsEkmConnectionServiceResolvers {
 /// Typed helper for the `service_resolvers.server_certificates` block of
 /// `google_kms_ekm_connection` (derived from provider schema).
 @immutable
-final class KmsEkmConnectionServiceResolversServerCertificates {
-  const KmsEkmConnectionServiceResolversServerCertificates({
+final class KmsEkmConnectionServerCertificates {
+  const KmsEkmConnectionServerCertificates({
     required this.rawDer,
     this.subjectAlternativeDnsNames,
   });

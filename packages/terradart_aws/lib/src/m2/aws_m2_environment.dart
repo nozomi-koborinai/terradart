@@ -43,13 +43,13 @@ sealed class M2EnvironmentStorageConfiguration {
 
   /// Sets `efs`.
   const factory M2EnvironmentStorageConfiguration.efs(
-    List<M2EnvironmentStorageConfigurationEfs> efs,
-  ) = M2EnvironmentStorageConfigurationEfsChoice;
+    List<M2EnvironmentEfs> efs,
+  ) = M2EnvironmentStorageConfigurationEfs;
 
   /// Sets `fsx`.
   const factory M2EnvironmentStorageConfiguration.fsx(
-    List<M2EnvironmentStorageConfigurationFsx> fsx,
-  ) = M2EnvironmentStorageConfigurationFsxChoice;
+    List<M2EnvironmentFsx> fsx,
+  ) = M2EnvironmentStorageConfigurationFsx;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -58,11 +58,11 @@ sealed class M2EnvironmentStorageConfiguration {
 }
 
 /// The [M2EnvironmentStorageConfiguration.efs] choice: sets `efs`.
-final class M2EnvironmentStorageConfigurationEfsChoice
+final class M2EnvironmentStorageConfigurationEfs
     extends M2EnvironmentStorageConfiguration {
-  const M2EnvironmentStorageConfigurationEfsChoice(this.efs);
+  const M2EnvironmentStorageConfigurationEfs(this.efs);
 
-  final List<M2EnvironmentStorageConfigurationEfs> efs;
+  final List<M2EnvironmentEfs> efs;
 
   @override
   String get blockKey => 'efs';
@@ -74,11 +74,11 @@ final class M2EnvironmentStorageConfigurationEfsChoice
 }
 
 /// The [M2EnvironmentStorageConfiguration.fsx] choice: sets `fsx`.
-final class M2EnvironmentStorageConfigurationFsxChoice
+final class M2EnvironmentStorageConfigurationFsx
     extends M2EnvironmentStorageConfiguration {
-  const M2EnvironmentStorageConfigurationFsxChoice(this.fsx);
+  const M2EnvironmentStorageConfigurationFsx(this.fsx);
 
-  final List<M2EnvironmentStorageConfigurationFsx> fsx;
+  final List<M2EnvironmentFsx> fsx;
 
   @override
   String get blockKey => 'fsx';
@@ -92,8 +92,8 @@ final class M2EnvironmentStorageConfigurationFsxChoice
 /// Typed helper for the `storage_configuration.efs` block of
 /// `aws_m2_environment` (derived from provider schema).
 @immutable
-final class M2EnvironmentStorageConfigurationEfs {
-  const M2EnvironmentStorageConfigurationEfs({
+final class M2EnvironmentEfs {
+  const M2EnvironmentEfs({
     required this.fileSystemId,
     required this.mountPoint,
   });
@@ -111,8 +111,8 @@ final class M2EnvironmentStorageConfigurationEfs {
 /// Typed helper for the `storage_configuration.fsx` block of
 /// `aws_m2_environment` (derived from provider schema).
 @immutable
-final class M2EnvironmentStorageConfigurationFsx {
-  const M2EnvironmentStorageConfigurationFsx({
+final class M2EnvironmentFsx {
+  const M2EnvironmentFsx({
     required this.fileSystemId,
     required this.mountPoint,
   });

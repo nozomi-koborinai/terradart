@@ -92,7 +92,7 @@ final class PipesPipeEnrichmentParameters {
 
   final TfArg<String>? inputTemplate;
 
-  final PipesPipeEnrichmentParametersHttpParameters? httpParameters;
+  final PipesPipeHttpParameters? httpParameters;
 
   Map<String, Object?> encode() => {
     'input_template': ?inputTemplate?.toTfJson(),
@@ -102,9 +102,10 @@ final class PipesPipeEnrichmentParameters {
 
 /// Typed helper for the `enrichment_parameters.http_parameters` block of
 /// `aws_pipes_pipe` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class PipesPipeEnrichmentParametersHttpParameters {
-  const PipesPipeEnrichmentParametersHttpParameters({
+final class PipesPipeHttpParameters {
+  const PipesPipeHttpParameters({
     this.headerParameters,
     this.pathParameterValues,
     this.queryStringParameters,
@@ -135,17 +136,15 @@ final class PipesPipeLogConfiguration {
     this.s3LogDestination,
   });
 
-  final List<TfArg<PipesPipeLogConfigurationIncludeExecutionData>>?
-  includeExecutionData;
+  final List<TfArg<PipesPipeIncludeExecutionData>>? includeExecutionData;
 
-  final TfArg<PipesPipeLogConfigurationLevel> level;
+  final TfArg<PipesPipeLevel> level;
 
-  final PipesPipeLogConfigurationCloudwatchLogsLogDestination?
-  cloudwatchLogsLogDestination;
+  final PipesPipeCloudwatchLogsLogDestination? cloudwatchLogsLogDestination;
 
-  final PipesPipeLogConfigurationFirehoseLogDestination? firehoseLogDestination;
+  final PipesPipeFirehoseLogDestination? firehoseLogDestination;
 
-  final PipesPipeLogConfigurationS3LogDestination? s3LogDestination;
+  final PipesPipeS3LogDestination? s3LogDestination;
 
   Map<String, Object?> encode() => {
     if (includeExecutionData != null)
@@ -160,22 +159,22 @@ final class PipesPipeLogConfiguration {
 }
 
 /// `include_execution_data` — derived from the provider schema description.
-enum PipesPipeLogConfigurationIncludeExecutionData implements TerraformEnum {
+enum PipesPipeIncludeExecutionData implements TerraformEnum {
   all('ALL');
 
-  const PipesPipeLogConfigurationIncludeExecutionData(this.terraformValue);
+  const PipesPipeIncludeExecutionData(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `level` — derived from the provider schema description.
-enum PipesPipeLogConfigurationLevel implements TerraformEnum {
+enum PipesPipeLevel implements TerraformEnum {
   off('OFF'),
   error('ERROR'),
   info('INFO'),
   trace('TRACE');
 
-  const PipesPipeLogConfigurationLevel(this.terraformValue);
+  const PipesPipeLevel(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -183,10 +182,8 @@ enum PipesPipeLogConfigurationLevel implements TerraformEnum {
 /// Typed helper for the `log_configuration.cloudwatch_logs_log_destination` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeLogConfigurationCloudwatchLogsLogDestination {
-  const PipesPipeLogConfigurationCloudwatchLogsLogDestination({
-    required this.logGroupArn,
-  });
+final class PipesPipeCloudwatchLogsLogDestination {
+  const PipesPipeCloudwatchLogsLogDestination({required this.logGroupArn});
 
   final RefTo<AwsCloudwatchLogGroup> logGroupArn;
 
@@ -198,10 +195,8 @@ final class PipesPipeLogConfigurationCloudwatchLogsLogDestination {
 /// Typed helper for the `log_configuration.firehose_log_destination` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeLogConfigurationFirehoseLogDestination {
-  const PipesPipeLogConfigurationFirehoseLogDestination({
-    required this.deliveryStreamArn,
-  });
+final class PipesPipeFirehoseLogDestination {
+  const PipesPipeFirehoseLogDestination({required this.deliveryStreamArn});
 
   final TfArg<String> deliveryStreamArn;
 
@@ -213,8 +208,8 @@ final class PipesPipeLogConfigurationFirehoseLogDestination {
 /// Typed helper for the `log_configuration.s3_log_destination` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeLogConfigurationS3LogDestination {
-  const PipesPipeLogConfigurationS3LogDestination({
+final class PipesPipeS3LogDestination {
+  const PipesPipeS3LogDestination({
     required this.bucketName,
     required this.bucketOwner,
     this.outputFormat,
@@ -225,8 +220,7 @@ final class PipesPipeLogConfigurationS3LogDestination {
 
   final TfArg<String> bucketOwner;
 
-  final TfArg<PipesPipeLogConfigurationS3LogDestinationOutputFormat>?
-  outputFormat;
+  final TfArg<PipesPipeOutputFormat>? outputFormat;
 
   final TfArg<String>? prefix;
 
@@ -239,15 +233,12 @@ final class PipesPipeLogConfigurationS3LogDestination {
 }
 
 /// `output_format` — derived from the provider schema description.
-enum PipesPipeLogConfigurationS3LogDestinationOutputFormat
-    implements TerraformEnum {
+enum PipesPipeOutputFormat implements TerraformEnum {
   json('json'),
   plain('plain'),
   w3c('w3c');
 
-  const PipesPipeLogConfigurationS3LogDestinationOutputFormat(
-    this.terraformValue,
-  );
+  const PipesPipeOutputFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -260,7 +251,7 @@ final class PipesPipeSourceParameters {
 
   final PipesPipeSourceParametersService? service;
 
-  final PipesPipeSourceParametersFilterCriteria? filterCriteria;
+  final PipesPipeFilterCriteria? filterCriteria;
 
   Map<String, Object?> encode() => {
     ...?service?.encode(),
@@ -278,12 +269,12 @@ sealed class PipesPipeSourceParametersService {
 
   /// Sets `activemq_broker_parameters`.
   const factory PipesPipeSourceParametersService.activemqBrokerParameters(
-    PipesPipeSourceParametersActivemqBrokerParameters activemqBrokerParameters,
+    PipesPipeActivemqBrokerParameters activemqBrokerParameters,
   ) = PipesPipeSourceParametersServiceActivemqBrokerParameters;
 
   /// Sets `dynamodb_stream_parameters`.
   const factory PipesPipeSourceParametersService.dynamodbStreamParameters(
-    PipesPipeSourceParametersDynamodbStreamParameters dynamodbStreamParameters,
+    PipesPipeDynamodbStreamParameters dynamodbStreamParameters,
   ) = PipesPipeSourceParametersServiceDynamodbStreamParameters;
 
   /// Sets `kinesis_stream_parameters`.
@@ -293,19 +284,17 @@ sealed class PipesPipeSourceParametersService {
 
   /// Sets `managed_streaming_kafka_parameters`.
   const factory PipesPipeSourceParametersService.managedStreamingKafkaParameters(
-    PipesPipeSourceParametersManagedStreamingKafkaParameters
-    managedStreamingKafkaParameters,
+    PipesPipeManagedStreamingKafkaParameters managedStreamingKafkaParameters,
   ) = PipesPipeSourceParametersServiceManagedStreamingKafkaParameters;
 
   /// Sets `rabbitmq_broker_parameters`.
   const factory PipesPipeSourceParametersService.rabbitmqBrokerParameters(
-    PipesPipeSourceParametersRabbitmqBrokerParameters rabbitmqBrokerParameters,
+    PipesPipeRabbitmqBrokerParameters rabbitmqBrokerParameters,
   ) = PipesPipeSourceParametersServiceRabbitmqBrokerParameters;
 
   /// Sets `self_managed_kafka_parameters`.
   const factory PipesPipeSourceParametersService.selfManagedKafkaParameters(
-    PipesPipeSourceParametersSelfManagedKafkaParameters
-    selfManagedKafkaParameters,
+    PipesPipeSelfManagedKafkaParameters selfManagedKafkaParameters,
   ) = PipesPipeSourceParametersServiceSelfManagedKafkaParameters;
 
   /// Sets `sqs_queue_parameters`.
@@ -326,8 +315,7 @@ final class PipesPipeSourceParametersServiceActivemqBrokerParameters
     this.activemqBrokerParameters,
   );
 
-  final PipesPipeSourceParametersActivemqBrokerParameters
-  activemqBrokerParameters;
+  final PipesPipeActivemqBrokerParameters activemqBrokerParameters;
 
   @override
   String get blockKey => 'activemq_broker_parameters';
@@ -345,8 +333,7 @@ final class PipesPipeSourceParametersServiceDynamodbStreamParameters
     this.dynamodbStreamParameters,
   );
 
-  final PipesPipeSourceParametersDynamodbStreamParameters
-  dynamodbStreamParameters;
+  final PipesPipeDynamodbStreamParameters dynamodbStreamParameters;
 
   @override
   String get blockKey => 'dynamodb_stream_parameters';
@@ -383,7 +370,7 @@ final class PipesPipeSourceParametersServiceManagedStreamingKafkaParameters
     this.managedStreamingKafkaParameters,
   );
 
-  final PipesPipeSourceParametersManagedStreamingKafkaParameters
+  final PipesPipeManagedStreamingKafkaParameters
   managedStreamingKafkaParameters;
 
   @override
@@ -403,8 +390,7 @@ final class PipesPipeSourceParametersServiceRabbitmqBrokerParameters
     this.rabbitmqBrokerParameters,
   );
 
-  final PipesPipeSourceParametersRabbitmqBrokerParameters
-  rabbitmqBrokerParameters;
+  final PipesPipeRabbitmqBrokerParameters rabbitmqBrokerParameters;
 
   @override
   String get blockKey => 'rabbitmq_broker_parameters';
@@ -422,8 +408,7 @@ final class PipesPipeSourceParametersServiceSelfManagedKafkaParameters
     this.selfManagedKafkaParameters,
   );
 
-  final PipesPipeSourceParametersSelfManagedKafkaParameters
-  selfManagedKafkaParameters;
+  final PipesPipeSelfManagedKafkaParameters selfManagedKafkaParameters;
 
   @override
   String get blockKey => 'self_managed_kafka_parameters';
@@ -455,8 +440,8 @@ final class PipesPipeSourceParametersServiceSqsQueueParameters
 /// Typed helper for the `source_parameters.activemq_broker_parameters` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeSourceParametersActivemqBrokerParameters {
-  const PipesPipeSourceParametersActivemqBrokerParameters({
+final class PipesPipeActivemqBrokerParameters {
+  const PipesPipeActivemqBrokerParameters({
     this.batchSize,
     this.maximumBatchingWindowInSeconds,
     required this.queueName,
@@ -469,8 +454,7 @@ final class PipesPipeSourceParametersActivemqBrokerParameters {
 
   final TfArg<String> queueName;
 
-  final PipesPipeSourceParametersActivemqBrokerParametersCredentials
-  credentials;
+  final PipesPipeActivemqBrokerParametersCredentials credentials;
 
   Map<String, Object?> encode() => {
     'batch_size': ?batchSize?.toTfJson(),
@@ -483,11 +467,10 @@ final class PipesPipeSourceParametersActivemqBrokerParameters {
 
 /// Typed helper for the `source_parameters.activemq_broker_parameters.credentials` block of
 /// `aws_pipes_pipe` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class PipesPipeSourceParametersActivemqBrokerParametersCredentials {
-  const PipesPipeSourceParametersActivemqBrokerParametersCredentials({
-    required this.basicAuth,
-  });
+final class PipesPipeActivemqBrokerParametersCredentials {
+  const PipesPipeActivemqBrokerParametersCredentials({required this.basicAuth});
 
   final TfArg<String> basicAuth;
 
@@ -497,8 +480,8 @@ final class PipesPipeSourceParametersActivemqBrokerParametersCredentials {
 /// Typed helper for the `source_parameters.dynamodb_stream_parameters` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeSourceParametersDynamodbStreamParameters {
-  const PipesPipeSourceParametersDynamodbStreamParameters({
+final class PipesPipeDynamodbStreamParameters {
+  const PipesPipeDynamodbStreamParameters({
     this.batchSize,
     this.maximumBatchingWindowInSeconds,
     this.maximumRecordAgeInSeconds,
@@ -517,18 +500,14 @@ final class PipesPipeSourceParametersDynamodbStreamParameters {
 
   final TfArg<num>? maximumRetryAttempts;
 
-  final TfArg<
-    PipesPipeSourceParametersDynamodbStreamParametersOnPartialBatchItemFailure
-  >?
-  onPartialBatchItemFailure;
+  final TfArg<PipesPipeOnPartialBatchItemFailure>? onPartialBatchItemFailure;
 
   final TfArg<num>? parallelizationFactor;
 
-  final TfArg<PipesPipeSourceParametersDynamodbStreamParametersStartingPosition>
+  final TfArg<PipesPipeDynamodbStreamParametersStartingPosition>
   startingPosition;
 
-  final PipesPipeSourceParametersDynamodbStreamParametersDeadLetterConfig?
-  deadLetterConfig;
+  final PipesPipeDeadLetterConfig? deadLetterConfig;
 
   Map<String, Object?> encode() => {
     'batch_size': ?batchSize?.toTfJson(),
@@ -544,37 +523,31 @@ final class PipesPipeSourceParametersDynamodbStreamParameters {
 }
 
 /// `on_partial_batch_item_failure` — derived from the provider schema description.
-enum PipesPipeSourceParametersDynamodbStreamParametersOnPartialBatchItemFailure
-    implements TerraformEnum {
+enum PipesPipeOnPartialBatchItemFailure implements TerraformEnum {
   automaticBisect('AUTOMATIC_BISECT');
 
-  const PipesPipeSourceParametersDynamodbStreamParametersOnPartialBatchItemFailure(
-    this.terraformValue,
-  );
+  const PipesPipeOnPartialBatchItemFailure(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `starting_position` — derived from the provider schema description.
-enum PipesPipeSourceParametersDynamodbStreamParametersStartingPosition
+enum PipesPipeDynamodbStreamParametersStartingPosition
     implements TerraformEnum {
   trimHorizon('TRIM_HORIZON'),
   latest('LATEST');
 
-  const PipesPipeSourceParametersDynamodbStreamParametersStartingPosition(
-    this.terraformValue,
-  );
+  const PipesPipeDynamodbStreamParametersStartingPosition(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `source_parameters.dynamodb_stream_parameters.dead_letter_config` block of
 /// `aws_pipes_pipe` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class PipesPipeSourceParametersDynamodbStreamParametersDeadLetterConfig {
-  const PipesPipeSourceParametersDynamodbStreamParametersDeadLetterConfig({
-    this.arn,
-  });
+final class PipesPipeDeadLetterConfig {
+  const PipesPipeDeadLetterConfig({this.arn});
 
   final TfArg<String>? arn;
 
@@ -584,10 +557,10 @@ final class PipesPipeSourceParametersDynamodbStreamParametersDeadLetterConfig {
 /// Typed helper for the `source_parameters.filter_criteria` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeSourceParametersFilterCriteria {
-  const PipesPipeSourceParametersFilterCriteria({this.filter});
+final class PipesPipeFilterCriteria {
+  const PipesPipeFilterCriteria({this.filter});
 
-  final List<PipesPipeSourceParametersFilterCriteriaFilter>? filter;
+  final List<PipesPipeFilter>? filter;
 
   Map<String, Object?> encode() => {
     if (filter != null) 'filter': [for (final e in filter!) e.encode()],
@@ -597,8 +570,8 @@ final class PipesPipeSourceParametersFilterCriteria {
 /// Typed helper for the `source_parameters.filter_criteria.filter` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeSourceParametersFilterCriteriaFilter {
-  const PipesPipeSourceParametersFilterCriteriaFilter({required this.pattern});
+final class PipesPipeFilter {
+  const PipesPipeFilter({required this.pattern});
 
   final TfArg<String> pattern;
 
@@ -629,20 +602,16 @@ final class PipesPipeSourceParametersKinesisStreamParameters {
 
   final TfArg<num>? maximumRetryAttempts;
 
-  final TfArg<
-    PipesPipeSourceParametersKinesisStreamParametersOnPartialBatchItemFailure
-  >?
-  onPartialBatchItemFailure;
+  final TfArg<PipesPipeOnPartialBatchItemFailure>? onPartialBatchItemFailure;
 
   final TfArg<num>? parallelizationFactor;
 
-  final TfArg<PipesPipeSourceParametersKinesisStreamParametersStartingPosition>
+  final TfArg<PipesPipeKinesisStreamParametersStartingPosition>
   startingPosition;
 
   final TfArg<String>? startingPositionTimestamp;
 
-  final PipesPipeSourceParametersKinesisStreamParametersDeadLetterConfig?
-  deadLetterConfig;
+  final PipesPipeDeadLetterConfig? deadLetterConfig;
 
   Map<String, Object?> encode() => {
     'batch_size': ?batchSize?.toTfJson(),
@@ -658,50 +627,22 @@ final class PipesPipeSourceParametersKinesisStreamParameters {
   };
 }
 
-/// `on_partial_batch_item_failure` — derived from the provider schema description.
-enum PipesPipeSourceParametersKinesisStreamParametersOnPartialBatchItemFailure
-    implements TerraformEnum {
-  automaticBisect('AUTOMATIC_BISECT');
-
-  const PipesPipeSourceParametersKinesisStreamParametersOnPartialBatchItemFailure(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// `starting_position` — derived from the provider schema description.
-enum PipesPipeSourceParametersKinesisStreamParametersStartingPosition
-    implements TerraformEnum {
+enum PipesPipeKinesisStreamParametersStartingPosition implements TerraformEnum {
   trimHorizon('TRIM_HORIZON'),
   latest('LATEST'),
   atTimestamp('AT_TIMESTAMP');
 
-  const PipesPipeSourceParametersKinesisStreamParametersStartingPosition(
-    this.terraformValue,
-  );
+  const PipesPipeKinesisStreamParametersStartingPosition(this.terraformValue);
   @override
   final String terraformValue;
-}
-
-/// Typed helper for the `source_parameters.kinesis_stream_parameters.dead_letter_config` block of
-/// `aws_pipes_pipe` (derived from provider schema).
-@immutable
-final class PipesPipeSourceParametersKinesisStreamParametersDeadLetterConfig {
-  const PipesPipeSourceParametersKinesisStreamParametersDeadLetterConfig({
-    this.arn,
-  });
-
-  final TfArg<String>? arn;
-
-  Map<String, Object?> encode() => {'arn': ?arn?.toTfJson()};
 }
 
 /// Typed helper for the `source_parameters.managed_streaming_kafka_parameters` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeSourceParametersManagedStreamingKafkaParameters {
-  const PipesPipeSourceParametersManagedStreamingKafkaParameters({
+final class PipesPipeManagedStreamingKafkaParameters {
+  const PipesPipeManagedStreamingKafkaParameters({
     this.batchSize,
     this.consumerGroupId,
     this.maximumBatchingWindowInSeconds,
@@ -716,15 +657,12 @@ final class PipesPipeSourceParametersManagedStreamingKafkaParameters {
 
   final TfArg<num>? maximumBatchingWindowInSeconds;
 
-  final TfArg<
-    PipesPipeSourceParametersManagedStreamingKafkaParametersStartingPosition
-  >?
+  final TfArg<PipesPipeDynamodbStreamParametersStartingPosition>?
   startingPosition;
 
   final TfArg<String> topicName;
 
-  final PipesPipeSourceParametersManagedStreamingKafkaParametersCredentials?
-  credentials;
+  final PipesPipeManagedStreamingKafkaParametersCredentials? credentials;
 
   Map<String, Object?> encode() => {
     'batch_size': ?batchSize?.toTfJson(),
@@ -737,24 +675,11 @@ final class PipesPipeSourceParametersManagedStreamingKafkaParameters {
   };
 }
 
-/// `starting_position` — derived from the provider schema description.
-enum PipesPipeSourceParametersManagedStreamingKafkaParametersStartingPosition
-    implements TerraformEnum {
-  trimHorizon('TRIM_HORIZON'),
-  latest('LATEST');
-
-  const PipesPipeSourceParametersManagedStreamingKafkaParametersStartingPosition(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `source_parameters.managed_streaming_kafka_parameters.credentials` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeSourceParametersManagedStreamingKafkaParametersCredentials {
-  const PipesPipeSourceParametersManagedStreamingKafkaParametersCredentials({
+final class PipesPipeManagedStreamingKafkaParametersCredentials {
+  const PipesPipeManagedStreamingKafkaParametersCredentials({
     this.clientCertificateTlsAuth,
     this.saslScram512Auth,
   });
@@ -772,8 +697,8 @@ final class PipesPipeSourceParametersManagedStreamingKafkaParametersCredentials 
 /// Typed helper for the `source_parameters.rabbitmq_broker_parameters` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeSourceParametersRabbitmqBrokerParameters {
-  const PipesPipeSourceParametersRabbitmqBrokerParameters({
+final class PipesPipeRabbitmqBrokerParameters {
+  const PipesPipeRabbitmqBrokerParameters({
     this.batchSize,
     this.maximumBatchingWindowInSeconds,
     required this.queueName,
@@ -789,8 +714,7 @@ final class PipesPipeSourceParametersRabbitmqBrokerParameters {
 
   final TfArg<String>? virtualHost;
 
-  final PipesPipeSourceParametersRabbitmqBrokerParametersCredentials
-  credentials;
+  final PipesPipeActivemqBrokerParametersCredentials credentials;
 
   Map<String, Object?> encode() => {
     'batch_size': ?batchSize?.toTfJson(),
@@ -802,24 +726,11 @@ final class PipesPipeSourceParametersRabbitmqBrokerParameters {
   };
 }
 
-/// Typed helper for the `source_parameters.rabbitmq_broker_parameters.credentials` block of
-/// `aws_pipes_pipe` (derived from provider schema).
-@immutable
-final class PipesPipeSourceParametersRabbitmqBrokerParametersCredentials {
-  const PipesPipeSourceParametersRabbitmqBrokerParametersCredentials({
-    required this.basicAuth,
-  });
-
-  final TfArg<String> basicAuth;
-
-  Map<String, Object?> encode() => {'basic_auth': basicAuth.toTfJson()};
-}
-
 /// Typed helper for the `source_parameters.self_managed_kafka_parameters` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeSourceParametersSelfManagedKafkaParameters {
-  const PipesPipeSourceParametersSelfManagedKafkaParameters({
+final class PipesPipeSelfManagedKafkaParameters {
+  const PipesPipeSelfManagedKafkaParameters({
     this.additionalBootstrapServers,
     this.batchSize,
     this.consumerGroupId,
@@ -841,17 +752,14 @@ final class PipesPipeSourceParametersSelfManagedKafkaParameters {
 
   final TfArg<String>? serverRootCaCertificate;
 
-  final TfArg<
-    PipesPipeSourceParametersSelfManagedKafkaParametersStartingPosition
-  >?
+  final TfArg<PipesPipeDynamodbStreamParametersStartingPosition>?
   startingPosition;
 
   final TfArg<String> topicName;
 
-  final PipesPipeSourceParametersSelfManagedKafkaParametersCredentials?
-  credentials;
+  final PipesPipeSelfManagedKafkaParametersCredentials? credentials;
 
-  final PipesPipeSourceParametersSelfManagedKafkaParametersVpc? vpc;
+  final PipesPipeVpc? vpc;
 
   Map<String, Object?> encode() => {
     'additional_bootstrap_servers': ?additionalBootstrapServers?.toTfJson(),
@@ -867,24 +775,11 @@ final class PipesPipeSourceParametersSelfManagedKafkaParameters {
   };
 }
 
-/// `starting_position` — derived from the provider schema description.
-enum PipesPipeSourceParametersSelfManagedKafkaParametersStartingPosition
-    implements TerraformEnum {
-  trimHorizon('TRIM_HORIZON'),
-  latest('LATEST');
-
-  const PipesPipeSourceParametersSelfManagedKafkaParametersStartingPosition(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `source_parameters.self_managed_kafka_parameters.credentials` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeSourceParametersSelfManagedKafkaParametersCredentials {
-  const PipesPipeSourceParametersSelfManagedKafkaParametersCredentials({
+final class PipesPipeSelfManagedKafkaParametersCredentials {
+  const PipesPipeSelfManagedKafkaParametersCredentials({
     this.basicAuth,
     this.clientCertificateTlsAuth,
     this.saslScram256Auth,
@@ -910,11 +805,8 @@ final class PipesPipeSourceParametersSelfManagedKafkaParametersCredentials {
 /// Typed helper for the `source_parameters.self_managed_kafka_parameters.vpc` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeSourceParametersSelfManagedKafkaParametersVpc {
-  const PipesPipeSourceParametersSelfManagedKafkaParametersVpc({
-    this.securityGroups,
-    this.subnets,
-  });
+final class PipesPipeVpc {
+  const PipesPipeVpc({this.securityGroups, this.subnets});
 
   final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroups;
 
@@ -972,28 +864,27 @@ sealed class PipesPipeTargetParametersService {
 
   /// Sets `batch_job_parameters`.
   const factory PipesPipeTargetParametersService.batchJobParameters(
-    PipesPipeTargetParametersBatchJobParameters batchJobParameters,
+    PipesPipeBatchJobParameters batchJobParameters,
   ) = PipesPipeTargetParametersServiceBatchJobParameters;
 
   /// Sets `cloudwatch_logs_parameters`.
   const factory PipesPipeTargetParametersService.cloudwatchLogsParameters(
-    PipesPipeTargetParametersCloudwatchLogsParameters cloudwatchLogsParameters,
+    PipesPipeCloudwatchLogsParameters cloudwatchLogsParameters,
   ) = PipesPipeTargetParametersServiceCloudwatchLogsParameters;
 
   /// Sets `ecs_task_parameters`.
   const factory PipesPipeTargetParametersService.ecsTaskParameters(
-    PipesPipeTargetParametersEcsTaskParameters ecsTaskParameters,
+    PipesPipeEcsTaskParameters ecsTaskParameters,
   ) = PipesPipeTargetParametersServiceEcsTaskParameters;
 
   /// Sets `eventbridge_event_bus_parameters`.
   const factory PipesPipeTargetParametersService.eventbridgeEventBusParameters(
-    PipesPipeTargetParametersEventbridgeEventBusParameters
-    eventbridgeEventBusParameters,
+    PipesPipeEventbridgeEventBusParameters eventbridgeEventBusParameters,
   ) = PipesPipeTargetParametersServiceEventbridgeEventBusParameters;
 
   /// Sets `http_parameters`.
   const factory PipesPipeTargetParametersService.httpParameters(
-    PipesPipeTargetParametersHttpParameters httpParameters,
+    PipesPipeHttpParameters httpParameters,
   ) = PipesPipeTargetParametersServiceHttpParameters;
 
   /// Sets `kinesis_stream_parameters`.
@@ -1003,18 +894,17 @@ sealed class PipesPipeTargetParametersService {
 
   /// Sets `lambda_function_parameters`.
   const factory PipesPipeTargetParametersService.lambdaFunctionParameters(
-    PipesPipeTargetParametersLambdaFunctionParameters lambdaFunctionParameters,
+    PipesPipeLambdaFunctionParameters lambdaFunctionParameters,
   ) = PipesPipeTargetParametersServiceLambdaFunctionParameters;
 
   /// Sets `redshift_data_parameters`.
   const factory PipesPipeTargetParametersService.redshiftDataParameters(
-    PipesPipeTargetParametersRedshiftDataParameters redshiftDataParameters,
+    PipesPipeRedshiftDataParameters redshiftDataParameters,
   ) = PipesPipeTargetParametersServiceRedshiftDataParameters;
 
   /// Sets `sagemaker_pipeline_parameters`.
   const factory PipesPipeTargetParametersService.sagemakerPipelineParameters(
-    PipesPipeTargetParametersSagemakerPipelineParameters
-    sagemakerPipelineParameters,
+    PipesPipeSagemakerPipelineParameters sagemakerPipelineParameters,
   ) = PipesPipeTargetParametersServiceSagemakerPipelineParameters;
 
   /// Sets `sqs_queue_parameters`.
@@ -1024,7 +914,7 @@ sealed class PipesPipeTargetParametersService {
 
   /// Sets `step_function_state_machine_parameters`.
   const factory PipesPipeTargetParametersService.stepFunctionStateMachineParameters(
-    PipesPipeTargetParametersStepFunctionStateMachineParameters
+    PipesPipeStepFunctionStateMachineParameters
     stepFunctionStateMachineParameters,
   ) = PipesPipeTargetParametersServiceStepFunctionStateMachineParameters;
 
@@ -1041,7 +931,7 @@ final class PipesPipeTargetParametersServiceBatchJobParameters
     this.batchJobParameters,
   );
 
-  final PipesPipeTargetParametersBatchJobParameters batchJobParameters;
+  final PipesPipeBatchJobParameters batchJobParameters;
 
   @override
   String get blockKey => 'batch_job_parameters';
@@ -1059,8 +949,7 @@ final class PipesPipeTargetParametersServiceCloudwatchLogsParameters
     this.cloudwatchLogsParameters,
   );
 
-  final PipesPipeTargetParametersCloudwatchLogsParameters
-  cloudwatchLogsParameters;
+  final PipesPipeCloudwatchLogsParameters cloudwatchLogsParameters;
 
   @override
   String get blockKey => 'cloudwatch_logs_parameters';
@@ -1078,7 +967,7 @@ final class PipesPipeTargetParametersServiceEcsTaskParameters
     this.ecsTaskParameters,
   );
 
-  final PipesPipeTargetParametersEcsTaskParameters ecsTaskParameters;
+  final PipesPipeEcsTaskParameters ecsTaskParameters;
 
   @override
   String get blockKey => 'ecs_task_parameters';
@@ -1096,8 +985,7 @@ final class PipesPipeTargetParametersServiceEventbridgeEventBusParameters
     this.eventbridgeEventBusParameters,
   );
 
-  final PipesPipeTargetParametersEventbridgeEventBusParameters
-  eventbridgeEventBusParameters;
+  final PipesPipeEventbridgeEventBusParameters eventbridgeEventBusParameters;
 
   @override
   String get blockKey => 'eventbridge_event_bus_parameters';
@@ -1113,7 +1001,7 @@ final class PipesPipeTargetParametersServiceHttpParameters
     extends PipesPipeTargetParametersService {
   const PipesPipeTargetParametersServiceHttpParameters(this.httpParameters);
 
-  final PipesPipeTargetParametersHttpParameters httpParameters;
+  final PipesPipeHttpParameters httpParameters;
 
   @override
   String get blockKey => 'http_parameters';
@@ -1148,8 +1036,7 @@ final class PipesPipeTargetParametersServiceLambdaFunctionParameters
     this.lambdaFunctionParameters,
   );
 
-  final PipesPipeTargetParametersLambdaFunctionParameters
-  lambdaFunctionParameters;
+  final PipesPipeLambdaFunctionParameters lambdaFunctionParameters;
 
   @override
   String get blockKey => 'lambda_function_parameters';
@@ -1167,7 +1054,7 @@ final class PipesPipeTargetParametersServiceRedshiftDataParameters
     this.redshiftDataParameters,
   );
 
-  final PipesPipeTargetParametersRedshiftDataParameters redshiftDataParameters;
+  final PipesPipeRedshiftDataParameters redshiftDataParameters;
 
   @override
   String get blockKey => 'redshift_data_parameters';
@@ -1185,8 +1072,7 @@ final class PipesPipeTargetParametersServiceSagemakerPipelineParameters
     this.sagemakerPipelineParameters,
   );
 
-  final PipesPipeTargetParametersSagemakerPipelineParameters
-  sagemakerPipelineParameters;
+  final PipesPipeSagemakerPipelineParameters sagemakerPipelineParameters;
 
   @override
   String get blockKey => 'sagemaker_pipeline_parameters';
@@ -1222,7 +1108,7 @@ final class PipesPipeTargetParametersServiceStepFunctionStateMachineParameters
     this.stepFunctionStateMachineParameters,
   );
 
-  final PipesPipeTargetParametersStepFunctionStateMachineParameters
+  final PipesPipeStepFunctionStateMachineParameters
   stepFunctionStateMachineParameters;
 
   @override
@@ -1238,8 +1124,8 @@ final class PipesPipeTargetParametersServiceStepFunctionStateMachineParameters
 /// Typed helper for the `target_parameters.batch_job_parameters` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeTargetParametersBatchJobParameters {
-  const PipesPipeTargetParametersBatchJobParameters({
+final class PipesPipeBatchJobParameters {
+  const PipesPipeBatchJobParameters({
     required this.jobDefinition,
     required this.jobName,
     this.parameters,
@@ -1255,15 +1141,13 @@ final class PipesPipeTargetParametersBatchJobParameters {
 
   final TfArg<Map<String, String>>? parameters;
 
-  final PipesPipeTargetParametersBatchJobParametersArrayProperties?
-  arrayProperties;
+  final PipesPipeArrayProperties? arrayProperties;
 
-  final PipesPipeTargetParametersBatchJobParametersContainerOverrides?
-  containerOverrides;
+  final PipesPipeContainerOverrides? containerOverrides;
 
-  final List<PipesPipeTargetParametersBatchJobParametersDependsOn>? dependsOn;
+  final List<PipesPipeDependsOn>? dependsOn;
 
-  final PipesPipeTargetParametersBatchJobParametersRetryStrategy? retryStrategy;
+  final PipesPipeRetryStrategy? retryStrategy;
 
   Map<String, Object?> encode() => {
     'job_definition': jobDefinition.toTfJson(),
@@ -1280,8 +1164,8 @@ final class PipesPipeTargetParametersBatchJobParameters {
 /// Typed helper for the `target_parameters.batch_job_parameters.array_properties` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeTargetParametersBatchJobParametersArrayProperties {
-  const PipesPipeTargetParametersBatchJobParametersArrayProperties({this.size});
+final class PipesPipeArrayProperties {
+  const PipesPipeArrayProperties({this.size});
 
   final TfArg<num>? size;
 
@@ -1291,8 +1175,8 @@ final class PipesPipeTargetParametersBatchJobParametersArrayProperties {
 /// Typed helper for the `target_parameters.batch_job_parameters.container_overrides` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeTargetParametersBatchJobParametersContainerOverrides {
-  const PipesPipeTargetParametersBatchJobParametersContainerOverrides({
+final class PipesPipeContainerOverrides {
+  const PipesPipeContainerOverrides({
     this.command,
     this.instanceType,
     this.environment,
@@ -1303,15 +1187,9 @@ final class PipesPipeTargetParametersBatchJobParametersContainerOverrides {
 
   final TfArg<String>? instanceType;
 
-  final List<
-    PipesPipeTargetParametersBatchJobParametersContainerOverridesEnvironment
-  >?
-  environment;
+  final List<PipesPipeEnvironment>? environment;
 
-  final List<
-    PipesPipeTargetParametersBatchJobParametersContainerOverridesResourceRequirement
-  >?
-  resourceRequirement;
+  final List<PipesPipeResourceRequirement>? resourceRequirement;
 
   Map<String, Object?> encode() => {
     'command': ?command?.toTfJson(),
@@ -1327,12 +1205,10 @@ final class PipesPipeTargetParametersBatchJobParametersContainerOverrides {
 
 /// Typed helper for the `target_parameters.batch_job_parameters.container_overrides.environment` block of
 /// `aws_pipes_pipe` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class PipesPipeTargetParametersBatchJobParametersContainerOverridesEnvironment {
-  const PipesPipeTargetParametersBatchJobParametersContainerOverridesEnvironment({
-    this.name,
-    this.value,
-  });
+final class PipesPipeEnvironment {
+  const PipesPipeEnvironment({this.name, this.value});
 
   final TfArg<String>? name;
 
@@ -1347,16 +1223,10 @@ final class PipesPipeTargetParametersBatchJobParametersContainerOverridesEnviron
 /// Typed helper for the `target_parameters.batch_job_parameters.container_overrides.resource_requirement` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeTargetParametersBatchJobParametersContainerOverridesResourceRequirement {
-  const PipesPipeTargetParametersBatchJobParametersContainerOverridesResourceRequirement({
-    required this.type,
-    required this.value,
-  });
+final class PipesPipeResourceRequirement {
+  const PipesPipeResourceRequirement({required this.type, required this.value});
 
-  final TfArg<
-    PipesPipeTargetParametersBatchJobParametersContainerOverridesResourceRequirementType
-  >
-  type;
+  final TfArg<PipesPipeResourceRequirementType> type;
 
   final TfArg<String> value;
 
@@ -1367,15 +1237,12 @@ final class PipesPipeTargetParametersBatchJobParametersContainerOverridesResourc
 }
 
 /// `type` — derived from the provider schema description.
-enum PipesPipeTargetParametersBatchJobParametersContainerOverridesResourceRequirementType
-    implements TerraformEnum {
+enum PipesPipeResourceRequirementType implements TerraformEnum {
   gpu('GPU'),
   memory('MEMORY'),
   vcpu('VCPU');
 
-  const PipesPipeTargetParametersBatchJobParametersContainerOverridesResourceRequirementType(
-    this.terraformValue,
-  );
+  const PipesPipeResourceRequirementType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1383,15 +1250,12 @@ enum PipesPipeTargetParametersBatchJobParametersContainerOverridesResourceRequir
 /// Typed helper for the `target_parameters.batch_job_parameters.depends_on` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeTargetParametersBatchJobParametersDependsOn {
-  const PipesPipeTargetParametersBatchJobParametersDependsOn({
-    this.jobId,
-    this.type,
-  });
+final class PipesPipeDependsOn {
+  const PipesPipeDependsOn({this.jobId, this.type});
 
   final TfArg<String>? jobId;
 
-  final TfArg<PipesPipeTargetParametersBatchJobParametersDependsOnType>? type;
+  final TfArg<PipesPipeDependsOnType>? type;
 
   Map<String, Object?> encode() => {
     'job_id': ?jobId?.toTfJson(),
@@ -1400,14 +1264,11 @@ final class PipesPipeTargetParametersBatchJobParametersDependsOn {
 }
 
 /// `type` — derived from the provider schema description.
-enum PipesPipeTargetParametersBatchJobParametersDependsOnType
-    implements TerraformEnum {
+enum PipesPipeDependsOnType implements TerraformEnum {
   nToN('N_TO_N'),
   sequential('SEQUENTIAL');
 
-  const PipesPipeTargetParametersBatchJobParametersDependsOnType(
-    this.terraformValue,
-  );
+  const PipesPipeDependsOnType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1415,10 +1276,8 @@ enum PipesPipeTargetParametersBatchJobParametersDependsOnType
 /// Typed helper for the `target_parameters.batch_job_parameters.retry_strategy` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeTargetParametersBatchJobParametersRetryStrategy {
-  const PipesPipeTargetParametersBatchJobParametersRetryStrategy({
-    this.attempts,
-  });
+final class PipesPipeRetryStrategy {
+  const PipesPipeRetryStrategy({this.attempts});
 
   final TfArg<num>? attempts;
 
@@ -1428,11 +1287,8 @@ final class PipesPipeTargetParametersBatchJobParametersRetryStrategy {
 /// Typed helper for the `target_parameters.cloudwatch_logs_parameters` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeTargetParametersCloudwatchLogsParameters {
-  const PipesPipeTargetParametersCloudwatchLogsParameters({
-    this.logStreamName,
-    this.timestamp,
-  });
+final class PipesPipeCloudwatchLogsParameters {
+  const PipesPipeCloudwatchLogsParameters({this.logStreamName, this.timestamp});
 
   final TfArg<String>? logStreamName;
 
@@ -1447,8 +1303,8 @@ final class PipesPipeTargetParametersCloudwatchLogsParameters {
 /// Typed helper for the `target_parameters.ecs_task_parameters` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeTargetParametersEcsTaskParameters {
-  const PipesPipeTargetParametersEcsTaskParameters({
+final class PipesPipeEcsTaskParameters {
+  const PipesPipeEcsTaskParameters({
     this.enableEcsManagedTags,
     this.enableExecuteCommand,
     this.group,
@@ -1472,12 +1328,11 @@ final class PipesPipeTargetParametersEcsTaskParameters {
 
   final TfArg<String>? group;
 
-  final TfArg<PipesPipeTargetParametersEcsTaskParametersLaunchType>? launchType;
+  final TfArg<PipesPipeLaunchType>? launchType;
 
   final TfArg<String>? platformVersion;
 
-  final TfArg<PipesPipeTargetParametersEcsTaskParametersPropagateTags>?
-  propagateTags;
+  final TfArg<PipesPipePropagateTags>? propagateTags;
 
   final TfArg<String>? referenceId;
 
@@ -1487,21 +1342,15 @@ final class PipesPipeTargetParametersEcsTaskParameters {
 
   final TfArg<String> taskDefinitionArn;
 
-  final List<
-    PipesPipeTargetParametersEcsTaskParametersCapacityProviderStrategy
-  >?
-  capacityProviderStrategy;
+  final List<PipesPipeCapacityProviderStrategy>? capacityProviderStrategy;
 
-  final PipesPipeTargetParametersEcsTaskParametersNetworkConfiguration?
-  networkConfiguration;
+  final PipesPipeNetworkConfiguration? networkConfiguration;
 
-  final PipesPipeTargetParametersEcsTaskParametersOverrides? overrides;
+  final PipesPipeOverrides? overrides;
 
-  final List<PipesPipeTargetParametersEcsTaskParametersPlacementConstraint>?
-  placementConstraint;
+  final List<PipesPipePlacementConstraint>? placementConstraint;
 
-  final List<PipesPipeTargetParametersEcsTaskParametersPlacementStrategy>?
-  placementStrategy;
+  final List<PipesPipePlacementStrategy>? placementStrategy;
 
   Map<String, Object?> encode() => {
     'enable_ecs_managed_tags': ?enableEcsManagedTags?.toTfJson(),
@@ -1530,27 +1379,21 @@ final class PipesPipeTargetParametersEcsTaskParameters {
 }
 
 /// `launch_type` — derived from the provider schema description.
-enum PipesPipeTargetParametersEcsTaskParametersLaunchType
-    implements TerraformEnum {
+enum PipesPipeLaunchType implements TerraformEnum {
   ec2('EC2'),
   fargate('FARGATE'),
   external('EXTERNAL');
 
-  const PipesPipeTargetParametersEcsTaskParametersLaunchType(
-    this.terraformValue,
-  );
+  const PipesPipeLaunchType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `propagate_tags` — derived from the provider schema description.
-enum PipesPipeTargetParametersEcsTaskParametersPropagateTags
-    implements TerraformEnum {
+enum PipesPipePropagateTags implements TerraformEnum {
   taskDefinition('TASK_DEFINITION');
 
-  const PipesPipeTargetParametersEcsTaskParametersPropagateTags(
-    this.terraformValue,
-  );
+  const PipesPipePropagateTags(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1558,8 +1401,8 @@ enum PipesPipeTargetParametersEcsTaskParametersPropagateTags
 /// Typed helper for the `target_parameters.ecs_task_parameters.capacity_provider_strategy` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeTargetParametersEcsTaskParametersCapacityProviderStrategy {
-  const PipesPipeTargetParametersEcsTaskParametersCapacityProviderStrategy({
+final class PipesPipeCapacityProviderStrategy {
+  const PipesPipeCapacityProviderStrategy({
     this.base,
     required this.capacityProvider,
     this.weight,
@@ -1581,13 +1424,10 @@ final class PipesPipeTargetParametersEcsTaskParametersCapacityProviderStrategy {
 /// Typed helper for the `target_parameters.ecs_task_parameters.network_configuration` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeTargetParametersEcsTaskParametersNetworkConfiguration {
-  const PipesPipeTargetParametersEcsTaskParametersNetworkConfiguration({
-    this.awsVpcConfiguration,
-  });
+final class PipesPipeNetworkConfiguration {
+  const PipesPipeNetworkConfiguration({this.awsVpcConfiguration});
 
-  final PipesPipeTargetParametersEcsTaskParametersNetworkConfigurationAwsVpcConfiguration?
-  awsVpcConfiguration;
+  final PipesPipeAwsVpcConfiguration? awsVpcConfiguration;
 
   Map<String, Object?> encode() => {
     'aws_vpc_configuration': ?awsVpcConfiguration?.encode(),
@@ -1597,17 +1437,14 @@ final class PipesPipeTargetParametersEcsTaskParametersNetworkConfiguration {
 /// Typed helper for the `target_parameters.ecs_task_parameters.network_configuration.aws_vpc_configuration` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeTargetParametersEcsTaskParametersNetworkConfigurationAwsVpcConfiguration {
-  const PipesPipeTargetParametersEcsTaskParametersNetworkConfigurationAwsVpcConfiguration({
+final class PipesPipeAwsVpcConfiguration {
+  const PipesPipeAwsVpcConfiguration({
     this.assignPublicIp,
     this.securityGroups,
     this.subnets,
   });
 
-  final TfArg<
-    PipesPipeTargetParametersEcsTaskParametersNetworkConfigurationAwsVpcConfigurationAssignPublicIp
-  >?
-  assignPublicIp;
+  final TfArg<PipesPipeAssignPublicIp>? assignPublicIp;
 
   final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroups;
 
@@ -1621,14 +1458,11 @@ final class PipesPipeTargetParametersEcsTaskParametersNetworkConfigurationAwsVpc
 }
 
 /// `assign_public_ip` — derived from the provider schema description.
-enum PipesPipeTargetParametersEcsTaskParametersNetworkConfigurationAwsVpcConfigurationAssignPublicIp
-    implements TerraformEnum {
+enum PipesPipeAssignPublicIp implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const PipesPipeTargetParametersEcsTaskParametersNetworkConfigurationAwsVpcConfigurationAssignPublicIp(
-    this.terraformValue,
-  );
+  const PipesPipeAssignPublicIp(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1636,8 +1470,8 @@ enum PipesPipeTargetParametersEcsTaskParametersNetworkConfigurationAwsVpcConfigu
 /// Typed helper for the `target_parameters.ecs_task_parameters.overrides` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeTargetParametersEcsTaskParametersOverrides {
-  const PipesPipeTargetParametersEcsTaskParametersOverrides({
+final class PipesPipeOverrides {
+  const PipesPipeOverrides({
     this.cpu,
     this.executionRoleArn,
     this.memory,
@@ -1655,17 +1489,11 @@ final class PipesPipeTargetParametersEcsTaskParametersOverrides {
 
   final RefTo<AwsIamRole>? taskRoleArn;
 
-  final List<
-    PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverride
-  >?
-  containerOverride;
+  final List<PipesPipeContainerOverride>? containerOverride;
 
-  final PipesPipeTargetParametersEcsTaskParametersOverridesEphemeralStorage?
-  ephemeralStorage;
+  final PipesPipeEphemeralStorage? ephemeralStorage;
 
-  final List<
-    PipesPipeTargetParametersEcsTaskParametersOverridesInferenceAcceleratorOverride
-  >?
+  final List<PipesPipeInferenceAcceleratorOverride>?
   inferenceAcceleratorOverride;
 
   Map<String, Object?> encode() => {
@@ -1686,8 +1514,8 @@ final class PipesPipeTargetParametersEcsTaskParametersOverrides {
 /// Typed helper for the `target_parameters.ecs_task_parameters.overrides.container_override` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverride {
-  const PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverride({
+final class PipesPipeContainerOverride {
+  const PipesPipeContainerOverride({
     this.command,
     this.cpu,
     this.memory,
@@ -1708,19 +1536,11 @@ final class PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverride
 
   final TfArg<String>? name;
 
-  final List<
-    PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverrideEnvironment
-  >?
-  environment;
+  final List<PipesPipeEnvironment>? environment;
 
-  final List<
-    PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverrideEnvironmentFile
-  >?
-  environmentFile;
+  final List<PipesPipeEnvironmentFile>? environmentFile;
 
-  final List<
-    PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverrideResourceRequirement
-  >?
+  final List<PipesPipeContainerOverrideResourceRequirement>?
   resourceRequirement;
 
   Map<String, Object?> encode() => {
@@ -1740,38 +1560,13 @@ final class PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverride
   };
 }
 
-/// Typed helper for the `target_parameters.ecs_task_parameters.overrides.container_override.environment` block of
-/// `aws_pipes_pipe` (derived from provider schema).
-@immutable
-final class PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverrideEnvironment {
-  const PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverrideEnvironment({
-    this.name,
-    this.value,
-  });
-
-  final TfArg<String>? name;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'name': ?name?.toTfJson(),
-    'value': ?value?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `target_parameters.ecs_task_parameters.overrides.container_override.environment_file` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverrideEnvironmentFile {
-  const PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverrideEnvironmentFile({
-    required this.type,
-    required this.value,
-  });
+final class PipesPipeEnvironmentFile {
+  const PipesPipeEnvironmentFile({required this.type, required this.value});
 
-  final TfArg<
-    PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverrideEnvironmentFileType
-  >
-  type;
+  final TfArg<PipesPipeEnvironmentFileType> type;
 
   final TfArg<String> value;
 
@@ -1782,13 +1577,10 @@ final class PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverride
 }
 
 /// `type` — derived from the provider schema description.
-enum PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverrideEnvironmentFileType
-    implements TerraformEnum {
+enum PipesPipeEnvironmentFileType implements TerraformEnum {
   s3('s3');
 
-  const PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverrideEnvironmentFileType(
-    this.terraformValue,
-  );
+  const PipesPipeEnvironmentFileType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1796,16 +1588,13 @@ enum PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverrideEnviron
 /// Typed helper for the `target_parameters.ecs_task_parameters.overrides.container_override.resource_requirement` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverrideResourceRequirement {
-  const PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverrideResourceRequirement({
+final class PipesPipeContainerOverrideResourceRequirement {
+  const PipesPipeContainerOverrideResourceRequirement({
     required this.type,
     required this.value,
   });
 
-  final TfArg<
-    PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverrideResourceRequirementType
-  >
-  type;
+  final TfArg<PipesPipeContainerOverrideType> type;
 
   final TfArg<String> value;
 
@@ -1816,14 +1605,11 @@ final class PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverride
 }
 
 /// `type` — derived from the provider schema description.
-enum PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverrideResourceRequirementType
-    implements TerraformEnum {
+enum PipesPipeContainerOverrideType implements TerraformEnum {
   gpu('GPU'),
   inferenceaccelerator('InferenceAccelerator');
 
-  const PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverrideResourceRequirementType(
-    this.terraformValue,
-  );
+  const PipesPipeContainerOverrideType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1831,10 +1617,8 @@ enum PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverrideResourc
 /// Typed helper for the `target_parameters.ecs_task_parameters.overrides.ephemeral_storage` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeTargetParametersEcsTaskParametersOverridesEphemeralStorage {
-  const PipesPipeTargetParametersEcsTaskParametersOverridesEphemeralStorage({
-    required this.sizeInGib,
-  });
+final class PipesPipeEphemeralStorage {
+  const PipesPipeEphemeralStorage({required this.sizeInGib});
 
   final TfArg<num> sizeInGib;
 
@@ -1844,8 +1628,8 @@ final class PipesPipeTargetParametersEcsTaskParametersOverridesEphemeralStorage 
 /// Typed helper for the `target_parameters.ecs_task_parameters.overrides.inference_accelerator_override` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeTargetParametersEcsTaskParametersOverridesInferenceAcceleratorOverride {
-  const PipesPipeTargetParametersEcsTaskParametersOverridesInferenceAcceleratorOverride({
+final class PipesPipeInferenceAcceleratorOverride {
+  const PipesPipeInferenceAcceleratorOverride({
     this.deviceName,
     this.deviceType,
   });
@@ -1863,18 +1647,12 @@ final class PipesPipeTargetParametersEcsTaskParametersOverridesInferenceAccelera
 /// Typed helper for the `target_parameters.ecs_task_parameters.placement_constraint` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeTargetParametersEcsTaskParametersPlacementConstraint {
-  const PipesPipeTargetParametersEcsTaskParametersPlacementConstraint({
-    this.expression,
-    this.type,
-  });
+final class PipesPipePlacementConstraint {
+  const PipesPipePlacementConstraint({this.expression, this.type});
 
   final TfArg<String>? expression;
 
-  final TfArg<
-    PipesPipeTargetParametersEcsTaskParametersPlacementConstraintType
-  >?
-  type;
+  final TfArg<PipesPipePlacementConstraintType>? type;
 
   Map<String, Object?> encode() => {
     'expression': ?expression?.toTfJson(),
@@ -1883,14 +1661,11 @@ final class PipesPipeTargetParametersEcsTaskParametersPlacementConstraint {
 }
 
 /// `type` — derived from the provider schema description.
-enum PipesPipeTargetParametersEcsTaskParametersPlacementConstraintType
-    implements TerraformEnum {
+enum PipesPipePlacementConstraintType implements TerraformEnum {
   distinctinstance('distinctInstance'),
   memberof('memberOf');
 
-  const PipesPipeTargetParametersEcsTaskParametersPlacementConstraintType(
-    this.terraformValue,
-  );
+  const PipesPipePlacementConstraintType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1898,16 +1673,12 @@ enum PipesPipeTargetParametersEcsTaskParametersPlacementConstraintType
 /// Typed helper for the `target_parameters.ecs_task_parameters.placement_strategy` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeTargetParametersEcsTaskParametersPlacementStrategy {
-  const PipesPipeTargetParametersEcsTaskParametersPlacementStrategy({
-    this.field,
-    this.type,
-  });
+final class PipesPipePlacementStrategy {
+  const PipesPipePlacementStrategy({this.field, this.type});
 
   final TfArg<String>? field;
 
-  final TfArg<PipesPipeTargetParametersEcsTaskParametersPlacementStrategyType>?
-  type;
+  final TfArg<PipesPipePlacementStrategyType>? type;
 
   Map<String, Object?> encode() => {
     'field': ?field?.toTfJson(),
@@ -1916,15 +1687,12 @@ final class PipesPipeTargetParametersEcsTaskParametersPlacementStrategy {
 }
 
 /// `type` — derived from the provider schema description.
-enum PipesPipeTargetParametersEcsTaskParametersPlacementStrategyType
-    implements TerraformEnum {
+enum PipesPipePlacementStrategyType implements TerraformEnum {
   random('random'),
   spread('spread'),
   binpack('binpack');
 
-  const PipesPipeTargetParametersEcsTaskParametersPlacementStrategyType(
-    this.terraformValue,
-  );
+  const PipesPipePlacementStrategyType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1932,8 +1700,8 @@ enum PipesPipeTargetParametersEcsTaskParametersPlacementStrategyType
 /// Typed helper for the `target_parameters.eventbridge_event_bus_parameters` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeTargetParametersEventbridgeEventBusParameters {
-  const PipesPipeTargetParametersEventbridgeEventBusParameters({
+final class PipesPipeEventbridgeEventBusParameters {
+  const PipesPipeEventbridgeEventBusParameters({
     this.detailType,
     this.endpointId,
     this.resources,
@@ -1960,29 +1728,6 @@ final class PipesPipeTargetParametersEventbridgeEventBusParameters {
   };
 }
 
-/// Typed helper for the `target_parameters.http_parameters` block of
-/// `aws_pipes_pipe` (derived from provider schema).
-@immutable
-final class PipesPipeTargetParametersHttpParameters {
-  const PipesPipeTargetParametersHttpParameters({
-    this.headerParameters,
-    this.pathParameterValues,
-    this.queryStringParameters,
-  });
-
-  final TfArg<Map<String, String>>? headerParameters;
-
-  final TfArg<List<String>>? pathParameterValues;
-
-  final TfArg<Map<String, String>>? queryStringParameters;
-
-  Map<String, Object?> encode() => {
-    'header_parameters': ?headerParameters?.toTfJson(),
-    'path_parameter_values': ?pathParameterValues?.toTfJson(),
-    'query_string_parameters': ?queryStringParameters?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `target_parameters.kinesis_stream_parameters` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
@@ -1999,13 +1744,10 @@ final class PipesPipeTargetParametersKinesisStreamParameters {
 /// Typed helper for the `target_parameters.lambda_function_parameters` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeTargetParametersLambdaFunctionParameters {
-  const PipesPipeTargetParametersLambdaFunctionParameters({
-    required this.invocationType,
-  });
+final class PipesPipeLambdaFunctionParameters {
+  const PipesPipeLambdaFunctionParameters({required this.invocationType});
 
-  final TfArg<PipesPipeTargetParametersLambdaFunctionParametersInvocationType>
-  invocationType;
+  final TfArg<PipesPipeInvocationType> invocationType;
 
   Map<String, Object?> encode() => {
     'invocation_type': invocationType.toTfJson(),
@@ -2013,14 +1755,11 @@ final class PipesPipeTargetParametersLambdaFunctionParameters {
 }
 
 /// `invocation_type` — derived from the provider schema description.
-enum PipesPipeTargetParametersLambdaFunctionParametersInvocationType
-    implements TerraformEnum {
+enum PipesPipeInvocationType implements TerraformEnum {
   requestResponse('REQUEST_RESPONSE'),
   fireAndForget('FIRE_AND_FORGET');
 
-  const PipesPipeTargetParametersLambdaFunctionParametersInvocationType(
-    this.terraformValue,
-  );
+  const PipesPipeInvocationType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -2028,8 +1767,8 @@ enum PipesPipeTargetParametersLambdaFunctionParametersInvocationType
 /// Typed helper for the `target_parameters.redshift_data_parameters` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeTargetParametersRedshiftDataParameters {
-  const PipesPipeTargetParametersRedshiftDataParameters({
+final class PipesPipeRedshiftDataParameters {
+  const PipesPipeRedshiftDataParameters({
     required this.database,
     this.dbUser,
     this.secretManagerArn,
@@ -2063,15 +1802,10 @@ final class PipesPipeTargetParametersRedshiftDataParameters {
 /// Typed helper for the `target_parameters.sagemaker_pipeline_parameters` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeTargetParametersSagemakerPipelineParameters {
-  const PipesPipeTargetParametersSagemakerPipelineParameters({
-    this.pipelineParameter,
-  });
+final class PipesPipeSagemakerPipelineParameters {
+  const PipesPipeSagemakerPipelineParameters({this.pipelineParameter});
 
-  final List<
-    PipesPipeTargetParametersSagemakerPipelineParametersPipelineParameter
-  >?
-  pipelineParameter;
+  final List<PipesPipePipelineParameter>? pipelineParameter;
 
   Map<String, Object?> encode() => {
     if (pipelineParameter != null)
@@ -2082,11 +1816,8 @@ final class PipesPipeTargetParametersSagemakerPipelineParameters {
 /// Typed helper for the `target_parameters.sagemaker_pipeline_parameters.pipeline_parameter` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeTargetParametersSagemakerPipelineParametersPipelineParameter {
-  const PipesPipeTargetParametersSagemakerPipelineParametersPipelineParameter({
-    required this.name,
-    required this.value,
-  });
+final class PipesPipePipelineParameter {
+  const PipesPipePipelineParameter({required this.name, required this.value});
 
   final TfArg<String> name;
 
@@ -2120,32 +1851,16 @@ final class PipesPipeTargetParametersSqsQueueParameters {
 /// Typed helper for the `target_parameters.step_function_state_machine_parameters` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
-final class PipesPipeTargetParametersStepFunctionStateMachineParameters {
-  const PipesPipeTargetParametersStepFunctionStateMachineParameters({
+final class PipesPipeStepFunctionStateMachineParameters {
+  const PipesPipeStepFunctionStateMachineParameters({
     required this.invocationType,
   });
 
-  final TfArg<
-    PipesPipeTargetParametersStepFunctionStateMachineParametersInvocationType
-  >
-  invocationType;
+  final TfArg<PipesPipeInvocationType> invocationType;
 
   Map<String, Object?> encode() => {
     'invocation_type': invocationType.toTfJson(),
   };
-}
-
-/// `invocation_type` — derived from the provider schema description.
-enum PipesPipeTargetParametersStepFunctionStateMachineParametersInvocationType
-    implements TerraformEnum {
-  requestResponse('REQUEST_RESPONSE'),
-  fireAndForget('FIRE_AND_FORGET');
-
-  const PipesPipeTargetParametersStepFunctionStateMachineParametersInvocationType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_pipes_pipe`.

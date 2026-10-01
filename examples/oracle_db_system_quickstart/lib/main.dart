@@ -73,9 +73,9 @@ final class OracleDbSystemStack extends Stack {
           initialDataStorageSizeGb: .literal(256),
           licenseModel: .literal(.licenseIncluded),
           sshPublicKeys: .literal([_placeholderSshPublicKey]),
-          dbHome: OracleDatabaseDbSystemPropertiesDbHome(
+          dbHome: OracleDatabaseDbSystemDbHome(
             dbVersion: .literal('19'),
-            database: OracleDatabaseDbSystemPropertiesDbHomeDatabase(
+            database: OracleDatabaseDbSystemDatabase(
               databaseId: .literal('terradartdb'),
               adminPassword: .literal('Placeholder-Pass1'),
             ),

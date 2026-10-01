@@ -16,10 +16,9 @@ final class Wafv2WebAclLoggingConfigurationLoggingFilter {
     required this.filter,
   });
 
-  final TfArg<Wafv2WebAclLoggingConfigurationLoggingFilterDefaultBehavior>
-  defaultBehavior;
+  final TfArg<Wafv2WebAclLoggingConfigurationDefaultBehavior> defaultBehavior;
 
-  final List<Wafv2WebAclLoggingConfigurationLoggingFilterFilter> filter;
+  final List<Wafv2WebAclLoggingConfigurationFilter> filter;
 
   Map<String, Object?> encode() => {
     'default_behavior': defaultBehavior.toTfJson(),
@@ -28,14 +27,11 @@ final class Wafv2WebAclLoggingConfigurationLoggingFilter {
 }
 
 /// `default_behavior` — derived from the provider schema description.
-enum Wafv2WebAclLoggingConfigurationLoggingFilterDefaultBehavior
-    implements TerraformEnum {
+enum Wafv2WebAclLoggingConfigurationDefaultBehavior implements TerraformEnum {
   keep('KEEP'),
   drop('DROP');
 
-  const Wafv2WebAclLoggingConfigurationLoggingFilterDefaultBehavior(
-    this.terraformValue,
-  );
+  const Wafv2WebAclLoggingConfigurationDefaultBehavior(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -43,21 +39,18 @@ enum Wafv2WebAclLoggingConfigurationLoggingFilterDefaultBehavior
 /// Typed helper for the `logging_filter.filter` block of
 /// `aws_wafv2_web_acl_logging_configuration` (derived from provider schema).
 @immutable
-final class Wafv2WebAclLoggingConfigurationLoggingFilterFilter {
-  const Wafv2WebAclLoggingConfigurationLoggingFilterFilter({
+final class Wafv2WebAclLoggingConfigurationFilter {
+  const Wafv2WebAclLoggingConfigurationFilter({
     required this.behavior,
     required this.requirement,
     required this.condition,
   });
 
-  final TfArg<Wafv2WebAclLoggingConfigurationLoggingFilterFilterBehavior>
-  behavior;
+  final TfArg<Wafv2WebAclLoggingConfigurationBehavior> behavior;
 
-  final TfArg<Wafv2WebAclLoggingConfigurationLoggingFilterFilterRequirement>
-  requirement;
+  final TfArg<Wafv2WebAclLoggingConfigurationRequirement> requirement;
 
-  final List<Wafv2WebAclLoggingConfigurationLoggingFilterFilterCondition>
-  condition;
+  final List<Wafv2WebAclLoggingConfigurationCondition> condition;
 
   Map<String, Object?> encode() => {
     'behavior': behavior.toTfJson(),
@@ -67,27 +60,21 @@ final class Wafv2WebAclLoggingConfigurationLoggingFilterFilter {
 }
 
 /// `behavior` — derived from the provider schema description.
-enum Wafv2WebAclLoggingConfigurationLoggingFilterFilterBehavior
-    implements TerraformEnum {
+enum Wafv2WebAclLoggingConfigurationBehavior implements TerraformEnum {
   keep('KEEP'),
   drop('DROP');
 
-  const Wafv2WebAclLoggingConfigurationLoggingFilterFilterBehavior(
-    this.terraformValue,
-  );
+  const Wafv2WebAclLoggingConfigurationBehavior(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `requirement` — derived from the provider schema description.
-enum Wafv2WebAclLoggingConfigurationLoggingFilterFilterRequirement
-    implements TerraformEnum {
+enum Wafv2WebAclLoggingConfigurationRequirement implements TerraformEnum {
   meetsAll('MEETS_ALL'),
   meetsAny('MEETS_ANY');
 
-  const Wafv2WebAclLoggingConfigurationLoggingFilterFilterRequirement(
-    this.terraformValue,
-  );
+  const Wafv2WebAclLoggingConfigurationRequirement(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -95,17 +82,15 @@ enum Wafv2WebAclLoggingConfigurationLoggingFilterFilterRequirement
 /// Typed helper for the `logging_filter.filter.condition` block of
 /// `aws_wafv2_web_acl_logging_configuration` (derived from provider schema).
 @immutable
-final class Wafv2WebAclLoggingConfigurationLoggingFilterFilterCondition {
-  const Wafv2WebAclLoggingConfigurationLoggingFilterFilterCondition({
+final class Wafv2WebAclLoggingConfigurationCondition {
+  const Wafv2WebAclLoggingConfigurationCondition({
     this.actionCondition,
     this.labelNameCondition,
   });
 
-  final Wafv2WebAclLoggingConfigurationLoggingFilterFilterConditionActionCondition?
-  actionCondition;
+  final Wafv2WebAclLoggingConfigurationActionCondition? actionCondition;
 
-  final Wafv2WebAclLoggingConfigurationLoggingFilterFilterConditionLabelNameCondition?
-  labelNameCondition;
+  final Wafv2WebAclLoggingConfigurationLabelNameCondition? labelNameCondition;
 
   Map<String, Object?> encode() => {
     'action_condition': ?actionCondition?.encode(),
@@ -116,22 +101,16 @@ final class Wafv2WebAclLoggingConfigurationLoggingFilterFilterCondition {
 /// Typed helper for the `logging_filter.filter.condition.action_condition` block of
 /// `aws_wafv2_web_acl_logging_configuration` (derived from provider schema).
 @immutable
-final class Wafv2WebAclLoggingConfigurationLoggingFilterFilterConditionActionCondition {
-  const Wafv2WebAclLoggingConfigurationLoggingFilterFilterConditionActionCondition({
-    required this.action,
-  });
+final class Wafv2WebAclLoggingConfigurationActionCondition {
+  const Wafv2WebAclLoggingConfigurationActionCondition({required this.action});
 
-  final TfArg<
-    Wafv2WebAclLoggingConfigurationLoggingFilterFilterConditionActionConditionAction
-  >
-  action;
+  final TfArg<Wafv2WebAclLoggingConfigurationAction> action;
 
   Map<String, Object?> encode() => {'action': action.toTfJson()};
 }
 
 /// `action` — derived from the provider schema description.
-enum Wafv2WebAclLoggingConfigurationLoggingFilterFilterConditionActionConditionAction
-    implements TerraformEnum {
+enum Wafv2WebAclLoggingConfigurationAction implements TerraformEnum {
   allow('ALLOW'),
   block('BLOCK'),
   count('COUNT'),
@@ -140,9 +119,7 @@ enum Wafv2WebAclLoggingConfigurationLoggingFilterFilterConditionActionConditionA
   monetize('MONETIZE'),
   excludedAsCount('EXCLUDED_AS_COUNT');
 
-  const Wafv2WebAclLoggingConfigurationLoggingFilterFilterConditionActionConditionAction(
-    this.terraformValue,
-  );
+  const Wafv2WebAclLoggingConfigurationAction(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -150,8 +127,8 @@ enum Wafv2WebAclLoggingConfigurationLoggingFilterFilterConditionActionConditionA
 /// Typed helper for the `logging_filter.filter.condition.label_name_condition` block of
 /// `aws_wafv2_web_acl_logging_configuration` (derived from provider schema).
 @immutable
-final class Wafv2WebAclLoggingConfigurationLoggingFilterFilterConditionLabelNameCondition {
-  const Wafv2WebAclLoggingConfigurationLoggingFilterFilterConditionLabelNameCondition({
+final class Wafv2WebAclLoggingConfigurationLabelNameCondition {
+  const Wafv2WebAclLoggingConfigurationLabelNameCondition({
     required this.labelName,
   });
 
@@ -171,13 +148,13 @@ final class Wafv2WebAclLoggingConfigurationRedactedFields {
     this.uriPath,
   });
 
-  final Wafv2WebAclLoggingConfigurationRedactedFieldsMethod? method;
+  final Wafv2WebAclLoggingConfigurationMethod? method;
 
-  final Wafv2WebAclLoggingConfigurationRedactedFieldsQueryString? queryString;
+  final Wafv2WebAclLoggingConfigurationQueryString? queryString;
 
-  final Wafv2WebAclLoggingConfigurationRedactedFieldsSingleHeader? singleHeader;
+  final Wafv2WebAclLoggingConfigurationSingleHeader? singleHeader;
 
-  final Wafv2WebAclLoggingConfigurationRedactedFieldsUriPath? uriPath;
+  final Wafv2WebAclLoggingConfigurationUriPath? uriPath;
 
   Map<String, Object?> encode() => {
     'method': ?method?.encode(),
@@ -190,8 +167,8 @@ final class Wafv2WebAclLoggingConfigurationRedactedFields {
 /// Typed helper for the `redacted_fields.method` block of
 /// `aws_wafv2_web_acl_logging_configuration` (derived from provider schema).
 @immutable
-final class Wafv2WebAclLoggingConfigurationRedactedFieldsMethod {
-  const Wafv2WebAclLoggingConfigurationRedactedFieldsMethod();
+final class Wafv2WebAclLoggingConfigurationMethod {
+  const Wafv2WebAclLoggingConfigurationMethod();
 
   Map<String, Object?> encode() => {};
 }
@@ -199,8 +176,8 @@ final class Wafv2WebAclLoggingConfigurationRedactedFieldsMethod {
 /// Typed helper for the `redacted_fields.query_string` block of
 /// `aws_wafv2_web_acl_logging_configuration` (derived from provider schema).
 @immutable
-final class Wafv2WebAclLoggingConfigurationRedactedFieldsQueryString {
-  const Wafv2WebAclLoggingConfigurationRedactedFieldsQueryString();
+final class Wafv2WebAclLoggingConfigurationQueryString {
+  const Wafv2WebAclLoggingConfigurationQueryString();
 
   Map<String, Object?> encode() => {};
 }
@@ -208,10 +185,8 @@ final class Wafv2WebAclLoggingConfigurationRedactedFieldsQueryString {
 /// Typed helper for the `redacted_fields.single_header` block of
 /// `aws_wafv2_web_acl_logging_configuration` (derived from provider schema).
 @immutable
-final class Wafv2WebAclLoggingConfigurationRedactedFieldsSingleHeader {
-  const Wafv2WebAclLoggingConfigurationRedactedFieldsSingleHeader({
-    required this.name,
-  });
+final class Wafv2WebAclLoggingConfigurationSingleHeader {
+  const Wafv2WebAclLoggingConfigurationSingleHeader({required this.name});
 
   final TfArg<String> name;
 
@@ -221,8 +196,8 @@ final class Wafv2WebAclLoggingConfigurationRedactedFieldsSingleHeader {
 /// Typed helper for the `redacted_fields.uri_path` block of
 /// `aws_wafv2_web_acl_logging_configuration` (derived from provider schema).
 @immutable
-final class Wafv2WebAclLoggingConfigurationRedactedFieldsUriPath {
-  const Wafv2WebAclLoggingConfigurationRedactedFieldsUriPath();
+final class Wafv2WebAclLoggingConfigurationUriPath {
+  const Wafv2WebAclLoggingConfigurationUriPath();
 
   Map<String, Object?> encode() => {};
 }

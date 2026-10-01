@@ -179,7 +179,7 @@ final class MqBrokerMaintenanceWindowStartTime {
     required this.timeZone,
   });
 
-  final TfArg<MqBrokerMaintenanceWindowStartTimeDayOfWeek> dayOfWeek;
+  final TfArg<MqBrokerDayOfWeek> dayOfWeek;
 
   final TfArg<String> timeOfDay;
 
@@ -193,7 +193,7 @@ final class MqBrokerMaintenanceWindowStartTime {
 }
 
 /// `day_of_week` — derived from the provider schema description.
-enum MqBrokerMaintenanceWindowStartTimeDayOfWeek implements TerraformEnum {
+enum MqBrokerDayOfWeek implements TerraformEnum {
   monday('MONDAY'),
   tuesday('TUESDAY'),
   wednesday('WEDNESDAY'),
@@ -202,7 +202,7 @@ enum MqBrokerMaintenanceWindowStartTimeDayOfWeek implements TerraformEnum {
   saturday('SATURDAY'),
   sunday('SUNDAY');
 
-  const MqBrokerMaintenanceWindowStartTimeDayOfWeek(this.terraformValue);
+  const MqBrokerDayOfWeek(this.terraformValue);
   @override
   final String terraformValue;
 }

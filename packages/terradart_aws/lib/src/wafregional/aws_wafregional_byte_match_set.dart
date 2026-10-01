@@ -24,7 +24,7 @@ final class WafregionalByteMatchSetByteMatchTuples {
 
   final TfArg<String> textTransformation;
 
-  final WafregionalByteMatchSetByteMatchTuplesFieldToMatch fieldToMatch;
+  final WafregionalByteMatchSetFieldToMatch fieldToMatch;
 
   Map<String, Object?> encode() => {
     'positional_constraint': positionalConstraint.toTfJson(),
@@ -37,11 +37,8 @@ final class WafregionalByteMatchSetByteMatchTuples {
 /// Typed helper for the `byte_match_tuples.field_to_match` block of
 /// `aws_wafregional_byte_match_set` (derived from provider schema).
 @immutable
-final class WafregionalByteMatchSetByteMatchTuplesFieldToMatch {
-  const WafregionalByteMatchSetByteMatchTuplesFieldToMatch({
-    this.data,
-    required this.type,
-  });
+final class WafregionalByteMatchSetFieldToMatch {
+  const WafregionalByteMatchSetFieldToMatch({this.data, required this.type});
 
   final TfArg<String>? data;
 

@@ -8,11 +8,11 @@ export 'src/waiting_room/cloudflare_waiting_room.dart'
         CloudflareWaitingRoom,
         WaitingRoomAdditionalRoutes,
         WaitingRoomCookieAttributes,
-        WaitingRoomCookieAttributesSamesite,
-        WaitingRoomCookieAttributesSecure,
         WaitingRoomDefaultTemplateLanguage,
         WaitingRoomEnabledOriginCommands,
         WaitingRoomQueueingMethod,
+        WaitingRoomSamesite,
+        WaitingRoomSecure,
         WaitingRoomTurnstileAction,
         WaitingRoomTurnstileMode;
 export 'src/waiting_room/cloudflare_waiting_room_event.dart'
@@ -23,7 +23,7 @@ export 'src/waiting_room/cloudflare_waiting_room_event.dart'
 export 'src/waiting_room/cloudflare_waiting_room_rules.dart'
     show
         CloudflareWaitingRoomRules,
-        WaitingRoomRulesRules,
-        WaitingRoomRulesRulesAction;
+        WaitingRoomRulesAction,
+        WaitingRoomRulesRules;
 export 'src/waiting_room/cloudflare_waiting_room_settings.dart'
     show CloudflareWaitingRoomSettings;

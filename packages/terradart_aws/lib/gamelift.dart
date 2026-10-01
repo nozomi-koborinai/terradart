@@ -4,10 +4,7 @@
 library;
 
 export 'src/gamelift/aws_gamelift_alias.dart'
-    show
-        AwsGameliftAlias,
-        GameliftAliasRoutingStrategy,
-        GameliftAliasRoutingStrategyType;
+    show AwsGameliftAlias, GameliftAliasRoutingStrategy, GameliftAliasType;
 export 'src/gamelift/aws_gamelift_build.dart'
     show
         AwsGameliftBuild,
@@ -20,28 +17,28 @@ export 'src/gamelift/aws_gamelift_fleet.dart'
         GameliftFleetArtifactBuildId,
         GameliftFleetArtifactScriptId,
         GameliftFleetCertificateConfiguration,
-        GameliftFleetCertificateConfigurationCertificateType,
+        GameliftFleetCertificateType,
         GameliftFleetEc2InboundPermission,
-        GameliftFleetEc2InboundPermissionProtocol,
         GameliftFleetEc2InstanceType,
         GameliftFleetFleetType,
         GameliftFleetNewGameSessionProtectionPolicy,
+        GameliftFleetProtocol,
         GameliftFleetResourceCreationLimitPolicy,
         GameliftFleetRuntimeConfiguration,
-        GameliftFleetRuntimeConfigurationServerProcess;
+        GameliftFleetServerProcess;
 export 'src/gamelift/aws_gamelift_game_server_group.dart'
     show
         AwsGameliftGameServerGroup,
         GameliftGameServerGroupAutoScalingPolicy,
-        GameliftGameServerGroupAutoScalingPolicyTargetTrackingConfiguration,
         GameliftGameServerGroupBalancingStrategy,
         GameliftGameServerGroupGameServerProtectionPolicy,
+        GameliftGameServerGroupIdentifier,
+        GameliftGameServerGroupIdentifierId,
+        GameliftGameServerGroupIdentifierName,
         GameliftGameServerGroupInstanceDefinition,
-        GameliftGameServerGroupInstanceDefinitionInstanceType,
+        GameliftGameServerGroupInstanceType,
         GameliftGameServerGroupLaunchTemplate,
-        GameliftGameServerGroupLaunchTemplateIdentifier,
-        GameliftGameServerGroupLaunchTemplateIdentifierId,
-        GameliftGameServerGroupLaunchTemplateIdentifierName;
+        GameliftGameServerGroupTargetTrackingConfiguration;
 export 'src/gamelift/aws_gamelift_game_session_queue.dart'
     show
         AwsGameliftGameSessionQueue,

@@ -372,41 +372,37 @@ final class SqlDatabaseInstanceSettings {
 
   final TfArg<Map<String, String>>? userLabels;
 
-  final SqlDatabaseInstanceSettingsActiveDirectoryConfig? activeDirectoryConfig;
+  final SqlDatabaseInstanceActiveDirectoryConfig? activeDirectoryConfig;
 
-  final SqlDatabaseInstanceSettingsAdvancedMachineFeatures?
-  advancedMachineFeatures;
+  final SqlDatabaseInstanceAdvancedMachineFeatures? advancedMachineFeatures;
 
-  final SqlDatabaseInstanceSettingsBackupConfiguration? backupConfiguration;
+  final SqlDatabaseInstanceBackupConfiguration? backupConfiguration;
 
-  final List<SqlDatabaseInstanceSettingsConnectionPoolConfig>?
-  connectionPoolConfig;
+  final List<SqlDatabaseInstanceConnectionPoolConfig>? connectionPoolConfig;
 
-  final SqlDatabaseInstanceSettingsDataCacheConfig? dataCacheConfig;
+  final SqlDatabaseInstanceDataCacheConfig? dataCacheConfig;
 
-  final List<SqlDatabaseInstanceSettingsDatabaseFlags>? databaseFlags;
+  final List<SqlDatabaseInstanceDatabaseFlags>? databaseFlags;
 
-  final SqlDatabaseInstanceSettingsDenyMaintenancePeriod? denyMaintenancePeriod;
+  final SqlDatabaseInstanceDenyMaintenancePeriod? denyMaintenancePeriod;
 
-  final SqlDatabaseInstanceSettingsEntraidConfig? entraidConfig;
+  final SqlDatabaseInstanceEntraidConfig? entraidConfig;
 
-  final SqlDatabaseInstanceSettingsFinalBackupConfig? finalBackupConfig;
+  final SqlDatabaseInstanceFinalBackupConfig? finalBackupConfig;
 
-  final SqlDatabaseInstanceSettingsInsightsConfig? insightsConfig;
+  final SqlDatabaseInstanceInsightsConfig? insightsConfig;
 
-  final SqlDatabaseInstanceSettingsIpConfiguration? ipConfiguration;
+  final SqlDatabaseInstanceIpConfiguration? ipConfiguration;
 
-  final SqlDatabaseInstanceSettingsLocationPreference? locationPreference;
+  final SqlDatabaseInstanceLocationPreference? locationPreference;
 
-  final SqlDatabaseInstanceSettingsMaintenanceWindow? maintenanceWindow;
+  final SqlDatabaseInstanceMaintenanceWindow? maintenanceWindow;
 
-  final SqlDatabaseInstanceSettingsPasswordValidationPolicy?
-  passwordValidationPolicy;
+  final SqlDatabaseInstancePasswordValidationPolicy? passwordValidationPolicy;
 
-  final SqlDatabaseInstanceSettingsReadPoolAutoScaleConfig?
-  readPoolAutoScaleConfig;
+  final SqlDatabaseInstanceReadPoolAutoScaleConfig? readPoolAutoScaleConfig;
 
-  final SqlDatabaseInstanceSettingsSqlServerAuditConfig? sqlServerAuditConfig;
+  final SqlDatabaseInstanceSqlServerAuditConfig? sqlServerAuditConfig;
 
   Map<String, Object?> encode() => {
     'activation_policy': ?activationPolicy?.toTfJson(),
@@ -458,8 +454,8 @@ final class SqlDatabaseInstanceSettings {
 /// Typed helper for the `settings.active_directory_config` block of
 /// `google_sql_database_instance` (derived from provider schema).
 @immutable
-final class SqlDatabaseInstanceSettingsActiveDirectoryConfig {
-  const SqlDatabaseInstanceSettingsActiveDirectoryConfig({
+final class SqlDatabaseInstanceActiveDirectoryConfig {
+  const SqlDatabaseInstanceActiveDirectoryConfig({
     this.adminCredentialSecretName,
     this.dnsServers,
     required this.domain,
@@ -489,10 +485,8 @@ final class SqlDatabaseInstanceSettingsActiveDirectoryConfig {
 /// Typed helper for the `settings.advanced_machine_features` block of
 /// `google_sql_database_instance` (derived from provider schema).
 @immutable
-final class SqlDatabaseInstanceSettingsAdvancedMachineFeatures {
-  const SqlDatabaseInstanceSettingsAdvancedMachineFeatures({
-    this.threadsPerCore,
-  });
+final class SqlDatabaseInstanceAdvancedMachineFeatures {
+  const SqlDatabaseInstanceAdvancedMachineFeatures({this.threadsPerCore});
 
   final TfArg<num>? threadsPerCore;
 
@@ -504,8 +498,8 @@ final class SqlDatabaseInstanceSettingsAdvancedMachineFeatures {
 /// Typed helper for the `settings.backup_configuration` block of
 /// `google_sql_database_instance` (derived from provider schema).
 @immutable
-final class SqlDatabaseInstanceSettingsBackupConfiguration {
-  const SqlDatabaseInstanceSettingsBackupConfiguration({
+final class SqlDatabaseInstanceBackupConfiguration {
+  const SqlDatabaseInstanceBackupConfiguration({
     this.binaryLogEnabled,
     this.enabled,
     this.location,
@@ -527,8 +521,7 @@ final class SqlDatabaseInstanceSettingsBackupConfiguration {
 
   final TfArg<num>? transactionLogRetentionDays;
 
-  final SqlDatabaseInstanceSettingsBackupConfigurationBackupRetentionSettings?
-  backupRetentionSettings;
+  final SqlDatabaseInstanceBackupRetentionSettings? backupRetentionSettings;
 
   Map<String, Object?> encode() => {
     'binary_log_enabled': ?binaryLogEnabled?.toTfJson(),
@@ -544,8 +537,8 @@ final class SqlDatabaseInstanceSettingsBackupConfiguration {
 /// Typed helper for the `settings.backup_configuration.backup_retention_settings` block of
 /// `google_sql_database_instance` (derived from provider schema).
 @immutable
-final class SqlDatabaseInstanceSettingsBackupConfigurationBackupRetentionSettings {
-  const SqlDatabaseInstanceSettingsBackupConfigurationBackupRetentionSettings({
+final class SqlDatabaseInstanceBackupRetentionSettings {
+  const SqlDatabaseInstanceBackupRetentionSettings({
     required this.retainedBackups,
     this.retentionUnit,
   });
@@ -563,15 +556,15 @@ final class SqlDatabaseInstanceSettingsBackupConfigurationBackupRetentionSetting
 /// Typed helper for the `settings.connection_pool_config` block of
 /// `google_sql_database_instance` (derived from provider schema).
 @immutable
-final class SqlDatabaseInstanceSettingsConnectionPoolConfig {
-  const SqlDatabaseInstanceSettingsConnectionPoolConfig({
+final class SqlDatabaseInstanceConnectionPoolConfig {
+  const SqlDatabaseInstanceConnectionPoolConfig({
     this.connectionPoolingEnabled,
     this.flags,
   });
 
   final TfArg<bool>? connectionPoolingEnabled;
 
-  final List<SqlDatabaseInstanceSettingsConnectionPoolConfigFlags>? flags;
+  final List<SqlDatabaseInstanceFlags>? flags;
 
   Map<String, Object?> encode() => {
     'connection_pooling_enabled': ?connectionPoolingEnabled?.toTfJson(),
@@ -582,11 +575,8 @@ final class SqlDatabaseInstanceSettingsConnectionPoolConfig {
 /// Typed helper for the `settings.connection_pool_config.flags` block of
 /// `google_sql_database_instance` (derived from provider schema).
 @immutable
-final class SqlDatabaseInstanceSettingsConnectionPoolConfigFlags {
-  const SqlDatabaseInstanceSettingsConnectionPoolConfigFlags({
-    required this.name,
-    required this.value,
-  });
+final class SqlDatabaseInstanceFlags {
+  const SqlDatabaseInstanceFlags({required this.name, required this.value});
 
   final TfArg<String> name;
 
@@ -601,8 +591,8 @@ final class SqlDatabaseInstanceSettingsConnectionPoolConfigFlags {
 /// Typed helper for the `settings.data_cache_config` block of
 /// `google_sql_database_instance` (derived from provider schema).
 @immutable
-final class SqlDatabaseInstanceSettingsDataCacheConfig {
-  const SqlDatabaseInstanceSettingsDataCacheConfig({this.dataCacheEnabled});
+final class SqlDatabaseInstanceDataCacheConfig {
+  const SqlDatabaseInstanceDataCacheConfig({this.dataCacheEnabled});
 
   final TfArg<bool>? dataCacheEnabled;
 
@@ -614,8 +604,8 @@ final class SqlDatabaseInstanceSettingsDataCacheConfig {
 /// Typed helper for the `settings.database_flags` block of
 /// `google_sql_database_instance` (derived from provider schema).
 @immutable
-final class SqlDatabaseInstanceSettingsDatabaseFlags {
-  const SqlDatabaseInstanceSettingsDatabaseFlags({
+final class SqlDatabaseInstanceDatabaseFlags {
+  const SqlDatabaseInstanceDatabaseFlags({
     required this.name,
     required this.value,
   });
@@ -633,8 +623,8 @@ final class SqlDatabaseInstanceSettingsDatabaseFlags {
 /// Typed helper for the `settings.deny_maintenance_period` block of
 /// `google_sql_database_instance` (derived from provider schema).
 @immutable
-final class SqlDatabaseInstanceSettingsDenyMaintenancePeriod {
-  const SqlDatabaseInstanceSettingsDenyMaintenancePeriod({
+final class SqlDatabaseInstanceDenyMaintenancePeriod {
+  const SqlDatabaseInstanceDenyMaintenancePeriod({
     required this.endDate,
     required this.startDate,
     required this.time,
@@ -656,11 +646,8 @@ final class SqlDatabaseInstanceSettingsDenyMaintenancePeriod {
 /// Typed helper for the `settings.entraid_config` block of
 /// `google_sql_database_instance` (derived from provider schema).
 @immutable
-final class SqlDatabaseInstanceSettingsEntraidConfig {
-  const SqlDatabaseInstanceSettingsEntraidConfig({
-    this.applicationId,
-    this.tenantId,
-  });
+final class SqlDatabaseInstanceEntraidConfig {
+  const SqlDatabaseInstanceEntraidConfig({this.applicationId, this.tenantId});
 
   final TfArg<String>? applicationId;
 
@@ -675,8 +662,8 @@ final class SqlDatabaseInstanceSettingsEntraidConfig {
 /// Typed helper for the `settings.final_backup_config` block of
 /// `google_sql_database_instance` (derived from provider schema).
 @immutable
-final class SqlDatabaseInstanceSettingsFinalBackupConfig {
-  const SqlDatabaseInstanceSettingsFinalBackupConfig({
+final class SqlDatabaseInstanceFinalBackupConfig {
+  const SqlDatabaseInstanceFinalBackupConfig({
     this.enabled,
     this.retentionDays,
   });
@@ -694,8 +681,8 @@ final class SqlDatabaseInstanceSettingsFinalBackupConfig {
 /// Typed helper for the `settings.insights_config` block of
 /// `google_sql_database_instance` (derived from provider schema).
 @immutable
-final class SqlDatabaseInstanceSettingsInsightsConfig {
-  const SqlDatabaseInstanceSettingsInsightsConfig({
+final class SqlDatabaseInstanceInsightsConfig {
+  const SqlDatabaseInstanceInsightsConfig({
     this.enhancedQueryInsightsEnabled,
     this.queryInsightsEnabled,
     this.queryPlansPerMinute,
@@ -730,8 +717,8 @@ final class SqlDatabaseInstanceSettingsInsightsConfig {
 /// Typed helper for the `settings.ip_configuration` block of
 /// `google_sql_database_instance` (derived from provider schema).
 @immutable
-final class SqlDatabaseInstanceSettingsIpConfiguration {
-  const SqlDatabaseInstanceSettingsIpConfiguration({
+final class SqlDatabaseInstanceIpConfiguration {
+  const SqlDatabaseInstanceIpConfiguration({
     this.allocatedIpRange,
     this.customSubjectAlternativeNames,
     this.enablePrivatePathForGoogleCloudServices,
@@ -763,10 +750,9 @@ final class SqlDatabaseInstanceSettingsIpConfiguration {
 
   final TfArg<String>? sslMode;
 
-  final List<SqlDatabaseInstanceSettingsIpConfigurationAuthorizedNetworks>?
-  authorizedNetworks;
+  final List<SqlDatabaseInstanceAuthorizedNetworks>? authorizedNetworks;
 
-  final List<SqlDatabaseInstanceSettingsIpConfigurationPscConfig>? pscConfig;
+  final List<SqlDatabaseInstancePscConfig>? pscConfig;
 
   Map<String, Object?> encode() => {
     'allocated_ip_range': ?allocatedIpRange?.toTfJson(),
@@ -791,8 +777,8 @@ final class SqlDatabaseInstanceSettingsIpConfiguration {
 /// Typed helper for the `settings.ip_configuration.authorized_networks` block of
 /// `google_sql_database_instance` (derived from provider schema).
 @immutable
-final class SqlDatabaseInstanceSettingsIpConfigurationAuthorizedNetworks {
-  const SqlDatabaseInstanceSettingsIpConfigurationAuthorizedNetworks({
+final class SqlDatabaseInstanceAuthorizedNetworks {
+  const SqlDatabaseInstanceAuthorizedNetworks({
     this.expirationTime,
     this.name,
     required this.value,
@@ -814,8 +800,8 @@ final class SqlDatabaseInstanceSettingsIpConfigurationAuthorizedNetworks {
 /// Typed helper for the `settings.ip_configuration.psc_config` block of
 /// `google_sql_database_instance` (derived from provider schema).
 @immutable
-final class SqlDatabaseInstanceSettingsIpConfigurationPscConfig {
-  const SqlDatabaseInstanceSettingsIpConfigurationPscConfig({
+final class SqlDatabaseInstancePscConfig {
+  const SqlDatabaseInstancePscConfig({
     this.allowedConsumerProjects,
     this.networkAttachmentUri,
     this.pscAutoConnectionPolicyEnabled,
@@ -837,10 +823,7 @@ final class SqlDatabaseInstanceSettingsIpConfigurationPscConfig {
 
   final TfArg<bool>? pscWriteEndpointDnsEnabled;
 
-  final List<
-    SqlDatabaseInstanceSettingsIpConfigurationPscConfigPscAutoConnections
-  >?
-  pscAutoConnections;
+  final List<SqlDatabaseInstancePscAutoConnections>? pscAutoConnections;
 
   Map<String, Object?> encode() => {
     'allowed_consumer_projects': ?allowedConsumerProjects?.toTfJson(),
@@ -858,8 +841,8 @@ final class SqlDatabaseInstanceSettingsIpConfigurationPscConfig {
 /// Typed helper for the `settings.ip_configuration.psc_config.psc_auto_connections` block of
 /// `google_sql_database_instance` (derived from provider schema).
 @immutable
-final class SqlDatabaseInstanceSettingsIpConfigurationPscConfigPscAutoConnections {
-  const SqlDatabaseInstanceSettingsIpConfigurationPscConfigPscAutoConnections({
+final class SqlDatabaseInstancePscAutoConnections {
+  const SqlDatabaseInstancePscAutoConnections({
     required this.consumerNetwork,
     this.consumerServiceProjectId,
   });
@@ -877,8 +860,8 @@ final class SqlDatabaseInstanceSettingsIpConfigurationPscConfigPscAutoConnection
 /// Typed helper for the `settings.location_preference` block of
 /// `google_sql_database_instance` (derived from provider schema).
 @immutable
-final class SqlDatabaseInstanceSettingsLocationPreference {
-  const SqlDatabaseInstanceSettingsLocationPreference({
+final class SqlDatabaseInstanceLocationPreference {
+  const SqlDatabaseInstanceLocationPreference({
     this.followGaeApplication,
     this.secondaryZone,
     this.zone,
@@ -900,8 +883,8 @@ final class SqlDatabaseInstanceSettingsLocationPreference {
 /// Typed helper for the `settings.maintenance_window` block of
 /// `google_sql_database_instance` (derived from provider schema).
 @immutable
-final class SqlDatabaseInstanceSettingsMaintenanceWindow {
-  const SqlDatabaseInstanceSettingsMaintenanceWindow({
+final class SqlDatabaseInstanceMaintenanceWindow {
+  const SqlDatabaseInstanceMaintenanceWindow({
     this.day,
     this.hour,
     this.updateTrack,
@@ -923,8 +906,8 @@ final class SqlDatabaseInstanceSettingsMaintenanceWindow {
 /// Typed helper for the `settings.password_validation_policy` block of
 /// `google_sql_database_instance` (derived from provider schema).
 @immutable
-final class SqlDatabaseInstanceSettingsPasswordValidationPolicy {
-  const SqlDatabaseInstanceSettingsPasswordValidationPolicy({
+final class SqlDatabaseInstancePasswordValidationPolicy {
+  const SqlDatabaseInstancePasswordValidationPolicy({
     this.complexity,
     this.disallowUsernameSubstring,
     required this.enablePasswordPolicy,
@@ -958,8 +941,8 @@ final class SqlDatabaseInstanceSettingsPasswordValidationPolicy {
 /// Typed helper for the `settings.read_pool_auto_scale_config` block of
 /// `google_sql_database_instance` (derived from provider schema).
 @immutable
-final class SqlDatabaseInstanceSettingsReadPoolAutoScaleConfig {
-  const SqlDatabaseInstanceSettingsReadPoolAutoScaleConfig({
+final class SqlDatabaseInstanceReadPoolAutoScaleConfig {
+  const SqlDatabaseInstanceReadPoolAutoScaleConfig({
     this.disableScaleIn,
     this.enabled,
     this.maxNodeCount,
@@ -981,8 +964,7 @@ final class SqlDatabaseInstanceSettingsReadPoolAutoScaleConfig {
 
   final TfArg<num>? scaleOutCooldownSeconds;
 
-  final List<SqlDatabaseInstanceSettingsReadPoolAutoScaleConfigTargetMetrics>?
-  targetMetrics;
+  final List<SqlDatabaseInstanceTargetMetrics>? targetMetrics;
 
   Map<String, Object?> encode() => {
     'disable_scale_in': ?disableScaleIn?.toTfJson(),
@@ -999,11 +981,8 @@ final class SqlDatabaseInstanceSettingsReadPoolAutoScaleConfig {
 /// Typed helper for the `settings.read_pool_auto_scale_config.target_metrics` block of
 /// `google_sql_database_instance` (derived from provider schema).
 @immutable
-final class SqlDatabaseInstanceSettingsReadPoolAutoScaleConfigTargetMetrics {
-  const SqlDatabaseInstanceSettingsReadPoolAutoScaleConfigTargetMetrics({
-    this.metric,
-    this.targetValue,
-  });
+final class SqlDatabaseInstanceTargetMetrics {
+  const SqlDatabaseInstanceTargetMetrics({this.metric, this.targetValue});
 
   final TfArg<String>? metric;
 
@@ -1018,8 +997,8 @@ final class SqlDatabaseInstanceSettingsReadPoolAutoScaleConfigTargetMetrics {
 /// Typed helper for the `settings.sql_server_audit_config` block of
 /// `google_sql_database_instance` (derived from provider schema).
 @immutable
-final class SqlDatabaseInstanceSettingsSqlServerAuditConfig {
-  const SqlDatabaseInstanceSettingsSqlServerAuditConfig({
+final class SqlDatabaseInstanceSqlServerAuditConfig {
+  const SqlDatabaseInstanceSqlServerAuditConfig({
     this.bucket,
     this.retentionInterval,
     this.uploadInterval,
@@ -1042,9 +1021,9 @@ final class SqlDatabaseInstanceSettingsSqlServerAuditConfig {
 ///
 /// Manages a Cloud SQL instance — a managed MySQL, PostgreSQL, or SQL
 /// Server engine. The schema is large; this wrapper exposes the
-/// commonly-used fields as typed helpers ([SqlDatabaseInstanceSettings], [SqlDatabaseInstanceSettingsIpConfiguration],
-/// [SqlDatabaseInstanceSettingsBackupConfiguration], [SqlDatabaseInstanceSettingsDatabaseFlags], [SqlDatabaseInstanceSettingsLocationPreference],
-/// [SqlDatabaseInstanceSettingsMaintenanceWindow], [SqlDatabaseInstanceReplicaConfiguration]) and leaves the rarely-set
+/// commonly-used fields as typed helpers ([SqlDatabaseInstanceSettings], [SqlDatabaseInstanceIpConfiguration],
+/// [SqlDatabaseInstanceBackupConfiguration], [SqlDatabaseInstanceDatabaseFlags], [SqlDatabaseInstanceLocationPreference],
+/// [SqlDatabaseInstanceMaintenanceWindow], [SqlDatabaseInstanceReplicaConfiguration]) and leaves the rarely-set
 /// knobs (e.g. `active_directory_config`, `sql_server_audit_config`,
 /// `password_validation_policy`) on the
 /// [SqlDatabaseInstanceSettings.extra] / [SqlDatabaseInstanceSettings.advancedExtra] escape hatches so the
@@ -1094,11 +1073,11 @@ final class SqlDatabaseInstanceSettingsSqlServerAuditConfig {
 ///     edition: TfArg.literal(SqlEdition.enterprise),
 ///     diskSize: TfArg.literal(20),
 ///     diskType: TfArg.literal(SqlDiskType.pdSsd),
-///     ipConfiguration: SqlDatabaseInstanceSettingsIpConfiguration(
+///     ipConfiguration: SqlDatabaseInstanceIpConfiguration(
 ///       ipv4Enabled: TfArg.literal(false),
 ///       privateNetwork: TfArg.ref(vpc.selfLink),
 ///     ),
-///     backupConfiguration: SqlDatabaseInstanceSettingsBackupConfiguration(
+///     backupConfiguration: SqlDatabaseInstanceBackupConfiguration(
 ///       enabled: TfArg.literal(true),
 ///       pointInTimeRecoveryEnabled: TfArg.literal(true),
 ///       startTime: TfArg.literal('03:00'),

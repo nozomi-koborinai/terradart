@@ -10,8 +10,8 @@ const Set<String> _awsMedialiveMultiplexSensitive = <String>{};
 /// Typed helper for the `multiplex_settings` block of
 /// `aws_medialive_multiplex` (derived from provider schema).
 @immutable
-final class MedialiveMultiplexMultiplexSettings {
-  const MedialiveMultiplexMultiplexSettings({
+final class MedialiveMultiplexSettings {
+  const MedialiveMultiplexSettings({
     this.maximumVideoBufferDelayMilliseconds,
     required this.transportStreamBitrate,
     required this.transportStreamId,
@@ -47,7 +47,7 @@ final class AwsMedialiveMultiplex extends Resource {
     TfArg<String>? region,
     TfArg<bool>? startMultiplex,
     TfArg<Map<String, String>>? tags,
-    MedialiveMultiplexMultiplexSettings? multiplexSettings,
+    MedialiveMultiplexSettings? multiplexSettings,
     super.lifecycle,
     super.dependsOn,
     super.provider,

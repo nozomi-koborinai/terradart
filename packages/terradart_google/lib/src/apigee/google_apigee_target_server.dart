@@ -55,7 +55,7 @@ final class ApigeeTargetServerSSlInfo {
 
   final TfArg<String>? trustStore;
 
-  final ApigeeTargetServerSSlInfoCommonName? commonName;
+  final ApigeeTargetServerCommonName? commonName;
 
   Map<String, Object?> encode() => {
     'ciphers': ?ciphers?.toTfJson(),
@@ -74,8 +74,8 @@ final class ApigeeTargetServerSSlInfo {
 /// Typed helper for the `s_sl_info.common_name` block of
 /// `google_apigee_target_server` (derived from provider schema).
 @immutable
-final class ApigeeTargetServerSSlInfoCommonName {
-  const ApigeeTargetServerSSlInfoCommonName({this.value, this.wildcardMatch});
+final class ApigeeTargetServerCommonName {
+  const ApigeeTargetServerCommonName({this.value, this.wildcardMatch});
 
   final TfArg<String>? value;
 

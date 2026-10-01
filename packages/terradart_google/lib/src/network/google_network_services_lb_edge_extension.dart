@@ -20,8 +20,8 @@ enum NetworkServicesLbEdgeExtensionLoadBalancingScheme
 /// Typed helper for the `extension_chains` block of
 /// `google_network_services_lb_edge_extension` (derived from provider schema).
 @immutable
-final class NetworkServicesLbEdgeExtensionExtensionChains {
-  const NetworkServicesLbEdgeExtensionExtensionChains({
+final class NetworkServicesLbEdgeExtensionChains {
+  const NetworkServicesLbEdgeExtensionChains({
     required this.name,
     required this.extensions,
     required this.matchCondition,
@@ -29,11 +29,9 @@ final class NetworkServicesLbEdgeExtensionExtensionChains {
 
   final TfArg<String> name;
 
-  final List<NetworkServicesLbEdgeExtensionExtensionChainsExtensions>
-  extensions;
+  final List<NetworkServicesLbEdgeExtensionExtensions> extensions;
 
-  final NetworkServicesLbEdgeExtensionExtensionChainsMatchCondition
-  matchCondition;
+  final NetworkServicesLbEdgeExtensionMatchCondition matchCondition;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -45,8 +43,8 @@ final class NetworkServicesLbEdgeExtensionExtensionChains {
 /// Typed helper for the `extension_chains.extensions` block of
 /// `google_network_services_lb_edge_extension` (derived from provider schema).
 @immutable
-final class NetworkServicesLbEdgeExtensionExtensionChainsExtensions {
-  const NetworkServicesLbEdgeExtensionExtensionChainsExtensions({
+final class NetworkServicesLbEdgeExtensionExtensions {
+  const NetworkServicesLbEdgeExtensionExtensions({
     this.failOpen,
     this.forwardAttributes,
     this.forwardHeaders,
@@ -80,8 +78,8 @@ final class NetworkServicesLbEdgeExtensionExtensionChainsExtensions {
 /// Typed helper for the `extension_chains.match_condition` block of
 /// `google_network_services_lb_edge_extension` (derived from provider schema).
 @immutable
-final class NetworkServicesLbEdgeExtensionExtensionChainsMatchCondition {
-  const NetworkServicesLbEdgeExtensionExtensionChainsMatchCondition({
+final class NetworkServicesLbEdgeExtensionMatchCondition {
+  const NetworkServicesLbEdgeExtensionMatchCondition({
     required this.celExpression,
   });
 
@@ -120,8 +118,7 @@ final class GoogleNetworkServicesLbEdgeExtension extends Resource {
     required TfArg<NetworkServicesLbEdgeExtensionLoadBalancingScheme>
     loadBalancingScheme,
     required TfArg<List<String>> forwardingRules,
-    required List<NetworkServicesLbEdgeExtensionExtensionChains>
-    extensionChains,
+    required List<NetworkServicesLbEdgeExtensionChains> extensionChains,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,

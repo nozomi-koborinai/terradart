@@ -22,25 +22,23 @@ export 'src/connect/aws_connect_hours_of_operation.dart'
     show
         AwsConnectHoursOfOperation,
         ConnectHoursOfOperationConfig,
-        ConnectHoursOfOperationConfigDay,
-        ConnectHoursOfOperationConfigEndTime,
-        ConnectHoursOfOperationConfigStartTime;
+        ConnectHoursOfOperationDay,
+        ConnectHoursOfOperationEndTime,
+        ConnectHoursOfOperationStartTime;
 export 'src/connect/aws_connect_instance.dart'
     show AwsConnectInstance, ConnectInstanceIdentityManagementType;
 export 'src/connect/aws_connect_instance_storage_config.dart'
     show
         AwsConnectInstanceStorageConfig,
+        ConnectInstanceStorageConfigEncryptionConfig,
+        ConnectInstanceStorageConfigEncryptionType,
+        ConnectInstanceStorageConfigKinesisFirehoseConfig,
+        ConnectInstanceStorageConfigKinesisStreamConfig,
+        ConnectInstanceStorageConfigKinesisVideoStreamConfig,
         ConnectInstanceStorageConfigResourceType,
+        ConnectInstanceStorageConfigS3Config,
         ConnectInstanceStorageConfigStorageConfig,
-        ConnectInstanceStorageConfigStorageConfigKinesisFirehoseConfig,
-        ConnectInstanceStorageConfigStorageConfigKinesisStreamConfig,
-        ConnectInstanceStorageConfigStorageConfigKinesisVideoStreamConfig,
-        ConnectInstanceStorageConfigStorageConfigKinesisVideoStreamConfigEncryptionConfig,
-        ConnectInstanceStorageConfigStorageConfigKinesisVideoStreamConfigEncryptionConfigEncryptionType,
-        ConnectInstanceStorageConfigStorageConfigS3Config,
-        ConnectInstanceStorageConfigStorageConfigS3ConfigEncryptionConfig,
-        ConnectInstanceStorageConfigStorageConfigS3ConfigEncryptionConfigEncryptionType,
-        ConnectInstanceStorageConfigStorageConfigStorageType;
+        ConnectInstanceStorageConfigStorageType;
 export 'src/connect/aws_connect_lambda_function_association.dart'
     show AwsConnectLambdaFunctionAssociation;
 export 'src/connect/aws_connect_phone_number.dart'
@@ -55,20 +53,19 @@ export 'src/connect/aws_connect_queue.dart'
 export 'src/connect/aws_connect_quick_connect.dart'
     show
         AwsConnectQuickConnect,
-        ConnectQuickConnectQuickConnectConfig,
-        ConnectQuickConnectQuickConnectConfigPhoneConfig,
-        ConnectQuickConnectQuickConnectConfigQueueConfig,
-        ConnectQuickConnectQuickConnectConfigQuickConnectType,
-        ConnectQuickConnectQuickConnectConfigUserConfig;
+        ConnectQuickConnectConfig,
+        ConnectQuickConnectPhoneConfig,
+        ConnectQuickConnectQueueConfig,
+        ConnectQuickConnectType,
+        ConnectQuickConnectUserConfig;
 export 'src/connect/aws_connect_routing_profile.dart'
     show
         AwsConnectRoutingProfile,
+        ConnectRoutingProfileBehaviorType,
+        ConnectRoutingProfileChannel,
+        ConnectRoutingProfileCrossChannelBehavior,
         ConnectRoutingProfileMediaConcurrencies,
-        ConnectRoutingProfileMediaConcurrenciesChannel,
-        ConnectRoutingProfileMediaConcurrenciesCrossChannelBehavior,
-        ConnectRoutingProfileMediaConcurrenciesCrossChannelBehaviorBehaviorType,
-        ConnectRoutingProfileQueueConfigs,
-        ConnectRoutingProfileQueueConfigsChannel;
+        ConnectRoutingProfileQueueConfigs;
 export 'src/connect/aws_connect_security_profile.dart'
     show AwsConnectSecurityProfile;
 export 'src/connect/aws_connect_user.dart'
@@ -76,17 +73,17 @@ export 'src/connect/aws_connect_user.dart'
         AwsConnectUser,
         ConnectUserIdentityInfo,
         ConnectUserPhoneConfig,
-        ConnectUserPhoneConfigPhoneType;
+        ConnectUserPhoneType;
 export 'src/connect/aws_connect_user_hierarchy_group.dart'
     show AwsConnectUserHierarchyGroup;
 export 'src/connect/aws_connect_user_hierarchy_structure.dart'
     show
         AwsConnectUserHierarchyStructure,
         ConnectUserHierarchyStructureHierarchyStructure,
-        ConnectUserHierarchyStructureHierarchyStructureLevelFive,
-        ConnectUserHierarchyStructureHierarchyStructureLevelFour,
-        ConnectUserHierarchyStructureHierarchyStructureLevelOne,
-        ConnectUserHierarchyStructureHierarchyStructureLevelThree,
-        ConnectUserHierarchyStructureHierarchyStructureLevelTwo;
+        ConnectUserHierarchyStructureLevelFive,
+        ConnectUserHierarchyStructureLevelFour,
+        ConnectUserHierarchyStructureLevelOne,
+        ConnectUserHierarchyStructureLevelThree,
+        ConnectUserHierarchyStructureLevelTwo;
 export 'src/connect/aws_connect_vocabulary.dart'
     show AwsConnectVocabulary, ConnectVocabularyLanguageCode;

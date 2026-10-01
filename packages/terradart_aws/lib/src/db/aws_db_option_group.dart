@@ -88,7 +88,7 @@ final class DbOptionGroupOption {
 
   final TfArg<List<String>>? vpcSecurityGroupMemberships;
 
-  final List<DbOptionGroupOptionOptionSettings>? optionSettings;
+  final List<DbOptionGroupOptionSettings>? optionSettings;
 
   Map<String, Object?> encode() => {
     'db_security_group_memberships': ?dbSecurityGroupMemberships?.toTfJson(),
@@ -104,11 +104,8 @@ final class DbOptionGroupOption {
 /// Typed helper for the `option.option_settings` block of
 /// `aws_db_option_group` (derived from provider schema).
 @immutable
-final class DbOptionGroupOptionOptionSettings {
-  const DbOptionGroupOptionOptionSettings({
-    required this.name,
-    required this.value,
-  });
+final class DbOptionGroupOptionSettings {
+  const DbOptionGroupOptionSettings({required this.name, required this.value});
 
   final TfArg<String> name;
 

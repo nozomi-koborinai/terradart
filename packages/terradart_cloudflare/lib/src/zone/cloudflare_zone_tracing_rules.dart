@@ -21,7 +21,7 @@ final class ZoneTracingRulesRules {
     required this.actionParameters,
   });
 
-  final TfArg<ZoneTracingRulesRulesAction> action;
+  final TfArg<ZoneTracingRulesAction> action;
 
   final TfArg<String> description;
 
@@ -29,7 +29,7 @@ final class ZoneTracingRulesRules {
 
   final TfArg<String> expression;
 
-  final ZoneTracingRulesRulesActionParameters actionParameters;
+  final ZoneTracingRulesActionParameters actionParameters;
 
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
@@ -41,10 +41,10 @@ final class ZoneTracingRulesRules {
 }
 
 /// `action` — derived from the provider schema description.
-enum ZoneTracingRulesRulesAction implements TerraformEnum {
+enum ZoneTracingRulesAction implements TerraformEnum {
   setTraceSettings('set_trace_settings');
 
-  const ZoneTracingRulesRulesAction(this.terraformValue);
+  const ZoneTracingRulesAction(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -52,8 +52,8 @@ enum ZoneTracingRulesRulesAction implements TerraformEnum {
 /// Typed helper for the `rules.action_parameters` block of
 /// `cloudflare_zone_tracing_rules` (derived from provider schema).
 @immutable
-final class ZoneTracingRulesRulesActionParameters {
-  const ZoneTracingRulesRulesActionParameters({required this.samplingRatio});
+final class ZoneTracingRulesActionParameters {
+  const ZoneTracingRulesActionParameters({required this.samplingRatio});
 
   final TfArg<num> samplingRatio;
 

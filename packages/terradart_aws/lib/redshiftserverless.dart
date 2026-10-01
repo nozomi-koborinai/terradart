@@ -13,8 +13,8 @@ export 'src/redshiftserverless/aws_redshiftserverless_namespace.dart'
         RedshiftserverlessNamespaceAdminPassword,
         RedshiftserverlessNamespaceAdminPasswordAdminUserPassword,
         RedshiftserverlessNamespaceAdminPasswordAdminUserPasswordWo,
-        RedshiftserverlessNamespaceAdminPasswordManageAdminPassword,
-        RedshiftserverlessNamespaceLogExports;
+        RedshiftserverlessNamespaceLogExports,
+        RedshiftserverlessNamespaceManageAdminPassword;
 export 'src/redshiftserverless/aws_redshiftserverless_resource_policy.dart'
     show AwsRedshiftserverlessResourcePolicy;
 export 'src/redshiftserverless/aws_redshiftserverless_snapshot.dart'

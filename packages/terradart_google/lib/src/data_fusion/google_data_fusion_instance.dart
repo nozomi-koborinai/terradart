@@ -44,7 +44,7 @@ final class DataFusionInstanceAccelerators {
     required this.state,
   });
 
-  final TfArg<DataFusionInstanceAcceleratorsAcceleratorType> acceleratorType;
+  final TfArg<DataFusionInstanceAcceleratorType> acceleratorType;
 
   final TfArg<DataFusionInstanceAcceleratorsState> state;
 
@@ -55,12 +55,12 @@ final class DataFusionInstanceAccelerators {
 }
 
 /// `accelerator_type` — derived from the provider schema description.
-enum DataFusionInstanceAcceleratorsAcceleratorType implements TerraformEnum {
+enum DataFusionInstanceAcceleratorType implements TerraformEnum {
   cdc('CDC'),
   healthcare('HEALTHCARE'),
   ccaiInsights('CCAI_INSIGHTS');
 
-  const DataFusionInstanceAcceleratorsAcceleratorType(this.terraformValue);
+  const DataFusionInstanceAcceleratorType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -111,7 +111,7 @@ final class DataFusionInstanceEventPublishConfig {
 final class DataFusionInstanceMaintenancePolicy {
   const DataFusionInstanceMaintenancePolicy({this.maintenanceWindow});
 
-  final DataFusionInstanceMaintenancePolicyMaintenanceWindow? maintenanceWindow;
+  final DataFusionInstanceMaintenanceWindow? maintenanceWindow;
 
   Map<String, Object?> encode() => {
     'maintenance_window': ?maintenanceWindow?.encode(),
@@ -121,13 +121,12 @@ final class DataFusionInstanceMaintenancePolicy {
 /// Typed helper for the `maintenance_policy.maintenance_window` block of
 /// `google_data_fusion_instance` (derived from provider schema).
 @immutable
-final class DataFusionInstanceMaintenancePolicyMaintenanceWindow {
-  const DataFusionInstanceMaintenancePolicyMaintenanceWindow({
+final class DataFusionInstanceMaintenanceWindow {
+  const DataFusionInstanceMaintenanceWindow({
     required this.recurringTimeWindow,
   });
 
-  final DataFusionInstanceMaintenancePolicyMaintenanceWindowRecurringTimeWindow
-  recurringTimeWindow;
+  final DataFusionInstanceRecurringTimeWindow recurringTimeWindow;
 
   Map<String, Object?> encode() => {
     'recurring_time_window': recurringTimeWindow.encode(),
@@ -137,16 +136,15 @@ final class DataFusionInstanceMaintenancePolicyMaintenanceWindow {
 /// Typed helper for the `maintenance_policy.maintenance_window.recurring_time_window` block of
 /// `google_data_fusion_instance` (derived from provider schema).
 @immutable
-final class DataFusionInstanceMaintenancePolicyMaintenanceWindowRecurringTimeWindow {
-  const DataFusionInstanceMaintenancePolicyMaintenanceWindowRecurringTimeWindow({
+final class DataFusionInstanceRecurringTimeWindow {
+  const DataFusionInstanceRecurringTimeWindow({
     required this.recurrence,
     required this.window,
   });
 
   final TfArg<String> recurrence;
 
-  final DataFusionInstanceMaintenancePolicyMaintenanceWindowRecurringTimeWindowWindow
-  window;
+  final DataFusionInstanceWindow window;
 
   Map<String, Object?> encode() => {
     'recurrence': recurrence.toTfJson(),
@@ -157,8 +155,8 @@ final class DataFusionInstanceMaintenancePolicyMaintenanceWindowRecurringTimeWin
 /// Typed helper for the `maintenance_policy.maintenance_window.recurring_time_window.window` block of
 /// `google_data_fusion_instance` (derived from provider schema).
 @immutable
-final class DataFusionInstanceMaintenancePolicyMaintenanceWindowRecurringTimeWindowWindow {
-  const DataFusionInstanceMaintenancePolicyMaintenanceWindowRecurringTimeWindowWindow({
+final class DataFusionInstanceWindow {
+  const DataFusionInstanceWindow({
     required this.endTime,
     required this.startTime,
   });
@@ -184,13 +182,13 @@ final class DataFusionInstanceNetworkConfig {
     this.privateServiceConnectConfig,
   });
 
-  final TfArg<DataFusionInstanceNetworkConfigConnectionType>? connectionType;
+  final TfArg<DataFusionInstanceConnectionType>? connectionType;
 
   final TfArg<String>? ipAllocation;
 
   final RefTo<GoogleComputeNetwork>? network;
 
-  final DataFusionInstanceNetworkConfigPrivateServiceConnectConfig?
+  final DataFusionInstancePrivateServiceConnectConfig?
   privateServiceConnectConfig;
 
   Map<String, Object?> encode() => {
@@ -202,11 +200,11 @@ final class DataFusionInstanceNetworkConfig {
 }
 
 /// `connection_type` — derived from the provider schema description.
-enum DataFusionInstanceNetworkConfigConnectionType implements TerraformEnum {
+enum DataFusionInstanceConnectionType implements TerraformEnum {
   vpcPeering('VPC_PEERING'),
   privateServiceConnectInterfaces('PRIVATE_SERVICE_CONNECT_INTERFACES');
 
-  const DataFusionInstanceNetworkConfigConnectionType(this.terraformValue);
+  const DataFusionInstanceConnectionType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -214,8 +212,8 @@ enum DataFusionInstanceNetworkConfigConnectionType implements TerraformEnum {
 /// Typed helper for the `network_config.private_service_connect_config` block of
 /// `google_data_fusion_instance` (derived from provider schema).
 @immutable
-final class DataFusionInstanceNetworkConfigPrivateServiceConnectConfig {
-  const DataFusionInstanceNetworkConfigPrivateServiceConnectConfig({
+final class DataFusionInstancePrivateServiceConnectConfig {
+  const DataFusionInstancePrivateServiceConnectConfig({
     this.networkAttachment,
     this.unreachableCidrBlock,
   });

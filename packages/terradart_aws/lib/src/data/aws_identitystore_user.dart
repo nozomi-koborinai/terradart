@@ -17,10 +17,9 @@ final class DataIdentitystoreUserAlternateIdentifier {
     this.uniqueAttribute,
   });
 
-  final DataIdentitystoreUserAlternateIdentifierExternalId? externalId;
+  final DataIdentitystoreUserExternalId? externalId;
 
-  final DataIdentitystoreUserAlternateIdentifierUniqueAttribute?
-  uniqueAttribute;
+  final DataIdentitystoreUserUniqueAttribute? uniqueAttribute;
 
   Map<String, Object?> encode() => {
     'external_id': ?externalId?.encode(),
@@ -31,8 +30,8 @@ final class DataIdentitystoreUserAlternateIdentifier {
 /// Typed helper for the `alternate_identifier.external_id` block of
 /// `aws_identitystore_user` (derived from provider schema).
 @immutable
-final class DataIdentitystoreUserAlternateIdentifierExternalId {
-  const DataIdentitystoreUserAlternateIdentifierExternalId({
+final class DataIdentitystoreUserExternalId {
+  const DataIdentitystoreUserExternalId({
     required this.id,
     required this.issuer,
   });
@@ -50,8 +49,8 @@ final class DataIdentitystoreUserAlternateIdentifierExternalId {
 /// Typed helper for the `alternate_identifier.unique_attribute` block of
 /// `aws_identitystore_user` (derived from provider schema).
 @immutable
-final class DataIdentitystoreUserAlternateIdentifierUniqueAttribute {
-  const DataIdentitystoreUserAlternateIdentifierUniqueAttribute({
+final class DataIdentitystoreUserUniqueAttribute {
+  const DataIdentitystoreUserUniqueAttribute({
     required this.attributePath,
     required this.attributeValue,
   });

@@ -10,10 +10,8 @@ const Set<String> _googleNetworkSecurityFirewallEndpointSensitive = <String>{};
 /// Typed helper for the `endpoint_settings` block of
 /// `google_network_security_firewall_endpoint` (derived from provider schema).
 @immutable
-final class NetworkSecurityFirewallEndpointEndpointSettings {
-  const NetworkSecurityFirewallEndpointEndpointSettings({
-    this.jumboFramesEnabled,
-  });
+final class NetworkSecurityFirewallEndpointSettings {
+  const NetworkSecurityFirewallEndpointSettings({this.jumboFramesEnabled});
 
   final TfArg<bool>? jumboFramesEnabled;
 
@@ -52,7 +50,7 @@ final class GoogleNetworkSecurityFirewallEndpoint extends Resource {
     required TfArg<String> location,
     required TfArg<String> parent,
     TfArg<String>? billingProjectId,
-    NetworkSecurityFirewallEndpointEndpointSettings? endpointSettings,
+    NetworkSecurityFirewallEndpointSettings? endpointSettings,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,
     super.lifecycle,

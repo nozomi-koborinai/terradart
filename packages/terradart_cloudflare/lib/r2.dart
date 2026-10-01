@@ -12,39 +12,37 @@ export 'src/r2/cloudflare_r2_bucket.dart'
 export 'src/r2/cloudflare_r2_bucket_cors.dart'
     show
         CloudflareR2BucketCors,
+        R2BucketCorsAllowed,
         R2BucketCorsJurisdiction,
-        R2BucketCorsRules,
-        R2BucketCorsRulesAllowed,
-        R2BucketCorsRulesAllowedMethods;
+        R2BucketCorsMethods,
+        R2BucketCorsRules;
 export 'src/r2/cloudflare_r2_bucket_event_notification.dart'
     show
         CloudflareR2BucketEventNotification,
+        R2BucketEventNotificationActions,
         R2BucketEventNotificationJurisdiction,
-        R2BucketEventNotificationRules,
-        R2BucketEventNotificationRulesActions;
+        R2BucketEventNotificationRules;
 export 'src/r2/cloudflare_r2_bucket_lifecycle.dart'
     show
         CloudflareR2BucketLifecycle,
+        R2BucketLifecycleAbortMultipartUploadsTransition,
+        R2BucketLifecycleAbortMultipartUploadsTransitionCondition,
+        R2BucketLifecycleAbortMultipartUploadsTransitionType,
+        R2BucketLifecycleConditions,
+        R2BucketLifecycleDeleteObjectsTransition,
+        R2BucketLifecycleDeleteObjectsTransitionCondition,
+        R2BucketLifecycleDeleteObjectsTransitionType,
         R2BucketLifecycleJurisdiction,
         R2BucketLifecycleRules,
-        R2BucketLifecycleRulesAbortMultipartUploadsTransition,
-        R2BucketLifecycleRulesAbortMultipartUploadsTransitionCondition,
-        R2BucketLifecycleRulesAbortMultipartUploadsTransitionConditionType,
-        R2BucketLifecycleRulesConditions,
-        R2BucketLifecycleRulesDeleteObjectsTransition,
-        R2BucketLifecycleRulesDeleteObjectsTransitionCondition,
-        R2BucketLifecycleRulesDeleteObjectsTransitionConditionType,
-        R2BucketLifecycleRulesStorageClassTransitions,
-        R2BucketLifecycleRulesStorageClassTransitionsCondition,
-        R2BucketLifecycleRulesStorageClassTransitionsConditionType,
-        R2BucketLifecycleRulesStorageClassTransitionsStorageClass;
+        R2BucketLifecycleStorageClass,
+        R2BucketLifecycleStorageClassTransitions;
 export 'src/r2/cloudflare_r2_bucket_lock.dart'
     show
         CloudflareR2BucketLock,
+        R2BucketLockCondition,
         R2BucketLockJurisdiction,
         R2BucketLockRules,
-        R2BucketLockRulesCondition,
-        R2BucketLockRulesConditionType;
+        R2BucketLockType;
 export 'src/r2/cloudflare_r2_bucket_sippy.dart'
     show
         CloudflareR2BucketSippy,

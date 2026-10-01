@@ -26,7 +26,7 @@ final class NetworkConnectivityServiceConnectionPolicyPscConfig {
   final TfArg<String>? limit;
 
   final TfArg<
-    NetworkConnectivityServiceConnectionPolicyPscConfigProducerInstanceLocation
+    NetworkConnectivityServiceConnectionPolicyProducerInstanceLocation
   >?
   producerInstanceLocation;
 
@@ -42,12 +42,12 @@ final class NetworkConnectivityServiceConnectionPolicyPscConfig {
 }
 
 /// `producer_instance_location` — derived from the provider schema description.
-enum NetworkConnectivityServiceConnectionPolicyPscConfigProducerInstanceLocation
+enum NetworkConnectivityServiceConnectionPolicyProducerInstanceLocation
     implements TerraformEnum {
   producerInstanceLocationUnspecified('PRODUCER_INSTANCE_LOCATION_UNSPECIFIED'),
   customResourceHierarchyLevels('CUSTOM_RESOURCE_HIERARCHY_LEVELS');
 
-  const NetworkConnectivityServiceConnectionPolicyPscConfigProducerInstanceLocation(
+  const NetworkConnectivityServiceConnectionPolicyProducerInstanceLocation(
     this.terraformValue,
   );
   @override

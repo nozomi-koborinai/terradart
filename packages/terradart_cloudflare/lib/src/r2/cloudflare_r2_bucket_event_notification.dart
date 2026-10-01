@@ -31,7 +31,7 @@ final class R2BucketEventNotificationRules {
     this.suffix,
   });
 
-  final List<TfArg<R2BucketEventNotificationRulesActions>> actions;
+  final List<TfArg<R2BucketEventNotificationActions>> actions;
 
   final TfArg<String>? description;
 
@@ -48,14 +48,14 @@ final class R2BucketEventNotificationRules {
 }
 
 /// `actions` — derived from the provider schema description.
-enum R2BucketEventNotificationRulesActions implements TerraformEnum {
+enum R2BucketEventNotificationActions implements TerraformEnum {
   putobject('PutObject'),
   copyobject('CopyObject'),
   deleteobject('DeleteObject'),
   completemultipartupload('CompleteMultipartUpload'),
   lifecycledeletion('LifecycleDeletion');
 
-  const R2BucketEventNotificationRulesActions(this.terraformValue);
+  const R2BucketEventNotificationActions(this.terraformValue);
   @override
   final String terraformValue;
 }

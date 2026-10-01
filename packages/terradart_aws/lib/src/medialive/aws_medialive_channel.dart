@@ -40,19 +40,19 @@ enum MedialiveChannelLogLevel implements TerraformEnum {
 final class MedialiveChannelCdiInputSpecification {
   const MedialiveChannelCdiInputSpecification({required this.resolution});
 
-  final TfArg<MedialiveChannelCdiInputSpecificationResolution> resolution;
+  final TfArg<MedialiveChannelResolution> resolution;
 
   Map<String, Object?> encode() => {'resolution': resolution.toTfJson()};
 }
 
 /// `resolution` — derived from the provider schema description.
-enum MedialiveChannelCdiInputSpecificationResolution implements TerraformEnum {
+enum MedialiveChannelResolution implements TerraformEnum {
   sd('SD'),
   hd('HD'),
   fhd('FHD'),
   uhd('UHD');
 
-  const MedialiveChannelCdiInputSpecificationResolution(this.terraformValue);
+  const MedialiveChannelResolution(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -70,12 +70,11 @@ final class MedialiveChannelDestinations {
 
   final TfArg<String> id;
 
-  final List<MedialiveChannelDestinationsMediaPackageSettings>?
-  mediaPackageSettings;
+  final List<MedialiveChannelMediaPackageSettings>? mediaPackageSettings;
 
-  final MedialiveChannelDestinationsMultiplexSettings? multiplexSettings;
+  final MedialiveChannelMultiplexSettings? multiplexSettings;
 
-  final List<MedialiveChannelDestinationsSettings>? settings;
+  final List<MedialiveChannelSettings>? settings;
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
@@ -91,10 +90,8 @@ final class MedialiveChannelDestinations {
 /// Typed helper for the `destinations.media_package_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelDestinationsMediaPackageSettings {
-  const MedialiveChannelDestinationsMediaPackageSettings({
-    required this.channelId,
-  });
+final class MedialiveChannelMediaPackageSettings {
+  const MedialiveChannelMediaPackageSettings({required this.channelId});
 
   final TfArg<String> channelId;
 
@@ -104,8 +101,8 @@ final class MedialiveChannelDestinationsMediaPackageSettings {
 /// Typed helper for the `destinations.multiplex_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelDestinationsMultiplexSettings {
-  const MedialiveChannelDestinationsMultiplexSettings({
+final class MedialiveChannelMultiplexSettings {
+  const MedialiveChannelMultiplexSettings({
     required this.multiplexId,
     required this.programName,
   });
@@ -123,8 +120,8 @@ final class MedialiveChannelDestinationsMultiplexSettings {
 /// Typed helper for the `destinations.settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelDestinationsSettings {
-  const MedialiveChannelDestinationsSettings({
+final class MedialiveChannelSettings {
+  const MedialiveChannelSettings({
     this.passwordParam,
     this.streamName,
     this.url,
@@ -163,28 +160,24 @@ final class MedialiveChannelEncoderSettings {
     this.videoDescriptions,
   });
 
-  final List<MedialiveChannelEncoderSettingsAudioDescriptions>?
-  audioDescriptions;
+  final List<MedialiveChannelAudioDescriptions>? audioDescriptions;
 
-  final MedialiveChannelEncoderSettingsAvailBlanking? availBlanking;
+  final MedialiveChannelAvailBlanking? availBlanking;
 
-  final List<MedialiveChannelEncoderSettingsCaptionDescriptions>?
-  captionDescriptions;
+  final List<MedialiveChannelCaptionDescriptions>? captionDescriptions;
 
-  final MedialiveChannelEncoderSettingsGlobalConfiguration? globalConfiguration;
+  final MedialiveChannelGlobalConfiguration? globalConfiguration;
 
-  final MedialiveChannelEncoderSettingsMotionGraphicsConfiguration?
+  final MedialiveChannelMotionGraphicsConfiguration?
   motionGraphicsConfiguration;
 
-  final MedialiveChannelEncoderSettingsNielsenConfiguration?
-  nielsenConfiguration;
+  final MedialiveChannelNielsenConfiguration? nielsenConfiguration;
 
-  final List<MedialiveChannelEncoderSettingsOutputGroups> outputGroups;
+  final List<MedialiveChannelOutputGroups> outputGroups;
 
-  final MedialiveChannelEncoderSettingsTimecodeConfig timecodeConfig;
+  final MedialiveChannelTimecodeConfig timecodeConfig;
 
-  final List<MedialiveChannelEncoderSettingsVideoDescriptions>?
-  videoDescriptions;
+  final List<MedialiveChannelVideoDescriptions>? videoDescriptions;
 
   Map<String, Object?> encode() => {
     if (audioDescriptions != null)
@@ -207,8 +200,8 @@ final class MedialiveChannelEncoderSettings {
 /// Typed helper for the `encoder_settings.audio_descriptions` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsAudioDescriptions {
-  const MedialiveChannelEncoderSettingsAudioDescriptions({
+final class MedialiveChannelAudioDescriptions {
+  const MedialiveChannelAudioDescriptions({
     required this.audioSelectorName,
     this.audioType,
     this.audioTypeControl,
@@ -236,17 +229,13 @@ final class MedialiveChannelEncoderSettingsAudioDescriptions {
 
   final TfArg<String>? streamName;
 
-  final MedialiveChannelEncoderSettingsAudioDescriptionsAudioNormalizationSettings?
-  audioNormalizationSettings;
+  final MedialiveChannelAudioNormalizationSettings? audioNormalizationSettings;
 
-  final MedialiveChannelEncoderSettingsAudioDescriptionsAudioWatermarkSettings?
-  audioWatermarkSettings;
+  final MedialiveChannelAudioWatermarkSettings? audioWatermarkSettings;
 
-  final MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettings?
-  codecSettings;
+  final MedialiveChannelAudioDescriptionsCodecSettings? codecSettings;
 
-  final MedialiveChannelEncoderSettingsAudioDescriptionsRemixSettings?
-  remixSettings;
+  final MedialiveChannelRemixSettings? remixSettings;
 
   Map<String, Object?> encode() => {
     'audio_selector_name': audioSelectorName.toTfJson(),
@@ -266,8 +255,8 @@ final class MedialiveChannelEncoderSettingsAudioDescriptions {
 /// Typed helper for the `encoder_settings.audio_descriptions.audio_normalization_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsAudioDescriptionsAudioNormalizationSettings {
-  const MedialiveChannelEncoderSettingsAudioDescriptionsAudioNormalizationSettings({
+final class MedialiveChannelAudioNormalizationSettings {
+  const MedialiveChannelAudioNormalizationSettings({
     this.algorithm,
     this.algorithmControl,
     this.targetLkfs,
@@ -289,13 +278,12 @@ final class MedialiveChannelEncoderSettingsAudioDescriptionsAudioNormalizationSe
 /// Typed helper for the `encoder_settings.audio_descriptions.audio_watermark_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsAudioDescriptionsAudioWatermarkSettings {
-  const MedialiveChannelEncoderSettingsAudioDescriptionsAudioWatermarkSettings({
+final class MedialiveChannelAudioWatermarkSettings {
+  const MedialiveChannelAudioWatermarkSettings({
     this.nielsenWatermarksSettings,
   });
 
-  final MedialiveChannelEncoderSettingsAudioDescriptionsAudioWatermarkSettingsNielsenWatermarksSettings?
-  nielsenWatermarksSettings;
+  final MedialiveChannelNielsenWatermarksSettings? nielsenWatermarksSettings;
 
   Map<String, Object?> encode() => {
     'nielsen_watermarks_settings': ?nielsenWatermarksSettings?.encode(),
@@ -305,8 +293,8 @@ final class MedialiveChannelEncoderSettingsAudioDescriptionsAudioWatermarkSettin
 /// Typed helper for the `encoder_settings.audio_descriptions.audio_watermark_settings.nielsen_watermarks_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsAudioDescriptionsAudioWatermarkSettingsNielsenWatermarksSettings {
-  const MedialiveChannelEncoderSettingsAudioDescriptionsAudioWatermarkSettingsNielsenWatermarksSettings({
+final class MedialiveChannelNielsenWatermarksSettings {
+  const MedialiveChannelNielsenWatermarksSettings({
     this.nielsenDistributionType,
     this.nielsenCbetSettings,
     this.nielsenNaesIiNwSettings,
@@ -314,13 +302,9 @@ final class MedialiveChannelEncoderSettingsAudioDescriptionsAudioWatermarkSettin
 
   final TfArg<String>? nielsenDistributionType;
 
-  final MedialiveChannelEncoderSettingsAudioDescriptionsAudioWatermarkSettingsNielsenWatermarksSettingsNielsenCbetSettings?
-  nielsenCbetSettings;
+  final MedialiveChannelNielsenCbetSettings? nielsenCbetSettings;
 
-  final List<
-    MedialiveChannelEncoderSettingsAudioDescriptionsAudioWatermarkSettingsNielsenWatermarksSettingsNielsenNaesIiNwSettings
-  >?
-  nielsenNaesIiNwSettings;
+  final List<MedialiveChannelNielsenNaesIiNwSettings>? nielsenNaesIiNwSettings;
 
   Map<String, Object?> encode() => {
     'nielsen_distribution_type': ?nielsenDistributionType?.toTfJson(),
@@ -335,8 +319,8 @@ final class MedialiveChannelEncoderSettingsAudioDescriptionsAudioWatermarkSettin
 /// Typed helper for the `encoder_settings.audio_descriptions.audio_watermark_settings.nielsen_watermarks_settings.nielsen_cbet_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsAudioDescriptionsAudioWatermarkSettingsNielsenWatermarksSettingsNielsenCbetSettings {
-  const MedialiveChannelEncoderSettingsAudioDescriptionsAudioWatermarkSettingsNielsenWatermarksSettingsNielsenCbetSettings({
+final class MedialiveChannelNielsenCbetSettings {
+  const MedialiveChannelNielsenCbetSettings({
     required this.cbetCheckDigitString,
     required this.cbetStepaside,
     required this.csid,
@@ -358,8 +342,8 @@ final class MedialiveChannelEncoderSettingsAudioDescriptionsAudioWatermarkSettin
 /// Typed helper for the `encoder_settings.audio_descriptions.audio_watermark_settings.nielsen_watermarks_settings.nielsen_naes_ii_nw_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsAudioDescriptionsAudioWatermarkSettingsNielsenWatermarksSettingsNielsenNaesIiNwSettings {
-  const MedialiveChannelEncoderSettingsAudioDescriptionsAudioWatermarkSettingsNielsenWatermarksSettingsNielsenNaesIiNwSettings({
+final class MedialiveChannelNielsenNaesIiNwSettings {
+  const MedialiveChannelNielsenNaesIiNwSettings({
     required this.checkDigitString,
     required this.sid,
   });
@@ -377,8 +361,8 @@ final class MedialiveChannelEncoderSettingsAudioDescriptionsAudioWatermarkSettin
 /// Typed helper for the `encoder_settings.audio_descriptions.codec_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettings {
-  const MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettings({
+final class MedialiveChannelAudioDescriptionsCodecSettings {
+  const MedialiveChannelAudioDescriptionsCodecSettings({
     this.aacSettings,
     this.ac3Settings,
     this.eac3AtmosSettings,
@@ -388,26 +372,19 @@ final class MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettings {
     this.wavSettings,
   });
 
-  final MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsAacSettings?
-  aacSettings;
+  final MedialiveChannelAacSettings? aacSettings;
 
-  final MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsAc3Settings?
-  ac3Settings;
+  final MedialiveChannelAc3Settings? ac3Settings;
 
-  final MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsEac3AtmosSettings?
-  eac3AtmosSettings;
+  final MedialiveChannelEac3AtmosSettings? eac3AtmosSettings;
 
-  final MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsEac3Settings?
-  eac3Settings;
+  final MedialiveChannelEac3Settings? eac3Settings;
 
-  final MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsMp2Settings?
-  mp2Settings;
+  final MedialiveChannelMp2Settings? mp2Settings;
 
-  final MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsPassThroughSettings?
-  passThroughSettings;
+  final MedialiveChannelPassThroughSettings? passThroughSettings;
 
-  final MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsWavSettings?
-  wavSettings;
+  final MedialiveChannelWavSettings? wavSettings;
 
   Map<String, Object?> encode() => {
     'aac_settings': ?aacSettings?.encode(),
@@ -423,8 +400,8 @@ final class MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettings {
 /// Typed helper for the `encoder_settings.audio_descriptions.codec_settings.aac_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsAacSettings {
-  const MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsAacSettings({
+final class MedialiveChannelAacSettings {
+  const MedialiveChannelAacSettings({
     this.bitrate,
     this.codingMode,
     this.inputType,
@@ -470,8 +447,8 @@ final class MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsAacSett
 /// Typed helper for the `encoder_settings.audio_descriptions.codec_settings.ac3_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsAc3Settings {
-  const MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsAc3Settings({
+final class MedialiveChannelAc3Settings {
+  const MedialiveChannelAc3Settings({
     this.bitrate,
     this.bitstreamMode,
     this.codingMode,
@@ -509,8 +486,8 @@ final class MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsAc3Sett
 /// Typed helper for the `encoder_settings.audio_descriptions.codec_settings.eac3_atmos_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsEac3AtmosSettings {
-  const MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsEac3AtmosSettings({
+final class MedialiveChannelEac3AtmosSettings {
+  const MedialiveChannelEac3AtmosSettings({
     this.bitrate,
     this.codingMode,
     this.dialnorm,
@@ -548,8 +525,8 @@ final class MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsEac3Atm
 /// Typed helper for the `encoder_settings.audio_descriptions.codec_settings.eac3_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsEac3Settings {
-  const MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsEac3Settings({
+final class MedialiveChannelEac3Settings {
+  const MedialiveChannelEac3Settings({
     this.attenuationControl,
     this.bitrate,
     this.bitstreamMode,
@@ -639,8 +616,8 @@ final class MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsEac3Set
 /// Typed helper for the `encoder_settings.audio_descriptions.codec_settings.mp2_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsMp2Settings {
-  const MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsMp2Settings({
+final class MedialiveChannelMp2Settings {
+  const MedialiveChannelMp2Settings({
     this.bitrate,
     this.codingMode,
     this.sampleRate,
@@ -662,8 +639,8 @@ final class MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsMp2Sett
 /// Typed helper for the `encoder_settings.audio_descriptions.codec_settings.pass_through_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsPassThroughSettings {
-  const MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsPassThroughSettings();
+final class MedialiveChannelPassThroughSettings {
+  const MedialiveChannelPassThroughSettings();
 
   Map<String, Object?> encode() => {};
 }
@@ -671,8 +648,8 @@ final class MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsPassThr
 /// Typed helper for the `encoder_settings.audio_descriptions.codec_settings.wav_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsWavSettings {
-  const MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsWavSettings({
+final class MedialiveChannelWavSettings {
+  const MedialiveChannelWavSettings({
     this.bitDepth,
     this.codingMode,
     this.sampleRate,
@@ -694,8 +671,8 @@ final class MedialiveChannelEncoderSettingsAudioDescriptionsCodecSettingsWavSett
 /// Typed helper for the `encoder_settings.audio_descriptions.remix_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsAudioDescriptionsRemixSettings {
-  const MedialiveChannelEncoderSettingsAudioDescriptionsRemixSettings({
+final class MedialiveChannelRemixSettings {
+  const MedialiveChannelRemixSettings({
     this.channelsIn,
     this.channelsOut,
     required this.channelMappings,
@@ -705,10 +682,7 @@ final class MedialiveChannelEncoderSettingsAudioDescriptionsRemixSettings {
 
   final TfArg<num>? channelsOut;
 
-  final List<
-    MedialiveChannelEncoderSettingsAudioDescriptionsRemixSettingsChannelMappings
-  >
-  channelMappings;
+  final List<MedialiveChannelMappings> channelMappings;
 
   Map<String, Object?> encode() => {
     'channels_in': ?channelsIn?.toTfJson(),
@@ -720,18 +694,15 @@ final class MedialiveChannelEncoderSettingsAudioDescriptionsRemixSettings {
 /// Typed helper for the `encoder_settings.audio_descriptions.remix_settings.channel_mappings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsAudioDescriptionsRemixSettingsChannelMappings {
-  const MedialiveChannelEncoderSettingsAudioDescriptionsRemixSettingsChannelMappings({
+final class MedialiveChannelMappings {
+  const MedialiveChannelMappings({
     required this.outputChannel,
     required this.inputChannelLevels,
   });
 
   final TfArg<num> outputChannel;
 
-  final List<
-    MedialiveChannelEncoderSettingsAudioDescriptionsRemixSettingsChannelMappingsInputChannelLevels
-  >
-  inputChannelLevels;
+  final List<MedialiveChannelInputChannelLevels> inputChannelLevels;
 
   Map<String, Object?> encode() => {
     'output_channel': outputChannel.toTfJson(),
@@ -742,8 +713,8 @@ final class MedialiveChannelEncoderSettingsAudioDescriptionsRemixSettingsChannel
 /// Typed helper for the `encoder_settings.audio_descriptions.remix_settings.channel_mappings.input_channel_levels` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsAudioDescriptionsRemixSettingsChannelMappingsInputChannelLevels {
-  const MedialiveChannelEncoderSettingsAudioDescriptionsRemixSettingsChannelMappingsInputChannelLevels({
+final class MedialiveChannelInputChannelLevels {
+  const MedialiveChannelInputChannelLevels({
     required this.gain,
     required this.inputChannel,
   });
@@ -761,16 +732,12 @@ final class MedialiveChannelEncoderSettingsAudioDescriptionsRemixSettingsChannel
 /// Typed helper for the `encoder_settings.avail_blanking` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsAvailBlanking {
-  const MedialiveChannelEncoderSettingsAvailBlanking({
-    this.state,
-    this.availBlankingImage,
-  });
+final class MedialiveChannelAvailBlanking {
+  const MedialiveChannelAvailBlanking({this.state, this.availBlankingImage});
 
   final TfArg<String>? state;
 
-  final MedialiveChannelEncoderSettingsAvailBlankingAvailBlankingImage?
-  availBlankingImage;
+  final MedialiveChannelAvailBlankingImage? availBlankingImage;
 
   Map<String, Object?> encode() => {
     'state': ?state?.toTfJson(),
@@ -781,8 +748,8 @@ final class MedialiveChannelEncoderSettingsAvailBlanking {
 /// Typed helper for the `encoder_settings.avail_blanking.avail_blanking_image` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsAvailBlankingAvailBlankingImage {
-  const MedialiveChannelEncoderSettingsAvailBlankingAvailBlankingImage({
+final class MedialiveChannelAvailBlankingImage {
+  const MedialiveChannelAvailBlankingImage({
     this.passwordParam,
     required this.uri,
     this.username,
@@ -804,8 +771,8 @@ final class MedialiveChannelEncoderSettingsAvailBlankingAvailBlankingImage {
 /// Typed helper for the `encoder_settings.caption_descriptions` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsCaptionDescriptions {
-  const MedialiveChannelEncoderSettingsCaptionDescriptions({
+final class MedialiveChannelCaptionDescriptions {
+  const MedialiveChannelCaptionDescriptions({
     this.accessibility,
     required this.captionSelectorName,
     this.languageCode,
@@ -824,8 +791,7 @@ final class MedialiveChannelEncoderSettingsCaptionDescriptions {
 
   final TfArg<String> name;
 
-  final MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettings?
-  destinationSettings;
+  final MedialiveChannelDestinationSettings? destinationSettings;
 
   Map<String, Object?> encode() => {
     'accessibility': ?accessibility?.toTfJson(),
@@ -840,8 +806,8 @@ final class MedialiveChannelEncoderSettingsCaptionDescriptions {
 /// Typed helper for the `encoder_settings.caption_descriptions.destination_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettings {
-  const MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettings({
+final class MedialiveChannelDestinationSettings {
+  const MedialiveChannelDestinationSettings({
     this.aribDestinationSettings,
     this.burnInDestinationSettings,
     this.dvbSubDestinationSettings,
@@ -857,44 +823,36 @@ final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSetting
     this.webvttDestinationSettings,
   });
 
-  final MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsAribDestinationSettings?
-  aribDestinationSettings;
+  final MedialiveChannelAribDestinationSettings? aribDestinationSettings;
 
-  final MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsBurnInDestinationSettings?
-  burnInDestinationSettings;
+  final MedialiveChannelBurnInDestinationSettings? burnInDestinationSettings;
 
-  final MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsDvbSubDestinationSettings?
-  dvbSubDestinationSettings;
+  final MedialiveChannelDvbSubDestinationSettings? dvbSubDestinationSettings;
 
-  final MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsEbuTtDDestinationSettings?
-  ebuTtDDestinationSettings;
+  final MedialiveChannelEbuTtDDestinationSettings? ebuTtDDestinationSettings;
 
-  final MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsEmbeddedDestinationSettings?
+  final MedialiveChannelEmbeddedDestinationSettings?
   embeddedDestinationSettings;
 
-  final MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsEmbeddedPlusScte20DestinationSettings?
+  final MedialiveChannelEmbeddedPlusScte20DestinationSettings?
   embeddedPlusScte20DestinationSettings;
 
-  final MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsRtmpCaptionInfoDestinationSettings?
+  final MedialiveChannelRtmpCaptionInfoDestinationSettings?
   rtmpCaptionInfoDestinationSettings;
 
-  final MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsScte20PlusEmbeddedDestinationSettings?
+  final MedialiveChannelScte20PlusEmbeddedDestinationSettings?
   scte20PlusEmbeddedDestinationSettings;
 
-  final MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsScte27DestinationSettings?
-  scte27DestinationSettings;
+  final MedialiveChannelScte27DestinationSettings? scte27DestinationSettings;
 
-  final MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsSmpteTtDestinationSettings?
-  smpteTtDestinationSettings;
+  final MedialiveChannelSmpteTtDestinationSettings? smpteTtDestinationSettings;
 
-  final MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsTeletextDestinationSettings?
+  final MedialiveChannelTeletextDestinationSettings?
   teletextDestinationSettings;
 
-  final MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsTtmlDestinationSettings?
-  ttmlDestinationSettings;
+  final MedialiveChannelTtmlDestinationSettings? ttmlDestinationSettings;
 
-  final MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsWebvttDestinationSettings?
-  webvttDestinationSettings;
+  final MedialiveChannelWebvttDestinationSettings? webvttDestinationSettings;
 
   Map<String, Object?> encode() => {
     'arib_destination_settings': ?aribDestinationSettings?.encode(),
@@ -919,8 +877,8 @@ final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSetting
 /// Typed helper for the `encoder_settings.caption_descriptions.destination_settings.arib_destination_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsAribDestinationSettings {
-  const MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsAribDestinationSettings();
+final class MedialiveChannelAribDestinationSettings {
+  const MedialiveChannelAribDestinationSettings();
 
   Map<String, Object?> encode() => {};
 }
@@ -928,8 +886,8 @@ final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSetting
 /// Typed helper for the `encoder_settings.caption_descriptions.destination_settings.burn_in_destination_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsBurnInDestinationSettings {
-  const MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsBurnInDestinationSettings({
+final class MedialiveChannelBurnInDestinationSettings {
+  const MedialiveChannelBurnInDestinationSettings({
     this.alignment,
     this.backgroundColor,
     this.backgroundOpacity,
@@ -981,8 +939,7 @@ final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSetting
 
   final TfArg<num>? yPosition;
 
-  final MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsBurnInDestinationSettingsFont?
-  font;
+  final MedialiveChannelFont? font;
 
   Map<String, Object?> encode() => {
     'alignment': ?alignment?.toTfJson(),
@@ -1007,9 +964,10 @@ final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSetting
 
 /// Typed helper for the `encoder_settings.caption_descriptions.destination_settings.burn_in_destination_settings.font` block of
 /// `aws_medialive_channel` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsBurnInDestinationSettingsFont {
-  const MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsBurnInDestinationSettingsFont({
+final class MedialiveChannelFont {
+  const MedialiveChannelFont({
     this.passwordParam,
     required this.uri,
     this.username,
@@ -1031,8 +989,8 @@ final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSetting
 /// Typed helper for the `encoder_settings.caption_descriptions.destination_settings.dvb_sub_destination_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsDvbSubDestinationSettings {
-  const MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsDvbSubDestinationSettings({
+final class MedialiveChannelDvbSubDestinationSettings {
+  const MedialiveChannelDvbSubDestinationSettings({
     this.alignment,
     this.backgroundColor,
     this.backgroundOpacity,
@@ -1084,8 +1042,7 @@ final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSetting
 
   final TfArg<num>? yPosition;
 
-  final MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsDvbSubDestinationSettingsFont?
-  font;
+  final MedialiveChannelFont? font;
 
   Map<String, Object?> encode() => {
     'alignment': ?alignment?.toTfJson(),
@@ -1108,34 +1065,11 @@ final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSetting
   };
 }
 
-/// Typed helper for the `encoder_settings.caption_descriptions.destination_settings.dvb_sub_destination_settings.font` block of
-/// `aws_medialive_channel` (derived from provider schema).
-@immutable
-final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsDvbSubDestinationSettingsFont {
-  const MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsDvbSubDestinationSettingsFont({
-    this.passwordParam,
-    required this.uri,
-    this.username,
-  });
-
-  final TfArg<String>? passwordParam;
-
-  final TfArg<String> uri;
-
-  final TfArg<String>? username;
-
-  Map<String, Object?> encode() => {
-    'password_param': ?passwordParam?.toTfJson(),
-    'uri': uri.toTfJson(),
-    'username': ?username?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `encoder_settings.caption_descriptions.destination_settings.ebu_tt_d_destination_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsEbuTtDDestinationSettings {
-  const MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsEbuTtDDestinationSettings({
+final class MedialiveChannelEbuTtDDestinationSettings {
+  const MedialiveChannelEbuTtDDestinationSettings({
     this.copyrightHolder,
     this.fillLineGap,
     this.fontFamily,
@@ -1161,8 +1095,8 @@ final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSetting
 /// Typed helper for the `encoder_settings.caption_descriptions.destination_settings.embedded_destination_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsEmbeddedDestinationSettings {
-  const MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsEmbeddedDestinationSettings();
+final class MedialiveChannelEmbeddedDestinationSettings {
+  const MedialiveChannelEmbeddedDestinationSettings();
 
   Map<String, Object?> encode() => {};
 }
@@ -1170,8 +1104,8 @@ final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSetting
 /// Typed helper for the `encoder_settings.caption_descriptions.destination_settings.embedded_plus_scte20_destination_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsEmbeddedPlusScte20DestinationSettings {
-  const MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsEmbeddedPlusScte20DestinationSettings();
+final class MedialiveChannelEmbeddedPlusScte20DestinationSettings {
+  const MedialiveChannelEmbeddedPlusScte20DestinationSettings();
 
   Map<String, Object?> encode() => {};
 }
@@ -1179,8 +1113,8 @@ final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSetting
 /// Typed helper for the `encoder_settings.caption_descriptions.destination_settings.rtmp_caption_info_destination_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsRtmpCaptionInfoDestinationSettings {
-  const MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsRtmpCaptionInfoDestinationSettings();
+final class MedialiveChannelRtmpCaptionInfoDestinationSettings {
+  const MedialiveChannelRtmpCaptionInfoDestinationSettings();
 
   Map<String, Object?> encode() => {};
 }
@@ -1188,8 +1122,8 @@ final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSetting
 /// Typed helper for the `encoder_settings.caption_descriptions.destination_settings.scte20_plus_embedded_destination_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsScte20PlusEmbeddedDestinationSettings {
-  const MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsScte20PlusEmbeddedDestinationSettings();
+final class MedialiveChannelScte20PlusEmbeddedDestinationSettings {
+  const MedialiveChannelScte20PlusEmbeddedDestinationSettings();
 
   Map<String, Object?> encode() => {};
 }
@@ -1197,8 +1131,8 @@ final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSetting
 /// Typed helper for the `encoder_settings.caption_descriptions.destination_settings.scte27_destination_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsScte27DestinationSettings {
-  const MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsScte27DestinationSettings();
+final class MedialiveChannelScte27DestinationSettings {
+  const MedialiveChannelScte27DestinationSettings();
 
   Map<String, Object?> encode() => {};
 }
@@ -1206,8 +1140,8 @@ final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSetting
 /// Typed helper for the `encoder_settings.caption_descriptions.destination_settings.smpte_tt_destination_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsSmpteTtDestinationSettings {
-  const MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsSmpteTtDestinationSettings();
+final class MedialiveChannelSmpteTtDestinationSettings {
+  const MedialiveChannelSmpteTtDestinationSettings();
 
   Map<String, Object?> encode() => {};
 }
@@ -1215,8 +1149,8 @@ final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSetting
 /// Typed helper for the `encoder_settings.caption_descriptions.destination_settings.teletext_destination_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsTeletextDestinationSettings {
-  const MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsTeletextDestinationSettings();
+final class MedialiveChannelTeletextDestinationSettings {
+  const MedialiveChannelTeletextDestinationSettings();
 
   Map<String, Object?> encode() => {};
 }
@@ -1224,10 +1158,8 @@ final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSetting
 /// Typed helper for the `encoder_settings.caption_descriptions.destination_settings.ttml_destination_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsTtmlDestinationSettings {
-  const MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsTtmlDestinationSettings({
-    required this.styleControl,
-  });
+final class MedialiveChannelTtmlDestinationSettings {
+  const MedialiveChannelTtmlDestinationSettings({required this.styleControl});
 
   final TfArg<String> styleControl;
 
@@ -1237,10 +1169,8 @@ final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSetting
 /// Typed helper for the `encoder_settings.caption_descriptions.destination_settings.webvtt_destination_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsWebvttDestinationSettings {
-  const MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSettingsWebvttDestinationSettings({
-    required this.styleControl,
-  });
+final class MedialiveChannelWebvttDestinationSettings {
+  const MedialiveChannelWebvttDestinationSettings({required this.styleControl});
 
   final TfArg<String> styleControl;
 
@@ -1250,8 +1180,8 @@ final class MedialiveChannelEncoderSettingsCaptionDescriptionsDestinationSetting
 /// Typed helper for the `encoder_settings.global_configuration` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsGlobalConfiguration {
-  const MedialiveChannelEncoderSettingsGlobalConfiguration({
+final class MedialiveChannelGlobalConfiguration {
+  const MedialiveChannelGlobalConfiguration({
     this.initialAudioGain,
     this.inputEndAction,
     this.outputLockingMode,
@@ -1270,8 +1200,7 @@ final class MedialiveChannelEncoderSettingsGlobalConfiguration {
 
   final TfArg<String>? supportLowFramerateInputs;
 
-  final MedialiveChannelEncoderSettingsGlobalConfigurationInputLossBehavior?
-  inputLossBehavior;
+  final MedialiveChannelInputLossBehavior? inputLossBehavior;
 
   Map<String, Object?> encode() => {
     'initial_audio_gain': ?initialAudioGain?.toTfJson(),
@@ -1286,8 +1215,8 @@ final class MedialiveChannelEncoderSettingsGlobalConfiguration {
 /// Typed helper for the `encoder_settings.global_configuration.input_loss_behavior` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsGlobalConfigurationInputLossBehavior {
-  const MedialiveChannelEncoderSettingsGlobalConfigurationInputLossBehavior({
+final class MedialiveChannelInputLossBehavior {
+  const MedialiveChannelInputLossBehavior({
     this.blackFrameMsec,
     this.inputLossImageColor,
     this.inputLossImageType,
@@ -1303,8 +1232,7 @@ final class MedialiveChannelEncoderSettingsGlobalConfigurationInputLossBehavior 
 
   final TfArg<num>? repeatFrameMsec;
 
-  final MedialiveChannelEncoderSettingsGlobalConfigurationInputLossBehaviorInputLossImageSlate?
-  inputLossImageSlate;
+  final MedialiveChannelInputLossImageSlate? inputLossImageSlate;
 
   Map<String, Object?> encode() => {
     'black_frame_msec': ?blackFrameMsec?.toTfJson(),
@@ -1318,8 +1246,8 @@ final class MedialiveChannelEncoderSettingsGlobalConfigurationInputLossBehavior 
 /// Typed helper for the `encoder_settings.global_configuration.input_loss_behavior.input_loss_image_slate` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsGlobalConfigurationInputLossBehaviorInputLossImageSlate {
-  const MedialiveChannelEncoderSettingsGlobalConfigurationInputLossBehaviorInputLossImageSlate({
+final class MedialiveChannelInputLossImageSlate {
+  const MedialiveChannelInputLossImageSlate({
     this.passwordParam,
     required this.uri,
     this.username,
@@ -1341,16 +1269,15 @@ final class MedialiveChannelEncoderSettingsGlobalConfigurationInputLossBehaviorI
 /// Typed helper for the `encoder_settings.motion_graphics_configuration` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsMotionGraphicsConfiguration {
-  const MedialiveChannelEncoderSettingsMotionGraphicsConfiguration({
+final class MedialiveChannelMotionGraphicsConfiguration {
+  const MedialiveChannelMotionGraphicsConfiguration({
     this.motionGraphicsInsertion,
     required this.motionGraphicsSettings,
   });
 
   final TfArg<String>? motionGraphicsInsertion;
 
-  final MedialiveChannelEncoderSettingsMotionGraphicsConfigurationMotionGraphicsSettings
-  motionGraphicsSettings;
+  final MedialiveChannelMotionGraphicsSettings motionGraphicsSettings;
 
   Map<String, Object?> encode() => {
     'motion_graphics_insertion': ?motionGraphicsInsertion?.toTfJson(),
@@ -1361,13 +1288,12 @@ final class MedialiveChannelEncoderSettingsMotionGraphicsConfiguration {
 /// Typed helper for the `encoder_settings.motion_graphics_configuration.motion_graphics_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsMotionGraphicsConfigurationMotionGraphicsSettings {
-  const MedialiveChannelEncoderSettingsMotionGraphicsConfigurationMotionGraphicsSettings({
+final class MedialiveChannelMotionGraphicsSettings {
+  const MedialiveChannelMotionGraphicsSettings({
     this.htmlMotionGraphicsSettings,
   });
 
-  final MedialiveChannelEncoderSettingsMotionGraphicsConfigurationMotionGraphicsSettingsHtmlMotionGraphicsSettings?
-  htmlMotionGraphicsSettings;
+  final MedialiveChannelHtmlMotionGraphicsSettings? htmlMotionGraphicsSettings;
 
   Map<String, Object?> encode() => {
     'html_motion_graphics_settings': ?htmlMotionGraphicsSettings?.encode(),
@@ -1377,8 +1303,8 @@ final class MedialiveChannelEncoderSettingsMotionGraphicsConfigurationMotionGrap
 /// Typed helper for the `encoder_settings.motion_graphics_configuration.motion_graphics_settings.html_motion_graphics_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsMotionGraphicsConfigurationMotionGraphicsSettingsHtmlMotionGraphicsSettings {
-  const MedialiveChannelEncoderSettingsMotionGraphicsConfigurationMotionGraphicsSettingsHtmlMotionGraphicsSettings();
+final class MedialiveChannelHtmlMotionGraphicsSettings {
+  const MedialiveChannelHtmlMotionGraphicsSettings();
 
   Map<String, Object?> encode() => {};
 }
@@ -1386,8 +1312,8 @@ final class MedialiveChannelEncoderSettingsMotionGraphicsConfigurationMotionGrap
 /// Typed helper for the `encoder_settings.nielsen_configuration` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsNielsenConfiguration {
-  const MedialiveChannelEncoderSettingsNielsenConfiguration({
+final class MedialiveChannelNielsenConfiguration {
+  const MedialiveChannelNielsenConfiguration({
     this.distributorId,
     this.nielsenPcmToId3Tagging,
   });
@@ -1405,8 +1331,8 @@ final class MedialiveChannelEncoderSettingsNielsenConfiguration {
 /// Typed helper for the `encoder_settings.output_groups` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroups {
-  const MedialiveChannelEncoderSettingsOutputGroups({
+final class MedialiveChannelOutputGroups {
+  const MedialiveChannelOutputGroups({
     this.name,
     required this.outputGroupSettings,
     required this.outputs,
@@ -1414,10 +1340,9 @@ final class MedialiveChannelEncoderSettingsOutputGroups {
 
   final TfArg<String>? name;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettings
-  outputGroupSettings;
+  final MedialiveChannelOutputGroupSettings outputGroupSettings;
 
-  final List<MedialiveChannelEncoderSettingsOutputGroupsOutputs> outputs;
+  final List<MedialiveChannelOutputs> outputs;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
@@ -1429,8 +1354,8 @@ final class MedialiveChannelEncoderSettingsOutputGroups {
 /// Typed helper for the `encoder_settings.output_groups.output_group_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettings({
+final class MedialiveChannelOutputGroupSettings {
+  const MedialiveChannelOutputGroupSettings({
     this.archiveGroupSettings,
     this.frameCaptureGroupSettings,
     this.hlsGroupSettings,
@@ -1441,31 +1366,21 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettings {
     this.udpGroupSettings,
   });
 
-  final List<
-    MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsArchiveGroupSettings
-  >?
-  archiveGroupSettings;
+  final List<MedialiveChannelArchiveGroupSettings>? archiveGroupSettings;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsFrameCaptureGroupSettings?
-  frameCaptureGroupSettings;
+  final MedialiveChannelFrameCaptureGroupSettings? frameCaptureGroupSettings;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettings?
-  hlsGroupSettings;
+  final MedialiveChannelHlsGroupSettings? hlsGroupSettings;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsMediaPackageGroupSettings?
-  mediaPackageGroupSettings;
+  final MedialiveChannelMediaPackageGroupSettings? mediaPackageGroupSettings;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsMsSmoothGroupSettings?
-  msSmoothGroupSettings;
+  final MedialiveChannelMsSmoothGroupSettings? msSmoothGroupSettings;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsMultiplexGroupSettings?
-  multiplexGroupSettings;
+  final MedialiveChannelMultiplexGroupSettings? multiplexGroupSettings;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsRtmpGroupSettings?
-  rtmpGroupSettings;
+  final MedialiveChannelRtmpGroupSettings? rtmpGroupSettings;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsUdpGroupSettings?
-  udpGroupSettings;
+  final MedialiveChannelUdpGroupSettings? udpGroupSettings;
 
   Map<String, Object?> encode() => {
     if (archiveGroupSettings != null)
@@ -1485,8 +1400,8 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettings {
 /// Typed helper for the `encoder_settings.output_groups.output_group_settings.archive_group_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsArchiveGroupSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsArchiveGroupSettings({
+final class MedialiveChannelArchiveGroupSettings {
+  const MedialiveChannelArchiveGroupSettings({
     this.rolloverInterval,
     this.archiveCdnSettings,
     required this.destination,
@@ -1494,11 +1409,9 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsArchiv
 
   final TfArg<num>? rolloverInterval;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsArchiveGroupSettingsArchiveCdnSettings?
-  archiveCdnSettings;
+  final MedialiveChannelArchiveCdnSettings? archiveCdnSettings;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsArchiveGroupSettingsDestination
-  destination;
+  final MedialiveChannelDestination destination;
 
   Map<String, Object?> encode() => {
     'rollover_interval': ?rolloverInterval?.toTfJson(),
@@ -1510,13 +1423,10 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsArchiv
 /// Typed helper for the `encoder_settings.output_groups.output_group_settings.archive_group_settings.archive_cdn_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsArchiveGroupSettingsArchiveCdnSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsArchiveGroupSettingsArchiveCdnSettings({
-    this.archiveS3Settings,
-  });
+final class MedialiveChannelArchiveCdnSettings {
+  const MedialiveChannelArchiveCdnSettings({this.archiveS3Settings});
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsArchiveGroupSettingsArchiveCdnSettingsArchiveS3Settings?
-  archiveS3Settings;
+  final MedialiveChannelArchiveS3Settings? archiveS3Settings;
 
   Map<String, Object?> encode() => {
     'archive_s3_settings': ?archiveS3Settings?.encode(),
@@ -1526,10 +1436,8 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsArchiv
 /// Typed helper for the `encoder_settings.output_groups.output_group_settings.archive_group_settings.archive_cdn_settings.archive_s3_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsArchiveGroupSettingsArchiveCdnSettingsArchiveS3Settings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsArchiveGroupSettingsArchiveCdnSettingsArchiveS3Settings({
-    this.cannedAcl,
-  });
+final class MedialiveChannelArchiveS3Settings {
+  const MedialiveChannelArchiveS3Settings({this.cannedAcl});
 
   final TfArg<String>? cannedAcl;
 
@@ -1538,11 +1446,10 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsArchiv
 
 /// Typed helper for the `encoder_settings.output_groups.output_group_settings.archive_group_settings.destination` block of
 /// `aws_medialive_channel` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsArchiveGroupSettingsDestination {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsArchiveGroupSettingsDestination({
-    required this.destinationRefId,
-  });
+final class MedialiveChannelDestination {
+  const MedialiveChannelDestination({required this.destinationRefId});
 
   final TfArg<String> destinationRefId;
 
@@ -1554,17 +1461,15 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsArchiv
 /// Typed helper for the `encoder_settings.output_groups.output_group_settings.frame_capture_group_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsFrameCaptureGroupSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsFrameCaptureGroupSettings({
+final class MedialiveChannelFrameCaptureGroupSettings {
+  const MedialiveChannelFrameCaptureGroupSettings({
     required this.destination,
     this.frameCaptureCdnSettings,
   });
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsFrameCaptureGroupSettingsDestination
-  destination;
+  final MedialiveChannelDestination destination;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsFrameCaptureGroupSettingsFrameCaptureCdnSettings?
-  frameCaptureCdnSettings;
+  final MedialiveChannelFrameCaptureCdnSettings? frameCaptureCdnSettings;
 
   Map<String, Object?> encode() => {
     'destination': destination.encode(),
@@ -1572,31 +1477,13 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsFrameC
   };
 }
 
-/// Typed helper for the `encoder_settings.output_groups.output_group_settings.frame_capture_group_settings.destination` block of
-/// `aws_medialive_channel` (derived from provider schema).
-@immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsFrameCaptureGroupSettingsDestination {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsFrameCaptureGroupSettingsDestination({
-    required this.destinationRefId,
-  });
-
-  final TfArg<String> destinationRefId;
-
-  Map<String, Object?> encode() => {
-    'destination_ref_id': destinationRefId.toTfJson(),
-  };
-}
-
 /// Typed helper for the `encoder_settings.output_groups.output_group_settings.frame_capture_group_settings.frame_capture_cdn_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsFrameCaptureGroupSettingsFrameCaptureCdnSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsFrameCaptureGroupSettingsFrameCaptureCdnSettings({
-    this.frameCaptureS3Settings,
-  });
+final class MedialiveChannelFrameCaptureCdnSettings {
+  const MedialiveChannelFrameCaptureCdnSettings({this.frameCaptureS3Settings});
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsFrameCaptureGroupSettingsFrameCaptureCdnSettingsFrameCaptureS3Settings?
-  frameCaptureS3Settings;
+  final MedialiveChannelFrameCaptureS3Settings? frameCaptureS3Settings;
 
   Map<String, Object?> encode() => {
     'frame_capture_s3_settings': ?frameCaptureS3Settings?.encode(),
@@ -1606,10 +1493,8 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsFrameC
 /// Typed helper for the `encoder_settings.output_groups.output_group_settings.frame_capture_group_settings.frame_capture_cdn_settings.frame_capture_s3_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsFrameCaptureGroupSettingsFrameCaptureCdnSettingsFrameCaptureS3Settings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsFrameCaptureGroupSettingsFrameCaptureCdnSettingsFrameCaptureS3Settings({
-    this.cannedAcl,
-  });
+final class MedialiveChannelFrameCaptureS3Settings {
+  const MedialiveChannelFrameCaptureS3Settings({this.cannedAcl});
 
   final TfArg<String>? cannedAcl;
 
@@ -1619,8 +1504,8 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsFrameC
 /// Typed helper for the `encoder_settings.output_groups.output_group_settings.hls_group_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettings({
+final class MedialiveChannelHlsGroupSettings {
+  const MedialiveChannelHlsGroupSettings({
     this.adMarkers,
     this.baseUrlContent,
     this.baseUrlContent1,
@@ -1741,21 +1626,13 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGro
 
   final TfArg<String>? tsFileMode;
 
-  final List<
-    MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettingsCaptionLanguageMappings
-  >?
-  captionLanguageMappings;
+  final List<MedialiveChannelCaptionLanguageMappings>? captionLanguageMappings;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettingsDestination
-  destination;
+  final MedialiveChannelDestination destination;
 
-  final List<
-    MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettingsHlsCdnSettings
-  >?
-  hlsCdnSettings;
+  final List<MedialiveChannelHlsCdnSettings>? hlsCdnSettings;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettingsKeyProviderSettings?
-  keyProviderSettings;
+  final MedialiveChannelKeyProviderSettings? keyProviderSettings;
 
   Map<String, Object?> encode() => {
     'ad_markers': ?adMarkers?.toTfJson(),
@@ -1810,8 +1687,8 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGro
 /// Typed helper for the `encoder_settings.output_groups.output_group_settings.hls_group_settings.caption_language_mappings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettingsCaptionLanguageMappings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettingsCaptionLanguageMappings({
+final class MedialiveChannelCaptionLanguageMappings {
+  const MedialiveChannelCaptionLanguageMappings({
     required this.captionChannel,
     required this.languageCode,
     required this.languageDescription,
@@ -1830,26 +1707,11 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGro
   };
 }
 
-/// Typed helper for the `encoder_settings.output_groups.output_group_settings.hls_group_settings.destination` block of
-/// `aws_medialive_channel` (derived from provider schema).
-@immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettingsDestination {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettingsDestination({
-    required this.destinationRefId,
-  });
-
-  final TfArg<String> destinationRefId;
-
-  Map<String, Object?> encode() => {
-    'destination_ref_id': destinationRefId.toTfJson(),
-  };
-}
-
 /// Typed helper for the `encoder_settings.output_groups.output_group_settings.hls_group_settings.hls_cdn_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettingsHlsCdnSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettingsHlsCdnSettings({
+final class MedialiveChannelHlsCdnSettings {
+  const MedialiveChannelHlsCdnSettings({
     this.hlsAkamaiSettings,
     this.hlsBasicPutSettings,
     this.hlsMediaStoreSettings,
@@ -1857,20 +1719,15 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGro
     this.hlsWebdavSettings,
   });
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettingsHlsCdnSettingsHlsAkamaiSettings?
-  hlsAkamaiSettings;
+  final MedialiveChannelHlsAkamaiSettings? hlsAkamaiSettings;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettingsHlsCdnSettingsHlsBasicPutSettings?
-  hlsBasicPutSettings;
+  final MedialiveChannelHlsBasicPutSettings? hlsBasicPutSettings;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettingsHlsCdnSettingsHlsMediaStoreSettings?
-  hlsMediaStoreSettings;
+  final MedialiveChannelHlsMediaStoreSettings? hlsMediaStoreSettings;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettingsHlsCdnSettingsHlsS3Settings?
-  hlsS3Settings;
+  final MedialiveChannelHlsS3Settings? hlsS3Settings;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettingsHlsCdnSettingsHlsWebdavSettings?
-  hlsWebdavSettings;
+  final MedialiveChannelHlsWebdavSettings? hlsWebdavSettings;
 
   Map<String, Object?> encode() => {
     'hls_akamai_settings': ?hlsAkamaiSettings?.encode(),
@@ -1884,8 +1741,8 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGro
 /// Typed helper for the `encoder_settings.output_groups.output_group_settings.hls_group_settings.hls_cdn_settings.hls_akamai_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettingsHlsCdnSettingsHlsAkamaiSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettingsHlsCdnSettingsHlsAkamaiSettings({
+final class MedialiveChannelHlsAkamaiSettings {
+  const MedialiveChannelHlsAkamaiSettings({
     this.connectionRetryInterval,
     this.filecacheDuration,
     this.httpTransferMode,
@@ -1923,8 +1780,8 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGro
 /// Typed helper for the `encoder_settings.output_groups.output_group_settings.hls_group_settings.hls_cdn_settings.hls_basic_put_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettingsHlsCdnSettingsHlsBasicPutSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettingsHlsCdnSettingsHlsBasicPutSettings({
+final class MedialiveChannelHlsBasicPutSettings {
+  const MedialiveChannelHlsBasicPutSettings({
     this.connectionRetryInterval,
     this.filecacheDuration,
     this.numRetries,
@@ -1950,8 +1807,8 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGro
 /// Typed helper for the `encoder_settings.output_groups.output_group_settings.hls_group_settings.hls_cdn_settings.hls_media_store_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettingsHlsCdnSettingsHlsMediaStoreSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettingsHlsCdnSettingsHlsMediaStoreSettings({
+final class MedialiveChannelHlsMediaStoreSettings {
+  const MedialiveChannelHlsMediaStoreSettings({
     this.connectionRetryInterval,
     this.filecacheDuration,
     this.mediaStoreStorageClass,
@@ -1981,10 +1838,8 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGro
 /// Typed helper for the `encoder_settings.output_groups.output_group_settings.hls_group_settings.hls_cdn_settings.hls_s3_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettingsHlsCdnSettingsHlsS3Settings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettingsHlsCdnSettingsHlsS3Settings({
-    this.cannedAcl,
-  });
+final class MedialiveChannelHlsS3Settings {
+  const MedialiveChannelHlsS3Settings({this.cannedAcl});
 
   final TfArg<String>? cannedAcl;
 
@@ -1994,8 +1849,8 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGro
 /// Typed helper for the `encoder_settings.output_groups.output_group_settings.hls_group_settings.hls_cdn_settings.hls_webdav_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettingsHlsCdnSettingsHlsWebdavSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettingsHlsCdnSettingsHlsWebdavSettings({
+final class MedialiveChannelHlsWebdavSettings {
+  const MedialiveChannelHlsWebdavSettings({
     this.connectionRetryInterval,
     this.filecacheDuration,
     this.httpTransferMode,
@@ -2025,15 +1880,10 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGro
 /// Typed helper for the `encoder_settings.output_groups.output_group_settings.hls_group_settings.key_provider_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettingsKeyProviderSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettingsKeyProviderSettings({
-    this.staticKeySettings,
-  });
+final class MedialiveChannelKeyProviderSettings {
+  const MedialiveChannelKeyProviderSettings({this.staticKeySettings});
 
-  final List<
-    MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettingsKeyProviderSettingsStaticKeySettings
-  >?
-  staticKeySettings;
+  final List<MedialiveChannelStaticKeySettings>? staticKeySettings;
 
   Map<String, Object?> encode() => {
     if (staticKeySettings != null)
@@ -2044,16 +1894,15 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGro
 /// Typed helper for the `encoder_settings.output_groups.output_group_settings.hls_group_settings.key_provider_settings.static_key_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettingsKeyProviderSettingsStaticKeySettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettingsKeyProviderSettingsStaticKeySettings({
+final class MedialiveChannelStaticKeySettings {
+  const MedialiveChannelStaticKeySettings({
     required this.staticKeyValue,
     this.keyProviderServer,
   });
 
   final TfArg<String> staticKeyValue;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettingsKeyProviderSettingsStaticKeySettingsKeyProviderServer?
-  keyProviderServer;
+  final MedialiveChannelKeyProviderServer? keyProviderServer;
 
   Map<String, Object?> encode() => {
     'static_key_value': staticKeyValue.toTfJson(),
@@ -2064,8 +1913,8 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGro
 /// Typed helper for the `encoder_settings.output_groups.output_group_settings.hls_group_settings.key_provider_settings.static_key_settings.key_provider_server` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettingsKeyProviderSettingsStaticKeySettingsKeyProviderServer {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGroupSettingsKeyProviderSettingsStaticKeySettingsKeyProviderServer({
+final class MedialiveChannelKeyProviderServer {
+  const MedialiveChannelKeyProviderServer({
     this.passwordParam,
     required this.uri,
     this.username,
@@ -2087,37 +1936,19 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsHlsGro
 /// Typed helper for the `encoder_settings.output_groups.output_group_settings.media_package_group_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsMediaPackageGroupSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsMediaPackageGroupSettings({
-    required this.destination,
-  });
+final class MedialiveChannelMediaPackageGroupSettings {
+  const MedialiveChannelMediaPackageGroupSettings({required this.destination});
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsMediaPackageGroupSettingsDestination
-  destination;
+  final MedialiveChannelDestination destination;
 
   Map<String, Object?> encode() => {'destination': destination.encode()};
-}
-
-/// Typed helper for the `encoder_settings.output_groups.output_group_settings.media_package_group_settings.destination` block of
-/// `aws_medialive_channel` (derived from provider schema).
-@immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsMediaPackageGroupSettingsDestination {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsMediaPackageGroupSettingsDestination({
-    required this.destinationRefId,
-  });
-
-  final TfArg<String> destinationRefId;
-
-  Map<String, Object?> encode() => {
-    'destination_ref_id': destinationRefId.toTfJson(),
-  };
 }
 
 /// Typed helper for the `encoder_settings.output_groups.output_group_settings.ms_smooth_group_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsMsSmoothGroupSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsMsSmoothGroupSettings({
+final class MedialiveChannelMsSmoothGroupSettings {
+  const MedialiveChannelMsSmoothGroupSettings({
     this.acquisitionPointId,
     this.audioOnlyTimecodeControl,
     this.certificateMode,
@@ -2175,8 +2006,7 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsMsSmoo
 
   final TfArg<String>? timestampOffsetMode;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsMsSmoothGroupSettingsDestination
-  destination;
+  final MedialiveChannelDestination destination;
 
   Map<String, Object?> encode() => {
     'acquisition_point_id': ?acquisitionPointId?.toTfJson(),
@@ -2201,26 +2031,11 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsMsSmoo
   };
 }
 
-/// Typed helper for the `encoder_settings.output_groups.output_group_settings.ms_smooth_group_settings.destination` block of
-/// `aws_medialive_channel` (derived from provider schema).
-@immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsMsSmoothGroupSettingsDestination {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsMsSmoothGroupSettingsDestination({
-    required this.destinationRefId,
-  });
-
-  final TfArg<String> destinationRefId;
-
-  Map<String, Object?> encode() => {
-    'destination_ref_id': destinationRefId.toTfJson(),
-  };
-}
-
 /// Typed helper for the `encoder_settings.output_groups.output_group_settings.multiplex_group_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsMultiplexGroupSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsMultiplexGroupSettings();
+final class MedialiveChannelMultiplexGroupSettings {
+  const MedialiveChannelMultiplexGroupSettings();
 
   Map<String, Object?> encode() => {};
 }
@@ -2228,8 +2043,8 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsMultip
 /// Typed helper for the `encoder_settings.output_groups.output_group_settings.rtmp_group_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsRtmpGroupSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsRtmpGroupSettings({
+final class MedialiveChannelRtmpGroupSettings {
+  const MedialiveChannelRtmpGroupSettings({
     this.adMarkers,
     this.authenticationScheme,
     this.cacheFullBehavior,
@@ -2267,8 +2082,8 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsRtmpGr
 /// Typed helper for the `encoder_settings.output_groups.output_group_settings.udp_group_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsUdpGroupSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsUdpGroupSettings({
+final class MedialiveChannelUdpGroupSettings {
+  const MedialiveChannelUdpGroupSettings({
     this.inputLossAction,
     this.timedMetadataId3Frame,
     this.timedMetadataId3Period,
@@ -2290,8 +2105,8 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputGroupSettingsUdpGro
 /// Typed helper for the `encoder_settings.output_groups.outputs` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputs {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputs({
+final class MedialiveChannelOutputs {
+  const MedialiveChannelOutputs({
     this.audioDescriptionNames,
     this.captionDescriptionNames,
     this.outputName,
@@ -2307,8 +2122,7 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputs {
 
   final TfArg<String>? videoDescriptionName;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettings
-  outputSettings;
+  final MedialiveChannelOutputSettings outputSettings;
 
   Map<String, Object?> encode() => {
     'audio_description_names': ?audioDescriptionNames?.toTfJson(),
@@ -2322,8 +2136,8 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputs {
 /// Typed helper for the `encoder_settings.output_groups.outputs.output_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettings({
+final class MedialiveChannelOutputSettings {
+  const MedialiveChannelOutputSettings({
     this.archiveOutputSettings,
     this.frameCaptureOutputSettings,
     this.hlsOutputSettings,
@@ -2334,29 +2148,21 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettings {
     this.udpOutputSettings,
   });
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArchiveOutputSettings?
-  archiveOutputSettings;
+  final MedialiveChannelArchiveOutputSettings? archiveOutputSettings;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsFrameCaptureOutputSettings?
-  frameCaptureOutputSettings;
+  final MedialiveChannelFrameCaptureOutputSettings? frameCaptureOutputSettings;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsOutputSettings?
-  hlsOutputSettings;
+  final MedialiveChannelHlsOutputSettings? hlsOutputSettings;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsMediaPackageOutputSettings?
-  mediaPackageOutputSettings;
+  final MedialiveChannelMediaPackageOutputSettings? mediaPackageOutputSettings;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsMsSmoothOutputSettings?
-  msSmoothOutputSettings;
+  final MedialiveChannelMsSmoothOutputSettings? msSmoothOutputSettings;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsMultiplexOutputSettings?
-  multiplexOutputSettings;
+  final MedialiveChannelMultiplexOutputSettings? multiplexOutputSettings;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsRtmpOutputSettings?
-  rtmpOutputSettings;
+  final MedialiveChannelRtmpOutputSettings? rtmpOutputSettings;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpOutputSettings?
-  udpOutputSettings;
+  final MedialiveChannelUdpOutputSettings? udpOutputSettings;
 
   Map<String, Object?> encode() => {
     'archive_output_settings': ?archiveOutputSettings?.encode(),
@@ -2373,8 +2179,8 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettings {
 /// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.archive_output_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArchiveOutputSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArchiveOutputSettings({
+final class MedialiveChannelArchiveOutputSettings {
+  const MedialiveChannelArchiveOutputSettings({
     this.extension,
     this.nameModifier,
     this.containerSettings,
@@ -2384,7 +2190,7 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArch
 
   final TfArg<String>? nameModifier;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArchiveOutputSettingsContainerSettings?
+  final MedialiveChannelArchiveOutputSettingsContainerSettings?
   containerSettings;
 
   Map<String, Object?> encode() => {
@@ -2397,17 +2203,15 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArch
 /// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.archive_output_settings.container_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArchiveOutputSettingsContainerSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArchiveOutputSettingsContainerSettings({
+final class MedialiveChannelArchiveOutputSettingsContainerSettings {
+  const MedialiveChannelArchiveOutputSettingsContainerSettings({
     this.m2tsSettings,
     this.rawSettings,
   });
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArchiveOutputSettingsContainerSettingsM2tsSettings?
-  m2tsSettings;
+  final MedialiveChannelM2tsSettings? m2tsSettings;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArchiveOutputSettingsContainerSettingsRawSettings?
-  rawSettings;
+  final MedialiveChannelRawSettings? rawSettings;
 
   Map<String, Object?> encode() => {
     'm2ts_settings': ?m2tsSettings?.encode(),
@@ -2417,9 +2221,10 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArch
 
 /// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.archive_output_settings.container_settings.m2ts_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArchiveOutputSettingsContainerSettingsM2tsSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArchiveOutputSettingsContainerSettingsM2tsSettings({
+final class MedialiveChannelM2tsSettings {
+  const MedialiveChannelM2tsSettings({
     this.absentInputAudioBehavior,
     this.arib,
     this.aribCaptionsPid,
@@ -2557,14 +2362,11 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArch
 
   final TfArg<String>? videoPid;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArchiveOutputSettingsContainerSettingsM2tsSettingsDvbNitSettings?
-  dvbNitSettings;
+  final MedialiveChannelDvbNitSettings? dvbNitSettings;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArchiveOutputSettingsContainerSettingsM2tsSettingsDvbSdtSettings?
-  dvbSdtSettings;
+  final MedialiveChannelDvbSdtSettings? dvbSdtSettings;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArchiveOutputSettingsContainerSettingsM2tsSettingsDvbTdtSettings?
-  dvbTdtSettings;
+  final MedialiveChannelDvbTdtSettings? dvbTdtSettings;
 
   Map<String, Object?> encode() => {
     'absent_input_audio_behavior': ?absentInputAudioBehavior?.toTfJson(),
@@ -2619,9 +2421,10 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArch
 
 /// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.archive_output_settings.container_settings.m2ts_settings.dvb_nit_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArchiveOutputSettingsContainerSettingsM2tsSettingsDvbNitSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArchiveOutputSettingsContainerSettingsM2tsSettingsDvbNitSettings({
+final class MedialiveChannelDvbNitSettings {
+  const MedialiveChannelDvbNitSettings({
     required this.networkId,
     required this.networkName,
     this.repInterval,
@@ -2642,9 +2445,10 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArch
 
 /// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.archive_output_settings.container_settings.m2ts_settings.dvb_sdt_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArchiveOutputSettingsContainerSettingsM2tsSettingsDvbSdtSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArchiveOutputSettingsContainerSettingsM2tsSettingsDvbSdtSettings({
+final class MedialiveChannelDvbSdtSettings {
+  const MedialiveChannelDvbSdtSettings({
     this.outputSdt,
     this.repInterval,
     this.serviceName,
@@ -2669,11 +2473,10 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArch
 
 /// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.archive_output_settings.container_settings.m2ts_settings.dvb_tdt_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArchiveOutputSettingsContainerSettingsM2tsSettingsDvbTdtSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArchiveOutputSettingsContainerSettingsM2tsSettingsDvbTdtSettings({
-    this.repInterval,
-  });
+final class MedialiveChannelDvbTdtSettings {
+  const MedialiveChannelDvbTdtSettings({this.repInterval});
 
   final TfArg<num>? repInterval;
 
@@ -2683,8 +2486,8 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArch
 /// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.archive_output_settings.container_settings.raw_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArchiveOutputSettingsContainerSettingsRawSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArchiveOutputSettingsContainerSettingsRawSettings();
+final class MedialiveChannelRawSettings {
+  const MedialiveChannelRawSettings();
 
   Map<String, Object?> encode() => {};
 }
@@ -2692,10 +2495,8 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsArch
 /// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.frame_capture_output_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsFrameCaptureOutputSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsFrameCaptureOutputSettings({
-    this.nameModifier,
-  });
+final class MedialiveChannelFrameCaptureOutputSettings {
+  const MedialiveChannelFrameCaptureOutputSettings({this.nameModifier});
 
   final TfArg<String>? nameModifier;
 
@@ -2705,8 +2506,8 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsFram
 /// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.hls_output_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsOutputSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsOutputSettings({
+final class MedialiveChannelHlsOutputSettings {
+  const MedialiveChannelHlsOutputSettings({
     this.h265PackagingType,
     this.nameModifier,
     this.segmentModifier,
@@ -2719,8 +2520,7 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsO
 
   final TfArg<String>? segmentModifier;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsOutputSettingsHlsSettings
-  hlsSettings;
+  final MedialiveChannelHlsSettings hlsSettings;
 
   Map<String, Object?> encode() => {
     'h265_packaging_type': ?h265PackagingType?.toTfJson(),
@@ -2733,25 +2533,21 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsO
 /// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.hls_output_settings.hls_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsOutputSettingsHlsSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsOutputSettingsHlsSettings({
+final class MedialiveChannelHlsSettings {
+  const MedialiveChannelHlsSettings({
     this.audioOnlyHlsSettings,
     this.fmp4HlsSettings,
     this.frameCaptureHlsSettings,
     this.standardHlsSettings,
   });
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsOutputSettingsHlsSettingsAudioOnlyHlsSettings?
-  audioOnlyHlsSettings;
+  final MedialiveChannelAudioOnlyHlsSettings? audioOnlyHlsSettings;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsOutputSettingsHlsSettingsFmp4HlsSettings?
-  fmp4HlsSettings;
+  final MedialiveChannelFmp4HlsSettings? fmp4HlsSettings;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsOutputSettingsHlsSettingsFrameCaptureHlsSettings?
-  frameCaptureHlsSettings;
+  final MedialiveChannelFrameCaptureHlsSettings? frameCaptureHlsSettings;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsOutputSettingsHlsSettingsStandardHlsSettings?
-  standardHlsSettings;
+  final MedialiveChannelStandardHlsSettings? standardHlsSettings;
 
   Map<String, Object?> encode() => {
     'audio_only_hls_settings': ?audioOnlyHlsSettings?.encode(),
@@ -2764,8 +2560,8 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsO
 /// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.hls_output_settings.hls_settings.audio_only_hls_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsOutputSettingsHlsSettingsAudioOnlyHlsSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsOutputSettingsHlsSettingsAudioOnlyHlsSettings({
+final class MedialiveChannelAudioOnlyHlsSettings {
+  const MedialiveChannelAudioOnlyHlsSettings({
     this.audioGroupId,
     this.audioTrackType,
     this.segmentType,
@@ -2778,8 +2574,7 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsO
 
   final TfArg<String>? segmentType;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsOutputSettingsHlsSettingsAudioOnlyHlsSettingsAudioOnlyImage?
-  audioOnlyImage;
+  final MedialiveChannelAudioOnlyImage? audioOnlyImage;
 
   Map<String, Object?> encode() => {
     'audio_group_id': ?audioGroupId?.toTfJson(),
@@ -2792,8 +2587,8 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsO
 /// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.hls_output_settings.hls_settings.audio_only_hls_settings.audio_only_image` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsOutputSettingsHlsSettingsAudioOnlyHlsSettingsAudioOnlyImage {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsOutputSettingsHlsSettingsAudioOnlyHlsSettingsAudioOnlyImage({
+final class MedialiveChannelAudioOnlyImage {
+  const MedialiveChannelAudioOnlyImage({
     this.passwordParam,
     required this.uri,
     this.username,
@@ -2815,8 +2610,8 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsO
 /// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.hls_output_settings.hls_settings.fmp4_hls_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsOutputSettingsHlsSettingsFmp4HlsSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsOutputSettingsHlsSettingsFmp4HlsSettings({
+final class MedialiveChannelFmp4HlsSettings {
+  const MedialiveChannelFmp4HlsSettings({
     this.audioRenditionSets,
     this.nielsenId3Behavior,
     this.timedMetadataBehavior,
@@ -2838,8 +2633,8 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsO
 /// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.hls_output_settings.hls_settings.frame_capture_hls_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsOutputSettingsHlsSettingsFrameCaptureHlsSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsOutputSettingsHlsSettingsFrameCaptureHlsSettings();
+final class MedialiveChannelFrameCaptureHlsSettings {
+  const MedialiveChannelFrameCaptureHlsSettings();
 
   Map<String, Object?> encode() => {};
 }
@@ -2847,16 +2642,15 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsO
 /// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.hls_output_settings.hls_settings.standard_hls_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsOutputSettingsHlsSettingsStandardHlsSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsOutputSettingsHlsSettingsStandardHlsSettings({
+final class MedialiveChannelStandardHlsSettings {
+  const MedialiveChannelStandardHlsSettings({
     this.audioRenditionSets,
     required this.m3u8Settings,
   });
 
   final TfArg<String>? audioRenditionSets;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsOutputSettingsHlsSettingsStandardHlsSettingsM3u8Settings
-  m3u8Settings;
+  final MedialiveChannelM3u8Settings m3u8Settings;
 
   Map<String, Object?> encode() => {
     'audio_rendition_sets': ?audioRenditionSets?.toTfJson(),
@@ -2867,8 +2661,8 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsO
 /// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.hls_output_settings.hls_settings.standard_hls_settings.m3u8_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsOutputSettingsHlsSettingsStandardHlsSettingsM3u8Settings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsOutputSettingsHlsSettingsStandardHlsSettingsM3u8Settings({
+final class MedialiveChannelM3u8Settings {
+  const MedialiveChannelM3u8Settings({
     this.audioFramesPerPes,
     this.audioPids,
     this.ecmPid,
@@ -2946,8 +2740,8 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsHlsO
 /// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.media_package_output_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsMediaPackageOutputSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsMediaPackageOutputSettings();
+final class MedialiveChannelMediaPackageOutputSettings {
+  const MedialiveChannelMediaPackageOutputSettings();
 
   Map<String, Object?> encode() => {};
 }
@@ -2955,8 +2749,8 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsMedi
 /// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.ms_smooth_output_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsMsSmoothOutputSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsMsSmoothOutputSettings({
+final class MedialiveChannelMsSmoothOutputSettings {
+  const MedialiveChannelMsSmoothOutputSettings({
     this.h265PackagingType,
     this.nameModifier,
   });
@@ -2974,37 +2768,19 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsMsSm
 /// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.multiplex_output_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsMultiplexOutputSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsMultiplexOutputSettings({
-    required this.destination,
-  });
+final class MedialiveChannelMultiplexOutputSettings {
+  const MedialiveChannelMultiplexOutputSettings({required this.destination});
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsMultiplexOutputSettingsDestination
-  destination;
+  final MedialiveChannelDestination destination;
 
   Map<String, Object?> encode() => {'destination': destination.encode()};
-}
-
-/// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.multiplex_output_settings.destination` block of
-/// `aws_medialive_channel` (derived from provider schema).
-@immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsMultiplexOutputSettingsDestination {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsMultiplexOutputSettingsDestination({
-    required this.destinationRefId,
-  });
-
-  final TfArg<String> destinationRefId;
-
-  Map<String, Object?> encode() => {
-    'destination_ref_id': destinationRefId.toTfJson(),
-  };
 }
 
 /// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.rtmp_output_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsRtmpOutputSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsRtmpOutputSettings({
+final class MedialiveChannelRtmpOutputSettings {
+  const MedialiveChannelRtmpOutputSettings({
     this.certificateMode,
     this.connectionRetryInterval,
     this.numRetries,
@@ -3017,8 +2793,7 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsRtmp
 
   final TfArg<num>? numRetries;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsRtmpOutputSettingsDestination
-  destination;
+  final MedialiveChannelDestination destination;
 
   Map<String, Object?> encode() => {
     'certificate_mode': ?certificateMode?.toTfJson(),
@@ -3028,26 +2803,11 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsRtmp
   };
 }
 
-/// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.rtmp_output_settings.destination` block of
-/// `aws_medialive_channel` (derived from provider schema).
-@immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsRtmpOutputSettingsDestination {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsRtmpOutputSettingsDestination({
-    required this.destinationRefId,
-  });
-
-  final TfArg<String> destinationRefId;
-
-  Map<String, Object?> encode() => {
-    'destination_ref_id': destinationRefId.toTfJson(),
-  };
-}
-
 /// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.udp_output_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpOutputSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpOutputSettings({
+final class MedialiveChannelUdpOutputSettings {
+  const MedialiveChannelUdpOutputSettings({
     this.bufferMsec,
     required this.containerSettings,
     required this.destination,
@@ -3056,14 +2816,11 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpO
 
   final TfArg<num>? bufferMsec;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpOutputSettingsContainerSettings
-  containerSettings;
+  final MedialiveChannelUdpOutputSettingsContainerSettings containerSettings;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpOutputSettingsDestination
-  destination;
+  final MedialiveChannelDestination destination;
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpOutputSettingsFecOutputSettings?
-  fecOutputSettings;
+  final MedialiveChannelFecOutputSettings? fecOutputSettings;
 
   Map<String, Object?> encode() => {
     'buffer_msec': ?bufferMsec?.toTfJson(),
@@ -3076,302 +2833,19 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpO
 /// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.udp_output_settings.container_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpOutputSettingsContainerSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpOutputSettingsContainerSettings({
-    this.m2tsSettings,
-  });
+final class MedialiveChannelUdpOutputSettingsContainerSettings {
+  const MedialiveChannelUdpOutputSettingsContainerSettings({this.m2tsSettings});
 
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpOutputSettingsContainerSettingsM2tsSettings?
-  m2tsSettings;
+  final MedialiveChannelM2tsSettings? m2tsSettings;
 
   Map<String, Object?> encode() => {'m2ts_settings': ?m2tsSettings?.encode()};
-}
-
-/// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.udp_output_settings.container_settings.m2ts_settings` block of
-/// `aws_medialive_channel` (derived from provider schema).
-@immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpOutputSettingsContainerSettingsM2tsSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpOutputSettingsContainerSettingsM2tsSettings({
-    this.absentInputAudioBehavior,
-    this.arib,
-    this.aribCaptionsPid,
-    this.aribCaptionsPidControl,
-    this.audioBufferModel,
-    this.audioFramesPerPes,
-    this.audioPids,
-    this.audioStreamType,
-    this.bitrate,
-    this.bufferModel,
-    this.ccDescriptor,
-    this.dvbSubPids,
-    this.dvbTeletextPid,
-    this.ebif,
-    this.ebpAudioInterval,
-    this.ebpLookaheadMs,
-    this.ebpPlacement,
-    this.ecmPid,
-    this.esRateInPes,
-    this.etvPlatformPid,
-    this.etvSignalPid,
-    this.fragmentTime,
-    this.klv,
-    this.klvDataPids,
-    this.nielsenId3Behavior,
-    this.nullPacketBitrate,
-    this.patInterval,
-    this.pcrControl,
-    this.pcrPeriod,
-    this.pcrPid,
-    this.pmtInterval,
-    this.pmtPid,
-    this.programNum,
-    this.rateMode,
-    this.scte27Pids,
-    this.scte35Control,
-    this.scte35Pid,
-    this.segmentationMarkers,
-    this.segmentationStyle,
-    this.segmentationTime,
-    this.timedMetadataBehavior,
-    this.timedMetadataPid,
-    this.transportStreamId,
-    this.videoPid,
-    this.dvbNitSettings,
-    this.dvbSdtSettings,
-    this.dvbTdtSettings,
-  });
-
-  final TfArg<String>? absentInputAudioBehavior;
-
-  final TfArg<String>? arib;
-
-  final TfArg<String>? aribCaptionsPid;
-
-  final TfArg<String>? aribCaptionsPidControl;
-
-  final TfArg<String>? audioBufferModel;
-
-  final TfArg<num>? audioFramesPerPes;
-
-  final TfArg<String>? audioPids;
-
-  final TfArg<String>? audioStreamType;
-
-  final TfArg<num>? bitrate;
-
-  final TfArg<String>? bufferModel;
-
-  final TfArg<String>? ccDescriptor;
-
-  final TfArg<String>? dvbSubPids;
-
-  final TfArg<String>? dvbTeletextPid;
-
-  final TfArg<String>? ebif;
-
-  final TfArg<String>? ebpAudioInterval;
-
-  final TfArg<num>? ebpLookaheadMs;
-
-  final TfArg<String>? ebpPlacement;
-
-  final TfArg<String>? ecmPid;
-
-  final TfArg<String>? esRateInPes;
-
-  final TfArg<String>? etvPlatformPid;
-
-  final TfArg<String>? etvSignalPid;
-
-  final TfArg<num>? fragmentTime;
-
-  final TfArg<String>? klv;
-
-  final TfArg<String>? klvDataPids;
-
-  final TfArg<String>? nielsenId3Behavior;
-
-  final TfArg<num>? nullPacketBitrate;
-
-  final TfArg<num>? patInterval;
-
-  final TfArg<String>? pcrControl;
-
-  final TfArg<num>? pcrPeriod;
-
-  final TfArg<String>? pcrPid;
-
-  final TfArg<num>? pmtInterval;
-
-  final TfArg<String>? pmtPid;
-
-  final TfArg<num>? programNum;
-
-  final TfArg<String>? rateMode;
-
-  final TfArg<String>? scte27Pids;
-
-  final TfArg<String>? scte35Control;
-
-  final TfArg<String>? scte35Pid;
-
-  final TfArg<String>? segmentationMarkers;
-
-  final TfArg<String>? segmentationStyle;
-
-  final TfArg<num>? segmentationTime;
-
-  final TfArg<String>? timedMetadataBehavior;
-
-  final TfArg<String>? timedMetadataPid;
-
-  final TfArg<num>? transportStreamId;
-
-  final TfArg<String>? videoPid;
-
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpOutputSettingsContainerSettingsM2tsSettingsDvbNitSettings?
-  dvbNitSettings;
-
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpOutputSettingsContainerSettingsM2tsSettingsDvbSdtSettings?
-  dvbSdtSettings;
-
-  final MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpOutputSettingsContainerSettingsM2tsSettingsDvbTdtSettings?
-  dvbTdtSettings;
-
-  Map<String, Object?> encode() => {
-    'absent_input_audio_behavior': ?absentInputAudioBehavior?.toTfJson(),
-    'arib': ?arib?.toTfJson(),
-    'arib_captions_pid': ?aribCaptionsPid?.toTfJson(),
-    'arib_captions_pid_control': ?aribCaptionsPidControl?.toTfJson(),
-    'audio_buffer_model': ?audioBufferModel?.toTfJson(),
-    'audio_frames_per_pes': ?audioFramesPerPes?.toTfJson(),
-    'audio_pids': ?audioPids?.toTfJson(),
-    'audio_stream_type': ?audioStreamType?.toTfJson(),
-    'bitrate': ?bitrate?.toTfJson(),
-    'buffer_model': ?bufferModel?.toTfJson(),
-    'cc_descriptor': ?ccDescriptor?.toTfJson(),
-    'dvb_sub_pids': ?dvbSubPids?.toTfJson(),
-    'dvb_teletext_pid': ?dvbTeletextPid?.toTfJson(),
-    'ebif': ?ebif?.toTfJson(),
-    'ebp_audio_interval': ?ebpAudioInterval?.toTfJson(),
-    'ebp_lookahead_ms': ?ebpLookaheadMs?.toTfJson(),
-    'ebp_placement': ?ebpPlacement?.toTfJson(),
-    'ecm_pid': ?ecmPid?.toTfJson(),
-    'es_rate_in_pes': ?esRateInPes?.toTfJson(),
-    'etv_platform_pid': ?etvPlatformPid?.toTfJson(),
-    'etv_signal_pid': ?etvSignalPid?.toTfJson(),
-    'fragment_time': ?fragmentTime?.toTfJson(),
-    'klv': ?klv?.toTfJson(),
-    'klv_data_pids': ?klvDataPids?.toTfJson(),
-    'nielsen_id3_behavior': ?nielsenId3Behavior?.toTfJson(),
-    'null_packet_bitrate': ?nullPacketBitrate?.toTfJson(),
-    'pat_interval': ?patInterval?.toTfJson(),
-    'pcr_control': ?pcrControl?.toTfJson(),
-    'pcr_period': ?pcrPeriod?.toTfJson(),
-    'pcr_pid': ?pcrPid?.toTfJson(),
-    'pmt_interval': ?pmtInterval?.toTfJson(),
-    'pmt_pid': ?pmtPid?.toTfJson(),
-    'program_num': ?programNum?.toTfJson(),
-    'rate_mode': ?rateMode?.toTfJson(),
-    'scte27_pids': ?scte27Pids?.toTfJson(),
-    'scte35_control': ?scte35Control?.toTfJson(),
-    'scte35_pid': ?scte35Pid?.toTfJson(),
-    'segmentation_markers': ?segmentationMarkers?.toTfJson(),
-    'segmentation_style': ?segmentationStyle?.toTfJson(),
-    'segmentation_time': ?segmentationTime?.toTfJson(),
-    'timed_metadata_behavior': ?timedMetadataBehavior?.toTfJson(),
-    'timed_metadata_pid': ?timedMetadataPid?.toTfJson(),
-    'transport_stream_id': ?transportStreamId?.toTfJson(),
-    'video_pid': ?videoPid?.toTfJson(),
-    'dvb_nit_settings': ?dvbNitSettings?.encode(),
-    'dvb_sdt_settings': ?dvbSdtSettings?.encode(),
-    'dvb_tdt_settings': ?dvbTdtSettings?.encode(),
-  };
-}
-
-/// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.udp_output_settings.container_settings.m2ts_settings.dvb_nit_settings` block of
-/// `aws_medialive_channel` (derived from provider schema).
-@immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpOutputSettingsContainerSettingsM2tsSettingsDvbNitSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpOutputSettingsContainerSettingsM2tsSettingsDvbNitSettings({
-    required this.networkId,
-    required this.networkName,
-    this.repInterval,
-  });
-
-  final TfArg<num> networkId;
-
-  final TfArg<String> networkName;
-
-  final TfArg<num>? repInterval;
-
-  Map<String, Object?> encode() => {
-    'network_id': networkId.toTfJson(),
-    'network_name': networkName.toTfJson(),
-    'rep_interval': ?repInterval?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.udp_output_settings.container_settings.m2ts_settings.dvb_sdt_settings` block of
-/// `aws_medialive_channel` (derived from provider schema).
-@immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpOutputSettingsContainerSettingsM2tsSettingsDvbSdtSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpOutputSettingsContainerSettingsM2tsSettingsDvbSdtSettings({
-    this.outputSdt,
-    this.repInterval,
-    this.serviceName,
-    this.serviceProviderName,
-  });
-
-  final TfArg<String>? outputSdt;
-
-  final TfArg<num>? repInterval;
-
-  final TfArg<String>? serviceName;
-
-  final TfArg<String>? serviceProviderName;
-
-  Map<String, Object?> encode() => {
-    'output_sdt': ?outputSdt?.toTfJson(),
-    'rep_interval': ?repInterval?.toTfJson(),
-    'service_name': ?serviceName?.toTfJson(),
-    'service_provider_name': ?serviceProviderName?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.udp_output_settings.container_settings.m2ts_settings.dvb_tdt_settings` block of
-/// `aws_medialive_channel` (derived from provider schema).
-@immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpOutputSettingsContainerSettingsM2tsSettingsDvbTdtSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpOutputSettingsContainerSettingsM2tsSettingsDvbTdtSettings({
-    this.repInterval,
-  });
-
-  final TfArg<num>? repInterval;
-
-  Map<String, Object?> encode() => {'rep_interval': ?repInterval?.toTfJson()};
-}
-
-/// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.udp_output_settings.destination` block of
-/// `aws_medialive_channel` (derived from provider schema).
-@immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpOutputSettingsDestination {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpOutputSettingsDestination({
-    required this.destinationRefId,
-  });
-
-  final TfArg<String> destinationRefId;
-
-  Map<String, Object?> encode() => {
-    'destination_ref_id': destinationRefId.toTfJson(),
-  };
 }
 
 /// Typed helper for the `encoder_settings.output_groups.outputs.output_settings.udp_output_settings.fec_output_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpOutputSettingsFecOutputSettings {
-  const MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpOutputSettingsFecOutputSettings({
+final class MedialiveChannelFecOutputSettings {
+  const MedialiveChannelFecOutputSettings({
     this.columnDepth,
     this.includeFec,
     this.rowLength,
@@ -3393,8 +2867,8 @@ final class MedialiveChannelEncoderSettingsOutputGroupsOutputsOutputSettingsUdpO
 /// Typed helper for the `encoder_settings.timecode_config` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsTimecodeConfig {
-  const MedialiveChannelEncoderSettingsTimecodeConfig({
+final class MedialiveChannelTimecodeConfig {
+  const MedialiveChannelTimecodeConfig({
     required this.source,
     this.syncThreshold,
   });
@@ -3412,8 +2886,8 @@ final class MedialiveChannelEncoderSettingsTimecodeConfig {
 /// Typed helper for the `encoder_settings.video_descriptions` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsVideoDescriptions {
-  const MedialiveChannelEncoderSettingsVideoDescriptions({
+final class MedialiveChannelVideoDescriptions {
+  const MedialiveChannelVideoDescriptions({
     this.height,
     required this.name,
     this.respondToAfd,
@@ -3435,8 +2909,7 @@ final class MedialiveChannelEncoderSettingsVideoDescriptions {
 
   final TfArg<num>? width;
 
-  final MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettings?
-  codecSettings;
+  final MedialiveChannelVideoDescriptionsCodecSettings? codecSettings;
 
   Map<String, Object?> encode() => {
     'height': ?height?.toTfJson(),
@@ -3452,21 +2925,18 @@ final class MedialiveChannelEncoderSettingsVideoDescriptions {
 /// Typed helper for the `encoder_settings.video_descriptions.codec_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettings {
-  const MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettings({
+final class MedialiveChannelVideoDescriptionsCodecSettings {
+  const MedialiveChannelVideoDescriptionsCodecSettings({
     this.frameCaptureSettings,
     this.h264Settings,
     this.h265Settings,
   });
 
-  final MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsFrameCaptureSettings?
-  frameCaptureSettings;
+  final MedialiveChannelFrameCaptureSettings? frameCaptureSettings;
 
-  final MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH264Settings?
-  h264Settings;
+  final MedialiveChannelH264Settings? h264Settings;
 
-  final MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265Settings?
-  h265Settings;
+  final MedialiveChannelH265Settings? h265Settings;
 
   Map<String, Object?> encode() => {
     'frame_capture_settings': ?frameCaptureSettings?.encode(),
@@ -3478,8 +2948,8 @@ final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettings {
 /// Typed helper for the `encoder_settings.video_descriptions.codec_settings.frame_capture_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsFrameCaptureSettings {
-  const MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsFrameCaptureSettings({
+final class MedialiveChannelFrameCaptureSettings {
+  const MedialiveChannelFrameCaptureSettings({
     this.captureInterval,
     this.captureIntervalUnits,
   });
@@ -3497,8 +2967,8 @@ final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsFrameCa
 /// Typed helper for the `encoder_settings.video_descriptions.codec_settings.h264_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH264Settings {
-  const MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH264Settings({
+final class MedialiveChannelH264Settings {
+  const MedialiveChannelH264Settings({
     this.adaptiveQuantization,
     this.afdSignaling,
     this.bitrate,
@@ -3619,8 +3089,7 @@ final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH264Set
 
   final TfArg<String>? timecodeInsertion;
 
-  final MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH264SettingsFilterSettings?
-  filterSettings;
+  final MedialiveChannelFilterSettings? filterSettings;
 
   Map<String, Object?> encode() => {
     'adaptive_quantization': ?adaptiveQuantization?.toTfJson(),
@@ -3668,14 +3137,12 @@ final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH264Set
 
 /// Typed helper for the `encoder_settings.video_descriptions.codec_settings.h264_settings.filter_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH264SettingsFilterSettings {
-  const MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH264SettingsFilterSettings({
-    this.temporalFilterSettings,
-  });
+final class MedialiveChannelFilterSettings {
+  const MedialiveChannelFilterSettings({this.temporalFilterSettings});
 
-  final MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH264SettingsFilterSettingsTemporalFilterSettings?
-  temporalFilterSettings;
+  final MedialiveChannelTemporalFilterSettings? temporalFilterSettings;
 
   Map<String, Object?> encode() => {
     'temporal_filter_settings': ?temporalFilterSettings?.encode(),
@@ -3684,9 +3151,10 @@ final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH264Set
 
 /// Typed helper for the `encoder_settings.video_descriptions.codec_settings.h264_settings.filter_settings.temporal_filter_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH264SettingsFilterSettingsTemporalFilterSettings {
-  const MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH264SettingsFilterSettingsTemporalFilterSettings({
+final class MedialiveChannelTemporalFilterSettings {
+  const MedialiveChannelTemporalFilterSettings({
     this.postFilterSharpening,
     this.strength,
   });
@@ -3704,8 +3172,8 @@ final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH264Set
 /// Typed helper for the `encoder_settings.video_descriptions.codec_settings.h265_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265Settings {
-  const MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265Settings({
+final class MedialiveChannelH265Settings {
+  const MedialiveChannelH265Settings({
     this.adaptiveQuantization,
     this.afdSignaling,
     this.alternativeTransferFunction,
@@ -3813,14 +3281,11 @@ final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265Set
 
   final TfArg<String>? treeblockSize;
 
-  final MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265SettingsColorSpaceSettings?
-  colorSpaceSettings;
+  final MedialiveChannelColorSpaceSettings? colorSpaceSettings;
 
-  final MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265SettingsFilterSettings?
-  filterSettings;
+  final MedialiveChannelFilterSettings? filterSettings;
 
-  final MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265SettingsTimecodeBurninSettings?
-  timecodeBurninSettings;
+  final MedialiveChannelTimecodeBurninSettings? timecodeBurninSettings;
 
   Map<String, Object?> encode() => {
     'adaptive_quantization': ?adaptiveQuantization?.toTfJson(),
@@ -3866,8 +3331,8 @@ final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265Set
 /// Typed helper for the `encoder_settings.video_descriptions.codec_settings.h265_settings.color_space_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265SettingsColorSpaceSettings {
-  const MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265SettingsColorSpaceSettings({
+final class MedialiveChannelColorSpaceSettings {
+  const MedialiveChannelColorSpaceSettings({
     this.colorSpacePassthroughSettings,
     this.dolbyVision81Settings,
     this.hdr10Settings,
@@ -3875,20 +3340,16 @@ final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265Set
     this.rec709Settings,
   });
 
-  final MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265SettingsColorSpaceSettingsColorSpacePassthroughSettings?
+  final MedialiveChannelColorSpacePassthroughSettings?
   colorSpacePassthroughSettings;
 
-  final MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265SettingsColorSpaceSettingsDolbyVision81Settings?
-  dolbyVision81Settings;
+  final MedialiveChannelDolbyVision81Settings? dolbyVision81Settings;
 
-  final MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265SettingsColorSpaceSettingsHdr10Settings?
-  hdr10Settings;
+  final MedialiveChannelHdr10Settings? hdr10Settings;
 
-  final MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265SettingsColorSpaceSettingsRec601Settings?
-  rec601Settings;
+  final MedialiveChannelRec601Settings? rec601Settings;
 
-  final MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265SettingsColorSpaceSettingsRec709Settings?
-  rec709Settings;
+  final MedialiveChannelRec709Settings? rec709Settings;
 
   Map<String, Object?> encode() => {
     'color_space_passthrough_settings': ?colorSpacePassthroughSettings
@@ -3903,8 +3364,8 @@ final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265Set
 /// Typed helper for the `encoder_settings.video_descriptions.codec_settings.h265_settings.color_space_settings.color_space_passthrough_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265SettingsColorSpaceSettingsColorSpacePassthroughSettings {
-  const MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265SettingsColorSpaceSettingsColorSpacePassthroughSettings();
+final class MedialiveChannelColorSpacePassthroughSettings {
+  const MedialiveChannelColorSpacePassthroughSettings();
 
   Map<String, Object?> encode() => {};
 }
@@ -3912,8 +3373,8 @@ final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265Set
 /// Typed helper for the `encoder_settings.video_descriptions.codec_settings.h265_settings.color_space_settings.dolby_vision81_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265SettingsColorSpaceSettingsDolbyVision81Settings {
-  const MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265SettingsColorSpaceSettingsDolbyVision81Settings();
+final class MedialiveChannelDolbyVision81Settings {
+  const MedialiveChannelDolbyVision81Settings();
 
   Map<String, Object?> encode() => {};
 }
@@ -3921,11 +3382,8 @@ final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265Set
 /// Typed helper for the `encoder_settings.video_descriptions.codec_settings.h265_settings.color_space_settings.hdr10_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265SettingsColorSpaceSettingsHdr10Settings {
-  const MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265SettingsColorSpaceSettingsHdr10Settings({
-    this.maxCll,
-    this.maxFall,
-  });
+final class MedialiveChannelHdr10Settings {
+  const MedialiveChannelHdr10Settings({this.maxCll, this.maxFall});
 
   final TfArg<num>? maxCll;
 
@@ -3940,8 +3398,8 @@ final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265Set
 /// Typed helper for the `encoder_settings.video_descriptions.codec_settings.h265_settings.color_space_settings.rec601_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265SettingsColorSpaceSettingsRec601Settings {
-  const MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265SettingsColorSpaceSettingsRec601Settings();
+final class MedialiveChannelRec601Settings {
+  const MedialiveChannelRec601Settings();
 
   Map<String, Object?> encode() => {};
 }
@@ -3949,52 +3407,17 @@ final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265Set
 /// Typed helper for the `encoder_settings.video_descriptions.codec_settings.h265_settings.color_space_settings.rec709_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265SettingsColorSpaceSettingsRec709Settings {
-  const MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265SettingsColorSpaceSettingsRec709Settings();
+final class MedialiveChannelRec709Settings {
+  const MedialiveChannelRec709Settings();
 
   Map<String, Object?> encode() => {};
-}
-
-/// Typed helper for the `encoder_settings.video_descriptions.codec_settings.h265_settings.filter_settings` block of
-/// `aws_medialive_channel` (derived from provider schema).
-@immutable
-final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265SettingsFilterSettings {
-  const MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265SettingsFilterSettings({
-    this.temporalFilterSettings,
-  });
-
-  final MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265SettingsFilterSettingsTemporalFilterSettings?
-  temporalFilterSettings;
-
-  Map<String, Object?> encode() => {
-    'temporal_filter_settings': ?temporalFilterSettings?.encode(),
-  };
-}
-
-/// Typed helper for the `encoder_settings.video_descriptions.codec_settings.h265_settings.filter_settings.temporal_filter_settings` block of
-/// `aws_medialive_channel` (derived from provider schema).
-@immutable
-final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265SettingsFilterSettingsTemporalFilterSettings {
-  const MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265SettingsFilterSettingsTemporalFilterSettings({
-    this.postFilterSharpening,
-    this.strength,
-  });
-
-  final TfArg<String>? postFilterSharpening;
-
-  final TfArg<String>? strength;
-
-  Map<String, Object?> encode() => {
-    'post_filter_sharpening': ?postFilterSharpening?.toTfJson(),
-    'strength': ?strength?.toTfJson(),
-  };
 }
 
 /// Typed helper for the `encoder_settings.video_descriptions.codec_settings.h265_settings.timecode_burnin_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265SettingsTimecodeBurninSettings {
-  const MedialiveChannelEncoderSettingsVideoDescriptionsCodecSettingsH265SettingsTimecodeBurninSettings({
+final class MedialiveChannelTimecodeBurninSettings {
+  const MedialiveChannelTimecodeBurninSettings({
     this.prefix,
     this.timecodeBurninFontSize,
     this.timecodeBurninPosition,
@@ -4028,10 +3451,10 @@ final class MedialiveChannelInputAttachments {
 
   final TfArg<String> inputId;
 
-  final MedialiveChannelInputAttachmentsAutomaticInputFailoverSettings?
+  final MedialiveChannelAutomaticInputFailoverSettings?
   automaticInputFailoverSettings;
 
-  final MedialiveChannelInputAttachmentsInputSettings? inputSettings;
+  final MedialiveChannelInputSettings? inputSettings;
 
   Map<String, Object?> encode() => {
     'input_attachment_name': inputAttachmentName.toTfJson(),
@@ -4045,8 +3468,8 @@ final class MedialiveChannelInputAttachments {
 /// Typed helper for the `input_attachments.automatic_input_failover_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelInputAttachmentsAutomaticInputFailoverSettings {
-  const MedialiveChannelInputAttachmentsAutomaticInputFailoverSettings({
+final class MedialiveChannelAutomaticInputFailoverSettings {
+  const MedialiveChannelAutomaticInputFailoverSettings({
     this.errorClearTimeMsec,
     this.inputPreference,
     required this.secondaryInputId,
@@ -4055,17 +3478,11 @@ final class MedialiveChannelInputAttachmentsAutomaticInputFailoverSettings {
 
   final TfArg<num>? errorClearTimeMsec;
 
-  final TfArg<
-    MedialiveChannelInputAttachmentsAutomaticInputFailoverSettingsInputPreference
-  >?
-  inputPreference;
+  final TfArg<MedialiveChannelInputPreference>? inputPreference;
 
   final TfArg<String> secondaryInputId;
 
-  final List<
-    MedialiveChannelInputAttachmentsAutomaticInputFailoverSettingsFailoverCondition
-  >?
-  failoverCondition;
+  final List<MedialiveChannelFailoverCondition>? failoverCondition;
 
   Map<String, Object?> encode() => {
     'error_clear_time_msec': ?errorClearTimeMsec?.toTfJson(),
@@ -4077,14 +3494,11 @@ final class MedialiveChannelInputAttachmentsAutomaticInputFailoverSettings {
 }
 
 /// `input_preference` — derived from the provider schema description.
-enum MedialiveChannelInputAttachmentsAutomaticInputFailoverSettingsInputPreference
-    implements TerraformEnum {
+enum MedialiveChannelInputPreference implements TerraformEnum {
   equalInputPreference('EQUAL_INPUT_PREFERENCE'),
   primaryInputPreferred('PRIMARY_INPUT_PREFERRED');
 
-  const MedialiveChannelInputAttachmentsAutomaticInputFailoverSettingsInputPreference(
-    this.terraformValue,
-  );
+  const MedialiveChannelInputPreference(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -4092,13 +3506,10 @@ enum MedialiveChannelInputAttachmentsAutomaticInputFailoverSettingsInputPreferen
 /// Typed helper for the `input_attachments.automatic_input_failover_settings.failover_condition` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelInputAttachmentsAutomaticInputFailoverSettingsFailoverCondition {
-  const MedialiveChannelInputAttachmentsAutomaticInputFailoverSettingsFailoverCondition({
-    this.failoverConditionSettings,
-  });
+final class MedialiveChannelFailoverCondition {
+  const MedialiveChannelFailoverCondition({this.failoverConditionSettings});
 
-  final MedialiveChannelInputAttachmentsAutomaticInputFailoverSettingsFailoverConditionFailoverConditionSettings?
-  failoverConditionSettings;
+  final MedialiveChannelFailoverConditionSettings? failoverConditionSettings;
 
   Map<String, Object?> encode() => {
     'failover_condition_settings': ?failoverConditionSettings?.encode(),
@@ -4108,21 +3519,18 @@ final class MedialiveChannelInputAttachmentsAutomaticInputFailoverSettingsFailov
 /// Typed helper for the `input_attachments.automatic_input_failover_settings.failover_condition.failover_condition_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelInputAttachmentsAutomaticInputFailoverSettingsFailoverConditionFailoverConditionSettings {
-  const MedialiveChannelInputAttachmentsAutomaticInputFailoverSettingsFailoverConditionFailoverConditionSettings({
+final class MedialiveChannelFailoverConditionSettings {
+  const MedialiveChannelFailoverConditionSettings({
     this.audioSilenceSettings,
     this.inputLossSettings,
     this.videoBlackSettings,
   });
 
-  final MedialiveChannelInputAttachmentsAutomaticInputFailoverSettingsFailoverConditionFailoverConditionSettingsAudioSilenceSettings?
-  audioSilenceSettings;
+  final MedialiveChannelAudioSilenceSettings? audioSilenceSettings;
 
-  final MedialiveChannelInputAttachmentsAutomaticInputFailoverSettingsFailoverConditionFailoverConditionSettingsInputLossSettings?
-  inputLossSettings;
+  final MedialiveChannelInputLossSettings? inputLossSettings;
 
-  final MedialiveChannelInputAttachmentsAutomaticInputFailoverSettingsFailoverConditionFailoverConditionSettingsVideoBlackSettings?
-  videoBlackSettings;
+  final MedialiveChannelVideoBlackSettings? videoBlackSettings;
 
   Map<String, Object?> encode() => {
     'audio_silence_settings': ?audioSilenceSettings?.encode(),
@@ -4134,8 +3542,8 @@ final class MedialiveChannelInputAttachmentsAutomaticInputFailoverSettingsFailov
 /// Typed helper for the `input_attachments.automatic_input_failover_settings.failover_condition.failover_condition_settings.audio_silence_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelInputAttachmentsAutomaticInputFailoverSettingsFailoverConditionFailoverConditionSettingsAudioSilenceSettings {
-  const MedialiveChannelInputAttachmentsAutomaticInputFailoverSettingsFailoverConditionFailoverConditionSettingsAudioSilenceSettings({
+final class MedialiveChannelAudioSilenceSettings {
+  const MedialiveChannelAudioSilenceSettings({
     required this.audioSelectorName,
     this.audioSilenceThresholdMsec,
   });
@@ -4153,10 +3561,8 @@ final class MedialiveChannelInputAttachmentsAutomaticInputFailoverSettingsFailov
 /// Typed helper for the `input_attachments.automatic_input_failover_settings.failover_condition.failover_condition_settings.input_loss_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelInputAttachmentsAutomaticInputFailoverSettingsFailoverConditionFailoverConditionSettingsInputLossSettings {
-  const MedialiveChannelInputAttachmentsAutomaticInputFailoverSettingsFailoverConditionFailoverConditionSettingsInputLossSettings({
-    this.inputLossThresholdMsec,
-  });
+final class MedialiveChannelInputLossSettings {
+  const MedialiveChannelInputLossSettings({this.inputLossThresholdMsec});
 
   final TfArg<num>? inputLossThresholdMsec;
 
@@ -4168,8 +3574,8 @@ final class MedialiveChannelInputAttachmentsAutomaticInputFailoverSettingsFailov
 /// Typed helper for the `input_attachments.automatic_input_failover_settings.failover_condition.failover_condition_settings.video_black_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelInputAttachmentsAutomaticInputFailoverSettingsFailoverConditionFailoverConditionSettingsVideoBlackSettings {
-  const MedialiveChannelInputAttachmentsAutomaticInputFailoverSettingsFailoverConditionFailoverConditionSettingsVideoBlackSettings({
+final class MedialiveChannelVideoBlackSettings {
+  const MedialiveChannelVideoBlackSettings({
     this.blackDetectThreshold,
     this.videoBlackThresholdMsec,
   });
@@ -4187,8 +3593,8 @@ final class MedialiveChannelInputAttachmentsAutomaticInputFailoverSettingsFailov
 /// Typed helper for the `input_attachments.input_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelInputAttachmentsInputSettings {
-  const MedialiveChannelInputAttachmentsInputSettings({
+final class MedialiveChannelInputSettings {
+  const MedialiveChannelInputSettings({
     this.deblockFilter,
     this.denoiseFilter,
     this.filterStrength,
@@ -4202,38 +3608,27 @@ final class MedialiveChannelInputAttachmentsInputSettings {
     this.videoSelector,
   });
 
-  final TfArg<MedialiveChannelInputAttachmentsInputSettingsDeblockFilter>?
-  deblockFilter;
+  final TfArg<MedialiveChannelDeblockFilter>? deblockFilter;
 
-  final TfArg<MedialiveChannelInputAttachmentsInputSettingsDenoiseFilter>?
-  denoiseFilter;
+  final TfArg<MedialiveChannelDenoiseFilter>? denoiseFilter;
 
   final TfArg<num>? filterStrength;
 
-  final TfArg<MedialiveChannelInputAttachmentsInputSettingsInputFilter>?
-  inputFilter;
+  final TfArg<MedialiveChannelInputFilter>? inputFilter;
 
   final TfArg<num>? scte35Pid;
 
-  final TfArg<
-    MedialiveChannelInputAttachmentsInputSettingsSmpte2038DataPreference
-  >?
-  smpte2038DataPreference;
+  final TfArg<MedialiveChannelSmpte2038DataPreference>? smpte2038DataPreference;
 
-  final TfArg<MedialiveChannelInputAttachmentsInputSettingsSourceEndBehavior>?
-  sourceEndBehavior;
+  final TfArg<MedialiveChannelSourceEndBehavior>? sourceEndBehavior;
 
-  final List<MedialiveChannelInputAttachmentsInputSettingsAudioSelector>?
-  audioSelector;
+  final List<MedialiveChannelAudioSelector>? audioSelector;
 
-  final List<MedialiveChannelInputAttachmentsInputSettingsCaptionSelector>?
-  captionSelector;
+  final List<MedialiveChannelCaptionSelector>? captionSelector;
 
-  final MedialiveChannelInputAttachmentsInputSettingsNetworkInputSettings?
-  networkInputSettings;
+  final MedialiveChannelNetworkInputSettings? networkInputSettings;
 
-  final MedialiveChannelInputAttachmentsInputSettingsVideoSelector?
-  videoSelector;
+  final MedialiveChannelVideoSelector? videoSelector;
 
   Map<String, Object?> encode() => {
     'deblock_filter': ?deblockFilter?.toTfJson(),
@@ -4253,67 +3648,52 @@ final class MedialiveChannelInputAttachmentsInputSettings {
 }
 
 /// `deblock_filter` — derived from the provider schema description.
-enum MedialiveChannelInputAttachmentsInputSettingsDeblockFilter
-    implements TerraformEnum {
+enum MedialiveChannelDeblockFilter implements TerraformEnum {
   disabled('DISABLED'),
   enabled('ENABLED');
 
-  const MedialiveChannelInputAttachmentsInputSettingsDeblockFilter(
-    this.terraformValue,
-  );
+  const MedialiveChannelDeblockFilter(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `denoise_filter` — derived from the provider schema description.
-enum MedialiveChannelInputAttachmentsInputSettingsDenoiseFilter
-    implements TerraformEnum {
+enum MedialiveChannelDenoiseFilter implements TerraformEnum {
   disabled('DISABLED'),
   enabled('ENABLED');
 
-  const MedialiveChannelInputAttachmentsInputSettingsDenoiseFilter(
-    this.terraformValue,
-  );
+  const MedialiveChannelDenoiseFilter(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `input_filter` — derived from the provider schema description.
-enum MedialiveChannelInputAttachmentsInputSettingsInputFilter
-    implements TerraformEnum {
+enum MedialiveChannelInputFilter implements TerraformEnum {
   auto('AUTO'),
   disabled('DISABLED'),
   forced('FORCED');
 
-  const MedialiveChannelInputAttachmentsInputSettingsInputFilter(
-    this.terraformValue,
-  );
+  const MedialiveChannelInputFilter(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `smpte2038_data_preference` — derived from the provider schema description.
-enum MedialiveChannelInputAttachmentsInputSettingsSmpte2038DataPreference
-    implements TerraformEnum {
+enum MedialiveChannelSmpte2038DataPreference implements TerraformEnum {
   ignore('IGNORE'),
   prefer('PREFER');
 
-  const MedialiveChannelInputAttachmentsInputSettingsSmpte2038DataPreference(
-    this.terraformValue,
-  );
+  const MedialiveChannelSmpte2038DataPreference(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `source_end_behavior` — derived from the provider schema description.
-enum MedialiveChannelInputAttachmentsInputSettingsSourceEndBehavior
-    implements TerraformEnum {
+enum MedialiveChannelSourceEndBehavior implements TerraformEnum {
   continueCase('CONTINUE'),
   loop('LOOP');
 
-  const MedialiveChannelInputAttachmentsInputSettingsSourceEndBehavior(
-    this.terraformValue,
-  );
+  const MedialiveChannelSourceEndBehavior(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -4321,16 +3701,15 @@ enum MedialiveChannelInputAttachmentsInputSettingsSourceEndBehavior
 /// Typed helper for the `input_attachments.input_settings.audio_selector` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelInputAttachmentsInputSettingsAudioSelector {
-  const MedialiveChannelInputAttachmentsInputSettingsAudioSelector({
+final class MedialiveChannelAudioSelector {
+  const MedialiveChannelAudioSelector({
     required this.name,
     this.selectorSettings,
   });
 
   final TfArg<String> name;
 
-  final MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettings?
-  selectorSettings;
+  final MedialiveChannelAudioSelectorSettings? selectorSettings;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -4341,25 +3720,21 @@ final class MedialiveChannelInputAttachmentsInputSettingsAudioSelector {
 /// Typed helper for the `input_attachments.input_settings.audio_selector.selector_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettings {
-  const MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettings({
+final class MedialiveChannelAudioSelectorSettings {
+  const MedialiveChannelAudioSelectorSettings({
     this.audioHlsRenditionSelection,
     this.audioLanguageSelection,
     this.audioPidSelection,
     this.audioTrackSelection,
   });
 
-  final MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettingsAudioHlsRenditionSelection?
-  audioHlsRenditionSelection;
+  final MedialiveChannelAudioHlsRenditionSelection? audioHlsRenditionSelection;
 
-  final MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettingsAudioLanguageSelection?
-  audioLanguageSelection;
+  final MedialiveChannelAudioLanguageSelection? audioLanguageSelection;
 
-  final MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettingsAudioPidSelection?
-  audioPidSelection;
+  final MedialiveChannelAudioPidSelection? audioPidSelection;
 
-  final MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettingsAudioTrackSelection?
-  audioTrackSelection;
+  final MedialiveChannelAudioTrackSelection? audioTrackSelection;
 
   Map<String, Object?> encode() => {
     'audio_hls_rendition_selection': ?audioHlsRenditionSelection?.encode(),
@@ -4372,8 +3747,8 @@ final class MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSe
 /// Typed helper for the `input_attachments.input_settings.audio_selector.selector_settings.audio_hls_rendition_selection` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettingsAudioHlsRenditionSelection {
-  const MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettingsAudioHlsRenditionSelection({
+final class MedialiveChannelAudioHlsRenditionSelection {
+  const MedialiveChannelAudioHlsRenditionSelection({
     required this.groupId,
     required this.name,
   });
@@ -4391,18 +3766,15 @@ final class MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSe
 /// Typed helper for the `input_attachments.input_settings.audio_selector.selector_settings.audio_language_selection` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettingsAudioLanguageSelection {
-  const MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettingsAudioLanguageSelection({
+final class MedialiveChannelAudioLanguageSelection {
+  const MedialiveChannelAudioLanguageSelection({
     required this.languageCode,
     this.languageSelectionPolicy,
   });
 
   final TfArg<String> languageCode;
 
-  final TfArg<
-    MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettingsAudioLanguageSelectionLanguageSelectionPolicy
-  >?
-  languageSelectionPolicy;
+  final TfArg<MedialiveChannelLanguageSelectionPolicy>? languageSelectionPolicy;
 
   Map<String, Object?> encode() => {
     'language_code': languageCode.toTfJson(),
@@ -4411,14 +3783,11 @@ final class MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSe
 }
 
 /// `language_selection_policy` — derived from the provider schema description.
-enum MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettingsAudioLanguageSelectionLanguageSelectionPolicy
-    implements TerraformEnum {
+enum MedialiveChannelLanguageSelectionPolicy implements TerraformEnum {
   loose('LOOSE'),
   strict('STRICT');
 
-  const MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettingsAudioLanguageSelectionLanguageSelectionPolicy(
-    this.terraformValue,
-  );
+  const MedialiveChannelLanguageSelectionPolicy(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -4426,10 +3795,8 @@ enum MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettingsA
 /// Typed helper for the `input_attachments.input_settings.audio_selector.selector_settings.audio_pid_selection` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettingsAudioPidSelection {
-  const MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettingsAudioPidSelection({
-    required this.pid,
-  });
+final class MedialiveChannelAudioPidSelection {
+  const MedialiveChannelAudioPidSelection({required this.pid});
 
   final TfArg<num> pid;
 
@@ -4439,19 +3806,15 @@ final class MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSe
 /// Typed helper for the `input_attachments.input_settings.audio_selector.selector_settings.audio_track_selection` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettingsAudioTrackSelection {
-  const MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettingsAudioTrackSelection({
+final class MedialiveChannelAudioTrackSelection {
+  const MedialiveChannelAudioTrackSelection({
     this.dolbyEDecode,
     required this.tracks,
   });
 
-  final MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettingsAudioTrackSelectionDolbyEDecode?
-  dolbyEDecode;
+  final MedialiveChannelDolbyEDecode? dolbyEDecode;
 
-  final List<
-    MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettingsAudioTrackSelectionTracks
-  >
-  tracks;
+  final List<MedialiveChannelTracks> tracks;
 
   Map<String, Object?> encode() => {
     'dolby_e_decode': ?dolbyEDecode?.encode(),
@@ -4462,15 +3825,10 @@ final class MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSe
 /// Typed helper for the `input_attachments.input_settings.audio_selector.selector_settings.audio_track_selection.dolby_e_decode` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettingsAudioTrackSelectionDolbyEDecode {
-  const MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettingsAudioTrackSelectionDolbyEDecode({
-    required this.programSelection,
-  });
+final class MedialiveChannelDolbyEDecode {
+  const MedialiveChannelDolbyEDecode({required this.programSelection});
 
-  final TfArg<
-    MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettingsAudioTrackSelectionDolbyEDecodeProgramSelection
-  >
-  programSelection;
+  final TfArg<MedialiveChannelProgramSelection> programSelection;
 
   Map<String, Object?> encode() => {
     'program_selection': programSelection.toTfJson(),
@@ -4478,8 +3836,7 @@ final class MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSe
 }
 
 /// `program_selection` — derived from the provider schema description.
-enum MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettingsAudioTrackSelectionDolbyEDecodeProgramSelection
-    implements TerraformEnum {
+enum MedialiveChannelProgramSelection implements TerraformEnum {
   allChannels('ALL_CHANNELS'),
   program1('PROGRAM_1'),
   program2('PROGRAM_2'),
@@ -4490,9 +3847,7 @@ enum MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettingsA
   program7('PROGRAM_7'),
   program8('PROGRAM_8');
 
-  const MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettingsAudioTrackSelectionDolbyEDecodeProgramSelection(
-    this.terraformValue,
-  );
+  const MedialiveChannelProgramSelection(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -4500,10 +3855,8 @@ enum MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettingsA
 /// Typed helper for the `input_attachments.input_settings.audio_selector.selector_settings.audio_track_selection.tracks` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettingsAudioTrackSelectionTracks {
-  const MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettingsAudioTrackSelectionTracks({
-    required this.track,
-  });
+final class MedialiveChannelTracks {
+  const MedialiveChannelTracks({required this.track});
 
   final TfArg<num> track;
 
@@ -4513,8 +3866,8 @@ final class MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSe
 /// Typed helper for the `input_attachments.input_settings.caption_selector` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelector {
-  const MedialiveChannelInputAttachmentsInputSettingsCaptionSelector({
+final class MedialiveChannelCaptionSelector {
+  const MedialiveChannelCaptionSelector({
     this.languageCode,
     required this.name,
     this.selectorSettings,
@@ -4524,8 +3877,7 @@ final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelector {
 
   final TfArg<String> name;
 
-  final MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettings?
-  selectorSettings;
+  final MedialiveChannelCaptionSelectorSettings? selectorSettings;
 
   Map<String, Object?> encode() => {
     'language_code': ?languageCode?.toTfJson(),
@@ -4537,8 +3889,8 @@ final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelector {
 /// Typed helper for the `input_attachments.input_settings.caption_selector.selector_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettings {
-  const MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettings({
+final class MedialiveChannelCaptionSelectorSettings {
+  const MedialiveChannelCaptionSelectorSettings({
     this.ancillarySourceSettings,
     this.aribSourceSettings,
     this.dvbSubSourceSettings,
@@ -4548,26 +3900,19 @@ final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelector
     this.teletextSourceSettings,
   });
 
-  final MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsAncillarySourceSettings?
-  ancillarySourceSettings;
+  final MedialiveChannelAncillarySourceSettings? ancillarySourceSettings;
 
-  final MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsAribSourceSettings?
-  aribSourceSettings;
+  final MedialiveChannelAribSourceSettings? aribSourceSettings;
 
-  final MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsDvbSubSourceSettings?
-  dvbSubSourceSettings;
+  final MedialiveChannelDvbSubSourceSettings? dvbSubSourceSettings;
 
-  final MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsEmbeddedSourceSettings?
-  embeddedSourceSettings;
+  final MedialiveChannelEmbeddedSourceSettings? embeddedSourceSettings;
 
-  final MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsScte20SourceSettings?
-  scte20SourceSettings;
+  final MedialiveChannelScte20SourceSettings? scte20SourceSettings;
 
-  final MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsScte27SourceSettings?
-  scte27SourceSettings;
+  final MedialiveChannelScte27SourceSettings? scte27SourceSettings;
 
-  final MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsTeletextSourceSettings?
-  teletextSourceSettings;
+  final MedialiveChannelTeletextSourceSettings? teletextSourceSettings;
 
   Map<String, Object?> encode() => {
     'ancillary_source_settings': ?ancillarySourceSettings?.encode(),
@@ -4583,8 +3928,8 @@ final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelector
 /// Typed helper for the `input_attachments.input_settings.caption_selector.selector_settings.ancillary_source_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsAncillarySourceSettings {
-  const MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsAncillarySourceSettings({
+final class MedialiveChannelAncillarySourceSettings {
+  const MedialiveChannelAncillarySourceSettings({
     this.sourceAncillaryChannelNumber,
   });
 
@@ -4599,8 +3944,8 @@ final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelector
 /// Typed helper for the `input_attachments.input_settings.caption_selector.selector_settings.arib_source_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsAribSourceSettings {
-  const MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsAribSourceSettings();
+final class MedialiveChannelAribSourceSettings {
+  const MedialiveChannelAribSourceSettings();
 
   Map<String, Object?> encode() => {};
 }
@@ -4608,16 +3953,10 @@ final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelector
 /// Typed helper for the `input_attachments.input_settings.caption_selector.selector_settings.dvb_sub_source_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsDvbSubSourceSettings {
-  const MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsDvbSubSourceSettings({
-    this.ocrLanguage,
-    this.pid,
-  });
+final class MedialiveChannelDvbSubSourceSettings {
+  const MedialiveChannelDvbSubSourceSettings({this.ocrLanguage, this.pid});
 
-  final TfArg<
-    MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsDvbSubSourceSettingsOcrLanguage
-  >?
-  ocrLanguage;
+  final TfArg<MedialiveChannelOcrLanguage>? ocrLanguage;
 
   final TfArg<num>? pid;
 
@@ -4628,8 +3967,7 @@ final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelector
 }
 
 /// `ocr_language` — derived from the provider schema description.
-enum MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsDvbSubSourceSettingsOcrLanguage
-    implements TerraformEnum {
+enum MedialiveChannelOcrLanguage implements TerraformEnum {
   deu('DEU'),
   eng('ENG'),
   fra('FRA'),
@@ -4637,9 +3975,7 @@ enum MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSetting
   por('POR'),
   spa('SPA');
 
-  const MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsDvbSubSourceSettingsOcrLanguage(
-    this.terraformValue,
-  );
+  const MedialiveChannelOcrLanguage(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -4647,22 +3983,16 @@ enum MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSetting
 /// Typed helper for the `input_attachments.input_settings.caption_selector.selector_settings.embedded_source_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsEmbeddedSourceSettings {
-  const MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsEmbeddedSourceSettings({
+final class MedialiveChannelEmbeddedSourceSettings {
+  const MedialiveChannelEmbeddedSourceSettings({
     this.convert608To708,
     this.scte20Detection,
     this.source608ChannelNumber,
   });
 
-  final TfArg<
-    MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsEmbeddedSourceSettingsConvert608To708
-  >?
-  convert608To708;
+  final TfArg<MedialiveChannelConvert608To708>? convert608To708;
 
-  final TfArg<
-    MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsEmbeddedSourceSettingsScte20Detection
-  >?
-  scte20Detection;
+  final TfArg<MedialiveChannelScte20Detection>? scte20Detection;
 
   final TfArg<num>? source608ChannelNumber;
 
@@ -4674,27 +4004,21 @@ final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelector
 }
 
 /// `convert_608_to_708` — derived from the provider schema description.
-enum MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsEmbeddedSourceSettingsConvert608To708
-    implements TerraformEnum {
+enum MedialiveChannelConvert608To708 implements TerraformEnum {
   disabled('DISABLED'),
   upconvert('UPCONVERT');
 
-  const MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsEmbeddedSourceSettingsConvert608To708(
-    this.terraformValue,
-  );
+  const MedialiveChannelConvert608To708(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `scte20_detection` — derived from the provider schema description.
-enum MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsEmbeddedSourceSettingsScte20Detection
-    implements TerraformEnum {
+enum MedialiveChannelScte20Detection implements TerraformEnum {
   auto('AUTO'),
   off('OFF');
 
-  const MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsEmbeddedSourceSettingsScte20Detection(
-    this.terraformValue,
-  );
+  const MedialiveChannelScte20Detection(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -4702,16 +4026,13 @@ enum MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSetting
 /// Typed helper for the `input_attachments.input_settings.caption_selector.selector_settings.scte20_source_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsScte20SourceSettings {
-  const MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsScte20SourceSettings({
+final class MedialiveChannelScte20SourceSettings {
+  const MedialiveChannelScte20SourceSettings({
     this.convert608To708,
     this.source608ChannelNumber,
   });
 
-  final TfArg<
-    MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsScte20SourceSettingsConvert608To708
-  >?
-  convert608To708;
+  final TfArg<MedialiveChannelConvert608To708>? convert608To708;
 
   final TfArg<num>? source608ChannelNumber;
 
@@ -4721,32 +4042,13 @@ final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelector
   };
 }
 
-/// `convert_608_to_708` — derived from the provider schema description.
-enum MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsScte20SourceSettingsConvert608To708
-    implements TerraformEnum {
-  disabled('DISABLED'),
-  upconvert('UPCONVERT');
-
-  const MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsScte20SourceSettingsConvert608To708(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `input_attachments.input_settings.caption_selector.selector_settings.scte27_source_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsScte27SourceSettings {
-  const MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsScte27SourceSettings({
-    this.ocrLanguage,
-    this.pid,
-  });
+final class MedialiveChannelScte27SourceSettings {
+  const MedialiveChannelScte27SourceSettings({this.ocrLanguage, this.pid});
 
-  final TfArg<
-    MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsScte27SourceSettingsOcrLanguage
-  >?
-  ocrLanguage;
+  final TfArg<MedialiveChannelOcrLanguage>? ocrLanguage;
 
   final TfArg<num>? pid;
 
@@ -4756,36 +4058,18 @@ final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelector
   };
 }
 
-/// `ocr_language` — derived from the provider schema description.
-enum MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsScte27SourceSettingsOcrLanguage
-    implements TerraformEnum {
-  deu('DEU'),
-  eng('ENG'),
-  fra('FRA'),
-  nld('NLD'),
-  por('POR'),
-  spa('SPA');
-
-  const MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsScte27SourceSettingsOcrLanguage(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `input_attachments.input_settings.caption_selector.selector_settings.teletext_source_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsTeletextSourceSettings {
-  const MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsTeletextSourceSettings({
+final class MedialiveChannelTeletextSourceSettings {
+  const MedialiveChannelTeletextSourceSettings({
     this.pageNumber,
     this.outputRectangle,
   });
 
   final TfArg<String>? pageNumber;
 
-  final MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsTeletextSourceSettingsOutputRectangle?
-  outputRectangle;
+  final MedialiveChannelOutputRectangle? outputRectangle;
 
   Map<String, Object?> encode() => {
     'page_number': ?pageNumber?.toTfJson(),
@@ -4796,8 +4080,8 @@ final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelector
 /// Typed helper for the `input_attachments.input_settings.caption_selector.selector_settings.teletext_source_settings.output_rectangle` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsTeletextSourceSettingsOutputRectangle {
-  const MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsTeletextSourceSettingsOutputRectangle({
+final class MedialiveChannelOutputRectangle {
+  const MedialiveChannelOutputRectangle({
     required this.height,
     required this.leftOffset,
     required this.topOffset,
@@ -4823,19 +4107,15 @@ final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelector
 /// Typed helper for the `input_attachments.input_settings.network_input_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelInputAttachmentsInputSettingsNetworkInputSettings {
-  const MedialiveChannelInputAttachmentsInputSettingsNetworkInputSettings({
+final class MedialiveChannelNetworkInputSettings {
+  const MedialiveChannelNetworkInputSettings({
     this.serverValidation,
     this.hlsInputSettings,
   });
 
-  final TfArg<
-    MedialiveChannelInputAttachmentsInputSettingsNetworkInputSettingsServerValidation
-  >?
-  serverValidation;
+  final TfArg<MedialiveChannelServerValidation>? serverValidation;
 
-  final MedialiveChannelInputAttachmentsInputSettingsNetworkInputSettingsHlsInputSettings?
-  hlsInputSettings;
+  final MedialiveChannelHlsInputSettings? hlsInputSettings;
 
   Map<String, Object?> encode() => {
     'server_validation': ?serverValidation?.toTfJson(),
@@ -4844,14 +4124,11 @@ final class MedialiveChannelInputAttachmentsInputSettingsNetworkInputSettings {
 }
 
 /// `server_validation` — derived from the provider schema description.
-enum MedialiveChannelInputAttachmentsInputSettingsNetworkInputSettingsServerValidation
-    implements TerraformEnum {
+enum MedialiveChannelServerValidation implements TerraformEnum {
   checkCryptographyAndValidateName('CHECK_CRYPTOGRAPHY_AND_VALIDATE_NAME'),
   checkCryptographyOnly('CHECK_CRYPTOGRAPHY_ONLY');
 
-  const MedialiveChannelInputAttachmentsInputSettingsNetworkInputSettingsServerValidation(
-    this.terraformValue,
-  );
+  const MedialiveChannelServerValidation(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -4859,8 +4136,8 @@ enum MedialiveChannelInputAttachmentsInputSettingsNetworkInputSettingsServerVali
 /// Typed helper for the `input_attachments.input_settings.network_input_settings.hls_input_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelInputAttachmentsInputSettingsNetworkInputSettingsHlsInputSettings {
-  const MedialiveChannelInputAttachmentsInputSettingsNetworkInputSettingsHlsInputSettings({
+final class MedialiveChannelHlsInputSettings {
+  const MedialiveChannelHlsInputSettings({
     this.bandwidth,
     this.bufferSegments,
     this.retries,
@@ -4876,10 +4153,7 @@ final class MedialiveChannelInputAttachmentsInputSettingsNetworkInputSettingsHls
 
   final TfArg<num>? retryInterval;
 
-  final TfArg<
-    MedialiveChannelInputAttachmentsInputSettingsNetworkInputSettingsHlsInputSettingsScte35Source
-  >?
-  scte35Source;
+  final TfArg<MedialiveChannelScte35Source>? scte35Source;
 
   Map<String, Object?> encode() => {
     'bandwidth': ?bandwidth?.toTfJson(),
@@ -4891,14 +4165,11 @@ final class MedialiveChannelInputAttachmentsInputSettingsNetworkInputSettingsHls
 }
 
 /// `scte35_source` — derived from the provider schema description.
-enum MedialiveChannelInputAttachmentsInputSettingsNetworkInputSettingsHlsInputSettingsScte35Source
-    implements TerraformEnum {
+enum MedialiveChannelScte35Source implements TerraformEnum {
   manifest('MANIFEST'),
   segments('SEGMENTS');
 
-  const MedialiveChannelInputAttachmentsInputSettingsNetworkInputSettingsHlsInputSettingsScte35Source(
-    this.terraformValue,
-  );
+  const MedialiveChannelScte35Source(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -4906,21 +4177,12 @@ enum MedialiveChannelInputAttachmentsInputSettingsNetworkInputSettingsHlsInputSe
 /// Typed helper for the `input_attachments.input_settings.video_selector` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
-final class MedialiveChannelInputAttachmentsInputSettingsVideoSelector {
-  const MedialiveChannelInputAttachmentsInputSettingsVideoSelector({
-    this.colorSpace,
-    this.colorSpaceUsage,
-  });
+final class MedialiveChannelVideoSelector {
+  const MedialiveChannelVideoSelector({this.colorSpace, this.colorSpaceUsage});
 
-  final TfArg<
-    MedialiveChannelInputAttachmentsInputSettingsVideoSelectorColorSpace
-  >?
-  colorSpace;
+  final TfArg<MedialiveChannelColorSpace>? colorSpace;
 
-  final TfArg<
-    MedialiveChannelInputAttachmentsInputSettingsVideoSelectorColorSpaceUsage
-  >?
-  colorSpaceUsage;
+  final TfArg<MedialiveChannelColorSpaceUsage>? colorSpaceUsage;
 
   Map<String, Object?> encode() => {
     'color_space': ?colorSpace?.toTfJson(),
@@ -4929,30 +4191,24 @@ final class MedialiveChannelInputAttachmentsInputSettingsVideoSelector {
 }
 
 /// `color_space` — derived from the provider schema description.
-enum MedialiveChannelInputAttachmentsInputSettingsVideoSelectorColorSpace
-    implements TerraformEnum {
+enum MedialiveChannelColorSpace implements TerraformEnum {
   follow('FOLLOW'),
   hdr10('HDR10'),
   hlg2020('HLG_2020'),
   rec601('REC_601'),
   rec709('REC_709');
 
-  const MedialiveChannelInputAttachmentsInputSettingsVideoSelectorColorSpace(
-    this.terraformValue,
-  );
+  const MedialiveChannelColorSpace(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `color_space_usage` — derived from the provider schema description.
-enum MedialiveChannelInputAttachmentsInputSettingsVideoSelectorColorSpaceUsage
-    implements TerraformEnum {
+enum MedialiveChannelColorSpaceUsage implements TerraformEnum {
   fallback('FALLBACK'),
   force('FORCE');
 
-  const MedialiveChannelInputAttachmentsInputSettingsVideoSelectorColorSpaceUsage(
-    this.terraformValue,
-  );
+  const MedialiveChannelColorSpaceUsage(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -4967,12 +4223,11 @@ final class MedialiveChannelInputSpecification {
     required this.maximumBitrate,
   });
 
-  final TfArg<MedialiveChannelInputSpecificationCodec> codec;
+  final TfArg<MedialiveChannelCodec> codec;
 
-  final TfArg<MedialiveChannelInputSpecificationInputResolution>
-  inputResolution;
+  final TfArg<MedialiveChannelInputResolution> inputResolution;
 
-  final TfArg<MedialiveChannelInputSpecificationMaximumBitrate> maximumBitrate;
+  final TfArg<MedialiveChannelMaximumBitrate> maximumBitrate;
 
   Map<String, Object?> encode() => {
     'codec': codec.toTfJson(),
@@ -4982,35 +4237,34 @@ final class MedialiveChannelInputSpecification {
 }
 
 /// `codec` — derived from the provider schema description.
-enum MedialiveChannelInputSpecificationCodec implements TerraformEnum {
+enum MedialiveChannelCodec implements TerraformEnum {
   mpeg2('MPEG2'),
   avc('AVC'),
   hevc('HEVC');
 
-  const MedialiveChannelInputSpecificationCodec(this.terraformValue);
+  const MedialiveChannelCodec(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `input_resolution` — derived from the provider schema description.
-enum MedialiveChannelInputSpecificationInputResolution
-    implements TerraformEnum {
+enum MedialiveChannelInputResolution implements TerraformEnum {
   sd('SD'),
   hd('HD'),
   uhd('UHD');
 
-  const MedialiveChannelInputSpecificationInputResolution(this.terraformValue);
+  const MedialiveChannelInputResolution(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `maximum_bitrate` — derived from the provider schema description.
-enum MedialiveChannelInputSpecificationMaximumBitrate implements TerraformEnum {
+enum MedialiveChannelMaximumBitrate implements TerraformEnum {
   max10Mbps('MAX_10_MBPS'),
   max20Mbps('MAX_20_MBPS'),
   max50Mbps('MAX_50_MBPS');
 
-  const MedialiveChannelInputSpecificationMaximumBitrate(this.terraformValue);
+  const MedialiveChannelMaximumBitrate(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -5024,7 +4278,7 @@ final class MedialiveChannelMaintenance {
     required this.maintenanceStartTime,
   });
 
-  final TfArg<MedialiveChannelMaintenanceMaintenanceDay> maintenanceDay;
+  final TfArg<MedialiveChannelMaintenanceDay> maintenanceDay;
 
   final TfArg<String> maintenanceStartTime;
 
@@ -5035,7 +4289,7 @@ final class MedialiveChannelMaintenance {
 }
 
 /// `maintenance_day` — derived from the provider schema description.
-enum MedialiveChannelMaintenanceMaintenanceDay implements TerraformEnum {
+enum MedialiveChannelMaintenanceDay implements TerraformEnum {
   monday('MONDAY'),
   tuesday('TUESDAY'),
   wednesday('WEDNESDAY'),
@@ -5044,7 +4298,7 @@ enum MedialiveChannelMaintenanceMaintenanceDay implements TerraformEnum {
   saturday('SATURDAY'),
   sunday('SUNDAY');
 
-  const MedialiveChannelMaintenanceMaintenanceDay(this.terraformValue);
+  const MedialiveChannelMaintenanceDay(this.terraformValue);
   @override
   final String terraformValue;
 }

@@ -16,14 +16,14 @@ export 'src/transfer/aws_transfer_connector.dart'
     show
         AwsTransferConnector,
         TransferConnectorAs2Config,
-        TransferConnectorAs2ConfigCompression,
-        TransferConnectorAs2ConfigEncryptionAlgorithm,
-        TransferConnectorAs2ConfigMdnResponse,
-        TransferConnectorAs2ConfigMdnSigningAlgorithm,
-        TransferConnectorAs2ConfigSigningAlgorithm,
+        TransferConnectorCompression,
         TransferConnectorEgressConfig,
-        TransferConnectorEgressConfigVpcLattice,
-        TransferConnectorSftpConfig;
+        TransferConnectorEncryptionAlgorithm,
+        TransferConnectorMdnResponse,
+        TransferConnectorMdnSigningAlgorithm,
+        TransferConnectorSftpConfig,
+        TransferConnectorSigningAlgorithm,
+        TransferConnectorVpcLattice;
 export 'src/transfer/aws_transfer_host_key.dart'
     show
         AwsTransferHostKey,
@@ -35,23 +35,23 @@ export 'src/transfer/aws_transfer_profile.dart'
 export 'src/transfer/aws_transfer_server.dart'
     show
         AwsTransferServer,
+        TransferServerAs2Transports,
+        TransferServerDirectoryListingOptimization,
         TransferServerDomain,
         TransferServerEndpointDetails,
         TransferServerEndpointType,
         TransferServerIdentityProviderType,
         TransferServerIpAddressType,
+        TransferServerOnPartialUpload,
+        TransferServerOnUpload,
         TransferServerProtocolDetails,
-        TransferServerProtocolDetailsAs2Transports,
-        TransferServerProtocolDetailsSetStatOption,
-        TransferServerProtocolDetailsTlsSessionResumptionMode,
         TransferServerProtocols,
         TransferServerS3StorageOptions,
-        TransferServerS3StorageOptionsDirectoryListingOptimization,
         TransferServerSecurityPolicyName,
+        TransferServerSetStatOption,
         TransferServerSftpAuthenticationMethods,
-        TransferServerWorkflowDetails,
-        TransferServerWorkflowDetailsOnPartialUpload,
-        TransferServerWorkflowDetailsOnUpload;
+        TransferServerTlsSessionResumptionMode,
+        TransferServerWorkflowDetails;
 export 'src/transfer/aws_transfer_ssh_key.dart' show AwsTransferSshKey;
 export 'src/transfer/aws_transfer_tag.dart' show AwsTransferTag;
 export 'src/transfer/aws_transfer_user.dart'
@@ -64,46 +64,26 @@ export 'src/transfer/aws_transfer_web_app.dart'
     show
         AwsTransferWebApp,
         TransferWebAppEndpointDetails,
-        TransferWebAppEndpointDetailsVpc,
+        TransferWebAppIdentityCenterConfig,
         TransferWebAppIdentityProviderDetails,
-        TransferWebAppIdentityProviderDetailsIdentityCenterConfig,
+        TransferWebAppVpc,
         TransferWebAppWebAppEndpointPolicy;
 export 'src/transfer/aws_transfer_web_app_customization.dart'
     show AwsTransferWebAppCustomization;
 export 'src/transfer/aws_transfer_workflow.dart'
     show
         AwsTransferWorkflow,
+        TransferWorkflowCopyStepDetails,
+        TransferWorkflowCustomStepDetails,
+        TransferWorkflowDecryptStepDetails,
+        TransferWorkflowDecryptStepDetailsType,
+        TransferWorkflowDeleteStepDetails,
+        TransferWorkflowDestinationFileLocation,
+        TransferWorkflowEfsFileLocation,
         TransferWorkflowOnExceptionSteps,
-        TransferWorkflowOnExceptionStepsCopyStepDetails,
-        TransferWorkflowOnExceptionStepsCopyStepDetailsDestinationFileLocation,
-        TransferWorkflowOnExceptionStepsCopyStepDetailsDestinationFileLocationEfsFileLocation,
-        TransferWorkflowOnExceptionStepsCopyStepDetailsDestinationFileLocationS3FileLocation,
-        TransferWorkflowOnExceptionStepsCopyStepDetailsOverwriteExisting,
-        TransferWorkflowOnExceptionStepsCustomStepDetails,
-        TransferWorkflowOnExceptionStepsDecryptStepDetails,
-        TransferWorkflowOnExceptionStepsDecryptStepDetailsDestinationFileLocation,
-        TransferWorkflowOnExceptionStepsDecryptStepDetailsDestinationFileLocationEfsFileLocation,
-        TransferWorkflowOnExceptionStepsDecryptStepDetailsDestinationFileLocationS3FileLocation,
-        TransferWorkflowOnExceptionStepsDecryptStepDetailsOverwriteExisting,
-        TransferWorkflowOnExceptionStepsDecryptStepDetailsType,
-        TransferWorkflowOnExceptionStepsDeleteStepDetails,
-        TransferWorkflowOnExceptionStepsTagStepDetails,
-        TransferWorkflowOnExceptionStepsTagStepDetailsTags,
-        TransferWorkflowOnExceptionStepsType,
+        TransferWorkflowOverwriteExisting,
+        TransferWorkflowS3FileLocation,
         TransferWorkflowSteps,
-        TransferWorkflowStepsCopyStepDetails,
-        TransferWorkflowStepsCopyStepDetailsDestinationFileLocation,
-        TransferWorkflowStepsCopyStepDetailsDestinationFileLocationEfsFileLocation,
-        TransferWorkflowStepsCopyStepDetailsDestinationFileLocationS3FileLocation,
-        TransferWorkflowStepsCopyStepDetailsOverwriteExisting,
-        TransferWorkflowStepsCustomStepDetails,
-        TransferWorkflowStepsDecryptStepDetails,
-        TransferWorkflowStepsDecryptStepDetailsDestinationFileLocation,
-        TransferWorkflowStepsDecryptStepDetailsDestinationFileLocationEfsFileLocation,
-        TransferWorkflowStepsDecryptStepDetailsDestinationFileLocationS3FileLocation,
-        TransferWorkflowStepsDecryptStepDetailsOverwriteExisting,
-        TransferWorkflowStepsDecryptStepDetailsType,
-        TransferWorkflowStepsDeleteStepDetails,
-        TransferWorkflowStepsTagStepDetails,
-        TransferWorkflowStepsTagStepDetailsTags,
-        TransferWorkflowStepsType;
+        TransferWorkflowTagStepDetails,
+        TransferWorkflowTagStepDetailsTags,
+        TransferWorkflowType;

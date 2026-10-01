@@ -19,17 +19,15 @@ final class AppsyncApiEventConfig {
     this.logConfig,
   });
 
-  final List<AppsyncApiEventConfigAuthProvider>? authProvider;
+  final List<AppsyncApiAuthProvider>? authProvider;
 
-  final List<AppsyncApiEventConfigConnectionAuthMode>? connectionAuthMode;
+  final List<AppsyncApiConnectionAuthMode>? connectionAuthMode;
 
-  final List<AppsyncApiEventConfigDefaultPublishAuthMode>?
-  defaultPublishAuthMode;
+  final List<AppsyncApiDefaultPublishAuthMode>? defaultPublishAuthMode;
 
-  final List<AppsyncApiEventConfigDefaultSubscribeAuthMode>?
-  defaultSubscribeAuthMode;
+  final List<AppsyncApiDefaultSubscribeAuthMode>? defaultSubscribeAuthMode;
 
-  final List<AppsyncApiEventConfigLogConfig>? logConfig;
+  final List<AppsyncApiLogConfig>? logConfig;
 
   Map<String, Object?> encode() => {
     if (authProvider != null)
@@ -52,23 +50,21 @@ final class AppsyncApiEventConfig {
 /// Typed helper for the `event_config.auth_provider` block of
 /// `aws_appsync_api` (derived from provider schema).
 @immutable
-final class AppsyncApiEventConfigAuthProvider {
-  const AppsyncApiEventConfigAuthProvider({
+final class AppsyncApiAuthProvider {
+  const AppsyncApiAuthProvider({
     required this.authType,
     this.cognitoConfig,
     this.lambdaAuthorizerConfig,
     this.openidConnectConfig,
   });
 
-  final TfArg<AppsyncApiEventConfigAuthProviderAuthType> authType;
+  final TfArg<AppsyncApiAuthType> authType;
 
-  final List<AppsyncApiEventConfigAuthProviderCognitoConfig>? cognitoConfig;
+  final List<AppsyncApiCognitoConfig>? cognitoConfig;
 
-  final List<AppsyncApiEventConfigAuthProviderLambdaAuthorizerConfig>?
-  lambdaAuthorizerConfig;
+  final List<AppsyncApiLambdaAuthorizerConfig>? lambdaAuthorizerConfig;
 
-  final List<AppsyncApiEventConfigAuthProviderOpenidConnectConfig>?
-  openidConnectConfig;
+  final List<AppsyncApiOpenidConnectConfig>? openidConnectConfig;
 
   Map<String, Object?> encode() => {
     'auth_type': authType.toTfJson(),
@@ -86,14 +82,14 @@ final class AppsyncApiEventConfigAuthProvider {
 }
 
 /// `auth_type` — derived from the provider schema description.
-enum AppsyncApiEventConfigAuthProviderAuthType implements TerraformEnum {
+enum AppsyncApiAuthType implements TerraformEnum {
   apiKey('API_KEY'),
   awsIam('AWS_IAM'),
   amazonCognitoUserPools('AMAZON_COGNITO_USER_POOLS'),
   openidConnect('OPENID_CONNECT'),
   awsLambda('AWS_LAMBDA');
 
-  const AppsyncApiEventConfigAuthProviderAuthType(this.terraformValue);
+  const AppsyncApiAuthType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -101,8 +97,8 @@ enum AppsyncApiEventConfigAuthProviderAuthType implements TerraformEnum {
 /// Typed helper for the `event_config.auth_provider.cognito_config` block of
 /// `aws_appsync_api` (derived from provider schema).
 @immutable
-final class AppsyncApiEventConfigAuthProviderCognitoConfig {
-  const AppsyncApiEventConfigAuthProviderCognitoConfig({
+final class AppsyncApiCognitoConfig {
+  const AppsyncApiCognitoConfig({
     this.appIdClientRegex,
     required this.awsRegion,
     required this.userPoolId,
@@ -124,8 +120,8 @@ final class AppsyncApiEventConfigAuthProviderCognitoConfig {
 /// Typed helper for the `event_config.auth_provider.lambda_authorizer_config` block of
 /// `aws_appsync_api` (derived from provider schema).
 @immutable
-final class AppsyncApiEventConfigAuthProviderLambdaAuthorizerConfig {
-  const AppsyncApiEventConfigAuthProviderLambdaAuthorizerConfig({
+final class AppsyncApiLambdaAuthorizerConfig {
+  const AppsyncApiLambdaAuthorizerConfig({
     this.authorizerResultTtlInSeconds,
     required this.authorizerUri,
     this.identityValidationExpression,
@@ -148,8 +144,8 @@ final class AppsyncApiEventConfigAuthProviderLambdaAuthorizerConfig {
 /// Typed helper for the `event_config.auth_provider.openid_connect_config` block of
 /// `aws_appsync_api` (derived from provider schema).
 @immutable
-final class AppsyncApiEventConfigAuthProviderOpenidConnectConfig {
-  const AppsyncApiEventConfigAuthProviderOpenidConnectConfig({
+final class AppsyncApiOpenidConnectConfig {
+  const AppsyncApiOpenidConnectConfig({
     this.authTtl,
     this.clientId,
     this.iatTtl,
@@ -175,93 +171,48 @@ final class AppsyncApiEventConfigAuthProviderOpenidConnectConfig {
 /// Typed helper for the `event_config.connection_auth_mode` block of
 /// `aws_appsync_api` (derived from provider schema).
 @immutable
-final class AppsyncApiEventConfigConnectionAuthMode {
-  const AppsyncApiEventConfigConnectionAuthMode({required this.authType});
+final class AppsyncApiConnectionAuthMode {
+  const AppsyncApiConnectionAuthMode({required this.authType});
 
-  final TfArg<AppsyncApiEventConfigConnectionAuthModeAuthType> authType;
+  final TfArg<AppsyncApiAuthType> authType;
 
   Map<String, Object?> encode() => {'auth_type': authType.toTfJson()};
-}
-
-/// `auth_type` — derived from the provider schema description.
-enum AppsyncApiEventConfigConnectionAuthModeAuthType implements TerraformEnum {
-  apiKey('API_KEY'),
-  awsIam('AWS_IAM'),
-  amazonCognitoUserPools('AMAZON_COGNITO_USER_POOLS'),
-  openidConnect('OPENID_CONNECT'),
-  awsLambda('AWS_LAMBDA');
-
-  const AppsyncApiEventConfigConnectionAuthModeAuthType(this.terraformValue);
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `event_config.default_publish_auth_mode` block of
 /// `aws_appsync_api` (derived from provider schema).
 @immutable
-final class AppsyncApiEventConfigDefaultPublishAuthMode {
-  const AppsyncApiEventConfigDefaultPublishAuthMode({required this.authType});
+final class AppsyncApiDefaultPublishAuthMode {
+  const AppsyncApiDefaultPublishAuthMode({required this.authType});
 
-  final TfArg<AppsyncApiEventConfigDefaultPublishAuthModeAuthType> authType;
+  final TfArg<AppsyncApiAuthType> authType;
 
   Map<String, Object?> encode() => {'auth_type': authType.toTfJson()};
-}
-
-/// `auth_type` — derived from the provider schema description.
-enum AppsyncApiEventConfigDefaultPublishAuthModeAuthType
-    implements TerraformEnum {
-  apiKey('API_KEY'),
-  awsIam('AWS_IAM'),
-  amazonCognitoUserPools('AMAZON_COGNITO_USER_POOLS'),
-  openidConnect('OPENID_CONNECT'),
-  awsLambda('AWS_LAMBDA');
-
-  const AppsyncApiEventConfigDefaultPublishAuthModeAuthType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `event_config.default_subscribe_auth_mode` block of
 /// `aws_appsync_api` (derived from provider schema).
 @immutable
-final class AppsyncApiEventConfigDefaultSubscribeAuthMode {
-  const AppsyncApiEventConfigDefaultSubscribeAuthMode({required this.authType});
+final class AppsyncApiDefaultSubscribeAuthMode {
+  const AppsyncApiDefaultSubscribeAuthMode({required this.authType});
 
-  final TfArg<AppsyncApiEventConfigDefaultSubscribeAuthModeAuthType> authType;
+  final TfArg<AppsyncApiAuthType> authType;
 
   Map<String, Object?> encode() => {'auth_type': authType.toTfJson()};
-}
-
-/// `auth_type` — derived from the provider schema description.
-enum AppsyncApiEventConfigDefaultSubscribeAuthModeAuthType
-    implements TerraformEnum {
-  apiKey('API_KEY'),
-  awsIam('AWS_IAM'),
-  amazonCognitoUserPools('AMAZON_COGNITO_USER_POOLS'),
-  openidConnect('OPENID_CONNECT'),
-  awsLambda('AWS_LAMBDA');
-
-  const AppsyncApiEventConfigDefaultSubscribeAuthModeAuthType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `event_config.log_config` block of
 /// `aws_appsync_api` (derived from provider schema).
 @immutable
-final class AppsyncApiEventConfigLogConfig {
-  const AppsyncApiEventConfigLogConfig({
+final class AppsyncApiLogConfig {
+  const AppsyncApiLogConfig({
     required this.cloudwatchLogsRoleArn,
     required this.logLevel,
   });
 
   final TfArg<String> cloudwatchLogsRoleArn;
 
-  final TfArg<AppsyncApiEventConfigLogConfigLogLevel> logLevel;
+  final TfArg<AppsyncApiLogLevel> logLevel;
 
   Map<String, Object?> encode() => {
     'cloudwatch_logs_role_arn': cloudwatchLogsRoleArn.toTfJson(),
@@ -270,14 +221,14 @@ final class AppsyncApiEventConfigLogConfig {
 }
 
 /// `log_level` — derived from the provider schema description.
-enum AppsyncApiEventConfigLogConfigLogLevel implements TerraformEnum {
+enum AppsyncApiLogLevel implements TerraformEnum {
   none('NONE'),
   error('ERROR'),
   all('ALL'),
   info('INFO'),
   debug('DEBUG');
 
-  const AppsyncApiEventConfigLogConfigLogLevel(this.terraformValue);
+  const AppsyncApiLogLevel(this.terraformValue);
   @override
   final String terraformValue;
 }

@@ -33,9 +33,9 @@ final class FolderOrganizationPolicyListPolicy {
 
   final TfArg<String>? suggestedValue;
 
-  final FolderOrganizationPolicyListPolicyAllow? allow;
+  final FolderOrganizationPolicyAllow? allow;
 
-  final FolderOrganizationPolicyListPolicyDeny? deny;
+  final FolderOrganizationPolicyDeny? deny;
 
   Map<String, Object?> encode() => {
     'inherit_from_parent': ?inheritFromParent?.toTfJson(),
@@ -48,8 +48,8 @@ final class FolderOrganizationPolicyListPolicy {
 /// Typed helper for the `list_policy.allow` block of
 /// `google_folder_organization_policy` (derived from provider schema).
 @immutable
-final class FolderOrganizationPolicyListPolicyAllow {
-  const FolderOrganizationPolicyListPolicyAllow({this.all, this.values});
+final class FolderOrganizationPolicyAllow {
+  const FolderOrganizationPolicyAllow({this.all, this.values});
 
   final TfArg<bool>? all;
 
@@ -64,8 +64,8 @@ final class FolderOrganizationPolicyListPolicyAllow {
 /// Typed helper for the `list_policy.deny` block of
 /// `google_folder_organization_policy` (derived from provider schema).
 @immutable
-final class FolderOrganizationPolicyListPolicyDeny {
-  const FolderOrganizationPolicyListPolicyDeny({this.all, this.values});
+final class FolderOrganizationPolicyDeny {
+  const FolderOrganizationPolicyDeny({this.all, this.values});
 
   final TfArg<bool>? all;
 

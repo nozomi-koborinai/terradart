@@ -13,7 +13,7 @@ const Set<String> _googleIamProjectAccessPolicySensitive = <String>{};
 final class IamProjectAccessPolicyDetails {
   const IamProjectAccessPolicyDetails({required this.rules});
 
-  final List<IamProjectAccessPolicyDetailsRules> rules;
+  final List<IamProjectAccessPolicyRules> rules;
 
   Map<String, Object?> encode() => {
     'rules': [for (final e in rules) e.encode()],
@@ -23,8 +23,8 @@ final class IamProjectAccessPolicyDetails {
 /// Typed helper for the `details.rules` block of
 /// `google_iam_project_access_policy` (derived from provider schema).
 @immutable
-final class IamProjectAccessPolicyDetailsRules {
-  const IamProjectAccessPolicyDetailsRules({
+final class IamProjectAccessPolicyRules {
+  const IamProjectAccessPolicyRules({
     this.description,
     required this.effect,
     this.excludedPrincipals,
@@ -35,15 +35,15 @@ final class IamProjectAccessPolicyDetailsRules {
 
   final TfArg<String>? description;
 
-  final TfArg<IamProjectAccessPolicyDetailsRulesEffect> effect;
+  final TfArg<IamProjectAccessPolicyEffect> effect;
 
   final TfArg<List<String>>? excludedPrincipals;
 
   final TfArg<List<String>> principals;
 
-  final List<IamProjectAccessPolicyDetailsRulesConditions>? conditions;
+  final List<IamProjectAccessPolicyConditions>? conditions;
 
-  final IamProjectAccessPolicyDetailsRulesOperation operation;
+  final IamProjectAccessPolicyOperation operation;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -57,11 +57,11 @@ final class IamProjectAccessPolicyDetailsRules {
 }
 
 /// `effect` — derived from the provider schema description.
-enum IamProjectAccessPolicyDetailsRulesEffect implements TerraformEnum {
+enum IamProjectAccessPolicyEffect implements TerraformEnum {
   deny('DENY'),
   allow('ALLOW');
 
-  const IamProjectAccessPolicyDetailsRulesEffect(this.terraformValue);
+  const IamProjectAccessPolicyEffect(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -69,8 +69,8 @@ enum IamProjectAccessPolicyDetailsRulesEffect implements TerraformEnum {
 /// Typed helper for the `details.rules.conditions` block of
 /// `google_iam_project_access_policy` (derived from provider schema).
 @immutable
-final class IamProjectAccessPolicyDetailsRulesConditions {
-  const IamProjectAccessPolicyDetailsRulesConditions({
+final class IamProjectAccessPolicyConditions {
+  const IamProjectAccessPolicyConditions({
     this.expression,
     required this.service,
   });
@@ -88,8 +88,8 @@ final class IamProjectAccessPolicyDetailsRulesConditions {
 /// Typed helper for the `details.rules.operation` block of
 /// `google_iam_project_access_policy` (derived from provider schema).
 @immutable
-final class IamProjectAccessPolicyDetailsRulesOperation {
-  const IamProjectAccessPolicyDetailsRulesOperation({
+final class IamProjectAccessPolicyOperation {
+  const IamProjectAccessPolicyOperation({
     this.excludedPermissions,
     required this.permissions,
   });

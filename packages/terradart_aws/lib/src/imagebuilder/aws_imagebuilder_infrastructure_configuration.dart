@@ -24,10 +24,7 @@ final class ImagebuilderInfrastructureConfigurationInstanceMetadataOptions {
 
   final TfArg<num>? httpPutResponseHopLimit;
 
-  final TfArg<
-    ImagebuilderInfrastructureConfigurationInstanceMetadataOptionsHttpTokens
-  >?
-  httpTokens;
+  final TfArg<ImagebuilderInfrastructureConfigurationHttpTokens>? httpTokens;
 
   Map<String, Object?> encode() => {
     'http_put_response_hop_limit': ?httpPutResponseHopLimit?.toTfJson(),
@@ -36,14 +33,12 @@ final class ImagebuilderInfrastructureConfigurationInstanceMetadataOptions {
 }
 
 /// `http_tokens` — derived from the provider schema description.
-enum ImagebuilderInfrastructureConfigurationInstanceMetadataOptionsHttpTokens
+enum ImagebuilderInfrastructureConfigurationHttpTokens
     implements TerraformEnum {
   required('required'),
   optional('optional');
 
-  const ImagebuilderInfrastructureConfigurationInstanceMetadataOptionsHttpTokens(
-    this.terraformValue,
-  );
+  const ImagebuilderInfrastructureConfigurationHttpTokens(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -54,7 +49,7 @@ enum ImagebuilderInfrastructureConfigurationInstanceMetadataOptionsHttpTokens
 final class ImagebuilderInfrastructureConfigurationLogging {
   const ImagebuilderInfrastructureConfigurationLogging({required this.s3Logs});
 
-  final ImagebuilderInfrastructureConfigurationLoggingS3Logs s3Logs;
+  final ImagebuilderInfrastructureConfigurationS3Logs s3Logs;
 
   Map<String, Object?> encode() => {'s3_logs': s3Logs.encode()};
 }
@@ -62,8 +57,8 @@ final class ImagebuilderInfrastructureConfigurationLogging {
 /// Typed helper for the `logging.s3_logs` block of
 /// `aws_imagebuilder_infrastructure_configuration` (derived from provider schema).
 @immutable
-final class ImagebuilderInfrastructureConfigurationLoggingS3Logs {
-  const ImagebuilderInfrastructureConfigurationLoggingS3Logs({
+final class ImagebuilderInfrastructureConfigurationS3Logs {
+  const ImagebuilderInfrastructureConfigurationS3Logs({
     required this.s3BucketName,
     this.s3KeyPrefix,
   });
@@ -90,9 +85,9 @@ final class ImagebuilderInfrastructureConfigurationPlacement {
 
   final TfArg<String>? availabilityZone;
 
-  final ImagebuilderInfrastructureConfigurationPlacementHost? host;
+  final ImagebuilderInfrastructureConfigurationHost? host;
 
-  final TfArg<ImagebuilderInfrastructureConfigurationPlacementTenancy>? tenancy;
+  final TfArg<ImagebuilderInfrastructureConfigurationTenancy>? tenancy;
 
   Map<String, Object?> encode() => {
     'availability_zone': ?availabilityZone?.toTfJson(),
@@ -106,18 +101,18 @@ final class ImagebuilderInfrastructureConfigurationPlacement {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.hostId(...)`.
-sealed class ImagebuilderInfrastructureConfigurationPlacementHost {
-  const ImagebuilderInfrastructureConfigurationPlacementHost();
+sealed class ImagebuilderInfrastructureConfigurationHost {
+  const ImagebuilderInfrastructureConfigurationHost();
 
   /// Sets `host_id`.
-  const factory ImagebuilderInfrastructureConfigurationPlacementHost.hostId(
+  const factory ImagebuilderInfrastructureConfigurationHost.hostId(
     TfArg<String> hostId,
-  ) = ImagebuilderInfrastructureConfigurationPlacementHostId;
+  ) = ImagebuilderInfrastructureConfigurationHostId;
 
   /// Sets `host_resource_group_arn`.
-  const factory ImagebuilderInfrastructureConfigurationPlacementHost.hostResourceGroupArn(
+  const factory ImagebuilderInfrastructureConfigurationHost.hostResourceGroupArn(
     TfArg<String> hostResourceGroupArn,
-  ) = ImagebuilderInfrastructureConfigurationPlacementHostResourceGroupArn;
+  ) = ImagebuilderInfrastructureConfigurationHostResourceGroupArn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -125,10 +120,10 @@ sealed class ImagebuilderInfrastructureConfigurationPlacementHost {
   Map<String, Object?> encode();
 }
 
-/// The [ImagebuilderInfrastructureConfigurationPlacementHost.hostId] choice: sets `host_id`.
-final class ImagebuilderInfrastructureConfigurationPlacementHostId
-    extends ImagebuilderInfrastructureConfigurationPlacementHost {
-  const ImagebuilderInfrastructureConfigurationPlacementHostId(this.hostId);
+/// The [ImagebuilderInfrastructureConfigurationHost.hostId] choice: sets `host_id`.
+final class ImagebuilderInfrastructureConfigurationHostId
+    extends ImagebuilderInfrastructureConfigurationHost {
+  const ImagebuilderInfrastructureConfigurationHostId(this.hostId);
 
   final TfArg<String> hostId;
 
@@ -139,10 +134,10 @@ final class ImagebuilderInfrastructureConfigurationPlacementHostId
   Map<String, Object?> encode() => {'host_id': hostId.toTfJson()};
 }
 
-/// The [ImagebuilderInfrastructureConfigurationPlacementHost.hostResourceGroupArn] choice: sets `host_resource_group_arn`.
-final class ImagebuilderInfrastructureConfigurationPlacementHostResourceGroupArn
-    extends ImagebuilderInfrastructureConfigurationPlacementHost {
-  const ImagebuilderInfrastructureConfigurationPlacementHostResourceGroupArn(
+/// The [ImagebuilderInfrastructureConfigurationHost.hostResourceGroupArn] choice: sets `host_resource_group_arn`.
+final class ImagebuilderInfrastructureConfigurationHostResourceGroupArn
+    extends ImagebuilderInfrastructureConfigurationHost {
+  const ImagebuilderInfrastructureConfigurationHostResourceGroupArn(
     this.hostResourceGroupArn,
   );
 
@@ -158,15 +153,12 @@ final class ImagebuilderInfrastructureConfigurationPlacementHostResourceGroupArn
 }
 
 /// `tenancy` — derived from the provider schema description.
-enum ImagebuilderInfrastructureConfigurationPlacementTenancy
-    implements TerraformEnum {
+enum ImagebuilderInfrastructureConfigurationTenancy implements TerraformEnum {
   defaultCase('default'),
   dedicated('dedicated'),
   host('host');
 
-  const ImagebuilderInfrastructureConfigurationPlacementTenancy(
-    this.terraformValue,
-  );
+  const ImagebuilderInfrastructureConfigurationTenancy(this.terraformValue);
   @override
   final String terraformValue;
 }

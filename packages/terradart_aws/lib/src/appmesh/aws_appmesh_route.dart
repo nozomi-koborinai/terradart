@@ -21,13 +21,13 @@ final class AppmeshRouteSpec {
 
   final TfArg<num>? priority;
 
-  final AppmeshRouteSpecGrpcRoute? grpcRoute;
+  final AppmeshRouteGrpcRoute? grpcRoute;
 
-  final AppmeshRouteSpecHttp2Route? http2Route;
+  final AppmeshRouteHttp2Route? http2Route;
 
-  final AppmeshRouteSpecHttpRoute? httpRoute;
+  final AppmeshRouteHttpRoute? httpRoute;
 
-  final AppmeshRouteSpecTcpRoute? tcpRoute;
+  final AppmeshRouteTcpRoute? tcpRoute;
 
   Map<String, Object?> encode() => {
     'priority': ?priority?.toTfJson(),
@@ -41,21 +41,21 @@ final class AppmeshRouteSpec {
 /// Typed helper for the `spec.grpc_route` block of
 /// `aws_appmesh_route` (derived from provider schema).
 @immutable
-final class AppmeshRouteSpecGrpcRoute {
-  const AppmeshRouteSpecGrpcRoute({
+final class AppmeshRouteGrpcRoute {
+  const AppmeshRouteGrpcRoute({
     required this.action,
     this.match,
     this.retryPolicy,
     this.timeout,
   });
 
-  final AppmeshRouteSpecGrpcRouteAction action;
+  final AppmeshRouteAction action;
 
-  final AppmeshRouteSpecGrpcRouteMatch? match;
+  final AppmeshRouteGrpcRouteMatch? match;
 
-  final AppmeshRouteSpecGrpcRouteRetryPolicy? retryPolicy;
+  final AppmeshRouteGrpcRouteRetryPolicy? retryPolicy;
 
-  final AppmeshRouteSpecGrpcRouteTimeout? timeout;
+  final AppmeshRouteGrpcRouteTimeout? timeout;
 
   Map<String, Object?> encode() => {
     'action': action.encode(),
@@ -67,11 +67,12 @@ final class AppmeshRouteSpecGrpcRoute {
 
 /// Typed helper for the `spec.grpc_route.action` block of
 /// `aws_appmesh_route` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshRouteSpecGrpcRouteAction {
-  const AppmeshRouteSpecGrpcRouteAction({required this.weightedTarget});
+final class AppmeshRouteAction {
+  const AppmeshRouteAction({required this.weightedTarget});
 
-  final List<AppmeshRouteSpecGrpcRouteActionWeightedTarget> weightedTarget;
+  final List<AppmeshRouteWeightedTarget> weightedTarget;
 
   Map<String, Object?> encode() => {
     'weighted_target': [for (final e in weightedTarget) e.encode()],
@@ -80,9 +81,10 @@ final class AppmeshRouteSpecGrpcRouteAction {
 
 /// Typed helper for the `spec.grpc_route.action.weighted_target` block of
 /// `aws_appmesh_route` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshRouteSpecGrpcRouteActionWeightedTarget {
-  const AppmeshRouteSpecGrpcRouteActionWeightedTarget({
+final class AppmeshRouteWeightedTarget {
+  const AppmeshRouteWeightedTarget({
     this.port,
     required this.virtualNode,
     required this.weight,
@@ -104,8 +106,8 @@ final class AppmeshRouteSpecGrpcRouteActionWeightedTarget {
 /// Typed helper for the `spec.grpc_route.match` block of
 /// `aws_appmesh_route` (derived from provider schema).
 @immutable
-final class AppmeshRouteSpecGrpcRouteMatch {
-  const AppmeshRouteSpecGrpcRouteMatch({
+final class AppmeshRouteGrpcRouteMatch {
+  const AppmeshRouteGrpcRouteMatch({
     this.methodName,
     this.port,
     this.prefix,
@@ -121,7 +123,7 @@ final class AppmeshRouteSpecGrpcRouteMatch {
 
   final TfArg<String>? serviceName;
 
-  final List<AppmeshRouteSpecGrpcRouteMatchMetadata>? metadata;
+  final List<AppmeshRouteMetadata>? metadata;
 
   Map<String, Object?> encode() => {
     'method_name': ?methodName?.toTfJson(),
@@ -135,18 +137,14 @@ final class AppmeshRouteSpecGrpcRouteMatch {
 /// Typed helper for the `spec.grpc_route.match.metadata` block of
 /// `aws_appmesh_route` (derived from provider schema).
 @immutable
-final class AppmeshRouteSpecGrpcRouteMatchMetadata {
-  const AppmeshRouteSpecGrpcRouteMatchMetadata({
-    this.invert,
-    required this.name,
-    this.match,
-  });
+final class AppmeshRouteMetadata {
+  const AppmeshRouteMetadata({this.invert, required this.name, this.match});
 
   final TfArg<bool>? invert;
 
   final TfArg<String> name;
 
-  final AppmeshRouteSpecGrpcRouteMatchMetadataMatch? match;
+  final AppmeshRouteMetadataMatch? match;
 
   Map<String, Object?> encode() => {
     'invert': ?invert?.toTfJson(),
@@ -157,9 +155,10 @@ final class AppmeshRouteSpecGrpcRouteMatchMetadata {
 
 /// Typed helper for the `spec.grpc_route.match.metadata.match` block of
 /// `aws_appmesh_route` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshRouteSpecGrpcRouteMatchMetadataMatch {
-  const AppmeshRouteSpecGrpcRouteMatchMetadataMatch({
+final class AppmeshRouteMetadataMatch {
+  const AppmeshRouteMetadataMatch({
     this.exact,
     this.prefix,
     this.regex,
@@ -175,7 +174,7 @@ final class AppmeshRouteSpecGrpcRouteMatchMetadataMatch {
 
   final TfArg<String>? suffix;
 
-  final AppmeshRouteSpecGrpcRouteMatchMetadataMatchRange? range;
+  final AppmeshRouteRange? range;
 
   Map<String, Object?> encode() => {
     'exact': ?exact?.toTfJson(),
@@ -188,12 +187,10 @@ final class AppmeshRouteSpecGrpcRouteMatchMetadataMatch {
 
 /// Typed helper for the `spec.grpc_route.match.metadata.match.range` block of
 /// `aws_appmesh_route` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshRouteSpecGrpcRouteMatchMetadataMatchRange {
-  const AppmeshRouteSpecGrpcRouteMatchMetadataMatchRange({
-    required this.end,
-    required this.start,
-  });
+final class AppmeshRouteRange {
+  const AppmeshRouteRange({required this.end, required this.start});
 
   final TfArg<num> end;
 
@@ -208,8 +205,8 @@ final class AppmeshRouteSpecGrpcRouteMatchMetadataMatchRange {
 /// Typed helper for the `spec.grpc_route.retry_policy` block of
 /// `aws_appmesh_route` (derived from provider schema).
 @immutable
-final class AppmeshRouteSpecGrpcRouteRetryPolicy {
-  const AppmeshRouteSpecGrpcRouteRetryPolicy({
+final class AppmeshRouteGrpcRouteRetryPolicy {
+  const AppmeshRouteGrpcRouteRetryPolicy({
     this.grpcRetryEvents,
     this.httpRetryEvents,
     required this.maxRetries,
@@ -225,7 +222,7 @@ final class AppmeshRouteSpecGrpcRouteRetryPolicy {
 
   final TfArg<List<String>>? tcpRetryEvents;
 
-  final AppmeshRouteSpecGrpcRouteRetryPolicyPerRetryTimeout perRetryTimeout;
+  final AppmeshRouteGrpcRoutePerRetryTimeout perRetryTimeout;
 
   Map<String, Object?> encode() => {
     'grpc_retry_events': ?grpcRetryEvents?.toTfJson(),
@@ -239,13 +236,13 @@ final class AppmeshRouteSpecGrpcRouteRetryPolicy {
 /// Typed helper for the `spec.grpc_route.retry_policy.per_retry_timeout` block of
 /// `aws_appmesh_route` (derived from provider schema).
 @immutable
-final class AppmeshRouteSpecGrpcRouteRetryPolicyPerRetryTimeout {
-  const AppmeshRouteSpecGrpcRouteRetryPolicyPerRetryTimeout({
+final class AppmeshRouteGrpcRoutePerRetryTimeout {
+  const AppmeshRouteGrpcRoutePerRetryTimeout({
     required this.unit,
     required this.value,
   });
 
-  final TfArg<AppmeshRouteSpecGrpcRouteRetryPolicyPerRetryTimeoutUnit> unit;
+  final TfArg<AppmeshRouteUnit> unit;
 
   final TfArg<num> value;
 
@@ -256,14 +253,11 @@ final class AppmeshRouteSpecGrpcRouteRetryPolicyPerRetryTimeout {
 }
 
 /// `unit` — derived from the provider schema description.
-enum AppmeshRouteSpecGrpcRouteRetryPolicyPerRetryTimeoutUnit
-    implements TerraformEnum {
+enum AppmeshRouteUnit implements TerraformEnum {
   s('s'),
   ms('ms');
 
-  const AppmeshRouteSpecGrpcRouteRetryPolicyPerRetryTimeoutUnit(
-    this.terraformValue,
-  );
+  const AppmeshRouteUnit(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -271,12 +265,12 @@ enum AppmeshRouteSpecGrpcRouteRetryPolicyPerRetryTimeoutUnit
 /// Typed helper for the `spec.grpc_route.timeout` block of
 /// `aws_appmesh_route` (derived from provider schema).
 @immutable
-final class AppmeshRouteSpecGrpcRouteTimeout {
-  const AppmeshRouteSpecGrpcRouteTimeout({this.idle, this.perRequest});
+final class AppmeshRouteGrpcRouteTimeout {
+  const AppmeshRouteGrpcRouteTimeout({this.idle, this.perRequest});
 
-  final AppmeshRouteSpecGrpcRouteTimeoutIdle? idle;
+  final AppmeshRouteGrpcRouteIdle? idle;
 
-  final AppmeshRouteSpecGrpcRouteTimeoutPerRequest? perRequest;
+  final AppmeshRouteGrpcRoutePerRequest? perRequest;
 
   Map<String, Object?> encode() => {
     'idle': ?idle?.encode(),
@@ -286,14 +280,12 @@ final class AppmeshRouteSpecGrpcRouteTimeout {
 
 /// Typed helper for the `spec.grpc_route.timeout.idle` block of
 /// `aws_appmesh_route` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshRouteSpecGrpcRouteTimeoutIdle {
-  const AppmeshRouteSpecGrpcRouteTimeoutIdle({
-    required this.unit,
-    required this.value,
-  });
+final class AppmeshRouteGrpcRouteIdle {
+  const AppmeshRouteGrpcRouteIdle({required this.unit, required this.value});
 
-  final TfArg<AppmeshRouteSpecGrpcRouteTimeoutIdleUnit> unit;
+  final TfArg<AppmeshRouteUnit> unit;
 
   final TfArg<num> value;
 
@@ -301,28 +293,18 @@ final class AppmeshRouteSpecGrpcRouteTimeoutIdle {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `unit` — derived from the provider schema description.
-enum AppmeshRouteSpecGrpcRouteTimeoutIdleUnit implements TerraformEnum {
-  s('s'),
-  ms('ms');
-
-  const AppmeshRouteSpecGrpcRouteTimeoutIdleUnit(this.terraformValue);
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `spec.grpc_route.timeout.per_request` block of
 /// `aws_appmesh_route` (derived from provider schema).
 @immutable
-final class AppmeshRouteSpecGrpcRouteTimeoutPerRequest {
-  const AppmeshRouteSpecGrpcRouteTimeoutPerRequest({
+final class AppmeshRouteGrpcRoutePerRequest {
+  const AppmeshRouteGrpcRoutePerRequest({
     required this.unit,
     required this.value,
   });
 
-  final TfArg<AppmeshRouteSpecGrpcRouteTimeoutPerRequestUnit> unit;
+  final TfArg<AppmeshRouteUnit> unit;
 
   final TfArg<num> value;
 
@@ -332,34 +314,24 @@ final class AppmeshRouteSpecGrpcRouteTimeoutPerRequest {
   };
 }
 
-/// `unit` — derived from the provider schema description.
-enum AppmeshRouteSpecGrpcRouteTimeoutPerRequestUnit implements TerraformEnum {
-  s('s'),
-  ms('ms');
-
-  const AppmeshRouteSpecGrpcRouteTimeoutPerRequestUnit(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `spec.http2_route` block of
 /// `aws_appmesh_route` (derived from provider schema).
 @immutable
-final class AppmeshRouteSpecHttp2Route {
-  const AppmeshRouteSpecHttp2Route({
+final class AppmeshRouteHttp2Route {
+  const AppmeshRouteHttp2Route({
     required this.action,
     required this.match,
     this.retryPolicy,
     this.timeout,
   });
 
-  final AppmeshRouteSpecHttp2RouteAction action;
+  final AppmeshRouteAction action;
 
-  final AppmeshRouteSpecHttp2RouteMatch match;
+  final AppmeshRouteHttp2RouteMatch match;
 
-  final AppmeshRouteSpecHttp2RouteRetryPolicy? retryPolicy;
+  final AppmeshRouteHttp2RouteRetryPolicy? retryPolicy;
 
-  final AppmeshRouteSpecHttp2RouteTimeout? timeout;
+  final AppmeshRouteHttp2RouteTimeout? timeout;
 
   Map<String, Object?> encode() => {
     'action': action.encode(),
@@ -369,47 +341,12 @@ final class AppmeshRouteSpecHttp2Route {
   };
 }
 
-/// Typed helper for the `spec.http2_route.action` block of
-/// `aws_appmesh_route` (derived from provider schema).
-@immutable
-final class AppmeshRouteSpecHttp2RouteAction {
-  const AppmeshRouteSpecHttp2RouteAction({required this.weightedTarget});
-
-  final List<AppmeshRouteSpecHttp2RouteActionWeightedTarget> weightedTarget;
-
-  Map<String, Object?> encode() => {
-    'weighted_target': [for (final e in weightedTarget) e.encode()],
-  };
-}
-
-/// Typed helper for the `spec.http2_route.action.weighted_target` block of
-/// `aws_appmesh_route` (derived from provider schema).
-@immutable
-final class AppmeshRouteSpecHttp2RouteActionWeightedTarget {
-  const AppmeshRouteSpecHttp2RouteActionWeightedTarget({
-    this.port,
-    required this.virtualNode,
-    required this.weight,
-  });
-
-  final TfArg<num>? port;
-
-  final TfArg<String> virtualNode;
-
-  final TfArg<num> weight;
-
-  Map<String, Object?> encode() => {
-    'port': ?port?.toTfJson(),
-    'virtual_node': virtualNode.toTfJson(),
-    'weight': weight.toTfJson(),
-  };
-}
-
 /// Typed helper for the `spec.http2_route.match` block of
 /// `aws_appmesh_route` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshRouteSpecHttp2RouteMatch {
-  const AppmeshRouteSpecHttp2RouteMatch({
+final class AppmeshRouteHttp2RouteMatch {
+  const AppmeshRouteHttp2RouteMatch({
     this.method,
     this.port,
     this.prefix,
@@ -427,11 +364,11 @@ final class AppmeshRouteSpecHttp2RouteMatch {
 
   final TfArg<String>? scheme;
 
-  final List<AppmeshRouteSpecHttp2RouteMatchHeader>? header;
+  final List<AppmeshRouteHeader>? header;
 
-  final AppmeshRouteSpecHttp2RouteMatchPath? path;
+  final AppmeshRoutePath? path;
 
-  final List<AppmeshRouteSpecHttp2RouteMatchQueryParameter>? queryParameter;
+  final List<AppmeshRouteQueryParameter>? queryParameter;
 
   Map<String, Object?> encode() => {
     'method': ?method?.toTfJson(),
@@ -447,19 +384,16 @@ final class AppmeshRouteSpecHttp2RouteMatch {
 
 /// Typed helper for the `spec.http2_route.match.header` block of
 /// `aws_appmesh_route` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshRouteSpecHttp2RouteMatchHeader {
-  const AppmeshRouteSpecHttp2RouteMatchHeader({
-    this.invert,
-    required this.name,
-    this.match,
-  });
+final class AppmeshRouteHeader {
+  const AppmeshRouteHeader({this.invert, required this.name, this.match});
 
   final TfArg<bool>? invert;
 
   final TfArg<String> name;
 
-  final AppmeshRouteSpecHttp2RouteMatchHeaderMatch? match;
+  final AppmeshRouteMetadataMatch? match;
 
   Map<String, Object?> encode() => {
     'invert': ?invert?.toTfJson(),
@@ -468,61 +402,12 @@ final class AppmeshRouteSpecHttp2RouteMatchHeader {
   };
 }
 
-/// Typed helper for the `spec.http2_route.match.header.match` block of
-/// `aws_appmesh_route` (derived from provider schema).
-@immutable
-final class AppmeshRouteSpecHttp2RouteMatchHeaderMatch {
-  const AppmeshRouteSpecHttp2RouteMatchHeaderMatch({
-    this.exact,
-    this.prefix,
-    this.regex,
-    this.suffix,
-    this.range,
-  });
-
-  final TfArg<String>? exact;
-
-  final TfArg<String>? prefix;
-
-  final TfArg<String>? regex;
-
-  final TfArg<String>? suffix;
-
-  final AppmeshRouteSpecHttp2RouteMatchHeaderMatchRange? range;
-
-  Map<String, Object?> encode() => {
-    'exact': ?exact?.toTfJson(),
-    'prefix': ?prefix?.toTfJson(),
-    'regex': ?regex?.toTfJson(),
-    'suffix': ?suffix?.toTfJson(),
-    'range': ?range?.encode(),
-  };
-}
-
-/// Typed helper for the `spec.http2_route.match.header.match.range` block of
-/// `aws_appmesh_route` (derived from provider schema).
-@immutable
-final class AppmeshRouteSpecHttp2RouteMatchHeaderMatchRange {
-  const AppmeshRouteSpecHttp2RouteMatchHeaderMatchRange({
-    required this.end,
-    required this.start,
-  });
-
-  final TfArg<num> end;
-
-  final TfArg<num> start;
-
-  Map<String, Object?> encode() => {
-    'end': end.toTfJson(),
-    'start': start.toTfJson(),
-  };
-}
-
 /// Typed helper for the `spec.http2_route.match.path` block of
 /// `aws_appmesh_route` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshRouteSpecHttp2RouteMatchPath {
-  const AppmeshRouteSpecHttp2RouteMatchPath({this.exact, this.regex});
+final class AppmeshRoutePath {
+  const AppmeshRoutePath({this.exact, this.regex});
 
   final TfArg<String>? exact;
 
@@ -536,16 +421,14 @@ final class AppmeshRouteSpecHttp2RouteMatchPath {
 
 /// Typed helper for the `spec.http2_route.match.query_parameter` block of
 /// `aws_appmesh_route` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshRouteSpecHttp2RouteMatchQueryParameter {
-  const AppmeshRouteSpecHttp2RouteMatchQueryParameter({
-    required this.name,
-    this.match,
-  });
+final class AppmeshRouteQueryParameter {
+  const AppmeshRouteQueryParameter({required this.name, this.match});
 
   final TfArg<String> name;
 
-  final AppmeshRouteSpecHttp2RouteMatchQueryParameterMatch? match;
+  final AppmeshRouteQueryParameterMatch? match;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -555,9 +438,10 @@ final class AppmeshRouteSpecHttp2RouteMatchQueryParameter {
 
 /// Typed helper for the `spec.http2_route.match.query_parameter.match` block of
 /// `aws_appmesh_route` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshRouteSpecHttp2RouteMatchQueryParameterMatch {
-  const AppmeshRouteSpecHttp2RouteMatchQueryParameterMatch({this.exact});
+final class AppmeshRouteQueryParameterMatch {
+  const AppmeshRouteQueryParameterMatch({this.exact});
 
   final TfArg<String>? exact;
 
@@ -566,9 +450,10 @@ final class AppmeshRouteSpecHttp2RouteMatchQueryParameterMatch {
 
 /// Typed helper for the `spec.http2_route.retry_policy` block of
 /// `aws_appmesh_route` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshRouteSpecHttp2RouteRetryPolicy {
-  const AppmeshRouteSpecHttp2RouteRetryPolicy({
+final class AppmeshRouteHttp2RouteRetryPolicy {
+  const AppmeshRouteHttp2RouteRetryPolicy({
     this.httpRetryEvents,
     required this.maxRetries,
     this.tcpRetryEvents,
@@ -581,7 +466,7 @@ final class AppmeshRouteSpecHttp2RouteRetryPolicy {
 
   final TfArg<List<String>>? tcpRetryEvents;
 
-  final AppmeshRouteSpecHttp2RouteRetryPolicyPerRetryTimeout perRetryTimeout;
+  final AppmeshRouteHttp2RoutePerRetryTimeout perRetryTimeout;
 
   Map<String, Object?> encode() => {
     'http_retry_events': ?httpRetryEvents?.toTfJson(),
@@ -593,9 +478,10 @@ final class AppmeshRouteSpecHttp2RouteRetryPolicy {
 
 /// Typed helper for the `spec.http2_route.retry_policy.per_retry_timeout` block of
 /// `aws_appmesh_route` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshRouteSpecHttp2RouteRetryPolicyPerRetryTimeout {
-  const AppmeshRouteSpecHttp2RouteRetryPolicyPerRetryTimeout({
+final class AppmeshRouteHttp2RoutePerRetryTimeout {
+  const AppmeshRouteHttp2RoutePerRetryTimeout({
     required this.unit,
     required this.value,
   });
@@ -612,13 +498,14 @@ final class AppmeshRouteSpecHttp2RouteRetryPolicyPerRetryTimeout {
 
 /// Typed helper for the `spec.http2_route.timeout` block of
 /// `aws_appmesh_route` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshRouteSpecHttp2RouteTimeout {
-  const AppmeshRouteSpecHttp2RouteTimeout({this.idle, this.perRequest});
+final class AppmeshRouteHttp2RouteTimeout {
+  const AppmeshRouteHttp2RouteTimeout({this.idle, this.perRequest});
 
-  final AppmeshRouteSpecHttp2RouteTimeoutIdle? idle;
+  final AppmeshRouteHttp2RouteIdle? idle;
 
-  final AppmeshRouteSpecHttp2RouteTimeoutPerRequest? perRequest;
+  final AppmeshRouteHttp2RoutePerRequest? perRequest;
 
   Map<String, Object?> encode() => {
     'idle': ?idle?.encode(),
@@ -628,12 +515,10 @@ final class AppmeshRouteSpecHttp2RouteTimeout {
 
 /// Typed helper for the `spec.http2_route.timeout.idle` block of
 /// `aws_appmesh_route` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshRouteSpecHttp2RouteTimeoutIdle {
-  const AppmeshRouteSpecHttp2RouteTimeoutIdle({
-    required this.unit,
-    required this.value,
-  });
+final class AppmeshRouteHttp2RouteIdle {
+  const AppmeshRouteHttp2RouteIdle({required this.unit, required this.value});
 
   final TfArg<String> unit;
 
@@ -647,9 +532,10 @@ final class AppmeshRouteSpecHttp2RouteTimeoutIdle {
 
 /// Typed helper for the `spec.http2_route.timeout.per_request` block of
 /// `aws_appmesh_route` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppmeshRouteSpecHttp2RouteTimeoutPerRequest {
-  const AppmeshRouteSpecHttp2RouteTimeoutPerRequest({
+final class AppmeshRouteHttp2RoutePerRequest {
+  const AppmeshRouteHttp2RoutePerRequest({
     required this.unit,
     required this.value,
   });
@@ -667,21 +553,21 @@ final class AppmeshRouteSpecHttp2RouteTimeoutPerRequest {
 /// Typed helper for the `spec.http_route` block of
 /// `aws_appmesh_route` (derived from provider schema).
 @immutable
-final class AppmeshRouteSpecHttpRoute {
-  const AppmeshRouteSpecHttpRoute({
+final class AppmeshRouteHttpRoute {
+  const AppmeshRouteHttpRoute({
     required this.action,
     required this.match,
     this.retryPolicy,
     this.timeout,
   });
 
-  final AppmeshRouteSpecHttpRouteAction action;
+  final AppmeshRouteAction action;
 
-  final AppmeshRouteSpecHttpRouteMatch match;
+  final AppmeshRouteHttp2RouteMatch match;
 
-  final AppmeshRouteSpecHttpRouteRetryPolicy? retryPolicy;
+  final AppmeshRouteHttp2RouteRetryPolicy? retryPolicy;
 
-  final AppmeshRouteSpecHttpRouteTimeout? timeout;
+  final AppmeshRouteHttp2RouteTimeout? timeout;
 
   Map<String, Object?> encode() => {
     'action': action.encode(),
@@ -691,316 +577,17 @@ final class AppmeshRouteSpecHttpRoute {
   };
 }
 
-/// Typed helper for the `spec.http_route.action` block of
-/// `aws_appmesh_route` (derived from provider schema).
-@immutable
-final class AppmeshRouteSpecHttpRouteAction {
-  const AppmeshRouteSpecHttpRouteAction({required this.weightedTarget});
-
-  final List<AppmeshRouteSpecHttpRouteActionWeightedTarget> weightedTarget;
-
-  Map<String, Object?> encode() => {
-    'weighted_target': [for (final e in weightedTarget) e.encode()],
-  };
-}
-
-/// Typed helper for the `spec.http_route.action.weighted_target` block of
-/// `aws_appmesh_route` (derived from provider schema).
-@immutable
-final class AppmeshRouteSpecHttpRouteActionWeightedTarget {
-  const AppmeshRouteSpecHttpRouteActionWeightedTarget({
-    this.port,
-    required this.virtualNode,
-    required this.weight,
-  });
-
-  final TfArg<num>? port;
-
-  final TfArg<String> virtualNode;
-
-  final TfArg<num> weight;
-
-  Map<String, Object?> encode() => {
-    'port': ?port?.toTfJson(),
-    'virtual_node': virtualNode.toTfJson(),
-    'weight': weight.toTfJson(),
-  };
-}
-
-/// Typed helper for the `spec.http_route.match` block of
-/// `aws_appmesh_route` (derived from provider schema).
-@immutable
-final class AppmeshRouteSpecHttpRouteMatch {
-  const AppmeshRouteSpecHttpRouteMatch({
-    this.method,
-    this.port,
-    this.prefix,
-    this.scheme,
-    this.header,
-    this.path,
-    this.queryParameter,
-  });
-
-  final TfArg<String>? method;
-
-  final TfArg<num>? port;
-
-  final TfArg<String>? prefix;
-
-  final TfArg<String>? scheme;
-
-  final List<AppmeshRouteSpecHttpRouteMatchHeader>? header;
-
-  final AppmeshRouteSpecHttpRouteMatchPath? path;
-
-  final List<AppmeshRouteSpecHttpRouteMatchQueryParameter>? queryParameter;
-
-  Map<String, Object?> encode() => {
-    'method': ?method?.toTfJson(),
-    'port': ?port?.toTfJson(),
-    'prefix': ?prefix?.toTfJson(),
-    'scheme': ?scheme?.toTfJson(),
-    if (header != null) 'header': [for (final e in header!) e.encode()],
-    'path': ?path?.encode(),
-    if (queryParameter != null)
-      'query_parameter': [for (final e in queryParameter!) e.encode()],
-  };
-}
-
-/// Typed helper for the `spec.http_route.match.header` block of
-/// `aws_appmesh_route` (derived from provider schema).
-@immutable
-final class AppmeshRouteSpecHttpRouteMatchHeader {
-  const AppmeshRouteSpecHttpRouteMatchHeader({
-    this.invert,
-    required this.name,
-    this.match,
-  });
-
-  final TfArg<bool>? invert;
-
-  final TfArg<String> name;
-
-  final AppmeshRouteSpecHttpRouteMatchHeaderMatch? match;
-
-  Map<String, Object?> encode() => {
-    'invert': ?invert?.toTfJson(),
-    'name': name.toTfJson(),
-    'match': ?match?.encode(),
-  };
-}
-
-/// Typed helper for the `spec.http_route.match.header.match` block of
-/// `aws_appmesh_route` (derived from provider schema).
-@immutable
-final class AppmeshRouteSpecHttpRouteMatchHeaderMatch {
-  const AppmeshRouteSpecHttpRouteMatchHeaderMatch({
-    this.exact,
-    this.prefix,
-    this.regex,
-    this.suffix,
-    this.range,
-  });
-
-  final TfArg<String>? exact;
-
-  final TfArg<String>? prefix;
-
-  final TfArg<String>? regex;
-
-  final TfArg<String>? suffix;
-
-  final AppmeshRouteSpecHttpRouteMatchHeaderMatchRange? range;
-
-  Map<String, Object?> encode() => {
-    'exact': ?exact?.toTfJson(),
-    'prefix': ?prefix?.toTfJson(),
-    'regex': ?regex?.toTfJson(),
-    'suffix': ?suffix?.toTfJson(),
-    'range': ?range?.encode(),
-  };
-}
-
-/// Typed helper for the `spec.http_route.match.header.match.range` block of
-/// `aws_appmesh_route` (derived from provider schema).
-@immutable
-final class AppmeshRouteSpecHttpRouteMatchHeaderMatchRange {
-  const AppmeshRouteSpecHttpRouteMatchHeaderMatchRange({
-    required this.end,
-    required this.start,
-  });
-
-  final TfArg<num> end;
-
-  final TfArg<num> start;
-
-  Map<String, Object?> encode() => {
-    'end': end.toTfJson(),
-    'start': start.toTfJson(),
-  };
-}
-
-/// Typed helper for the `spec.http_route.match.path` block of
-/// `aws_appmesh_route` (derived from provider schema).
-@immutable
-final class AppmeshRouteSpecHttpRouteMatchPath {
-  const AppmeshRouteSpecHttpRouteMatchPath({this.exact, this.regex});
-
-  final TfArg<String>? exact;
-
-  final TfArg<String>? regex;
-
-  Map<String, Object?> encode() => {
-    'exact': ?exact?.toTfJson(),
-    'regex': ?regex?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `spec.http_route.match.query_parameter` block of
-/// `aws_appmesh_route` (derived from provider schema).
-@immutable
-final class AppmeshRouteSpecHttpRouteMatchQueryParameter {
-  const AppmeshRouteSpecHttpRouteMatchQueryParameter({
-    required this.name,
-    this.match,
-  });
-
-  final TfArg<String> name;
-
-  final AppmeshRouteSpecHttpRouteMatchQueryParameterMatch? match;
-
-  Map<String, Object?> encode() => {
-    'name': name.toTfJson(),
-    'match': ?match?.encode(),
-  };
-}
-
-/// Typed helper for the `spec.http_route.match.query_parameter.match` block of
-/// `aws_appmesh_route` (derived from provider schema).
-@immutable
-final class AppmeshRouteSpecHttpRouteMatchQueryParameterMatch {
-  const AppmeshRouteSpecHttpRouteMatchQueryParameterMatch({this.exact});
-
-  final TfArg<String>? exact;
-
-  Map<String, Object?> encode() => {'exact': ?exact?.toTfJson()};
-}
-
-/// Typed helper for the `spec.http_route.retry_policy` block of
-/// `aws_appmesh_route` (derived from provider schema).
-@immutable
-final class AppmeshRouteSpecHttpRouteRetryPolicy {
-  const AppmeshRouteSpecHttpRouteRetryPolicy({
-    this.httpRetryEvents,
-    required this.maxRetries,
-    this.tcpRetryEvents,
-    required this.perRetryTimeout,
-  });
-
-  final TfArg<List<String>>? httpRetryEvents;
-
-  final TfArg<num> maxRetries;
-
-  final TfArg<List<String>>? tcpRetryEvents;
-
-  final AppmeshRouteSpecHttpRouteRetryPolicyPerRetryTimeout perRetryTimeout;
-
-  Map<String, Object?> encode() => {
-    'http_retry_events': ?httpRetryEvents?.toTfJson(),
-    'max_retries': maxRetries.toTfJson(),
-    'tcp_retry_events': ?tcpRetryEvents?.toTfJson(),
-    'per_retry_timeout': perRetryTimeout.encode(),
-  };
-}
-
-/// Typed helper for the `spec.http_route.retry_policy.per_retry_timeout` block of
-/// `aws_appmesh_route` (derived from provider schema).
-@immutable
-final class AppmeshRouteSpecHttpRouteRetryPolicyPerRetryTimeout {
-  const AppmeshRouteSpecHttpRouteRetryPolicyPerRetryTimeout({
-    required this.unit,
-    required this.value,
-  });
-
-  final TfArg<String> unit;
-
-  final TfArg<num> value;
-
-  Map<String, Object?> encode() => {
-    'unit': unit.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
-
-/// Typed helper for the `spec.http_route.timeout` block of
-/// `aws_appmesh_route` (derived from provider schema).
-@immutable
-final class AppmeshRouteSpecHttpRouteTimeout {
-  const AppmeshRouteSpecHttpRouteTimeout({this.idle, this.perRequest});
-
-  final AppmeshRouteSpecHttpRouteTimeoutIdle? idle;
-
-  final AppmeshRouteSpecHttpRouteTimeoutPerRequest? perRequest;
-
-  Map<String, Object?> encode() => {
-    'idle': ?idle?.encode(),
-    'per_request': ?perRequest?.encode(),
-  };
-}
-
-/// Typed helper for the `spec.http_route.timeout.idle` block of
-/// `aws_appmesh_route` (derived from provider schema).
-@immutable
-final class AppmeshRouteSpecHttpRouteTimeoutIdle {
-  const AppmeshRouteSpecHttpRouteTimeoutIdle({
-    required this.unit,
-    required this.value,
-  });
-
-  final TfArg<String> unit;
-
-  final TfArg<num> value;
-
-  Map<String, Object?> encode() => {
-    'unit': unit.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
-
-/// Typed helper for the `spec.http_route.timeout.per_request` block of
-/// `aws_appmesh_route` (derived from provider schema).
-@immutable
-final class AppmeshRouteSpecHttpRouteTimeoutPerRequest {
-  const AppmeshRouteSpecHttpRouteTimeoutPerRequest({
-    required this.unit,
-    required this.value,
-  });
-
-  final TfArg<String> unit;
-
-  final TfArg<num> value;
-
-  Map<String, Object?> encode() => {
-    'unit': unit.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
-
 /// Typed helper for the `spec.tcp_route` block of
 /// `aws_appmesh_route` (derived from provider schema).
 @immutable
-final class AppmeshRouteSpecTcpRoute {
-  const AppmeshRouteSpecTcpRoute({
-    required this.action,
-    this.match,
-    this.timeout,
-  });
+final class AppmeshRouteTcpRoute {
+  const AppmeshRouteTcpRoute({required this.action, this.match, this.timeout});
 
-  final AppmeshRouteSpecTcpRouteAction action;
+  final AppmeshRouteAction action;
 
-  final AppmeshRouteSpecTcpRouteMatch? match;
+  final AppmeshRouteTcpRouteMatch? match;
 
-  final AppmeshRouteSpecTcpRouteTimeout? timeout;
+  final AppmeshRouteTcpRouteTimeout? timeout;
 
   Map<String, Object?> encode() => {
     'action': action.encode(),
@@ -1009,47 +596,11 @@ final class AppmeshRouteSpecTcpRoute {
   };
 }
 
-/// Typed helper for the `spec.tcp_route.action` block of
-/// `aws_appmesh_route` (derived from provider schema).
-@immutable
-final class AppmeshRouteSpecTcpRouteAction {
-  const AppmeshRouteSpecTcpRouteAction({required this.weightedTarget});
-
-  final List<AppmeshRouteSpecTcpRouteActionWeightedTarget> weightedTarget;
-
-  Map<String, Object?> encode() => {
-    'weighted_target': [for (final e in weightedTarget) e.encode()],
-  };
-}
-
-/// Typed helper for the `spec.tcp_route.action.weighted_target` block of
-/// `aws_appmesh_route` (derived from provider schema).
-@immutable
-final class AppmeshRouteSpecTcpRouteActionWeightedTarget {
-  const AppmeshRouteSpecTcpRouteActionWeightedTarget({
-    this.port,
-    required this.virtualNode,
-    required this.weight,
-  });
-
-  final TfArg<num>? port;
-
-  final TfArg<String> virtualNode;
-
-  final TfArg<num> weight;
-
-  Map<String, Object?> encode() => {
-    'port': ?port?.toTfJson(),
-    'virtual_node': virtualNode.toTfJson(),
-    'weight': weight.toTfJson(),
-  };
-}
-
 /// Typed helper for the `spec.tcp_route.match` block of
 /// `aws_appmesh_route` (derived from provider schema).
 @immutable
-final class AppmeshRouteSpecTcpRouteMatch {
-  const AppmeshRouteSpecTcpRouteMatch({this.port});
+final class AppmeshRouteTcpRouteMatch {
+  const AppmeshRouteTcpRouteMatch({this.port});
 
   final TfArg<num>? port;
 
@@ -1059,41 +610,12 @@ final class AppmeshRouteSpecTcpRouteMatch {
 /// Typed helper for the `spec.tcp_route.timeout` block of
 /// `aws_appmesh_route` (derived from provider schema).
 @immutable
-final class AppmeshRouteSpecTcpRouteTimeout {
-  const AppmeshRouteSpecTcpRouteTimeout({this.idle});
+final class AppmeshRouteTcpRouteTimeout {
+  const AppmeshRouteTcpRouteTimeout({this.idle});
 
-  final AppmeshRouteSpecTcpRouteTimeoutIdle? idle;
+  final AppmeshRouteGrpcRouteIdle? idle;
 
   Map<String, Object?> encode() => {'idle': ?idle?.encode()};
-}
-
-/// Typed helper for the `spec.tcp_route.timeout.idle` block of
-/// `aws_appmesh_route` (derived from provider schema).
-@immutable
-final class AppmeshRouteSpecTcpRouteTimeoutIdle {
-  const AppmeshRouteSpecTcpRouteTimeoutIdle({
-    required this.unit,
-    required this.value,
-  });
-
-  final TfArg<AppmeshRouteSpecTcpRouteTimeoutIdleUnit> unit;
-
-  final TfArg<num> value;
-
-  Map<String, Object?> encode() => {
-    'unit': unit.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
-
-/// `unit` — derived from the provider schema description.
-enum AppmeshRouteSpecTcpRouteTimeoutIdleUnit implements TerraformEnum {
-  s('s'),
-  ms('ms');
-
-  const AppmeshRouteSpecTcpRouteTimeoutIdleUnit(this.terraformValue);
-  @override
-  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_appmesh_route`.
