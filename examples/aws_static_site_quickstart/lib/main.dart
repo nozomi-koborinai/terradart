@@ -43,7 +43,7 @@ final class AwsStaticSiteStack extends Stack {
       name: .literal(hostedZone),
       privateZone: .literal(false),
     );
-    addData(zone);
+    add(zone);
 
     final bucket = AwsS3Bucket(
       localName: 'site',
@@ -105,7 +105,7 @@ final class AwsStaticSiteStack extends Stack {
       localName: 'caching_optimized',
       name: .literal('Managed-CachingOptimized'),
     );
-    addData(cachingOptimized);
+    add(cachingOptimized);
 
     final distribution = AwsCloudfrontDistribution(
       localName: 'site',
@@ -180,7 +180,7 @@ final class AwsStaticSiteStack extends Stack {
         ),
       ],
     );
-    addData(readFromCloudFront);
+    add(readFromCloudFront);
     add(
       AwsS3BucketPolicy(
         localName: 'site',

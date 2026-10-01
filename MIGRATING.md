@@ -176,6 +176,16 @@ Terraform rejects an attribute in `depends_on`, so nothing replaces
 | `dependsOn: [ResourceDependency(db), ...apiDeps]` | `dependsOn: [db, ...apiDeps]` |
 | `final List<ResourceDependency> deps` | `final List<TfAddressed> deps` |
 
+### `add` registers data sources
+
+`Stack.add` takes a resource or a data source, and `addData` is gone.
+Rename the calls; synth output does not change.
+
+| 0.31 | 0.32 |
+|------|------|
+| `final project = addData(DataGoogleProject(...));` | `final project = add(DataGoogleProject(...));` |
+| `stack.addData(trust);` | `stack.add(trust);` |
+
 ## 0.30.x → 0.31.0
 
 0.31.0 is a breaking release for the Dart API of every package, but not for

@@ -114,7 +114,7 @@ void main() {
 
     test('resolves a .ref to a data source argument', () {
       final stack = _stack();
-      final project = stack.addData(
+      final project = stack.add(
         FakeProjectData(
           localName: 'p',
           argMap: const {'project_id': TfArgLiteral<String>('my-proj')},
@@ -297,7 +297,7 @@ void main() {
 
       test('a sensitive field of a data source', () {
         final stack = _stack();
-        final secret = stack.addData(
+        final secret = stack.add(
           FakeSecretData(
             localName: 's',
             argMap: const {'plaintext': TfArgLiteral<String>('pw')},
@@ -379,7 +379,7 @@ void main() {
 
     test('requires sensitive: true for a data source sensitive field', () {
       final stack = _plainStack();
-      final secret = stack.addData(
+      final secret = stack.add(
         FakeSecretData(localName: 's', argMap: const {}),
       );
       final ref = TfRef.data<String>(secret, 'plaintext');

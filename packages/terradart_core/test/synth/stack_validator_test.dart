@@ -270,8 +270,7 @@ void main() {
         ),
       );
       expect(
-        () =>
-            stack.addData(FakeProjectData(localName: '1st', argMap: const {})),
+        () => stack.add(FakeProjectData(localName: '1st', argMap: const {})),
         throwsArgumentError,
       );
       expect(

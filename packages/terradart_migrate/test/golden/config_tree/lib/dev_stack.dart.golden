@@ -37,7 +37,7 @@ final class DevStack extends Stack {
     );
     // Environment root module. Resources declared directly here, plus calls into
     // the shared local modules under ../modules.
-    addData(
+    add(
       GoogleProject(localName: 'current', projectId: .variable('project_id')),
     );
     add(

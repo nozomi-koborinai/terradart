@@ -137,7 +137,7 @@ void main() {
         versionConstraint: '~> 7.0',
       );
       final stack = TestStack(providers: const [google])
-        ..addData(
+        ..add(
           FakeProjectData(
             localName: 'current',
             argMap: const {'project_id': TfArgLiteral<String>('demo')},

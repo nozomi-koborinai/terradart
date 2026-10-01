@@ -303,7 +303,7 @@ final class $name {
       default:
         return fail(
           'it reads $address, which is not registered on this Stack; add '
-          'it with add(...) / addData(...).',
+          'it with add(...).',
         );
     }
     final arg = argMap[attr];

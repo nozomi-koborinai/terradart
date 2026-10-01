@@ -34,7 +34,7 @@ final class StorageTransferStack extends Stack {
       propagationDelay: const Duration(seconds: 60),
     );
 
-    final current = addData(GoogleProject(localName: 'current'));
+    final current = add(GoogleProject(localName: 'current'));
     final stsMember = IamPrincipal.serviceAccount(
       'project-${current.number.interpolation}@storage-transfer-service.iam.gserviceaccount.com',
     );

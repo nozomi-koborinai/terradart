@@ -67,7 +67,6 @@ String snakeCase(String name) {
 /// shadow.
 const Set<String> stackMemberNames = {
   'add',
-  'addData',
   'addOutput',
   'addConstant',
   'addVariable',

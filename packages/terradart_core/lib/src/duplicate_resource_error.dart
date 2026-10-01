@@ -1,6 +1,6 @@
 import 'resource.dart';
 
-/// Thrown by `Stack.add` / `Stack.addData` when an entry with the same
+/// Thrown by `Stack.add` when an entry with the same
 /// `(kind, terraformType, localName)` triple is registered twice.
 final class DuplicateResourceError extends Error {
   DuplicateResourceError({

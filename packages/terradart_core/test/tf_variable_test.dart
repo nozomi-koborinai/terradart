@@ -239,7 +239,7 @@ void main() {
                 versionConstraint: '~> 7.0',
               ),
             ],
-          )..addData(
+          )..add(
             FakeProjectData(
               localName: 'current',
               argMap: {'project_id': TfArg.variable<String>('project_id')},

@@ -38,7 +38,7 @@ final class TagsStack extends Stack {
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
         appExports: AppExports('lib/generated/tags_stack.app.dart'),
       ) {
-    final current = addData(GoogleProject(localName: 'current'));
+    final current = add(GoogleProject(localName: 'current'));
 
     // Tag-level IAM members validate that the principal exists, so provision
     // the service account in-stack and bind against its `principal`

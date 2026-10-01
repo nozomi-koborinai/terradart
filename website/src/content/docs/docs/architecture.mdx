@@ -59,7 +59,7 @@ Before it encodes anything, synth checks the whole Stack and collects every prob
 |-------|------|
 | `NoProviders` / `MissingProvider` / `ProviderConflict` | no provider is registered, a block needs one that is not, or two registrations clash (a repeated alias, different version pins for one name) |
 | `UndeclaredVariable` | a `.variable('x')` or `var.x` names a variable neither `addVariable` nor `addExternalVariable` declared |
-| `UnregisteredReference` | a block reads (or `depends_on`) a resource, data source or module that was built but never passed to `add` / `addData` / `addModule` |
+| `UnregisteredReference` | a block reads (or `depends_on`) a resource, data source or module that was built but never passed to `add` / `addModule` |
 | `SensitiveLiteral` | a sensitive field is set to a literal, which would write the secret into `main.tf.json` |
 | `InvalidTimeout` | a `TfTimeouts` value is not a Go duration string |
 | `InvalidMoveTarget` | an `addMoved` target names no resource of the Stack |
@@ -86,7 +86,7 @@ void explain(Stack stack) {
 }
 ```
 
-A block declared in a hand-written `.tf` file beside `main.tf.json` is the one legitimate unregistered reference: declare it with `addExternalBlock('google_pubsub_topic.legacy')`, the counterpart of `addExternalVariable` for variables (`terradart-migrate` does this for the blocks it leaves in the sidecar). Names are checked earlier, where they are registered: `add`, `addData`, `addModule`, `addVariable` and `addOutput` throw `ArgumentError` for a name that is not a Terraform identifier.
+A block declared in a hand-written `.tf` file beside `main.tf.json` is the one legitimate unregistered reference: declare it with `addExternalBlock('google_pubsub_topic.legacy')`, the counterpart of `addExternalVariable` for variables (`terradart-migrate` does this for the blocks it leaves in the sidecar). Names are checked earlier, where they are registered: `add`, `addModule`, `addVariable` and `addOutput` throw `ArgumentError` for a name that is not a Terraform identifier.
 
 `Stack`, `Resource`, and `Data` are `abstract base class`. Your subclasses must declare a class modifier:
 

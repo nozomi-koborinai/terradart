@@ -76,7 +76,7 @@ void main() {
       () {
         final stack = _S();
         stack.add(_R(localName: 'main', type: 'google_project'));
-        stack.addData(_D(localName: 'main', type: 'google_project'));
+        stack.add(_D(localName: 'main', type: 'google_project'));
         expect(stack.resources, hasLength(1));
         expect(stack.dataSources, hasLength(1));
       },
@@ -84,18 +84,18 @@ void main() {
 
     test('two data sources with same (data, type, localName) -> error', () {
       final stack = _S();
-      stack.addData(_D(localName: 'current', type: 'google_project'));
+      stack.add(_D(localName: 'current', type: 'google_project'));
       expect(
-        () => stack.addData(_D(localName: 'current', type: 'google_project')),
+        () => stack.add(_D(localName: 'current', type: 'google_project')),
         throwsA(isA<DuplicateResourceError>()),
       );
     });
 
     test(
-      'cross-collection scenario: addData then add the SAME (type,localName) -> ok (different kind)',
+      'cross-collection scenario: a data source and a resource of the SAME (type,localName) -> ok (different kind)',
       () {
         final stack = _S();
-        stack.addData(_D(localName: 'shared', type: 'google_project'));
+        stack.add(_D(localName: 'shared', type: 'google_project'));
         stack.add(_R(localName: 'shared', type: 'google_project'));
         // Both registered because kind differs.
         expect(stack.resources, hasLength(1));

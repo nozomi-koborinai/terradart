@@ -69,7 +69,7 @@ final class _TestStack extends Stack {
         ),
       ],
     );
-    addData(trust);
+    add(trust);
     final role = AwsIamRole(
       localName: 'fn',
       assumeRolePolicy: trust.json,

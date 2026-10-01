@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- A migrated data source is registered with `add(...)`.
 - A migrated `depends_on` lists the Dart objects (`dependsOn: [schema, api]`).
 - A kept block the migrated Stack still reads is declared with `addExternalBlock('<address>')`, which synth now requires for a reference to a block the Stack does not hold.
 - Migrated strings are plain `'...'`; only a string holding `$` or `\` stays raw (`r'${google_x.y.id}'`).
