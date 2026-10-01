@@ -55,7 +55,7 @@ final class VectorSearchStack extends Stack {
           ),
         ],
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(apiVectorSearch)],
+        dependsOn: [apiVectorSearch],
       ),
     );
 
@@ -75,10 +75,7 @@ final class VectorSearchStack extends Stack {
           ),
         ],
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [
-          ResourceDependency(apiVectorSearch),
-          ResourceDependency(collection),
-        ],
+        dependsOn: [apiVectorSearch, collection],
       ),
     );
   }

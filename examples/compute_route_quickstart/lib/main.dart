@@ -64,7 +64,7 @@ final class NetworkRouteStack extends Stack {
         localName: 'edge_viewer',
         accountId: .literal('route-edge-viewer'),
         displayName: .literal('Network firewall policy viewer (demo)'),
-        dependsOn: [ResourceDependency(apiIam)],
+        dependsOn: [apiIam],
       ),
     );
 
@@ -74,7 +74,7 @@ final class NetworkRouteStack extends Stack {
         name: .literal('terradart-route-demo'),
         autoCreateSubnetworks: .literal(false),
         routingMode: .literal(.regional),
-        dependsOn: [ResourceDependency(apiCompute)],
+        dependsOn: [apiCompute],
       ),
     );
 
@@ -87,7 +87,7 @@ final class NetworkRouteStack extends Stack {
         description: .literal('Demo egress route to the internet gateway'),
         priority: .literal(1000),
         nextHop: .gateway(nextHopGateway: .literal('default-internet-gateway')),
-        dependsOn: [ResourceDependency(vpc)],
+        dependsOn: [vpc],
       ),
     );
 
@@ -98,7 +98,7 @@ final class NetworkRouteStack extends Stack {
         network: .network(vpc.ref),
         region: .literal('us-central1'),
         description: .literal('Cloud Router for Named Set demo'),
-        dependsOn: [ResourceDependency(vpc)],
+        dependsOn: [vpc],
       ),
     );
 
@@ -116,7 +116,7 @@ final class NetworkRouteStack extends Stack {
             title: .literal('rfc1918-10'),
           ),
         ],
-        dependsOn: [ResourceDependency(router)],
+        dependsOn: [router],
       ),
     );
 
@@ -125,7 +125,7 @@ final class NetworkRouteStack extends Stack {
         localName: 'ops_owner',
         key: .literal('terradart-ops-owner'),
         value: .literal('platform-team'),
-        dependsOn: [ResourceDependency(apiCompute)],
+        dependsOn: [apiCompute],
       ),
     );
 
@@ -136,7 +136,7 @@ final class NetworkRouteStack extends Stack {
         localName: 'edge_policy',
         name: .literal('terradart-edge-policy'),
         description: .literal('Global network firewall policy (demo)'),
-        dependsOn: [ResourceDependency(apiCompute)],
+        dependsOn: [apiCompute],
       ),
     );
 
@@ -146,10 +146,7 @@ final class NetworkRouteStack extends Stack {
         firewallPolicy: edgePolicy.ref,
         role: .literal('roles/compute.viewer'),
         members: .literal([edgeViewer.principal]),
-        dependsOn: [
-          ResourceDependency(edgePolicy),
-          ResourceDependency(edgeViewer),
-        ],
+        dependsOn: [edgePolicy, edgeViewer],
       ),
     );
 
@@ -164,10 +161,7 @@ final class NetworkRouteStack extends Stack {
                 'serviceAccount:route-edge-viewer@$projectId.iam.gserviceaccount.com',
           ),
         ),
-        dependsOn: [
-          ResourceDependency(edgePolicy),
-          ResourceDependency(edgeBinding),
-        ],
+        dependsOn: [edgePolicy, edgeBinding],
       ),
     );
 
@@ -177,7 +171,7 @@ final class NetworkRouteStack extends Stack {
         name: .literal('terradart-regional-edge-policy'),
         region: .literal('us-central1'),
         description: .literal('Regional network firewall policy (IAM demo)'),
-        dependsOn: [ResourceDependency(apiCompute)],
+        dependsOn: [apiCompute],
       ),
     );
 
@@ -187,10 +181,7 @@ final class NetworkRouteStack extends Stack {
         firewallPolicy: regionalEdgePolicy.ref,
         role: .literal('roles/compute.viewer'),
         members: .literal([edgeViewer.principal]),
-        dependsOn: [
-          ResourceDependency(regionalEdgePolicy),
-          ResourceDependency(edgeViewer),
-        ],
+        dependsOn: [regionalEdgePolicy, edgeViewer],
       ),
     );
 
@@ -205,10 +196,7 @@ final class NetworkRouteStack extends Stack {
                 'serviceAccount:route-edge-viewer@$projectId.iam.gserviceaccount.com',
           ),
         ),
-        dependsOn: [
-          ResourceDependency(regionalEdgePolicy),
-          ResourceDependency(regionalEdgeBinding),
-        ],
+        dependsOn: [regionalEdgePolicy, regionalEdgeBinding],
       ),
     );
 
@@ -230,7 +218,7 @@ final class NetworkRouteStack extends Stack {
             ),
           ),
         ),
-        dependsOn: [ResourceDependency(apiCompute)],
+        dependsOn: [apiCompute],
       ),
     );
 
@@ -244,7 +232,7 @@ final class NetworkRouteStack extends Stack {
         zone: .literal('us-central1-a'),
         type: .literal('pd-standard'),
         size: .literal(10),
-        dependsOn: [ResourceDependency(apiCompute)],
+        dependsOn: [apiCompute],
       ),
     );
 
@@ -255,10 +243,7 @@ final class NetworkRouteStack extends Stack {
         disk: disk.ref,
         zone: .literal('us-central1-a'),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [
-          ResourceDependency(disk),
-          ResourceDependency(snapshotPolicy),
-        ],
+        dependsOn: [disk, snapshotPolicy],
       ),
     );
 

@@ -52,7 +52,7 @@ final class OracleExadataStack extends Stack {
       location: .literal(location),
       odbNetworkId: .literal(odbNetworkId),
       network: vpc.ref,
-      dependsOn: [...apiDeps, ResourceDependency(vpc)],
+      dependsOn: [...apiDeps, vpc],
     );
     add(odbNetwork);
 
@@ -63,7 +63,7 @@ final class OracleExadataStack extends Stack {
       odbSubnetId: .literal(clientSubnetId),
       cidrRange: .literal('10.50.0.0/24'),
       purpose: .literal(.clientSubnet),
-      dependsOn: [...apiDeps, ResourceDependency(odbNetwork)],
+      dependsOn: [...apiDeps, odbNetwork],
     );
     add(clientSubnet);
 
@@ -74,7 +74,7 @@ final class OracleExadataStack extends Stack {
       odbSubnetId: .literal(backupSubnetId),
       cidrRange: .literal('10.51.0.0/24'),
       purpose: .literal(.backupSubnet),
-      dependsOn: [...apiDeps, ResourceDependency(odbNetwork)],
+      dependsOn: [...apiDeps, odbNetwork],
     );
     add(backupSubnet);
 
@@ -108,12 +108,7 @@ final class OracleExadataStack extends Stack {
         sshPublicKeys: .literal([_placeholderSshPublicKey]),
         vmFileSystemStorage: .new(sizeInGbsPerNode: .literal(220)),
       ),
-      dependsOn: [
-        ...apiDeps,
-        ResourceDependency(clientSubnet),
-        ResourceDependency(backupSubnet),
-        ResourceDependency(storageVault),
-      ],
+      dependsOn: [...apiDeps, clientSubnet, backupSubnet, storageVault],
     );
     add(exadbVmCluster);
 
@@ -148,12 +143,7 @@ final class OracleExadataStack extends Stack {
           hostnamePrefix: .literal('exa1'),
           sshPublicKeys: .literal([_placeholderSshPublicKey]),
         ),
-        dependsOn: [
-          ...apiDeps,
-          ResourceDependency(exadata),
-          ResourceDependency(clientSubnet),
-          ResourceDependency(backupSubnet),
-        ],
+        dependsOn: [...apiDeps, exadata, clientSubnet, backupSubnet],
       ),
     );
   }

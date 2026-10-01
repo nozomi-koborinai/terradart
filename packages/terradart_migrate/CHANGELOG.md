@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- A migrated `depends_on` lists the Dart objects (`dependsOn: [schema, api]`).
 - A kept block the migrated Stack still reads is declared with `addExternalBlock('<address>')`, which synth now requires for a reference to a block the Stack does not hold.
 - Migrated strings are plain `'...'`; only a string holding `$` or `\` stays raw (`r'${google_x.y.id}'`).
 - A generated module wrapper forwards `ModuleCall`'s parameters as super parameters (`required super.localName, required super.source, super.version, ...`).

@@ -40,7 +40,7 @@ final class GkeHubFeatureStack extends Stack {
         localName: 'mcsd',
         name: .literal('multiclusterservicediscovery'),
         location: .literal('global'),
-        dependsOn: [ResourceDependency(apiGkeHub), ResourceDependency(apiMcsd)],
+        dependsOn: [apiGkeHub, apiMcsd],
       ),
     );
 
@@ -60,10 +60,7 @@ final class GkeHubFeatureStack extends Stack {
         feature: feature.ref,
         role: .literal('roles/viewer'),
         member: fleetReader.principal,
-        dependsOn: [
-          ResourceDependency(feature),
-          ResourceDependency(fleetReader),
-        ],
+        dependsOn: [feature, fleetReader],
       ),
     );
   }

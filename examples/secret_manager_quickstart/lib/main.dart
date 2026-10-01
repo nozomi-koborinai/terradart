@@ -84,7 +84,7 @@ final class DbCredentialsStack extends Stack {
         secret: secret.ref,
         role: .literal('roles/secretmanager.secretAccessor'),
         member: appSa.principal,
-        dependsOn: [ResourceDependency(appSa)],
+        dependsOn: [appSa],
       ),
     );
 
@@ -97,7 +97,7 @@ final class DbCredentialsStack extends Stack {
         secret: secret.ref,
         role: .literal('roles/secretmanager.secretAccessor'),
         members: .literal([appSa.principal]),
-        dependsOn: [ResourceDependency(secret), ResourceDependency(appSa)],
+        dependsOn: [secret, appSa],
       ),
     );
 
@@ -112,10 +112,7 @@ final class DbCredentialsStack extends Stack {
                 'serviceAccount:app-runner@$projectId.iam.gserviceaccount.com',
           ),
         ),
-        dependsOn: [
-          ResourceDependency(secret),
-          ResourceDependency(secretAccessorBinding),
-        ],
+        dependsOn: [secret, secretAccessorBinding],
       ),
     );
 
@@ -147,10 +144,7 @@ final class DbCredentialsStack extends Stack {
         secret: regionalSecret.ref,
         role: .literal('roles/secretmanager.secretAccessor'),
         member: appSa.principal,
-        dependsOn: [
-          ResourceDependency(regionalSecret),
-          ResourceDependency(appSa),
-        ],
+        dependsOn: [regionalSecret, appSa],
       ),
     );
 
@@ -160,10 +154,7 @@ final class DbCredentialsStack extends Stack {
         secret: regionalSecret.ref,
         role: .literal('roles/secretmanager.secretAccessor'),
         members: .literal([appSa.principal]),
-        dependsOn: [
-          ResourceDependency(regionalSecret),
-          ResourceDependency(appSa),
-        ],
+        dependsOn: [regionalSecret, appSa],
       ),
     );
 
@@ -178,10 +169,7 @@ final class DbCredentialsStack extends Stack {
                 'serviceAccount:app-runner@$projectId.iam.gserviceaccount.com',
           ),
         ),
-        dependsOn: [
-          ResourceDependency(regionalSecret),
-          ResourceDependency(regionalAccessorBinding),
-        ],
+        dependsOn: [regionalSecret, regionalAccessorBinding],
       ),
     );
 

@@ -105,7 +105,7 @@ void main() {
           FakePubsubTopic.withMeta(
             localName: 'a',
             argMap: const {},
-            dependsOn: [ResourceDependency(orphan)],
+            dependsOn: [orphan],
             lifecycle: LifecycleOptions(
               replaceTriggeredBy: [TfRef.attribute(orphan, 'id')],
             ),

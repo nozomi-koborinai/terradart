@@ -41,7 +41,7 @@ final class ContactCenterInsightsStack extends Stack {
         // Keep inactive so apply does not enroll conversations in analysis.
         active: .literal(false),
         analysisPercentage: .literal(0),
-        dependsOn: [ResourceDependency(apiInsights)],
+        dependsOn: [apiInsights],
       ),
     );
 
@@ -53,7 +53,7 @@ final class ContactCenterInsightsStack extends Stack {
         // API rejects an empty value ("Value cannot be empty"); use a
         // documented conversation filter instead.
         value: .literal('medium="PHONE_CALL"'),
-        dependsOn: [ResourceDependency(apiInsights)],
+        dependsOn: [apiInsights],
       ),
     );
 
@@ -67,7 +67,7 @@ final class ContactCenterInsightsStack extends Stack {
         displayName: .literal('TerraDart QA'),
         description: .literal('Quickstart scorecard'),
         source: .literal(.customerDefined),
-        dependsOn: [ResourceDependency(apiInsights)],
+        dependsOn: [apiInsights],
       ),
     );
 
@@ -79,7 +79,7 @@ final class ContactCenterInsightsStack extends Stack {
         localName: 'qa_rev',
         location: .literal('us-central1'),
         qaScorecard: .literal(scorecardId),
-        dependsOn: [ResourceDependency(scorecard)],
+        dependsOn: [scorecard],
       ),
     );
 
@@ -104,7 +104,7 @@ final class ContactCenterInsightsStack extends Stack {
             score: .literal(0.5),
           ),
         ],
-        dependsOn: [ResourceDependency(revision)],
+        dependsOn: [revision],
       ),
     );
 
@@ -122,7 +122,7 @@ final class ContactCenterInsightsStack extends Stack {
         scheduleInfo: ContactCenterInsightsAssessmentRuleScheduleInfo(
           schedule: .literal('every 1 hours'),
         ),
-        dependsOn: [ResourceDependency(apiInsights)],
+        dependsOn: [apiInsights],
       ),
     );
 
@@ -142,7 +142,7 @@ final class ContactCenterInsightsStack extends Stack {
           ),
         ],
         active: .literal(false),
-        dependsOn: [ResourceDependency(apiInsights)],
+        dependsOn: [apiInsights],
       ),
     );
 

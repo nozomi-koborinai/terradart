@@ -73,7 +73,7 @@ final class FirebaseAppBackendStack extends Stack {
       GoogleFirebaseProject(
         localName: 'firebase_core',
         project: .literal(projectId),
-        dependsOn: [ResourceDependency(apiFirebase)],
+        dependsOn: [apiFirebase],
       ),
     );
 
@@ -82,7 +82,7 @@ final class FirebaseAppBackendStack extends Stack {
         localName: 'web_client',
         displayName: .literal('Frontend Client'),
         project: .literal(projectId),
-        dependsOn: [ResourceDependency(fbProject)],
+        dependsOn: [fbProject],
       ),
     );
 
@@ -97,10 +97,7 @@ final class FirebaseAppBackendStack extends Stack {
         type: .literal(.firestoreNative),
         deleteProtectionState: .literal(.disabled),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [
-          ResourceDependency(apiFirestore),
-          ResourceDependency(fbProject),
-        ],
+        dependsOn: [apiFirestore, fbProject],
       ),
     );
 
@@ -115,7 +112,7 @@ final class FirebaseAppBackendStack extends Stack {
         storageClass: .literal(.standard),
         uniformBucketLevelAccess: .literal(true),
         forceDestroy: .literal(true),
-        dependsOn: [ResourceDependency(apiStorage)],
+        dependsOn: [apiStorage],
       ),
     );
 
@@ -143,10 +140,7 @@ final class FirebaseAppBackendStack extends Stack {
             ),
           ],
         ),
-        dependsOn: [
-          ResourceDependency(apiRun),
-          ResourceDependency(firestoreDb),
-        ],
+        dependsOn: [apiRun, firestoreDb],
       ),
     );
   }

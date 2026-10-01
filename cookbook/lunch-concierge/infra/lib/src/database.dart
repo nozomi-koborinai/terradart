@@ -54,7 +54,7 @@ LunchDatabase addDatabase({
           allocatedIpRange: network.psaRange.ref,
         ),
       ),
-      dependsOn: [ResourceDependency(network.psaConnection)],
+      dependsOn: [network.psaConnection],
     ),
   );
 
@@ -63,7 +63,7 @@ LunchDatabase addDatabase({
       localName: 'lunch',
       instance: sql.ref,
       name: .literal(databaseName),
-      dependsOn: [ResourceDependency(sql)],
+      dependsOn: [sql],
     ),
   );
 
@@ -74,10 +74,7 @@ LunchDatabase addDatabase({
       instance: sql.ref,
       name: .literal(databaseUser),
       type: .literal(.cloudIamServiceAccount),
-      dependsOn: [
-        ResourceDependency(sql),
-        ResourceDependency(identity.serviceAccount),
-      ],
+      dependsOn: [sql, identity.serviceAccount],
     ),
   );
 

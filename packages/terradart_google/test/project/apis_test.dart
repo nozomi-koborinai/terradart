@@ -217,8 +217,8 @@ void main() {
       // The returned dependency targets the sleep (not the services), and
       // the sleep itself depends on every service — the services -> sleep ->
       // dependents ordering is the whole contract of this helper.
-      expect(deps.single.target, same(sleep));
-      expect(sleep.dependsOn!.map((d) => d.bareAddress), [
+      expect(deps.single, same(sleep));
+      expect(sleep.dependsOn!.map((d) => d.tfAddress), [
         'google_project_service.api_pubsub',
       ]);
       expect(sleep.localName, 'api_propagation');

@@ -48,7 +48,7 @@ final class GeminiStack extends Stack {
         geminiGcpEnablementSettingId: .literal('terradart-enablement'),
         location: .literal('global'),
         enableCustomerDataSharing: .literal(false),
-        dependsOn: [ResourceDependency(apiGemini)],
+        dependsOn: [apiGemini],
       ),
     );
 
@@ -69,7 +69,7 @@ final class GeminiStack extends Stack {
         location: .literal('global'),
         logMetadata: .literal(true),
         logPromptsAndResponses: .literal(false),
-        dependsOn: [ResourceDependency(apiGemini)],
+        dependsOn: [apiGemini],
       ),
     );
 
@@ -88,7 +88,7 @@ final class GeminiStack extends Stack {
         localName: 'release_channel',
         releaseChannelSettingId: .literal('terradart-channel'),
         location: .literal('global'),
-        dependsOn: [ResourceDependency(apiGemini)],
+        dependsOn: [apiGemini],
       ),
     );
 
@@ -109,7 +109,7 @@ final class GeminiStack extends Stack {
         location: .literal('global'),
         enableDataSharing: .literal(false),
         enablePreviewDataSharing: .literal(false),
-        dependsOn: [ResourceDependency(apiGemini)],
+        dependsOn: [apiGemini],
       ),
     );
 
@@ -142,7 +142,7 @@ final class GeminiStack extends Stack {
               loggingEnabled: loggingEnabled,
               feedbackEnabled: feedbackEnabled,
             ),
-        dependsOn: [ResourceDependency(apiGemini)],
+        dependsOn: [apiGemini],
       ),
     );
 
@@ -168,7 +168,7 @@ final class GeminiStack extends Stack {
               loggingEnabled: loggingEnabled,
               feedbackEnabled: feedbackEnabled,
             ),
-        dependsOn: [ResourceDependency(apiGemini)],
+        dependsOn: [apiGemini],
       ),
     );
 

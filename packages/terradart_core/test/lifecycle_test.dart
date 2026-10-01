@@ -41,26 +41,4 @@ void main() {
       );
     });
   });
-
-  group('DependencyTarget sealed', () {
-    test('ResourceDependency renders bareAddress of the resource', () {
-      final dep = ResourceDependency(_FakeAddressed('a.b'));
-      expect(dep.bareAddress, 'a.b');
-    });
-
-    test('RefDependency renders bareAddress of the ref', () {
-      final ref = TfRef.attribute<String>(_FakeAddressed('a.b'), 'c');
-      final dep = RefDependency(ref);
-      expect(dep.bareAddress, 'a.b.c');
-    });
-
-    test('switch is exhaustive', () {
-      final DependencyTarget dep = ResourceDependency(_FakeAddressed('a.b'));
-      final tag = switch (dep) {
-        ResourceDependency() => 'res',
-        RefDependency() => 'ref',
-      };
-      expect(tag, 'res');
-    });
-  });
 }

@@ -10,6 +10,11 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ### Changed
 
+- **`dependsOn` takes the blocks** (`terradart_core`, `terradart_google`,
+  `terradart_migrate`) — `dependsOn: [schema, api, ...apiDeps]` instead of
+  `ResourceDependency(...)` around each entry. `DependencyTarget`,
+  `ResourceDependency` and `RefDependency` are removed, and `Apis.enable`
+  returns `List<TfAddressed>`.
 - **More arguments that name another resource take `RefTo<R>`**
   (`terradart_codegen`, `terradart_google`, `terradart_google_beta`,
   `terradart_aws`, `terradart_migrate`) — every Magic Modules `ResourceRef`

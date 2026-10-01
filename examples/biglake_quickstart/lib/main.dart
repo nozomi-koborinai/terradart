@@ -54,7 +54,7 @@ final class MetastoreStack extends Stack {
         localName: 'analytics',
         name: .literal('terradart_catalog'),
         location: .literal('us-central1'),
-        dependsOn: [ResourceDependency(apiBiglake)],
+        dependsOn: [apiBiglake],
       ),
     );
 
@@ -68,7 +68,7 @@ final class MetastoreStack extends Stack {
           locationUri: .literal('$warehouse/terradart_db'),
           parameters: .literal({'owner': 'terradart'}),
         ),
-        dependsOn: [ResourceDependency(catalog)],
+        dependsOn: [catalog],
       ),
     );
 
@@ -88,7 +88,7 @@ final class MetastoreStack extends Stack {
             ),
           ),
         ),
-        dependsOn: [ResourceDependency(database)],
+        dependsOn: [database],
       ),
     );
 
@@ -99,7 +99,7 @@ final class MetastoreStack extends Stack {
         location: .literal('US-CENTRAL1'),
         forceDestroy: .literal(true),
         uniformBucketLevelAccess: .literal(true),
-        dependsOn: [ResourceDependency(apiStorage)],
+        dependsOn: [apiStorage],
       ),
     );
 
@@ -109,10 +109,7 @@ final class MetastoreStack extends Stack {
         name: icebergBucket.name,
         catalogType: .literal(.catalogTypeGcsBucket),
         credentialMode: .literal(.credentialModeEndUser),
-        dependsOn: [
-          ResourceDependency(apiBiglake),
-          ResourceDependency(icebergBucket),
-        ],
+        dependsOn: [apiBiglake, icebergBucket],
       ),
     );
 
@@ -121,7 +118,7 @@ final class MetastoreStack extends Stack {
         localName: 'iceberg_ns',
         catalog: icebergCatalog.ref,
         namespaceId: .literal('terradart_ns'),
-        dependsOn: [ResourceDependency(icebergCatalog)],
+        dependsOn: [icebergCatalog],
       ),
     );
 
@@ -162,7 +159,7 @@ final class MetastoreStack extends Stack {
             ),
           ],
         ),
-        dependsOn: [ResourceDependency(icebergNamespace)],
+        dependsOn: [icebergNamespace],
       ),
     );
 
@@ -180,10 +177,7 @@ final class MetastoreStack extends Stack {
         catalog: icebergCatalog.ref,
         role: .literal('roles/viewer'),
         member: reader.principal,
-        dependsOn: [
-          ResourceDependency(icebergCatalog),
-          ResourceDependency(reader),
-        ],
+        dependsOn: [icebergCatalog, reader],
       ),
     );
 
@@ -193,10 +187,7 @@ final class MetastoreStack extends Stack {
         namespace: icebergNamespace.ref,
         role: .literal('roles/viewer'),
         member: reader.principal,
-        dependsOn: [
-          ResourceDependency(icebergNamespace),
-          ResourceDependency(reader),
-        ],
+        dependsOn: [icebergNamespace, reader],
       ),
     );
 
@@ -206,10 +197,7 @@ final class MetastoreStack extends Stack {
         table: icebergTable.ref,
         role: .literal('roles/viewer'),
         member: reader.principal,
-        dependsOn: [
-          ResourceDependency(icebergTable),
-          ResourceDependency(reader),
-        ],
+        dependsOn: [icebergTable, reader],
       ),
     );
 

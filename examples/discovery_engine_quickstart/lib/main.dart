@@ -68,7 +68,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
         searchEngineConfig: DiscoveryEngineSearchEngineConfig(
           searchTier: .literal(.searchTierStandard),
         ),
-        dependsOn: [ResourceDependency(dataStore)],
+        dependsOn: [dataStore],
       ),
     );
 
@@ -78,10 +78,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
         engine: searchEngine.ref,
         role: .literal('roles/discoveryengine.viewer'),
         member: reader.principal,
-        dependsOn: [
-          ResourceDependency(searchEngine),
-          ResourceDependency(reader),
-        ],
+        dependsOn: [searchEngine, reader],
       ),
     );
 
@@ -91,11 +88,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
         engine: searchEngine.ref,
         role: .literal('roles/discoveryengine.viewer'),
         members: .literal([reader.principal]),
-        dependsOn: [
-          ResourceDependency(searchEngine),
-          ResourceDependency(reader),
-          ResourceDependency(searchReaderMember),
-        ],
+        dependsOn: [searchEngine, reader, searchReaderMember],
       ),
     );
 
@@ -110,10 +103,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
                 'serviceAccount:vertex-search-reader@$projectId.iam.gserviceaccount.com',
           ),
         ),
-        dependsOn: [
-          ResourceDependency(searchEngine),
-          ResourceDependency(searchReaderBinding),
-        ],
+        dependsOn: [searchEngine, searchReaderBinding],
       ),
     );
 
@@ -140,7 +130,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
         jsonSchema: .literal(
           r'{"$schema":"https://json-schema.org/draft/2020-12/schema","datetime_detection":true,"type":"object","geolocation_detection":true}',
         ),
-        dependsOn: [ResourceDependency(schemaStore)],
+        dependsOn: [schemaStore],
       ),
     );
 
@@ -157,7 +147,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
         action: .synonymsAction(
           .new(synonyms: .literal(['quickstart', 'demo'])),
         ),
-        dependsOn: [ResourceDependency(searchEngine)],
+        dependsOn: [searchEngine],
       ),
     );
 
@@ -169,10 +159,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
         engineId: searchEngine.ref,
         servingConfigId: .literal('default_search'),
         synonymsControlIds: .literal([synonyms.controlId.interpolation]),
-        dependsOn: [
-          ResourceDependency(searchEngine),
-          ResourceDependency(synonyms),
-        ],
+        dependsOn: [searchEngine, synonyms],
       ),
     );
 

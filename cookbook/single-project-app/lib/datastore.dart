@@ -23,10 +23,8 @@ GoogleSqlDatabaseInstance buildSqlInstance({
       privateNetwork: vpc.ref,
     ),
   ),
-  // SQL instance requires PSA peering active; declared via the typed
-  // ResourceDependency builder (terradart_core exposes a first-class
-  // `dependsOn: List<DependencyTarget>?` parameter).
-  dependsOn: [ResourceDependency(psaConnection)],
+  // The SQL instance needs PSA peering active before it is created.
+  dependsOn: [psaConnection],
 );
 
 GoogleSqlDatabase buildSqlDatabase(GoogleSqlDatabaseInstance sqlInstance) =>

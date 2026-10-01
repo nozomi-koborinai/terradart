@@ -59,7 +59,7 @@ final class AccessControlsStack extends Stack {
             ],
           ),
         ),
-        dependsOn: [ResourceDependency(policy)],
+        dependsOn: [policy],
       ),
     );
 
@@ -74,7 +74,7 @@ final class AccessControlsStack extends Stack {
           restrictedServices: .literal(['storage.googleapis.com']),
           accessLevels: .literal([usOnly.name.interpolation]),
         ),
-        dependsOn: [ResourceDependency(policy), ResourceDependency(usOnly)],
+        dependsOn: [policy, usOnly],
       ),
     );
 
@@ -99,7 +99,7 @@ final class AccessControlsStack extends Stack {
             'spec[0].egress_policies',
           ],
         ),
-        dependsOn: [ResourceDependency(policy)],
+        dependsOn: [policy],
       ),
     );
 
@@ -109,7 +109,7 @@ final class AccessControlsStack extends Stack {
         perimeterName: dryRun.ref,
         resource: .literal('projects/987654321'),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(dryRun)],
+        dependsOn: [dryRun],
       ),
     );
 
@@ -133,7 +133,7 @@ final class AccessControlsStack extends Stack {
         lifecycle: const LifecycleOptions(
           ignoreChanges: ['basic[0].conditions'],
         ),
-        dependsOn: [ResourceDependency(policy)],
+        dependsOn: [policy],
       ),
     );
 
@@ -158,7 +158,7 @@ final class AccessControlsStack extends Stack {
         ),
         regions: .literal(['IT', 'US']),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(chromeos)],
+        dependsOn: [chromeos],
       ),
     );
 
@@ -168,7 +168,7 @@ final class AccessControlsStack extends Stack {
         accessPolicy: policy.ref,
         role: .literal('roles/accesscontextmanager.policyViewer'),
         member: .group('security-admins@example.com'),
-        dependsOn: [ResourceDependency(policy)],
+        dependsOn: [policy],
       ),
     );
 
@@ -187,7 +187,7 @@ final class AccessControlsStack extends Stack {
         assetType: .literal(.credentialStrength),
         authorizationDirection: .literal(.to),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(policy)],
+        dependsOn: [policy],
       ),
     );
 
@@ -211,7 +211,7 @@ final class AccessControlsStack extends Stack {
             ),
           ),
         ],
-        dependsOn: [ResourceDependency(policy)],
+        dependsOn: [policy],
       ),
     );
 
@@ -228,7 +228,7 @@ final class AccessControlsStack extends Stack {
             title: .literal('bulk_storage'),
           ),
         ],
-        dependsOn: [ResourceDependency(policy)],
+        dependsOn: [policy],
       ),
     );
 
@@ -248,7 +248,7 @@ final class AccessControlsStack extends Stack {
             'status[0].egress_policies',
           ],
         ),
-        dependsOn: [ResourceDependency(policy)],
+        dependsOn: [policy],
       ),
     );
 
@@ -258,7 +258,7 @@ final class AccessControlsStack extends Stack {
         perimeterName: attach.ref,
         resource: .literal('projects/987654322'),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(attach)],
+        dependsOn: [attach],
       ),
     );
 
@@ -274,7 +274,7 @@ final class AccessControlsStack extends Stack {
                     .anyIdentity,
               ),
             ),
-        dependsOn: [ResourceDependency(attach)],
+        dependsOn: [attach],
       ),
     );
 
@@ -289,7 +289,7 @@ final class AccessControlsStack extends Stack {
                 .anyIdentity,
           ),
         ),
-        dependsOn: [ResourceDependency(attach)],
+        dependsOn: [attach],
       ),
     );
 
@@ -305,7 +305,7 @@ final class AccessControlsStack extends Stack {
                     .anyIdentity,
               ),
             ),
-        dependsOn: [ResourceDependency(dryRun)],
+        dependsOn: [dryRun],
       ),
     );
 
@@ -321,7 +321,7 @@ final class AccessControlsStack extends Stack {
                     .anyIdentity,
               ),
             ),
-        dependsOn: [ResourceDependency(dryRun)],
+        dependsOn: [dryRun],
       ),
     );
 
@@ -333,7 +333,7 @@ final class AccessControlsStack extends Stack {
         ),
         resource: .literal('projects/987654323'),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(attach)],
+        dependsOn: [attach],
       ),
     );
 
@@ -345,7 +345,7 @@ final class AccessControlsStack extends Stack {
         ),
         resource: .literal('projects/987654323'),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(attach)],
+        dependsOn: [attach],
       ),
     );
 
@@ -356,7 +356,7 @@ final class AccessControlsStack extends Stack {
         subject: .groupKey(.literal('00abcde12345678')),
         accessLevels: .literal([usOnly.name.interpolation]),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(usOnly)],
+        dependsOn: [usOnly],
       ),
     );
   }

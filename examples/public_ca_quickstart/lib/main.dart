@@ -30,7 +30,7 @@ final class PublicCaStack extends Stack {
       GooglePublicCaExternalAccountKey(
         localName: 'acme_eab',
         location: .literal('global'),
-        dependsOn: [ResourceDependency(apiPublicCa)],
+        dependsOn: [apiPublicCa],
       ),
     );
   }

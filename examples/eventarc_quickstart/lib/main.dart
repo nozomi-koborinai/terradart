@@ -38,10 +38,7 @@ final class EventarcStack extends Stack {
         service: .literal('eventarcpublishing.googleapis.com'),
       ),
     );
-    final eventarcDeps = [
-      ResourceDependency(eventarcApi),
-      ResourceDependency(eventarcPublishingApi),
-    ];
+    final eventarcDeps = [eventarcApi, eventarcPublishingApi];
 
     // Eventarc triggers require a service account that delivers events to the
     // destination; the API rejects creation with "trigger.service_account is
@@ -108,7 +105,7 @@ final class EventarcStack extends Stack {
         pipeline: pipeline.ref,
         role: .literal('roles/viewer'),
         member: triggerSa.principal,
-        dependsOn: [ResourceDependency(pipeline)],
+        dependsOn: [pipeline],
       ),
     );
 

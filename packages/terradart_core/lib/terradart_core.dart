@@ -8,8 +8,7 @@ export 'src/backends.dart' show GcsBackend, LocalBackend, S3Backend;
 export 'src/data.dart' show Data;
 export 'src/duplicate_resource_error.dart' show DuplicateResourceError;
 export 'src/duration_helper.dart' show TerraformDurationExt;
-export 'src/lifecycle.dart'
-    show DependencyTarget, LifecycleOptions, RefDependency, ResourceDependency;
+export 'src/lifecycle.dart' show LifecycleOptions;
 export 'src/module_call.dart' show DuplicateModuleError, ModuleCall;
 export 'src/ref_to.dart' show RefTo, RefToList;
 export 'src/resource.dart' show Resource, ResourceKind;

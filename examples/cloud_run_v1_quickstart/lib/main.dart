@@ -60,7 +60,7 @@ final class CloudRunV1Stack extends Stack {
           ),
         ],
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(apiRun)],
+        dependsOn: [apiRun],
       ),
     );
 
@@ -70,11 +70,7 @@ final class CloudRunV1Stack extends Stack {
         service: hello.ref,
         role: .literal('roles/run.invoker'),
         member: invoker.principal,
-        dependsOn: [
-          ResourceDependency(apiRun),
-          ResourceDependency(hello),
-          ResourceDependency(invoker),
-        ],
+        dependsOn: [apiRun, hello, invoker],
       ),
     );
   }

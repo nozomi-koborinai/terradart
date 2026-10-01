@@ -36,7 +36,7 @@ final class DataPolicyV2Stack extends Stack {
         dataPolicyId: .literal('raw-access'),
         dataPolicyType: .literal(.rawDataAccessPolicy),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(api)],
+        dependsOn: [api],
       ),
     );
 
@@ -52,7 +52,7 @@ final class DataPolicyV2Stack extends Stack {
                   BigqueryDatapolicyv2DataPolicyPredefinedExpression.emailMask,
             ),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(api)],
+        dependsOn: [api],
       ),
     );
 
@@ -71,7 +71,7 @@ final class DataPolicyV2Stack extends Stack {
         location: .literal('us-central1'),
         role: .literal('roles/bigquerydatapolicy.maskedReader'),
         member: reader.principal,
-        dependsOn: [ResourceDependency(emailMask), ResourceDependency(reader)],
+        dependsOn: [emailMask, reader],
       ),
     );
   }

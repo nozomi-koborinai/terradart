@@ -44,7 +44,7 @@ final class DataprocAutoscalingStack extends Stack {
             scaleDownFactor: .literal(0.5),
           ),
         ),
-        dependsOn: [ResourceDependency(apiDataproc)],
+        dependsOn: [apiDataproc],
       ),
     );
 
@@ -63,10 +63,7 @@ final class DataprocAutoscalingStack extends Stack {
         location: .literal('us-central1'),
         role: .literal('roles/viewer'),
         member: policyReader.principal,
-        dependsOn: [
-          ResourceDependency(policy),
-          ResourceDependency(policyReader),
-        ],
+        dependsOn: [policy, policyReader],
       ),
     );
 
@@ -92,7 +89,7 @@ final class DataprocAutoscalingStack extends Stack {
           ),
         ],
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(apiDataproc)],
+        dependsOn: [apiDataproc],
       ),
     );
   }

@@ -11,7 +11,7 @@ final class LunchApis {
     required this.iapApi,
   });
 
-  final List<ResourceDependency> apiDeps;
+  final List<TfAddressed> apiDeps;
   final GoogleProjectService vertexApi;
   final GoogleProjectService iapApi;
 }

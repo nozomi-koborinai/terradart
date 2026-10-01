@@ -40,7 +40,7 @@ final class FirestoreDocumentQuickstart extends Stack {
         locationId: .literal('asia-northeast1'),
         type: .literal(.firestoreNative),
         deleteProtectionState: .literal(.disabled),
-        dependsOn: [ResourceDependency(apiFirestore)],
+        dependsOn: [apiFirestore],
       ),
     );
 
@@ -50,7 +50,7 @@ final class FirestoreDocumentQuickstart extends Stack {
         collection: .literal('feature_flags'),
         documentId: .literal('dark_mode'),
         fields: FirestoreFields.encode({'enabled': true, 'rollout_pct': 100}),
-        dependsOn: [ResourceDependency(db)],
+        dependsOn: [db],
       ),
     );
 
@@ -64,7 +64,7 @@ final class FirestoreDocumentQuickstart extends Stack {
           'monthly_usd': 29,
           'features': ['analytics', 'priority_support'],
         }),
-        dependsOn: [ResourceDependency(db)],
+        dependsOn: [db],
       ),
     );
   }

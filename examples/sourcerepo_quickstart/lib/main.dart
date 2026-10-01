@@ -38,7 +38,7 @@ final class SourcerepoStack extends Stack {
       GoogleSourcerepoRepository(
         localName: 'hello',
         name: .literal('terradart-hello'),
-        dependsOn: [ResourceDependency(apiSource)],
+        dependsOn: [apiSource],
       ),
     );
 
@@ -48,7 +48,7 @@ final class SourcerepoStack extends Stack {
         repository: repo.ref,
         role: .literal('roles/source.reader'),
         member: reader.principal,
-        dependsOn: [ResourceDependency(repo), ResourceDependency(reader)],
+        dependsOn: [repo, reader],
       ),
     );
   }

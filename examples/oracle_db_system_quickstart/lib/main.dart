@@ -43,7 +43,7 @@ final class OracleDbSystemStack extends Stack {
       location: .literal(location),
       odbNetworkId: .literal(odbNetworkId),
       network: vpc.ref,
-      dependsOn: [...apiDeps, ResourceDependency(vpc)],
+      dependsOn: [...apiDeps, vpc],
     );
     add(odbNetwork);
 
@@ -54,7 +54,7 @@ final class OracleDbSystemStack extends Stack {
       odbSubnetId: .literal(odbSubnetId),
       cidrRange: .literal('10.40.0.0/24'),
       purpose: .literal(.clientSubnet),
-      dependsOn: [...apiDeps, ResourceDependency(odbNetwork)],
+      dependsOn: [...apiDeps, odbNetwork],
     );
     add(odbSubnet);
 
@@ -81,7 +81,7 @@ final class OracleDbSystemStack extends Stack {
             ),
           ),
         ),
-        dependsOn: [...apiDeps, ResourceDependency(odbSubnet)],
+        dependsOn: [...apiDeps, odbSubnet],
       ),
     );
   }

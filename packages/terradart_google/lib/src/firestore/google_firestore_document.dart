@@ -39,7 +39,7 @@ const Set<String> _googleFirestoreDocumentSensitive = <String>{};
 ///     'enabled': true,
 ///     'rollout_pct': 100,
 ///   }),
-///   dependsOn: [ResourceDependency(db)],
+///   dependsOn: [db],
 /// );
 /// ```
 ///

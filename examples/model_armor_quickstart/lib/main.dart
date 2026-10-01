@@ -33,7 +33,7 @@ final class ModelArmorStack extends Stack {
         location: .literal('us-central1'),
         templateId: .literal('terradart-modelarmor'),
         filterConfig: const ModelArmorTemplateFilterConfig(),
-        dependsOn: [ResourceDependency(apiModelArmor)],
+        dependsOn: [apiModelArmor],
       ),
     );
   }

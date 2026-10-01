@@ -80,10 +80,7 @@ final class OrdersStack extends Stack {
         // (pubsub.schemas.get/list/validate).
         role: .literal('roles/pubsub.viewer'),
         member: ordersPublisher.principal,
-        dependsOn: [
-          ResourceDependency(ordersSchema),
-          ResourceDependency(ordersPublisher),
-        ],
+        dependsOn: [ordersSchema, ordersPublisher],
       ),
     );
 
@@ -93,10 +90,7 @@ final class OrdersStack extends Stack {
         schema: ordersSchema.ref,
         role: .literal('roles/pubsub.viewer'),
         members: .literal([ordersPublisher.principal]),
-        dependsOn: [
-          ResourceDependency(ordersSchema),
-          ResourceDependency(ordersPublisher),
-        ],
+        dependsOn: [ordersSchema, ordersPublisher],
       ),
     );
 
@@ -111,10 +105,7 @@ final class OrdersStack extends Stack {
                 'serviceAccount:orders-publisher@$projectId.iam.gserviceaccount.com',
           ),
         ),
-        dependsOn: [
-          ResourceDependency(ordersSchema),
-          ResourceDependency(schemaViewerBinding),
-        ],
+        dependsOn: [ordersSchema, schemaViewerBinding],
       ),
     );
 
@@ -148,8 +139,10 @@ final class OrdersStack extends Stack {
         localName: 'orders_pubsub_agent',
         topic: topic.ref,
         role: .literal('roles/pubsub.publisher'),
-        member: .serviceAccount('service-${current.number.interpolation}@gcp-sa-pubsub.iam.gserviceaccount.com'),
-        dependsOn: [ResourceDependency(topic)],
+        member: .serviceAccount(
+          'service-${current.number.interpolation}@gcp-sa-pubsub.iam.gserviceaccount.com',
+        ),
+        dependsOn: [topic],
       ),
     );
 
@@ -161,10 +154,7 @@ final class OrdersStack extends Stack {
         topic: topic.ref,
         role: .literal('roles/pubsub.viewer'),
         members: .literal([ordersPublisher.principal]),
-        dependsOn: [
-          ResourceDependency(topic),
-          ResourceDependency(ordersPublisher),
-        ],
+        dependsOn: [topic, ordersPublisher],
       ),
     );
 
@@ -179,10 +169,7 @@ final class OrdersStack extends Stack {
                 'serviceAccount:orders-publisher@$projectId.iam.gserviceaccount.com',
           ),
         ),
-        dependsOn: [
-          ResourceDependency(topic),
-          ResourceDependency(topicViewerBinding),
-        ],
+        dependsOn: [topic, topicViewerBinding],
       ),
     );
 

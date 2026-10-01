@@ -139,7 +139,7 @@ final class MobileAppBackendStack extends Stack {
       localName: 'web_client',
       displayName: .literal('Web Client'),
       project: .literal(projectId),
-      dependsOn: [ResourceDependency(fb)],
+      dependsOn: [fb],
     ));
 
     // 3. [GA] Firestore Database (Native mode)
@@ -148,7 +148,7 @@ final class MobileAppBackendStack extends Stack {
       name: .literal('(default)'),
       locationId: .literal('asia-northeast1'),
       type: .literal(.firestoreNative),
-      dependsOn: [ResourceDependency(fb)],
+      dependsOn: [fb],
     ));
 
     // 4. [GA] Cloud Storage for user uploads
@@ -181,7 +181,7 @@ final class MobileAppBackendStack extends Stack {
           ),
         ],
       ),
-      dependsOn: [ResourceDependency(db)],
+      dependsOn: [db],
     ));
   }
 }

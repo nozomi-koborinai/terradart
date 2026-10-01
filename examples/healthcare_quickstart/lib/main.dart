@@ -53,7 +53,7 @@ final class HealthcareStack extends Stack {
         name: .literal('terradart-records'),
         location: .literal('us-central1'),
         timeZone: .literal('UTC'),
-        dependsOn: [ResourceDependency(apiHealthcare)],
+        dependsOn: [apiHealthcare],
       ),
     );
 
@@ -63,7 +63,7 @@ final class HealthcareStack extends Stack {
         name: .literal('terradart-images'),
         dataset: dataset.ref,
         labels: .literal(const {'managed-by': 'terradart'}),
-        dependsOn: [ResourceDependency(dataset)],
+        dependsOn: [dataset],
       ),
     );
 
@@ -73,7 +73,7 @@ final class HealthcareStack extends Stack {
         name: .literal('terradart-consents'),
         dataset: dataset.ref,
         defaultConsentTtl: .literal('86400s'),
-        dependsOn: [ResourceDependency(dataset)],
+        dependsOn: [dataset],
       ),
     );
 
@@ -87,7 +87,7 @@ final class HealthcareStack extends Stack {
           version: .literal(.v3),
           allowNullHeader: .literal(false),
         ),
-        dependsOn: [ResourceDependency(dataset)],
+        dependsOn: [dataset],
       ),
     );
 
@@ -98,7 +98,7 @@ final class HealthcareStack extends Stack {
         dataset: dataset.ref,
         version: .literal(.r4),
         labels: .literal(const {'managed-by': 'terradart'}),
-        dependsOn: [ResourceDependency(dataset)],
+        dependsOn: [dataset],
       ),
     );
 
@@ -108,7 +108,7 @@ final class HealthcareStack extends Stack {
         dataset: dataset.ref,
         role: .literal('roles/healthcare.datasetViewer'),
         member: analyst.principal,
-        dependsOn: [ResourceDependency(dataset), ResourceDependency(analyst)],
+        dependsOn: [dataset, analyst],
       ),
     );
 
@@ -119,7 +119,7 @@ final class HealthcareStack extends Stack {
         dicomStore: dicom.ref,
         role: .literal('roles/healthcare.dicomViewer'),
         member: analyst.principal,
-        dependsOn: [ResourceDependency(dicom), ResourceDependency(analyst)],
+        dependsOn: [dicom, analyst],
       ),
     );
 
@@ -129,7 +129,7 @@ final class HealthcareStack extends Stack {
         hl7V2Store: hl7.ref,
         role: .literal('roles/healthcare.hl7V2Consumer'),
         member: analyst.principal,
-        dependsOn: [ResourceDependency(hl7), ResourceDependency(analyst)],
+        dependsOn: [hl7, analyst],
       ),
     );
 
@@ -139,7 +139,7 @@ final class HealthcareStack extends Stack {
         consentStore: consent.ref,
         role: .literal('roles/healthcare.consentStoreViewer'),
         member: analyst.principal,
-        dependsOn: [ResourceDependency(consent), ResourceDependency(analyst)],
+        dependsOn: [consent, analyst],
       ),
     );
 
@@ -149,7 +149,7 @@ final class HealthcareStack extends Stack {
         fhirStore: fhir.ref,
         role: .literal('roles/healthcare.fhirResourceReader'),
         member: analyst.principal,
-        dependsOn: [ResourceDependency(fhir), ResourceDependency(analyst)],
+        dependsOn: [fhir, analyst],
       ),
     );
 

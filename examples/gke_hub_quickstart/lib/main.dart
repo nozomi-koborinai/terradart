@@ -41,7 +41,7 @@ final class FleetStack extends Stack {
       GoogleGkeHubScope(
         localName: 'team_scope',
         scopeId: .literal('terradart-scope'),
-        dependsOn: [ResourceDependency(apiGkeHub)],
+        dependsOn: [apiGkeHub],
       ),
     );
 
@@ -51,7 +51,7 @@ final class FleetStack extends Stack {
         scopeNamespaceId: .literal('terradart-team'),
         scopeId: scope.ref,
         scope: scope.ref,
-        dependsOn: [ResourceDependency(scope)],
+        dependsOn: [scope],
       ),
     );
 
@@ -66,7 +66,7 @@ final class FleetStack extends Stack {
         scopeRbacRoleBindingId: .literal('terradart-scope-rbac'),
         principal: .user(.literal('terradart-fleet-rbac@example.com')),
         role: .predefinedRole(.literal(.view)),
-        dependsOn: [ResourceDependency(scope)],
+        dependsOn: [scope],
       ),
     );
 
@@ -84,7 +84,7 @@ final class FleetStack extends Stack {
           ),
         ],
         displayName: .literal('TerraDart upgrade sequence'),
-        dependsOn: [ResourceDependency(apiGkeHub)],
+        dependsOn: [apiGkeHub],
       ),
     );
 
@@ -104,7 +104,7 @@ final class FleetStack extends Stack {
         scope: scope.ref,
         role: .literal('roles/viewer'),
         member: teamReader.principal,
-        dependsOn: [ResourceDependency(scope), ResourceDependency(teamReader)],
+        dependsOn: [scope, teamReader],
       ),
     );
 

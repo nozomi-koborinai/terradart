@@ -60,7 +60,7 @@ final class ComputeRolloutStack extends Stack {
             ),
           ),
         ],
-        dependsOn: [ResourceDependency(apiCompute)],
+        dependsOn: [apiCompute],
       ),
     );
 
@@ -94,7 +94,7 @@ final class ComputeRolloutStack extends Stack {
         rolloutOperation: ComputeGlobalVmExtensionPolicyRolloutOperation(
           rolloutInput: .new(plan: .name(.literal(planResourceName))),
         ),
-        dependsOn: [ResourceDependency(apiCompute), ResourceDependency(plan)],
+        dependsOn: [apiCompute, plan],
       ),
     );
   }

@@ -97,7 +97,7 @@ final class ApiServiceStack extends Stack {
           secretDataWo: .literal('placeholder-secret-value'),
           secretDataWoVersion: .literal('1'),
         ),
-        dependsOn: [ResourceDependency(dbPassword)],
+        dependsOn: [dbPassword],
       ),
     );
 
@@ -126,10 +126,7 @@ final class ApiServiceStack extends Stack {
         secret: dbPassword.ref,
         role: .literal('roles/secretmanager.secretAccessor'),
         member: runtimeSa.principal,
-        dependsOn: [
-          ResourceDependency(runtimeSa),
-          ResourceDependency(dbPassword),
-        ],
+        dependsOn: [runtimeSa, dbPassword],
       ),
     );
 
@@ -203,7 +200,7 @@ final class ApiServiceStack extends Stack {
         // id (projects/<project>/global/networks/<name>), not a short name.
         authorizedNetwork: vpc.ref,
         connectMode: .literal(.privateServiceAccess),
-        dependsOn: [...apiDeps, ResourceDependency(psaConnection)],
+        dependsOn: [...apiDeps, psaConnection],
       ),
     );
 
@@ -224,7 +221,7 @@ final class ApiServiceStack extends Stack {
         // (no PSA range) fails apply with "Google private service access is
         // not enabled".
         authorizedNetwork: vpc.ref,
-        dependsOn: [...apiDeps, ResourceDependency(psaConnection)],
+        dependsOn: [...apiDeps, psaConnection],
       ),
     );
 
@@ -267,10 +264,7 @@ final class ApiServiceStack extends Stack {
               // Reaches the cache through the VPC connector below; the
               // interpolation also gives Terraform the redis -> service
               // ordering without an explicit dependsOn entry.
-              .new(
-                name: .literal('REDIS_HOST'),
-                source: .value(cache.host),
-              ),
+              .new(name: .literal('REDIS_HOST'), source: .value(cache.host)),
             ],
             ports: .new(containerPort: .literal(8080)),
             resources: .new(
@@ -288,11 +282,11 @@ final class ApiServiceStack extends Stack {
       ),
       dependsOn: [
         ...apiDeps,
-        ResourceDependency(runConnector),
+        runConnector,
         // The secret version must exist (so `latest` resolves) and the runtime
         // SA must already have accessor on it, before the revision starts.
-        ResourceDependency(dbPasswordV1),
-        ResourceDependency(secretAccessor),
+        dbPasswordV1,
+        secretAccessor,
       ],
     );
     add(apiService);
@@ -377,11 +371,7 @@ final class ApiServiceStack extends Stack {
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: runtimeSa.principal,
         location: .literal('asia-northeast1'),
-        dependsOn: [
-          ResourceDependency(apiService),
-          ResourceDependency(runtimeSa),
-          ...apiDeps,
-        ],
+        dependsOn: [apiService, runtimeSa, ...apiDeps],
       ),
     );
 

@@ -47,7 +47,7 @@ main:
     - sayHello:
         return: "Hello from TerraDart"
 '''),
-        dependsOn: [ResourceDependency(apiWorkflows)],
+        dependsOn: [apiWorkflows],
       ),
     );
 

@@ -127,7 +127,7 @@ final class ChronicleCustomListStack extends Stack {
             ),
           ),
         ),
-        dependsOn: [...apiDeps, ResourceDependency(dashboard)],
+        dependsOn: [...apiDeps, dashboard],
       ),
     );
   }

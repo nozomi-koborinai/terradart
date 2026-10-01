@@ -1,4 +1,3 @@
-import 'lifecycle.dart';
 import 'tf_arg.dart';
 
 /// A `module "<localName>" { ... }` call as a Dart value.
@@ -94,7 +93,7 @@ base class ModuleCall implements TfAddressed {
   final Map<String, String> providers;
 
   /// Optional `depends_on = [...]`, like a resource's.
-  final List<DependencyTarget>? dependsOn;
+  final List<TfAddressed>? dependsOn;
 
   /// Optional `count = <n>`. The call's instances are then addressed
   /// `module.<localName>[0]`, which no [output] of this object spells — read

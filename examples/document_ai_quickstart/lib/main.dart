@@ -40,7 +40,7 @@ final class DocAiStack extends Stack {
         location: .literal('us'),
         displayName: .literal('terradart-ocr'),
         type: .literal('OCR_PROCESSOR'),
-        dependsOn: [ResourceDependency(apiDocumentAi)],
+        dependsOn: [apiDocumentAi],
       ),
     );
 
@@ -52,7 +52,7 @@ final class DocAiStack extends Stack {
         // `stable` resolves to the latest channel version; ignore the
         // API-returned concrete id so plans stay clean.
         lifecycle: const LifecycleOptions(ignoreChanges: ['version']),
-        dependsOn: [ResourceDependency(ocr)],
+        dependsOn: [ocr],
       ),
     );
 
@@ -61,7 +61,7 @@ final class DocAiStack extends Stack {
         localName: 'fields',
         location: .literal('us'),
         displayName: .literal('terradart-schema'),
-        dependsOn: [ResourceDependency(apiDocumentAi)],
+        dependsOn: [apiDocumentAi],
       ),
     );
 

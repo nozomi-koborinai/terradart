@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Breaking:** `dependsOn` on `Resource`, `Data` and `ModuleCall` is a `List<TfAddressed>` — `dependsOn: [schema, api]`. `DependencyTarget`, `ResourceDependency` and `RefDependency` are removed (Terraform rejects an attribute in `depends_on`). Synth output is unchanged. See [MIGRATING.md](../../MIGRATING.md#dependson-takes-the-blocks).
 - **Breaking:** synth validation is one sealed type. `Stack.synth()` / `writeTo()` throw one `SynthException` listing every `SynthIssue` (`NoProviders`, `MissingProvider`, `ProviderConflict`, `UndeclaredVariable`, `UnregisteredReference`, `SensitiveLiteral`, `InvalidTimeout`, `InvalidMoveTarget`, `UnresolvableConstant`) instead of throwing `StateError` / `SensitiveLiteralError` / `ArgumentError` at the first problem; `Stack.validate()` returns the issues without throwing. `SensitiveLiteralError`, `TfJsonEncoder.validateProviders` and `TfJsonEncoder.encodeArgMapWithSensitive` are removed, and the remaining `TfJsonEncoder` helpers no longer validate.
 - **New check:** a reference (or `depends_on` / `replace_triggered_by`) to a resource, data source or module the Stack does not hold is an `UnregisteredReference`. `Stack.addExternalBlock(address)` / `externalBlocks` declare a block a hand-written file holds.
 - `add`, `addData`, `addModule`, `addVariable` and `addExternalVariable` throw `ArgumentError` for a name that is not a Terraform identifier.

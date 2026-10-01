@@ -53,7 +53,7 @@ final class ProjectIamAuditConfigStack extends Stack {
         localName: 'denied',
         accountId: .literal('terradart-denied'),
         displayName: .literal('TerraDart deny-policy target'),
-        dependsOn: [ResourceDependency(apiIam)],
+        dependsOn: [apiIam],
       ),
     );
 
@@ -83,7 +83,7 @@ final class ProjectIamAuditConfigStack extends Stack {
             ),
           ),
         ],
-        dependsOn: [ResourceDependency(apiIam), ResourceDependency(denied)],
+        dependsOn: [apiIam, denied],
       ),
     );
   }

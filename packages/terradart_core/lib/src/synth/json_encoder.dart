@@ -178,9 +178,9 @@ class TfJsonEncoder {
   }
 
   /// `depends_on = [...]` list of bare addresses, or `null` when empty.
-  static List<String>? dependsOn(List<DependencyTarget> deps) {
+  static List<String>? dependsOn(List<TfAddressed> deps) {
     if (deps.isEmpty) return null;
-    return deps.map((d) => d.bareAddress).toList();
+    return deps.map((d) => d.tfAddress).toList();
   }
 
   /// JSON for one resource block: `argMap` + optional `depends_on` +

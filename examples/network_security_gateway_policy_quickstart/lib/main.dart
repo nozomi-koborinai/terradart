@@ -32,7 +32,7 @@ final class NetworkSecurityGatewayPolicyStack extends Stack {
         name: .literal('terradart-gateway-policy'),
         location: .literal('us-central1'),
         description: .literal('TerraDart smoke gateway security policy'),
-        dependsOn: [ResourceDependency(apiNetworkSecurity)],
+        dependsOn: [apiNetworkSecurity],
       ),
     );
 
@@ -46,7 +46,7 @@ final class NetworkSecurityGatewayPolicyStack extends Stack {
         priority: .literal(1),
         sessionMatcher: .literal("host() == 'example.com'"),
         basicProfile: .literal(.allow),
-        dependsOn: [ResourceDependency(policy)],
+        dependsOn: [policy],
       ),
     );
   }

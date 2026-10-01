@@ -66,7 +66,7 @@ final class OrgLeftoverStack extends Stack {
         policyId: policy.ref,
         attachmentId: .literal(org),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(policy)],
+        dependsOn: [policy],
       ),
     );
     add(
@@ -79,7 +79,7 @@ final class OrgLeftoverStack extends Stack {
           config: .new(srcIpRanges: .literal(['192.0.2.0/24'])),
         ),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(policy)],
+        dependsOn: [policy],
       ),
     );
 
@@ -101,7 +101,7 @@ final class OrgLeftoverStack extends Stack {
         ipCidrRange: .literal('1.2.3.0/25'),
         parentPrefix: advertised.ref,
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(advertised)],
+        dependsOn: [advertised],
       ),
     );
 

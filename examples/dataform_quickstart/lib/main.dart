@@ -48,7 +48,7 @@ final class DataformStack extends Stack {
         displayName: .literal('terradart-apps'),
         region: .literal('us-central1'),
         containingFolder: team.name,
-        dependsOn: [ResourceDependency(team)],
+        dependsOn: [team],
       ),
     );
 
@@ -78,7 +78,7 @@ final class DataformStack extends Stack {
         labels: .literal({'managed-by': 'terradart'}),
         // FORCE also removes workspaces created inside the repository.
         deletionPolicy: .literal('FORCE'),
-        dependsOn: [...apiDeps, ResourceDependency(runner)],
+        dependsOn: [...apiDeps, runner],
       ),
     );
 
@@ -88,7 +88,7 @@ final class DataformStack extends Stack {
         repository: repository.ref,
         role: .literal('roles/dataform.editor'),
         member: runner.principal,
-        dependsOn: [ResourceDependency(repository), ResourceDependency(runner)],
+        dependsOn: [repository, runner],
       ),
     );
   }

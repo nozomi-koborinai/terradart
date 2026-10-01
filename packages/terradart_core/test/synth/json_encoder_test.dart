@@ -610,26 +610,19 @@ void main() {
       expect(TfJsonEncoder.dependsOn(const []), isNull);
     });
 
-    test('emits bare addresses for ResourceDependency', () {
-      final deps = <DependencyTarget>[
-        const ResourceDependency(AddressStub('google_pubsub_topic.orders')),
-        const ResourceDependency(AddressStub('google_storage_bucket.archive')),
+    test('emits the bare address of each block', () {
+      final deps = <TfAddressed>[
+        const AddressStub('google_pubsub_topic.orders'),
+        const AddressStub('data.google_project.current'),
+        const AddressStub('module.network'),
       ];
       expect(
         TfJsonEncoder.dependsOn(deps),
-        equals(['google_pubsub_topic.orders', 'google_storage_bucket.archive']),
-      );
-    });
-
-    test('emits bare addresses for RefDependency (attribute ref)', () {
-      final ref = TfRef.attribute<String>(
-        const AddressStub('google_pubsub_topic.orders'),
-        'id',
-      );
-      final deps = <DependencyTarget>[RefDependency(ref)];
-      expect(
-        TfJsonEncoder.dependsOn(deps),
-        equals(['google_pubsub_topic.orders.id']),
+        equals([
+          'google_pubsub_topic.orders',
+          'data.google_project.current',
+          'module.network',
+        ]),
       );
     });
   });
@@ -649,11 +642,7 @@ void main() {
         localName: 'orders',
         argMap: const {'name': TfArgLiteral<String>('orders-prod')},
         lifecycle: const LifecycleOptions(preventDestroy: true),
-        dependsOn: <DependencyTarget>[
-          const ResourceDependency(
-            AddressStub('google_storage_bucket.archive'),
-          ),
-        ],
+        dependsOn: const [AddressStub('google_storage_bucket.archive')],
       );
       final out = TfJsonEncoder.resourceBlock(r);
       expect(

@@ -34,15 +34,12 @@ final class NetworkServicesMeshStack extends Stack {
         name: .literal('terradart-mesh'),
         location: .literal('global'),
         description: .literal('TerraDart smoke mesh'),
-        dependsOn: [ResourceDependency(apiNetworkServices)],
+        dependsOn: [apiNetworkServices],
       ),
     );
 
     final meshId = TfArg.literal([mesh.id.interpolation]);
-    final onMesh = [
-      ResourceDependency(apiNetworkServices),
-      ResourceDependency(mesh),
-    ];
+    final onMesh = [apiNetworkServices, mesh];
 
     add(
       GoogleNetworkServicesHttpRoute(
@@ -139,7 +136,7 @@ final class NetworkServicesMeshStack extends Stack {
             ],
           ),
         ),
-        dependsOn: [ResourceDependency(apiNetworkServices)],
+        dependsOn: [apiNetworkServices],
       ),
     );
   }
