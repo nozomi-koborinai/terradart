@@ -194,6 +194,26 @@ void main() {
       expect(stack.validate(), isEmpty);
     });
 
+    test('a loop variable stays one inside a nested or directive sequence', () {
+      final stack = TestStack(providers: const [_google])
+        ..addExternalVariable('mods')
+        ..add(
+          _reader(
+            'a',
+            .expression(
+              r'${join(",", [for google_x in var.mods : "${google_x.id}"])}',
+            ),
+          ),
+        )
+        ..add(
+          _reader(
+            'b',
+            .expression(r'%{ for module in var.mods }${module.name}%{ endfor }'),
+          ),
+        );
+      expect(stack.validate(), isEmpty);
+    });
+
     test('addExternalBlock accepts a block a hand-written file holds', () {
       final stack = TestStack(providers: const [_google])
         ..addExternalBlock('google_pubsub_topic.legacy')

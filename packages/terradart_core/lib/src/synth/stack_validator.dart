@@ -171,8 +171,16 @@ abstract final class StackValidator {
 
     Iterable<String> templated(Object? encoded) sync* {
       for (final s in _strings(encoded)) {
-        for (final body in templateSequenceBodies(s)) {
-          yield* _referencedBlocks(body, prefixes);
+        final bodies = templateSequenceBodies(s);
+        final iterators = {
+          for (final body in bodies)
+            for (final m in _forIterators.allMatches(body)) ...[
+              m.group(1)!,
+              ?m.group(2),
+            ],
+        };
+        for (final body in bodies) {
+          yield* _referencedBlocks(body, prefixes, iterators);
         }
       }
     }
@@ -234,18 +242,14 @@ abstract final class StackValidator {
 
   /// The blocks an interpolation or directive body reads:
   /// `google_pubsub_topic.orders`, `data.google_project.current`,
-  /// `data.http.ip`, `module.sa`. A for-expression variable
-  /// (`[for module in var.l : module.id]`) is not a block.
+  /// `data.http.ip`, `module.sa`. A for-expression or `%{ for }` variable
+  /// of the same template ([iterators]: `[for module in var.l : module.id]`)
+  /// is not a block, even in a sequence nested inside a quoted string.
   static Iterable<String> _referencedBlocks(
     String body,
     Set<String> prefixes,
+    Set<String> iterators,
   ) sync* {
-    final iterators = {
-      for (final m in _forIterators.allMatches(body)) ...[
-        m.group(1)!,
-        ?m.group(2),
-      ],
-    };
     for (final m in _blockReference.allMatches(body)) {
       final prefix = m.group(2)!;
       if (!prefixes.contains(prefix)) continue;
