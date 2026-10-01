@@ -11,7 +11,7 @@ curatedDoc: |-
   ///
   /// A CES agent must reference its parent app at create time, so the app
   /// cannot set `root_agent` on first apply. Use this resource afterwards.
-  /// Add `lifecycle: LifecycleOptions(ignoreChanges: ['root_agent'])` on
+  /// Add `lifecycle: .new(ignoreChanges: .of(['root_agent']))` on
   /// the parent [GoogleCesApp] so Terraform does not clear the field.
   ///
   /// **Cost:** gcp-cost: Customer Engagement Suite `383B-7930-9BC4` Chat

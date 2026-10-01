@@ -1,5 +1,7 @@
 import 'package:meta/meta.dart';
 
+import '../lifecycle.dart';
+
 /// One reason a Stack cannot be synthesized.
 ///
 /// `Stack.synth()` and `Stack.writeTo()` check the whole Stack first and
@@ -187,6 +189,22 @@ final class InvalidTimeout extends SynthIssue {
   String get message =>
       'timeouts.$operation is "$value", which is not a Terraform duration '
       'string (e.g. "30m", "1h30m", "90s").';
+}
+
+/// A `lifecycle` block Terraform rejects: a data source (or one of its
+/// attributes) in `replaceTriggeredBy`, `all` inside [IgnoreChanges.of],
+/// or a condition with an empty error message.
+final class InvalidLifecycle extends SynthIssue {
+  const InvalidLifecycle({required this.address, required this.reason});
+
+  @override
+  final String address;
+
+  /// What is wrong.
+  final String reason;
+
+  @override
+  String get message => 'lifecycle: $reason';
 }
 
 /// A `moved` block whose `to` names no resource of the Stack.

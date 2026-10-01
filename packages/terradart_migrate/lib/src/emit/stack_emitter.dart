@@ -8,7 +8,8 @@ import 'package:terradart_appwrite/provider.dart'
 import 'package:terradart_aws/provider.dart' show kAwsProviderVersionConstraint;
 import 'package:terradart_cloudflare/provider.dart'
     show kCloudflareProviderVersionConstraint;
-import 'package:terradart_core/terradart_core.dart' show ModuleCall, TfTimeouts;
+import 'package:terradart_core/terradart_core.dart'
+    show ModuleCall, TfTimeouts, templateVariableNames;
 import 'package:terradart_google/provider.dart' show kProviderVersionConstraint;
 import 'package:terradart_google_beta/provider.dart'
     show kBetaProviderVersionConstraint;
@@ -1571,6 +1572,7 @@ final class StackEmitter {
     final m = objectMap(value);
     if (m == null) throw MigrateBlocker('lifecycle is not a block');
     final args = <String>[];
+    final conditions = <String>[];
     for (final entry in m.entries) {
       switch (entry.key) {
         case 'create_before_destroy' || 'prevent_destroy':
@@ -1583,6 +1585,11 @@ final class StackEmitter {
           );
         case 'ignore_changes':
           final v = entry.value;
+          if (v.constantString == 'all' ||
+              v is TraversalExpr && hclSource(v) == 'all') {
+            args.add('ignoreChanges: .all');
+            continue;
+          }
           if (v is! TupleExpr) {
             throw MigrateBlocker(
               'lifecycle.ignore_changes = ${hclSource(v)} has no synth path '
@@ -1601,7 +1608,7 @@ final class StackEmitter {
             }
             paths.add(dartString(s));
           }
-          args.add('ignoreChanges: [${paths.join(', ')}]');
+          args.add('ignoreChanges: .of([${paths.join(', ')}])');
         case 'replace_triggered_by':
           final v = entry.value;
           if (v is! TupleExpr) {
@@ -1629,16 +1636,47 @@ final class StackEmitter {
             emitter.usedTargets.add(c.address);
             refs.add(
               c.attribute.isEmpty
-                  ? 'TfRef.resource(${target.dartName})'
+                  ? target.dartName
                   : 'TfRef.attribute<Object?>(${target.dartName}, ${dartString(c.attribute)})',
             );
           }
           args.add('replaceTriggeredBy: [${refs.join(', ')}]');
+        case 'precondition' || 'postcondition':
+          final blocks = switch (entry.value) {
+            TupleExpr(:final elements) => elements,
+            final e => [e],
+          };
+          for (final b in blocks) {
+            final c = objectMap(b);
+            final condition = c?['condition'];
+            final message = c?['error_message']?.constantString;
+            if (condition == null || message == null || c!.length != 2) {
+              throw MigrateBlocker(
+                'lifecycle.${entry.key} ${hclSource(b)} is not a condition '
+                'with a literal error_message',
+              );
+            }
+            final template = jsonValue(condition);
+            if (template is! String) {
+              throw MigrateBlocker(
+                'lifecycle.${entry.key} condition ${hclSource(condition)} is '
+                'not an expression',
+              );
+            }
+            emitter.usedVariables.addAll(templateVariableNames(template));
+            conditions.add(
+              '.${entry.key == 'precondition' ? 'pre' : 'post'}('
+              '.expression(${dartString(template)}), ${dartString(message)})',
+            );
+          }
         default:
           throw MigrateBlocker('lifecycle.${entry.key} has no synth path');
       }
     }
-    return 'LifecycleOptions(${args.join(', ')})';
+    if (conditions.isNotEmpty) {
+      args.add('conditions: [${conditions.join(', ')}]');
+    }
+    return '.new(${args.join(', ')})';
   }
 
   // -----------------------------------------------------------------------

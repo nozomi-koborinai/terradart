@@ -92,12 +92,12 @@ final class AccessControlsStack extends Stack {
         spec: AccessContextManagerServicePerimeterSpec(
           restrictedServices: .literal(['storage.googleapis.com']),
         ),
-        lifecycle: const LifecycleOptions(
-          ignoreChanges: [
+        lifecycle: const .new(
+          ignoreChanges: .of([
             'spec[0].resources',
             'spec[0].ingress_policies',
             'spec[0].egress_policies',
-          ],
+          ]),
         ),
         dependsOn: [policy],
       ),
@@ -130,9 +130,7 @@ final class AccessControlsStack extends Stack {
             ],
           ),
         ),
-        lifecycle: const LifecycleOptions(
-          ignoreChanges: ['basic[0].conditions'],
-        ),
+        lifecycle: const .new(ignoreChanges: .of(['basic[0].conditions'])),
         dependsOn: [policy],
       ),
     );
@@ -240,12 +238,12 @@ final class AccessControlsStack extends Stack {
         status: AccessContextManagerServicePerimeterStatus(
           restrictedServices: .literal(['storage.googleapis.com']),
         ),
-        lifecycle: const LifecycleOptions(
-          ignoreChanges: [
+        lifecycle: const .new(
+          ignoreChanges: .of([
             'status[0].resources',
             'status[0].ingress_policies',
             'status[0].egress_policies',
-          ],
+          ]),
         ),
         dependsOn: [policy],
       ),

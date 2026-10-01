@@ -1942,7 +1942,7 @@ resource "google_pubsub_subscription" "s" {
       expect(
         src,
         contains(
-          "lifecycle: LifecycleOptions(preventDestroy: true, ignoreChanges: ['labels'])",
+          "lifecycle: .new(preventDestroy: true, ignoreChanges: .of(['labels']))",
         ),
       );
       expect(src, contains('topic: t.ref'));
@@ -2017,9 +2017,54 @@ resource "google_pubsub_topic" "t" {
       });
       expect(r.report.isComplete, isTrue, reason: r.report.renderText());
       final src = r.stackSource;
-      expect(src, contains('replaceTriggeredBy: [TfRef.resource(t)]'));
+      expect(src, contains('replaceTriggeredBy: [t]'));
       expect(src, contains('final t = add('));
       expect(src.indexOf('final t = add('), lessThan(src.indexOf("'s',")));
+    });
+
+    test('ignore_changes = all and conditions are migrated', () {
+      final r = _migrateJson({
+        'terraform': _google,
+        'variable': {
+          'min': {'type': 'number'},
+        },
+        'resource': {
+          'google_pubsub_topic': {
+            't': {
+              'name': 't',
+              'lifecycle': {
+                'ignore_changes': 'all',
+                'create_before_destroy': false,
+                'precondition': [
+                  {
+                    'condition': r'${var.min > 0}',
+                    'error_message': 'min must be positive',
+                  },
+                ],
+                'postcondition': [
+                  {
+                    'condition': r'${self.name == "t"}',
+                    'error_message': 'renamed',
+                  },
+                ],
+              },
+            },
+          },
+        },
+      });
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      final src = r.stackSource;
+      expect(src, contains('ignoreChanges: .all'));
+      expect(src, contains('createBeforeDestroy: false'));
+      expect(
+        src,
+        contains(
+          "conditions: [.pre(.expression(r'\${var.min > 0}'), "
+          "'min must be positive'), "
+          ".post(.expression(r'\${self.name == \"t\"}'), 'renamed')]",
+        ),
+      );
+      expect(src, contains("variable<num>('min')"));
     });
 
     test('provider = <the default provider> is migrated', () {
