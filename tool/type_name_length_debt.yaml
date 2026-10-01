@@ -4,8 +4,7 @@
 # A name that is only the resource stem plus one Terraform segment (two for a
 # sealed variant) passes without an entry — only the stem is long. A name
 # listed here also carries an ancestor segment, usually because the leaf block
-# names differently shaped blocks elsewhere in the resource, or is a
-# hand-written prelude class. Shorten it (a `sealedNames` concept, or a
+# names differently shaped blocks elsewhere in the resource. Shorten it (a `sealedNames` concept, or a
 # reshaped override) and delete the entry; an entry that no longer names such
 # a type fails the gate as stale.
 
@@ -36,12 +35,3 @@ DataLossPreventionDeidentifyTemplateInfoTypeTransformationsPrimitiveTransformati
 DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingPolicyRulesConditions: >-
   collision: conditions names differently shaped blocks under several rule
   blocks of the policy document
-ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceFlexibilityPolicy: >-
-  prelude: hand-written class in google_compute_region_instance_group_manager.yaml;
-  renaming it is an override API decision
-ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceLifecyclePolicy: >-
-  prelude: hand-written class in google_compute_region_instance_group_manager.yaml;
-  renaming it is an override API decision
-ComputeRegionSecurityPolicyRegionSecurityPolicyRulePreconfiguredWafExclusionMatch: >-
-  prelude: hand-written class in google_compute_region_security_policy.yaml;
-  renaming it is an override API decision

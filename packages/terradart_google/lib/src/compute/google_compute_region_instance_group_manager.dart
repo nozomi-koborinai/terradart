@@ -121,15 +121,15 @@ enum RegionInstanceGroupManagerUpdatePolicyReplacementMethod
 /// self-link, typically a within-batch sibling) and optionally caps
 /// how many instances run that version via [targetSize].
 ///
-/// Multiple [ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersion] entries enable
+/// Multiple [ComputeRegionInstanceGroupManagerVersion] entries enable
 /// canary rollouts: the MIG splits the total
 /// [GoogleComputeRegionInstanceGroupManager.targetSize] across
 /// versions based on each version's [targetSize] (fixed count or
 /// percentage). A version without [targetSize] absorbs the
 /// remainder.
 @immutable
-class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersion {
-  const ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersion({
+class ComputeRegionInstanceGroupManagerVersion {
+  const ComputeRegionInstanceGroupManagerVersion({
     required this.instanceTemplate,
     this.name,
     this.targetSize,
@@ -143,8 +143,7 @@ class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersion {
   final TfArg<String>? name;
 
   /// Cap on how many instances run this version (fixed or percent).
-  final ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersionTargetSize?
-  targetSize;
+  final ComputeRegionInstanceGroupManagerVersionTargetSize? targetSize;
 
   Map<String, Object?> toArgMap() => {
     'instance_template': instanceTemplate.toTfJson(),
@@ -156,8 +155,8 @@ class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersion {
 /// `version.target_size` (`max_items=1`). Exactly one of [fixed] or
 /// [percent] should be set.
 @immutable
-class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersionTargetSize {
-  const ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersionTargetSize({
+class ComputeRegionInstanceGroupManagerVersionTargetSize {
+  const ComputeRegionInstanceGroupManagerVersionTargetSize({
     this.fixed,
     this.percent,
   });
@@ -182,8 +181,8 @@ class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersionTargetSi
 /// for longer than the initial-delay window, the MIG recreates it.
 /// Schema marks both fields as required.
 @immutable
-class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAutoHealingPolicy {
-  const ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAutoHealingPolicy({
+class ComputeRegionInstanceGroupManagerAutoHealingPolicy {
+  const ComputeRegionInstanceGroupManagerAutoHealingPolicy({
     required this.healthCheck,
     required this.initialDelaySec,
   });
@@ -208,11 +207,11 @@ class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAutoHealingPoli
 // ===========================================================================
 
 /// `update_policy` block. Drives how the regional MIG rolls a new
-/// [ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersion] across its members and how
+/// [ComputeRegionInstanceGroupManagerVersion] across its members and how
 /// aggressively it rebalances across [distributionPolicyZones].
 @immutable
-class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerUpdatePolicy {
-  const ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerUpdatePolicy({
+class ComputeRegionInstanceGroupManagerUpdatePolicy {
+  const ComputeRegionInstanceGroupManagerUpdatePolicy({
     required this.minimalAction,
     required this.type,
     this.instanceRedistributionType,
@@ -288,8 +287,8 @@ class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerUpdatePolicy {
 /// One entry in [namedPorts]. Backend services that reference this
 /// MIG by `port_name` look up the matching [port] number here.
 @immutable
-class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerNamedPort {
-  const ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerNamedPort({
+class ComputeRegionInstanceGroupManagerNamedPort {
+  const ComputeRegionInstanceGroupManagerNamedPort({
     required this.name,
     required this.port,
   });
@@ -314,12 +313,12 @@ class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerNamedPort {
 /// [deviceName] as **stateful** — the MIG preserves the disk across
 /// VM recreates per [deleteRule]. Note: cross-zone instance
 /// redistribution must be disabled (set
-/// [ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerUpdatePolicy.instanceRedistributionType]
+/// [ComputeRegionInstanceGroupManagerUpdatePolicy.instanceRedistributionType]
 /// to [RegionInstanceGroupManagerInstanceRedistributionType.none])
 /// before updating stateful disks on an existing regional MIG.
 @immutable
-class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStatefulDisk {
-  const ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStatefulDisk({
+class ComputeRegionInstanceGroupManagerStatefulDisk {
+  const ComputeRegionInstanceGroupManagerStatefulDisk({
     required this.deviceName,
     this.deleteRule,
   });
@@ -341,8 +340,8 @@ class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStatefulDisk {
 /// One entry in [statefulInternalIps] / [statefulExternalIps].
 /// Both blocks share the same shape.
 @immutable
-class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStatefulIp {
-  const ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStatefulIp({
+class ComputeRegionInstanceGroupManagerStatefulIp {
+  const ComputeRegionInstanceGroupManagerStatefulIp({
     this.interfaceName,
     this.deleteRule,
   });
@@ -368,8 +367,8 @@ class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStatefulIp {
 /// every VM the MIG manages, overlaying the instance template's
 /// values.
 @immutable
-class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAllInstancesConfig {
-  const ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAllInstancesConfig({
+class ComputeRegionInstanceGroupManagerAllInstancesConfig {
+  const ComputeRegionInstanceGroupManagerAllInstancesConfig({
     this.labels,
     this.metadata,
   });
@@ -390,8 +389,8 @@ class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAllInstancesCon
 /// `instance_lifecycle_policy` block — fine-grained behavior on
 /// failures and template updates.
 @immutable
-class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceLifecyclePolicy {
-  const ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceLifecyclePolicy({
+class ComputeRegionInstanceGroupManagerInstanceLifecyclePolicy {
+  const ComputeRegionInstanceGroupManagerInstanceLifecyclePolicy({
     this.defaultActionOnFailure,
     this.forceUpdateOnRepair,
   });
@@ -419,17 +418,15 @@ class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceLifecyc
 /// pick from multiple machine types when creating new VMs, instead
 /// of the single machine type set on the instance template.
 @immutable
-class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceFlexibilityPolicy {
-  const ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceFlexibilityPolicy({
+class ComputeRegionInstanceGroupManagerInstanceFlexibilityPolicy {
+  const ComputeRegionInstanceGroupManagerInstanceFlexibilityPolicy({
     this.instanceSelections,
   });
 
   /// Named selections of machine types. The MIG ranks selections by
-  /// [ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceSelection.rank] (lower =
+  /// [ComputeRegionInstanceGroupManagerInstanceSelection.rank] (lower =
   /// higher preference).
-  final List<
-    ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceSelection
-  >?
+  final List<ComputeRegionInstanceGroupManagerInstanceSelection>?
   instanceSelections;
 
   Map<String, Object?> toArgMap() => {
@@ -441,10 +438,10 @@ class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceFlexibi
 }
 
 /// One entry in
-/// [ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceFlexibilityPolicy.instanceSelections].
+/// [ComputeRegionInstanceGroupManagerInstanceFlexibilityPolicy.instanceSelections].
 @immutable
-class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceSelection {
-  const ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceSelection({
+class ComputeRegionInstanceGroupManagerInstanceSelection {
+  const ComputeRegionInstanceGroupManagerInstanceSelection({
     required this.name,
     required this.machineTypes,
     this.rank,
@@ -474,8 +471,8 @@ class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceSelecti
 /// `standby_policy` block — controls how the MIG resumes VMs from a
 /// standby pool during scale-out.
 @immutable
-class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStandbyPolicy {
-  const ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStandbyPolicy({
+class ComputeRegionInstanceGroupManagerStandbyPolicy {
+  const ComputeRegionInstanceGroupManagerStandbyPolicy({
     this.initialDelaySec,
     this.mode,
   });
@@ -502,10 +499,8 @@ class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStandbyPolicy {
 /// creates VMs individually or all at once to reach
 /// [GoogleComputeRegionInstanceGroupManager.targetSize].
 @immutable
-class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerTargetSizePolicy {
-  const ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerTargetSizePolicy({
-    required this.mode,
-  });
+class ComputeRegionInstanceGroupManagerTargetSizePolicy {
+  const ComputeRegionInstanceGroupManagerTargetSizePolicy({required this.mode});
 
   /// Required. The provisioning mode (e.g. `BATCH`, `INDIVIDUAL`).
   final TfArg<String> mode;
@@ -520,8 +515,8 @@ class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerTargetSizePolic
 /// `resource_policies` block — wires the MIG to a
 /// `google_compute_resource_policy` workload policy.
 @immutable
-class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerResourcePolicies {
-  const ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerResourcePolicies({
+class ComputeRegionInstanceGroupManagerResourcePolicies {
+  const ComputeRegionInstanceGroupManagerResourcePolicies({
     this.workloadPolicy,
   });
 
@@ -555,7 +550,7 @@ class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerResourcePolicie
 /// - [distributionPolicyTargetShape]: how aggressively the MIG balances
 ///   instances across [distributionPolicyZones]. See
 ///   [RegionInstanceGroupManagerDistributionPolicyTargetShape].
-/// - [ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerUpdatePolicy.instanceRedistributionType]:
+/// - [ComputeRegionInstanceGroupManagerUpdatePolicy.instanceRedistributionType]:
 ///   whether the MIG proactively rebalances VMs back toward the
 ///   target shape when VMs are added or removed.
 ///
@@ -574,18 +569,18 @@ class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerResourcePolicie
 ///   composition explicit.
 /// - `base_instance_name`: 1-58 chars; each VM the MIG creates is named
 ///   `<base_instance_name>-<random4>`.
-/// - At least one [ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersion] in [versions];
+/// - At least one [ComputeRegionInstanceGroupManagerVersion] in [versions];
 ///   each version requires an `instance_template` self-link.
 ///
 /// Cross-resource references (typical wiring):
-/// - [ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersion.instanceTemplate]: self-link
+/// - [ComputeRegionInstanceGroupManagerVersion.instanceTemplate]: self-link
 ///   of a `google_compute_instance_template` resource (curated as a
 ///   sibling in the same batch).
-/// - [ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAutoHealingPolicy.healthCheck]:
+/// - [ComputeRegionInstanceGroupManagerAutoHealingPolicy.healthCheck]:
 ///   self-link of a `google_compute_health_check` or
 ///   `google_compute_region_health_check`. When a VM fails this
 ///   health check for longer than
-///   [ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAutoHealingPolicy.initialDelaySec],
+///   [ComputeRegionInstanceGroupManagerAutoHealingPolicy.initialDelaySec],
 ///   the MIG recreates it.
 /// - [targetPools]: self-links of `google_compute_target_pool`. New VMs
 ///   are added to these target pools.
@@ -607,7 +602,7 @@ class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerResourcePolicie
 ///     RegionInstanceGroupManagerDistributionPolicyTargetShape.even,
 ///   ),
 ///   versions: [
-///     ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersion(
+///     ComputeRegionInstanceGroupManagerVersion(
 ///       instanceTemplate: TfArg.literal(
 ///         // var.instance_template_id — within-batch sibling self-link.
 ///         'projects/p/global/instanceTemplates/web-v2',
@@ -615,19 +610,19 @@ class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerResourcePolicie
 ///     ),
 ///   ],
 ///   namedPorts: [
-///     ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerNamedPort(
+///     ComputeRegionInstanceGroupManagerNamedPort(
 ///       name: TfArg.literal('http'),
 ///       port: TfArg.literal(80),
 ///     ),
 ///   ],
-///   autoHealingPolicies: ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAutoHealingPolicy(
+///   autoHealingPolicies: ComputeRegionInstanceGroupManagerAutoHealingPolicy(
 ///     healthCheck: TfArg.literal(
 ///       // var.health_check_id — typically a Batch 4 health check.
 ///       'projects/p/regions/asia-northeast1/healthChecks/web-hc',
 ///     ),
 ///     initialDelaySec: TfArg.literal(300),
 ///   ),
-///   updatePolicy: ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerUpdatePolicy(
+///   updatePolicy: ComputeRegionInstanceGroupManagerUpdatePolicy(
 ///     type: RegionInstanceGroupManagerUpdatePolicyType.proactive,
 ///     instanceRedistributionType: RegionInstanceGroupManagerInstanceRedistributionType.proactive,
 ///     minimalAction: RegionInstanceGroupManagerUpdatePolicyAction.replace,
@@ -660,38 +655,21 @@ final class GoogleComputeRegionInstanceGroupManager extends Resource {
     TfArg<RegionInstanceGroupManagerDistributionPolicyTargetShape>?
     distributionPolicyTargetShape,
     TfArg<List<String>>? targetPools,
-    required List<
-      ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersion
-    >
-    versions,
-    List<ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerNamedPort>?
-    namedPorts,
-    ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAutoHealingPolicy?
-    autoHealingPolicies,
-    ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerUpdatePolicy?
-    updatePolicy,
-    ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceLifecyclePolicy?
+    required List<ComputeRegionInstanceGroupManagerVersion> versions,
+    List<ComputeRegionInstanceGroupManagerNamedPort>? namedPorts,
+    ComputeRegionInstanceGroupManagerAutoHealingPolicy? autoHealingPolicies,
+    ComputeRegionInstanceGroupManagerUpdatePolicy? updatePolicy,
+    ComputeRegionInstanceGroupManagerInstanceLifecyclePolicy?
     instanceLifecyclePolicy,
-    ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceFlexibilityPolicy?
+    ComputeRegionInstanceGroupManagerInstanceFlexibilityPolicy?
     instanceFlexibilityPolicy,
-    ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStandbyPolicy?
-    standbyPolicy,
-    List<
-      ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerTargetSizePolicy
-    >?
-    targetSizePolicies,
-    ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerResourcePolicies?
-    resourcePolicies,
-    ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAllInstancesConfig?
-    allInstancesConfig,
-    List<
-      ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStatefulDisk
-    >?
-    statefulDisks,
-    List<ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStatefulIp>?
-    statefulInternalIps,
-    List<ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStatefulIp>?
-    statefulExternalIps,
+    ComputeRegionInstanceGroupManagerStandbyPolicy? standbyPolicy,
+    List<ComputeRegionInstanceGroupManagerTargetSizePolicy>? targetSizePolicies,
+    ComputeRegionInstanceGroupManagerResourcePolicies? resourcePolicies,
+    ComputeRegionInstanceGroupManagerAllInstancesConfig? allInstancesConfig,
+    List<ComputeRegionInstanceGroupManagerStatefulDisk>? statefulDisks,
+    List<ComputeRegionInstanceGroupManagerStatefulIp>? statefulInternalIps,
+    List<ComputeRegionInstanceGroupManagerStatefulIp>? statefulExternalIps,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
