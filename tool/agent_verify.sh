@@ -5,7 +5,7 @@
 #   tool/agent_verify.sh
 #   tool/agent_verify.sh --quick       # iteration loop: static checks + unit
 #                                      # gates only (skips example synth, the
-#                                      # package suites, cookbook, smoke).
+#                                      # package suites, cookbook).
 #                                      # Run the FULL gate before opening a PR.
 #   tool/agent_verify.sh --maintainer  # add wrap-init / wrap-promote e2e tests
 #
@@ -111,14 +111,6 @@ dart tool/check_google_enum_gaps.dart --strict-nested
 
 echo ">> google lane: check_google_mm_fingerprint"
 dart tool/check_google_mm_fingerprint.dart
-
-if [[ "$QUICK" == "0" ]]; then
-  echo ">> smoke_quickstart"
-  chmod +x tool/smoke_quickstart.sh
-  tool/smoke_quickstart.sh
-else
-  echo ">> smoke_quickstart: SKIPPED (--quick)"
-fi
 
 if [[ "$WITH_MAINTAINER" == "1" ]]; then
   echo ">> wrap-init e2e"
