@@ -18,7 +18,7 @@ curatedDoc: |-
   ///   localName: 'note_viewer',
   ///   note: note.ref,
   ///   role: TfArg.literal('roles/containeranalysis.notes.occurrences.viewer'),
-  ///   member: TfArg.literal('serviceAccount:ci@$projectId.iam.gserviceaccount.com'),
+  ///   member: .serviceAccount('ci@$projectId.iam.gserviceaccount.com'),
   /// );
   /// ```
 

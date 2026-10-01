@@ -151,6 +151,63 @@ ParentReferenceRule? loadParentReferenceRule(
   return null;
 }
 
+/// The `- principals: IamPrincipal` entry of a ledger section: every input
+/// whose path matches [slots], on a type [types] matches, names IAM
+/// principals and takes `IamPrincipal` (`TfArg<List<IamPrincipal>>` for a
+/// list). A curated block with a computed `member` attribute (a service
+/// account, a service agent) carries a `principal` getter.
+final class PrincipalRule {
+  const PrincipalRule({required this.slots, this.types});
+
+  final RegExp slots;
+
+  /// Restricts [slots] to the Terraform types (`data.` prefixed for a data
+  /// source) this matches.
+  final RegExp? types;
+}
+
+/// The `- principals: IamPrincipal` entry of [providerSource]'s section, or
+/// null.
+PrincipalRule? loadPrincipalRule(String path, String providerSource) {
+  final doc = loadYaml(
+    File(path).readAsStringSync(),
+    sourceUrl: Uri.file(path),
+  );
+  final section = doc is YamlMap ? doc[providerSource] : null;
+  if (section is! YamlList) return null;
+  for (final (i, raw) in section.indexed) {
+    if (raw is! YamlMap || !raw.containsKey('principals')) continue;
+    final context = '$path: $providerSource[$i]';
+    for (final key in raw.keys) {
+      if (!const {'principals', 'slots', 'types'}.contains(key)) {
+        throw FormatException('$context: unknown key "$key" beside principals');
+      }
+    }
+    if (raw['principals'] != principalClassName) {
+      throw FormatException(
+        '$context: principals must be "$principalClassName"',
+      );
+    }
+    final slots = raw['slots'];
+    final types = raw['types'];
+    if (slots is! String || (types != null && types is! String)) {
+      throw FormatException(
+        '$context: principals needs a "slots" pattern and an optional '
+        '"types" pattern',
+      );
+    }
+    return PrincipalRule(
+      slots: RegExp(slots),
+      types: types is String ? RegExp(types) : null,
+    );
+  }
+  return null;
+}
+
+/// The hand-written principal type in `terradart_google`
+/// (`lib/src/iam/iam_principal.dart`).
+const String principalClassName = 'IamPrincipal';
+
 /// The `- mm: resource-refs` entry of [providerSource]'s section, or null.
 MmReferenceRule? loadMmReferenceRule(String path, String providerSource) {
   final doc = loadYaml(
@@ -196,11 +253,18 @@ List<ReferenceRule> loadReferenceRules(String path, String providerSource) {
     for (final (i, raw) in section.indexed)
       if (raw is YamlMap && raw.containsKey('inherit'))
         ..._inheritRules(doc, raw, context: '$path: $providerSource[$i]')
-      else if (raw is! YamlMap ||
-          !(raw.containsKey('mm') || raw.containsKey('parents')))
+      else if (!_isSectionEntry(raw))
         _parseRule(raw, context: '$path: $providerSource[$i]'),
   ];
 }
+
+/// Whether [raw] is a `- mm:`, `- parents:` or `- principals:` entry, which
+/// their own loaders read, rather than a rule.
+bool _isSectionEntry(Object? raw) =>
+    raw is YamlMap &&
+    (raw.containsKey('mm') ||
+        raw.containsKey('parents') ||
+        raw.containsKey('principals'));
 
 /// `- inherit: <provider source>`: that section's rules, targeting the
 /// other lane's resources, with this entry's `attributes` / `exclude` in
@@ -225,8 +289,7 @@ List<ReferenceRule> _inheritRules(
     for (final (i, rule) in section.indexed)
       if (rule is YamlMap && rule.containsKey('inherit'))
         throw FormatException('$context: $source[$i] inherits in turn')
-      else if (rule is YamlMap &&
-          (rule.containsKey('mm') || rule.containsKey('parents')))
+      else if (_isSectionEntry(rule))
         ...const <ReferenceRule>[]
       else
         _parseRule(
@@ -345,6 +408,16 @@ final class ResolvedReference {
     this.absorbed = const [],
   });
 
+  /// An input that names IAM principals: [className] is
+  /// [principalClassName] and the value is passed as it is.
+  const ResolvedReference.principal({required this.list, this.package})
+    : target = 'iam_principal',
+      className = principalClassName,
+      outputDir = 'iam',
+      attribute = '',
+      dartName = null,
+      absorbed = const [];
+
   final String target;
   final String className;
 
@@ -369,9 +442,16 @@ final class ResolvedReference {
   /// Whether the input is a list of references (`TfArg<List<RefTo<C>>>`).
   final bool list;
 
+  bool get principal => className == principalClassName;
+
   /// The Dart parameter / field type, before nullability.
-  String get dartType =>
-      list ? 'TfArg<List<RefTo<$className>>>' : 'RefTo<$className>';
+  String get dartType => principal
+      ? (list ? 'TfArg<List<$className>>' : className)
+      : (list ? 'TfArg<List<RefTo<$className>>>' : 'RefTo<$className>');
+
+  /// What follows the value to make it the argument's `TfArg`: nothing for a
+  /// principal, which is one.
+  String get encode => principal ? '' : ".encodeAs('$attribute')";
 
   /// The import that brings [className] into a wrapper under `lib/src/`.
   String get import => "import '../$outputDir/$target.dart' show $className;";
@@ -406,7 +486,19 @@ final class ReferenceResolution {
     required this.byResource,
     required this.errors,
     this.byDataSource = const {},
+    this.principal,
+    this.principalResources = const {},
+    this.principalDataSources = const {},
   });
+
+  /// The principal type, for its import, when the section has a
+  /// `- principals:` entry.
+  final ResolvedReference? principal;
+
+  /// The curated resources and data sources with a `principal` getter: a
+  /// computed `member` attribute.
+  final Set<String> principalResources;
+  final Set<String> principalDataSources;
 
   final Map<String, Map<String, ResolvedReference>> byResource;
 
@@ -441,6 +533,7 @@ ReferenceResolution resolveReferences({
   MmReferenceRule? mmRule,
   Map<String, MmResourceOverrides> mm = const {},
   ParentReferenceRule? parentRule,
+  PrincipalRule? principalRule,
   bool complete = true,
 }) {
   final errors = <String>[];
@@ -497,6 +590,38 @@ ReferenceResolution resolveReferences({
     final names = _attributeNames(block);
     final dataNames = data == null ? null : _attributeNames(data);
     return (a) => names.contains(a) && (dataNames?.contains(a) ?? true);
+  }
+
+  final principal = principalRule == null
+      ? null
+      : ResolvedReference.principal(list: false, package: external?.package);
+  final principalResources = <String>{};
+  final principalDataSources = <String>{};
+  if (principalRule != null) {
+    var matched = false;
+    for (final MapEntry(key: (:type, :data), value: slots) in inputs.entries) {
+      final at = data ? 'data.$type' : type;
+      if (principalRule.types case final types? when !types.hasMatch(at)) {
+        continue;
+      }
+      for (final MapEntry(key: path, value: list) in slots.entries) {
+        if (!principalRule.slots.hasMatch(path)) continue;
+        matched = true;
+        claimedBy['$at.$path'] = 'principals';
+        ((data ? byDataSource : byResource)[type] ??= {})[path] =
+            ResolvedReference.principal(list: list, package: external?.package);
+      }
+    }
+    if (complete && !matched) {
+      errors.add('principals: the entry matches no curated input');
+    }
+    for (final type in curated) {
+      if (_hasPrincipal(resourceSchemas[type])) principalResources.add(type);
+    }
+    for (final MapEntry(key: type, value: block)
+        in dataSourceSchemas.entries) {
+      if (_hasPrincipal(block)) principalDataSources.add(type);
+    }
   }
 
   if (parentRule != null) {
@@ -626,7 +751,7 @@ ReferenceResolution resolveReferences({
         final key = data ? 'data.$type.$path' : '$type.$path';
         final twin = '$type.$path';
         // An IAM adjunct's keys belong to its parent reference.
-        if (claimedBy[key] == 'parents') continue;
+        if (claimedBy[key] case 'parents' || 'principals') continue;
         matched.add(key);
         if (rule.exclude.contains(key) || rule.exclude.contains(twin)) {
           continue;
@@ -786,7 +911,21 @@ ReferenceResolution resolveReferences({
     byResource: byResource,
     byDataSource: byDataSource,
     errors: errors,
+    principal: principal,
+    principalResources: principalResources,
+    principalDataSources: principalDataSources,
   );
+}
+
+/// Whether [block] has a computed-only string `member` attribute: the
+/// `serviceAccount:<email>` form of an identity it creates or reads.
+bool _hasPrincipal(Map<String, dynamic>? block) {
+  final member = (block?['attributes'] as Map?)?['member'];
+  return member is Map &&
+      member['type'] == 'string' &&
+      member['computed'] == true &&
+      member['optional'] != true &&
+      member['required'] != true;
 }
 
 /// Dotted path → whether it is a list, for every string or list/set-of-string

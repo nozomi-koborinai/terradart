@@ -7,6 +7,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import 'src/_provider_meta.dart';
+import 'src/iam/iam_principal.dart';
 
 export 'src/_provider_meta.dart' show kBetaProviderSource;
 
@@ -90,8 +91,10 @@ final class GoogleProjectServiceIdentity extends Resource {
   /// Google-managed agent email (`service-{number}@gcp-sa-….gserviceaccount.com`).
   TfRef<String> get email => TfRef.attribute<String>(this, 'email');
 
-  /// IAM member string (`serviceAccount:{email}`).
-  TfRef<String> get member => TfRef.attribute<String>(this, 'member');
+  /// The agent as an IAM principal (`serviceAccount:{email}`), for the
+  /// `member` of an IAM adjunct.
+  IamPrincipal get principal =>
+      IamPrincipal.read(TfRef.attribute<String>(this, 'member'));
 
   /// Terraform id.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

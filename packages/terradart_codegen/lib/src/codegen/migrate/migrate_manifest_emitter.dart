@@ -143,9 +143,9 @@ class MigrateManifestEmitter {
         'dartName: ${_str(g.dartName)}, dartType: ${_str(g.dartType)}),',
       );
     }
-    buf
-      ..writeln('      ],')
-      ..writeln('    ),');
+    buf.writeln('      ],');
+    if (e.principal) buf.writeln('      principal: true,');
+    buf.writeln('    ),');
     return buf.toString();
   }
 

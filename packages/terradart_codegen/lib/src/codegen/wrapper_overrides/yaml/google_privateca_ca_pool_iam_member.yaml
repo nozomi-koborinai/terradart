@@ -26,6 +26,6 @@ curatedDoc: |-
   ///   localName: 'pool_auditor',
   ///   caPool: caPool.ref,
   ///   role: TfArg.literal('roles/privateca.auditor'),
-  ///   member: TfArg.literal('group:security@example.com'),
+  ///   member: .group('security@example.com'),
   /// );
   /// ```

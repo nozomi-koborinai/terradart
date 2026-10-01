@@ -441,7 +441,10 @@ barrels:
       /// org parent), Workforce OAuth clients, OS Login SSH public keys,
       /// project deny policies, and per-resource IAM members live
       /// alongside their owning service barrel (e.g. `pubsub.dart`
-      /// exports `GooglePubsubTopicIamMember`).
+      /// exports `GooglePubsubTopicIamMember`). `IamPrincipal` names who a
+      /// grant is for.
+    extraExports:
+      - "export 'src/iam/iam_principal.dart' show IamPrincipal;"
   identity:
     doc: |-
       /// Identity Platform — project Auth config, multi-tenant realms,

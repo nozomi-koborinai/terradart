@@ -43,6 +43,13 @@
 # location and project, so it fills no other key), `names:` the Dart
 # argument, and `exclude:` parents whose adjuncts keep their keys.
 #
+# A section entry `- principals: IamPrincipal` types every input whose path
+# matches its `slots`, on a type its `types` matches, as the hand-written
+# `IamPrincipal` of `terradart_google` (`TfArg<List<IamPrincipal>>` for a
+# list): `member: runtime.principal`, `member: .user('a@example.com')`. A
+# curated block with a computed `member` attribute (a service account, a
+# service agent) carries the `principal` getter.
+#
 # A section entry `- inherit: <provider source>` takes that section's rules
 # for a lane whose inputs name the other lane's resources (google-beta →
 # `terradart_google`, `referencesFrom:` in tool/providers.yaml). Its own
@@ -57,6 +64,9 @@
 # (`reference input not typed:`).
 
 hashicorp/google:
+  - principals: IamPrincipal
+    slots: '^(members?|binding\.members|(.+\.)?(exempted_members|principals))$'
+    types: '_iam_(member|binding|member_remove|audit_config)$|^data\.google_iam_policy$|^google_privileged_access_manager_entitlement$'
   - parents: iam-adjuncts
     identity:
       google_apigee_environment: env_id
@@ -748,6 +758,9 @@ appwrite/appwrite:
     types: '^appwrite_postgresql_'
 
 hashicorp/google-beta:
+  - principals: IamPrincipal
+    slots: '^(members?|binding\.members|(.+\.)?(exempted_members|principals))$'
+    types: '_iam_(member|binding|member_remove|audit_config)$|^data\.google_iam_policy$|^google_privileged_access_manager_entitlement$'
   - parents: iam-adjuncts
     identity:
       google_vertex_ai_feature_online_store_featureview: feature_view

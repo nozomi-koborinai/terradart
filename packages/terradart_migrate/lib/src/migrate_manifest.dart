@@ -28,6 +28,10 @@ enum MigrateSlotKind {
   /// class `C` and [MigrateSlot.attribute] the attribute the slot emits.
   reference,
 
+  /// An `IamPrincipal` (a `TfArg<List<IamPrincipal>>` when
+  /// [MigrateSlot.repeated]): who an IAM grant is for.
+  principal,
+
   /// A typed nested helper class passed bare (never `TfArg`-wrapped).
   /// [MigrateSlot.helper] names it; [MigrateManifest.helpers] holds its
   /// own slots.
@@ -223,6 +227,7 @@ final class MigrateEntry {
     required this.kind,
     required this.slots,
     required this.getters,
+    this.principal = false,
   });
 
   /// Terraform type string, e.g. `google_pubsub_topic`.
@@ -246,6 +251,10 @@ final class MigrateEntry {
 
   /// Output-attribute getters, keyed by Terraform attribute in [MigrateGetter].
   final List<MigrateGetter> getters;
+
+  /// Whether the wrapper has a `principal` getter, the `IamPrincipal` its
+  /// `member` attribute reads.
+  final bool principal;
 }
 
 /// The whole manifest of one provider package: one [MigrateEntry] per

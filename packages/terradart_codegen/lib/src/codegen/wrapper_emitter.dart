@@ -57,7 +57,15 @@ class WrapperEmitter {
     this.providerEnums = ProviderEnums.off,
     this.references = const {},
     this.laneInputs = const {},
+    this.principals = const {},
+    this.principal,
   });
+
+  /// The types whose wrapper carries a `principal` getter.
+  final Set<String> principals;
+
+  /// The principal type, for the import [principals] need.
+  final ResolvedReference? principal;
 
   /// The `--provider-enums` gate; supplies the nested helpers' enum values.
   final ProviderEnums providerEnums;
@@ -264,7 +272,10 @@ class WrapperEmitter {
     // (`deriveExactlyOneSlots`), so its members are in neither map.
     final preludeRefs = [
       for (final ref in refs.values)
-        if (override?.prelude?.contains('RefTo<${ref.className}>') ?? false)
+        if (override?.prelude?.contains(
+              ref.principal ? ref.className : 'RefTo<${ref.className}>',
+            ) ??
+            false)
           ref,
     ];
     final refImports = referenceImports([
@@ -272,6 +283,7 @@ class WrapperEmitter {
         ...topLevelRefs.values,
         ...nestedRefs.values,
         ...preludeRefs,
+        if (principals.contains(def.terraformType)) ?principal,
       ])
         if (ref.target != def.terraformType) ref,
     ]);
@@ -533,6 +545,12 @@ class WrapperEmitter {
         buf.writeln();
         buf.write(derived);
       }
+    }
+
+    if (principals.contains(def.terraformType)) {
+      buf
+        ..writeln()
+        ..write(emitPrincipalGetter(data: false));
     }
 
     // Extra getters (TfRef shortcuts, etc.) inserted from the override.
