@@ -131,18 +131,44 @@ void main() {
               replaceTriggeredBy: [
                 project,
                 TfRef.data<String>(project, 'number'),
+                TfRef.attribute<String>(project, 'id'),
               ],
               conditions: [.pre(.expression(r'${true}'), ' ')],
             ),
           ),
         );
       expect(stack.validate(), [
-        for (var i = 0; i < 4; i++)
+        for (var i = 0; i < 5; i++)
           isA<InvalidLifecycle>().having(
             (i) => i.address,
             'address',
             'google_pubsub_topic.a',
           ),
+      ]);
+    });
+
+    test('lifecycle conditions are checked for references too', () {
+      final orphan = _topic('orphan');
+      final stack = TestStack(providers: const [_google])
+        ..add(
+          FakePubsubTopic.withMeta(
+            'a',
+            argMap: const {},
+            lifecycle: LifecycleOptions(
+              conditions: [
+                .pre(.variable('enabled'), 'disabled'),
+                .post(TfRef.attribute<bool>(orphan, 'ready'), 'not ready'),
+              ],
+            ),
+          ),
+        );
+      expect(stack.validate(), [
+        isA<UndeclaredVariable>().having((i) => i.name, 'name', 'enabled'),
+        isA<UnregisteredReference>().having(
+          (i) => i.target,
+          'target',
+          'google_pubsub_topic.orphan',
+        ),
       ]);
     });
 

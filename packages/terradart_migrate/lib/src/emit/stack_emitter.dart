@@ -406,15 +406,25 @@ final class StackEmitter {
 
   /// The Dart local holding each provider configuration a block may select,
   /// by its label (`google.eu` → `googleEuProvider`). Reserved before any
-  /// block is named.
-  late final Map<String, String> _providerHandles = {
+  /// block is named. Labels that camel-case alike (`google-beta`,
+  /// `google.beta`) get numbered handles.
+  late final Map<String, String> _providerHandles = () {
+    final handles = <String, String>{};
+    final used = <String>{};
     for (final label in {
       ..._providerRecipes.keys,
       for (final p in module.providers)
         p.alias == null ? p.name : '${p.name}.${p.alias}',
-    })
-      label: lowerCamel('${label}_provider'),
-  };
+    }) {
+      final base = lowerCamel('${label}_provider');
+      var handle = base;
+      for (var n = 2; !used.add(handle); n++) {
+        handle = '$base$n';
+      }
+      handles[label] = handle;
+    }
+    return handles;
+  }();
 
   /// Blocks unrolled from a literal `count` / `for_each`, by their address
   /// as written; filled by [_blocksInOrder].
