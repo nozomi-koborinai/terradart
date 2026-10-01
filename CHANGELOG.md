@@ -16,6 +16,12 @@ Per-package changelogs live alongside each package and are the system of record 
   member bare (`routingMode: .regional`, `actions: [.getcertificate]`) and
   `.variable(...)` / `.expression(...)` / `.arg(...)` cover the rest.
   `TerraformEnum` and `terraformValue` are removed.
+- **Typed lifecycle** (`terradart_core`, `terradart_migrate`) —
+  `ignoreChanges: .all` / `.of(['target_size'])`, `replaceTriggeredBy:
+  [template, template.id]` (any `ReplaceTrigger`: a resource or an
+  attribute getter), and `conditions: [.pre(...), .post(...)]` for
+  `precondition` / `postcondition`. An explicit `createBeforeDestroy:
+  false` is written.
 - **Sensitive arguments take no literal** (every provider package,
   `terradart_core`, `terradart_codegen`) — an argument the provider schema
   marks sensitive is `Sensitive<T>`, which has `.variable` and

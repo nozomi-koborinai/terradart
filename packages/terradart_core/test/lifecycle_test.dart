@@ -16,29 +16,33 @@ void main() {
       expect(lc.preventDestroy, isNull);
       expect(lc.ignoreChanges, isNull);
       expect(lc.replaceTriggeredBy, isNull);
+      expect(lc.conditions, isNull);
     });
 
-    test('preventDestroy can be set', () {
-      const lc = LifecycleOptions(preventDestroy: true);
-      expect(lc.preventDestroy, isTrue);
+    test('ignoreChanges is all or a list of attribute paths', () {
+      const all = LifecycleOptions(ignoreChanges: .all);
+      expect(all.ignoreChanges, isA<IgnoreAllChanges>());
+      const some = LifecycleOptions(ignoreChanges: .of(['name', 'tags']));
+      expect((some.ignoreChanges! as IgnoreAttributes).attributes, [
+        'name',
+        'tags',
+      ]);
     });
 
-    test('ignoreChanges accepts string list', () {
-      const lc = LifecycleOptions(ignoreChanges: ['name', 'tags']);
-      expect(lc.ignoreChanges, ['name', 'tags']);
-    });
-
-    test('replaceTriggeredBy accepts TfRef list', () {
+    test('replaceTriggeredBy takes attribute references', () {
       final ref = TfRef.attribute<String>(
         _FakeAddressed('google_pubsub_topic.orders'),
         'name',
       );
       final lc = LifecycleOptions(replaceTriggeredBy: [ref]);
-      expect(lc.replaceTriggeredBy, hasLength(1));
-      expect(
-        lc.replaceTriggeredBy!.first.bareAddress,
-        'google_pubsub_topic.orders.name',
-      );
+      expect(lc.replaceTriggeredBy, [ref]);
+    });
+
+    test('conditions are pre or post', () {
+      final pre = LifecycleCondition.pre(.expression(r'${true}'), 'm');
+      final post = LifecycleCondition.post(.expression(r'${true}'), 'm');
+      expect(pre.post, isFalse);
+      expect(post.post, isTrue);
     });
   });
 }

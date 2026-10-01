@@ -10,13 +10,19 @@ abstract interface class TfAddressed {
   String get tfAddress;
 }
 
+/// What `lifecycle.replaceTriggeredBy` lists: a resource of the Stack or an
+/// attribute getter of one. `Resource` and [TfRef] implement it; synth
+/// reports a data source or a data-source attribute as an
+/// `InvalidLifecycle`.
+abstract interface class ReplaceTrigger {}
+
 /// A Terraform-side reference: an attribute of a resource ([AttributeRef])
 /// or a data source ([DataRef]), or a whole resource ([ResourceRef]).
 ///
 /// `T` is the Dart type of the referenced value. A reference is a
 /// [TfArg], so an attribute getter fills an argument of that type directly:
 /// `pushEndpoint: api.uri`. Synth writes it as its [interpolation].
-sealed class TfRef<T> extends TfArg<T> implements Sensitive<T> {
+sealed class TfRef<T> extends TfArg<T> implements Sensitive<T>, ReplaceTrigger {
   const TfRef();
 
   @override

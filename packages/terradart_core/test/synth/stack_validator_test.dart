@@ -105,7 +105,7 @@ void main() {
             argMap: const {},
             dependsOn: [orphan],
             lifecycle: LifecycleOptions(
-              replaceTriggeredBy: [TfRef.attribute(orphan, 'id')],
+              replaceTriggeredBy: [TfRef.attribute<String>(orphan, 'id')],
             ),
           ),
         );
@@ -116,6 +116,80 @@ void main() {
           'google_pubsub_topic.orphan',
         ),
       ], reason: 'one issue per target and block');
+    });
+
+    test('a lifecycle Terraform rejects is an InvalidLifecycle', () {
+      final project = FakeProjectData('p', argMap: const {});
+      final stack = TestStack(providers: const [_google])
+        ..add(project)
+        ..add(
+          FakePubsubTopic.withMeta(
+            'a',
+            argMap: const {},
+            lifecycle: LifecycleOptions(
+              ignoreChanges: const .of(['labels', 'all']),
+              replaceTriggeredBy: [
+                project,
+                TfRef.data<String>(project, 'number'),
+                TfRef.attribute<String>(project, 'id'),
+              ],
+              conditions: [.pre(.expression(r'${true}'), ' ')],
+            ),
+          ),
+        );
+      expect(stack.validate(), [
+        for (var i = 0; i < 5; i++)
+          isA<InvalidLifecycle>().having(
+            (i) => i.address,
+            'address',
+            'google_pubsub_topic.a',
+          ),
+      ]);
+    });
+
+    test('lifecycle conditions are checked for references too', () {
+      final orphan = _topic('orphan');
+      final stack = TestStack(providers: const [_google])
+        ..add(
+          FakePubsubTopic.withMeta(
+            'a',
+            argMap: const {},
+            lifecycle: LifecycleOptions(
+              conditions: [
+                .pre(.variable('enabled'), 'disabled'),
+                .post(TfRef.attribute<bool>(orphan, 'ready'), 'not ready'),
+              ],
+            ),
+          ),
+        );
+      expect(stack.validate(), [
+        isA<UndeclaredVariable>().having((i) => i.name, 'name', 'enabled'),
+        isA<UnregisteredReference>().having(
+          (i) => i.target,
+          'target',
+          'google_pubsub_topic.orphan',
+        ),
+      ]);
+    });
+
+    test('a resource and its attributes are replace triggers', () {
+      final template = _topic('template');
+      final stack = TestStack(providers: const [_google])
+        ..add(template)
+        ..add(
+          FakePubsubTopic.withMeta(
+            'a',
+            argMap: const {},
+            lifecycle: LifecycleOptions(
+              ignoreChanges: .all,
+              replaceTriggeredBy: [
+                template,
+                TfRef.attribute<String>(template, 'id'),
+              ],
+            ),
+          ),
+        );
+      expect(stack.validate(), isEmpty);
     });
 
     test('outputs and module inputs are checked too', () {

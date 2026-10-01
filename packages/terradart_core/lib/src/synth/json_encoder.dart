@@ -161,18 +161,50 @@ class TfJsonEncoder {
   /// Delegates to `TfRef.bareAddress`.
   static String encodeBareAddress(TfRef<dynamic> ref) => ref.bareAddress;
 
+  /// The bare address `replace_triggered_by` lists for [trigger]: a
+  /// resource's address or an attribute reference's.
+  static String replaceTriggerAddress(ReplaceTrigger trigger) =>
+      switch (trigger) {
+        TfRef(:final bareAddress) => bareAddress,
+        TfAddressed(:final tfAddress) => tfAddress,
+        _ => throw ArgumentError.value(
+          trigger,
+          'trigger',
+          'is neither a resource nor an attribute reference',
+        ),
+      };
+
   /// `lifecycle { ... }` nested block, or `null` when no fields are set.
   static Map<String, dynamic>? lifecycleBlock(LifecycleOptions opts) {
     final out = <String, dynamic>{};
-    if (opts.createBeforeDestroy ?? false) out['create_before_destroy'] = true;
-    if (opts.preventDestroy ?? false) out['prevent_destroy'] = true;
-    final ignore = opts.ignoreChanges;
-    if (ignore != null && ignore.isNotEmpty) {
-      out['ignore_changes'] = List<String>.from(ignore);
+    if (opts.createBeforeDestroy case final v?) {
+      out['create_before_destroy'] = v;
+    }
+    if (opts.preventDestroy case final v?) out['prevent_destroy'] = v;
+    switch (opts.ignoreChanges) {
+      case IgnoreAllChanges():
+        out['ignore_changes'] = 'all';
+      case IgnoreAttributes(:final attributes) when attributes.isNotEmpty:
+        out['ignore_changes'] = List<String>.from(attributes);
+      case IgnoreAttributes() || null:
+        break;
     }
     final replace = opts.replaceTriggeredBy;
     if (replace != null && replace.isNotEmpty) {
-      out['replace_triggered_by'] = replace.map(encodeBareAddress).toList();
+      out['replace_triggered_by'] = replace.map(replaceTriggerAddress).toList();
+    }
+    for (final post in [false, true]) {
+      final blocks = [
+        for (final c in opts.conditions ?? const <LifecycleCondition>[])
+          if (c.post == post)
+            {
+              'condition': c.condition.toTfJson(),
+              'error_message': c.errorMessage,
+            },
+      ];
+      if (blocks.isNotEmpty) {
+        out[post ? 'postcondition' : 'precondition'] = blocks;
+      }
     }
     return out.isEmpty ? null : out;
   }

@@ -45,7 +45,7 @@ final class CesStack extends Stack {
         timeZoneSettings: CesAppTimeZoneSettings(
           timeZone: .literal('America/Los_Angeles'),
         ),
-        lifecycle: const LifecycleOptions(ignoreChanges: ['root_agent']),
+        lifecycle: const .new(ignoreChanges: .of(['root_agent'])),
         dependsOn: apiDeps,
       ),
     );

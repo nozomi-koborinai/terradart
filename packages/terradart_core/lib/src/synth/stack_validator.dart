@@ -1,6 +1,7 @@
 import 'package:meta/meta.dart';
 
 import '../app_constant.dart';
+import '../lifecycle.dart';
 import '../stack.dart';
 import '../tf_arg.dart';
 import '../tf_template.dart';
@@ -19,6 +20,7 @@ abstract final class StackValidator {
     ..._timeouts(stack),
     ..._moved(stack),
     ..._constants(stack),
+    ..._lifecycles(stack),
   ];
 
   static final RegExp _alias = RegExp(r'^[A-Za-z_][A-Za-z0-9_-]*$');
@@ -110,8 +112,17 @@ abstract final class StackValidator {
   static Iterable<(String, Iterable<TfArg<dynamic>?>)> _argumentsByBlock(
     Stack stack,
   ) sync* {
-    for (final r in [...stack.resources, ...stack.dataSources]) {
+    for (final r in stack.dataSources) {
       yield (r.tfAddress, r.argMap.values);
+    }
+    for (final r in stack.resources) {
+      yield (
+        r.tfAddress,
+        [
+          ...r.argMap.values,
+          ...?r.lifecycle?.conditions?.map((c) => c.condition),
+        ],
+      );
     }
     for (final m in stack.modules) {
       yield (m.tfAddress, [...m.inputs.values, m.count, m.forEach]);
@@ -188,9 +199,11 @@ abstract final class StackValidator {
     for (final r in stack.resources) {
       yield* check(r.tfAddress, [
         ...templated(TfJsonEncoder.encodeArgMap(r.argMap)),
+        for (final c in r.lifecycle?.conditions ?? const <LifecycleCondition>[])
+          ...templated(c.condition.toTfJson()),
         ...?r.dependsOn?.map((d) => _root(d.tfAddress)),
         ...?r.lifecycle?.replaceTriggeredBy?.map(
-          (ref) => _root(ref.bareAddress),
+          (t) => _root(TfJsonEncoder.replaceTriggerAddress(t)),
         ),
       ]);
     }
@@ -398,6 +411,44 @@ abstract final class StackValidator {
           operation: operation,
           value: value,
         );
+      }
+    }
+  }
+
+  static Iterable<SynthIssue> _lifecycles(Stack stack) sync* {
+    for (final r in stack.resources) {
+      final lc = r.lifecycle;
+      if (lc == null) continue;
+      for (final t in lc.replaceTriggeredBy ?? const <ReplaceTrigger>[]) {
+        final dataSource = TfJsonEncoder.replaceTriggerAddress(t);
+        if (dataSource.startsWith('data.')) {
+          yield InvalidLifecycle(
+            address: r.tfAddress,
+            reason:
+                'replaceTriggeredBy lists the data source "$dataSource"; '
+                'Terraform only replaces on a change to a managed resource.',
+          );
+        }
+      }
+      if (lc.ignoreChanges case IgnoreAttributes(
+        :final attributes,
+      ) when attributes.contains('all')) {
+        yield InvalidLifecycle(
+          address: r.tfAddress,
+          reason:
+              "ignoreChanges: .of([... 'all' ...]) names an attribute "
+              '"all"; ignore every attribute with `ignoreChanges: .all`.',
+        );
+      }
+      for (final c in lc.conditions ?? const <LifecycleCondition>[]) {
+        if (c.errorMessage.trim().isEmpty) {
+          yield InvalidLifecycle(
+            address: r.tfAddress,
+            reason:
+                'a ${c.post ? 'postcondition' : 'precondition'} has an empty '
+                'error message; Terraform requires one.',
+          );
+        }
       }
     }
   }

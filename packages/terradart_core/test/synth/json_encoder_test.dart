@@ -569,7 +569,7 @@ void main() {
       final out = TfJsonEncoder.lifecycleBlock(
         const LifecycleOptions(
           preventDestroy: true,
-          ignoreChanges: ['labels', 'description'],
+          ignoreChanges: .of(['labels', 'description']),
         ),
       );
       expect(
@@ -577,6 +577,62 @@ void main() {
         equals({
           'prevent_destroy': true,
           'ignore_changes': ['labels', 'description'],
+        }),
+      );
+    });
+
+    test('emits ignore_changes = all', () {
+      final out = TfJsonEncoder.lifecycleBlock(
+        const LifecycleOptions(ignoreChanges: .all),
+      );
+      expect(out, equals({'ignore_changes': 'all'}));
+    });
+
+    test('an explicit false is written', () {
+      final out = TfJsonEncoder.lifecycleBlock(
+        const LifecycleOptions(createBeforeDestroy: false),
+      );
+      expect(out, equals({'create_before_destroy': false}));
+    });
+
+    test('replace_triggered_by takes a whole resource', () {
+      final out = TfJsonEncoder.lifecycleBlock(
+        LifecycleOptions(
+          replaceTriggeredBy: [FakePubsubTopic('a', argMap: const {})],
+        ),
+      );
+      expect(
+        out,
+        equals({
+          'replace_triggered_by': ['google_pubsub_topic.a'],
+        }),
+      );
+    });
+
+    test('emits precondition and postcondition blocks', () {
+      final out = TfJsonEncoder.lifecycleBlock(
+        LifecycleOptions(
+          conditions: [
+            .post(.expression(r'${self.state == "ACTIVE"}'), 'not active'),
+            .pre(.expression(r'${var.size > 0}'), 'size must be positive'),
+          ],
+        ),
+      );
+      expect(
+        out,
+        equals({
+          'precondition': [
+            {
+              'condition': r'${var.size > 0}',
+              'error_message': 'size must be positive',
+            },
+          ],
+          'postcondition': [
+            {
+              'condition': r'${self.state == "ACTIVE"}',
+              'error_message': 'not active',
+            },
+          ],
         }),
       );
     });

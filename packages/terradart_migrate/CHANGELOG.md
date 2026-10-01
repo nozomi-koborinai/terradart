@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- A migrated `lifecycle` is `.new(...)`: `ignore_changes = all` is `ignoreChanges: .all`, a list is `.of([...])`, a whole-resource `replace_triggered_by` entry is the Dart variable, and `precondition` / `postcondition` blocks are `conditions: [.pre(...), .post(...)]`.
 - A migrated `variable` block is `final x = variable<T>('x', ...)`: `T` follows its `type` (`string` → `String`, `number` → `num`, `list(string)` → `List<String>`, `map(...)` → `Map<String, ...>`), and what Dart cannot say is spelled out (`type: .set(.string)`, `.object({...})`, `.any`). An argument that takes a `TfArg<T>` reads the handle (`location: region`); an enum or `RefTo` slot takes `.arg(region)`. An undeclared reference is `externalVariable('x')`, and a `type` the migrator cannot read keeps the variable in the sidecar.
 - A migrated enum value is the member itself (`routingMode: .regional`, `[.http, .https]`); a reference or an expression in an enum slot is `.arg(...)` / `.expression(...)`.
 - Migrated factories and module calls pass the local name positionally (`GooglePubsubTopic('orders', ...)`), and a generated module wrapper takes `super.localName` first.

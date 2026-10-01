@@ -792,7 +792,7 @@ final class CesAppVpcScSettings {
 /// sessions. Enable `ces.googleapis.com` via [Apis.enable] before apply.
 ///
 /// When pairing with [GoogleCesAppRootAgentAssociation], set
-/// `lifecycle: LifecycleOptions(ignoreChanges: ['root_agent'])` so
+/// `lifecycle: .new(ignoreChanges: .of(['root_agent']))` so
 /// Terraform does not fight the association over `root_agent`.
 ///
 /// Example:
@@ -802,7 +802,7 @@ final class CesAppVpcScSettings {
 ///   location: TfArg.literal('us'),
 ///   appId: TfArg.literal('terradart-ces'),
 ///   displayName: TfArg.literal('terradart-ces'),
-///   lifecycle: const LifecycleOptions(ignoreChanges: ['root_agent']),
+///   lifecycle: const .new(ignoreChanges: .of(['root_agent'])),
 /// );
 /// ```
 final class GoogleCesApp extends Resource {
