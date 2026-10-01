@@ -281,7 +281,8 @@ class MmYamlParser {
 
   /// Adds every input `ResourceRef` under [props] to [sink], keyed by its
   /// Terraform path below [prefix] (snake-cased `name`s, `flatten_object`
-  /// levels dropped).
+  /// levels dropped). `api_name` is the REST field and never the Terraform
+  /// one: `backendService` with `api_name: service` is `backend_service`.
   void _collectResourceRefs(
     YamlList props,
     List<String> prefix,

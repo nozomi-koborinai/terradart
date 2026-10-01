@@ -435,6 +435,21 @@ properties:
       });
     });
 
+    test('keys by the Terraform name, not the REST api_name', () {
+      final proxy = MmYamlParser().parseString('''
+name: Proxy
+properties:
+  - name: backendService
+    api_name: service
+    type: ResourceRef
+    resource: BackendService
+    imports: selfLink
+''');
+      expect(proxy.resourceRefs, {
+        'backend_service': (resource: 'BackendService', imports: 'selfLink'),
+      });
+    });
+
     test('types each input as the same-product resource it imports', () {
       final r = resolve();
       expect(r.errors, isEmpty);
