@@ -119,7 +119,7 @@ HCL has provider schema types; CDKTF bindings are typed in TypeScript and other 
 - [`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare) wraps official `cloudflare/cloudflare` provider resources (filled at the current pin: every resource and data source).
 - [`terradart_aws`](https://pub.dev/packages/terradart_aws) wraps the HashiCorp `aws` provider (filled at the current pin: every resource and data source). See [AWS](/docs/providers/aws/).
 
-Each provider has its own page — [Google Cloud](/docs/providers/google/), [AWS](/docs/providers/aws/), [Cloudflare](/docs/providers/cloudflare/), [Appwrite](/docs/providers/appwrite/) — and the Google factory list with example pointers is on [Coverage](/docs/coverage/); see also [status](/docs/status/) and [Architecture — Provider integration](/docs/architecture/#provider-integration). Runnable stacks live in [examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) and the [cookbook](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook). Upgrading across minors? Read [Upgrading](/docs/upgrading/) first.
+Each provider has its own page — [Google Cloud](/docs/providers/google/), [AWS](/docs/providers/aws/), [Cloudflare](/docs/providers/cloudflare/), [Appwrite](/docs/providers/appwrite/) — and every provider's factory list with example pointers is on [Coverage](/docs/coverage/); see also [status](/docs/status/) and [Architecture — Provider integration](/docs/architecture/#provider-integration). Runnable stacks live in [examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) and the [cookbook](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook). Upgrading across minors? Read [Upgrading](/docs/upgrading/) first.
 
 ## Non-goals
 

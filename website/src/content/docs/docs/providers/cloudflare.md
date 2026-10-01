@@ -67,4 +67,5 @@ The app reads the host it is served from as `EdgeStackConstants.apiHost` instead
 ## Reference
 
 - [`terradart_cloudflare` API docs](https://pub.dev/documentation/terradart_cloudflare/latest/)
+- [Cloudflare coverage](/docs/coverage/cloudflare/) — every factory, its barrel and its example
 - [`lib/src/_catalog.g.dart`](https://github.com/nozomi-koborinai/terradart/blob/main/packages/terradart_cloudflare/lib/src/_catalog.g.dart) — Terraform type → Dart class and import, for every factory

@@ -57,7 +57,17 @@ export default defineConfig({
             { label: "AWS", slug: "docs/providers/aws" },
             { label: "Cloudflare", slug: "docs/providers/cloudflare" },
             { label: "Appwrite", slug: "docs/providers/appwrite" },
-            { label: "Google coverage", slug: "docs/coverage" },
+            {
+              label: "Coverage",
+              items: [
+                { label: "Overview", slug: "docs/coverage" },
+                { label: "Google Cloud", slug: "docs/coverage/google" },
+                { label: "Google Cloud (beta-only)", slug: "docs/coverage/google-beta" },
+                { label: "AWS", slug: "docs/coverage/aws" },
+                { label: "Cloudflare", slug: "docs/coverage/cloudflare" },
+                { label: "Appwrite", slug: "docs/coverage/appwrite" },
+              ],
+            },
           ],
         },
         {

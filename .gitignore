@@ -32,6 +32,8 @@ doc/api/
 # Coverage output (`dart test --coverage`).
 coverage/
 *.lcov
+# ...but not the generated website coverage pages.
+!website/src/content/docs/docs/coverage/
 
 # pana
 pana_report.json

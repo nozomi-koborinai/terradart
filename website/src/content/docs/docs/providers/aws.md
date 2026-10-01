@@ -358,3 +358,4 @@ The rest of the catalog sits on the same per-service barrels, such as `package:t
 - [Architecture](/docs/architecture/#provider-integration) for how provider packages are generated
 - [`terradart_aws` README](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_aws) for the typed nested helpers on the most deeply nested resources
 - [Examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) for runnable stacks
+- [AWS coverage](/docs/coverage/aws/) for every factory, its barrel and its example

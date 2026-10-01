@@ -46,7 +46,7 @@ if [[ "$QUICK" == "0" ]]; then
   echo ">> check_example_topology (reuses tf-out from the synth pass)"
   dart tool/check_example_topology.dart --reuse-tf-out
 
-  echo ">> render_coverage_page --check (website coverage page freshness; reuses tf-out)"
+  echo ">> render_coverage_page --check (website coverage pages freshness; reuses tf-out)"
   dart tool/render_coverage_page.dart --check
 
   echo ">> migrate_roundtrip_gates (migrate every quickstart's synth output back to Dart and re-synth; reuses tf-out)"

@@ -1,29 +1,33 @@
-// render_coverage_page.dart — generate the site's /docs/coverage/ page.
+// render_coverage_page.dart — generate the site's /docs/coverage/ pages.
 //
-// Renders website/src/content/docs/docs/coverage.md from the wrap-generated
-// catalog (package:terradart_google/catalog.dart) plus a tfType → example
-// back-reference map walked out of synthed examples/*_quickstart/tf-out/
-// main.tf.json files. The committed page is a GENERATED artifact: humans edit
-// this generator, never the markdown.
+// Renders website/src/content/docs/docs/coverage/: an overview (index.md)
+// plus one page per provider package, each from that package's
+// wrap-generated catalog (package:terradart_<provider>/catalog.dart) and a
+// tfType → example back-reference map walked out of synthed
+// examples/*_quickstart/tf-out/main.tf.json files. The committed pages are
+// GENERATED artifacts: humans edit this generator, never the markdown.
 //
 // Usage:
 //   dart tool/example_synth_gates.dart --skip-validate   # populate tf-out
-//   dart tool/render_coverage_page.dart                  # write the page
+//   dart tool/render_coverage_page.dart                  # write the pages
 //   dart tool/render_coverage_page.dart --check          # verify freshness
 //
-// --check exits 1 when the committed page differs from a fresh render (CI
-// runs it on the synth-equipped job; a bump that moves the catalog needs
-// the page regenerated before it can merge).
+// --check exits 1 when a committed page differs from a fresh render, or a
+// page no provider renders is left in the directory (CI runs it on the
+// synth-equipped job; a bump that moves a catalog needs the pages
+// regenerated before it can merge).
 // ignore_for_file: avoid_print
 
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:terradart_google/catalog.dart';
+import 'package:terradart_appwrite/catalog.dart' as appwrite;
+import 'package:terradart_aws/catalog.dart' as aws;
+import 'package:terradart_cloudflare/catalog.dart' as cloudflare;
+import 'package:terradart_google/catalog.dart' as google;
+import 'package:terradart_google_beta/catalog.dart' as google_beta;
 
-import 'doc_expectations.dart' as expectations;
-
-const _outputPath = 'website/src/content/docs/docs/coverage.md';
+const _outputDir = 'website/src/content/docs/docs/coverage';
 
 typedef CatalogItem = ({
   String tfType,
@@ -39,6 +43,96 @@ typedef CoverageRow = ({
   String kind,
   List<String> examples,
 });
+
+/// One provider package's coverage page: [slug] names the page
+/// (`coverage/<slug>.md`), [title] the provider, [source] its registry
+/// address.
+typedef CoverageProvider = ({
+  String slug,
+  String title,
+  String package,
+  String source,
+  List<CatalogItem> catalog,
+});
+
+/// Every provider package with a catalog, in the order the site lists them.
+final List<CoverageProvider> providers = [
+  (
+    slug: 'google',
+    title: 'Google Cloud',
+    package: 'terradart_google',
+    source: 'hashicorp/google',
+    catalog: [
+      for (final e in google.terradartCatalog)
+        (
+          tfType: e.tfType,
+          className: e.className,
+          barrel: e.barrel,
+          kind: e.kind.name,
+        ),
+    ],
+  ),
+  (
+    slug: 'google-beta',
+    title: 'Google Cloud (beta-only)',
+    package: 'terradart_google_beta',
+    source: 'hashicorp/google-beta',
+    catalog: [
+      for (final e in google_beta.terradartCatalog)
+        (
+          tfType: e.tfType,
+          className: e.className,
+          barrel: e.barrel,
+          kind: e.kind.name,
+        ),
+    ],
+  ),
+  (
+    slug: 'aws',
+    title: 'AWS',
+    package: 'terradart_aws',
+    source: 'hashicorp/aws',
+    catalog: [
+      for (final e in aws.terradartCatalog)
+        (
+          tfType: e.tfType,
+          className: e.className,
+          barrel: e.barrel,
+          kind: e.kind.name,
+        ),
+    ],
+  ),
+  (
+    slug: 'cloudflare',
+    title: 'Cloudflare',
+    package: 'terradart_cloudflare',
+    source: 'cloudflare/cloudflare',
+    catalog: [
+      for (final e in cloudflare.terradartCatalog)
+        (
+          tfType: e.tfType,
+          className: e.className,
+          barrel: e.barrel,
+          kind: e.kind.name,
+        ),
+    ],
+  ),
+  (
+    slug: 'appwrite',
+    title: 'Appwrite',
+    package: 'terradart_appwrite',
+    source: 'appwrite/appwrite',
+    catalog: [
+      for (final e in appwrite.terradartCatalog)
+        (
+          tfType: e.tfType,
+          className: e.className,
+          barrel: e.barrel,
+          kind: e.kind.name,
+        ),
+    ],
+  ),
+];
 
 /// Joins catalog items with their example back-references, sorted by barrel
 /// then tfType (deterministic regardless of input order).
@@ -68,6 +162,18 @@ List<CoverageRow> buildRows({
 /// Distinguishes resource / data-source twins that share a terraform type.
 String _coverageKey(String kind, String tfType) => '$kind:$tfType';
 
+/// `N curated resource factories + M data sources (T catalog entries)`.
+String countsPhrase(List<CoverageRow> rows) {
+  final resources = rows.where((r) => r.kind == 'resource').length;
+  final dataSources = rows.length - resources;
+  final ds = dataSources == 1 ? '1 data source' : '$dataSources data sources';
+  return '$resources curated resource factories + $ds '
+      '(${rows.length} catalog entries)';
+}
+
+int _inExample(List<CoverageRow> rows) =>
+    rows.where((r) => r.examples.isNotEmpty).length;
+
 String _exampleCell(List<String> examples) {
   if (examples.isEmpty) return '—';
   return examples
@@ -78,10 +184,14 @@ String _exampleCell(List<String> examples) {
       .join(', ');
 }
 
-/// Renders the full markdown page (deterministic for a given input).
-String renderCoveragePage({
+const _generatedMarker =
+    '<!-- GENERATED by tool/render_coverage_page.dart — do not edit; '
+    'edit the generator and re-run it. -->';
+
+/// Renders one provider's page (deterministic for a given input).
+String renderProviderPage({
+  required CoverageProvider provider,
   required List<CoverageRow> rows,
-  required String countsPhrase,
 }) {
   final barrels = <String, List<CoverageRow>>{};
   for (final row in rows) {
@@ -91,33 +201,32 @@ String renderCoveragePage({
 
   final buf = StringBuffer()
     ..writeln('---')
-    ..writeln('title: Coverage')
+    ..writeln('title: ${provider.title} coverage')
     ..writeln(
-      'description: Every curated google_* factory, its barrel import, and '
-      'the runnable examples that exercise it.',
+      'description: Every ${provider.package} factory, its barrel import, '
+      'and the runnable examples that exercise it.',
     )
     ..writeln('---')
     ..writeln()
+    ..writeln(_generatedMarker)
+    ..writeln()
     ..writeln(
-      '<!-- GENERATED by tool/render_coverage_page.dart — do not edit; '
-      'edit the generator and re-run it. -->',
+      '`${provider.package}` wraps `${provider.source}` and currently ships '
+      '**${countsPhrase(rows)}**, ${_inExample(rows)} of them in a runnable '
+      'example. Each factory below is generated from the pinned provider '
+      'schema, exported from the barrel shown, and — where an example is '
+      'listed — synthesized and checked with `terraform validate` in CI.',
     )
     ..writeln()
     ..writeln(
-      'TerraDart currently ships **$countsPhrase**. Each factory below is '
-      'generated from the pinned provider schema, exported from the barrel '
-      'shown, and — where an example is listed — synthesized and checked '
-      'with `terraform validate` in CI.',
-    )
-    ..writeln()
-    ..writeln(
-      'Import per service: `import \'package:terradart_google/<barrel>.dart\';`',
+      'Import per service: '
+      '`import \'package:${provider.package}/<barrel>.dart\';`',
     )
     ..writeln()
     ..writeln('## Barrels')
     ..writeln();
   for (final name in barrelNames) {
-    buf.writeln('- [`$name`](#${name.replaceAll('_', '')})');
+    buf.writeln('- [`$name`](#$name)');
   }
   buf.writeln();
   for (final name in barrelNames) {
@@ -141,6 +250,70 @@ String renderCoveragePage({
     ' · per-package CHANGELOGs.',
   );
   return buf.toString();
+}
+
+/// Renders the overview page: one row per provider package.
+String renderOverviewPage(
+  List<({CoverageProvider provider, List<CoverageRow> rows})> pages,
+) {
+  final buf = StringBuffer()
+    ..writeln('---')
+    ..writeln('title: Coverage')
+    ..writeln(
+      'description: Every curated factory of every TerraDart provider '
+      'package, its barrel import, and the runnable examples that exercise '
+      'it.',
+    )
+    ..writeln('---')
+    ..writeln()
+    ..writeln(_generatedMarker)
+    ..writeln()
+    ..writeln(
+      'Each provider package wraps its provider\'s catalog at the pinned '
+      'release. Its page lists every factory with the barrel that exports '
+      'it and the examples that synthesize it and check it with '
+      '`terraform validate` in CI.',
+    )
+    ..writeln()
+    ..writeln(
+      '| Provider | Package | Resources | Data sources | In an example |',
+    )
+    ..writeln('| --- | --- | ---: | ---: | ---: |');
+  for (final (:provider, :rows) in pages) {
+    final resources = rows.where((r) => r.kind == 'resource').length;
+    buf.writeln(
+      '| [${provider.title}](/docs/coverage/${provider.slug}/) '
+      '| `${provider.package}` | $resources | ${rows.length - resources} '
+      '| ${_inExample(rows)} |',
+    );
+  }
+  buf
+    ..writeln()
+    ..writeln(
+      'A factory without an example is recorded with a reason in '
+      '[`tool/example_debt.yaml`](https://github.com/nozomi-koborinai/terradart/blob/main/tool/example_debt.yaml).',
+    );
+  return buf.toString();
+}
+
+/// Every page this generator owns: `index.md` plus one per provider, keyed
+/// by file name.
+Map<String, String> renderPages(Map<String, List<String>> tfTypeToExamples) {
+  final pages = [
+    for (final provider in providers)
+      (
+        provider: provider,
+        rows: buildRows(
+          catalog: provider.catalog,
+          tfTypeToExamples: tfTypeToExamples,
+        ),
+      ),
+  ];
+  return {
+    'index.md': renderOverviewPage(pages),
+    for (final (:provider, :rows) in pages)
+      '${provider.slug}.md': renderProviderPage(provider: provider, rows: rows),
+  };
 }
 
 Map<String, List<String>> _walkTfOuts() {
@@ -188,35 +361,43 @@ Map<String, List<String>> _walkTfOuts() {
 
 void main(List<String> args) {
   final check = args.contains('--check');
-  final catalog = [
-    for (final entry in terradartCatalog)
-      (
-        tfType: entry.tfType,
-        className: entry.className,
-        barrel: entry.barrel,
-        kind: entry.kind.name,
-      ),
-  ];
-  final countsPhrase =
-      '${expectations.curatedFactoryCount} curated resource factories + '
-      '${expectations.dataSourceCatalogPhrase} (${expectations.catalogEntryCount} catalog entries)';
-  final rendered = renderCoveragePage(
-    rows: buildRows(catalog: catalog, tfTypeToExamples: _walkTfOuts()),
-    countsPhrase: countsPhrase,
-  );
-  final file = File(_outputPath);
+  final rendered = renderPages(_walkTfOuts());
+  final dir = Directory(_outputDir);
+  final existing = dir.existsSync()
+      ? {
+          for (final f in dir.listSync().whereType<File>())
+            f.uri.pathSegments.last,
+        }
+      : <String>{};
+  final orphans = existing.difference(rendered.keys.toSet()).toList()..sort();
   if (check) {
-    final committed = file.existsSync() ? file.readAsStringSync() : '';
-    if (committed == rendered) {
-      print('render_coverage_page: OK ($_outputPath is fresh)');
+    final stale = [
+      for (final MapEntry(:key, :value) in rendered.entries)
+        if (!existing.contains(key) ||
+            File('$_outputDir/$key').readAsStringSync() != value)
+          key,
+    ];
+    if (stale.isEmpty && orphans.isEmpty) {
+      print(
+        'render_coverage_page: OK ($_outputDir: ${rendered.length} pages '
+        'fresh)',
+      );
       exit(0);
     }
     print(
-      'render_coverage_page: STALE — $_outputPath does not match a fresh '
-      'render. Run `dart tool/render_coverage_page.dart` and commit.',
+      'render_coverage_page: STALE — $_outputDir does not match a fresh '
+      'render (stale: ${stale.join(', ')}; not rendered: '
+      '${orphans.join(', ')}). Run `dart tool/render_coverage_page.dart` '
+      'and commit.',
     );
     exit(1);
   }
-  file.writeAsStringSync(rendered);
-  print('render_coverage_page: wrote $_outputPath (${rendered.length} bytes)');
+  dir.createSync(recursive: true);
+  for (final name in orphans) {
+    File('$_outputDir/$name').deleteSync();
+  }
+  for (final MapEntry(:key, :value) in rendered.entries) {
+    File('$_outputDir/$key').writeAsStringSync(value);
+  }
+  print('render_coverage_page: wrote ${rendered.length} pages to $_outputDir');
 }
