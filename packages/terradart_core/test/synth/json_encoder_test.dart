@@ -271,7 +271,7 @@ void main() {
       );
       // A data source selects an alias the same way, and synth keeps it.
       final withData = stackWith('google.eu')
-        ..addData(
+        ..add(
           FakeProjectData(
             localName: 'current',
             argMap: const {},
@@ -284,7 +284,7 @@ void main() {
       );
       expect(
         () =>
-            (TestStack(providers: stackWith(null).providers)..addData(
+            (TestStack(providers: stackWith(null).providers)..add(
                   FakeProjectData(
                     localName: 'current',
                     argMap: const {},
@@ -822,7 +822,7 @@ void main() {
 
     test('dataGroup separates from resources', () {
       final stack = TestStack();
-      stack.addData(
+      stack.add(
         FakeProjectData(
           localName: 'this',
           argMap: const {'project_id': TfArgLiteral<String>('orders-prod')},
@@ -845,7 +845,7 @@ void main() {
 
     test('dataGroup emits the provider meta-argument', () {
       final stack = TestStack();
-      stack.addData(
+      stack.add(
         FakeProjectData(
           localName: 'eu',
           argMap: const {'project_id': TfArgLiteral<String>('orders-prod')},

@@ -42,7 +42,7 @@ final class OrdersStack extends Stack {
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
         appExports: AppExports('lib/generated/orders_stack.app.dart'),
       ) {
-    final current = addData(GoogleProject(localName: 'current'));
+    final current = add(GoogleProject(localName: 'current'));
 
     final ordersSchema = add(
       GooglePubsubSchema(

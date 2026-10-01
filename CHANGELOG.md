@@ -10,6 +10,8 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ### Changed
 
+- **`add` registers data sources** (`terradart_core`, `terradart_migrate`)
+  — `add(DataGoogleProject(...))`; `addData` is removed.
 - **`dependsOn` takes the blocks** (`terradart_core`, `terradart_google`,
   `terradart_migrate`) — `dependsOn: [schema, api, ...apiDeps]` instead of
   `ResourceDependency(...)` around each entry. `DependencyTarget`,

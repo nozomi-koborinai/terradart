@@ -40,7 +40,7 @@ final class DataplexCatalogStack extends Stack {
 
     // Resolves the project *number* (not id) — Dataplex entry_type references
     // must be `projects/<project-number>/...`; a project id is rejected.
-    final current = addData(GoogleProject(localName: 'current'));
+    final current = add(GoogleProject(localName: 'current'));
 
     final owner = add(
       GoogleServiceAccount(

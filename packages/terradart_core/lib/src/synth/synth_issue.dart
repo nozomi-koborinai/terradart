@@ -109,8 +109,7 @@ final class UndeclaredVariable extends SynthIssue {
 }
 
 /// A block references another block that was never registered on the
-/// Stack: built, but not passed to `add(...)` / `addData(...)` /
-/// `addModule(...)`.
+/// Stack: built, but not passed to `add(...)` / `addModule(...)`.
 final class UnregisteredReference extends SynthIssue {
   const UnregisteredReference({required this.address, required this.target});
 
@@ -123,11 +122,7 @@ final class UnregisteredReference extends SynthIssue {
 
   @override
   String get message {
-    final how = switch (target) {
-      _ when target.startsWith('module.') => 'addModule(...)',
-      _ when target.startsWith('data.') => 'addData(...)',
-      _ => 'add(...)',
-    };
+    final how = target.startsWith('module.') ? 'addModule(...)' : 'add(...)';
     return 'references $target, which is not registered on this Stack. '
         'Pass it to $how, or declare it with '
         "`addExternalBlock('$target')` when a hand-written file beside "

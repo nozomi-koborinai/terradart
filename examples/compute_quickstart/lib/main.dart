@@ -89,7 +89,7 @@ final class NetworkStack extends Stack {
     // agent always exists for a project, so the binding is valid once the
     // real number is interpolated. Data source + IAM members are not
     // API-gated, so no `dependsOn: apiDeps` is required here.
-    final current = addData(
+    final current = add(
       GoogleProject(localName: 'current', projectId: .literal(projectId)),
     );
 

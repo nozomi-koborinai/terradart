@@ -15633,20 +15633,18 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
-      DataAwsAccountPrimaryContact(localName: 'd_account_primary_contact'),
-    );
+    add(DataAwsAccountPrimaryContact(localName: 'd_account_primary_contact'));
 
-    addData(DataAwsAccountRegions(localName: 'd_account_regions'));
+    add(DataAwsAccountRegions(localName: 'd_account_regions'));
 
-    addData(
+    add(
       DataAwsAccountaccessApplication(
         localName: 'd_accountaccess_application',
         arn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsAccountaccessEntitlements(
         localName: 'd_accountaccess_entitlements',
         applicationArn: .literal(arn),
@@ -15658,7 +15656,7 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsAcmCertificate(
         localName: 'd_acm_certificate',
         domain: .literal(leftover),
@@ -15666,7 +15664,7 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsAcmpcaCertificate(
         localName: 'd_acmpca_certificate',
         arn: .literal(arn),
@@ -15674,42 +15672,40 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsAcmpcaCertificateAuthority(
         localName: 'd_acmpca_certificate_authority',
         arn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsAgentregistryRegistry(
         localName: 'd_agentregistry_registry',
         registryId: .literal(leftover),
       ),
     );
 
-    addData(DataAwsAlb(localName: 'd_alb'));
+    add(DataAwsAlb(localName: 'd_alb'));
 
-    addData(DataAwsAlbListener(localName: 'd_alb_listener'));
+    add(DataAwsAlbListener(localName: 'd_alb_listener'));
 
-    addData(DataAwsAlbTargetGroup(localName: 'd_alb_target_group'));
+    add(DataAwsAlbTargetGroup(localName: 'd_alb_target_group'));
 
-    addData(DataAwsAmi(localName: 'd_ami'));
+    add(DataAwsAmi(localName: 'd_ami'));
 
-    addData(
-      DataAwsAmiIds(localName: 'd_ami_ids', owners: .literal([leftover])),
-    );
+    add(DataAwsAmiIds(localName: 'd_ami_ids', owners: .literal([leftover])));
 
-    addData(
+    add(
       DataAwsApiGatewayApiKey(
         localName: 'd_api_gateway_api_key',
         id: .literal(leftover),
       ),
     );
 
-    addData(DataAwsApiGatewayApiKeys(localName: 'd_api_gateway_api_keys'));
+    add(DataAwsApiGatewayApiKeys(localName: 'd_api_gateway_api_keys'));
 
-    addData(
+    add(
       DataAwsApiGatewayAuthorizer(
         localName: 'd_api_gateway_authorizer',
         authorizerId: .literal(leftover),
@@ -15717,21 +15713,21 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsApiGatewayAuthorizers(
         localName: 'd_api_gateway_authorizers',
         restApiId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsApiGatewayDomainName(
         localName: 'd_api_gateway_domain_name',
         domainName: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsApiGatewayExport(
         localName: 'd_api_gateway_export',
         exportType: .literal('oas30'),
@@ -15740,7 +15736,7 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsApiGatewayResource(
         localName: 'd_api_gateway_resource',
         path: .literal(leftover),
@@ -15748,14 +15744,14 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsApiGatewayRestApi(
         localName: 'd_api_gateway_rest_api',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsApiGatewaySdk(
         localName: 'd_api_gateway_sdk',
         restApiId: .literal(leftover),
@@ -15764,23 +15760,23 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsApiGatewayVpcLink(
         localName: 'd_api_gateway_vpc_link',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsApigatewayv2Api(
         localName: 'd_apigatewayv2_api',
         apiId: .literal(leftover),
       ),
     );
 
-    addData(DataAwsApigatewayv2Apis(localName: 'd_apigatewayv2_apis'));
+    add(DataAwsApigatewayv2Apis(localName: 'd_apigatewayv2_apis'));
 
-    addData(
+    add(
       DataAwsApigatewayv2Export(
         localName: 'd_apigatewayv2_export',
         apiId: .literal(leftover),
@@ -15789,21 +15785,21 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsApigatewayv2VpcLink(
         localName: 'd_apigatewayv2_vpc_link',
         vpcLinkId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsAppconfigApplication(
         localName: 'd_appconfig_application',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsAppconfigConfigurationProfile(
         localName: 'd_appconfig_configuration_profile',
         applicationId: .literal(leftover),
@@ -15811,14 +15807,14 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsAppconfigConfigurationProfiles(
         localName: 'd_appconfig_configuration_profiles',
         applicationId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsAppconfigEnvironment(
         localName: 'd_appconfig_environment',
         applicationId: .literal(leftover),
@@ -15826,21 +15822,21 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsAppconfigEnvironments(
         localName: 'd_appconfig_environments',
         applicationId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsAppintegrationsEventIntegration(
         localName: 'd_appintegrations_event_integration',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsAppmeshGatewayRoute(
         localName: 'd_appmesh_gateway_route',
         meshName: .literal(leftover),
@@ -15849,11 +15845,11 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsAppmeshMesh(localName: 'd_appmesh_mesh', name: .literal(leftover)),
     );
 
-    addData(
+    add(
       DataAwsAppmeshRoute(
         localName: 'd_appmesh_route',
         meshName: .literal(leftover),
@@ -15862,7 +15858,7 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsAppmeshVirtualGateway(
         localName: 'd_appmesh_virtual_gateway',
         meshName: .literal(leftover),
@@ -15870,7 +15866,7 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsAppmeshVirtualNode(
         localName: 'd_appmesh_virtual_node',
         meshName: .literal(leftover),
@@ -15878,7 +15874,7 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsAppmeshVirtualRouter(
         localName: 'd_appmesh_virtual_router',
         meshName: .literal(leftover),
@@ -15886,7 +15882,7 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsAppmeshVirtualService(
         localName: 'd_appmesh_virtual_service',
         meshName: .literal(leftover),
@@ -15894,36 +15890,34 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
-      DataAwsApprunnerHostedZoneId(localName: 'd_apprunner_hosted_zone_id'),
-    );
+    add(DataAwsApprunnerHostedZoneId(localName: 'd_apprunner_hosted_zone_id'));
 
-    addData(DataAwsAppstreamImage(localName: 'd_appstream_image'));
+    add(DataAwsAppstreamImage(localName: 'd_appstream_image'));
 
-    addData(
+    add(
       DataAwsArcregionswitchPlan(
         localName: 'd_arcregionswitch_plan',
         arn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsArcregionswitchRoute53HealthChecks(
         localName: 'd_arcregionswitch_route53_health_checks',
         planArn: .literal(arn),
       ),
     );
 
-    addData(DataAwsArn(localName: 'd_arn', arn: .literal(arn)));
+    add(DataAwsArn(localName: 'd_arn', arn: .literal(arn)));
 
-    addData(
+    add(
       DataAwsAthenaNamedQuery(
         localName: 'd_athena_named_query',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsAuditmanagerControl(
         localName: 'd_auditmanager_control',
         name: .literal(leftover),
@@ -15931,7 +15925,7 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsAuditmanagerFramework(
         localName: 'd_auditmanager_framework',
         frameworkType: .literal('Standard'),
@@ -15939,38 +15933,38 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsAutoscalingGroup(
         localName: 'd_autoscaling_group',
         name: .literal(leftover),
       ),
     );
 
-    addData(DataAwsAutoscalingGroups(localName: 'd_autoscaling_groups'));
+    add(DataAwsAutoscalingGroups(localName: 'd_autoscaling_groups'));
 
-    addData(DataAwsAvailabilityZone(localName: 'd_availability_zone'));
+    add(DataAwsAvailabilityZone(localName: 'd_availability_zone'));
 
-    addData(DataAwsAvailabilityZones(localName: 'd_availability_zones'));
+    add(DataAwsAvailabilityZones(localName: 'd_availability_zones'));
 
-    addData(
+    add(
       DataAwsBackupFramework(
         localName: 'd_backup_framework',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsBackupPlan(localName: 'd_backup_plan', planId: .literal(leftover)),
     );
 
-    addData(
+    add(
       DataAwsBackupReportPlan(
         localName: 'd_backup_report_plan',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsBackupSelection(
         localName: 'd_backup_selection',
         planId: .literal(leftover),
@@ -15978,109 +15972,107 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsBackupVault(localName: 'd_backup_vault', name: .literal(leftover)),
     );
 
-    addData(
+    add(
       DataAwsBatchComputeEnvironment(
         localName: 'd_batch_compute_environment',
         name: .literal(leftover),
       ),
     );
 
-    addData(DataAwsBatchJobDefinition(localName: 'd_batch_job_definition'));
+    add(DataAwsBatchJobDefinition(localName: 'd_batch_job_definition'));
 
-    addData(
+    add(
       DataAwsBatchJobQueue(
         localName: 'd_batch_job_queue',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsBatchSchedulingPolicy(
         localName: 'd_batch_scheduling_policy',
         arn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsBedrockCustomModel(
         localName: 'd_bedrock_custom_model',
         modelId: .literal(leftover),
       ),
     );
 
-    addData(DataAwsBedrockCustomModels(localName: 'd_bedrock_custom_models'));
+    add(DataAwsBedrockCustomModels(localName: 'd_bedrock_custom_models'));
 
-    addData(
+    add(
       DataAwsBedrockFoundationModel(
         localName: 'd_bedrock_foundation_model',
         modelId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsBedrockFoundationModelAgreementOffers(
         localName: 'd_bedrock_foundation_model_agreement_offers',
         modelId: .literal('2e.lzvycjp-i167ebv/zatu8l86d38a'),
       ),
     );
 
-    addData(
+    add(
       DataAwsBedrockFoundationModels(localName: 'd_bedrock_foundation_models'),
     );
 
-    addData(
+    add(
       DataAwsBedrockInferenceProfile(
         localName: 'd_bedrock_inference_profile',
         inferenceProfileId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsBedrockInferenceProfiles(
         localName: 'd_bedrock_inference_profiles',
       ),
     );
 
-    addData(
+    add(
       DataAwsBedrockUseCaseForModelAccess(
         localName: 'd_bedrock_use_case_for_model_access',
       ),
     );
 
-    addData(
+    add(
       DataAwsBedrockagentAgentVersions(
         localName: 'd_bedrockagent_agent_versions',
         agentId: .literal(leftover),
       ),
     );
 
-    addData(
-      DataAwsBillingServiceAccount(localName: 'd_billing_service_account'),
-    );
+    add(DataAwsBillingServiceAccount(localName: 'd_billing_service_account'));
 
-    addData(DataAwsBillingViews(localName: 'd_billing_views'));
+    add(DataAwsBillingViews(localName: 'd_billing_views'));
 
-    addData(
+    add(
       DataAwsBudgetsBudget(
         localName: 'd_budgets_budget',
         name: .literal(leftover),
       ),
     );
 
-    addData(DataAwsCanonicalUserId(localName: 'd_canonical_user_id'));
+    add(DataAwsCanonicalUserId(localName: 'd_canonical_user_id'));
 
-    addData(
+    add(
       DataAwsCeCostCategory(
         localName: 'd_ce_cost_category',
         costCategoryArn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsCeTags(
         localName: 'd_ce_tags',
         timePeriod: DataCeTagsTimePeriod(
@@ -16090,14 +16082,14 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsChatbotSlackWorkspace(
         localName: 'd_chatbot_slack_workspace',
         slackTeamName: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsCloudcontrolapiResource(
         localName: 'd_cloudcontrolapi_resource',
         identifier: .literal(leftover),
@@ -16105,44 +16097,44 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsCloudformationExport(
         localName: 'd_cloudformation_export',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsCloudformationStack(
         localName: 'd_cloudformation_stack',
         name: .literal(leftover),
       ),
     );
 
-    addData(DataAwsCloudformationType(localName: 'd_cloudformation_type'));
+    add(DataAwsCloudformationType(localName: 'd_cloudformation_type'));
 
-    addData(
+    add(
       DataAwsCloudfrontConnectionGroup(
         localName: 'd_cloudfront_connection_group',
         routingEndpoint: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsCloudfrontDistribution(
         localName: 'd_cloudfront_distribution',
         id: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsCloudfrontDistributionTenant(
         localName: 'd_cloudfront_distribution_tenant',
         arn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsCloudfrontFunction(
         localName: 'd_cloudfront_function',
         name: .literal(leftover),
@@ -16150,94 +16142,92 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsCloudfrontLogDeliveryCanonicalUserId(
         localName: 'd_cloudfront_log_delivery_canonical_user_id',
       ),
     );
 
-    addData(
+    add(
       DataAwsCloudfrontOriginAccessControl(
         localName: 'd_cloudfront_origin_access_control',
         id: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsCloudfrontOriginAccessIdentities(
         localName: 'd_cloudfront_origin_access_identities',
       ),
     );
 
-    addData(
+    add(
       DataAwsCloudfrontOriginAccessIdentity(
         localName: 'd_cloudfront_origin_access_identity',
         id: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsCloudfrontOriginRequestPolicy(
         localName: 'd_cloudfront_origin_request_policy',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsCloudfrontRealtimeLogConfig(
         localName: 'd_cloudfront_realtime_log_config',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsCloudfrontResponseHeadersPolicy(
         localName: 'd_cloudfront_response_headers_policy',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsCloudhsmV2Cluster(
         localName: 'd_cloudhsm_v2_cluster',
         clusterId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsCloudtrailServiceAccount(
         localName: 'd_cloudtrail_service_account',
       ),
     );
 
-    addData(
+    add(
       DataAwsCloudwatchContributorManagedInsightRules(
         localName: 'd_cloudwatch_contributor_managed_insight_rules',
         resourceArn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsCloudwatchEventBus(
         localName: 'd_cloudwatch_event_bus',
         name: .literal(leftover),
       ),
     );
 
-    addData(DataAwsCloudwatchEventBuses(localName: 'd_cloudwatch_event_buses'));
+    add(DataAwsCloudwatchEventBuses(localName: 'd_cloudwatch_event_buses'));
 
-    addData(
+    add(
       DataAwsCloudwatchEventConnection(
         localName: 'd_cloudwatch_event_connection',
         name: .literal(leftover),
       ),
     );
 
-    addData(
-      DataAwsCloudwatchEventSource(localName: 'd_cloudwatch_event_source'),
-    );
+    add(DataAwsCloudwatchEventSource(localName: 'd_cloudwatch_event_source'));
 
-    addData(
+    add(
       DataAwsCloudwatchLogDataProtectionPolicyDocument(
         localName: 'd_cloudwatch_log_data_protection_policy_document',
         name: .literal(leftover),
@@ -16266,23 +16256,23 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsCloudwatchLogGroup(
         localName: 'd_cloudwatch_log_group',
         name: .literal(leftover),
       ),
     );
 
-    addData(DataAwsCloudwatchLogGroups(localName: 'd_cloudwatch_log_groups'));
+    add(DataAwsCloudwatchLogGroups(localName: 'd_cloudwatch_log_groups'));
 
-    addData(
+    add(
       DataAwsCodeartifactAuthorizationToken(
         localName: 'd_codeartifact_authorization_token',
         domain: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsCodeartifactRepositoryEndpoint(
         localName: 'd_codeartifact_repository_endpoint',
         domain: .literal(leftover),
@@ -16291,14 +16281,14 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsCodebuildFleet(
         localName: 'd_codebuild_fleet',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsCodecatalystDevEnvironment(
         localName: 'd_codecatalyst_dev_environment',
         envId: .literal(leftover),
@@ -16307,42 +16297,42 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsCodecommitApprovalRuleTemplate(
         localName: 'd_codecommit_approval_rule_template',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsCodecommitRepository(
         localName: 'd_codecommit_repository',
         repositoryName: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsCodeguruprofilerProfilingGroup(
         localName: 'd_codeguruprofiler_profiling_group',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsCodestarconnectionsConnection(
         localName: 'd_codestarconnections_connection',
         arn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsCognitoIdentityPool(
         localName: 'd_cognito_identity_pool',
         identityPoolName: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsCognitoUserGroup(
         localName: 'd_cognito_user_group',
         name: .literal(leftover),
@@ -16350,21 +16340,21 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsCognitoUserGroups(
         localName: 'd_cognito_user_groups',
         userPoolId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsCognitoUserPool(
         localName: 'd_cognito_user_pool',
         userPoolId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsCognitoUserPoolClient(
         localName: 'd_cognito_user_pool_client',
         clientId: .literal(leftover),
@@ -16372,28 +16362,28 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsCognitoUserPoolClients(
         localName: 'd_cognito_user_pool_clients',
         userPoolId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsCognitoUserPoolSigningCertificate(
         localName: 'd_cognito_user_pool_signing_certificate',
         userPoolId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsCognitoUserPools(
         localName: 'd_cognito_user_pools',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsConnectBotAssociation(
         localName: 'd_connect_bot_association',
         instanceId: .literal('i-0123456789abcdef0'),
@@ -16401,7 +16391,7 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsConnectContactFlow(
         localName: 'd_connect_contact_flow',
         instanceId: .literal('i-0123456789abcdef0'),
@@ -16409,7 +16399,7 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsConnectContactFlowModule(
         localName: 'd_connect_contact_flow_module',
         instanceId: .literal('i-0123456789abcdef0'),
@@ -16417,7 +16407,7 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsConnectHoursOfOperation(
         localName: 'd_connect_hours_of_operation',
         instanceId: .literal('i-0123456789abcdef0'),
@@ -16425,14 +16415,14 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsConnectInstance(
         localName: 'd_connect_instance',
         instanceAlias: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsConnectInstanceStorageConfig(
         localName: 'd_connect_instance_storage_config',
         associationId: .literal(leftover),
@@ -16441,7 +16431,7 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsConnectLambdaFunctionAssociation(
         localName: 'd_connect_lambda_function_association',
         functionArn: .literal(arn),
@@ -16449,7 +16439,7 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsConnectPrompt(
         localName: 'd_connect_prompt',
         instanceId: .literal('i-0123456789abcdef0'),
@@ -16457,7 +16447,7 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsConnectQueue(
         localName: 'd_connect_queue',
         instanceId: .literal('i-0123456789abcdef0'),
@@ -16465,7 +16455,7 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsConnectQuickConnect(
         localName: 'd_connect_quick_connect',
         instanceId: .literal('i-0123456789abcdef0'),
@@ -16473,7 +16463,7 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsConnectRoutingProfile(
         localName: 'd_connect_routing_profile',
         instanceId: .literal('i-0123456789abcdef0'),
@@ -16481,7 +16471,7 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsConnectSecurityProfile(
         localName: 'd_connect_security_profile',
         instanceId: .literal('i-0123456789abcdef0'),
@@ -16489,7 +16479,7 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsConnectUser(
         localName: 'd_connect_user',
         instanceId: .literal('i-0123456789abcdef0'),
@@ -16497,7 +16487,7 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsConnectUserHierarchyGroup(
         localName: 'd_connect_user_hierarchy_group',
         instanceId: .literal('i-0123456789abcdef0'),
@@ -16505,14 +16495,14 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsConnectUserHierarchyStructure(
         localName: 'd_connect_user_hierarchy_structure',
         instanceId: .literal('i-0123456789abcdef0'),
       ),
     );
 
-    addData(
+    add(
       DataAwsConnectVocabulary(
         localName: 'd_connect_vocabulary',
         instanceId: .literal('i-0123456789abcdef0'),
@@ -16520,44 +16510,44 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsControltowerControls(
         localName: 'd_controltower_controls',
         targetIdentifier: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsCurReportDefinition(
         localName: 'd_cur_report_definition',
         reportName: .literal(leftover),
       ),
     );
 
-    addData(DataAwsCustomerGateway(localName: 'd_customer_gateway'));
+    add(DataAwsCustomerGateway(localName: 'd_customer_gateway'));
 
-    addData(
+    add(
       DataAwsDatapipelinePipeline(
         localName: 'd_datapipeline_pipeline',
         pipelineId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsDatapipelinePipelineDefinition(
         localName: 'd_datapipeline_pipeline_definition',
         pipelineId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsDatazoneDomain(
         localName: 'd_datazone_domain',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsDatazoneEnvironmentBlueprint(
         localName: 'd_datazone_environment_blueprint',
         domainId: .literal(leftover),
@@ -16566,119 +16556,117 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(DataAwsDbClusterSnapshot(localName: 'd_db_cluster_snapshot'));
+    add(DataAwsDbClusterSnapshot(localName: 'd_db_cluster_snapshot'));
 
-    addData(DataAwsDbEventCategories(localName: 'd_db_event_categories'));
+    add(DataAwsDbEventCategories(localName: 'd_db_event_categories'));
 
-    addData(DataAwsDbInstance(localName: 'd_db_instance'));
+    add(DataAwsDbInstance(localName: 'd_db_instance'));
 
-    addData(DataAwsDbInstances(localName: 'd_db_instances'));
+    add(DataAwsDbInstances(localName: 'd_db_instances'));
 
-    addData(
+    add(
       DataAwsDbParameterGroup(
         localName: 'd_db_parameter_group',
         name: .literal(leftover),
       ),
     );
 
-    addData(DataAwsDbProxy(localName: 'd_db_proxy', name: .literal(leftover)));
+    add(DataAwsDbProxy(localName: 'd_db_proxy', name: .literal(leftover)));
 
-    addData(DataAwsDbSnapshot(localName: 'd_db_snapshot'));
+    add(DataAwsDbSnapshot(localName: 'd_db_snapshot'));
 
-    addData(
+    add(
       DataAwsDbSubnetGroup(
         localName: 'd_db_subnet_group',
         name: .literal(leftover),
       ),
     );
 
-    addData(DataAwsDefaultTags(localName: 'd_default_tags'));
+    add(DataAwsDefaultTags(localName: 'd_default_tags'));
 
-    addData(
+    add(
       DataAwsDevopsguruNotificationChannel(
         localName: 'd_devopsguru_notification_channel',
         id: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsDevopsguruResourceCollection(
         localName: 'd_devopsguru_resource_collection',
         type: .literal('AWS_CLOUD_FORMATION'),
       ),
     );
 
-    addData(
+    add(
       DataAwsDirectoryServiceDirectory(
         localName: 'd_directory_service_directory',
         directoryId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsDmsCertificate(
         localName: 'd_dms_certificate',
         certificateId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsDmsEndpoint(
         localName: 'd_dms_endpoint',
         endpointId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsDmsReplicationInstance(
         localName: 'd_dms_replication_instance',
         replicationInstanceId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsDmsReplicationSubnetGroup(
         localName: 'd_dms_replication_subnet_group',
         replicationSubnetGroupId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsDmsReplicationTask(
         localName: 'd_dms_replication_task',
         replicationTaskId: .literal(leftover),
       ),
     );
 
-    addData(DataAwsDocdbEngineVersion(localName: 'd_docdb_engine_version'));
+    add(DataAwsDocdbEngineVersion(localName: 'd_docdb_engine_version'));
 
-    addData(
+    add(
       DataAwsDocdbOrderableDbInstance(
         localName: 'd_docdb_orderable_db_instance',
       ),
     );
 
-    addData(
+    add(
       DataAwsDxConnection(
         localName: 'd_dx_connection',
         name: .literal(leftover),
       ),
     );
 
-    addData(
-      DataAwsDxGateway(localName: 'd_dx_gateway', name: .literal(leftover)),
-    );
+    add(DataAwsDxGateway(localName: 'd_dx_gateway', name: .literal(leftover)));
 
-    addData(
+    add(
       DataAwsDxLocation(
         localName: 'd_dx_location',
         locationCode: .literal(leftover),
       ),
     );
 
-    addData(DataAwsDxLocations(localName: 'd_dx_locations'));
+    add(DataAwsDxLocations(localName: 'd_dx_locations'));
 
-    addData(
+    add(
       DataAwsDxRouterConfiguration(
         localName: 'd_dx_router_configuration',
         routerTypeIdentifier: .literal(leftover),
@@ -16686,16 +16674,16 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(DataAwsDynamodbBackups(localName: 'd_dynamodb_backups'));
+    add(DataAwsDynamodbBackups(localName: 'd_dynamodb_backups'));
 
-    addData(
+    add(
       DataAwsDynamodbTable(
         localName: 'd_dynamodb_table',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsDynamodbTableItem(
         localName: 'd_dynamodb_table_item',
         key: .literal('{"pk": {"S": "leftover"}}'),
@@ -16703,23 +16691,23 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(DataAwsDynamodbTables(localName: 'd_dynamodb_tables'));
+    add(DataAwsDynamodbTables(localName: 'd_dynamodb_tables'));
 
-    addData(DataAwsEbsDefaultKmsKey(localName: 'd_ebs_default_kms_key'));
+    add(DataAwsEbsDefaultKmsKey(localName: 'd_ebs_default_kms_key'));
 
-    addData(
+    add(
       DataAwsEbsEncryptionByDefault(localName: 'd_ebs_encryption_by_default'),
     );
 
-    addData(DataAwsEbsSnapshot(localName: 'd_ebs_snapshot'));
+    add(DataAwsEbsSnapshot(localName: 'd_ebs_snapshot'));
 
-    addData(DataAwsEbsSnapshotIds(localName: 'd_ebs_snapshot_ids'));
+    add(DataAwsEbsSnapshotIds(localName: 'd_ebs_snapshot_ids'));
 
-    addData(DataAwsEbsVolume(localName: 'd_ebs_volume'));
+    add(DataAwsEbsVolume(localName: 'd_ebs_volume'));
 
-    addData(DataAwsEbsVolumes(localName: 'd_ebs_volumes'));
+    add(DataAwsEbsVolumes(localName: 'd_ebs_volumes'));
 
-    addData(
+    add(
       DataAwsEc2CapacityBlockOffering(
         localName: 'd_ec2_capacity_block_offering',
         capacityDurationHours: .literal(200),
@@ -16728,7 +16716,7 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsEc2CapacityBlockReservation(
         localName: 'd_ec2_capacity_block_reservation',
         filter: [
@@ -16740,103 +16728,97 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
-      DataAwsEc2ClientVpnEndpoint(localName: 'd_ec2_client_vpn_endpoint'),
-    );
+    add(DataAwsEc2ClientVpnEndpoint(localName: 'd_ec2_client_vpn_endpoint'));
 
-    addData(DataAwsEc2CoipPool(localName: 'd_ec2_coip_pool'));
+    add(DataAwsEc2CoipPool(localName: 'd_ec2_coip_pool'));
 
-    addData(DataAwsEc2CoipPools(localName: 'd_ec2_coip_pools'));
+    add(DataAwsEc2CoipPools(localName: 'd_ec2_coip_pools'));
 
-    addData(DataAwsEc2Host(localName: 'd_ec2_host'));
+    add(DataAwsEc2Host(localName: 'd_ec2_host'));
 
-    addData(DataAwsEc2Hosts(localName: 'd_ec2_hosts'));
+    add(DataAwsEc2Hosts(localName: 'd_ec2_hosts'));
 
-    addData(
+    add(
       DataAwsEc2InstanceType(
         localName: 'd_ec2_instance_type',
         instanceType: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsEc2InstanceTypeOffering(localName: 'd_ec2_instance_type_offering'),
     );
 
-    addData(
+    add(
       DataAwsEc2InstanceTypeOfferings(
         localName: 'd_ec2_instance_type_offerings',
       ),
     );
 
-    addData(DataAwsEc2InstanceTypes(localName: 'd_ec2_instance_types'));
+    add(DataAwsEc2InstanceTypes(localName: 'd_ec2_instance_types'));
 
-    addData(DataAwsEc2LocalGateway(localName: 'd_ec2_local_gateway'));
+    add(DataAwsEc2LocalGateway(localName: 'd_ec2_local_gateway'));
 
-    addData(
+    add(
       DataAwsEc2LocalGatewayRouteTable(
         localName: 'd_ec2_local_gateway_route_table',
       ),
     );
 
-    addData(
+    add(
       DataAwsEc2LocalGatewayRouteTables(
         localName: 'd_ec2_local_gateway_route_tables',
       ),
     );
 
-    addData(
+    add(
       DataAwsEc2LocalGatewayVirtualInterface(
         localName: 'd_ec2_local_gateway_virtual_interface',
       ),
     );
 
-    addData(
+    add(
       DataAwsEc2LocalGatewayVirtualInterfaceGroup(
         localName: 'd_ec2_local_gateway_virtual_interface_group',
       ),
     );
 
-    addData(
+    add(
       DataAwsEc2LocalGatewayVirtualInterfaceGroups(
         localName: 'd_ec2_local_gateway_virtual_interface_groups',
       ),
     );
 
-    addData(DataAwsEc2LocalGateways(localName: 'd_ec2_local_gateways'));
+    add(DataAwsEc2LocalGateways(localName: 'd_ec2_local_gateways'));
 
-    addData(
-      DataAwsEc2ManagedPrefixList(localName: 'd_ec2_managed_prefix_list'),
-    );
+    add(DataAwsEc2ManagedPrefixList(localName: 'd_ec2_managed_prefix_list'));
 
-    addData(
-      DataAwsEc2ManagedPrefixLists(localName: 'd_ec2_managed_prefix_lists'),
-    );
+    add(DataAwsEc2ManagedPrefixLists(localName: 'd_ec2_managed_prefix_lists'));
 
-    addData(
+    add(
       DataAwsEc2NetworkInsightsAnalysis(
         localName: 'd_ec2_network_insights_analysis',
       ),
     );
 
-    addData(
+    add(
       DataAwsEc2NetworkInsightsPath(localName: 'd_ec2_network_insights_path'),
     );
 
-    addData(
+    add(
       DataAwsEc2PublicIpv4Pool(
         localName: 'd_ec2_public_ipv4_pool',
         poolId: .literal(leftover),
       ),
     );
 
-    addData(DataAwsEc2PublicIpv4Pools(localName: 'd_ec2_public_ipv4_pools'));
+    add(DataAwsEc2PublicIpv4Pools(localName: 'd_ec2_public_ipv4_pools'));
 
-    addData(
+    add(
       DataAwsEc2SerialConsoleAccess(localName: 'd_ec2_serial_console_access'),
     );
 
-    addData(
+    add(
       DataAwsEc2ServiceLinkVirtualInterface(
         localName: 'd_ec2_service_link_virtual_interface',
         filter: [
@@ -16848,85 +16830,85 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsEc2ServiceLinkVirtualInterfaces(
         localName: 'd_ec2_service_link_virtual_interfaces',
       ),
     );
 
-    addData(DataAwsEc2SpotPrice(localName: 'd_ec2_spot_price'));
+    add(DataAwsEc2SpotPrice(localName: 'd_ec2_spot_price'));
 
-    addData(DataAwsEc2TransitGateway(localName: 'd_ec2_transit_gateway'));
+    add(DataAwsEc2TransitGateway(localName: 'd_ec2_transit_gateway'));
 
-    addData(
+    add(
       DataAwsEc2TransitGatewayAttachment(
         localName: 'd_ec2_transit_gateway_attachment',
       ),
     );
 
-    addData(
+    add(
       DataAwsEc2TransitGatewayAttachments(
         localName: 'd_ec2_transit_gateway_attachments',
       ),
     );
 
-    addData(
+    add(
       DataAwsEc2TransitGatewayConnect(
         localName: 'd_ec2_transit_gateway_connect',
       ),
     );
 
-    addData(
+    add(
       DataAwsEc2TransitGatewayConnectPeer(
         localName: 'd_ec2_transit_gateway_connect_peer',
       ),
     );
 
-    addData(
+    add(
       DataAwsEc2TransitGatewayDxGatewayAttachment(
         localName: 'd_ec2_transit_gateway_dx_gateway_attachment',
       ),
     );
 
-    addData(
+    add(
       DataAwsEc2TransitGatewayMulticastDomain(
         localName: 'd_ec2_transit_gateway_multicast_domain',
       ),
     );
 
-    addData(
+    add(
       DataAwsEc2TransitGatewayPeeringAttachment(
         localName: 'd_ec2_transit_gateway_peering_attachment',
       ),
     );
 
-    addData(
+    add(
       DataAwsEc2TransitGatewayPeeringAttachments(
         localName: 'd_ec2_transit_gateway_peering_attachments',
       ),
     );
 
-    addData(
+    add(
       DataAwsEc2TransitGatewayRouteTable(
         localName: 'd_ec2_transit_gateway_route_table',
       ),
     );
 
-    addData(
+    add(
       DataAwsEc2TransitGatewayRouteTableAssociations(
         localName: 'd_ec2_transit_gateway_route_table_associations',
         transitGatewayRouteTableId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsEc2TransitGatewayRouteTablePropagations(
         localName: 'd_ec2_transit_gateway_route_table_propagations',
         transitGatewayRouteTableId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsEc2TransitGatewayRouteTableRoutes(
         localName: 'd_ec2_transit_gateway_route_table_routes',
         transitGatewayRouteTableId: .literal(leftover),
@@ -16939,35 +16921,33 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsEc2TransitGatewayRouteTables(
         localName: 'd_ec2_transit_gateway_route_tables',
       ),
     );
 
-    addData(
+    add(
       DataAwsEc2TransitGatewayVpcAttachment(
         localName: 'd_ec2_transit_gateway_vpc_attachment',
       ),
     );
 
-    addData(
+    add(
       DataAwsEc2TransitGatewayVpcAttachments(
         localName: 'd_ec2_transit_gateway_vpc_attachments',
       ),
     );
 
-    addData(
+    add(
       DataAwsEc2TransitGatewayVpnAttachment(
         localName: 'd_ec2_transit_gateway_vpn_attachment',
       ),
     );
 
-    addData(
-      DataAwsEcrAuthorizationToken(localName: 'd_ecr_authorization_token'),
-    );
+    add(DataAwsEcrAuthorizationToken(localName: 'd_ecr_authorization_token'));
 
-    addData(
+    add(
       DataAwsEcrImage(
         localName: 'd_ecr_image',
         repositoryName: .literal(leftover),
@@ -16975,14 +16955,14 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsEcrImages(
         localName: 'd_ecr_images',
         repositoryName: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsEcrLifecyclePolicyDocument(
         localName: 'd_ecr_lifecycle_policy_document',
         rule: [
@@ -17000,52 +16980,52 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsEcrPullThroughCacheRule(
         localName: 'd_ecr_pull_through_cache_rule',
         ecrRepositoryPrefix: .literal(leftover),
       ),
     );
 
-    addData(DataAwsEcrRepositories(localName: 'd_ecr_repositories'));
+    add(DataAwsEcrRepositories(localName: 'd_ecr_repositories'));
 
-    addData(
+    add(
       DataAwsEcrRepository(
         localName: 'd_ecr_repository',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsEcrRepositoryCreationTemplate(
         localName: 'd_ecr_repository_creation_template',
         prefix: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsEcrpublicAuthorizationToken(
         localName: 'd_ecrpublic_authorization_token',
       ),
     );
 
-    addData(
+    add(
       DataAwsEcrpublicImages(
         localName: 'd_ecrpublic_images',
         repositoryName: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsEcsCluster(
         localName: 'd_ecs_cluster',
         clusterName: .literal(leftover),
       ),
     );
 
-    addData(DataAwsEcsClusters(localName: 'd_ecs_clusters'));
+    add(DataAwsEcsClusters(localName: 'd_ecs_clusters'));
 
-    addData(
+    add(
       DataAwsEcsContainerDefinition(
         localName: 'd_ecs_container_definition',
         containerName: .literal(leftover),
@@ -17053,7 +17033,7 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsEcsService(
         localName: 'd_ecs_service',
         clusterArn: .literal(arn),
@@ -17061,14 +17041,14 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsEcsTaskDefinition(
         localName: 'd_ecs_task_definition',
         taskDefinition: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsEcsTaskExecution(
         localName: 'd_ecs_task_execution',
         cluster: .literal(leftover),
@@ -17076,29 +17056,29 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsEfsAccessPoint(
         localName: 'd_efs_access_point',
         accessPointId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsEfsAccessPoints(
         localName: 'd_efs_access_points',
         fileSystemId: .literal(leftover),
       ),
     );
 
-    addData(DataAwsEfsFileSystem(localName: 'd_efs_file_system'));
+    add(DataAwsEfsFileSystem(localName: 'd_efs_file_system'));
 
-    addData(DataAwsEfsMountTarget(localName: 'd_efs_mount_target'));
+    add(DataAwsEfsMountTarget(localName: 'd_efs_mount_target'));
 
-    addData(DataAwsEip(localName: 'd_eip'));
+    add(DataAwsEip(localName: 'd_eip'));
 
-    addData(DataAwsEips(localName: 'd_eips'));
+    add(DataAwsEips(localName: 'd_eips'));
 
-    addData(
+    add(
       DataAwsEksAccessEntry(
         localName: 'd_eks_access_entry',
         clusterName: .literal(leftover),
@@ -17106,9 +17086,9 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(DataAwsEksAccessPolicies(localName: 'd_eks_access_policies'));
+    add(DataAwsEksAccessPolicies(localName: 'd_eks_access_policies'));
 
-    addData(
+    add(
       DataAwsEksAddon(
         localName: 'd_eks_addon',
         addonName: .literal(leftover),
@@ -17116,7 +17096,7 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsEksAddonVersion(
         localName: 'd_eks_addon_version',
         addonName: .literal(leftover),
@@ -17124,22 +17104,22 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsEksCluster(localName: 'd_eks_cluster', name: .literal(leftover)),
     );
 
-    addData(
+    add(
       DataAwsEksClusterAuth(
         localName: 'd_eks_cluster_auth',
         name: .literal(leftover),
       ),
     );
 
-    addData(DataAwsEksClusterVersions(localName: 'd_eks_cluster_versions'));
+    add(DataAwsEksClusterVersions(localName: 'd_eks_cluster_versions'));
 
-    addData(DataAwsEksClusters(localName: 'd_eks_clusters'));
+    add(DataAwsEksClusters(localName: 'd_eks_clusters'));
 
-    addData(
+    add(
       DataAwsEksNodeGroup(
         localName: 'd_eks_node_group',
         clusterName: .literal(leftover),
@@ -17147,48 +17127,48 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsEksNodeGroups(
         localName: 'd_eks_node_groups',
         clusterName: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsElasticBeanstalkApplication(
         localName: 'd_elastic_beanstalk_application',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsElasticBeanstalkHostedZone(
         localName: 'd_elastic_beanstalk_hosted_zone',
       ),
     );
 
-    addData(
+    add(
       DataAwsElasticBeanstalkSolutionStack(
         localName: 'd_elastic_beanstalk_solution_stack',
         nameRegex: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsElasticacheCluster(
         localName: 'd_elasticache_cluster',
         clusterId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsElasticacheReplicationGroup(
         localName: 'd_elasticache_replication_group',
         replicationGroupId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsElasticacheReservedCacheNodeOffering(
         localName: 'd_elasticache_reserved_cache_node_offering',
         cacheNodeType: .literal(leftover),
@@ -17198,117 +17178,115 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsElasticacheServerlessCache(
         localName: 'd_elasticache_serverless_cache',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsElasticacheServiceUpdateActions(
         localName: 'd_elasticache_service_update_actions',
       ),
     );
 
-    addData(
+    add(
       DataAwsElasticacheServiceUpdates(
         localName: 'd_elasticache_service_updates',
       ),
     );
 
-    addData(
+    add(
       DataAwsElasticacheSubnetGroup(
         localName: 'd_elasticache_subnet_group',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsElasticacheUser(
         localName: 'd_elasticache_user',
         userId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsElasticsearchDomain(
         localName: 'd_elasticsearch_domain',
         domainName: .literal(leftover),
       ),
     );
 
-    addData(DataAwsElb(localName: 'd_elb', name: .literal(leftover)));
+    add(DataAwsElb(localName: 'd_elb', name: .literal(leftover)));
 
-    addData(DataAwsElbHostedZoneId(localName: 'd_elb_hosted_zone_id'));
+    add(DataAwsElbHostedZoneId(localName: 'd_elb_hosted_zone_id'));
 
-    addData(DataAwsElbServiceAccount(localName: 'd_elb_service_account'));
+    add(DataAwsElbServiceAccount(localName: 'd_elb_service_account'));
 
-    addData(DataAwsEmrReleaseLabels(localName: 'd_emr_release_labels'));
+    add(DataAwsEmrReleaseLabels(localName: 'd_emr_release_labels'));
 
-    addData(
+    add(
       DataAwsEmrSupportedInstanceTypes(
         localName: 'd_emr_supported_instance_types',
         releaseLabel: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsEmrcontainersVirtualCluster(
         localName: 'd_emrcontainers_virtual_cluster',
         virtualClusterId: .literal(leftover),
       ),
     );
 
-    addData(
-      DataAwsFisExperimentTemplates(localName: 'd_fis_experiment_templates'),
-    );
+    add(DataAwsFisExperimentTemplates(localName: 'd_fis_experiment_templates'));
 
-    addData(
+    add(
       DataAwsFsxOntapFileSystem(
         localName: 'd_fsx_ontap_file_system',
         id: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsFsxOntapStorageVirtualMachine(
         localName: 'd_fsx_ontap_storage_virtual_machine',
       ),
     );
 
-    addData(
+    add(
       DataAwsFsxOntapStorageVirtualMachines(
         localName: 'd_fsx_ontap_storage_virtual_machines',
       ),
     );
 
-    addData(DataAwsFsxOpenzfsSnapshot(localName: 'd_fsx_openzfs_snapshot'));
+    add(DataAwsFsxOpenzfsSnapshot(localName: 'd_fsx_openzfs_snapshot'));
 
-    addData(
+    add(
       DataAwsFsxWindowsFileSystem(
         localName: 'd_fsx_windows_file_system',
         id: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsGlobalacceleratorAccelerator(
         localName: 'd_globalaccelerator_accelerator',
       ),
     );
 
-    addData(
+    add(
       DataAwsGlobalacceleratorCustomRoutingAccelerator(
         localName: 'd_globalaccelerator_custom_routing_accelerator',
       ),
     );
 
-    addData(
+    add(
       DataAwsGlueCatalog(localName: 'd_glue_catalog', name: .literal(leftover)),
     );
 
-    addData(
+    add(
       DataAwsGlueCatalogTable(
         localName: 'd_glue_catalog_table',
         databaseName: .literal(leftover),
@@ -17316,28 +17294,28 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsGlueConnection(
         localName: 'd_glue_connection',
         id: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsGlueDataCatalogEncryptionSettings(
         localName: 'd_glue_data_catalog_encryption_settings',
         catalogId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsGlueRegistry(
         localName: 'd_glue_registry',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsGlueScript(
         localName: 'd_glue_script',
         dagEdge: [
@@ -17356,65 +17334,65 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsGrafanaWorkspace(
         localName: 'd_grafana_workspace',
         workspaceId: .literal(leftover),
       ),
     );
 
-    addData(DataAwsGuarddutyDetector(localName: 'd_guardduty_detector'));
+    add(DataAwsGuarddutyDetector(localName: 'd_guardduty_detector'));
 
-    addData(
+    add(
       DataAwsGuarddutyFindingIds(
         localName: 'd_guardduty_finding_ids',
         detectorId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsIamAccessKeys(
         localName: 'd_iam_access_keys',
         user: .literal(leftover),
       ),
     );
 
-    addData(DataAwsIamAccountAlias(localName: 'd_iam_account_alias'));
+    add(DataAwsIamAccountAlias(localName: 'd_iam_account_alias'));
 
-    addData(
+    add(
       DataAwsIamGroup(localName: 'd_iam_group', groupName: .literal(leftover)),
     );
 
-    addData(
+    add(
       DataAwsIamInstanceProfile(
         localName: 'd_iam_instance_profile',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsIamInstanceProfiles(
         localName: 'd_iam_instance_profiles',
         roleName: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsIamOpenidConnectProvider(
         localName: 'd_iam_openid_connect_provider',
         arn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsIamOutboundWebIdentityFederation(
         localName: 'd_iam_outbound_web_identity_federation',
       ),
     );
 
-    addData(DataAwsIamPolicy(localName: 'd_iam_policy'));
+    add(DataAwsIamPolicy(localName: 'd_iam_policy'));
 
-    addData(
+    add(
       DataAwsIamPrincipalPolicySimulation(
         localName: 'd_iam_principal_policy_simulation',
         actionNames: .literal([leftover]),
@@ -17422,45 +17400,43 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(DataAwsIamRole(localName: 'd_iam_role', name: .literal(leftover)));
+    add(DataAwsIamRole(localName: 'd_iam_role', name: .literal(leftover)));
 
-    addData(
+    add(
       DataAwsIamRolePolicies(
         localName: 'd_iam_role_policies',
         roleName: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsIamRolePolicyAttachments(
         localName: 'd_iam_role_policy_attachments',
         roleName: .literal(leftover),
       ),
     );
 
-    addData(DataAwsIamRoles(localName: 'd_iam_roles'));
+    add(DataAwsIamRoles(localName: 'd_iam_roles'));
 
-    addData(
+    add(
       DataAwsIamSamlProvider(
         localName: 'd_iam_saml_provider',
         arn: .literal(arn),
       ),
     );
 
-    addData(DataAwsIamServerCertificate(localName: 'd_iam_server_certificate'));
+    add(DataAwsIamServerCertificate(localName: 'd_iam_server_certificate'));
 
-    addData(
+    add(
       DataAwsIamSessionContext(
         localName: 'd_iam_session_context',
         arn: .literal(arn),
       ),
     );
 
-    addData(
-      DataAwsIamUser(localName: 'd_iam_user', userName: .literal(leftover)),
-    );
+    add(DataAwsIamUser(localName: 'd_iam_user', userName: .literal(leftover)));
 
-    addData(
+    add(
       DataAwsIamUserSshKey(
         localName: 'd_iam_user_ssh_key',
         encoding: .literal('SSH'),
@@ -17469,9 +17445,9 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(DataAwsIamUsers(localName: 'd_iam_users'));
+    add(DataAwsIamUsers(localName: 'd_iam_users'));
 
-    addData(
+    add(
       DataAwsIdentitystoreGroup(
         localName: 'd_identitystore_group',
         identityStoreId: .literal(leftover),
@@ -17479,7 +17455,7 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsIdentitystoreGroupMemberships(
         localName: 'd_identitystore_group_memberships',
         groupId: .literal(leftover),
@@ -17487,14 +17463,14 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsIdentitystoreGroups(
         localName: 'd_identitystore_groups',
         identityStoreId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsIdentitystoreUser(
         localName: 'd_identitystore_user',
         identityStoreId: .literal(leftover),
@@ -17502,122 +17478,118 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsIdentitystoreUsers(
         localName: 'd_identitystore_users',
         identityStoreId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsImagebuilderComponent(
         localName: 'd_imagebuilder_component',
         arn: .literal(arn),
       ),
     );
 
-    addData(
-      DataAwsImagebuilderComponents(localName: 'd_imagebuilder_components'),
-    );
+    add(DataAwsImagebuilderComponents(localName: 'd_imagebuilder_components'));
 
-    addData(
+    add(
       DataAwsImagebuilderContainerRecipe(
         localName: 'd_imagebuilder_container_recipe',
         arn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsImagebuilderContainerRecipes(
         localName: 'd_imagebuilder_container_recipes',
       ),
     );
 
-    addData(
+    add(
       DataAwsImagebuilderDistributionConfiguration(
         localName: 'd_imagebuilder_distribution_configuration',
         arn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsImagebuilderDistributionConfigurations(
         localName: 'd_imagebuilder_distribution_configurations',
       ),
     );
 
-    addData(
+    add(
       DataAwsImagebuilderImage(
         localName: 'd_imagebuilder_image',
         arn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsImagebuilderImagePipeline(
         localName: 'd_imagebuilder_image_pipeline',
         arn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsImagebuilderImagePipelines(
         localName: 'd_imagebuilder_image_pipelines',
       ),
     );
 
-    addData(
+    add(
       DataAwsImagebuilderImageRecipe(
         localName: 'd_imagebuilder_image_recipe',
         arn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsImagebuilderImageRecipes(
         localName: 'd_imagebuilder_image_recipes',
       ),
     );
 
-    addData(
+    add(
       DataAwsImagebuilderInfrastructureConfiguration(
         localName: 'd_imagebuilder_infrastructure_configuration',
         arn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsImagebuilderInfrastructureConfigurations(
         localName: 'd_imagebuilder_infrastructure_configurations',
       ),
     );
 
-    addData(
-      DataAwsInspectorRulesPackages(localName: 'd_inspector_rules_packages'),
-    );
+    add(DataAwsInspectorRulesPackages(localName: 'd_inspector_rules_packages'));
 
-    addData(DataAwsInstance(localName: 'd_instance'));
+    add(DataAwsInstance(localName: 'd_instance'));
 
-    addData(DataAwsInstances(localName: 'd_instances'));
+    add(DataAwsInstances(localName: 'd_instances'));
 
-    addData(DataAwsInternetGateway(localName: 'd_internet_gateway'));
+    add(DataAwsInternetGateway(localName: 'd_internet_gateway'));
 
-    addData(DataAwsIotEndpoint(localName: 'd_iot_endpoint'));
+    add(DataAwsIotEndpoint(localName: 'd_iot_endpoint'));
 
-    addData(DataAwsIotRegistrationCode(localName: 'd_iot_registration_code'));
+    add(DataAwsIotRegistrationCode(localName: 'd_iot_registration_code'));
 
-    addData(
+    add(
       DataAwsIpRanges(localName: 'd_ip_ranges', services: .literal([leftover])),
     );
 
-    addData(
+    add(
       DataAwsIvsStreamKey(
         localName: 'd_ivs_stream_key',
         channelArn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsKendraExperience(
         localName: 'd_kendra_experience',
         experienceId: .literal(leftover),
@@ -17625,7 +17597,7 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsKendraFaq(
         localName: 'd_kendra_faq',
         faqId: .literal(leftover),
@@ -17633,14 +17605,14 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsKendraIndex(
         localName: 'd_kendra_index',
         id: .literal('12345678-1234-1234-1234-123456789012'),
       ),
     );
 
-    addData(
+    add(
       DataAwsKendraQuerySuggestionsBlockList(
         localName: 'd_kendra_query_suggestions_block_list',
         indexId: .literal('12345678-1234-1234-1234-123456789012'),
@@ -17650,7 +17622,7 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsKendraThesaurus(
         localName: 'd_kendra_thesaurus',
         indexId: .literal('12345678-1234-1234-1234-123456789012'),
@@ -17658,37 +17630,37 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(DataAwsKeyPair(localName: 'd_key_pair'));
+    add(DataAwsKeyPair(localName: 'd_key_pair'));
 
-    addData(
+    add(
       DataAwsKinesisFirehoseDeliveryStream(
         localName: 'd_kinesis_firehose_delivery_stream',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsKinesisStream(
         localName: 'd_kinesis_stream',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsKinesisStreamConsumer(
         localName: 'd_kinesis_stream_consumer',
         streamArn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsKmsAlias(
         localName: 'd_kms_alias',
         name: .literal('alias/leftover'),
       ),
     );
 
-    addData(
+    add(
       DataAwsKmsCiphertext(
         localName: 'd_kms_ciphertext',
         keyId: .literal(leftover),
@@ -17696,20 +17668,20 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(DataAwsKmsCustomKeyStore(localName: 'd_kms_custom_key_store'));
+    add(DataAwsKmsCustomKeyStore(localName: 'd_kms_custom_key_store'));
 
-    addData(
+    add(
       DataAwsKmsKey(localName: 'd_kms_key', keyId: .literal('alias/leftover')),
     );
 
-    addData(
+    add(
       DataAwsKmsPublicKey(
         localName: 'd_kms_public_key',
         keyId: .literal('alias/leftover'),
       ),
     );
 
-    addData(
+    add(
       DataAwsKmsSecret(
         localName: 'd_kms_secret',
         secret: [
@@ -17718,7 +17690,7 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsKmsSecrets(
         localName: 'd_kms_secrets',
         secret: [
@@ -17730,27 +17702,27 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsLakeformationDataLakeSettings(
         localName: 'd_lakeformation_data_lake_settings',
       ),
     );
 
-    addData(
+    add(
       DataAwsLakeformationPermissions(
         localName: 'd_lakeformation_permissions',
         principal: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsLakeformationResource(
         localName: 'd_lakeformation_resource',
         arn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsLambdaAlias(
         localName: 'd_lambda_alias',
         functionName: .literal(leftover),
@@ -17758,30 +17730,30 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsLambdaCodeSigningConfig(
         localName: 'd_lambda_code_signing_config',
         arn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsLambdaFunction(
         localName: 'd_lambda_function',
         functionName: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsLambdaFunctionUrl(
         localName: 'd_lambda_function_url',
         functionName: .literal(leftover),
       ),
     );
 
-    addData(DataAwsLambdaFunctions(localName: 'd_lambda_functions'));
+    add(DataAwsLambdaFunctions(localName: 'd_lambda_functions'));
 
-    addData(
+    add(
       DataAwsLambdaInvocation(
         localName: 'd_lambda_invocation',
         functionName: .literal(leftover),
@@ -17789,39 +17761,39 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(DataAwsLambdaLayerVersion(localName: 'd_lambda_layer_version'));
+    add(DataAwsLambdaLayerVersion(localName: 'd_lambda_layer_version'));
 
-    addData(
+    add(
       DataAwsLaunchConfiguration(
         localName: 'd_launch_configuration',
         name: .literal(leftover),
       ),
     );
 
-    addData(DataAwsLaunchTemplate(localName: 'd_launch_template'));
+    add(DataAwsLaunchTemplate(localName: 'd_launch_template'));
 
-    addData(DataAwsLb(localName: 'd_lb'));
+    add(DataAwsLb(localName: 'd_lb'));
 
-    addData(DataAwsLbHostedZoneId(localName: 'd_lb_hosted_zone_id'));
+    add(DataAwsLbHostedZoneId(localName: 'd_lb_hosted_zone_id'));
 
-    addData(DataAwsLbListener(localName: 'd_lb_listener'));
+    add(DataAwsLbListener(localName: 'd_lb_listener'));
 
-    addData(
+    add(
       DataAwsLbListenerRule(
         localName: 'd_lb_listener_rule',
         arn: .literal(arn),
       ),
     );
 
-    addData(DataAwsLbTargetGroup(localName: 'd_lb_target_group'));
+    add(DataAwsLbTargetGroup(localName: 'd_lb_target_group'));
 
-    addData(DataAwsLbTrustStore(localName: 'd_lb_trust_store'));
+    add(DataAwsLbTrustStore(localName: 'd_lb_trust_store'));
 
-    addData(DataAwsLbs(localName: 'd_lbs'));
+    add(DataAwsLbs(localName: 'd_lbs'));
 
-    addData(DataAwsLexBot(localName: 'd_lex_bot', name: .literal(leftover)));
+    add(DataAwsLexBot(localName: 'd_lex_bot', name: .literal(leftover)));
 
-    addData(
+    add(
       DataAwsLexBotAlias(
         localName: 'd_lex_bot_alias',
         botName: .literal(leftover),
@@ -17829,68 +17801,66 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
-      DataAwsLexIntent(localName: 'd_lex_intent', name: .literal(leftover)),
-    );
+    add(DataAwsLexIntent(localName: 'd_lex_intent', name: .literal(leftover)));
 
-    addData(
+    add(
       DataAwsLexSlotType(
         localName: 'd_lex_slot_type',
         name: .literal(leftover),
       ),
     );
 
-    addData(DataAwsLicensemanagerGrants(localName: 'd_licensemanager_grants'));
+    add(DataAwsLicensemanagerGrants(localName: 'd_licensemanager_grants'));
 
-    addData(
+    add(
       DataAwsLicensemanagerReceivedLicense(
         localName: 'd_licensemanager_received_license',
         licenseArn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsLicensemanagerReceivedLicenses(
         localName: 'd_licensemanager_received_licenses',
       ),
     );
 
-    addData(
+    add(
       DataAwsLocationGeofenceCollection(
         localName: 'd_location_geofence_collection',
         collectionName: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsLocationMap(
         localName: 'd_location_map',
         mapName: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsLocationPlaceIndex(
         localName: 'd_location_place_index',
         indexName: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsLocationRouteCalculator(
         localName: 'd_location_route_calculator',
         calculatorName: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsLocationTracker(
         localName: 'd_location_tracker',
         trackerName: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsLocationTrackerAssociation(
         localName: 'd_location_tracker_association',
         consumerArn: .literal(arn),
@@ -17898,112 +17868,112 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsLocationTrackerAssociations(
         localName: 'd_location_tracker_associations',
         trackerName: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsMediaConvertQueue(
         localName: 'd_media_convert_queue',
         id: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsMedialiveInput(
         localName: 'd_medialive_input',
         id: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsMemorydbAcl(localName: 'd_memorydb_acl', name: .literal(leftover)),
     );
 
-    addData(
+    add(
       DataAwsMemorydbCluster(
         localName: 'd_memorydb_cluster',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsMemorydbParameterGroup(
         localName: 'd_memorydb_parameter_group',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsMemorydbSnapshot(
         localName: 'd_memorydb_snapshot',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsMemorydbSubnetGroup(
         localName: 'd_memorydb_subnet_group',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsMemorydbUser(
         localName: 'd_memorydb_user',
         userName: .literal(leftover),
       ),
     );
 
-    addData(DataAwsMqBroker(localName: 'd_mq_broker'));
+    add(DataAwsMqBroker(localName: 'd_mq_broker'));
 
-    addData(DataAwsMqBrokerEngineTypes(localName: 'd_mq_broker_engine_types'));
+    add(DataAwsMqBrokerEngineTypes(localName: 'd_mq_broker_engine_types'));
 
-    addData(
+    add(
       DataAwsMqBrokerInstanceTypeOfferings(
         localName: 'd_mq_broker_instance_type_offerings',
       ),
     );
 
-    addData(
+    add(
       DataAwsMskBootstrapBrokers(
         localName: 'd_msk_bootstrap_brokers',
         clusterArn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsMskBrokerNodes(
         localName: 'd_msk_broker_nodes',
         clusterArn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsMskCluster(
         localName: 'd_msk_cluster',
         clusterName: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsMskConfiguration(
         localName: 'd_msk_configuration',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsMskKafkaVersion(
         localName: 'd_msk_kafka_version',
         preferredVersions: .literal([leftover]),
       ),
     );
 
-    addData(
+    add(
       DataAwsMskTopic(
         localName: 'd_msk_topic',
         clusterArn: .literal(arn),
@@ -18011,53 +17981,53 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsMskVpcConnection(
         localName: 'd_msk_vpc_connection',
         arn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsMskconnectConnector(
         localName: 'd_mskconnect_connector',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsMskconnectCustomPlugin(
         localName: 'd_mskconnect_custom_plugin',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsMskconnectWorkerConfiguration(
         localName: 'd_mskconnect_worker_configuration',
         name: .literal(leftover),
       ),
     );
 
-    addData(DataAwsNatGateway(localName: 'd_nat_gateway'));
+    add(DataAwsNatGateway(localName: 'd_nat_gateway'));
 
-    addData(DataAwsNatGateways(localName: 'd_nat_gateways'));
+    add(DataAwsNatGateways(localName: 'd_nat_gateways'));
 
-    addData(DataAwsNeptuneEngineVersion(localName: 'd_neptune_engine_version'));
+    add(DataAwsNeptuneEngineVersion(localName: 'd_neptune_engine_version'));
 
-    addData(
+    add(
       DataAwsNeptuneOrderableDbInstance(
         localName: 'd_neptune_orderable_db_instance',
       ),
     );
 
-    addData(DataAwsNetworkAcls(localName: 'd_network_acls'));
+    add(DataAwsNetworkAcls(localName: 'd_network_acls'));
 
-    addData(DataAwsNetworkInterface(localName: 'd_network_interface'));
+    add(DataAwsNetworkInterface(localName: 'd_network_interface'));
 
-    addData(DataAwsNetworkInterfaces(localName: 'd_network_interfaces'));
+    add(DataAwsNetworkInterfaces(localName: 'd_network_interfaces'));
 
-    addData(
+    add(
       DataAwsNetworkfirewallFirewall(
         localName: 'd_networkfirewall_firewall',
         arn: .literal(arn),
@@ -18065,7 +18035,7 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsNetworkfirewallFirewallPolicy(
         localName: 'd_networkfirewall_firewall_policy',
         arn: .literal(arn),
@@ -18073,14 +18043,14 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsNetworkfirewallResourcePolicy(
         localName: 'd_networkfirewall_resource_policy',
         resourceArn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsNetworkmanagerConnection(
         localName: 'd_networkmanager_connection',
         connectionId: .literal(leftover),
@@ -18088,21 +18058,21 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsNetworkmanagerConnections(
         localName: 'd_networkmanager_connections',
         globalNetworkId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsNetworkmanagerCoreNetwork(
         localName: 'd_networkmanager_core_network',
         coreNetworkId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsNetworkmanagerCoreNetworkPolicyDocument(
         localName: 'd_networkmanager_core_network_policy_document',
         coreNetworkConfiguration: [
@@ -18119,7 +18089,7 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsNetworkmanagerDevice(
         localName: 'd_networkmanager_device',
         deviceId: .literal(leftover),
@@ -18127,27 +18097,27 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsNetworkmanagerDevices(
         localName: 'd_networkmanager_devices',
         globalNetworkId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsNetworkmanagerGlobalNetwork(
         localName: 'd_networkmanager_global_network',
         globalNetworkId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsNetworkmanagerGlobalNetworks(
         localName: 'd_networkmanager_global_networks',
       ),
     );
 
-    addData(
+    add(
       DataAwsNetworkmanagerLink(
         localName: 'd_networkmanager_link',
         globalNetworkId: .literal(leftover),
@@ -18155,14 +18125,14 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsNetworkmanagerLinks(
         localName: 'd_networkmanager_links',
         globalNetworkId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsNetworkmanagerSite(
         localName: 'd_networkmanager_site',
         globalNetworkId: .literal(leftover),
@@ -18170,67 +18140,67 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsNetworkmanagerSites(
         localName: 'd_networkmanager_sites',
         globalNetworkId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsOamLink(
         localName: 'd_oam_link',
         linkIdentifier: .literal(leftover),
       ),
     );
 
-    addData(DataAwsOamLinks(localName: 'd_oam_links'));
+    add(DataAwsOamLinks(localName: 'd_oam_links'));
 
-    addData(
+    add(
       DataAwsOamSink(
         localName: 'd_oam_sink',
         sinkIdentifier: .literal(leftover),
       ),
     );
 
-    addData(DataAwsOamSinks(localName: 'd_oam_sinks'));
+    add(DataAwsOamSinks(localName: 'd_oam_sinks'));
 
-    addData(
+    add(
       DataAwsOdbCloudAutonomousVmCluster(
         localName: 'd_odb_cloud_autonomous_vm_cluster',
         id: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsOdbCloudAutonomousVmClusters(
         localName: 'd_odb_cloud_autonomous_vm_clusters',
       ),
     );
 
-    addData(
+    add(
       DataAwsOdbCloudExadataInfrastructure(
         localName: 'd_odb_cloud_exadata_infrastructure',
         id: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsOdbCloudExadataInfrastructures(
         localName: 'd_odb_cloud_exadata_infrastructures',
       ),
     );
 
-    addData(
+    add(
       DataAwsOdbCloudVmCluster(
         localName: 'd_odb_cloud_vm_cluster',
         id: .literal(leftover),
       ),
     );
 
-    addData(DataAwsOdbCloudVmClusters(localName: 'd_odb_cloud_vm_clusters'));
+    add(DataAwsOdbCloudVmClusters(localName: 'd_odb_cloud_vm_clusters'));
 
-    addData(
+    add(
       DataAwsOdbDbNode(
         localName: 'd_odb_db_node',
         cloudVmClusterId: .literal(leftover),
@@ -18238,14 +18208,14 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsOdbDbNodes(
         localName: 'd_odb_db_nodes',
         cloudVmClusterId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsOdbDbServer(
         localName: 'd_odb_db_server',
         cloudExadataInfrastructureId: .literal(leftover),
@@ -18253,18 +18223,18 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsOdbDbServers(
         localName: 'd_odb_db_servers',
         cloudExadataInfrastructureId: .literal(leftover),
       ),
     );
 
-    addData(DataAwsOdbDbSystemShapes(localName: 'd_odb_db_system_shapes'));
+    add(DataAwsOdbDbSystemShapes(localName: 'd_odb_db_system_shapes'));
 
-    addData(DataAwsOdbGiVersions(localName: 'd_odb_gi_versions'));
+    add(DataAwsOdbGiVersions(localName: 'd_odb_gi_versions'));
 
-    addData(
+    add(
       DataAwsOdbIamRoleAssociation(
         localName: 'd_odb_iam_role_association',
         iamRoleArn: .literal(arn),
@@ -18272,33 +18242,31 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
-      DataAwsOdbNetwork(localName: 'd_odb_network', id: .literal(leftover)),
-    );
+    add(DataAwsOdbNetwork(localName: 'd_odb_network', id: .literal(leftover)));
 
-    addData(
+    add(
       DataAwsOdbNetworkPeeringConnection(
         localName: 'd_odb_network_peering_connection',
         id: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsOdbNetworkPeeringConnections(
         localName: 'd_odb_network_peering_connections',
       ),
     );
 
-    addData(DataAwsOdbNetworks(localName: 'd_odb_networks'));
+    add(DataAwsOdbNetworks(localName: 'd_odb_networks'));
 
-    addData(
+    add(
       DataAwsOpensearchDomain(
         localName: 'd_opensearch_domain',
         domainName: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsOpensearchserverlessAccessPolicy(
         localName: 'd_opensearchserverless_access_policy',
         name: .literal(leftover),
@@ -18306,26 +18274,26 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsOpensearchserverlessCollection(
         localName: 'd_opensearchserverless_collection',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsOpensearchserverlessCollectionGroup(
         localName: 'd_opensearchserverless_collection_group',
       ),
     );
 
-    addData(
+    add(
       DataAwsOpensearchserverlessCollectionGroups(
         localName: 'd_opensearchserverless_collection_groups',
       ),
     );
 
-    addData(
+    add(
       DataAwsOpensearchserverlessLifecyclePolicy(
         localName: 'd_opensearchserverless_lifecycle_policy',
         name: .literal(leftover),
@@ -18333,14 +18301,14 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsOpensearchserverlessSecurityConfig(
         localName: 'd_opensearchserverless_security_config',
         id: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsOpensearchserverlessSecurityPolicy(
         localName: 'd_opensearchserverless_security_policy',
         name: .literal(leftover),
@@ -18348,47 +18316,47 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsOpensearchserverlessVpcEndpoint(
         localName: 'd_opensearchserverless_vpc_endpoint',
         vpcEndpointId: .literal('vpce-0123456789abcdef0'),
       ),
     );
 
-    addData(
+    add(
       DataAwsOrganizationsAccount(
         localName: 'd_organizations_account',
         accountId: .literal('123456789012'),
       ),
     );
 
-    addData(
+    add(
       DataAwsOrganizationsDelegatedAdministrators(
         localName: 'd_organizations_delegated_administrators',
       ),
     );
 
-    addData(
+    add(
       DataAwsOrganizationsDelegatedServices(
         localName: 'd_organizations_delegated_services',
         accountId: .literal('123456789012'),
       ),
     );
 
-    addData(
+    add(
       DataAwsOrganizationsEntityPath(
         localName: 'd_organizations_entity_path',
         entityId: .literal('ou-ab12-cd34ef56'),
       ),
     );
 
-    addData(
+    add(
       DataAwsOrganizationsOrganization(
         localName: 'd_organizations_organization',
       ),
     );
 
-    addData(
+    add(
       DataAwsOrganizationsOrganizationalUnit(
         localName: 'd_organizations_organizational_unit',
         name: .literal(leftover),
@@ -18396,42 +18364,42 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsOrganizationsOrganizationalUnitChildAccounts(
         localName: 'd_organizations_organizational_unit_child_accoun',
         parentId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsOrganizationsOrganizationalUnitDescendantAccounts(
         localName: 'd_organizations_organizational_unit_descendant_a',
         parentId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsOrganizationsOrganizationalUnitDescendantOrganizationalUnits(
         localName: 'd_organizations_organizational_unit_descendant_o',
         parentId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsOrganizationsOrganizationalUnits(
         localName: 'd_organizations_organizational_units',
         parentId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsOrganizationsPolicies(
         localName: 'd_organizations_policies',
         filter: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsOrganizationsPoliciesForTarget(
         localName: 'd_organizations_policies_for_target',
         filter: .literal(leftover),
@@ -18439,21 +18407,21 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsOrganizationsPolicy(
         localName: 'd_organizations_policy',
         policyId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsOrganizationsResourceTags(
         localName: 'd_organizations_resource_tags',
         resourceId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsOutpostsAsset(
         localName: 'd_outposts_asset',
         arn: .literal(arn),
@@ -18461,44 +18429,44 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsOutpostsAssets(localName: 'd_outposts_assets', arn: .literal(arn)),
     );
 
-    addData(DataAwsOutpostsOutpost(localName: 'd_outposts_outpost'));
+    add(DataAwsOutpostsOutpost(localName: 'd_outposts_outpost'));
 
-    addData(
+    add(
       DataAwsOutpostsOutpostInstanceType(
         localName: 'd_outposts_outpost_instance_type',
         arn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsOutpostsOutpostInstanceTypes(
         localName: 'd_outposts_outpost_instance_types',
         arn: .literal(arn),
       ),
     );
 
-    addData(DataAwsOutpostsOutposts(localName: 'd_outposts_outposts'));
+    add(DataAwsOutpostsOutposts(localName: 'd_outposts_outposts'));
 
-    addData(
+    add(
       DataAwsOutpostsSite(
         localName: 'd_outposts_site',
         name: .literal(leftover),
       ),
     );
 
-    addData(DataAwsOutpostsSites(localName: 'd_outposts_sites'));
+    add(DataAwsOutpostsSites(localName: 'd_outposts_sites'));
 
-    addData(DataAwsPartition(localName: 'd_partition'));
+    add(DataAwsPartition(localName: 'd_partition'));
 
-    addData(DataAwsPollyVoices(localName: 'd_polly_voices'));
+    add(DataAwsPollyVoices(localName: 'd_polly_voices'));
 
-    addData(DataAwsPrefixList(localName: 'd_prefix_list'));
+    add(DataAwsPrefixList(localName: 'd_prefix_list'));
 
-    addData(
+    add(
       DataAwsPricingProduct(
         localName: 'd_pricing_product',
         serviceCode: .literal(leftover),
@@ -18511,109 +18479,109 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsPrometheusDefaultScraperConfiguration(
         localName: 'd_prometheus_default_scraper_configuration',
       ),
     );
 
-    addData(
+    add(
       DataAwsPrometheusWorkspace(
         localName: 'd_prometheus_workspace',
         workspaceId: .literal(leftover),
       ),
     );
 
-    addData(DataAwsPrometheusWorkspaces(localName: 'd_prometheus_workspaces'));
+    add(DataAwsPrometheusWorkspaces(localName: 'd_prometheus_workspaces'));
 
-    addData(
+    add(
       DataAwsQldbLedger(localName: 'd_qldb_ledger', name: .literal(leftover)),
     );
 
-    addData(
+    add(
       DataAwsQuicksightAnalysis(
         localName: 'd_quicksight_analysis',
         analysisId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsQuicksightDataSet(
         localName: 'd_quicksight_data_set',
         dataSetId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsQuicksightGroup(
         localName: 'd_quicksight_group',
         groupName: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsQuicksightTheme(
         localName: 'd_quicksight_theme',
         themeId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsQuicksightUser(
         localName: 'd_quicksight_user',
         userName: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsRamResourceShare(
         localName: 'd_ram_resource_share',
         resourceOwner: .literal('SELF'),
       ),
     );
 
-    addData(DataAwsRdsCertificate(localName: 'd_rds_certificate'));
+    add(DataAwsRdsCertificate(localName: 'd_rds_certificate'));
 
-    addData(
+    add(
       DataAwsRdsCluster(
         localName: 'd_rds_cluster',
         clusterIdentifier: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsRdsClusterParameterGroup(
         localName: 'd_rds_cluster_parameter_group',
         name: .literal(leftover),
       ),
     );
 
-    addData(DataAwsRdsClusters(localName: 'd_rds_clusters'));
+    add(DataAwsRdsClusters(localName: 'd_rds_clusters'));
 
-    addData(
+    add(
       DataAwsRdsEngineVersion(
         localName: 'd_rds_engine_version',
         engine: .literal(leftover),
       ),
     );
 
-    addData(DataAwsRdsEvents(localName: 'd_rds_events'));
+    add(DataAwsRdsEvents(localName: 'd_rds_events'));
 
-    addData(
+    add(
       DataAwsRdsGlobalCluster(
         localName: 'd_rds_global_cluster',
         identifier: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsRdsOrderableDbInstance(
         localName: 'd_rds_orderable_db_instance',
         engine: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsRdsReservedInstanceOffering(
         localName: 'd_rds_reserved_instance_offering',
         dbInstanceClass: .literal(leftover),
@@ -18624,16 +18592,16 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(DataAwsRdsSnapshots(localName: 'd_rds_snapshots'));
+    add(DataAwsRdsSnapshots(localName: 'd_rds_snapshots'));
 
-    addData(
+    add(
       DataAwsRedshiftCluster(
         localName: 'd_redshift_cluster',
         clusterIdentifier: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsRedshiftClusterCredentials(
         localName: 'd_redshift_cluster_credentials',
         clusterIdentifier: .literal(leftover),
@@ -18641,208 +18609,204 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(DataAwsRedshiftDataShares(localName: 'd_redshift_data_shares'));
+    add(DataAwsRedshiftDataShares(localName: 'd_redshift_data_shares'));
 
-    addData(
+    add(
       DataAwsRedshiftOrderableCluster(
         localName: 'd_redshift_orderable_cluster',
       ),
     );
 
-    addData(
+    add(
       DataAwsRedshiftProducerDataShares(
         localName: 'd_redshift_producer_data_shares',
         producerArn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsRedshiftSubnetGroup(
         localName: 'd_redshift_subnet_group',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsRedshiftserverlessCredentials(
         localName: 'd_redshiftserverless_credentials',
         workgroupName: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsRedshiftserverlessNamespace(
         localName: 'd_redshiftserverless_namespace',
         namespaceName: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsRedshiftserverlessWorkgroup(
         localName: 'd_redshiftserverless_workgroup',
         workgroupName: .literal(leftover),
       ),
     );
 
-    addData(DataAwsRegion(localName: 'd_region'));
+    add(DataAwsRegion(localName: 'd_region'));
 
-    addData(DataAwsRegions(localName: 'd_regions'));
+    add(DataAwsRegions(localName: 'd_regions'));
 
-    addData(
+    add(
       DataAwsResiliencehubv2Policy(
         localName: 'd_resiliencehubv2_policy',
         arn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsResiliencehubv2Service(
         localName: 'd_resiliencehubv2_service',
         arn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsResiliencehubv2System(
         localName: 'd_resiliencehubv2_system',
         arn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsResourceexplorer2Search(
         localName: 'd_resourceexplorer2_search',
         queryString: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsResourcegroupstaggingapiRequiredTags(
         localName: 'd_resourcegroupstaggingapi_required_tags',
       ),
     );
 
-    addData(
+    add(
       DataAwsResourcegroupstaggingapiResources(
         localName: 'd_resourcegroupstaggingapi_resources',
       ),
     );
 
-    addData(
-      DataAwsRoute(localName: 'd_route', routeTableId: .literal(leftover)),
-    );
+    add(DataAwsRoute(localName: 'd_route', routeTableId: .literal(leftover)));
 
-    addData(
+    add(
       DataAwsRoute53DelegationSet(
         localName: 'd_route53_delegation_set',
         id: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsRoute53Records(
         localName: 'd_route53_records',
         zoneId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsRoute53ResolverEndpoint(localName: 'd_route53_resolver_endpoint'),
     );
 
-    addData(
+    add(
       DataAwsRoute53ResolverFirewallConfig(
         localName: 'd_route53_resolver_firewall_config',
         resourceId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsRoute53ResolverFirewallDomainList(
         localName: 'd_route53_resolver_firewall_domain_list',
         firewallDomainListId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsRoute53ResolverFirewallRuleGroup(
         localName: 'd_route53_resolver_firewall_rule_group',
         firewallRuleGroupId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsRoute53ResolverFirewallRuleGroupAssociation(
         localName: 'd_route53_resolver_firewall_rule_group_associati',
         firewallRuleGroupAssociationId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsRoute53ResolverFirewallRules(
         localName: 'd_route53_resolver_firewall_rules',
         firewallRuleGroupId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsRoute53ResolverQueryLogConfig(
         localName: 'd_route53_resolver_query_log_config',
       ),
     );
 
-    addData(DataAwsRoute53ResolverRule(localName: 'd_route53_resolver_rule'));
+    add(DataAwsRoute53ResolverRule(localName: 'd_route53_resolver_rule'));
 
-    addData(DataAwsRoute53ResolverRules(localName: 'd_route53_resolver_rules'));
+    add(DataAwsRoute53ResolverRules(localName: 'd_route53_resolver_rules'));
 
-    addData(
+    add(
       DataAwsRoute53TrafficPolicyDocument(
         localName: 'd_route53_traffic_policy_document',
       ),
     );
 
-    addData(DataAwsRoute53Zones(localName: 'd_route53_zones'));
+    add(DataAwsRoute53Zones(localName: 'd_route53_zones'));
 
-    addData(
+    add(
       DataAwsRoute53profilesProfile(
         localName: 'd_route53profiles_profile',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsRoute53profilesProfiles(localName: 'd_route53profiles_profiles'),
     );
 
-    addData(DataAwsRouteTable(localName: 'd_route_table'));
+    add(DataAwsRouteTable(localName: 'd_route_table'));
 
-    addData(DataAwsRouteTables(localName: 'd_route_tables'));
+    add(DataAwsRouteTables(localName: 'd_route_tables'));
 
-    addData(
+    add(
       DataAwsS3AccessPoint(
         localName: 'd_s3_access_point',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsS3AccountPublicAccessBlock(
         localName: 'd_s3_account_public_access_block',
       ),
     );
 
-    addData(
-      DataAwsS3Bucket(localName: 'd_s3_bucket', bucket: .literal(leftover)),
-    );
+    add(DataAwsS3Bucket(localName: 'd_s3_bucket', bucket: .literal(leftover)));
 
-    addData(
+    add(
       DataAwsS3BucketNotification(
         localName: 'd_s3_bucket_notification',
         bucket: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsS3BucketObject(
         localName: 'd_s3_bucket_object',
         bucket: .literal(leftover),
@@ -18850,39 +18814,39 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsS3BucketObjectLockConfiguration(
         localName: 'd_s3_bucket_object_lock_configuration',
         bucket: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsS3BucketObjects(
         localName: 'd_s3_bucket_objects',
         bucket: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsS3BucketPolicy(
         localName: 'd_s3_bucket_policy',
         bucket: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsS3BucketReplicationConfiguration(
         localName: 'd_s3_bucket_replication_configuration',
         bucket: .literal(leftover),
       ),
     );
 
-    addData(DataAwsS3Buckets(localName: 'd_s3_buckets'));
+    add(DataAwsS3Buckets(localName: 'd_s3_buckets'));
 
-    addData(DataAwsS3DirectoryBuckets(localName: 'd_s3_directory_buckets'));
+    add(DataAwsS3DirectoryBuckets(localName: 'd_s3_directory_buckets'));
 
-    addData(
+    add(
       DataAwsS3Object(
         localName: 'd_s3_object',
         bucket: .literal(leftover),
@@ -18890,139 +18854,133 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsS3Objects(localName: 'd_s3_objects', bucket: .literal(leftover)),
     );
 
-    addData(
-      DataAwsS3controlAccessPoints(localName: 'd_s3control_access_points'),
-    );
+    add(DataAwsS3controlAccessPoints(localName: 'd_s3control_access_points'));
 
-    addData(
+    add(
       DataAwsS3controlMultiRegionAccessPoint(
         localName: 'd_s3control_multi_region_access_point',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsS3controlMultiRegionAccessPoints(
         localName: 'd_s3control_multi_region_access_points',
       ),
     );
 
-    addData(
+    add(
       DataAwsS3filesAccessPoint(
         localName: 'd_s3files_access_point',
         id: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsS3filesFileSystem(
         localName: 'd_s3files_file_system',
         id: .literal(leftover),
       ),
     );
 
-    addData(DataAwsS3filesFileSystems(localName: 'd_s3files_file_systems'));
+    add(DataAwsS3filesFileSystems(localName: 'd_s3files_file_systems'));
 
-    addData(
+    add(
       DataAwsS3filesMountTarget(
         localName: 'd_s3files_mount_target',
         id: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsSagemakerPrebuiltEcrImage(
         localName: 'd_sagemaker_prebuilt_ecr_image',
         repositoryName: .literal('autogluon-training'),
       ),
     );
 
-    addData(
-      DataAwsSavingsplansOfferings(localName: 'd_savingsplans_offerings'),
-    );
+    add(DataAwsSavingsplansOfferings(localName: 'd_savingsplans_offerings'));
 
-    addData(
+    add(
       DataAwsSavingsplansSavingsPlan(
         localName: 'd_savingsplans_savings_plan',
         savingsPlanId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsSecretsmanagerRandomPassword(
         localName: 'd_secretsmanager_random_password',
       ),
     );
 
-    addData(
+    add(
       DataAwsSecretsmanagerSecret(
         localName: 'd_secretsmanager_secret',
         arn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsSecretsmanagerSecretRotation(
         localName: 'd_secretsmanager_secret_rotation',
         secretId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsSecretsmanagerSecretVersion(
         localName: 'd_secretsmanager_secret_version',
         secretId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsSecretsmanagerSecretVersions(
         localName: 'd_secretsmanager_secret_versions',
         secretId: .literal(leftover),
       ),
     );
 
-    addData(
-      DataAwsSecretsmanagerSecrets(localName: 'd_secretsmanager_secrets'),
-    );
+    add(DataAwsSecretsmanagerSecrets(localName: 'd_secretsmanager_secrets'));
 
-    addData(DataAwsSecurityGroup(localName: 'd_security_group'));
+    add(DataAwsSecurityGroup(localName: 'd_security_group'));
 
-    addData(DataAwsSecurityGroups(localName: 'd_security_groups'));
+    add(DataAwsSecurityGroups(localName: 'd_security_groups'));
 
-    addData(
+    add(
       DataAwsSecurityhubEnabledStandards(
         localName: 'd_securityhub_enabled_standards',
       ),
     );
 
-    addData(
+    add(
       DataAwsSecurityhubSecurityControls(
         localName: 'd_securityhub_security_controls',
       ),
     );
 
-    addData(
+    add(
       DataAwsSecurityhubStandardsControlAssociations(
         localName: 'd_securityhub_standards_control_associations',
         securityControlId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsServerlessapplicationrepositoryApplication(
         localName: 'd_serverlessapplicationrepository_application',
         applicationId: .literal(arn),
       ),
     );
 
-    addData(DataAwsService(localName: 'd_service'));
+    add(DataAwsService(localName: 'd_service'));
 
-    addData(
+    add(
       DataAwsServiceDiscoveryDnsNamespace(
         localName: 'd_service_discovery_dns_namespace',
         name: .literal(leftover),
@@ -19030,14 +18988,14 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsServiceDiscoveryHttpNamespace(
         localName: 'd_service_discovery_http_namespace',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsServiceDiscoveryService(
         localName: 'd_service_discovery_service',
         name: .literal(leftover),
@@ -19045,84 +19003,84 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsServicePrincipal(
         localName: 'd_service_principal',
         serviceName: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsServicecatalogConstraint(
         localName: 'd_servicecatalog_constraint',
         id: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsServicecatalogLaunchPaths(
         localName: 'd_servicecatalog_launch_paths',
         productId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsServicecatalogPortfolio(
         localName: 'd_servicecatalog_portfolio',
         id: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsServicecatalogPortfolioConstraints(
         localName: 'd_servicecatalog_portfolio_constraints',
         portfolioId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsServicecatalogProduct(
         localName: 'd_servicecatalog_product',
         id: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsServicecatalogProvisioningArtifacts(
         localName: 'd_servicecatalog_provisioning_artifacts',
         productId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsServicecatalogappregistryApplication(
         localName: 'd_servicecatalogappregistry_application',
         id: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsServicecatalogappregistryAttributeGroup(
         localName: 'd_servicecatalogappregistry_attribute_group',
         arn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsServicecatalogappregistryAttributeGroupAssociations(
         localName: 'd_servicecatalogappregistry_attribute_group_asso',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsServicequotasService(
         localName: 'd_servicequotas_service',
         serviceName: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsServicequotasServiceQuota(
         localName: 'd_servicequotas_service_quota',
         serviceCode: .literal(leftover),
@@ -19130,66 +19088,64 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsServicequotasTemplates(
         localName: 'd_servicequotas_templates',
         awsRegion: .literal('us-east-1'),
       ),
     );
 
-    addData(
+    add(
       DataAwsSesActiveReceiptRuleSet(
         localName: 'd_ses_active_receipt_rule_set',
       ),
     );
 
-    addData(
+    add(
       DataAwsSesDomainIdentity(
         localName: 'd_ses_domain_identity',
         domain: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsSesEmailIdentity(
         localName: 'd_ses_email_identity',
         email: .literal('leftover@example.com'),
       ),
     );
 
-    addData(
+    add(
       DataAwsSesv2ConfigurationSet(
         localName: 'd_sesv2_configuration_set',
         configurationSetName: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsSesv2DedicatedIpPool(
         localName: 'd_sesv2_dedicated_ip_pool',
         poolName: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsSesv2EmailIdentity(
         localName: 'd_sesv2_email_identity',
         emailIdentity: .literal('leftover@example.com'),
       ),
     );
 
-    addData(
+    add(
       DataAwsSesv2EmailIdentityMailFromAttributes(
         localName: 'd_sesv2_email_identity_mail_from_attributes',
         emailIdentity: .literal('leftover@example.com'),
       ),
     );
 
-    addData(
-      DataAwsSfnActivity(localName: 'd_sfn_activity', arn: .literal(arn)),
-    );
+    add(DataAwsSfnActivity(localName: 'd_sfn_activity', arn: .literal(arn)));
 
-    addData(
+    add(
       DataAwsSfnAlias(
         localName: 'd_sfn_alias',
         name: .literal(leftover),
@@ -19197,154 +19153,148 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsSfnStateMachine(
         localName: 'd_sfn_state_machine',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsSfnStateMachineVersions(
         localName: 'd_sfn_state_machine_versions',
         statemachineArn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsShieldProtection(
         localName: 'd_shield_protection',
         protectionId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsSignerSigningJob(
         localName: 'd_signer_signing_job',
         jobId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsSignerSigningProfile(
         localName: 'd_signer_signing_profile',
         name: .literal(leftover),
       ),
     );
 
-    addData(
-      DataAwsSnsTopic(localName: 'd_sns_topic', name: .literal(leftover)),
-    );
+    add(DataAwsSnsTopic(localName: 'd_sns_topic', name: .literal(leftover)));
 
-    addData(
+    add(
       DataAwsSpotDatafeedSubscription(
         localName: 'd_spot_datafeed_subscription',
       ),
     );
 
-    addData(
-      DataAwsSqsQueue(localName: 'd_sqs_queue', name: .literal(leftover)),
-    );
+    add(DataAwsSqsQueue(localName: 'd_sqs_queue', name: .literal(leftover)));
 
-    addData(DataAwsSqsQueues(localName: 'd_sqs_queues'));
+    add(DataAwsSqsQueues(localName: 'd_sqs_queues'));
 
-    addData(
+    add(
       DataAwsSsmDocument(localName: 'd_ssm_document', name: .literal(leftover)),
     );
 
-    addData(DataAwsSsmInstances(localName: 'd_ssm_instances'));
+    add(DataAwsSsmInstances(localName: 'd_ssm_instances'));
 
-    addData(
-      DataAwsSsmMaintenanceWindows(localName: 'd_ssm_maintenance_windows'),
-    );
+    add(DataAwsSsmMaintenanceWindows(localName: 'd_ssm_maintenance_windows'));
 
-    addData(
+    add(
       DataAwsSsmParameter(
         localName: 'd_ssm_parameter',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsSsmParametersByPath(
         localName: 'd_ssm_parameters_by_path',
         path: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsSsmPatchBaseline(
         localName: 'd_ssm_patch_baseline',
         owner: .literal(leftover),
       ),
     );
 
-    addData(DataAwsSsmPatchBaselines(localName: 'd_ssm_patch_baselines'));
+    add(DataAwsSsmPatchBaselines(localName: 'd_ssm_patch_baselines'));
 
-    addData(
+    add(
       DataAwsSsmcontactsContact(
         localName: 'd_ssmcontacts_contact',
         arn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsSsmcontactsContactChannel(
         localName: 'd_ssmcontacts_contact_channel',
         arn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsSsmcontactsPlan(
         localName: 'd_ssmcontacts_plan',
         contactId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsSsmcontactsRotation(
         localName: 'd_ssmcontacts_rotation',
         arn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsSsmincidentsReplicationSet(
         localName: 'd_ssmincidents_replication_set',
       ),
     );
 
-    addData(
+    add(
       DataAwsSsmincidentsResponsePlan(
         localName: 'd_ssmincidents_response_plan',
         arn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsSsoadminApplication(
         localName: 'd_ssoadmin_application',
         applicationArn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsSsoadminApplicationAssignments(
         localName: 'd_ssoadmin_application_assignments',
         applicationArn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsSsoadminApplicationProviders(
         localName: 'd_ssoadmin_application_providers',
       ),
     );
 
-    addData(DataAwsSsoadminInstances(localName: 'd_ssoadmin_instances'));
+    add(DataAwsSsoadminInstances(localName: 'd_ssoadmin_instances'));
 
-    addData(
+    add(
       DataAwsSsoadminPermissionSet(
         localName: 'd_ssoadmin_permission_set',
         instanceArn: .literal(arn),
@@ -19352,14 +19302,14 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsSsoadminPermissionSets(
         localName: 'd_ssoadmin_permission_sets',
         instanceArn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsSsoadminPrincipalApplicationAssignments(
         localName: 'd_ssoadmin_principal_application_assignments',
         instanceArn: .literal(arn),
@@ -19368,18 +19318,18 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsStoragegatewayLocalDisk(
         localName: 'd_storagegateway_local_disk',
         gatewayArn: .literal(arn),
       ),
     );
 
-    addData(DataAwsSubnet(localName: 'd_subnet'));
+    add(DataAwsSubnet(localName: 'd_subnet'));
 
-    addData(DataAwsSubnets(localName: 'd_subnets'));
+    add(DataAwsSubnets(localName: 'd_subnets'));
 
-    addData(
+    add(
       DataAwsSyntheticsRuntimeVersion(
         localName: 'd_synthetics_runtime_version',
         prefix: .literal(leftover),
@@ -19387,20 +19337,20 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsSyntheticsRuntimeVersions(
         localName: 'd_synthetics_runtime_versions',
       ),
     );
 
-    addData(
+    add(
       DataAwsTimestreamwriteDatabase(
         localName: 'd_timestreamwrite_database',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsTimestreamwriteTable(
         localName: 'd_timestreamwrite_table',
         databaseName: .literal(leftover),
@@ -19408,88 +19358,82 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsTransferConnector(
         localName: 'd_transfer_connector',
         id: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsTransferServer(
         localName: 'd_transfer_server',
         serverId: .literal(leftover),
       ),
     );
 
-    addData(DataAwsUxcServices(localName: 'd_uxc_services'));
+    add(DataAwsUxcServices(localName: 'd_uxc_services'));
 
-    addData(
+    add(
       DataAwsVerifiedpermissionsPolicyStore(
         localName: 'd_verifiedpermissions_policy_store',
         id: .literal(leftover),
       ),
     );
 
-    addData(DataAwsVpc(localName: 'd_vpc'));
+    add(DataAwsVpc(localName: 'd_vpc'));
 
-    addData(DataAwsVpcDhcpOptions(localName: 'd_vpc_dhcp_options'));
+    add(DataAwsVpcDhcpOptions(localName: 'd_vpc_dhcp_options'));
 
-    addData(DataAwsVpcEndpoint(localName: 'd_vpc_endpoint'));
+    add(DataAwsVpcEndpoint(localName: 'd_vpc_endpoint'));
 
-    addData(
+    add(
       DataAwsVpcEndpointAssociations(
         localName: 'd_vpc_endpoint_associations',
         vpcEndpointId: .literal(leftover),
       ),
     );
 
-    addData(DataAwsVpcEndpointService(localName: 'd_vpc_endpoint_service'));
+    add(DataAwsVpcEndpointService(localName: 'd_vpc_endpoint_service'));
 
-    addData(DataAwsVpcIpam(localName: 'd_vpc_ipam', id: .literal(leftover)));
+    add(DataAwsVpcIpam(localName: 'd_vpc_ipam', id: .literal(leftover)));
 
-    addData(DataAwsVpcIpamPool(localName: 'd_vpc_ipam_pool'));
+    add(DataAwsVpcIpamPool(localName: 'd_vpc_ipam_pool'));
 
-    addData(
+    add(
       DataAwsVpcIpamPoolCidrs(
         localName: 'd_vpc_ipam_pool_cidrs',
         ipamPoolId: .literal(leftover),
       ),
     );
 
-    addData(DataAwsVpcIpamPools(localName: 'd_vpc_ipam_pools'));
+    add(DataAwsVpcIpamPools(localName: 'd_vpc_ipam_pools'));
 
-    addData(
+    add(
       DataAwsVpcIpamPreviewNextCidr(
         localName: 'd_vpc_ipam_preview_next_cidr',
         ipamPoolId: .literal(leftover),
       ),
     );
 
-    addData(DataAwsVpcIpams(localName: 'd_vpc_ipams'));
+    add(DataAwsVpcIpams(localName: 'd_vpc_ipams'));
 
-    addData(DataAwsVpcPeeringConnection(localName: 'd_vpc_peering_connection'));
+    add(DataAwsVpcPeeringConnection(localName: 'd_vpc_peering_connection'));
 
-    addData(
-      DataAwsVpcPeeringConnections(localName: 'd_vpc_peering_connections'),
-    );
+    add(DataAwsVpcPeeringConnections(localName: 'd_vpc_peering_connections'));
 
-    addData(
-      DataAwsVpcSecurityGroupRule(localName: 'd_vpc_security_group_rule'),
-    );
+    add(DataAwsVpcSecurityGroupRule(localName: 'd_vpc_security_group_rule'));
 
-    addData(
-      DataAwsVpcSecurityGroupRules(localName: 'd_vpc_security_group_rules'),
-    );
+    add(DataAwsVpcSecurityGroupRules(localName: 'd_vpc_security_group_rules'));
 
-    addData(
+    add(
       DataAwsVpclatticeAuthPolicy(
         localName: 'd_vpclattice_auth_policy',
         resourceIdentifier: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsVpclatticeListener(
         localName: 'd_vpclattice_listener',
         listenerIdentifier: .literal(leftover),
@@ -19497,37 +19441,37 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsVpclatticeResourcePolicy(
         localName: 'd_vpclattice_resource_policy',
         resourceArn: .literal(arn),
       ),
     );
 
-    addData(
+    add(
       DataAwsVpclatticeService(
         localName: 'd_vpclattice_service',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsVpclatticeServiceNetwork(
         localName: 'd_vpclattice_service_network',
         serviceNetworkIdentifier: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsVpclatticeServiceNetworkServiceAssociations(
         localName: 'd_vpclattice_service_network_service_association',
         serviceNetworkIdentifier: .literal(leftover),
       ),
     );
 
-    addData(DataAwsVpcs(localName: 'd_vpcs'));
+    add(DataAwsVpcs(localName: 'd_vpcs'));
 
-    addData(
+    add(
       DataAwsVpnConnection(
         localName: 'd_vpn_connection',
         vpnConnectionId: .literal(leftover),
@@ -19540,22 +19484,20 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(DataAwsVpnGateway(localName: 'd_vpn_gateway'));
+    add(DataAwsVpnGateway(localName: 'd_vpn_gateway'));
 
-    addData(
-      DataAwsWafIpset(localName: 'd_waf_ipset', name: .literal(leftover)),
-    );
+    add(DataAwsWafIpset(localName: 'd_waf_ipset', name: .literal(leftover)));
 
-    addData(
+    add(
       DataAwsWafRateBasedRule(
         localName: 'd_waf_rate_based_rule',
         name: .literal(leftover),
       ),
     );
 
-    addData(DataAwsWafRule(localName: 'd_waf_rule', name: .literal(leftover)));
+    add(DataAwsWafRule(localName: 'd_waf_rule', name: .literal(leftover)));
 
-    addData(
+    add(
       DataAwsWafSubscribedRuleGroup(
         localName: 'd_waf_subscribed_rule_group',
         metricName: .literal(leftover),
@@ -19563,32 +19505,30 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
-      DataAwsWafWebAcl(localName: 'd_waf_web_acl', name: .literal(leftover)),
-    );
+    add(DataAwsWafWebAcl(localName: 'd_waf_web_acl', name: .literal(leftover)));
 
-    addData(
+    add(
       DataAwsWafregionalIpset(
         localName: 'd_wafregional_ipset',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsWafregionalRateBasedRule(
         localName: 'd_wafregional_rate_based_rule',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsWafregionalRule(
         localName: 'd_wafregional_rule',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsWafregionalSubscribedRuleGroup(
         localName: 'd_wafregional_subscribed_rule_group',
         metricName: .literal(leftover),
@@ -19596,14 +19536,14 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsWafregionalWebAcl(
         localName: 'd_wafregional_web_acl',
         name: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsWafv2IpSet(
         localName: 'd_wafv2_ip_set',
         name: .literal(leftover),
@@ -19611,7 +19551,7 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsWafv2ManagedRuleGroup(
         localName: 'd_wafv2_managed_rule_group',
         name: .literal(leftover),
@@ -19620,7 +19560,7 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsWafv2RegexPatternSet(
         localName: 'd_wafv2_regex_pattern_set',
         name: .literal(leftover),
@@ -19628,7 +19568,7 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsWafv2RuleGroup(
         localName: 'd_wafv2_rule_group',
         name: .literal(leftover),
@@ -19636,7 +19576,7 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(
+    add(
       DataAwsWafv2WebAcl(
         localName: 'd_wafv2_web_acl',
         scope: .literal('CLOUDFRONT'),
@@ -19644,22 +19584,22 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    addData(DataAwsWorkspacesBundle(localName: 'd_workspaces_bundle'));
+    add(DataAwsWorkspacesBundle(localName: 'd_workspaces_bundle'));
 
-    addData(
+    add(
       DataAwsWorkspacesDirectory(
         localName: 'd_workspaces_directory',
         directoryId: .literal(leftover),
       ),
     );
 
-    addData(
+    add(
       DataAwsWorkspacesImage(
         localName: 'd_workspaces_image',
         imageId: .literal(leftover),
       ),
     );
 
-    addData(DataAwsWorkspacesWorkspace(localName: 'd_workspaces_workspace'));
+    add(DataAwsWorkspacesWorkspace(localName: 'd_workspaces_workspace'));
   }
 }

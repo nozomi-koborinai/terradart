@@ -20,7 +20,7 @@ final class VpcFlowLogsStack extends Stack {
     : super(
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
       ) {
-    final current = addData(GoogleProject(localName: 'current'));
+    final current = add(GoogleProject(localName: 'current'));
 
     final apiCompute = add(
       GoogleProjectService(

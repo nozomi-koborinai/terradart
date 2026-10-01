@@ -421,7 +421,7 @@ final class IamShowcaseStack extends Stack {
     // grant IAM. MM exclude_delete: destroy drops state; Google-owned
     // SAs remain. The wrap fixture has no deletion_policy attribute.
 
-    final current = addData(GoogleProject(localName: 'current'));
+    final current = add(GoogleProject(localName: 'current'));
 
     final apiWorkloadIdentity = add(
       GoogleProjectService(

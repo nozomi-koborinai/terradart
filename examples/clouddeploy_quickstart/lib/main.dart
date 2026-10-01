@@ -35,7 +35,7 @@ final class DeployStack extends Stack {
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
         appExports: AppExports('lib/generated/deploy_stack.app.dart'),
       ) {
-    final current = addData(GoogleProject(localName: 'current'));
+    final current = add(GoogleProject(localName: 'current'));
 
     final apiClouddeploy = add(
       GoogleProjectService(

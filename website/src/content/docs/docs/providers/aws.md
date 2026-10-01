@@ -61,7 +61,7 @@ final class HelloLambdaStack extends Stack {
         ),
       ],
     );
-    addData(trust);
+    add(trust);
 
     final role = AwsIamRole(
       localName: 'hello',
@@ -148,7 +148,7 @@ final class DartServerStack extends Stack {
           ),
         ],
       );
-      addData(trust);
+      add(trust);
       final role = AwsIamRole(
         localName: name,
         name: .name(.literal('dart-server-$name')),
@@ -246,7 +246,7 @@ final class FlutterWebStack extends Stack {
       localName: 'caching_optimized',
       name: .literal('Managed-CachingOptimized'),
     );
-    addData(cachePolicy);
+    add(cachePolicy);
 
     final distribution = AwsCloudfrontDistribution(
       localName: 'site',
@@ -310,7 +310,7 @@ final class FlutterWebStack extends Stack {
         ),
       ],
     );
-    addData(readFromCloudFront);
+    add(readFromCloudFront);
     add(AwsS3BucketPolicy(
       localName: 'site',
       bucket: bucket.ref,

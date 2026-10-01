@@ -42,34 +42,14 @@ void main() {
     });
   });
 
-  group('Stack.addData', () {
+  group('Stack.add a data source', () {
     test('appears in dataSources list, not resources', () {
       final stack = _TestStack();
       final d = _FakeData(localName: 'current', name: const TfArgLiteral('x'));
-      stack.addData(d);
+      expect(identical(stack.add(d), d), isTrue);
       expect(stack.dataSources, hasLength(1));
       expect(stack.resources, isEmpty);
       expect(stack.dataSources.first.tfAddress, 'data.fake_thing.current');
-    });
-  });
-
-  group('add() rejects Data', () {
-    test('Data passed to add throws ArgumentError', () {
-      final stack = _TestStack();
-      final d = _FakeData(localName: 'a', name: const TfArgLiteral('x'));
-      expect(() => stack.add(d), throwsArgumentError);
-    });
-  });
-
-  group('addData() rejects non-Data', () {
-    test('Resource passed to addData via dynamic cast throws TypeError', () {
-      final stack = _TestStack();
-      final r = _FakeResource(localName: 'a', name: const TfArgLiteral('x'));
-      expect(
-        // ignore: avoid_dynamic_calls
-        () => (stack as dynamic).addData(r),
-        throwsA(isA<TypeError>()),
-      );
     });
   });
 }

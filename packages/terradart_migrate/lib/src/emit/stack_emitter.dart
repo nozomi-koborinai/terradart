@@ -305,7 +305,7 @@ final class _Emitted {
   /// of `google.eu`, `google-beta`), or `null` for the type's default.
   final String? providerName;
 
-  /// `add(...)` / `addData(...)` without the `final x =` prefix.
+  /// `add(...)` without the `final x =` prefix.
   final String call;
 
   /// True when the block read the Stack's `workspace` parameter.
@@ -1178,7 +1178,7 @@ final class StackEmitter {
       address: b.address,
       tfType: b.type,
       dartName: dartName,
-      call: '${b.isData ? 'addData' : 'add'}($ctor)',
+      call: 'add($ctor)',
       usesWorkspace: emitter.usedWorkspace,
       usedTargets: emitter.usedTargets,
       usedVariables: emitter.usedVariables,

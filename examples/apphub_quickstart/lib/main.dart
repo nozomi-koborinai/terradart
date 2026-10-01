@@ -20,7 +20,7 @@ final class ApphubStack extends Stack {
           const TimeProvider(),
         ],
       ) {
-    final current = addData(GoogleProject(localName: 'current'));
+    final current = add(GoogleProject(localName: 'current'));
 
     final apiDeps = Apis.enable(
       this,

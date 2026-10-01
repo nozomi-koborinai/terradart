@@ -51,7 +51,7 @@ final class HelloStack extends Stack {
         ),
       ],
     );
-    addData(trust);
+    add(trust);
     final role = AwsIamRole(
       localName: 'hello',
       assumeRolePolicy: trust.json,

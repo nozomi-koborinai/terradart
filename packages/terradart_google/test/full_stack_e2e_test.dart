@@ -23,7 +23,7 @@ void main() {
         providers: const [GoogleProvider(project: 'demo')],
       );
 
-      stack.addData(GoogleProject(localName: 'current'));
+      stack.add(GoogleProject(localName: 'current'));
 
       final ordersTopic = stack.add(
         GooglePubsubTopic(

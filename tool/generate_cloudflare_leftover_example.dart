@@ -115,8 +115,7 @@ void main() {
   final body = StringBuffer();
   for (final f in factories) {
     final local = _uniqueLocal(f.type, f.kind, usedLocals);
-    final method = f.kind == _Kind.data ? 'addData' : 'add';
-    body.writeln('    $method(');
+    body.writeln('    add(');
     body.writeln('      ${f.className}(');
     body.writeln("        localName: '$local',");
     for (final p in f.requiredParams) {

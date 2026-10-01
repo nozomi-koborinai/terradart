@@ -36,7 +36,7 @@ final class AwsLambdaStack extends Stack {
         ],
       ) {
     final account = DataAwsCallerIdentity(localName: 'current');
-    addData(account);
+    add(account);
 
     final trust = DataAwsIamPolicyDocument(
       localName: 'lambda_trust',
@@ -60,7 +60,7 @@ final class AwsLambdaStack extends Stack {
         ),
       ],
     );
-    addData(trust);
+    add(trust);
 
     final role = AwsIamRole(
       localName: 'hello',
