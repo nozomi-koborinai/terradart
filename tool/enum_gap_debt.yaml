@@ -1,4 +1,4 @@
-# Known enum gaps check_override_enum_gaps.dart must NOT fail on, each with a
+# Known enum gaps check_google_enum_gaps.dart must NOT fail on, each with a
 # reviewed reason. Same ledger contract as example_debt.yaml: adding a line is
 # a reviewed decision, and a stale line (no longer matching any reported gap)
 # fails the check so the ledger cannot rot.

@@ -152,7 +152,7 @@ List<String>? descriptionEnumValues(List<String> path, String? description) =>
 /// - A block whose bare Terraform name is in [customSlotKeys] is skipped
 ///   entirely — no trace anywhere in the result. The hand-written
 ///   customSlot already owns that whole subtree (mirrors
-///   `check_override_enum_gaps.dart`'s `_customSlotCoversBlock`; checking
+///   `check_google_enum_gaps.dart`'s `_customSlotCoversBlock`; checking
 ///   the bare name at every depth reproduces its "any ancestor" semantics
 ///   for free, because a skipped node's children are never visited).
 ///   Only keys naming a top-level schema field count: a virtual slot

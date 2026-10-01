@@ -1,12 +1,14 @@
 // example_synth_gates.dart — synth every quickstart once and run machine gates.
 //
-// - Coverage v2: curated factory tfTypes (GA + google-beta + appwrite) must
+// - Coverage: every provider package's catalog factory tfTypes must
 //   appear in synth output (or tool/example_debt.yaml by className). Reasons
 //   containing `iam-adjunct-debt:` additionally require *IamBinding/*IamPolicy
 //   + sibling *IamMember in synth. Reasons containing `awaiting-example:`
 //   (written by the weekly schema bump for the factories it generates)
 //   require the type's tool/curation_backlog.yaml entry.
-// - API enablement: when an example enables APIs via google_project_service,
+// - API enablement (google examples only — no other provider gates
+//   resources on an enabled service): when an example enables APIs via
+//   google_project_service,
 //   EVERY resource requiring an API must have its API enabled in the same
 //   stack (or be listed in tool/example_api_debt.yaml) and transitively
 //   depend on the enabling service. Examples that enable nothing are exempt
@@ -23,9 +25,8 @@ import 'dart:io';
 
 import 'package:yaml/yaml.dart';
 
+import 'example_synth_env.dart';
 import 'terraform_api_requirements.dart';
-
-const _projectId = 'ci-test-project-id';
 
 Future<void> main(List<String> args) async {
   final errors = <String>[];
@@ -161,12 +162,7 @@ Future<Map<String, dynamic>?> synthExample(
     'dart',
     ['run', 'bin/infra.dart'],
     workingDirectory: dir.path,
-    environment: {
-      'GCP_PROJECT_ID': _projectId,
-      // Placeholder for synth-only quickstarts that read secrets from env.
-      'DB_PASSWORD':
-          Platform.environment['DB_PASSWORD'] ?? 'ci-synth-placeholder',
-    },
+    environment: exampleSynthEnvironment,
   );
   if (result.exitCode != 0) {
     errors.add(

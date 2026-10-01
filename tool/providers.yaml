@@ -7,7 +7,7 @@
 # an entry here plus its directories: tool/wrap_lanes.dart reads every
 # entry and runs `terradart wrap --check` and `terradart lint-override`
 # for it, and both tool/agent_verify.sh and the CI wrap_check /
-# override_gates jobs run that script. .github/workflows/schema-bump.yml
+# override_lint jobs run that script. .github/workflows/schema-bump.yml
 # reads the `bump:` entries through tool/bump_plan.dart, so a lane's weekly
 # bump is declared here too.
 #

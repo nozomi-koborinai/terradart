@@ -1,7 +1,8 @@
 // ignore_for_file: avoid_print
 //
-// Maintainer gate: catch `upstream: null` entries in tool/mm_yaml_sources.yaml
-// that are almost certainly Magic-Modules-generated.
+// google lane gate: catch `upstream: null` entries in
+// tool/mm_yaml_sources.yaml (the GA lane's MM manifest) that are almost
+// certainly Magic-Modules-generated.
 //
 // Why this exists: Waves 26-32 shipped a copy-pasted
 // `upstream: null # handwritten in terraform-provider-google` comment across
@@ -20,7 +21,7 @@
 // (probe the upstream path to be sure). It exists to stop the high-volume
 // copy-paste class, not to certify every null.
 //
-// Usage: dart tool/check_mm_upstream_fingerprint.dart
+// Usage: dart tool/check_google_mm_fingerprint.dart
 
 import 'dart:convert';
 import 'dart:io';
@@ -110,7 +111,7 @@ void main() {
   final manifestFile = File('tool/mm_yaml_sources.yaml');
   if (!manifestFile.existsSync()) {
     stderr.writeln(
-      'check_mm_upstream_fingerprint: tool/mm_yaml_sources.yaml '
+      'check_google_mm_fingerprint: tool/mm_yaml_sources.yaml '
       'not found (run from repo root)',
     );
     exit(2);
@@ -146,7 +147,7 @@ void main() {
 
   if (violations.isEmpty) {
     print(
-      'check_mm_upstream_fingerprint: OK '
+      'check_google_mm_fingerprint: OK '
       '($nullCount null entries; 0 suspected mislabels)',
     );
     exit(0);
@@ -154,7 +155,7 @@ void main() {
 
   violations.sort();
   stderr.writeln(
-    'check_mm_upstream_fingerprint: ${violations.length} suspected '
+    'check_google_mm_fingerprint: ${violations.length} suspected '
     'mislabeled `upstream: null` entr${violations.length == 1 ? 'y' : 'ies'} '
     '(MM fingerprint present):',
   );
