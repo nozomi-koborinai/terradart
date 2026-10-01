@@ -72,7 +72,7 @@ abstract interface class StackProvider {
 /// User-extended IaC composition root.
 ///
 /// User subclasses construct resources inside their own constructor and
-/// register them via `add` / `addData`. `synth()` returns the in-memory
+/// register them via `add`. `synth()` returns the in-memory
 /// [SynthResult] bundle (Terraform JSON map plus the generated Dart source
 /// for [appExports]); `writeTo(outDir)` persists that bundle to disk.
 ///
@@ -584,32 +584,32 @@ abstract base class Stack {
 
   // ---- Resource registration ---------------------------------------------
 
-  /// Register a resource. Returns the same instance for fluent assignment.
+  /// Register a resource or data source. Returns the same instance for
+  /// fluent assignment.
   ///
-  /// Throws [ArgumentError] when [resource] is a [Data] (use [addData]) or
-  /// its `localName` is not a Terraform identifier, and
-  /// [DuplicateResourceError] when its address is already registered.
-  T add<T extends Resource>(T resource) {
-    if (resource is Data) {
-      throw ArgumentError(
-        'Use Stack.addData() to register a Data, not Stack.add().',
-      );
-    }
-    _checkLocalName(resource.localName, resource.tfAddress);
+  /// Throws [ArgumentError] when its `localName` is not a Terraform
+  /// identifier, and [DuplicateResourceError] when its address is already
+  /// registered.
+  T add<T extends Resource>(T block) {
+    _checkLocalName(block.localName, block.tfAddress);
     final key = (
-      kind: resource.kind,
-      type: resource.terraformType,
-      localName: resource.localName,
+      kind: block.kind,
+      type: block.terraformType,
+      localName: block.localName,
     );
     if (_resources.containsKey(key) || _dataSources.containsKey(key)) {
       throw DuplicateResourceError(
-        kind: resource.kind,
-        terraformType: resource.terraformType,
-        localName: resource.localName,
+        kind: block.kind,
+        terraformType: block.terraformType,
+        localName: block.localName,
       );
     }
-    _resources[key] = resource;
-    return resource;
+    if (block is Data) {
+      _dataSources[key] = block;
+    } else {
+      _resources[key] = block;
+    }
+    return block;
   }
 
   /// Register a `module "<localName>" { ... }` call. Returns the same
@@ -634,29 +634,6 @@ abstract base class Stack {
     }
     _modules[call.localName] = call;
     return call;
-  }
-
-  /// Register a data source. Returns the same instance.
-  ///
-  /// Throws [ArgumentError] when its `localName` is not a Terraform
-  /// identifier, and [DuplicateResourceError] when its address is already
-  /// registered.
-  T addData<T extends Data>(T data) {
-    _checkLocalName(data.localName, data.tfAddress);
-    final key = (
-      kind: data.kind,
-      type: data.terraformType,
-      localName: data.localName,
-    );
-    if (_resources.containsKey(key) || _dataSources.containsKey(key)) {
-      throw DuplicateResourceError(
-        kind: data.kind,
-        terraformType: data.terraformType,
-        localName: data.localName,
-      );
-    }
-    _dataSources[key] = data;
-    return data;
   }
 
   static void _checkLocalName(String localName, String address) {

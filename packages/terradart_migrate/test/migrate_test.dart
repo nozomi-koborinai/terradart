@@ -250,7 +250,7 @@ resource "aws_s3_bucket" "logs" {
           r"r'serviceAccount:service-${data.google_project.current.number}@gcp-sa-pubsub.iam.gserviceaccount.com'",
         ),
       );
-      expect(src, contains("addData(GoogleProject(localName: 'current'))"));
+      expect(src, contains("add(GoogleProject(localName: 'current'))"));
       expect(src, contains("addOutput('ORDERS_TOPIC_ID', orders.id);"));
       expect(src, isNot(contains('appExports')));
       // Locals only where referenced.
@@ -1693,7 +1693,7 @@ output "count" {
       expect(
         src,
         contains(
-          "addData(GoogleProject(localName: 'p_0', projectId: .literal('proj-0')))",
+          "add(GoogleProject(localName: 'p_0', projectId: .literal('proj-0')))",
         ),
       );
       expect(src, contains('project: p1.projectId'));
@@ -2152,7 +2152,7 @@ resource "google_pubsub_topic" "x" {
       expect(
         r.stackSource,
         contains(
-          "addData(GoogleProject(localName: 'current', provider: 'google.eu'))",
+          "add(GoogleProject(localName: 'current', provider: 'google.eu'))",
         ),
       );
       expect(

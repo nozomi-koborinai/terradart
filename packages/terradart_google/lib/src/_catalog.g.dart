@@ -36687,7 +36687,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_project`.\n\nUse to look up the active project\'s `number`, `name`, etc., for\ndownstream references (e.g. CMEK service-account email composition).\n\nExample:\n```dart\nfinal current = stack.addData(GoogleProject(localName: \'current\'));\nfinal cmekBinding = GooglePubsubTopicIamMember(\n  localName: \'pubsub_cmek\',\n  topic: topic.ref,\n  role: TfArg.literal(\'roles/cloudkms.cryptoKeyEncrypterDecrypter\'),\n  member: .serviceAccount(\n    \'service-\${current.number.interpolation}@gcp-sa-pubsub.iam.gserviceaccount.com\',\n  ),\n);\n```',
+        'Factory wrapper for `google_project`.\n\nUse to look up the active project\'s `number`, `name`, etc., for\ndownstream references (e.g. CMEK service-account email composition).\n\nExample:\n```dart\nfinal current = stack.add(GoogleProject(localName: \'current\'));\nfinal cmekBinding = GooglePubsubTopicIamMember(\n  localName: \'pubsub_cmek\',\n  topic: topic.ref,\n  role: TfArg.literal(\'roles/cloudkms.cryptoKeyEncrypterDecrypter\'),\n  member: .serviceAccount(\n    \'service-\${current.number.interpolation}@gcp-sa-pubsub.iam.gserviceaccount.com\',\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_project_access_approval_settings',

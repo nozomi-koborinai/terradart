@@ -31,7 +31,7 @@ final class GeminiStack extends Stack {
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
         appExports: AppExports('lib/generated/gemini_stack.app.dart'),
       ) {
-    final current = addData(GoogleProject(localName: 'current'));
+    final current = add(GoogleProject(localName: 'current'));
     final projectTarget = 'projects/${current.number.interpolation}';
 
     final apiGemini = add(

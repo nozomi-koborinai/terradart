@@ -339,73 +339,63 @@ final class AppwriteDemoStack extends Stack {
       ),
     );
 
-    addData(DataAppwriteAuthTeam(localName: 'editors_ds', id: team.id));
-    addData(DataAppwriteAuthUser(localName: 'demo_user_ds', id: user.id));
-    addData(DataAppwriteFunction(localName: 'fn_ds', id: fn.id));
-    addData(
-      DataAppwriteMessagingTopic(localName: 'topic_ds', id: topic.id),
-    );
-    addData(DataAppwriteSite(localName: 'site_ds', id: site.id));
-    addData(
-      DataAppwriteStorageBucket(localName: 'bucket_ds', id: bucket.id),
-    );
-    addData(DataAppwriteTablesdb(localName: 'db_ds', id: db.id));
-    addData(DataAppwriteWebhook(localName: 'hook_ds', id: hook.id));
+    add(DataAppwriteAuthTeam(localName: 'editors_ds', id: team.id));
+    add(DataAppwriteAuthUser(localName: 'demo_user_ds', id: user.id));
+    add(DataAppwriteFunction(localName: 'fn_ds', id: fn.id));
+    add(DataAppwriteMessagingTopic(localName: 'topic_ds', id: topic.id));
+    add(DataAppwriteSite(localName: 'site_ds', id: site.id));
+    add(DataAppwriteStorageBucket(localName: 'bucket_ds', id: bucket.id));
+    add(DataAppwriteTablesdb(localName: 'db_ds', id: db.id));
+    add(DataAppwriteWebhook(localName: 'hook_ds', id: hook.id));
 
-    addData(DataAppwritePostgresqlSpecifications(localName: 'pg_specs'));
-    addData(DataAppwritePostgresqlDatabases(localName: 'pg_list'));
-    addData(
-      DataAppwritePostgresqlDatabase(localName: 'pg_ds', id: pg.id),
-    );
-    addData(
+    add(DataAppwritePostgresqlSpecifications(localName: 'pg_specs'));
+    add(DataAppwritePostgresqlDatabases(localName: 'pg_list'));
+    add(DataAppwritePostgresqlDatabase(localName: 'pg_ds', id: pg.id));
+    add(
       DataAppwritePostgresqlDatabaseStatus(
         localName: 'pg_status',
         databaseId: pg.ref,
       ),
     );
-    addData(
+    add(
       DataAppwritePostgresqlBackups(
         localName: 'pg_backups',
         databaseId: pg.ref,
       ),
     );
-    addData(
+    add(
       DataAppwritePostgresqlExtensions(
         localName: 'pg_exts',
         databaseId: pg.ref,
       ),
     );
 
-    addData(DataAppwriteMysqlSpecifications(localName: 'mysql_specs'));
-    addData(DataAppwriteMysqlDatabases(localName: 'mysql_list'));
-    addData(
-      DataAppwriteMysqlDatabase(localName: 'mysql_ds', id: mysql.id),
-    );
-    addData(
+    add(DataAppwriteMysqlSpecifications(localName: 'mysql_specs'));
+    add(DataAppwriteMysqlDatabases(localName: 'mysql_list'));
+    add(DataAppwriteMysqlDatabase(localName: 'mysql_ds', id: mysql.id));
+    add(
       DataAppwriteMysqlDatabaseStatus(
         localName: 'mysql_status',
         databaseId: mysql.ref,
       ),
     );
-    addData(
+    add(
       DataAppwriteMysqlBackups(
         localName: 'mysql_backups',
         databaseId: mysql.ref,
       ),
     );
 
-    addData(DataAppwriteMongoSpecifications(localName: 'mongo_specs'));
-    addData(DataAppwriteMongoDatabases(localName: 'mongo_list'));
-    addData(
-      DataAppwriteMongoDatabase(localName: 'mongo_ds', id: mongo.id),
-    );
-    addData(
+    add(DataAppwriteMongoSpecifications(localName: 'mongo_specs'));
+    add(DataAppwriteMongoDatabases(localName: 'mongo_list'));
+    add(DataAppwriteMongoDatabase(localName: 'mongo_ds', id: mongo.id));
+    add(
       DataAppwriteMongoDatabaseStatus(
         localName: 'mongo_status',
         databaseId: mongo.ref,
       ),
     );
-    addData(
+    add(
       DataAppwriteMongoBackups(
         localName: 'mongo_backups',
         databaseId: mongo.ref,

@@ -27,7 +27,7 @@ final class ArtifactRegistryStack extends Stack {
     const location = 'asia-northeast1';
     const repositoryId = 'terradart-docker';
 
-    final current = addData(GoogleProject(localName: 'current'));
+    final current = add(GoogleProject(localName: 'current'));
 
     final apiAr = add(
       GoogleProjectService(

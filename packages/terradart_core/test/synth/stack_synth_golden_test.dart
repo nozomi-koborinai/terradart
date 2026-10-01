@@ -119,7 +119,7 @@ void main() {
           ),
         ],
       );
-      stack.addData(
+      stack.add(
         FakeProjectData(
           localName: 'this',
           argMap: const {'project_id': TfArgLiteral<String>('orders-prod')},

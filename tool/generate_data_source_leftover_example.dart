@@ -107,7 +107,7 @@ void main() {
     });
 
     final buf = StringBuffer()
-      ..writeln('    addData(')
+      ..writeln('    add(')
       ..writeln('      $className(')
       ..writeln("        localName: '$localName',");
     for (final a in args) {

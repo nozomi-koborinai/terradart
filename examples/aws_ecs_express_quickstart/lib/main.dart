@@ -148,7 +148,7 @@ final class AwsEcsExpressStack extends Stack {
         ),
       ],
     );
-    addData(trust);
+    add(trust);
     final role = AwsIamRole(
       localName: localName,
       name: .name(.literal(name)),

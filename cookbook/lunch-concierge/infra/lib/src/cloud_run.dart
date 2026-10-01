@@ -100,7 +100,7 @@ GoogleCloudRunV2Service addCloudRunService({
     ),
   );
 
-  final project = stack.addData(GoogleProject(localName: 'project'));
+  final project = stack.add(GoogleProject(localName: 'project'));
 
   // IAP fronts the run.app URL, so the IAP service agent is the caller
   // Cloud Run must authorize. The agent exists once the IAP API identity

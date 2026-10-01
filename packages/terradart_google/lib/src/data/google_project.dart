@@ -24,7 +24,7 @@ const Set<String> _googleProjectSensitive = <String>{};
 ///
 /// Example:
 /// ```dart
-/// final current = stack.addData(GoogleProject(localName: 'current'));
+/// final current = stack.add(GoogleProject(localName: 'current'));
 /// final cmekBinding = GooglePubsubTopicIamMember(
 ///   localName: 'pubsub_cmek',
 ///   topic: topic.ref,

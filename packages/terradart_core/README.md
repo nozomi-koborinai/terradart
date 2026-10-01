@@ -8,7 +8,7 @@ Core runtime for [TerraDart](https://terradart.dev) — a Dart-first infrastruct
 
 This package ships the small set of primitives every TerraDart Stack uses:
 
-- `Stack` — abstract base for your infrastructure module. You subclass it (`final class MyStack extends Stack`), register `Resource` / `Data` instances via `add(...)` / `addData(...)`, and call `stack.writeTo('tf-out')` from your own `main()` to emit `main.tf.json`.
+- `Stack` — abstract base for your infrastructure module. You subclass it (`final class MyStack extends Stack`), register `Resource` / `Data` instances via `add(...)`, and call `stack.writeTo('tf-out')` from your own `main()` to emit `main.tf.json`.
 - `Resource` / `Data` — typed nodes supplied by provider factory packages.
 - `TfArg.literal(...)` / `...` / `TfArg.variable(...)` / `TfArg.expression(...)` — the four ways every settable field accepts input: a Dart value, a reference to another resource's attribute, a Terraform input variable, or a raw Terraform expression emitted verbatim (`TfArg.expression(r'${lower(var.name)}-x')`). `TfArg<MyEnum>.literal(MyEnum.foo)` encodes typed Dart enums (see below).
 - `RefTo<R>` — what an argument that names another resource takes: the target's generated `ref` getter (`network: vpc.ref`), `.literal(...)` / `.variable(...)` / `.expression(...)` / `.arg(...)` for a value outside the Stack, and `.pinned('self_link')` to emit an attribute other than the argument's own.

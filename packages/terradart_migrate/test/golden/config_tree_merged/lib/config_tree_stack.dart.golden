@@ -37,7 +37,7 @@ final class ConfigTreeStack extends Stack {
       'region',
       const TfVariable(type: 'string', defaultValue: 'asia-northeast1'),
     );
-    addData(
+    add(
       GoogleProject(localName: 'current', projectId: .variable('project_id')),
     );
     add(
