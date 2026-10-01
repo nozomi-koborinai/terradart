@@ -224,23 +224,19 @@ String renderModuleWrapper(LocalModule m, {required String version}) {
       '${i.required ? '' : '?'} ${i.dartName},',
     );
   }
-  b
-    ..writeln('  }) : super(')
-    ..writeln('          localName: localName,')
-    ..writeln('          source: source,')
-    ..writeln('          version: version,')
-    ..writeln('          providers: providers,')
-    ..writeln('          dependsOn: dependsOn,');
   if (m.inputs.isEmpty) {
-    b.writeln('          inputs: const {},');
+    b.writeln('  });');
   } else {
-    b.writeln('          inputs: {');
+    b
+      ..writeln('  }) : super(')
+      ..writeln('          inputs: {');
     for (final i in m.inputs) {
       b.writeln('            ${dartString(i.tfName)}: ${i.dartName},');
     }
-    b.writeln('          },');
+    b
+      ..writeln('          },')
+      ..writeln('        );');
   }
-  b.writeln('        );');
   for (final o in m.outputs) {
     b
       ..writeln()
@@ -262,11 +258,11 @@ String renderModuleWrapper(LocalModule m, {required String version}) {
 /// `module.<name>[0]`, which no output getter of the wrapper spells, so such
 /// calls stay in Terraform.
 const _metaParameters = [
-  'required String localName',
-  'required String source',
-  'String? version',
-  'Map<String, String> providers = const {}',
-  'List<DependencyTarget>? dependsOn',
+  'required super.localName',
+  'required super.source',
+  'super.version',
+  'super.providers',
+  'super.dependsOn',
 ];
 
 /// `type = string` → `String`. Terraform's other constraints — collections,

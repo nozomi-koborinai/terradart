@@ -122,8 +122,8 @@ void main() {
       expect(
         r.stackSource,
         contains(
-          "advancedExtra: {r'insights_config': [{r'query_insights_enabled': "
-          "true, r'query_string_length': 1024}]}",
+          "advancedExtra: {'insights_config': [{'query_insights_enabled': "
+          "true, 'query_string_length': 1024}]}",
         ),
       );
       expect(r.stackSource, isNot(contains('advancedExtra: .literal(')));
@@ -131,7 +131,7 @@ void main() {
 
     test('a TfArg<Map> parameter keeps TfArg.literal, from tf.json and HCL', () {
       const expected =
-          "objectLockConfiguration: .literal({r'object_lock_enabled': r'Enabled'})";
+          "objectLockConfiguration: .literal({'object_lock_enabled': 'Enabled'})";
       final aws = {
         'required_providers': {
           'aws': {
@@ -232,10 +232,10 @@ resource "aws_s3_bucket" "logs" {
       expect(
         src,
         contains(
-          "const GoogleProvider(project: r'ci-test-project-id', region: r'us-central1')",
+          "const GoogleProvider(project: 'ci-test-project-id', region: 'us-central1')",
         ),
       );
-      expect(src, contains("setRequiredVersion(r'>= 1.11.0');"));
+      expect(src, contains("setRequiredVersion('>= 1.11.0');"));
       // Typed references, enum members, nested helpers, dependencies.
       expect(src, contains('topic: orders.ref,'));
       expect(src, contains('.literal(.protocolBuffer)'));
@@ -255,8 +255,8 @@ resource "aws_s3_bucket" "logs" {
           r"r'serviceAccount:service-${data.google_project.current.number}@gcp-sa-pubsub.iam.gserviceaccount.com'",
         ),
       );
-      expect(src, contains("addData(GoogleProject(localName: r'current'))"));
-      expect(src, contains("addOutput(r'ORDERS_TOPIC_ID', .ref(orders.id));"));
+      expect(src, contains("addData(GoogleProject(localName: 'current'))"));
+      expect(src, contains("addOutput('ORDERS_TOPIC_ID', .ref(orders.id));"));
       expect(src, isNot(contains('appExports')));
       // Locals only where referenced.
       expect(src, isNot(contains('final ordersPush =')));
@@ -283,7 +283,7 @@ resource "aws_s3_bucket" "logs" {
       );
       expect(
         result.files['bin/infra.dart'],
-        contains("PubsubQuickstartStack().writeTo(r'tf-out')"),
+        contains("PubsubQuickstartStack().writeTo('tf-out')"),
       );
     });
   });
@@ -420,8 +420,8 @@ resource "aws_s3_bucket" "logs" {
       expect(
         r.stackSource,
         allOf(
-          contains("addExternalBlock(r'google_pubsub_topic.kept');"),
-          contains("addExternalBlock(r'google_pubsub_topic.bare');"),
+          contains("addExternalBlock('google_pubsub_topic.kept');"),
+          contains("addExternalBlock('google_pubsub_topic.bare');"),
         ),
       );
       expect(r.stackSource, isNot(contains('google_pubsub_topic.unread')));
@@ -584,7 +584,7 @@ resource "aws_s3_bucket" "logs" {
         expect(r.report.migratedAddresses, contains('google_x_thing.t'));
         expect(
           r.files['lib/demo_stack.dart'],
-          contains("contentOrData: .data(.literal(r'd'))"),
+          contains("contentOrData: .data(.literal('d'))"),
         );
       });
 
@@ -593,7 +593,7 @@ resource "aws_s3_bucket" "logs" {
         expect(
           r.files['lib/demo_stack.dart'],
           contains(
-            "contentOrData: XThingContentOption(content: .literal(r'c'))",
+            "contentOrData: XThingContentOption(content: .literal('c'))",
           ),
         );
       });
@@ -682,7 +682,7 @@ resource "aws_s3_bucket" "logs" {
       expect(r.report.migratedAddresses, contains('google_x_job.j'));
       expect(
         r.files['lib/demo_stack.dart'],
-        contains("configuration: .query(.new(query: .literal(r'SELECT 1')))"),
+        contains("configuration: .query(.new(query: .literal('SELECT 1')))"),
       );
     });
 
@@ -837,8 +837,8 @@ resource "aws_s3_bucket" "logs" {
         ),
       );
       // The variables inside the expressions are declared, like references.
-      expect(src, contains("addExternalVariable(r'n');"));
-      expect(src, contains("addExternalVariable(r'env');"));
+      expect(src, contains("addExternalVariable('n');"));
+      expect(src, contains("addExternalVariable('env');"));
     });
 
     test('an expression on an enum argument is TfArg.expression', () {
@@ -899,7 +899,7 @@ resource "aws_s3_bucket" "logs" {
       });
       // A `List<String>` element may be a raw `${...}` string.
       expect(r.report.isComplete, isTrue, reason: r.report.renderText());
-      expect(r.stackSource, contains(r"[r'us-central1', r'${var.r}']"));
+      expect(r.stackSource, contains(r"['us-central1', r'${var.r}']"));
     });
 
     test('a provider alias the module does not configure', () {
@@ -1026,10 +1026,10 @@ resource "google_pubsub_topic" "x" {
       expect(
         r.stackSource,
         contains(
-          "behaviors: {r'imp_travel': ZeroTrustRiskBehaviorBehaviors("
+          "behaviors: {'imp_travel': ZeroTrustRiskBehaviorBehaviors("
           'enabled: .literal(true), riskLevel: '
           '.literal(.high)), '
-          "r'high_dlp': ZeroTrustRiskBehaviorBehaviors(",
+          "'high_dlp': ZeroTrustRiskBehaviorBehaviors(",
         ),
       );
     });
@@ -1071,8 +1071,8 @@ resource "google_pubsub_topic" "x" {
         r.report.migratedAddresses,
         contains('cloudflare_pages_project.site'),
       );
-      expect(r.stackSource, contains("envVars: {r'API_KEY': "));
-      expect(r.stackSource, contains("value: .variable(r'api_key')"));
+      expect(r.stackSource, contains("envVars: {'API_KEY': "));
+      expect(r.stackSource, contains("value: .variable('api_key')"));
     });
   });
 
@@ -1098,7 +1098,7 @@ resource "google_pubsub_topic" "x" {
         expect(
           r.stackSource,
           contains(
-            "const GoogleProvider(project: r'p', region: r'r', zone: r'z')",
+            "const GoogleProvider(project: 'p', region: 'r', zone: 'z')",
           ),
         );
         expect(r.stackSource, contains('const CloudflareProvider()'));
@@ -1143,15 +1143,15 @@ resource "aws_cloudwatch_log_group" "fn" {
       expect(
         r.stackSource,
         contains(
-          "const AwsProvider(region: r'eu-west-1', "
-          "allowedAccountIds: [r'111111111111'], "
-          "defaultTags: {r'env': r'prod', r'team': r'platform'}, "
+          "const AwsProvider(region: 'eu-west-1', "
+          "allowedAccountIds: ['111111111111'], "
+          "defaultTags: {'env': 'prod', 'team': 'platform'}, "
           "assumeRole: [AwsAssumeRole(roleArn: "
-          "r'arn:aws:iam::111111111111:role/deploy', sessionName: r'ci', "
-          "tags: {r'via': r'terradart'}), AwsAssumeRole(roleArn: "
-          "r'arn:aws:iam::222222222222:role/chain')], "
-          "ignoreTags: AwsIgnoreTags(keyPrefixes: [r'kube:']), "
-          "endpoints: {r's3': r'http://localhost:4566'})",
+          "'arn:aws:iam::111111111111:role/deploy', sessionName: 'ci', "
+          "tags: {'via': 'terradart'}), AwsAssumeRole(roleArn: "
+          "'arn:aws:iam::222222222222:role/chain')], "
+          "ignoreTags: AwsIgnoreTags(keyPrefixes: ['kube:']), "
+          "endpoints: {'s3': 'http://localhost:4566'})",
         ),
       );
       expect(r.stackSource, isNot(contains('AKIAEXAMPLE')));
@@ -1184,8 +1184,8 @@ resource "aws_cloudwatch_log_group" "fn" {
       expect(
         r.stackSource,
         contains(
-          "const AwsProvider(endpoints: {r's3': r'http://localhost:4566', "
-          "r'dynamodb': r'http://localhost:4566'})",
+          "const AwsProvider(endpoints: {'s3': 'http://localhost:4566', "
+          "'dynamodb': 'http://localhost:4566'})",
         ),
       );
       expect(r.report.warnings, isEmpty);
@@ -1221,7 +1221,7 @@ resource "aws_cloudwatch_log_group" "fn" {
           'google': {'project': 'p', 'impersonate_service_account': 'sa@x'},
         },
       });
-      expect(r.stackSource, contains("const GoogleProvider(project: r'p')"));
+      expect(r.stackSource, contains("const GoogleProvider(project: 'p')"));
       expect(
         r.report.warnings.single,
         contains('"impersonate_service_account"'),
@@ -1247,13 +1247,13 @@ resource "aws_cloudwatch_log_group" "fn" {
         backend({
           'gcs': {'bucket': 'b', 'prefix': 'p'},
         }),
-        contains("backend: const GcsBackend(bucket: r'b', prefix: r'p')"),
+        contains("backend: const GcsBackend(bucket: 'b', prefix: 'p')"),
       );
       expect(
         backend({
           'local': {'path': 'x.tfstate'},
         }),
-        contains("backend: const LocalBackend(path: r'x.tfstate')"),
+        contains("backend: const LocalBackend(path: 'x.tfstate')"),
       );
       expect(
         backend({
@@ -1265,7 +1265,7 @@ resource "aws_cloudwatch_log_group" "fn" {
           },
         }),
         contains(
-          "backend: const S3Backend(bucket: r'b', key: r'k', region: r'auto', usePathStyle: true)",
+          "backend: const S3Backend(bucket: 'b', key: 'k', region: 'auto', usePathStyle: true)",
         ),
       );
       // A partial configuration (`terraform init -backend-config=...`) is
@@ -1282,7 +1282,7 @@ resource "aws_cloudwatch_log_group" "fn" {
         backend({
           's3': {'key': 'k', 'region': 'auto'},
         }),
-        contains("backend: const S3Backend(key: r'k', region: r'auto')"),
+        contains("backend: const S3Backend(key: 'k', region: 'auto')"),
       );
       final unknown = _migrateJson({
         'terraform': {
@@ -1325,15 +1325,15 @@ resource "aws_cloudwatch_log_group" "fn" {
       expect(
         r.stackSource,
         contains(
-          "addVariable(r'project', const TfVariable(type: r'string', description: r'd', defaultValue: r'p', sensitive: false));",
+          "addVariable('project', const TfVariable(type: 'string', description: 'd', defaultValue: 'p', sensitive: false));",
         ),
       );
-      expect(r.stackSource, contains("addExternalVariable(r'checked');"));
-      expect(r.stackSource, contains("addExternalVariable(r'other');"));
-      expect(r.stackSource, contains("name: .variable(r'project')"));
+      expect(r.stackSource, contains("addExternalVariable('checked');"));
+      expect(r.stackSource, contains("addExternalVariable('other');"));
+      expect(r.stackSource, contains("name: .variable('project')"));
       expect(
         r.stackSource,
-        contains(r"labels: .literal({r'k': r'${var.other}'})"),
+        contains(r"labels: .literal({'k': r'${var.other}'})"),
       );
       expect(r.report.kept.single.address, 'variable.checked');
       expect(r.report.warnings.single, contains('"other"'));
@@ -1361,18 +1361,18 @@ resource "aws_cloudwatch_log_group" "fn" {
       expect(
         r.stackSource,
         contains(
-          "addOutput(r'topic-id', .ref(x.id), description: r'the id', sensitive: true);",
+          "addOutput('topic-id', .ref(x.id), description: 'the id', sensitive: true);",
         ),
       );
       expect(
         r.stackSource,
-        contains("addOutput(r'labels', .ref(x.labelsRef));"),
+        contains("addOutput('labels', .ref(x.labelsRef));"),
       );
       expect(
         r.stackSource,
         contains(
-          "addOutput(r'unknown', "
-          ".ref(TfRef.attribute<Object?>(x, r'not_in_schema')));",
+          "addOutput('unknown', "
+          ".ref(TfRef.attribute<Object?>(x, 'not_in_schema')));",
         ),
       );
       expect(r.report.kept.single.address, 'output.literal');
@@ -1398,7 +1398,7 @@ resource "aws_cloudwatch_log_group" "fn" {
       // The module call itself became Dart, with no local directory to type.
       expect(
         r.stackSource,
-        contains("addModule(ModuleCall(localName: r'net', source: r'./net'))"),
+        contains("addModule(ModuleCall(localName: 'net', source: './net'))"),
       );
     });
   });
@@ -1456,12 +1456,12 @@ output "first" {
       expect(
         src,
         contains(
-          "GooglePubsubTopic(localName: r't_0', name: .literal(r't-0'), "
-          "labels: .literal({r'index': r'0'}))",
+          "GooglePubsubTopic(localName: 't_0', name: .literal('t-0'), "
+          "labels: .literal({'index': '0'}))",
         ),
       );
-      expect(src, contains("localName: r't_1', name: .literal(r't-1')"));
-      expect(src, contains("topic: t1.ref.pinned(r'name')"));
+      expect(src, contains("localName: 't_1', name: .literal('t-1')"));
+      expect(src, contains("topic: t1.ref.pinned('name')"));
       expect(
         src,
         contains('dependsOn: [ResourceDependency(t0), ResourceDependency(t1)]'),
@@ -1469,16 +1469,16 @@ output "first" {
       expect(
         src,
         contains(
-          "addMoved(r'google_pubsub_topic.t[0]', r'google_pubsub_topic.t_0');",
+          "addMoved('google_pubsub_topic.t[0]', 'google_pubsub_topic.t_0');",
         ),
       );
       expect(
         src,
         contains(
-          "addMoved(r'google_pubsub_topic.t[1]', r'google_pubsub_topic.t_1');",
+          "addMoved('google_pubsub_topic.t[1]', 'google_pubsub_topic.t_1');",
         ),
       );
-      expect(src, contains("addOutput(r'first', .ref(t0.id));"));
+      expect(src, contains("addOutput('first', .ref(t0.id));"));
       expect(r.report.renderText(), contains('Unrolled (1):'));
     });
 
@@ -1508,31 +1508,31 @@ output "first" {
       expect(
         src,
         contains(
-          "GooglePubsubTopic(localName: r't_eu', name: .literal(r'eu-topic'), "
-          "labels: .literal({r'region': r'europe-west1'}), "
+          "GooglePubsubTopic(localName: 't_eu', name: .literal('eu-topic'), "
+          "labels: .literal({'region': 'europe-west1'}), "
           "messageRetentionDuration: .expression(r'\${1 * 60}s'))",
         ),
       );
       expect(
         src,
-        contains("localName: r't_us-east', name: .literal(r'us-east-topic')"),
+        contains("localName: 't_us-east', name: .literal('us-east-topic')"),
       );
       expect(
         src,
         contains(
-          'addMoved(r\'google_pubsub_topic.t["eu"]\', r\'google_pubsub_topic.t_eu\');',
+          'addMoved(\'google_pubsub_topic.t["eu"]\', \'google_pubsub_topic.t_eu\');',
         ),
       );
       expect(
         src,
         contains(
-          "GooglePubsubTopic(localName: r'plain_a', name: .literal(r'a'))",
+          "GooglePubsubTopic(localName: 'plain_a', name: .literal('a'))",
         ),
       );
       expect(
         src,
         contains(
-          'addMoved(r\'google_pubsub_topic.plain["b"]\', r\'google_pubsub_topic.plain_b\');',
+          'addMoved(\'google_pubsub_topic.plain["b"]\', \'google_pubsub_topic.plain_b\');',
         ),
       );
       final keys = {
@@ -1619,7 +1619,7 @@ output "count" {
       expect(
         src,
         contains(
-          "addData(GoogleProject(localName: r'p_0', projectId: .literal(r'proj-0')))",
+          "addData(GoogleProject(localName: 'p_0', projectId: .literal('proj-0')))",
         ),
       );
       expect(src, contains('project: .ref(p1.projectIdRef)'));
@@ -1667,20 +1667,20 @@ resource "google_pubsub_topic" "kept" {
       expect(
         src,
         contains(
-          "addMoved(r'google_pubsub_topic.old', r'google_pubsub_topic.t');",
+          "addMoved('google_pubsub_topic.old', 'google_pubsub_topic.t');",
         ),
       );
       // A move onto an unrolled block is one move per instance.
       expect(
         src,
         contains(
-          "addMoved(r'google_pubsub_topic.legacy[0]', r'google_pubsub_topic.many_0');",
+          "addMoved('google_pubsub_topic.legacy[0]', 'google_pubsub_topic.many_0');",
         ),
       );
       expect(
         src,
         contains(
-          "addMoved(r'google_pubsub_topic.legacy[1]', r'google_pubsub_topic.many_1');",
+          "addMoved('google_pubsub_topic.legacy[1]', 'google_pubsub_topic.many_1');",
         ),
       );
       expect(
@@ -1794,7 +1794,7 @@ resource "google_pubsub_topic" "kept" {
       expect(
         r.stackSource,
         contains(
-          "addMoved(r'google_pubsub_topic.t[0]', r'google_pubsub_topic.t_0');",
+          "addMoved('google_pubsub_topic.t[0]', 'google_pubsub_topic.t_0');",
         ),
       );
     });
@@ -1878,15 +1878,15 @@ resource "google_pubsub_subscription" "s" {
       expect(
         src,
         contains(
-          "lifecycle: LifecycleOptions(preventDestroy: true, ignoreChanges: [r'labels'])",
+          "lifecycle: LifecycleOptions(preventDestroy: true, ignoreChanges: ['labels'])",
         ),
       );
       expect(src, contains('topic: t.ref'));
       expect(
         src,
         contains(
-          "delivery: .pushConfig(.new(pushEndpoint: .literal(r'https://x'), "
-          "oidcToken: .new(serviceAccountEmail: .literal(r'sa@x'))))",
+          "delivery: .pushConfig(.new(pushEndpoint: .literal('https://x'), "
+          "oidcToken: .new(serviceAccountEmail: .literal('sa@x'))))",
         ),
       );
       expect(src, contains('dependsOn: [ResourceDependency(t)]'));
@@ -1932,7 +1932,7 @@ resource "google_pubsub_topic" "t" {
       expect(src, contains('final t = add('));
       expect(
         src.indexOf('final t = add('),
-        lessThan(src.indexOf("localName: r's'")),
+        lessThan(src.indexOf("localName: 's'")),
       );
     });
 
@@ -1960,7 +1960,7 @@ resource "google_pubsub_topic" "t" {
       expect(src, contains('final t = add('));
       expect(
         src.indexOf('final t = add('),
-        lessThan(src.indexOf("localName: r's'")),
+        lessThan(src.indexOf("localName: 's'")),
       );
     });
 
@@ -2017,15 +2017,15 @@ resource "google_pubsub_topic" "y" {
       expect(
         src,
         contains(
-          "providers: [const GoogleProvider(project: r'p'), "
-          "const GoogleProvider(alias: r'west', region: r'us-west1')]",
+          "providers: [const GoogleProvider(project: 'p'), "
+          "const GoogleProvider(alias: 'west', region: 'us-west1')]",
         ),
       );
-      expect(src, contains("provider: r'google.west'"));
+      expect(src, contains("provider: 'google.west'"));
       // The default configuration stays implicit on `y`.
       expect(
         src,
-        contains("GooglePubsubTopic(localName: r'y', name: .literal(r'y'))"),
+        contains("GooglePubsubTopic(localName: 'y', name: .literal('y'))"),
       );
     });
 
@@ -2054,7 +2054,7 @@ resource "google_pubsub_topic" "x" {
         r.stackSource,
         contains(
           "providers: [const GoogleProvider(), "
-          "const GoogleProvider(alias: r'west', region: r'us-west1')]",
+          "const GoogleProvider(alias: 'west', region: 'us-west1')]",
         ),
       );
     });
@@ -2078,12 +2078,12 @@ resource "google_pubsub_topic" "x" {
       expect(
         r.stackSource,
         contains(
-          "addData(GoogleProject(localName: r'current', provider: r'google.eu'))",
+          "addData(GoogleProject(localName: 'current', provider: 'google.eu'))",
         ),
       );
       expect(
         r.stackSource,
-        contains("const GoogleProvider(alias: r'eu', region: r'europe-west1')"),
+        contains("const GoogleProvider(alias: 'eu', region: 'europe-west1')"),
       );
     });
 
@@ -2109,7 +2109,7 @@ resource "google_pubsub_topic" "x" {
           'providers: [const GoogleProvider(), const GoogleBetaProvider()]',
         ),
       );
-      expect(src, contains("provider: r'google-beta'"));
+      expect(src, contains("provider: 'google-beta'"));
     });
 
     test('a beta resource selects google-beta, not google', () {
@@ -2136,13 +2136,13 @@ resource "google_pubsub_topic" "x" {
       final src = r.stackSource;
       expect(
         src,
-        contains("providers: [const GoogleBetaProvider(project: r'p')]"),
+        contains("providers: [const GoogleBetaProvider(project: 'p')]"),
       );
       expect(src, isNot(contains('GoogleProvider(')));
       expect(
         src,
         contains(
-          "GoogleApiGatewayApi(localName: r'api', apiId: .literal(r'api'))",
+          "GoogleApiGatewayApi(localName: 'api', apiId: .literal('api'))",
         ),
       );
     });
@@ -2172,7 +2172,7 @@ resource "google_pubsub_topic" "x" {
       expect(
         src,
         contains(
-          "TimeSleep(localName: r'wait', createDuration: .literal(r'30s'))",
+          "TimeSleep(localName: 'wait', createDuration: .literal('30s'))",
         ),
       );
     });
@@ -2200,11 +2200,11 @@ resource "google_pubsub_topic" "x" {
       expect(
         r.stackSource,
         contains(
-          "addModule(ModuleCall(localName: r'network', "
-          "source: r'terraform-google-modules/network/google', "
-          "version: r'~> 9.0', inputs: {r'project_id': "
-          "TfArg.literal(r'demo'), r'subnets': "
-          "TfArg.literal([r'a', r'b'])}))",
+          "addModule(ModuleCall(localName: 'network', "
+          "source: 'terraform-google-modules/network/google', "
+          "version: '~> 9.0', inputs: {'project_id': "
+          "TfArg.literal('demo'), 'subnets': "
+          "TfArg.literal(['a', 'b'])}))",
         ),
       );
       expect(
@@ -2230,7 +2230,7 @@ resource "google_pubsub_topic" "x" {
       expect(r.report.isComplete, isTrue, reason: r.report.renderText());
       expect(
         src,
-        contains("name: .ref(TfRef.attribute<String>(naming, r'topic'))"),
+        contains("name: .ref(TfRef.attribute<String>(naming, 'topic'))"),
       );
       expect(
         src.indexOf('addModule('),
@@ -2261,8 +2261,8 @@ resource "google_pubsub_topic" "x" {
       expect(
         src,
         contains(
-          "addOutput(r'topic_prefix', .ref("
-          "TfRef.attribute<Object?>(naming, r'prefix')))",
+          "addOutput('topic_prefix', .ref("
+          "TfRef.attribute<Object?>(naming, 'prefix')))",
         ),
       );
     });
@@ -2287,7 +2287,7 @@ resource "google_pubsub_topic" "x" {
         ]),
       );
       expect(r.report.isComplete, isTrue, reason: r.report.renderText());
-      expect(r.stackSource, contains("providers: {r'google': r'google.eu'}"));
+      expect(r.stackSource, contains("providers: {'google': 'google.eu'}"));
       expect(r.report.providers, ['google']);
     });
 
@@ -2332,8 +2332,8 @@ resource "google_pubsub_topic" "x" {
       expect(
         r.stackSource,
         contains(
-          "addModule(ModuleCall(localName: r'm', source: r'./m', "
-          "inputs: {r'provider': TfArg.literal(r'edge')}))",
+          "addModule(ModuleCall(localName: 'm', source: './m', "
+          "inputs: {'provider': TfArg.literal('edge')}))",
         ),
       );
     });
@@ -2438,7 +2438,7 @@ resource "google_pubsub_topic" "x" {
         wrapper,
         contains(
           'TfRef<String> get member => '
-          "TfRef.attribute<String>(this, r'member');",
+          "TfRef.attribute<String>(this, 'member');",
         ),
       );
       final root = project.files['lib/infra_stack.dart']!;
@@ -2446,9 +2446,9 @@ resource "google_pubsub_topic" "x" {
       expect(
         root,
         contains(
-          "addModule(ServiceAccountModule(localName: r'sa', "
-          "source: r'./modules/service_account', "
-          "accountId: .literal(r'app-bff')))",
+          "addModule(ServiceAccountModule(localName: 'sa', "
+          "source: './modules/service_account', "
+          "accountId: .literal('app-bff')))",
         ),
       );
       expect(root, contains('name: .ref(sa.member)'));
@@ -2519,8 +2519,8 @@ resource "google_pubsub_topic" "x" {
       expect(
         project.files['lib/infra_stack.dart'],
         contains(
-          "addModule(ModuleCall(localName: r'bare', "
-          "source: r'./modules/bare'))",
+          "addModule(ModuleCall(localName: 'bare', "
+          "source: './modules/bare'))",
         ),
       );
     });
@@ -2538,8 +2538,8 @@ resource "google_pubsub_topic" "x" {
       expect(
         r.stackSource,
         contains(
-          "timeouts: const TfTimeouts(create: r'30m', update: r'1h30m', "
-          "delete: r'30m')",
+          "timeouts: const TfTimeouts(create: '30m', update: '1h30m', "
+          "delete: '30m')",
         ),
       );
     });
@@ -2557,10 +2557,7 @@ resource "google_pubsub_topic" "x" {
         },
       });
       expect(r.report.isComplete, isTrue, reason: r.report.renderText());
-      expect(
-        r.stackSource,
-        contains("timeouts: const TfTimeouts(read: r'5m')"),
-      );
+      expect(r.stackSource, contains("timeouts: const TfTimeouts(read: '5m')"));
     });
 
     for (final probe in _timeoutBlockers) {
@@ -2696,7 +2693,7 @@ resource "google_pubsub_topic" "x" {
         '  labels = { env = terraform.workspace }\n'
         '}\n',
       );
-      expect(r.stackSource, contains("labels: .literal({r'env': workspace})"));
+      expect(r.stackSource, contains("labels: .literal({'env': workspace})"));
     });
 
     test(

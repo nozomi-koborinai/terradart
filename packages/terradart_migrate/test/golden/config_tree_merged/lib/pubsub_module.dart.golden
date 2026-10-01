@@ -9,18 +9,11 @@ import 'package:terradart_core/terradart_core.dart';
 
 final class PubsubModule extends ModuleCall {
   PubsubModule({
-    required String localName,
-    required String source,
-    String? version,
-    Map<String, String> providers = const {},
-    List<DependencyTarget>? dependsOn,
+    required super.localName,
+    required super.source,
+    super.version,
+    super.providers,
+    super.dependsOn,
     required TfArg<String> topic,
-  }) : super(
-         localName: localName,
-         source: source,
-         version: version,
-         providers: providers,
-         dependsOn: dependsOn,
-         inputs: {r'topic': topic},
-       );
+  }) : super(inputs: {'topic': topic});
 }
