@@ -424,7 +424,7 @@ class ComputeAutoscalerScalingSchedule {
 ///     minReplicas: .literal(1),
 ///     maxReplicas: .literal(10),
 ///     cooldownPeriod: .literal(60),
-///     cpuUtilization: ComputeAutoscalerCpuUtilization(target: .literal(0.6)),
+///     cpuUtilization: .new(target: .literal(0.6)),
 ///   ),
 /// );
 /// ```

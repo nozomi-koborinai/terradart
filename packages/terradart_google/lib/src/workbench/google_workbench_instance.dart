@@ -470,7 +470,7 @@ final class WorkbenchInstanceVmImage {
 ///   gceSetup: WorkbenchInstanceGceSetup(
 ///     machineType: TfArg.literal('n1-standard-1'),
 ///     image: .vmImage(
-///       WorkbenchInstanceVmImage(
+///       .new(
 ///         project: TfArg.literal('cloud-notebooks-managed'),
 ///         family: TfArg.literal('workbench-instances'),
 ///       ),

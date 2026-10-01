@@ -43,7 +43,7 @@ final class HelloStack extends Stack {
         DataIamPolicyDocumentStatement(
           actions: .literal(['sts:AssumeRole']),
           principals: [
-            DataIamPolicyDocumentPrincipals(
+            .new(
               type: .literal('Service'),
               identifiers: .literal(['lambda.amazonaws.com']),
             ),

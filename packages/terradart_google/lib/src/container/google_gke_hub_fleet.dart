@@ -104,7 +104,7 @@ class GkeHubFleetDefaultClusterConfig {
 ///   localName: 'default',
 ///   displayName: TfArg.literal('Production fleet'),
 ///   defaultClusterConfig: GkeHubFleetDefaultClusterConfig(
-///     securityPostureConfig: GkeHubFleetSecurityPostureConfig(
+///     securityPostureConfig: .new(
 ///       mode: GkeHubFleetSecurityPostureMode.basic,
 ///     ),
 ///   ),

@@ -140,7 +140,7 @@ final class VertexAiRagEngineConfigUnprovisioned {
 ///   localName: 'rag',
 ///   region: TfArg.literal('us-central1'),
 ///   ragManagedDbConfig: const .basic(
-///     VertexAiRagEngineConfigBasic(),
+///     .new(),
 ///   ),
 /// );
 /// ```

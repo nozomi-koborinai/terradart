@@ -147,11 +147,11 @@ final class ColabStack extends Stack {
         maxConcurrentRunCount: .literal('1'),
         desiredState: .literal(.paused),
         request: .createNotebookExecutionJobRequest(
-          ColabScheduleCreateNotebookExecutionJobRequest(
-            notebookExecutionJob: ColabScheduleNotebookExecutionJob(
+          .new(
+            notebookExecutionJob: .new(
               displayName: .literal('TerraDart hello notebook'),
               source: .gcsNotebookSource(
-                ColabScheduleGcsNotebookSource(
+                .new(
                   uri: .literal(
                     'gs://${bucket.nameRef.interpolation}/${notebook.nameRef.interpolation}',
                   ),

@@ -823,7 +823,7 @@ final class ComputeInstanceTemplateWorkloadIdentityConfig {
 ///   networkInterface: [
 ///     ComputeInstanceTemplateNetworkInterface(
 ///       network: vpc.ref,
-///       accessConfig: [ComputeInstanceTemplateAccessConfig()],
+///       accessConfig: [.new()],
 ///     ),
 ///   ],
 /// );

@@ -31,33 +31,28 @@ GoogleCloudRunV2Service addCloudRunService({
         serviceAccount: .of(identity.serviceAccount),
         maxInstanceRequestConcurrency: .literal(80),
         timeout: .literal('300s'),
-        vpcAccess: CloudRunV2ServiceVpcAccess(
+        vpcAccess: .new(
           egress: .literal(.privateRangesOnly),
           connection: .networkInterfaces([
-            CloudRunV2ServiceNetworkInterfaces(
-              network: .of(network.vpc),
-              subnetwork: .of(network.subnet),
-            ),
+            .new(network: .of(network.vpc), subnetwork: .of(network.subnet)),
           ]),
         ),
-        scaling: const CloudRunV2ServiceTemplateScaling(
+        scaling: const .new(
           minInstanceCount: TfArgLiteral(0),
           maxInstanceCount: TfArgLiteral(2),
         ),
         containers: [
-          CloudRunV2ServiceContainers(
+          .new(
             name: .literal('app'),
             image: .literal(imageUri),
-            ports: const CloudRunV2ServicePorts(
-              containerPort: TfArgLiteral(8080),
-            ),
-            resources: CloudRunV2ServiceResources(
+            ports: const .new(containerPort: TfArgLiteral(8080)),
+            resources: .new(
               limits: .literal({'cpu': '1', 'memory': '512Mi'}),
               cpuIdle: .literal(true),
               startupCpuBoost: .literal(true),
             ),
           ),
-          CloudRunV2ServiceContainers(
+          .new(
             name: .literal('cloud-sql-proxy'),
             image: .literal(cloudSqlProxyImage),
             args: .literal([
@@ -66,7 +61,7 @@ GoogleCloudRunV2Service addCloudRunService({
               '--auto-iam-authn',
               database.instanceConnectionName,
             ]),
-            resources: CloudRunV2ServiceResources(
+            resources: .new(
               limits: .literal({'cpu': '0.5', 'memory': '256Mi'}),
               cpuIdle: .literal(false),
             ),

@@ -81,7 +81,7 @@ final class LatencyAlertStack extends Stack {
           requestMethod: .literal(.get),
         ),
         target: .monitoredResource(
-          MonitoringUptimeCheckConfigMonitoredResource(
+          .new(
             type: .literal('uptime_url'),
             labels: .literal({
               'host': 'api.example.com',
@@ -141,7 +141,7 @@ final class LatencyAlertStack extends Stack {
         period: .rollingPeriodDays(.literal(30)),
         sli: .requestBasedSli(
           .goodTotalRatio(
-            MonitoringSloGoodTotalRatio(
+            .new(
               goodServiceFilter: .literal(
                 'metric.type="run.googleapis.com/request_count" '
                 'AND resource.type="cloud_run_revision" '
@@ -185,7 +185,7 @@ final class LatencyAlertStack extends Stack {
         conditions: [
           MonitoringAlertPolicyConditions(
             displayName: .literal('p95 > 1500ms for 5m'),
-            conditionThreshold: MonitoringAlertPolicyConditionThreshold(
+            conditionThreshold: .new(
               filter: .literal(
                 'metric.type="run.googleapis.com/request_latencies" '
                 'AND resource.type="cloud_run_revision" '
@@ -196,7 +196,7 @@ final class LatencyAlertStack extends Stack {
               thresholdValue: .literal(1500),
               evaluationMissingData: .literal(.noOp),
               aggregations: [
-                MonitoringAlertPolicyAggregations(
+                .new(
                   alignmentPeriod: .literal('60s'),
                   perSeriesAligner: .literal(.percentile95),
                   crossSeriesReducer: .literal(.percentile95),

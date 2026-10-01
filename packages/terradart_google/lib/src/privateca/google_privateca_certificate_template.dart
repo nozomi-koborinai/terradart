@@ -393,7 +393,7 @@ final class PrivatecaCertificateTemplatePolicyIds {
 ///   identityConstraints: PrivatecaCertificateTemplateIdentityConstraints(
 ///     allowSubjectAltNamesPassthrough: TfArg.literal(true),
 ///     allowSubjectPassthrough: TfArg.literal(true),
-///     celExpression: PrivatecaCertificateTemplateCelExpression(
+///     celExpression: .new(
 ///       expression: TfArg.literal('true'),
 ///       title: TfArg.literal('allow-all'),
 ///       location: TfArg.literal('any.file.anywhere'),

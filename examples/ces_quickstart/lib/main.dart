@@ -95,9 +95,9 @@ final class CesStack extends Stack {
         displayName: .literal('terradart-ces-guardrail'),
         enabled: .literal(true),
         action: CesGuardrailAction(
-          respondImmediately: CesGuardrailRespondImmediately(
+          respondImmediately: .new(
             responses: [
-              CesGuardrailResponses(
+              .new(
                 text: .literal('I cannot help with that.'),
                 disabled: .literal(false),
               ),
@@ -106,7 +106,7 @@ final class CesStack extends Stack {
         ),
         modelSafety: CesGuardrailModelSafety(
           safetySettings: [
-            CesGuardrailSafetySettings(
+            .new(
               category: .literal(CesGuardrailCategory.harmCategoryHateSpeech),
               threshold: .literal(.blockNone),
             ),
@@ -156,7 +156,7 @@ final class CesStack extends Stack {
         messages: [
           CesExampleMessages(
             role: .literal('user'),
-            chunks: [CesExampleChunks(text: .literal('Hello'))],
+            chunks: [.new(text: .literal('Hello'))],
           ),
         ],
         dependsOn: [ResourceDependency(app), ResourceDependency(agent)],

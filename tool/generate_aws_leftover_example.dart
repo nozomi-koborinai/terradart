@@ -894,6 +894,8 @@ String _sealedChoice(
         ? throw StateError('$sealed declares no variants')
         : variants.first,
   );
+  final outer = _insideHelper;
+  _insideHelper = true;
   final value = _dummy(
     member,
     helpers,
@@ -901,6 +903,7 @@ String _sealedChoice(
     sensitive: sensitive,
     owner: owner,
   );
+  _insideHelper = outer;
   return '.${member.name}($value)';
 }
 
@@ -1198,7 +1201,13 @@ String _dummyForType(
     );
   }
   if (helpers.containsKey(t)) {
-    return _constructHelper(t, helpers, depth: depth + 1, sensitive: sensitive);
+    return _constructHelper(
+      t,
+      helpers,
+      depth: depth + 1,
+      sensitive: sensitive,
+      shorthand: _insideHelper,
+    );
   }
   if (_enums.containsKey(t)) return _enumMember(t, name, owner: owner);
   if (_primitives.contains(_headType(t))) {
@@ -2340,15 +2349,21 @@ String _stringLiteral(String name, {String owner = ''}) {
   return 'leftover';
 }
 
+/// Whether the value being built sits inside a helper or a sealed variant,
+/// where a helper whose type is the context type is written `.new(...)`.
+var _insideHelper = false;
+
 String _constructHelper(
   String className,
   Map<String, _ClassInfo> helpers, {
   required int depth,
   required Set<String> sensitive,
+  bool shorthand = false,
 }) {
-  if (depth > _maxDepth) return '$className()';
+  final ctor = shorthand ? '.new' : className;
+  if (depth > _maxDepth) return '$ctor()';
   final info = helpers[className];
-  if (info == null) return '$className()';
+  if (info == null) return '$ctor()';
   final extras = _extraParams[className];
   if (extras != null) _usedKeys.add(className);
   final params = [
@@ -2365,17 +2380,20 @@ String _constructHelper(
       info.optionalParams.first,
   ];
   if (params.isEmpty) {
-    return '$className()';
+    return '$ctor()';
   }
+  final outer = _insideHelper;
+  _insideHelper = true;
   final args = params
       .map(
         (p) =>
             '${p.name}: ${_dummy(p, helpers, depth: depth, sensitive: sensitive, owner: className)}',
       )
       .join(', ');
+  _insideHelper = outer;
   // Trailing comma: `dart format` then expands the call across lines and
   // keeps it there, which is the shape `require_trailing_commas` wants.
   // Without it the formatter wraps long calls and adds no comma, so a
   // formatted `examples/` fails `dart analyze`.
-  return '$className($args,)';
+  return '$ctor($args,)';
 }

@@ -53,10 +53,10 @@ final class NetworkServicesMeshStack extends Stack {
         rules: [
           NetworkServicesHttpRouteRules(
             matches: [
-              NetworkServicesHttpRouteMatches(
+              .new(
                 match: .fullPathMatch(.literal('example')),
                 queryParameters: [
-                  NetworkServicesHttpRouteQueryParameters(
+                  .new(
                     queryParameter: .literal('key'),
                     match: .exactMatch(.literal('value')),
                   ),
@@ -78,15 +78,15 @@ final class NetworkServicesMeshStack extends Stack {
         rules: [
           NetworkServicesGrpcRouteRules(
             matches: [
-              NetworkServicesGrpcRouteMatches(
-                method: NetworkServicesGrpcRouteMethod(
+              .new(
+                method: .new(
                   grpcService: .literal('helloworld.Greeter'),
                   grpcMethod: .literal('SayHello'),
                 ),
               ),
             ],
-            action: NetworkServicesGrpcRouteAction(
-              retryPolicy: NetworkServicesGrpcRouteRetryPolicy(
+            action: .new(
+              retryPolicy: .new(
                 numRetries: .literal(1),
                 retryConditions: [
                   .literal(
@@ -112,14 +112,9 @@ final class NetworkServicesMeshStack extends Stack {
         rules: [
           NetworkServicesTcpRouteRules(
             matches: [
-              NetworkServicesTcpRouteMatches(
-                address: .literal('0.0.0.0/0'),
-                port: .literal('8081'),
-              ),
+              .new(address: .literal('0.0.0.0/0'), port: .literal('8081')),
             ],
-            action: NetworkServicesTcpRouteAction(
-              originalDestination: .literal(true),
-            ),
+            action: .new(originalDestination: .literal(true)),
           ),
         ],
         dependsOn: onMesh,
@@ -132,19 +127,17 @@ final class NetworkServicesMeshStack extends Stack {
         name: .literal('terradart-ep'),
         type: .literal(.sidecarProxy),
         endpointMatcher: NetworkServicesEndpointPolicyEndpointMatcher(
-          metadataLabelMatcher:
-              NetworkServicesEndpointPolicyMetadataLabelMatcher(
-                metadataLabelMatchCriteria: .literal(
-                  NetworkServicesEndpointPolicyMetadataLabelMatchCriteria
-                      .matchAny,
-                ),
-                metadataLabels: [
-                  NetworkServicesEndpointPolicyMetadataLabels(
-                    labelName: .literal('app'),
-                    labelValue: .literal('terradart'),
-                  ),
-                ],
+          metadataLabelMatcher: .new(
+            metadataLabelMatchCriteria: .literal(
+              NetworkServicesEndpointPolicyMetadataLabelMatchCriteria.matchAny,
+            ),
+            metadataLabels: [
+              .new(
+                labelName: .literal('app'),
+                labelValue: .literal('terradart'),
               ),
+            ],
+          ),
         ),
         dependsOn: [ResourceDependency(apiNetworkServices)],
       ),

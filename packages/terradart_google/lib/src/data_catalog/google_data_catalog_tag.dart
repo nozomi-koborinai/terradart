@@ -139,7 +139,7 @@ final class DataCatalogTagField {
 ///   fields: [
 ///     DataCatalogTagField(
 ///       fieldName: TfArg.literal('source'),
-///       value: DataCatalogTagStringValue(
+///       value: .stringValue(
 ///         TfArg.literal('terradart-smoke'),
 ///       ),
 ///     ),

@@ -338,17 +338,17 @@ final class StorageBatchOperationsJobRewriteObject {
 ///   jobId: .literal('stamp-meta'),
 ///   deleteProtection: .literal(false),
 ///   bucketList: StorageBatchOperationsJobBucketList(
-///     buckets: StorageBatchOperationsJobBuckets(
+///     buckets: .new(
 ///       bucket: assets.ref,
 ///       objects: .prefixList(
-///         StorageBatchOperationsJobPrefixList(
+///         .new(
 ///           includedObjectPrefixes: .literal(['config/']),
 ///         ),
 ///       ),
 ///     ),
 ///   ),
 ///   operation: .putMetadata(
-///     StorageBatchOperationsJobPutMetadata(
+///     .new(
 ///       customMetadata: .literal({'managed-by': 'terradart'}),
 ///     ),
 ///   ),

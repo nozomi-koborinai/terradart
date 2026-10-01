@@ -462,7 +462,7 @@ enum CesGuardrailThreshold implements TerraformEnum {
 ///   enabled: TfArg.literal(true),
 ///   modelSafety: CesGuardrailModelSafety(
 ///     safetySettings: [
-///       CesGuardrailSafetySettings(
+///       .new(
 ///         category: TfArg.literal(
 ///           CesGuardrailCategory
 ///               .harmCategoryHateSpeech,

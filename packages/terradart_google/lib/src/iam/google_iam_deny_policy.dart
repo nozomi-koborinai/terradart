@@ -111,7 +111,7 @@ final class IamDenyPolicyDenialCondition {
 ///   name: TfArg.literal('terradart-storage-get-deny'),
 ///   rules: [
 ///     IamDenyPolicyRules(
-///       denyRule: IamDenyPolicyDenyRule(
+///       denyRule: .new(
 ///         deniedPrincipals: TfArg.literal([
 ///           'principal://iam.googleapis.com/projects/-/serviceAccounts/${denied.email.interpolation}',
 ///         ]),

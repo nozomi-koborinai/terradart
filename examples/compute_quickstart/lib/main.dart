@@ -245,12 +245,8 @@ final class NetworkStack extends Stack {
         terms: [
           ComputeRouterRoutePolicyTerms(
             priority: .literal(1),
-            match: ComputeRouterRoutePolicyMatch(
-              expression: .literal("destination == '10.10.0.0/20'"),
-            ),
-            actions: [
-              ComputeRouterRoutePolicyActions(expression: .literal('accept()')),
-            ],
+            match: .new(expression: .literal("destination == '10.10.0.0/20'")),
+            actions: [.new(expression: .literal('accept()'))],
           ),
         ],
         dependsOn: [ResourceDependency(edgeRouter)],
@@ -332,9 +328,7 @@ final class NetworkStack extends Stack {
       machineType: .literal('e2-small'),
       zone: .literal('asia-northeast1-a'),
       bootDisk: ComputeInstanceBootDisk(
-        initializeParams: ComputeInstanceInitializeParams(
-          image: .literal('debian-cloud/debian-12'),
-        ),
+        initializeParams: .new(image: .literal('debian-cloud/debian-12')),
       ),
       networkInterface: [
         ComputeInstanceNetworkInterface(subnetwork: workloadSubnet.ref),
@@ -728,10 +722,7 @@ final class NetworkStack extends Stack {
         match: ComputeNetworkFirewallPolicyRuleMatch(
           srcIpRanges: .literal(['0.0.0.0/0']),
           layer4Configs: [
-            ComputeNetworkFirewallPolicyRuleLayer4Configs(
-              ipProtocol: .literal('tcp'),
-              ports: .literal(['443']),
-            ),
+            .new(ipProtocol: .literal('tcp'), ports: .literal(['443'])),
           ],
         ),
         dependsOn: [ResourceDependency(edgeFirewallPolicy)],
@@ -751,13 +742,10 @@ final class NetworkStack extends Stack {
             direction: .literal(.ingress),
             priority: .literal(1000),
             ruleName: .literal('allow-https'),
-            match: ComputeNetworkFirewallPolicyWithRulesMatch(
+            match: .new(
               srcIpRanges: .literal(['0.0.0.0/0']),
               layer4Config: [
-                ComputeNetworkFirewallPolicyWithRulesLayer4Config(
-                  ipProtocol: .literal('tcp'),
-                  ports: .literal(['443']),
-                ),
+                .new(ipProtocol: .literal('tcp'), ports: .literal(['443'])),
               ],
             ),
           ),
@@ -884,10 +872,7 @@ final class NetworkStack extends Stack {
         match: ComputeRegionNetworkFirewallPolicyRuleMatch(
           srcIpRanges: .literal(['0.0.0.0/0']),
           layer4Configs: [
-            ComputeRegionNetworkFirewallPolicyRuleLayer4Configs(
-              ipProtocol: .literal('tcp'),
-              ports: .literal(['443']),
-            ),
+            .new(ipProtocol: .literal('tcp'), ports: .literal(['443'])),
           ],
         ),
         dependsOn: [ResourceDependency(regionalFirewallPolicy)],
@@ -933,13 +918,10 @@ final class NetworkStack extends Stack {
             direction: .literal(.ingress),
             priority: .literal(1000),
             ruleName: .literal('allow-https'),
-            match: ComputeRegionNetworkFirewallPolicyWithRulesMatch(
+            match: .new(
               srcIpRanges: .literal(['0.0.0.0/0']),
               layer4Config: [
-                ComputeRegionNetworkFirewallPolicyWithRulesLayer4Config(
-                  ipProtocol: .literal('tcp'),
-                  ports: .literal(['443']),
-                ),
+                .new(ipProtocol: .literal('tcp'), ports: .literal(['443'])),
               ],
             ),
           ),
@@ -1145,14 +1127,10 @@ final class NetworkStack extends Stack {
         name: .literal('ops-bastion-schedule'),
         region: .literal('asia-northeast1'),
         kind: .instanceSchedulePolicy(
-          ComputeResourcePolicyInstanceSchedulePolicy(
+          .new(
             timeZone: .literal('Asia/Tokyo'),
-            vmStartSchedule: ComputeResourcePolicyVmStartSchedule(
-              schedule: .literal('0 9 * * 1-5'),
-            ),
-            vmStopSchedule: ComputeResourcePolicyVmStopSchedule(
-              schedule: .literal('0 18 * * 1-5'),
-            ),
+            vmStartSchedule: .new(schedule: .literal('0 9 * * 1-5')),
+            vmStopSchedule: .new(schedule: .literal('0 18 * * 1-5')),
           ),
         ),
         dependsOn: apiDeps,
@@ -1179,14 +1157,11 @@ final class NetworkStack extends Stack {
         name: .literal('ops-backup-daily-snapshots'),
         region: .literal('asia-northeast1'),
         kind: .snapshotSchedulePolicy(
-          ComputeResourcePolicySnapshotSchedulePolicy(
+          .new(
             schedule: .dailySchedule(
-              ComputeResourcePolicyDailySchedule(
-                daysInCycle: .literal(1),
-                startTime: .literal('04:00'),
-              ),
+              .new(daysInCycle: .literal(1), startTime: .literal('04:00')),
             ),
-            retentionPolicy: ComputeResourcePolicyRetentionPolicy(
+            retentionPolicy: .new(
               maxRetentionDays: .literal(3),
               onSourceDiskDelete: .literal(.applyRetentionPolicy),
             ),

@@ -80,13 +80,7 @@ final class ApiServiceStack extends Stack {
         localName: 'db_password',
         secretId: .literal('api-db-password'),
         replication: .userManaged(
-          SecretManagerSecretUserManaged(
-            replicas: [
-              SecretManagerSecretReplicas(
-                location: .literal('asia-northeast1'),
-              ),
-            ],
-          ),
+          .new(replicas: [.new(location: .literal('asia-northeast1'))]),
         ),
         dependsOn: apiDeps,
       ),
@@ -247,23 +241,23 @@ final class ApiServiceStack extends Stack {
         // Runtime identity for the revision — must be able to read the
         // secret-backed env var below (see the IAM member above).
         serviceAccount: .of(runtimeSa),
-        vpcAccess: CloudRunV2ServiceVpcAccess(
+        vpcAccess: .new(
           connection: .connector(.ref(runConnector.selfLink)),
           egress: .literal(.privateRangesOnly),
         ),
         containers: [
-          CloudRunV2ServiceContainers(
+          .new(
             image: .literal('gcr.io/cloudrun/hello'),
             env: [
-              CloudRunV2ServiceEnv(
+              .new(
                 name: .literal('LOG_LEVEL'),
                 source: .value(.literal('info')),
               ),
-              CloudRunV2ServiceEnv(
+              .new(
                 name: .literal('DB_PASSWORD'),
                 source: .valueSource(
-                  CloudRunV2ServiceValueSource(
-                    secretKeyRef: CloudRunV2ServiceSecretKeyRef(
+                  .new(
+                    secretKeyRef: .new(
                       secret: .literal('api-db-password'),
                       version: .literal('latest'),
                     ),
@@ -273,13 +267,13 @@ final class ApiServiceStack extends Stack {
               // Reaches the cache through the VPC connector below; the
               // interpolation also gives Terraform the redis -> service
               // ordering without an explicit dependsOn entry.
-              CloudRunV2ServiceEnv(
+              .new(
                 name: .literal('REDIS_HOST'),
                 source: .value(.ref(cache.host)),
               ),
             ],
-            ports: CloudRunV2ServicePorts(containerPort: .literal(8080)),
-            resources: CloudRunV2ServiceResources(
+            ports: .new(containerPort: .literal(8080)),
+            resources: .new(
               limits: .literal({'cpu': '1', 'memory': '512Mi'}),
               cpuIdle: .literal(true),
               startupCpuBoost: .literal(true),
@@ -313,11 +307,7 @@ final class ApiServiceStack extends Stack {
         // `terraform destroy` can remove the worker pool.
         deletionProtection: .literal(false),
         template: CloudRunV2WorkerPoolTemplate(
-          containers: [
-            CloudRunV2WorkerPoolContainers(
-              image: .literal('gcr.io/cloudrun/hello'),
-            ),
-          ],
+          containers: [.new(image: .literal('gcr.io/cloudrun/hello'))],
         ),
         dependsOn: apiDeps,
       ),
@@ -338,18 +328,18 @@ final class ApiServiceStack extends Stack {
       // deletion_protection=false"). Disable it for the sweep.
       deletionProtection: .literal(false),
       template: CloudRunV2JobTemplate(
-        template: CloudRunV2JobTemplateTemplate(
+        template: .new(
           maxRetries: .literal(2),
           timeout: .literal('600s'),
           containers: [
-            CloudRunV2JobContainers(
+            .new(
               image: .literal('gcr.io/cloudrun/hello'),
               args: .literal([
                 '/bin/sh',
                 '-c',
                 'echo "nightly cleanup running"',
               ]),
-              resources: CloudRunV2JobResources(
+              resources: .new(
                 limits: .literal({'cpu': '1', 'memory': '512Mi'}),
               ),
             ),

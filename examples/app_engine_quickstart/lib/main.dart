@@ -72,7 +72,7 @@ final class AppEngineStack extends Stack {
         versionId: .literal('v1'),
         runtime: .literal('python312'),
         deployment: AppEngineStandardAppVersionDeployment(
-          zip: AppEngineStandardAppVersionZip(
+          zip: .new(
             sourceUrl: .literal(
               'https://storage.googleapis.com/$projectId-terradart-appengine/app.zip',
             ),

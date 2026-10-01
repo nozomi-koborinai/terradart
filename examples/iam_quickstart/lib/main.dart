@@ -77,7 +77,7 @@ final class IamShowcaseStack extends Stack {
           'attribute.repository_owner': 'assertion.repository_owner',
         }),
         trustSource: .oidc(
-          IamWorkloadIdentityPoolProviderOidc(
+          .new(
             allowedAudiences: .literal(['https://github.com/my-org']),
             issuerUri: .literal('https://token.actions.githubusercontent.com'),
           ),
@@ -176,7 +176,7 @@ final class IamShowcaseStack extends Stack {
       GoogleSecretManagerSecret(
         localName: 'demo_secret',
         secretId: .literal('demo-secret'),
-        replication: const .auto(SecretManagerSecretAuto()),
+        replication: const .auto(.new()),
         dependsOn: [ResourceDependency(apiSecretManager)],
       ),
     );
@@ -492,7 +492,7 @@ final class IamShowcaseStack extends Stack {
         workforcePoolId: .literal('terradart-wf'),
         providerId: .literal('terradart-oidc'),
         trustSource: .oidc(
-          IamWorkforcePoolProviderOidc(
+          .new(
             issuerUri: .literal('https://accounts.google.com'),
             clientId: .literal('client.apps.googleusercontent.com'),
           ),
@@ -555,12 +555,12 @@ final class IamShowcaseStack extends Stack {
         displayName: .literal('IAM quickstart access policy'),
         details: IamProjectAccessPolicyDetails(
           rules: [
-            IamProjectAccessPolicyRules(
+            .new(
               effect: .literal(.allow),
               principals: .literal([
                 'principal://iam.googleapis.com/projects/-/serviceAccounts/${sa.email.interpolation}',
               ]),
-              operation: IamProjectAccessPolicyOperation(
+              operation: .new(
                 permissions: .literal([
                   'eventarc.googleapis.com/messageBuses.publish',
                 ]),

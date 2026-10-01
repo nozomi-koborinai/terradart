@@ -345,12 +345,12 @@ final class EdgecontainerClusterIngress {
 ///     project: TfArg.literal('projects/$projectNumber'),
 ///   ),
 ///   authorization: EdgecontainerClusterAuthorization(
-///     adminUsers: EdgecontainerClusterAdminUsers(
+///     adminUsers: .new(
 ///       username: TfArg.literal('admin@example.com'),
 ///     ),
 ///   ),
 ///   controlPlane: .remote(
-///     EdgecontainerClusterRemote(
+///     .new(
 ///       nodeLocation: .literal('us-central1-edge-customer-a'),
 ///     ),
 ///   ),

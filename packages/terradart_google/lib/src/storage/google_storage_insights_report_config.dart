@@ -235,12 +235,12 @@ final class StorageInsightsReportConfigStorageFilters {
 ///     frequency: TfArg.literal(
 ///       StorageInsightsReportConfigFrequency.weekly,
 ///     ),
-///     startDate: StorageInsightsReportConfigStartDate(
+///     startDate: .new(
 ///       year: TfArg.literal(2099),
 ///       month: TfArg.literal(1),
 ///       day: TfArg.literal(1),
 ///     ),
-///     endDate: StorageInsightsReportConfigEndDate(
+///     endDate: .new(
 ///       year: TfArg.literal(2099),
 ///       month: TfArg.literal(12),
 ///       day: TfArg.literal(31),
@@ -249,12 +249,10 @@ final class StorageInsightsReportConfigStorageFilters {
 ///   objectMetadataReportOptions:
 ///       StorageInsightsReportConfigObjectMetadataReportOptions(
 ///     metadataFields: TfArg.literal(['name', 'size']),
-///     storageDestinationOptions:
-///         StorageInsightsReportConfigStorageDestinationOptions(
+///     storageDestinationOptions: .new(
 ///       bucket: reports.ref,
 ///     ),
-///     storageFilters:
-///         StorageInsightsReportConfigStorageFilters(
+///     storageFilters: .new(
 ///       bucket: source.ref,
 ///     ),
 ///   ),

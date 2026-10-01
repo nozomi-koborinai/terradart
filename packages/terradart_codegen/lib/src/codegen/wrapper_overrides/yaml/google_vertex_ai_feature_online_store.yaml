@@ -45,7 +45,7 @@ curatedDoc: |-
   ///   name: TfArg.literal('terradart_fos_bt'),
   ///   region: TfArg.literal('us-central1'),
   ///   storage: VertexAiFeatureOnlineStoreBigtable(
-  ///     autoScaling: VertexAiFeatureOnlineStoreBigtableAutoScaling(
+  ///     autoScaling: .new(
   ///       minNodeCount: TfArg.literal(1),
   ///       maxNodeCount: TfArg.literal(3),
   ///     ),

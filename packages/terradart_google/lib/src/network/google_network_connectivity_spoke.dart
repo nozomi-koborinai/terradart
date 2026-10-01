@@ -436,7 +436,7 @@ final class NetworkConnectivitySpokeLinkedVpnTunnels {
 ///   location: .literal('global'),
 ///   hub: hub.ref,
 ///   attachment: .linkedVpcNetwork(
-///     NetworkConnectivitySpokeLinkedVpcNetwork(uri: vpc.ref),
+///     .new(uri: vpc.ref),
 ///   ),
 /// );
 /// ```

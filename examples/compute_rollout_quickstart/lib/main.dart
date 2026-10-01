@@ -44,20 +44,17 @@ final class ComputeRolloutStack extends Stack {
           ComputeRolloutPlanWaves(
             displayName: .literal('wave-1'),
             selectors: [
-              ComputeRolloutPlanSelectors(
-                locationSelector: ComputeRolloutPlanLocationSelector(
+              .new(
+                locationSelector: .new(
                   includedLocations: .literal(['us-central1-a']),
                 ),
               ),
             ],
-            validation: ComputeRolloutPlanValidation(
+            validation: .new(
               type: .literal('time'),
-              timeBasedValidationMetadata:
-                  ComputeRolloutPlanTimeBasedValidationMetadata(
-                    waitDuration: .literal('0s'),
-                  ),
+              timeBasedValidationMetadata: .new(waitDuration: .literal('0s')),
             ),
-            orchestrationOptions: ComputeRolloutPlanOrchestrationOptions(
+            orchestrationOptions: .new(
               maxConcurrentLocations: .literal(10),
               maxConcurrentResourcesPerLocation: .literal(10),
             ),
@@ -89,15 +86,13 @@ final class ComputeRolloutStack extends Stack {
         ],
         instanceSelectors: [
           ComputeGlobalVmExtensionPolicyInstanceSelectors(
-            labelSelector: ComputeGlobalVmExtensionPolicyLabelSelector(
+            labelSelector: .new(
               inclusionLabels: .literal({'terradart-smoke': 'never'}),
             ),
           ),
         ],
         rolloutOperation: ComputeGlobalVmExtensionPolicyRolloutOperation(
-          rolloutInput: ComputeGlobalVmExtensionPolicyRolloutInput(
-            plan: .name(.literal(planResourceName)),
-          ),
+          rolloutInput: .new(plan: .name(.literal(planResourceName))),
         ),
         dependsOn: [ResourceDependency(apiCompute), ResourceDependency(plan)],
       ),

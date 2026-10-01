@@ -201,7 +201,7 @@ final class ComputeRegionNetworkFirewallPolicyRuleTargetSecureTags {
 ///   match: ComputeRegionNetworkFirewallPolicyRuleMatch(
 ///     srcIpRanges: TfArg.literal(['0.0.0.0/0']),
 ///     layer4Configs: [
-///       ComputeRegionNetworkFirewallPolicyRuleLayer4Configs(
+///       .new(
 ///         ipProtocol: TfArg.literal('tcp'),
 ///         ports: TfArg.literal(['443']),
 ///       ),

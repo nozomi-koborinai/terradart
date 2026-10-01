@@ -141,7 +141,7 @@ final class AwsStaticSiteStack extends Stack {
           ),
       ],
       restrictions: CloudfrontDistributionRestrictions(
-        geoRestriction: CloudfrontDistributionGeoRestriction(
+        geoRestriction: .new(
           restrictionType: .literal(CloudfrontDistributionRestrictionType.none),
         ),
       ),
@@ -165,13 +165,13 @@ final class AwsStaticSiteStack extends Stack {
           actions: .literal(['s3:GetObject']),
           resources: .literal(['${bucket.arn.interpolation}/*']),
           principals: [
-            DataIamPolicyDocumentPrincipals(
+            .new(
               type: .literal('Service'),
               identifiers: .literal(['cloudfront.amazonaws.com']),
             ),
           ],
           condition: [
-            DataIamPolicyDocumentCondition(
+            .new(
               test: .literal('StringEquals'),
               variable: .literal('AWS:SourceArn'),
               values: .literal([distribution.arn.interpolation]),
@@ -197,7 +197,7 @@ final class AwsStaticSiteStack extends Stack {
           name: .literal(siteDomain),
           type: .literal(type),
           target: .alias(
-            Route53RecordAlias(
+            .new(
               name: .ref(distribution.domainName),
               zoneId: .ref(distribution.hostedZoneId),
               evaluateTargetHealth: .literal(false),

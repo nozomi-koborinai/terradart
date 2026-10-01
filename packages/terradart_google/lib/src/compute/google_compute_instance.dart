@@ -932,14 +932,14 @@ final class ComputeInstanceWorkloadIdentityConfig {
 ///   machineType: .literal('e2-medium'),
 ///   zone: .literal('us-central1-a'),
 ///   bootDisk: ComputeInstanceBootDisk(
-///     initializeParams: ComputeInstanceInitializeParams(
+///     initializeParams: .new(
 ///       image: .literal('debian-cloud/debian-12'),
 ///     ),
 ///   ),
 ///   networkInterface: [
 ///     ComputeInstanceNetworkInterface(
 ///       network: vpc.ref,
-///       accessConfig: [ComputeInstanceAccessConfig()],
+///       accessConfig: [.new()],
 ///     ),
 ///   ],
 /// );

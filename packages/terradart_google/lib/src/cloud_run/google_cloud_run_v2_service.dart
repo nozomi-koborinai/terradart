@@ -1305,9 +1305,9 @@ final class CloudRunV2ServiceTraffic {
 ///   location: .literal('asia-northeast1'),
 ///   template: CloudRunV2ServiceTemplate(
 ///     containers: [
-///       CloudRunV2ServiceContainers(
+///       .new(
 ///         image: .literal('gcr.io/cloudrun/hello'),
-///         ports: CloudRunV2ServicePorts(
+///         ports: .new(
 ///           containerPort: .literal(8080),
 ///         ),
 ///       ),
@@ -1325,15 +1325,14 @@ final class CloudRunV2ServiceTraffic {
 ///   location: .literal('asia-northeast1'),
 ///   template: CloudRunV2ServiceTemplate(
 ///     containers: [
-///       CloudRunV2ServiceContainers(
+///       .new(
 ///         image: .literal('asia-northeast1-docker.pkg.dev/p/r/api:v1'),
 ///         env: [
-///           CloudRunV2ServiceEnv(
+///           .new(
 ///             name: .literal('DATABASE_URL'),
 ///             source: .valueSource(
-///               CloudRunV2ServiceValueSource(
-///                 secretKeyRef:
-///                     CloudRunV2ServiceSecretKeyRef(
+///               .new(
+///                 secretKeyRef: .new(
 ///                       secret: .literal('db-url'),
 ///                       version: .literal('latest'),
 ///                     ),
@@ -1342,7 +1341,7 @@ final class CloudRunV2ServiceTraffic {
 ///           ),
 ///         ],
 ///         volumeMounts: [
-///           CloudRunV2ServiceVolumeMounts(
+///           .new(
 ///             name: .literal('cache'),
 ///             mountPath: .literal('/var/cache'),
 ///           ),
@@ -1350,10 +1349,10 @@ final class CloudRunV2ServiceTraffic {
 ///       ),
 ///     ],
 ///     volumes: [
-///       CloudRunV2ServiceVolumes(
+///       .new(
 ///         name: .literal('cache'),
 ///         source: .gcs(
-///           CloudRunV2ServiceGcs(bucket: .of(bucket)),
+///           .new(bucket: .of(bucket)),
 ///         ),
 ///       ),
 ///     ],

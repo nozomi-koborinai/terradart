@@ -761,7 +761,7 @@ final class OsConfigOsPolicyAssignmentDisruptionBudget {
 ///     all: TfArg.literal(true),
 ///   ),
 ///   rollout: OsConfigOsPolicyAssignmentRollout(
-///     disruptionBudget: OsConfigOsPolicyAssignmentDisruptionBudget(
+///     disruptionBudget: .new(
 ///       percent: TfArg.literal(100),
 ///     ),
 ///     minWaitDuration: TfArg.literal('0s'),

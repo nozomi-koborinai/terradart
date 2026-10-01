@@ -681,13 +681,13 @@ final class Cloudfunctions2FunctionVersions {
 ///     runtime: .literal('python311'),
 ///     entryPoint: .literal('hello'),
 ///     source: .storageSource(
-///       Cloudfunctions2FunctionStorageSource(
+///       .new(
 ///         bucket: .of(bucket),
 ///         object: .literal('hello-http.zip'),
 ///       ),
 ///     ),
 ///     updatePolicy: .automaticUpdatePolicy(
-///       Cloudfunctions2FunctionAutomaticUpdatePolicy(),
+///       .new(),
 ///     ),
 ///   ),
 ///   serviceConfig: Cloudfunctions2FunctionServiceConfig(
@@ -708,13 +708,13 @@ final class Cloudfunctions2FunctionVersions {
 ///     runtime: .literal('python311'),
 ///     entryPoint: .literal('handle'),
 ///     source: .storageSource(
-///       Cloudfunctions2FunctionStorageSource(
+///       .new(
 ///         bucket: .of(bucket),
 ///         object: .literal('order-handler.zip'),
 ///       ),
 ///     ),
 ///     updatePolicy: .automaticUpdatePolicy(
-///       Cloudfunctions2FunctionAutomaticUpdatePolicy(),
+///       .new(),
 ///     ),
 ///   ),
 ///   eventTrigger: Cloudfunctions2FunctionEventTrigger(
