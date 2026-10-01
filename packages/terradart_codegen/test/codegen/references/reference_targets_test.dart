@@ -1316,6 +1316,34 @@ hashicorp/google:
         () => loadPrincipalRule(ledger.path, 'hashicorp/google'),
         throwsFormatException,
       );
+      ledger.writeAsStringSync(r'''
+appwrite/appwrite:
+  - principals: AppwritePermission
+    slots: '^permissions$'
+''');
+      expect(
+        loadPrincipalRule(ledger.path, 'appwrite/appwrite')!.className,
+        'AppwritePermission',
+      );
+    });
+
+    test('an AppwritePermission entry types the list and has no getter', () {
+      final r = resolve(
+        principalRule: PrincipalRule(
+          slots: RegExp(r'^members$'),
+          className: 'AppwritePermission',
+        ),
+      );
+      expect(r.errors, isEmpty);
+      final list = r.byResource['google_y_topic_iam_binding']!['members']!;
+      expect(list.principal, isTrue);
+      expect(list.dartType, 'TfArg<List<AppwritePermission>>');
+      expect(
+        list.import,
+        "import '../auth/appwrite_permission.dart' show AppwritePermission;",
+      );
+      expect(r.principalResources, isEmpty);
+      expect(r.principalDataSources, isEmpty);
     });
   });
 }

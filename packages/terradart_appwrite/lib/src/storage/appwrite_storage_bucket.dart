@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../auth/appwrite_permission.dart' show AppwritePermission;
+
 /// Sensitive field paths for `appwrite_storage_bucket`.
 const Set<String> _appwriteStorageBucketSensitive = <String>{};
 
@@ -40,6 +42,7 @@ final class AppwriteStorageBucket extends Resource {
     TfArg<StorageBucketCompression>? compression,
     TfArg<bool>? encryption,
     TfArg<bool>? antivirus,
+    TfArg<List<AppwritePermission>>? permissions,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -55,6 +58,7 @@ final class AppwriteStorageBucket extends Resource {
            'compression': ?compression,
            'encryption': ?encryption,
            'antivirus': ?antivirus,
+           'permissions': ?permissions,
          },
        );
 

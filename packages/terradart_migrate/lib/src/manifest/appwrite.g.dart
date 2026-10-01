@@ -6040,6 +6040,14 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           required: false,
           dartType: 'bool',
         ),
+        MigrateSlot(
+          tfName: 'permissions',
+          dartName: 'permissions',
+          kind: MigrateSlotKind.principal,
+          required: false,
+          repeated: true,
+          dartType: 'AppwritePermission',
+        ),
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
@@ -6206,9 +6214,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'permissions',
           dartName: 'permissions',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'AppwritePermission',
         ),
         MigrateSlot(
           tfName: 'project_id',
@@ -6712,9 +6721,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'permissions',
           dartName: 'permissions',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'AppwritePermission',
         ),
         MigrateSlot(
           tfName: 'project_id',
@@ -6799,9 +6809,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'permissions',
           dartName: 'permissions',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'AppwritePermission',
         ),
         MigrateSlot(
           tfName: 'project_id',

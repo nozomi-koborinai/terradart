@@ -151,23 +151,29 @@ ParentReferenceRule? loadParentReferenceRule(
   return null;
 }
 
-/// The `- principals: IamPrincipal` entry of a ledger section: every input
-/// whose path matches [slots], on a type [types] matches, names IAM
-/// principals and takes `IamPrincipal` (`TfArg<List<IamPrincipal>>` for a
-/// list). A curated block with a computed `member` attribute (a service
-/// account, a service agent) carries a `principal` getter.
+/// The `- principals: <type>` entry of a ledger section: every input whose
+/// path matches [slots], on a type [types] matches, names who a grant is for
+/// and takes the hand-written [className] (`TfArg<List<IamPrincipal>>` for a
+/// list). On Google, a curated block with a computed `member` attribute (a
+/// service account, a service agent) carries a `principal` getter.
 final class PrincipalRule {
-  const PrincipalRule({required this.slots, this.types});
+  const PrincipalRule({
+    required this.slots,
+    this.types,
+    this.className = principalClassName,
+  });
 
   final RegExp slots;
+
+  /// One of [principalTypes].
+  final String className;
 
   /// Restricts [slots] to the Terraform types (`data.` prefixed for a data
   /// source) this matches.
   final RegExp? types;
 }
 
-/// The `- principals: IamPrincipal` entry of [providerSource]'s section, or
-/// null.
+/// The `- principals:` entry of [providerSource]'s section, or null.
 PrincipalRule? loadPrincipalRule(String path, String providerSource) {
   final doc = loadYaml(
     File(path).readAsStringSync(),
@@ -183,9 +189,11 @@ PrincipalRule? loadPrincipalRule(String path, String providerSource) {
         throw FormatException('$context: unknown key "$key" beside principals');
       }
     }
-    if (raw['principals'] != principalClassName) {
+    final className = raw['principals'];
+    if (className is! String || !principalTypes.containsKey(className)) {
       throw FormatException(
-        '$context: principals must be "$principalClassName"',
+        '$context: principals must be one of '
+        '${principalTypes.keys.map((k) => '"$k"').join(', ')}',
       );
     }
     final slots = raw['slots'];
@@ -199,6 +207,7 @@ PrincipalRule? loadPrincipalRule(String path, String providerSource) {
     return PrincipalRule(
       slots: RegExp(slots),
       types: types is String ? RegExp(types) : null,
+      className: className,
     );
   }
   return null;
@@ -207,6 +216,13 @@ PrincipalRule? loadPrincipalRule(String path, String providerSource) {
 /// The hand-written principal type in `terradart_google`
 /// (`lib/src/iam/iam_principal.dart`).
 const String principalClassName = 'IamPrincipal';
+
+/// The hand-written types a `- principals:` entry can name, by the
+/// directory and file under the lane package's `lib/src/` that declare them.
+const Map<String, ({String outputDir, String file})> principalTypes = {
+  principalClassName: (outputDir: 'iam', file: 'iam_principal'),
+  'AppwritePermission': (outputDir: 'auth', file: 'appwrite_permission'),
+};
 
 /// The `- mm: resource-refs` entry of [providerSource]'s section, or null.
 MmReferenceRule? loadMmReferenceRule(String path, String providerSource) {
@@ -408,12 +424,14 @@ final class ResolvedReference {
     this.absorbed = const [],
   });
 
-  /// An input that names IAM principals: [className] is
-  /// [principalClassName] and the value is passed as it is.
-  const ResolvedReference.principal({required this.list, this.package})
-    : target = 'iam_principal',
-      className = principalClassName,
-      outputDir = 'iam',
+  /// An input that names who a grant is for: [className] is one of
+  /// [principalTypes] and the value is passed as it is.
+  ResolvedReference.principal({
+    required this.list,
+    this.package,
+    this.className = principalClassName,
+  }) : target = principalTypes[className]!.file,
+      outputDir = principalTypes[className]!.outputDir,
       attribute = '',
       dartName = null,
       absorbed = const [];
@@ -442,7 +460,7 @@ final class ResolvedReference {
   /// Whether the input is a list of references (`TfArg<List<RefTo<C>>>`).
   final bool list;
 
-  bool get principal => className == principalClassName;
+  bool get principal => principalTypes.containsKey(className);
 
   /// The Dart parameter / field type, before nullability.
   String get dartType => principal
@@ -594,7 +612,11 @@ ReferenceResolution resolveReferences({
 
   final principal = principalRule == null
       ? null
-      : ResolvedReference.principal(list: false, package: external?.package);
+      : ResolvedReference.principal(
+          list: false,
+          package: external?.package,
+          className: principalRule.className,
+        );
   final principalResources = <String>{};
   final principalDataSources = <String>{};
   if (principalRule != null) {
@@ -609,17 +631,24 @@ ReferenceResolution resolveReferences({
         matched = true;
         claimedBy['$at.$path'] = 'principals';
         ((data ? byDataSource : byResource)[type] ??= {})[path] =
-            ResolvedReference.principal(list: list, package: external?.package);
+            ResolvedReference.principal(
+              list: list,
+              package: external?.package,
+              className: principalRule.className,
+            );
       }
     }
     if (complete && !matched) {
       errors.add('principals: the entry matches no curated input');
     }
-    for (final type in curated) {
-      if (_hasPrincipal(resourceSchemas[type])) principalResources.add(type);
-    }
-    for (final MapEntry(key: type, value: block) in dataSourceSchemas.entries) {
-      if (_hasPrincipal(block)) principalDataSources.add(type);
+    if (principalRule.className == principalClassName) {
+      for (final type in curated) {
+        if (_hasPrincipal(resourceSchemas[type])) principalResources.add(type);
+      }
+      for (final MapEntry(key: type, value: block)
+          in dataSourceSchemas.entries) {
+        if (_hasPrincipal(block)) principalDataSources.add(type);
+      }
     }
   }
 

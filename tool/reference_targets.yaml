@@ -48,7 +48,9 @@
 # `IamPrincipal` of `terradart_google` (`TfArg<List<IamPrincipal>>` for a
 # list): `member: runtime.principal`, `member: .user('a@example.com')`. A
 # curated block with a computed `member` attribute (a service account, a
-# service agent) carries the `principal` getter.
+# service agent) carries the `principal` getter. On appwrite the entry names
+# `AppwritePermission` of `terradart_appwrite`:
+# `permissions: .literal([.read(.any), .write(.team(editors.ref))])`.
 #
 # A section entry `- inherit: <provider source>` takes that section's rules
 # for a lane whose inputs name the other lane's resources (google-beta →
@@ -738,6 +740,8 @@ cloudflare/cloudflare:
     slots: '^user_group_id$'
 
 appwrite/appwrite:
+  - principals: AppwritePermission
+    slots: '^permissions$'
   - target: appwrite_project
     attribute: id
     slots: '^project_id$'

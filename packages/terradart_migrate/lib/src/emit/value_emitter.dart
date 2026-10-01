@@ -796,11 +796,13 @@ final class ValueEmitter {
   /// [slot] is repeated: a literal list holds one principal per element,
   /// anything else is the whole list (`var.members`, a splat).
   String _principal(MigrateSlot slot, Expr value, {required String path}) {
-    if (!slot.repeated) return _principalValue(value, path: path);
+    final appwrite = slot.dartType == 'AppwritePermission';
+    String one(Expr e) => appwrite
+        ? _permissionValue(e, path: path)
+        : _principalValue(e, path: path);
+    if (!slot.repeated) return one(value);
     if (value is TupleExpr) {
-      final items = [
-        for (final e in value.elements) _principalValue(e, path: path),
-      ];
+      final items = [for (final e in value.elements) one(e)];
       return _arg('literal([${items.join(', ')}])');
     }
     if (value is LiteralExpr ||
@@ -890,6 +892,106 @@ final class ValueEmitter {
     if (_typed) return '.$call';
     ctx.import('terradart_google', 'iam');
     return 'IamPrincipal.$call';
+  }
+
+  // ---------------------------------------------------------------------
+  // Appwrite permissions
+  // ---------------------------------------------------------------------
+
+  /// One `AppwritePermission`: a named constructor of its action and role
+  /// (`.read(.any)`, `.write(.team(.literal('t'), role: 'owner'))`) for a
+  /// literal, else the value wrapped as it is.
+  String _permissionValue(Expr value, {required String path}) {
+    final text = constantText(value);
+    if (text != null) {
+      if (sensitivePaths.contains(path)) {
+        throw MigrateBlocker(
+          'argument "$path" is sensitive: its value is not copied into Dart '
+          '(pass it as a variable)',
+        );
+      }
+      final envExpr = envValues[path];
+      if (envExpr != null) {
+        envSlotTypes[envExpr] = 'String';
+        return _permissionCall('literal($envExpr)');
+      }
+      return _permissionLiteral(text);
+    }
+    if (value is LiteralExpr || value is TupleExpr || value is ObjectExpr) {
+      throw MigrateBlocker(
+        'argument "$path" expects an Appwrite permission but is a '
+        '${_describe(value)}',
+      );
+    }
+    if (singleReference(value) case final ref?) {
+      final arg = _refArg(ref, type: 'String');
+      if (arg != null) return _permissionCall('arg($arg)');
+    }
+    return _permissionCall('arg(${_expression(value)})');
+  }
+
+  static final _permission = RegExp(
+    r'^(read|create|update|delete|write)\("([^"]*)"\)$',
+  );
+
+  String _permissionLiteral(String text) {
+    final match = _permission.firstMatch(text);
+    final role = match == null || hasTemplateSequence(text)
+        ? null
+        : _role(match[2]!);
+    if (role == null) return _permissionCall('literal(${dartString(text)})');
+    return _permissionCall('${match![1]}($role)');
+  }
+
+  /// The `AppwriteRole` shorthand for [text], or null for one it does not
+  /// spell (left to `AppwritePermission.literal`).
+  static String? _role(String text) {
+    String status(String? s) => switch (s) {
+      null => '',
+      'verified' => 'verified: true',
+      _ => 'verified: false',
+    };
+    String call(String name, List<String> args) =>
+        '.$name(${args.where((a) => a.isNotEmpty).join(', ')})';
+    switch (text) {
+      case 'any' || 'guests':
+        return '.$text';
+      case 'users':
+        return '.users()';
+      case 'users/verified' || 'users/unverified':
+        return call('users', [status(text.substring(6))]);
+    }
+    final colon = text.indexOf(':');
+    if (colon <= 0 || colon == text.length - 1) return null;
+    final kind = text.substring(0, colon);
+    final rest = text.substring(colon + 1);
+    final slash = rest.indexOf('/');
+    final id = slash < 0 ? rest : rest.substring(0, slash);
+    final suffix = slash < 0 ? null : rest.substring(slash + 1);
+    if (id.isEmpty || (suffix != null && suffix.isEmpty)) return null;
+    switch (kind) {
+      case 'user'
+          when suffix == null || suffix == 'verified' || suffix == 'unverified':
+        return call('user', ['.literal(${dartString(id)})', status(suffix)]);
+      case 'team':
+        return call('team', [
+          '.literal(${dartString(id)})',
+          if (suffix != null) 'role: ${dartString(suffix)}',
+        ]);
+      case 'member' when suffix == null:
+        return '.member(${dartString(id)})';
+      case 'label' when suffix == null:
+        return '.label(${dartString(id)})';
+    }
+    return null;
+  }
+
+  /// `AppwritePermission.<call>`, or the `.<call>` shorthand in a typed
+  /// position.
+  String _permissionCall(String call) {
+    if (_typed) return '.$call';
+    ctx.import('terradart_appwrite', 'auth');
+    return 'AppwritePermission.$call';
   }
 
   /// Whether [target]'s `ref` is a `RefTo<className>`: the resource itself,

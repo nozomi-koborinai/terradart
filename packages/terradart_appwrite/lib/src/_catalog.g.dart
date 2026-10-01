@@ -1006,6 +1006,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'compression',
       'encryption',
       'antivirus',
+      'permissions',
     ],
     nestedTypes: <String>['StorageBucketCompression'],
     sensitiveFields: <String>[],

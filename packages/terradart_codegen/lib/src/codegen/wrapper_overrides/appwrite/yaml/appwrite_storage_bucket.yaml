@@ -21,3 +21,4 @@ paramOrder:
   - compression
   - encryption
   - antivirus
+  - permissions
