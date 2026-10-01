@@ -147,7 +147,7 @@ class ComputeForwardingRuleServiceDirectoryRegistration {
 ///
 /// The typical Regional Internal Application LB (L7 ILB) chain looks like:
 ///
-/// ```
+/// ```text
 /// google_compute_forwarding_rule              (this resource)
 ///   → google_compute_region_target_https_proxy
 ///     → google_compute_region_url_map
@@ -156,7 +156,7 @@ class ComputeForwardingRuleServiceDirectoryRegistration {
 ///
 /// The L4 Internal Network LB chain instead routes traffic directly:
 ///
-/// ```
+/// ```text
 /// google_compute_forwarding_rule
 ///   → google_compute_region_backend_service     (via backendService)
 /// ```

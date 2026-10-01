@@ -10,9 +10,9 @@ import 'dart_source.dart';
 /// final class OrdersStack extends Stack {
 ///   OrdersStack()
 ///     : super(
-///         providers: [...],
+///         providers: [GoogleProvider(project: 'my-project')],
 ///         appExports: AppExports('../app_config/lib/orders.g.dart', name: 'Orders'),
-///       ) { ... }
+///       );
 /// }
 /// ```
 ///
