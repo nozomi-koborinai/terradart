@@ -25,7 +25,7 @@ curatedDoc: |-
   /// GoogleManagedKafkaConnectCluster(
   ///   localName: 'connect',
   ///   connectClusterId: TfArg.literal('terradart-connect'),
-  ///   kafkaCluster: TfArg.ref(cluster.nameRef),
+  ///   kafkaCluster: cluster.name,
   ///   location: TfArg.literal('us-central1'),
   ///   capacityConfig: ManagedKafkaConnectClusterCapacityConfig(
   ///     vcpuCount: TfArg.literal('3'),
@@ -35,7 +35,7 @@ curatedDoc: |-
   ///     accessConfig: .new(
   ///       networkConfigs: [
   ///         .new(
-  ///           primarySubnet: TfArg.ref(subnet.id),
+  ///           primarySubnet: subnet.id,
   ///         ),
   ///       ],
   ///     ),

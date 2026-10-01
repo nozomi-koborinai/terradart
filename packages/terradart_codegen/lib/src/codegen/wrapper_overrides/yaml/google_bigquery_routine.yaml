@@ -75,11 +75,6 @@ paramOrder:
   - spark_options
   - project
 
-extraGetters: |2
-    /// Reference to `routine_id` attribute.
-    TfRef<String> get routineIdRef =>
-        TfRef.attribute<String>(this, 'routine_id');
-
 extraImports:
   - "import 'package:meta/meta.dart';"
 

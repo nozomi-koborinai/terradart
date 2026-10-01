@@ -6,7 +6,6 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 
-
 curatedDoc: |-
   /// Network Services **multicast producer association** — binds a VPC as multicast producer.
   ///
@@ -29,10 +28,3 @@ paramOrder:
   - labels
   - project
   - deletion_policy
-
-extraGetters: |2
-    /// Reference to `id` attribute.
-    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

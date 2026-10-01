@@ -28,12 +28,5 @@ paramOrder:
   - test_case_conversation_turns
   - deletion_policy
 
-extraGetters: |2
-    /// Reference to `id` attribute.
-    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
 sealedNames:
   "test_config.flow, test_config.page": start

@@ -47,7 +47,3 @@ paramOrder:
   - project
   - dataproc_service_account
   - patch_revision
-
-extraGetters: |2
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -40,16 +40,5 @@ paramOrder:
   - labels
   - deletion_policy
 
-extraGetters: |2
-    /// Reference to `id` attribute.
-    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `self_link` attribute.
-    TfRef<String> get selfLinkRef =>
-        TfRef.attribute<String>(this, 'self_link');
-
 sealedNames:
   "custom_intercept_profile, custom_mirroring_profile, threat_prevention_profile, url_filtering_profile": settings

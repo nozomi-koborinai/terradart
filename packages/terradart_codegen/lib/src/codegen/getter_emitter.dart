@@ -1,3 +1,4 @@
+import '../ir/attribute.dart';
 import '../ir/resource_def.dart';
 import 'constructor_params.dart';
 import 'dart_type_writer.dart';
@@ -5,34 +6,21 @@ import 'naming.dart';
 
 /// Emits derived output-attribute getters for a [ResourceDef].
 ///
-/// Phase A3: output getters used to live entirely in each override's
-/// hand-written `extraGetters` axis. This emitter derives the mechanical
-/// ones from the IR so they converge across agents/models:
+/// Every attribute another block, an output or a constant can read gets a
+/// getter named after it (`scope_id` → `scopeId`) of its schema type — the
+/// pure computed-only ones and every input (a constructor argument,
+/// `optional + computed` included) alike; a write-only argument has none,
+/// since Terraform cannot reference it. A getter is a `TfRef`, which is a
+/// `TfArg`, so it fills an argument of its type as is: `pushEndpoint:
+/// api.uri`. `name`, `kind`, `local_name` and `id` are always
+/// `TfRef<String>` and come first, whatever the schema says.
 ///
-/// - A `name` attribute → `nameRef` (the bare `name` getter would collide
-///   with the constructor parameter; `String` matches every Terraform name).
-/// - A `kind` attribute → `kindRef` (bare `kind` would override
-///   [Resource.kind]'s `ResourceKind` return type and fail analysis).
-/// - A `local_name` attribute → `localNameRef` (bare `localName` would
-///   override [Resource.localName]'s `String` return type and fail analysis;
-///   GKE on-prem / GDC cluster CR names hit this).
-/// - An `id` attribute → bare `id`. Special-cased by name so it is always
-///   a getter (constructor-only `id` params do not create a field, so a
-///   required create-time `id` can coexist with this getter).
-/// - Every **pure computed-only** attribute (`Constraints.computedOnly`)
-///   other than `id`/`name`/`kind`/`local_name` → a camelCase getter of its
-///   rendered Dart type.
-///
-/// - Every **input** (a constructor argument, `optional + computed`
-///   included) → `<camelCase>Ref` of its schema type (`scope_id` →
-///   `scopeIdRef`), so another resource, an output or a constant reads what
-///   the argument is set to without repeating the value. Skipped for a
-///   write-only argument (Terraform cannot reference it) and when the name
-///   is already a getter above (a computed-only `scope_id_ref`).
-///
-/// The Google identity convention (`name→nameRef`, `id→id`) is encoded here.
-/// A multi-provider generalisation (e.g. AWS `arn→arnRef`) is deferred until
-/// a second provider adapter exists.
+/// A name that would clash with a member every wrapper already has — one of
+/// `Resource`'s (`localName`, `kind`, `provider`, `lifecycle`, ...), the
+/// `ref` getter, the `principal` getter when [principal] is set, an `Object`
+/// member, the `@override` annotation — or that is a Dart reserved word
+/// takes an `Attr` suffix:
+/// `kindAttr`, `providerAttr`, `defaultAttr`.
 ///
 /// [excludeNames] is the set of Dart getter names already hand-written in the
 /// override's `extraGetters`. Any derived getter whose Dart name is in this set
@@ -47,13 +35,12 @@ import 'naming.dart';
 String emitDerivedOutputGetters(
   ResourceDef def, {
   Set<String> excludeNames = const {},
+  bool principal = false,
 }) {
   final buf = StringBuffer();
-  final attrNames = {for (final a in def.root.attributes) a.name};
-  final emitted = <String>{};
+  final taken = {..._wrapperMembers, if (principal) 'principal'};
 
   void writeGetter(String snake, String getter, String dartType) {
-    emitted.add(snake);
     if (excludeNames.contains(getter)) return;
     buf
       ..writeln('  /// Reference to `$snake` attribute.')
@@ -64,38 +51,69 @@ String emitDerivedOutputGetters(
       ..writeln();
   }
 
-  if (attrNames.contains('name')) {
-    writeGetter('name', 'nameRef', 'String');
+  final emitted = <String>{};
+  void derive(Attribute attr) {
+    if (!emitted.add(attr.name)) return;
+    final getter = outputGetterName(attr.name, taken: taken);
+    if (!_publicMember.hasMatch(getter) || !taken.add(getter)) return;
+    final dartType = _identity.contains(attr.name)
+        ? 'String'
+        : writeDartType(attr.type);
+    writeGetter(attr.name, getter, dartType);
   }
-  if (attrNames.contains('kind')) {
-    writeGetter('kind', 'kindRef', 'String');
+
+  final attrs = def.root.attributes;
+  for (final name in _identity) {
+    for (final attr in attrs) {
+      if (attr.name == name) derive(attr);
+    }
   }
-  if (attrNames.contains('local_name')) {
-    writeGetter('local_name', 'localNameRef', 'String');
+  for (final attr in attrs) {
+    if (attr.constraints.computedOnly) derive(attr);
   }
-  // `id` is always a getter. A required create-time `id` constructor param
-  // is not a field (`this.id`), so it does not collide with this getter.
-  if (attrNames.contains('id')) {
-    writeGetter('id', 'id', 'String');
-  }
-  final getters = <String>{'nameRef', 'kindRef', 'localNameRef', 'id'};
-  for (final attr in def.root.attributes) {
-    if (emitted.contains(attr.name)) continue;
-    if (!attr.constraints.computedOnly) continue;
-    final getter = snakeToDartIdent(attr.name);
-    getters.add(getter);
-    writeGetter(attr.name, getter, writeDartType(attr.type));
-  }
-  for (final attr in def.root.attributes) {
-    if (emitted.contains(attr.name) || skipAttribute(attr)) continue;
-    if (attr.constraints.writeOnly) continue;
-    final getter = '${snakeToCamel(attr.name)}Ref';
-    if (!_publicMember.hasMatch(getter) || !getters.add(getter)) continue;
-    writeGetter(attr.name, getter, writeDartType(attr.type));
+  for (final attr in attrs) {
+    if (skipAttribute(attr) || attr.constraints.writeOnly) continue;
+    derive(attr);
   }
 
   return buf.toString();
 }
+
+/// Attributes that always get a `TfRef<String>` getter, ahead of the rest.
+const _identity = ['name', 'kind', 'local_name', 'id'];
+
+/// The getter name of the [snake] attribute: its camelCase form, with an
+/// `Attr` suffix when that is a Dart reserved word or in [taken] (a member
+/// the wrapper already has).
+String outputGetterName(String snake, {Set<String> taken = _wrapperMembers}) {
+  final camel = snakeToCamel(snake);
+  return safeDartIdentifier(camel) != camel || taken.contains(camel)
+      ? '${camel}Attr'
+      : camel;
+}
+
+/// The members every generated wrapper has besides its attribute getters —
+/// `Resource`'s, the `ref` getter, `Object`'s — and `override`, which a
+/// getter of that name would shadow as the `@override` annotation.
+const Set<String> _wrapperMembers = {
+  'argMap',
+  'dependsOn',
+  'kind',
+  'lifecycle',
+  'localName',
+  'provider',
+  'ref',
+  'sensitiveFields',
+  'supportsDeletionProtection',
+  'terraformType',
+  'tfAddress',
+  'timeouts',
+  'hashCode',
+  'noSuchMethod',
+  'override',
+  'runtimeType',
+  'toString',
+};
 
 /// The Dart getter names declared in a hand-written `extraGetters` snippet
 /// (e.g. `executionCount` from `TfRef<int> get executionCount =>`). These are
@@ -123,7 +141,7 @@ String emitResourceRefGetter(String className) =>
 String emitPrincipalGetter({required bool data}) =>
     '  /// This identity as an IAM principal, for `member` / `members`.\n'
     '  IamPrincipal get principal =>\n'
-    '      IamPrincipal.read(TfRef.${data ? 'data' : 'attribute'}<String>'
+    '      IamPrincipal.arg(TfRef.${data ? 'data' : 'attribute'}<String>'
     "(this, 'member'));\n";
 
 /// The `ref` getter of a data source that reads a [resourceType] resource

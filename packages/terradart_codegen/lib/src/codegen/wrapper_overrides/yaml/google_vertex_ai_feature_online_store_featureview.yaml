@@ -25,7 +25,7 @@ curatedDoc: |-
   /// ```dart
   /// final fv = GoogleVertexAiFeatureOnlineStoreFeatureview(
   ///   localName: 'fv',
-  ///   featureOnlineStore: .ref(fos.nameRef),
+  ///   featureOnlineStore: fos.nameRef,
   ///   name: .literal('customer_view'),
   ///   region: .literal('us-central1'),
   ///   source: .featureRegistrySource(
@@ -67,10 +67,3 @@ argMapOrder:
   - deletion_policy
   - big_query_source
   - feature_registry_source
-
-extraGetters: |2
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `id` attribute.
-    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

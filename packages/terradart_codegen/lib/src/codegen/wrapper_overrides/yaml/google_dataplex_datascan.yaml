@@ -44,8 +44,3 @@ argMapOrder:
   - data_quality_spec
   - data_discovery_spec
   - data_documentation_spec
-
-extraGetters: |2
-    /// Reference to `data_scan_id` for IAM bindings and cross-stack refs.
-    TfRef<String> get dataScanIdRef =>
-        TfRef.attribute<String>(this, 'data_scan_id');

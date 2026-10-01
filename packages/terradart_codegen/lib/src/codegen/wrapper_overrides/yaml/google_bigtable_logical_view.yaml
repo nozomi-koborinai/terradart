@@ -12,7 +12,7 @@ curatedDoc: |-
   /// - [localName]: Terraform local name.
   /// - [logicalViewId]: view ID within the instance.
   /// - [query]: SELECT query defining the view.
-  /// - [instance]: parent instance — pass `TfArg.ref(instance.nameRef)`.
+  /// - [instance]: parent instance — pass `instance.nameRef`.
   ///
   /// Example:
   /// ```dart
@@ -31,6 +31,3 @@ paramOrder:
   - deletion_policy
   - deletion_protection
   - project
-
-extraGetters: |
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

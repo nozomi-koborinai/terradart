@@ -8,7 +8,6 @@ deriveEnums: true
 extraImports:
   - "import 'package:meta/meta.dart';"
 
-
 curatedDoc: |-
   /// Kafka Connect **connector** on a [GoogleManagedKafkaConnectCluster].
   ///
@@ -21,7 +20,7 @@ curatedDoc: |-
   /// GoogleManagedKafkaConnector(
   ///   localName: 'sink',
   ///   connectorId: TfArg.literal('gcs-sink'),
-  ///   connectCluster: TfArg.ref(connect.connectClusterIdRef),
+  ///   connectCluster: connect.connectClusterIdRef,
   ///   location: TfArg.literal('us-central1'),
   ///   configs: TfArg.literal({
   ///     'connector.class': 'com.example.SinkConnector',
@@ -38,11 +37,3 @@ paramOrder:
   - task_restart_policy
   - deletion_policy
   - project
-
-extraGetters: |2
-    /// Reference to `connector_id` attribute.
-    TfRef<String> get connectorIdRef =>
-        TfRef.attribute<String>(this, 'connector_id');
-
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -17,7 +17,3 @@ paramOrder:
   - attachment_target
   - deletion_policy
   - project
-
-extraGetters: |2
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

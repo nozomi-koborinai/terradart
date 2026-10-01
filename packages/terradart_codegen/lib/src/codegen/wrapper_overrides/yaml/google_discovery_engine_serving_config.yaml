@@ -28,8 +28,3 @@ paramOrder:
   - redirect_control_ids
   - promote_control_ids
   - project
-
-extraGetters: |2
-    /// Reference to `serving_config_id` attribute.
-    TfRef<String> get servingConfigIdRef =>
-        TfRef.attribute<String>(this, 'serving_config_id');

@@ -35,4 +35,3 @@ paramOrder:
   - project_id
 extraGetters: |2
     TfRef<String> get name => TfRef.attribute<String>(this, 'name');
-    TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');

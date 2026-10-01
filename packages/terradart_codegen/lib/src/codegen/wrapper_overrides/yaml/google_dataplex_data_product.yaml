@@ -17,11 +17,5 @@ paramOrder:
   - icon
   - access_groups
 
-extraGetters: |2
-    /// Reference to `data_product_id` attribute.
-    TfRef<String> get dataProductIdRef =>
-        TfRef.attribute<String>(this, 'data_product_id');
-
-
 extraImports:
   - "import 'package:meta/meta.dart';"

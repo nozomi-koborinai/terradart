@@ -22,11 +22,6 @@ paramOrder:
   - common_config
   - knowledge_graph_config
 
-extraGetters: |2
-    /// Reference to `engine_id` attribute.
-    TfRef<String> get engineIdRef =>
-        TfRef.attribute<String>(this, 'engine_id');
-
 prelude: |
   /// `search_engine_config.search_tier`.
   enum DiscoveryEngineSearchEngineTier implements TerraformEnum {
@@ -41,7 +36,6 @@ prelude: |
 dartTypeOverrides:
   industry_vertical: DiscoveryEngineSearchEngineIndustryVertical
   search_engine_config.search_tier: DiscoveryEngineSearchEngineTier
-
 
 extraImports:
   - "import 'package:meta/meta.dart';"

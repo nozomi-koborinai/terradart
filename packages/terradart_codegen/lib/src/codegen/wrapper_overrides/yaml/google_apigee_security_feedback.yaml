@@ -30,11 +30,3 @@ paramOrder:
 dartTypeOverrides:
   feedback_type: ApigeeSecurityFeedbackType
   reason: ApigeeSecurityFeedbackReason
-
-extraGetters: |2
-    /// Reference to `id` attribute.
-    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `feedback_id` attribute.
-    TfRef<String> get feedbackIdRef =>
-        TfRef.attribute<String>(this, 'feedback_id');

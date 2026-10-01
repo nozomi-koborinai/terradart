@@ -18,10 +18,3 @@ curatedDoc: |-
 paramOrder:
   - name
   - identities
-
-extraGetters: |2
-    /// Reference to `id` attribute.
-    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `etag` attribute (for concurrent updates).
-    TfRef<String> get etagRef => TfRef.attribute<String>(this, 'etag');

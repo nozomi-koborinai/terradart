@@ -8,7 +8,7 @@ deriveOutputGetters: true
 curatedDoc: |-
   /// ULL mirroring collector appliance bound to a [GoogleNetworkSecurityUllMirroringEngine].
   ///
-  /// Set [engine] to `TfArg.ref(engine.nameRef)` and [forwardingRule] to a regional
+  /// Set [engine] to `engine.nameRef` and [forwardingRule] to a regional
   /// internal forwarding rule self-link receiving mirrored traffic.
 
 paramOrder:

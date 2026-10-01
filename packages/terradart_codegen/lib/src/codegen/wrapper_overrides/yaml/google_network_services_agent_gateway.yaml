@@ -133,10 +133,3 @@ customSlots:
   deployment:
     paramDeclaration: 'required NetworkServicesAgentGatewayDeployment deployment'
     argMapEntry: 'deployment.blockKey: TfArg.literal([deployment.encode()]),'
-
-extraGetters: |2
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `id` attribute.
-    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

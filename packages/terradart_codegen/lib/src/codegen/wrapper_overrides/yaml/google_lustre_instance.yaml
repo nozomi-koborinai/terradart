@@ -37,8 +37,3 @@ paramOrder:
   - labels
   - deletion_policy
   - project
-
-extraGetters: |2
-    /// Reference to `instance_id` / name segment.
-    TfRef<String> get instanceIdRef =>
-        TfRef.attribute<String>(this, 'instance_id');

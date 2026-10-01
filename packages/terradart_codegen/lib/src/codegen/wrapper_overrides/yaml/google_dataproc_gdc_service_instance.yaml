@@ -34,8 +34,3 @@ paramOrder:
   - labels
   - deletion_policy
   - project
-
-extraGetters: |2
-    /// Reference to `service_instance_id` attribute.
-    TfRef<String> get serviceInstanceIdRef =>
-        TfRef.attribute<String>(this, 'service_instance_id');

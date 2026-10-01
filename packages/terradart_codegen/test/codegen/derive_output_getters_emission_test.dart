@@ -32,7 +32,7 @@ ResourceDef _schemaDef() => const ResourceDef(
 
 void main() {
   group('derived output-getter emission', () {
-    test('emits nameRef and id when deriveOutputGetters is true', () {
+    test('emits name and id when deriveOutputGetters is true', () {
       final emitter = WrapperEmitter(
         overrides: {
           'google_pubsub_schema': const WrapperOverride(
@@ -48,7 +48,7 @@ void main() {
       expect(
         src,
         contains(
-          "TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');",
+          "TfRef<String> get name => TfRef.attribute<String>(this, 'name');",
         ),
       );
       expect(
@@ -57,8 +57,9 @@ void main() {
           "TfRef<String> get id => TfRef.attribute<String>(this, 'id');",
         ),
       );
-      // `project` is optional+computed: a constructor input, not a getter.
-      expect(src, isNot(contains('get project =>')));
+      // `project` is optional+computed: a constructor input that also reads
+      // back as a getter.
+      expect(src, contains('get project =>'));
     });
 
     test('does NOT emit derived getters when deriveOutputGetters is false', () {
@@ -71,7 +72,7 @@ void main() {
         _schemaDef(),
         providerSource: 'hashicorp/google',
       );
-      expect(src, isNot(contains('get nameRef')));
+      expect(src, isNot(contains('get name =>')));
       expect(src, isNot(contains('get id =>')));
     });
 
@@ -90,10 +91,10 @@ void main() {
         _schemaDef(),
         providerSource: 'hashicorp/google',
       );
-      expect(src, contains('get nameRef'));
+      expect(src, contains('get name =>'));
       expect(src, contains('get iamMember'));
       expect(
-        src.indexOf('get nameRef'),
+        src.indexOf('get name =>'),
         lessThan(src.indexOf('get iamMember')),
         reason: 'derived getters must precede hand-written extraGetters',
       );

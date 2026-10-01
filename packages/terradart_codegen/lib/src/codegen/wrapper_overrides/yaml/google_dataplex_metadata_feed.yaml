@@ -17,8 +17,3 @@ paramOrder:
   - labels
   - deletion_policy
   - project
-
-extraGetters: |2
-    /// Reference to `metadata_feed_id` for cross-stack refs.
-    TfRef<String> get metadataFeedIdRef =>
-        TfRef.attribute<String>(this, 'metadata_feed_id');

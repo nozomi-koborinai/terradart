@@ -9,7 +9,6 @@ deriveEnums: true
 extraImports:
   - "import 'package:meta/meta.dart';"
 
-
 curatedDoc: |-
   /// Memorystore for Valkey **instance** — sharded Valkey with PSC
   /// networking (`memorystore.googleapis.com`).
@@ -74,14 +73,3 @@ paramOrder:
 deprecatedParams:
   discovery_endpoints: This field is deprecated. As a result it will not be populated if the connections are created using `desired_auto_created_endpoints` parameter or `google_memorystore_instance_desired_user_created_endpoints` resource. Instead of this parameter, for discovery, use `endpoints.connections.pscConnection` and `endpoints.connections.pscAutoConnection` with `connectionType` CONNECTION_TYPE_DISCOVERY.
   psc_auto_connections: '`psc_auto_connections` is deprecated. Use `endpoints.connections.pscAutoConnections` instead.'
-
-extraGetters: |2
-    /// Reference to `instance_id` attribute.
-    TfRef<String> get instanceIdRef =>
-        TfRef.attribute<String>(this, 'instance_id');
-
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `id` attribute.
-    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

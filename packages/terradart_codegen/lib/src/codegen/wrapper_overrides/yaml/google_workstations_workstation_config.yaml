@@ -21,7 +21,7 @@ curatedDoc: |-
   /// GoogleWorkstationsWorkstationConfig(
   ///   localName: 'cfg',
   ///   workstationConfigId: TfArg.literal('dev'),
-  ///   workstationClusterId: TfArg.ref(cluster.workstationClusterIdRef),
+  ///   workstationClusterId: cluster.workstationClusterIdRef,
   ///   location: TfArg.literal('us-central1'),
   ///   host: WorkstationsWorkstationConfigHost(
   ///     gceInstance: .new(
@@ -54,11 +54,3 @@ paramOrder:
   - replica_zones
   - deletion_policy
   - project
-
-extraGetters: |2
-    /// Reference to `workstation_config_id` attribute.
-    TfRef<String> get workstationConfigIdRef =>
-        TfRef.attribute<String>(this, 'workstation_config_id');
-
-    /// Reference to `id` attribute.
-    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

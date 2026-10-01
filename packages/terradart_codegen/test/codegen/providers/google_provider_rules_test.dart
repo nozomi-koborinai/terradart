@@ -92,36 +92,33 @@ void main() {
       },
     );
 
-    test(
-      'universalGetters returns id + nameRef when both attrs are present',
-      () {
-        const def = ResourceDef(
-          terraformType: 'fake_both_resource',
-          root: BlockDef(
-            attributes: [
-              Attribute(
-                name: 'id',
-                type: StringType(),
-                constraints: Constraints(computed: true),
-              ),
-              Attribute(
-                name: 'name',
-                type: StringType(),
-                constraints: Constraints(optional: true),
-              ),
-            ],
-          ),
-        );
+    test('universalGetters returns id + name when both attrs are present', () {
+      const def = ResourceDef(
+        terraformType: 'fake_both_resource',
+        root: BlockDef(
+          attributes: [
+            Attribute(
+              name: 'id',
+              type: StringType(),
+              constraints: Constraints(computed: true),
+            ),
+            Attribute(
+              name: 'name',
+              type: StringType(),
+              constraints: Constraints(optional: true),
+            ),
+          ],
+        ),
+      );
 
-        final lines = rules.universalGetters(def);
-        expect(lines, <String>[
-          "TfRef<String> get id => TfRef.attribute<String>(this, 'id');",
-          "TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');",
-        ]);
-      },
-    );
+      final lines = rules.universalGetters(def);
+      expect(lines, <String>[
+        "TfRef<String> get id => TfRef.attribute<String>(this, 'id');",
+        "TfRef<String> get name => TfRef.attribute<String>(this, 'name');",
+      ]);
+    });
 
-    test('universalGetters returns only nameRef when id attr is absent', () {
+    test('universalGetters returns only name when id attr is absent', () {
       const def = ResourceDef(
         terraformType: 'fake_name_only_resource',
         root: BlockDef(
@@ -136,7 +133,7 @@ void main() {
       );
       final lines = rules.universalGetters(def);
       expect(lines, <String>[
-        "TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');",
+        "TfRef<String> get name => TfRef.attribute<String>(this, 'name');",
       ]);
     });
 

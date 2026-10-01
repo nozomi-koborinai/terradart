@@ -52,8 +52,3 @@ paramOrder:
   - project
   - timeout
   - connector_toolset
-
-extraGetters: |2
-    /// Reference to `toolset_id` (set this on create so agents can bind it).
-    TfRef<String> get toolsetIdRef =>
-        TfRef.attribute<String>(this, 'toolset_id');

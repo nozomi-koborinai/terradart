@@ -8,7 +8,7 @@ deriveOutputGetters: true
 curatedDoc: |-
   /// Migration Center import job that ingests uploaded data into a source.
   ///
-  /// Set [assetSource] to `TfArg.ref(source.nameRef)`.
+  /// Set [assetSource] to `source.nameRef`.
 
 paramOrder:
   - location

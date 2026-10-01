@@ -15,7 +15,7 @@ curatedDoc: |-
   ///
   /// Required blocks (schema):
   /// - `endpoint.gkeCluster.resourceLink` — typically
-  ///   `TfArg.ref(cluster.id)` from [GoogleContainerCluster].
+  ///   `cluster.id` from [GoogleContainerCluster].
   /// - `authority.issuer` — issuer URL for the cluster's hub authority;
   ///   commonly `https://container.googleapis.com/v1/${cluster.id}`.
   ///
@@ -47,4 +47,3 @@ paramOrder:
 
 extraGetters: |2
     TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

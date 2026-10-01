@@ -38,6 +38,3 @@ curatedDoc: |-
   ///   cryptoKey: ringKey.ref,
   /// );
   /// ```
-
-extraGetters: |2
-    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

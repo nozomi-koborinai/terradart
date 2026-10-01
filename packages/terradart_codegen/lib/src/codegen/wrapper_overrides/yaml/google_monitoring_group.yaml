@@ -23,6 +23,3 @@ curatedDoc: |-
   ///   filter: TfArg.literal('resource.type="uptime_url"'),
   /// );
   /// ```
-
-extraGetters: |2
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

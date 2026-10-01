@@ -23,6 +23,3 @@ curatedDoc: |-
   ///   description: TfArg.literal('Skip high-volume DNS query logs.'),
   /// );
   /// ```
-
-extraGetters: |2
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -67,14 +67,14 @@ extraImports:
 extraGetters: |2
     /// Reference to `name` attribute (full resource path
     /// `projects/{project}/locations/{location}/backends/{backend_id}`).
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+    TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
     /// Reference to `id` attribute. Same as `nameRef` for this resource.
     TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
     /// Reference to `backend_id` -- the segment downstream Traffic / Domain
     /// resources expect as their `backend` argument.
-    TfRef<String> get backendIdRef =>
+    TfRef<String> get backendId =>
         TfRef.attribute<String>(this, 'backend_id');
 
     /// Reference to `uri` -- the primary HTTPS URL of the backend (resolves

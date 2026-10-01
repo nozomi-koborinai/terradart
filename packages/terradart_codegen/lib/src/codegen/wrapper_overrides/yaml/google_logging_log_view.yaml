@@ -26,8 +26,3 @@ curatedDoc: |-
   ///   filter: TfArg.literal('logName:"cloudaudit.googleapis.com"'),
   /// );
   /// ```
-
-extraGetters: |2
-    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-    TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');

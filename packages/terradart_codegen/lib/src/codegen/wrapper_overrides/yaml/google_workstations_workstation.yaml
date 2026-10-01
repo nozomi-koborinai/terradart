@@ -18,8 +18,8 @@ curatedDoc: |-
   /// GoogleWorkstationsWorkstation(
   ///   localName: 'alice',
   ///   workstationId: TfArg.literal('alice'),
-  ///   workstationConfigId: TfArg.ref(cfg.workstationConfigIdRef),
-  ///   workstationClusterId: TfArg.ref(cluster.workstationClusterIdRef),
+  ///   workstationConfigId: cfg.workstationConfigIdRef,
+  ///   workstationClusterId: cluster.workstationClusterIdRef,
   ///   location: TfArg.literal('us-central1'),
   /// );
   /// ```
@@ -36,11 +36,3 @@ paramOrder:
   - source_workstation
   - deletion_policy
   - project
-
-extraGetters: |2
-    /// Reference to `workstation_id` attribute.
-    TfRef<String> get workstationIdRef =>
-        TfRef.attribute<String>(this, 'workstation_id');
-
-    /// Reference to `id` attribute.
-    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

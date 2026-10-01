@@ -35,13 +35,6 @@ paramOrder:
   - deletion_policy
   - project
 
-extraGetters: |2
-    /// Reference to `id` attribute.
-    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
 sealedNames:
   "autoscaling_config, node_count, processing_units": capacity
   "autoscaling_config.autoscaling_limits.max_nodes, autoscaling_config.autoscaling_limits.max_processing_units": max_capacity

@@ -19,7 +19,7 @@ void main() {
       expect(
         dart,
         contains(
-          "TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');",
+          "TfRef<String> get name => TfRef.attribute<String>(this, 'name');",
         ),
       );
       expect(

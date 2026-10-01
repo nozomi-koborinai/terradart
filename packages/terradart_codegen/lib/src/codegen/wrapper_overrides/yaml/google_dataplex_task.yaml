@@ -52,8 +52,3 @@ argMapOrder:
   - project
   - spark
   - notebook
-
-extraGetters: |2
-    /// Reference to `task_id` for IAM bindings and cross-stack refs.
-    TfRef<String> get taskIdRef =>
-        TfRef.attribute<String>(this, 'task_id');

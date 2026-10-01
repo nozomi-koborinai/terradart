@@ -39,12 +39,5 @@ paramOrder:
   - deletion_policy
   - project
 
-extraGetters: |2
-    /// Reference to `id` attribute.
-    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
 sealedNames:
   "specific_reservation.instance_properties, specific_reservation.source_instance_template": instance_spec

@@ -53,8 +53,3 @@ paramOrder:
   - messages
   - deletion_policy
   - project
-
-extraGetters: |2
-    /// Reference to `example_id`.
-    TfRef<String> get exampleIdRef =>
-        TfRef.attribute<String>(this, 'example_id');

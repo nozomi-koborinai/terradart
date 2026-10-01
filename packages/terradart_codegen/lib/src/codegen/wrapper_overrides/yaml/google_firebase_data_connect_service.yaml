@@ -48,12 +48,6 @@ paramOrder:
 
 deriveNestedTypes: true
 deriveOutputGetters: true
-extraGetters: |2
-    /// Reference to `service_id` -- the stable user-chosen segment
-    /// downstream Data Connect resources (schema, connector) reference.
-    TfRef<String> get serviceIdRef =>
-        TfRef.attribute<String>(this, 'service_id');
-
 dartTypeOverrides:
   deletion_policy: DataConnectDeletionPolicy
 

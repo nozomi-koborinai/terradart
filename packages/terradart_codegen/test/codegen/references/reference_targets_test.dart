@@ -1262,7 +1262,7 @@ hashicorp/google:
         account,
         contains(
           'IamPrincipal get principal =>\n'
-          "      IamPrincipal.read(TfRef.attribute<String>(this, 'member'));",
+          "      IamPrincipal.arg(TfRef.attribute<String>(this, 'member'));",
         ),
       );
       final member = emit('google_y_topic_iam_member');

@@ -68,9 +68,6 @@ extraGetters: |2
     TfRef<List<Object?>> get latestCreatedExecution =>
         TfRef.attribute<List<Object?>>(this, 'latest_created_execution');
 
-    /// Reference to `location` attribute — region the job is deployed in.
-    TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
-
 dartTypeOverrides:
   launch_stage: CloudRunV2JobLaunchStage
   template.template.execution_environment: CloudRunV2JobExecutionEnvironment
@@ -158,4 +155,3 @@ prelude: |
   // Volumes (sealed source — secret / cloud_sql / empty_dir / gcs / nfs are
   // mutually exclusive per the provider's commented exactly_one_of).
   // ===========================================================================
-

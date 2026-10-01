@@ -40,7 +40,6 @@ curatedDoc: |-
   /// );
   /// ```
 
-
 paramOrder:
   - location
   - collection_id
@@ -52,11 +51,3 @@ paramOrder:
   - labels
   - deletion_policy
   - project
-
-extraGetters: |2
-    /// Reference to `collection_id` attribute.
-    TfRef<String> get collectionIdRef =>
-        TfRef.attribute<String>(this, 'collection_id');
-
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

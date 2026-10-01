@@ -134,10 +134,6 @@ extraImports:
 
 deriveOutputGetters: true
 
-extraGetters: |
-  /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
-
 prelude: |
   // ===========================================================================
   // Enums
@@ -193,7 +189,6 @@ prelude: |
   // ===========================================================================
   // test[] block (CI-friendly assertions)
   // ===========================================================================
-
 
 sealedNames:
   "default_route_action, default_url_redirect": default_action

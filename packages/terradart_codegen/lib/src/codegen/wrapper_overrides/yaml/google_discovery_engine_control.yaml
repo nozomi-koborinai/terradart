@@ -57,8 +57,3 @@ argMapOrder:
   - synonyms_action
   - promote_action
   - conditions
-
-extraGetters: |2
-    /// Reference to `control_id` attribute.
-    TfRef<String> get controlIdRef =>
-        TfRef.attribute<String>(this, 'control_id');
