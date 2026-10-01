@@ -14,7 +14,9 @@
 # (Both flags are needed: `--run-skipped` overrides the `skip: true`
 # below, and `-t e2e` narrows the run to just the tagged tests.)
 #
-# The Wave 5 `wrap_check` CI job will opt in via this same flag pair.
+# CI opts in per command, with this flag pair plus `--name 'wrap-init'` or
+# `--name 'wrap-promote'` (the `wrap_init_check` / `wrap_promote_check`
+# jobs); an e2e test whose name matches neither filter never runs in CI.
 tags:
   # `integration` is the pre-existing tag used by `test/cli/integration_test.dart`
   # (subprocess invocations of the `terradart` CLI binary). It runs in the
