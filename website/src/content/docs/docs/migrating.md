@@ -1,173 +1,116 @@
 ---
 title: Migrating
-description: Upgrade notes for terradart_core and terradart_google — breaking changes in v0.28.0, v0.12.12 and v0.12.10.
+description: Upgrade notes for every TerraDart package — the 0.30.x → 0.31.0 breaking changes, and where to find older ones.
 ---
 
-Read this page before bumping **`terradart_google`** across minor lines or when a release note calls out breaking API changes.
+Read this page before every **minor** bump. Breaking changes land only on minor releases, and every one has a section in [MIGRATING.md on GitHub](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md), which stays the full, canonical history. This page summarizes the latest one.
 
-The canonical, full migration history lives in the repo: [MIGRATING.md on GitHub](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md).
+## 0.30.x → 0.31.0
 
-## 0.27.0 → 0.28.0 (`TfArg.expression`, provider aliases)
+0.31.0 reshapes the Dart API of every package for type safety, but not your Terraform: no provider pin moves, and synthesized JSON changes only where a typed reference now emits a different attribute. `dart analyze` lists every break, and code completion on the argument offers the replacement.
 
-**`0.28.0`** ships the `terradart-migrate` epic and two `terradart_core` changes that are additive for code that only constructs arguments and registers the shipped providers, but break an exhaustive match and a hand-written provider:
+### Upgrade steps
 
-- `TfArg` gains a fourth variant, **`TfArgExpression`** (`TfArg.expression(...)` — a raw Terraform expression, emitted verbatim). An exhaustive `switch` over `TfArg` needs one more case.
-- `StackProvider` gains **`String? get alias`**. Every provider class in the workspace implements it; a hand-written `StackProvider` needs the getter (`null` for the default configuration).
+1. **Install Dart 3.10 or later** and set `sdk: ^3.10.0` in your stack's `pubspec.yaml`. Dot shorthands need it.
+2. **Raise every TerraDart constraint to `^0.31.0` by hand** — below 1.0 a caret never crosses a minor — then run `dart pub upgrade`. The packages release in lockstep:
 
-Bump lockstep:
+   ```yaml
+   environment:
+     sdk: ^3.10.0
 
-```yaml
-dependencies:
-  terradart_core: ^0.28.0
-  terradart_google: ^0.28.0
-```
+   dependencies:
+     terradart_core: ^0.31.0
+     terradart_google: ^0.31.0
+     # and ^0.31.0 for terradart_google_beta, terradart_aws,
+     # terradart_cloudflare, terradart_appwrite or terradart_time
+   ```
+
+3. **Fix the compile errors**, group by group (each section of MIGRATING.md has a before / after table):
+   [sealed arguments](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md#sealed-arguments-and-dot-shorthands),
+   [typed references](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md#typed-references),
+   [outputs and constants](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md#outputs-and-constants),
+   [typed nested helpers](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md#typed-nested-helpers),
+   [type names](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md#type-names).
+4. **Synthesize, then read `terraform plan` before you apply.** Typed references emit the attribute the argument expects — Google `network` / `subnetwork` emit `id` where many stacks passed `self_link`. Pin the old one with `.ref.pinned('self_link')` to keep the old value exactly.
+5. **`terradart-migrate` users:** `dart pub global activate terradart_migrate` installs 0.31.0, which writes the new API.
+
+### Sealed arguments and dot shorthands
+
+An argument that takes exactly one (or at most one) of several inputs is one sealed argument, named by concept like a protobuf `oneof`. Each member is a factory constructor, picked with a Dart 3.10 dot shorthand. Leaving it out, or setting two, no longer compiles:
 
 ```dart
-// Before
-switch (arg) {
-  case TfArgLiteral(:final value): ...
-  case TfArgRef(:final ref): ...
-  case TfArgVariable(:final name): ...
-}
-
-// After
-switch (arg) {
-  case TfArgLiteral(:final value): ...
-  case TfArgRef(:final ref): ...
-  case TfArgVariable(:final name): ...
-  case TfArgExpression(:final template): ...
-}
+final role = add(AwsIamRole(
+  localName: 'fn',
+  name: .namePrefix(.literal('app-')), // was name / namePrefix
+  assumeRolePolicy: .literal('{}'),
+));
+add(AwsLambdaFunction(
+  localName: 'fn',
+  functionName: .literal('hello'),
+  role: role.ref,
+  code: .filename(.literal('bootstrap.zip')), // was filenameOrImageUriOrS3Bucket
+));
 ```
 
-Everything else in `0.28.0` is additive — `provider:` and `timeouts:` on every curated factory, `Stack.addMoved`, `Stack.addModule`, `TfArg.workspace()`, partial `GcsBackend` / `S3Backend` configuration. Full notes: [MIGRATING.md — 0.27.0 → 0.28.0](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md#0270--0280).
+The same shorthand works for every `TfArg` and enum: `.literal('orders')`, `.ref(sa.iamMember)`, `.literal(.postgres15)`.
 
----
+### Typed references
 
-## 0.12.11 → 0.12.12 (sealed exactly-one slots)
+An argument that names another resource takes `RefTo<R>`, so passing the wrong kind of resource does not compile. Take it from the target's `ref` getter; the argument picks the attribute it emits:
 
-**`0.12.12`** enforces GCP `exactly_one_of` groups at compile time on seven existing factories. Optional per-block params (`allow` / `deny`, `httpsHealthCheck`, `query`, `filename`, …) become a **single required sealed virtual slot** (`rulePolicy`, `protocol`, `jobConfiguration`, `buildSpec`, …).
-
-Bump lockstep:
-
-```yaml
-dependencies:
-  terradart_core: ^0.12.12
-  terradart_google: ^0.12.12
-```
-
-| Factory | Before | After |
-| --- | --- | --- |
-| `GoogleComputeFirewall` | `allow:` / `deny:` | `rulePolicy:` |
-| `GoogleComputeHealthCheck` | `httpsHealthCheck:` / … | `protocol:` |
-| `GoogleComputeRegionHealthCheck` | per-protocol optional blocks | `protocol:` |
-| `GoogleMonitoringUptimeCheckConfig` | `monitoredResource:` / … | `target:` |
-| `GoogleBigqueryJob` | `query:` / `load:` / … | `jobConfiguration:` |
-| `GoogleBigqueryConnection` | `cloudSql:` / `aws:` / … | `backend:` |
-| `GoogleCloudbuildTrigger` | `filename:` / `build:` / … | `buildSpec:` |
-
-Full tables and before/after examples: [MIGRATING.md — 0.12.11 → 0.12.12](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md#01211--01212).
-
----
-
-## 0.12.9 → 0.12.10 (typed enums)
-
-Read this section before bumping **`terradart_google` from `0.12.9` to `0.12.10`** (or any `^0.12.10` caret that resolves to `0.12.10+`). Patch releases within `0.12.10` are additive only; the breaking surface below landed in **`0.12.10`**.
-
-## Lockstep bumps
-
-Bump all workspace packages together:
-
-```yaml
-dependencies:
-  terradart_core: ^0.12.10
-  terradart_google: ^0.12.10
-```
-
-Check [pub.dev](https://pub.dev/packages/terradart_core) for the latest `0.12.x` patch.
-
-## What changed in 0.12.10
-
-`terradart_google` now uses **typed enums** and **nested helper classes** wherever the Terraform provider schema exposes a finite set of string values or a structured nested block. Fields that used to accept `TfArg<String>` or `TfArg<Map<String, dynamic>>?` may now require enum constants or helper `encode()` types.
-
-`dart analyze` surfaces most mismatches immediately — string literals that compiled on `0.12.9` no longer type-check.
-
-### Top-level enum fields
-
-| Factory | Field | Enum |
-| --- | --- | --- |
-| `GoogleBigqueryDatapolicyDataPolicy` | `dataPolicyType` | `BigqueryDatapolicyDataPolicyType` |
-| `GoogleBigqueryReservationAssignment` | `jobType` | `BigqueryReservationAssignmentJobType` |
-| `GoogleComputeServiceAttachment` | `connectionPreference` | `ServiceAttachmentConnectionPreference` |
-| `GoogleComputeRegionSecurityPolicy` | `type` | `RegionSecurityPolicyType` |
-| `GoogleComputeRegionSslPolicy` | `profile` / `minTlsVersion` | `RegionSslPolicyProfile` / `RegionSslPolicyMinTlsVersion` |
-| `GoogleComputeTargetTcpProxy` | `proxyHeader` | `TargetTcpProxyProxyHeader` |
-| `GoogleComputeTargetSslProxy` | `proxyHeader` | `TargetSslProxyProxyHeader` |
-| `GoogleComputeRegionTargetTcpProxy` | `proxyHeader` | `RegionTargetTcpProxyProxyHeader` |
-| `GoogleCloudTasksQueue` | `desiredState` | `CloudTasksQueueDesiredState` |
-| `GoogleLoggingSavedQuery` | `visibility` | `LoggingSavedQueryVisibility` |
-| `GoogleMonitoringSlo` | `calendarPeriod` | `MonitoringSloCalendarPeriod` |
-| `GoogleStorageHmacKey` | `state` | `StorageHmacKeyState` |
-| `GoogleKmsCryptoKeyVersion` | `state` | `KmsCryptoKeyVersionState` |
-| `GoogleSecretManagerSecretVersion` | `deletionPolicy` | `SecretManagerSecretVersionDeletionPolicy` |
-| `GoogleComputeInstanceGroupManager` | `listManagedInstancesResults` | `InstanceGroupManagerListManagedInstancesResults` |
-| `GoogleComputeRegionInstanceGroupManager` | `listManagedInstancesResults` | `RegionInstanceGroupManagerListManagedInstancesResults` |
-| `GoogleSqlUser` | `deletionPolicy` | `SqlUserDeletionPolicy` |
-
-Optional Analytics Hub `discoveryType` fields use `BigqueryAnalyticsHubDataExchangeDiscoveryType` / `BigqueryAnalyticsHubListingDiscoveryType`.
-
-Factories introduced in `0.12.10` (for example `GoogleDnsRecordSet.type`, `GoogleCloudRunV2WorkerPool.launchStage`) ship as enums from day one — there is no prior `String` API to migrate.
-
-### Nested helper blocks
-
-| Factory | Slot | Helper / enum |
-| --- | --- | --- |
-| `GoogleComputeRouter` | `bgp` | `ComputeRouterBgp` / `ComputeRouterBgpAdvertiseMode` |
-| `GoogleComputeSecurityPolicyRule` | `match` / `rateLimitOptions` | `ComputeSecurityPolicyRule*` types |
-| `GoogleComputeRegionSecurityPolicyRule` | `match` / `rateLimitOptions` | `ComputeRegionSecurityPolicyRule*` types |
-| `GoogleEventarcMessageBus` / `GoogleEventarcGoogleApiSource` / `GoogleEventarcPipeline` | `loggingConfig` | `EventarcMessageBusLoggingConfig` / `EventarcMessageBusLogSeverity` |
-| `GoogleComputeInstance` / `GoogleComputeInstanceTemplate` | `networkPerformanceConfig` | `ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier` |
-| `GoogleComputeBackendService` | `localityLbPolicies` | `LocalityLbPolicy` |
-| `GoogleComputeRegionSecurityPolicy` | `rules` / `advancedOptionsConfig` / … | `ComputeRegionSecurityPolicy*` helpers |
-| `GoogleComputeUrlMap` / `GoogleComputeRegionUrlMap` | route actions / cache policy | `*UrlMapRouteAction` / `*UrlMapCacheMode` |
-| `GoogleDnsPolicy` | `alternativeNameServerConfig` | `DnsPolicyAlternativeNameServerConfig` |
-| `GoogleDnsRecordSet` | `routingPolicy` | `DnsRecordSetRoutingPolicy*` |
-| `GoogleDnsResponsePolicyRule` | `localData` | `DnsResponsePolicyRuleLocalData` |
-| `GooglePubsubTopic` | `schemaSettings` / `ingestionDataSourceSettings` | `PubsubTopic*` helpers |
-| `GoogleGkeHubFleet` | `defaultClusterConfig` | `GkeHubFleetDefaultClusterConfig` |
-| `GoogleGkeBackupBackupPlan` / `GoogleGkeBackupRestorePlan` | schedule / restore config | `GkeBackup*` helpers |
-| `GoogleCloudRunV2WorkerPool` | template / scaling | `CloudRunV2WorkerPool*` helpers |
-| `GoogleBigqueryDatapolicyDataPolicy` | `dataMaskingPolicy` | `BigqueryDatapolicyDataPolicyDataMaskingPolicy` |
-| `GoogleArtifactRegistryRepository` | remote APT/YUM bases | `ArtifactRegistryAptRepositoryBase` / `ArtifactRegistryYumRepositoryBase` |
-
-### Before and after
+| Before (0.30) | After |
+| --- | --- |
+| `network: TfArg.ref(vpc.selfLink)` | `network: vpc.ref` |
+| `role: TfArg.ref(role.arn)` | `role: role.ref` |
+| `zoneId: TfArg.ref(zone.id)` | `zoneId: zone.ref` |
+| `network: TfArg.literal('default')` | `network: .literal('default')` |
 
 ```dart
-// 0.12.9
-dataPolicyType: TfArg.literal('DATA_MASKING_POLICY'),
-connectionPreference: TfArg.literal('ACCEPT_AUTOMATIC'),
-
-// 0.12.10
-dataPolicyType: TfArg.literal(BigqueryDatapolicyDataPolicyType.dataMaskingPolicy),
-connectionPreference:
-    TfArg.literal(ServiceAttachmentConnectionPreference.acceptAutomatic),
+final vpc = add(GoogleComputeNetwork(localName: 'vpc', name: .literal('app')));
+add(GoogleComputeSubnetwork(
+  localName: 'app',
+  name: .literal('app'),
+  ipCidrRange: .literal('10.0.0.0/24'),
+  network: vpc.ref, // emits id; vpc.ref.pinned('self_link') keeps the 0.30 value
+));
 ```
 
-For nested blocks, replace raw maps with helper constructors and call `.encode()` only when you hand-roll arg maps — curated factories accept the helper types directly on constructor parameters.
+Every input also has a `<name>Ref` getter (`topic.nameRef`) for wiring one resource's argument into another, or into a constant.
 
-### `GoogleComputeRegionSecurityPolicy` rules
+### Outputs and constants
 
-`GoogleComputeRegionSecurityPolicy` now expects embedded `rules` on the policy resource. Standalone `GoogleComputeRegionSecurityPolicyRule` remains for additional rules added after the policy exists.
+`addExport` is gone. `addOutput` declares a Terraform output, `addConstant` a Dart constant, and the generated file is configured once with `appExports:`:
 
-## Additive factories (no migration)
+```dart
+// lib/orders_stack.dart
+import 'package:terradart_core/terradart_core.dart';
+import 'package:terradart_google/provider.dart';
+import 'package:terradart_google/pubsub.dart';
 
-Waves 23–24 shipped **ten new curated factories** in `0.12.10`. They are additive — only adopt them when you need the capability. See [Coverage](/docs/coverage/) for the current factory list and runnable examples.
+final class OrdersStack extends Stack {
+  OrdersStack({required String projectId})
+    : super(
+        providers: [GoogleProvider(project: projectId)],
+        appExports: AppExports('lib/generated/orders_stack.app.dart'),
+      ) {
+    final topic = add(GooglePubsubTopic(localName: 'orders', name: .literal('orders-prod')));
+    addConstant('ordersTopicName', .ref(topic.nameRef));
+    addOutput('orders_topic_id', .ref(topic.id));
+  }
+}
+```
+
+The same file now also holds `OrdersStackOutputs`, a typed reader of the outputs, and `outputEnvironment()` hands them to a service as its environment. See [Architecture — outputs and constants](/docs/architecture/#outputs-and-constants-the-iac--application-seam).
+
+### Typed nested helpers and type names
+
+Google blocks take helper classes derived from the provider schema (no Google `TfArg<Map>` block is left), and derived types are named `<ResourceStem><Block>` without repeated words — `CloudRunV2ServiceContainers`, not `CloudRunV2ServiceServiceContainer`. Arguments and synth output do not change; `dart analyze` lists the old names, and completion offers the new ones.
 
 ## Older releases
 
-Earlier breaking changes (WIF provider sealed `trustSource`, `terradart codegen` removal, Stack class modifiers, and more) are documented in [MIGRATING.md](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md).
+Every earlier breaking change — `TfArg.expression` and provider aliases in 0.28.0, sealed exactly-one slots in 0.12.12, typed enums in 0.12.10, and more — is documented in [MIGRATING.md](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md).
 
 ## Next steps
 
-- [Coverage](/docs/coverage/) — the current factory list and example stacks
 - [Status & versioning](/docs/status/) — alpha expectations and change policy
-- [Examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) — updated quickstarts exercising the new APIs
+- [Examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) — every quickstart is on the current API

@@ -47,7 +47,15 @@ Three concrete patterns where the Dart type system catches what HCL cannot:
 Terraform schemas often have fields that accept one of a small, fixed set of strings — `INGRESS_TRAFFIC_ALL` vs `INGRESS_TRAFFIC_INTERNAL_ONLY`, for example. TerraDart emits these as Dart enums:
 
 ```dart
-ingress: .literal(.all)  // typo → compile error
+add(GoogleCloudRunV2Service(
+  localName: 'api',
+  name: .literal('api'),
+  location: .literal('us-central1'),
+  ingress: .literal(.all), // .al → compile error
+  template: CloudRunV2ServiceTemplate(containers: [
+    CloudRunV2ServiceContainers(image: .literal('us-docker.pkg.dev/cloudrun/container/hello')),
+  ]),
+));
 ```
 
 ### Sealed classes for exactly-one-of nested blocks
@@ -55,10 +63,16 @@ ingress: .literal(.all)  // typo → compile error
 Some Terraform blocks accept exactly one variant from a set — for instance, a BigQuery dataset's `access` block has 8 mutually exclusive variants (`user_by_email`, `group_by_email`, `special_group`, `domain`, `iam_member`, `view`, `dataset`, `routine`). TerraDart emits these as a sealed class hierarchy:
 
 ```dart
-access: [
-  .userByEmail(userByEmail: .ref(reader.email), role: .literal('OWNER')),
-  .iamMember(iamMember: .ref(runSa.iamMember), role: .literal('READER')),
-]
+final reader = add(GoogleServiceAccount(localName: 'reader', accountId: .literal('reader')));
+final runSa = add(GoogleServiceAccount(localName: 'run', accountId: .literal('run')));
+add(GoogleBigqueryDataset(
+  localName: 'events',
+  datasetId: .literal('events'),
+  access: [
+    .userByEmail(userByEmail: .ref(reader.email), role: .literal('OWNER')),
+    .iamMember(iamMember: .ref(runSa.iamMember), role: .literal('READER')),
+  ],
+));
 ```
 
 The compiler enforces that exactly one variant is constructed per entry. Each variant is a factory constructor on the sealed type (`BigqueryDatasetAccess.userByEmail`), so a Dart 3.10 dot shorthand picks it and IDE completion lists the choices. A sealed argument is named for what its members are alternatives of, like a protobuf `oneof`: `AwsLambdaFunction(code: .filename(...))`, `CloudflareDnsRecord(content: .content(...))`.
@@ -68,7 +82,9 @@ The compiler enforces that exactly one variant is constructed per entry. Each va
 `Stack`, `Resource`, and `Data` are declared `abstract base class` since v0.11.0. Your own subclasses must use a class modifier:
 
 ```dart
-final class AppInfraStack extends Stack { /* ... */ }
+final class AppInfraStack extends Stack {
+  AppInfraStack() : super(providers: [GoogleProvider(project: 'my-project')]);
+}
 ```
 
 This prevents two foot-guns: forgetting to extend (using `implements` would skip the base-class state that synth needs), and accidentally subclassing an internal class that was not meant to be extended further. Both used to be runtime hazards in pre-v0.11 versions; they are now compile errors.
