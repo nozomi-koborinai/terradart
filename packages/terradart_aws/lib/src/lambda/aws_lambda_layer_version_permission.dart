@@ -55,29 +55,28 @@ final class AwsLambdaLayerVersionPermission extends Resource {
   TfRef<String> get revisionId => TfRef.attribute<String>(this, 'revision_id');
 
   /// Reference to `action` attribute.
-  TfRef<String> get actionRef => TfRef.attribute<String>(this, 'action');
+  TfRef<String> get action => TfRef.attribute<String>(this, 'action');
 
   /// Reference to `layer_name` attribute.
-  TfRef<String> get layerNameRef => TfRef.attribute<String>(this, 'layer_name');
+  TfRef<String> get layerName => TfRef.attribute<String>(this, 'layer_name');
 
   /// Reference to `organization_id` attribute.
-  TfRef<String> get organizationIdRef =>
+  TfRef<String> get organizationId =>
       TfRef.attribute<String>(this, 'organization_id');
 
   /// Reference to `principal` attribute.
-  TfRef<String> get principalRef => TfRef.attribute<String>(this, 'principal');
+  TfRef<String> get principal => TfRef.attribute<String>(this, 'principal');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `skip_destroy` attribute.
-  TfRef<bool> get skipDestroyRef => TfRef.attribute<bool>(this, 'skip_destroy');
+  TfRef<bool> get skipDestroy => TfRef.attribute<bool>(this, 'skip_destroy');
 
   /// Reference to `statement_id` attribute.
-  TfRef<String> get statementIdRef =>
+  TfRef<String> get statementId =>
       TfRef.attribute<String>(this, 'statement_id');
 
   /// Reference to `version_number` attribute.
-  TfRef<num> get versionNumberRef =>
-      TfRef.attribute<num>(this, 'version_number');
+  TfRef<num> get versionNumber => TfRef.attribute<num>(this, 'version_number');
 }

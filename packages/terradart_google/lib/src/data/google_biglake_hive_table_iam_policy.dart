@@ -41,7 +41,7 @@ final class DataGoogleBiglakeHiveTableIamPolicy extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -53,11 +53,11 @@ final class DataGoogleBiglakeHiveTableIamPolicy extends Data {
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
 
   /// Reference to `catalog` attribute.
-  TfRef<String> get catalogRef => TfRef.attribute<String>(this, 'catalog');
+  TfRef<String> get catalog => TfRef.attribute<String>(this, 'catalog');
 
   /// Reference to `database` attribute.
-  TfRef<String> get databaseRef => TfRef.attribute<String>(this, 'database');
+  TfRef<String> get database => TfRef.attribute<String>(this, 'database');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

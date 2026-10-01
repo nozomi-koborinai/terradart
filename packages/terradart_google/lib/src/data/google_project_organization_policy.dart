@@ -62,9 +62,8 @@ final class DataGoogleProjectOrganizationPolicy extends Data {
   TfRef<num> get version => TfRef.attribute<num>(this, 'version');
 
   /// Reference to `constraint` attribute.
-  TfRef<String> get constraintRef =>
-      TfRef.attribute<String>(this, 'constraint');
+  TfRef<String> get constraint => TfRef.attribute<String>(this, 'constraint');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

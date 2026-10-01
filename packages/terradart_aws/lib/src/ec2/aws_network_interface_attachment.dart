@@ -50,20 +50,19 @@ final class AwsNetworkInterfaceAttachment extends Resource {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `device_index` attribute.
-  TfRef<num> get deviceIndexRef => TfRef.attribute<num>(this, 'device_index');
+  TfRef<num> get deviceIndex => TfRef.attribute<num>(this, 'device_index');
 
   /// Reference to `instance_id` attribute.
-  TfRef<String> get instanceIdRef =>
-      TfRef.attribute<String>(this, 'instance_id');
+  TfRef<String> get instanceId => TfRef.attribute<String>(this, 'instance_id');
 
   /// Reference to `network_card_index` attribute.
-  TfRef<num> get networkCardIndexRef =>
+  TfRef<num> get networkCardIndex =>
       TfRef.attribute<num>(this, 'network_card_index');
 
   /// Reference to `network_interface_id` attribute.
-  TfRef<String> get networkInterfaceIdRef =>
+  TfRef<String> get networkInterfaceId =>
       TfRef.attribute<String>(this, 'network_interface_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

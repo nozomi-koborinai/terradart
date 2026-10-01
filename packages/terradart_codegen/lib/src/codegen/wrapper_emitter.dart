@@ -520,8 +520,8 @@ class WrapperEmitter {
     }
 
     final handGetters = extraGetterNames(override?.extraGetters);
-    // Phase A3: derive output-attribute getters (nameRef, id, pure
-    // computed-only) from the IR when the override opts in via
+    // Phase A3: derive output-attribute getters (name, id, every readable
+    // attribute) from the IR when the override opts in via
     // `deriveOutputGetters: true`. Hand-written `extraGetters` remain for
     // genuine exceptions (e.g. semantic renames like `member` -> `iamMember`,
     // or a kept narrower type like `TfRef<int> get executionCount`) and are
@@ -529,10 +529,14 @@ class WrapperEmitter {
     // in `extraGetters` is excluded from derivation so the hand-written one
     // wins (no `duplicate_definition`).
     final derived = (override?.deriveOutputGetters ?? false)
-        ? emitDerivedOutputGetters(def, excludeNames: handGetters)
+        ? emitDerivedOutputGetters(
+            def,
+            excludeNames: handGetters,
+            principal: principals.contains(def.terraformType),
+          )
         : '';
-    // A resource with a `ref` output attribute keeps that getter; it has no
-    // `RefTo` getter and so cannot be a reference target.
+    // A hand-written `ref` getter wins over the `RefTo` one; the resource
+    // cannot be a reference target then.
     if (!handGetters.contains('ref') &&
         !RegExp(r'\bget ref\b').hasMatch(derived)) {
       buf

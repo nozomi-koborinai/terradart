@@ -43,9 +43,8 @@ final class CloudflareOriginTlsComplianceModes extends Resource {
   TfRef<String> get modifiedOn => TfRef.attribute<String>(this, 'modified_on');
 
   /// Reference to `value` attribute.
-  TfRef<List<String>> get valueRef =>
-      TfRef.attribute<List<String>>(this, 'value');
+  TfRef<List<String>> get value => TfRef.attribute<List<String>>(this, 'value');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

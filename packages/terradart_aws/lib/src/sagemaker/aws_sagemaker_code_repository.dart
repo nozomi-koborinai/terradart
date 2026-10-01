@@ -68,13 +68,13 @@ final class AwsSagemakerCodeRepository extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `code_repository_name` attribute.
-  TfRef<String> get codeRepositoryNameRef =>
+  TfRef<String> get codeRepositoryName =>
       TfRef.attribute<String>(this, 'code_repository_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

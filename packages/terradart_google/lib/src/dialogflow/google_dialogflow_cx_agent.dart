@@ -361,6 +361,9 @@ final class GoogleDialogflowCxAgent extends Resource {
   /// `RefTo<GoogleDialogflowCxAgent>`.
   RefTo<GoogleDialogflowCxAgent> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -374,67 +377,60 @@ final class GoogleDialogflowCxAgent extends Resource {
   TfRef<String> get startFlow => TfRef.attribute<String>(this, 'start_flow');
 
   /// Reference to `avatar_uri` attribute.
-  TfRef<String> get avatarUriRef => TfRef.attribute<String>(this, 'avatar_uri');
+  TfRef<String> get avatarUri => TfRef.attribute<String>(this, 'avatar_uri');
 
   /// Reference to `default_language_code` attribute.
-  TfRef<String> get defaultLanguageCodeRef =>
+  TfRef<String> get defaultLanguageCode =>
       TfRef.attribute<String>(this, 'default_language_code');
 
   /// Reference to `delete_chat_engine_on_destroy` attribute.
-  TfRef<bool> get deleteChatEngineOnDestroyRef =>
+  TfRef<bool> get deleteChatEngineOnDestroy =>
       TfRef.attribute<bool>(this, 'delete_chat_engine_on_destroy');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `enable_multi_language_training` attribute.
-  TfRef<bool> get enableMultiLanguageTrainingRef =>
+  TfRef<bool> get enableMultiLanguageTraining =>
       TfRef.attribute<bool>(this, 'enable_multi_language_training');
 
   /// Reference to `enable_spell_correction` attribute.
-  TfRef<bool> get enableSpellCorrectionRef =>
+  TfRef<bool> get enableSpellCorrection =>
       TfRef.attribute<bool>(this, 'enable_spell_correction');
 
   /// Reference to `enable_stackdriver_logging` attribute.
-  TfRef<bool> get enableStackdriverLoggingRef =>
+  TfRef<bool> get enableStackdriverLogging =>
       TfRef.attribute<bool>(this, 'enable_stackdriver_logging');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `locked` attribute.
-  TfRef<bool> get lockedRef => TfRef.attribute<bool>(this, 'locked');
+  TfRef<bool> get locked => TfRef.attribute<bool>(this, 'locked');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `security_settings` attribute.
-  TfRef<String> get securitySettingsRef =>
+  TfRef<String> get securitySettings =>
       TfRef.attribute<String>(this, 'security_settings');
 
   /// Reference to `start_playbook` attribute.
-  TfRef<String> get startPlaybookRef =>
+  TfRef<String> get startPlaybook =>
       TfRef.attribute<String>(this, 'start_playbook');
 
   /// Reference to `supported_language_codes` attribute.
-  TfRef<List<String>> get supportedLanguageCodesRef =>
+  TfRef<List<String>> get supportedLanguageCodes =>
       TfRef.attribute<List<String>>(this, 'supported_language_codes');
 
   /// Reference to `time_zone` attribute.
-  TfRef<String> get timeZoneRef => TfRef.attribute<String>(this, 'time_zone');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get timeZone => TfRef.attribute<String>(this, 'time_zone');
 }

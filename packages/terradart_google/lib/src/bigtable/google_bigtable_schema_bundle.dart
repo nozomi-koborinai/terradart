@@ -30,8 +30,8 @@ class BigtableSchemaBundleProtoSchema {
 /// Required identity:
 /// - [localName]: Terraform local name.
 /// - [schemaBundleId]: bundle ID within the instance.
-/// - [instance]: parent instance — pass `TfArg.ref(instance.nameRef)`.
-/// - [table]: parent table — pass `TfArg.ref(table.nameRef)`.
+/// - [instance]: parent instance — pass `instance.name`.
+/// - [table]: parent table — pass `table.name`.
 /// - [protoSchema]: [BigtableSchemaBundleProtoSchema] with base64 descriptors.
 ///
 /// Example:
@@ -82,6 +82,9 @@ final class GoogleBigtableSchemaBundle extends Resource {
   /// `RefTo<GoogleBigtableSchemaBundle>`.
   RefTo<GoogleBigtableSchemaBundle> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -89,25 +92,23 @@ final class GoogleBigtableSchemaBundle extends Resource {
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `ignore_warnings` attribute.
-  TfRef<bool> get ignoreWarningsRef =>
+  TfRef<bool> get ignoreWarnings =>
       TfRef.attribute<bool>(this, 'ignore_warnings');
 
   /// Reference to `instance` attribute.
-  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+  TfRef<String> get instance => TfRef.attribute<String>(this, 'instance');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `schema_bundle_id` attribute.
-  TfRef<String> get schemaBundleIdRef =>
+  TfRef<String> get schemaBundleId =>
       TfRef.attribute<String>(this, 'schema_bundle_id');
 
   /// Reference to `table` attribute.
-  TfRef<String> get tableRef => TfRef.attribute<String>(this, 'table');
-
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get table => TfRef.attribute<String>(this, 'table');
 }

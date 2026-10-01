@@ -97,7 +97,7 @@ final class GoogleServiceAccount extends Resource {
 
   /// This identity as an IAM principal, for `member` / `members`.
   IamPrincipal get principal =>
-      IamPrincipal.read(TfRef.attribute<String>(this, 'member'));
+      IamPrincipal.arg(TfRef.attribute<String>(this, 'member'));
 
   /// `id` — full resource path
   /// `projects/{project}/serviceAccounts/{email}`.

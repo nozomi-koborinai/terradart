@@ -63,49 +63,49 @@ final class GoogleSqlSourceRepresentationInstance extends Resource {
   RefTo<GoogleSqlSourceRepresentationInstance> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `ca_certificate` attribute.
-  TfRef<String> get caCertificateRef =>
+  TfRef<String> get caCertificate =>
       TfRef.attribute<String>(this, 'ca_certificate');
 
   /// Reference to `client_certificate` attribute.
-  TfRef<String> get clientCertificateRef =>
+  TfRef<String> get clientCertificate =>
       TfRef.attribute<String>(this, 'client_certificate');
 
   /// Reference to `client_key` attribute.
-  TfRef<String> get clientKeyRef => TfRef.attribute<String>(this, 'client_key');
+  TfRef<String> get clientKey => TfRef.attribute<String>(this, 'client_key');
 
   /// Reference to `database_version` attribute.
-  TfRef<String> get databaseVersionRef =>
+  TfRef<String> get databaseVersion =>
       TfRef.attribute<String>(this, 'database_version');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `dump_file_path` attribute.
-  TfRef<String> get dumpFilePathRef =>
+  TfRef<String> get dumpFilePath =>
       TfRef.attribute<String>(this, 'dump_file_path');
 
   /// Reference to `host` attribute.
-  TfRef<String> get hostRef => TfRef.attribute<String>(this, 'host');
+  TfRef<String> get host => TfRef.attribute<String>(this, 'host');
 
   /// Reference to `password` attribute.
-  TfRef<String> get passwordRef => TfRef.attribute<String>(this, 'password');
+  TfRef<String> get password => TfRef.attribute<String>(this, 'password');
 
   /// Reference to `port` attribute.
-  TfRef<num> get portRef => TfRef.attribute<num>(this, 'port');
+  TfRef<num> get port => TfRef.attribute<num>(this, 'port');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `username` attribute.
-  TfRef<String> get usernameRef => TfRef.attribute<String>(this, 'username');
+  TfRef<String> get username => TfRef.attribute<String>(this, 'username');
 }

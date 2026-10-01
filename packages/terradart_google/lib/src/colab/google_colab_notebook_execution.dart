@@ -563,43 +563,40 @@ final class GoogleColabNotebookExecution extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `execution_timeout` attribute.
-  TfRef<String> get executionTimeoutRef =>
+  TfRef<String> get executionTimeout =>
       TfRef.attribute<String>(this, 'execution_timeout');
 
   /// Reference to `execution_user` attribute.
-  TfRef<String> get executionUserRef =>
+  TfRef<String> get executionUser =>
       TfRef.attribute<String>(this, 'execution_user');
 
   /// Reference to `gcs_output_uri` attribute.
-  TfRef<String> get gcsOutputUriRef =>
+  TfRef<String> get gcsOutputUri =>
       TfRef.attribute<String>(this, 'gcs_output_uri');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `notebook_execution_job_id` attribute.
+  TfRef<String> get notebookExecutionJobId =>
+      TfRef.attribute<String>(this, 'notebook_execution_job_id');
 
   /// Reference to `notebook_runtime_template_resource_name` attribute.
-  TfRef<String> get notebookRuntimeTemplateResourceNameRef =>
+  TfRef<String> get notebookRuntimeTemplateResourceName =>
       TfRef.attribute<String>(this, 'notebook_runtime_template_resource_name');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `service_account` attribute.
-  TfRef<String> get serviceAccountRef =>
+  TfRef<String> get serviceAccount =>
       TfRef.attribute<String>(this, 'service_account');
-
-  /// Reference to `notebook_execution_job_id`.
-  TfRef<String> get notebookExecutionJobIdRef =>
-      TfRef.attribute<String>(this, 'notebook_execution_job_id');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 }

@@ -28,5 +28,5 @@ final class AwsNotificationsOrganizationsAccess extends Resource {
   RefTo<AwsNotificationsOrganizationsAccess> get ref => RefTo.of(this);
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 }

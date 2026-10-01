@@ -121,7 +121,7 @@ final class AwsWafv2IpSet extends Resource {
   RefTo<AwsWafv2IpSet> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -133,28 +133,26 @@ final class AwsWafv2IpSet extends Resource {
   TfRef<String> get lockToken => TfRef.attribute<String>(this, 'lock_token');
 
   /// Reference to `addresses` attribute.
-  TfRef<List<String>> get addressesRef =>
+  TfRef<List<String>> get addresses =>
       TfRef.attribute<List<String>>(this, 'addresses');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `ip_address_version` attribute.
-  TfRef<String> get ipAddressVersionRef =>
+  TfRef<String> get ipAddressVersion =>
       TfRef.attribute<String>(this, 'ip_address_version');
 
   /// Reference to `name_prefix` attribute.
-  TfRef<String> get namePrefixRef =>
-      TfRef.attribute<String>(this, 'name_prefix');
+  TfRef<String> get namePrefix => TfRef.attribute<String>(this, 'name_prefix');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `scope` attribute.
-  TfRef<String> get scopeRef => TfRef.attribute<String>(this, 'scope');
+  TfRef<String> get scope => TfRef.attribute<String>(this, 'scope');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

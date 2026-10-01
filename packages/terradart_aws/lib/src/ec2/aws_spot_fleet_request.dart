@@ -967,89 +967,88 @@ final class AwsSpotFleetRequest extends Resource {
       TfRef.attribute<String>(this, 'spot_request_state');
 
   /// Reference to `allocation_strategy` attribute.
-  TfRef<String> get allocationStrategyRef =>
+  TfRef<String> get allocationStrategy =>
       TfRef.attribute<String>(this, 'allocation_strategy');
 
   /// Reference to `context` attribute.
-  TfRef<String> get contextRef => TfRef.attribute<String>(this, 'context');
+  TfRef<String> get context => TfRef.attribute<String>(this, 'context');
 
   /// Reference to `excess_capacity_termination_policy` attribute.
-  TfRef<String> get excessCapacityTerminationPolicyRef =>
+  TfRef<String> get excessCapacityTerminationPolicy =>
       TfRef.attribute<String>(this, 'excess_capacity_termination_policy');
 
   /// Reference to `fleet_type` attribute.
-  TfRef<String> get fleetTypeRef => TfRef.attribute<String>(this, 'fleet_type');
+  TfRef<String> get fleetType => TfRef.attribute<String>(this, 'fleet_type');
 
   /// Reference to `iam_fleet_role` attribute.
-  TfRef<String> get iamFleetRoleRef =>
+  TfRef<String> get iamFleetRole =>
       TfRef.attribute<String>(this, 'iam_fleet_role');
 
   /// Reference to `instance_interruption_behaviour` attribute.
-  TfRef<String> get instanceInterruptionBehaviourRef =>
+  TfRef<String> get instanceInterruptionBehaviour =>
       TfRef.attribute<String>(this, 'instance_interruption_behaviour');
 
   /// Reference to `instance_pools_to_use_count` attribute.
-  TfRef<num> get instancePoolsToUseCountRef =>
+  TfRef<num> get instancePoolsToUseCount =>
       TfRef.attribute<num>(this, 'instance_pools_to_use_count');
 
   /// Reference to `load_balancers` attribute.
-  TfRef<List<String>> get loadBalancersRef =>
+  TfRef<List<String>> get loadBalancers =>
       TfRef.attribute<List<String>>(this, 'load_balancers');
 
   /// Reference to `on_demand_allocation_strategy` attribute.
-  TfRef<String> get onDemandAllocationStrategyRef =>
+  TfRef<String> get onDemandAllocationStrategy =>
       TfRef.attribute<String>(this, 'on_demand_allocation_strategy');
 
   /// Reference to `on_demand_max_total_price` attribute.
-  TfRef<String> get onDemandMaxTotalPriceRef =>
+  TfRef<String> get onDemandMaxTotalPrice =>
       TfRef.attribute<String>(this, 'on_demand_max_total_price');
 
   /// Reference to `on_demand_target_capacity` attribute.
-  TfRef<num> get onDemandTargetCapacityRef =>
+  TfRef<num> get onDemandTargetCapacity =>
       TfRef.attribute<num>(this, 'on_demand_target_capacity');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `replace_unhealthy_instances` attribute.
-  TfRef<bool> get replaceUnhealthyInstancesRef =>
+  TfRef<bool> get replaceUnhealthyInstances =>
       TfRef.attribute<bool>(this, 'replace_unhealthy_instances');
 
   /// Reference to `spot_price` attribute.
-  TfRef<String> get spotPriceRef => TfRef.attribute<String>(this, 'spot_price');
+  TfRef<String> get spotPrice => TfRef.attribute<String>(this, 'spot_price');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `target_capacity` attribute.
-  TfRef<num> get targetCapacityRef =>
+  TfRef<num> get targetCapacity =>
       TfRef.attribute<num>(this, 'target_capacity');
 
   /// Reference to `target_capacity_unit_type` attribute.
-  TfRef<String> get targetCapacityUnitTypeRef =>
+  TfRef<String> get targetCapacityUnitType =>
       TfRef.attribute<String>(this, 'target_capacity_unit_type');
 
   /// Reference to `target_group_arns` attribute.
-  TfRef<List<String>> get targetGroupArnsRef =>
+  TfRef<List<String>> get targetGroupArns =>
       TfRef.attribute<List<String>>(this, 'target_group_arns');
 
   /// Reference to `terminate_instances_on_delete` attribute.
-  TfRef<String> get terminateInstancesOnDeleteRef =>
+  TfRef<String> get terminateInstancesOnDelete =>
       TfRef.attribute<String>(this, 'terminate_instances_on_delete');
 
   /// Reference to `terminate_instances_with_expiration` attribute.
-  TfRef<bool> get terminateInstancesWithExpirationRef =>
+  TfRef<bool> get terminateInstancesWithExpiration =>
       TfRef.attribute<bool>(this, 'terminate_instances_with_expiration');
 
   /// Reference to `valid_from` attribute.
-  TfRef<String> get validFromRef => TfRef.attribute<String>(this, 'valid_from');
+  TfRef<String> get validFrom => TfRef.attribute<String>(this, 'valid_from');
 
   /// Reference to `valid_until` attribute.
-  TfRef<String> get validUntilRef =>
-      TfRef.attribute<String>(this, 'valid_until');
+  TfRef<String> get validUntil => TfRef.attribute<String>(this, 'valid_until');
 
   /// Reference to `wait_for_fulfillment` attribute.
-  TfRef<bool> get waitForFulfillmentRef =>
+  TfRef<bool> get waitForFulfillment =>
       TfRef.attribute<bool>(this, 'wait_for_fulfillment');
 }

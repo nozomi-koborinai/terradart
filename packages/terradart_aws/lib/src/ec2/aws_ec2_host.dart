@@ -134,36 +134,35 @@ final class AwsEc2Host extends Resource {
   TfRef<String> get ownerId => TfRef.attribute<String>(this, 'owner_id');
 
   /// Reference to `asset_id` attribute.
-  TfRef<String> get assetIdRef => TfRef.attribute<String>(this, 'asset_id');
+  TfRef<String> get assetId => TfRef.attribute<String>(this, 'asset_id');
 
   /// Reference to `auto_placement` attribute.
-  TfRef<String> get autoPlacementRef =>
+  TfRef<String> get autoPlacement =>
       TfRef.attribute<String>(this, 'auto_placement');
 
   /// Reference to `availability_zone` attribute.
-  TfRef<String> get availabilityZoneRef =>
+  TfRef<String> get availabilityZone =>
       TfRef.attribute<String>(this, 'availability_zone');
 
   /// Reference to `host_recovery` attribute.
-  TfRef<String> get hostRecoveryRef =>
+  TfRef<String> get hostRecovery =>
       TfRef.attribute<String>(this, 'host_recovery');
 
   /// Reference to `instance_family` attribute.
-  TfRef<String> get instanceFamilyRef =>
+  TfRef<String> get instanceFamily =>
       TfRef.attribute<String>(this, 'instance_family');
 
   /// Reference to `instance_type` attribute.
-  TfRef<String> get instanceTypeRef =>
+  TfRef<String> get instanceType =>
       TfRef.attribute<String>(this, 'instance_type');
 
   /// Reference to `outpost_arn` attribute.
-  TfRef<String> get outpostArnRef =>
-      TfRef.attribute<String>(this, 'outpost_arn');
+  TfRef<String> get outpostArn => TfRef.attribute<String>(this, 'outpost_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

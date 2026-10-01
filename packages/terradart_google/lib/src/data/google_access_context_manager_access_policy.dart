@@ -35,7 +35,7 @@ final class DataGoogleAccessContextManagerAccessPolicy extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -44,9 +44,9 @@ final class DataGoogleAccessContextManagerAccessPolicy extends Data {
   TfRef<String> get title => TfRef.attribute<String>(this, 'title');
 
   /// Reference to `parent` attribute.
-  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+  TfRef<String> get parent => TfRef.attribute<String>(this, 'parent');
 
   /// Reference to `scopes` attribute.
-  TfRef<List<String>> get scopesRef =>
+  TfRef<List<String>> get scopes =>
       TfRef.attribute<List<String>>(this, 'scopes');
 }

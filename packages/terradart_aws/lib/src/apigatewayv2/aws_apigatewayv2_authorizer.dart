@@ -91,42 +91,42 @@ final class AwsApigatewayv2Authorizer extends Resource {
   RefTo<AwsApigatewayv2Authorizer> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `api_id` attribute.
-  TfRef<String> get apiIdRef => TfRef.attribute<String>(this, 'api_id');
+  TfRef<String> get apiId => TfRef.attribute<String>(this, 'api_id');
 
   /// Reference to `authorizer_credentials_arn` attribute.
-  TfRef<String> get authorizerCredentialsArnRef =>
+  TfRef<String> get authorizerCredentialsArn =>
       TfRef.attribute<String>(this, 'authorizer_credentials_arn');
 
   /// Reference to `authorizer_payload_format_version` attribute.
-  TfRef<String> get authorizerPayloadFormatVersionRef =>
+  TfRef<String> get authorizerPayloadFormatVersion =>
       TfRef.attribute<String>(this, 'authorizer_payload_format_version');
 
   /// Reference to `authorizer_result_ttl_in_seconds` attribute.
-  TfRef<num> get authorizerResultTtlInSecondsRef =>
+  TfRef<num> get authorizerResultTtlInSeconds =>
       TfRef.attribute<num>(this, 'authorizer_result_ttl_in_seconds');
 
   /// Reference to `authorizer_type` attribute.
-  TfRef<String> get authorizerTypeRef =>
+  TfRef<String> get authorizerType =>
       TfRef.attribute<String>(this, 'authorizer_type');
 
   /// Reference to `authorizer_uri` attribute.
-  TfRef<String> get authorizerUriRef =>
+  TfRef<String> get authorizerUri =>
       TfRef.attribute<String>(this, 'authorizer_uri');
 
   /// Reference to `enable_simple_responses` attribute.
-  TfRef<bool> get enableSimpleResponsesRef =>
+  TfRef<bool> get enableSimpleResponses =>
       TfRef.attribute<bool>(this, 'enable_simple_responses');
 
   /// Reference to `identity_sources` attribute.
-  TfRef<List<String>> get identitySourcesRef =>
+  TfRef<List<String>> get identitySources =>
       TfRef.attribute<List<String>>(this, 'identity_sources');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

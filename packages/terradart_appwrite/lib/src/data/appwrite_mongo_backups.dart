@@ -39,13 +39,12 @@ final class DataAppwriteMongoBackups extends Data {
   TfRef<num> get total => TfRef.attribute<num>(this, 'total');
 
   /// Reference to `database_id` attribute.
-  TfRef<String> get databaseIdRef =>
-      TfRef.attribute<String>(this, 'database_id');
+  TfRef<String> get databaseId => TfRef.attribute<String>(this, 'database_id');
 
   /// Reference to `project_id` attribute.
-  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
+  TfRef<String> get projectId => TfRef.attribute<String>(this, 'project_id');
 
   /// Reference to `queries` attribute.
-  TfRef<List<String>> get queriesRef =>
+  TfRef<List<String>> get queries =>
       TfRef.attribute<List<String>>(this, 'queries');
 }

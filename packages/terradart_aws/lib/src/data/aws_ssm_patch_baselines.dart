@@ -52,9 +52,9 @@ final class DataAwsSsmPatchBaselines extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'baseline_identities');
 
   /// Reference to `default_baselines` attribute.
-  TfRef<bool> get defaultBaselinesRef =>
+  TfRef<bool> get defaultBaselines =>
       TfRef.attribute<bool>(this, 'default_baselines');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

@@ -69,7 +69,7 @@ add(GoogleBigqueryDataset(
   localName: 'events',
   datasetId: .literal('events'),
   access: [
-    .userByEmail(userByEmail: .ref(reader.email), role: .literal('OWNER')),
+    .userByEmail(userByEmail: reader.email, role: .literal('OWNER')),
     .iamMember(iamMember: runSa.principal, role: .literal('READER')),
   ],
 ));

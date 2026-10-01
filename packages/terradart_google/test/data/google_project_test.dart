@@ -13,7 +13,7 @@ void main() {
       equals(r'${data.google_project.current.number}'),
     );
     expect(
-      dp.projectIdRef.interpolation,
+      dp.projectId.interpolation,
       equals(r'${data.google_project.current.project_id}'),
     );
   });

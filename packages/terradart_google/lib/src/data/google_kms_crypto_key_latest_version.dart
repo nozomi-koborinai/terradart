@@ -29,7 +29,7 @@ final class DataGoogleKmsCryptoKeyLatestVersion extends Data {
   Set<String> get sensitiveFields => _googleKmsCryptoKeyLatestVersionSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -52,8 +52,8 @@ final class DataGoogleKmsCryptoKeyLatestVersion extends Data {
   TfRef<num> get version => TfRef.attribute<num>(this, 'version');
 
   /// Reference to `crypto_key` attribute.
-  TfRef<String> get cryptoKeyRef => TfRef.attribute<String>(this, 'crypto_key');
+  TfRef<String> get cryptoKey => TfRef.attribute<String>(this, 'crypto_key');
 
   /// Reference to `filter` attribute.
-  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+  TfRef<String> get filter => TfRef.attribute<String>(this, 'filter');
 }

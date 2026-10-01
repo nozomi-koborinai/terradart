@@ -1,4 +1,4 @@
-import 'package:meta/meta.dart';
+part of 'tf_arg.dart';
 
 /// Anything that exposes a Terraform address, e.g. `google_pubsub_topic.orders`.
 ///
@@ -10,18 +10,17 @@ abstract interface class TfAddressed {
   String get tfAddress;
 }
 
-/// A Terraform-side reference (attribute, data source, var, local, ...).
+/// A Terraform-side reference: an attribute of a resource ([AttributeRef])
+/// or a data source ([DataRef]), or a whole resource ([ResourceRef]).
 ///
-/// `T` is the static Dart type the reference flows into. v0.0.x ships
-/// `AttributeRef` (resource attribute), `DataRef` (data source attribute),
-/// and `ResourceRef` (whole-resource reference for `replace_triggered_by`
-/// / `for_each` positions). Variable / local refs are reserved for future.
-///
-/// Plan 5.X (v0.5.0-dev): the `placeholder` getter is gone. `ResourceRef`
-/// no longer carries a schemantic-instance type — it pins to `Object?`
-/// since the slot never escapes.
-sealed class TfRef<T> {
+/// `T` is the Dart type of the referenced value. A reference is a
+/// [TfArg], so an attribute getter fills an argument of that type directly:
+/// `pushEndpoint: api.uri`. Synth writes it as its [interpolation].
+sealed class TfRef<T> extends TfArg<T> {
   const TfRef();
+
+  @override
+  Object? toTfJson() => interpolation;
 
   /// Reference to an attribute of a `Resource`.
   static TfRef<T> attribute<T>(TfAddressed owner, String attr) =>

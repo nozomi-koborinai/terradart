@@ -113,49 +113,47 @@ final class GoogleDialogflowAgent extends Resource {
       TfRef.attribute<String>(this, 'avatar_uri_backend');
 
   /// Reference to `api_version` attribute.
-  TfRef<String> get apiVersionRef =>
-      TfRef.attribute<String>(this, 'api_version');
+  TfRef<String> get apiVersion => TfRef.attribute<String>(this, 'api_version');
 
   /// Reference to `avatar_uri` attribute.
-  TfRef<String> get avatarUriRef => TfRef.attribute<String>(this, 'avatar_uri');
+  TfRef<String> get avatarUri => TfRef.attribute<String>(this, 'avatar_uri');
 
   /// Reference to `classification_threshold` attribute.
-  TfRef<num> get classificationThresholdRef =>
+  TfRef<num> get classificationThreshold =>
       TfRef.attribute<num>(this, 'classification_threshold');
 
   /// Reference to `default_language_code` attribute.
-  TfRef<String> get defaultLanguageCodeRef =>
+  TfRef<String> get defaultLanguageCode =>
       TfRef.attribute<String>(this, 'default_language_code');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `enable_logging` attribute.
-  TfRef<bool> get enableLoggingRef =>
+  TfRef<bool> get enableLogging =>
       TfRef.attribute<bool>(this, 'enable_logging');
 
   /// Reference to `match_mode` attribute.
-  TfRef<String> get matchModeRef => TfRef.attribute<String>(this, 'match_mode');
+  TfRef<String> get matchMode => TfRef.attribute<String>(this, 'match_mode');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `supported_language_codes` attribute.
-  TfRef<List<String>> get supportedLanguageCodesRef =>
+  TfRef<List<String>> get supportedLanguageCodes =>
       TfRef.attribute<List<String>>(this, 'supported_language_codes');
 
   /// Reference to `tier` attribute.
-  TfRef<String> get tierRef => TfRef.attribute<String>(this, 'tier');
+  TfRef<String> get tier => TfRef.attribute<String>(this, 'tier');
 
   /// Reference to `time_zone` attribute.
-  TfRef<String> get timeZoneRef => TfRef.attribute<String>(this, 'time_zone');
+  TfRef<String> get timeZone => TfRef.attribute<String>(this, 'time_zone');
 }

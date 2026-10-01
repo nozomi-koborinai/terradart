@@ -64,7 +64,7 @@ final class AwsPlacementGroup extends Resource {
   RefTo<AwsPlacementGroup> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -77,20 +77,20 @@ final class AwsPlacementGroup extends Resource {
       TfRef.attribute<String>(this, 'placement_group_id');
 
   /// Reference to `partition_count` attribute.
-  TfRef<num> get partitionCountRef =>
+  TfRef<num> get partitionCount =>
       TfRef.attribute<num>(this, 'partition_count');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `spread_level` attribute.
-  TfRef<String> get spreadLevelRef =>
+  TfRef<String> get spreadLevel =>
       TfRef.attribute<String>(this, 'spread_level');
 
   /// Reference to `strategy` attribute.
-  TfRef<String> get strategyRef => TfRef.attribute<String>(this, 'strategy');
+  TfRef<String> get strategy => TfRef.attribute<String>(this, 'strategy');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

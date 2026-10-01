@@ -44,10 +44,6 @@ prelude: |
   // Factory
   // ===========================================================================
 
-
-extraGetters: |2
-    TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
-
 # Hand-written tightens `location` from `optional + computed` to required
 # for ergonomic clarity; matches the IAM-member precedent (e.g.
 # google_cloud_tasks_queue_iam_member also tightens `location`).

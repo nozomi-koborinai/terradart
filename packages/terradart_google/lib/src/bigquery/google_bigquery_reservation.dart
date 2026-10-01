@@ -137,7 +137,7 @@ final class GoogleBigqueryReservation extends Resource {
   RefTo<GoogleBigqueryReservation> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -163,37 +163,37 @@ final class GoogleBigqueryReservation extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `concurrency` attribute.
-  TfRef<num> get concurrencyRef => TfRef.attribute<num>(this, 'concurrency');
+  TfRef<num> get concurrency => TfRef.attribute<num>(this, 'concurrency');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `edition` attribute.
-  TfRef<String> get editionRef => TfRef.attribute<String>(this, 'edition');
+  TfRef<String> get edition => TfRef.attribute<String>(this, 'edition');
 
   /// Reference to `ignore_idle_slots` attribute.
-  TfRef<bool> get ignoreIdleSlotsRef =>
+  TfRef<bool> get ignoreIdleSlots =>
       TfRef.attribute<bool>(this, 'ignore_idle_slots');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `reservation_group` attribute.
-  TfRef<String> get reservationGroupRef =>
+  TfRef<String> get reservationGroup =>
       TfRef.attribute<String>(this, 'reservation_group');
 
   /// Reference to `secondary_location` attribute.
-  TfRef<String> get secondaryLocationRef =>
+  TfRef<String> get secondaryLocation =>
       TfRef.attribute<String>(this, 'secondary_location');
 
   /// Reference to `slot_capacity` attribute.
-  TfRef<num> get slotCapacityRef => TfRef.attribute<num>(this, 'slot_capacity');
+  TfRef<num> get slotCapacity => TfRef.attribute<num>(this, 'slot_capacity');
 }

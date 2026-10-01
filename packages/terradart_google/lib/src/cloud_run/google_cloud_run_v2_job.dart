@@ -991,7 +991,7 @@ final class GoogleCloudRunV2Job extends Resource {
   RefTo<GoogleCloudRunV2Job> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -1052,45 +1052,48 @@ final class GoogleCloudRunV2Job extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `annotations` attribute.
-  TfRef<Map<String, String>> get annotationsRef =>
+  TfRef<Map<String, String>> get annotations =>
       TfRef.attribute<Map<String, String>>(this, 'annotations');
 
   /// Reference to `client` attribute.
-  TfRef<String> get clientRef => TfRef.attribute<String>(this, 'client');
+  TfRef<String> get client => TfRef.attribute<String>(this, 'client');
 
   /// Reference to `client_version` attribute.
-  TfRef<String> get clientVersionRef =>
+  TfRef<String> get clientVersion =>
       TfRef.attribute<String>(this, 'client_version');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `deletion_protection` attribute.
-  TfRef<bool> get deletionProtectionRef =>
+  TfRef<bool> get deletionProtection =>
       TfRef.attribute<bool>(this, 'deletion_protection');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `launch_stage` attribute.
-  TfRef<String> get launchStageRef =>
+  TfRef<String> get launchStage =>
       TfRef.attribute<String>(this, 'launch_stage');
 
+  /// Reference to `location` attribute.
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
+
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `run_execution_token` attribute.
-  TfRef<String> get runExecutionTokenRef =>
+  TfRef<String> get runExecutionToken =>
       TfRef.attribute<String>(this, 'run_execution_token');
 
   /// Reference to `start_execution_token` attribute.
-  TfRef<String> get startExecutionTokenRef =>
+  TfRef<String> get startExecutionToken =>
       TfRef.attribute<String>(this, 'start_execution_token');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `execution_count` — total number of executions that
@@ -1104,7 +1107,4 @@ final class GoogleCloudRunV2Job extends Resource {
   /// Kept (not derived) to preserve the `List<Object?>` element type.
   TfRef<List<Object?>> get latestCreatedExecution =>
       TfRef.attribute<List<Object?>>(this, 'latest_created_execution');
-
-  /// Reference to `location` attribute — region the job is deployed in.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
 }

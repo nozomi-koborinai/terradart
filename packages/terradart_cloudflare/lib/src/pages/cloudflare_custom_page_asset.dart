@@ -43,7 +43,7 @@ final class CloudflareCustomPageAsset extends Resource {
   RefTo<CloudflareCustomPageAsset> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -56,15 +56,14 @@ final class CloudflareCustomPageAsset extends Resource {
   TfRef<num> get sizeBytes => TfRef.attribute<num>(this, 'size_bytes');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `url` attribute.
-  TfRef<String> get urlRef => TfRef.attribute<String>(this, 'url');
+  TfRef<String> get url => TfRef.attribute<String>(this, 'url');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

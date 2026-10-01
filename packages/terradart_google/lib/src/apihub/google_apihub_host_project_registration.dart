@@ -54,6 +54,9 @@ final class GoogleApihubHostProjectRegistration extends Resource {
   /// `RefTo<GoogleApihubHostProjectRegistration>`.
   RefTo<GoogleApihubHostProjectRegistration> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -61,19 +64,15 @@ final class GoogleApihubHostProjectRegistration extends Resource {
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
 
   /// Reference to `gcp_project` attribute.
-  TfRef<String> get gcpProjectRef =>
-      TfRef.attribute<String>(this, 'gcp_project');
+  TfRef<String> get gcpProject => TfRef.attribute<String>(this, 'gcp_project');
 
   /// Reference to `host_project_registration_id` attribute.
-  TfRef<String> get hostProjectRegistrationIdRef =>
+  TfRef<String> get hostProjectRegistrationId =>
       TfRef.attribute<String>(this, 'host_project_registration_id');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

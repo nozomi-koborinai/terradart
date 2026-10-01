@@ -76,30 +76,29 @@ final class AwsNetworkmonitorProbe extends Resource {
   TfRef<String> get vpcId => TfRef.attribute<String>(this, 'vpc_id');
 
   /// Reference to `destination` attribute.
-  TfRef<String> get destinationRef =>
-      TfRef.attribute<String>(this, 'destination');
+  TfRef<String> get destination => TfRef.attribute<String>(this, 'destination');
 
   /// Reference to `destination_port` attribute.
-  TfRef<num> get destinationPortRef =>
+  TfRef<num> get destinationPort =>
       TfRef.attribute<num>(this, 'destination_port');
 
   /// Reference to `monitor_name` attribute.
-  TfRef<String> get monitorNameRef =>
+  TfRef<String> get monitorName =>
       TfRef.attribute<String>(this, 'monitor_name');
 
   /// Reference to `packet_size` attribute.
-  TfRef<num> get packetSizeRef => TfRef.attribute<num>(this, 'packet_size');
+  TfRef<num> get packetSize => TfRef.attribute<num>(this, 'packet_size');
 
   /// Reference to `protocol` attribute.
-  TfRef<String> get protocolRef => TfRef.attribute<String>(this, 'protocol');
+  TfRef<String> get protocol => TfRef.attribute<String>(this, 'protocol');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `source_arn` attribute.
-  TfRef<String> get sourceArnRef => TfRef.attribute<String>(this, 'source_arn');
+  TfRef<String> get sourceArn => TfRef.attribute<String>(this, 'source_arn');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

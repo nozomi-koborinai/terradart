@@ -1004,157 +1004,154 @@ final class AwsSpotInstanceRequest extends Resource {
       TfRef.attribute<String>(this, 'spot_request_state');
 
   /// Reference to `ami` attribute.
-  TfRef<String> get amiRef => TfRef.attribute<String>(this, 'ami');
+  TfRef<String> get ami => TfRef.attribute<String>(this, 'ami');
 
   /// Reference to `associate_public_ip_address` attribute.
-  TfRef<bool> get associatePublicIpAddressRef =>
+  TfRef<bool> get associatePublicIpAddress =>
       TfRef.attribute<bool>(this, 'associate_public_ip_address');
 
   /// Reference to `availability_zone` attribute.
-  TfRef<String> get availabilityZoneRef =>
+  TfRef<String> get availabilityZone =>
       TfRef.attribute<String>(this, 'availability_zone');
 
   /// Reference to `disable_api_stop` attribute.
-  TfRef<bool> get disableApiStopRef =>
+  TfRef<bool> get disableApiStop =>
       TfRef.attribute<bool>(this, 'disable_api_stop');
 
   /// Reference to `disable_api_termination` attribute.
-  TfRef<bool> get disableApiTerminationRef =>
+  TfRef<bool> get disableApiTermination =>
       TfRef.attribute<bool>(this, 'disable_api_termination');
 
   /// Reference to `ebs_optimized` attribute.
-  TfRef<bool> get ebsOptimizedRef =>
-      TfRef.attribute<bool>(this, 'ebs_optimized');
+  TfRef<bool> get ebsOptimized => TfRef.attribute<bool>(this, 'ebs_optimized');
 
   /// Reference to `enable_primary_ipv6` attribute.
-  TfRef<bool> get enablePrimaryIpv6Ref =>
+  TfRef<bool> get enablePrimaryIpv6 =>
       TfRef.attribute<bool>(this, 'enable_primary_ipv6');
 
   /// Reference to `force_destroy` attribute.
-  TfRef<bool> get forceDestroyRef =>
-      TfRef.attribute<bool>(this, 'force_destroy');
+  TfRef<bool> get forceDestroy => TfRef.attribute<bool>(this, 'force_destroy');
 
   /// Reference to `get_password_data` attribute.
-  TfRef<bool> get getPasswordDataRef =>
+  TfRef<bool> get getPasswordData =>
       TfRef.attribute<bool>(this, 'get_password_data');
 
   /// Reference to `hibernation` attribute.
-  TfRef<bool> get hibernationRef => TfRef.attribute<bool>(this, 'hibernation');
+  TfRef<bool> get hibernation => TfRef.attribute<bool>(this, 'hibernation');
 
   /// Reference to `host_id` attribute.
-  TfRef<String> get hostIdRef => TfRef.attribute<String>(this, 'host_id');
+  TfRef<String> get hostId => TfRef.attribute<String>(this, 'host_id');
 
   /// Reference to `host_resource_group_arn` attribute.
-  TfRef<String> get hostResourceGroupArnRef =>
+  TfRef<String> get hostResourceGroupArn =>
       TfRef.attribute<String>(this, 'host_resource_group_arn');
 
   /// Reference to `iam_instance_profile` attribute.
-  TfRef<String> get iamInstanceProfileRef =>
+  TfRef<String> get iamInstanceProfile =>
       TfRef.attribute<String>(this, 'iam_instance_profile');
 
   /// Reference to `instance_initiated_shutdown_behavior` attribute.
-  TfRef<String> get instanceInitiatedShutdownBehaviorRef =>
+  TfRef<String> get instanceInitiatedShutdownBehavior =>
       TfRef.attribute<String>(this, 'instance_initiated_shutdown_behavior');
 
   /// Reference to `instance_interruption_behavior` attribute.
-  TfRef<String> get instanceInterruptionBehaviorRef =>
+  TfRef<String> get instanceInterruptionBehavior =>
       TfRef.attribute<String>(this, 'instance_interruption_behavior');
 
   /// Reference to `instance_type` attribute.
-  TfRef<String> get instanceTypeRef =>
+  TfRef<String> get instanceType =>
       TfRef.attribute<String>(this, 'instance_type');
 
   /// Reference to `ipv6_address_count` attribute.
-  TfRef<num> get ipv6AddressCountRef =>
+  TfRef<num> get ipv6AddressCount =>
       TfRef.attribute<num>(this, 'ipv6_address_count');
 
   /// Reference to `ipv6_addresses` attribute.
-  TfRef<List<String>> get ipv6AddressesRef =>
+  TfRef<List<String>> get ipv6Addresses =>
       TfRef.attribute<List<String>>(this, 'ipv6_addresses');
 
   /// Reference to `key_name` attribute.
-  TfRef<String> get keyNameRef => TfRef.attribute<String>(this, 'key_name');
+  TfRef<String> get keyName => TfRef.attribute<String>(this, 'key_name');
 
   /// Reference to `launch_group` attribute.
-  TfRef<String> get launchGroupRef =>
+  TfRef<String> get launchGroup =>
       TfRef.attribute<String>(this, 'launch_group');
 
   /// Reference to `monitoring` attribute.
-  TfRef<bool> get monitoringRef => TfRef.attribute<bool>(this, 'monitoring');
+  TfRef<bool> get monitoring => TfRef.attribute<bool>(this, 'monitoring');
 
   /// Reference to `placement_group` attribute.
-  TfRef<String> get placementGroupRef =>
+  TfRef<String> get placementGroup =>
       TfRef.attribute<String>(this, 'placement_group');
 
   /// Reference to `placement_group_id` attribute.
-  TfRef<String> get placementGroupIdRef =>
+  TfRef<String> get placementGroupId =>
       TfRef.attribute<String>(this, 'placement_group_id');
 
   /// Reference to `placement_partition_number` attribute.
-  TfRef<num> get placementPartitionNumberRef =>
+  TfRef<num> get placementPartitionNumber =>
       TfRef.attribute<num>(this, 'placement_partition_number');
 
   /// Reference to `private_ip` attribute.
-  TfRef<String> get privateIpRef => TfRef.attribute<String>(this, 'private_ip');
+  TfRef<String> get privateIp => TfRef.attribute<String>(this, 'private_ip');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `secondary_private_ips` attribute.
-  TfRef<List<String>> get secondaryPrivateIpsRef =>
+  TfRef<List<String>> get secondaryPrivateIps =>
       TfRef.attribute<List<String>>(this, 'secondary_private_ips');
 
   /// Reference to `security_groups` attribute.
-  TfRef<List<String>> get securityGroupsRef =>
+  TfRef<List<String>> get securityGroups =>
       TfRef.attribute<List<String>>(this, 'security_groups');
 
   /// Reference to `source_dest_check` attribute.
-  TfRef<bool> get sourceDestCheckRef =>
+  TfRef<bool> get sourceDestCheck =>
       TfRef.attribute<bool>(this, 'source_dest_check');
 
   /// Reference to `spot_price` attribute.
-  TfRef<String> get spotPriceRef => TfRef.attribute<String>(this, 'spot_price');
+  TfRef<String> get spotPrice => TfRef.attribute<String>(this, 'spot_price');
 
   /// Reference to `spot_type` attribute.
-  TfRef<String> get spotTypeRef => TfRef.attribute<String>(this, 'spot_type');
+  TfRef<String> get spotType => TfRef.attribute<String>(this, 'spot_type');
 
   /// Reference to `subnet_id` attribute.
-  TfRef<String> get subnetIdRef => TfRef.attribute<String>(this, 'subnet_id');
+  TfRef<String> get subnetId => TfRef.attribute<String>(this, 'subnet_id');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `tenancy` attribute.
-  TfRef<String> get tenancyRef => TfRef.attribute<String>(this, 'tenancy');
+  TfRef<String> get tenancy => TfRef.attribute<String>(this, 'tenancy');
 
   /// Reference to `user_data` attribute.
-  TfRef<String> get userDataRef => TfRef.attribute<String>(this, 'user_data');
+  TfRef<String> get userData => TfRef.attribute<String>(this, 'user_data');
 
   /// Reference to `user_data_base64` attribute.
-  TfRef<String> get userDataBase64Ref =>
+  TfRef<String> get userDataBase64 =>
       TfRef.attribute<String>(this, 'user_data_base64');
 
   /// Reference to `user_data_replace_on_change` attribute.
-  TfRef<bool> get userDataReplaceOnChangeRef =>
+  TfRef<bool> get userDataReplaceOnChange =>
       TfRef.attribute<bool>(this, 'user_data_replace_on_change');
 
   /// Reference to `valid_from` attribute.
-  TfRef<String> get validFromRef => TfRef.attribute<String>(this, 'valid_from');
+  TfRef<String> get validFrom => TfRef.attribute<String>(this, 'valid_from');
 
   /// Reference to `valid_until` attribute.
-  TfRef<String> get validUntilRef =>
-      TfRef.attribute<String>(this, 'valid_until');
+  TfRef<String> get validUntil => TfRef.attribute<String>(this, 'valid_until');
 
   /// Reference to `volume_tags` attribute.
-  TfRef<Map<String, String>> get volumeTagsRef =>
+  TfRef<Map<String, String>> get volumeTags =>
       TfRef.attribute<Map<String, String>>(this, 'volume_tags');
 
   /// Reference to `vpc_security_group_ids` attribute.
-  TfRef<List<String>> get vpcSecurityGroupIdsRef =>
+  TfRef<List<String>> get vpcSecurityGroupIds =>
       TfRef.attribute<List<String>>(this, 'vpc_security_group_ids');
 
   /// Reference to `wait_for_fulfillment` attribute.
-  TfRef<bool> get waitForFulfillmentRef =>
+  TfRef<bool> get waitForFulfillment =>
       TfRef.attribute<bool>(this, 'wait_for_fulfillment');
 }

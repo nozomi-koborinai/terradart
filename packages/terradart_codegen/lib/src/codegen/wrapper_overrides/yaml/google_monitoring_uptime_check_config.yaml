@@ -123,12 +123,6 @@ argMapOrder:
   - resource_group
   - synthetic_monitor
 
-extraGetters: |2
-    /// Reference to `uptime_check_id` (the bare ID segment, without the
-    /// `projects/.../uptimeCheckConfigs/` prefix).
-    TfRef<String> get uptimeCheckIdRef =>
-        TfRef.attribute<String>(this, 'uptime_check_id');
-
 extraSensitiveFields:
   - http_check.auth_info.password
 

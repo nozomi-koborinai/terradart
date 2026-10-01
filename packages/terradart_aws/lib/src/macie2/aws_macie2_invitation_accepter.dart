@@ -41,9 +41,9 @@ final class AwsMacie2InvitationAccepter extends Resource {
       TfRef.attribute<String>(this, 'invitation_id');
 
   /// Reference to `administrator_account_id` attribute.
-  TfRef<String> get administratorAccountIdRef =>
+  TfRef<String> get administratorAccountId =>
       TfRef.attribute<String>(this, 'administrator_account_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

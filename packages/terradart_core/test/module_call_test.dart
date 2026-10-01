@@ -3,7 +3,6 @@ import 'package:terradart_core/src/module_call.dart';
 import 'package:terradart_core/src/synth/synth_issue.dart';
 import 'package:terradart_core/src/synth/json_encoder.dart';
 import 'package:terradart_core/src/tf_arg.dart';
-import 'package:terradart_core/src/tf_ref.dart';
 import 'package:terradart_core/src/tf_variable.dart';
 import 'package:test/test.dart';
 
@@ -143,7 +142,7 @@ void main() {
             localName: 'events',
             source: './modules/events',
             inputs: {
-              'topic': TfArg.ref(TfRef.attribute<String>(topic, 'id')),
+              'topic': TfRef.attribute<String>(topic, 'id'),
               'env': TfArg.variable<String>('env'),
               'where': TfArg.expression<String>(r'${var.region}-a'),
             },

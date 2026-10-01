@@ -48,12 +48,12 @@ final class DataAwsEc2PublicIpv4Pool extends Data {
       TfRef.attribute<num>(this, 'total_available_address_count');
 
   /// Reference to `pool_id` attribute.
-  TfRef<String> get poolIdRef => TfRef.attribute<String>(this, 'pool_id');
+  TfRef<String> get poolId => TfRef.attribute<String>(this, 'pool_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

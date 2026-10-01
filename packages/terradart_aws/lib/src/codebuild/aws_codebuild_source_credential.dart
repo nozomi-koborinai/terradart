@@ -72,18 +72,17 @@ final class AwsCodebuildSourceCredential extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `auth_type` attribute.
-  TfRef<String> get authTypeRef => TfRef.attribute<String>(this, 'auth_type');
+  TfRef<String> get authType => TfRef.attribute<String>(this, 'auth_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `server_type` attribute.
-  TfRef<String> get serverTypeRef =>
-      TfRef.attribute<String>(this, 'server_type');
+  TfRef<String> get serverType => TfRef.attribute<String>(this, 'server_type');
 
   /// Reference to `token` attribute.
-  TfRef<String> get tokenRef => TfRef.attribute<String>(this, 'token');
+  TfRef<String> get token => TfRef.attribute<String>(this, 'token');
 
   /// Reference to `user_name` attribute.
-  TfRef<String> get userNameRef => TfRef.attribute<String>(this, 'user_name');
+  TfRef<String> get userName => TfRef.attribute<String>(this, 'user_name');
 }

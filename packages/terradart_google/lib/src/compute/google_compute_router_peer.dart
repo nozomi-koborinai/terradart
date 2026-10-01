@@ -194,6 +194,9 @@ final class GoogleComputeRouterPeer extends Resource {
   /// `RefTo<GoogleComputeRouterPeer>`.
   RefTo<GoogleComputeRouterPeer> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `is_advertised_route_priority_set` attribute.
   TfRef<bool> get isAdvertisedRoutePrioritySet =>
       TfRef.attribute<bool>(this, 'is_advertised_route_priority_set');
@@ -207,92 +210,91 @@ final class GoogleComputeRouterPeer extends Resource {
       TfRef.attribute<String>(this, 'management_type');
 
   /// Reference to `advertise_mode` attribute.
-  TfRef<String> get advertiseModeRef =>
+  TfRef<String> get advertiseMode =>
       TfRef.attribute<String>(this, 'advertise_mode');
 
   /// Reference to `advertised_groups` attribute.
-  TfRef<List<String>> get advertisedGroupsRef =>
+  TfRef<List<String>> get advertisedGroups =>
       TfRef.attribute<List<String>>(this, 'advertised_groups');
 
   /// Reference to `advertised_route_priority` attribute.
-  TfRef<num> get advertisedRoutePriorityRef =>
+  TfRef<num> get advertisedRoutePriority =>
       TfRef.attribute<num>(this, 'advertised_route_priority');
 
   /// Reference to `custom_learned_route_priority` attribute.
-  TfRef<num> get customLearnedRoutePriorityRef =>
+  TfRef<num> get customLearnedRoutePriority =>
       TfRef.attribute<num>(this, 'custom_learned_route_priority');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `enable` attribute.
-  TfRef<bool> get enableRef => TfRef.attribute<bool>(this, 'enable');
+  TfRef<bool> get enable => TfRef.attribute<bool>(this, 'enable');
 
   /// Reference to `enable_ipv4` attribute.
-  TfRef<bool> get enableIpv4Ref => TfRef.attribute<bool>(this, 'enable_ipv4');
+  TfRef<bool> get enableIpv4 => TfRef.attribute<bool>(this, 'enable_ipv4');
 
   /// Reference to `enable_ipv6` attribute.
-  TfRef<bool> get enableIpv6Ref => TfRef.attribute<bool>(this, 'enable_ipv6');
+  TfRef<bool> get enableIpv6 => TfRef.attribute<bool>(this, 'enable_ipv6');
 
   /// Reference to `export_policies` attribute.
-  TfRef<List<String>> get exportPoliciesRef =>
+  TfRef<List<String>> get exportPolicies =>
       TfRef.attribute<List<String>>(this, 'export_policies');
 
   /// Reference to `import_policies` attribute.
-  TfRef<List<String>> get importPoliciesRef =>
+  TfRef<List<String>> get importPolicies =>
       TfRef.attribute<List<String>>(this, 'import_policies');
 
   /// Reference to `interface` attribute.
-  TfRef<String> get interfaceRef => TfRef.attribute<String>(this, 'interface');
+  TfRef<String> get interface => TfRef.attribute<String>(this, 'interface');
 
   /// Reference to `ip_address` attribute.
-  TfRef<String> get ipAddressRef => TfRef.attribute<String>(this, 'ip_address');
+  TfRef<String> get ipAddress => TfRef.attribute<String>(this, 'ip_address');
 
   /// Reference to `ipv4_nexthop_address` attribute.
-  TfRef<String> get ipv4NexthopAddressRef =>
+  TfRef<String> get ipv4NexthopAddress =>
       TfRef.attribute<String>(this, 'ipv4_nexthop_address');
 
   /// Reference to `ipv6_nexthop_address` attribute.
-  TfRef<String> get ipv6NexthopAddressRef =>
+  TfRef<String> get ipv6NexthopAddress =>
       TfRef.attribute<String>(this, 'ipv6_nexthop_address');
 
   /// Reference to `peer_asn` attribute.
-  TfRef<num> get peerAsnRef => TfRef.attribute<num>(this, 'peer_asn');
+  TfRef<num> get peerAsn => TfRef.attribute<num>(this, 'peer_asn');
 
   /// Reference to `peer_ip_address` attribute.
-  TfRef<String> get peerIpAddressRef =>
+  TfRef<String> get peerIpAddress =>
       TfRef.attribute<String>(this, 'peer_ip_address');
 
   /// Reference to `peer_ipv4_nexthop_address` attribute.
-  TfRef<String> get peerIpv4NexthopAddressRef =>
+  TfRef<String> get peerIpv4NexthopAddress =>
       TfRef.attribute<String>(this, 'peer_ipv4_nexthop_address');
 
   /// Reference to `peer_ipv6_nexthop_address` attribute.
-  TfRef<String> get peerIpv6NexthopAddressRef =>
+  TfRef<String> get peerIpv6NexthopAddress =>
       TfRef.attribute<String>(this, 'peer_ipv6_nexthop_address');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `router` attribute.
-  TfRef<String> get routerRef => TfRef.attribute<String>(this, 'router');
+  TfRef<String> get router => TfRef.attribute<String>(this, 'router');
 
   /// Reference to `router_appliance_instance` attribute.
-  TfRef<String> get routerApplianceInstanceRef =>
+  TfRef<String> get routerApplianceInstance =>
       TfRef.attribute<String>(this, 'router_appliance_instance');
 
   /// Reference to `zero_advertised_route_priority` attribute.
-  TfRef<bool> get zeroAdvertisedRoutePriorityRef =>
+  TfRef<bool> get zeroAdvertisedRoutePriority =>
       TfRef.attribute<bool>(this, 'zero_advertised_route_priority');
 
   /// Reference to `zero_custom_learned_route_priority` attribute.
-  TfRef<bool> get zeroCustomLearnedRoutePriorityRef =>
+  TfRef<bool> get zeroCustomLearnedRoutePriority =>
       TfRef.attribute<bool>(this, 'zero_custom_learned_route_priority');
 
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

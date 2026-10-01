@@ -68,7 +68,7 @@ final class ComputeRolloutStack extends Stack {
     // — a bare plan name returns Internal error at apply time.
     final planResourceName =
         'projects/${current.number.interpolation}/locations/global/rolloutPlans/'
-        '${plan.nameRef.interpolation}';
+        '${plan.name.interpolation}';
 
     add(
       GoogleComputeGlobalVmExtensionPolicy(

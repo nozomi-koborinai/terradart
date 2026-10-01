@@ -27,7 +27,7 @@ final class DataAwsOrganizationsPolicy extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -48,5 +48,5 @@ final class DataAwsOrganizationsPolicy extends Data {
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `policy_id` attribute.
-  TfRef<String> get policyIdRef => TfRef.attribute<String>(this, 'policy_id');
+  TfRef<String> get policyId => TfRef.attribute<String>(this, 'policy_id');
 }

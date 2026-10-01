@@ -483,7 +483,7 @@ final class GoogleBigqueryAnalyticsHubListingSubscription extends Resource {
       RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -536,19 +536,19 @@ final class GoogleBigqueryAnalyticsHubListingSubscription extends Resource {
       TfRef.attribute<String>(this, 'subscription_id');
 
   /// Reference to `data_exchange_id` attribute.
-  TfRef<String> get dataExchangeIdRef =>
+  TfRef<String> get dataExchangeId =>
       TfRef.attribute<String>(this, 'data_exchange_id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `listing_id` attribute.
-  TfRef<String> get listingIdRef => TfRef.attribute<String>(this, 'listing_id');
+  TfRef<String> get listingId => TfRef.attribute<String>(this, 'listing_id');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

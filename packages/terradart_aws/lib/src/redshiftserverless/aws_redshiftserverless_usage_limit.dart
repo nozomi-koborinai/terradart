@@ -80,22 +80,22 @@ final class AwsRedshiftserverlessUsageLimit extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `amount` attribute.
-  TfRef<num> get amountRef => TfRef.attribute<num>(this, 'amount');
+  TfRef<num> get amount => TfRef.attribute<num>(this, 'amount');
 
   /// Reference to `breach_action` attribute.
-  TfRef<String> get breachActionRef =>
+  TfRef<String> get breachAction =>
       TfRef.attribute<String>(this, 'breach_action');
 
   /// Reference to `period` attribute.
-  TfRef<String> get periodRef => TfRef.attribute<String>(this, 'period');
+  TfRef<String> get period => TfRef.attribute<String>(this, 'period');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resource_arn` attribute.
-  TfRef<String> get resourceArnRef =>
+  TfRef<String> get resourceArn =>
       TfRef.attribute<String>(this, 'resource_arn');
 
   /// Reference to `usage_type` attribute.
-  TfRef<String> get usageTypeRef => TfRef.attribute<String>(this, 'usage_type');
+  TfRef<String> get usageType => TfRef.attribute<String>(this, 'usage_type');
 }

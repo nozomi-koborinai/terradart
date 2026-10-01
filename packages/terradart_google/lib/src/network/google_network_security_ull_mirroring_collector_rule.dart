@@ -69,7 +69,7 @@ class NetworkSecurityUllMirroringCollectorRuleMatch {
 ///
 /// ULL mirroring collector rule — traffic match criteria on a collector.
 ///
-/// Set [ullMirroringCollector] to `TfArg.ref(collector.nameRef)`. Requires a
+/// Set [ullMirroringCollector] to `collector.name`. Requires a
 /// [NetworkSecurityUllMirroringCollectorRuleMatch] block.
 final class GoogleNetworkSecurityUllMirroringCollectorRule extends Resource {
   static const String tfType =
@@ -113,7 +113,7 @@ final class GoogleNetworkSecurityUllMirroringCollectorRule extends Resource {
       RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -136,24 +136,24 @@ final class GoogleNetworkSecurityUllMirroringCollectorRule extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `ull_mirroring_collector` attribute.
-  TfRef<String> get ullMirroringCollectorRef =>
+  TfRef<String> get ullMirroringCollector =>
       TfRef.attribute<String>(this, 'ull_mirroring_collector');
 
   /// Reference to `ull_mirroring_collector_rule_id` attribute.
-  TfRef<String> get ullMirroringCollectorRuleIdRef =>
+  TfRef<String> get ullMirroringCollectorRuleId =>
       TfRef.attribute<String>(this, 'ull_mirroring_collector_rule_id');
 }

@@ -41,16 +41,15 @@ final class AwsSesv2EmailIdentityPolicy extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `email_identity` attribute.
-  TfRef<String> get emailIdentityRef =>
+  TfRef<String> get emailIdentity =>
       TfRef.attribute<String>(this, 'email_identity');
 
   /// Reference to `policy` attribute.
-  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+  TfRef<String> get policy => TfRef.attribute<String>(this, 'policy');
 
   /// Reference to `policy_name` attribute.
-  TfRef<String> get policyNameRef =>
-      TfRef.attribute<String>(this, 'policy_name');
+  TfRef<String> get policyName => TfRef.attribute<String>(this, 'policy_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

@@ -225,7 +225,7 @@ final class DataAwsCloudwatchLogDataProtectionPolicyDocument extends Data {
       _awsCloudwatchLogDataProtectionPolicyDocumentSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -234,9 +234,8 @@ final class DataAwsCloudwatchLogDataProtectionPolicyDocument extends Data {
   TfRef<String> get json => TfRef.attribute<String>(this, 'json');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `version` attribute.
-  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
+  TfRef<String> get version => TfRef.attribute<String>(this, 'version');
 }

@@ -74,7 +74,7 @@ final class GoogleBiglakeIcebergTableIamMember extends Resource {
   RefTo<GoogleBiglakeIcebergTableIamMember> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -83,17 +83,17 @@ final class GoogleBiglakeIcebergTableIamMember extends Resource {
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `catalog` attribute.
-  TfRef<String> get catalogRef => TfRef.attribute<String>(this, 'catalog');
+  TfRef<String> get catalog => TfRef.attribute<String>(this, 'catalog');
 
   /// Reference to `member` attribute.
-  TfRef<String> get memberRef => TfRef.attribute<String>(this, 'member');
+  TfRef<String> get member => TfRef.attribute<String>(this, 'member');
 
   /// Reference to `namespace` attribute.
-  TfRef<String> get namespaceRef => TfRef.attribute<String>(this, 'namespace');
+  TfRef<String> get namespace => TfRef.attribute<String>(this, 'namespace');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `role` attribute.
-  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+  TfRef<String> get role => TfRef.attribute<String>(this, 'role');
 }

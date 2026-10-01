@@ -96,7 +96,7 @@ final class GoogleLoggingBillingAccountBucketConfig extends Resource {
   RefTo<GoogleLoggingBillingAccountBucketConfig> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -106,24 +106,22 @@ final class GoogleLoggingBillingAccountBucketConfig extends Resource {
       TfRef.attribute<String>(this, 'lifecycle_state');
 
   /// Reference to `billing_account` attribute.
-  TfRef<String> get billingAccountRef =>
+  TfRef<String> get billingAccount =>
       TfRef.attribute<String>(this, 'billing_account');
 
   /// Reference to `bucket_id` attribute.
-  TfRef<String> get bucketIdRef => TfRef.attribute<String>(this, 'bucket_id');
+  TfRef<String> get bucketId => TfRef.attribute<String>(this, 'bucket_id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `retention_days` attribute.
-  TfRef<num> get retentionDaysRef =>
-      TfRef.attribute<num>(this, 'retention_days');
+  TfRef<num> get retentionDays => TfRef.attribute<num>(this, 'retention_days');
 }

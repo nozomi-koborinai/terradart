@@ -55,17 +55,15 @@ final class AwsApprunnerCustomDomainAssociation extends Resource {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `domain_name` attribute.
-  TfRef<String> get domainNameRef =>
-      TfRef.attribute<String>(this, 'domain_name');
+  TfRef<String> get domainName => TfRef.attribute<String>(this, 'domain_name');
 
   /// Reference to `enable_www_subdomain` attribute.
-  TfRef<bool> get enableWwwSubdomainRef =>
+  TfRef<bool> get enableWwwSubdomain =>
       TfRef.attribute<bool>(this, 'enable_www_subdomain');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `service_arn` attribute.
-  TfRef<String> get serviceArnRef =>
-      TfRef.attribute<String>(this, 'service_arn');
+  TfRef<String> get serviceArn => TfRef.attribute<String>(this, 'service_arn');
 }

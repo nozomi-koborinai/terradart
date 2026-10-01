@@ -558,7 +558,7 @@ final class AwsCeCostCategory extends Resource {
   RefTo<AwsCeCostCategory> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -571,18 +571,18 @@ final class AwsCeCostCategory extends Resource {
       TfRef.attribute<String>(this, 'effective_end');
 
   /// Reference to `default_value` attribute.
-  TfRef<String> get defaultValueRef =>
+  TfRef<String> get defaultValue =>
       TfRef.attribute<String>(this, 'default_value');
 
   /// Reference to `effective_start` attribute.
-  TfRef<String> get effectiveStartRef =>
+  TfRef<String> get effectiveStart =>
       TfRef.attribute<String>(this, 'effective_start');
 
   /// Reference to `rule_version` attribute.
-  TfRef<String> get ruleVersionRef =>
+  TfRef<String> get ruleVersion =>
       TfRef.attribute<String>(this, 'rule_version');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

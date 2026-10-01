@@ -134,7 +134,7 @@ final class DataCatalogTagField {
 /// ```dart
 /// GoogleDataCatalogTag(
 ///   localName: 'entry_source',
-///   parent: TfArg.ref(entry.id),
+///   parent: entry.id,
 ///   template: template.ref,
 ///   fields: [
 ///     DataCatalogTagField(
@@ -180,7 +180,7 @@ final class GoogleDataCatalogTag extends Resource {
   RefTo<GoogleDataCatalogTag> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -190,15 +190,15 @@ final class GoogleDataCatalogTag extends Resource {
       TfRef.attribute<String>(this, 'template_displayname');
 
   /// Reference to `column` attribute.
-  TfRef<String> get columnRef => TfRef.attribute<String>(this, 'column');
+  TfRef<String> get column => TfRef.attribute<String>(this, 'column');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `parent` attribute.
-  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+  TfRef<String> get parent => TfRef.attribute<String>(this, 'parent');
 
   /// Reference to `template` attribute.
-  TfRef<String> get templateRef => TfRef.attribute<String>(this, 'template');
+  TfRef<String> get template => TfRef.attribute<String>(this, 'template');
 }

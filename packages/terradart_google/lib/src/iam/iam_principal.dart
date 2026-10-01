@@ -79,12 +79,8 @@ extension type const IamPrincipal._(TfArg<String> _arg)
   IamPrincipal.literal(String value) : _arg = TfArg.literal(value);
 
   /// Any string argument as a principal, unchecked: a variable, a module
-  /// output, an attribute of another block.
+  /// output (`.arg(sa.output('member'))`), an attribute of another block.
   const IamPrincipal.arg(TfArg<String> arg) : this._(arg);
-
-  /// [ref]'s IAM principal attribute (`member`), for a block whose
-  /// `principal` getter reads it.
-  IamPrincipal.read(TfRef<String> ref) : _arg = TfArg.ref(ref);
 }
 
 TfArg<String> _prefixed(

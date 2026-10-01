@@ -40,7 +40,7 @@ final class DataCloudflareMagicTransitCf1Site extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -55,9 +55,8 @@ final class DataCloudflareMagicTransitCf1Site extends Data {
   TfRef<String> get modifiedOn => TfRef.attribute<String>(this, 'modified_on');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `cf1_site_id` attribute.
-  TfRef<String> get cf1SiteIdRef =>
-      TfRef.attribute<String>(this, 'cf1_site_id');
+  TfRef<String> get cf1SiteId => TfRef.attribute<String>(this, 'cf1_site_id');
 }

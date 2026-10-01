@@ -15,7 +15,7 @@ curatedDoc: |-
   ///   `google_sql_database.`).
   /// - `instance`: parent Cloud SQL instance name (NOT the instance's full
   ///   `id` / connection string). Typically wired with
-  ///   `TfArg.ref(sqlInstance.nameRef)`. Immutable after creation; changing
+  ///   `sqlInstance.name`. Immutable after creation; changing
   ///   it forces replacement.
   /// - `name`: database name within the instance. Immutable after creation.
   ///

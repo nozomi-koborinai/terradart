@@ -52,5 +52,5 @@ final class DataCloudflareZoneTracing extends Data {
   TfRef<num> get samplingRatio => TfRef.attribute<num>(this, 'sampling_ratio');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

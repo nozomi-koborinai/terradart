@@ -903,19 +903,18 @@ final class AwsWafv2WebAclRuleGroupAssociation extends Resource {
   RefTo<AwsWafv2WebAclRuleGroupAssociation> get ref => RefTo.of(this);
 
   /// Reference to `override_action` attribute.
-  TfRef<String> get overrideActionRef =>
+  TfRef<String> get overrideAction =>
       TfRef.attribute<String>(this, 'override_action');
 
   /// Reference to `priority` attribute.
-  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+  TfRef<num> get priority => TfRef.attribute<num>(this, 'priority');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `rule_name` attribute.
-  TfRef<String> get ruleNameRef => TfRef.attribute<String>(this, 'rule_name');
+  TfRef<String> get ruleName => TfRef.attribute<String>(this, 'rule_name');
 
   /// Reference to `web_acl_arn` attribute.
-  TfRef<String> get webAclArnRef =>
-      TfRef.attribute<String>(this, 'web_acl_arn');
+  TfRef<String> get webAclArn => TfRef.attribute<String>(this, 'web_acl_arn');
 }

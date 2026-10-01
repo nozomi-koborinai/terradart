@@ -80,7 +80,7 @@ final class SpannerDatabaseEncryptionConfigKmsKeyNames
 ///
 /// Required identity:
 /// - [localName]: Terraform local name.
-/// - [instance]: parent instance — `TfArg.ref(spanner.id)` or name.
+/// - [instance]: parent instance — `spanner.id` or name.
 /// - [name]: database ID.
 ///
 /// Example:
@@ -139,7 +139,7 @@ final class GoogleSpannerDatabase extends Resource {
   RefTo<GoogleSpannerDatabase> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -148,35 +148,35 @@ final class GoogleSpannerDatabase extends Resource {
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `database_dialect` attribute.
-  TfRef<String> get databaseDialectRef =>
+  TfRef<String> get databaseDialect =>
       TfRef.attribute<String>(this, 'database_dialect');
 
   /// Reference to `ddl` attribute.
-  TfRef<List<String>> get ddlRef => TfRef.attribute<List<String>>(this, 'ddl');
+  TfRef<List<String>> get ddl => TfRef.attribute<List<String>>(this, 'ddl');
 
   /// Reference to `default_time_zone` attribute.
-  TfRef<String> get defaultTimeZoneRef =>
+  TfRef<String> get defaultTimeZone =>
       TfRef.attribute<String>(this, 'default_time_zone');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `deletion_protection` attribute.
-  TfRef<bool> get deletionProtectionRef =>
+  TfRef<bool> get deletionProtection =>
       TfRef.attribute<bool>(this, 'deletion_protection');
 
   /// Reference to `enable_drop_protection` attribute.
-  TfRef<bool> get enableDropProtectionRef =>
+  TfRef<bool> get enableDropProtection =>
       TfRef.attribute<bool>(this, 'enable_drop_protection');
 
   /// Reference to `instance` attribute.
-  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+  TfRef<String> get instance => TfRef.attribute<String>(this, 'instance');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `version_retention_period` attribute.
-  TfRef<String> get versionRetentionPeriodRef =>
+  TfRef<String> get versionRetentionPeriod =>
       TfRef.attribute<String>(this, 'version_retention_period');
 }

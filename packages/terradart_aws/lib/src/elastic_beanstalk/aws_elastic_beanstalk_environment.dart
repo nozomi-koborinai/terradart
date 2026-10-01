@@ -183,7 +183,7 @@ final class AwsElasticBeanstalkEnvironment extends Resource {
   RefTo<AwsElasticBeanstalkEnvironment> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -227,48 +227,46 @@ final class AwsElasticBeanstalkEnvironment extends Resource {
       TfRef.attribute<List<String>>(this, 'triggers');
 
   /// Reference to `application` attribute.
-  TfRef<String> get applicationRef =>
-      TfRef.attribute<String>(this, 'application');
+  TfRef<String> get application => TfRef.attribute<String>(this, 'application');
 
   /// Reference to `cname_prefix` attribute.
-  TfRef<String> get cnamePrefixRef =>
+  TfRef<String> get cnamePrefix =>
       TfRef.attribute<String>(this, 'cname_prefix');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `platform_arn` attribute.
-  TfRef<String> get platformArnRef =>
+  TfRef<String> get platformArn =>
       TfRef.attribute<String>(this, 'platform_arn');
 
   /// Reference to `poll_interval` attribute.
-  TfRef<String> get pollIntervalRef =>
+  TfRef<String> get pollInterval =>
       TfRef.attribute<String>(this, 'poll_interval');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `solution_stack_name` attribute.
-  TfRef<String> get solutionStackNameRef =>
+  TfRef<String> get solutionStackName =>
       TfRef.attribute<String>(this, 'solution_stack_name');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `template_name` attribute.
-  TfRef<String> get templateNameRef =>
+  TfRef<String> get templateName =>
       TfRef.attribute<String>(this, 'template_name');
 
   /// Reference to `tier` attribute.
-  TfRef<String> get tierRef => TfRef.attribute<String>(this, 'tier');
+  TfRef<String> get tier => TfRef.attribute<String>(this, 'tier');
 
   /// Reference to `version_label` attribute.
-  TfRef<String> get versionLabelRef =>
+  TfRef<String> get versionLabel =>
       TfRef.attribute<String>(this, 'version_label');
 
   /// Reference to `wait_for_ready_timeout` attribute.
-  TfRef<String> get waitForReadyTimeoutRef =>
+  TfRef<String> get waitForReadyTimeout =>
       TfRef.attribute<String>(this, 'wait_for_ready_timeout');
 }

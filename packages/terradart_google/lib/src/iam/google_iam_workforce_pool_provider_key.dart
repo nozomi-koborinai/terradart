@@ -79,7 +79,7 @@ final class GoogleIamWorkforcePoolProviderKey extends Resource {
   RefTo<GoogleIamWorkforcePoolProviderKey> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -91,23 +91,22 @@ final class GoogleIamWorkforcePoolProviderKey extends Resource {
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `key_id` attribute.
-  TfRef<String> get keyIdRef => TfRef.attribute<String>(this, 'key_id');
+  TfRef<String> get keyId => TfRef.attribute<String>(this, 'key_id');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `provider_id` attribute.
-  TfRef<String> get providerIdRef =>
-      TfRef.attribute<String>(this, 'provider_id');
+  TfRef<String> get providerId => TfRef.attribute<String>(this, 'provider_id');
 
   /// Reference to `use` attribute.
-  TfRef<String> get useRef => TfRef.attribute<String>(this, 'use');
+  TfRef<String> get use => TfRef.attribute<String>(this, 'use');
 
   /// Reference to `workforce_pool_id` attribute.
-  TfRef<String> get workforcePoolIdRef =>
+  TfRef<String> get workforcePoolId =>
       TfRef.attribute<String>(this, 'workforce_pool_id');
 }

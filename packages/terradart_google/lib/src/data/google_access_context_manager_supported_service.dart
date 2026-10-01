@@ -53,6 +53,6 @@ final class DataGoogleAccessContextManagerSupportedService extends Data {
   TfRef<String> get title => TfRef.attribute<String>(this, 'title');
 
   /// Reference to `service_name` attribute.
-  TfRef<String> get serviceNameRef =>
+  TfRef<String> get serviceName =>
       TfRef.attribute<String>(this, 'service_name');
 }

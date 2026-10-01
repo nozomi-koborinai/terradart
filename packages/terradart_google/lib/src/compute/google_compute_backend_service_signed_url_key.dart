@@ -51,23 +51,23 @@ final class GoogleComputeBackendServiceSignedUrlKey extends Resource {
   /// `RefTo<GoogleComputeBackendServiceSignedUrlKey>`.
   RefTo<GoogleComputeBackendServiceSignedUrlKey> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `backend_service` attribute.
-  TfRef<String> get backendServiceRef =>
+  TfRef<String> get backendService =>
       TfRef.attribute<String>(this, 'backend_service');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `key_value` attribute.
-  TfRef<String> get keyValueRef => TfRef.attribute<String>(this, 'key_value');
+  TfRef<String> get keyValue => TfRef.attribute<String>(this, 'key_value');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

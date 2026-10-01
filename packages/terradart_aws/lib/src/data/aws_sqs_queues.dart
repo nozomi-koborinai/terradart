@@ -32,9 +32,9 @@ final class DataAwsSqsQueues extends Data {
       TfRef.attribute<List<String>>(this, 'queue_urls');
 
   /// Reference to `queue_name_prefix` attribute.
-  TfRef<String> get queueNamePrefixRef =>
+  TfRef<String> get queueNamePrefix =>
       TfRef.attribute<String>(this, 'queue_name_prefix');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

@@ -37,5 +37,5 @@ final class DataAwsIamInstanceProfiles extends Data {
   TfRef<List<String>> get paths => TfRef.attribute<List<String>>(this, 'paths');
 
   /// Reference to `role_name` attribute.
-  TfRef<String> get roleNameRef => TfRef.attribute<String>(this, 'role_name');
+  TfRef<String> get roleName => TfRef.attribute<String>(this, 'role_name');
 }

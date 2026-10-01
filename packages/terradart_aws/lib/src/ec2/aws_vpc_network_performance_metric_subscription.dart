@@ -67,18 +67,17 @@ final class AwsVpcNetworkPerformanceMetricSubscription extends Resource {
   TfRef<String> get period => TfRef.attribute<String>(this, 'period');
 
   /// Reference to `destination` attribute.
-  TfRef<String> get destinationRef =>
-      TfRef.attribute<String>(this, 'destination');
+  TfRef<String> get destination => TfRef.attribute<String>(this, 'destination');
 
   /// Reference to `metric` attribute.
-  TfRef<String> get metricRef => TfRef.attribute<String>(this, 'metric');
+  TfRef<String> get metric => TfRef.attribute<String>(this, 'metric');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `source` attribute.
-  TfRef<String> get sourceRef => TfRef.attribute<String>(this, 'source');
+  TfRef<String> get source => TfRef.attribute<String>(this, 'source');
 
   /// Reference to `statistic` attribute.
-  TfRef<String> get statisticRef => TfRef.attribute<String>(this, 'statistic');
+  TfRef<String> get statistic => TfRef.attribute<String>(this, 'statistic');
 }

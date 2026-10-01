@@ -48,7 +48,7 @@ final class AwsRolesanywhereProfile extends Resource {
   RefTo<AwsRolesanywhereProfile> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -57,33 +57,33 @@ final class AwsRolesanywhereProfile extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `accept_role_session_name` attribute.
-  TfRef<bool> get acceptRoleSessionNameRef =>
+  TfRef<bool> get acceptRoleSessionName =>
       TfRef.attribute<bool>(this, 'accept_role_session_name');
 
   /// Reference to `duration_seconds` attribute.
-  TfRef<num> get durationSecondsRef =>
+  TfRef<num> get durationSeconds =>
       TfRef.attribute<num>(this, 'duration_seconds');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `managed_policy_arns` attribute.
-  TfRef<List<String>> get managedPolicyArnsRef =>
+  TfRef<List<String>> get managedPolicyArns =>
       TfRef.attribute<List<String>>(this, 'managed_policy_arns');
 
   /// Reference to `require_instance_properties` attribute.
-  TfRef<bool> get requireInstancePropertiesRef =>
+  TfRef<bool> get requireInstanceProperties =>
       TfRef.attribute<bool>(this, 'require_instance_properties');
 
   /// Reference to `role_arns` attribute.
-  TfRef<List<String>> get roleArnsRef =>
+  TfRef<List<String>> get roleArns =>
       TfRef.attribute<List<String>>(this, 'role_arns');
 
   /// Reference to `session_policy` attribute.
-  TfRef<String> get sessionPolicyRef =>
+  TfRef<String> get sessionPolicy =>
       TfRef.attribute<String>(this, 'session_policy');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

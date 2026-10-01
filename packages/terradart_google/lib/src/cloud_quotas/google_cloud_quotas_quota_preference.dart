@@ -92,6 +92,9 @@ final class GoogleCloudQuotasQuotaPreference extends Resource {
   /// `RefTo<GoogleCloudQuotasQuotaPreference>`.
   RefTo<GoogleCloudQuotasQuotaPreference> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -108,30 +111,27 @@ final class GoogleCloudQuotasQuotaPreference extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `contact_email` attribute.
-  TfRef<String> get contactEmailRef =>
+  TfRef<String> get contactEmail =>
       TfRef.attribute<String>(this, 'contact_email');
 
   /// Reference to `dimensions` attribute.
-  TfRef<Map<String, String>> get dimensionsRef =>
+  TfRef<Map<String, String>> get dimensions =>
       TfRef.attribute<Map<String, String>>(this, 'dimensions');
 
   /// Reference to `ignore_safety_checks` attribute.
-  TfRef<String> get ignoreSafetyChecksRef =>
+  TfRef<String> get ignoreSafetyChecks =>
       TfRef.attribute<String>(this, 'ignore_safety_checks');
 
   /// Reference to `justification` attribute.
-  TfRef<String> get justificationRef =>
+  TfRef<String> get justification =>
       TfRef.attribute<String>(this, 'justification');
 
   /// Reference to `parent` attribute.
-  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+  TfRef<String> get parent => TfRef.attribute<String>(this, 'parent');
 
   /// Reference to `quota_id` attribute.
-  TfRef<String> get quotaIdRef => TfRef.attribute<String>(this, 'quota_id');
+  TfRef<String> get quotaId => TfRef.attribute<String>(this, 'quota_id');
 
   /// Reference to `service` attribute.
-  TfRef<String> get serviceRef => TfRef.attribute<String>(this, 'service');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get service => TfRef.attribute<String>(this, 'service');
 }

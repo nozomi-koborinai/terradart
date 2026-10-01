@@ -107,7 +107,7 @@ final class CloudflareWorkflow extends Resource {
   RefTo<CloudflareWorkflow> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -141,16 +141,15 @@ final class CloudflareWorkflow extends Resource {
   TfRef<String> get versionId => TfRef.attribute<String>(this, 'version_id');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `class_name` attribute.
-  TfRef<String> get classNameRef => TfRef.attribute<String>(this, 'class_name');
+  TfRef<String> get className => TfRef.attribute<String>(this, 'class_name');
 
   /// Reference to `script_name` attribute.
-  TfRef<String> get scriptNameRef =>
-      TfRef.attribute<String>(this, 'script_name');
+  TfRef<String> get scriptName => TfRef.attribute<String>(this, 'script_name');
 
   /// Reference to `workflow_name` attribute.
-  TfRef<String> get workflowNameRef =>
+  TfRef<String> get workflowName =>
       TfRef.attribute<String>(this, 'workflow_name');
 }

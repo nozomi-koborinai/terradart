@@ -28,7 +28,7 @@ class BigtableAuthorizedViewSubsetView {
 /// Required identity:
 /// - [localName]: Terraform local name.
 /// - [instanceName]: parent instance ID.
-/// - [tableName]: parent table ID — pass `TfArg.ref(table.nameRef)`.
+/// - [tableName]: parent table ID — pass `table.name`.
 /// - [name]: authorized view ID.
 /// - [subsetView]: optional [BigtableAuthorizedViewSubsetView] filter.
 ///
@@ -84,26 +84,27 @@ final class GoogleBigtableAuthorizedView extends Resource {
   /// `RefTo<GoogleBigtableAuthorizedView>`.
   RefTo<GoogleBigtableAuthorizedView> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `deletion_protection` attribute.
-  TfRef<String> get deletionProtectionRef =>
+  TfRef<String> get deletionProtection =>
       TfRef.attribute<String>(this, 'deletion_protection');
 
   /// Reference to `instance_name` attribute.
-  TfRef<String> get instanceNameRef =>
+  TfRef<String> get instanceName =>
       TfRef.attribute<String>(this, 'instance_name');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `table_name` attribute.
-  TfRef<String> get tableNameRef => TfRef.attribute<String>(this, 'table_name');
-
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get tableName => TfRef.attribute<String>(this, 'table_name');
 }

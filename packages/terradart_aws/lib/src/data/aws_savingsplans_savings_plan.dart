@@ -99,6 +99,6 @@ final class DataAwsSavingsplansSavingsPlan extends Data {
       TfRef.attribute<String>(this, 'upfront_payment_amount');
 
   /// Reference to `savings_plan_id` attribute.
-  TfRef<String> get savingsPlanIdRef =>
+  TfRef<String> get savingsPlanId =>
       TfRef.attribute<String>(this, 'savings_plan_id');
 }

@@ -128,8 +128,6 @@ extraImports:
 deriveOutputGetters: true
 
 extraGetters: |2
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
     /// Reference to the server-assigned numeric `generated_id`.
     /// Kept at `TfRef<int>` — schema type is `number` (derived would widen
@@ -376,4 +374,3 @@ prelude: |
   // ===========================================================================
   // params (max_items=1)
   // ===========================================================================
-

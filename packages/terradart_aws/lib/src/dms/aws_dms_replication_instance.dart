@@ -124,72 +124,71 @@ final class AwsDmsReplicationInstance extends Resource {
       TfRef.attribute<List<String>>(this, 'replication_instance_public_ips');
 
   /// Reference to `allocated_storage` attribute.
-  TfRef<num> get allocatedStorageRef =>
+  TfRef<num> get allocatedStorage =>
       TfRef.attribute<num>(this, 'allocated_storage');
 
   /// Reference to `allow_major_version_upgrade` attribute.
-  TfRef<bool> get allowMajorVersionUpgradeRef =>
+  TfRef<bool> get allowMajorVersionUpgrade =>
       TfRef.attribute<bool>(this, 'allow_major_version_upgrade');
 
   /// Reference to `apply_immediately` attribute.
-  TfRef<bool> get applyImmediatelyRef =>
+  TfRef<bool> get applyImmediately =>
       TfRef.attribute<bool>(this, 'apply_immediately');
 
   /// Reference to `auto_minor_version_upgrade` attribute.
-  TfRef<bool> get autoMinorVersionUpgradeRef =>
+  TfRef<bool> get autoMinorVersionUpgrade =>
       TfRef.attribute<bool>(this, 'auto_minor_version_upgrade');
 
   /// Reference to `availability_zone` attribute.
-  TfRef<String> get availabilityZoneRef =>
+  TfRef<String> get availabilityZone =>
       TfRef.attribute<String>(this, 'availability_zone');
 
   /// Reference to `dns_name_servers` attribute.
-  TfRef<String> get dnsNameServersRef =>
+  TfRef<String> get dnsNameServers =>
       TfRef.attribute<String>(this, 'dns_name_servers');
 
   /// Reference to `engine_version` attribute.
-  TfRef<String> get engineVersionRef =>
+  TfRef<String> get engineVersion =>
       TfRef.attribute<String>(this, 'engine_version');
 
   /// Reference to `kms_key_arn` attribute.
-  TfRef<String> get kmsKeyArnRef =>
-      TfRef.attribute<String>(this, 'kms_key_arn');
+  TfRef<String> get kmsKeyArn => TfRef.attribute<String>(this, 'kms_key_arn');
 
   /// Reference to `multi_az` attribute.
-  TfRef<bool> get multiAzRef => TfRef.attribute<bool>(this, 'multi_az');
+  TfRef<bool> get multiAz => TfRef.attribute<bool>(this, 'multi_az');
 
   /// Reference to `network_type` attribute.
-  TfRef<String> get networkTypeRef =>
+  TfRef<String> get networkType =>
       TfRef.attribute<String>(this, 'network_type');
 
   /// Reference to `preferred_maintenance_window` attribute.
-  TfRef<String> get preferredMaintenanceWindowRef =>
+  TfRef<String> get preferredMaintenanceWindow =>
       TfRef.attribute<String>(this, 'preferred_maintenance_window');
 
   /// Reference to `publicly_accessible` attribute.
-  TfRef<bool> get publiclyAccessibleRef =>
+  TfRef<bool> get publiclyAccessible =>
       TfRef.attribute<bool>(this, 'publicly_accessible');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `replication_instance_class` attribute.
-  TfRef<String> get replicationInstanceClassRef =>
+  TfRef<String> get replicationInstanceClass =>
       TfRef.attribute<String>(this, 'replication_instance_class');
 
   /// Reference to `replication_instance_id` attribute.
-  TfRef<String> get replicationInstanceIdRef =>
+  TfRef<String> get replicationInstanceId =>
       TfRef.attribute<String>(this, 'replication_instance_id');
 
   /// Reference to `replication_subnet_group_id` attribute.
-  TfRef<String> get replicationSubnetGroupIdRef =>
+  TfRef<String> get replicationSubnetGroupId =>
       TfRef.attribute<String>(this, 'replication_subnet_group_id');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `vpc_security_group_ids` attribute.
-  TfRef<List<String>> get vpcSecurityGroupIdsRef =>
+  TfRef<List<String>> get vpcSecurityGroupIds =>
       TfRef.attribute<List<String>>(this, 'vpc_security_group_ids');
 }

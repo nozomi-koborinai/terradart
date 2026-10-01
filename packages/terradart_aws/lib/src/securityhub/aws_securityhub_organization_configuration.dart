@@ -84,12 +84,12 @@ final class AwsSecurityhubOrganizationConfiguration extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `auto_enable` attribute.
-  TfRef<bool> get autoEnableRef => TfRef.attribute<bool>(this, 'auto_enable');
+  TfRef<bool> get autoEnable => TfRef.attribute<bool>(this, 'auto_enable');
 
   /// Reference to `auto_enable_standards` attribute.
-  TfRef<String> get autoEnableStandardsRef =>
+  TfRef<String> get autoEnableStandards =>
       TfRef.attribute<String>(this, 'auto_enable_standards');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

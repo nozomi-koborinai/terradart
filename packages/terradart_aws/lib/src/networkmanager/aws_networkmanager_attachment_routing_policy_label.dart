@@ -40,14 +40,14 @@ final class AwsNetworkmanagerAttachmentRoutingPolicyLabel extends Resource {
       RefTo.of(this);
 
   /// Reference to `attachment_id` attribute.
-  TfRef<String> get attachmentIdRef =>
+  TfRef<String> get attachmentId =>
       TfRef.attribute<String>(this, 'attachment_id');
 
   /// Reference to `core_network_id` attribute.
-  TfRef<String> get coreNetworkIdRef =>
+  TfRef<String> get coreNetworkId =>
       TfRef.attribute<String>(this, 'core_network_id');
 
   /// Reference to `routing_policy_label` attribute.
-  TfRef<String> get routingPolicyLabelRef =>
+  TfRef<String> get routingPolicyLabel =>
       TfRef.attribute<String>(this, 'routing_policy_label');
 }

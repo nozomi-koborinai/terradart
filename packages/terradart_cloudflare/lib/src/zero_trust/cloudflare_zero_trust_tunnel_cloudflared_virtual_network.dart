@@ -51,7 +51,7 @@ final class CloudflareZeroTrustTunnelCloudflaredVirtualNetwork
       RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -63,15 +63,15 @@ final class CloudflareZeroTrustTunnelCloudflaredVirtualNetwork
   TfRef<String> get deletedAt => TfRef.attribute<String>(this, 'deleted_at');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `comment` attribute.
-  TfRef<String> get commentRef => TfRef.attribute<String>(this, 'comment');
+  TfRef<String> get comment => TfRef.attribute<String>(this, 'comment');
 
   /// Reference to `is_default` attribute.
-  TfRef<bool> get isDefaultRef => TfRef.attribute<bool>(this, 'is_default');
+  TfRef<bool> get isDefault => TfRef.attribute<bool>(this, 'is_default');
 
   /// Reference to `is_default_network` attribute.
-  TfRef<bool> get isDefaultNetworkRef =>
+  TfRef<bool> get isDefaultNetwork =>
       TfRef.attribute<bool>(this, 'is_default_network');
 }

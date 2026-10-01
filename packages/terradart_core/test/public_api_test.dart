@@ -8,7 +8,6 @@ void main() {
       TfArg,
       TfArgExpression,
       TfArgLiteral,
-      TfArgRef,
       TfRef,
       AttributeRef,
       DataRef,
@@ -42,7 +41,7 @@ void main() {
       DuplicateModuleError,
       TfTimeouts,
     ];
-    expect(symbols, hasLength(36));
+    expect(symbols, hasLength(35));
   });
 
   test('TerraformDurationExt is accessible (extension method)', () {

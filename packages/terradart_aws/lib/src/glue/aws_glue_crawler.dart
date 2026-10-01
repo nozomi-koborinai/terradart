@@ -449,7 +449,7 @@ final class AwsGlueCrawler extends Resource {
   RefTo<AwsGlueCrawler> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -458,39 +458,38 @@ final class AwsGlueCrawler extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `classifiers` attribute.
-  TfRef<List<String>> get classifiersRef =>
+  TfRef<List<String>> get classifiers =>
       TfRef.attribute<List<String>>(this, 'classifiers');
 
   /// Reference to `configuration` attribute.
-  TfRef<String> get configurationRef =>
+  TfRef<String> get configuration =>
       TfRef.attribute<String>(this, 'configuration');
 
   /// Reference to `database_name` attribute.
-  TfRef<String> get databaseNameRef =>
+  TfRef<String> get databaseName =>
       TfRef.attribute<String>(this, 'database_name');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role` attribute.
-  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+  TfRef<String> get role => TfRef.attribute<String>(this, 'role');
 
   /// Reference to `schedule` attribute.
-  TfRef<String> get scheduleRef => TfRef.attribute<String>(this, 'schedule');
+  TfRef<String> get schedule => TfRef.attribute<String>(this, 'schedule');
 
   /// Reference to `security_configuration` attribute.
-  TfRef<String> get securityConfigurationRef =>
+  TfRef<String> get securityConfiguration =>
       TfRef.attribute<String>(this, 'security_configuration');
 
   /// Reference to `table_prefix` attribute.
-  TfRef<String> get tablePrefixRef =>
+  TfRef<String> get tablePrefix =>
       TfRef.attribute<String>(this, 'table_prefix');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

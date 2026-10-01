@@ -108,67 +108,65 @@ final class AppwriteTablesdbColumn extends Resource {
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
 
   /// Reference to `array` attribute.
-  TfRef<bool> get arrayRef => TfRef.attribute<bool>(this, 'array');
+  TfRef<bool> get array => TfRef.attribute<bool>(this, 'array');
 
   /// Reference to `database_id` attribute.
-  TfRef<String> get databaseIdRef =>
-      TfRef.attribute<String>(this, 'database_id');
+  TfRef<String> get databaseId => TfRef.attribute<String>(this, 'database_id');
 
   /// Reference to `default` attribute.
-  TfRef<String> get defaultRef => TfRef.attribute<String>(this, 'default');
+  TfRef<String> get defaultAttr => TfRef.attribute<String>(this, 'default');
 
   /// Reference to `elements` attribute.
-  TfRef<List<String>> get elementsRef =>
+  TfRef<List<String>> get elements =>
       TfRef.attribute<List<String>>(this, 'elements');
 
   /// Reference to `encrypt` attribute.
-  TfRef<bool> get encryptRef => TfRef.attribute<bool>(this, 'encrypt');
+  TfRef<bool> get encrypt => TfRef.attribute<bool>(this, 'encrypt');
 
   /// Reference to `float_max` attribute.
-  TfRef<num> get floatMaxRef => TfRef.attribute<num>(this, 'float_max');
+  TfRef<num> get floatMax => TfRef.attribute<num>(this, 'float_max');
 
   /// Reference to `float_min` attribute.
-  TfRef<num> get floatMinRef => TfRef.attribute<num>(this, 'float_min');
+  TfRef<num> get floatMin => TfRef.attribute<num>(this, 'float_min');
 
   /// Reference to `key` attribute.
-  TfRef<String> get keyRef => TfRef.attribute<String>(this, 'key');
+  TfRef<String> get key => TfRef.attribute<String>(this, 'key');
 
   /// Reference to `max` attribute.
-  TfRef<num> get maxRef => TfRef.attribute<num>(this, 'max');
+  TfRef<num> get max => TfRef.attribute<num>(this, 'max');
 
   /// Reference to `min` attribute.
-  TfRef<num> get minRef => TfRef.attribute<num>(this, 'min');
+  TfRef<num> get min => TfRef.attribute<num>(this, 'min');
 
   /// Reference to `on_delete` attribute.
-  TfRef<String> get onDeleteRef => TfRef.attribute<String>(this, 'on_delete');
+  TfRef<String> get onDelete => TfRef.attribute<String>(this, 'on_delete');
 
   /// Reference to `project_id` attribute.
-  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
+  TfRef<String> get projectId => TfRef.attribute<String>(this, 'project_id');
 
   /// Reference to `related_table_id` attribute.
-  TfRef<String> get relatedTableIdRef =>
+  TfRef<String> get relatedTableId =>
       TfRef.attribute<String>(this, 'related_table_id');
 
   /// Reference to `relationship_type` attribute.
-  TfRef<String> get relationshipTypeRef =>
+  TfRef<String> get relationshipType =>
       TfRef.attribute<String>(this, 'relationship_type');
 
   /// Reference to `required` attribute.
-  TfRef<bool> get requiredRef => TfRef.attribute<bool>(this, 'required');
+  TfRef<bool> get required => TfRef.attribute<bool>(this, 'required');
 
   /// Reference to `size` attribute.
-  TfRef<num> get sizeRef => TfRef.attribute<num>(this, 'size');
+  TfRef<num> get size => TfRef.attribute<num>(this, 'size');
 
   /// Reference to `table_id` attribute.
-  TfRef<String> get tableIdRef => TfRef.attribute<String>(this, 'table_id');
+  TfRef<String> get tableId => TfRef.attribute<String>(this, 'table_id');
 
   /// Reference to `two_way` attribute.
-  TfRef<bool> get twoWayRef => TfRef.attribute<bool>(this, 'two_way');
+  TfRef<bool> get twoWay => TfRef.attribute<bool>(this, 'two_way');
 
   /// Reference to `two_way_key` attribute.
-  TfRef<String> get twoWayKeyRef =>
-      TfRef.attribute<String>(this, 'two_way_key');
+  TfRef<String> get twoWayKey => TfRef.attribute<String>(this, 'two_way_key');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

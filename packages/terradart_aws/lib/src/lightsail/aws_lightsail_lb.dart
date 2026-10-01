@@ -52,7 +52,7 @@ final class AwsLightsailLb extends Resource {
   RefTo<AwsLightsailLb> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -78,20 +78,20 @@ final class AwsLightsailLb extends Resource {
       TfRef.attribute<String>(this, 'support_code');
 
   /// Reference to `health_check_path` attribute.
-  TfRef<String> get healthCheckPathRef =>
+  TfRef<String> get healthCheckPath =>
       TfRef.attribute<String>(this, 'health_check_path');
 
   /// Reference to `instance_port` attribute.
-  TfRef<num> get instancePortRef => TfRef.attribute<num>(this, 'instance_port');
+  TfRef<num> get instancePort => TfRef.attribute<num>(this, 'instance_port');
 
   /// Reference to `ip_address_type` attribute.
-  TfRef<String> get ipAddressTypeRef =>
+  TfRef<String> get ipAddressType =>
       TfRef.attribute<String>(this, 'ip_address_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -16,8 +16,3 @@ paramOrder:
   - properties
   - deletion_policy
   - project
-
-extraGetters: |2
-    /// Reference to `namespace_id` attribute.
-    TfRef<String> get namespaceIdRef =>
-        TfRef.attribute<String>(this, 'namespace_id');

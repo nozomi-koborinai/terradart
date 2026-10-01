@@ -72,7 +72,7 @@ final class _TestStack extends Stack {
     addData(trust);
     final role = AwsIamRole(
       localName: 'fn',
-      assumeRolePolicy: TfArg.ref(trust.json),
+      assumeRolePolicy: trust.json,
       name: .name(.literal('hello-dart')),
     );
     add(role);

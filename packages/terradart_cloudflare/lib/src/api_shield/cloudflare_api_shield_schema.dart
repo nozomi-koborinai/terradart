@@ -70,10 +70,10 @@ final class CloudflareApiShieldSchema extends Resource {
   RefTo<CloudflareApiShieldSchema> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `kind` attribute.
-  TfRef<String> get kindRef => TfRef.attribute<String>(this, 'kind');
+  TfRef<String> get kindAttr => TfRef.attribute<String>(this, 'kind');
 
   /// Reference to `created_at` attribute.
   TfRef<String> get createdAt => TfRef.attribute<String>(this, 'created_at');
@@ -82,18 +82,18 @@ final class CloudflareApiShieldSchema extends Resource {
   TfRef<String> get source => TfRef.attribute<String>(this, 'source');
 
   /// Reference to `file` attribute.
-  TfRef<String> get fileRef => TfRef.attribute<String>(this, 'file');
+  TfRef<String> get file => TfRef.attribute<String>(this, 'file');
 
   /// Reference to `omit_source` attribute.
-  TfRef<bool> get omitSourceRef => TfRef.attribute<bool>(this, 'omit_source');
+  TfRef<bool> get omitSource => TfRef.attribute<bool>(this, 'omit_source');
 
   /// Reference to `schema_id` attribute.
-  TfRef<String> get schemaIdRef => TfRef.attribute<String>(this, 'schema_id');
+  TfRef<String> get schemaId => TfRef.attribute<String>(this, 'schema_id');
 
   /// Reference to `validation_enabled` attribute.
-  TfRef<String> get validationEnabledRef =>
+  TfRef<String> get validationEnabled =>
       TfRef.attribute<String>(this, 'validation_enabled');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

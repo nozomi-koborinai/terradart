@@ -481,40 +481,40 @@ final class AwsWorkspacesDirectory extends Resource {
       TfRef.attribute<String>(this, 'workspace_security_group_id');
 
   /// Reference to `directory_id` attribute.
-  TfRef<String> get directoryIdRef =>
+  TfRef<String> get directoryId =>
       TfRef.attribute<String>(this, 'directory_id');
 
   /// Reference to `ip_group_ids` attribute.
-  TfRef<List<String>> get ipGroupIdsRef =>
+  TfRef<List<String>> get ipGroupIds =>
       TfRef.attribute<List<String>>(this, 'ip_group_ids');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `subnet_ids` attribute.
-  TfRef<List<String>> get subnetIdsRef =>
+  TfRef<List<String>> get subnetIds =>
       TfRef.attribute<List<String>>(this, 'subnet_ids');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `tenancy` attribute.
-  TfRef<String> get tenancyRef => TfRef.attribute<String>(this, 'tenancy');
+  TfRef<String> get tenancy => TfRef.attribute<String>(this, 'tenancy');
 
   /// Reference to `user_identity_type` attribute.
-  TfRef<String> get userIdentityTypeRef =>
+  TfRef<String> get userIdentityType =>
       TfRef.attribute<String>(this, 'user_identity_type');
 
   /// Reference to `workspace_directory_description` attribute.
-  TfRef<String> get workspaceDirectoryDescriptionRef =>
+  TfRef<String> get workspaceDirectoryDescription =>
       TfRef.attribute<String>(this, 'workspace_directory_description');
 
   /// Reference to `workspace_directory_name` attribute.
-  TfRef<String> get workspaceDirectoryNameRef =>
+  TfRef<String> get workspaceDirectoryName =>
       TfRef.attribute<String>(this, 'workspace_directory_name');
 
   /// Reference to `workspace_type` attribute.
-  TfRef<String> get workspaceTypeRef =>
+  TfRef<String> get workspaceType =>
       TfRef.attribute<String>(this, 'workspace_type');
 }

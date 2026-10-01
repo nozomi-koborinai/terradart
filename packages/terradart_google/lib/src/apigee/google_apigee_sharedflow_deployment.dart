@@ -58,27 +58,23 @@ final class GoogleApigeeSharedflowDeployment extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `environment` attribute.
-  TfRef<String> get environmentRef =>
-      TfRef.attribute<String>(this, 'environment');
+  TfRef<String> get environment => TfRef.attribute<String>(this, 'environment');
 
   /// Reference to `org_id` attribute.
-  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
+  TfRef<String> get orgId => TfRef.attribute<String>(this, 'org_id');
 
   /// Reference to `revision` attribute.
-  TfRef<String> get revisionRef => TfRef.attribute<String>(this, 'revision');
+  TfRef<String> get revision => TfRef.attribute<String>(this, 'revision');
 
   /// Reference to `service_account` attribute.
-  TfRef<String> get serviceAccountRef =>
+  TfRef<String> get serviceAccount =>
       TfRef.attribute<String>(this, 'service_account');
 
   /// Reference to `sharedflow_id` attribute.
-  TfRef<String> get sharedflowIdRef =>
+  TfRef<String> get sharedflowId =>
       TfRef.attribute<String>(this, 'sharedflow_id');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 }

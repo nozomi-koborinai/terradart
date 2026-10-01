@@ -38,9 +38,8 @@ final class AwsSecurityhubProductSubscription extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `product_arn` attribute.
-  TfRef<String> get productArnRef =>
-      TfRef.attribute<String>(this, 'product_arn');
+  TfRef<String> get productArn => TfRef.attribute<String>(this, 'product_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

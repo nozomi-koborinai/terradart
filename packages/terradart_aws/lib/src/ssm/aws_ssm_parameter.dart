@@ -168,7 +168,7 @@ final class AwsSsmParameter extends Resource {
   RefTo<AwsSsmParameter> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -180,46 +180,45 @@ final class AwsSsmParameter extends Resource {
   TfRef<num> get version => TfRef.attribute<num>(this, 'version');
 
   /// Reference to `allowed_pattern` attribute.
-  TfRef<String> get allowedPatternRef =>
+  TfRef<String> get allowedPattern =>
       TfRef.attribute<String>(this, 'allowed_pattern');
 
   /// Reference to `arn` attribute.
-  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+  TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `data_type` attribute.
-  TfRef<String> get dataTypeRef => TfRef.attribute<String>(this, 'data_type');
+  TfRef<String> get dataType => TfRef.attribute<String>(this, 'data_type');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `insecure_value` attribute.
-  TfRef<String> get insecureValueRef =>
+  TfRef<String> get insecureValue =>
       TfRef.attribute<String>(this, 'insecure_value');
 
   /// Reference to `key_id` attribute.
-  TfRef<String> get keyIdRef => TfRef.attribute<String>(this, 'key_id');
+  TfRef<String> get keyId => TfRef.attribute<String>(this, 'key_id');
 
   /// Reference to `overwrite` attribute.
-  TfRef<bool> get overwriteRef => TfRef.attribute<bool>(this, 'overwrite');
+  TfRef<bool> get overwrite => TfRef.attribute<bool>(this, 'overwrite');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `tier` attribute.
-  TfRef<String> get tierRef => TfRef.attribute<String>(this, 'tier');
+  TfRef<String> get tier => TfRef.attribute<String>(this, 'tier');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `value` attribute.
-  TfRef<String> get valueRef => TfRef.attribute<String>(this, 'value');
+  TfRef<String> get value => TfRef.attribute<String>(this, 'value');
 
   /// Reference to `value_wo_version` attribute.
-  TfRef<num> get valueWoVersionRef =>
+  TfRef<num> get valueWoVersion =>
       TfRef.attribute<num>(this, 'value_wo_version');
 }

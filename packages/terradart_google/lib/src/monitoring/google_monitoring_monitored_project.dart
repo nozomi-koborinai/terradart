@@ -50,7 +50,7 @@ final class GoogleMonitoringMonitoredProject extends Resource {
   RefTo<GoogleMonitoringMonitoredProject> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -59,10 +59,10 @@ final class GoogleMonitoringMonitoredProject extends Resource {
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `metrics_scope` attribute.
-  TfRef<String> get metricsScopeRef =>
+  TfRef<String> get metricsScope =>
       TfRef.attribute<String>(this, 'metrics_scope');
 }

@@ -125,7 +125,7 @@ final class AwsAuditmanagerControl extends Resource {
   RefTo<AwsAuditmanagerControl> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -141,25 +141,24 @@ final class AwsAuditmanagerControl extends Resource {
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `action_plan_instructions` attribute.
-  TfRef<String> get actionPlanInstructionsRef =>
+  TfRef<String> get actionPlanInstructions =>
       TfRef.attribute<String>(this, 'action_plan_instructions');
 
   /// Reference to `action_plan_title` attribute.
-  TfRef<String> get actionPlanTitleRef =>
+  TfRef<String> get actionPlanTitle =>
       TfRef.attribute<String>(this, 'action_plan_title');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `testing_information` attribute.
-  TfRef<String> get testingInformationRef =>
+  TfRef<String> get testingInformation =>
       TfRef.attribute<String>(this, 'testing_information');
 }

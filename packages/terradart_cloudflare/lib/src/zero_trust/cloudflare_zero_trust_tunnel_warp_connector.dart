@@ -49,7 +49,7 @@ final class CloudflareZeroTrustTunnelWarpConnector extends Resource {
   RefTo<CloudflareZeroTrustTunnelWarpConnector> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -81,12 +81,12 @@ final class CloudflareZeroTrustTunnelWarpConnector extends Resource {
   TfRef<String> get tunType => TfRef.attribute<String>(this, 'tun_type');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `ha` attribute.
-  TfRef<bool> get haRef => TfRef.attribute<bool>(this, 'ha');
+  TfRef<bool> get ha => TfRef.attribute<bool>(this, 'ha');
 
   /// Reference to `tunnel_secret` attribute.
-  TfRef<String> get tunnelSecretRef =>
+  TfRef<String> get tunnelSecret =>
       TfRef.attribute<String>(this, 'tunnel_secret');
 }

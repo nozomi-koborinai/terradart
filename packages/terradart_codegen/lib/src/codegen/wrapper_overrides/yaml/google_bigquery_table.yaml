@@ -80,8 +80,6 @@ paramOrder:
   - schema_foreign_type_info
 
 extraGetters: |2
-    /// Reference to `table_id` attribute.
-    TfRef<String> get tableIdRef => TfRef.attribute<String>(this, 'table_id');
 
     /// Reference to `num_rows` attribute. Number of rows in the table at
     /// the last refresh (string-encoded int64 in the provider; exposed as
@@ -238,4 +236,3 @@ dartTypeOverrides:
   external_data_configuration.object_metadata: ObjectMetadata
   external_data_configuration.source_format: ExternalDataSourceFormat
   time_partitioning.type: TimePartitioningType
-

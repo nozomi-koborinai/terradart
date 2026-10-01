@@ -90,9 +90,8 @@ final class DataAwsMskBootstrapBrokers extends Data {
       TfRef.attribute<String>(this, 'bootstrap_brokers_vpc_connectivity_tls');
 
   /// Reference to `cluster_arn` attribute.
-  TfRef<String> get clusterArnRef =>
-      TfRef.attribute<String>(this, 'cluster_arn');
+  TfRef<String> get clusterArn => TfRef.attribute<String>(this, 'cluster_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

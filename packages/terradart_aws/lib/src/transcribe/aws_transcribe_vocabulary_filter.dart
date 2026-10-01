@@ -117,25 +117,24 @@ final class AwsTranscribeVocabularyFilter extends Resource {
       TfRef.attribute<String>(this, 'download_uri');
 
   /// Reference to `language_code` attribute.
-  TfRef<String> get languageCodeRef =>
+  TfRef<String> get languageCode =>
       TfRef.attribute<String>(this, 'language_code');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `vocabulary_filter_file_uri` attribute.
-  TfRef<String> get vocabularyFilterFileUriRef =>
+  TfRef<String> get vocabularyFilterFileUri =>
       TfRef.attribute<String>(this, 'vocabulary_filter_file_uri');
 
   /// Reference to `vocabulary_filter_name` attribute.
-  TfRef<String> get vocabularyFilterNameRef =>
+  TfRef<String> get vocabularyFilterName =>
       TfRef.attribute<String>(this, 'vocabulary_filter_name');
 
   /// Reference to `words` attribute.
-  TfRef<List<String>> get wordsRef =>
-      TfRef.attribute<List<String>>(this, 'words');
+  TfRef<List<String>> get words => TfRef.attribute<List<String>>(this, 'words');
 }

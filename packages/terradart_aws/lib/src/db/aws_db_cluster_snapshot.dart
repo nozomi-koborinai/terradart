@@ -90,21 +90,21 @@ final class AwsDbClusterSnapshot extends Resource {
   TfRef<String> get vpcId => TfRef.attribute<String>(this, 'vpc_id');
 
   /// Reference to `db_cluster_identifier` attribute.
-  TfRef<String> get dbClusterIdentifierRef =>
+  TfRef<String> get dbClusterIdentifier =>
       TfRef.attribute<String>(this, 'db_cluster_identifier');
 
   /// Reference to `db_cluster_snapshot_identifier` attribute.
-  TfRef<String> get dbClusterSnapshotIdentifierRef =>
+  TfRef<String> get dbClusterSnapshotIdentifier =>
       TfRef.attribute<String>(this, 'db_cluster_snapshot_identifier');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `shared_accounts` attribute.
-  TfRef<List<String>> get sharedAccountsRef =>
+  TfRef<List<String>> get sharedAccounts =>
       TfRef.attribute<List<String>>(this, 'shared_accounts');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

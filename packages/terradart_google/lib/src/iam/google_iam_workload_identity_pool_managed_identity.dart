@@ -99,7 +99,7 @@ final class GoogleIamWorkloadIdentityPoolManagedIdentity extends Resource {
   RefTo<GoogleIamWorkloadIdentityPoolManagedIdentity> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -108,31 +108,30 @@ final class GoogleIamWorkloadIdentityPoolManagedIdentity extends Resource {
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `disabled` attribute.
-  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+  TfRef<bool> get disabled => TfRef.attribute<bool>(this, 'disabled');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `workload_identity_pool_id` attribute.
-  TfRef<String> get workloadIdentityPoolIdRef =>
+  TfRef<String> get workloadIdentityPoolId =>
       TfRef.attribute<String>(this, 'workload_identity_pool_id');
 
   /// Reference to `workload_identity_pool_managed_identity_id` attribute.
-  TfRef<String> get workloadIdentityPoolManagedIdentityIdRef =>
+  TfRef<String> get workloadIdentityPoolManagedIdentityId =>
       TfRef.attribute<String>(
         this,
         'workload_identity_pool_managed_identity_id',
       );
 
   /// Reference to `workload_identity_pool_namespace_id` attribute.
-  TfRef<String> get workloadIdentityPoolNamespaceIdRef =>
+  TfRef<String> get workloadIdentityPoolNamespaceId =>
       TfRef.attribute<String>(this, 'workload_identity_pool_namespace_id');
 }

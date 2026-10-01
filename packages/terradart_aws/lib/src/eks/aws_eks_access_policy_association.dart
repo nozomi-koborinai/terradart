@@ -70,16 +70,16 @@ final class AwsEksAccessPolicyAssociation extends Resource {
   TfRef<String> get modifiedAt => TfRef.attribute<String>(this, 'modified_at');
 
   /// Reference to `cluster_name` attribute.
-  TfRef<String> get clusterNameRef =>
+  TfRef<String> get clusterName =>
       TfRef.attribute<String>(this, 'cluster_name');
 
   /// Reference to `policy_arn` attribute.
-  TfRef<String> get policyArnRef => TfRef.attribute<String>(this, 'policy_arn');
+  TfRef<String> get policyArn => TfRef.attribute<String>(this, 'policy_arn');
 
   /// Reference to `principal_arn` attribute.
-  TfRef<String> get principalArnRef =>
+  TfRef<String> get principalArn =>
       TfRef.attribute<String>(this, 'principal_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

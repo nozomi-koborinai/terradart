@@ -1398,7 +1398,7 @@ final class CloudbuildTriggerWebhookConfig {
 ///   serviceAccount: .of(runner),
 ///   buildSpec: .filename(.literal('cloudbuild.yaml')),
 ///   repositoryEventConfig: CloudbuildTriggerRepositoryEventConfig(
-///     repository: .ref(repository.id),
+///     repository: repository.id,
 ///     event: .pullRequest(
 ///       .new(
 ///         branch: .literal(r'^main$'),
@@ -1494,7 +1494,7 @@ final class GoogleCloudbuildTrigger extends Resource {
   RefTo<GoogleCloudbuildTrigger> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -1506,49 +1506,47 @@ final class GoogleCloudbuildTrigger extends Resource {
   TfRef<String> get triggerId => TfRef.attribute<String>(this, 'trigger_id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `disabled` attribute.
-  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+  TfRef<bool> get disabled => TfRef.attribute<bool>(this, 'disabled');
 
   /// Reference to `filename` attribute.
-  TfRef<String> get filenameRef => TfRef.attribute<String>(this, 'filename');
+  TfRef<String> get filename => TfRef.attribute<String>(this, 'filename');
 
   /// Reference to `filter` attribute.
-  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+  TfRef<String> get filter => TfRef.attribute<String>(this, 'filter');
 
   /// Reference to `ignored_files` attribute.
-  TfRef<List<String>> get ignoredFilesRef =>
+  TfRef<List<String>> get ignoredFiles =>
       TfRef.attribute<List<String>>(this, 'ignored_files');
 
   /// Reference to `include_build_logs` attribute.
-  TfRef<String> get includeBuildLogsRef =>
+  TfRef<String> get includeBuildLogs =>
       TfRef.attribute<String>(this, 'include_build_logs');
 
   /// Reference to `included_files` attribute.
-  TfRef<List<String>> get includedFilesRef =>
+  TfRef<List<String>> get includedFiles =>
       TfRef.attribute<List<String>>(this, 'included_files');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `service_account` attribute.
-  TfRef<String> get serviceAccountRef =>
+  TfRef<String> get serviceAccount =>
       TfRef.attribute<String>(this, 'service_account');
 
   /// Reference to `substitutions` attribute.
-  TfRef<Map<String, String>> get substitutionsRef =>
+  TfRef<Map<String, String>> get substitutions =>
       TfRef.attribute<Map<String, String>>(this, 'substitutions');
 
   /// Reference to `tags` attribute.
-  TfRef<List<String>> get tagsRef =>
-      TfRef.attribute<List<String>>(this, 'tags');
+  TfRef<List<String>> get tags => TfRef.attribute<List<String>>(this, 'tags');
 }

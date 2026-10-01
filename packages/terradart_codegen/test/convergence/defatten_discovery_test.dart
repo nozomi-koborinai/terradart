@@ -169,7 +169,7 @@ void main() {
     );
 
     // --- google_pubsub_topic ---
-    // nameRef and id are derivable from the IR (name + id attributes exist).
+    // name and id are derivable from the IR (name + id attributes exist).
     const pubsubTopicType = 'google_pubsub_topic';
     final pubsubTopicDef = result.resources[pubsubTopicType];
     expect(
@@ -180,9 +180,9 @@ void main() {
 
     final topicDerivable = derivableGetterNames(pubsubTopicDef!);
     expect(
-      topicDerivable.intersection({'nameRef', 'id'}),
-      equals({'nameRef', 'id'}),
-      reason: 'nameRef and id must be derivable for google_pubsub_topic',
+      topicDerivable.intersection({'name', 'id'}),
+      equals({'name', 'id'}),
+      reason: 'name and id must be derivable for google_pubsub_topic',
     );
   });
 

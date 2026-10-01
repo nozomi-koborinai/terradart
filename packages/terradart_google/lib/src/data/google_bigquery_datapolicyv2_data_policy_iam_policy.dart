@@ -51,12 +51,12 @@ final class DataGoogleBigqueryDatapolicyv2DataPolicyIamPolicy extends Data {
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
 
   /// Reference to `data_policy_id` attribute.
-  TfRef<String> get dataPolicyIdRef =>
+  TfRef<String> get dataPolicyId =>
       TfRef.attribute<String>(this, 'data_policy_id');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

@@ -39,7 +39,7 @@ const Set<String> _googleFirebaseAppCheckDebugTokenSensitive = <String>{
 ///   localName: 'ci_runner',
 ///   appId: TfArg.literal('1:1234567890:web:abcdef'),
 ///   displayName: TfArg.literal('CI runner (e2e tests)'),
-///   token: TfArg.ref(uuid.result),
+///   token: uuid.result,
 /// );
 /// ```
 ///
@@ -84,6 +84,6 @@ final class GoogleFirebaseAppCheckDebugToken extends Resource {
 
   /// Reference to `debug_token_id` -- the server-assigned last segment of
   /// the resource name. Populated after apply.
-  TfRef<String> get debugTokenIdRef =>
+  TfRef<String> get debugTokenId =>
       TfRef.attribute<String>(this, 'debug_token_id');
 }

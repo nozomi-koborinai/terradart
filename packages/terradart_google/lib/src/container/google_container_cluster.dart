@@ -3826,7 +3826,7 @@ final class GoogleContainerCluster extends Resource {
   RefTo<GoogleContainerCluster> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -3869,150 +3869,148 @@ final class GoogleContainerCluster extends Resource {
       TfRef.attribute<String>(this, 'tpu_ipv4_cidr_block');
 
   /// Reference to `allow_net_admin` attribute.
-  TfRef<bool> get allowNetAdminRef =>
+  TfRef<bool> get allowNetAdmin =>
       TfRef.attribute<bool>(this, 'allow_net_admin');
 
   /// Reference to `autopilot_privileged_admission` attribute.
-  TfRef<List<String>> get autopilotPrivilegedAdmissionRef =>
+  TfRef<List<String>> get autopilotPrivilegedAdmission =>
       TfRef.attribute<List<String>>(this, 'autopilot_privileged_admission');
 
   /// Reference to `cluster_ipv4_cidr` attribute.
-  TfRef<String> get clusterIpv4CidrRef =>
+  TfRef<String> get clusterIpv4Cidr =>
       TfRef.attribute<String>(this, 'cluster_ipv4_cidr');
 
   /// Reference to `datapath_provider` attribute.
-  TfRef<String> get datapathProviderRef =>
+  TfRef<String> get datapathProvider =>
       TfRef.attribute<String>(this, 'datapath_provider');
 
   /// Reference to `dataplane_optimization_mode` attribute.
-  TfRef<String> get dataplaneOptimizationModeRef =>
+  TfRef<String> get dataplaneOptimizationMode =>
       TfRef.attribute<String>(this, 'dataplane_optimization_mode');
 
   /// Reference to `default_max_pods_per_node` attribute.
-  TfRef<num> get defaultMaxPodsPerNodeRef =>
+  TfRef<num> get defaultMaxPodsPerNode =>
       TfRef.attribute<num>(this, 'default_max_pods_per_node');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `deletion_protection` attribute.
-  TfRef<bool> get deletionProtectionRef =>
+  TfRef<bool> get deletionProtection =>
       TfRef.attribute<bool>(this, 'deletion_protection');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `desired_emulated_version` attribute.
-  TfRef<String> get desiredEmulatedVersionRef =>
+  TfRef<String> get desiredEmulatedVersion =>
       TfRef.attribute<String>(this, 'desired_emulated_version');
 
   /// Reference to `disable_l4_lb_firewall_reconciliation` attribute.
-  TfRef<bool> get disableL4LbFirewallReconciliationRef =>
+  TfRef<bool> get disableL4LbFirewallReconciliation =>
       TfRef.attribute<bool>(this, 'disable_l4_lb_firewall_reconciliation');
 
   /// Reference to `enable_autopilot` attribute.
-  TfRef<bool> get enableAutopilotRef =>
+  TfRef<bool> get enableAutopilot =>
       TfRef.attribute<bool>(this, 'enable_autopilot');
 
   /// Reference to `enable_cilium_clusterwide_network_policy` attribute.
-  TfRef<bool> get enableCiliumClusterwideNetworkPolicyRef =>
+  TfRef<bool> get enableCiliumClusterwideNetworkPolicy =>
       TfRef.attribute<bool>(this, 'enable_cilium_clusterwide_network_policy');
 
   /// Reference to `enable_fqdn_network_policy` attribute.
-  TfRef<bool> get enableFqdnNetworkPolicyRef =>
+  TfRef<bool> get enableFqdnNetworkPolicy =>
       TfRef.attribute<bool>(this, 'enable_fqdn_network_policy');
 
   /// Reference to `enable_intranode_visibility` attribute.
-  TfRef<bool> get enableIntranodeVisibilityRef =>
+  TfRef<bool> get enableIntranodeVisibility =>
       TfRef.attribute<bool>(this, 'enable_intranode_visibility');
 
   /// Reference to `enable_kubernetes_alpha` attribute.
-  TfRef<bool> get enableKubernetesAlphaRef =>
+  TfRef<bool> get enableKubernetesAlpha =>
       TfRef.attribute<bool>(this, 'enable_kubernetes_alpha');
 
   /// Reference to `enable_l4_ilb_subsetting` attribute.
-  TfRef<bool> get enableL4IlbSubsettingRef =>
+  TfRef<bool> get enableL4IlbSubsetting =>
       TfRef.attribute<bool>(this, 'enable_l4_ilb_subsetting');
 
   /// Reference to `enable_legacy_abac` attribute.
-  TfRef<bool> get enableLegacyAbacRef =>
+  TfRef<bool> get enableLegacyAbac =>
       TfRef.attribute<bool>(this, 'enable_legacy_abac');
 
   /// Reference to `enable_multi_networking` attribute.
-  TfRef<bool> get enableMultiNetworkingRef =>
+  TfRef<bool> get enableMultiNetworking =>
       TfRef.attribute<bool>(this, 'enable_multi_networking');
 
   /// Reference to `enable_shielded_nodes` attribute.
-  TfRef<bool> get enableShieldedNodesRef =>
+  TfRef<bool> get enableShieldedNodes =>
       TfRef.attribute<bool>(this, 'enable_shielded_nodes');
 
   /// Reference to `enable_tpu` attribute.
-  TfRef<bool> get enableTpuRef => TfRef.attribute<bool>(this, 'enable_tpu');
+  TfRef<bool> get enableTpu => TfRef.attribute<bool>(this, 'enable_tpu');
 
   /// Reference to `ignore_node_count_changes` attribute.
-  TfRef<bool> get ignoreNodeCountChangesRef =>
+  TfRef<bool> get ignoreNodeCountChanges =>
       TfRef.attribute<bool>(this, 'ignore_node_count_changes');
 
   /// Reference to `in_transit_encryption_config` attribute.
-  TfRef<String> get inTransitEncryptionConfigRef =>
+  TfRef<String> get inTransitEncryptionConfig =>
       TfRef.attribute<String>(this, 'in_transit_encryption_config');
 
   /// Reference to `initial_node_count` attribute.
-  TfRef<num> get initialNodeCountRef =>
+  TfRef<num> get initialNodeCount =>
       TfRef.attribute<num>(this, 'initial_node_count');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `logging_service` attribute.
-  TfRef<String> get loggingServiceRef =>
+  TfRef<String> get loggingService =>
       TfRef.attribute<String>(this, 'logging_service');
 
   /// Reference to `min_master_version` attribute.
-  TfRef<String> get minMasterVersionRef =>
+  TfRef<String> get minMasterVersion =>
       TfRef.attribute<String>(this, 'min_master_version');
 
   /// Reference to `monitoring_service` attribute.
-  TfRef<String> get monitoringServiceRef =>
+  TfRef<String> get monitoringService =>
       TfRef.attribute<String>(this, 'monitoring_service');
 
   /// Reference to `network` attribute.
-  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+  TfRef<String> get network => TfRef.attribute<String>(this, 'network');
 
   /// Reference to `networking_mode` attribute.
-  TfRef<String> get networkingModeRef =>
+  TfRef<String> get networkingMode =>
       TfRef.attribute<String>(this, 'networking_mode');
 
   /// Reference to `node_locations` attribute.
-  TfRef<List<String>> get nodeLocationsRef =>
+  TfRef<List<String>> get nodeLocations =>
       TfRef.attribute<List<String>>(this, 'node_locations');
 
   /// Reference to `node_version` attribute.
-  TfRef<String> get nodeVersionRef =>
+  TfRef<String> get nodeVersion =>
       TfRef.attribute<String>(this, 'node_version');
 
   /// Reference to `private_ipv6_google_access` attribute.
-  TfRef<String> get privateIpv6GoogleAccessRef =>
+  TfRef<String> get privateIpv6GoogleAccess =>
       TfRef.attribute<String>(this, 'private_ipv6_google_access');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `remove_default_node_pool` attribute.
-  TfRef<bool> get removeDefaultNodePoolRef =>
+  TfRef<bool> get removeDefaultNodePool =>
       TfRef.attribute<bool>(this, 'remove_default_node_pool');
 
   /// Reference to `resource_labels` attribute.
-  TfRef<Map<String, String>> get resourceLabelsRef =>
+  TfRef<Map<String, String>> get resourceLabels =>
       TfRef.attribute<Map<String, String>>(this, 'resource_labels');
 
   /// Reference to `skip_node_pool_refresh` attribute.
-  TfRef<bool> get skipNodePoolRefreshRef =>
+  TfRef<bool> get skipNodePoolRefresh =>
       TfRef.attribute<bool>(this, 'skip_node_pool_refresh');
 
   /// Reference to `subnetwork` attribute.
-  TfRef<String> get subnetworkRef =>
-      TfRef.attribute<String>(this, 'subnetwork');
+  TfRef<String> get subnetwork => TfRef.attribute<String>(this, 'subnetwork');
 }

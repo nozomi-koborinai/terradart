@@ -57,19 +57,19 @@ final class DataAwsDocdbEngineVersion extends Data {
       TfRef.attribute<String>(this, 'version_description');
 
   /// Reference to `engine` attribute.
-  TfRef<String> get engineRef => TfRef.attribute<String>(this, 'engine');
+  TfRef<String> get engine => TfRef.attribute<String>(this, 'engine');
 
   /// Reference to `parameter_group_family` attribute.
-  TfRef<String> get parameterGroupFamilyRef =>
+  TfRef<String> get parameterGroupFamily =>
       TfRef.attribute<String>(this, 'parameter_group_family');
 
   /// Reference to `preferred_versions` attribute.
-  TfRef<List<String>> get preferredVersionsRef =>
+  TfRef<List<String>> get preferredVersions =>
       TfRef.attribute<List<String>>(this, 'preferred_versions');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `version` attribute.
-  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
+  TfRef<String> get version => TfRef.attribute<String>(this, 'version');
 }

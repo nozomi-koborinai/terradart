@@ -58,8 +58,8 @@ final class CloudflareContentScanningExpression extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `payload` attribute.
-  TfRef<String> get payloadRef => TfRef.attribute<String>(this, 'payload');
+  TfRef<String> get payload => TfRef.attribute<String>(this, 'payload');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

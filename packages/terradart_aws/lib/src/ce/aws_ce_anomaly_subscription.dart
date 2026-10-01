@@ -393,7 +393,7 @@ final class AwsCeAnomalySubscription extends Resource {
   RefTo<AwsCeAnomalySubscription> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -402,16 +402,16 @@ final class AwsCeAnomalySubscription extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `frequency` attribute.
-  TfRef<String> get frequencyRef => TfRef.attribute<String>(this, 'frequency');
+  TfRef<String> get frequency => TfRef.attribute<String>(this, 'frequency');
 
   /// Reference to `monitor_arn_list` attribute.
-  TfRef<List<String>> get monitorArnListRef =>
+  TfRef<List<String>> get monitorArnList =>
       TfRef.attribute<List<String>>(this, 'monitor_arn_list');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

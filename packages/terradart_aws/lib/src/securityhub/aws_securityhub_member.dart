@@ -48,14 +48,14 @@ final class AwsSecurityhubMember extends Resource {
       TfRef.attribute<String>(this, 'member_status');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `email` attribute.
-  TfRef<String> get emailRef => TfRef.attribute<String>(this, 'email');
+  TfRef<String> get email => TfRef.attribute<String>(this, 'email');
 
   /// Reference to `invite` attribute.
-  TfRef<bool> get inviteRef => TfRef.attribute<bool>(this, 'invite');
+  TfRef<bool> get invite => TfRef.attribute<bool>(this, 'invite');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

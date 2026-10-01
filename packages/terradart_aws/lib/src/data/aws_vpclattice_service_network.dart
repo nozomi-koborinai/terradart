@@ -36,7 +36,7 @@ final class DataAwsVpclatticeServiceNetwork extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -63,13 +63,13 @@ final class DataAwsVpclatticeServiceNetwork extends Data {
       TfRef.attribute<num>(this, 'number_of_associated_vpcs');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `service_network_identifier` attribute.
-  TfRef<String> get serviceNetworkIdentifierRef =>
+  TfRef<String> get serviceNetworkIdentifier =>
       TfRef.attribute<String>(this, 'service_network_identifier');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

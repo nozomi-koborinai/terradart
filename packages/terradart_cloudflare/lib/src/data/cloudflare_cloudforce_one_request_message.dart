@@ -71,26 +71,26 @@ final class DataCloudflareCloudforceOneRequestMessage extends Data {
   TfRef<String> get updated => TfRef.attribute<String>(this, 'updated');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `after` attribute.
-  TfRef<String> get afterRef => TfRef.attribute<String>(this, 'after');
+  TfRef<String> get after => TfRef.attribute<String>(this, 'after');
 
   /// Reference to `before` attribute.
-  TfRef<String> get beforeRef => TfRef.attribute<String>(this, 'before');
+  TfRef<String> get before => TfRef.attribute<String>(this, 'before');
 
   /// Reference to `page` attribute.
-  TfRef<num> get pageRef => TfRef.attribute<num>(this, 'page');
+  TfRef<num> get page => TfRef.attribute<num>(this, 'page');
 
   /// Reference to `per_page` attribute.
-  TfRef<num> get perPageRef => TfRef.attribute<num>(this, 'per_page');
+  TfRef<num> get perPage => TfRef.attribute<num>(this, 'per_page');
 
   /// Reference to `request_id` attribute.
-  TfRef<String> get requestIdRef => TfRef.attribute<String>(this, 'request_id');
+  TfRef<String> get requestId => TfRef.attribute<String>(this, 'request_id');
 
   /// Reference to `sort_by` attribute.
-  TfRef<String> get sortByRef => TfRef.attribute<String>(this, 'sort_by');
+  TfRef<String> get sortBy => TfRef.attribute<String>(this, 'sort_by');
 
   /// Reference to `sort_order` attribute.
-  TfRef<String> get sortOrderRef => TfRef.attribute<String>(this, 'sort_order');
+  TfRef<String> get sortOrder => TfRef.attribute<String>(this, 'sort_order');
 }

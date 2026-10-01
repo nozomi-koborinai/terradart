@@ -197,6 +197,9 @@ final class GoogleNetworkServicesAgentGateway extends Resource {
   /// `RefTo<GoogleNetworkServicesAgentGateway>`.
   RefTo<GoogleNetworkServicesAgentGateway> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -222,38 +225,31 @@ final class GoogleNetworkServicesAgentGateway extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `agent_connectivity_template` attribute.
-  TfRef<String> get agentConnectivityTemplateRef =>
+  TfRef<String> get agentConnectivityTemplate =>
       TfRef.attribute<String>(this, 'agent_connectivity_template');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `protocols` attribute.
-  TfRef<List<String>> get protocolsRef =>
+  TfRef<List<String>> get protocols =>
       TfRef.attribute<List<String>>(this, 'protocols');
 
   /// Reference to `registries` attribute.
-  TfRef<List<String>> get registriesRef =>
+  TfRef<List<String>> get registries =>
       TfRef.attribute<List<String>>(this, 'registries');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 }

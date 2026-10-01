@@ -183,49 +183,48 @@ final class GoogleSecurityScannerScanConfig extends Resource {
   RefTo<GoogleSecurityScannerScanConfig> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `blacklist_patterns` attribute.
-  TfRef<List<String>> get blacklistPatternsRef =>
+  TfRef<List<String>> get blacklistPatterns =>
       TfRef.attribute<List<String>>(this, 'blacklist_patterns');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `export_to_security_command_center` attribute.
-  TfRef<String> get exportToSecurityCommandCenterRef =>
+  TfRef<String> get exportToSecurityCommandCenter =>
       TfRef.attribute<String>(this, 'export_to_security_command_center');
 
   /// Reference to `ignore_http_status_errors` attribute.
-  TfRef<bool> get ignoreHttpStatusErrorsRef =>
+  TfRef<bool> get ignoreHttpStatusErrors =>
       TfRef.attribute<bool>(this, 'ignore_http_status_errors');
 
   /// Reference to `max_qps` attribute.
-  TfRef<num> get maxQpsRef => TfRef.attribute<num>(this, 'max_qps');
+  TfRef<num> get maxQps => TfRef.attribute<num>(this, 'max_qps');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `starting_urls` attribute.
-  TfRef<List<String>> get startingUrlsRef =>
+  TfRef<List<String>> get startingUrls =>
       TfRef.attribute<List<String>>(this, 'starting_urls');
 
   /// Reference to `static_ip_scan` attribute.
-  TfRef<bool> get staticIpScanRef =>
-      TfRef.attribute<bool>(this, 'static_ip_scan');
+  TfRef<bool> get staticIpScan => TfRef.attribute<bool>(this, 'static_ip_scan');
 
   /// Reference to `target_platforms` attribute.
-  TfRef<List<String>> get targetPlatformsRef =>
+  TfRef<List<String>> get targetPlatforms =>
       TfRef.attribute<List<String>>(this, 'target_platforms');
 
   /// Reference to `user_agent` attribute.
-  TfRef<String> get userAgentRef => TfRef.attribute<String>(this, 'user_agent');
+  TfRef<String> get userAgent => TfRef.attribute<String>(this, 'user_agent');
 }

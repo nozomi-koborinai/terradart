@@ -32,15 +32,14 @@ final class AwsIamGroupMembership extends Resource {
   RefTo<AwsIamGroupMembership> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `group` attribute.
-  TfRef<String> get groupRef => TfRef.attribute<String>(this, 'group');
+  TfRef<String> get group => TfRef.attribute<String>(this, 'group');
 
   /// Reference to `users` attribute.
-  TfRef<List<String>> get usersRef =>
-      TfRef.attribute<List<String>>(this, 'users');
+  TfRef<List<String>> get users => TfRef.attribute<List<String>>(this, 'users');
 }

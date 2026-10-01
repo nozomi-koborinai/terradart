@@ -341,6 +341,9 @@ final class GoogleSpannerInstancePartition extends Resource {
   /// `RefTo<GoogleSpannerInstancePartition>`.
   RefTo<GoogleSpannerInstancePartition> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -348,32 +351,26 @@ final class GoogleSpannerInstancePartition extends Resource {
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `config` attribute.
-  TfRef<String> get configRef => TfRef.attribute<String>(this, 'config');
+  TfRef<String> get config => TfRef.attribute<String>(this, 'config');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `instance` attribute.
-  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+  TfRef<String> get instance => TfRef.attribute<String>(this, 'instance');
 
   /// Reference to `node_count` attribute.
-  TfRef<num> get nodeCountRef => TfRef.attribute<num>(this, 'node_count');
+  TfRef<num> get nodeCount => TfRef.attribute<num>(this, 'node_count');
 
   /// Reference to `processing_units` attribute.
-  TfRef<num> get processingUnitsRef =>
+  TfRef<num> get processingUnits =>
       TfRef.attribute<num>(this, 'processing_units');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

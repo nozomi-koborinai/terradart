@@ -72,23 +72,22 @@ final class AwsS3outpostsEndpoint extends Resource {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'network_interfaces');
 
   /// Reference to `access_type` attribute.
-  TfRef<String> get accessTypeRef =>
-      TfRef.attribute<String>(this, 'access_type');
+  TfRef<String> get accessType => TfRef.attribute<String>(this, 'access_type');
 
   /// Reference to `customer_owned_ipv4_pool` attribute.
-  TfRef<String> get customerOwnedIpv4PoolRef =>
+  TfRef<String> get customerOwnedIpv4Pool =>
       TfRef.attribute<String>(this, 'customer_owned_ipv4_pool');
 
   /// Reference to `outpost_id` attribute.
-  TfRef<String> get outpostIdRef => TfRef.attribute<String>(this, 'outpost_id');
+  TfRef<String> get outpostId => TfRef.attribute<String>(this, 'outpost_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `security_group_id` attribute.
-  TfRef<String> get securityGroupIdRef =>
+  TfRef<String> get securityGroupId =>
       TfRef.attribute<String>(this, 'security_group_id');
 
   /// Reference to `subnet_id` attribute.
-  TfRef<String> get subnetIdRef => TfRef.attribute<String>(this, 'subnet_id');
+  TfRef<String> get subnetId => TfRef.attribute<String>(this, 'subnet_id');
 }

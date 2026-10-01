@@ -170,7 +170,7 @@ final class ConfigTreeStack extends Stack {
           localName: 'backups_admins',
           bucket: backups.ref,
           role: .literal('roles/storage.objectAdmin'),
-          members: .literal([.arg(.ref(saWorker.member))]),
+          members: .literal([.arg(saWorker.member)]),
         ),
       );
     }
@@ -179,7 +179,7 @@ final class ConfigTreeStack extends Stack {
         localName: 'uploads_admin',
         bucket: uploads.ref,
         role: .literal('roles/storage.objectAdmin'),
-        member: .arg(.ref(saWorker.member)),
+        member: .arg(saWorker.member),
       ),
     );
     add(
@@ -187,13 +187,13 @@ final class ConfigTreeStack extends Stack {
         localName: 'uploads_reader',
         bucket: uploads.ref,
         role: .literal('roles/storage.objectViewer'),
-        member: .arg(.ref(saBff.member)),
+        member: .arg(saBff.member),
       ),
     );
     add(
       GoogleCloudRunV2ServiceIamMember(
         localName: 'bff_invoker',
-        service: .arg(.ref(cloudRunBff.serviceName)),
+        service: .arg(cloudRunBff.serviceName),
         role: .literal('roles/run.invoker'),
         member: .allUsers,
       ),
@@ -203,15 +203,15 @@ final class ConfigTreeStack extends Stack {
         localName: 'worker_token_creator',
         project: .variable('project_id'),
         role: .literal('roles/iam.serviceAccountTokenCreator'),
-        member: .arg(.ref(saWorker.member)),
+        member: .arg(saWorker.member),
       ),
     );
     add(
       GoogleServiceAccountIamMember(
         localName: 'agent_user',
-        serviceAccount: .arg(.ref(saAdkAgent.id)),
+        serviceAccount: .arg(saAdkAgent.id),
         role: .literal('roles/iam.serviceAccountUser'),
-        member: .arg(.ref(saBff.member)),
+        member: .arg(saBff.member),
       ),
     );
   }

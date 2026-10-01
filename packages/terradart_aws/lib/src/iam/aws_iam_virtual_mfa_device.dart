@@ -59,13 +59,13 @@ final class AwsIamVirtualMfaDevice extends Resource {
   TfRef<String> get userName => TfRef.attribute<String>(this, 'user_name');
 
   /// Reference to `path` attribute.
-  TfRef<String> get pathRef => TfRef.attribute<String>(this, 'path');
+  TfRef<String> get path => TfRef.attribute<String>(this, 'path');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `virtual_mfa_device_name` attribute.
-  TfRef<String> get virtualMfaDeviceNameRef =>
+  TfRef<String> get virtualMfaDeviceName =>
       TfRef.attribute<String>(this, 'virtual_mfa_device_name');
 }

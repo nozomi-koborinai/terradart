@@ -47,26 +47,26 @@ final class DataCloudflareZeroTrustAccessApplications extends Data {
       _cloudflareZeroTrustAccessApplicationsSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `aud` attribute.
-  TfRef<String> get audRef => TfRef.attribute<String>(this, 'aud');
+  TfRef<String> get aud => TfRef.attribute<String>(this, 'aud');
 
   /// Reference to `domain` attribute.
-  TfRef<String> get domainRef => TfRef.attribute<String>(this, 'domain');
+  TfRef<String> get domain => TfRef.attribute<String>(this, 'domain');
 
   /// Reference to `exact` attribute.
-  TfRef<bool> get exactRef => TfRef.attribute<bool>(this, 'exact');
+  TfRef<bool> get exact => TfRef.attribute<bool>(this, 'exact');
 
   /// Reference to `max_items` attribute.
-  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+  TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
 
   /// Reference to `search` attribute.
-  TfRef<String> get searchRef => TfRef.attribute<String>(this, 'search');
+  TfRef<String> get search => TfRef.attribute<String>(this, 'search');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

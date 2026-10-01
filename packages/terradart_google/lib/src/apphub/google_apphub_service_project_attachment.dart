@@ -47,7 +47,7 @@ final class GoogleApphubServiceProjectAttachment extends Resource {
   RefTo<GoogleApphubServiceProjectAttachment> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -62,17 +62,17 @@ final class GoogleApphubServiceProjectAttachment extends Resource {
   TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `service_project` attribute.
-  TfRef<String> get serviceProjectRef =>
+  TfRef<String> get serviceProject =>
       TfRef.attribute<String>(this, 'service_project');
 
   /// Reference to `service_project_attachment_id` attribute.
-  TfRef<String> get serviceProjectAttachmentIdRef =>
+  TfRef<String> get serviceProjectAttachmentId =>
       TfRef.attribute<String>(this, 'service_project_attachment_id');
 }

@@ -29,7 +29,7 @@ enum NetworkSecurityUllMirroringCollectorDeletionPolicy
 ///
 /// ULL mirroring collector appliance bound to a [GoogleNetworkSecurityUllMirroringEngine].
 ///
-/// Set [engine] to `TfArg.ref(engine.nameRef)` and [forwardingRule] to a regional
+/// Set [engine] to `engine.name` and [forwardingRule] to a regional
 /// internal forwarding rule self-link receiving mirrored traffic.
 final class GoogleNetworkSecurityUllMirroringCollector extends Resource {
   static const String tfType =
@@ -70,7 +70,7 @@ final class GoogleNetworkSecurityUllMirroringCollector extends Resource {
   RefTo<GoogleNetworkSecurityUllMirroringCollector> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -96,27 +96,27 @@ final class GoogleNetworkSecurityUllMirroringCollector extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `engine` attribute.
-  TfRef<String> get engineRef => TfRef.attribute<String>(this, 'engine');
+  TfRef<String> get engine => TfRef.attribute<String>(this, 'engine');
 
   /// Reference to `forwarding_rule` attribute.
-  TfRef<String> get forwardingRuleRef =>
+  TfRef<String> get forwardingRule =>
       TfRef.attribute<String>(this, 'forwarding_rule');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `ull_mirroring_collector_id` attribute.
-  TfRef<String> get ullMirroringCollectorIdRef =>
+  TfRef<String> get ullMirroringCollectorId =>
       TfRef.attribute<String>(this, 'ull_mirroring_collector_id');
 }

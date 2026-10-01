@@ -38,12 +38,12 @@ final class AwsVpcRouteServerVpcAssociation extends Resource {
   RefTo<AwsVpcRouteServerVpcAssociation> get ref => RefTo.of(this);
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `route_server_id` attribute.
-  TfRef<String> get routeServerIdRef =>
+  TfRef<String> get routeServerId =>
       TfRef.attribute<String>(this, 'route_server_id');
 
   /// Reference to `vpc_id` attribute.
-  TfRef<String> get vpcIdRef => TfRef.attribute<String>(this, 'vpc_id');
+  TfRef<String> get vpcId => TfRef.attribute<String>(this, 'vpc_id');
 }

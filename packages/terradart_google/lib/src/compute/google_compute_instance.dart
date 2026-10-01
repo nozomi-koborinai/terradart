@@ -1069,6 +1069,9 @@ final class GoogleComputeInstance extends Resource {
   /// `RefTo<GoogleComputeInstance>`.
   RefTo<GoogleComputeInstance> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `cpu_platform` attribute.
   TfRef<String> get cpuPlatform =>
       TfRef.attribute<String>(this, 'cpu_platform');
@@ -1108,79 +1111,72 @@ final class GoogleComputeInstance extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `allow_stopping_for_update` attribute.
-  TfRef<bool> get allowStoppingForUpdateRef =>
+  TfRef<bool> get allowStoppingForUpdate =>
       TfRef.attribute<bool>(this, 'allow_stopping_for_update');
 
   /// Reference to `can_ip_forward` attribute.
-  TfRef<bool> get canIpForwardRef =>
-      TfRef.attribute<bool>(this, 'can_ip_forward');
+  TfRef<bool> get canIpForward => TfRef.attribute<bool>(this, 'can_ip_forward');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `deletion_protection` attribute.
-  TfRef<bool> get deletionProtectionRef =>
+  TfRef<bool> get deletionProtection =>
       TfRef.attribute<bool>(this, 'deletion_protection');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `desired_status` attribute.
-  TfRef<String> get desiredStatusRef =>
+  TfRef<String> get desiredStatus =>
       TfRef.attribute<String>(this, 'desired_status');
 
   /// Reference to `enable_display` attribute.
-  TfRef<bool> get enableDisplayRef =>
+  TfRef<bool> get enableDisplay =>
       TfRef.attribute<bool>(this, 'enable_display');
 
   /// Reference to `hostname` attribute.
-  TfRef<String> get hostnameRef => TfRef.attribute<String>(this, 'hostname');
+  TfRef<String> get hostname => TfRef.attribute<String>(this, 'hostname');
 
   /// Reference to `key_revocation_action_type` attribute.
-  TfRef<String> get keyRevocationActionTypeRef =>
+  TfRef<String> get keyRevocationActionType =>
       TfRef.attribute<String>(this, 'key_revocation_action_type');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `machine_type` attribute.
-  TfRef<String> get machineTypeRef =>
+  TfRef<String> get machineType =>
       TfRef.attribute<String>(this, 'machine_type');
 
   /// Reference to `metadata` attribute.
-  TfRef<Map<String, String>> get metadataRef =>
+  TfRef<Map<String, String>> get metadata =>
       TfRef.attribute<Map<String, String>>(this, 'metadata');
 
   /// Reference to `metadata_startup_script` attribute.
-  TfRef<String> get metadataStartupScriptRef =>
+  TfRef<String> get metadataStartupScript =>
       TfRef.attribute<String>(this, 'metadata_startup_script');
 
   /// Reference to `min_cpu_platform` attribute.
-  TfRef<String> get minCpuPlatformRef =>
+  TfRef<String> get minCpuPlatform =>
       TfRef.attribute<String>(this, 'min_cpu_platform');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `resource_policies` attribute.
-  TfRef<List<String>> get resourcePoliciesRef =>
+  TfRef<List<String>> get resourcePolicies =>
       TfRef.attribute<List<String>>(this, 'resource_policies');
 
   /// Reference to `tags` attribute.
-  TfRef<List<String>> get tagsRef =>
-      TfRef.attribute<List<String>>(this, 'tags');
+  TfRef<List<String>> get tags => TfRef.attribute<List<String>>(this, 'tags');
 
   /// Reference to `zone` attribute.
-  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
+  TfRef<String> get zone => TfRef.attribute<String>(this, 'zone');
 
   /// Reference to `id` attribute (full path
   /// `projects/{project}/zones/{zone}/instances/{name}`).
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute. Use for interpolations like
-  /// `vm.nameRef` -> `${google_compute_instance.<localName>.name}`.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

@@ -121,58 +121,58 @@ final class AwsEc2TransitGatewayMeteringPolicyEntry extends Resource {
   RefTo<AwsEc2TransitGatewayMeteringPolicyEntry> get ref => RefTo.of(this);
 
   /// Reference to `destination_cidr_block` attribute.
-  TfRef<String> get destinationCidrBlockRef =>
+  TfRef<String> get destinationCidrBlock =>
       TfRef.attribute<String>(this, 'destination_cidr_block');
 
   /// Reference to `destination_port_range` attribute.
-  TfRef<String> get destinationPortRangeRef =>
+  TfRef<String> get destinationPortRange =>
       TfRef.attribute<String>(this, 'destination_port_range');
 
   /// Reference to `destination_transit_gateway_attachment_id` attribute.
-  TfRef<String> get destinationTransitGatewayAttachmentIdRef =>
+  TfRef<String> get destinationTransitGatewayAttachmentId =>
       TfRef.attribute<String>(
         this,
         'destination_transit_gateway_attachment_id',
       );
 
   /// Reference to `destination_transit_gateway_attachment_type` attribute.
-  TfRef<String> get destinationTransitGatewayAttachmentTypeRef =>
+  TfRef<String> get destinationTransitGatewayAttachmentType =>
       TfRef.attribute<String>(
         this,
         'destination_transit_gateway_attachment_type',
       );
 
   /// Reference to `metered_account` attribute.
-  TfRef<String> get meteredAccountRef =>
+  TfRef<String> get meteredAccount =>
       TfRef.attribute<String>(this, 'metered_account');
 
   /// Reference to `policy_rule_number` attribute.
-  TfRef<num> get policyRuleNumberRef =>
+  TfRef<num> get policyRuleNumber =>
       TfRef.attribute<num>(this, 'policy_rule_number');
 
   /// Reference to `protocol` attribute.
-  TfRef<String> get protocolRef => TfRef.attribute<String>(this, 'protocol');
+  TfRef<String> get protocol => TfRef.attribute<String>(this, 'protocol');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `source_cidr_block` attribute.
-  TfRef<String> get sourceCidrBlockRef =>
+  TfRef<String> get sourceCidrBlock =>
       TfRef.attribute<String>(this, 'source_cidr_block');
 
   /// Reference to `source_port_range` attribute.
-  TfRef<String> get sourcePortRangeRef =>
+  TfRef<String> get sourcePortRange =>
       TfRef.attribute<String>(this, 'source_port_range');
 
   /// Reference to `source_transit_gateway_attachment_id` attribute.
-  TfRef<String> get sourceTransitGatewayAttachmentIdRef =>
+  TfRef<String> get sourceTransitGatewayAttachmentId =>
       TfRef.attribute<String>(this, 'source_transit_gateway_attachment_id');
 
   /// Reference to `source_transit_gateway_attachment_type` attribute.
-  TfRef<String> get sourceTransitGatewayAttachmentTypeRef =>
+  TfRef<String> get sourceTransitGatewayAttachmentType =>
       TfRef.attribute<String>(this, 'source_transit_gateway_attachment_type');
 
   /// Reference to `transit_gateway_metering_policy_id` attribute.
-  TfRef<String> get transitGatewayMeteringPolicyIdRef =>
+  TfRef<String> get transitGatewayMeteringPolicyId =>
       TfRef.attribute<String>(this, 'transit_gateway_metering_policy_id');
 }

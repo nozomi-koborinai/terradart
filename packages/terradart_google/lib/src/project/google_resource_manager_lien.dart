@@ -50,7 +50,7 @@ final class GoogleResourceManagerLien extends Resource {
   RefTo<GoogleResourceManagerLien> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -59,19 +59,19 @@ final class GoogleResourceManagerLien extends Resource {
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `origin` attribute.
-  TfRef<String> get originRef => TfRef.attribute<String>(this, 'origin');
+  TfRef<String> get origin => TfRef.attribute<String>(this, 'origin');
 
   /// Reference to `parent` attribute.
-  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+  TfRef<String> get parent => TfRef.attribute<String>(this, 'parent');
 
   /// Reference to `reason` attribute.
-  TfRef<String> get reasonRef => TfRef.attribute<String>(this, 'reason');
+  TfRef<String> get reason => TfRef.attribute<String>(this, 'reason');
 
   /// Reference to `restrictions` attribute.
-  TfRef<List<String>> get restrictionsRef =>
+  TfRef<List<String>> get restrictions =>
       TfRef.attribute<List<String>>(this, 'restrictions');
 }

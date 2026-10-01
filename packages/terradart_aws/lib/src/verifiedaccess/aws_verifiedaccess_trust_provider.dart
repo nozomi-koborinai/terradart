@@ -214,29 +214,28 @@ final class AwsVerifiedaccessTrustProvider extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `device_trust_provider_type` attribute.
-  TfRef<String> get deviceTrustProviderTypeRef =>
+  TfRef<String> get deviceTrustProviderType =>
       TfRef.attribute<String>(this, 'device_trust_provider_type');
 
   /// Reference to `policy_reference_name` attribute.
-  TfRef<String> get policyReferenceNameRef =>
+  TfRef<String> get policyReferenceName =>
       TfRef.attribute<String>(this, 'policy_reference_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `trust_provider_type` attribute.
-  TfRef<String> get trustProviderTypeRef =>
+  TfRef<String> get trustProviderType =>
       TfRef.attribute<String>(this, 'trust_provider_type');
 
   /// Reference to `user_trust_provider_type` attribute.
-  TfRef<String> get userTrustProviderTypeRef =>
+  TfRef<String> get userTrustProviderType =>
       TfRef.attribute<String>(this, 'user_trust_provider_type');
 }

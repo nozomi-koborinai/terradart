@@ -44,9 +44,9 @@ final class DataGoogleSccV2OrganizationSourceIamPolicy extends Data {
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
 
   /// Reference to `organization` attribute.
-  TfRef<String> get organizationRef =>
+  TfRef<String> get organization =>
       TfRef.attribute<String>(this, 'organization');
 
   /// Reference to `source` attribute.
-  TfRef<String> get sourceRef => TfRef.attribute<String>(this, 'source');
+  TfRef<String> get source => TfRef.attribute<String>(this, 'source');
 }

@@ -104,7 +104,7 @@ final class AwsEvidentlyFeature extends Resource {
   RefTo<AwsEvidentlyFeature> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -131,28 +131,27 @@ final class AwsEvidentlyFeature extends Resource {
   TfRef<String> get valueType => TfRef.attribute<String>(this, 'value_type');
 
   /// Reference to `default_variation` attribute.
-  TfRef<String> get defaultVariationRef =>
+  TfRef<String> get defaultVariation =>
       TfRef.attribute<String>(this, 'default_variation');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `entity_overrides` attribute.
-  TfRef<Map<String, String>> get entityOverridesRef =>
+  TfRef<Map<String, String>> get entityOverrides =>
       TfRef.attribute<Map<String, String>>(this, 'entity_overrides');
 
   /// Reference to `evaluation_strategy` attribute.
-  TfRef<String> get evaluationStrategyRef =>
+  TfRef<String> get evaluationStrategy =>
       TfRef.attribute<String>(this, 'evaluation_strategy');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

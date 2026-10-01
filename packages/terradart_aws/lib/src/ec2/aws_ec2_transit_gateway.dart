@@ -158,53 +158,50 @@ final class AwsEc2TransitGateway extends Resource {
       TfRef.attribute<String>(this, 'propagation_default_route_table_id');
 
   /// Reference to `amazon_side_asn` attribute.
-  TfRef<num> get amazonSideAsnRef =>
-      TfRef.attribute<num>(this, 'amazon_side_asn');
+  TfRef<num> get amazonSideAsn => TfRef.attribute<num>(this, 'amazon_side_asn');
 
   /// Reference to `auto_accept_shared_attachments` attribute.
-  TfRef<String> get autoAcceptSharedAttachmentsRef =>
+  TfRef<String> get autoAcceptSharedAttachments =>
       TfRef.attribute<String>(this, 'auto_accept_shared_attachments');
 
   /// Reference to `default_route_table_association` attribute.
-  TfRef<String> get defaultRouteTableAssociationRef =>
+  TfRef<String> get defaultRouteTableAssociation =>
       TfRef.attribute<String>(this, 'default_route_table_association');
 
   /// Reference to `default_route_table_propagation` attribute.
-  TfRef<String> get defaultRouteTablePropagationRef =>
+  TfRef<String> get defaultRouteTablePropagation =>
       TfRef.attribute<String>(this, 'default_route_table_propagation');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `dns_support` attribute.
-  TfRef<String> get dnsSupportRef =>
-      TfRef.attribute<String>(this, 'dns_support');
+  TfRef<String> get dnsSupport => TfRef.attribute<String>(this, 'dns_support');
 
   /// Reference to `encryption_support` attribute.
-  TfRef<String> get encryptionSupportRef =>
+  TfRef<String> get encryptionSupport =>
       TfRef.attribute<String>(this, 'encryption_support');
 
   /// Reference to `multicast_support` attribute.
-  TfRef<String> get multicastSupportRef =>
+  TfRef<String> get multicastSupport =>
       TfRef.attribute<String>(this, 'multicast_support');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `security_group_referencing_support` attribute.
-  TfRef<String> get securityGroupReferencingSupportRef =>
+  TfRef<String> get securityGroupReferencingSupport =>
       TfRef.attribute<String>(this, 'security_group_referencing_support');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `transit_gateway_cidr_blocks` attribute.
-  TfRef<List<String>> get transitGatewayCidrBlocksRef =>
+  TfRef<List<String>> get transitGatewayCidrBlocks =>
       TfRef.attribute<List<String>>(this, 'transit_gateway_cidr_blocks');
 
   /// Reference to `vpn_ecmp_support` attribute.
-  TfRef<String> get vpnEcmpSupportRef =>
+  TfRef<String> get vpnEcmpSupport =>
       TfRef.attribute<String>(this, 'vpn_ecmp_support');
 }

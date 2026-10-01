@@ -287,92 +287,92 @@ final class GoogleComputeRouterNat extends Resource {
   RefTo<GoogleComputeRouterNat> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `auto_network_tier` attribute.
-  TfRef<String> get autoNetworkTierRef =>
+  TfRef<String> get autoNetworkTier =>
       TfRef.attribute<String>(this, 'auto_network_tier');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `drain_nat_ips` attribute.
-  TfRef<List<String>> get drainNatIpsRef =>
+  TfRef<List<String>> get drainNatIps =>
       TfRef.attribute<List<String>>(this, 'drain_nat_ips');
 
   /// Reference to `enable_dynamic_port_allocation` attribute.
-  TfRef<bool> get enableDynamicPortAllocationRef =>
+  TfRef<bool> get enableDynamicPortAllocation =>
       TfRef.attribute<bool>(this, 'enable_dynamic_port_allocation');
 
   /// Reference to `enable_endpoint_independent_mapping` attribute.
-  TfRef<bool> get enableEndpointIndependentMappingRef =>
+  TfRef<bool> get enableEndpointIndependentMapping =>
       TfRef.attribute<bool>(this, 'enable_endpoint_independent_mapping');
 
   /// Reference to `endpoint_types` attribute.
-  TfRef<List<String>> get endpointTypesRef =>
+  TfRef<List<String>> get endpointTypes =>
       TfRef.attribute<List<String>>(this, 'endpoint_types');
 
   /// Reference to `icmp_idle_timeout_sec` attribute.
-  TfRef<num> get icmpIdleTimeoutSecRef =>
+  TfRef<num> get icmpIdleTimeoutSec =>
       TfRef.attribute<num>(this, 'icmp_idle_timeout_sec');
 
   /// Reference to `initial_nat_ips` attribute.
-  TfRef<List<String>> get initialNatIpsRef =>
+  TfRef<List<String>> get initialNatIps =>
       TfRef.attribute<List<String>>(this, 'initial_nat_ips');
 
   /// Reference to `max_ports_per_vm` attribute.
-  TfRef<num> get maxPortsPerVmRef =>
+  TfRef<num> get maxPortsPerVm =>
       TfRef.attribute<num>(this, 'max_ports_per_vm');
 
   /// Reference to `min_ports_per_vm` attribute.
-  TfRef<num> get minPortsPerVmRef =>
+  TfRef<num> get minPortsPerVm =>
       TfRef.attribute<num>(this, 'min_ports_per_vm');
 
   /// Reference to `nat_ip_allocate_option` attribute.
-  TfRef<String> get natIpAllocateOptionRef =>
+  TfRef<String> get natIpAllocateOption =>
       TfRef.attribute<String>(this, 'nat_ip_allocate_option');
 
   /// Reference to `nat_ips` attribute.
-  TfRef<List<String>> get natIpsRef =>
+  TfRef<List<String>> get natIps =>
       TfRef.attribute<List<String>>(this, 'nat_ips');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `router` attribute.
-  TfRef<String> get routerRef => TfRef.attribute<String>(this, 'router');
+  TfRef<String> get router => TfRef.attribute<String>(this, 'router');
 
   /// Reference to `source_subnetwork_ip_ranges_to_nat` attribute.
-  TfRef<String> get sourceSubnetworkIpRangesToNatRef =>
+  TfRef<String> get sourceSubnetworkIpRangesToNat =>
       TfRef.attribute<String>(this, 'source_subnetwork_ip_ranges_to_nat');
 
   /// Reference to `source_subnetwork_ip_ranges_to_nat64` attribute.
-  TfRef<String> get sourceSubnetworkIpRangesToNat64Ref =>
+  TfRef<String> get sourceSubnetworkIpRangesToNat64 =>
       TfRef.attribute<String>(this, 'source_subnetwork_ip_ranges_to_nat64');
 
   /// Reference to `tcp_established_idle_timeout_sec` attribute.
-  TfRef<num> get tcpEstablishedIdleTimeoutSecRef =>
+  TfRef<num> get tcpEstablishedIdleTimeoutSec =>
       TfRef.attribute<num>(this, 'tcp_established_idle_timeout_sec');
 
   /// Reference to `tcp_time_wait_timeout_sec` attribute.
-  TfRef<num> get tcpTimeWaitTimeoutSecRef =>
+  TfRef<num> get tcpTimeWaitTimeoutSec =>
       TfRef.attribute<num>(this, 'tcp_time_wait_timeout_sec');
 
   /// Reference to `tcp_transitory_idle_timeout_sec` attribute.
-  TfRef<num> get tcpTransitoryIdleTimeoutSecRef =>
+  TfRef<num> get tcpTransitoryIdleTimeoutSec =>
       TfRef.attribute<num>(this, 'tcp_transitory_idle_timeout_sec');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `udp_idle_timeout_sec` attribute.
-  TfRef<num> get udpIdleTimeoutSecRef =>
+  TfRef<num> get udpIdleTimeoutSec =>
       TfRef.attribute<num>(this, 'udp_idle_timeout_sec');
 }

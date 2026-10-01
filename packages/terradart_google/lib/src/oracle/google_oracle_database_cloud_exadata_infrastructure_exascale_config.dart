@@ -79,23 +79,20 @@ final class GoogleOracleDatabaseCloudExadataInfrastructureExascaleConfig
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `cloud_exadata_infrastructure` attribute.
-  TfRef<String> get cloudExadataInfrastructureRef =>
+  TfRef<String> get cloudExadataInfrastructure =>
       TfRef.attribute<String>(this, 'cloud_exadata_infrastructure');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `total_storage_size_gb` attribute.
-  TfRef<num> get totalStorageSizeGbRef =>
+  TfRef<num> get totalStorageSizeGb =>
       TfRef.attribute<num>(this, 'total_storage_size_gb');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 }

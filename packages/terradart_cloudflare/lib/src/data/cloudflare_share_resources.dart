@@ -35,18 +35,18 @@ final class DataCloudflareShareResources extends Data {
   Set<String> get sensitiveFields => _cloudflareShareResourcesSensitive;
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `max_items` attribute.
-  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+  TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
 
   /// Reference to `resource_type` attribute.
-  TfRef<String> get resourceTypeRef =>
+  TfRef<String> get resourceType =>
       TfRef.attribute<String>(this, 'resource_type');
 
   /// Reference to `share_id` attribute.
-  TfRef<String> get shareIdRef => TfRef.attribute<String>(this, 'share_id');
+  TfRef<String> get shareId => TfRef.attribute<String>(this, 'share_id');
 
   /// Reference to `status` attribute.
-  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+  TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 }

@@ -45,22 +45,21 @@ final class AwsApiGatewayBasePathMapping extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `api_id` attribute.
-  TfRef<String> get apiIdRef => TfRef.attribute<String>(this, 'api_id');
+  TfRef<String> get apiId => TfRef.attribute<String>(this, 'api_id');
 
   /// Reference to `base_path` attribute.
-  TfRef<String> get basePathRef => TfRef.attribute<String>(this, 'base_path');
+  TfRef<String> get basePath => TfRef.attribute<String>(this, 'base_path');
 
   /// Reference to `domain_name` attribute.
-  TfRef<String> get domainNameRef =>
-      TfRef.attribute<String>(this, 'domain_name');
+  TfRef<String> get domainName => TfRef.attribute<String>(this, 'domain_name');
 
   /// Reference to `domain_name_id` attribute.
-  TfRef<String> get domainNameIdRef =>
+  TfRef<String> get domainNameId =>
       TfRef.attribute<String>(this, 'domain_name_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `stage_name` attribute.
-  TfRef<String> get stageNameRef => TfRef.attribute<String>(this, 'stage_name');
+  TfRef<String> get stageName => TfRef.attribute<String>(this, 'stage_name');
 }

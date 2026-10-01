@@ -197,28 +197,28 @@ final class GoogleBiglakeIcebergTable extends Resource {
   RefTo<GoogleBiglakeIcebergTable> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `catalog` attribute.
-  TfRef<String> get catalogRef => TfRef.attribute<String>(this, 'catalog');
+  TfRef<String> get catalog => TfRef.attribute<String>(this, 'catalog');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `namespace` attribute.
-  TfRef<String> get namespaceRef => TfRef.attribute<String>(this, 'namespace');
+  TfRef<String> get namespace => TfRef.attribute<String>(this, 'namespace');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `properties` attribute.
-  TfRef<Map<String, String>> get propertiesRef =>
+  TfRef<Map<String, String>> get properties =>
       TfRef.attribute<Map<String, String>>(this, 'properties');
 }

@@ -46,21 +46,21 @@ final class DataGoogleSqlDatabaseInstances extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'instances');
 
   /// Reference to `database_version` attribute.
-  TfRef<String> get databaseVersionRef =>
+  TfRef<String> get databaseVersion =>
       TfRef.attribute<String>(this, 'database_version');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `state` attribute.
-  TfRef<String> get stateRef => TfRef.attribute<String>(this, 'state');
+  TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `tier` attribute.
-  TfRef<String> get tierRef => TfRef.attribute<String>(this, 'tier');
+  TfRef<String> get tier => TfRef.attribute<String>(this, 'tier');
 
   /// Reference to `zone` attribute.
-  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
+  TfRef<String> get zone => TfRef.attribute<String>(this, 'zone');
 }

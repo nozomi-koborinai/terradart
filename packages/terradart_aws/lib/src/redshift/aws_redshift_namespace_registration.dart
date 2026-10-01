@@ -42,25 +42,25 @@ final class AwsRedshiftNamespaceRegistration extends Resource {
   RefTo<AwsRedshiftNamespaceRegistration> get ref => RefTo.of(this);
 
   /// Reference to `consumer_identifier` attribute.
-  TfRef<String> get consumerIdentifierRef =>
+  TfRef<String> get consumerIdentifier =>
       TfRef.attribute<String>(this, 'consumer_identifier');
 
   /// Reference to `namespace_type` attribute.
-  TfRef<String> get namespaceTypeRef =>
+  TfRef<String> get namespaceType =>
       TfRef.attribute<String>(this, 'namespace_type');
 
   /// Reference to `provisioned_cluster_identifier` attribute.
-  TfRef<String> get provisionedClusterIdentifierRef =>
+  TfRef<String> get provisionedClusterIdentifier =>
       TfRef.attribute<String>(this, 'provisioned_cluster_identifier');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `serverless_namespace_identifier` attribute.
-  TfRef<String> get serverlessNamespaceIdentifierRef =>
+  TfRef<String> get serverlessNamespaceIdentifier =>
       TfRef.attribute<String>(this, 'serverless_namespace_identifier');
 
   /// Reference to `serverless_workgroup_identifier` attribute.
-  TfRef<String> get serverlessWorkgroupIdentifierRef =>
+  TfRef<String> get serverlessWorkgroupIdentifier =>
       TfRef.attribute<String>(this, 'serverless_workgroup_identifier');
 }

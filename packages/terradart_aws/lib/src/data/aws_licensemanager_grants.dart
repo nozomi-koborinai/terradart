@@ -55,5 +55,5 @@ final class DataAwsLicensemanagerGrants extends Data {
   TfRef<List<String>> get arns => TfRef.attribute<List<String>>(this, 'arns');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

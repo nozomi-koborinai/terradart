@@ -608,44 +608,41 @@ final class AwsRoute53domainsDomain extends Resource {
       TfRef.attribute<String>(this, 'whois_server');
 
   /// Reference to `admin_privacy` attribute.
-  TfRef<bool> get adminPrivacyRef =>
-      TfRef.attribute<bool>(this, 'admin_privacy');
+  TfRef<bool> get adminPrivacy => TfRef.attribute<bool>(this, 'admin_privacy');
 
   /// Reference to `auto_renew` attribute.
-  TfRef<bool> get autoRenewRef => TfRef.attribute<bool>(this, 'auto_renew');
+  TfRef<bool> get autoRenew => TfRef.attribute<bool>(this, 'auto_renew');
 
   /// Reference to `billing_contact` attribute.
-  TfRef<List<Map<String, Object?>>> get billingContactRef =>
+  TfRef<List<Map<String, Object?>>> get billingContact =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'billing_contact');
 
   /// Reference to `billing_privacy` attribute.
-  TfRef<bool> get billingPrivacyRef =>
+  TfRef<bool> get billingPrivacy =>
       TfRef.attribute<bool>(this, 'billing_privacy');
 
   /// Reference to `domain_name` attribute.
-  TfRef<String> get domainNameRef =>
-      TfRef.attribute<String>(this, 'domain_name');
+  TfRef<String> get domainName => TfRef.attribute<String>(this, 'domain_name');
 
   /// Reference to `duration_in_years` attribute.
-  TfRef<num> get durationInYearsRef =>
+  TfRef<num> get durationInYears =>
       TfRef.attribute<num>(this, 'duration_in_years');
 
   /// Reference to `name_server` attribute.
-  TfRef<List<Map<String, Object?>>> get nameServerRef =>
+  TfRef<List<Map<String, Object?>>> get nameServer =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'name_server');
 
   /// Reference to `registrant_privacy` attribute.
-  TfRef<bool> get registrantPrivacyRef =>
+  TfRef<bool> get registrantPrivacy =>
       TfRef.attribute<bool>(this, 'registrant_privacy');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `tech_privacy` attribute.
-  TfRef<bool> get techPrivacyRef => TfRef.attribute<bool>(this, 'tech_privacy');
+  TfRef<bool> get techPrivacy => TfRef.attribute<bool>(this, 'tech_privacy');
 
   /// Reference to `transfer_lock` attribute.
-  TfRef<bool> get transferLockRef =>
-      TfRef.attribute<bool>(this, 'transfer_lock');
+  TfRef<bool> get transferLock => TfRef.attribute<bool>(this, 'transfer_lock');
 }

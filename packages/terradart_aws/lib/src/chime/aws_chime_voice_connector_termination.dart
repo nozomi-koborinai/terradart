@@ -48,27 +48,27 @@ final class AwsChimeVoiceConnectorTermination extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `calling_regions` attribute.
-  TfRef<List<String>> get callingRegionsRef =>
+  TfRef<List<String>> get callingRegions =>
       TfRef.attribute<List<String>>(this, 'calling_regions');
 
   /// Reference to `cidr_allow_list` attribute.
-  TfRef<List<String>> get cidrAllowListRef =>
+  TfRef<List<String>> get cidrAllowList =>
       TfRef.attribute<List<String>>(this, 'cidr_allow_list');
 
   /// Reference to `cps_limit` attribute.
-  TfRef<num> get cpsLimitRef => TfRef.attribute<num>(this, 'cps_limit');
+  TfRef<num> get cpsLimit => TfRef.attribute<num>(this, 'cps_limit');
 
   /// Reference to `default_phone_number` attribute.
-  TfRef<String> get defaultPhoneNumberRef =>
+  TfRef<String> get defaultPhoneNumber =>
       TfRef.attribute<String>(this, 'default_phone_number');
 
   /// Reference to `disabled` attribute.
-  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+  TfRef<bool> get disabled => TfRef.attribute<bool>(this, 'disabled');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `voice_connector_id` attribute.
-  TfRef<String> get voiceConnectorIdRef =>
+  TfRef<String> get voiceConnectorId =>
       TfRef.attribute<String>(this, 'voice_connector_id');
 }

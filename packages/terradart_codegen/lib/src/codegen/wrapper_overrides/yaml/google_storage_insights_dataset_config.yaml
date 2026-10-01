@@ -160,8 +160,3 @@ customSlots:
   source:
     paramDeclaration: 'required StorageInsightsDatasetConfigSource source'
     argMapEntry: 'source.blockKey: TfArg.literal(source.encode()[source.blockKey]),'
-
-extraGetters: |2
-    /// Reference to `dataset_config_id` attribute.
-    TfRef<String> get datasetConfigIdRef =>
-        TfRef.attribute<String>(this, 'dataset_config_id');

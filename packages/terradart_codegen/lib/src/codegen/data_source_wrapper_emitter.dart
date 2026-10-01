@@ -212,6 +212,7 @@ class DataSourceWrapperEmitter {
         ? emitDerivedOutputGetters(
             def,
             excludeNames: extraGetterNames(override.extraGetters),
+            principal: principals.contains(def.terraformType),
           )
         : '';
     final emitsRef =
@@ -377,8 +378,8 @@ class DataSourceWrapperEmitter {
         ..write(emitDataSourceRefGetter(def.terraformType, twinClass));
     }
 
-    // Phase A3: derive output-attribute getters (nameRef, id, pure
-    // computed-only) from the IR when the override opts in via
+    // Phase A3: derive output-attribute getters (name, id, every readable
+    // attribute) from the IR when the override opts in via
     // `deriveOutputGetters: true`. Mirrors WrapperEmitter's path exactly.
     if (derivedGetters.isNotEmpty) {
       buf.writeln();

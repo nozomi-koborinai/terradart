@@ -94,8 +94,8 @@ final class OrdersStack extends Stack {
         appExports: AppExports('lib/generated/orders_stack.app.dart'),
       ) {
     final topic = add(GooglePubsubTopic(localName: 'orders', name: .literal('orders-prod')));
-    addConstant('ordersTopicName', .ref(topic.nameRef));
-    addOutput('orders_topic_id', .ref(topic.id));
+    addConstant('ordersTopicName', .ref(topic.name));
+    addOutput('orders_topic_id', topic.id);
   }
 }
 ```

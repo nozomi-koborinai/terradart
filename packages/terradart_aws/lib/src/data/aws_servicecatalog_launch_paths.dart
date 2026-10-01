@@ -37,12 +37,12 @@ final class DataAwsServicecatalogLaunchPaths extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'summaries');
 
   /// Reference to `accept_language` attribute.
-  TfRef<String> get acceptLanguageRef =>
+  TfRef<String> get acceptLanguage =>
       TfRef.attribute<String>(this, 'accept_language');
 
   /// Reference to `product_id` attribute.
-  TfRef<String> get productIdRef => TfRef.attribute<String>(this, 'product_id');
+  TfRef<String> get productId => TfRef.attribute<String>(this, 'product_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

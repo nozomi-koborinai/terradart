@@ -44,7 +44,7 @@ final class AwsBackupLogicallyAirGappedVault extends Resource {
   RefTo<AwsBackupLogicallyAirGappedVault> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -57,21 +57,21 @@ final class AwsBackupLogicallyAirGappedVault extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `encryption_key_arn` attribute.
-  TfRef<String> get encryptionKeyArnRef =>
+  TfRef<String> get encryptionKeyArn =>
       TfRef.attribute<String>(this, 'encryption_key_arn');
 
   /// Reference to `max_retention_days` attribute.
-  TfRef<num> get maxRetentionDaysRef =>
+  TfRef<num> get maxRetentionDays =>
       TfRef.attribute<num>(this, 'max_retention_days');
 
   /// Reference to `min_retention_days` attribute.
-  TfRef<num> get minRetentionDaysRef =>
+  TfRef<num> get minRetentionDays =>
       TfRef.attribute<num>(this, 'min_retention_days');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

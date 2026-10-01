@@ -59,7 +59,7 @@ final class GoogleDeveloperConnectGitRepositoryLink extends Resource {
   RefTo<GoogleDeveloperConnectGitRepositoryLink> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -92,34 +92,34 @@ final class GoogleDeveloperConnectGitRepositoryLink extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `annotations` attribute.
-  TfRef<Map<String, String>> get annotationsRef =>
+  TfRef<Map<String, String>> get annotations =>
       TfRef.attribute<Map<String, String>>(this, 'annotations');
 
   /// Reference to `clone_uri` attribute.
-  TfRef<String> get cloneUriRef => TfRef.attribute<String>(this, 'clone_uri');
+  TfRef<String> get cloneUri => TfRef.attribute<String>(this, 'clone_uri');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `etag` attribute.
-  TfRef<String> get etagRef => TfRef.attribute<String>(this, 'etag');
+  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `git_repository_link_id` attribute.
-  TfRef<String> get gitRepositoryLinkIdRef =>
+  TfRef<String> get gitRepositoryLinkId =>
       TfRef.attribute<String>(this, 'git_repository_link_id');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `parent_connection` attribute.
-  TfRef<String> get parentConnectionRef =>
+  TfRef<String> get parentConnection =>
       TfRef.attribute<String>(this, 'parent_connection');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

@@ -108,13 +108,13 @@ final class GoogleMonitoringDashboard extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `dashboard_json` attribute.
-  TfRef<String> get dashboardJsonRef =>
+  TfRef<String> get dashboardJson =>
       TfRef.attribute<String>(this, 'dashboard_json');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

@@ -46,19 +46,19 @@ final class AwsAmplifyBackendEnvironment extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `app_id` attribute.
-  TfRef<String> get appIdRef => TfRef.attribute<String>(this, 'app_id');
+  TfRef<String> get appId => TfRef.attribute<String>(this, 'app_id');
 
   /// Reference to `deployment_artifacts` attribute.
-  TfRef<String> get deploymentArtifactsRef =>
+  TfRef<String> get deploymentArtifacts =>
       TfRef.attribute<String>(this, 'deployment_artifacts');
 
   /// Reference to `environment_name` attribute.
-  TfRef<String> get environmentNameRef =>
+  TfRef<String> get environmentName =>
       TfRef.attribute<String>(this, 'environment_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `stack_name` attribute.
-  TfRef<String> get stackNameRef => TfRef.attribute<String>(this, 'stack_name');
+  TfRef<String> get stackName => TfRef.attribute<String>(this, 'stack_name');
 }

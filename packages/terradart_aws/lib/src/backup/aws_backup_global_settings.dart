@@ -33,6 +33,6 @@ final class AwsBackupGlobalSettings extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `global_settings` attribute.
-  TfRef<Map<String, String>> get globalSettingsRef =>
+  TfRef<Map<String, String>> get globalSettings =>
       TfRef.attribute<Map<String, String>>(this, 'global_settings');
 }

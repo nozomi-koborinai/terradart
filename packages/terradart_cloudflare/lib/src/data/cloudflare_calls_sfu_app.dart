@@ -36,7 +36,7 @@ final class DataCloudflareCallsSfuApp extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `created` attribute.
   TfRef<String> get created => TfRef.attribute<String>(this, 'created');
@@ -48,8 +48,8 @@ final class DataCloudflareCallsSfuApp extends Data {
   TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `app_id` attribute.
-  TfRef<String> get appIdRef => TfRef.attribute<String>(this, 'app_id');
+  TfRef<String> get appId => TfRef.attribute<String>(this, 'app_id');
 }

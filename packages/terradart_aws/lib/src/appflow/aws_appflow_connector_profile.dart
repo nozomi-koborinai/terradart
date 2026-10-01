@@ -1219,7 +1219,7 @@ final class AwsAppflowConnectorProfile extends Resource {
   RefTo<AwsAppflowConnectorProfile> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -1232,20 +1232,20 @@ final class AwsAppflowConnectorProfile extends Resource {
       TfRef.attribute<String>(this, 'credentials_arn');
 
   /// Reference to `connection_mode` attribute.
-  TfRef<String> get connectionModeRef =>
+  TfRef<String> get connectionMode =>
       TfRef.attribute<String>(this, 'connection_mode');
 
   /// Reference to `connector_label` attribute.
-  TfRef<String> get connectorLabelRef =>
+  TfRef<String> get connectorLabel =>
       TfRef.attribute<String>(this, 'connector_label');
 
   /// Reference to `connector_type` attribute.
-  TfRef<String> get connectorTypeRef =>
+  TfRef<String> get connectorType =>
       TfRef.attribute<String>(this, 'connector_type');
 
   /// Reference to `kms_arn` attribute.
-  TfRef<String> get kmsArnRef => TfRef.attribute<String>(this, 'kms_arn');
+  TfRef<String> get kmsArn => TfRef.attribute<String>(this, 'kms_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

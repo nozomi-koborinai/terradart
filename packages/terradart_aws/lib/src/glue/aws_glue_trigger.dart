@@ -236,7 +236,7 @@ final class AwsGlueTrigger extends Resource {
   RefTo<AwsGlueTrigger> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -248,30 +248,29 @@ final class AwsGlueTrigger extends Resource {
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `schedule` attribute.
-  TfRef<String> get scheduleRef => TfRef.attribute<String>(this, 'schedule');
+  TfRef<String> get schedule => TfRef.attribute<String>(this, 'schedule');
 
   /// Reference to `start_on_creation` attribute.
-  TfRef<bool> get startOnCreationRef =>
+  TfRef<bool> get startOnCreation =>
       TfRef.attribute<bool>(this, 'start_on_creation');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `workflow_name` attribute.
-  TfRef<String> get workflowNameRef =>
+  TfRef<String> get workflowName =>
       TfRef.attribute<String>(this, 'workflow_name');
 }

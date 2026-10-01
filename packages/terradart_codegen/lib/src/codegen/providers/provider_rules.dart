@@ -24,8 +24,8 @@ abstract class ProviderRules {
   /// embedded inside the `extraGetters: |2` commented block emitted by
   /// `WrapInitGenerator._buildExtraGettersAxis`.
   ///
-  /// Google: 0–2 lines for `id` and `nameRef` (from `name` attr).
-  /// AWS: 0–2 lines for `id` and `arnRef` (from `arn` attr).
+  /// Google: 0–2 lines for `id` and `name`.
+  /// AWS: 0–2 lines for `id` and `arn`.
   List<String> universalGetters(ResourceDef def);
 
   /// Terraform type prefix this provider uses (`google_`, `cloudflare_`, …).

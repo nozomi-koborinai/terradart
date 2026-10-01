@@ -59,13 +59,13 @@ final class CloudflareSchemaValidationOperationSettings extends Resource {
   RefTo<CloudflareSchemaValidationOperationSettings> get ref => RefTo.of(this);
 
   /// Reference to `mitigation_action` attribute.
-  TfRef<String> get mitigationActionRef =>
+  TfRef<String> get mitigationAction =>
       TfRef.attribute<String>(this, 'mitigation_action');
 
   /// Reference to `operation_id` attribute.
-  TfRef<String> get operationIdRef =>
+  TfRef<String> get operationId =>
       TfRef.attribute<String>(this, 'operation_id');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

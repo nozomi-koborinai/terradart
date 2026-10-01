@@ -28,7 +28,7 @@ final class DataGoogleMonitoringAppEngineService extends Data {
   Set<String> get sensitiveFields => _googleMonitoringAppEngineServiceSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -53,8 +53,8 @@ final class DataGoogleMonitoringAppEngineService extends Data {
       TfRef.attribute<Map<String, String>>(this, 'user_labels');
 
   /// Reference to `module_id` attribute.
-  TfRef<String> get moduleIdRef => TfRef.attribute<String>(this, 'module_id');
+  TfRef<String> get moduleId => TfRef.attribute<String>(this, 'module_id');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

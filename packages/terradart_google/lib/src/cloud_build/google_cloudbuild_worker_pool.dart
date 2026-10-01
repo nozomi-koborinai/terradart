@@ -66,7 +66,7 @@ class CloudbuildWorkerPoolNetworkConfig {
 
   /// Self-link of the VPC the workers peer to. Must use the
   /// `projects/{project_number}/global/networks/{network}` form — pass
-  /// `TfArg.ref(vpc.selfLink)` so the value resolves correctly. Note
+  /// `vpc.selfLink` so the value resolves correctly. Note
   /// the path requires a project NUMBER, not a project ID.
   final TfArg<String> peeredNetwork;
 
@@ -154,7 +154,7 @@ class CloudbuildWorkerPoolPrivateServiceConnect {
 ///     noExternalIp: TfArg.literal(true),
 ///   ),
 ///   networkConfig: CloudbuildWorkerPoolNetworkConfig(
-///     peeredNetwork: TfArg.ref(vpc.selfLink),
+///     peeredNetwork: vpc.selfLink,
 ///     peeredNetworkIpRange: TfArg.literal('/29'),
 ///   ),
 /// );
@@ -208,7 +208,7 @@ final class GoogleCloudbuildWorkerPool extends Resource {
   RefTo<GoogleCloudbuildWorkerPool> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -233,25 +233,20 @@ final class GoogleCloudbuildWorkerPool extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `annotations` attribute.
-  TfRef<Map<String, String>> get annotationsRef =>
+  TfRef<Map<String, String>> get annotations =>
       TfRef.attribute<Map<String, String>>(this, 'annotations');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
-
-  /// Reference to `state` attribute. One of `STATE_UNSPECIFIED`,
-  /// `PENDING`, `APPROVED`, `REJECTED`, `CANCELLED` (Output-only on the
-  /// provider; surfaced as a string for interpolation into outputs).
-  TfRef<String> get stateRef => TfRef.attribute<String>(this, 'state');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

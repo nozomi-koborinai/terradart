@@ -171,6 +171,9 @@ final class GoogleNetappStoragePool extends Resource {
   /// `RefTo<GoogleNetappStoragePool>`.
   RefTo<GoogleNetappStoragePool> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -206,89 +209,82 @@ final class GoogleNetappStoragePool extends Resource {
   TfRef<num> get volumeCount => TfRef.attribute<num>(this, 'volume_count');
 
   /// Reference to `active_directory` attribute.
-  TfRef<String> get activeDirectoryRef =>
+  TfRef<String> get activeDirectory =>
       TfRef.attribute<String>(this, 'active_directory');
 
   /// Reference to `allow_auto_tiering` attribute.
-  TfRef<bool> get allowAutoTieringRef =>
+  TfRef<bool> get allowAutoTiering =>
       TfRef.attribute<bool>(this, 'allow_auto_tiering');
 
   /// Reference to `capacity_gib` attribute.
-  TfRef<String> get capacityGibRef =>
+  TfRef<String> get capacityGib =>
       TfRef.attribute<String>(this, 'capacity_gib');
 
   /// Reference to `custom_performance_enabled` attribute.
-  TfRef<bool> get customPerformanceEnabledRef =>
+  TfRef<bool> get customPerformanceEnabled =>
       TfRef.attribute<bool>(this, 'custom_performance_enabled');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `enable_hot_tier_auto_resize` attribute.
-  TfRef<bool> get enableHotTierAutoResizeRef =>
+  TfRef<bool> get enableHotTierAutoResize =>
       TfRef.attribute<bool>(this, 'enable_hot_tier_auto_resize');
 
   /// Reference to `hot_tier_size_gib` attribute.
-  TfRef<String> get hotTierSizeGibRef =>
+  TfRef<String> get hotTierSizeGib =>
       TfRef.attribute<String>(this, 'hot_tier_size_gib');
 
   /// Reference to `kms_config` attribute.
-  TfRef<String> get kmsConfigRef => TfRef.attribute<String>(this, 'kms_config');
+  TfRef<String> get kmsConfig => TfRef.attribute<String>(this, 'kms_config');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `ldap_enabled` attribute.
-  TfRef<bool> get ldapEnabledRef => TfRef.attribute<bool>(this, 'ldap_enabled');
+  TfRef<bool> get ldapEnabled => TfRef.attribute<bool>(this, 'ldap_enabled');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `mode` attribute.
-  TfRef<String> get modeRef => TfRef.attribute<String>(this, 'mode');
+  TfRef<String> get mode => TfRef.attribute<String>(this, 'mode');
 
   /// Reference to `network` attribute.
-  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+  TfRef<String> get network => TfRef.attribute<String>(this, 'network');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `qos_type` attribute.
-  TfRef<String> get qosTypeRef => TfRef.attribute<String>(this, 'qos_type');
+  TfRef<String> get qosType => TfRef.attribute<String>(this, 'qos_type');
 
   /// Reference to `replica_zone` attribute.
-  TfRef<String> get replicaZoneRef =>
+  TfRef<String> get replicaZone =>
       TfRef.attribute<String>(this, 'replica_zone');
 
   /// Reference to `scale_type` attribute.
-  TfRef<String> get scaleTypeRef => TfRef.attribute<String>(this, 'scale_type');
+  TfRef<String> get scaleType => TfRef.attribute<String>(this, 'scale_type');
 
   /// Reference to `service_level` attribute.
-  TfRef<String> get serviceLevelRef =>
+  TfRef<String> get serviceLevel =>
       TfRef.attribute<String>(this, 'service_level');
 
   /// Reference to `total_iops` attribute.
-  TfRef<String> get totalIopsRef => TfRef.attribute<String>(this, 'total_iops');
+  TfRef<String> get totalIops => TfRef.attribute<String>(this, 'total_iops');
 
   /// Reference to `total_throughput_mibps` attribute.
-  TfRef<String> get totalThroughputMibpsRef =>
+  TfRef<String> get totalThroughputMibps =>
       TfRef.attribute<String>(this, 'total_throughput_mibps');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `zone` attribute.
-  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+  TfRef<String> get zone => TfRef.attribute<String>(this, 'zone');
 }

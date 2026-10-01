@@ -228,23 +228,23 @@ final class AwsPaymentcryptographyKey extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `deletion_window_in_days` attribute.
-  TfRef<num> get deletionWindowInDaysRef =>
+  TfRef<num> get deletionWindowInDays =>
       TfRef.attribute<num>(this, 'deletion_window_in_days');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `exportable` attribute.
-  TfRef<bool> get exportableRef => TfRef.attribute<bool>(this, 'exportable');
+  TfRef<bool> get exportable => TfRef.attribute<bool>(this, 'exportable');
 
   /// Reference to `key_check_value_algorithm` attribute.
-  TfRef<String> get keyCheckValueAlgorithmRef =>
+  TfRef<String> get keyCheckValueAlgorithm =>
       TfRef.attribute<String>(this, 'key_check_value_algorithm');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

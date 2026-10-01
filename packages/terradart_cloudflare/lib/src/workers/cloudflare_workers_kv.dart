@@ -53,25 +53,24 @@ final class CloudflareWorkersKv extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `expiration` attribute.
-  TfRef<num> get expirationRef => TfRef.attribute<num>(this, 'expiration');
+  TfRef<num> get expiration => TfRef.attribute<num>(this, 'expiration');
 
   /// Reference to `expiration_ttl` attribute.
-  TfRef<num> get expirationTtlRef =>
-      TfRef.attribute<num>(this, 'expiration_ttl');
+  TfRef<num> get expirationTtl => TfRef.attribute<num>(this, 'expiration_ttl');
 
   /// Reference to `key_name` attribute.
-  TfRef<String> get keyNameRef => TfRef.attribute<String>(this, 'key_name');
+  TfRef<String> get keyName => TfRef.attribute<String>(this, 'key_name');
 
   /// Reference to `metadata` attribute.
-  TfRef<String> get metadataRef => TfRef.attribute<String>(this, 'metadata');
+  TfRef<String> get metadata => TfRef.attribute<String>(this, 'metadata');
 
   /// Reference to `namespace_id` attribute.
-  TfRef<String> get namespaceIdRef =>
+  TfRef<String> get namespaceId =>
       TfRef.attribute<String>(this, 'namespace_id');
 
   /// Reference to `value` attribute.
-  TfRef<String> get valueRef => TfRef.attribute<String>(this, 'value');
+  TfRef<String> get value => TfRef.attribute<String>(this, 'value');
 }

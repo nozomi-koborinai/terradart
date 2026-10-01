@@ -25,7 +25,7 @@ final class DataAwsWorkspacesImage extends Data {
   Set<String> get sensitiveFields => _awsWorkspacesImageSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -45,8 +45,8 @@ final class DataAwsWorkspacesImage extends Data {
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `image_id` attribute.
-  TfRef<String> get imageIdRef => TfRef.attribute<String>(this, 'image_id');
+  TfRef<String> get imageId => TfRef.attribute<String>(this, 'image_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

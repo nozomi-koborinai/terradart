@@ -71,6 +71,9 @@ final class GoogleComputeRegionHealthAggregationPolicy extends Resource {
   /// `RefTo<GoogleComputeRegionHealthAggregationPolicy>`.
   RefTo<GoogleComputeRegionHealthAggregationPolicy> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -82,33 +85,28 @@ final class GoogleComputeRegionHealthAggregationPolicy extends Resource {
   TfRef<String> get fingerprint => TfRef.attribute<String>(this, 'fingerprint');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `healthy_percent_threshold` attribute.
-  TfRef<num> get healthyPercentThresholdRef =>
+  TfRef<num> get healthyPercentThreshold =>
       TfRef.attribute<num>(this, 'healthy_percent_threshold');
 
   /// Reference to `min_healthy_threshold` attribute.
-  TfRef<num> get minHealthyThresholdRef =>
+  TfRef<num> get minHealthyThreshold =>
       TfRef.attribute<num>(this, 'min_healthy_threshold');
 
   /// Reference to `policy_type` attribute.
-  TfRef<String> get policyTypeRef =>
-      TfRef.attribute<String>(this, 'policy_type');
+  TfRef<String> get policyType => TfRef.attribute<String>(this, 'policy_type');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `self_link_with_id` attribute.
   TfRef<String> get selfLinkWithId =>

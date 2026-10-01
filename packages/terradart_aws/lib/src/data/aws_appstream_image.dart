@@ -36,7 +36,7 @@ final class DataAwsAppstreamImage extends Data {
   Set<String> get sensitiveFields => _awsAppstreamImageSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `applications` attribute.
   TfRef<List<Map<String, Object?>>> get applications =>
@@ -88,17 +88,17 @@ final class DataAwsAppstreamImage extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'state_change_reason');
 
   /// Reference to `arn` attribute.
-  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+  TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `most_recent` attribute.
-  TfRef<bool> get mostRecentRef => TfRef.attribute<bool>(this, 'most_recent');
+  TfRef<bool> get mostRecent => TfRef.attribute<bool>(this, 'most_recent');
 
   /// Reference to `name_regex` attribute.
-  TfRef<String> get nameRegexRef => TfRef.attribute<String>(this, 'name_regex');
+  TfRef<String> get nameRegex => TfRef.attribute<String>(this, 'name_regex');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

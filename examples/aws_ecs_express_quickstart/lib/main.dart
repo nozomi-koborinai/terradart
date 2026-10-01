@@ -121,7 +121,7 @@ final class AwsEcsExpressStack extends Stack {
             ],
             awsLogsConfiguration: .literal([
               {
-                'log_group': TfArg.ref(logs.nameRef),
+                'log_group': logs.name,
                 'log_stream_prefix': 'server',
               },
             ]),
@@ -158,7 +158,7 @@ final class AwsEcsExpressStack extends Stack {
     final role = AwsIamRole(
       localName: localName,
       name: .name(.literal(name)),
-      assumeRolePolicy: .ref(trust.json),
+      assumeRolePolicy: trust.json,
     );
     add(role);
     final attachment = AwsIamRolePolicyAttachment(

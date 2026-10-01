@@ -267,13 +267,13 @@ final class AwsCodedeployDeploymentConfig extends Resource {
       TfRef.attribute<String>(this, 'deployment_config_id');
 
   /// Reference to `compute_platform` attribute.
-  TfRef<String> get computePlatformRef =>
+  TfRef<String> get computePlatform =>
       TfRef.attribute<String>(this, 'compute_platform');
 
   /// Reference to `deployment_config_name` attribute.
-  TfRef<String> get deploymentConfigNameRef =>
+  TfRef<String> get deploymentConfigName =>
       TfRef.attribute<String>(this, 'deployment_config_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

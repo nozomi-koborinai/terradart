@@ -1,8 +1,9 @@
 import 'package:meta/meta.dart';
 
 import 'duration_helper.dart';
-import 'tf_ref.dart';
 import 'tf_template.dart';
+
+part 'tf_ref.dart';
 
 /// Implemented by every codegen-emitted Dart enum whose values map to
 /// Terraform string literals (e.g. `KmsKeyPurpose.encryptDecrypt` →
@@ -19,11 +20,12 @@ abstract interface class TerraformEnum {
   String get terraformValue;
 }
 
-/// A Terraform argument: either a Dart-side literal or a Terraform-side
-/// reference.
+/// A Terraform argument: a Dart-side literal, a reference to another block's
+/// attribute ([TfRef]), a variable or a raw expression.
 ///
 /// `T` is the Dart type the factory parameter accepts. Resource factories
-/// accept `TfArg<T>` (or `TfArg<T>?`) for every settable field.
+/// accept `TfArg<T>` (or `TfArg<T>?`) for every settable field, so an
+/// attribute getter fills one as is: `pushEndpoint: api.uri`.
 sealed class TfArg<T> {
   const TfArg();
 
@@ -35,9 +37,6 @@ sealed class TfArg<T> {
   /// member name. `const TfArgLiteral<T>(value)` remains usable for
   /// callers that need a `const` expression.
   static TfArg<T> literal<T>(T value) => TfArgLiteral<T>(value);
-
-  /// Convenience: `TfArg.ref(topic.nameRef)`.
-  static TfArg<T> ref<T>(TfRef<T> ref) => TfArgRef<T>(ref);
 
   /// Convenience: `TfArg.variable('db_password')` (T inferred) or
   /// `TfArg.variable<String>('db_password')` (explicit).
@@ -54,9 +53,9 @@ sealed class TfArg<T> {
   /// A raw Terraform expression, emitted verbatim as the tf.json template
   /// string it is: `${ ... }` interpolations and `%{ ... }` directives are
   /// evaluated by Terraform, and a literal `${` / `%{` in the text must be
-  /// escaped as `$${` / `%%{`. Use it for what [literal], [ref] and
-  /// [variable] cannot express — function calls, conditionals, `local.x`,
-  /// `module.x.y`, `terraform.workspace`. `T` is the Dart type of the
+  /// escaped as `$${` / `%%{`. Use it for what [literal], [variable] and
+  /// an attribute getter cannot express — function calls, conditionals,
+  /// `local.x`, `module.x.y`, `terraform.workspace`. `T` is the Dart type of the
   /// parameter it fills; Terraform converts the evaluated value.
   ///
   /// Like a reference it is accepted in sensitive positions (no plaintext
@@ -112,7 +111,7 @@ sealed class TfArg<T> {
   /// Value emitted into Terraform JSON.
   ///
   /// - `TfArgLiteral`    → the actual value (string, int, etc.)
-  /// - `TfArgRef`        → an interpolation string `'${...}'`
+  /// - `TfRef`           → an interpolation string `'${...}'`
   /// - `TfArgVariable`   → an interpolation string `'${var.<name>}'`
   /// - `TfArgExpression` → its template string, verbatim
   Object? toTfJson();
@@ -153,16 +152,6 @@ final class TfArgLiteral<T> extends TfArg<T> {
     }
     return value;
   }
-}
-
-@immutable
-final class TfArgRef<T> extends TfArg<T> {
-  const TfArgRef(this.ref);
-
-  final TfRef<T> ref;
-
-  @override
-  Object? toTfJson() => ref.interpolation;
 }
 
 @immutable

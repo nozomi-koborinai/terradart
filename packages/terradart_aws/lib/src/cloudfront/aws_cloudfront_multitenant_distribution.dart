@@ -920,23 +920,23 @@ final class AwsCloudfrontMultitenantDistribution extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `comment` attribute.
-  TfRef<String> get commentRef => TfRef.attribute<String>(this, 'comment');
+  TfRef<String> get comment => TfRef.attribute<String>(this, 'comment');
 
   /// Reference to `default_root_object` attribute.
-  TfRef<String> get defaultRootObjectRef =>
+  TfRef<String> get defaultRootObject =>
       TfRef.attribute<String>(this, 'default_root_object');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `http_version` attribute.
-  TfRef<String> get httpVersionRef =>
+  TfRef<String> get httpVersion =>
       TfRef.attribute<String>(this, 'http_version');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `web_acl_id` attribute.
-  TfRef<String> get webAclIdRef => TfRef.attribute<String>(this, 'web_acl_id');
+  TfRef<String> get webAclId => TfRef.attribute<String>(this, 'web_acl_id');
 }

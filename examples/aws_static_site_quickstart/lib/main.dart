@@ -118,7 +118,7 @@ final class AwsStaticSiteStack extends Stack {
       origin: [
         CloudfrontDistributionOrigin(
           originId: .literal(_originId),
-          domainName: .ref(bucket.bucketRegionalDomainName),
+          domainName: bucket.bucketRegionalDomainName,
           originAccessControlId: oac.ref,
         ),
       ],
@@ -185,7 +185,7 @@ final class AwsStaticSiteStack extends Stack {
       AwsS3BucketPolicy(
         localName: 'site',
         bucket: bucket.ref,
-        policy: .ref(readFromCloudFront.json),
+        policy: readFromCloudFront.json,
       ),
     );
 
@@ -198,8 +198,8 @@ final class AwsStaticSiteStack extends Stack {
           type: .literal(type),
           target: .alias(
             .new(
-              name: .ref(distribution.domainName),
-              zoneId: .ref(distribution.hostedZoneId),
+              name: distribution.domainName,
+              zoneId: distribution.hostedZoneId,
               evaluateTargetHealth: .literal(false),
             ),
           ),

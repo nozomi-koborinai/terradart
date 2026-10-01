@@ -64,7 +64,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
         collectionId: .literal('default_collection'),
         engineId: .literal('quickstart-search'),
         displayName: .literal('Quickstart site search'),
-        dataStoreIds: .literal([dataStore.dataStoreIdRef.interpolation]),
+        dataStoreIds: .literal([dataStore.dataStoreId.interpolation]),
         searchEngineConfig: DiscoveryEngineSearchEngineConfig(
           searchTier: .literal(.searchTierStandard),
         ),
@@ -168,7 +168,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
         collectionId: .literal('default_collection'),
         engineId: searchEngine.ref,
         servingConfigId: .literal('default_search'),
-        synonymsControlIds: .literal([synonyms.controlIdRef.interpolation]),
+        synonymsControlIds: .literal([synonyms.controlId.interpolation]),
         dependsOn: [
           ResourceDependency(searchEngine),
           ResourceDependency(synonyms),

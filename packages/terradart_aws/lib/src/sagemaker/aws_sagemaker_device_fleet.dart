@@ -77,24 +77,23 @@ final class AwsSagemakerDeviceFleet extends Resource {
       TfRef.attribute<String>(this, 'iot_role_alias');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `device_fleet_name` attribute.
-  TfRef<String> get deviceFleetNameRef =>
+  TfRef<String> get deviceFleetName =>
       TfRef.attribute<String>(this, 'device_fleet_name');
 
   /// Reference to `enable_iot_role_alias` attribute.
-  TfRef<bool> get enableIotRoleAliasRef =>
+  TfRef<bool> get enableIotRoleAlias =>
       TfRef.attribute<bool>(this, 'enable_iot_role_alias');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role_arn` attribute.
-  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+  TfRef<String> get roleArn => TfRef.attribute<String>(this, 'role_arn');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

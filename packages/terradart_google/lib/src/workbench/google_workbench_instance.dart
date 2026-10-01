@@ -525,6 +525,9 @@ final class GoogleWorkbenchInstance extends Resource {
   /// `RefTo<GoogleWorkbenchInstance>`.
   RefTo<GoogleWorkbenchInstance> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -564,50 +567,43 @@ final class GoogleWorkbenchInstance extends Resource {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'upgrade_history');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `desired_state` attribute.
-  TfRef<String> get desiredStateRef =>
+  TfRef<String> get desiredState =>
       TfRef.attribute<String>(this, 'desired_state');
 
   /// Reference to `disable_proxy_access` attribute.
-  TfRef<bool> get disableProxyAccessRef =>
+  TfRef<bool> get disableProxyAccess =>
       TfRef.attribute<bool>(this, 'disable_proxy_access');
 
   /// Reference to `enable_deletion_protection` attribute.
-  TfRef<bool> get enableDeletionProtectionRef =>
+  TfRef<bool> get enableDeletionProtection =>
       TfRef.attribute<bool>(this, 'enable_deletion_protection');
 
   /// Reference to `enable_managed_euc` attribute.
-  TfRef<bool> get enableManagedEucRef =>
+  TfRef<bool> get enableManagedEuc =>
       TfRef.attribute<bool>(this, 'enable_managed_euc');
 
   /// Reference to `enable_third_party_identity` attribute.
-  TfRef<bool> get enableThirdPartyIdentityRef =>
+  TfRef<bool> get enableThirdPartyIdentity =>
       TfRef.attribute<bool>(this, 'enable_third_party_identity');
 
   /// Reference to `instance_id` attribute.
-  TfRef<String> get instanceIdRef =>
-      TfRef.attribute<String>(this, 'instance_id');
+  TfRef<String> get instanceId => TfRef.attribute<String>(this, 'instance_id');
 
   /// Reference to `instance_owners` attribute.
-  TfRef<List<String>> get instanceOwnersRef =>
+  TfRef<List<String>> get instanceOwners =>
       TfRef.attribute<List<String>>(this, 'instance_owners');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

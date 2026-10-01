@@ -56,9 +56,9 @@ final class ParamsStack extends Stack {
     );
 
     // Literal parameter id -- emitted as a Dart constant at synth time.
-    addConstant('appConfigParameterId', .ref(appConfig.parameterIdRef));
+    addConstant('appConfigParameterId', .ref(appConfig.parameterId));
 
     // Full parameter resource name -- Terraform output only (computed).
-    addOutput('app_config_parameter_name', .ref(appConfig.id));
+    addOutput('app_config_parameter_name', appConfig.id);
   }
 }

@@ -76,21 +76,21 @@ final class AwsServicecatalogPrincipalPortfolioAssociation extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `accept_language` attribute.
-  TfRef<String> get acceptLanguageRef =>
+  TfRef<String> get acceptLanguage =>
       TfRef.attribute<String>(this, 'accept_language');
 
   /// Reference to `portfolio_id` attribute.
-  TfRef<String> get portfolioIdRef =>
+  TfRef<String> get portfolioId =>
       TfRef.attribute<String>(this, 'portfolio_id');
 
   /// Reference to `principal_arn` attribute.
-  TfRef<String> get principalArnRef =>
+  TfRef<String> get principalArn =>
       TfRef.attribute<String>(this, 'principal_arn');
 
   /// Reference to `principal_type` attribute.
-  TfRef<String> get principalTypeRef =>
+  TfRef<String> get principalType =>
       TfRef.attribute<String>(this, 'principal_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

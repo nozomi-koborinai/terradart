@@ -859,33 +859,33 @@ final class GoogleDialogflowConversationProfile extends Resource {
   RefTo<GoogleDialogflowConversationProfile> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `language_code` attribute.
-  TfRef<String> get languageCodeRef =>
+  TfRef<String> get languageCode =>
       TfRef.attribute<String>(this, 'language_code');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `security_settings` attribute.
-  TfRef<String> get securitySettingsRef =>
+  TfRef<String> get securitySettings =>
       TfRef.attribute<String>(this, 'security_settings');
 
   /// Reference to `time_zone` attribute.
-  TfRef<String> get timeZoneRef => TfRef.attribute<String>(this, 'time_zone');
+  TfRef<String> get timeZone => TfRef.attribute<String>(this, 'time_zone');
 }

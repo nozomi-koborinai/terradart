@@ -98,7 +98,7 @@ final class AwsCloudwatchAlarmMuteRule extends Resource {
   RefTo<AwsCloudwatchAlarmMuteRule> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
@@ -118,20 +118,18 @@ final class AwsCloudwatchAlarmMuteRule extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `expire_date` attribute.
-  TfRef<String> get expireDateRef =>
-      TfRef.attribute<String>(this, 'expire_date');
+  TfRef<String> get expireDate => TfRef.attribute<String>(this, 'expire_date');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `start_date` attribute.
-  TfRef<String> get startDateRef => TfRef.attribute<String>(this, 'start_date');
+  TfRef<String> get startDate => TfRef.attribute<String>(this, 'start_date');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

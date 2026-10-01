@@ -1245,7 +1245,7 @@ final class AwsBedrockagentDataSource extends Resource {
   RefTo<AwsBedrockagentDataSource> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -1255,17 +1255,16 @@ final class AwsBedrockagentDataSource extends Resource {
       TfRef.attribute<String>(this, 'data_source_id');
 
   /// Reference to `data_deletion_policy` attribute.
-  TfRef<String> get dataDeletionPolicyRef =>
+  TfRef<String> get dataDeletionPolicy =>
       TfRef.attribute<String>(this, 'data_deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `knowledge_base_id` attribute.
-  TfRef<String> get knowledgeBaseIdRef =>
+  TfRef<String> get knowledgeBaseId =>
       TfRef.attribute<String>(this, 'knowledge_base_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

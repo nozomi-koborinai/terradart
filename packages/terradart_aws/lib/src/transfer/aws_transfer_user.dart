@@ -115,29 +115,29 @@ final class AwsTransferUser extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `home_directory` attribute.
-  TfRef<String> get homeDirectoryRef =>
+  TfRef<String> get homeDirectory =>
       TfRef.attribute<String>(this, 'home_directory');
 
   /// Reference to `home_directory_type` attribute.
-  TfRef<String> get homeDirectoryTypeRef =>
+  TfRef<String> get homeDirectoryType =>
       TfRef.attribute<String>(this, 'home_directory_type');
 
   /// Reference to `policy` attribute.
-  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+  TfRef<String> get policy => TfRef.attribute<String>(this, 'policy');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role` attribute.
-  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+  TfRef<String> get role => TfRef.attribute<String>(this, 'role');
 
   /// Reference to `server_id` attribute.
-  TfRef<String> get serverIdRef => TfRef.attribute<String>(this, 'server_id');
+  TfRef<String> get serverId => TfRef.attribute<String>(this, 'server_id');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `user_name` attribute.
-  TfRef<String> get userNameRef => TfRef.attribute<String>(this, 'user_name');
+  TfRef<String> get userName => TfRef.attribute<String>(this, 'user_name');
 }

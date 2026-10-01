@@ -162,13 +162,13 @@ final class DataAwsEc2ClientVpnEndpoint extends Data {
   TfRef<num> get vpnPort => TfRef.attribute<num>(this, 'vpn_port');
 
   /// Reference to `client_vpn_endpoint_id` attribute.
-  TfRef<String> get clientVpnEndpointIdRef =>
+  TfRef<String> get clientVpnEndpointId =>
       TfRef.attribute<String>(this, 'client_vpn_endpoint_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

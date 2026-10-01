@@ -102,22 +102,22 @@ final class AwsNetworkmanagerConnectAttachment extends Resource {
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `core_network_id` attribute.
-  TfRef<String> get coreNetworkIdRef =>
+  TfRef<String> get coreNetworkId =>
       TfRef.attribute<String>(this, 'core_network_id');
 
   /// Reference to `edge_location` attribute.
-  TfRef<String> get edgeLocationRef =>
+  TfRef<String> get edgeLocation =>
       TfRef.attribute<String>(this, 'edge_location');
 
   /// Reference to `routing_policy_label` attribute.
-  TfRef<String> get routingPolicyLabelRef =>
+  TfRef<String> get routingPolicyLabel =>
       TfRef.attribute<String>(this, 'routing_policy_label');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `transport_attachment_id` attribute.
-  TfRef<String> get transportAttachmentIdRef =>
+  TfRef<String> get transportAttachmentId =>
       TfRef.attribute<String>(this, 'transport_attachment_id');
 }

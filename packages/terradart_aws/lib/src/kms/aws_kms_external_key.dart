@@ -105,43 +105,42 @@ final class AwsKmsExternalKey extends Resource {
   TfRef<String> get keyState => TfRef.attribute<String>(this, 'key_state');
 
   /// Reference to `bypass_policy_lockout_safety_check` attribute.
-  TfRef<bool> get bypassPolicyLockoutSafetyCheckRef =>
+  TfRef<bool> get bypassPolicyLockoutSafetyCheck =>
       TfRef.attribute<bool>(this, 'bypass_policy_lockout_safety_check');
 
   /// Reference to `deletion_window_in_days` attribute.
-  TfRef<num> get deletionWindowInDaysRef =>
+  TfRef<num> get deletionWindowInDays =>
       TfRef.attribute<num>(this, 'deletion_window_in_days');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `key_material_base64` attribute.
-  TfRef<String> get keyMaterialBase64Ref =>
+  TfRef<String> get keyMaterialBase64 =>
       TfRef.attribute<String>(this, 'key_material_base64');
 
   /// Reference to `key_spec` attribute.
-  TfRef<String> get keySpecRef => TfRef.attribute<String>(this, 'key_spec');
+  TfRef<String> get keySpec => TfRef.attribute<String>(this, 'key_spec');
 
   /// Reference to `key_usage` attribute.
-  TfRef<String> get keyUsageRef => TfRef.attribute<String>(this, 'key_usage');
+  TfRef<String> get keyUsage => TfRef.attribute<String>(this, 'key_usage');
 
   /// Reference to `multi_region` attribute.
-  TfRef<bool> get multiRegionRef => TfRef.attribute<bool>(this, 'multi_region');
+  TfRef<bool> get multiRegion => TfRef.attribute<bool>(this, 'multi_region');
 
   /// Reference to `policy` attribute.
-  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+  TfRef<String> get policy => TfRef.attribute<String>(this, 'policy');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `valid_to` attribute.
-  TfRef<String> get validToRef => TfRef.attribute<String>(this, 'valid_to');
+  TfRef<String> get validTo => TfRef.attribute<String>(this, 'valid_to');
 }

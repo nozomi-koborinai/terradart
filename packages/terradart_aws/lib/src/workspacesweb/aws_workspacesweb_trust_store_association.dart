@@ -37,12 +37,12 @@ final class AwsWorkspaceswebTrustStoreAssociation extends Resource {
   RefTo<AwsWorkspaceswebTrustStoreAssociation> get ref => RefTo.of(this);
 
   /// Reference to `portal_arn` attribute.
-  TfRef<String> get portalArnRef => TfRef.attribute<String>(this, 'portal_arn');
+  TfRef<String> get portalArn => TfRef.attribute<String>(this, 'portal_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `trust_store_arn` attribute.
-  TfRef<String> get trustStoreArnRef =>
+  TfRef<String> get trustStoreArn =>
       TfRef.attribute<String>(this, 'trust_store_arn');
 }

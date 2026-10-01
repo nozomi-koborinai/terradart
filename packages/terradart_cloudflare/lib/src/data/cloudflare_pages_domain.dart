@@ -41,7 +41,7 @@ final class DataCloudflarePagesDomain extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -63,13 +63,12 @@ final class DataCloudflarePagesDomain extends Data {
   TfRef<String> get zoneTag => TfRef.attribute<String>(this, 'zone_tag');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `domain_name` attribute.
-  TfRef<String> get domainNameRef =>
-      TfRef.attribute<String>(this, 'domain_name');
+  TfRef<String> get domainName => TfRef.attribute<String>(this, 'domain_name');
 
   /// Reference to `project_name` attribute.
-  TfRef<String> get projectNameRef =>
+  TfRef<String> get projectName =>
       TfRef.attribute<String>(this, 'project_name');
 }

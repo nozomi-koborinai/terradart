@@ -42,19 +42,18 @@ final class DataAwsCodeartifactRepositoryEndpoint extends Data {
       TfRef.attribute<String>(this, 'repository_endpoint');
 
   /// Reference to `domain` attribute.
-  TfRef<String> get domainRef => TfRef.attribute<String>(this, 'domain');
+  TfRef<String> get domain => TfRef.attribute<String>(this, 'domain');
 
   /// Reference to `domain_owner` attribute.
-  TfRef<String> get domainOwnerRef =>
+  TfRef<String> get domainOwner =>
       TfRef.attribute<String>(this, 'domain_owner');
 
   /// Reference to `format` attribute.
-  TfRef<String> get formatRef => TfRef.attribute<String>(this, 'format');
+  TfRef<String> get format => TfRef.attribute<String>(this, 'format');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `repository` attribute.
-  TfRef<String> get repositoryRef =>
-      TfRef.attribute<String>(this, 'repository');
+  TfRef<String> get repository => TfRef.attribute<String>(this, 'repository');
 }

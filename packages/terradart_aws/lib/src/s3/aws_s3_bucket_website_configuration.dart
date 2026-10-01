@@ -188,16 +188,16 @@ final class AwsS3BucketWebsiteConfiguration extends Resource {
       TfRef.attribute<String>(this, 'website_endpoint');
 
   /// Reference to `bucket` attribute.
-  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+  TfRef<String> get bucket => TfRef.attribute<String>(this, 'bucket');
 
   /// Reference to `expected_bucket_owner` attribute.
-  TfRef<String> get expectedBucketOwnerRef =>
+  TfRef<String> get expectedBucketOwner =>
       TfRef.attribute<String>(this, 'expected_bucket_owner');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `routing_rules` attribute.
-  TfRef<String> get routingRulesRef =>
+  TfRef<String> get routingRules =>
       TfRef.attribute<String>(this, 'routing_rules');
 }

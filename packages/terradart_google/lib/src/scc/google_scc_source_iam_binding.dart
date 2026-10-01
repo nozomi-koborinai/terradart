@@ -79,16 +79,16 @@ final class GoogleSccSourceIamBinding extends Resource {
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `members` attribute.
-  TfRef<List<String>> get membersRef =>
+  TfRef<List<String>> get members =>
       TfRef.attribute<List<String>>(this, 'members');
 
   /// Reference to `organization` attribute.
-  TfRef<String> get organizationRef =>
+  TfRef<String> get organization =>
       TfRef.attribute<String>(this, 'organization');
 
   /// Reference to `role` attribute.
-  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+  TfRef<String> get role => TfRef.attribute<String>(this, 'role');
 
   /// Reference to `source` attribute.
-  TfRef<String> get sourceRef => TfRef.attribute<String>(this, 'source');
+  TfRef<String> get source => TfRef.attribute<String>(this, 'source');
 }

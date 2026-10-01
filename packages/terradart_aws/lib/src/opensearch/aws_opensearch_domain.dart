@@ -884,29 +884,28 @@ final class AwsOpensearchDomain extends Resource {
   TfRef<String> get endpointV2 => TfRef.attribute<String>(this, 'endpoint_v2');
 
   /// Reference to `access_policies` attribute.
-  TfRef<String> get accessPoliciesRef =>
+  TfRef<String> get accessPolicies =>
       TfRef.attribute<String>(this, 'access_policies');
 
   /// Reference to `advanced_options` attribute.
-  TfRef<Map<String, String>> get advancedOptionsRef =>
+  TfRef<Map<String, String>> get advancedOptions =>
       TfRef.attribute<Map<String, String>>(this, 'advanced_options');
 
   /// Reference to `domain_name` attribute.
-  TfRef<String> get domainNameRef =>
-      TfRef.attribute<String>(this, 'domain_name');
+  TfRef<String> get domainName => TfRef.attribute<String>(this, 'domain_name');
 
   /// Reference to `engine_version` attribute.
-  TfRef<String> get engineVersionRef =>
+  TfRef<String> get engineVersion =>
       TfRef.attribute<String>(this, 'engine_version');
 
   /// Reference to `ip_address_type` attribute.
-  TfRef<String> get ipAddressTypeRef =>
+  TfRef<String> get ipAddressType =>
       TfRef.attribute<String>(this, 'ip_address_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

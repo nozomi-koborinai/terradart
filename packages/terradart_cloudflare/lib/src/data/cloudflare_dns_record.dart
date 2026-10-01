@@ -303,7 +303,7 @@ final class DataCloudflareDnsRecord extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -351,13 +351,13 @@ final class DataCloudflareDnsRecord extends Data {
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `dns_record_id` attribute.
-  TfRef<String> get dnsRecordIdRef =>
+  TfRef<String> get dnsRecordId =>
       TfRef.attribute<String>(this, 'dns_record_id');
 
   /// Reference to `include_shadow_metadata` attribute.
-  TfRef<bool> get includeShadowMetadataRef =>
+  TfRef<bool> get includeShadowMetadata =>
       TfRef.attribute<bool>(this, 'include_shadow_metadata');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

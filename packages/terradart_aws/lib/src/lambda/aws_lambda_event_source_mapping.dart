@@ -633,75 +633,74 @@ final class AwsLambdaEventSourceMapping extends Resource {
   TfRef<String> get uuid => TfRef.attribute<String>(this, 'uuid');
 
   /// Reference to `batch_size` attribute.
-  TfRef<num> get batchSizeRef => TfRef.attribute<num>(this, 'batch_size');
+  TfRef<num> get batchSize => TfRef.attribute<num>(this, 'batch_size');
 
   /// Reference to `bisect_batch_on_function_error` attribute.
-  TfRef<bool> get bisectBatchOnFunctionErrorRef =>
+  TfRef<bool> get bisectBatchOnFunctionError =>
       TfRef.attribute<bool>(this, 'bisect_batch_on_function_error');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `event_source_arn` attribute.
-  TfRef<String> get eventSourceArnRef =>
+  TfRef<String> get eventSourceArn =>
       TfRef.attribute<String>(this, 'event_source_arn');
 
   /// Reference to `function_name` attribute.
-  TfRef<String> get functionNameRef =>
+  TfRef<String> get functionName =>
       TfRef.attribute<String>(this, 'function_name');
 
   /// Reference to `function_response_types` attribute.
-  TfRef<List<String>> get functionResponseTypesRef =>
+  TfRef<List<String>> get functionResponseTypes =>
       TfRef.attribute<List<String>>(this, 'function_response_types');
 
   /// Reference to `kms_key_arn` attribute.
-  TfRef<String> get kmsKeyArnRef =>
-      TfRef.attribute<String>(this, 'kms_key_arn');
+  TfRef<String> get kmsKeyArn => TfRef.attribute<String>(this, 'kms_key_arn');
 
   /// Reference to `maximum_batching_window_in_seconds` attribute.
-  TfRef<num> get maximumBatchingWindowInSecondsRef =>
+  TfRef<num> get maximumBatchingWindowInSeconds =>
       TfRef.attribute<num>(this, 'maximum_batching_window_in_seconds');
 
   /// Reference to `maximum_record_age_in_seconds` attribute.
-  TfRef<num> get maximumRecordAgeInSecondsRef =>
+  TfRef<num> get maximumRecordAgeInSeconds =>
       TfRef.attribute<num>(this, 'maximum_record_age_in_seconds');
 
   /// Reference to `maximum_retry_attempts` attribute.
-  TfRef<num> get maximumRetryAttemptsRef =>
+  TfRef<num> get maximumRetryAttempts =>
       TfRef.attribute<num>(this, 'maximum_retry_attempts');
 
   /// Reference to `parallelization_factor` attribute.
-  TfRef<num> get parallelizationFactorRef =>
+  TfRef<num> get parallelizationFactor =>
       TfRef.attribute<num>(this, 'parallelization_factor');
 
   /// Reference to `queues` attribute.
-  TfRef<List<String>> get queuesRef =>
+  TfRef<List<String>> get queues =>
       TfRef.attribute<List<String>>(this, 'queues');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `starting_position` attribute.
-  TfRef<String> get startingPositionRef =>
+  TfRef<String> get startingPosition =>
       TfRef.attribute<String>(this, 'starting_position');
 
   /// Reference to `starting_position_timestamp` attribute.
-  TfRef<String> get startingPositionTimestampRef =>
+  TfRef<String> get startingPositionTimestamp =>
       TfRef.attribute<String>(this, 'starting_position_timestamp');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `topics` attribute.
-  TfRef<List<String>> get topicsRef =>
+  TfRef<List<String>> get topics =>
       TfRef.attribute<List<String>>(this, 'topics');
 
   /// Reference to `tumbling_window_in_seconds` attribute.
-  TfRef<num> get tumblingWindowInSecondsRef =>
+  TfRef<num> get tumblingWindowInSeconds =>
       TfRef.attribute<num>(this, 'tumbling_window_in_seconds');
 
   /// Reference to `use_resource_timeout_for_propagation` attribute.
-  TfRef<bool> get useResourceTimeoutForPropagationRef =>
+  TfRef<bool> get useResourceTimeoutForPropagation =>
       TfRef.attribute<bool>(this, 'use_resource_timeout_for_propagation');
 }

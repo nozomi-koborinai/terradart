@@ -198,6 +198,9 @@ final class GoogleComputeRouter extends Resource {
   /// `RefTo<GoogleComputeRouter>`.
   RefTo<GoogleComputeRouter> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `creation_timestamp` attribute.
   TfRef<String> get creationTimestamp =>
       TfRef.attribute<String>(this, 'creation_timestamp');
@@ -206,30 +209,27 @@ final class GoogleComputeRouter extends Resource {
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `encrypted_interconnect_router` attribute.
-  TfRef<bool> get encryptedInterconnectRouterRef =>
+  TfRef<bool> get encryptedInterconnectRouter =>
       TfRef.attribute<bool>(this, 'encrypted_interconnect_router');
 
   /// Reference to `ncc_gateway` attribute.
-  TfRef<String> get nccGatewayRef =>
-      TfRef.attribute<String>(this, 'ncc_gateway');
+  TfRef<String> get nccGateway => TfRef.attribute<String>(this, 'ncc_gateway');
 
   /// Reference to `network` attribute.
-  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+  TfRef<String> get network => TfRef.attribute<String>(this, 'network');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

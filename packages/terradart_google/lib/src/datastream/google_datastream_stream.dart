@@ -2278,7 +2278,7 @@ final class GoogleDatastreamStream extends Resource {
   RefTo<GoogleDatastreamStream> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -2295,35 +2295,35 @@ final class GoogleDatastreamStream extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `create_without_validation` attribute.
-  TfRef<bool> get createWithoutValidationRef =>
+  TfRef<bool> get createWithoutValidation =>
       TfRef.attribute<bool>(this, 'create_without_validation');
 
   /// Reference to `customer_managed_encryption_key` attribute.
-  TfRef<String> get customerManagedEncryptionKeyRef =>
+  TfRef<String> get customerManagedEncryptionKey =>
       TfRef.attribute<String>(this, 'customer_managed_encryption_key');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `desired_state` attribute.
-  TfRef<String> get desiredStateRef =>
+  TfRef<String> get desiredState =>
       TfRef.attribute<String>(this, 'desired_state');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `stream_id` attribute.
-  TfRef<String> get streamIdRef => TfRef.attribute<String>(this, 'stream_id');
+  TfRef<String> get streamId => TfRef.attribute<String>(this, 'stream_id');
 }

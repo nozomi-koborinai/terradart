@@ -94,7 +94,7 @@ final class GoogleProjectIamCustomRole extends Resource {
 
   /// Reference to `name` attribute — same shape as [id]; the API returns
   /// it as `projects/{project}/roles/{roleId}`.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `deleted` attribute — `true` once the role has been
   /// soft-deleted (custom roles enter a 7-day grace window before

@@ -45,11 +45,11 @@ final class DataAwsOutpostsAsset extends Data {
   TfRef<String> get rackId => TfRef.attribute<String>(this, 'rack_id');
 
   /// Reference to `arn` attribute.
-  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+  TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `asset_id` attribute.
-  TfRef<String> get assetIdRef => TfRef.attribute<String>(this, 'asset_id');
+  TfRef<String> get assetId => TfRef.attribute<String>(this, 'asset_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

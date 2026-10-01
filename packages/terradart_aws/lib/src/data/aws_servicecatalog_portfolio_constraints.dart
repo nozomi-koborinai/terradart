@@ -40,16 +40,16 @@ final class DataAwsServicecatalogPortfolioConstraints extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'details');
 
   /// Reference to `accept_language` attribute.
-  TfRef<String> get acceptLanguageRef =>
+  TfRef<String> get acceptLanguage =>
       TfRef.attribute<String>(this, 'accept_language');
 
   /// Reference to `portfolio_id` attribute.
-  TfRef<String> get portfolioIdRef =>
+  TfRef<String> get portfolioId =>
       TfRef.attribute<String>(this, 'portfolio_id');
 
   /// Reference to `product_id` attribute.
-  TfRef<String> get productIdRef => TfRef.attribute<String>(this, 'product_id');
+  TfRef<String> get productId => TfRef.attribute<String>(this, 'product_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

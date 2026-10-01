@@ -152,36 +152,35 @@ final class AwsEcrRepositoryCreationTemplate extends Resource {
   TfRef<String> get registryId => TfRef.attribute<String>(this, 'registry_id');
 
   /// Reference to `applied_for` attribute.
-  TfRef<List<String>> get appliedForRef =>
+  TfRef<List<String>> get appliedFor =>
       TfRef.attribute<List<String>>(this, 'applied_for');
 
   /// Reference to `custom_role_arn` attribute.
-  TfRef<String> get customRoleArnRef =>
+  TfRef<String> get customRoleArn =>
       TfRef.attribute<String>(this, 'custom_role_arn');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `image_tag_mutability` attribute.
-  TfRef<String> get imageTagMutabilityRef =>
+  TfRef<String> get imageTagMutability =>
       TfRef.attribute<String>(this, 'image_tag_mutability');
 
   /// Reference to `lifecycle_policy` attribute.
-  TfRef<String> get lifecyclePolicyRef =>
+  TfRef<String> get lifecyclePolicy =>
       TfRef.attribute<String>(this, 'lifecycle_policy');
 
   /// Reference to `prefix` attribute.
-  TfRef<String> get prefixRef => TfRef.attribute<String>(this, 'prefix');
+  TfRef<String> get prefix => TfRef.attribute<String>(this, 'prefix');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `repository_policy` attribute.
-  TfRef<String> get repositoryPolicyRef =>
+  TfRef<String> get repositoryPolicy =>
       TfRef.attribute<String>(this, 'repository_policy');
 
   /// Reference to `resource_tags` attribute.
-  TfRef<Map<String, String>> get resourceTagsRef =>
+  TfRef<Map<String, String>> get resourceTags =>
       TfRef.attribute<Map<String, String>>(this, 'resource_tags');
 }

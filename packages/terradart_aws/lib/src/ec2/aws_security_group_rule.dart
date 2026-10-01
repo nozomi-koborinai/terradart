@@ -73,44 +73,43 @@ final class AwsSecurityGroupRule extends Resource {
       TfRef.attribute<String>(this, 'security_group_rule_id');
 
   /// Reference to `cidr_blocks` attribute.
-  TfRef<List<String>> get cidrBlocksRef =>
+  TfRef<List<String>> get cidrBlocks =>
       TfRef.attribute<List<String>>(this, 'cidr_blocks');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `from_port` attribute.
-  TfRef<num> get fromPortRef => TfRef.attribute<num>(this, 'from_port');
+  TfRef<num> get fromPort => TfRef.attribute<num>(this, 'from_port');
 
   /// Reference to `ipv6_cidr_blocks` attribute.
-  TfRef<List<String>> get ipv6CidrBlocksRef =>
+  TfRef<List<String>> get ipv6CidrBlocks =>
       TfRef.attribute<List<String>>(this, 'ipv6_cidr_blocks');
 
   /// Reference to `prefix_list_ids` attribute.
-  TfRef<List<String>> get prefixListIdsRef =>
+  TfRef<List<String>> get prefixListIds =>
       TfRef.attribute<List<String>>(this, 'prefix_list_ids');
 
   /// Reference to `protocol` attribute.
-  TfRef<String> get protocolRef => TfRef.attribute<String>(this, 'protocol');
+  TfRef<String> get protocol => TfRef.attribute<String>(this, 'protocol');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `security_group_id` attribute.
-  TfRef<String> get securityGroupIdRef =>
+  TfRef<String> get securityGroupId =>
       TfRef.attribute<String>(this, 'security_group_id');
 
   /// Reference to `self` attribute.
-  TfRef<bool> get selfRef => TfRef.attribute<bool>(this, 'self');
+  TfRef<bool> get self => TfRef.attribute<bool>(this, 'self');
 
   /// Reference to `source_security_group_id` attribute.
-  TfRef<String> get sourceSecurityGroupIdRef =>
+  TfRef<String> get sourceSecurityGroupId =>
       TfRef.attribute<String>(this, 'source_security_group_id');
 
   /// Reference to `to_port` attribute.
-  TfRef<num> get toPortRef => TfRef.attribute<num>(this, 'to_port');
+  TfRef<num> get toPort => TfRef.attribute<num>(this, 'to_port');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

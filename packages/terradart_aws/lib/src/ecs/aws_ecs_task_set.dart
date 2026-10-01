@@ -296,42 +296,40 @@ final class AwsEcsTaskSet extends Resource {
   TfRef<String> get taskSetId => TfRef.attribute<String>(this, 'task_set_id');
 
   /// Reference to `cluster` attribute.
-  TfRef<String> get clusterRef => TfRef.attribute<String>(this, 'cluster');
+  TfRef<String> get cluster => TfRef.attribute<String>(this, 'cluster');
 
   /// Reference to `external_id` attribute.
-  TfRef<String> get externalIdRef =>
-      TfRef.attribute<String>(this, 'external_id');
+  TfRef<String> get externalId => TfRef.attribute<String>(this, 'external_id');
 
   /// Reference to `force_delete` attribute.
-  TfRef<bool> get forceDeleteRef => TfRef.attribute<bool>(this, 'force_delete');
+  TfRef<bool> get forceDelete => TfRef.attribute<bool>(this, 'force_delete');
 
   /// Reference to `launch_type` attribute.
-  TfRef<String> get launchTypeRef =>
-      TfRef.attribute<String>(this, 'launch_type');
+  TfRef<String> get launchType => TfRef.attribute<String>(this, 'launch_type');
 
   /// Reference to `platform_version` attribute.
-  TfRef<String> get platformVersionRef =>
+  TfRef<String> get platformVersion =>
       TfRef.attribute<String>(this, 'platform_version');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `service` attribute.
-  TfRef<String> get serviceRef => TfRef.attribute<String>(this, 'service');
+  TfRef<String> get service => TfRef.attribute<String>(this, 'service');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `task_definition` attribute.
-  TfRef<String> get taskDefinitionRef =>
+  TfRef<String> get taskDefinition =>
       TfRef.attribute<String>(this, 'task_definition');
 
   /// Reference to `wait_until_stable` attribute.
-  TfRef<bool> get waitUntilStableRef =>
+  TfRef<bool> get waitUntilStable =>
       TfRef.attribute<bool>(this, 'wait_until_stable');
 
   /// Reference to `wait_until_stable_timeout` attribute.
-  TfRef<String> get waitUntilStableTimeoutRef =>
+  TfRef<String> get waitUntilStableTimeout =>
       TfRef.attribute<String>(this, 'wait_until_stable_timeout');
 }

@@ -265,6 +265,9 @@ final class GoogleApihubPluginInstance extends Resource {
   /// `RefTo<GoogleApihubPluginInstance>`.
   RefTo<GoogleApihubPluginInstance> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -282,33 +285,30 @@ final class GoogleApihubPluginInstance extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `disable` attribute.
-  TfRef<bool> get disableRef => TfRef.attribute<bool>(this, 'disable');
+  TfRef<bool> get disable => TfRef.attribute<bool>(this, 'disable');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `plugin` attribute.
-  TfRef<String> get pluginRef => TfRef.attribute<String>(this, 'plugin');
+  TfRef<String> get plugin => TfRef.attribute<String>(this, 'plugin');
 
   /// Reference to `plugin_instance_id` attribute.
-  TfRef<String> get pluginInstanceIdRef =>
+  TfRef<String> get pluginInstanceId =>
       TfRef.attribute<String>(this, 'plugin_instance_id');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `source_project_id` attribute.
-  TfRef<String> get sourceProjectIdRef =>
+  TfRef<String> get sourceProjectId =>
       TfRef.attribute<String>(this, 'source_project_id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

@@ -45,7 +45,7 @@ final class EdgeStack extends Stack {
       content: .content(.literal('ghs.googlehosted.com')),
       proxied: .literal(true),
     ));
-    addConstant('apiHost', .ref(api.nameRef));
+    addConstant('apiHost', .ref(api.name));
   }
 }
 ```

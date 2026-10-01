@@ -178,10 +178,3 @@ customSlots:
   storage:
     paramDeclaration: 'required VertexAiFeatureOnlineStoreStorage storage'
     argMapEntry: 'storage.blockKey: TfArg.literal(storage.encode()),'
-
-extraGetters: |2
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `id` attribute.
-    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

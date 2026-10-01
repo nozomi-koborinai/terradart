@@ -146,7 +146,7 @@ final class AwsDirectoryServiceDirectory extends Resource {
   RefTo<AwsDirectoryServiceDirectory> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -163,42 +163,41 @@ final class AwsDirectoryServiceDirectory extends Resource {
       TfRef.attribute<String>(this, 'security_group_id');
 
   /// Reference to `alias` attribute.
-  TfRef<String> get aliasRef => TfRef.attribute<String>(this, 'alias');
+  TfRef<String> get alias => TfRef.attribute<String>(this, 'alias');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `desired_number_of_domain_controllers` attribute.
-  TfRef<num> get desiredNumberOfDomainControllersRef =>
+  TfRef<num> get desiredNumberOfDomainControllers =>
       TfRef.attribute<num>(this, 'desired_number_of_domain_controllers');
 
   /// Reference to `edition` attribute.
-  TfRef<String> get editionRef => TfRef.attribute<String>(this, 'edition');
+  TfRef<String> get edition => TfRef.attribute<String>(this, 'edition');
 
   /// Reference to `enable_directory_data_access` attribute.
-  TfRef<bool> get enableDirectoryDataAccessRef =>
+  TfRef<bool> get enableDirectoryDataAccess =>
       TfRef.attribute<bool>(this, 'enable_directory_data_access');
 
   /// Reference to `enable_sso` attribute.
-  TfRef<bool> get enableSsoRef => TfRef.attribute<bool>(this, 'enable_sso');
+  TfRef<bool> get enableSso => TfRef.attribute<bool>(this, 'enable_sso');
 
   /// Reference to `password` attribute.
-  TfRef<String> get passwordRef => TfRef.attribute<String>(this, 'password');
+  TfRef<String> get password => TfRef.attribute<String>(this, 'password');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `short_name` attribute.
-  TfRef<String> get shortNameRef => TfRef.attribute<String>(this, 'short_name');
+  TfRef<String> get shortName => TfRef.attribute<String>(this, 'short_name');
 
   /// Reference to `size` attribute.
-  TfRef<String> get sizeRef => TfRef.attribute<String>(this, 'size');
+  TfRef<String> get size => TfRef.attribute<String>(this, 'size');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

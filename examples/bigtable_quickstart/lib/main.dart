@@ -89,7 +89,7 @@ final class EventsStack extends Stack {
         localName: 'table_propagation',
         createDuration: TfArg.duration(const Duration(seconds: 90)),
         triggers: .literal({
-          'events_table': table.nameRef.interpolation,
+          'events_table': table.name.interpolation,
           'tenant_a_view': authorizedView.id.interpolation,
         }),
         dependsOn: [

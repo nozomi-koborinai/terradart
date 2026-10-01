@@ -58,19 +58,18 @@ final class AwsEc2SubnetCidrReservation extends Resource {
   TfRef<String> get ownerId => TfRef.attribute<String>(this, 'owner_id');
 
   /// Reference to `cidr_block` attribute.
-  TfRef<String> get cidrBlockRef => TfRef.attribute<String>(this, 'cidr_block');
+  TfRef<String> get cidrBlock => TfRef.attribute<String>(this, 'cidr_block');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `reservation_type` attribute.
-  TfRef<String> get reservationTypeRef =>
+  TfRef<String> get reservationType =>
       TfRef.attribute<String>(this, 'reservation_type');
 
   /// Reference to `subnet_id` attribute.
-  TfRef<String> get subnetIdRef => TfRef.attribute<String>(this, 'subnet_id');
+  TfRef<String> get subnetId => TfRef.attribute<String>(this, 'subnet_id');
 }

@@ -548,7 +548,7 @@ final class AwsRoute53Record extends Resource {
   RefTo<AwsRoute53Record> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -557,31 +557,31 @@ final class AwsRoute53Record extends Resource {
   TfRef<String> get fqdn => TfRef.attribute<String>(this, 'fqdn');
 
   /// Reference to `allow_overwrite` attribute.
-  TfRef<bool> get allowOverwriteRef =>
+  TfRef<bool> get allowOverwrite =>
       TfRef.attribute<bool>(this, 'allow_overwrite');
 
   /// Reference to `health_check_id` attribute.
-  TfRef<String> get healthCheckIdRef =>
+  TfRef<String> get healthCheckId =>
       TfRef.attribute<String>(this, 'health_check_id');
 
   /// Reference to `multivalue_answer_routing_policy` attribute.
-  TfRef<bool> get multivalueAnswerRoutingPolicyRef =>
+  TfRef<bool> get multivalueAnswerRoutingPolicy =>
       TfRef.attribute<bool>(this, 'multivalue_answer_routing_policy');
 
   /// Reference to `records` attribute.
-  TfRef<List<String>> get recordsRef =>
+  TfRef<List<String>> get records =>
       TfRef.attribute<List<String>>(this, 'records');
 
   /// Reference to `set_identifier` attribute.
-  TfRef<String> get setIdentifierRef =>
+  TfRef<String> get setIdentifier =>
       TfRef.attribute<String>(this, 'set_identifier');
 
   /// Reference to `ttl` attribute.
-  TfRef<num> get ttlRef => TfRef.attribute<num>(this, 'ttl');
+  TfRef<num> get ttl => TfRef.attribute<num>(this, 'ttl');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

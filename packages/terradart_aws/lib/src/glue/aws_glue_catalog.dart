@@ -274,7 +274,7 @@ final class AwsGlueCatalog extends Resource {
   RefTo<AwsGlueCatalog> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
@@ -293,28 +293,27 @@ final class AwsGlueCatalog extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `allow_full_table_external_data_access` attribute.
-  TfRef<String> get allowFullTableExternalDataAccessRef =>
+  TfRef<String> get allowFullTableExternalDataAccess =>
       TfRef.attribute<String>(this, 'allow_full_table_external_data_access');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `overwrite_child_resource_permissions_with_default` attribute.
-  TfRef<String> get overwriteChildResourcePermissionsWithDefaultRef =>
+  TfRef<String> get overwriteChildResourcePermissionsWithDefault =>
       TfRef.attribute<String>(
         this,
         'overwrite_child_resource_permissions_with_default',
       );
 
   /// Reference to `parameters` attribute.
-  TfRef<Map<String, String>> get parametersRef =>
+  TfRef<Map<String, String>> get parameters =>
       TfRef.attribute<Map<String, String>>(this, 'parameters');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

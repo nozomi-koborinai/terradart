@@ -134,7 +134,7 @@ final class OrdersStack extends Stack {
         localName: 'orders_push',
         name: .literal('orders-push'),
         // Cloud Scheduler / Pub/Sub cross-resource refs need topic.id (the
-        // full `projects/.../topics/orders-prod` path), NOT topic.nameRef.
+        // full `projects/.../topics/orders-prod` path), NOT topic.name.
         topic: topic.ref,
         ackDeadlineSeconds: .literal(60),
         delivery: .pushConfig(
@@ -188,9 +188,9 @@ final class OrdersStack extends Stack {
 
     // Literal topic name — emitted as a Dart constant at synth time (see
     // lib/generated/orders_stack.app.dart). Subscribers compare against this.
-    addConstant('ordersTopicName', .ref(topic.nameRef));
+    addConstant('ordersTopicName', .ref(topic.name));
 
     // Full resource ID — Terraform output only (computed until after apply).
-    addOutput('orders_topic_id', .ref(topic.id));
+    addOutput('orders_topic_id', topic.id);
   }
 }

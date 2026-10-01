@@ -10510,7 +10510,7 @@ final class AwsQuicksightAnalysis extends Resource {
   RefTo<AwsQuicksightAnalysis> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -10534,24 +10534,23 @@ final class AwsQuicksightAnalysis extends Resource {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `analysis_id` attribute.
-  TfRef<String> get analysisIdRef =>
-      TfRef.attribute<String>(this, 'analysis_id');
+  TfRef<String> get analysisId => TfRef.attribute<String>(this, 'analysis_id');
 
   /// Reference to `aws_account_id` attribute.
-  TfRef<String> get awsAccountIdRef =>
+  TfRef<String> get awsAccountId =>
       TfRef.attribute<String>(this, 'aws_account_id');
 
   /// Reference to `recovery_window_in_days` attribute.
-  TfRef<num> get recoveryWindowInDaysRef =>
+  TfRef<num> get recoveryWindowInDays =>
       TfRef.attribute<num>(this, 'recovery_window_in_days');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `theme_arn` attribute.
-  TfRef<String> get themeArnRef => TfRef.attribute<String>(this, 'theme_arn');
+  TfRef<String> get themeArn => TfRef.attribute<String>(this, 'theme_arn');
 }

@@ -43,20 +43,20 @@ final class AwsEc2TransitGatewayRoute extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `blackhole` attribute.
-  TfRef<bool> get blackholeRef => TfRef.attribute<bool>(this, 'blackhole');
+  TfRef<bool> get blackhole => TfRef.attribute<bool>(this, 'blackhole');
 
   /// Reference to `destination_cidr_block` attribute.
-  TfRef<String> get destinationCidrBlockRef =>
+  TfRef<String> get destinationCidrBlock =>
       TfRef.attribute<String>(this, 'destination_cidr_block');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `transit_gateway_attachment_id` attribute.
-  TfRef<String> get transitGatewayAttachmentIdRef =>
+  TfRef<String> get transitGatewayAttachmentId =>
       TfRef.attribute<String>(this, 'transit_gateway_attachment_id');
 
   /// Reference to `transit_gateway_route_table_id` attribute.
-  TfRef<String> get transitGatewayRouteTableIdRef =>
+  TfRef<String> get transitGatewayRouteTableId =>
       TfRef.attribute<String>(this, 'transit_gateway_route_table_id');
 }

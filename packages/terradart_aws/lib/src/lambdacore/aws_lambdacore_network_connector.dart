@@ -114,15 +114,15 @@ final class AwsLambdacoreNetworkConnector extends Resource {
   RefTo<AwsLambdacoreNetworkConnector> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `operator_role` attribute.
-  TfRef<String> get operatorRoleRef =>
+  TfRef<String> get operatorRole =>
       TfRef.attribute<String>(this, 'operator_role');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

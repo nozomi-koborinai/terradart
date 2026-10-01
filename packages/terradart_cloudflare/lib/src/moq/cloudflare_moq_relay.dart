@@ -102,7 +102,7 @@ final class CloudflareMoqRelay extends Resource {
   RefTo<CloudflareMoqRelay> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -128,5 +128,5 @@ final class CloudflareMoqRelay extends Resource {
   TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 }

@@ -162,7 +162,7 @@ final class AwsApiGatewayRestApi extends Resource {
   RefTo<AwsApiGatewayRestApi> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -183,55 +183,54 @@ final class AwsApiGatewayRestApi extends Resource {
       TfRef.attribute<String>(this, 'root_resource_id');
 
   /// Reference to `api_key_source` attribute.
-  TfRef<String> get apiKeySourceRef =>
+  TfRef<String> get apiKeySource =>
       TfRef.attribute<String>(this, 'api_key_source');
 
   /// Reference to `binary_media_types` attribute.
-  TfRef<List<String>> get binaryMediaTypesRef =>
+  TfRef<List<String>> get binaryMediaTypes =>
       TfRef.attribute<List<String>>(this, 'binary_media_types');
 
   /// Reference to `body` attribute.
-  TfRef<String> get bodyRef => TfRef.attribute<String>(this, 'body');
+  TfRef<String> get body => TfRef.attribute<String>(this, 'body');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `disable_execute_api_endpoint` attribute.
-  TfRef<bool> get disableExecuteApiEndpointRef =>
+  TfRef<bool> get disableExecuteApiEndpoint =>
       TfRef.attribute<bool>(this, 'disable_execute_api_endpoint');
 
   /// Reference to `endpoint_access_mode` attribute.
-  TfRef<String> get endpointAccessModeRef =>
+  TfRef<String> get endpointAccessMode =>
       TfRef.attribute<String>(this, 'endpoint_access_mode');
 
   /// Reference to `fail_on_warnings` attribute.
-  TfRef<bool> get failOnWarningsRef =>
+  TfRef<bool> get failOnWarnings =>
       TfRef.attribute<bool>(this, 'fail_on_warnings');
 
   /// Reference to `minimum_compression_size` attribute.
-  TfRef<String> get minimumCompressionSizeRef =>
+  TfRef<String> get minimumCompressionSize =>
       TfRef.attribute<String>(this, 'minimum_compression_size');
 
   /// Reference to `parameters` attribute.
-  TfRef<Map<String, String>> get parametersRef =>
+  TfRef<Map<String, String>> get parameters =>
       TfRef.attribute<Map<String, String>>(this, 'parameters');
 
   /// Reference to `policy` attribute.
-  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+  TfRef<String> get policy => TfRef.attribute<String>(this, 'policy');
 
   /// Reference to `put_rest_api_mode` attribute.
-  TfRef<String> get putRestApiModeRef =>
+  TfRef<String> get putRestApiMode =>
       TfRef.attribute<String>(this, 'put_rest_api_mode');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `security_policy` attribute.
-  TfRef<String> get securityPolicyRef =>
+  TfRef<String> get securityPolicy =>
       TfRef.attribute<String>(this, 'security_policy');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

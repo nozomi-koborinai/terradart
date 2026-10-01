@@ -22,7 +22,7 @@ final class DataAwsCloudformationExport extends Data {
   Set<String> get sensitiveFields => _awsCloudformationExportSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -35,5 +35,5 @@ final class DataAwsCloudformationExport extends Data {
   TfRef<String> get value => TfRef.attribute<String>(this, 'value');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

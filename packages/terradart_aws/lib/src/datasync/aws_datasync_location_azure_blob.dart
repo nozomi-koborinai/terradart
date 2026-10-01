@@ -101,32 +101,31 @@ final class AwsDatasyncLocationAzureBlob extends Resource {
   TfRef<String> get uri => TfRef.attribute<String>(this, 'uri');
 
   /// Reference to `access_tier` attribute.
-  TfRef<String> get accessTierRef =>
-      TfRef.attribute<String>(this, 'access_tier');
+  TfRef<String> get accessTier => TfRef.attribute<String>(this, 'access_tier');
 
   /// Reference to `agent_arns` attribute.
-  TfRef<List<String>> get agentArnsRef =>
+  TfRef<List<String>> get agentArns =>
       TfRef.attribute<List<String>>(this, 'agent_arns');
 
   /// Reference to `authentication_type` attribute.
-  TfRef<String> get authenticationTypeRef =>
+  TfRef<String> get authenticationType =>
       TfRef.attribute<String>(this, 'authentication_type');
 
   /// Reference to `blob_type` attribute.
-  TfRef<String> get blobTypeRef => TfRef.attribute<String>(this, 'blob_type');
+  TfRef<String> get blobType => TfRef.attribute<String>(this, 'blob_type');
 
   /// Reference to `container_url` attribute.
-  TfRef<String> get containerUrlRef =>
+  TfRef<String> get containerUrl =>
       TfRef.attribute<String>(this, 'container_url');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `subdirectory` attribute.
-  TfRef<String> get subdirectoryRef =>
+  TfRef<String> get subdirectory =>
       TfRef.attribute<String>(this, 'subdirectory');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

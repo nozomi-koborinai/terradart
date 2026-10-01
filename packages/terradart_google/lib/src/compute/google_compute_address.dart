@@ -141,7 +141,7 @@ final class GoogleComputeAddress extends Resource {
   RefTo<GoogleComputeAddress> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -171,58 +171,54 @@ final class GoogleComputeAddress extends Resource {
   /// Reference to `users` attribute.
   TfRef<List<String>> get users => TfRef.attribute<List<String>>(this, 'users');
 
+  /// Reference to `address` attribute.
+  TfRef<String> get address => TfRef.attribute<String>(this, 'address');
+
   /// Reference to `address_type` attribute.
-  TfRef<String> get addressTypeRef =>
+  TfRef<String> get addressType =>
       TfRef.attribute<String>(this, 'address_type');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `ip_collection` attribute.
-  TfRef<String> get ipCollectionRef =>
+  TfRef<String> get ipCollection =>
       TfRef.attribute<String>(this, 'ip_collection');
 
   /// Reference to `ip_version` attribute.
-  TfRef<String> get ipVersionRef => TfRef.attribute<String>(this, 'ip_version');
+  TfRef<String> get ipVersion => TfRef.attribute<String>(this, 'ip_version');
 
   /// Reference to `ipv6_endpoint_type` attribute.
-  TfRef<String> get ipv6EndpointTypeRef =>
+  TfRef<String> get ipv6EndpointType =>
       TfRef.attribute<String>(this, 'ipv6_endpoint_type');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `network` attribute.
-  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+  TfRef<String> get network => TfRef.attribute<String>(this, 'network');
 
   /// Reference to `network_tier` attribute.
-  TfRef<String> get networkTierRef =>
+  TfRef<String> get networkTier =>
       TfRef.attribute<String>(this, 'network_tier');
 
   /// Reference to `prefix_length` attribute.
-  TfRef<num> get prefixLengthRef => TfRef.attribute<num>(this, 'prefix_length');
+  TfRef<num> get prefixLength => TfRef.attribute<num>(this, 'prefix_length');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `purpose` attribute.
-  TfRef<String> get purposeRef => TfRef.attribute<String>(this, 'purpose');
+  TfRef<String> get purpose => TfRef.attribute<String>(this, 'purpose');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `subnetwork` attribute.
-  TfRef<String> get subnetworkRef =>
-      TfRef.attribute<String>(this, 'subnetwork');
-
-  /// Reference to `address` attribute (the actual IP allocated by GCP,
-  /// available after apply). Use this to pass the IP to downstream
-  /// resources like load balancer forwarding rules.
-  TfRef<String> get addressRef => TfRef.attribute<String>(this, 'address');
+  TfRef<String> get subnetwork => TfRef.attribute<String>(this, 'subnetwork');
 }

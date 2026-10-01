@@ -44,9 +44,6 @@ paramOrder:
   - project
   - tags
 
-extraGetters: |
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
 dartTypeOverrides:
   instance_type: BigtableInstanceType
   edition: BigtableInstanceEdition
@@ -82,4 +79,3 @@ prelude: |
     @override
     final String terraformValue;
   }
-

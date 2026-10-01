@@ -10517,7 +10517,7 @@ final class AwsQuicksightTemplate extends Resource {
   RefTo<AwsQuicksightTemplate> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -10544,21 +10544,20 @@ final class AwsQuicksightTemplate extends Resource {
   TfRef<num> get versionNumber => TfRef.attribute<num>(this, 'version_number');
 
   /// Reference to `aws_account_id` attribute.
-  TfRef<String> get awsAccountIdRef =>
+  TfRef<String> get awsAccountId =>
       TfRef.attribute<String>(this, 'aws_account_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `template_id` attribute.
-  TfRef<String> get templateIdRef =>
-      TfRef.attribute<String>(this, 'template_id');
+  TfRef<String> get templateId => TfRef.attribute<String>(this, 'template_id');
 
   /// Reference to `version_description` attribute.
-  TfRef<String> get versionDescriptionRef =>
+  TfRef<String> get versionDescription =>
       TfRef.attribute<String>(this, 'version_description');
 }

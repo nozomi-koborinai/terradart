@@ -121,7 +121,7 @@ final class GoogleServiceAccountKey extends Resource {
 
   /// Reference to `name` attribute — full key path
   /// `projects/{project}/serviceAccounts/{email}/keys/{keyId}`.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to the base64-encoded private key payload. **Sensitive** —
   /// the synth pipeline masks this attribute in any rendered output, but

@@ -51,12 +51,12 @@ final class GoogleProjectDefaultServiceAccounts extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'service_accounts');
 
   /// Reference to `action` attribute.
-  TfRef<String> get actionRef => TfRef.attribute<String>(this, 'action');
+  TfRef<String> get action => TfRef.attribute<String>(this, 'action');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `restore_policy` attribute.
-  TfRef<String> get restorePolicyRef =>
+  TfRef<String> get restorePolicy =>
       TfRef.attribute<String>(this, 'restore_policy');
 }

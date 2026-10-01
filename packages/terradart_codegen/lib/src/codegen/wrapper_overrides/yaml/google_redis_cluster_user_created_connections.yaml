@@ -24,7 +24,7 @@ curatedDoc: |-
   /// ```dart
   /// GoogleRedisClusterUserCreatedConnections(
   ///   localName: 'rc_conn',
-  ///   name: cluster.nameRef,
+  ///   name: cluster.name,
   ///   region: TfArg.literal('us-central1'),
   /// );
   /// ```
@@ -35,10 +35,3 @@ paramOrder:
   - cluster_endpoints
   - deletion_policy
   - project
-
-extraGetters: |2
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `id` attribute.
-    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

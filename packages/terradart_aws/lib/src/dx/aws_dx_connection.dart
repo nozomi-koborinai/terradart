@@ -59,7 +59,7 @@ final class AwsDxConnection extends Resource {
   RefTo<AwsDxConnection> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -121,30 +121,30 @@ final class AwsDxConnection extends Resource {
   TfRef<num> get vlanId => TfRef.attribute<num>(this, 'vlan_id');
 
   /// Reference to `bandwidth` attribute.
-  TfRef<String> get bandwidthRef => TfRef.attribute<String>(this, 'bandwidth');
+  TfRef<String> get bandwidth => TfRef.attribute<String>(this, 'bandwidth');
 
   /// Reference to `encryption_mode` attribute.
-  TfRef<String> get encryptionModeRef =>
+  TfRef<String> get encryptionMode =>
       TfRef.attribute<String>(this, 'encryption_mode');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `provider_name` attribute.
-  TfRef<String> get providerNameRef =>
+  TfRef<String> get providerName =>
       TfRef.attribute<String>(this, 'provider_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `request_macsec` attribute.
-  TfRef<bool> get requestMacsecRef =>
+  TfRef<bool> get requestMacsec =>
       TfRef.attribute<bool>(this, 'request_macsec');
 
   /// Reference to `skip_destroy` attribute.
-  TfRef<bool> get skipDestroyRef => TfRef.attribute<bool>(this, 'skip_destroy');
+  TfRef<bool> get skipDestroy => TfRef.attribute<bool>(this, 'skip_destroy');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

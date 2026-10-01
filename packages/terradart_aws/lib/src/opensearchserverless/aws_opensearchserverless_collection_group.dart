@@ -67,7 +67,7 @@ final class AwsOpensearchserverlessCollectionGroup extends Resource {
   RefTo<AwsOpensearchserverlessCollectionGroup> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -84,25 +84,23 @@ final class AwsOpensearchserverlessCollectionGroup extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `capacity_limits` attribute.
-  TfRef<List<Map<String, Object?>>> get capacityLimitsRef =>
+  TfRef<List<Map<String, Object?>>> get capacityLimits =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'capacity_limits');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `generation` attribute.
-  TfRef<String> get generationRef =>
-      TfRef.attribute<String>(this, 'generation');
+  TfRef<String> get generation => TfRef.attribute<String>(this, 'generation');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `standby_replicas` attribute.
-  TfRef<String> get standbyReplicasRef =>
+  TfRef<String> get standbyReplicas =>
       TfRef.attribute<String>(this, 'standby_replicas');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

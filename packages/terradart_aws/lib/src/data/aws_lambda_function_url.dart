@@ -70,12 +70,12 @@ final class DataAwsLambdaFunctionUrl extends Data {
   TfRef<String> get urlId => TfRef.attribute<String>(this, 'url_id');
 
   /// Reference to `function_name` attribute.
-  TfRef<String> get functionNameRef =>
+  TfRef<String> get functionName =>
       TfRef.attribute<String>(this, 'function_name');
 
   /// Reference to `qualifier` attribute.
-  TfRef<String> get qualifierRef => TfRef.attribute<String>(this, 'qualifier');
+  TfRef<String> get qualifier => TfRef.attribute<String>(this, 'qualifier');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

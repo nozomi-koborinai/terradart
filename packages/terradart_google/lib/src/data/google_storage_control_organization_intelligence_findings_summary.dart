@@ -47,16 +47,16 @@ final class DataGoogleStorageControlOrganizationIntelligenceFindingsSummary
       TfRef.attribute<List<Map<String, Object?>>>(this, 'finding_summaries');
 
   /// Reference to `filter` attribute.
-  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+  TfRef<String> get filter => TfRef.attribute<String>(this, 'filter');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `organization` attribute.
-  TfRef<String> get organizationRef =>
+  TfRef<String> get organization =>
       TfRef.attribute<String>(this, 'organization');
 
   /// Reference to `resource_scope` attribute.
-  TfRef<String> get resourceScopeRef =>
+  TfRef<String> get resourceScope =>
       TfRef.attribute<String>(this, 'resource_scope');
 }

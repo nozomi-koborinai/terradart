@@ -947,7 +947,7 @@ final class AwsCognitoUserPool extends Resource {
   RefTo<AwsCognitoUserPool> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -978,49 +978,49 @@ final class AwsCognitoUserPool extends Resource {
       TfRef.attribute<String>(this, 'last_modified_date');
 
   /// Reference to `alias_attributes` attribute.
-  TfRef<List<String>> get aliasAttributesRef =>
+  TfRef<List<String>> get aliasAttributes =>
       TfRef.attribute<List<String>>(this, 'alias_attributes');
 
   /// Reference to `auto_verified_attributes` attribute.
-  TfRef<List<String>> get autoVerifiedAttributesRef =>
+  TfRef<List<String>> get autoVerifiedAttributes =>
       TfRef.attribute<List<String>>(this, 'auto_verified_attributes');
 
   /// Reference to `deletion_protection` attribute.
-  TfRef<String> get deletionProtectionRef =>
+  TfRef<String> get deletionProtection =>
       TfRef.attribute<String>(this, 'deletion_protection');
 
   /// Reference to `email_verification_message` attribute.
-  TfRef<String> get emailVerificationMessageRef =>
+  TfRef<String> get emailVerificationMessage =>
       TfRef.attribute<String>(this, 'email_verification_message');
 
   /// Reference to `email_verification_subject` attribute.
-  TfRef<String> get emailVerificationSubjectRef =>
+  TfRef<String> get emailVerificationSubject =>
       TfRef.attribute<String>(this, 'email_verification_subject');
 
   /// Reference to `mfa_configuration` attribute.
-  TfRef<String> get mfaConfigurationRef =>
+  TfRef<String> get mfaConfiguration =>
       TfRef.attribute<String>(this, 'mfa_configuration');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `sms_authentication_message` attribute.
-  TfRef<String> get smsAuthenticationMessageRef =>
+  TfRef<String> get smsAuthenticationMessage =>
       TfRef.attribute<String>(this, 'sms_authentication_message');
 
   /// Reference to `sms_verification_message` attribute.
-  TfRef<String> get smsVerificationMessageRef =>
+  TfRef<String> get smsVerificationMessage =>
       TfRef.attribute<String>(this, 'sms_verification_message');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `user_pool_tier` attribute.
-  TfRef<String> get userPoolTierRef =>
+  TfRef<String> get userPoolTier =>
       TfRef.attribute<String>(this, 'user_pool_tier');
 
   /// Reference to `username_attributes` attribute.
-  TfRef<List<String>> get usernameAttributesRef =>
+  TfRef<List<String>> get usernameAttributes =>
       TfRef.attribute<List<String>>(this, 'username_attributes');
 }

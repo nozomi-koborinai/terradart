@@ -41,10 +41,3 @@ paramOrder:
 dartTypeOverrides:
   approval_type: ApigeeApiProductApprovalType
   quota_counter_scope: ApigeeApiProductQuotaCounterScope
-
-extraGetters: |2
-    /// Reference to `id` attribute.
-    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

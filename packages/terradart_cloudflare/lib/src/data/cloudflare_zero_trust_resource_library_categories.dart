@@ -36,14 +36,14 @@ final class DataCloudflareZeroTrustResourceLibraryCategories extends Data {
       _cloudflareZeroTrustResourceLibraryCategoriesSensitive;
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `limit` attribute.
-  TfRef<num> get limitRef => TfRef.attribute<num>(this, 'limit');
+  TfRef<num> get limit => TfRef.attribute<num>(this, 'limit');
 
   /// Reference to `max_items` attribute.
-  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+  TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
 
   /// Reference to `offset` attribute.
-  TfRef<num> get offsetRef => TfRef.attribute<num>(this, 'offset');
+  TfRef<num> get offset => TfRef.attribute<num>(this, 'offset');
 }

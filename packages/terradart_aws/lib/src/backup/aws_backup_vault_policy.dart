@@ -43,12 +43,12 @@ final class AwsBackupVaultPolicy extends Resource {
       TfRef.attribute<String>(this, 'backup_vault_arn');
 
   /// Reference to `backup_vault_name` attribute.
-  TfRef<String> get backupVaultNameRef =>
+  TfRef<String> get backupVaultName =>
       TfRef.attribute<String>(this, 'backup_vault_name');
 
   /// Reference to `policy` attribute.
-  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+  TfRef<String> get policy => TfRef.attribute<String>(this, 'policy');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

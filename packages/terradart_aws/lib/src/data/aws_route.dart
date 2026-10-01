@@ -65,64 +65,63 @@ final class DataAwsRoute extends Data {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `carrier_gateway_id` attribute.
-  TfRef<String> get carrierGatewayIdRef =>
+  TfRef<String> get carrierGatewayId =>
       TfRef.attribute<String>(this, 'carrier_gateway_id');
 
   /// Reference to `core_network_arn` attribute.
-  TfRef<String> get coreNetworkArnRef =>
+  TfRef<String> get coreNetworkArn =>
       TfRef.attribute<String>(this, 'core_network_arn');
 
   /// Reference to `destination_cidr_block` attribute.
-  TfRef<String> get destinationCidrBlockRef =>
+  TfRef<String> get destinationCidrBlock =>
       TfRef.attribute<String>(this, 'destination_cidr_block');
 
   /// Reference to `destination_ipv6_cidr_block` attribute.
-  TfRef<String> get destinationIpv6CidrBlockRef =>
+  TfRef<String> get destinationIpv6CidrBlock =>
       TfRef.attribute<String>(this, 'destination_ipv6_cidr_block');
 
   /// Reference to `destination_prefix_list_id` attribute.
-  TfRef<String> get destinationPrefixListIdRef =>
+  TfRef<String> get destinationPrefixListId =>
       TfRef.attribute<String>(this, 'destination_prefix_list_id');
 
   /// Reference to `egress_only_gateway_id` attribute.
-  TfRef<String> get egressOnlyGatewayIdRef =>
+  TfRef<String> get egressOnlyGatewayId =>
       TfRef.attribute<String>(this, 'egress_only_gateway_id');
 
   /// Reference to `gateway_id` attribute.
-  TfRef<String> get gatewayIdRef => TfRef.attribute<String>(this, 'gateway_id');
+  TfRef<String> get gatewayId => TfRef.attribute<String>(this, 'gateway_id');
 
   /// Reference to `instance_id` attribute.
-  TfRef<String> get instanceIdRef =>
-      TfRef.attribute<String>(this, 'instance_id');
+  TfRef<String> get instanceId => TfRef.attribute<String>(this, 'instance_id');
 
   /// Reference to `local_gateway_id` attribute.
-  TfRef<String> get localGatewayIdRef =>
+  TfRef<String> get localGatewayId =>
       TfRef.attribute<String>(this, 'local_gateway_id');
 
   /// Reference to `nat_gateway_id` attribute.
-  TfRef<String> get natGatewayIdRef =>
+  TfRef<String> get natGatewayId =>
       TfRef.attribute<String>(this, 'nat_gateway_id');
 
   /// Reference to `network_interface_id` attribute.
-  TfRef<String> get networkInterfaceIdRef =>
+  TfRef<String> get networkInterfaceId =>
       TfRef.attribute<String>(this, 'network_interface_id');
 
   /// Reference to `odb_network_arn` attribute.
-  TfRef<String> get odbNetworkArnRef =>
+  TfRef<String> get odbNetworkArn =>
       TfRef.attribute<String>(this, 'odb_network_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `route_table_id` attribute.
-  TfRef<String> get routeTableIdRef =>
+  TfRef<String> get routeTableId =>
       TfRef.attribute<String>(this, 'route_table_id');
 
   /// Reference to `transit_gateway_id` attribute.
-  TfRef<String> get transitGatewayIdRef =>
+  TfRef<String> get transitGatewayId =>
       TfRef.attribute<String>(this, 'transit_gateway_id');
 
   /// Reference to `vpc_peering_connection_id` attribute.
-  TfRef<String> get vpcPeeringConnectionIdRef =>
+  TfRef<String> get vpcPeeringConnectionId =>
       TfRef.attribute<String>(this, 'vpc_peering_connection_id');
 }

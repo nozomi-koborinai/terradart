@@ -101,45 +101,45 @@ final class CloudflareEmailSecurityDomain extends Resource {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `allowed_delivery_modes` attribute.
-  TfRef<List<String>> get allowedDeliveryModesRef =>
+  TfRef<List<String>> get allowedDeliveryModes =>
       TfRef.attribute<List<String>>(this, 'allowed_delivery_modes');
 
   /// Reference to `domain` attribute.
-  TfRef<String> get domainRef => TfRef.attribute<String>(this, 'domain');
+  TfRef<String> get domain => TfRef.attribute<String>(this, 'domain');
 
   /// Reference to `drop_dispositions` attribute.
-  TfRef<List<String>> get dropDispositionsRef =>
+  TfRef<List<String>> get dropDispositions =>
       TfRef.attribute<List<String>>(this, 'drop_dispositions');
 
   /// Reference to `folder` attribute.
-  TfRef<String> get folderRef => TfRef.attribute<String>(this, 'folder');
+  TfRef<String> get folder => TfRef.attribute<String>(this, 'folder');
 
   /// Reference to `integration_id` attribute.
-  TfRef<String> get integrationIdRef =>
+  TfRef<String> get integrationId =>
       TfRef.attribute<String>(this, 'integration_id');
 
   /// Reference to `ip_restrictions` attribute.
-  TfRef<List<String>> get ipRestrictionsRef =>
+  TfRef<List<String>> get ipRestrictions =>
       TfRef.attribute<List<String>>(this, 'ip_restrictions');
 
   /// Reference to `lookback_hops` attribute.
-  TfRef<num> get lookbackHopsRef => TfRef.attribute<num>(this, 'lookback_hops');
+  TfRef<num> get lookbackHops => TfRef.attribute<num>(this, 'lookback_hops');
 
   /// Reference to `regions` attribute.
-  TfRef<List<String>> get regionsRef =>
+  TfRef<List<String>> get regions =>
       TfRef.attribute<List<String>>(this, 'regions');
 
   /// Reference to `require_tls_inbound` attribute.
-  TfRef<bool> get requireTlsInboundRef =>
+  TfRef<bool> get requireTlsInbound =>
       TfRef.attribute<bool>(this, 'require_tls_inbound');
 
   /// Reference to `require_tls_outbound` attribute.
-  TfRef<bool> get requireTlsOutboundRef =>
+  TfRef<bool> get requireTlsOutbound =>
       TfRef.attribute<bool>(this, 'require_tls_outbound');
 
   /// Reference to `transport` attribute.
-  TfRef<String> get transportRef => TfRef.attribute<String>(this, 'transport');
+  TfRef<String> get transport => TfRef.attribute<String>(this, 'transport');
 }

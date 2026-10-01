@@ -41,12 +41,12 @@ final class AwsInternetGatewayAttachment extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `internet_gateway_id` attribute.
-  TfRef<String> get internetGatewayIdRef =>
+  TfRef<String> get internetGatewayId =>
       TfRef.attribute<String>(this, 'internet_gateway_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `vpc_id` attribute.
-  TfRef<String> get vpcIdRef => TfRef.attribute<String>(this, 'vpc_id');
+  TfRef<String> get vpcId => TfRef.attribute<String>(this, 'vpc_id');
 }

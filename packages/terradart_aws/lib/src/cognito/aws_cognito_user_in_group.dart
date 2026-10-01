@@ -41,15 +41,14 @@ final class AwsCognitoUserInGroup extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `group_name` attribute.
-  TfRef<String> get groupNameRef => TfRef.attribute<String>(this, 'group_name');
+  TfRef<String> get groupName => TfRef.attribute<String>(this, 'group_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `user_pool_id` attribute.
-  TfRef<String> get userPoolIdRef =>
-      TfRef.attribute<String>(this, 'user_pool_id');
+  TfRef<String> get userPoolId => TfRef.attribute<String>(this, 'user_pool_id');
 
   /// Reference to `username` attribute.
-  TfRef<String> get usernameRef => TfRef.attribute<String>(this, 'username');
+  TfRef<String> get username => TfRef.attribute<String>(this, 'username');
 }

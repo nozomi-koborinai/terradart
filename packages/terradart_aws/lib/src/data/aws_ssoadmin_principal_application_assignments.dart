@@ -52,17 +52,17 @@ final class DataAwsSsoadminPrincipalApplicationAssignments extends Data {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `instance_arn` attribute.
-  TfRef<String> get instanceArnRef =>
+  TfRef<String> get instanceArn =>
       TfRef.attribute<String>(this, 'instance_arn');
 
   /// Reference to `principal_id` attribute.
-  TfRef<String> get principalIdRef =>
+  TfRef<String> get principalId =>
       TfRef.attribute<String>(this, 'principal_id');
 
   /// Reference to `principal_type` attribute.
-  TfRef<String> get principalTypeRef =>
+  TfRef<String> get principalType =>
       TfRef.attribute<String>(this, 'principal_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

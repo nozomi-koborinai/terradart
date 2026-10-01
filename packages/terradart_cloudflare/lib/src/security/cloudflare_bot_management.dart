@@ -194,85 +194,84 @@ final class CloudflareBotManagement extends Resource {
       TfRef.attribute<bool>(this, 'using_latest_model');
 
   /// Reference to `ai_bots_migration_opt_out` attribute.
-  TfRef<bool> get aiBotsMigrationOptOutRef =>
+  TfRef<bool> get aiBotsMigrationOptOut =>
       TfRef.attribute<bool>(this, 'ai_bots_migration_opt_out');
 
   /// Reference to `ai_bots_protection` attribute.
-  TfRef<String> get aiBotsProtectionRef =>
+  TfRef<String> get aiBotsProtection =>
       TfRef.attribute<String>(this, 'ai_bots_protection');
 
   /// Reference to `ai_training` attribute.
-  TfRef<String> get aiTrainingRef =>
-      TfRef.attribute<String>(this, 'ai_training');
+  TfRef<String> get aiTraining => TfRef.attribute<String>(this, 'ai_training');
 
   /// Reference to `ai_user` attribute.
-  TfRef<String> get aiUserRef => TfRef.attribute<String>(this, 'ai_user');
+  TfRef<String> get aiUser => TfRef.attribute<String>(this, 'ai_user');
 
   /// Reference to `aisearch` attribute.
-  TfRef<String> get aisearchRef => TfRef.attribute<String>(this, 'aisearch');
+  TfRef<String> get aisearch => TfRef.attribute<String>(this, 'aisearch');
 
   /// Reference to `auto_update_model` attribute.
-  TfRef<bool> get autoUpdateModelRef =>
+  TfRef<bool> get autoUpdateModel =>
       TfRef.attribute<bool>(this, 'auto_update_model');
 
   /// Reference to `bm_cookie_enabled` attribute.
-  TfRef<bool> get bmCookieEnabledRef =>
+  TfRef<bool> get bmCookieEnabled =>
       TfRef.attribute<bool>(this, 'bm_cookie_enabled');
 
   /// Reference to `bot_preference_sync_enabled` attribute.
-  TfRef<bool> get botPreferenceSyncEnabledRef =>
+  TfRef<bool> get botPreferenceSyncEnabled =>
       TfRef.attribute<bool>(this, 'bot_preference_sync_enabled');
 
   /// Reference to `cf_robots_variant` attribute.
-  TfRef<String> get cfRobotsVariantRef =>
+  TfRef<String> get cfRobotsVariant =>
       TfRef.attribute<String>(this, 'cf_robots_variant');
 
   /// Reference to `content_bots_protection` attribute.
-  TfRef<String> get contentBotsProtectionRef =>
+  TfRef<String> get contentBotsProtection =>
       TfRef.attribute<String>(this, 'content_bots_protection');
 
   /// Reference to `crawler_protection` attribute.
-  TfRef<String> get crawlerProtectionRef =>
+  TfRef<String> get crawlerProtection =>
       TfRef.attribute<String>(this, 'crawler_protection');
 
   /// Reference to `enable_js` attribute.
-  TfRef<bool> get enableJsRef => TfRef.attribute<bool>(this, 'enable_js');
+  TfRef<bool> get enableJs => TfRef.attribute<bool>(this, 'enable_js');
 
   /// Reference to `fight_mode` attribute.
-  TfRef<bool> get fightModeRef => TfRef.attribute<bool>(this, 'fight_mode');
+  TfRef<bool> get fightMode => TfRef.attribute<bool>(this, 'fight_mode');
 
   /// Reference to `is_robots_txt_managed` attribute.
-  TfRef<bool> get isRobotsTxtManagedRef =>
+  TfRef<bool> get isRobotsTxtManaged =>
       TfRef.attribute<bool>(this, 'is_robots_txt_managed');
 
   /// Reference to `jsd_api_results_enabled` attribute.
-  TfRef<bool> get jsdApiResultsEnabledRef =>
+  TfRef<bool> get jsdApiResultsEnabled =>
       TfRef.attribute<bool>(this, 'jsd_api_results_enabled');
 
   /// Reference to `optimize_wordpress` attribute.
-  TfRef<bool> get optimizeWordpressRef =>
+  TfRef<bool> get optimizeWordpress =>
       TfRef.attribute<bool>(this, 'optimize_wordpress');
 
   /// Reference to `sbfm_definitely_automated` attribute.
-  TfRef<String> get sbfmDefinitelyAutomatedRef =>
+  TfRef<String> get sbfmDefinitelyAutomated =>
       TfRef.attribute<String>(this, 'sbfm_definitely_automated');
 
   /// Reference to `sbfm_likely_automated` attribute.
-  TfRef<String> get sbfmLikelyAutomatedRef =>
+  TfRef<String> get sbfmLikelyAutomated =>
       TfRef.attribute<String>(this, 'sbfm_likely_automated');
 
   /// Reference to `sbfm_static_resource_protection` attribute.
-  TfRef<bool> get sbfmStaticResourceProtectionRef =>
+  TfRef<bool> get sbfmStaticResourceProtection =>
       TfRef.attribute<bool>(this, 'sbfm_static_resource_protection');
 
   /// Reference to `sbfm_verified_bots` attribute.
-  TfRef<String> get sbfmVerifiedBotsRef =>
+  TfRef<String> get sbfmVerifiedBots =>
       TfRef.attribute<String>(this, 'sbfm_verified_bots');
 
   /// Reference to `suppress_session_score` attribute.
-  TfRef<bool> get suppressSessionScoreRef =>
+  TfRef<bool> get suppressSessionScore =>
       TfRef.attribute<bool>(this, 'suppress_session_score');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

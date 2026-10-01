@@ -42,26 +42,25 @@ final class DataAwsRdsEvents extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'events');
 
   /// Reference to `duration` attribute.
-  TfRef<num> get durationRef => TfRef.attribute<num>(this, 'duration');
+  TfRef<num> get duration => TfRef.attribute<num>(this, 'duration');
 
   /// Reference to `end_time` attribute.
-  TfRef<String> get endTimeRef => TfRef.attribute<String>(this, 'end_time');
+  TfRef<String> get endTime => TfRef.attribute<String>(this, 'end_time');
 
   /// Reference to `event_categories` attribute.
-  TfRef<List<String>> get eventCategoriesRef =>
+  TfRef<List<String>> get eventCategories =>
       TfRef.attribute<List<String>>(this, 'event_categories');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `source_identifier` attribute.
-  TfRef<String> get sourceIdentifierRef =>
+  TfRef<String> get sourceIdentifier =>
       TfRef.attribute<String>(this, 'source_identifier');
 
   /// Reference to `source_type` attribute.
-  TfRef<String> get sourceTypeRef =>
-      TfRef.attribute<String>(this, 'source_type');
+  TfRef<String> get sourceType => TfRef.attribute<String>(this, 'source_type');
 
   /// Reference to `start_time` attribute.
-  TfRef<String> get startTimeRef => TfRef.attribute<String>(this, 'start_time');
+  TfRef<String> get startTime => TfRef.attribute<String>(this, 'start_time');
 }

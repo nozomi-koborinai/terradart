@@ -40,7 +40,7 @@ final class AppwriteAuthTeam extends Resource {
   RefTo<AppwriteAuthTeam> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -52,9 +52,8 @@ final class AppwriteAuthTeam extends Resource {
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
 
   /// Reference to `project_id` attribute.
-  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
+  TfRef<String> get projectId => TfRef.attribute<String>(this, 'project_id');
 
   /// Reference to `roles` attribute.
-  TfRef<List<String>> get rolesRef =>
-      TfRef.attribute<List<String>>(this, 'roles');
+  TfRef<List<String>> get roles => TfRef.attribute<List<String>>(this, 'roles');
 }

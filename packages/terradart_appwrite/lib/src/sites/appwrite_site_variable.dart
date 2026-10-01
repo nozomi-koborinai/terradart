@@ -57,17 +57,17 @@ final class AppwriteSiteVariable extends Resource {
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
 
   /// Reference to `key` attribute.
-  TfRef<String> get keyRef => TfRef.attribute<String>(this, 'key');
+  TfRef<String> get key => TfRef.attribute<String>(this, 'key');
 
   /// Reference to `project_id` attribute.
-  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
+  TfRef<String> get projectId => TfRef.attribute<String>(this, 'project_id');
 
   /// Reference to `secret` attribute.
-  TfRef<bool> get secretRef => TfRef.attribute<bool>(this, 'secret');
+  TfRef<bool> get secret => TfRef.attribute<bool>(this, 'secret');
 
   /// Reference to `site_id` attribute.
-  TfRef<String> get siteIdRef => TfRef.attribute<String>(this, 'site_id');
+  TfRef<String> get siteId => TfRef.attribute<String>(this, 'site_id');
 
   /// Reference to `value` attribute.
-  TfRef<String> get valueRef => TfRef.attribute<String>(this, 'value');
+  TfRef<String> get value => TfRef.attribute<String>(this, 'value');
 }

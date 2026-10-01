@@ -110,10 +110,6 @@ extraImports:
 
 deriveOutputGetters: true
 
-extraGetters: |2
-    /// Reference to `location` attribute — region the service is deployed in.
-    TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
-
 dartTypeOverrides:
   ingress: Ingress
   launch_stage: LaunchStage
@@ -254,4 +250,3 @@ prelude: |
   // Volumes (sealed source per volume — secret / cloud_sql / empty_dir / gcs /
   // nfs are mutually exclusive per the provider's commented exactly_one_of).
   // ===========================================================================
-

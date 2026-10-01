@@ -59,6 +59,6 @@ final class DataGoogleIamWorkloadIdentityPoolOpenidConfig extends Data {
       TfRef.attribute<String>(this, 'token_endpoint');
 
   /// Reference to `resource_name` attribute.
-  TfRef<String> get resourceNameRef =>
+  TfRef<String> get resourceName =>
       TfRef.attribute<String>(this, 'resource_name');
 }

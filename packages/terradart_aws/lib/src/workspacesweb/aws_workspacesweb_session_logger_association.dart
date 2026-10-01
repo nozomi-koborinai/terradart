@@ -38,12 +38,12 @@ final class AwsWorkspaceswebSessionLoggerAssociation extends Resource {
   RefTo<AwsWorkspaceswebSessionLoggerAssociation> get ref => RefTo.of(this);
 
   /// Reference to `portal_arn` attribute.
-  TfRef<String> get portalArnRef => TfRef.attribute<String>(this, 'portal_arn');
+  TfRef<String> get portalArn => TfRef.attribute<String>(this, 'portal_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `session_logger_arn` attribute.
-  TfRef<String> get sessionLoggerArnRef =>
+  TfRef<String> get sessionLoggerArn =>
       TfRef.attribute<String>(this, 'session_logger_arn');
 }

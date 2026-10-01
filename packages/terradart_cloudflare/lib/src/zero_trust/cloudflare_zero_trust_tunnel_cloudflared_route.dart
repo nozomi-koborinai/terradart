@@ -57,18 +57,18 @@ final class CloudflareZeroTrustTunnelCloudflaredRoute extends Resource {
   TfRef<String> get deletedAt => TfRef.attribute<String>(this, 'deleted_at');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `comment` attribute.
-  TfRef<String> get commentRef => TfRef.attribute<String>(this, 'comment');
+  TfRef<String> get comment => TfRef.attribute<String>(this, 'comment');
 
   /// Reference to `network` attribute.
-  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+  TfRef<String> get network => TfRef.attribute<String>(this, 'network');
 
   /// Reference to `tunnel_id` attribute.
-  TfRef<String> get tunnelIdRef => TfRef.attribute<String>(this, 'tunnel_id');
+  TfRef<String> get tunnelId => TfRef.attribute<String>(this, 'tunnel_id');
 
   /// Reference to `virtual_network_id` attribute.
-  TfRef<String> get virtualNetworkIdRef =>
+  TfRef<String> get virtualNetworkId =>
       TfRef.attribute<String>(this, 'virtual_network_id');
 }

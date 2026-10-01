@@ -38,7 +38,7 @@ final class DataGoogleMonitoringClusterIstioService extends Data {
       _googleMonitoringClusterIstioServiceSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -63,20 +63,20 @@ final class DataGoogleMonitoringClusterIstioService extends Data {
       TfRef.attribute<Map<String, String>>(this, 'user_labels');
 
   /// Reference to `cluster_name` attribute.
-  TfRef<String> get clusterNameRef =>
+  TfRef<String> get clusterName =>
       TfRef.attribute<String>(this, 'cluster_name');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `service_name` attribute.
-  TfRef<String> get serviceNameRef =>
+  TfRef<String> get serviceName =>
       TfRef.attribute<String>(this, 'service_name');
 
   /// Reference to `service_namespace` attribute.
-  TfRef<String> get serviceNamespaceRef =>
+  TfRef<String> get serviceNamespace =>
       TfRef.attribute<String>(this, 'service_namespace');
 }

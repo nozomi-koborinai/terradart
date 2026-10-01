@@ -447,7 +447,7 @@ final class GoogleFilestoreInstance extends Resource {
   RefTo<GoogleFilestoreInstance> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -474,49 +474,47 @@ final class GoogleFilestoreInstance extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `deletion_protection_enabled` attribute.
-  TfRef<bool> get deletionProtectionEnabledRef =>
+  TfRef<bool> get deletionProtectionEnabled =>
       TfRef.attribute<bool>(this, 'deletion_protection_enabled');
 
   /// Reference to `deletion_protection_reason` attribute.
-  TfRef<String> get deletionProtectionReasonRef =>
+  TfRef<String> get deletionProtectionReason =>
       TfRef.attribute<String>(this, 'deletion_protection_reason');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `desired_replica_state` attribute.
-  TfRef<String> get desiredReplicaStateRef =>
+  TfRef<String> get desiredReplicaState =>
       TfRef.attribute<String>(this, 'desired_replica_state');
 
   /// Reference to `kms_key_name` attribute.
-  TfRef<String> get kmsKeyNameRef =>
-      TfRef.attribute<String>(this, 'kms_key_name');
+  TfRef<String> get kmsKeyName => TfRef.attribute<String>(this, 'kms_key_name');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `protocol` attribute.
-  TfRef<String> get protocolRef => TfRef.attribute<String>(this, 'protocol');
+  TfRef<String> get protocol => TfRef.attribute<String>(this, 'protocol');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `tier` attribute.
-  TfRef<String> get tierRef => TfRef.attribute<String>(this, 'tier');
+  TfRef<String> get tier => TfRef.attribute<String>(this, 'tier');
 
   /// Reference to `zone` attribute.
-  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
+  TfRef<String> get zone => TfRef.attribute<String>(this, 'zone');
 }

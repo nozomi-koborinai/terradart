@@ -353,27 +353,27 @@ final class GoogleDocumentAiWarehouseDocumentSchema extends Resource {
   RefTo<GoogleDocumentAiWarehouseDocumentSchema> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `document_is_folder` attribute.
-  TfRef<bool> get documentIsFolderRef =>
+  TfRef<bool> get documentIsFolder =>
       TfRef.attribute<bool>(this, 'document_is_folder');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project_number` attribute.
-  TfRef<String> get projectNumberRef =>
+  TfRef<String> get projectNumber =>
       TfRef.attribute<String>(this, 'project_number');
 }

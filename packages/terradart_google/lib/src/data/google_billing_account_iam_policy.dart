@@ -42,6 +42,6 @@ final class DataGoogleBillingAccountIamPolicy extends Data {
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
 
   /// Reference to `billing_account_id` attribute.
-  TfRef<String> get billingAccountIdRef =>
+  TfRef<String> get billingAccountId =>
       TfRef.attribute<String>(this, 'billing_account_id');
 }

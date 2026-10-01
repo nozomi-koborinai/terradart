@@ -25,6 +25,3 @@ curatedDoc: |-
   ///   serviceAccountEmail: sa.ref,
   /// );
   /// ```
-
-extraGetters: |2
-    TfRef<String> get accessIdRef => TfRef.attribute<String>(this, 'access_id');

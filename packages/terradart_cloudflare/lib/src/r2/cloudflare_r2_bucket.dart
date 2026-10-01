@@ -83,7 +83,7 @@ final class CloudflareR2Bucket extends Resource {
   RefTo<CloudflareR2Bucket> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -93,16 +93,16 @@ final class CloudflareR2Bucket extends Resource {
       TfRef.attribute<String>(this, 'creation_date');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `jurisdiction` attribute.
-  TfRef<String> get jurisdictionRef =>
+  TfRef<String> get jurisdiction =>
       TfRef.attribute<String>(this, 'jurisdiction');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `storage_class` attribute.
-  TfRef<String> get storageClassRef =>
+  TfRef<String> get storageClass =>
       TfRef.attribute<String>(this, 'storage_class');
 }

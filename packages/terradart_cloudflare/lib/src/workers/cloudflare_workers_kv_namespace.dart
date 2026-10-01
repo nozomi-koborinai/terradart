@@ -60,12 +60,12 @@ final class CloudflareWorkersKvNamespace extends Resource {
       TfRef.attribute<bool>(this, 'supports_url_encoding');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `jurisdiction` attribute.
-  TfRef<String> get jurisdictionRef =>
+  TfRef<String> get jurisdiction =>
       TfRef.attribute<String>(this, 'jurisdiction');
 
   /// Reference to `title` attribute.
-  TfRef<String> get titleRef => TfRef.attribute<String>(this, 'title');
+  TfRef<String> get title => TfRef.attribute<String>(this, 'title');
 }

@@ -39,12 +39,12 @@ final class AwsSesv2DedicatedIpAssignment extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `destination_pool_name` attribute.
-  TfRef<String> get destinationPoolNameRef =>
+  TfRef<String> get destinationPoolName =>
       TfRef.attribute<String>(this, 'destination_pool_name');
 
   /// Reference to `ip` attribute.
-  TfRef<String> get ipRef => TfRef.attribute<String>(this, 'ip');
+  TfRef<String> get ip => TfRef.attribute<String>(this, 'ip');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

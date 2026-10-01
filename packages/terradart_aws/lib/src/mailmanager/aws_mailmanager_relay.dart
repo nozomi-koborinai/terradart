@@ -108,7 +108,7 @@ final class AwsMailmanagerRelay extends Resource {
   RefTo<AwsMailmanagerRelay> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -129,16 +129,15 @@ final class AwsMailmanagerRelay extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `server_name` attribute.
-  TfRef<String> get serverNameRef =>
-      TfRef.attribute<String>(this, 'server_name');
+  TfRef<String> get serverName => TfRef.attribute<String>(this, 'server_name');
 
   /// Reference to `server_port` attribute.
-  TfRef<num> get serverPortRef => TfRef.attribute<num>(this, 'server_port');
+  TfRef<num> get serverPort => TfRef.attribute<num>(this, 'server_port');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

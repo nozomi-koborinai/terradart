@@ -204,7 +204,7 @@ final class WrapperOverride {
   final bool deriveEnums;
 
   /// Phase A3 migration gate. When `true`, the emitter derives output-attribute
-  /// `TfRef` getters (`nameRef`, `id`, and pure computed-only attributes) for
+  /// `TfRef` getters (`name`, `id`, and pure computed-only attributes) for
   /// this resource from the IR, and the corresponding hand-written getters must
   /// be removed from [extraGetters] (genuine exceptions may remain). Defaults to
   /// `false` so un-migrated resources are unaffected.

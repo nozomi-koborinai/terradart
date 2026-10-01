@@ -124,6 +124,9 @@ final class GoogleOracleDatabaseExascaleDbStorageVault extends Resource {
   /// `RefTo<GoogleOracleDatabaseExascaleDbStorageVault>`.
   RefTo<GoogleOracleDatabaseExascaleDbStorageVault> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `create_time` attribute.
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
 
@@ -140,39 +143,38 @@ final class GoogleOracleDatabaseExascaleDbStorageVault extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `deletion_protection` attribute.
-  TfRef<bool> get deletionProtectionRef =>
+  TfRef<bool> get deletionProtection =>
       TfRef.attribute<bool>(this, 'deletion_protection');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `exadata_infrastructure` attribute.
-  TfRef<String> get exadataInfrastructureRef =>
+  TfRef<String> get exadataInfrastructure =>
       TfRef.attribute<String>(this, 'exadata_infrastructure');
 
   /// Reference to `exascale_db_storage_vault_id` attribute.
-  TfRef<String> get exascaleDbStorageVaultIdRef =>
+  TfRef<String> get exascaleDbStorageVaultId =>
       TfRef.attribute<String>(this, 'exascale_db_storage_vault_id');
 
   /// Reference to `gcp_oracle_zone` attribute.
-  TfRef<String> get gcpOracleZoneRef =>
+  TfRef<String> get gcpOracleZone =>
       TfRef.attribute<String>(this, 'gcp_oracle_zone');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

@@ -9,7 +9,7 @@ import 'tf_arg.dart';
 final class TfOutput<T> {
   const TfOutput(this.value, {this.description, this.sensitive = false});
 
-  /// The output's value: a reference (`.ref(topic.id)`), an expression, a
+  /// The output's value: a reference (`topic.id`), an expression, a
   /// variable or a literal.
   final TfArg<T> value;
 

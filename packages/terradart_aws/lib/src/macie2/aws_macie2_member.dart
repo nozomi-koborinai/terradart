@@ -81,29 +81,29 @@ final class AwsMacie2Member extends Resource {
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `email` attribute.
-  TfRef<String> get emailRef => TfRef.attribute<String>(this, 'email');
+  TfRef<String> get email => TfRef.attribute<String>(this, 'email');
 
   /// Reference to `invitation_disable_email_notification` attribute.
-  TfRef<bool> get invitationDisableEmailNotificationRef =>
+  TfRef<bool> get invitationDisableEmailNotification =>
       TfRef.attribute<bool>(this, 'invitation_disable_email_notification');
 
   /// Reference to `invitation_message` attribute.
-  TfRef<String> get invitationMessageRef =>
+  TfRef<String> get invitationMessage =>
       TfRef.attribute<String>(this, 'invitation_message');
 
   /// Reference to `invite` attribute.
-  TfRef<bool> get inviteRef => TfRef.attribute<bool>(this, 'invite');
+  TfRef<bool> get invite => TfRef.attribute<bool>(this, 'invite');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `status` attribute.
-  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+  TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

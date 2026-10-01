@@ -36,7 +36,7 @@ final class DataGoogleParameterManagerParameterVersionRender extends Data {
       _googleParameterManagerParameterVersionRenderSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -53,12 +53,12 @@ final class DataGoogleParameterManagerParameterVersionRender extends Data {
       TfRef.attribute<String>(this, 'rendered_parameter_data');
 
   /// Reference to `parameter` attribute.
-  TfRef<String> get parameterRef => TfRef.attribute<String>(this, 'parameter');
+  TfRef<String> get parameter => TfRef.attribute<String>(this, 'parameter');
 
   /// Reference to `parameter_version_id` attribute.
-  TfRef<String> get parameterVersionIdRef =>
+  TfRef<String> get parameterVersionId =>
       TfRef.attribute<String>(this, 'parameter_version_id');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

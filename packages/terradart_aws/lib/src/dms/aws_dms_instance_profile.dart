@@ -64,7 +64,7 @@ final class AwsDmsInstanceProfile extends Resource {
   RefTo<AwsDmsInstanceProfile> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
@@ -74,37 +74,35 @@ final class AwsDmsInstanceProfile extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `availability_zone` attribute.
-  TfRef<String> get availabilityZoneRef =>
+  TfRef<String> get availabilityZone =>
       TfRef.attribute<String>(this, 'availability_zone');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `kms_key_arn` attribute.
-  TfRef<String> get kmsKeyArnRef =>
-      TfRef.attribute<String>(this, 'kms_key_arn');
+  TfRef<String> get kmsKeyArn => TfRef.attribute<String>(this, 'kms_key_arn');
 
   /// Reference to `network_type` attribute.
-  TfRef<String> get networkTypeRef =>
+  TfRef<String> get networkType =>
       TfRef.attribute<String>(this, 'network_type');
 
   /// Reference to `publicly_accessible` attribute.
-  TfRef<bool> get publiclyAccessibleRef =>
+  TfRef<bool> get publiclyAccessible =>
       TfRef.attribute<bool>(this, 'publicly_accessible');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `subnet_group_identifier` attribute.
-  TfRef<String> get subnetGroupIdentifierRef =>
+  TfRef<String> get subnetGroupIdentifier =>
       TfRef.attribute<String>(this, 'subnet_group_identifier');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `vpc_security_group_ids` attribute.
-  TfRef<List<String>> get vpcSecurityGroupIdsRef =>
+  TfRef<List<String>> get vpcSecurityGroupIds =>
       TfRef.attribute<List<String>>(this, 'vpc_security_group_ids');
 }

@@ -1706,7 +1706,7 @@ final class GoogleContainerNodePool extends Resource {
   RefTo<GoogleContainerNodePool> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -1723,41 +1723,40 @@ final class GoogleContainerNodePool extends Resource {
   TfRef<String> get operation => TfRef.attribute<String>(this, 'operation');
 
   /// Reference to `cluster` attribute.
-  TfRef<String> get clusterRef => TfRef.attribute<String>(this, 'cluster');
+  TfRef<String> get cluster => TfRef.attribute<String>(this, 'cluster');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `ignore_node_count_changes` attribute.
-  TfRef<bool> get ignoreNodeCountChangesRef =>
+  TfRef<bool> get ignoreNodeCountChanges =>
       TfRef.attribute<bool>(this, 'ignore_node_count_changes');
 
   /// Reference to `initial_node_count` attribute.
-  TfRef<num> get initialNodeCountRef =>
+  TfRef<num> get initialNodeCount =>
       TfRef.attribute<num>(this, 'initial_node_count');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `max_pods_per_node` attribute.
-  TfRef<num> get maxPodsPerNodeRef =>
+  TfRef<num> get maxPodsPerNode =>
       TfRef.attribute<num>(this, 'max_pods_per_node');
 
   /// Reference to `name_prefix` attribute.
-  TfRef<String> get namePrefixRef =>
-      TfRef.attribute<String>(this, 'name_prefix');
+  TfRef<String> get namePrefix => TfRef.attribute<String>(this, 'name_prefix');
 
   /// Reference to `node_count` attribute.
-  TfRef<num> get nodeCountRef => TfRef.attribute<num>(this, 'node_count');
+  TfRef<num> get nodeCount => TfRef.attribute<num>(this, 'node_count');
 
   /// Reference to `node_locations` attribute.
-  TfRef<List<String>> get nodeLocationsRef =>
+  TfRef<List<String>> get nodeLocations =>
       TfRef.attribute<List<String>>(this, 'node_locations');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `version` attribute.
-  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
+  TfRef<String> get version => TfRef.attribute<String>(this, 'version');
 }

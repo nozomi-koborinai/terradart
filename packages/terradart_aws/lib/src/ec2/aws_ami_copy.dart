@@ -81,7 +81,7 @@ final class AwsAmiCopy extends Resource {
   RefTo<AwsAmiCopy> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -171,35 +171,34 @@ final class AwsAmiCopy extends Resource {
       TfRef.attribute<String>(this, 'virtualization_type');
 
   /// Reference to `deprecation_time` attribute.
-  TfRef<String> get deprecationTimeRef =>
+  TfRef<String> get deprecationTime =>
       TfRef.attribute<String>(this, 'deprecation_time');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `destination_outpost_arn` attribute.
-  TfRef<String> get destinationOutpostArnRef =>
+  TfRef<String> get destinationOutpostArn =>
       TfRef.attribute<String>(this, 'destination_outpost_arn');
 
   /// Reference to `encrypted` attribute.
-  TfRef<bool> get encryptedRef => TfRef.attribute<bool>(this, 'encrypted');
+  TfRef<bool> get encrypted => TfRef.attribute<bool>(this, 'encrypted');
 
   /// Reference to `kms_key_id` attribute.
-  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+  TfRef<String> get kmsKeyId => TfRef.attribute<String>(this, 'kms_key_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `source_ami_id` attribute.
-  TfRef<String> get sourceAmiIdRef =>
+  TfRef<String> get sourceAmiId =>
       TfRef.attribute<String>(this, 'source_ami_id');
 
   /// Reference to `source_ami_region` attribute.
-  TfRef<String> get sourceAmiRegionRef =>
+  TfRef<String> get sourceAmiRegion =>
       TfRef.attribute<String>(this, 'source_ami_region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

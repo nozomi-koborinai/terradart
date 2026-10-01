@@ -225,10 +225,10 @@ final class CloudflareLogpushJob extends Resource {
   RefTo<CloudflareLogpushJob> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `kind` attribute.
-  TfRef<String> get kindRef => TfRef.attribute<String>(this, 'kind');
+  TfRef<String> get kindAttr => TfRef.attribute<String>(this, 'kind');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -245,48 +245,48 @@ final class CloudflareLogpushJob extends Resource {
   TfRef<String> get lastError => TfRef.attribute<String>(this, 'last_error');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `dataset` attribute.
-  TfRef<String> get datasetRef => TfRef.attribute<String>(this, 'dataset');
+  TfRef<String> get dataset => TfRef.attribute<String>(this, 'dataset');
 
   /// Reference to `destination_conf` attribute.
-  TfRef<String> get destinationConfRef =>
+  TfRef<String> get destinationConf =>
       TfRef.attribute<String>(this, 'destination_conf');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `filter` attribute.
-  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+  TfRef<String> get filter => TfRef.attribute<String>(this, 'filter');
 
   /// Reference to `filter_attack_traffic` attribute.
-  TfRef<bool> get filterAttackTrafficRef =>
+  TfRef<bool> get filterAttackTraffic =>
       TfRef.attribute<bool>(this, 'filter_attack_traffic');
 
   /// Reference to `frequency` attribute.
-  TfRef<String> get frequencyRef => TfRef.attribute<String>(this, 'frequency');
+  TfRef<String> get frequency => TfRef.attribute<String>(this, 'frequency');
 
   /// Reference to `logpull_options` attribute.
-  TfRef<String> get logpullOptionsRef =>
+  TfRef<String> get logpullOptions =>
       TfRef.attribute<String>(this, 'logpull_options');
 
   /// Reference to `max_upload_bytes` attribute.
-  TfRef<num> get maxUploadBytesRef =>
+  TfRef<num> get maxUploadBytes =>
       TfRef.attribute<num>(this, 'max_upload_bytes');
 
   /// Reference to `max_upload_interval_seconds` attribute.
-  TfRef<num> get maxUploadIntervalSecondsRef =>
+  TfRef<num> get maxUploadIntervalSeconds =>
       TfRef.attribute<num>(this, 'max_upload_interval_seconds');
 
   /// Reference to `max_upload_records` attribute.
-  TfRef<num> get maxUploadRecordsRef =>
+  TfRef<num> get maxUploadRecords =>
       TfRef.attribute<num>(this, 'max_upload_records');
 
   /// Reference to `ownership_challenge` attribute.
-  TfRef<String> get ownershipChallengeRef =>
+  TfRef<String> get ownershipChallenge =>
       TfRef.attribute<String>(this, 'ownership_challenge');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

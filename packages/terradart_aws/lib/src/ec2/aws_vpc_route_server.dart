@@ -68,25 +68,24 @@ final class AwsVpcRouteServer extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `amazon_side_asn` attribute.
-  TfRef<num> get amazonSideAsnRef =>
-      TfRef.attribute<num>(this, 'amazon_side_asn');
+  TfRef<num> get amazonSideAsn => TfRef.attribute<num>(this, 'amazon_side_asn');
 
   /// Reference to `persist_routes` attribute.
-  TfRef<String> get persistRoutesRef =>
+  TfRef<String> get persistRoutes =>
       TfRef.attribute<String>(this, 'persist_routes');
 
   /// Reference to `persist_routes_duration` attribute.
-  TfRef<num> get persistRoutesDurationRef =>
+  TfRef<num> get persistRoutesDuration =>
       TfRef.attribute<num>(this, 'persist_routes_duration');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `sns_notifications_enabled` attribute.
-  TfRef<bool> get snsNotificationsEnabledRef =>
+  TfRef<bool> get snsNotificationsEnabled =>
       TfRef.attribute<bool>(this, 'sns_notifications_enabled');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

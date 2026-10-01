@@ -131,35 +131,34 @@ final class AwsConfigRemediationConfiguration extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `automatic` attribute.
-  TfRef<bool> get automaticRef => TfRef.attribute<bool>(this, 'automatic');
+  TfRef<bool> get automatic => TfRef.attribute<bool>(this, 'automatic');
 
   /// Reference to `config_rule_name` attribute.
-  TfRef<String> get configRuleNameRef =>
+  TfRef<String> get configRuleName =>
       TfRef.attribute<String>(this, 'config_rule_name');
 
   /// Reference to `maximum_automatic_attempts` attribute.
-  TfRef<num> get maximumAutomaticAttemptsRef =>
+  TfRef<num> get maximumAutomaticAttempts =>
       TfRef.attribute<num>(this, 'maximum_automatic_attempts');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resource_type` attribute.
-  TfRef<String> get resourceTypeRef =>
+  TfRef<String> get resourceType =>
       TfRef.attribute<String>(this, 'resource_type');
 
   /// Reference to `retry_attempt_seconds` attribute.
-  TfRef<num> get retryAttemptSecondsRef =>
+  TfRef<num> get retryAttemptSeconds =>
       TfRef.attribute<num>(this, 'retry_attempt_seconds');
 
   /// Reference to `target_id` attribute.
-  TfRef<String> get targetIdRef => TfRef.attribute<String>(this, 'target_id');
+  TfRef<String> get targetId => TfRef.attribute<String>(this, 'target_id');
 
   /// Reference to `target_type` attribute.
-  TfRef<String> get targetTypeRef =>
-      TfRef.attribute<String>(this, 'target_type');
+  TfRef<String> get targetType => TfRef.attribute<String>(this, 'target_type');
 
   /// Reference to `target_version` attribute.
-  TfRef<String> get targetVersionRef =>
+  TfRef<String> get targetVersion =>
       TfRef.attribute<String>(this, 'target_version');
 }

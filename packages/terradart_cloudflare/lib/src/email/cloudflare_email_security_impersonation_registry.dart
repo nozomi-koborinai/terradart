@@ -69,7 +69,7 @@ final class CloudflareEmailSecurityImpersonationRegistry extends Resource {
   RefTo<CloudflareEmailSecurityImpersonationRegistry> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -85,30 +85,28 @@ final class CloudflareEmailSecurityImpersonationRegistry extends Resource {
   TfRef<String> get modifiedAt => TfRef.attribute<String>(this, 'modified_at');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `comments` attribute.
-  TfRef<String> get commentsRef => TfRef.attribute<String>(this, 'comments');
+  TfRef<String> get comments => TfRef.attribute<String>(this, 'comments');
 
   /// Reference to `directory_id` attribute.
-  TfRef<num> get directoryIdRef => TfRef.attribute<num>(this, 'directory_id');
+  TfRef<num> get directoryId => TfRef.attribute<num>(this, 'directory_id');
 
   /// Reference to `directory_node_id` attribute.
-  TfRef<num> get directoryNodeIdRef =>
+  TfRef<num> get directoryNodeId =>
       TfRef.attribute<num>(this, 'directory_node_id');
 
   /// Reference to `email` attribute.
-  TfRef<String> get emailRef => TfRef.attribute<String>(this, 'email');
+  TfRef<String> get email => TfRef.attribute<String>(this, 'email');
 
   /// Reference to `external_directory_node_id` attribute.
-  TfRef<String> get externalDirectoryNodeIdRef =>
+  TfRef<String> get externalDirectoryNodeId =>
       TfRef.attribute<String>(this, 'external_directory_node_id');
 
   /// Reference to `is_email_regex` attribute.
-  TfRef<bool> get isEmailRegexRef =>
-      TfRef.attribute<bool>(this, 'is_email_regex');
+  TfRef<bool> get isEmailRegex => TfRef.attribute<bool>(this, 'is_email_regex');
 
   /// Reference to `provenance` attribute.
-  TfRef<String> get provenanceRef =>
-      TfRef.attribute<String>(this, 'provenance');
+  TfRef<String> get provenance => TfRef.attribute<String>(this, 'provenance');
 }

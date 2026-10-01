@@ -142,9 +142,9 @@ final class ComputeTargetHttpsProxySslCertificates
 ///   `google_compute_target_https_proxy.`).
 /// - `name`: GCP target proxy resource name. Pass
 ///   `TfArg.literal('lb-https-proxy')` or
-///   `TfArg.ref(otherProxy.nameRef)`.
+///   `otherProxy.name`.
 /// - `urlMap`: self-link of the upstream
-///   [GoogleComputeUrlMap]. Pass `TfArg.ref(urlMap.selfLink)` so the
+///   [GoogleComputeUrlMap]. Pass `urlMap.selfLink` so the
 ///   value resolves to
 ///   `${google_compute_url_map.<localName>.self_link}`.
 ///
@@ -225,6 +225,9 @@ final class GoogleComputeTargetHttpsProxy extends Resource {
   /// `RefTo<GoogleComputeTargetHttpsProxy>`.
   RefTo<GoogleComputeTargetHttpsProxy> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `creation_timestamp` attribute.
   TfRef<String> get creationTimestamp =>
       TfRef.attribute<String>(this, 'creation_timestamp');
@@ -236,57 +239,51 @@ final class GoogleComputeTargetHttpsProxy extends Resource {
   TfRef<num> get proxyId => TfRef.attribute<num>(this, 'proxy_id');
 
   /// Reference to `certificate_manager_certificates` attribute.
-  TfRef<List<String>> get certificateManagerCertificatesRef =>
+  TfRef<List<String>> get certificateManagerCertificates =>
       TfRef.attribute<List<String>>(this, 'certificate_manager_certificates');
 
   /// Reference to `certificate_map` attribute.
-  TfRef<String> get certificateMapRef =>
+  TfRef<String> get certificateMap =>
       TfRef.attribute<String>(this, 'certificate_map');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `http_keep_alive_timeout_sec` attribute.
-  TfRef<num> get httpKeepAliveTimeoutSecRef =>
+  TfRef<num> get httpKeepAliveTimeoutSec =>
       TfRef.attribute<num>(this, 'http_keep_alive_timeout_sec');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `proxy_bind` attribute.
-  TfRef<bool> get proxyBindRef => TfRef.attribute<bool>(this, 'proxy_bind');
+  TfRef<bool> get proxyBind => TfRef.attribute<bool>(this, 'proxy_bind');
 
   /// Reference to `quic_override` attribute.
-  TfRef<String> get quicOverrideRef =>
+  TfRef<String> get quicOverride =>
       TfRef.attribute<String>(this, 'quic_override');
 
   /// Reference to `server_tls_policy` attribute.
-  TfRef<String> get serverTlsPolicyRef =>
+  TfRef<String> get serverTlsPolicy =>
       TfRef.attribute<String>(this, 'server_tls_policy');
 
   /// Reference to `ssl_certificates` attribute.
-  TfRef<List<String>> get sslCertificatesRef =>
+  TfRef<List<String>> get sslCertificates =>
       TfRef.attribute<List<String>>(this, 'ssl_certificates');
 
   /// Reference to `ssl_policy` attribute.
-  TfRef<String> get sslPolicyRef => TfRef.attribute<String>(this, 'ssl_policy');
+  TfRef<String> get sslPolicy => TfRef.attribute<String>(this, 'ssl_policy');
 
   /// Reference to `tls_early_data` attribute.
-  TfRef<String> get tlsEarlyDataRef =>
+  TfRef<String> get tlsEarlyData =>
       TfRef.attribute<String>(this, 'tls_early_data');
 
   /// Reference to `url_map` attribute.
-  TfRef<String> get urlMapRef => TfRef.attribute<String>(this, 'url_map');
-
-  /// Reference to `name` attribute. Use for interpolations like
-  /// `proxy.nameRef` →
-  /// `${google_compute_target_https_proxy.<localName>.name}`.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get urlMap => TfRef.attribute<String>(this, 'url_map');
 
   /// Reference to `id` attribute (full path
   /// `projects/{project}/global/targetHttpsProxies/{name}`).

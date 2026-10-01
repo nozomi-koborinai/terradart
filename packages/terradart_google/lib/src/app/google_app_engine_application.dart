@@ -124,7 +124,7 @@ final class GoogleAppEngineApplication extends Resource {
   RefTo<GoogleAppEngineApplication> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -151,24 +151,22 @@ final class GoogleAppEngineApplication extends Resource {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'url_dispatch_rule');
 
   /// Reference to `auth_domain` attribute.
-  TfRef<String> get authDomainRef =>
-      TfRef.attribute<String>(this, 'auth_domain');
+  TfRef<String> get authDomain => TfRef.attribute<String>(this, 'auth_domain');
 
   /// Reference to `database_type` attribute.
-  TfRef<String> get databaseTypeRef =>
+  TfRef<String> get databaseType =>
       TfRef.attribute<String>(this, 'database_type');
 
   /// Reference to `location_id` attribute.
-  TfRef<String> get locationIdRef =>
-      TfRef.attribute<String>(this, 'location_id');
+  TfRef<String> get locationId => TfRef.attribute<String>(this, 'location_id');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `serving_status` attribute.
-  TfRef<String> get servingStatusRef =>
+  TfRef<String> get servingStatus =>
       TfRef.attribute<String>(this, 'serving_status');
 
   /// Reference to `ssl_policy` attribute.
-  TfRef<String> get sslPolicyRef => TfRef.attribute<String>(this, 'ssl_policy');
+  TfRef<String> get sslPolicy => TfRef.attribute<String>(this, 'ssl_policy');
 }

@@ -128,40 +128,40 @@ final class AwsWorkspaceswebPortal extends Resource {
       TfRef.attribute<String>(this, 'user_settings_arn');
 
   /// Reference to `additional_encryption_context` attribute.
-  TfRef<Map<String, String>> get additionalEncryptionContextRef =>
+  TfRef<Map<String, String>> get additionalEncryptionContext =>
       TfRef.attribute<Map<String, String>>(
         this,
         'additional_encryption_context',
       );
 
   /// Reference to `authentication_type` attribute.
-  TfRef<String> get authenticationTypeRef =>
+  TfRef<String> get authenticationType =>
       TfRef.attribute<String>(this, 'authentication_type');
 
   /// Reference to `browser_settings_arn` attribute.
-  TfRef<String> get browserSettingsArnRef =>
+  TfRef<String> get browserSettingsArn =>
       TfRef.attribute<String>(this, 'browser_settings_arn');
 
   /// Reference to `customer_managed_key` attribute.
-  TfRef<String> get customerManagedKeyRef =>
+  TfRef<String> get customerManagedKey =>
       TfRef.attribute<String>(this, 'customer_managed_key');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `instance_type` attribute.
-  TfRef<String> get instanceTypeRef =>
+  TfRef<String> get instanceType =>
       TfRef.attribute<String>(this, 'instance_type');
 
   /// Reference to `max_concurrent_sessions` attribute.
-  TfRef<num> get maxConcurrentSessionsRef =>
+  TfRef<num> get maxConcurrentSessions =>
       TfRef.attribute<num>(this, 'max_concurrent_sessions');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

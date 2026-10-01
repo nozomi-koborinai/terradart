@@ -38,13 +38,13 @@ final class AwsCloudwatchLogDeliveryDestinationPolicy extends Resource {
   RefTo<AwsCloudwatchLogDeliveryDestinationPolicy> get ref => RefTo.of(this);
 
   /// Reference to `delivery_destination_name` attribute.
-  TfRef<String> get deliveryDestinationNameRef =>
+  TfRef<String> get deliveryDestinationName =>
       TfRef.attribute<String>(this, 'delivery_destination_name');
 
   /// Reference to `delivery_destination_policy` attribute.
-  TfRef<String> get deliveryDestinationPolicyRef =>
+  TfRef<String> get deliveryDestinationPolicy =>
       TfRef.attribute<String>(this, 'delivery_destination_policy');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

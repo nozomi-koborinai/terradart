@@ -68,7 +68,7 @@ final class DataAwsAmi extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -187,34 +187,34 @@ final class DataAwsAmi extends Data {
       TfRef.attribute<String>(this, 'virtualization_type');
 
   /// Reference to `allow_unsafe_filter` attribute.
-  TfRef<bool> get allowUnsafeFilterRef =>
+  TfRef<bool> get allowUnsafeFilter =>
       TfRef.attribute<bool>(this, 'allow_unsafe_filter');
 
   /// Reference to `executable_users` attribute.
-  TfRef<List<String>> get executableUsersRef =>
+  TfRef<List<String>> get executableUsers =>
       TfRef.attribute<List<String>>(this, 'executable_users');
 
   /// Reference to `include_deprecated` attribute.
-  TfRef<bool> get includeDeprecatedRef =>
+  TfRef<bool> get includeDeprecated =>
       TfRef.attribute<bool>(this, 'include_deprecated');
 
   /// Reference to `most_recent` attribute.
-  TfRef<bool> get mostRecentRef => TfRef.attribute<bool>(this, 'most_recent');
+  TfRef<bool> get mostRecent => TfRef.attribute<bool>(this, 'most_recent');
 
   /// Reference to `name_regex` attribute.
-  TfRef<String> get nameRegexRef => TfRef.attribute<String>(this, 'name_regex');
+  TfRef<String> get nameRegex => TfRef.attribute<String>(this, 'name_regex');
 
   /// Reference to `owners` attribute.
-  TfRef<List<String>> get ownersRef =>
+  TfRef<List<String>> get owners =>
       TfRef.attribute<List<String>>(this, 'owners');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `uefi_data` attribute.
-  TfRef<String> get uefiDataRef => TfRef.attribute<String>(this, 'uefi_data');
+  TfRef<String> get uefiData => TfRef.attribute<String>(this, 'uefi_data');
 }

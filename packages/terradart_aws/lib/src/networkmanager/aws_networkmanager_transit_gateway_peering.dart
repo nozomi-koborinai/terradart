@@ -67,14 +67,14 @@ final class AwsNetworkmanagerTransitGatewayPeering extends Resource {
       TfRef.attribute<String>(this, 'transit_gateway_peering_attachment_id');
 
   /// Reference to `core_network_id` attribute.
-  TfRef<String> get coreNetworkIdRef =>
+  TfRef<String> get coreNetworkId =>
       TfRef.attribute<String>(this, 'core_network_id');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `transit_gateway_arn` attribute.
-  TfRef<String> get transitGatewayArnRef =>
+  TfRef<String> get transitGatewayArn =>
       TfRef.attribute<String>(this, 'transit_gateway_arn');
 }

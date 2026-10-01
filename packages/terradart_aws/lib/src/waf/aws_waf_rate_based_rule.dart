@@ -84,7 +84,7 @@ final class AwsWafRateBasedRule extends Resource {
   RefTo<AwsWafRateBasedRule> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -93,16 +93,15 @@ final class AwsWafRateBasedRule extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `metric_name` attribute.
-  TfRef<String> get metricNameRef =>
-      TfRef.attribute<String>(this, 'metric_name');
+  TfRef<String> get metricName => TfRef.attribute<String>(this, 'metric_name');
 
   /// Reference to `rate_key` attribute.
-  TfRef<String> get rateKeyRef => TfRef.attribute<String>(this, 'rate_key');
+  TfRef<String> get rateKey => TfRef.attribute<String>(this, 'rate_key');
 
   /// Reference to `rate_limit` attribute.
-  TfRef<num> get rateLimitRef => TfRef.attribute<num>(this, 'rate_limit');
+  TfRef<num> get rateLimit => TfRef.attribute<num>(this, 'rate_limit');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

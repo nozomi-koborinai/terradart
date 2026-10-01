@@ -44,21 +44,20 @@ final class AwsXrayResourcePolicy extends Resource {
       TfRef.attribute<String>(this, 'last_updated_time');
 
   /// Reference to `bypass_policy_lockout_check` attribute.
-  TfRef<bool> get bypassPolicyLockoutCheckRef =>
+  TfRef<bool> get bypassPolicyLockoutCheck =>
       TfRef.attribute<bool>(this, 'bypass_policy_lockout_check');
 
   /// Reference to `policy_document` attribute.
-  TfRef<String> get policyDocumentRef =>
+  TfRef<String> get policyDocument =>
       TfRef.attribute<String>(this, 'policy_document');
 
   /// Reference to `policy_name` attribute.
-  TfRef<String> get policyNameRef =>
-      TfRef.attribute<String>(this, 'policy_name');
+  TfRef<String> get policyName => TfRef.attribute<String>(this, 'policy_name');
 
   /// Reference to `policy_revision_id` attribute.
-  TfRef<String> get policyRevisionIdRef =>
+  TfRef<String> get policyRevisionId =>
       TfRef.attribute<String>(this, 'policy_revision_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

@@ -48,7 +48,7 @@ final class CloudflareSecretsStoreSecret extends Resource {
   RefTo<CloudflareSecretsStoreSecret> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -63,18 +63,18 @@ final class CloudflareSecretsStoreSecret extends Resource {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `comment` attribute.
-  TfRef<String> get commentRef => TfRef.attribute<String>(this, 'comment');
+  TfRef<String> get comment => TfRef.attribute<String>(this, 'comment');
 
   /// Reference to `scopes` attribute.
-  TfRef<List<String>> get scopesRef =>
+  TfRef<List<String>> get scopes =>
       TfRef.attribute<List<String>>(this, 'scopes');
 
   /// Reference to `store_id` attribute.
-  TfRef<String> get storeIdRef => TfRef.attribute<String>(this, 'store_id');
+  TfRef<String> get storeId => TfRef.attribute<String>(this, 'store_id');
 
   /// Reference to `value` attribute.
-  TfRef<String> get valueRef => TfRef.attribute<String>(this, 'value');
+  TfRef<String> get value => TfRef.attribute<String>(this, 'value');
 }

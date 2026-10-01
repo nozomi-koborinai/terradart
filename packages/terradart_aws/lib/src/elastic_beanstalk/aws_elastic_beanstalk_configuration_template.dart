@@ -75,27 +75,25 @@ final class AwsElasticBeanstalkConfigurationTemplate extends Resource {
   RefTo<AwsElasticBeanstalkConfigurationTemplate> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `application` attribute.
-  TfRef<String> get applicationRef =>
-      TfRef.attribute<String>(this, 'application');
+  TfRef<String> get application => TfRef.attribute<String>(this, 'application');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `environment_id` attribute.
-  TfRef<String> get environmentIdRef =>
+  TfRef<String> get environmentId =>
       TfRef.attribute<String>(this, 'environment_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `solution_stack_name` attribute.
-  TfRef<String> get solutionStackNameRef =>
+  TfRef<String> get solutionStackName =>
       TfRef.attribute<String>(this, 'solution_stack_name');
 }

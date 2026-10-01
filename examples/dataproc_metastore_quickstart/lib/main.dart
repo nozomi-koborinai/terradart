@@ -88,7 +88,7 @@ final class DataprocMetastoreStack extends Stack {
       version: .literal('3.1.2'),
       backendMetastores: [
         DataprocMetastoreFederationBackend(
-          name: .ref(service.nameRef),
+          name: service.name,
           metastoreType: .literal(.dataprocMetastore),
           rank: .literal(1),
         ),

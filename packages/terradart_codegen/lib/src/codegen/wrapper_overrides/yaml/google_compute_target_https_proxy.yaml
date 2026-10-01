@@ -20,9 +20,9 @@ curatedDoc: |-
   ///   `google_compute_target_https_proxy.`).
   /// - `name`: GCP target proxy resource name. Pass
   ///   `TfArg.literal('lb-https-proxy')` or
-  ///   `TfArg.ref(otherProxy.nameRef)`.
+  ///   `otherProxy.name`.
   /// - `urlMap`: self-link of the upstream
-  ///   [GoogleComputeUrlMap]. Pass `TfArg.ref(urlMap.selfLink)` so the
+  ///   [GoogleComputeUrlMap]. Pass `urlMap.selfLink` so the
   ///   value resolves to
   ///   `${google_compute_url_map.<localName>.self_link}`.
   ///
@@ -77,10 +77,6 @@ deriveNestedTypes: true
 deriveOutputGetters: true
 
 extraGetters: |2
-    /// Reference to `name` attribute. Use for interpolations like
-    /// `proxy.nameRef` →
-    /// `${google_compute_target_https_proxy.<localName>.name}`.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
     /// Reference to `id` attribute (full path
     /// `projects/{project}/global/targetHttpsProxies/{name}`).

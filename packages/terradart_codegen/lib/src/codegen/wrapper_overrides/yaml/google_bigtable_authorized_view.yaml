@@ -11,7 +11,7 @@ curatedDoc: |-
   /// Required identity:
   /// - [localName]: Terraform local name.
   /// - [instanceName]: parent instance ID.
-  /// - [tableName]: parent table ID — pass `TfArg.ref(table.nameRef)`.
+  /// - [tableName]: parent table ID — pass `table.name`.
   /// - [name]: authorized view ID.
   /// - [subsetView]: optional [BigtableAuthorizedViewSubsetView] filter.
   ///
@@ -36,9 +36,6 @@ paramOrder:
   - deletion_policy
   - deletion_protection
   - project
-
-extraGetters: |
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
 prelude: |
   /// `subset_view` block on `google_bigtable_authorized_view`.

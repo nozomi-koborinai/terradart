@@ -59,7 +59,7 @@ extraGetters: |2
     /// project number (not the project ID) and is what downstream
     /// `google_iam_workload_identity_pool_provider` resources expect as
     /// their `workload_identity_pool_id` reference.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+    TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
     /// Reference to `state` attribute — lifecycle state of the pool
     /// (`ACTIVE` or `DELETED`). Soft-deleted pools are permanently

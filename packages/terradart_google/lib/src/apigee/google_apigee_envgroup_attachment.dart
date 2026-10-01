@@ -43,24 +43,19 @@ final class GoogleApigeeEnvgroupAttachment extends Resource {
   /// `RefTo<GoogleApigeeEnvgroupAttachment>`.
   RefTo<GoogleApigeeEnvgroupAttachment> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `envgroup_id` attribute.
-  TfRef<String> get envgroupIdRef =>
-      TfRef.attribute<String>(this, 'envgroup_id');
+  TfRef<String> get envgroupId => TfRef.attribute<String>(this, 'envgroup_id');
 
   /// Reference to `environment` attribute.
-  TfRef<String> get environmentRef =>
-      TfRef.attribute<String>(this, 'environment');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute (attachment resource name).
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get environment => TfRef.attribute<String>(this, 'environment');
 }

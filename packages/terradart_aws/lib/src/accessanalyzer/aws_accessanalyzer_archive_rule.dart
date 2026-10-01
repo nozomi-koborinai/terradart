@@ -73,12 +73,12 @@ final class AwsAccessanalyzerArchiveRule extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `analyzer_name` attribute.
-  TfRef<String> get analyzerNameRef =>
+  TfRef<String> get analyzerName =>
       TfRef.attribute<String>(this, 'analyzer_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `rule_name` attribute.
-  TfRef<String> get ruleNameRef => TfRef.attribute<String>(this, 'rule_name');
+  TfRef<String> get ruleName => TfRef.attribute<String>(this, 'rule_name');
 }

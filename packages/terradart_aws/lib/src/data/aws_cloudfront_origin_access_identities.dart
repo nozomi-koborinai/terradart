@@ -36,6 +36,6 @@ final class DataAwsCloudfrontOriginAccessIdentities extends Data {
       TfRef.attribute<List<String>>(this, 's3_canonical_user_ids');
 
   /// Reference to `comments` attribute.
-  TfRef<List<String>> get commentsRef =>
+  TfRef<List<String>> get comments =>
       TfRef.attribute<List<String>>(this, 'comments');
 }

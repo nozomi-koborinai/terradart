@@ -195,83 +195,82 @@ final class AwsOdbCloudVmCluster extends Resource {
       TfRef.attribute<List<String>>(this, 'vip_ids');
 
   /// Reference to `cloud_exadata_infrastructure_arn` attribute.
-  TfRef<String> get cloudExadataInfrastructureArnRef =>
+  TfRef<String> get cloudExadataInfrastructureArn =>
       TfRef.attribute<String>(this, 'cloud_exadata_infrastructure_arn');
 
   /// Reference to `cloud_exadata_infrastructure_id` attribute.
-  TfRef<String> get cloudExadataInfrastructureIdRef =>
+  TfRef<String> get cloudExadataInfrastructureId =>
       TfRef.attribute<String>(this, 'cloud_exadata_infrastructure_id');
 
   /// Reference to `cluster_name` attribute.
-  TfRef<String> get clusterNameRef =>
+  TfRef<String> get clusterName =>
       TfRef.attribute<String>(this, 'cluster_name');
 
   /// Reference to `cpu_core_count` attribute.
-  TfRef<num> get cpuCoreCountRef =>
-      TfRef.attribute<num>(this, 'cpu_core_count');
+  TfRef<num> get cpuCoreCount => TfRef.attribute<num>(this, 'cpu_core_count');
 
   /// Reference to `data_storage_size_in_tbs` attribute.
-  TfRef<num> get dataStorageSizeInTbsRef =>
+  TfRef<num> get dataStorageSizeInTbs =>
       TfRef.attribute<num>(this, 'data_storage_size_in_tbs');
 
   /// Reference to `db_node_storage_size_in_gbs` attribute.
-  TfRef<num> get dbNodeStorageSizeInGbsRef =>
+  TfRef<num> get dbNodeStorageSizeInGbs =>
       TfRef.attribute<num>(this, 'db_node_storage_size_in_gbs');
 
   /// Reference to `db_servers` attribute.
-  TfRef<List<String>> get dbServersRef =>
+  TfRef<List<String>> get dbServers =>
       TfRef.attribute<List<String>>(this, 'db_servers');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `gi_version` attribute.
-  TfRef<String> get giVersionRef => TfRef.attribute<String>(this, 'gi_version');
+  TfRef<String> get giVersion => TfRef.attribute<String>(this, 'gi_version');
 
   /// Reference to `hostname_prefix` attribute.
-  TfRef<String> get hostnamePrefixRef =>
+  TfRef<String> get hostnamePrefix =>
       TfRef.attribute<String>(this, 'hostname_prefix');
 
   /// Reference to `is_local_backup_enabled` attribute.
-  TfRef<bool> get isLocalBackupEnabledRef =>
+  TfRef<bool> get isLocalBackupEnabled =>
       TfRef.attribute<bool>(this, 'is_local_backup_enabled');
 
   /// Reference to `is_sparse_diskgroup_enabled` attribute.
-  TfRef<bool> get isSparseDiskgroupEnabledRef =>
+  TfRef<bool> get isSparseDiskgroupEnabled =>
       TfRef.attribute<bool>(this, 'is_sparse_diskgroup_enabled');
 
   /// Reference to `license_model` attribute.
-  TfRef<String> get licenseModelRef =>
+  TfRef<String> get licenseModel =>
       TfRef.attribute<String>(this, 'license_model');
 
   /// Reference to `memory_size_in_gbs` attribute.
-  TfRef<num> get memorySizeInGbsRef =>
+  TfRef<num> get memorySizeInGbs =>
       TfRef.attribute<num>(this, 'memory_size_in_gbs');
 
   /// Reference to `odb_network_arn` attribute.
-  TfRef<String> get odbNetworkArnRef =>
+  TfRef<String> get odbNetworkArn =>
       TfRef.attribute<String>(this, 'odb_network_arn');
 
   /// Reference to `odb_network_id` attribute.
-  TfRef<String> get odbNetworkIdRef =>
+  TfRef<String> get odbNetworkId =>
       TfRef.attribute<String>(this, 'odb_network_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `scan_listener_port_tcp` attribute.
-  TfRef<num> get scanListenerPortTcpRef =>
+  TfRef<num> get scanListenerPortTcp =>
       TfRef.attribute<num>(this, 'scan_listener_port_tcp');
 
   /// Reference to `ssh_public_keys` attribute.
-  TfRef<List<String>> get sshPublicKeysRef =>
+  TfRef<List<String>> get sshPublicKeys =>
       TfRef.attribute<List<String>>(this, 'ssh_public_keys');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `timezone` attribute.
-  TfRef<String> get timezoneRef => TfRef.attribute<String>(this, 'timezone');
+  TfRef<String> get timezone => TfRef.attribute<String>(this, 'timezone');
 }

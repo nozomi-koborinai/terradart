@@ -40,7 +40,7 @@ final class AwsDxHostedConnection extends Resource {
   RefTo<AwsDxHostedConnection> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -85,16 +85,16 @@ final class AwsDxHostedConnection extends Resource {
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `bandwidth` attribute.
-  TfRef<String> get bandwidthRef => TfRef.attribute<String>(this, 'bandwidth');
+  TfRef<String> get bandwidth => TfRef.attribute<String>(this, 'bandwidth');
 
   /// Reference to `connection_id` attribute.
-  TfRef<String> get connectionIdRef =>
+  TfRef<String> get connectionId =>
       TfRef.attribute<String>(this, 'connection_id');
 
   /// Reference to `owner_account_id` attribute.
-  TfRef<String> get ownerAccountIdRef =>
+  TfRef<String> get ownerAccountId =>
       TfRef.attribute<String>(this, 'owner_account_id');
 
   /// Reference to `vlan` attribute.
-  TfRef<num> get vlanRef => TfRef.attribute<num>(this, 'vlan');
+  TfRef<num> get vlan => TfRef.attribute<num>(this, 'vlan');
 }

@@ -55,28 +55,27 @@ final class DataAwsS3BucketObjects extends Data {
       TfRef.attribute<List<String>>(this, 'owners');
 
   /// Reference to `bucket` attribute.
-  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+  TfRef<String> get bucket => TfRef.attribute<String>(this, 'bucket');
 
   /// Reference to `delimiter` attribute.
-  TfRef<String> get delimiterRef => TfRef.attribute<String>(this, 'delimiter');
+  TfRef<String> get delimiter => TfRef.attribute<String>(this, 'delimiter');
 
   /// Reference to `encoding_type` attribute.
-  TfRef<String> get encodingTypeRef =>
+  TfRef<String> get encodingType =>
       TfRef.attribute<String>(this, 'encoding_type');
 
   /// Reference to `fetch_owner` attribute.
-  TfRef<bool> get fetchOwnerRef => TfRef.attribute<bool>(this, 'fetch_owner');
+  TfRef<bool> get fetchOwner => TfRef.attribute<bool>(this, 'fetch_owner');
 
   /// Reference to `max_keys` attribute.
-  TfRef<num> get maxKeysRef => TfRef.attribute<num>(this, 'max_keys');
+  TfRef<num> get maxKeys => TfRef.attribute<num>(this, 'max_keys');
 
   /// Reference to `prefix` attribute.
-  TfRef<String> get prefixRef => TfRef.attribute<String>(this, 'prefix');
+  TfRef<String> get prefix => TfRef.attribute<String>(this, 'prefix');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `start_after` attribute.
-  TfRef<String> get startAfterRef =>
-      TfRef.attribute<String>(this, 'start_after');
+  TfRef<String> get startAfter => TfRef.attribute<String>(this, 'start_after');
 }

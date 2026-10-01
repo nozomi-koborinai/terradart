@@ -55,14 +55,12 @@ final class GoogleVertexAiFeaturestoreEntitytypeIamPolicy extends Resource {
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `entitytype` attribute.
-  TfRef<String> get entitytypeRef =>
-      TfRef.attribute<String>(this, 'entitytype');
+  TfRef<String> get entitytype => TfRef.attribute<String>(this, 'entitytype');
 
   /// Reference to `featurestore` attribute.
-  TfRef<String> get featurestoreRef =>
+  TfRef<String> get featurestore =>
       TfRef.attribute<String>(this, 'featurestore');
 
   /// Reference to `policy_data` attribute.
-  TfRef<String> get policyDataRef =>
-      TfRef.attribute<String>(this, 'policy_data');
+  TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
 }

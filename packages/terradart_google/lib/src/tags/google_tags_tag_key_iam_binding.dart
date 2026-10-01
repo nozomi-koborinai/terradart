@@ -78,12 +78,12 @@ final class GoogleTagsTagKeyIamBinding extends Resource {
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `members` attribute.
-  TfRef<List<String>> get membersRef =>
+  TfRef<List<String>> get members =>
       TfRef.attribute<List<String>>(this, 'members');
 
   /// Reference to `role` attribute.
-  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+  TfRef<String> get role => TfRef.attribute<String>(this, 'role');
 
   /// Reference to `tag_key` attribute.
-  TfRef<String> get tagKeyRef => TfRef.attribute<String>(this, 'tag_key');
+  TfRef<String> get tagKey => TfRef.attribute<String>(this, 'tag_key');
 }

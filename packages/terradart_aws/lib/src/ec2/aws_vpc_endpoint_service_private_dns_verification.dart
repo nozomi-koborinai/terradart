@@ -39,12 +39,12 @@ final class AwsVpcEndpointServicePrivateDnsVerification extends Resource {
   RefTo<AwsVpcEndpointServicePrivateDnsVerification> get ref => RefTo.of(this);
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `service_id` attribute.
-  TfRef<String> get serviceIdRef => TfRef.attribute<String>(this, 'service_id');
+  TfRef<String> get serviceId => TfRef.attribute<String>(this, 'service_id');
 
   /// Reference to `wait_for_verification` attribute.
-  TfRef<bool> get waitForVerificationRef =>
+  TfRef<bool> get waitForVerification =>
       TfRef.attribute<bool>(this, 'wait_for_verification');
 }

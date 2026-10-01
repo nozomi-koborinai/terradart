@@ -4,7 +4,6 @@ import 'package:terradart_core/src/synth/json_encoder.dart';
 import 'package:terradart_core/src/synth/stack_validator.dart';
 import 'package:terradart_core/src/synth/synth_issue.dart';
 import 'package:terradart_core/src/tf_arg.dart';
-import 'package:terradart_core/src/tf_ref.dart';
 import 'package:test/test.dart';
 
 import '../helpers/fake_resources.dart';
@@ -425,13 +424,13 @@ void main() {
       );
     });
 
-    test('TfArgRef -> interpolation string', () {
+    test('TfRef -> interpolation string', () {
       final ref = TfRef.attribute<String>(
         const AddressStub('data.google_project.this'),
         'project_id',
       );
       expect(
-        TfJsonEncoder.encodeArg(TfArgRef<String>(ref)),
+        TfJsonEncoder.encodeArg(ref),
         equals(r'${data.google_project.this.project_id}'),
       );
     });
@@ -450,11 +449,9 @@ void main() {
     test('literal List<TfArg> is recursively encoded', () {
       final arg = TfArgLiteral<List<dynamic>>([
         const TfArgLiteral<String>('a'),
-        TfArgRef<String>(
-          TfRef.attribute<String>(
-            const AddressStub('google_pubsub_topic.x'),
-            'name',
-          ),
+        TfRef.attribute<String>(
+          const AddressStub('google_pubsub_topic.x'),
+          'name',
         ),
       ]);
       expect(
@@ -507,11 +504,9 @@ void main() {
   group('StackValidator.sensitiveLiteralFields (ref + variable)', () {
     test('a sensitive field set to a ref is no literal', () {
       final argMap = <String, TfArg<dynamic>?>{
-        'secret_data': TfArgRef<String>(
-          TfRef.attribute<String>(
-            const AddressStub('data.external.vault'),
-            'value',
-          ),
+        'secret_data': TfRef.attribute<String>(
+          const AddressStub('data.external.vault'),
+          'value',
         ),
       };
       expect(
@@ -1017,11 +1012,9 @@ void main() {
 
     test('a ref, an expression or a variable is no literal', () {
       for (final arg in <TfArg<String>>[
-        TfArgRef<String>(
-          TfRef.attribute<String>(
-            const AddressStub('data.external.vault'),
-            'value',
-          ),
+        TfRef.attribute<String>(
+          const AddressStub('data.external.vault'),
+          'value',
         ),
         TfArg.expression<String>(r'${base64decode(var.blob)}'),
         TfArgVariable<String>('db_secret'),

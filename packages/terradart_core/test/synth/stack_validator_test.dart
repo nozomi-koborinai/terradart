@@ -23,7 +23,7 @@ void main() {
     test('a valid Stack has no issue', () {
       final stack = TestStack(providers: const [_google]);
       final topic = stack.add(_topic('orders'));
-      stack.add(_reader('copy', .ref(TfRef.attribute(topic, 'name'))));
+      stack.add(_reader('copy', TfRef.attribute(topic, 'name')));
       expect(stack.validate(), isEmpty);
     });
 
@@ -60,7 +60,7 @@ void main() {
     test('a reference to a resource never added', () {
       final stack = TestStack(providers: const [_google]);
       final orphan = _topic('orphan');
-      stack.add(_reader('copy', .ref(TfRef.attribute(orphan, 'name'))));
+      stack.add(_reader('copy', TfRef.attribute(orphan, 'name')));
       expect(stack.validate(), [
         isA<UnregisteredReference>()
             .having((i) => i.address, 'address', 'google_pubsub_topic.copy')
@@ -84,11 +84,9 @@ void main() {
                 r'${upper(google_pubsub_topic.gone.name)}',
               ),
               'labels': TfArg.literal({
-                'x': TfArg.ref(
-                  TfRef.data<String>(
-                    FakeProjectData(localName: 'p', argMap: const {}),
-                    'project_id',
-                  ),
+                'x': TfRef.data<String>(
+                  FakeProjectData(localName: 'p', argMap: const {}),
+                  'project_id',
                 ),
               }),
             },
@@ -129,7 +127,7 @@ void main() {
           ModuleCall(
             localName: 'm',
             source: './m',
-            inputs: {'topic': TfArg.ref(TfRef.attribute(orphan, 'id'))},
+            inputs: {'topic': TfRef.attribute(orphan, 'id')},
           ),
         )
         ..addOutput('id', .expression<String>(r'${module.other.id}'));

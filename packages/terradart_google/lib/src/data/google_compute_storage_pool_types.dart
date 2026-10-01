@@ -33,10 +33,10 @@ final class DataGoogleComputeStoragePoolTypes extends Data {
   Set<String> get sensitiveFields => _googleComputeStoragePoolTypesSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `kind` attribute.
-  TfRef<String> get kindRef => TfRef.attribute<String>(this, 'kind');
+  TfRef<String> get kindAttr => TfRef.attribute<String>(this, 'kind');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -88,12 +88,12 @@ final class DataGoogleComputeStoragePoolTypes extends Data {
       TfRef.attribute<List<String>>(this, 'supported_disk_types');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `storage_pool_type` attribute.
-  TfRef<String> get storagePoolTypeRef =>
+  TfRef<String> get storagePoolType =>
       TfRef.attribute<String>(this, 'storage_pool_type');
 
   /// Reference to `zone` attribute.
-  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
+  TfRef<String> get zone => TfRef.attribute<String>(this, 'zone');
 }

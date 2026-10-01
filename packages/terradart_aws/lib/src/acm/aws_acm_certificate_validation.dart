@@ -41,13 +41,13 @@ final class AwsAcmCertificateValidation extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `certificate_arn` attribute.
-  TfRef<String> get certificateArnRef =>
+  TfRef<String> get certificateArn =>
       TfRef.attribute<String>(this, 'certificate_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `validation_record_fqdns` attribute.
-  TfRef<List<String>> get validationRecordFqdnsRef =>
+  TfRef<List<String>> get validationRecordFqdns =>
       TfRef.attribute<List<String>>(this, 'validation_record_fqdns');
 }

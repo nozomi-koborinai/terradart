@@ -1,7 +1,6 @@
 import 'package:terradart_core/src/data.dart';
 import 'package:terradart_core/src/resource.dart';
 import 'package:terradart_core/src/tf_arg.dart';
-import 'package:terradart_core/src/tf_ref.dart';
 import 'package:test/test.dart';
 
 final class _FakeProjectData extends Data {

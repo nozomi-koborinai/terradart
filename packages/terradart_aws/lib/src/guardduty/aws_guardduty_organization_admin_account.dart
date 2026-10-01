@@ -35,9 +35,9 @@ final class AwsGuarddutyOrganizationAdminAccount extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `admin_account_id` attribute.
-  TfRef<String> get adminAccountIdRef =>
+  TfRef<String> get adminAccountId =>
       TfRef.attribute<String>(this, 'admin_account_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

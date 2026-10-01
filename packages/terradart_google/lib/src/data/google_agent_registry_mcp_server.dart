@@ -66,15 +66,15 @@ final class DataGoogleAgentRegistryMcpServer extends Data {
   TfRef<String> get urn => TfRef.attribute<String>(this, 'urn');
 
   /// Reference to `filter` attribute.
-  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+  TfRef<String> get filter => TfRef.attribute<String>(this, 'filter');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `mcp_server_id` attribute.
-  TfRef<String> get mcpServerIdRef =>
+  TfRef<String> get mcpServerId =>
       TfRef.attribute<String>(this, 'mcp_server_id');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

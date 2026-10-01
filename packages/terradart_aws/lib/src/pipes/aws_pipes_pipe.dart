@@ -1921,7 +1921,7 @@ final class AwsPipesPipe extends Resource {
   RefTo<AwsPipesPipe> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -1930,38 +1930,35 @@ final class AwsPipesPipe extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `desired_state` attribute.
-  TfRef<String> get desiredStateRef =>
+  TfRef<String> get desiredState =>
       TfRef.attribute<String>(this, 'desired_state');
 
   /// Reference to `enrichment` attribute.
-  TfRef<String> get enrichmentRef =>
-      TfRef.attribute<String>(this, 'enrichment');
+  TfRef<String> get enrichment => TfRef.attribute<String>(this, 'enrichment');
 
   /// Reference to `kms_key_identifier` attribute.
-  TfRef<String> get kmsKeyIdentifierRef =>
+  TfRef<String> get kmsKeyIdentifier =>
       TfRef.attribute<String>(this, 'kms_key_identifier');
 
   /// Reference to `name_prefix` attribute.
-  TfRef<String> get namePrefixRef =>
-      TfRef.attribute<String>(this, 'name_prefix');
+  TfRef<String> get namePrefix => TfRef.attribute<String>(this, 'name_prefix');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role_arn` attribute.
-  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+  TfRef<String> get roleArn => TfRef.attribute<String>(this, 'role_arn');
 
   /// Reference to `source` attribute.
-  TfRef<String> get sourceRef => TfRef.attribute<String>(this, 'source');
+  TfRef<String> get source => TfRef.attribute<String>(this, 'source');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `target` attribute.
-  TfRef<String> get targetRef => TfRef.attribute<String>(this, 'target');
+  TfRef<String> get target => TfRef.attribute<String>(this, 'target');
 }

@@ -694,7 +694,7 @@ final class GoogleOsConfigGuestPolicies extends Resource {
   RefTo<GoogleOsConfigGuestPolicies> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -706,20 +706,19 @@ final class GoogleOsConfigGuestPolicies extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `etag` attribute.
-  TfRef<String> get etagRef => TfRef.attribute<String>(this, 'etag');
+  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `guest_policy_id` attribute.
-  TfRef<String> get guestPolicyIdRef =>
+  TfRef<String> get guestPolicyId =>
       TfRef.attribute<String>(this, 'guest_policy_id');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

@@ -51,7 +51,3 @@ paramOrder:
   - logging_config
   - notification_config
   - replication_spec
-
-extraGetters: |2
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

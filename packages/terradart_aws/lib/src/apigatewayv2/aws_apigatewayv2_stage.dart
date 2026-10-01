@@ -158,7 +158,7 @@ final class AwsApigatewayv2Stage extends Resource {
   RefTo<AwsApigatewayv2Stage> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -174,31 +174,30 @@ final class AwsApigatewayv2Stage extends Resource {
   TfRef<String> get invokeUrl => TfRef.attribute<String>(this, 'invoke_url');
 
   /// Reference to `api_id` attribute.
-  TfRef<String> get apiIdRef => TfRef.attribute<String>(this, 'api_id');
+  TfRef<String> get apiId => TfRef.attribute<String>(this, 'api_id');
 
   /// Reference to `auto_deploy` attribute.
-  TfRef<bool> get autoDeployRef => TfRef.attribute<bool>(this, 'auto_deploy');
+  TfRef<bool> get autoDeploy => TfRef.attribute<bool>(this, 'auto_deploy');
 
   /// Reference to `client_certificate_id` attribute.
-  TfRef<String> get clientCertificateIdRef =>
+  TfRef<String> get clientCertificateId =>
       TfRef.attribute<String>(this, 'client_certificate_id');
 
   /// Reference to `deployment_id` attribute.
-  TfRef<String> get deploymentIdRef =>
+  TfRef<String> get deploymentId =>
       TfRef.attribute<String>(this, 'deployment_id');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `stage_variables` attribute.
-  TfRef<Map<String, String>> get stageVariablesRef =>
+  TfRef<Map<String, String>> get stageVariables =>
       TfRef.attribute<Map<String, String>>(this, 'stage_variables');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

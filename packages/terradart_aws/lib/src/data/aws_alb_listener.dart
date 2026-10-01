@@ -67,19 +67,19 @@ final class DataAwsAlbListener extends Data {
   TfRef<String> get sslPolicy => TfRef.attribute<String>(this, 'ssl_policy');
 
   /// Reference to `arn` attribute.
-  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+  TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `load_balancer_arn` attribute.
-  TfRef<String> get loadBalancerArnRef =>
+  TfRef<String> get loadBalancerArn =>
       TfRef.attribute<String>(this, 'load_balancer_arn');
 
   /// Reference to `port` attribute.
-  TfRef<num> get portRef => TfRef.attribute<num>(this, 'port');
+  TfRef<num> get port => TfRef.attribute<num>(this, 'port');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

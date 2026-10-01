@@ -48,5 +48,5 @@ final class DataCloudflareZeroTrustConnectivitySettings extends Data {
       TfRef.attribute<bool>(this, 'offramp_warp_enabled');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 }

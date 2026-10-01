@@ -44,14 +44,14 @@ final class AwsRoute53recoveryreadinessReadinessCheck extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `readiness_check_name` attribute.
-  TfRef<String> get readinessCheckNameRef =>
+  TfRef<String> get readinessCheckName =>
       TfRef.attribute<String>(this, 'readiness_check_name');
 
   /// Reference to `resource_set_name` attribute.
-  TfRef<String> get resourceSetNameRef =>
+  TfRef<String> get resourceSetName =>
       TfRef.attribute<String>(this, 'resource_set_name');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

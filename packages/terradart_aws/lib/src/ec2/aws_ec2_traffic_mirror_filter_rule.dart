@@ -118,35 +118,33 @@ final class AwsEc2TrafficMirrorFilterRule extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `destination_cidr_block` attribute.
-  TfRef<String> get destinationCidrBlockRef =>
+  TfRef<String> get destinationCidrBlock =>
       TfRef.attribute<String>(this, 'destination_cidr_block');
 
   /// Reference to `protocol` attribute.
-  TfRef<num> get protocolRef => TfRef.attribute<num>(this, 'protocol');
+  TfRef<num> get protocol => TfRef.attribute<num>(this, 'protocol');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `rule_action` attribute.
-  TfRef<String> get ruleActionRef =>
-      TfRef.attribute<String>(this, 'rule_action');
+  TfRef<String> get ruleAction => TfRef.attribute<String>(this, 'rule_action');
 
   /// Reference to `rule_number` attribute.
-  TfRef<num> get ruleNumberRef => TfRef.attribute<num>(this, 'rule_number');
+  TfRef<num> get ruleNumber => TfRef.attribute<num>(this, 'rule_number');
 
   /// Reference to `source_cidr_block` attribute.
-  TfRef<String> get sourceCidrBlockRef =>
+  TfRef<String> get sourceCidrBlock =>
       TfRef.attribute<String>(this, 'source_cidr_block');
 
   /// Reference to `traffic_direction` attribute.
-  TfRef<String> get trafficDirectionRef =>
+  TfRef<String> get trafficDirection =>
       TfRef.attribute<String>(this, 'traffic_direction');
 
   /// Reference to `traffic_mirror_filter_id` attribute.
-  TfRef<String> get trafficMirrorFilterIdRef =>
+  TfRef<String> get trafficMirrorFilterId =>
       TfRef.attribute<String>(this, 'traffic_mirror_filter_id');
 }

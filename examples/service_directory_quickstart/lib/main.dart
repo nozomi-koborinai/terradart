@@ -176,9 +176,9 @@ final class RegistryStack extends Stack {
     );
 
     // Literal namespace id -- emitted as a Dart constant at synth time.
-    addConstant('registryNamespaceId', .ref(namespace.namespaceIdRef));
+    addConstant('registryNamespaceId', .ref(namespace.namespaceId));
 
     // Full service resource id -- Terraform output only (computed).
-    addOutput('registry_service_id', .ref(service.id));
+    addOutput('registry_service_id', service.id);
   }
 }

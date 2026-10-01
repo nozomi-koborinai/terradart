@@ -35,7 +35,7 @@ final class DataGoogleContainerCluster extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -455,12 +455,12 @@ final class DataGoogleContainerCluster extends Data {
       );
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `skip_node_pool_refresh` attribute.
-  TfRef<bool> get skipNodePoolRefreshRef =>
+  TfRef<bool> get skipNodePoolRefresh =>
       TfRef.attribute<bool>(this, 'skip_node_pool_refresh');
 }

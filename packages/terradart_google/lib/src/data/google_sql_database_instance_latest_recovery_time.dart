@@ -45,12 +45,12 @@ final class DataGoogleSqlDatabaseInstanceLatestRecoveryTime extends Data {
       TfRef.attribute<String>(this, 'latest_recovery_time');
 
   /// Reference to `instance` attribute.
-  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+  TfRef<String> get instance => TfRef.attribute<String>(this, 'instance');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `source_instance_deletion_time` attribute.
-  TfRef<String> get sourceInstanceDeletionTimeRef =>
+  TfRef<String> get sourceInstanceDeletionTime =>
       TfRef.attribute<String>(this, 'source_instance_deletion_time');
 }

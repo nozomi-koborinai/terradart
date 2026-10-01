@@ -88,19 +88,19 @@ final class AwsCloudwatchEventPermission extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `action` attribute.
-  TfRef<String> get actionRef => TfRef.attribute<String>(this, 'action');
+  TfRef<String> get action => TfRef.attribute<String>(this, 'action');
 
   /// Reference to `event_bus_name` attribute.
-  TfRef<String> get eventBusNameRef =>
+  TfRef<String> get eventBusName =>
       TfRef.attribute<String>(this, 'event_bus_name');
 
   /// Reference to `principal` attribute.
-  TfRef<String> get principalRef => TfRef.attribute<String>(this, 'principal');
+  TfRef<String> get principal => TfRef.attribute<String>(this, 'principal');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `statement_id` attribute.
-  TfRef<String> get statementIdRef =>
+  TfRef<String> get statementId =>
       TfRef.attribute<String>(this, 'statement_id');
 }

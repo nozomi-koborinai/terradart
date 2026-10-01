@@ -333,7 +333,7 @@ final class GoogleClouddomainsRegistration extends Resource {
   RefTo<GoogleClouddomainsRegistration> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -368,24 +368,23 @@ final class GoogleClouddomainsRegistration extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `contact_notices` attribute.
-  TfRef<List<String>> get contactNoticesRef =>
+  TfRef<List<String>> get contactNotices =>
       TfRef.attribute<List<String>>(this, 'contact_notices');
 
   /// Reference to `domain_name` attribute.
-  TfRef<String> get domainNameRef =>
-      TfRef.attribute<String>(this, 'domain_name');
+  TfRef<String> get domainName => TfRef.attribute<String>(this, 'domain_name');
 
   /// Reference to `domain_notices` attribute.
-  TfRef<List<String>> get domainNoticesRef =>
+  TfRef<List<String>> get domainNotices =>
       TfRef.attribute<List<String>>(this, 'domain_notices');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

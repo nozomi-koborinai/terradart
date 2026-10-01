@@ -79,27 +79,27 @@ final class AwsConfigDeliveryChannel extends Resource {
   RefTo<AwsConfigDeliveryChannel> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `s3_bucket_name` attribute.
-  TfRef<String> get s3BucketNameRef =>
+  TfRef<String> get s3BucketName =>
       TfRef.attribute<String>(this, 's3_bucket_name');
 
   /// Reference to `s3_key_prefix` attribute.
-  TfRef<String> get s3KeyPrefixRef =>
+  TfRef<String> get s3KeyPrefix =>
       TfRef.attribute<String>(this, 's3_key_prefix');
 
   /// Reference to `s3_kms_key_arn` attribute.
-  TfRef<String> get s3KmsKeyArnRef =>
+  TfRef<String> get s3KmsKeyArn =>
       TfRef.attribute<String>(this, 's3_kms_key_arn');
 
   /// Reference to `sns_topic_arn` attribute.
-  TfRef<String> get snsTopicArnRef =>
+  TfRef<String> get snsTopicArn =>
       TfRef.attribute<String>(this, 'sns_topic_arn');
 }

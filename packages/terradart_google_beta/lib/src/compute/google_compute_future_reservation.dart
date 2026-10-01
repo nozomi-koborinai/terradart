@@ -500,7 +500,7 @@ final class GoogleComputeFutureReservation extends Resource {
   RefTo<GoogleComputeFutureReservation> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -521,52 +521,50 @@ final class GoogleComputeFutureReservation extends Resource {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'status');
 
   /// Reference to `auto_created_reservations_delete_time` attribute.
-  TfRef<String> get autoCreatedReservationsDeleteTimeRef =>
+  TfRef<String> get autoCreatedReservationsDeleteTime =>
       TfRef.attribute<String>(this, 'auto_created_reservations_delete_time');
 
   /// Reference to `auto_delete_auto_created_reservations` attribute.
-  TfRef<bool> get autoDeleteAutoCreatedReservationsRef =>
+  TfRef<bool> get autoDeleteAutoCreatedReservations =>
       TfRef.attribute<bool>(this, 'auto_delete_auto_created_reservations');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `deployment_type` attribute.
-  TfRef<String> get deploymentTypeRef =>
+  TfRef<String> get deploymentType =>
       TfRef.attribute<String>(this, 'deployment_type');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `name_prefix` attribute.
-  TfRef<String> get namePrefixRef =>
-      TfRef.attribute<String>(this, 'name_prefix');
+  TfRef<String> get namePrefix => TfRef.attribute<String>(this, 'name_prefix');
 
   /// Reference to `planning_status` attribute.
-  TfRef<String> get planningStatusRef =>
+  TfRef<String> get planningStatus =>
       TfRef.attribute<String>(this, 'planning_status');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `reservation_mode` attribute.
-  TfRef<String> get reservationModeRef =>
+  TfRef<String> get reservationMode =>
       TfRef.attribute<String>(this, 'reservation_mode');
 
   /// Reference to `reservation_name` attribute.
-  TfRef<String> get reservationNameRef =>
+  TfRef<String> get reservationName =>
       TfRef.attribute<String>(this, 'reservation_name');
 
   /// Reference to `scheduling_type` attribute.
-  TfRef<String> get schedulingTypeRef =>
+  TfRef<String> get schedulingType =>
       TfRef.attribute<String>(this, 'scheduling_type');
 
   /// Reference to `specific_reservation_required` attribute.
-  TfRef<bool> get specificReservationRequiredRef =>
+  TfRef<bool> get specificReservationRequired =>
       TfRef.attribute<bool>(this, 'specific_reservation_required');
 
   /// Reference to `zone` attribute.
-  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
+  TfRef<String> get zone => TfRef.attribute<String>(this, 'zone');
 }

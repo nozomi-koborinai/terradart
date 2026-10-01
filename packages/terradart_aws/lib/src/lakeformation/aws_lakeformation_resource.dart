@@ -53,27 +53,27 @@ final class AwsLakeformationResource extends Resource {
       TfRef.attribute<String>(this, 'last_modified');
 
   /// Reference to `arn` attribute.
-  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+  TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `hybrid_access_enabled` attribute.
-  TfRef<bool> get hybridAccessEnabledRef =>
+  TfRef<bool> get hybridAccessEnabled =>
       TfRef.attribute<bool>(this, 'hybrid_access_enabled');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role_arn` attribute.
-  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+  TfRef<String> get roleArn => TfRef.attribute<String>(this, 'role_arn');
 
   /// Reference to `use_service_linked_role` attribute.
-  TfRef<bool> get useServiceLinkedRoleRef =>
+  TfRef<bool> get useServiceLinkedRole =>
       TfRef.attribute<bool>(this, 'use_service_linked_role');
 
   /// Reference to `with_federation` attribute.
-  TfRef<bool> get withFederationRef =>
+  TfRef<bool> get withFederation =>
       TfRef.attribute<bool>(this, 'with_federation');
 
   /// Reference to `with_privileged_access` attribute.
-  TfRef<bool> get withPrivilegedAccessRef =>
+  TfRef<bool> get withPrivilegedAccess =>
       TfRef.attribute<bool>(this, 'with_privileged_access');
 }

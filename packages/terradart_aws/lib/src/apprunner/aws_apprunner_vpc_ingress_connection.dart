@@ -65,7 +65,7 @@ final class AwsApprunnerVpcIngressConnection extends Resource {
   RefTo<AwsApprunnerVpcIngressConnection> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -80,13 +80,12 @@ final class AwsApprunnerVpcIngressConnection extends Resource {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `service_arn` attribute.
-  TfRef<String> get serviceArnRef =>
-      TfRef.attribute<String>(this, 'service_arn');
+  TfRef<String> get serviceArn => TfRef.attribute<String>(this, 'service_arn');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

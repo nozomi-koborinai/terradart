@@ -282,70 +282,69 @@ final class CloudflareZeroTrustOrganization extends Resource {
   RefTo<CloudflareZeroTrustOrganization> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `trusted_accounts` attribute.
   TfRef<List<String>> get trustedAccounts =>
       TfRef.attribute<List<String>>(this, 'trusted_accounts');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `allow_authenticate_via_warp` attribute.
-  TfRef<bool> get allowAuthenticateViaWarpRef =>
+  TfRef<bool> get allowAuthenticateViaWarp =>
       TfRef.attribute<bool>(this, 'allow_authenticate_via_warp');
 
   /// Reference to `auth_domain` attribute.
-  TfRef<String> get authDomainRef =>
-      TfRef.attribute<String>(this, 'auth_domain');
+  TfRef<String> get authDomain => TfRef.attribute<String>(this, 'auth_domain');
 
   /// Reference to `auto_redirect_to_identity` attribute.
-  TfRef<bool> get autoRedirectToIdentityRef =>
+  TfRef<bool> get autoRedirectToIdentity =>
       TfRef.attribute<bool>(this, 'auto_redirect_to_identity');
 
   /// Reference to `deny_unmatched_requests` attribute.
-  TfRef<bool> get denyUnmatchedRequestsRef =>
+  TfRef<bool> get denyUnmatchedRequests =>
       TfRef.attribute<bool>(this, 'deny_unmatched_requests');
 
   /// Reference to `deny_unmatched_requests_exempted_zone_names` attribute.
-  TfRef<List<String>> get denyUnmatchedRequestsExemptedZoneNamesRef =>
+  TfRef<List<String>> get denyUnmatchedRequestsExemptedZoneNames =>
       TfRef.attribute<List<String>>(
         this,
         'deny_unmatched_requests_exempted_zone_names',
       );
 
   /// Reference to `is_ui_read_only` attribute.
-  TfRef<bool> get isUiReadOnlyRef =>
+  TfRef<bool> get isUiReadOnly =>
       TfRef.attribute<bool>(this, 'is_ui_read_only');
 
   /// Reference to `mfa_configuration_allowed` attribute.
-  TfRef<bool> get mfaConfigurationAllowedRef =>
+  TfRef<bool> get mfaConfigurationAllowed =>
       TfRef.attribute<bool>(this, 'mfa_configuration_allowed');
 
   /// Reference to `mfa_required_for_all_apps` attribute.
-  TfRef<bool> get mfaRequiredForAllAppsRef =>
+  TfRef<bool> get mfaRequiredForAllApps =>
       TfRef.attribute<bool>(this, 'mfa_required_for_all_apps');
 
   /// Reference to `session_duration` attribute.
-  TfRef<String> get sessionDurationRef =>
+  TfRef<String> get sessionDuration =>
       TfRef.attribute<String>(this, 'session_duration');
 
   /// Reference to `ui_read_only_toggle_reason` attribute.
-  TfRef<String> get uiReadOnlyToggleReasonRef =>
+  TfRef<String> get uiReadOnlyToggleReason =>
       TfRef.attribute<String>(this, 'ui_read_only_toggle_reason');
 
   /// Reference to `user_seat_expiration_inactive_time` attribute.
-  TfRef<String> get userSeatExpirationInactiveTimeRef =>
+  TfRef<String> get userSeatExpirationInactiveTime =>
       TfRef.attribute<String>(this, 'user_seat_expiration_inactive_time');
 
   /// Reference to `warp_auth_non_browser_401` attribute.
-  TfRef<bool> get warpAuthNonBrowser401Ref =>
+  TfRef<bool> get warpAuthNonBrowser401 =>
       TfRef.attribute<bool>(this, 'warp_auth_non_browser_401');
 
   /// Reference to `warp_auth_session_duration` attribute.
-  TfRef<String> get warpAuthSessionDurationRef =>
+  TfRef<String> get warpAuthSessionDuration =>
       TfRef.attribute<String>(this, 'warp_auth_session_duration');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

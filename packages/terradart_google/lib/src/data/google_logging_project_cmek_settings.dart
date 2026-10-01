@@ -32,7 +32,7 @@ final class DataGoogleLoggingProjectCmekSettings extends Data {
   Set<String> get sensitiveFields => _googleLoggingProjectCmekSettingsSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -46,9 +46,8 @@ final class DataGoogleLoggingProjectCmekSettings extends Data {
       TfRef.attribute<String>(this, 'service_account_id');
 
   /// Reference to `kms_key_name` attribute.
-  TfRef<String> get kmsKeyNameRef =>
-      TfRef.attribute<String>(this, 'kms_key_name');
+  TfRef<String> get kmsKeyName => TfRef.attribute<String>(this, 'kms_key_name');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

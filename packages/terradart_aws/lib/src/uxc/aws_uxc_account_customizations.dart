@@ -36,14 +36,14 @@ final class AwsUxcAccountCustomizations extends Resource {
   RefTo<AwsUxcAccountCustomizations> get ref => RefTo.of(this);
 
   /// Reference to `account_color` attribute.
-  TfRef<String> get accountColorRef =>
+  TfRef<String> get accountColor =>
       TfRef.attribute<String>(this, 'account_color');
 
   /// Reference to `visible_regions` attribute.
-  TfRef<List<String>> get visibleRegionsRef =>
+  TfRef<List<String>> get visibleRegions =>
       TfRef.attribute<List<String>>(this, 'visible_regions');
 
   /// Reference to `visible_services` attribute.
-  TfRef<List<String>> get visibleServicesRef =>
+  TfRef<List<String>> get visibleServices =>
       TfRef.attribute<List<String>>(this, 'visible_services');
 }

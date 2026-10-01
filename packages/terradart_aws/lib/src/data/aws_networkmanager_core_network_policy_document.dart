@@ -614,5 +614,5 @@ final class DataAwsNetworkmanagerCoreNetworkPolicyDocument extends Data {
   TfRef<String> get json => TfRef.attribute<String>(this, 'json');
 
   /// Reference to `version` attribute.
-  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
+  TfRef<String> get version => TfRef.attribute<String>(this, 'version');
 }

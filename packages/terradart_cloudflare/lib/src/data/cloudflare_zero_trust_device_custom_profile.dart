@@ -61,7 +61,7 @@ final class DataCloudflareZeroTrustDeviceCustomProfile extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -84,7 +84,7 @@ final class DataCloudflareZeroTrustDeviceCustomProfile extends Data {
   TfRef<num> get captivePortal => TfRef.attribute<num>(this, 'captive_portal');
 
   /// Reference to `default` attribute.
-  TfRef<bool> get defaultCase => TfRef.attribute<bool>(this, 'default');
+  TfRef<bool> get defaultAttr => TfRef.attribute<bool>(this, 'default');
 
   /// Reference to `description` attribute.
   TfRef<String> get description => TfRef.attribute<String>(this, 'description');
@@ -145,8 +145,8 @@ final class DataCloudflareZeroTrustDeviceCustomProfile extends Data {
       TfRef.attribute<bool>(this, 'uninstall_protection');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `policy_id` attribute.
-  TfRef<String> get policyIdRef => TfRef.attribute<String>(this, 'policy_id');
+  TfRef<String> get policyId => TfRef.attribute<String>(this, 'policy_id');
 }

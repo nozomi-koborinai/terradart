@@ -46,12 +46,12 @@ final class GoogleResourceManagerCapability extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `capability_name` attribute.
-  TfRef<String> get capabilityNameRef =>
+  TfRef<String> get capabilityName =>
       TfRef.attribute<String>(this, 'capability_name');
 
   /// Reference to `parent` attribute.
-  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+  TfRef<String> get parent => TfRef.attribute<String>(this, 'parent');
 
   /// Reference to `value` attribute.
-  TfRef<bool> get valueRef => TfRef.attribute<bool>(this, 'value');
+  TfRef<bool> get value => TfRef.attribute<bool>(this, 'value');
 }

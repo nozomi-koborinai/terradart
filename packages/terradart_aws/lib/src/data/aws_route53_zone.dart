@@ -43,7 +43,7 @@ final class DataAwsRoute53Zone extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -79,19 +79,19 @@ final class DataAwsRoute53Zone extends Data {
       TfRef.attribute<num>(this, 'resource_record_set_count');
 
   /// Reference to `enable_accelerated_recovery` attribute.
-  TfRef<bool> get enableAcceleratedRecoveryRef =>
+  TfRef<bool> get enableAcceleratedRecovery =>
       TfRef.attribute<bool>(this, 'enable_accelerated_recovery');
 
   /// Reference to `private_zone` attribute.
-  TfRef<bool> get privateZoneRef => TfRef.attribute<bool>(this, 'private_zone');
+  TfRef<bool> get privateZone => TfRef.attribute<bool>(this, 'private_zone');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `vpc_id` attribute.
-  TfRef<String> get vpcIdRef => TfRef.attribute<String>(this, 'vpc_id');
+  TfRef<String> get vpcId => TfRef.attribute<String>(this, 'vpc_id');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

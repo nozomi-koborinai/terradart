@@ -100,6 +100,6 @@ final class GoogleComputeZoneVmExtensionPolicy extends Resource {
   /// `RefTo<GoogleComputeZoneVmExtensionPolicy>`.
   RefTo<GoogleComputeZoneVmExtensionPolicy> get ref => RefTo.of(this);
 
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

@@ -41,8 +41,8 @@ final class DataGoogleNetworkConnectivityHubIamPolicy extends Data {
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
 
   /// Reference to `hub` attribute.
-  TfRef<String> get hubRef => TfRef.attribute<String>(this, 'hub');
+  TfRef<String> get hub => TfRef.attribute<String>(this, 'hub');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

@@ -47,8 +47,8 @@ final class AwsCeCostAllocationTag extends Resource {
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `status` attribute.
-  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+  TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `tag_key` attribute.
-  TfRef<String> get tagKeyRef => TfRef.attribute<String>(this, 'tag_key');
+  TfRef<String> get tagKey => TfRef.attribute<String>(this, 'tag_key');
 }

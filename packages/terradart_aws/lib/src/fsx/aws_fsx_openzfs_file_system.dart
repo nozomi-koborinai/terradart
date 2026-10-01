@@ -337,87 +337,87 @@ final class AwsFsxOpenzfsFileSystem extends Resource {
   TfRef<String> get vpcId => TfRef.attribute<String>(this, 'vpc_id');
 
   /// Reference to `automatic_backup_retention_days` attribute.
-  TfRef<num> get automaticBackupRetentionDaysRef =>
+  TfRef<num> get automaticBackupRetentionDays =>
       TfRef.attribute<num>(this, 'automatic_backup_retention_days');
 
   /// Reference to `backup_id` attribute.
-  TfRef<String> get backupIdRef => TfRef.attribute<String>(this, 'backup_id');
+  TfRef<String> get backupId => TfRef.attribute<String>(this, 'backup_id');
 
   /// Reference to `copy_tags_to_backups` attribute.
-  TfRef<bool> get copyTagsToBackupsRef =>
+  TfRef<bool> get copyTagsToBackups =>
       TfRef.attribute<bool>(this, 'copy_tags_to_backups');
 
   /// Reference to `copy_tags_to_volumes` attribute.
-  TfRef<bool> get copyTagsToVolumesRef =>
+  TfRef<bool> get copyTagsToVolumes =>
       TfRef.attribute<bool>(this, 'copy_tags_to_volumes');
 
   /// Reference to `daily_automatic_backup_start_time` attribute.
-  TfRef<String> get dailyAutomaticBackupStartTimeRef =>
+  TfRef<String> get dailyAutomaticBackupStartTime =>
       TfRef.attribute<String>(this, 'daily_automatic_backup_start_time');
 
   /// Reference to `delete_options` attribute.
-  TfRef<List<String>> get deleteOptionsRef =>
+  TfRef<List<String>> get deleteOptions =>
       TfRef.attribute<List<String>>(this, 'delete_options');
 
   /// Reference to `deployment_type` attribute.
-  TfRef<String> get deploymentTypeRef =>
+  TfRef<String> get deploymentType =>
       TfRef.attribute<String>(this, 'deployment_type');
 
   /// Reference to `endpoint_ip_address_range` attribute.
-  TfRef<String> get endpointIpAddressRangeRef =>
+  TfRef<String> get endpointIpAddressRange =>
       TfRef.attribute<String>(this, 'endpoint_ip_address_range');
 
   /// Reference to `final_backup_tags` attribute.
-  TfRef<Map<String, String>> get finalBackupTagsRef =>
+  TfRef<Map<String, String>> get finalBackupTags =>
       TfRef.attribute<Map<String, String>>(this, 'final_backup_tags');
 
   /// Reference to `kms_key_id` attribute.
-  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+  TfRef<String> get kmsKeyId => TfRef.attribute<String>(this, 'kms_key_id');
 
   /// Reference to `network_type` attribute.
-  TfRef<String> get networkTypeRef =>
+  TfRef<String> get networkType =>
       TfRef.attribute<String>(this, 'network_type');
 
   /// Reference to `preferred_subnet_id` attribute.
-  TfRef<String> get preferredSubnetIdRef =>
+  TfRef<String> get preferredSubnetId =>
       TfRef.attribute<String>(this, 'preferred_subnet_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `route_table_ids` attribute.
-  TfRef<List<String>> get routeTableIdsRef =>
+  TfRef<List<String>> get routeTableIds =>
       TfRef.attribute<List<String>>(this, 'route_table_ids');
 
   /// Reference to `security_group_ids` attribute.
-  TfRef<List<String>> get securityGroupIdsRef =>
+  TfRef<List<String>> get securityGroupIds =>
       TfRef.attribute<List<String>>(this, 'security_group_ids');
 
   /// Reference to `skip_final_backup` attribute.
-  TfRef<bool> get skipFinalBackupRef =>
+  TfRef<bool> get skipFinalBackup =>
       TfRef.attribute<bool>(this, 'skip_final_backup');
 
   /// Reference to `storage_capacity` attribute.
-  TfRef<num> get storageCapacityRef =>
+  TfRef<num> get storageCapacity =>
       TfRef.attribute<num>(this, 'storage_capacity');
 
   /// Reference to `storage_type` attribute.
-  TfRef<String> get storageTypeRef =>
+  TfRef<String> get storageType =>
       TfRef.attribute<String>(this, 'storage_type');
 
   /// Reference to `subnet_ids` attribute.
-  TfRef<List<String>> get subnetIdsRef =>
+  TfRef<List<String>> get subnetIds =>
       TfRef.attribute<List<String>>(this, 'subnet_ids');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `throughput_capacity` attribute.
-  TfRef<num> get throughputCapacityRef =>
+  TfRef<num> get throughputCapacity =>
       TfRef.attribute<num>(this, 'throughput_capacity');
 
   /// Reference to `weekly_maintenance_start_time` attribute.
-  TfRef<String> get weeklyMaintenanceStartTimeRef =>
+  TfRef<String> get weeklyMaintenanceStartTime =>
       TfRef.attribute<String>(this, 'weekly_maintenance_start_time');
 }

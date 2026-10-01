@@ -339,28 +339,27 @@ final class AwsCloudformationStackInstances extends Resource {
   TfRef<String> get stackSetId => TfRef.attribute<String>(this, 'stack_set_id');
 
   /// Reference to `accounts` attribute.
-  TfRef<List<String>> get accountsRef =>
+  TfRef<List<String>> get accounts =>
       TfRef.attribute<List<String>>(this, 'accounts');
 
   /// Reference to `call_as` attribute.
-  TfRef<String> get callAsRef => TfRef.attribute<String>(this, 'call_as');
+  TfRef<String> get callAs => TfRef.attribute<String>(this, 'call_as');
 
   /// Reference to `parameter_overrides` attribute.
-  TfRef<Map<String, String>> get parameterOverridesRef =>
+  TfRef<Map<String, String>> get parameterOverrides =>
       TfRef.attribute<Map<String, String>>(this, 'parameter_overrides');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `regions` attribute.
-  TfRef<List<String>> get regionsRef =>
+  TfRef<List<String>> get regions =>
       TfRef.attribute<List<String>>(this, 'regions');
 
   /// Reference to `retain_stacks` attribute.
-  TfRef<bool> get retainStacksRef =>
-      TfRef.attribute<bool>(this, 'retain_stacks');
+  TfRef<bool> get retainStacks => TfRef.attribute<bool>(this, 'retain_stacks');
 
   /// Reference to `stack_set_name` attribute.
-  TfRef<String> get stackSetNameRef =>
+  TfRef<String> get stackSetName =>
       TfRef.attribute<String>(this, 'stack_set_name');
 }

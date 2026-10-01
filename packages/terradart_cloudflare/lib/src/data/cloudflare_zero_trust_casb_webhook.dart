@@ -67,8 +67,8 @@ final class DataCloudflareZeroTrustCasbWebhook extends Data {
   TfRef<num> get version => TfRef.attribute<num>(this, 'version');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `webhook_id` attribute.
-  TfRef<String> get webhookIdRef => TfRef.attribute<String>(this, 'webhook_id');
+  TfRef<String> get webhookId => TfRef.attribute<String>(this, 'webhook_id');
 }

@@ -13,8 +13,3 @@ paramOrder:
   - access_group_configs
   - deletion_policy
   - project
-
-extraGetters: |2
-    /// Reference to `data_asset_id` attribute.
-    TfRef<String> get dataAssetIdRef =>
-        TfRef.attribute<String>(this, 'data_asset_id');

@@ -43,16 +43,16 @@ final class AwsPinpointEventStream extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `application_id` attribute.
-  TfRef<String> get applicationIdRef =>
+  TfRef<String> get applicationId =>
       TfRef.attribute<String>(this, 'application_id');
 
   /// Reference to `destination_stream_arn` attribute.
-  TfRef<String> get destinationStreamArnRef =>
+  TfRef<String> get destinationStreamArn =>
       TfRef.attribute<String>(this, 'destination_stream_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role_arn` attribute.
-  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+  TfRef<String> get roleArn => TfRef.attribute<String>(this, 'role_arn');
 }

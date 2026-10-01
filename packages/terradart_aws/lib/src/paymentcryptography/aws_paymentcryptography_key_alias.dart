@@ -39,11 +39,11 @@ final class AwsPaymentcryptographyKeyAlias extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `alias_name` attribute.
-  TfRef<String> get aliasNameRef => TfRef.attribute<String>(this, 'alias_name');
+  TfRef<String> get aliasName => TfRef.attribute<String>(this, 'alias_name');
 
   /// Reference to `key_arn` attribute.
-  TfRef<String> get keyArnRef => TfRef.attribute<String>(this, 'key_arn');
+  TfRef<String> get keyArn => TfRef.attribute<String>(this, 'key_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

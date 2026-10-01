@@ -103,7 +103,7 @@ final class GoogleBigqueryAnalyticsHubQueryTemplate extends Resource {
   RefTo<GoogleBigqueryAnalyticsHubQueryTemplate> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -118,39 +118,38 @@ final class GoogleBigqueryAnalyticsHubQueryTemplate extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `data_exchange_id` attribute.
-  TfRef<String> get dataExchangeIdRef =>
+  TfRef<String> get dataExchangeId =>
       TfRef.attribute<String>(this, 'data_exchange_id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `documentation` attribute.
-  TfRef<String> get documentationRef =>
+  TfRef<String> get documentation =>
       TfRef.attribute<String>(this, 'documentation');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `primary_contact` attribute.
-  TfRef<String> get primaryContactRef =>
+  TfRef<String> get primaryContact =>
       TfRef.attribute<String>(this, 'primary_contact');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `query_template_id` attribute.
-  TfRef<String> get queryTemplateIdRef =>
+  TfRef<String> get queryTemplateId =>
       TfRef.attribute<String>(this, 'query_template_id');
 
   /// Reference to `submit` attribute.
-  TfRef<bool> get submitRef => TfRef.attribute<bool>(this, 'submit');
+  TfRef<bool> get submit => TfRef.attribute<bool>(this, 'submit');
 }

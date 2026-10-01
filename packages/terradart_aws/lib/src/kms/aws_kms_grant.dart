@@ -100,7 +100,7 @@ final class AwsKmsGrant extends Resource {
   RefTo<AwsKmsGrant> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -112,28 +112,28 @@ final class AwsKmsGrant extends Resource {
   TfRef<String> get grantToken => TfRef.attribute<String>(this, 'grant_token');
 
   /// Reference to `grant_creation_tokens` attribute.
-  TfRef<List<String>> get grantCreationTokensRef =>
+  TfRef<List<String>> get grantCreationTokens =>
       TfRef.attribute<List<String>>(this, 'grant_creation_tokens');
 
   /// Reference to `grantee_principal` attribute.
-  TfRef<String> get granteePrincipalRef =>
+  TfRef<String> get granteePrincipal =>
       TfRef.attribute<String>(this, 'grantee_principal');
 
   /// Reference to `key_id` attribute.
-  TfRef<String> get keyIdRef => TfRef.attribute<String>(this, 'key_id');
+  TfRef<String> get keyId => TfRef.attribute<String>(this, 'key_id');
 
   /// Reference to `operations` attribute.
-  TfRef<List<String>> get operationsRef =>
+  TfRef<List<String>> get operations =>
       TfRef.attribute<List<String>>(this, 'operations');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `retire_on_delete` attribute.
-  TfRef<bool> get retireOnDeleteRef =>
+  TfRef<bool> get retireOnDelete =>
       TfRef.attribute<bool>(this, 'retire_on_delete');
 
   /// Reference to `retiring_principal` attribute.
-  TfRef<String> get retiringPrincipalRef =>
+  TfRef<String> get retiringPrincipal =>
       TfRef.attribute<String>(this, 'retiring_principal');
 }

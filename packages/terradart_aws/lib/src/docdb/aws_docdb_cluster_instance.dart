@@ -182,68 +182,66 @@ final class AwsDocdbClusterInstance extends Resource {
   TfRef<bool> get writer => TfRef.attribute<bool>(this, 'writer');
 
   /// Reference to `apply_immediately` attribute.
-  TfRef<bool> get applyImmediatelyRef =>
+  TfRef<bool> get applyImmediately =>
       TfRef.attribute<bool>(this, 'apply_immediately');
 
   /// Reference to `auto_minor_version_upgrade` attribute.
-  TfRef<bool> get autoMinorVersionUpgradeRef =>
+  TfRef<bool> get autoMinorVersionUpgrade =>
       TfRef.attribute<bool>(this, 'auto_minor_version_upgrade');
 
   /// Reference to `availability_zone` attribute.
-  TfRef<String> get availabilityZoneRef =>
+  TfRef<String> get availabilityZone =>
       TfRef.attribute<String>(this, 'availability_zone');
 
   /// Reference to `ca_cert_identifier` attribute.
-  TfRef<String> get caCertIdentifierRef =>
+  TfRef<String> get caCertIdentifier =>
       TfRef.attribute<String>(this, 'ca_cert_identifier');
 
   /// Reference to `certificate_rotation_restart` attribute.
-  TfRef<String> get certificateRotationRestartRef =>
+  TfRef<String> get certificateRotationRestart =>
       TfRef.attribute<String>(this, 'certificate_rotation_restart');
 
   /// Reference to `cluster_identifier` attribute.
-  TfRef<String> get clusterIdentifierRef =>
+  TfRef<String> get clusterIdentifier =>
       TfRef.attribute<String>(this, 'cluster_identifier');
 
   /// Reference to `copy_tags_to_snapshot` attribute.
-  TfRef<bool> get copyTagsToSnapshotRef =>
+  TfRef<bool> get copyTagsToSnapshot =>
       TfRef.attribute<bool>(this, 'copy_tags_to_snapshot');
 
   /// Reference to `enable_performance_insights` attribute.
-  TfRef<bool> get enablePerformanceInsightsRef =>
+  TfRef<bool> get enablePerformanceInsights =>
       TfRef.attribute<bool>(this, 'enable_performance_insights');
 
   /// Reference to `engine` attribute.
-  TfRef<String> get engineRef => TfRef.attribute<String>(this, 'engine');
+  TfRef<String> get engine => TfRef.attribute<String>(this, 'engine');
 
   /// Reference to `identifier` attribute.
-  TfRef<String> get identifierRef =>
-      TfRef.attribute<String>(this, 'identifier');
+  TfRef<String> get identifier => TfRef.attribute<String>(this, 'identifier');
 
   /// Reference to `identifier_prefix` attribute.
-  TfRef<String> get identifierPrefixRef =>
+  TfRef<String> get identifierPrefix =>
       TfRef.attribute<String>(this, 'identifier_prefix');
 
   /// Reference to `instance_class` attribute.
-  TfRef<String> get instanceClassRef =>
+  TfRef<String> get instanceClass =>
       TfRef.attribute<String>(this, 'instance_class');
 
   /// Reference to `performance_insights_kms_key_id` attribute.
-  TfRef<String> get performanceInsightsKmsKeyIdRef =>
+  TfRef<String> get performanceInsightsKmsKeyId =>
       TfRef.attribute<String>(this, 'performance_insights_kms_key_id');
 
   /// Reference to `preferred_maintenance_window` attribute.
-  TfRef<String> get preferredMaintenanceWindowRef =>
+  TfRef<String> get preferredMaintenanceWindow =>
       TfRef.attribute<String>(this, 'preferred_maintenance_window');
 
   /// Reference to `promotion_tier` attribute.
-  TfRef<num> get promotionTierRef =>
-      TfRef.attribute<num>(this, 'promotion_tier');
+  TfRef<num> get promotionTier => TfRef.attribute<num>(this, 'promotion_tier');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

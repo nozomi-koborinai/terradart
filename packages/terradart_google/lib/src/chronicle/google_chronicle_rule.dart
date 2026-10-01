@@ -62,6 +62,9 @@ final class GoogleChronicleRule extends Resource {
   /// `RefTo<GoogleChronicleRule>`.
   RefTo<GoogleChronicleRule> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -121,33 +124,27 @@ final class GoogleChronicleRule extends Resource {
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `etag` attribute.
-  TfRef<String> get etagRef => TfRef.attribute<String>(this, 'etag');
+  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `instance` attribute.
-  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+  TfRef<String> get instance => TfRef.attribute<String>(this, 'instance');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `rule_id` attribute.
-  TfRef<String> get ruleIdRef => TfRef.attribute<String>(this, 'rule_id');
+  TfRef<String> get ruleId => TfRef.attribute<String>(this, 'rule_id');
 
   /// Reference to `scope` attribute.
-  TfRef<String> get scopeRef => TfRef.attribute<String>(this, 'scope');
+  TfRef<String> get scope => TfRef.attribute<String>(this, 'scope');
 
   /// Reference to `text` attribute.
-  TfRef<String> get textRef => TfRef.attribute<String>(this, 'text');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get text => TfRef.attribute<String>(this, 'text');
 }

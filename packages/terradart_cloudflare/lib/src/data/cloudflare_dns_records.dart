@@ -186,41 +186,41 @@ final class DataCloudflareDnsRecords extends Data {
   Set<String> get sensitiveFields => _cloudflareDnsRecordsSensitive;
 
   /// Reference to `direction` attribute.
-  TfRef<String> get directionRef => TfRef.attribute<String>(this, 'direction');
+  TfRef<String> get direction => TfRef.attribute<String>(this, 'direction');
 
   /// Reference to `include_shadow_metadata` attribute.
-  TfRef<bool> get includeShadowMetadataRef =>
+  TfRef<bool> get includeShadowMetadata =>
       TfRef.attribute<bool>(this, 'include_shadow_metadata');
 
   /// Reference to `match` attribute.
-  TfRef<String> get matchRef => TfRef.attribute<String>(this, 'match');
+  TfRef<String> get match => TfRef.attribute<String>(this, 'match');
 
   /// Reference to `max_items` attribute.
-  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+  TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
 
   /// Reference to `order` attribute.
-  TfRef<String> get orderRef => TfRef.attribute<String>(this, 'order');
+  TfRef<String> get order => TfRef.attribute<String>(this, 'order');
 
   /// Reference to `proxied` attribute.
-  TfRef<bool> get proxiedRef => TfRef.attribute<bool>(this, 'proxied');
+  TfRef<bool> get proxied => TfRef.attribute<bool>(this, 'proxied');
 
   /// Reference to `search` attribute.
-  TfRef<String> get searchRef => TfRef.attribute<String>(this, 'search');
+  TfRef<String> get search => TfRef.attribute<String>(this, 'search');
 
   /// Reference to `shadowed_by_name` attribute.
-  TfRef<String> get shadowedByNameRef =>
+  TfRef<String> get shadowedByName =>
       TfRef.attribute<String>(this, 'shadowed_by_name');
 
   /// Reference to `shadowing_name` attribute.
-  TfRef<String> get shadowingNameRef =>
+  TfRef<String> get shadowingName =>
       TfRef.attribute<String>(this, 'shadowing_name');
 
   /// Reference to `tag_match` attribute.
-  TfRef<String> get tagMatchRef => TfRef.attribute<String>(this, 'tag_match');
+  TfRef<String> get tagMatch => TfRef.attribute<String>(this, 'tag_match');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

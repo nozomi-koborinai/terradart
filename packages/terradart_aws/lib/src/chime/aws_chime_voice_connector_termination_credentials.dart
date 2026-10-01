@@ -64,9 +64,9 @@ final class AwsChimeVoiceConnectorTerminationCredentials extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `voice_connector_id` attribute.
-  TfRef<String> get voiceConnectorIdRef =>
+  TfRef<String> get voiceConnectorId =>
       TfRef.attribute<String>(this, 'voice_connector_id');
 }

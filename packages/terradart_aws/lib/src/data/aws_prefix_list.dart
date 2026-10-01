@@ -50,7 +50,7 @@ final class DataAwsPrefixList extends Data {
   Set<String> get sensitiveFields => _awsPrefixListSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -60,9 +60,9 @@ final class DataAwsPrefixList extends Data {
       TfRef.attribute<List<String>>(this, 'cidr_blocks');
 
   /// Reference to `prefix_list_id` attribute.
-  TfRef<String> get prefixListIdRef =>
+  TfRef<String> get prefixListId =>
       TfRef.attribute<String>(this, 'prefix_list_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

@@ -48,7 +48,7 @@ final class AwsRoute53KeySigningKey extends Resource {
   RefTo<AwsRoute53KeySigningKey> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -90,13 +90,13 @@ final class AwsRoute53KeySigningKey extends Resource {
       TfRef.attribute<num>(this, 'signing_algorithm_type');
 
   /// Reference to `hosted_zone_id` attribute.
-  TfRef<String> get hostedZoneIdRef =>
+  TfRef<String> get hostedZoneId =>
       TfRef.attribute<String>(this, 'hosted_zone_id');
 
   /// Reference to `key_management_service_arn` attribute.
-  TfRef<String> get keyManagementServiceArnRef =>
+  TfRef<String> get keyManagementServiceArn =>
       TfRef.attribute<String>(this, 'key_management_service_arn');
 
   /// Reference to `status` attribute.
-  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+  TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 }

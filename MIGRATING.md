@@ -113,6 +113,27 @@ a literal takes the constructor of its kind:
 `GoogleServiceAccount.iamMember` is gone; use `principal`. Synth output
 does not change.
 
+### Attribute getters are plain `TfArg`s
+
+`TfRef<T>` is now a `TfArg<T>`, so an attribute getter passes straight into
+an argument, and getters are named after the attribute without a `Ref`
+suffix. `TfArg.ref` and `TfArgRef` are gone. Synth
+output does not change.
+
+| 0.31 | 0.32 |
+|------|------|
+| `topic.nameRef` | `topic.name` |
+| `secret.secretIdRef` | `secret.secretId` |
+| `labels: .ref(other.labels)` / `TfArg.ref(other.labels)` | `labels: other.labels` |
+| `addOutput('topic', .ref(topic.nameRef))` | `addOutput('topic', topic.name)` |
+| `case TfArgRef(:final ref)` | `case TfRef()` / `case AttributeRef(:final owner, :final attr)` |
+| `x.kindRef`, `x.defaultRef`, `x.refRef` | `x.kindAttr`, `x.defaultAttr`, `x.refAttr` |
+
+An attribute whose camelCase name is a Dart reserved word or a member every
+block already has (`kind`, `default`, `ref`, `localName`, `override`,
+`runtimeType`, ...) takes an `Attr` suffix. `addConstant(name, .ref(x))`
+is unchanged.
+
 ## 0.30.x → 0.31.0
 
 0.31.0 is a breaking release for the Dart API of every package, but not for

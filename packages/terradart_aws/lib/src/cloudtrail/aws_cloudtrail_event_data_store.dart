@@ -146,7 +146,7 @@ final class AwsCloudtrailEventDataStore extends Resource {
   RefTo<AwsCloudtrailEventDataStore> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -155,35 +155,35 @@ final class AwsCloudtrailEventDataStore extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `billing_mode` attribute.
-  TfRef<String> get billingModeRef =>
+  TfRef<String> get billingMode =>
       TfRef.attribute<String>(this, 'billing_mode');
 
   /// Reference to `kms_key_id` attribute.
-  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+  TfRef<String> get kmsKeyId => TfRef.attribute<String>(this, 'kms_key_id');
 
   /// Reference to `multi_region_enabled` attribute.
-  TfRef<bool> get multiRegionEnabledRef =>
+  TfRef<bool> get multiRegionEnabled =>
       TfRef.attribute<bool>(this, 'multi_region_enabled');
 
   /// Reference to `organization_enabled` attribute.
-  TfRef<bool> get organizationEnabledRef =>
+  TfRef<bool> get organizationEnabled =>
       TfRef.attribute<bool>(this, 'organization_enabled');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `retention_period` attribute.
-  TfRef<num> get retentionPeriodRef =>
+  TfRef<num> get retentionPeriod =>
       TfRef.attribute<num>(this, 'retention_period');
 
   /// Reference to `suspend` attribute.
-  TfRef<String> get suspendRef => TfRef.attribute<String>(this, 'suspend');
+  TfRef<String> get suspend => TfRef.attribute<String>(this, 'suspend');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `termination_protection_enabled` attribute.
-  TfRef<bool> get terminationProtectionEnabledRef =>
+  TfRef<bool> get terminationProtectionEnabled =>
       TfRef.attribute<bool>(this, 'termination_protection_enabled');
 }

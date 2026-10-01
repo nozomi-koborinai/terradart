@@ -64,7 +64,7 @@ final class CloudflareZeroTrustDeviceDeploymentGroups extends Resource {
   RefTo<CloudflareZeroTrustDeviceDeploymentGroups> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -76,9 +76,9 @@ final class CloudflareZeroTrustDeviceDeploymentGroups extends Resource {
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `policy_ids` attribute.
-  TfRef<List<String>> get policyIdsRef =>
+  TfRef<List<String>> get policyIds =>
       TfRef.attribute<List<String>>(this, 'policy_ids');
 }

@@ -78,22 +78,22 @@ final class CloudflareMagicTransitConnector extends Resource {
   TfRef<String> get licenseKey => TfRef.attribute<String>(this, 'license_key');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `activated` attribute.
-  TfRef<bool> get activatedRef => TfRef.attribute<bool>(this, 'activated');
+  TfRef<bool> get activated => TfRef.attribute<bool>(this, 'activated');
 
   /// Reference to `interrupt_window_duration_hours` attribute.
-  TfRef<num> get interruptWindowDurationHoursRef =>
+  TfRef<num> get interruptWindowDurationHours =>
       TfRef.attribute<num>(this, 'interrupt_window_duration_hours');
 
   /// Reference to `interrupt_window_hour_of_day` attribute.
-  TfRef<num> get interruptWindowHourOfDayRef =>
+  TfRef<num> get interruptWindowHourOfDay =>
       TfRef.attribute<num>(this, 'interrupt_window_hour_of_day');
 
   /// Reference to `notes` attribute.
-  TfRef<String> get notesRef => TfRef.attribute<String>(this, 'notes');
+  TfRef<String> get notes => TfRef.attribute<String>(this, 'notes');
 
   /// Reference to `timezone` attribute.
-  TfRef<String> get timezoneRef => TfRef.attribute<String>(this, 'timezone');
+  TfRef<String> get timezone => TfRef.attribute<String>(this, 'timezone');
 }

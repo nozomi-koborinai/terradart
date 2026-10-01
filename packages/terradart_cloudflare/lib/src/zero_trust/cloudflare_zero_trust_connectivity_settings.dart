@@ -47,13 +47,13 @@ final class CloudflareZeroTrustConnectivitySettings extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `icmp_proxy_enabled` attribute.
-  TfRef<bool> get icmpProxyEnabledRef =>
+  TfRef<bool> get icmpProxyEnabled =>
       TfRef.attribute<bool>(this, 'icmp_proxy_enabled');
 
   /// Reference to `offramp_warp_enabled` attribute.
-  TfRef<bool> get offrampWarpEnabledRef =>
+  TfRef<bool> get offrampWarpEnabled =>
       TfRef.attribute<bool>(this, 'offramp_warp_enabled');
 }

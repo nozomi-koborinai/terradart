@@ -92,7 +92,7 @@ final class ManagedKafkaConnectClusterNetworkConfigs {
 /// GoogleManagedKafkaConnectCluster(
 ///   localName: 'connect',
 ///   connectClusterId: TfArg.literal('terradart-connect'),
-///   kafkaCluster: TfArg.ref(cluster.nameRef),
+///   kafkaCluster: cluster.name,
 ///   location: TfArg.literal('us-central1'),
 ///   capacityConfig: ManagedKafkaConnectClusterCapacityConfig(
 ///     vcpuCount: TfArg.literal('3'),
@@ -102,7 +102,7 @@ final class ManagedKafkaConnectClusterNetworkConfigs {
 ///     accessConfig: .new(
 ///       networkConfigs: [
 ///         .new(
-///           primarySubnet: TfArg.ref(subnet.id),
+///           primarySubnet: subnet.id,
 ///         ),
 ///       ],
 ///     ),
@@ -147,6 +147,9 @@ final class GoogleManagedKafkaConnectCluster extends Resource {
   /// `RefTo<GoogleManagedKafkaConnectCluster>`.
   RefTo<GoogleManagedKafkaConnectCluster> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -167,28 +170,25 @@ final class GoogleManagedKafkaConnectCluster extends Resource {
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `connect_cluster_id` attribute.
+  TfRef<String> get connectClusterId =>
+      TfRef.attribute<String>(this, 'connect_cluster_id');
+
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `kafka_cluster` attribute.
-  TfRef<String> get kafkaClusterRef =>
+  TfRef<String> get kafkaCluster =>
       TfRef.attribute<String>(this, 'kafka_cluster');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
-
-  /// Reference to `connect_cluster_id` attribute.
-  TfRef<String> get connectClusterIdRef =>
-      TfRef.attribute<String>(this, 'connect_cluster_id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

@@ -56,6 +56,9 @@ final class GoogleBackupDrBackupPlanAssociation extends Resource {
   /// `RefTo<GoogleBackupDrBackupPlanAssociation>`.
   RefTo<GoogleBackupDrBackupPlanAssociation> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -73,30 +76,26 @@ final class GoogleBackupDrBackupPlanAssociation extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `backup_plan` attribute.
-  TfRef<String> get backupPlanRef =>
-      TfRef.attribute<String>(this, 'backup_plan');
+  TfRef<String> get backupPlan => TfRef.attribute<String>(this, 'backup_plan');
 
   /// Reference to `backup_plan_association_id` attribute.
-  TfRef<String> get backupPlanAssociationIdRef =>
+  TfRef<String> get backupPlanAssociationId =>
       TfRef.attribute<String>(this, 'backup_plan_association_id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `resource` attribute.
-  TfRef<String> get resourceRef => TfRef.attribute<String>(this, 'resource');
+  TfRef<String> get resource => TfRef.attribute<String>(this, 'resource');
 
   /// Reference to `resource_type` attribute.
-  TfRef<String> get resourceTypeRef =>
+  TfRef<String> get resourceType =>
       TfRef.attribute<String>(this, 'resource_type');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

@@ -54,9 +54,9 @@ final class DataCloudflareRateLimit extends Data {
   TfRef<num> get threshold => TfRef.attribute<num>(this, 'threshold');
 
   /// Reference to `rate_limit_id` attribute.
-  TfRef<String> get rateLimitIdRef =>
+  TfRef<String> get rateLimitId =>
       TfRef.attribute<String>(this, 'rate_limit_id');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

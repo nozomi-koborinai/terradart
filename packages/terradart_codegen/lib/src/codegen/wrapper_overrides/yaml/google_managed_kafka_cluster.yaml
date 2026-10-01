@@ -8,7 +8,6 @@ deriveEnums: true
 extraImports:
   - "import 'package:meta/meta.dart';"
 
-
 curatedDoc: |-
   /// Managed Service for Apache Kafka **cluster** — regional Kafka with
   /// provisioned vCPU / memory (Data Compute Units).
@@ -56,11 +55,3 @@ paramOrder:
   - tls_config
   - deletion_policy
   - project
-
-extraGetters: |2
-    /// Reference to `cluster_id` attribute.
-    TfRef<String> get clusterIdRef =>
-        TfRef.attribute<String>(this, 'cluster_id');
-
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

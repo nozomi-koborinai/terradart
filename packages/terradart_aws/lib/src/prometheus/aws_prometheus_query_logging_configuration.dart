@@ -91,9 +91,9 @@ final class AwsPrometheusQueryLoggingConfiguration extends Resource {
   RefTo<AwsPrometheusQueryLoggingConfiguration> get ref => RefTo.of(this);
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `workspace_id` attribute.
-  TfRef<String> get workspaceIdRef =>
+  TfRef<String> get workspaceId =>
       TfRef.attribute<String>(this, 'workspace_id');
 }

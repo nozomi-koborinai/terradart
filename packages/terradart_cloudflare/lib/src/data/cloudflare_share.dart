@@ -132,10 +132,10 @@ final class DataCloudflareShare extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `kind` attribute.
-  TfRef<String> get kindRef => TfRef.attribute<String>(this, 'kind');
+  TfRef<String> get kindAttr => TfRef.attribute<String>(this, 'kind');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -177,16 +177,16 @@ final class DataCloudflareShare extends Data {
   TfRef<String> get targetType => TfRef.attribute<String>(this, 'target_type');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `include_recipient_counts` attribute.
-  TfRef<bool> get includeRecipientCountsRef =>
+  TfRef<bool> get includeRecipientCounts =>
       TfRef.attribute<bool>(this, 'include_recipient_counts');
 
   /// Reference to `include_resources` attribute.
-  TfRef<bool> get includeResourcesRef =>
+  TfRef<bool> get includeResources =>
       TfRef.attribute<bool>(this, 'include_resources');
 
   /// Reference to `share_id` attribute.
-  TfRef<String> get shareIdRef => TfRef.attribute<String>(this, 'share_id');
+  TfRef<String> get shareId => TfRef.attribute<String>(this, 'share_id');
 }

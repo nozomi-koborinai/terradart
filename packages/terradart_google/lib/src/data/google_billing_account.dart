@@ -35,7 +35,7 @@ final class DataGoogleBillingAccount extends Data {
   Set<String> get sensitiveFields => _googleBillingAccountSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -49,17 +49,17 @@ final class DataGoogleBillingAccount extends Data {
       TfRef.attribute<List<String>>(this, 'project_ids');
 
   /// Reference to `billing_account` attribute.
-  TfRef<String> get billingAccountRef =>
+  TfRef<String> get billingAccount =>
       TfRef.attribute<String>(this, 'billing_account');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `lookup_projects` attribute.
-  TfRef<bool> get lookupProjectsRef =>
+  TfRef<bool> get lookupProjects =>
       TfRef.attribute<bool>(this, 'lookup_projects');
 
   /// Reference to `open` attribute.
-  TfRef<bool> get openRef => TfRef.attribute<bool>(this, 'open');
+  TfRef<bool> get open => TfRef.attribute<bool>(this, 'open');
 }

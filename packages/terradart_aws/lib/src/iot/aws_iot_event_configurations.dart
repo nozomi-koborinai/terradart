@@ -37,9 +37,9 @@ final class AwsIotEventConfigurations extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `event_configurations` attribute.
-  TfRef<Map<String, bool>> get eventConfigurationsRef =>
+  TfRef<Map<String, bool>> get eventConfigurations =>
       TfRef.attribute<Map<String, bool>>(this, 'event_configurations');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

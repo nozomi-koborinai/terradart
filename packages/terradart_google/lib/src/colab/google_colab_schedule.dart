@@ -719,7 +719,7 @@ final class GoogleColabSchedule extends Resource {
   RefTo<GoogleColabSchedule> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -760,45 +760,45 @@ final class GoogleColabSchedule extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `allow_queueing` attribute.
-  TfRef<bool> get allowQueueingRef =>
+  TfRef<bool> get allowQueueing =>
       TfRef.attribute<bool>(this, 'allow_queueing');
 
   /// Reference to `cron` attribute.
-  TfRef<String> get cronRef => TfRef.attribute<String>(this, 'cron');
+  TfRef<String> get cron => TfRef.attribute<String>(this, 'cron');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `desired_state` attribute.
-  TfRef<String> get desiredStateRef =>
+  TfRef<String> get desiredState =>
       TfRef.attribute<String>(this, 'desired_state');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `end_time` attribute.
-  TfRef<String> get endTimeRef => TfRef.attribute<String>(this, 'end_time');
+  TfRef<String> get endTime => TfRef.attribute<String>(this, 'end_time');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `max_concurrent_active_run_count` attribute.
-  TfRef<String> get maxConcurrentActiveRunCountRef =>
+  TfRef<String> get maxConcurrentActiveRunCount =>
       TfRef.attribute<String>(this, 'max_concurrent_active_run_count');
 
   /// Reference to `max_concurrent_run_count` attribute.
-  TfRef<String> get maxConcurrentRunCountRef =>
+  TfRef<String> get maxConcurrentRunCount =>
       TfRef.attribute<String>(this, 'max_concurrent_run_count');
 
   /// Reference to `max_run_count` attribute.
-  TfRef<String> get maxRunCountRef =>
+  TfRef<String> get maxRunCount =>
       TfRef.attribute<String>(this, 'max_run_count');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `start_time` attribute.
-  TfRef<String> get startTimeRef => TfRef.attribute<String>(this, 'start_time');
+  TfRef<String> get startTime => TfRef.attribute<String>(this, 'start_time');
 }

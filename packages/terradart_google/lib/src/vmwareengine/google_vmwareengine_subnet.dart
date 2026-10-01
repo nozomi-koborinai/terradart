@@ -49,6 +49,9 @@ final class GoogleVmwareengineSubnet extends Resource {
   /// `RefTo<GoogleVmwareengineSubnet>`.
   RefTo<GoogleVmwareengineSubnet> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -85,15 +88,9 @@ final class GoogleVmwareengineSubnet extends Resource {
   TfRef<num> get vlanId => TfRef.attribute<num>(this, 'vlan_id');
 
   /// Reference to `ip_cidr_range` attribute.
-  TfRef<String> get ipCidrRangeRef =>
+  TfRef<String> get ipCidrRange =>
       TfRef.attribute<String>(this, 'ip_cidr_range');
 
   /// Reference to `parent` attribute.
-  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+  TfRef<String> get parent => TfRef.attribute<String>(this, 'parent');
 }

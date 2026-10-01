@@ -40,7 +40,7 @@ final class AwsConnectUserHierarchyGroup extends Resource {
   RefTo<AwsConnectUserHierarchyGroup> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -60,17 +60,16 @@ final class AwsConnectUserHierarchyGroup extends Resource {
   TfRef<String> get levelId => TfRef.attribute<String>(this, 'level_id');
 
   /// Reference to `instance_id` attribute.
-  TfRef<String> get instanceIdRef =>
-      TfRef.attribute<String>(this, 'instance_id');
+  TfRef<String> get instanceId => TfRef.attribute<String>(this, 'instance_id');
 
   /// Reference to `parent_group_id` attribute.
-  TfRef<String> get parentGroupIdRef =>
+  TfRef<String> get parentGroupId =>
       TfRef.attribute<String>(this, 'parent_group_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

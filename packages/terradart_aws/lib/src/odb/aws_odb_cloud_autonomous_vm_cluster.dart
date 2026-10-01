@@ -254,72 +254,71 @@ final class AwsOdbCloudAutonomousVmCluster extends Resource {
       TfRef.attribute<String>(this, 'time_ords_certificate_expires');
 
   /// Reference to `autonomous_data_storage_size_in_tbs` attribute.
-  TfRef<num> get autonomousDataStorageSizeInTbsRef =>
+  TfRef<num> get autonomousDataStorageSizeInTbs =>
       TfRef.attribute<num>(this, 'autonomous_data_storage_size_in_tbs');
 
   /// Reference to `cloud_exadata_infrastructure_arn` attribute.
-  TfRef<String> get cloudExadataInfrastructureArnRef =>
+  TfRef<String> get cloudExadataInfrastructureArn =>
       TfRef.attribute<String>(this, 'cloud_exadata_infrastructure_arn');
 
   /// Reference to `cloud_exadata_infrastructure_id` attribute.
-  TfRef<String> get cloudExadataInfrastructureIdRef =>
+  TfRef<String> get cloudExadataInfrastructureId =>
       TfRef.attribute<String>(this, 'cloud_exadata_infrastructure_id');
 
   /// Reference to `cpu_core_count_per_node` attribute.
-  TfRef<num> get cpuCoreCountPerNodeRef =>
+  TfRef<num> get cpuCoreCountPerNode =>
       TfRef.attribute<num>(this, 'cpu_core_count_per_node');
 
   /// Reference to `db_servers` attribute.
-  TfRef<List<String>> get dbServersRef =>
+  TfRef<List<String>> get dbServers =>
       TfRef.attribute<List<String>>(this, 'db_servers');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `is_mtls_enabled_vm_cluster` attribute.
-  TfRef<bool> get isMtlsEnabledVmClusterRef =>
+  TfRef<bool> get isMtlsEnabledVmCluster =>
       TfRef.attribute<bool>(this, 'is_mtls_enabled_vm_cluster');
 
   /// Reference to `license_model` attribute.
-  TfRef<String> get licenseModelRef =>
+  TfRef<String> get licenseModel =>
       TfRef.attribute<String>(this, 'license_model');
 
   /// Reference to `memory_per_oracle_compute_unit_in_gbs` attribute.
-  TfRef<num> get memoryPerOracleComputeUnitInGbsRef =>
+  TfRef<num> get memoryPerOracleComputeUnitInGbs =>
       TfRef.attribute<num>(this, 'memory_per_oracle_compute_unit_in_gbs');
 
   /// Reference to `odb_network_arn` attribute.
-  TfRef<String> get odbNetworkArnRef =>
+  TfRef<String> get odbNetworkArn =>
       TfRef.attribute<String>(this, 'odb_network_arn');
 
   /// Reference to `odb_network_id` attribute.
-  TfRef<String> get odbNetworkIdRef =>
+  TfRef<String> get odbNetworkId =>
       TfRef.attribute<String>(this, 'odb_network_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `scan_listener_port_non_tls` attribute.
-  TfRef<num> get scanListenerPortNonTlsRef =>
+  TfRef<num> get scanListenerPortNonTls =>
       TfRef.attribute<num>(this, 'scan_listener_port_non_tls');
 
   /// Reference to `scan_listener_port_tls` attribute.
-  TfRef<num> get scanListenerPortTlsRef =>
+  TfRef<num> get scanListenerPortTls =>
       TfRef.attribute<num>(this, 'scan_listener_port_tls');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `time_zone` attribute.
-  TfRef<String> get timeZoneRef => TfRef.attribute<String>(this, 'time_zone');
+  TfRef<String> get timeZone => TfRef.attribute<String>(this, 'time_zone');
 
   /// Reference to `total_container_databases` attribute.
-  TfRef<num> get totalContainerDatabasesRef =>
+  TfRef<num> get totalContainerDatabases =>
       TfRef.attribute<num>(this, 'total_container_databases');
 }

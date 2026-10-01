@@ -172,48 +172,48 @@ final class AwsKinesisStream extends Resource {
   RefTo<AwsKinesisStream> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `arn` attribute.
-  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+  TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `encryption_type` attribute.
-  TfRef<String> get encryptionTypeRef =>
+  TfRef<String> get encryptionType =>
       TfRef.attribute<String>(this, 'encryption_type');
 
   /// Reference to `enforce_consumer_deletion` attribute.
-  TfRef<bool> get enforceConsumerDeletionRef =>
+  TfRef<bool> get enforceConsumerDeletion =>
       TfRef.attribute<bool>(this, 'enforce_consumer_deletion');
 
   /// Reference to `kms_key_id` attribute.
-  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+  TfRef<String> get kmsKeyId => TfRef.attribute<String>(this, 'kms_key_id');
 
   /// Reference to `max_record_size_in_kib` attribute.
-  TfRef<num> get maxRecordSizeInKibRef =>
+  TfRef<num> get maxRecordSizeInKib =>
       TfRef.attribute<num>(this, 'max_record_size_in_kib');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `retention_period` attribute.
-  TfRef<num> get retentionPeriodRef =>
+  TfRef<num> get retentionPeriod =>
       TfRef.attribute<num>(this, 'retention_period');
 
   /// Reference to `shard_count` attribute.
-  TfRef<num> get shardCountRef => TfRef.attribute<num>(this, 'shard_count');
+  TfRef<num> get shardCount => TfRef.attribute<num>(this, 'shard_count');
 
   /// Reference to `shard_level_metrics` attribute.
-  TfRef<List<String>> get shardLevelMetricsRef =>
+  TfRef<List<String>> get shardLevelMetrics =>
       TfRef.attribute<List<String>>(this, 'shard_level_metrics');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `warm_throughput_mib_ps` attribute.
-  TfRef<num> get warmThroughputMibPsRef =>
+  TfRef<num> get warmThroughputMibPs =>
       TfRef.attribute<num>(this, 'warm_throughput_mib_ps');
 }

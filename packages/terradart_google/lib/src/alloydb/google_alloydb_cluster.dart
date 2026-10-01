@@ -756,7 +756,7 @@ final class GoogleAlloydbCluster extends Resource {
   RefTo<GoogleAlloydbCluster> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -813,50 +813,50 @@ final class GoogleAlloydbCluster extends Resource {
   TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
 
   /// Reference to `annotations` attribute.
-  TfRef<Map<String, String>> get annotationsRef =>
+  TfRef<Map<String, String>> get annotations =>
       TfRef.attribute<Map<String, String>>(this, 'annotations');
 
   /// Reference to `cluster_id` attribute.
-  TfRef<String> get clusterIdRef => TfRef.attribute<String>(this, 'cluster_id');
+  TfRef<String> get clusterId => TfRef.attribute<String>(this, 'cluster_id');
 
   /// Reference to `cluster_type` attribute.
-  TfRef<String> get clusterTypeRef =>
+  TfRef<String> get clusterType =>
       TfRef.attribute<String>(this, 'cluster_type');
 
   /// Reference to `database_version` attribute.
-  TfRef<String> get databaseVersionRef =>
+  TfRef<String> get databaseVersion =>
       TfRef.attribute<String>(this, 'database_version');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `deletion_protection` attribute.
-  TfRef<bool> get deletionProtectionRef =>
+  TfRef<bool> get deletionProtection =>
       TfRef.attribute<bool>(this, 'deletion_protection');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `etag` attribute.
-  TfRef<String> get etagRef => TfRef.attribute<String>(this, 'etag');
+  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `skip_await_major_version_upgrade` attribute.
-  TfRef<bool> get skipAwaitMajorVersionUpgradeRef =>
+  TfRef<bool> get skipAwaitMajorVersionUpgrade =>
       TfRef.attribute<bool>(this, 'skip_await_major_version_upgrade');
 
   /// Reference to `subscription_type` attribute.
-  TfRef<String> get subscriptionTypeRef =>
+  TfRef<String> get subscriptionType =>
       TfRef.attribute<String>(this, 'subscription_type');
 }

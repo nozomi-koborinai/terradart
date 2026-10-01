@@ -8,7 +8,7 @@ curatedDoc: |-
   /// Set `uniqueWriterIdentity: TfArg.literal(true)` to make GCP mint a
   /// dedicated writer service account; grant it the destination-side IAM
   /// role (e.g. `roles/bigquery.dataEditor`) by passing
-  /// `TfArg.ref(sink.writerIdentityRef)` to the IAM member resource.
+  /// `sink.writerIdentity` to the IAM member resource.
   ///
   /// Example:
   /// ```dart
@@ -34,13 +34,6 @@ paramOrder:
   - bigquery_options
   - exclusions
   - project
-
-extraGetters: |2
-    /// Reference to `writer_identity` attribute. Auto-populated when
-    /// `unique_writer_identity = true`; pass via `TfArg.ref(sink.writerIdentityRef)`
-    /// to the destination's IAM member resource so the sink can write logs.
-    TfRef<String> get writerIdentityRef =>
-        TfRef.attribute<String>(this, 'writer_identity');
 
 prelude: |
   /// `bigquery_options` block. Toggles partitioned tables for BigQuery

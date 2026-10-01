@@ -41,10 +41,10 @@ final class DataCloudflareList extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `kind` attribute.
-  TfRef<String> get kindRef => TfRef.attribute<String>(this, 'kind');
+  TfRef<String> get kindAttr => TfRef.attribute<String>(this, 'kind');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -66,11 +66,11 @@ final class DataCloudflareList extends Data {
       TfRef.attribute<num>(this, 'num_referencing_filters');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `list_id` attribute.
-  TfRef<String> get listIdRef => TfRef.attribute<String>(this, 'list_id');
+  TfRef<String> get listId => TfRef.attribute<String>(this, 'list_id');
 
   /// Reference to `search` attribute.
-  TfRef<String> get searchRef => TfRef.attribute<String>(this, 'search');
+  TfRef<String> get search => TfRef.attribute<String>(this, 'search');
 }

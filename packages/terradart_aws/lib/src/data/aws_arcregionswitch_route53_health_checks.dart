@@ -30,8 +30,8 @@ final class DataAwsArcregionswitchRoute53HealthChecks extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'health_checks');
 
   /// Reference to `plan_arn` attribute.
-  TfRef<String> get planArnRef => TfRef.attribute<String>(this, 'plan_arn');
+  TfRef<String> get planArn => TfRef.attribute<String>(this, 'plan_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

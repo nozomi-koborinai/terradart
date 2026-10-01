@@ -105,9 +105,9 @@ final class DataCloudflareOauthClient extends Data {
   TfRef<String> get visibility => TfRef.attribute<String>(this, 'visibility');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `oauth_client_id` attribute.
-  TfRef<String> get oauthClientIdRef =>
+  TfRef<String> get oauthClientId =>
       TfRef.attribute<String>(this, 'oauth_client_id');
 }

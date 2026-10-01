@@ -31,7 +31,7 @@ final class DataAwsCeCostCategory extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -61,10 +61,10 @@ final class DataAwsCeCostCategory extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'split_charge_rule');
 
   /// Reference to `cost_category_arn` attribute.
-  TfRef<String> get costCategoryArnRef =>
+  TfRef<String> get costCategoryArn =>
       TfRef.attribute<String>(this, 'cost_category_arn');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

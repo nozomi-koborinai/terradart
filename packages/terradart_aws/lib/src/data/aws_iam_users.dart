@@ -34,9 +34,8 @@ final class DataAwsIamUsers extends Data {
   TfRef<List<String>> get names => TfRef.attribute<List<String>>(this, 'names');
 
   /// Reference to `name_regex` attribute.
-  TfRef<String> get nameRegexRef => TfRef.attribute<String>(this, 'name_regex');
+  TfRef<String> get nameRegex => TfRef.attribute<String>(this, 'name_regex');
 
   /// Reference to `path_prefix` attribute.
-  TfRef<String> get pathPrefixRef =>
-      TfRef.attribute<String>(this, 'path_prefix');
+  TfRef<String> get pathPrefix => TfRef.attribute<String>(this, 'path_prefix');
 }

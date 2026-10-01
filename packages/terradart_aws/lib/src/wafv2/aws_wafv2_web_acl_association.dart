@@ -39,13 +39,12 @@ final class AwsWafv2WebAclAssociation extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resource_arn` attribute.
-  TfRef<String> get resourceArnRef =>
+  TfRef<String> get resourceArn =>
       TfRef.attribute<String>(this, 'resource_arn');
 
   /// Reference to `web_acl_arn` attribute.
-  TfRef<String> get webAclArnRef =>
-      TfRef.attribute<String>(this, 'web_acl_arn');
+  TfRef<String> get webAclArn => TfRef.attribute<String>(this, 'web_acl_arn');
 }

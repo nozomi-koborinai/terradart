@@ -289,7 +289,7 @@ final class GoogleDiscoveryEngineDataConnector extends Resource {
   RefTo<GoogleDiscoveryEngineDataConnector> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -340,70 +340,67 @@ final class GoogleDiscoveryEngineDataConnector extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `auto_run_disabled` attribute.
-  TfRef<bool> get autoRunDisabledRef =>
+  TfRef<bool> get autoRunDisabled =>
       TfRef.attribute<bool>(this, 'auto_run_disabled');
 
   /// Reference to `collection_display_name` attribute.
-  TfRef<String> get collectionDisplayNameRef =>
+  TfRef<String> get collectionDisplayName =>
       TfRef.attribute<String>(this, 'collection_display_name');
 
   /// Reference to `collection_id` attribute.
-  TfRef<String> get collectionIdRef =>
+  TfRef<String> get collectionId =>
       TfRef.attribute<String>(this, 'collection_id');
 
   /// Reference to `connector_modes` attribute.
-  TfRef<List<String>> get connectorModesRef =>
+  TfRef<List<String>> get connectorModes =>
       TfRef.attribute<List<String>>(this, 'connector_modes');
 
   /// Reference to `data_source` attribute.
-  TfRef<String> get dataSourceRef =>
-      TfRef.attribute<String>(this, 'data_source');
+  TfRef<String> get dataSource => TfRef.attribute<String>(this, 'data_source');
 
   /// Reference to `data_source_version` attribute.
-  TfRef<num> get dataSourceVersionRef =>
+  TfRef<num> get dataSourceVersion =>
       TfRef.attribute<num>(this, 'data_source_version');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `incremental_refresh_interval` attribute.
-  TfRef<String> get incrementalRefreshIntervalRef =>
+  TfRef<String> get incrementalRefreshInterval =>
       TfRef.attribute<String>(this, 'incremental_refresh_interval');
 
   /// Reference to `incremental_sync_disabled` attribute.
-  TfRef<bool> get incrementalSyncDisabledRef =>
+  TfRef<bool> get incrementalSyncDisabled =>
       TfRef.attribute<bool>(this, 'incremental_sync_disabled');
 
   /// Reference to `json_params` attribute.
-  TfRef<String> get jsonParamsRef =>
-      TfRef.attribute<String>(this, 'json_params');
+  TfRef<String> get jsonParams => TfRef.attribute<String>(this, 'json_params');
 
   /// Reference to `kms_key_name` attribute.
-  TfRef<String> get kmsKeyNameRef =>
-      TfRef.attribute<String>(this, 'kms_key_name');
+  TfRef<String> get kmsKeyName => TfRef.attribute<String>(this, 'kms_key_name');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `params` attribute.
-  TfRef<Map<String, String>> get paramsRef =>
+  TfRef<Map<String, String>> get params =>
       TfRef.attribute<Map<String, String>>(this, 'params');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `refresh_interval` attribute.
-  TfRef<String> get refreshIntervalRef =>
+  TfRef<String> get refreshInterval =>
       TfRef.attribute<String>(this, 'refresh_interval');
 
   /// Reference to `static_ip_enabled` attribute.
-  TfRef<bool> get staticIpEnabledRef =>
+  TfRef<bool> get staticIpEnabled =>
       TfRef.attribute<bool>(this, 'static_ip_enabled');
 
   /// Reference to `sync_mode` attribute.
-  TfRef<String> get syncModeRef => TfRef.attribute<String>(this, 'sync_mode');
+  TfRef<String> get syncMode => TfRef.attribute<String>(this, 'sync_mode');
 
   /// Reference to `tag` attribute.
-  TfRef<String> get tagRef => TfRef.attribute<String>(this, 'tag');
+  TfRef<String> get tag => TfRef.attribute<String>(this, 'tag');
 }

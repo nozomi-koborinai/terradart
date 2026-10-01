@@ -83,6 +83,9 @@ final class GoogleApigeeAppGroup extends Resource {
   /// `RefTo<GoogleApigeeAppGroup>`.
   RefTo<GoogleApigeeAppGroup> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -101,29 +104,22 @@ final class GoogleApigeeAppGroup extends Resource {
       TfRef.attribute<String>(this, 'organization');
 
   /// Reference to `channel_id` attribute.
-  TfRef<String> get channelIdRef => TfRef.attribute<String>(this, 'channel_id');
+  TfRef<String> get channelId => TfRef.attribute<String>(this, 'channel_id');
 
   /// Reference to `channel_uri` attribute.
-  TfRef<String> get channelUriRef =>
-      TfRef.attribute<String>(this, 'channel_uri');
+  TfRef<String> get channelUri => TfRef.attribute<String>(this, 'channel_uri');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `org_id` attribute.
-  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
+  TfRef<String> get orgId => TfRef.attribute<String>(this, 'org_id');
 
   /// Reference to `status` attribute.
-  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 }

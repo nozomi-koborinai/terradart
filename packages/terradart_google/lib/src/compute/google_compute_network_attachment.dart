@@ -70,8 +70,11 @@ final class GoogleComputeNetworkAttachment extends Resource {
   /// `RefTo<GoogleComputeNetworkAttachment>`.
   RefTo<GoogleComputeNetworkAttachment> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `kind` attribute.
-  TfRef<String> get kindRef => TfRef.attribute<String>(this, 'kind');
+  TfRef<String> get kindAttr => TfRef.attribute<String>(this, 'kind');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -95,37 +98,33 @@ final class GoogleComputeNetworkAttachment extends Resource {
       TfRef.attribute<String>(this, 'self_link_with_id');
 
   /// Reference to `connection_preference` attribute.
-  TfRef<String> get connectionPreferenceRef =>
+  TfRef<String> get connectionPreference =>
       TfRef.attribute<String>(this, 'connection_preference');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `producer_accept_lists` attribute.
-  TfRef<List<String>> get producerAcceptListsRef =>
+  TfRef<List<String>> get producerAcceptLists =>
       TfRef.attribute<List<String>>(this, 'producer_accept_lists');
 
   /// Reference to `producer_reject_lists` attribute.
-  TfRef<List<String>> get producerRejectListsRef =>
+  TfRef<List<String>> get producerRejectLists =>
       TfRef.attribute<List<String>>(this, 'producer_reject_lists');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `subnetworks` attribute.
-  TfRef<List<String>> get subnetworksRef =>
+  TfRef<List<String>> get subnetworks =>
       TfRef.attribute<List<String>>(this, 'subnetworks');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');

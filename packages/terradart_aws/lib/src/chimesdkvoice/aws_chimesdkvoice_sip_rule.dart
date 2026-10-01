@@ -78,22 +78,22 @@ final class AwsChimesdkvoiceSipRule extends Resource {
   RefTo<AwsChimesdkvoiceSipRule> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `disabled` attribute.
-  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+  TfRef<bool> get disabled => TfRef.attribute<bool>(this, 'disabled');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `trigger_type` attribute.
-  TfRef<String> get triggerTypeRef =>
+  TfRef<String> get triggerType =>
       TfRef.attribute<String>(this, 'trigger_type');
 
   /// Reference to `trigger_value` attribute.
-  TfRef<String> get triggerValueRef =>
+  TfRef<String> get triggerValue =>
       TfRef.attribute<String>(this, 'trigger_value');
 }

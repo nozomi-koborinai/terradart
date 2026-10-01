@@ -81,13 +81,13 @@ final class AwsGlobalacceleratorListener extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `accelerator_arn` attribute.
-  TfRef<String> get acceleratorArnRef =>
+  TfRef<String> get acceleratorArn =>
       TfRef.attribute<String>(this, 'accelerator_arn');
 
   /// Reference to `client_affinity` attribute.
-  TfRef<String> get clientAffinityRef =>
+  TfRef<String> get clientAffinity =>
       TfRef.attribute<String>(this, 'client_affinity');
 
   /// Reference to `protocol` attribute.
-  TfRef<String> get protocolRef => TfRef.attribute<String>(this, 'protocol');
+  TfRef<String> get protocol => TfRef.attribute<String>(this, 'protocol');
 }

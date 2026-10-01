@@ -268,7 +268,7 @@ final class AwsVpclatticeResourceConfiguration extends Resource {
   RefTo<AwsVpclatticeResourceConfiguration> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -289,42 +289,42 @@ final class AwsVpclatticeResourceConfiguration extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `allow_association_to_shareable_service_network` attribute.
-  TfRef<bool> get allowAssociationToShareableServiceNetworkRef =>
+  TfRef<bool> get allowAssociationToShareableServiceNetwork =>
       TfRef.attribute<bool>(
         this,
         'allow_association_to_shareable_service_network',
       );
 
   /// Reference to `custom_domain_name` attribute.
-  TfRef<String> get customDomainNameRef =>
+  TfRef<String> get customDomainName =>
       TfRef.attribute<String>(this, 'custom_domain_name');
 
   /// Reference to `domain_verification_id` attribute.
-  TfRef<String> get domainVerificationIdRef =>
+  TfRef<String> get domainVerificationId =>
       TfRef.attribute<String>(this, 'domain_verification_id');
 
   /// Reference to `port_ranges` attribute.
-  TfRef<List<String>> get portRangesRef =>
+  TfRef<List<String>> get portRanges =>
       TfRef.attribute<List<String>>(this, 'port_ranges');
 
   /// Reference to `protocol` attribute.
-  TfRef<String> get protocolRef => TfRef.attribute<String>(this, 'protocol');
+  TfRef<String> get protocol => TfRef.attribute<String>(this, 'protocol');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resource_configuration_group_id` attribute.
-  TfRef<String> get resourceConfigurationGroupIdRef =>
+  TfRef<String> get resourceConfigurationGroupId =>
       TfRef.attribute<String>(this, 'resource_configuration_group_id');
 
   /// Reference to `resource_gateway_identifier` attribute.
-  TfRef<String> get resourceGatewayIdentifierRef =>
+  TfRef<String> get resourceGatewayIdentifier =>
       TfRef.attribute<String>(this, 'resource_gateway_identifier');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

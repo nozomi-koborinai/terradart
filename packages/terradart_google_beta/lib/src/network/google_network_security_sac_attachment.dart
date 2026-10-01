@@ -87,7 +87,7 @@ final class GoogleNetworkSecuritySacAttachment extends Resource {
   RefTo<GoogleNetworkSecuritySacAttachment> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -110,29 +110,28 @@ final class GoogleNetworkSecuritySacAttachment extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `country` attribute.
-  TfRef<String> get countryRef => TfRef.attribute<String>(this, 'country');
+  TfRef<String> get country => TfRef.attribute<String>(this, 'country');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `ncc_gateway` attribute.
-  TfRef<String> get nccGatewayRef =>
-      TfRef.attribute<String>(this, 'ncc_gateway');
+  TfRef<String> get nccGateway => TfRef.attribute<String>(this, 'ncc_gateway');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `sac_realm` attribute.
-  TfRef<String> get sacRealmRef => TfRef.attribute<String>(this, 'sac_realm');
+  TfRef<String> get sacRealm => TfRef.attribute<String>(this, 'sac_realm');
 
   /// Reference to `time_zone` attribute.
-  TfRef<String> get timeZoneRef => TfRef.attribute<String>(this, 'time_zone');
+  TfRef<String> get timeZone => TfRef.attribute<String>(this, 'time_zone');
 }

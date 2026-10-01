@@ -88,6 +88,9 @@ final class GoogleChronicleDataExport extends Resource {
   /// `RefTo<GoogleChronicleDataExport>`.
   RefTo<GoogleChronicleDataExport> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -114,34 +117,28 @@ final class GoogleChronicleDataExport extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `end_time` attribute.
-  TfRef<String> get endTimeRef => TfRef.attribute<String>(this, 'end_time');
+  TfRef<String> get endTime => TfRef.attribute<String>(this, 'end_time');
 
   /// Reference to `gcs_bucket` attribute.
-  TfRef<String> get gcsBucketRef => TfRef.attribute<String>(this, 'gcs_bucket');
+  TfRef<String> get gcsBucket => TfRef.attribute<String>(this, 'gcs_bucket');
 
   /// Reference to `include_log_types` attribute.
-  TfRef<List<String>> get includeLogTypesRef =>
+  TfRef<List<String>> get includeLogTypes =>
       TfRef.attribute<List<String>>(this, 'include_log_types');
 
   /// Reference to `instance` attribute.
-  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+  TfRef<String> get instance => TfRef.attribute<String>(this, 'instance');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `namespaces` attribute.
-  TfRef<List<String>> get namespacesRef =>
+  TfRef<List<String>> get namespaces =>
       TfRef.attribute<List<String>>(this, 'namespaces');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `start_time` attribute.
-  TfRef<String> get startTimeRef => TfRef.attribute<String>(this, 'start_time');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get startTime => TfRef.attribute<String>(this, 'start_time');
 }

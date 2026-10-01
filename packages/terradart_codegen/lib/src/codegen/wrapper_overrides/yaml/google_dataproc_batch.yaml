@@ -241,19 +241,5 @@ customSlots:
     paramDeclaration: 'required DataprocBatchWorkload workload'
     argMapEntry: 'workload.blockKey: TfArg.literal(workload.encode()),'
 
-extraGetters: |2
-    /// Reference to `batch_id` for cross-stack refs.
-    TfRef<String> get batchIdRef =>
-        TfRef.attribute<String>(this, 'batch_id');
-
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `id` attribute.
-    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `uuid` attribute.
-    TfRef<String> get uuidRef => TfRef.attribute<String>(this, 'uuid');
-
 sealedNames:
   "environment_config.execution_config.network_uri, environment_config.execution_config.subnetwork_uri": network

@@ -66,7 +66,7 @@ final class AwsIvsChannel extends Resource {
   RefTo<AwsIvsChannel> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -83,23 +83,23 @@ final class AwsIvsChannel extends Resource {
       TfRef.attribute<String>(this, 'playback_url');
 
   /// Reference to `authorized` attribute.
-  TfRef<bool> get authorizedRef => TfRef.attribute<bool>(this, 'authorized');
+  TfRef<bool> get authorized => TfRef.attribute<bool>(this, 'authorized');
 
   /// Reference to `latency_mode` attribute.
-  TfRef<String> get latencyModeRef =>
+  TfRef<String> get latencyMode =>
       TfRef.attribute<String>(this, 'latency_mode');
 
   /// Reference to `recording_configuration_arn` attribute.
-  TfRef<String> get recordingConfigurationArnRef =>
+  TfRef<String> get recordingConfigurationArn =>
       TfRef.attribute<String>(this, 'recording_configuration_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

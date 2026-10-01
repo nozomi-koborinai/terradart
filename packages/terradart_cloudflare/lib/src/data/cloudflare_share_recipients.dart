@@ -33,15 +33,15 @@ final class DataCloudflareShareRecipients extends Data {
   Set<String> get sensitiveFields => _cloudflareShareRecipientsSensitive;
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `include_resources` attribute.
-  TfRef<bool> get includeResourcesRef =>
+  TfRef<bool> get includeResources =>
       TfRef.attribute<bool>(this, 'include_resources');
 
   /// Reference to `max_items` attribute.
-  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+  TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
 
   /// Reference to `share_id` attribute.
-  TfRef<String> get shareIdRef => TfRef.attribute<String>(this, 'share_id');
+  TfRef<String> get shareId => TfRef.attribute<String>(this, 'share_id');
 }

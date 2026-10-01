@@ -171,6 +171,6 @@ final class AppEngineStack extends Stack {
       ),
     );
 
-    addOutput('app_engine_app_id', .ref(app.id));
+    addOutput('app_engine_app_id', app.id);
   }
 }

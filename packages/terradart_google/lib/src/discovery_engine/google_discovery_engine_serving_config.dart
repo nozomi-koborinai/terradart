@@ -68,45 +68,45 @@ final class GoogleDiscoveryEngineServingConfig extends Resource {
   RefTo<GoogleDiscoveryEngineServingConfig> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `boost_control_ids` attribute.
-  TfRef<List<String>> get boostControlIdsRef =>
+  TfRef<List<String>> get boostControlIds =>
       TfRef.attribute<List<String>>(this, 'boost_control_ids');
 
   /// Reference to `collection_id` attribute.
-  TfRef<String> get collectionIdRef =>
+  TfRef<String> get collectionId =>
       TfRef.attribute<String>(this, 'collection_id');
 
   /// Reference to `engine_id` attribute.
-  TfRef<String> get engineIdRef => TfRef.attribute<String>(this, 'engine_id');
+  TfRef<String> get engineId => TfRef.attribute<String>(this, 'engine_id');
 
   /// Reference to `filter_control_ids` attribute.
-  TfRef<List<String>> get filterControlIdsRef =>
+  TfRef<List<String>> get filterControlIds =>
       TfRef.attribute<List<String>>(this, 'filter_control_ids');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `promote_control_ids` attribute.
-  TfRef<List<String>> get promoteControlIdsRef =>
+  TfRef<List<String>> get promoteControlIds =>
       TfRef.attribute<List<String>>(this, 'promote_control_ids');
 
   /// Reference to `redirect_control_ids` attribute.
-  TfRef<List<String>> get redirectControlIdsRef =>
+  TfRef<List<String>> get redirectControlIds =>
       TfRef.attribute<List<String>>(this, 'redirect_control_ids');
 
-  /// Reference to `synonyms_control_ids` attribute.
-  TfRef<List<String>> get synonymsControlIdsRef =>
-      TfRef.attribute<List<String>>(this, 'synonyms_control_ids');
-
   /// Reference to `serving_config_id` attribute.
-  TfRef<String> get servingConfigIdRef =>
+  TfRef<String> get servingConfigId =>
       TfRef.attribute<String>(this, 'serving_config_id');
+
+  /// Reference to `synonyms_control_ids` attribute.
+  TfRef<List<String>> get synonymsControlIds =>
+      TfRef.attribute<List<String>>(this, 'synonyms_control_ids');
 }

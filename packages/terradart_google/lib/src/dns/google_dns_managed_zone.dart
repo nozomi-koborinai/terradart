@@ -307,7 +307,7 @@ final class GoogleDnsManagedZone extends Resource {
   RefTo<GoogleDnsManagedZone> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -332,28 +332,25 @@ final class GoogleDnsManagedZone extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `dns_name` attribute.
+  TfRef<String> get dnsName => TfRef.attribute<String>(this, 'dns_name');
 
   /// Reference to `force_destroy` attribute.
-  TfRef<bool> get forceDestroyRef =>
-      TfRef.attribute<bool>(this, 'force_destroy');
+  TfRef<bool> get forceDestroy => TfRef.attribute<bool>(this, 'force_destroy');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `visibility` attribute.
-  TfRef<String> get visibilityRef =>
-      TfRef.attribute<String>(this, 'visibility');
-
-  /// Reference to `dns_name` attribute (the trailing-dot DNS name).
-  TfRef<String> get dnsNameRef => TfRef.attribute<String>(this, 'dns_name');
+  TfRef<String> get visibility => TfRef.attribute<String>(this, 'visibility');
 }

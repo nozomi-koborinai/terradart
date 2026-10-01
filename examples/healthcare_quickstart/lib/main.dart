@@ -154,9 +154,9 @@ final class HealthcareStack extends Stack {
     );
 
     // Literal dataset name -- emitted as a Dart constant at synth time.
-    addConstant('healthcareDatasetName', .ref(dataset.nameRef));
+    addConstant('healthcareDatasetName', .ref(dataset.name));
 
     // Full dataset resource id -- Terraform output only (computed).
-    addOutput('healthcare_dataset_id', .ref(dataset.id));
+    addOutput('healthcare_dataset_id', dataset.id);
   }
 }

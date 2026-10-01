@@ -249,119 +249,118 @@ final class AwsNeptuneCluster extends Resource {
       TfRef.attribute<String>(this, 'reader_endpoint');
 
   /// Reference to `allow_major_version_upgrade` attribute.
-  TfRef<bool> get allowMajorVersionUpgradeRef =>
+  TfRef<bool> get allowMajorVersionUpgrade =>
       TfRef.attribute<bool>(this, 'allow_major_version_upgrade');
 
   /// Reference to `apply_immediately` attribute.
-  TfRef<bool> get applyImmediatelyRef =>
+  TfRef<bool> get applyImmediately =>
       TfRef.attribute<bool>(this, 'apply_immediately');
 
   /// Reference to `availability_zones` attribute.
-  TfRef<List<String>> get availabilityZonesRef =>
+  TfRef<List<String>> get availabilityZones =>
       TfRef.attribute<List<String>>(this, 'availability_zones');
 
   /// Reference to `backup_retention_period` attribute.
-  TfRef<num> get backupRetentionPeriodRef =>
+  TfRef<num> get backupRetentionPeriod =>
       TfRef.attribute<num>(this, 'backup_retention_period');
 
   /// Reference to `cluster_identifier` attribute.
-  TfRef<String> get clusterIdentifierRef =>
+  TfRef<String> get clusterIdentifier =>
       TfRef.attribute<String>(this, 'cluster_identifier');
 
   /// Reference to `cluster_identifier_prefix` attribute.
-  TfRef<String> get clusterIdentifierPrefixRef =>
+  TfRef<String> get clusterIdentifierPrefix =>
       TfRef.attribute<String>(this, 'cluster_identifier_prefix');
 
   /// Reference to `copy_tags_to_snapshot` attribute.
-  TfRef<bool> get copyTagsToSnapshotRef =>
+  TfRef<bool> get copyTagsToSnapshot =>
       TfRef.attribute<bool>(this, 'copy_tags_to_snapshot');
 
   /// Reference to `deletion_protection` attribute.
-  TfRef<bool> get deletionProtectionRef =>
+  TfRef<bool> get deletionProtection =>
       TfRef.attribute<bool>(this, 'deletion_protection');
 
   /// Reference to `enable_cloudwatch_logs_exports` attribute.
-  TfRef<List<String>> get enableCloudwatchLogsExportsRef =>
+  TfRef<List<String>> get enableCloudwatchLogsExports =>
       TfRef.attribute<List<String>>(this, 'enable_cloudwatch_logs_exports');
 
   /// Reference to `engine` attribute.
-  TfRef<String> get engineRef => TfRef.attribute<String>(this, 'engine');
+  TfRef<String> get engine => TfRef.attribute<String>(this, 'engine');
 
   /// Reference to `engine_version` attribute.
-  TfRef<String> get engineVersionRef =>
+  TfRef<String> get engineVersion =>
       TfRef.attribute<String>(this, 'engine_version');
 
   /// Reference to `final_snapshot_identifier` attribute.
-  TfRef<String> get finalSnapshotIdentifierRef =>
+  TfRef<String> get finalSnapshotIdentifier =>
       TfRef.attribute<String>(this, 'final_snapshot_identifier');
 
   /// Reference to `global_cluster_identifier` attribute.
-  TfRef<String> get globalClusterIdentifierRef =>
+  TfRef<String> get globalClusterIdentifier =>
       TfRef.attribute<String>(this, 'global_cluster_identifier');
 
   /// Reference to `iam_database_authentication_enabled` attribute.
-  TfRef<bool> get iamDatabaseAuthenticationEnabledRef =>
+  TfRef<bool> get iamDatabaseAuthenticationEnabled =>
       TfRef.attribute<bool>(this, 'iam_database_authentication_enabled');
 
   /// Reference to `iam_roles` attribute.
-  TfRef<List<String>> get iamRolesRef =>
+  TfRef<List<String>> get iamRoles =>
       TfRef.attribute<List<String>>(this, 'iam_roles');
 
   /// Reference to `kms_key_arn` attribute.
-  TfRef<String> get kmsKeyArnRef =>
-      TfRef.attribute<String>(this, 'kms_key_arn');
+  TfRef<String> get kmsKeyArn => TfRef.attribute<String>(this, 'kms_key_arn');
 
   /// Reference to `neptune_cluster_parameter_group_name` attribute.
-  TfRef<String> get neptuneClusterParameterGroupNameRef =>
+  TfRef<String> get neptuneClusterParameterGroupName =>
       TfRef.attribute<String>(this, 'neptune_cluster_parameter_group_name');
 
   /// Reference to `neptune_instance_parameter_group_name` attribute.
-  TfRef<String> get neptuneInstanceParameterGroupNameRef =>
+  TfRef<String> get neptuneInstanceParameterGroupName =>
       TfRef.attribute<String>(this, 'neptune_instance_parameter_group_name');
 
   /// Reference to `neptune_subnet_group_name` attribute.
-  TfRef<String> get neptuneSubnetGroupNameRef =>
+  TfRef<String> get neptuneSubnetGroupName =>
       TfRef.attribute<String>(this, 'neptune_subnet_group_name');
 
   /// Reference to `port` attribute.
-  TfRef<num> get portRef => TfRef.attribute<num>(this, 'port');
+  TfRef<num> get port => TfRef.attribute<num>(this, 'port');
 
   /// Reference to `preferred_backup_window` attribute.
-  TfRef<String> get preferredBackupWindowRef =>
+  TfRef<String> get preferredBackupWindow =>
       TfRef.attribute<String>(this, 'preferred_backup_window');
 
   /// Reference to `preferred_maintenance_window` attribute.
-  TfRef<String> get preferredMaintenanceWindowRef =>
+  TfRef<String> get preferredMaintenanceWindow =>
       TfRef.attribute<String>(this, 'preferred_maintenance_window');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `replication_source_identifier` attribute.
-  TfRef<String> get replicationSourceIdentifierRef =>
+  TfRef<String> get replicationSourceIdentifier =>
       TfRef.attribute<String>(this, 'replication_source_identifier');
 
   /// Reference to `skip_final_snapshot` attribute.
-  TfRef<bool> get skipFinalSnapshotRef =>
+  TfRef<bool> get skipFinalSnapshot =>
       TfRef.attribute<bool>(this, 'skip_final_snapshot');
 
   /// Reference to `snapshot_identifier` attribute.
-  TfRef<String> get snapshotIdentifierRef =>
+  TfRef<String> get snapshotIdentifier =>
       TfRef.attribute<String>(this, 'snapshot_identifier');
 
   /// Reference to `storage_encrypted` attribute.
-  TfRef<bool> get storageEncryptedRef =>
+  TfRef<bool> get storageEncrypted =>
       TfRef.attribute<bool>(this, 'storage_encrypted');
 
   /// Reference to `storage_type` attribute.
-  TfRef<String> get storageTypeRef =>
+  TfRef<String> get storageType =>
       TfRef.attribute<String>(this, 'storage_type');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `vpc_security_group_ids` attribute.
-  TfRef<List<String>> get vpcSecurityGroupIdsRef =>
+  TfRef<List<String>> get vpcSecurityGroupIds =>
       TfRef.attribute<List<String>>(this, 'vpc_security_group_ids');
 }

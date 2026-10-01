@@ -130,26 +130,26 @@ final class GoogleStorageFtpUser extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `customer_service_account` attribute.
-  TfRef<String> get customerServiceAccountRef =>
+  TfRef<String> get customerServiceAccount =>
       TfRef.attribute<String>(this, 'customer_service_account');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `server_id` attribute.
-  TfRef<String> get serverIdRef => TfRef.attribute<String>(this, 'server_id');
+  TfRef<String> get serverId => TfRef.attribute<String>(this, 'server_id');
 
   /// Reference to `user_id` attribute.
-  TfRef<String> get userIdRef => TfRef.attribute<String>(this, 'user_id');
+  TfRef<String> get userId => TfRef.attribute<String>(this, 'user_id');
 }

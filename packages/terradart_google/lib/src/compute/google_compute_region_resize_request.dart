@@ -97,6 +97,9 @@ final class GoogleComputeRegionResizeRequest extends Resource {
   /// `RefTo<GoogleComputeRegionResizeRequest>`.
   RefTo<GoogleComputeRegionResizeRequest> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -112,26 +115,22 @@ final class GoogleComputeRegionResizeRequest extends Resource {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'status');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `instance_group_manager` attribute.
-  TfRef<String> get instanceGroupManagerRef =>
+  TfRef<String> get instanceGroupManager =>
       TfRef.attribute<String>(this, 'instance_group_manager');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resize_by` attribute.
-  TfRef<num> get resizeByRef => TfRef.attribute<num>(this, 'resize_by');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<num> get resizeBy => TfRef.attribute<num>(this, 'resize_by');
 }

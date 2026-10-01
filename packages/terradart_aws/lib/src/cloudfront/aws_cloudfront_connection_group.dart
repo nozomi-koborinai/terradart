@@ -42,7 +42,7 @@ final class AwsCloudfrontConnectionGroup extends Resource {
   RefTo<AwsCloudfrontConnectionGroup> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -72,20 +72,20 @@ final class AwsCloudfrontConnectionGroup extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `anycast_ip_list_id` attribute.
-  TfRef<String> get anycastIpListIdRef =>
+  TfRef<String> get anycastIpListId =>
       TfRef.attribute<String>(this, 'anycast_ip_list_id');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `ipv6_enabled` attribute.
-  TfRef<bool> get ipv6EnabledRef => TfRef.attribute<bool>(this, 'ipv6_enabled');
+  TfRef<bool> get ipv6Enabled => TfRef.attribute<bool>(this, 'ipv6_enabled');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `wait_for_deployment` attribute.
-  TfRef<bool> get waitForDeploymentRef =>
+  TfRef<bool> get waitForDeployment =>
       TfRef.attribute<bool>(this, 'wait_for_deployment');
 }

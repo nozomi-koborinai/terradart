@@ -44,17 +44,17 @@ final class CloudflareDnsZoneTransfersTsig extends Resource {
   RefTo<CloudflareDnsZoneTransfersTsig> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `algo` attribute.
-  TfRef<String> get algoRef => TfRef.attribute<String>(this, 'algo');
+  TfRef<String> get algo => TfRef.attribute<String>(this, 'algo');
 
   /// Reference to `secret` attribute.
-  TfRef<String> get secretRef => TfRef.attribute<String>(this, 'secret');
+  TfRef<String> get secret => TfRef.attribute<String>(this, 'secret');
 }

@@ -41,7 +41,7 @@ curatedDoc: |-
   ///     noExternalIp: TfArg.literal(true),
   ///   ),
   ///   networkConfig: CloudbuildWorkerPoolNetworkConfig(
-  ///     peeredNetwork: TfArg.ref(vpc.selfLink),
+  ///     peeredNetwork: vpc.selfLink,
   ///     peeredNetworkIpRange: TfArg.literal('/29'),
   ///   ),
   /// );
@@ -67,12 +67,6 @@ deriveOutputGetters: true
 
 extraImports:
   - "import 'package:meta/meta.dart';"
-
-extraGetters: |2
-    /// Reference to `state` attribute. One of `STATE_UNSPECIFIED`,
-    /// `PENDING`, `APPROVED`, `REJECTED`, `CANCELLED` (Output-only on the
-    /// provider; surfaced as a string for interpolation into outputs).
-    TfRef<String> get stateRef => TfRef.attribute<String>(this, 'state');
 
 prelude: |
   // ===========================================================================
@@ -135,7 +129,7 @@ prelude: |
 
     /// Self-link of the VPC the workers peer to. Must use the
     /// `projects/{project_number}/global/networks/{network}` form — pass
-    /// `TfArg.ref(vpc.selfLink)` so the value resolves correctly. Note
+    /// `vpc.selfLink` so the value resolves correctly. Note
     /// the path requires a project NUMBER, not a project ID.
     final TfArg<String> peeredNetwork;
 

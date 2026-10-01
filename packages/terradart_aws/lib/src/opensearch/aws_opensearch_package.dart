@@ -86,21 +86,21 @@ final class AwsOpensearchPackage extends Resource {
   TfRef<String> get packageId => TfRef.attribute<String>(this, 'package_id');
 
   /// Reference to `engine_version` attribute.
-  TfRef<String> get engineVersionRef =>
+  TfRef<String> get engineVersion =>
       TfRef.attribute<String>(this, 'engine_version');
 
   /// Reference to `package_description` attribute.
-  TfRef<String> get packageDescriptionRef =>
+  TfRef<String> get packageDescription =>
       TfRef.attribute<String>(this, 'package_description');
 
   /// Reference to `package_name` attribute.
-  TfRef<String> get packageNameRef =>
+  TfRef<String> get packageName =>
       TfRef.attribute<String>(this, 'package_name');
 
   /// Reference to `package_type` attribute.
-  TfRef<String> get packageTypeRef =>
+  TfRef<String> get packageType =>
       TfRef.attribute<String>(this, 'package_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

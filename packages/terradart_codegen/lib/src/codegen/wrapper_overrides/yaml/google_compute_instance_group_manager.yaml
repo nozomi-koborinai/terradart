@@ -125,8 +125,6 @@ extraImports:
   - "import 'package:meta/meta.dart';"
 
 extraGetters: |2
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
     /// Reference to `id` attribute
     /// (`projects/{project}/zones/{zone}/instanceGroupManagers/{name}`).

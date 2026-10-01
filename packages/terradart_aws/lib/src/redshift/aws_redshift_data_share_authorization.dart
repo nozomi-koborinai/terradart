@@ -49,16 +49,16 @@ final class AwsRedshiftDataShareAuthorization extends Resource {
       TfRef.attribute<String>(this, 'producer_arn');
 
   /// Reference to `allow_writes` attribute.
-  TfRef<bool> get allowWritesRef => TfRef.attribute<bool>(this, 'allow_writes');
+  TfRef<bool> get allowWrites => TfRef.attribute<bool>(this, 'allow_writes');
 
   /// Reference to `consumer_identifier` attribute.
-  TfRef<String> get consumerIdentifierRef =>
+  TfRef<String> get consumerIdentifier =>
       TfRef.attribute<String>(this, 'consumer_identifier');
 
   /// Reference to `data_share_arn` attribute.
-  TfRef<String> get dataShareArnRef =>
+  TfRef<String> get dataShareArn =>
       TfRef.attribute<String>(this, 'data_share_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

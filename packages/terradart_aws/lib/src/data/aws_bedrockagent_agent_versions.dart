@@ -63,8 +63,8 @@ final class DataAwsBedrockagentAgentVersions extends Data {
   Set<String> get sensitiveFields => _awsBedrockagentAgentVersionsSensitive;
 
   /// Reference to `agent_id` attribute.
-  TfRef<String> get agentIdRef => TfRef.attribute<String>(this, 'agent_id');
+  TfRef<String> get agentId => TfRef.attribute<String>(this, 'agent_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

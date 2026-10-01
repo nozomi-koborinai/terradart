@@ -77,13 +77,13 @@ final class AwsApprunnerObservabilityConfiguration extends Resource {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `observability_configuration_name` attribute.
-  TfRef<String> get observabilityConfigurationNameRef =>
+  TfRef<String> get observabilityConfigurationName =>
       TfRef.attribute<String>(this, 'observability_configuration_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

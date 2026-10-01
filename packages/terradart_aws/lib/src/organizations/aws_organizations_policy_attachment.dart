@@ -39,11 +39,11 @@ final class AwsOrganizationsPolicyAttachment extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `policy_id` attribute.
-  TfRef<String> get policyIdRef => TfRef.attribute<String>(this, 'policy_id');
+  TfRef<String> get policyId => TfRef.attribute<String>(this, 'policy_id');
 
   /// Reference to `skip_destroy` attribute.
-  TfRef<bool> get skipDestroyRef => TfRef.attribute<bool>(this, 'skip_destroy');
+  TfRef<bool> get skipDestroy => TfRef.attribute<bool>(this, 'skip_destroy');
 
   /// Reference to `target_id` attribute.
-  TfRef<String> get targetIdRef => TfRef.attribute<String>(this, 'target_id');
+  TfRef<String> get targetId => TfRef.attribute<String>(this, 'target_id');
 }

@@ -31,7 +31,7 @@ final class DataAwsShieldProtection extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -41,10 +41,10 @@ final class DataAwsShieldProtection extends Data {
       TfRef.attribute<String>(this, 'protection_arn');
 
   /// Reference to `protection_id` attribute.
-  TfRef<String> get protectionIdRef =>
+  TfRef<String> get protectionId =>
       TfRef.attribute<String>(this, 'protection_id');
 
   /// Reference to `resource_arn` attribute.
-  TfRef<String> get resourceArnRef =>
+  TfRef<String> get resourceArn =>
       TfRef.attribute<String>(this, 'resource_arn');
 }

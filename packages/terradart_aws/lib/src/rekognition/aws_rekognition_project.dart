@@ -60,7 +60,7 @@ final class AwsRekognitionProject extends Resource {
   RefTo<AwsRekognitionProject> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -73,16 +73,15 @@ final class AwsRekognitionProject extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `auto_update` attribute.
-  TfRef<String> get autoUpdateRef =>
-      TfRef.attribute<String>(this, 'auto_update');
+  TfRef<String> get autoUpdate => TfRef.attribute<String>(this, 'auto_update');
 
   /// Reference to `feature` attribute.
-  TfRef<String> get featureRef => TfRef.attribute<String>(this, 'feature');
+  TfRef<String> get feature => TfRef.attribute<String>(this, 'feature');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

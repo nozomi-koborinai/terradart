@@ -100,41 +100,41 @@ final class AwsKmsCustomKeyStore extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `cloud_hsm_cluster_id` attribute.
-  TfRef<String> get cloudHsmClusterIdRef =>
+  TfRef<String> get cloudHsmClusterId =>
       TfRef.attribute<String>(this, 'cloud_hsm_cluster_id');
 
   /// Reference to `custom_key_store_name` attribute.
-  TfRef<String> get customKeyStoreNameRef =>
+  TfRef<String> get customKeyStoreName =>
       TfRef.attribute<String>(this, 'custom_key_store_name');
 
   /// Reference to `custom_key_store_type` attribute.
-  TfRef<String> get customKeyStoreTypeRef =>
+  TfRef<String> get customKeyStoreType =>
       TfRef.attribute<String>(this, 'custom_key_store_type');
 
   /// Reference to `key_store_password` attribute.
-  TfRef<String> get keyStorePasswordRef =>
+  TfRef<String> get keyStorePassword =>
       TfRef.attribute<String>(this, 'key_store_password');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `trust_anchor_certificate` attribute.
-  TfRef<String> get trustAnchorCertificateRef =>
+  TfRef<String> get trustAnchorCertificate =>
       TfRef.attribute<String>(this, 'trust_anchor_certificate');
 
   /// Reference to `xks_proxy_connectivity` attribute.
-  TfRef<String> get xksProxyConnectivityRef =>
+  TfRef<String> get xksProxyConnectivity =>
       TfRef.attribute<String>(this, 'xks_proxy_connectivity');
 
   /// Reference to `xks_proxy_uri_endpoint` attribute.
-  TfRef<String> get xksProxyUriEndpointRef =>
+  TfRef<String> get xksProxyUriEndpoint =>
       TfRef.attribute<String>(this, 'xks_proxy_uri_endpoint');
 
   /// Reference to `xks_proxy_uri_path` attribute.
-  TfRef<String> get xksProxyUriPathRef =>
+  TfRef<String> get xksProxyUriPath =>
       TfRef.attribute<String>(this, 'xks_proxy_uri_path');
 
   /// Reference to `xks_proxy_vpc_endpoint_service_name` attribute.
-  TfRef<String> get xksProxyVpcEndpointServiceNameRef =>
+  TfRef<String> get xksProxyVpcEndpointServiceName =>
       TfRef.attribute<String>(this, 'xks_proxy_vpc_endpoint_service_name');
 }

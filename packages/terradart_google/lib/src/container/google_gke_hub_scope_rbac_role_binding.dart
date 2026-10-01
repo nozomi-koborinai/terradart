@@ -195,7 +195,7 @@ final class GoogleGkeHubScopeRbacRoleBinding extends Resource {
   RefTo<GoogleGkeHubScopeRbacRoleBinding> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -225,26 +225,26 @@ final class GoogleGkeHubScopeRbacRoleBinding extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `group` attribute.
-  TfRef<String> get groupRef => TfRef.attribute<String>(this, 'group');
+  TfRef<String> get group => TfRef.attribute<String>(this, 'group');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `scope_id` attribute.
-  TfRef<String> get scopeIdRef => TfRef.attribute<String>(this, 'scope_id');
+  TfRef<String> get scopeId => TfRef.attribute<String>(this, 'scope_id');
 
   /// Reference to `scope_rbac_role_binding_id` attribute.
-  TfRef<String> get scopeRbacRoleBindingIdRef =>
+  TfRef<String> get scopeRbacRoleBindingId =>
       TfRef.attribute<String>(this, 'scope_rbac_role_binding_id');
 
   /// Reference to `user` attribute.
-  TfRef<String> get userRef => TfRef.attribute<String>(this, 'user');
+  TfRef<String> get user => TfRef.attribute<String>(this, 'user');
 }

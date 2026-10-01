@@ -65,7 +65,7 @@ class FirebaseAppHostingDomainRedirect {
 /// - [localName]: Terraform local name (the address segment after
 ///   `google_firebase_app_hosting_domain.`).
 /// - `backend`: ID of the backend this domain is attached to. Typically
-///   `TfArg.ref(backend.backendIdRef)` where `backend` is a
+///   `backend.backendId` where `backend` is a
 ///   [GoogleFirebaseAppHostingBackend].
 /// - `location`: GCP region of the backend.
 /// - `domain_id`: Fully qualified custom domain name, e.g. `'www.example.com'`.
@@ -137,13 +137,13 @@ final class GoogleFirebaseAppHostingDomain extends Resource {
 
   /// Reference to `name` attribute (full resource path
   /// `projects/{project}/locations/{location}/backends/{backend}/domains/{domain_id}`).
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute. Same as `nameRef` for this resource.
+  /// Reference to `id` attribute. Same as `name` for this resource.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `domain_id` -- the fully qualified host name.
-  TfRef<String> get domainIdRef => TfRef.attribute<String>(this, 'domain_id');
+  TfRef<String> get domainId => TfRef.attribute<String>(this, 'domain_id');
 
   /// Reference to `uid` (server-assigned unique identifier).
   TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');

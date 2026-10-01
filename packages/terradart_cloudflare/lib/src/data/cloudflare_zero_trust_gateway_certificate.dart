@@ -73,9 +73,9 @@ final class DataCloudflareZeroTrustGatewayCertificate extends Data {
   TfRef<String> get uploadedOn => TfRef.attribute<String>(this, 'uploaded_on');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `certificate_id` attribute.
-  TfRef<String> get certificateIdRef =>
+  TfRef<String> get certificateId =>
       TfRef.attribute<String>(this, 'certificate_id');
 }

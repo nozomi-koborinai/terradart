@@ -124,9 +124,9 @@ final class CesStack extends Stack {
         displayName: .literal('terradart-ces-agent'),
         instruction: .literal('You are a helpful assistant.'),
         llmAgent: const CesAgentLlmAgent(),
-        tools: .literal([search.nameRef.interpolation]),
+        tools: .literal([search.name.interpolation]),
         toolsets: [CesAgentToolsets(toolset: openapi.ref)],
-        guardrails: .literal([safety.nameRef.interpolation]),
+        guardrails: .literal([safety.name.interpolation]),
         dependsOn: [
           ResourceDependency(app),
           ResourceDependency(search),
@@ -140,7 +140,7 @@ final class CesStack extends Stack {
       GoogleCesAppRootAgentAssociation(
         localName: 'root',
         appId: app.ref,
-        agentId: .ref(agent.agentIdRef),
+        agentId: agent.agentId,
         dependsOn: [ResourceDependency(app), ResourceDependency(agent)],
       ),
     );

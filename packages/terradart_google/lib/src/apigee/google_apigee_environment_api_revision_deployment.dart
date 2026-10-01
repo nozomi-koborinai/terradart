@@ -75,33 +75,29 @@ final class GoogleApigeeEnvironmentApiRevisionDeployment extends Resource {
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `api` attribute.
-  TfRef<String> get apiRef => TfRef.attribute<String>(this, 'api');
+  TfRef<String> get api => TfRef.attribute<String>(this, 'api');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `environment` attribute.
-  TfRef<String> get environmentRef =>
-      TfRef.attribute<String>(this, 'environment');
+  TfRef<String> get environment => TfRef.attribute<String>(this, 'environment');
 
   /// Reference to `org_id` attribute.
-  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
+  TfRef<String> get orgId => TfRef.attribute<String>(this, 'org_id');
 
   /// Reference to `override` attribute.
-  TfRef<bool> get overrideRef => TfRef.attribute<bool>(this, 'override');
+  TfRef<bool> get overrideAttr => TfRef.attribute<bool>(this, 'override');
 
   /// Reference to `revision` attribute.
-  TfRef<num> get revisionRef => TfRef.attribute<num>(this, 'revision');
+  TfRef<num> get revision => TfRef.attribute<num>(this, 'revision');
 
   /// Reference to `sequenced_rollout` attribute.
-  TfRef<bool> get sequencedRolloutRef =>
+  TfRef<bool> get sequencedRollout =>
       TfRef.attribute<bool>(this, 'sequenced_rollout');
 
   /// Reference to `service_account` attribute.
-  TfRef<String> get serviceAccountRef =>
+  TfRef<String> get serviceAccount =>
       TfRef.attribute<String>(this, 'service_account');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 }

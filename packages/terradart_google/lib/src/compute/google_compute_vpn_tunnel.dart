@@ -295,7 +295,7 @@ final class GoogleComputeVpnTunnel extends Resource {
   RefTo<GoogleComputeVpnTunnel> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -331,69 +331,67 @@ final class GoogleComputeVpnTunnel extends Resource {
   TfRef<String> get tunnelId => TfRef.attribute<String>(this, 'tunnel_id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `ike_version` attribute.
-  TfRef<num> get ikeVersionRef => TfRef.attribute<num>(this, 'ike_version');
+  TfRef<num> get ikeVersion => TfRef.attribute<num>(this, 'ike_version');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `local_traffic_selector` attribute.
-  TfRef<List<String>> get localTrafficSelectorRef =>
+  TfRef<List<String>> get localTrafficSelector =>
       TfRef.attribute<List<String>>(this, 'local_traffic_selector');
 
   /// Reference to `peer_external_gateway` attribute.
-  TfRef<String> get peerExternalGatewayRef =>
+  TfRef<String> get peerExternalGateway =>
       TfRef.attribute<String>(this, 'peer_external_gateway');
 
   /// Reference to `peer_external_gateway_interface` attribute.
-  TfRef<num> get peerExternalGatewayInterfaceRef =>
+  TfRef<num> get peerExternalGatewayInterface =>
       TfRef.attribute<num>(this, 'peer_external_gateway_interface');
 
   /// Reference to `peer_gcp_gateway` attribute.
-  TfRef<String> get peerGcpGatewayRef =>
+  TfRef<String> get peerGcpGateway =>
       TfRef.attribute<String>(this, 'peer_gcp_gateway');
 
   /// Reference to `peer_ip` attribute.
-  TfRef<String> get peerIpRef => TfRef.attribute<String>(this, 'peer_ip');
+  TfRef<String> get peerIp => TfRef.attribute<String>(this, 'peer_ip');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `remote_traffic_selector` attribute.
-  TfRef<List<String>> get remoteTrafficSelectorRef =>
+  TfRef<List<String>> get remoteTrafficSelector =>
       TfRef.attribute<List<String>>(this, 'remote_traffic_selector');
 
   /// Reference to `router` attribute.
-  TfRef<String> get routerRef => TfRef.attribute<String>(this, 'router');
+  TfRef<String> get router => TfRef.attribute<String>(this, 'router');
 
   /// Reference to `shared_secret` attribute.
-  TfRef<String> get sharedSecretRef =>
+  TfRef<String> get sharedSecret =>
       TfRef.attribute<String>(this, 'shared_secret');
 
   /// Reference to `shared_secret_wo_version` attribute.
-  TfRef<String> get sharedSecretWoVersionRef =>
+  TfRef<String> get sharedSecretWoVersion =>
       TfRef.attribute<String>(this, 'shared_secret_wo_version');
 
   /// Reference to `target_vpn_gateway` attribute.
-  TfRef<String> get targetVpnGatewayRef =>
+  TfRef<String> get targetVpnGateway =>
       TfRef.attribute<String>(this, 'target_vpn_gateway');
 
   /// Reference to `vpn_gateway` attribute.
-  TfRef<String> get vpnGatewayRef =>
-      TfRef.attribute<String>(this, 'vpn_gateway');
+  TfRef<String> get vpnGateway => TfRef.attribute<String>(this, 'vpn_gateway');
 
   /// Reference to `vpn_gateway_interface` attribute.
-  TfRef<num> get vpnGatewayInterfaceRef =>
+  TfRef<num> get vpnGatewayInterface =>
       TfRef.attribute<num>(this, 'vpn_gateway_interface');
 }

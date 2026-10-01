@@ -70,9 +70,9 @@ final class AwsSagemakerDevice extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `device_fleet_name` attribute.
-  TfRef<String> get deviceFleetNameRef =>
+  TfRef<String> get deviceFleetName =>
       TfRef.attribute<String>(this, 'device_fleet_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

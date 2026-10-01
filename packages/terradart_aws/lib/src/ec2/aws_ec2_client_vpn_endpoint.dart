@@ -344,62 +344,61 @@ final class AwsEc2ClientVpnEndpoint extends Resource {
       TfRef.attribute<String>(this, 'self_service_portal_url');
 
   /// Reference to `client_cidr_block` attribute.
-  TfRef<String> get clientCidrBlockRef =>
+  TfRef<String> get clientCidrBlock =>
       TfRef.attribute<String>(this, 'client_cidr_block');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `disconnect_on_session_timeout` attribute.
-  TfRef<bool> get disconnectOnSessionTimeoutRef =>
+  TfRef<bool> get disconnectOnSessionTimeout =>
       TfRef.attribute<bool>(this, 'disconnect_on_session_timeout');
 
   /// Reference to `dns_servers` attribute.
-  TfRef<List<String>> get dnsServersRef =>
+  TfRef<List<String>> get dnsServers =>
       TfRef.attribute<List<String>>(this, 'dns_servers');
 
   /// Reference to `endpoint_ip_address_type` attribute.
-  TfRef<String> get endpointIpAddressTypeRef =>
+  TfRef<String> get endpointIpAddressType =>
       TfRef.attribute<String>(this, 'endpoint_ip_address_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `security_group_ids` attribute.
-  TfRef<List<String>> get securityGroupIdsRef =>
+  TfRef<List<String>> get securityGroupIds =>
       TfRef.attribute<List<String>>(this, 'security_group_ids');
 
   /// Reference to `self_service_portal` attribute.
-  TfRef<String> get selfServicePortalRef =>
+  TfRef<String> get selfServicePortal =>
       TfRef.attribute<String>(this, 'self_service_portal');
 
   /// Reference to `server_certificate_arn` attribute.
-  TfRef<String> get serverCertificateArnRef =>
+  TfRef<String> get serverCertificateArn =>
       TfRef.attribute<String>(this, 'server_certificate_arn');
 
   /// Reference to `session_timeout_hours` attribute.
-  TfRef<num> get sessionTimeoutHoursRef =>
+  TfRef<num> get sessionTimeoutHours =>
       TfRef.attribute<num>(this, 'session_timeout_hours');
 
   /// Reference to `split_tunnel` attribute.
-  TfRef<bool> get splitTunnelRef => TfRef.attribute<bool>(this, 'split_tunnel');
+  TfRef<bool> get splitTunnel => TfRef.attribute<bool>(this, 'split_tunnel');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `traffic_ip_address_type` attribute.
-  TfRef<String> get trafficIpAddressTypeRef =>
+  TfRef<String> get trafficIpAddressType =>
       TfRef.attribute<String>(this, 'traffic_ip_address_type');
 
   /// Reference to `transport_protocol` attribute.
-  TfRef<String> get transportProtocolRef =>
+  TfRef<String> get transportProtocol =>
       TfRef.attribute<String>(this, 'transport_protocol');
 
   /// Reference to `vpc_id` attribute.
-  TfRef<String> get vpcIdRef => TfRef.attribute<String>(this, 'vpc_id');
+  TfRef<String> get vpcId => TfRef.attribute<String>(this, 'vpc_id');
 
   /// Reference to `vpn_port` attribute.
-  TfRef<num> get vpnPortRef => TfRef.attribute<num>(this, 'vpn_port');
+  TfRef<num> get vpnPort => TfRef.attribute<num>(this, 'vpn_port');
 }

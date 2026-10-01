@@ -155,51 +155,50 @@ final class AwsRdsCustomDbEngineVersion extends Resource {
       TfRef.attribute<String>(this, 'manifest_computed');
 
   /// Reference to `database_installation_files_s3_bucket_name` attribute.
-  TfRef<String> get databaseInstallationFilesS3BucketNameRef =>
+  TfRef<String> get databaseInstallationFilesS3BucketName =>
       TfRef.attribute<String>(
         this,
         'database_installation_files_s3_bucket_name',
       );
 
   /// Reference to `database_installation_files_s3_prefix` attribute.
-  TfRef<String> get databaseInstallationFilesS3PrefixRef =>
+  TfRef<String> get databaseInstallationFilesS3Prefix =>
       TfRef.attribute<String>(this, 'database_installation_files_s3_prefix');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `engine` attribute.
-  TfRef<String> get engineRef => TfRef.attribute<String>(this, 'engine');
+  TfRef<String> get engine => TfRef.attribute<String>(this, 'engine');
 
   /// Reference to `engine_version` attribute.
-  TfRef<String> get engineVersionRef =>
+  TfRef<String> get engineVersion =>
       TfRef.attribute<String>(this, 'engine_version');
 
   /// Reference to `filename` attribute.
-  TfRef<String> get filenameRef => TfRef.attribute<String>(this, 'filename');
+  TfRef<String> get filename => TfRef.attribute<String>(this, 'filename');
 
   /// Reference to `kms_key_id` attribute.
-  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+  TfRef<String> get kmsKeyId => TfRef.attribute<String>(this, 'kms_key_id');
 
   /// Reference to `manifest` attribute.
-  TfRef<String> get manifestRef => TfRef.attribute<String>(this, 'manifest');
+  TfRef<String> get manifest => TfRef.attribute<String>(this, 'manifest');
 
   /// Reference to `manifest_hash` attribute.
-  TfRef<String> get manifestHashRef =>
+  TfRef<String> get manifestHash =>
       TfRef.attribute<String>(this, 'manifest_hash');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `source_image_id` attribute.
-  TfRef<String> get sourceImageIdRef =>
+  TfRef<String> get sourceImageId =>
       TfRef.attribute<String>(this, 'source_image_id');
 
   /// Reference to `status` attribute.
-  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+  TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

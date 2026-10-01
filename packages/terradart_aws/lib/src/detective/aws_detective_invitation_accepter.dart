@@ -34,8 +34,8 @@ final class AwsDetectiveInvitationAccepter extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `graph_arn` attribute.
-  TfRef<String> get graphArnRef => TfRef.attribute<String>(this, 'graph_arn');
+  TfRef<String> get graphArn => TfRef.attribute<String>(this, 'graph_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

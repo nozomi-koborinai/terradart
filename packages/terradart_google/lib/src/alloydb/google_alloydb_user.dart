@@ -84,7 +84,7 @@ final class AlloydbUserPasswordWo extends AlloydbUserPassword {
 ///
 /// Required identity:
 /// - [localName]: Terraform local name.
-/// - [cluster]: parent cluster — `TfArg.ref(cluster.id)`.
+/// - [cluster]: parent cluster — `cluster.id`.
 /// - [userId]: username.
 /// - [userType]: [AlloydbUserType.alloydbBuiltIn] or IAM user.
 ///
@@ -132,32 +132,32 @@ final class GoogleAlloydbUser extends Resource {
   RefTo<GoogleAlloydbUser> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `cluster` attribute.
-  TfRef<String> get clusterRef => TfRef.attribute<String>(this, 'cluster');
+  TfRef<String> get cluster => TfRef.attribute<String>(this, 'cluster');
 
   /// Reference to `database_roles` attribute.
-  TfRef<List<String>> get databaseRolesRef =>
+  TfRef<List<String>> get databaseRoles =>
       TfRef.attribute<List<String>>(this, 'database_roles');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `password` attribute.
-  TfRef<String> get passwordRef => TfRef.attribute<String>(this, 'password');
+  TfRef<String> get password => TfRef.attribute<String>(this, 'password');
 
   /// Reference to `password_wo_version` attribute.
-  TfRef<String> get passwordWoVersionRef =>
+  TfRef<String> get passwordWoVersion =>
       TfRef.attribute<String>(this, 'password_wo_version');
 
   /// Reference to `user_id` attribute.
-  TfRef<String> get userIdRef => TfRef.attribute<String>(this, 'user_id');
+  TfRef<String> get userId => TfRef.attribute<String>(this, 'user_id');
 
   /// Reference to `user_type` attribute.
-  TfRef<String> get userTypeRef => TfRef.attribute<String>(this, 'user_type');
+  TfRef<String> get userType => TfRef.attribute<String>(this, 'user_type');
 }

@@ -52,5 +52,5 @@ final class DataAwsEmrReleaseLabels extends Data {
       TfRef.attribute<List<String>>(this, 'release_labels');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

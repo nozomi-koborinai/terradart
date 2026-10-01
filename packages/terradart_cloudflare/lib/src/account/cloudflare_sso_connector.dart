@@ -55,20 +55,20 @@ final class CloudflareSsoConnector extends Resource {
   TfRef<String> get updatedOn => TfRef.attribute<String>(this, 'updated_on');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `begin_verification` attribute.
-  TfRef<bool> get beginVerificationRef =>
+  TfRef<bool> get beginVerification =>
       TfRef.attribute<bool>(this, 'begin_verification');
 
   /// Reference to `email_domain` attribute.
-  TfRef<String> get emailDomainRef =>
+  TfRef<String> get emailDomain =>
       TfRef.attribute<String>(this, 'email_domain');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `use_fedramp_language` attribute.
-  TfRef<bool> get useFedrampLanguageRef =>
+  TfRef<bool> get useFedrampLanguage =>
       TfRef.attribute<bool>(this, 'use_fedramp_language');
 }

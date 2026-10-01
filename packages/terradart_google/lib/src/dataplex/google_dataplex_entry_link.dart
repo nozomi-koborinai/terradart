@@ -115,7 +115,7 @@ final class GoogleDataplexEntryLink extends Resource {
   RefTo<GoogleDataplexEntryLink> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -127,24 +127,24 @@ final class GoogleDataplexEntryLink extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `entry_group_id` attribute.
-  TfRef<String> get entryGroupIdRef =>
+  TfRef<String> get entryGroupId =>
       TfRef.attribute<String>(this, 'entry_group_id');
 
   /// Reference to `entry_link_id` attribute.
-  TfRef<String> get entryLinkIdRef =>
+  TfRef<String> get entryLinkId =>
       TfRef.attribute<String>(this, 'entry_link_id');
 
   /// Reference to `entry_link_type` attribute.
-  TfRef<String> get entryLinkTypeRef =>
+  TfRef<String> get entryLinkType =>
       TfRef.attribute<String>(this, 'entry_link_type');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

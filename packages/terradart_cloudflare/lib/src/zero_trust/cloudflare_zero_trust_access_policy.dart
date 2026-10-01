@@ -964,7 +964,7 @@ final class CloudflareZeroTrustAccessPolicy extends Resource {
   RefTo<CloudflareZeroTrustAccessPolicy> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -982,28 +982,28 @@ final class CloudflareZeroTrustAccessPolicy extends Resource {
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `approval_required` attribute.
-  TfRef<bool> get approvalRequiredRef =>
+  TfRef<bool> get approvalRequired =>
       TfRef.attribute<bool>(this, 'approval_required');
 
   /// Reference to `decision` attribute.
-  TfRef<String> get decisionRef => TfRef.attribute<String>(this, 'decision');
+  TfRef<String> get decision => TfRef.attribute<String>(this, 'decision');
 
   /// Reference to `isolation_required` attribute.
-  TfRef<bool> get isolationRequiredRef =>
+  TfRef<bool> get isolationRequired =>
       TfRef.attribute<bool>(this, 'isolation_required');
 
   /// Reference to `purpose_justification_prompt` attribute.
-  TfRef<String> get purposeJustificationPromptRef =>
+  TfRef<String> get purposeJustificationPrompt =>
       TfRef.attribute<String>(this, 'purpose_justification_prompt');
 
   /// Reference to `purpose_justification_required` attribute.
-  TfRef<bool> get purposeJustificationRequiredRef =>
+  TfRef<bool> get purposeJustificationRequired =>
       TfRef.attribute<bool>(this, 'purpose_justification_required');
 
   /// Reference to `session_duration` attribute.
-  TfRef<String> get sessionDurationRef =>
+  TfRef<String> get sessionDuration =>
       TfRef.attribute<String>(this, 'session_duration');
 }

@@ -112,13 +112,13 @@ final class AwsNetworkfirewallLoggingConfiguration extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `enable_monitoring_dashboard` attribute.
-  TfRef<bool> get enableMonitoringDashboardRef =>
+  TfRef<bool> get enableMonitoringDashboard =>
       TfRef.attribute<bool>(this, 'enable_monitoring_dashboard');
 
   /// Reference to `firewall_arn` attribute.
-  TfRef<String> get firewallArnRef =>
+  TfRef<String> get firewallArn =>
       TfRef.attribute<String>(this, 'firewall_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

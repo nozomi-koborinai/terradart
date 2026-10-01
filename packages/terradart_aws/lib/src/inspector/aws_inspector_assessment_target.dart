@@ -36,7 +36,7 @@ final class AwsInspectorAssessmentTarget extends Resource {
   RefTo<AwsInspectorAssessmentTarget> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -45,9 +45,9 @@ final class AwsInspectorAssessmentTarget extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resource_group_arn` attribute.
-  TfRef<String> get resourceGroupArnRef =>
+  TfRef<String> get resourceGroupArn =>
       TfRef.attribute<String>(this, 'resource_group_arn');
 }

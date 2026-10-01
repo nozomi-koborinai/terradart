@@ -81,8 +81,8 @@ final class CloudflareFieldExtractor extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `extractor` attribute.
-  TfRef<String> get extractorRef => TfRef.attribute<String>(this, 'extractor');
+  TfRef<String> get extractor => TfRef.attribute<String>(this, 'extractor');
 }

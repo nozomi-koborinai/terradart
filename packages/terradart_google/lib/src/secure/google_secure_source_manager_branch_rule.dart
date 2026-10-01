@@ -68,6 +68,9 @@ final class GoogleSecureSourceManagerBranchRule extends Resource {
   /// `RefTo<GoogleSecureSourceManagerBranchRule>`.
   RefTo<GoogleSecureSourceManagerBranchRule> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -81,57 +84,51 @@ final class GoogleSecureSourceManagerBranchRule extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `allow_stale_reviews` attribute.
-  TfRef<bool> get allowStaleReviewsRef =>
+  TfRef<bool> get allowStaleReviews =>
       TfRef.attribute<bool>(this, 'allow_stale_reviews');
 
+  /// Reference to `branch_rule_id` attribute.
+  TfRef<String> get branchRuleId =>
+      TfRef.attribute<String>(this, 'branch_rule_id');
+
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `disabled` attribute.
-  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+  TfRef<bool> get disabled => TfRef.attribute<bool>(this, 'disabled');
 
   /// Reference to `include_pattern` attribute.
-  TfRef<String> get includePatternRef =>
+  TfRef<String> get includePattern =>
       TfRef.attribute<String>(this, 'include_pattern');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `minimum_approvals_count` attribute.
-  TfRef<num> get minimumApprovalsCountRef =>
+  TfRef<num> get minimumApprovalsCount =>
       TfRef.attribute<num>(this, 'minimum_approvals_count');
 
   /// Reference to `minimum_reviews_count` attribute.
-  TfRef<num> get minimumReviewsCountRef =>
+  TfRef<num> get minimumReviewsCount =>
       TfRef.attribute<num>(this, 'minimum_reviews_count');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `repository_id` attribute.
-  TfRef<String> get repositoryIdRef =>
+  TfRef<String> get repositoryId =>
       TfRef.attribute<String>(this, 'repository_id');
 
   /// Reference to `require_comments_resolved` attribute.
-  TfRef<bool> get requireCommentsResolvedRef =>
+  TfRef<bool> get requireCommentsResolved =>
       TfRef.attribute<bool>(this, 'require_comments_resolved');
 
   /// Reference to `require_linear_history` attribute.
-  TfRef<bool> get requireLinearHistoryRef =>
+  TfRef<bool> get requireLinearHistory =>
       TfRef.attribute<bool>(this, 'require_linear_history');
 
   /// Reference to `require_pull_request` attribute.
-  TfRef<bool> get requirePullRequestRef =>
+  TfRef<bool> get requirePullRequest =>
       TfRef.attribute<bool>(this, 'require_pull_request');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `branch_rule_id` attribute.
-  TfRef<String> get branchRuleIdRef =>
-      TfRef.attribute<String>(this, 'branch_rule_id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

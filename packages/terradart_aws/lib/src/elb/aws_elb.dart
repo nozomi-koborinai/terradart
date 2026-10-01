@@ -227,7 +227,7 @@ final class AwsElb extends Resource {
   RefTo<AwsElb> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -246,55 +246,54 @@ final class AwsElb extends Resource {
   TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 
   /// Reference to `availability_zones` attribute.
-  TfRef<List<String>> get availabilityZonesRef =>
+  TfRef<List<String>> get availabilityZones =>
       TfRef.attribute<List<String>>(this, 'availability_zones');
 
   /// Reference to `connection_draining` attribute.
-  TfRef<bool> get connectionDrainingRef =>
+  TfRef<bool> get connectionDraining =>
       TfRef.attribute<bool>(this, 'connection_draining');
 
   /// Reference to `connection_draining_timeout` attribute.
-  TfRef<num> get connectionDrainingTimeoutRef =>
+  TfRef<num> get connectionDrainingTimeout =>
       TfRef.attribute<num>(this, 'connection_draining_timeout');
 
   /// Reference to `cross_zone_load_balancing` attribute.
-  TfRef<bool> get crossZoneLoadBalancingRef =>
+  TfRef<bool> get crossZoneLoadBalancing =>
       TfRef.attribute<bool>(this, 'cross_zone_load_balancing');
 
   /// Reference to `desync_mitigation_mode` attribute.
-  TfRef<String> get desyncMitigationModeRef =>
+  TfRef<String> get desyncMitigationMode =>
       TfRef.attribute<String>(this, 'desync_mitigation_mode');
 
   /// Reference to `idle_timeout` attribute.
-  TfRef<num> get idleTimeoutRef => TfRef.attribute<num>(this, 'idle_timeout');
+  TfRef<num> get idleTimeout => TfRef.attribute<num>(this, 'idle_timeout');
 
   /// Reference to `instances` attribute.
-  TfRef<List<String>> get instancesRef =>
+  TfRef<List<String>> get instances =>
       TfRef.attribute<List<String>>(this, 'instances');
 
   /// Reference to `internal` attribute.
-  TfRef<bool> get internalRef => TfRef.attribute<bool>(this, 'internal');
+  TfRef<bool> get internal => TfRef.attribute<bool>(this, 'internal');
 
   /// Reference to `name_prefix` attribute.
-  TfRef<String> get namePrefixRef =>
-      TfRef.attribute<String>(this, 'name_prefix');
+  TfRef<String> get namePrefix => TfRef.attribute<String>(this, 'name_prefix');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `security_groups` attribute.
-  TfRef<List<String>> get securityGroupsRef =>
+  TfRef<List<String>> get securityGroups =>
       TfRef.attribute<List<String>>(this, 'security_groups');
 
   /// Reference to `source_security_group` attribute.
-  TfRef<String> get sourceSecurityGroupRef =>
+  TfRef<String> get sourceSecurityGroup =>
       TfRef.attribute<String>(this, 'source_security_group');
 
   /// Reference to `subnets` attribute.
-  TfRef<List<String>> get subnetsRef =>
+  TfRef<List<String>> get subnets =>
       TfRef.attribute<List<String>>(this, 'subnets');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

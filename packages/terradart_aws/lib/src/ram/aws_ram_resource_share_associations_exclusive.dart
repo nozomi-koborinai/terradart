@@ -42,21 +42,21 @@ final class AwsRamResourceShareAssociationsExclusive extends Resource {
   RefTo<AwsRamResourceShareAssociationsExclusive> get ref => RefTo.of(this);
 
   /// Reference to `principals` attribute.
-  TfRef<List<String>> get principalsRef =>
+  TfRef<List<String>> get principals =>
       TfRef.attribute<List<String>>(this, 'principals');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resource_arns` attribute.
-  TfRef<List<String>> get resourceArnsRef =>
+  TfRef<List<String>> get resourceArns =>
       TfRef.attribute<List<String>>(this, 'resource_arns');
 
   /// Reference to `resource_share_arn` attribute.
-  TfRef<String> get resourceShareArnRef =>
+  TfRef<String> get resourceShareArn =>
       TfRef.attribute<String>(this, 'resource_share_arn');
 
   /// Reference to `sources` attribute.
-  TfRef<List<String>> get sourcesRef =>
+  TfRef<List<String>> get sources =>
       TfRef.attribute<List<String>>(this, 'sources');
 }

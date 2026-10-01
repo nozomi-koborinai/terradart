@@ -67,7 +67,7 @@ final class AwsDxHostedPublicVirtualInterface extends Resource {
   RefTo<AwsDxHostedPublicVirtualInterface> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -83,46 +83,44 @@ final class AwsDxHostedPublicVirtualInterface extends Resource {
   TfRef<String> get awsDevice => TfRef.attribute<String>(this, 'aws_device');
 
   /// Reference to `address_family` attribute.
-  TfRef<String> get addressFamilyRef =>
+  TfRef<String> get addressFamily =>
       TfRef.attribute<String>(this, 'address_family');
 
   /// Reference to `amazon_address` attribute.
-  TfRef<String> get amazonAddressRef =>
+  TfRef<String> get amazonAddress =>
       TfRef.attribute<String>(this, 'amazon_address');
 
   /// Reference to `bgp_asn` attribute.
-  TfRef<num> get bgpAsnRef => TfRef.attribute<num>(this, 'bgp_asn');
+  TfRef<num> get bgpAsn => TfRef.attribute<num>(this, 'bgp_asn');
 
   /// Reference to `bgp_asn_long` attribute.
-  TfRef<String> get bgpAsnLongRef =>
-      TfRef.attribute<String>(this, 'bgp_asn_long');
+  TfRef<String> get bgpAsnLong => TfRef.attribute<String>(this, 'bgp_asn_long');
 
   /// Reference to `bgp_auth_key` attribute.
-  TfRef<String> get bgpAuthKeyRef =>
-      TfRef.attribute<String>(this, 'bgp_auth_key');
+  TfRef<String> get bgpAuthKey => TfRef.attribute<String>(this, 'bgp_auth_key');
 
   /// Reference to `connection_id` attribute.
-  TfRef<String> get connectionIdRef =>
+  TfRef<String> get connectionId =>
       TfRef.attribute<String>(this, 'connection_id');
 
   /// Reference to `customer_address` attribute.
-  TfRef<String> get customerAddressRef =>
+  TfRef<String> get customerAddress =>
       TfRef.attribute<String>(this, 'customer_address');
 
   /// Reference to `owner_account_id` attribute.
-  TfRef<String> get ownerAccountIdRef =>
+  TfRef<String> get ownerAccountId =>
       TfRef.attribute<String>(this, 'owner_account_id');
 
   /// Reference to `rate_limit` attribute.
-  TfRef<String> get rateLimitRef => TfRef.attribute<String>(this, 'rate_limit');
+  TfRef<String> get rateLimit => TfRef.attribute<String>(this, 'rate_limit');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `route_filter_prefixes` attribute.
-  TfRef<List<String>> get routeFilterPrefixesRef =>
+  TfRef<List<String>> get routeFilterPrefixes =>
       TfRef.attribute<List<String>>(this, 'route_filter_prefixes');
 
   /// Reference to `vlan` attribute.
-  TfRef<num> get vlanRef => TfRef.attribute<num>(this, 'vlan');
+  TfRef<num> get vlan => TfRef.attribute<num>(this, 'vlan');
 }

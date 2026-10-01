@@ -231,7 +231,7 @@ final class GoogleAssuredWorkloadsWorkload extends Resource {
   RefTo<GoogleAssuredWorkloadsWorkload> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -278,48 +278,48 @@ final class GoogleAssuredWorkloadsWorkload extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `billing_account` attribute.
-  TfRef<String> get billingAccountRef =>
+  TfRef<String> get billingAccount =>
       TfRef.attribute<String>(this, 'billing_account');
 
   /// Reference to `compliance_regime` attribute.
-  TfRef<String> get complianceRegimeRef =>
+  TfRef<String> get complianceRegime =>
       TfRef.attribute<String>(this, 'compliance_regime');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `enable_sovereign_controls` attribute.
-  TfRef<bool> get enableSovereignControlsRef =>
+  TfRef<bool> get enableSovereignControls =>
       TfRef.attribute<bool>(this, 'enable_sovereign_controls');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `organization` attribute.
-  TfRef<String> get organizationRef =>
+  TfRef<String> get organization =>
       TfRef.attribute<String>(this, 'organization');
 
   /// Reference to `partner` attribute.
-  TfRef<String> get partnerRef => TfRef.attribute<String>(this, 'partner');
+  TfRef<String> get partner => TfRef.attribute<String>(this, 'partner');
 
   /// Reference to `partner_services_billing_account` attribute.
-  TfRef<String> get partnerServicesBillingAccountRef =>
+  TfRef<String> get partnerServicesBillingAccount =>
       TfRef.attribute<String>(this, 'partner_services_billing_account');
 
   /// Reference to `provisioned_resources_parent` attribute.
-  TfRef<String> get provisionedResourcesParentRef =>
+  TfRef<String> get provisionedResourcesParent =>
       TfRef.attribute<String>(this, 'provisioned_resources_parent');
 
   /// Reference to `violation_notifications_enabled` attribute.
-  TfRef<bool> get violationNotificationsEnabledRef =>
+  TfRef<bool> get violationNotificationsEnabled =>
       TfRef.attribute<bool>(this, 'violation_notifications_enabled');
 }

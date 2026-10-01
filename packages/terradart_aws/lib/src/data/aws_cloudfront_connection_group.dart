@@ -30,7 +30,7 @@ final class DataAwsCloudfrontConnectionGroup extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -66,6 +66,6 @@ final class DataAwsCloudfrontConnectionGroup extends Data {
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `routing_endpoint` attribute.
-  TfRef<String> get routingEndpointRef =>
+  TfRef<String> get routingEndpoint =>
       TfRef.attribute<String>(this, 'routing_endpoint');
 }

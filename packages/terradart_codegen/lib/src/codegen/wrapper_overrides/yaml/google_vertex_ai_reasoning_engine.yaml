@@ -44,13 +44,6 @@ paramOrder:
   - deletion_policy
   - context_spec
 
-extraGetters: |2
-    /// Reference to `id` attribute.
-    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
 sealedNames:
   "context_spec.memory_bank_config.ttl_config.default_ttl, context_spec.memory_bank_config.ttl_config.granular_ttl_config": policy
   "spec.container_spec, spec.source_code_spec": deployment

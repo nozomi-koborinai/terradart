@@ -107,7 +107,7 @@ final class GoogleComputeServiceAttachment extends Resource {
   RefTo<GoogleComputeServiceAttachment> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -130,55 +130,54 @@ final class GoogleComputeServiceAttachment extends Resource {
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 
   /// Reference to `connection_preference` attribute.
-  TfRef<String> get connectionPreferenceRef =>
+  TfRef<String> get connectionPreference =>
       TfRef.attribute<String>(this, 'connection_preference');
 
   /// Reference to `consumer_reject_lists` attribute.
-  TfRef<List<String>> get consumerRejectListsRef =>
+  TfRef<List<String>> get consumerRejectLists =>
       TfRef.attribute<List<String>>(this, 'consumer_reject_lists');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `domain_names` attribute.
-  TfRef<List<String>> get domainNamesRef =>
+  TfRef<List<String>> get domainNames =>
       TfRef.attribute<List<String>>(this, 'domain_names');
 
   /// Reference to `enable_proxy_protocol` attribute.
-  TfRef<bool> get enableProxyProtocolRef =>
+  TfRef<bool> get enableProxyProtocol =>
       TfRef.attribute<bool>(this, 'enable_proxy_protocol');
 
   /// Reference to `nat_subnets` attribute.
-  TfRef<List<String>> get natSubnetsRef =>
+  TfRef<List<String>> get natSubnets =>
       TfRef.attribute<List<String>>(this, 'nat_subnets');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `propagated_connection_limit` attribute.
-  TfRef<num> get propagatedConnectionLimitRef =>
+  TfRef<num> get propagatedConnectionLimit =>
       TfRef.attribute<num>(this, 'propagated_connection_limit');
 
   /// Reference to `reconcile_connections` attribute.
-  TfRef<bool> get reconcileConnectionsRef =>
+  TfRef<bool> get reconcileConnections =>
       TfRef.attribute<bool>(this, 'reconcile_connections');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `send_propagated_connection_limit_if_zero` attribute.
-  TfRef<bool> get sendPropagatedConnectionLimitIfZeroRef =>
+  TfRef<bool> get sendPropagatedConnectionLimitIfZero =>
       TfRef.attribute<bool>(this, 'send_propagated_connection_limit_if_zero');
 
   /// Reference to `show_nat_ips` attribute.
-  TfRef<bool> get showNatIpsRef => TfRef.attribute<bool>(this, 'show_nat_ips');
+  TfRef<bool> get showNatIps => TfRef.attribute<bool>(this, 'show_nat_ips');
 
   /// Reference to `target_service` attribute.
-  TfRef<String> get targetServiceRef =>
+  TfRef<String> get targetService =>
       TfRef.attribute<String>(this, 'target_service');
 }

@@ -91,7 +91,7 @@ final class AwsGlueUserDefinedFunction extends Resource {
   RefTo<AwsGlueUserDefinedFunction> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -103,21 +103,21 @@ final class AwsGlueUserDefinedFunction extends Resource {
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
 
   /// Reference to `catalog_id` attribute.
-  TfRef<String> get catalogIdRef => TfRef.attribute<String>(this, 'catalog_id');
+  TfRef<String> get catalogId => TfRef.attribute<String>(this, 'catalog_id');
 
   /// Reference to `class_name` attribute.
-  TfRef<String> get classNameRef => TfRef.attribute<String>(this, 'class_name');
+  TfRef<String> get className => TfRef.attribute<String>(this, 'class_name');
 
   /// Reference to `database_name` attribute.
-  TfRef<String> get databaseNameRef =>
+  TfRef<String> get databaseName =>
       TfRef.attribute<String>(this, 'database_name');
 
   /// Reference to `owner_name` attribute.
-  TfRef<String> get ownerNameRef => TfRef.attribute<String>(this, 'owner_name');
+  TfRef<String> get ownerName => TfRef.attribute<String>(this, 'owner_name');
 
   /// Reference to `owner_type` attribute.
-  TfRef<String> get ownerTypeRef => TfRef.attribute<String>(this, 'owner_type');
+  TfRef<String> get ownerType => TfRef.attribute<String>(this, 'owner_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

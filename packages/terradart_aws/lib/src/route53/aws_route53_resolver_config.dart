@@ -54,13 +54,12 @@ final class AwsRoute53ResolverConfig extends Resource {
   TfRef<String> get ownerId => TfRef.attribute<String>(this, 'owner_id');
 
   /// Reference to `autodefined_reverse_flag` attribute.
-  TfRef<String> get autodefinedReverseFlagRef =>
+  TfRef<String> get autodefinedReverseFlag =>
       TfRef.attribute<String>(this, 'autodefined_reverse_flag');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resource_id` attribute.
-  TfRef<String> get resourceIdRef =>
-      TfRef.attribute<String>(this, 'resource_id');
+  TfRef<String> get resourceId => TfRef.attribute<String>(this, 'resource_id');
 }

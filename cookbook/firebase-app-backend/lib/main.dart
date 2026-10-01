@@ -137,7 +137,7 @@ final class FirebaseAppBackendStack extends Stack {
               env: [
                 .new(
                   name: .literal('UPLOAD_BUCKET_NAME'),
-                  source: .value(.ref(uploadsBucket.nameRef)),
+                  source: .value(uploadsBucket.name),
                 ),
               ],
             ),

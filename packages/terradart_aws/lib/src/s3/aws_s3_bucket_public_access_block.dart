@@ -49,27 +49,27 @@ final class AwsS3BucketPublicAccessBlock extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `block_public_acls` attribute.
-  TfRef<bool> get blockPublicAclsRef =>
+  TfRef<bool> get blockPublicAcls =>
       TfRef.attribute<bool>(this, 'block_public_acls');
 
   /// Reference to `block_public_policy` attribute.
-  TfRef<bool> get blockPublicPolicyRef =>
+  TfRef<bool> get blockPublicPolicy =>
       TfRef.attribute<bool>(this, 'block_public_policy');
 
   /// Reference to `bucket` attribute.
-  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+  TfRef<String> get bucket => TfRef.attribute<String>(this, 'bucket');
 
   /// Reference to `ignore_public_acls` attribute.
-  TfRef<bool> get ignorePublicAclsRef =>
+  TfRef<bool> get ignorePublicAcls =>
       TfRef.attribute<bool>(this, 'ignore_public_acls');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `restrict_public_buckets` attribute.
-  TfRef<bool> get restrictPublicBucketsRef =>
+  TfRef<bool> get restrictPublicBuckets =>
       TfRef.attribute<bool>(this, 'restrict_public_buckets');
 
   /// Reference to `skip_destroy` attribute.
-  TfRef<bool> get skipDestroyRef => TfRef.attribute<bool>(this, 'skip_destroy');
+  TfRef<bool> get skipDestroy => TfRef.attribute<bool>(this, 'skip_destroy');
 }

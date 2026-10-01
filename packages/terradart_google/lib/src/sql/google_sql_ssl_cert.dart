@@ -71,16 +71,15 @@ final class GoogleSqlSslCert extends Resource {
       TfRef.attribute<String>(this, 'sha1_fingerprint');
 
   /// Reference to `common_name` attribute.
-  TfRef<String> get commonNameRef =>
-      TfRef.attribute<String>(this, 'common_name');
+  TfRef<String> get commonName => TfRef.attribute<String>(this, 'common_name');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `instance` attribute.
-  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+  TfRef<String> get instance => TfRef.attribute<String>(this, 'instance');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

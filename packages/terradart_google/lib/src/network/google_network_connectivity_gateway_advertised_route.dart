@@ -99,7 +99,7 @@ final class GoogleNetworkConnectivityGatewayAdvertisedRoute extends Resource {
       RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -125,32 +125,31 @@ final class GoogleNetworkConnectivityGatewayAdvertisedRoute extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `ip_range` attribute.
-  TfRef<String> get ipRangeRef => TfRef.attribute<String>(this, 'ip_range');
+  TfRef<String> get ipRange => TfRef.attribute<String>(this, 'ip_range');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `priority` attribute.
-  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+  TfRef<num> get priority => TfRef.attribute<num>(this, 'priority');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `recipient` attribute.
-  TfRef<String> get recipientRef => TfRef.attribute<String>(this, 'recipient');
+  TfRef<String> get recipient => TfRef.attribute<String>(this, 'recipient');
 
   /// Reference to `spoke` attribute.
-  TfRef<String> get spokeRef => TfRef.attribute<String>(this, 'spoke');
+  TfRef<String> get spoke => TfRef.attribute<String>(this, 'spoke');
 }

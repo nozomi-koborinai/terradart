@@ -58,9 +58,9 @@ final class DataAwsEc2TransitGatewayRouteTableRoutes extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'routes');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `transit_gateway_route_table_id` attribute.
-  TfRef<String> get transitGatewayRouteTableIdRef =>
+  TfRef<String> get transitGatewayRouteTableId =>
       TfRef.attribute<String>(this, 'transit_gateway_route_table_id');
 }

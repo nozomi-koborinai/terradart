@@ -98,42 +98,41 @@ final class AwsEip extends Resource {
   TfRef<String> get publicIp => TfRef.attribute<String>(this, 'public_ip');
 
   /// Reference to `address` attribute.
-  TfRef<String> get addressRef => TfRef.attribute<String>(this, 'address');
+  TfRef<String> get address => TfRef.attribute<String>(this, 'address');
 
   /// Reference to `associate_with_private_ip` attribute.
-  TfRef<String> get associateWithPrivateIpRef =>
+  TfRef<String> get associateWithPrivateIp =>
       TfRef.attribute<String>(this, 'associate_with_private_ip');
 
   /// Reference to `customer_owned_ipv4_pool` attribute.
-  TfRef<String> get customerOwnedIpv4PoolRef =>
+  TfRef<String> get customerOwnedIpv4Pool =>
       TfRef.attribute<String>(this, 'customer_owned_ipv4_pool');
 
   /// Reference to `domain` attribute.
-  TfRef<String> get domainRef => TfRef.attribute<String>(this, 'domain');
+  TfRef<String> get domain => TfRef.attribute<String>(this, 'domain');
 
   /// Reference to `instance` attribute.
-  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+  TfRef<String> get instance => TfRef.attribute<String>(this, 'instance');
 
   /// Reference to `ipam_pool_id` attribute.
-  TfRef<String> get ipamPoolIdRef =>
-      TfRef.attribute<String>(this, 'ipam_pool_id');
+  TfRef<String> get ipamPoolId => TfRef.attribute<String>(this, 'ipam_pool_id');
 
   /// Reference to `network_border_group` attribute.
-  TfRef<String> get networkBorderGroupRef =>
+  TfRef<String> get networkBorderGroup =>
       TfRef.attribute<String>(this, 'network_border_group');
 
   /// Reference to `network_interface` attribute.
-  TfRef<String> get networkInterfaceRef =>
+  TfRef<String> get networkInterface =>
       TfRef.attribute<String>(this, 'network_interface');
 
   /// Reference to `public_ipv4_pool` attribute.
-  TfRef<String> get publicIpv4PoolRef =>
+  TfRef<String> get publicIpv4Pool =>
       TfRef.attribute<String>(this, 'public_ipv4_pool');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

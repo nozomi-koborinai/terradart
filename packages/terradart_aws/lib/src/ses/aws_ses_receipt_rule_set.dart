@@ -37,9 +37,9 @@ final class AwsSesReceiptRuleSet extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `rule_set_name` attribute.
-  TfRef<String> get ruleSetNameRef =>
+  TfRef<String> get ruleSetName =>
       TfRef.attribute<String>(this, 'rule_set_name');
 }

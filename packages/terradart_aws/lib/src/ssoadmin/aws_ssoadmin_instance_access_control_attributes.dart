@@ -80,9 +80,9 @@ final class AwsSsoadminInstanceAccessControlAttributes extends Resource {
       TfRef.attribute<String>(this, 'status_reason');
 
   /// Reference to `instance_arn` attribute.
-  TfRef<String> get instanceArnRef =>
+  TfRef<String> get instanceArn =>
       TfRef.attribute<String>(this, 'instance_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

@@ -62,6 +62,6 @@ final class DataAwsNetworkmanagerCoreNetwork extends Data {
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `core_network_id` attribute.
-  TfRef<String> get coreNetworkIdRef =>
+  TfRef<String> get coreNetworkId =>
       TfRef.attribute<String>(this, 'core_network_id');
 }

@@ -109,9 +109,9 @@ final class FleetStack extends Stack {
     );
 
     // Literal scope id -- emitted as a Dart constant at synth time.
-    addConstant('fleetScopeId', .ref(scope.scopeIdRef));
+    addConstant('fleetScopeId', .ref(scope.scopeId));
 
     // Full scope resource name -- Terraform output only (computed).
-    addOutput('fleet_scope_name', .ref(scope.id));
+    addOutput('fleet_scope_name', scope.id);
   }
 }

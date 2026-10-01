@@ -179,27 +179,27 @@ final class AwsOsisPipeline extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `max_units` attribute.
-  TfRef<num> get maxUnitsRef => TfRef.attribute<num>(this, 'max_units');
+  TfRef<num> get maxUnits => TfRef.attribute<num>(this, 'max_units');
 
   /// Reference to `min_units` attribute.
-  TfRef<num> get minUnitsRef => TfRef.attribute<num>(this, 'min_units');
+  TfRef<num> get minUnits => TfRef.attribute<num>(this, 'min_units');
 
   /// Reference to `pipeline_configuration_body` attribute.
-  TfRef<String> get pipelineConfigurationBodyRef =>
+  TfRef<String> get pipelineConfigurationBody =>
       TfRef.attribute<String>(this, 'pipeline_configuration_body');
 
   /// Reference to `pipeline_name` attribute.
-  TfRef<String> get pipelineNameRef =>
+  TfRef<String> get pipelineName =>
       TfRef.attribute<String>(this, 'pipeline_name');
 
   /// Reference to `pipeline_role_arn` attribute.
-  TfRef<String> get pipelineRoleArnRef =>
+  TfRef<String> get pipelineRoleArn =>
       TfRef.attribute<String>(this, 'pipeline_role_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

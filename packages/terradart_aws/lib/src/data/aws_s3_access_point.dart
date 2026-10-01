@@ -32,7 +32,7 @@ final class DataAwsS3AccessPoint extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `alias` attribute.
   TfRef<String> get alias => TfRef.attribute<String>(this, 'alias');
@@ -79,8 +79,8 @@ final class DataAwsS3AccessPoint extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'vpc_configuration');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

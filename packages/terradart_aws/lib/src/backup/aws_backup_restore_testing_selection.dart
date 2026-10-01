@@ -187,32 +187,31 @@ final class AwsBackupRestoreTestingSelection extends Resource {
   RefTo<AwsBackupRestoreTestingSelection> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `iam_role_arn` attribute.
-  TfRef<String> get iamRoleArnRef =>
-      TfRef.attribute<String>(this, 'iam_role_arn');
+  TfRef<String> get iamRoleArn => TfRef.attribute<String>(this, 'iam_role_arn');
 
   /// Reference to `protected_resource_arns` attribute.
-  TfRef<List<String>> get protectedResourceArnsRef =>
+  TfRef<List<String>> get protectedResourceArns =>
       TfRef.attribute<List<String>>(this, 'protected_resource_arns');
 
   /// Reference to `protected_resource_type` attribute.
-  TfRef<String> get protectedResourceTypeRef =>
+  TfRef<String> get protectedResourceType =>
       TfRef.attribute<String>(this, 'protected_resource_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `restore_metadata_overrides` attribute.
-  TfRef<Map<String, String>> get restoreMetadataOverridesRef =>
+  TfRef<Map<String, String>> get restoreMetadataOverrides =>
       TfRef.attribute<Map<String, String>>(this, 'restore_metadata_overrides');
 
   /// Reference to `restore_testing_plan_name` attribute.
-  TfRef<String> get restoreTestingPlanNameRef =>
+  TfRef<String> get restoreTestingPlanName =>
       TfRef.attribute<String>(this, 'restore_testing_plan_name');
 
   /// Reference to `validation_window_hours` attribute.
-  TfRef<num> get validationWindowHoursRef =>
+  TfRef<num> get validationWindowHours =>
       TfRef.attribute<num>(this, 'validation_window_hours');
 }

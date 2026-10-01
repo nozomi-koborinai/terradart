@@ -78,10 +78,6 @@ extraGetters: |2
     /// `projects/{project}/zones/{zone}/instances/{name}`).
     TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-    /// Reference to `name` attribute. Use for interpolations like
-    /// `vm.nameRef` -> `${google_compute_instance.<localName>.name}`.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
 extraImports:
   - "import 'package:meta/meta.dart';"
 

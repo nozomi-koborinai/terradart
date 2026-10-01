@@ -61,7 +61,7 @@ final class GoogleIamWorkforcePoolProviderScimTenant extends Resource {
   RefTo<GoogleIamWorkforcePoolProviderScimTenant> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -80,36 +80,34 @@ final class GoogleIamWorkforcePoolProviderScimTenant extends Resource {
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `claim_mapping` attribute.
-  TfRef<Map<String, String>> get claimMappingRef =>
+  TfRef<Map<String, String>> get claimMapping =>
       TfRef.attribute<Map<String, String>>(this, 'claim_mapping');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `hard_delete` attribute.
-  TfRef<bool> get hardDeleteRef => TfRef.attribute<bool>(this, 'hard_delete');
+  TfRef<bool> get hardDelete => TfRef.attribute<bool>(this, 'hard_delete');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `provider_id` attribute.
-  TfRef<String> get providerIdRef =>
-      TfRef.attribute<String>(this, 'provider_id');
+  TfRef<String> get providerId => TfRef.attribute<String>(this, 'provider_id');
 
   /// Reference to `scim_tenant_id` attribute.
-  TfRef<String> get scimTenantIdRef =>
+  TfRef<String> get scimTenantId =>
       TfRef.attribute<String>(this, 'scim_tenant_id');
 
   /// Reference to `workforce_pool_id` attribute.
-  TfRef<String> get workforcePoolIdRef =>
+  TfRef<String> get workforcePoolId =>
       TfRef.attribute<String>(this, 'workforce_pool_id');
 }

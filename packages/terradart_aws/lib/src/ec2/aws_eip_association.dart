@@ -108,28 +108,27 @@ final class AwsEipAssociation extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `allocation_id` attribute.
-  TfRef<String> get allocationIdRef =>
+  TfRef<String> get allocationId =>
       TfRef.attribute<String>(this, 'allocation_id');
 
   /// Reference to `allow_reassociation` attribute.
-  TfRef<bool> get allowReassociationRef =>
+  TfRef<bool> get allowReassociation =>
       TfRef.attribute<bool>(this, 'allow_reassociation');
 
   /// Reference to `instance_id` attribute.
-  TfRef<String> get instanceIdRef =>
-      TfRef.attribute<String>(this, 'instance_id');
+  TfRef<String> get instanceId => TfRef.attribute<String>(this, 'instance_id');
 
   /// Reference to `network_interface_id` attribute.
-  TfRef<String> get networkInterfaceIdRef =>
+  TfRef<String> get networkInterfaceId =>
       TfRef.attribute<String>(this, 'network_interface_id');
 
   /// Reference to `private_ip_address` attribute.
-  TfRef<String> get privateIpAddressRef =>
+  TfRef<String> get privateIpAddress =>
       TfRef.attribute<String>(this, 'private_ip_address');
 
   /// Reference to `public_ip` attribute.
-  TfRef<String> get publicIpRef => TfRef.attribute<String>(this, 'public_ip');
+  TfRef<String> get publicIp => TfRef.attribute<String>(this, 'public_ip');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

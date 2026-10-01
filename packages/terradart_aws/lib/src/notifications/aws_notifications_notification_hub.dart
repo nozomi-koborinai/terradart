@@ -30,6 +30,6 @@ final class AwsNotificationsNotificationHub extends Resource {
   RefTo<AwsNotificationsNotificationHub> get ref => RefTo.of(this);
 
   /// Reference to `notification_hub_region` attribute.
-  TfRef<String> get notificationHubRegionRef =>
+  TfRef<String> get notificationHubRegion =>
       TfRef.attribute<String>(this, 'notification_hub_region');
 }

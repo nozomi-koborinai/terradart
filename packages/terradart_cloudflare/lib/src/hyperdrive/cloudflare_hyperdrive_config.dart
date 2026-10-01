@@ -158,7 +158,7 @@ final class CloudflareHyperdriveConfig extends Resource {
   RefTo<CloudflareHyperdriveConfig> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -174,13 +174,12 @@ final class CloudflareHyperdriveConfig extends Resource {
       TfRef.attribute<String>(this, 'restarted_on');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `integration` attribute.
-  TfRef<String> get integrationRef =>
-      TfRef.attribute<String>(this, 'integration');
+  TfRef<String> get integration => TfRef.attribute<String>(this, 'integration');
 
   /// Reference to `origin_connection_limit` attribute.
-  TfRef<num> get originConnectionLimitRef =>
+  TfRef<num> get originConnectionLimit =>
       TfRef.attribute<num>(this, 'origin_connection_limit');
 }

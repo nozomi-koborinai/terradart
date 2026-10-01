@@ -96,9 +96,9 @@ final class ListsStack extends Stack {
     );
 
     // Literal address-group name -- emitted as a Dart constant at synth time.
-    addConstant('blocklistName', .ref(blocklist.nameRef));
+    addConstant('blocklistName', .ref(blocklist.name));
 
     // Full address-group resource id -- Terraform output only (computed).
-    addOutput('blocklist_id', .ref(blocklist.id));
+    addOutput('blocklist_id', blocklist.id);
   }
 }

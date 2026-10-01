@@ -48,25 +48,25 @@ final class AwsEcrPullThroughCacheRule extends Resource {
   TfRef<String> get registryId => TfRef.attribute<String>(this, 'registry_id');
 
   /// Reference to `credential_arn` attribute.
-  TfRef<String> get credentialArnRef =>
+  TfRef<String> get credentialArn =>
       TfRef.attribute<String>(this, 'credential_arn');
 
   /// Reference to `custom_role_arn` attribute.
-  TfRef<String> get customRoleArnRef =>
+  TfRef<String> get customRoleArn =>
       TfRef.attribute<String>(this, 'custom_role_arn');
 
   /// Reference to `ecr_repository_prefix` attribute.
-  TfRef<String> get ecrRepositoryPrefixRef =>
+  TfRef<String> get ecrRepositoryPrefix =>
       TfRef.attribute<String>(this, 'ecr_repository_prefix');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `upstream_registry_url` attribute.
-  TfRef<String> get upstreamRegistryUrlRef =>
+  TfRef<String> get upstreamRegistryUrl =>
       TfRef.attribute<String>(this, 'upstream_registry_url');
 
   /// Reference to `upstream_repository_prefix` attribute.
-  TfRef<String> get upstreamRepositoryPrefixRef =>
+  TfRef<String> get upstreamRepositoryPrefix =>
       TfRef.attribute<String>(this, 'upstream_repository_prefix');
 }

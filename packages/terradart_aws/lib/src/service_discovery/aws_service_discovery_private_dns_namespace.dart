@@ -41,7 +41,7 @@ final class AwsServiceDiscoveryPrivateDnsNamespace extends Resource {
   RefTo<AwsServiceDiscoveryPrivateDnsNamespace> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -53,16 +53,15 @@ final class AwsServiceDiscoveryPrivateDnsNamespace extends Resource {
   TfRef<String> get hostedZone => TfRef.attribute<String>(this, 'hosted_zone');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `vpc` attribute.
-  TfRef<String> get vpcRef => TfRef.attribute<String>(this, 'vpc');
+  TfRef<String> get vpc => TfRef.attribute<String>(this, 'vpc');
 }

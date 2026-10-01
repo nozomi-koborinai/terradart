@@ -40,13 +40,13 @@ final class AwsVpcEndpointRouteTableAssociation extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `route_table_id` attribute.
-  TfRef<String> get routeTableIdRef =>
+  TfRef<String> get routeTableId =>
       TfRef.attribute<String>(this, 'route_table_id');
 
   /// Reference to `vpc_endpoint_id` attribute.
-  TfRef<String> get vpcEndpointIdRef =>
+  TfRef<String> get vpcEndpointId =>
       TfRef.attribute<String>(this, 'vpc_endpoint_id');
 }

@@ -64,8 +64,8 @@ final class GoogleFirebaseAppCheckAppAttestConfig extends Resource {
   /// Reference to `name` attribute (the relative resource name of the
   /// App Attest configuration object, in the shape
   /// `projects/{project}/apps/{app_id}/appAttestConfig`).
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute. Same as `nameRef` for this resource.
+  /// Reference to `id` attribute. Same as `name` for this resource.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

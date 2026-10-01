@@ -59,11 +59,11 @@ final class CloudflareCloudforceOneRequestMessage extends Resource {
   TfRef<String> get updated => TfRef.attribute<String>(this, 'updated');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `content` attribute.
-  TfRef<String> get contentRef => TfRef.attribute<String>(this, 'content');
+  TfRef<String> get content => TfRef.attribute<String>(this, 'content');
 
   /// Reference to `request_id` attribute.
-  TfRef<String> get requestIdRef => TfRef.attribute<String>(this, 'request_id');
+  TfRef<String> get requestId => TfRef.attribute<String>(this, 'request_id');
 }

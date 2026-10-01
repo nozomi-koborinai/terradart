@@ -114,50 +114,49 @@ final class AwsEc2TransitGatewayVpcAttachment extends Resource {
   TfRef<String> get vpcOwnerId => TfRef.attribute<String>(this, 'vpc_owner_id');
 
   /// Reference to `appliance_mode_support` attribute.
-  TfRef<String> get applianceModeSupportRef =>
+  TfRef<String> get applianceModeSupport =>
       TfRef.attribute<String>(this, 'appliance_mode_support');
 
   /// Reference to `dns_support` attribute.
-  TfRef<String> get dnsSupportRef =>
-      TfRef.attribute<String>(this, 'dns_support');
+  TfRef<String> get dnsSupport => TfRef.attribute<String>(this, 'dns_support');
 
   /// Reference to `ipv6_support` attribute.
-  TfRef<String> get ipv6SupportRef =>
+  TfRef<String> get ipv6Support =>
       TfRef.attribute<String>(this, 'ipv6_support');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `security_group_referencing_support` attribute.
-  TfRef<String> get securityGroupReferencingSupportRef =>
+  TfRef<String> get securityGroupReferencingSupport =>
       TfRef.attribute<String>(this, 'security_group_referencing_support');
 
   /// Reference to `subnet_ids` attribute.
-  TfRef<List<String>> get subnetIdsRef =>
+  TfRef<List<String>> get subnetIds =>
       TfRef.attribute<List<String>>(this, 'subnet_ids');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `transit_gateway_default_route_table_association` attribute.
-  TfRef<bool> get transitGatewayDefaultRouteTableAssociationRef =>
+  TfRef<bool> get transitGatewayDefaultRouteTableAssociation =>
       TfRef.attribute<bool>(
         this,
         'transit_gateway_default_route_table_association',
       );
 
   /// Reference to `transit_gateway_default_route_table_propagation` attribute.
-  TfRef<bool> get transitGatewayDefaultRouteTablePropagationRef =>
+  TfRef<bool> get transitGatewayDefaultRouteTablePropagation =>
       TfRef.attribute<bool>(
         this,
         'transit_gateway_default_route_table_propagation',
       );
 
   /// Reference to `transit_gateway_id` attribute.
-  TfRef<String> get transitGatewayIdRef =>
+  TfRef<String> get transitGatewayId =>
       TfRef.attribute<String>(this, 'transit_gateway_id');
 
   /// Reference to `vpc_id` attribute.
-  TfRef<String> get vpcIdRef => TfRef.attribute<String>(this, 'vpc_id');
+  TfRef<String> get vpcId => TfRef.attribute<String>(this, 'vpc_id');
 }

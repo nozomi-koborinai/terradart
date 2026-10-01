@@ -917,69 +917,65 @@ final class AwsDmsEndpoint extends Resource {
       TfRef.attribute<String>(this, 'endpoint_arn');
 
   /// Reference to `certificate_arn` attribute.
-  TfRef<String> get certificateArnRef =>
+  TfRef<String> get certificateArn =>
       TfRef.attribute<String>(this, 'certificate_arn');
 
   /// Reference to `database_name` attribute.
-  TfRef<String> get databaseNameRef =>
+  TfRef<String> get databaseName =>
       TfRef.attribute<String>(this, 'database_name');
 
   /// Reference to `endpoint_id` attribute.
-  TfRef<String> get endpointIdRef =>
-      TfRef.attribute<String>(this, 'endpoint_id');
+  TfRef<String> get endpointId => TfRef.attribute<String>(this, 'endpoint_id');
 
   /// Reference to `endpoint_type` attribute.
-  TfRef<String> get endpointTypeRef =>
+  TfRef<String> get endpointType =>
       TfRef.attribute<String>(this, 'endpoint_type');
 
   /// Reference to `engine_name` attribute.
-  TfRef<String> get engineNameRef =>
-      TfRef.attribute<String>(this, 'engine_name');
+  TfRef<String> get engineName => TfRef.attribute<String>(this, 'engine_name');
 
   /// Reference to `extra_connection_attributes` attribute.
-  TfRef<String> get extraConnectionAttributesRef =>
+  TfRef<String> get extraConnectionAttributes =>
       TfRef.attribute<String>(this, 'extra_connection_attributes');
 
   /// Reference to `kms_key_arn` attribute.
-  TfRef<String> get kmsKeyArnRef =>
-      TfRef.attribute<String>(this, 'kms_key_arn');
+  TfRef<String> get kmsKeyArn => TfRef.attribute<String>(this, 'kms_key_arn');
 
   /// Reference to `password` attribute.
-  TfRef<String> get passwordRef => TfRef.attribute<String>(this, 'password');
+  TfRef<String> get password => TfRef.attribute<String>(this, 'password');
 
   /// Reference to `pause_replication_tasks` attribute.
-  TfRef<bool> get pauseReplicationTasksRef =>
+  TfRef<bool> get pauseReplicationTasks =>
       TfRef.attribute<bool>(this, 'pause_replication_tasks');
 
   /// Reference to `port` attribute.
-  TfRef<num> get portRef => TfRef.attribute<num>(this, 'port');
+  TfRef<num> get port => TfRef.attribute<num>(this, 'port');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `secrets_manager_access_role_arn` attribute.
-  TfRef<String> get secretsManagerAccessRoleArnRef =>
+  TfRef<String> get secretsManagerAccessRoleArn =>
       TfRef.attribute<String>(this, 'secrets_manager_access_role_arn');
 
   /// Reference to `secrets_manager_arn` attribute.
-  TfRef<String> get secretsManagerArnRef =>
+  TfRef<String> get secretsManagerArn =>
       TfRef.attribute<String>(this, 'secrets_manager_arn');
 
   /// Reference to `server_name` attribute.
-  TfRef<String> get serverNameRef =>
-      TfRef.attribute<String>(this, 'server_name');
+  TfRef<String> get serverName => TfRef.attribute<String>(this, 'server_name');
 
   /// Reference to `service_access_role` attribute.
-  TfRef<String> get serviceAccessRoleRef =>
+  TfRef<String> get serviceAccessRole =>
       TfRef.attribute<String>(this, 'service_access_role');
 
   /// Reference to `ssl_mode` attribute.
-  TfRef<String> get sslModeRef => TfRef.attribute<String>(this, 'ssl_mode');
+  TfRef<String> get sslMode => TfRef.attribute<String>(this, 'ssl_mode');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `username` attribute.
-  TfRef<String> get usernameRef => TfRef.attribute<String>(this, 'username');
+  TfRef<String> get username => TfRef.attribute<String>(this, 'username');
 }

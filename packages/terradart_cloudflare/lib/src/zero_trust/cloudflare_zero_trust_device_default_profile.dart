@@ -287,7 +287,7 @@ final class CloudflareZeroTrustDeviceDefaultProfile extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `default` attribute.
-  TfRef<bool> get defaultCase => TfRef.attribute<bool>(this, 'default');
+  TfRef<bool> get defaultAttr => TfRef.attribute<bool>(this, 'default');
 
   /// Reference to `enabled` attribute.
   TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
@@ -304,64 +304,60 @@ final class CloudflareZeroTrustDeviceDefaultProfile extends Resource {
       TfRef.attribute<String>(this, 'profile_type');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `allow_mode_switch` attribute.
-  TfRef<bool> get allowModeSwitchRef =>
+  TfRef<bool> get allowModeSwitch =>
       TfRef.attribute<bool>(this, 'allow_mode_switch');
 
   /// Reference to `allow_updates` attribute.
-  TfRef<bool> get allowUpdatesRef =>
-      TfRef.attribute<bool>(this, 'allow_updates');
+  TfRef<bool> get allowUpdates => TfRef.attribute<bool>(this, 'allow_updates');
 
   /// Reference to `allowed_to_leave` attribute.
-  TfRef<bool> get allowedToLeaveRef =>
+  TfRef<bool> get allowedToLeave =>
       TfRef.attribute<bool>(this, 'allowed_to_leave');
 
   /// Reference to `auto_connect` attribute.
-  TfRef<num> get autoConnectRef => TfRef.attribute<num>(this, 'auto_connect');
+  TfRef<num> get autoConnect => TfRef.attribute<num>(this, 'auto_connect');
 
   /// Reference to `captive_portal` attribute.
-  TfRef<num> get captivePortalRef =>
-      TfRef.attribute<num>(this, 'captive_portal');
+  TfRef<num> get captivePortal => TfRef.attribute<num>(this, 'captive_portal');
 
   /// Reference to `disable_auto_fallback` attribute.
-  TfRef<bool> get disableAutoFallbackRef =>
+  TfRef<bool> get disableAutoFallback =>
       TfRef.attribute<bool>(this, 'disable_auto_fallback');
 
   /// Reference to `exclude_office_ips` attribute.
-  TfRef<bool> get excludeOfficeIpsRef =>
+  TfRef<bool> get excludeOfficeIps =>
       TfRef.attribute<bool>(this, 'exclude_office_ips');
 
   /// Reference to `lan_allow_minutes` attribute.
-  TfRef<num> get lanAllowMinutesRef =>
+  TfRef<num> get lanAllowMinutes =>
       TfRef.attribute<num>(this, 'lan_allow_minutes');
 
   /// Reference to `lan_allow_subnet_size` attribute.
-  TfRef<num> get lanAllowSubnetSizeRef =>
+  TfRef<num> get lanAllowSubnetSize =>
       TfRef.attribute<num>(this, 'lan_allow_subnet_size');
 
   /// Reference to `register_interface_ip_with_dns` attribute.
-  TfRef<bool> get registerInterfaceIpWithDnsRef =>
+  TfRef<bool> get registerInterfaceIpWithDns =>
       TfRef.attribute<bool>(this, 'register_interface_ip_with_dns');
 
   /// Reference to `sccm_vpn_boundary_support` attribute.
-  TfRef<bool> get sccmVpnBoundarySupportRef =>
+  TfRef<bool> get sccmVpnBoundarySupport =>
       TfRef.attribute<bool>(this, 'sccm_vpn_boundary_support');
 
   /// Reference to `support_url` attribute.
-  TfRef<String> get supportUrlRef =>
-      TfRef.attribute<String>(this, 'support_url');
+  TfRef<String> get supportUrl => TfRef.attribute<String>(this, 'support_url');
 
   /// Reference to `switch_locked` attribute.
-  TfRef<bool> get switchLockedRef =>
-      TfRef.attribute<bool>(this, 'switch_locked');
+  TfRef<bool> get switchLocked => TfRef.attribute<bool>(this, 'switch_locked');
 
   /// Reference to `tunnel_protocol` attribute.
-  TfRef<String> get tunnelProtocolRef =>
+  TfRef<String> get tunnelProtocol =>
       TfRef.attribute<String>(this, 'tunnel_protocol');
 
   /// Reference to `uninstall_protection` attribute.
-  TfRef<bool> get uninstallProtectionRef =>
+  TfRef<bool> get uninstallProtection =>
       TfRef.attribute<bool>(this, 'uninstall_protection');
 }

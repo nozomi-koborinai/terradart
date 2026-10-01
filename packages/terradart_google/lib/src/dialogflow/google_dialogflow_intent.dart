@@ -81,7 +81,7 @@ final class GoogleDialogflowIntent extends Resource {
   RefTo<GoogleDialogflowIntent> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -95,49 +95,49 @@ final class GoogleDialogflowIntent extends Resource {
       TfRef.attribute<String>(this, 'root_followup_intent_name');
 
   /// Reference to `action` attribute.
-  TfRef<String> get actionRef => TfRef.attribute<String>(this, 'action');
+  TfRef<String> get action => TfRef.attribute<String>(this, 'action');
 
   /// Reference to `default_response_platforms` attribute.
-  TfRef<List<String>> get defaultResponsePlatformsRef =>
+  TfRef<List<String>> get defaultResponsePlatforms =>
       TfRef.attribute<List<String>>(this, 'default_response_platforms');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `events` attribute.
-  TfRef<List<String>> get eventsRef =>
+  TfRef<List<String>> get events =>
       TfRef.attribute<List<String>>(this, 'events');
 
   /// Reference to `input_context_names` attribute.
-  TfRef<List<String>> get inputContextNamesRef =>
+  TfRef<List<String>> get inputContextNames =>
       TfRef.attribute<List<String>>(this, 'input_context_names');
 
   /// Reference to `is_fallback` attribute.
-  TfRef<bool> get isFallbackRef => TfRef.attribute<bool>(this, 'is_fallback');
+  TfRef<bool> get isFallback => TfRef.attribute<bool>(this, 'is_fallback');
 
   /// Reference to `ml_disabled` attribute.
-  TfRef<bool> get mlDisabledRef => TfRef.attribute<bool>(this, 'ml_disabled');
+  TfRef<bool> get mlDisabled => TfRef.attribute<bool>(this, 'ml_disabled');
 
   /// Reference to `parent_followup_intent_name` attribute.
-  TfRef<String> get parentFollowupIntentNameRef =>
+  TfRef<String> get parentFollowupIntentName =>
       TfRef.attribute<String>(this, 'parent_followup_intent_name');
 
   /// Reference to `priority` attribute.
-  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+  TfRef<num> get priority => TfRef.attribute<num>(this, 'priority');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `reset_contexts` attribute.
-  TfRef<bool> get resetContextsRef =>
+  TfRef<bool> get resetContexts =>
       TfRef.attribute<bool>(this, 'reset_contexts');
 
   /// Reference to `webhook_state` attribute.
-  TfRef<String> get webhookStateRef =>
+  TfRef<String> get webhookState =>
       TfRef.attribute<String>(this, 'webhook_state');
 }

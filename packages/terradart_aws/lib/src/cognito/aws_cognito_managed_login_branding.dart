@@ -195,19 +195,18 @@ final class AwsCognitoManagedLoginBranding extends Resource {
       TfRef.attribute<String>(this, 'settings_all');
 
   /// Reference to `client_id` attribute.
-  TfRef<String> get clientIdRef => TfRef.attribute<String>(this, 'client_id');
+  TfRef<String> get clientId => TfRef.attribute<String>(this, 'client_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `settings` attribute.
-  TfRef<String> get settingsRef => TfRef.attribute<String>(this, 'settings');
+  TfRef<String> get settings => TfRef.attribute<String>(this, 'settings');
 
   /// Reference to `use_cognito_provided_values` attribute.
-  TfRef<bool> get useCognitoProvidedValuesRef =>
+  TfRef<bool> get useCognitoProvidedValues =>
       TfRef.attribute<bool>(this, 'use_cognito_provided_values');
 
   /// Reference to `user_pool_id` attribute.
-  TfRef<String> get userPoolIdRef =>
-      TfRef.attribute<String>(this, 'user_pool_id');
+  TfRef<String> get userPoolId => TfRef.attribute<String>(this, 'user_pool_id');
 }

@@ -37,14 +37,14 @@ final class DataCloudflareCertificatePacks extends Data {
   Set<String> get sensitiveFields => _cloudflareCertificatePacksSensitive;
 
   /// Reference to `deploy` attribute.
-  TfRef<String> get deployRef => TfRef.attribute<String>(this, 'deploy');
+  TfRef<String> get deploy => TfRef.attribute<String>(this, 'deploy');
 
   /// Reference to `max_items` attribute.
-  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+  TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
 
   /// Reference to `status` attribute.
-  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+  TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

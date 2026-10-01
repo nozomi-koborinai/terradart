@@ -135,7 +135,7 @@ final class LatencyAlertStack extends Stack {
         // Custom services have no derived telemetry, so a `basic_sli`
         // (availability/latency) cannot be evaluated against them; use a
         // request-based good/total ratio on the Cloud Run request metric.
-        service: .ref(apiService.serviceIdRef),
+        service: apiService.serviceId,
         goal: .literal(0.99),
         displayName: .literal('API availability'),
         period: .rollingPeriodDays(.literal(30)),

@@ -77,7 +77,7 @@ final class AwsGlobalacceleratorAccelerator extends Resource {
   RefTo<AwsGlobalacceleratorAccelerator> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -101,17 +101,17 @@ final class AwsGlobalacceleratorAccelerator extends Resource {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'ip_sets');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `ip_address_type` attribute.
-  TfRef<String> get ipAddressTypeRef =>
+  TfRef<String> get ipAddressType =>
       TfRef.attribute<String>(this, 'ip_address_type');
 
   /// Reference to `ip_addresses` attribute.
-  TfRef<List<String>> get ipAddressesRef =>
+  TfRef<List<String>> get ipAddresses =>
       TfRef.attribute<List<String>>(this, 'ip_addresses');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

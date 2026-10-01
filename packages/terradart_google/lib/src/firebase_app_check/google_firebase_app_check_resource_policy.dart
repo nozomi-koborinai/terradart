@@ -100,7 +100,7 @@ final class GoogleFirebaseAppCheckResourcePolicy extends Resource {
 
   /// Reference to `resource_policy_id` -- the server-generated UID for
   /// the policy. Populated after apply.
-  TfRef<String> get resourcePolicyIdRef =>
+  TfRef<String> get resourcePolicyId =>
       TfRef.attribute<String>(this, 'resource_policy_id');
 
   /// Reference to `etag` (used for optimistic concurrency on update /

@@ -604,6 +604,9 @@ final class GoogleComputeInstanceGroupManager extends Resource {
   /// `RefTo<GoogleComputeInstanceGroupManager>`.
   RefTo<GoogleComputeInstanceGroupManager> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `creation_timestamp` attribute.
   TfRef<String> get creationTimestamp =>
       TfRef.attribute<String>(this, 'creation_timestamp');
@@ -626,52 +629,48 @@ final class GoogleComputeInstanceGroupManager extends Resource {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'status');
 
   /// Reference to `base_instance_name` attribute.
-  TfRef<String> get baseInstanceNameRef =>
+  TfRef<String> get baseInstanceName =>
       TfRef.attribute<String>(this, 'base_instance_name');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `list_managed_instances_results` attribute.
-  TfRef<String> get listManagedInstancesResultsRef =>
+  TfRef<String> get listManagedInstancesResults =>
       TfRef.attribute<String>(this, 'list_managed_instances_results');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `target_pools` attribute.
-  TfRef<List<String>> get targetPoolsRef =>
+  TfRef<List<String>> get targetPools =>
       TfRef.attribute<List<String>>(this, 'target_pools');
 
   /// Reference to `target_size` attribute.
-  TfRef<num> get targetSizeRef => TfRef.attribute<num>(this, 'target_size');
+  TfRef<num> get targetSize => TfRef.attribute<num>(this, 'target_size');
 
   /// Reference to `target_stopped_size` attribute.
-  TfRef<num> get targetStoppedSizeRef =>
+  TfRef<num> get targetStoppedSize =>
       TfRef.attribute<num>(this, 'target_stopped_size');
 
   /// Reference to `target_suspended_size` attribute.
-  TfRef<num> get targetSuspendedSizeRef =>
+  TfRef<num> get targetSuspendedSize =>
       TfRef.attribute<num>(this, 'target_suspended_size');
 
   /// Reference to `wait_for_instances` attribute.
-  TfRef<bool> get waitForInstancesRef =>
+  TfRef<bool> get waitForInstances =>
       TfRef.attribute<bool>(this, 'wait_for_instances');
 
   /// Reference to `wait_for_instances_status` attribute.
-  TfRef<String> get waitForInstancesStatusRef =>
+  TfRef<String> get waitForInstancesStatus =>
       TfRef.attribute<String>(this, 'wait_for_instances_status');
 
   /// Reference to `zone` attribute.
-  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get zone => TfRef.attribute<String>(this, 'zone');
 
   /// Reference to `id` attribute
   /// (`projects/{project}/zones/{zone}/instanceGroupManagers/{name}`).

@@ -114,7 +114,7 @@ final class AwsRoute53ResolverEndpoint extends Resource {
   RefTo<AwsRoute53ResolverEndpoint> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -126,32 +126,32 @@ final class AwsRoute53ResolverEndpoint extends Resource {
   TfRef<String> get hostVpcId => TfRef.attribute<String>(this, 'host_vpc_id');
 
   /// Reference to `direction` attribute.
-  TfRef<String> get directionRef => TfRef.attribute<String>(this, 'direction');
+  TfRef<String> get direction => TfRef.attribute<String>(this, 'direction');
 
   /// Reference to `protocols` attribute.
-  TfRef<List<String>> get protocolsRef =>
+  TfRef<List<String>> get protocols =>
       TfRef.attribute<List<String>>(this, 'protocols');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resolver_endpoint_type` attribute.
-  TfRef<String> get resolverEndpointTypeRef =>
+  TfRef<String> get resolverEndpointType =>
       TfRef.attribute<String>(this, 'resolver_endpoint_type');
 
   /// Reference to `rni_enhanced_metrics_enabled` attribute.
-  TfRef<bool> get rniEnhancedMetricsEnabledRef =>
+  TfRef<bool> get rniEnhancedMetricsEnabled =>
       TfRef.attribute<bool>(this, 'rni_enhanced_metrics_enabled');
 
   /// Reference to `security_group_ids` attribute.
-  TfRef<List<String>> get securityGroupIdsRef =>
+  TfRef<List<String>> get securityGroupIds =>
       TfRef.attribute<List<String>>(this, 'security_group_ids');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `target_name_server_metrics_enabled` attribute.
-  TfRef<bool> get targetNameServerMetricsEnabledRef =>
+  TfRef<bool> get targetNameServerMetricsEnabled =>
       TfRef.attribute<bool>(this, 'target_name_server_metrics_enabled');
 }

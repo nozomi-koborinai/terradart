@@ -103,21 +103,21 @@ final class AwsDatasyncLocationFsxOpenzfsFileSystem extends Resource {
   TfRef<String> get uri => TfRef.attribute<String>(this, 'uri');
 
   /// Reference to `fsx_filesystem_arn` attribute.
-  TfRef<String> get fsxFilesystemArnRef =>
+  TfRef<String> get fsxFilesystemArn =>
       TfRef.attribute<String>(this, 'fsx_filesystem_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `security_group_arns` attribute.
-  TfRef<List<String>> get securityGroupArnsRef =>
+  TfRef<List<String>> get securityGroupArns =>
       TfRef.attribute<List<String>>(this, 'security_group_arns');
 
   /// Reference to `subdirectory` attribute.
-  TfRef<String> get subdirectoryRef =>
+  TfRef<String> get subdirectory =>
       TfRef.attribute<String>(this, 'subdirectory');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

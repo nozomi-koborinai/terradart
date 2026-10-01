@@ -108,27 +108,26 @@ final class AwsVpcIpam extends Resource {
   TfRef<num> get scopeCount => TfRef.attribute<num>(this, 'scope_count');
 
   /// Reference to `cascade` attribute.
-  TfRef<bool> get cascadeRef => TfRef.attribute<bool>(this, 'cascade');
+  TfRef<bool> get cascade => TfRef.attribute<bool>(this, 'cascade');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `enable_private_gua` attribute.
-  TfRef<bool> get enablePrivateGuaRef =>
+  TfRef<bool> get enablePrivateGua =>
       TfRef.attribute<bool>(this, 'enable_private_gua');
 
   /// Reference to `metered_account` attribute.
-  TfRef<String> get meteredAccountRef =>
+  TfRef<String> get meteredAccount =>
       TfRef.attribute<String>(this, 'metered_account');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `tier` attribute.
-  TfRef<String> get tierRef => TfRef.attribute<String>(this, 'tier');
+  TfRef<String> get tier => TfRef.attribute<String>(this, 'tier');
 }

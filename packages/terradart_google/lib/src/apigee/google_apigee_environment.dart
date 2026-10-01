@@ -175,42 +175,38 @@ final class GoogleApigeeEnvironment extends Resource {
   /// `RefTo<GoogleApigeeEnvironment>`.
   RefTo<GoogleApigeeEnvironment> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `api_proxy_type` attribute.
-  TfRef<String> get apiProxyTypeRef =>
+  TfRef<String> get apiProxyType =>
       TfRef.attribute<String>(this, 'api_proxy_type');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `deployment_type` attribute.
-  TfRef<String> get deploymentTypeRef =>
+  TfRef<String> get deploymentType =>
       TfRef.attribute<String>(this, 'deployment_type');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `forward_proxy_uri` attribute.
-  TfRef<String> get forwardProxyUriRef =>
+  TfRef<String> get forwardProxyUri =>
       TfRef.attribute<String>(this, 'forward_proxy_uri');
 
   /// Reference to `org_id` attribute.
-  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
+  TfRef<String> get orgId => TfRef.attribute<String>(this, 'org_id');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

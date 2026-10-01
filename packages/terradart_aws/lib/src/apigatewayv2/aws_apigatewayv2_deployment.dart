@@ -44,16 +44,15 @@ final class AwsApigatewayv2Deployment extends Resource {
   TfRef<bool> get autoDeployed => TfRef.attribute<bool>(this, 'auto_deployed');
 
   /// Reference to `api_id` attribute.
-  TfRef<String> get apiIdRef => TfRef.attribute<String>(this, 'api_id');
+  TfRef<String> get apiId => TfRef.attribute<String>(this, 'api_id');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `triggers` attribute.
-  TfRef<Map<String, String>> get triggersRef =>
+  TfRef<Map<String, String>> get triggers =>
       TfRef.attribute<Map<String, String>>(this, 'triggers');
 }

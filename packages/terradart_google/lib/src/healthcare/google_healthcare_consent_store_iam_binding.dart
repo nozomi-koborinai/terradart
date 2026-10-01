@@ -82,16 +82,16 @@ final class GoogleHealthcareConsentStoreIamBinding extends Resource {
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `consent_store_id` attribute.
-  TfRef<String> get consentStoreIdRef =>
+  TfRef<String> get consentStoreId =>
       TfRef.attribute<String>(this, 'consent_store_id');
 
   /// Reference to `dataset` attribute.
-  TfRef<String> get datasetRef => TfRef.attribute<String>(this, 'dataset');
+  TfRef<String> get dataset => TfRef.attribute<String>(this, 'dataset');
 
   /// Reference to `members` attribute.
-  TfRef<List<String>> get membersRef =>
+  TfRef<List<String>> get members =>
       TfRef.attribute<List<String>>(this, 'members');
 
   /// Reference to `role` attribute.
-  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+  TfRef<String> get role => TfRef.attribute<String>(this, 'role');
 }

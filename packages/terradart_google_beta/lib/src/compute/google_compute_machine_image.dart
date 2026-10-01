@@ -96,7 +96,7 @@ final class GoogleComputeMachineImage extends Resource {
   RefTo<GoogleComputeMachineImage> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -109,20 +109,19 @@ final class GoogleComputeMachineImage extends Resource {
       TfRef.attribute<List<String>>(this, 'storage_locations');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `guest_flush` attribute.
-  TfRef<bool> get guestFlushRef => TfRef.attribute<bool>(this, 'guest_flush');
+  TfRef<bool> get guestFlush => TfRef.attribute<bool>(this, 'guest_flush');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `source_instance` attribute.
-  TfRef<String> get sourceInstanceRef =>
+  TfRef<String> get sourceInstance =>
       TfRef.attribute<String>(this, 'source_instance');
 }

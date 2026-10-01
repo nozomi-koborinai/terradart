@@ -26,7 +26,7 @@ const Set<String> _googleTagsLocationTagBindingSensitive = <String>{};
 ///   parent: TfArg.literal(
 ///     '//artifactregistry.googleapis.com/projects/'
 ///     '${project.number.interpolation}/locations/asia-northeast1/'
-///     'repositories/${repo.repositoryIdRef.interpolation}',
+///     'repositories/${repo.repositoryId.interpolation}',
 ///   ),
 ///   tagValue: value.ref,
 ///   location: TfArg.literal('asia-northeast1'),
@@ -63,21 +63,21 @@ final class GoogleTagsLocationTagBinding extends Resource {
   RefTo<GoogleTagsLocationTagBinding> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `parent` attribute.
-  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+  TfRef<String> get parent => TfRef.attribute<String>(this, 'parent');
 
   /// Reference to `tag_value` attribute.
-  TfRef<String> get tagValueRef => TfRef.attribute<String>(this, 'tag_value');
+  TfRef<String> get tagValue => TfRef.attribute<String>(this, 'tag_value');
 }

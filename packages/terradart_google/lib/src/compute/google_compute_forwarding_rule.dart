@@ -175,7 +175,7 @@ class ComputeForwardingRuleServiceDirectoryRegistration {
 /// - `target` **or** `backendService` (exactly one):
 ///   - `target`: self-link of an upstream regional target proxy. Required
 ///     for proxy / Application Load Balancers. Typical L7 callers pass
-///     `TfArg.ref(regionTargetHttpsProxy.selfLink)`.
+///     `regionTargetHttpsProxy.selfLink`.
 ///   - `backendService`: self-link of a regional backend service.
 ///     Required for **Internal TCP/UDP Load Balancing** and Network Load
 ///     Balancing; **must be omitted** for all other LB types. Wave 6
@@ -214,12 +214,10 @@ class ComputeForwardingRuleServiceDirectoryRegistration {
 /// `ipAddress` is set, the network tier must match the address's tier.
 /// Leave `null` for the provider default (`PREMIUM`).
 ///
-/// [ipAddressRef] is the output reference to `ip_address` — populated
-/// with the actual VIP after apply. Useful when [ipAddress] was left
-/// unset and GCP allocated an ephemeral IP, or when downstream DNS
-/// records need the resolved address. (`ip_address` is
-/// `optional + computed`; the derive gate skips it, so [ipAddressRef]
-/// is the sole reference accessor.)
+/// The [ipAddress] getter reads `ip_address` — populated with the actual
+/// VIP after apply. Useful when the `ipAddress` argument was left unset
+/// and GCP allocated an ephemeral IP, or when downstream DNS records need
+/// the resolved address.
 ///
 /// [pscConnectionId] is populated only for Private Service Connect
 /// consumer forwarding rules; empty otherwise. [pscConnectionStatus]
@@ -236,10 +234,10 @@ class ComputeForwardingRuleServiceDirectoryRegistration {
 ///   localName: 'ilb',
 ///   name: TfArg.literal('ilb-https-frontend'),
 ///   region: TfArg.literal('us-central1'),
-///   target: TfArg.ref(regionTargetHttpsProxy.selfLink),
+///   target: regionTargetHttpsProxy.selfLink,
 ///   network: vpc.ref,
 ///   subnetwork: ilbSubnet.ref,
-///   ipAddress: TfArg.ref(ilbVip.selfLink),
+///   ipAddress: ilbVip.selfLink,
 ///   ipProtocol: TfArg.literal(ForwardingRuleIpProtocol.tcp),
 ///   portRange: TfArg.literal('443'),
 ///   loadBalancingScheme:
@@ -328,7 +326,7 @@ final class GoogleComputeForwardingRule extends Resource {
   RefTo<GoogleComputeForwardingRule> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -373,96 +371,90 @@ final class GoogleComputeForwardingRule extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `all_ports` attribute.
-  TfRef<bool> get allPortsRef => TfRef.attribute<bool>(this, 'all_ports');
+  TfRef<bool> get allPorts => TfRef.attribute<bool>(this, 'all_ports');
 
   /// Reference to `allow_global_access` attribute.
-  TfRef<bool> get allowGlobalAccessRef =>
+  TfRef<bool> get allowGlobalAccess =>
       TfRef.attribute<bool>(this, 'allow_global_access');
 
   /// Reference to `allow_psc_global_access` attribute.
-  TfRef<bool> get allowPscGlobalAccessRef =>
+  TfRef<bool> get allowPscGlobalAccess =>
       TfRef.attribute<bool>(this, 'allow_psc_global_access');
 
   /// Reference to `backend_service` attribute.
-  TfRef<String> get backendServiceRef =>
+  TfRef<String> get backendService =>
       TfRef.attribute<String>(this, 'backend_service');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `ip_address` attribute.
+  TfRef<String> get ipAddress => TfRef.attribute<String>(this, 'ip_address');
 
   /// Reference to `ip_collection` attribute.
-  TfRef<String> get ipCollectionRef =>
+  TfRef<String> get ipCollection =>
       TfRef.attribute<String>(this, 'ip_collection');
 
   /// Reference to `ip_protocol` attribute.
-  TfRef<String> get ipProtocolRef =>
-      TfRef.attribute<String>(this, 'ip_protocol');
+  TfRef<String> get ipProtocol => TfRef.attribute<String>(this, 'ip_protocol');
 
   /// Reference to `ip_version` attribute.
-  TfRef<String> get ipVersionRef => TfRef.attribute<String>(this, 'ip_version');
+  TfRef<String> get ipVersion => TfRef.attribute<String>(this, 'ip_version');
 
   /// Reference to `is_mirroring_collector` attribute.
-  TfRef<bool> get isMirroringCollectorRef =>
+  TfRef<bool> get isMirroringCollector =>
       TfRef.attribute<bool>(this, 'is_mirroring_collector');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `load_balancing_scheme` attribute.
-  TfRef<String> get loadBalancingSchemeRef =>
+  TfRef<String> get loadBalancingScheme =>
       TfRef.attribute<String>(this, 'load_balancing_scheme');
 
   /// Reference to `network` attribute.
-  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+  TfRef<String> get network => TfRef.attribute<String>(this, 'network');
 
   /// Reference to `network_tier` attribute.
-  TfRef<String> get networkTierRef =>
+  TfRef<String> get networkTier =>
       TfRef.attribute<String>(this, 'network_tier');
 
   /// Reference to `no_automate_dns_zone` attribute.
-  TfRef<bool> get noAutomateDnsZoneRef =>
+  TfRef<bool> get noAutomateDnsZone =>
       TfRef.attribute<bool>(this, 'no_automate_dns_zone');
 
   /// Reference to `port_range` attribute.
-  TfRef<String> get portRangeRef => TfRef.attribute<String>(this, 'port_range');
+  TfRef<String> get portRange => TfRef.attribute<String>(this, 'port_range');
 
   /// Reference to `ports` attribute.
-  TfRef<List<String>> get portsRef =>
-      TfRef.attribute<List<String>>(this, 'ports');
+  TfRef<List<String>> get ports => TfRef.attribute<List<String>>(this, 'ports');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `recreate_closed_psc` attribute.
-  TfRef<bool> get recreateClosedPscRef =>
+  TfRef<bool> get recreateClosedPsc =>
       TfRef.attribute<bool>(this, 'recreate_closed_psc');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `service_label` attribute.
-  TfRef<String> get serviceLabelRef =>
+  TfRef<String> get serviceLabel =>
       TfRef.attribute<String>(this, 'service_label');
 
   /// Reference to `source_ip_ranges` attribute.
-  TfRef<List<String>> get sourceIpRangesRef =>
+  TfRef<List<String>> get sourceIpRanges =>
       TfRef.attribute<List<String>>(this, 'source_ip_ranges');
 
   /// Reference to `subnetwork` attribute.
-  TfRef<String> get subnetworkRef =>
-      TfRef.attribute<String>(this, 'subnetwork');
+  TfRef<String> get subnetwork => TfRef.attribute<String>(this, 'subnetwork');
 
   /// Reference to `target` attribute.
-  TfRef<String> get targetRef => TfRef.attribute<String>(this, 'target');
-
-  /// Reference to `ip_address` — populated with the actual VIP after
-  /// apply. (`ip_address` is `optional + computed`; the derive gate
-  /// skips it, so this is the sole reference accessor.)
-  TfRef<String> get ipAddressRef => TfRef.attribute<String>(this, 'ip_address');
+  TfRef<String> get target => TfRef.attribute<String>(this, 'target');
 }

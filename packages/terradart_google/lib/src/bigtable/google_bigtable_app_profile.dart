@@ -229,7 +229,7 @@ enum BigtableAppProfilePriority implements TerraformEnum {
 /// Required identity:
 /// - [localName]: Terraform local name.
 /// - [appProfileId]: profile ID within the instance.
-/// - [instance]: parent instance — pass `TfArg.ref(instance.nameRef)`.
+/// - [instance]: parent instance — pass `instance.name`.
 /// - [routing]: pick exactly one [BigtableAppProfileRouting] variant
 ///   (single-cluster, or multi-cluster across
 ///   [multiClusterRoutingClusterIds]). [isolation] optionally picks
@@ -290,41 +290,41 @@ final class GoogleBigtableAppProfile extends Resource {
   /// `RefTo<GoogleBigtableAppProfile>`.
   RefTo<GoogleBigtableAppProfile> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `app_profile_id` attribute.
-  TfRef<String> get appProfileIdRef =>
+  TfRef<String> get appProfileId =>
       TfRef.attribute<String>(this, 'app_profile_id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `ignore_warnings` attribute.
-  TfRef<bool> get ignoreWarningsRef =>
+  TfRef<bool> get ignoreWarnings =>
       TfRef.attribute<bool>(this, 'ignore_warnings');
 
   /// Reference to `instance` attribute.
-  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+  TfRef<String> get instance => TfRef.attribute<String>(this, 'instance');
 
   /// Reference to `multi_cluster_routing_cluster_ids` attribute.
-  TfRef<List<String>> get multiClusterRoutingClusterIdsRef =>
+  TfRef<List<String>> get multiClusterRoutingClusterIds =>
       TfRef.attribute<List<String>>(this, 'multi_cluster_routing_cluster_ids');
 
   /// Reference to `multi_cluster_routing_use_any` attribute.
-  TfRef<bool> get multiClusterRoutingUseAnyRef =>
+  TfRef<bool> get multiClusterRoutingUseAny =>
       TfRef.attribute<bool>(this, 'multi_cluster_routing_use_any');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `row_affinity` attribute.
-  TfRef<bool> get rowAffinityRef => TfRef.attribute<bool>(this, 'row_affinity');
-
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<bool> get rowAffinity => TfRef.attribute<bool>(this, 'row_affinity');
 }

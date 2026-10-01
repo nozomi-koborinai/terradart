@@ -124,7 +124,7 @@ final class DlpStack extends Stack {
           storageConfig: .new(
             cloudStorageOptions: .new(
               fileSet: .url(
-                .literal('gs://${scanBucket.nameRef.interpolation}/'),
+                .literal('gs://${scanBucket.name.interpolation}/'),
               ),
             ),
           ),
@@ -167,9 +167,9 @@ final class DlpStack extends Stack {
       ),
     );
 
-    addOutput('dlp_inspect_template_id', .ref(inspect.id));
-    addOutput('dlp_deidentify_template_id', .ref(deidentify.id));
-    addOutput('dlp_stored_info_type_id', .ref(stored.id));
-    addOutput('dlp_job_trigger_id', .ref(trigger.id));
+    addOutput('dlp_inspect_template_id', inspect.id);
+    addOutput('dlp_deidentify_template_id', deidentify.id);
+    addOutput('dlp_stored_info_type_id', stored.id);
+    addOutput('dlp_job_trigger_id', trigger.id);
   }
 }

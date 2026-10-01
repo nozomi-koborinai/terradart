@@ -628,29 +628,29 @@ final class AwsMskCluster extends Resource {
       TfRef.attribute<String>(this, 'zookeeper_connect_string_tls');
 
   /// Reference to `cluster_name` attribute.
-  TfRef<String> get clusterNameRef =>
+  TfRef<String> get clusterName =>
       TfRef.attribute<String>(this, 'cluster_name');
 
   /// Reference to `enhanced_monitoring` attribute.
-  TfRef<String> get enhancedMonitoringRef =>
+  TfRef<String> get enhancedMonitoring =>
       TfRef.attribute<String>(this, 'enhanced_monitoring');
 
   /// Reference to `kafka_version` attribute.
-  TfRef<String> get kafkaVersionRef =>
+  TfRef<String> get kafkaVersion =>
       TfRef.attribute<String>(this, 'kafka_version');
 
   /// Reference to `number_of_broker_nodes` attribute.
-  TfRef<num> get numberOfBrokerNodesRef =>
+  TfRef<num> get numberOfBrokerNodes =>
       TfRef.attribute<num>(this, 'number_of_broker_nodes');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `storage_mode` attribute.
-  TfRef<String> get storageModeRef =>
+  TfRef<String> get storageMode =>
       TfRef.attribute<String>(this, 'storage_mode');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

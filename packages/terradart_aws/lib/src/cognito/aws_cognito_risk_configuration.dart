@@ -347,12 +347,11 @@ final class AwsCognitoRiskConfiguration extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `client_id` attribute.
-  TfRef<String> get clientIdRef => TfRef.attribute<String>(this, 'client_id');
+  TfRef<String> get clientId => TfRef.attribute<String>(this, 'client_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `user_pool_id` attribute.
-  TfRef<String> get userPoolIdRef =>
-      TfRef.attribute<String>(this, 'user_pool_id');
+  TfRef<String> get userPoolId => TfRef.attribute<String>(this, 'user_pool_id');
 }

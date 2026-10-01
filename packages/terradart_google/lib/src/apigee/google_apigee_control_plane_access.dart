@@ -48,19 +48,16 @@ final class GoogleApigeeControlPlaneAccess extends Resource {
   RefTo<GoogleApigeeControlPlaneAccess> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `analytics_publisher_identities` attribute.
-  TfRef<List<String>> get analyticsPublisherIdentitiesRef =>
+  TfRef<List<String>> get analyticsPublisherIdentities =>
       TfRef.attribute<List<String>>(this, 'analytics_publisher_identities');
 
   /// Reference to `synchronizer_identities` attribute.
-  TfRef<List<String>> get synchronizerIdentitiesRef =>
+  TfRef<List<String>> get synchronizerIdentities =>
       TfRef.attribute<List<String>>(this, 'synchronizer_identities');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 }

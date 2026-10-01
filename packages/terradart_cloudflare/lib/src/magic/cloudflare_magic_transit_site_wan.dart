@@ -76,7 +76,7 @@ final class CloudflareMagicTransitSiteWan extends Resource {
   RefTo<CloudflareMagicTransitSiteWan> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -86,17 +86,17 @@ final class CloudflareMagicTransitSiteWan extends Resource {
       TfRef.attribute<String>(this, 'health_check_rate');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `physport` attribute.
-  TfRef<num> get physportRef => TfRef.attribute<num>(this, 'physport');
+  TfRef<num> get physport => TfRef.attribute<num>(this, 'physport');
 
   /// Reference to `priority` attribute.
-  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+  TfRef<num> get priority => TfRef.attribute<num>(this, 'priority');
 
   /// Reference to `site_id` attribute.
-  TfRef<String> get siteIdRef => TfRef.attribute<String>(this, 'site_id');
+  TfRef<String> get siteId => TfRef.attribute<String>(this, 'site_id');
 
   /// Reference to `vlan_tag` attribute.
-  TfRef<num> get vlanTagRef => TfRef.attribute<num>(this, 'vlan_tag');
+  TfRef<num> get vlanTag => TfRef.attribute<num>(this, 'vlan_tag');
 }

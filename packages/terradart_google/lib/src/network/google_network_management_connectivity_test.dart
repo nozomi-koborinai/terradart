@@ -257,6 +257,9 @@ final class GoogleNetworkManagementConnectivityTest extends Resource {
   /// `RefTo<GoogleNetworkManagementConnectivityTest>`.
   RefTo<GoogleNetworkManagementConnectivityTest> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `effective_labels` attribute.
   TfRef<Map<String, String>> get effectiveLabels =>
       TfRef.attribute<Map<String, String>>(this, 'effective_labels');
@@ -266,34 +269,32 @@ final class GoogleNetworkManagementConnectivityTest extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `bypass_firewall_checks` attribute.
-  TfRef<bool> get bypassFirewallChecksRef =>
+  TfRef<bool> get bypassFirewallChecks =>
       TfRef.attribute<bool>(this, 'bypass_firewall_checks');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `protocol` attribute.
-  TfRef<String> get protocolRef => TfRef.attribute<String>(this, 'protocol');
+  TfRef<String> get protocol => TfRef.attribute<String>(this, 'protocol');
 
   /// Reference to `related_projects` attribute.
-  TfRef<List<String>> get relatedProjectsRef =>
+  TfRef<List<String>> get relatedProjects =>
       TfRef.attribute<List<String>>(this, 'related_projects');
 
   /// Reference to `round_trip` attribute.
-  TfRef<bool> get roundTripRef => TfRef.attribute<bool>(this, 'round_trip');
+  TfRef<bool> get roundTrip => TfRef.attribute<bool>(this, 'round_trip');
 
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

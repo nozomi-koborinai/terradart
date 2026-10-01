@@ -135,28 +135,28 @@ final class AwsInternetmonitorMonitor extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `max_city_networks_to_monitor` attribute.
-  TfRef<num> get maxCityNetworksToMonitorRef =>
+  TfRef<num> get maxCityNetworksToMonitor =>
       TfRef.attribute<num>(this, 'max_city_networks_to_monitor');
 
   /// Reference to `monitor_name` attribute.
-  TfRef<String> get monitorNameRef =>
+  TfRef<String> get monitorName =>
       TfRef.attribute<String>(this, 'monitor_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resources` attribute.
-  TfRef<List<String>> get resourcesRef =>
+  TfRef<List<String>> get resources =>
       TfRef.attribute<List<String>>(this, 'resources');
 
   /// Reference to `status` attribute.
-  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+  TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `traffic_percentage_to_monitor` attribute.
-  TfRef<num> get trafficPercentageToMonitorRef =>
+  TfRef<num> get trafficPercentageToMonitor =>
       TfRef.attribute<num>(this, 'traffic_percentage_to_monitor');
 }

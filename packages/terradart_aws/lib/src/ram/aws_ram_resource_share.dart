@@ -62,7 +62,7 @@ final class AwsRamResourceShare extends Resource {
   RefTo<AwsRamResourceShare> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -71,17 +71,17 @@ final class AwsRamResourceShare extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `allow_external_principals` attribute.
-  TfRef<bool> get allowExternalPrincipalsRef =>
+  TfRef<bool> get allowExternalPrincipals =>
       TfRef.attribute<bool>(this, 'allow_external_principals');
 
   /// Reference to `permission_arns` attribute.
-  TfRef<List<String>> get permissionArnsRef =>
+  TfRef<List<String>> get permissionArns =>
       TfRef.attribute<List<String>>(this, 'permission_arns');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

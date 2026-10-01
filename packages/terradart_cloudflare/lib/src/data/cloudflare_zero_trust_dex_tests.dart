@@ -38,14 +38,14 @@ final class DataCloudflareZeroTrustDexTests extends Data {
   Set<String> get sensitiveFields => _cloudflareZeroTrustDexTestsSensitive;
 
   /// Reference to `kind` attribute.
-  TfRef<String> get kindRef => TfRef.attribute<String>(this, 'kind');
+  TfRef<String> get kindAttr => TfRef.attribute<String>(this, 'kind');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `max_items` attribute.
-  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+  TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
 
   /// Reference to `test_name` attribute.
-  TfRef<String> get testNameRef => TfRef.attribute<String>(this, 'test_name');
+  TfRef<String> get testName => TfRef.attribute<String>(this, 'test_name');
 }

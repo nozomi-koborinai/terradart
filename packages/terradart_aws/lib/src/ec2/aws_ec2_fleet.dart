@@ -805,50 +805,48 @@ final class AwsEc2Fleet extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `context` attribute.
-  TfRef<String> get contextRef => TfRef.attribute<String>(this, 'context');
+  TfRef<String> get context => TfRef.attribute<String>(this, 'context');
 
   /// Reference to `excess_capacity_termination_policy` attribute.
-  TfRef<String> get excessCapacityTerminationPolicyRef =>
+  TfRef<String> get excessCapacityTerminationPolicy =>
       TfRef.attribute<String>(this, 'excess_capacity_termination_policy');
 
   /// Reference to `fleet_state` attribute.
-  TfRef<String> get fleetStateRef =>
-      TfRef.attribute<String>(this, 'fleet_state');
+  TfRef<String> get fleetState => TfRef.attribute<String>(this, 'fleet_state');
 
   /// Reference to `fulfilled_capacity` attribute.
-  TfRef<num> get fulfilledCapacityRef =>
+  TfRef<num> get fulfilledCapacity =>
       TfRef.attribute<num>(this, 'fulfilled_capacity');
 
   /// Reference to `fulfilled_on_demand_capacity` attribute.
-  TfRef<num> get fulfilledOnDemandCapacityRef =>
+  TfRef<num> get fulfilledOnDemandCapacity =>
       TfRef.attribute<num>(this, 'fulfilled_on_demand_capacity');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `replace_unhealthy_instances` attribute.
-  TfRef<bool> get replaceUnhealthyInstancesRef =>
+  TfRef<bool> get replaceUnhealthyInstances =>
       TfRef.attribute<bool>(this, 'replace_unhealthy_instances');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `terminate_instances` attribute.
-  TfRef<bool> get terminateInstancesRef =>
+  TfRef<bool> get terminateInstances =>
       TfRef.attribute<bool>(this, 'terminate_instances');
 
   /// Reference to `terminate_instances_with_expiration` attribute.
-  TfRef<bool> get terminateInstancesWithExpirationRef =>
+  TfRef<bool> get terminateInstancesWithExpiration =>
       TfRef.attribute<bool>(this, 'terminate_instances_with_expiration');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `valid_from` attribute.
-  TfRef<String> get validFromRef => TfRef.attribute<String>(this, 'valid_from');
+  TfRef<String> get validFrom => TfRef.attribute<String>(this, 'valid_from');
 
   /// Reference to `valid_until` attribute.
-  TfRef<String> get validUntilRef =>
-      TfRef.attribute<String>(this, 'valid_until');
+  TfRef<String> get validUntil => TfRef.attribute<String>(this, 'valid_until');
 }

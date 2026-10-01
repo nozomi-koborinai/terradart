@@ -68,7 +68,7 @@ void main() {
         name: TfArg.literal('s'),
         topic: topic.ref,
         deadLetterPolicy: PubsubSubscriptionDeadLetterPolicy(
-          deadLetterTopic: TfArg.ref(dlq.id),
+          deadLetterTopic: dlq.id,
           maxDeliveryAttempts: TfArg.literal(5),
         ),
         retryPolicy: const PubsubSubscriptionRetryPolicy(
@@ -89,7 +89,7 @@ void main() {
       );
     });
 
-    test('nameRef and id produce stable TfRef interpolations', () {
+    test('name and id produce stable TfRef interpolations', () {
       final topic = GooglePubsubTopic(
         localName: 'orders',
         name: TfArg.literal('orders'),
@@ -100,7 +100,7 @@ void main() {
         topic: topic.ref,
       );
       expect(
-        sub.nameRef.interpolation,
+        sub.name.interpolation,
         equals(r'${google_pubsub_subscription.sub.name}'),
       );
       expect(

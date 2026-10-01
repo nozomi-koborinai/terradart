@@ -55,9 +55,8 @@ final class DataAwsVpcIpamPoolCidrs extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'ipam_pool_cidrs');
 
   /// Reference to `ipam_pool_id` attribute.
-  TfRef<String> get ipamPoolIdRef =>
-      TfRef.attribute<String>(this, 'ipam_pool_id');
+  TfRef<String> get ipamPoolId => TfRef.attribute<String>(this, 'ipam_pool_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

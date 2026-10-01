@@ -80,9 +80,9 @@ final class DataCloudflareStreamLiveInput extends Data {
   TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `live_input_identifier` attribute.
-  TfRef<String> get liveInputIdentifierRef =>
+  TfRef<String> get liveInputIdentifier =>
       TfRef.attribute<String>(this, 'live_input_identifier');
 }

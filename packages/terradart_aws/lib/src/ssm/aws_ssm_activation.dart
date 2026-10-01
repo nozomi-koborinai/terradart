@@ -44,7 +44,7 @@ final class AwsSsmActivation extends Resource {
   RefTo<AwsSsmActivation> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -61,24 +61,23 @@ final class AwsSsmActivation extends Resource {
       TfRef.attribute<num>(this, 'registration_count');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `expiration_date` attribute.
-  TfRef<String> get expirationDateRef =>
+  TfRef<String> get expirationDate =>
       TfRef.attribute<String>(this, 'expiration_date');
 
   /// Reference to `iam_role` attribute.
-  TfRef<String> get iamRoleRef => TfRef.attribute<String>(this, 'iam_role');
+  TfRef<String> get iamRole => TfRef.attribute<String>(this, 'iam_role');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `registration_limit` attribute.
-  TfRef<num> get registrationLimitRef =>
+  TfRef<num> get registrationLimit =>
       TfRef.attribute<num>(this, 'registration_limit');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

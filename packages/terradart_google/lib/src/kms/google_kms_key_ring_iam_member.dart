@@ -72,12 +72,11 @@ final class GoogleKmsKeyRingIamMember extends Resource {
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `key_ring_id` attribute.
-  TfRef<String> get keyRingIdRef =>
-      TfRef.attribute<String>(this, 'key_ring_id');
+  TfRef<String> get keyRingId => TfRef.attribute<String>(this, 'key_ring_id');
 
   /// Reference to `member` attribute.
-  TfRef<String> get memberRef => TfRef.attribute<String>(this, 'member');
+  TfRef<String> get member => TfRef.attribute<String>(this, 'member');
 
   /// Reference to `role` attribute.
-  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+  TfRef<String> get role => TfRef.attribute<String>(this, 'role');
 }

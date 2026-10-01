@@ -57,13 +57,12 @@ final class DataCloudflareWorkersDeployment extends Data {
   TfRef<String> get strategy => TfRef.attribute<String>(this, 'strategy');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `deployment_id` attribute.
-  TfRef<String> get deploymentIdRef =>
+  TfRef<String> get deploymentId =>
       TfRef.attribute<String>(this, 'deployment_id');
 
   /// Reference to `script_name` attribute.
-  TfRef<String> get scriptNameRef =>
-      TfRef.attribute<String>(this, 'script_name');
+  TfRef<String> get scriptName => TfRef.attribute<String>(this, 'script_name');
 }

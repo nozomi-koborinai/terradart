@@ -67,7 +67,7 @@ final class AwsDatazoneFormType extends Resource {
   RefTo<AwsDatazoneFormType> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `created_at` attribute.
   TfRef<String> get createdAt => TfRef.attribute<String>(this, 'created_at');
@@ -91,20 +91,19 @@ final class AwsDatazoneFormType extends Resource {
   TfRef<String> get revision => TfRef.attribute<String>(this, 'revision');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `domain_identifier` attribute.
-  TfRef<String> get domainIdentifierRef =>
+  TfRef<String> get domainIdentifier =>
       TfRef.attribute<String>(this, 'domain_identifier');
 
   /// Reference to `owning_project_identifier` attribute.
-  TfRef<String> get owningProjectIdentifierRef =>
+  TfRef<String> get owningProjectIdentifier =>
       TfRef.attribute<String>(this, 'owning_project_identifier');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `status` attribute.
-  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+  TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 }

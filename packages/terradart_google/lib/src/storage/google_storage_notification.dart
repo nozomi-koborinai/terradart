@@ -160,24 +160,24 @@ final class GoogleStorageNotification extends Resource {
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 
   /// Reference to `bucket` attribute.
-  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+  TfRef<String> get bucket => TfRef.attribute<String>(this, 'bucket');
 
   /// Reference to `custom_attributes` attribute.
-  TfRef<Map<String, String>> get customAttributesRef =>
+  TfRef<Map<String, String>> get customAttributes =>
       TfRef.attribute<Map<String, String>>(this, 'custom_attributes');
 
   /// Reference to `event_types` attribute.
-  TfRef<List<String>> get eventTypesRef =>
+  TfRef<List<String>> get eventTypes =>
       TfRef.attribute<List<String>>(this, 'event_types');
 
   /// Reference to `object_name_prefix` attribute.
-  TfRef<String> get objectNamePrefixRef =>
+  TfRef<String> get objectNamePrefix =>
       TfRef.attribute<String>(this, 'object_name_prefix');
 
   /// Reference to `payload_format` attribute.
-  TfRef<String> get payloadFormatRef =>
+  TfRef<String> get payloadFormat =>
       TfRef.attribute<String>(this, 'payload_format');
 
   /// Reference to `topic` attribute.
-  TfRef<String> get topicRef => TfRef.attribute<String>(this, 'topic');
+  TfRef<String> get topic => TfRef.attribute<String>(this, 'topic');
 }

@@ -62,7 +62,7 @@ final class AppwritePostgresqlBackupPolicy extends Resource {
   RefTo<AppwritePostgresqlBackupPolicy> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -89,21 +89,20 @@ final class AppwritePostgresqlBackupPolicy extends Resource {
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
 
   /// Reference to `database_id` attribute.
-  TfRef<String> get databaseIdRef =>
-      TfRef.attribute<String>(this, 'database_id');
+  TfRef<String> get databaseId => TfRef.attribute<String>(this, 'database_id');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `project_id` attribute.
-  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
+  TfRef<String> get projectId => TfRef.attribute<String>(this, 'project_id');
 
   /// Reference to `retention` attribute.
-  TfRef<num> get retentionRef => TfRef.attribute<num>(this, 'retention');
+  TfRef<num> get retention => TfRef.attribute<num>(this, 'retention');
 
   /// Reference to `schedule` attribute.
-  TfRef<String> get scheduleRef => TfRef.attribute<String>(this, 'schedule');
+  TfRef<String> get schedule => TfRef.attribute<String>(this, 'schedule');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

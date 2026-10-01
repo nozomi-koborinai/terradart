@@ -83,17 +83,16 @@ final class GoogleKmsAutokeyConfig extends Resource {
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `folder` attribute.
-  TfRef<String> get folderRef => TfRef.attribute<String>(this, 'folder');
+  TfRef<String> get folder => TfRef.attribute<String>(this, 'folder');
 
   /// Reference to `key_project` attribute.
-  TfRef<String> get keyProjectRef =>
-      TfRef.attribute<String>(this, 'key_project');
+  TfRef<String> get keyProject => TfRef.attribute<String>(this, 'key_project');
 
   /// Reference to `key_project_resolution_mode` attribute.
-  TfRef<String> get keyProjectResolutionModeRef =>
+  TfRef<String> get keyProjectResolutionMode =>
       TfRef.attribute<String>(this, 'key_project_resolution_mode');
 }

@@ -29,8 +29,8 @@ final class DataAwsOdbGiVersions extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'gi_versions');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `shape` attribute.
-  TfRef<String> get shapeRef => TfRef.attribute<String>(this, 'shape');
+  TfRef<String> get shape => TfRef.attribute<String>(this, 'shape');
 }

@@ -606,102 +606,99 @@ final class CloudflareAiSearchInstance extends Resource {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `ai_gateway_id` attribute.
-  TfRef<String> get aiGatewayIdRef =>
+  TfRef<String> get aiGatewayId =>
       TfRef.attribute<String>(this, 'ai_gateway_id');
 
   /// Reference to `aisearch_model` attribute.
-  TfRef<String> get aisearchModelRef =>
+  TfRef<String> get aisearchModel =>
       TfRef.attribute<String>(this, 'aisearch_model');
 
   /// Reference to `cache` attribute.
-  TfRef<bool> get cacheRef => TfRef.attribute<bool>(this, 'cache');
+  TfRef<bool> get cache => TfRef.attribute<bool>(this, 'cache');
 
   /// Reference to `cache_threshold` attribute.
-  TfRef<String> get cacheThresholdRef =>
+  TfRef<String> get cacheThreshold =>
       TfRef.attribute<String>(this, 'cache_threshold');
 
   /// Reference to `cache_ttl` attribute.
-  TfRef<num> get cacheTtlRef => TfRef.attribute<num>(this, 'cache_ttl');
+  TfRef<num> get cacheTtl => TfRef.attribute<num>(this, 'cache_ttl');
 
   /// Reference to `chunk` attribute.
-  TfRef<bool> get chunkRef => TfRef.attribute<bool>(this, 'chunk');
+  TfRef<bool> get chunk => TfRef.attribute<bool>(this, 'chunk');
 
   /// Reference to `chunk_overlap` attribute.
-  TfRef<num> get chunkOverlapRef => TfRef.attribute<num>(this, 'chunk_overlap');
+  TfRef<num> get chunkOverlap => TfRef.attribute<num>(this, 'chunk_overlap');
 
   /// Reference to `chunk_size` attribute.
-  TfRef<num> get chunkSizeRef => TfRef.attribute<num>(this, 'chunk_size');
+  TfRef<num> get chunkSize => TfRef.attribute<num>(this, 'chunk_size');
 
   /// Reference to `embedding_model` attribute.
-  TfRef<String> get embeddingModelRef =>
+  TfRef<String> get embeddingModel =>
       TfRef.attribute<String>(this, 'embedding_model');
 
   /// Reference to `fusion_method` attribute.
-  TfRef<String> get fusionMethodRef =>
+  TfRef<String> get fusionMethod =>
       TfRef.attribute<String>(this, 'fusion_method');
 
   /// Reference to `hybrid_search_enabled` attribute.
-  TfRef<bool> get hybridSearchEnabledRef =>
+  TfRef<bool> get hybridSearchEnabled =>
       TfRef.attribute<bool>(this, 'hybrid_search_enabled');
 
   /// Reference to `max_num_results` attribute.
-  TfRef<num> get maxNumResultsRef =>
-      TfRef.attribute<num>(this, 'max_num_results');
+  TfRef<num> get maxNumResults => TfRef.attribute<num>(this, 'max_num_results');
 
   /// Reference to `paused` attribute.
-  TfRef<bool> get pausedRef => TfRef.attribute<bool>(this, 'paused');
+  TfRef<bool> get paused => TfRef.attribute<bool>(this, 'paused');
 
   /// Reference to `reranking` attribute.
-  TfRef<bool> get rerankingRef => TfRef.attribute<bool>(this, 'reranking');
+  TfRef<bool> get reranking => TfRef.attribute<bool>(this, 'reranking');
 
   /// Reference to `reranking_model` attribute.
-  TfRef<String> get rerankingModelRef =>
+  TfRef<String> get rerankingModel =>
       TfRef.attribute<String>(this, 'reranking_model');
 
   /// Reference to `rewrite_model` attribute.
-  TfRef<String> get rewriteModelRef =>
+  TfRef<String> get rewriteModel =>
       TfRef.attribute<String>(this, 'rewrite_model');
 
   /// Reference to `rewrite_query` attribute.
-  TfRef<bool> get rewriteQueryRef =>
-      TfRef.attribute<bool>(this, 'rewrite_query');
+  TfRef<bool> get rewriteQuery => TfRef.attribute<bool>(this, 'rewrite_query');
 
   /// Reference to `score_threshold` attribute.
-  TfRef<num> get scoreThresholdRef =>
+  TfRef<num> get scoreThreshold =>
       TfRef.attribute<num>(this, 'score_threshold');
 
   /// Reference to `source` attribute.
-  TfRef<String> get sourceRef => TfRef.attribute<String>(this, 'source');
+  TfRef<String> get source => TfRef.attribute<String>(this, 'source');
 
   /// Reference to `summarization` attribute.
-  TfRef<bool> get summarizationRef =>
-      TfRef.attribute<bool>(this, 'summarization');
+  TfRef<bool> get summarization => TfRef.attribute<bool>(this, 'summarization');
 
   /// Reference to `summarization_model` attribute.
-  TfRef<String> get summarizationModelRef =>
+  TfRef<String> get summarizationModel =>
       TfRef.attribute<String>(this, 'summarization_model');
 
   /// Reference to `sync_interval` attribute.
-  TfRef<num> get syncIntervalRef => TfRef.attribute<num>(this, 'sync_interval');
+  TfRef<num> get syncInterval => TfRef.attribute<num>(this, 'sync_interval');
 
   /// Reference to `system_prompt_aisearch` attribute.
-  TfRef<String> get systemPromptAisearchRef =>
+  TfRef<String> get systemPromptAisearch =>
       TfRef.attribute<String>(this, 'system_prompt_aisearch');
 
   /// Reference to `system_prompt_index_summarization` attribute.
-  TfRef<String> get systemPromptIndexSummarizationRef =>
+  TfRef<String> get systemPromptIndexSummarization =>
       TfRef.attribute<String>(this, 'system_prompt_index_summarization');
 
   /// Reference to `system_prompt_rewrite_query` attribute.
-  TfRef<String> get systemPromptRewriteQueryRef =>
+  TfRef<String> get systemPromptRewriteQuery =>
       TfRef.attribute<String>(this, 'system_prompt_rewrite_query');
 
   /// Reference to `token_id` attribute.
-  TfRef<String> get tokenIdRef => TfRef.attribute<String>(this, 'token_id');
+  TfRef<String> get tokenId => TfRef.attribute<String>(this, 'token_id');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

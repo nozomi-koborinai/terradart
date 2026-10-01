@@ -863,7 +863,7 @@ final class AwsQuicksightDataSet extends Resource {
   RefTo<AwsQuicksightDataSet> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -876,24 +876,22 @@ final class AwsQuicksightDataSet extends Resource {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'output_columns');
 
   /// Reference to `aws_account_id` attribute.
-  TfRef<String> get awsAccountIdRef =>
+  TfRef<String> get awsAccountId =>
       TfRef.attribute<String>(this, 'aws_account_id');
 
   /// Reference to `data_set_id` attribute.
-  TfRef<String> get dataSetIdRef =>
-      TfRef.attribute<String>(this, 'data_set_id');
+  TfRef<String> get dataSetId => TfRef.attribute<String>(this, 'data_set_id');
 
   /// Reference to `import_mode` attribute.
-  TfRef<String> get importModeRef =>
-      TfRef.attribute<String>(this, 'import_mode');
+  TfRef<String> get importMode => TfRef.attribute<String>(this, 'import_mode');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `use_as` attribute.
-  TfRef<String> get useAsRef => TfRef.attribute<String>(this, 'use_as');
+  TfRef<String> get useAs => TfRef.attribute<String>(this, 'use_as');
 }

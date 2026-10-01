@@ -101,7 +101,7 @@ final class AwsCodepipelineWebhook extends Resource {
   RefTo<AwsCodepipelineWebhook> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -113,21 +113,21 @@ final class AwsCodepipelineWebhook extends Resource {
   TfRef<String> get url => TfRef.attribute<String>(this, 'url');
 
   /// Reference to `authentication` attribute.
-  TfRef<String> get authenticationRef =>
+  TfRef<String> get authentication =>
       TfRef.attribute<String>(this, 'authentication');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `target_action` attribute.
-  TfRef<String> get targetActionRef =>
+  TfRef<String> get targetAction =>
       TfRef.attribute<String>(this, 'target_action');
 
   /// Reference to `target_pipeline` attribute.
-  TfRef<String> get targetPipelineRef =>
+  TfRef<String> get targetPipeline =>
       TfRef.attribute<String>(this, 'target_pipeline');
 }

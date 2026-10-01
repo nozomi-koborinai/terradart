@@ -68,26 +68,25 @@ final class CloudflareMagicTransitSite extends Resource {
   RefTo<CloudflareMagicTransitSite> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `connector_id` attribute.
-  TfRef<String> get connectorIdRef =>
+  TfRef<String> get connectorId =>
       TfRef.attribute<String>(this, 'connector_id');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `ha_mode` attribute.
-  TfRef<bool> get haModeRef => TfRef.attribute<bool>(this, 'ha_mode');
+  TfRef<bool> get haMode => TfRef.attribute<bool>(this, 'ha_mode');
 
   /// Reference to `secondary_connector_id` attribute.
-  TfRef<String> get secondaryConnectorIdRef =>
+  TfRef<String> get secondaryConnectorId =>
       TfRef.attribute<String>(this, 'secondary_connector_id');
 }

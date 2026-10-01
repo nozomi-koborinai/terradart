@@ -32,9 +32,8 @@ final class DataAwsMskBrokerNodes extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'node_info_list');
 
   /// Reference to `cluster_arn` attribute.
-  TfRef<String> get clusterArnRef =>
-      TfRef.attribute<String>(this, 'cluster_arn');
+  TfRef<String> get clusterArn => TfRef.attribute<String>(this, 'cluster_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

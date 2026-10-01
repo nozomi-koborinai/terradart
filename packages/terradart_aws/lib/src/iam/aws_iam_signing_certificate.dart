@@ -54,12 +54,12 @@ final class AwsIamSigningCertificate extends Resource {
       TfRef.attribute<String>(this, 'certificate_id');
 
   /// Reference to `certificate_body` attribute.
-  TfRef<String> get certificateBodyRef =>
+  TfRef<String> get certificateBody =>
       TfRef.attribute<String>(this, 'certificate_body');
 
   /// Reference to `status` attribute.
-  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+  TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `user_name` attribute.
-  TfRef<String> get userNameRef => TfRef.attribute<String>(this, 'user_name');
+  TfRef<String> get userName => TfRef.attribute<String>(this, 'user_name');
 }

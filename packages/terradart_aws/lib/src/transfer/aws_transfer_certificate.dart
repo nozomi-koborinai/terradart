@@ -76,28 +76,25 @@ final class AwsTransferCertificate extends Resource {
       TfRef.attribute<String>(this, 'inactive_date');
 
   /// Reference to `certificate` attribute.
-  TfRef<String> get certificateRef =>
-      TfRef.attribute<String>(this, 'certificate');
+  TfRef<String> get certificate => TfRef.attribute<String>(this, 'certificate');
 
   /// Reference to `certificate_chain` attribute.
-  TfRef<String> get certificateChainRef =>
+  TfRef<String> get certificateChain =>
       TfRef.attribute<String>(this, 'certificate_chain');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `private_key` attribute.
-  TfRef<String> get privateKeyRef =>
-      TfRef.attribute<String>(this, 'private_key');
+  TfRef<String> get privateKey => TfRef.attribute<String>(this, 'private_key');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `usage` attribute.
-  TfRef<String> get usageRef => TfRef.attribute<String>(this, 'usage');
+  TfRef<String> get usage => TfRef.attribute<String>(this, 'usage');
 }

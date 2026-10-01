@@ -33,9 +33,8 @@ final class DataAwsIamRolePolicyAttachments extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'attached_policies');
 
   /// Reference to `path_prefix` attribute.
-  TfRef<String> get pathPrefixRef =>
-      TfRef.attribute<String>(this, 'path_prefix');
+  TfRef<String> get pathPrefix => TfRef.attribute<String>(this, 'path_prefix');
 
   /// Reference to `role_name` attribute.
-  TfRef<String> get roleNameRef => TfRef.attribute<String>(this, 'role_name');
+  TfRef<String> get roleName => TfRef.attribute<String>(this, 'role_name');
 }

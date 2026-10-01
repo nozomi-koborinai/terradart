@@ -153,7 +153,7 @@ final class AwsAppsyncFunction extends Resource {
   RefTo<AwsAppsyncFunction> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -165,35 +165,32 @@ final class AwsAppsyncFunction extends Resource {
   TfRef<String> get functionId => TfRef.attribute<String>(this, 'function_id');
 
   /// Reference to `api_id` attribute.
-  TfRef<String> get apiIdRef => TfRef.attribute<String>(this, 'api_id');
+  TfRef<String> get apiId => TfRef.attribute<String>(this, 'api_id');
 
   /// Reference to `code` attribute.
-  TfRef<String> get codeRef => TfRef.attribute<String>(this, 'code');
+  TfRef<String> get code => TfRef.attribute<String>(this, 'code');
 
   /// Reference to `data_source` attribute.
-  TfRef<String> get dataSourceRef =>
-      TfRef.attribute<String>(this, 'data_source');
+  TfRef<String> get dataSource => TfRef.attribute<String>(this, 'data_source');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `function_version` attribute.
-  TfRef<String> get functionVersionRef =>
+  TfRef<String> get functionVersion =>
       TfRef.attribute<String>(this, 'function_version');
 
   /// Reference to `max_batch_size` attribute.
-  TfRef<num> get maxBatchSizeRef =>
-      TfRef.attribute<num>(this, 'max_batch_size');
+  TfRef<num> get maxBatchSize => TfRef.attribute<num>(this, 'max_batch_size');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `request_mapping_template` attribute.
-  TfRef<String> get requestMappingTemplateRef =>
+  TfRef<String> get requestMappingTemplate =>
       TfRef.attribute<String>(this, 'request_mapping_template');
 
   /// Reference to `response_mapping_template` attribute.
-  TfRef<String> get responseMappingTemplateRef =>
+  TfRef<String> get responseMappingTemplate =>
       TfRef.attribute<String>(this, 'response_mapping_template');
 }

@@ -43,9 +43,9 @@ final class DataGoogleIamWorkforcePoolIamPolicy extends Data {
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `workforce_pool_id` attribute.
-  TfRef<String> get workforcePoolIdRef =>
+  TfRef<String> get workforcePoolId =>
       TfRef.attribute<String>(this, 'workforce_pool_id');
 }

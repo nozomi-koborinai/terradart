@@ -42,7 +42,7 @@ const Set<String> _googleCesAppRootAgentAssociationSensitive = <String>{};
 /// GoogleCesAppRootAgentAssociation(
 ///   localName: 'root',
 ///   appId: app.ref,
-///   agentId: TfArg.ref(agent.agentIdRef),
+///   agentId: agent.agentId,
 /// );
 /// ```
 final class GoogleCesAppRootAgentAssociation extends Resource {
@@ -81,18 +81,18 @@ final class GoogleCesAppRootAgentAssociation extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `agent_id` attribute.
-  TfRef<String> get agentIdRef => TfRef.attribute<String>(this, 'agent_id');
+  TfRef<String> get agentId => TfRef.attribute<String>(this, 'agent_id');
 
   /// Reference to `app_id` attribute.
-  TfRef<String> get appIdRef => TfRef.attribute<String>(this, 'app_id');
+  TfRef<String> get appId => TfRef.attribute<String>(this, 'app_id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

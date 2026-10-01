@@ -473,7 +473,7 @@ final class GoogleDatabaseMigrationServiceMigrationJob extends Resource {
   RefTo<GoogleDatabaseMigrationServiceMigrationJob> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -500,48 +500,47 @@ final class GoogleDatabaseMigrationServiceMigrationJob extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `desired_state` attribute.
-  TfRef<String> get desiredStateRef =>
+  TfRef<String> get desiredState =>
       TfRef.attribute<String>(this, 'desired_state');
 
   /// Reference to `destination` attribute.
-  TfRef<String> get destinationRef =>
-      TfRef.attribute<String>(this, 'destination');
+  TfRef<String> get destination => TfRef.attribute<String>(this, 'destination');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `dump_path` attribute.
-  TfRef<String> get dumpPathRef => TfRef.attribute<String>(this, 'dump_path');
+  TfRef<String> get dumpPath => TfRef.attribute<String>(this, 'dump_path');
 
   /// Reference to `dump_type` attribute.
-  TfRef<String> get dumpTypeRef => TfRef.attribute<String>(this, 'dump_type');
+  TfRef<String> get dumpType => TfRef.attribute<String>(this, 'dump_type');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `migration_job_id` attribute.
-  TfRef<String> get migrationJobIdRef =>
+  TfRef<String> get migrationJobId =>
       TfRef.attribute<String>(this, 'migration_job_id');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `source` attribute.
-  TfRef<String> get sourceRef => TfRef.attribute<String>(this, 'source');
+  TfRef<String> get source => TfRef.attribute<String>(this, 'source');
 
   /// Reference to `stop_on_warnings` attribute.
-  TfRef<bool> get stopOnWarningsRef =>
+  TfRef<bool> get stopOnWarnings =>
       TfRef.attribute<bool>(this, 'stop_on_warnings');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

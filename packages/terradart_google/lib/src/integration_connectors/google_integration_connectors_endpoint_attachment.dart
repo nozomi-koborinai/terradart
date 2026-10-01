@@ -64,6 +64,9 @@ final class GoogleIntegrationConnectorsEndpointAttachment extends Resource {
   RefTo<GoogleIntegrationConnectorsEndpointAttachment> get ref =>
       RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -85,38 +88,27 @@ final class GoogleIntegrationConnectorsEndpointAttachment extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `endpoint_global_access` attribute.
-  TfRef<bool> get endpointGlobalAccessRef =>
+  TfRef<bool> get endpointGlobalAccess =>
       TfRef.attribute<bool>(this, 'endpoint_global_access');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `service_attachment` attribute.
-  TfRef<String> get serviceAttachmentRef =>
+  TfRef<String> get serviceAttachment =>
       TfRef.attribute<String>(this, 'service_attachment');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-  /// Reference to `endpoint_ip` attribute.
-  TfRef<String> get endpointIpRef =>
-      TfRef.attribute<String>(this, 'endpoint_ip');
 }

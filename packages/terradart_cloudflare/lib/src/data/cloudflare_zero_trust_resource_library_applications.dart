@@ -44,26 +44,26 @@ final class DataCloudflareZeroTrustResourceLibraryApplications extends Data {
       _cloudflareZeroTrustResourceLibraryApplicationsSensitive;
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `fields` attribute.
-  TfRef<String> get fieldsRef => TfRef.attribute<String>(this, 'fields');
+  TfRef<String> get fields => TfRef.attribute<String>(this, 'fields');
 
   /// Reference to `filter` attribute.
-  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+  TfRef<String> get filter => TfRef.attribute<String>(this, 'filter');
 
   /// Reference to `limit` attribute.
-  TfRef<num> get limitRef => TfRef.attribute<num>(this, 'limit');
+  TfRef<num> get limit => TfRef.attribute<num>(this, 'limit');
 
   /// Reference to `max_items` attribute.
-  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+  TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
 
   /// Reference to `offset` attribute.
-  TfRef<num> get offsetRef => TfRef.attribute<num>(this, 'offset');
+  TfRef<num> get offset => TfRef.attribute<num>(this, 'offset');
 
   /// Reference to `order_by` attribute.
-  TfRef<String> get orderByRef => TfRef.attribute<String>(this, 'order_by');
+  TfRef<String> get orderBy => TfRef.attribute<String>(this, 'order_by');
 
   /// Reference to `search` attribute.
-  TfRef<String> get searchRef => TfRef.attribute<String>(this, 'search');
+  TfRef<String> get search => TfRef.attribute<String>(this, 'search');
 }

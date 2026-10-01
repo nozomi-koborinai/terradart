@@ -41,16 +41,15 @@ final class AwsEc2ManagedPrefixListEntry extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `cidr` attribute.
-  TfRef<String> get cidrRef => TfRef.attribute<String>(this, 'cidr');
+  TfRef<String> get cidr => TfRef.attribute<String>(this, 'cidr');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `prefix_list_id` attribute.
-  TfRef<String> get prefixListIdRef =>
+  TfRef<String> get prefixListId =>
       TfRef.attribute<String>(this, 'prefix_list_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

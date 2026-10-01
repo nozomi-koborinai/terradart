@@ -45,25 +45,23 @@ final class AwsApiGatewayGatewayResponse extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `response_parameters` attribute.
-  TfRef<Map<String, String>> get responseParametersRef =>
+  TfRef<Map<String, String>> get responseParameters =>
       TfRef.attribute<Map<String, String>>(this, 'response_parameters');
 
   /// Reference to `response_templates` attribute.
-  TfRef<Map<String, String>> get responseTemplatesRef =>
+  TfRef<Map<String, String>> get responseTemplates =>
       TfRef.attribute<Map<String, String>>(this, 'response_templates');
 
   /// Reference to `response_type` attribute.
-  TfRef<String> get responseTypeRef =>
+  TfRef<String> get responseType =>
       TfRef.attribute<String>(this, 'response_type');
 
   /// Reference to `rest_api_id` attribute.
-  TfRef<String> get restApiIdRef =>
-      TfRef.attribute<String>(this, 'rest_api_id');
+  TfRef<String> get restApiId => TfRef.attribute<String>(this, 'rest_api_id');
 
   /// Reference to `status_code` attribute.
-  TfRef<String> get statusCodeRef =>
-      TfRef.attribute<String>(this, 'status_code');
+  TfRef<String> get statusCode => TfRef.attribute<String>(this, 'status_code');
 }

@@ -62,7 +62,7 @@ final class DataCloudflareZeroTrustAccessServiceToken extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -80,12 +80,12 @@ final class DataCloudflareZeroTrustAccessServiceToken extends Data {
   TfRef<String> get expiresAt => TfRef.attribute<String>(this, 'expires_at');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `service_token_id` attribute.
-  TfRef<String> get serviceTokenIdRef =>
+  TfRef<String> get serviceTokenId =>
       TfRef.attribute<String>(this, 'service_token_id');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

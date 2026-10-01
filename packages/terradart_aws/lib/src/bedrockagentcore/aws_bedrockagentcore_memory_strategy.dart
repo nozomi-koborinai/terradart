@@ -511,34 +511,33 @@ final class AwsBedrockagentcoreMemoryStrategy extends Resource {
   RefTo<AwsBedrockagentcoreMemoryStrategy> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `memory_strategy_id` attribute.
   TfRef<String> get memoryStrategyId =>
       TfRef.attribute<String>(this, 'memory_strategy_id');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `memory_execution_role_arn` attribute.
-  TfRef<String> get memoryExecutionRoleArnRef =>
+  TfRef<String> get memoryExecutionRoleArn =>
       TfRef.attribute<String>(this, 'memory_execution_role_arn');
 
   /// Reference to `memory_id` attribute.
-  TfRef<String> get memoryIdRef => TfRef.attribute<String>(this, 'memory_id');
+  TfRef<String> get memoryId => TfRef.attribute<String>(this, 'memory_id');
 
   /// Reference to `namespace_templates` attribute.
-  TfRef<List<String>> get namespaceTemplatesRef =>
+  TfRef<List<String>> get namespaceTemplates =>
       TfRef.attribute<List<String>>(this, 'namespace_templates');
 
   /// Reference to `namespaces` attribute.
-  TfRef<List<String>> get namespacesRef =>
+  TfRef<List<String>> get namespaces =>
       TfRef.attribute<List<String>>(this, 'namespaces');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

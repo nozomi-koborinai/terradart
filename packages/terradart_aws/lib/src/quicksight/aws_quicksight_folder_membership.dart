@@ -56,19 +56,18 @@ final class AwsQuicksightFolderMembership extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `aws_account_id` attribute.
-  TfRef<String> get awsAccountIdRef =>
+  TfRef<String> get awsAccountId =>
       TfRef.attribute<String>(this, 'aws_account_id');
 
   /// Reference to `folder_id` attribute.
-  TfRef<String> get folderIdRef => TfRef.attribute<String>(this, 'folder_id');
+  TfRef<String> get folderId => TfRef.attribute<String>(this, 'folder_id');
 
   /// Reference to `member_id` attribute.
-  TfRef<String> get memberIdRef => TfRef.attribute<String>(this, 'member_id');
+  TfRef<String> get memberId => TfRef.attribute<String>(this, 'member_id');
 
   /// Reference to `member_type` attribute.
-  TfRef<String> get memberTypeRef =>
-      TfRef.attribute<String>(this, 'member_type');
+  TfRef<String> get memberType => TfRef.attribute<String>(this, 'member_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

@@ -54,22 +54,22 @@ final class GoogleComputeGlobalNetworkEndpoint extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `fqdn` attribute.
-  TfRef<String> get fqdnRef => TfRef.attribute<String>(this, 'fqdn');
+  TfRef<String> get fqdn => TfRef.attribute<String>(this, 'fqdn');
 
   /// Reference to `global_network_endpoint_group` attribute.
-  TfRef<String> get globalNetworkEndpointGroupRef =>
+  TfRef<String> get globalNetworkEndpointGroup =>
       TfRef.attribute<String>(this, 'global_network_endpoint_group');
 
   /// Reference to `ip_address` attribute.
-  TfRef<String> get ipAddressRef => TfRef.attribute<String>(this, 'ip_address');
+  TfRef<String> get ipAddress => TfRef.attribute<String>(this, 'ip_address');
 
   /// Reference to `port` attribute.
-  TfRef<num> get portRef => TfRef.attribute<num>(this, 'port');
+  TfRef<num> get port => TfRef.attribute<num>(this, 'port');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

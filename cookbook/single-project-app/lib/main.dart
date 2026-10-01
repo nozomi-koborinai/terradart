@@ -70,12 +70,12 @@ final class SingleProjectAppStack extends Stack {
     // cannot reference its own attributes.
     addOutput(
       'db_instance',
-      .ref(sqlInstance.connectionName),
+      sqlInstance.connectionName,
       description: 'Cloud SQL connection name (project:region:instance).',
     );
     addOutput(
       'db_name',
-      .ref(sqlDatabase.nameRef),
+      sqlDatabase.name,
       description: 'Cloud SQL database the service connects to.',
     );
     final coffeeService = add(
@@ -112,14 +112,14 @@ final class SingleProjectAppStack extends Stack {
     // second copy of the string literals.
     addOutput(
       'coffee_service_uri',
-      .ref(coffeeService.uri),
+      coffeeService.uri,
       description:
           'URL of the Cloud Run v2 service. Populated after terraform apply.',
     );
     addConstant(
       'serviceName',
       .ref(
-        coffeeService.nameRef,
+        coffeeService.name,
         description:
             'Cloud Run v2 service name. Matches the Terraform resource name.',
       ),
@@ -127,7 +127,7 @@ final class SingleProjectAppStack extends Stack {
     addConstant(
       'region',
       .ref(
-        coffeeService.locationRef,
+        coffeeService.location,
         description: 'GCP region this recipe deploys into.',
       ),
     );

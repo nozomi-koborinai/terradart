@@ -16,7 +16,3 @@ curatedDoc: |-
 paramOrder:
   - env_id
   - analytics_enabled
-
-extraGetters: |2
-    /// Reference to `id` attribute.
-    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

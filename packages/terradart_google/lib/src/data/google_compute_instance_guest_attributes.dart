@@ -40,7 +40,7 @@ final class DataGoogleComputeInstanceGuestAttributes extends Data {
       _googleComputeInstanceGuestAttributesSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -54,18 +54,18 @@ final class DataGoogleComputeInstanceGuestAttributes extends Data {
       TfRef.attribute<String>(this, 'variable_value');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `query_path` attribute.
-  TfRef<String> get queryPathRef => TfRef.attribute<String>(this, 'query_path');
+  TfRef<String> get queryPath => TfRef.attribute<String>(this, 'query_path');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `variable_key` attribute.
-  TfRef<String> get variableKeyRef =>
+  TfRef<String> get variableKey =>
       TfRef.attribute<String>(this, 'variable_key');
 
   /// Reference to `zone` attribute.
-  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
+  TfRef<String> get zone => TfRef.attribute<String>(this, 'zone');
 }

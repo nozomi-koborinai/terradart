@@ -71,7 +71,7 @@ final class AwsAppintegrationsDataIntegration extends Resource {
   RefTo<AwsAppintegrationsDataIntegration> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -80,19 +80,18 @@ final class AwsAppintegrationsDataIntegration extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `kms_key` attribute.
-  TfRef<String> get kmsKeyRef => TfRef.attribute<String>(this, 'kms_key');
+  TfRef<String> get kmsKey => TfRef.attribute<String>(this, 'kms_key');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `source_uri` attribute.
-  TfRef<String> get sourceUriRef => TfRef.attribute<String>(this, 'source_uri');
+  TfRef<String> get sourceUri => TfRef.attribute<String>(this, 'source_uri');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

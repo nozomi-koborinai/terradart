@@ -77,8 +77,8 @@ final class DataCloudflareUserAgentBlockingRule extends Data {
   TfRef<bool> get paused => TfRef.attribute<bool>(this, 'paused');
 
   /// Reference to `ua_rule_id` attribute.
-  TfRef<String> get uaRuleIdRef => TfRef.attribute<String>(this, 'ua_rule_id');
+  TfRef<String> get uaRuleId => TfRef.attribute<String>(this, 'ua_rule_id');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

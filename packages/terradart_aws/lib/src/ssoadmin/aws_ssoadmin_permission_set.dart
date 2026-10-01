@@ -44,7 +44,7 @@ final class AwsSsoadminPermissionSet extends Resource {
   RefTo<AwsSsoadminPermissionSet> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -57,25 +57,23 @@ final class AwsSsoadminPermissionSet extends Resource {
       TfRef.attribute<String>(this, 'created_date');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `instance_arn` attribute.
-  TfRef<String> get instanceArnRef =>
+  TfRef<String> get instanceArn =>
       TfRef.attribute<String>(this, 'instance_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `relay_state` attribute.
-  TfRef<String> get relayStateRef =>
-      TfRef.attribute<String>(this, 'relay_state');
+  TfRef<String> get relayState => TfRef.attribute<String>(this, 'relay_state');
 
   /// Reference to `session_duration` attribute.
-  TfRef<String> get sessionDurationRef =>
+  TfRef<String> get sessionDuration =>
       TfRef.attribute<String>(this, 'session_duration');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

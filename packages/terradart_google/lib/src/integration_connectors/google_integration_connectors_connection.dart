@@ -888,6 +888,9 @@ final class GoogleIntegrationConnectorsConnection extends Resource {
   /// `RefTo<GoogleIntegrationConnectorsConnection>`.
   RefTo<GoogleIntegrationConnectorsConnection> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -940,41 +943,34 @@ final class GoogleIntegrationConnectorsConnection extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `connector_version` attribute.
-  TfRef<String> get connectorVersionRef =>
+  TfRef<String> get connectorVersion =>
       TfRef.attribute<String>(this, 'connector_version');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `eventing_enablement_type` attribute.
-  TfRef<String> get eventingEnablementTypeRef =>
+  TfRef<String> get eventingEnablementType =>
       TfRef.attribute<String>(this, 'eventing_enablement_type');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `service_account` attribute.
-  TfRef<String> get serviceAccountRef =>
+  TfRef<String> get serviceAccount =>
       TfRef.attribute<String>(this, 'service_account');
 
   /// Reference to `suspended` attribute.
-  TfRef<bool> get suspendedRef => TfRef.attribute<bool>(this, 'suspended');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<bool> get suspended => TfRef.attribute<bool>(this, 'suspended');
 }

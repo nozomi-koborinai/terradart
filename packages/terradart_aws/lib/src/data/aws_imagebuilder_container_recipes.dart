@@ -60,8 +60,8 @@ final class DataAwsImagebuilderContainerRecipes extends Data {
   TfRef<List<String>> get names => TfRef.attribute<List<String>>(this, 'names');
 
   /// Reference to `owner` attribute.
-  TfRef<String> get ownerRef => TfRef.attribute<String>(this, 'owner');
+  TfRef<String> get owner => TfRef.attribute<String>(this, 'owner');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

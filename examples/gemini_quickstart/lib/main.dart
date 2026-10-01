@@ -186,10 +186,10 @@ final class GeminiStack extends Stack {
     // Literal enablement setting id -- emitted as a Dart constant at synth.
     addConstant(
       'enablementSettingId',
-      .ref(enablement.geminiGcpEnablementSettingIdRef),
+      .ref(enablement.geminiGcpEnablementSettingId),
     );
 
     // Full enablement setting resource name -- Terraform output only.
-    addOutput('enablement_setting_name', .ref(enablement.id));
+    addOutput('enablement_setting_name', enablement.id);
   }
 }

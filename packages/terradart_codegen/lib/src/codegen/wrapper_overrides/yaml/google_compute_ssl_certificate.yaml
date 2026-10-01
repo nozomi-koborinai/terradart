@@ -28,7 +28,7 @@ curatedDoc: |-
   /// Private key — `privateKey` is sealed, exactly one of:
   /// - `.privateKey(...)`: PEM-encoded key, stored in Terraform state.
   ///   Schema-flagged sensitive; prefer a secret-management source via
-  ///   `.ref(...)` rather than embedding the PEM as a literal.
+  ///   `...` rather than embedding the PEM as a literal.
   /// - `.privateKeyWo(...)` + `privateKeyWoVersion`: write-only variant
   ///   (Terraform 1.11+). The key never enters state — bump
   ///   `privateKeyWoVersion` to force rotation.
@@ -51,8 +51,8 @@ curatedDoc: |-
   /// final cert = GoogleComputeSslCertificate(
   ///   localName: 'lb_cert',
   ///   name: TfArg.literal('lb-cert'),
-  ///   certificate: TfArg.ref(certVar),
-  ///   privateKey: .privateKeyWo(.ref(secretVersion.secretData)),
+  ///   certificate: certVar,
+  ///   privateKey: .privateKeyWo(secretVersion.secretData),
   ///   privateKeyWoVersion: .literal('1'),
   /// );
   /// ```

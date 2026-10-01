@@ -609,7 +609,7 @@ final class PrivatecaCertificateAuthorityUserDefinedAccessUrls {
 /// Required identity:
 /// - [localName]: Terraform local name.
 /// - [certificateAuthorityId]: short CA ID within the pool.
-/// - [pool]: full CAS pool ID — `TfArg.ref(pool.id)` from [GooglePrivatecaCaPool].
+/// - [pool]: full CAS pool ID — `pool.id` from [GooglePrivatecaCaPool].
 /// - [location]: regional location (match the pool).
 /// - [config]: subject + X.509 profile ([PrivatecaCertificateAuthorityConfig]).
 /// - [keySpec]: managed key algorithm ([PrivatecaCertificateAuthorityKeySpec]).
@@ -711,7 +711,7 @@ final class GooglePrivatecaCertificateAuthority extends Resource {
   RefTo<GooglePrivatecaCertificateAuthority> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -742,52 +742,52 @@ final class GooglePrivatecaCertificateAuthority extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `certificate_authority_id` attribute.
-  TfRef<String> get certificateAuthorityIdRef =>
+  TfRef<String> get certificateAuthorityId =>
       TfRef.attribute<String>(this, 'certificate_authority_id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `deletion_protection` attribute.
-  TfRef<bool> get deletionProtectionRef =>
+  TfRef<bool> get deletionProtection =>
       TfRef.attribute<bool>(this, 'deletion_protection');
 
   /// Reference to `desired_state` attribute.
-  TfRef<String> get desiredStateRef =>
+  TfRef<String> get desiredState =>
       TfRef.attribute<String>(this, 'desired_state');
 
   /// Reference to `gcs_bucket` attribute.
-  TfRef<String> get gcsBucketRef => TfRef.attribute<String>(this, 'gcs_bucket');
+  TfRef<String> get gcsBucket => TfRef.attribute<String>(this, 'gcs_bucket');
 
   /// Reference to `ignore_active_certificates_on_deletion` attribute.
-  TfRef<bool> get ignoreActiveCertificatesOnDeletionRef =>
+  TfRef<bool> get ignoreActiveCertificatesOnDeletion =>
       TfRef.attribute<bool>(this, 'ignore_active_certificates_on_deletion');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `lifetime` attribute.
-  TfRef<String> get lifetimeRef => TfRef.attribute<String>(this, 'lifetime');
+  TfRef<String> get lifetime => TfRef.attribute<String>(this, 'lifetime');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `pem_ca_certificate` attribute.
-  TfRef<String> get pemCaCertificateRef =>
+  TfRef<String> get pemCaCertificate =>
       TfRef.attribute<String>(this, 'pem_ca_certificate');
 
   /// Reference to `pool` attribute.
-  TfRef<String> get poolRef => TfRef.attribute<String>(this, 'pool');
+  TfRef<String> get pool => TfRef.attribute<String>(this, 'pool');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `skip_grace_period` attribute.
-  TfRef<bool> get skipGracePeriodRef =>
+  TfRef<bool> get skipGracePeriod =>
       TfRef.attribute<bool>(this, 'skip_grace_period');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

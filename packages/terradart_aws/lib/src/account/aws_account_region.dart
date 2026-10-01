@@ -42,12 +42,11 @@ final class AwsAccountRegion extends Resource {
   TfRef<String> get optStatus => TfRef.attribute<String>(this, 'opt_status');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `region_name` attribute.
-  TfRef<String> get regionNameRef =>
-      TfRef.attribute<String>(this, 'region_name');
+  TfRef<String> get regionName => TfRef.attribute<String>(this, 'region_name');
 }

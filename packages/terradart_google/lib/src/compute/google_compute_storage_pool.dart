@@ -115,8 +115,11 @@ final class GoogleComputeStoragePool extends Resource {
   /// `RefTo<GoogleComputeStoragePool>`.
   RefTo<GoogleComputeStoragePool> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `kind` attribute.
-  TfRef<String> get kindRef => TfRef.attribute<String>(this, 'kind');
+  TfRef<String> get kindAttr => TfRef.attribute<String>(this, 'kind');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -146,54 +149,47 @@ final class GoogleComputeStoragePool extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `capacity_provisioning_type` attribute.
-  TfRef<String> get capacityProvisioningTypeRef =>
+  TfRef<String> get capacityProvisioningType =>
       TfRef.attribute<String>(this, 'capacity_provisioning_type');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `deletion_protection` attribute.
-  TfRef<bool> get deletionProtectionRef =>
+  TfRef<bool> get deletionProtection =>
       TfRef.attribute<bool>(this, 'deletion_protection');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `performance_provisioning_type` attribute.
-  TfRef<String> get performanceProvisioningTypeRef =>
+  TfRef<String> get performanceProvisioningType =>
       TfRef.attribute<String>(this, 'performance_provisioning_type');
 
   /// Reference to `pool_provisioned_capacity_gb` attribute.
-  TfRef<String> get poolProvisionedCapacityGbRef =>
+  TfRef<String> get poolProvisionedCapacityGb =>
       TfRef.attribute<String>(this, 'pool_provisioned_capacity_gb');
 
   /// Reference to `pool_provisioned_iops` attribute.
-  TfRef<String> get poolProvisionedIopsRef =>
+  TfRef<String> get poolProvisionedIops =>
       TfRef.attribute<String>(this, 'pool_provisioned_iops');
 
   /// Reference to `pool_provisioned_throughput` attribute.
-  TfRef<String> get poolProvisionedThroughputRef =>
+  TfRef<String> get poolProvisionedThroughput =>
       TfRef.attribute<String>(this, 'pool_provisioned_throughput');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `storage_pool_type` attribute.
-  TfRef<String> get storagePoolTypeRef =>
+  TfRef<String> get storagePoolType =>
       TfRef.attribute<String>(this, 'storage_pool_type');
 
   /// Reference to `zone` attribute.
-  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get zone => TfRef.attribute<String>(this, 'zone');
 }

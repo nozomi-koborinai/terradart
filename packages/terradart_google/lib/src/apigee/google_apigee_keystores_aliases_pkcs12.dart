@@ -67,32 +67,28 @@ final class GoogleApigeeKeystoresAliasesPkcs12 extends Resource {
   /// Reference to `type` attribute.
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
+  /// Reference to `alias` attribute.
+  TfRef<String> get alias => TfRef.attribute<String>(this, 'alias');
+
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `environment` attribute.
-  TfRef<String> get environmentRef =>
-      TfRef.attribute<String>(this, 'environment');
+  TfRef<String> get environment => TfRef.attribute<String>(this, 'environment');
 
   /// Reference to `file` attribute.
-  TfRef<String> get fileRef => TfRef.attribute<String>(this, 'file');
+  TfRef<String> get file => TfRef.attribute<String>(this, 'file');
 
   /// Reference to `filehash` attribute.
-  TfRef<String> get filehashRef => TfRef.attribute<String>(this, 'filehash');
+  TfRef<String> get filehash => TfRef.attribute<String>(this, 'filehash');
 
   /// Reference to `keystore` attribute.
-  TfRef<String> get keystoreRef => TfRef.attribute<String>(this, 'keystore');
+  TfRef<String> get keystore => TfRef.attribute<String>(this, 'keystore');
 
   /// Reference to `org_id` attribute.
-  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
+  TfRef<String> get orgId => TfRef.attribute<String>(this, 'org_id');
 
   /// Reference to `password` attribute.
-  TfRef<String> get passwordRef => TfRef.attribute<String>(this, 'password');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `alias` attribute.
-  TfRef<String> get aliasRef => TfRef.attribute<String>(this, 'alias');
+  TfRef<String> get password => TfRef.attribute<String>(this, 'password');
 }

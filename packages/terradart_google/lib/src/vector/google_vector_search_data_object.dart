@@ -140,6 +140,9 @@ final class GoogleVectorSearchDataObject extends Resource {
   /// `RefTo<GoogleVectorSearchDataObject>`.
   RefTo<GoogleVectorSearchDataObject> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -150,29 +153,26 @@ final class GoogleVectorSearchDataObject extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `collection_id` attribute.
-  TfRef<String> get collectionIdRef =>
+  TfRef<String> get collectionId =>
       TfRef.attribute<String>(this, 'collection_id');
 
   /// Reference to `data` attribute.
-  TfRef<String> get dataRef => TfRef.attribute<String>(this, 'data');
+  TfRef<String> get data => TfRef.attribute<String>(this, 'data');
+
+  /// Reference to `data_object_id` attribute.
+  TfRef<String> get dataObjectId =>
+      TfRef.attribute<String>(this, 'data_object_id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `etag` attribute.
-  TfRef<String> get etagRef => TfRef.attribute<String>(this, 'etag');
+  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
-
-  /// Reference to `data_object_id` attribute.
-  TfRef<String> get dataObjectIdRef =>
-      TfRef.attribute<String>(this, 'data_object_id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

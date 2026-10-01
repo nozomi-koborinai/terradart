@@ -75,50 +75,50 @@ final class AwsSnsTopicSubscription extends Resource {
       TfRef.attribute<bool>(this, 'pending_confirmation');
 
   /// Reference to `confirmation_timeout_in_minutes` attribute.
-  TfRef<num> get confirmationTimeoutInMinutesRef =>
+  TfRef<num> get confirmationTimeoutInMinutes =>
       TfRef.attribute<num>(this, 'confirmation_timeout_in_minutes');
 
   /// Reference to `delivery_policy` attribute.
-  TfRef<String> get deliveryPolicyRef =>
+  TfRef<String> get deliveryPolicy =>
       TfRef.attribute<String>(this, 'delivery_policy');
 
   /// Reference to `endpoint` attribute.
-  TfRef<String> get endpointRef => TfRef.attribute<String>(this, 'endpoint');
+  TfRef<String> get endpoint => TfRef.attribute<String>(this, 'endpoint');
 
   /// Reference to `endpoint_auto_confirms` attribute.
-  TfRef<bool> get endpointAutoConfirmsRef =>
+  TfRef<bool> get endpointAutoConfirms =>
       TfRef.attribute<bool>(this, 'endpoint_auto_confirms');
 
   /// Reference to `filter_policy` attribute.
-  TfRef<String> get filterPolicyRef =>
+  TfRef<String> get filterPolicy =>
       TfRef.attribute<String>(this, 'filter_policy');
 
   /// Reference to `filter_policy_scope` attribute.
-  TfRef<String> get filterPolicyScopeRef =>
+  TfRef<String> get filterPolicyScope =>
       TfRef.attribute<String>(this, 'filter_policy_scope');
 
   /// Reference to `protocol` attribute.
-  TfRef<String> get protocolRef => TfRef.attribute<String>(this, 'protocol');
+  TfRef<String> get protocol => TfRef.attribute<String>(this, 'protocol');
 
   /// Reference to `raw_message_delivery` attribute.
-  TfRef<bool> get rawMessageDeliveryRef =>
+  TfRef<bool> get rawMessageDelivery =>
       TfRef.attribute<bool>(this, 'raw_message_delivery');
 
   /// Reference to `redrive_policy` attribute.
-  TfRef<String> get redrivePolicyRef =>
+  TfRef<String> get redrivePolicy =>
       TfRef.attribute<String>(this, 'redrive_policy');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `replay_policy` attribute.
-  TfRef<String> get replayPolicyRef =>
+  TfRef<String> get replayPolicy =>
       TfRef.attribute<String>(this, 'replay_policy');
 
   /// Reference to `subscription_role_arn` attribute.
-  TfRef<String> get subscriptionRoleArnRef =>
+  TfRef<String> get subscriptionRoleArn =>
       TfRef.attribute<String>(this, 'subscription_role_arn');
 
   /// Reference to `topic_arn` attribute.
-  TfRef<String> get topicArnRef => TfRef.attribute<String>(this, 'topic_arn');
+  TfRef<String> get topicArn => TfRef.attribute<String>(this, 'topic_arn');
 }

@@ -124,34 +124,34 @@ final class AwsGlobalacceleratorEndpointGroup extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `endpoint_group_region` attribute.
-  TfRef<String> get endpointGroupRegionRef =>
+  TfRef<String> get endpointGroupRegion =>
       TfRef.attribute<String>(this, 'endpoint_group_region');
 
   /// Reference to `health_check_interval_seconds` attribute.
-  TfRef<num> get healthCheckIntervalSecondsRef =>
+  TfRef<num> get healthCheckIntervalSeconds =>
       TfRef.attribute<num>(this, 'health_check_interval_seconds');
 
   /// Reference to `health_check_path` attribute.
-  TfRef<String> get healthCheckPathRef =>
+  TfRef<String> get healthCheckPath =>
       TfRef.attribute<String>(this, 'health_check_path');
 
   /// Reference to `health_check_port` attribute.
-  TfRef<num> get healthCheckPortRef =>
+  TfRef<num> get healthCheckPort =>
       TfRef.attribute<num>(this, 'health_check_port');
 
   /// Reference to `health_check_protocol` attribute.
-  TfRef<String> get healthCheckProtocolRef =>
+  TfRef<String> get healthCheckProtocol =>
       TfRef.attribute<String>(this, 'health_check_protocol');
 
   /// Reference to `listener_arn` attribute.
-  TfRef<String> get listenerArnRef =>
+  TfRef<String> get listenerArn =>
       TfRef.attribute<String>(this, 'listener_arn');
 
   /// Reference to `threshold_count` attribute.
-  TfRef<num> get thresholdCountRef =>
+  TfRef<num> get thresholdCount =>
       TfRef.attribute<num>(this, 'threshold_count');
 
   /// Reference to `traffic_dial_percentage` attribute.
-  TfRef<num> get trafficDialPercentageRef =>
+  TfRef<num> get trafficDialPercentage =>
       TfRef.attribute<num>(this, 'traffic_dial_percentage');
 }

@@ -50,9 +50,9 @@ final class DataCloudflareLeakedCredentialCheckRule extends Data {
   TfRef<String> get username => TfRef.attribute<String>(this, 'username');
 
   /// Reference to `detection_id` attribute.
-  TfRef<String> get detectionIdRef =>
+  TfRef<String> get detectionId =>
       TfRef.attribute<String>(this, 'detection_id');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

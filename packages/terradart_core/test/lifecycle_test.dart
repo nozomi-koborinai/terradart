@@ -1,5 +1,5 @@
 import 'package:terradart_core/src/lifecycle.dart';
-import 'package:terradart_core/src/tf_ref.dart';
+import 'package:terradart_core/src/tf_arg.dart';
 import 'package:test/test.dart';
 
 class _FakeAddressed implements TfAddressed {

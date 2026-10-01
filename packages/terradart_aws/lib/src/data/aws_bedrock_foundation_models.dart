@@ -41,21 +41,20 @@ final class DataAwsBedrockFoundationModels extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'model_summaries');
 
   /// Reference to `by_customization_type` attribute.
-  TfRef<String> get byCustomizationTypeRef =>
+  TfRef<String> get byCustomizationType =>
       TfRef.attribute<String>(this, 'by_customization_type');
 
   /// Reference to `by_inference_type` attribute.
-  TfRef<String> get byInferenceTypeRef =>
+  TfRef<String> get byInferenceType =>
       TfRef.attribute<String>(this, 'by_inference_type');
 
   /// Reference to `by_output_modality` attribute.
-  TfRef<String> get byOutputModalityRef =>
+  TfRef<String> get byOutputModality =>
       TfRef.attribute<String>(this, 'by_output_modality');
 
   /// Reference to `by_provider` attribute.
-  TfRef<String> get byProviderRef =>
-      TfRef.attribute<String>(this, 'by_provider');
+  TfRef<String> get byProvider => TfRef.attribute<String>(this, 'by_provider');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

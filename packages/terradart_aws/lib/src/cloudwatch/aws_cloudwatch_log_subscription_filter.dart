@@ -77,38 +77,38 @@ final class AwsCloudwatchLogSubscriptionFilter extends Resource {
   RefTo<AwsCloudwatchLogSubscriptionFilter> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `apply_on_transformed_logs` attribute.
-  TfRef<bool> get applyOnTransformedLogsRef =>
+  TfRef<bool> get applyOnTransformedLogs =>
       TfRef.attribute<bool>(this, 'apply_on_transformed_logs');
 
   /// Reference to `destination_arn` attribute.
-  TfRef<String> get destinationArnRef =>
+  TfRef<String> get destinationArn =>
       TfRef.attribute<String>(this, 'destination_arn');
 
   /// Reference to `distribution` attribute.
-  TfRef<String> get distributionRef =>
+  TfRef<String> get distribution =>
       TfRef.attribute<String>(this, 'distribution');
 
   /// Reference to `emit_system_fields` attribute.
-  TfRef<List<String>> get emitSystemFieldsRef =>
+  TfRef<List<String>> get emitSystemFields =>
       TfRef.attribute<List<String>>(this, 'emit_system_fields');
 
   /// Reference to `filter_pattern` attribute.
-  TfRef<String> get filterPatternRef =>
+  TfRef<String> get filterPattern =>
       TfRef.attribute<String>(this, 'filter_pattern');
 
   /// Reference to `log_group_name` attribute.
-  TfRef<String> get logGroupNameRef =>
+  TfRef<String> get logGroupName =>
       TfRef.attribute<String>(this, 'log_group_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role_arn` attribute.
-  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+  TfRef<String> get roleArn => TfRef.attribute<String>(this, 'role_arn');
 }

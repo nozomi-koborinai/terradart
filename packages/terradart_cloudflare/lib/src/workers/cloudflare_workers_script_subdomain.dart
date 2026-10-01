@@ -47,16 +47,15 @@ final class CloudflareWorkersScriptSubdomain extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `previews_enabled` attribute.
-  TfRef<bool> get previewsEnabledRef =>
+  TfRef<bool> get previewsEnabled =>
       TfRef.attribute<bool>(this, 'previews_enabled');
 
   /// Reference to `script_name` attribute.
-  TfRef<String> get scriptNameRef =>
-      TfRef.attribute<String>(this, 'script_name');
+  TfRef<String> get scriptName => TfRef.attribute<String>(this, 'script_name');
 }

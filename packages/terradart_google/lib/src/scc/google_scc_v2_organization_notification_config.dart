@@ -70,7 +70,7 @@ final class GoogleSccV2OrganizationNotificationConfig extends Resource {
   RefTo<GoogleSccV2OrganizationNotificationConfig> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -80,24 +80,23 @@ final class GoogleSccV2OrganizationNotificationConfig extends Resource {
       TfRef.attribute<String>(this, 'service_account');
 
   /// Reference to `config_id` attribute.
-  TfRef<String> get configIdRef => TfRef.attribute<String>(this, 'config_id');
+  TfRef<String> get configId => TfRef.attribute<String>(this, 'config_id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `organization` attribute.
-  TfRef<String> get organizationRef =>
+  TfRef<String> get organization =>
       TfRef.attribute<String>(this, 'organization');
 
   /// Reference to `pubsub_topic` attribute.
-  TfRef<String> get pubsubTopicRef =>
+  TfRef<String> get pubsubTopic =>
       TfRef.attribute<String>(this, 'pubsub_topic');
 }

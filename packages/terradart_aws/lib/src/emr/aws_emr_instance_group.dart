@@ -81,7 +81,7 @@ final class AwsEmrInstanceGroup extends Resource {
   RefTo<AwsEmrInstanceGroup> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -94,31 +94,29 @@ final class AwsEmrInstanceGroup extends Resource {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `autoscaling_policy` attribute.
-  TfRef<String> get autoscalingPolicyRef =>
+  TfRef<String> get autoscalingPolicy =>
       TfRef.attribute<String>(this, 'autoscaling_policy');
 
   /// Reference to `bid_price` attribute.
-  TfRef<String> get bidPriceRef => TfRef.attribute<String>(this, 'bid_price');
+  TfRef<String> get bidPrice => TfRef.attribute<String>(this, 'bid_price');
 
   /// Reference to `cluster_id` attribute.
-  TfRef<String> get clusterIdRef => TfRef.attribute<String>(this, 'cluster_id');
+  TfRef<String> get clusterId => TfRef.attribute<String>(this, 'cluster_id');
 
   /// Reference to `configurations_json` attribute.
-  TfRef<String> get configurationsJsonRef =>
+  TfRef<String> get configurationsJson =>
       TfRef.attribute<String>(this, 'configurations_json');
 
   /// Reference to `ebs_optimized` attribute.
-  TfRef<bool> get ebsOptimizedRef =>
-      TfRef.attribute<bool>(this, 'ebs_optimized');
+  TfRef<bool> get ebsOptimized => TfRef.attribute<bool>(this, 'ebs_optimized');
 
   /// Reference to `instance_count` attribute.
-  TfRef<num> get instanceCountRef =>
-      TfRef.attribute<num>(this, 'instance_count');
+  TfRef<num> get instanceCount => TfRef.attribute<num>(this, 'instance_count');
 
   /// Reference to `instance_type` attribute.
-  TfRef<String> get instanceTypeRef =>
+  TfRef<String> get instanceType =>
       TfRef.attribute<String>(this, 'instance_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

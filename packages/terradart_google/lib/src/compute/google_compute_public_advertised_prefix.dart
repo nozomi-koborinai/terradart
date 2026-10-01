@@ -76,7 +76,7 @@ final class GoogleComputePublicAdvertisedPrefix extends Resource {
   RefTo<GoogleComputePublicAdvertisedPrefix> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -89,28 +89,27 @@ final class GoogleComputePublicAdvertisedPrefix extends Resource {
       TfRef.attribute<String>(this, 'shared_secret');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `dns_verification_ip` attribute.
-  TfRef<String> get dnsVerificationIpRef =>
+  TfRef<String> get dnsVerificationIp =>
       TfRef.attribute<String>(this, 'dns_verification_ip');
 
   /// Reference to `ip_cidr_range` attribute.
-  TfRef<String> get ipCidrRangeRef =>
+  TfRef<String> get ipCidrRange =>
       TfRef.attribute<String>(this, 'ip_cidr_range');
 
   /// Reference to `ipv6_access_type` attribute.
-  TfRef<String> get ipv6AccessTypeRef =>
+  TfRef<String> get ipv6AccessType =>
       TfRef.attribute<String>(this, 'ipv6_access_type');
 
   /// Reference to `pdp_scope` attribute.
-  TfRef<String> get pdpScopeRef => TfRef.attribute<String>(this, 'pdp_scope');
+  TfRef<String> get pdpScope => TfRef.attribute<String>(this, 'pdp_scope');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

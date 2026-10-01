@@ -57,19 +57,19 @@ final class AwsSesIdentityNotificationTopic extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `identity` attribute.
-  TfRef<String> get identityRef => TfRef.attribute<String>(this, 'identity');
+  TfRef<String> get identity => TfRef.attribute<String>(this, 'identity');
 
   /// Reference to `include_original_headers` attribute.
-  TfRef<bool> get includeOriginalHeadersRef =>
+  TfRef<bool> get includeOriginalHeaders =>
       TfRef.attribute<bool>(this, 'include_original_headers');
 
   /// Reference to `notification_type` attribute.
-  TfRef<String> get notificationTypeRef =>
+  TfRef<String> get notificationType =>
       TfRef.attribute<String>(this, 'notification_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `topic_arn` attribute.
-  TfRef<String> get topicArnRef => TfRef.attribute<String>(this, 'topic_arn');
+  TfRef<String> get topicArn => TfRef.attribute<String>(this, 'topic_arn');
 }

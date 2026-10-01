@@ -21,7 +21,3 @@ paramOrder:
   - location
   - resource_type
   - project
-
-extraGetters: |2
-    /// Reference to `id` attribute.
-    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

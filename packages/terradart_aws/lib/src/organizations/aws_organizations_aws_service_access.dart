@@ -34,6 +34,6 @@ final class AwsOrganizationsAwsServiceAccess extends Resource {
       TfRef.attribute<String>(this, 'date_enabled');
 
   /// Reference to `service_principal` attribute.
-  TfRef<String> get servicePrincipalRef =>
+  TfRef<String> get servicePrincipal =>
       TfRef.attribute<String>(this, 'service_principal');
 }

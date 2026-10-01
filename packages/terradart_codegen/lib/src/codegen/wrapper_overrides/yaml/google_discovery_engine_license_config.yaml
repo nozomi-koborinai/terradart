@@ -41,14 +41,3 @@ paramOrder:
 dartTypeOverrides:
   subscription_tier: DiscoveryEngineLicenseConfigSubscriptionTier
   subscription_term: DiscoveryEngineLicenseConfigSubscriptionTerm
-
-extraGetters: |2
-    /// Reference to `id` attribute.
-    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `license_config_id` attribute.
-    TfRef<String> get licenseConfigIdRef =>
-        TfRef.attribute<String>(this, 'license_config_id');

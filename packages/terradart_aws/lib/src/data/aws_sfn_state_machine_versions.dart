@@ -32,9 +32,9 @@ final class DataAwsSfnStateMachineVersions extends Data {
       TfRef.attribute<List<String>>(this, 'statemachine_versions');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `statemachine_arn` attribute.
-  TfRef<String> get statemachineArnRef =>
+  TfRef<String> get statemachineArn =>
       TfRef.attribute<String>(this, 'statemachine_arn');
 }

@@ -124,27 +124,27 @@ final class AwsSignerSigningProfilePermission extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `action` attribute.
-  TfRef<String> get actionRef => TfRef.attribute<String>(this, 'action');
+  TfRef<String> get action => TfRef.attribute<String>(this, 'action');
 
   /// Reference to `principal` attribute.
-  TfRef<String> get principalRef => TfRef.attribute<String>(this, 'principal');
+  TfRef<String> get principal => TfRef.attribute<String>(this, 'principal');
 
   /// Reference to `profile_name` attribute.
-  TfRef<String> get profileNameRef =>
+  TfRef<String> get profileName =>
       TfRef.attribute<String>(this, 'profile_name');
 
   /// Reference to `profile_version` attribute.
-  TfRef<String> get profileVersionRef =>
+  TfRef<String> get profileVersion =>
       TfRef.attribute<String>(this, 'profile_version');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `statement_id` attribute.
-  TfRef<String> get statementIdRef =>
+  TfRef<String> get statementId =>
       TfRef.attribute<String>(this, 'statement_id');
 
   /// Reference to `statement_id_prefix` attribute.
-  TfRef<String> get statementIdPrefixRef =>
+  TfRef<String> get statementIdPrefix =>
       TfRef.attribute<String>(this, 'statement_id_prefix');
 }

@@ -221,7 +221,7 @@ final class AwsAppstreamStack extends Resource {
   RefTo<AwsAppstreamStack> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -234,29 +234,28 @@ final class AwsAppstreamStack extends Resource {
       TfRef.attribute<String>(this, 'created_time');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `embed_host_domains` attribute.
-  TfRef<List<String>> get embedHostDomainsRef =>
+  TfRef<List<String>> get embedHostDomains =>
       TfRef.attribute<List<String>>(this, 'embed_host_domains');
 
   /// Reference to `feedback_url` attribute.
-  TfRef<String> get feedbackUrlRef =>
+  TfRef<String> get feedbackUrl =>
       TfRef.attribute<String>(this, 'feedback_url');
 
   /// Reference to `redirect_url` attribute.
-  TfRef<String> get redirectUrlRef =>
+  TfRef<String> get redirectUrl =>
       TfRef.attribute<String>(this, 'redirect_url');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

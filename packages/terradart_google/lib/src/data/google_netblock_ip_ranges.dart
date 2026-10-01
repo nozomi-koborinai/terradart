@@ -39,5 +39,5 @@ final class DataGoogleNetblockIpRanges extends Data {
       TfRef.attribute<List<String>>(this, 'cidr_blocks_ipv6');
 
   /// Reference to `range_type` attribute.
-  TfRef<String> get rangeTypeRef => TfRef.attribute<String>(this, 'range_type');
+  TfRef<String> get rangeType => TfRef.attribute<String>(this, 'range_type');
 }

@@ -88,7 +88,7 @@ final class ContactCenterInsightsStack extends Stack {
         localName: 'greeting',
         location: .literal('us-central1'),
         qaScorecard: .literal(scorecardId),
-        revision: .ref(revision.qaScorecardRevisionId),
+        revision: revision.qaScorecardRevisionId,
         questionBody: .literal('Did the agent greet the customer?'),
         questionType: .literal('CUSTOMIZABLE'),
         abbreviation: .literal('Greeting'),
@@ -146,12 +146,12 @@ final class ContactCenterInsightsStack extends Stack {
       ),
     );
 
-    addOutput('cci_analysis_rule_id', .ref(rule.id));
-    addOutput('cci_view_id', .ref(view.id));
-    addOutput('cci_qa_scorecard_id', .ref(scorecard.id));
-    addOutput('cci_qa_revision_id', .ref(revision.id));
-    addOutput('cci_qa_question_id', .ref(question.id));
-    addOutput('cci_assessment_rule_id', .ref(assessment.id));
-    addOutput('cci_auto_labeling_rule_id', .ref(autoLabel.id));
+    addOutput('cci_analysis_rule_id', rule.id);
+    addOutput('cci_view_id', view.id);
+    addOutput('cci_qa_scorecard_id', scorecard.id);
+    addOutput('cci_qa_revision_id', revision.id);
+    addOutput('cci_qa_question_id', question.id);
+    addOutput('cci_assessment_rule_id', assessment.id);
+    addOutput('cci_auto_labeling_rule_id', autoLabel.id);
   }
 }

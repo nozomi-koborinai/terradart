@@ -163,7 +163,7 @@ final class GoogleSecretManagerSecretVersion extends Resource {
   RefTo<GoogleSecretManagerSecretVersion> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -179,27 +179,26 @@ final class GoogleSecretManagerSecretVersion extends Resource {
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `is_secret_data_base64` attribute.
-  TfRef<bool> get isSecretDataBase64Ref =>
+  TfRef<bool> get isSecretDataBase64 =>
       TfRef.attribute<bool>(this, 'is_secret_data_base64');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `secret` attribute.
-  TfRef<String> get secretRef => TfRef.attribute<String>(this, 'secret');
+  TfRef<String> get secret => TfRef.attribute<String>(this, 'secret');
 
   /// Reference to `secret_data` attribute.
-  TfRef<String> get secretDataRef =>
-      TfRef.attribute<String>(this, 'secret_data');
+  TfRef<String> get secretData => TfRef.attribute<String>(this, 'secret_data');
 
   /// Reference to `secret_data_wo_version` attribute.
-  TfRef<String> get secretDataWoVersionRef =>
+  TfRef<String> get secretDataWoVersion =>
       TfRef.attribute<String>(this, 'secret_data_wo_version');
 }

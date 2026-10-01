@@ -35,10 +35,10 @@ final class DataGoogleComputeReservationBlock extends Data {
   Set<String> get sensitiveFields => _googleComputeReservationBlockSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `kind` attribute.
-  TfRef<String> get kindRef => TfRef.attribute<String>(this, 'kind');
+  TfRef<String> get kindAttr => TfRef.attribute<String>(this, 'kind');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -94,12 +94,11 @@ final class DataGoogleComputeReservationBlock extends Data {
       TfRef.attribute<List<String>>(this, 'sub_block_names');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `reservation` attribute.
-  TfRef<String> get reservationRef =>
-      TfRef.attribute<String>(this, 'reservation');
+  TfRef<String> get reservation => TfRef.attribute<String>(this, 'reservation');
 
   /// Reference to `zone` attribute.
-  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
+  TfRef<String> get zone => TfRef.attribute<String>(this, 'zone');
 }

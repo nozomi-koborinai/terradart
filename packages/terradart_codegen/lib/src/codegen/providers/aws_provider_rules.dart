@@ -37,7 +37,7 @@ final class AwsProviderRules extends ProviderRules {
       if (attrs.contains('id'))
         "TfRef<String> get id => TfRef.attribute<String>(this, 'id');",
       if (attrs.contains('arn'))
-        "TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');",
+        "TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');",
     ];
   }
 

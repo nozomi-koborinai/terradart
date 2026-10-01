@@ -43,19 +43,19 @@ final class DataAwsService extends Data {
   TfRef<bool> get supported => TfRef.attribute<bool>(this, 'supported');
 
   /// Reference to `dns_name` attribute.
-  TfRef<String> get dnsNameRef => TfRef.attribute<String>(this, 'dns_name');
+  TfRef<String> get dnsName => TfRef.attribute<String>(this, 'dns_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `reverse_dns_name` attribute.
-  TfRef<String> get reverseDnsNameRef =>
+  TfRef<String> get reverseDnsName =>
       TfRef.attribute<String>(this, 'reverse_dns_name');
 
   /// Reference to `reverse_dns_prefix` attribute.
-  TfRef<String> get reverseDnsPrefixRef =>
+  TfRef<String> get reverseDnsPrefix =>
       TfRef.attribute<String>(this, 'reverse_dns_prefix');
 
   /// Reference to `service_id` attribute.
-  TfRef<String> get serviceIdRef => TfRef.attribute<String>(this, 'service_id');
+  TfRef<String> get serviceId => TfRef.attribute<String>(this, 'service_id');
 }

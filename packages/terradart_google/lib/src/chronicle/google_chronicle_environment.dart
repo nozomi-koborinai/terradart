@@ -108,6 +108,9 @@ final class GoogleChronicleEnvironment extends Resource {
   /// `RefTo<GoogleChronicleEnvironment>`.
   RefTo<GoogleChronicleEnvironment> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -116,67 +119,60 @@ final class GoogleChronicleEnvironment extends Resource {
       TfRef.attribute<String>(this, 'environment_id');
 
   /// Reference to `aliases_json` attribute.
-  TfRef<String> get aliasesJsonRef =>
+  TfRef<String> get aliasesJson =>
       TfRef.attribute<String>(this, 'aliases_json');
 
   /// Reference to `base64_image` attribute.
-  TfRef<String> get base64ImageRef =>
+  TfRef<String> get base64Image =>
       TfRef.attribute<String>(this, 'base64_image');
 
   /// Reference to `contact` attribute.
-  TfRef<String> get contactRef => TfRef.attribute<String>(this, 'contact');
+  TfRef<String> get contact => TfRef.attribute<String>(this, 'contact');
 
   /// Reference to `contact_emails` attribute.
-  TfRef<String> get contactEmailsRef =>
+  TfRef<String> get contactEmails =>
       TfRef.attribute<String>(this, 'contact_emails');
 
   /// Reference to `contact_phone` attribute.
-  TfRef<String> get contactPhoneRef =>
+  TfRef<String> get contactPhone =>
       TfRef.attribute<String>(this, 'contact_phone');
 
   /// Reference to `data_access_scopes_json` attribute.
-  TfRef<String> get dataAccessScopesJsonRef =>
+  TfRef<String> get dataAccessScopesJson =>
       TfRef.attribute<String>(this, 'data_access_scopes_json');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `deletion_protection` attribute.
-  TfRef<bool> get deletionProtectionRef =>
+  TfRef<bool> get deletionProtection =>
       TfRef.attribute<bool>(this, 'deletion_protection');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `instance` attribute.
-  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+  TfRef<String> get instance => TfRef.attribute<String>(this, 'instance');
 
   /// Reference to `instance_uri` attribute.
-  TfRef<String> get instanceUriRef =>
+  TfRef<String> get instanceUri =>
       TfRef.attribute<String>(this, 'instance_uri');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `retention_duration` attribute.
-  TfRef<num> get retentionDurationRef =>
+  TfRef<num> get retentionDuration =>
       TfRef.attribute<num>(this, 'retention_duration');
 
   /// Reference to `weight` attribute.
-  TfRef<num> get weightRef => TfRef.attribute<num>(this, 'weight');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<num> get weight => TfRef.attribute<num>(this, 'weight');
 }

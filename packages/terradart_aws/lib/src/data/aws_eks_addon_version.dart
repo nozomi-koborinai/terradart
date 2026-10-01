@@ -38,15 +38,15 @@ final class DataAwsEksAddonVersion extends Data {
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
 
   /// Reference to `addon_name` attribute.
-  TfRef<String> get addonNameRef => TfRef.attribute<String>(this, 'addon_name');
+  TfRef<String> get addonName => TfRef.attribute<String>(this, 'addon_name');
 
   /// Reference to `kubernetes_version` attribute.
-  TfRef<String> get kubernetesVersionRef =>
+  TfRef<String> get kubernetesVersion =>
       TfRef.attribute<String>(this, 'kubernetes_version');
 
   /// Reference to `most_recent` attribute.
-  TfRef<bool> get mostRecentRef => TfRef.attribute<bool>(this, 'most_recent');
+  TfRef<bool> get mostRecent => TfRef.attribute<bool>(this, 'most_recent');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

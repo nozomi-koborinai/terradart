@@ -218,6 +218,9 @@ final class GoogleComputeSnapshot extends Resource {
   /// `RefTo<GoogleComputeSnapshot>`.
   RefTo<GoogleComputeSnapshot> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -251,44 +254,39 @@ final class GoogleComputeSnapshot extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `chain_name` attribute.
-  TfRef<String> get chainNameRef => TfRef.attribute<String>(this, 'chain_name');
+  TfRef<String> get chainName => TfRef.attribute<String>(this, 'chain_name');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `snapshot_type` attribute.
-  TfRef<String> get snapshotTypeRef =>
+  TfRef<String> get snapshotType =>
       TfRef.attribute<String>(this, 'snapshot_type');
 
   /// Reference to `source_disk` attribute.
-  TfRef<String> get sourceDiskRef =>
-      TfRef.attribute<String>(this, 'source_disk');
+  TfRef<String> get sourceDisk => TfRef.attribute<String>(this, 'source_disk');
 
   /// Reference to `source_instant_snapshot` attribute.
-  TfRef<String> get sourceInstantSnapshotRef =>
+  TfRef<String> get sourceInstantSnapshot =>
       TfRef.attribute<String>(this, 'source_instant_snapshot');
 
   /// Reference to `storage_locations` attribute.
-  TfRef<List<String>> get storageLocationsRef =>
+  TfRef<List<String>> get storageLocations =>
       TfRef.attribute<List<String>>(this, 'storage_locations');
 
   /// Reference to `zone` attribute.
-  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get zone => TfRef.attribute<String>(this, 'zone');
 
   /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');

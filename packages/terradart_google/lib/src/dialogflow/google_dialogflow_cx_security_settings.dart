@@ -234,54 +234,51 @@ final class GoogleDialogflowCxSecuritySettings extends Resource {
   /// `RefTo<GoogleDialogflowCxSecuritySettings>`.
   RefTo<GoogleDialogflowCxSecuritySettings> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `deidentify_template` attribute.
-  TfRef<String> get deidentifyTemplateRef =>
+  TfRef<String> get deidentifyTemplate =>
       TfRef.attribute<String>(this, 'deidentify_template');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `inspect_template` attribute.
-  TfRef<String> get inspectTemplateRef =>
+  TfRef<String> get inspectTemplate =>
       TfRef.attribute<String>(this, 'inspect_template');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `purge_data_types` attribute.
-  TfRef<List<String>> get purgeDataTypesRef =>
+  TfRef<List<String>> get purgeDataTypes =>
       TfRef.attribute<List<String>>(this, 'purge_data_types');
 
   /// Reference to `redaction_scope` attribute.
-  TfRef<String> get redactionScopeRef =>
+  TfRef<String> get redactionScope =>
       TfRef.attribute<String>(this, 'redaction_scope');
 
   /// Reference to `redaction_strategy` attribute.
-  TfRef<String> get redactionStrategyRef =>
+  TfRef<String> get redactionStrategy =>
       TfRef.attribute<String>(this, 'redaction_strategy');
 
   /// Reference to `retention_strategy` attribute.
-  TfRef<String> get retentionStrategyRef =>
+  TfRef<String> get retentionStrategy =>
       TfRef.attribute<String>(this, 'retention_strategy');
 
   /// Reference to `retention_window_days` attribute.
-  TfRef<num> get retentionWindowDaysRef =>
+  TfRef<num> get retentionWindowDays =>
       TfRef.attribute<num>(this, 'retention_window_days');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

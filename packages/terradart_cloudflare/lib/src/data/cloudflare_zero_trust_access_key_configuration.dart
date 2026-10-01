@@ -53,5 +53,5 @@ final class DataCloudflareZeroTrustAccessKeyConfiguration extends Data {
       TfRef.attribute<String>(this, 'last_key_rotation_at');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 }

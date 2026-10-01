@@ -279,65 +279,65 @@ final class AwsStoragegatewayGateway extends Resource {
       TfRef.attribute<String>(this, 'host_environment');
 
   /// Reference to `activation_key` attribute.
-  TfRef<String> get activationKeyRef =>
+  TfRef<String> get activationKey =>
       TfRef.attribute<String>(this, 'activation_key');
 
   /// Reference to `average_download_rate_limit_in_bits_per_sec` attribute.
-  TfRef<num> get averageDownloadRateLimitInBitsPerSecRef =>
+  TfRef<num> get averageDownloadRateLimitInBitsPerSec =>
       TfRef.attribute<num>(this, 'average_download_rate_limit_in_bits_per_sec');
 
   /// Reference to `average_upload_rate_limit_in_bits_per_sec` attribute.
-  TfRef<num> get averageUploadRateLimitInBitsPerSecRef =>
+  TfRef<num> get averageUploadRateLimitInBitsPerSec =>
       TfRef.attribute<num>(this, 'average_upload_rate_limit_in_bits_per_sec');
 
   /// Reference to `cloudwatch_log_group_arn` attribute.
-  TfRef<String> get cloudwatchLogGroupArnRef =>
+  TfRef<String> get cloudwatchLogGroupArn =>
       TfRef.attribute<String>(this, 'cloudwatch_log_group_arn');
 
   /// Reference to `gateway_ip_address` attribute.
-  TfRef<String> get gatewayIpAddressRef =>
+  TfRef<String> get gatewayIpAddress =>
       TfRef.attribute<String>(this, 'gateway_ip_address');
 
   /// Reference to `gateway_name` attribute.
-  TfRef<String> get gatewayNameRef =>
+  TfRef<String> get gatewayName =>
       TfRef.attribute<String>(this, 'gateway_name');
 
   /// Reference to `gateway_timezone` attribute.
-  TfRef<String> get gatewayTimezoneRef =>
+  TfRef<String> get gatewayTimezone =>
       TfRef.attribute<String>(this, 'gateway_timezone');
 
   /// Reference to `gateway_type` attribute.
-  TfRef<String> get gatewayTypeRef =>
+  TfRef<String> get gatewayType =>
       TfRef.attribute<String>(this, 'gateway_type');
 
   /// Reference to `gateway_vpc_endpoint` attribute.
-  TfRef<String> get gatewayVpcEndpointRef =>
+  TfRef<String> get gatewayVpcEndpoint =>
       TfRef.attribute<String>(this, 'gateway_vpc_endpoint');
 
   /// Reference to `medium_changer_type` attribute.
-  TfRef<String> get mediumChangerTypeRef =>
+  TfRef<String> get mediumChangerType =>
       TfRef.attribute<String>(this, 'medium_changer_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `smb_file_share_visibility` attribute.
-  TfRef<bool> get smbFileShareVisibilityRef =>
+  TfRef<bool> get smbFileShareVisibility =>
       TfRef.attribute<bool>(this, 'smb_file_share_visibility');
 
   /// Reference to `smb_guest_password` attribute.
-  TfRef<String> get smbGuestPasswordRef =>
+  TfRef<String> get smbGuestPassword =>
       TfRef.attribute<String>(this, 'smb_guest_password');
 
   /// Reference to `smb_security_strategy` attribute.
-  TfRef<String> get smbSecurityStrategyRef =>
+  TfRef<String> get smbSecurityStrategy =>
       TfRef.attribute<String>(this, 'smb_security_strategy');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `tape_drive_type` attribute.
-  TfRef<String> get tapeDriveTypeRef =>
+  TfRef<String> get tapeDriveType =>
       TfRef.attribute<String>(this, 'tape_drive_type');
 }

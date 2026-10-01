@@ -38,9 +38,8 @@ final class DataCloudflareR2BucketSippy extends Data {
   TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `bucket_name` attribute.
-  TfRef<String> get bucketNameRef =>
-      TfRef.attribute<String>(this, 'bucket_name');
+  TfRef<String> get bucketName => TfRef.attribute<String>(this, 'bucket_name');
 }

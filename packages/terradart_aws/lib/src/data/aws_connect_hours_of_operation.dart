@@ -40,7 +40,7 @@ final class DataAwsConnectHoursOfOperation extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -59,17 +59,16 @@ final class DataAwsConnectHoursOfOperation extends Data {
   TfRef<String> get timeZone => TfRef.attribute<String>(this, 'time_zone');
 
   /// Reference to `hours_of_operation_id` attribute.
-  TfRef<String> get hoursOfOperationIdRef =>
+  TfRef<String> get hoursOfOperationId =>
       TfRef.attribute<String>(this, 'hours_of_operation_id');
 
   /// Reference to `instance_id` attribute.
-  TfRef<String> get instanceIdRef =>
-      TfRef.attribute<String>(this, 'instance_id');
+  TfRef<String> get instanceId => TfRef.attribute<String>(this, 'instance_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

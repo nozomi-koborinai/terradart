@@ -49,9 +49,9 @@ final class AwsCloudwatchLogStorageTierPolicy extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `storage_tier` attribute.
-  TfRef<String> get storageTierRef =>
+  TfRef<String> get storageTier =>
       TfRef.attribute<String>(this, 'storage_tier');
 }

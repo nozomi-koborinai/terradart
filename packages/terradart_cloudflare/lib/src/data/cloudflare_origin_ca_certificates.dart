@@ -33,14 +33,14 @@ final class DataCloudflareOriginCaCertificates extends Data {
   Set<String> get sensitiveFields => _cloudflareOriginCaCertificatesSensitive;
 
   /// Reference to `limit` attribute.
-  TfRef<num> get limitRef => TfRef.attribute<num>(this, 'limit');
+  TfRef<num> get limit => TfRef.attribute<num>(this, 'limit');
 
   /// Reference to `max_items` attribute.
-  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+  TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
 
   /// Reference to `offset` attribute.
-  TfRef<num> get offsetRef => TfRef.attribute<num>(this, 'offset');
+  TfRef<num> get offset => TfRef.attribute<num>(this, 'offset');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

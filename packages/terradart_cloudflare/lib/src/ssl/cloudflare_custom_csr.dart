@@ -72,7 +72,7 @@ final class CloudflareCustomCsr extends Resource {
   RefTo<CloudflareCustomCsr> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -87,40 +87,37 @@ final class CloudflareCustomCsr extends Resource {
   TfRef<String> get csr => TfRef.attribute<String>(this, 'csr');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `common_name` attribute.
-  TfRef<String> get commonNameRef =>
-      TfRef.attribute<String>(this, 'common_name');
+  TfRef<String> get commonName => TfRef.attribute<String>(this, 'common_name');
 
   /// Reference to `country` attribute.
-  TfRef<String> get countryRef => TfRef.attribute<String>(this, 'country');
+  TfRef<String> get country => TfRef.attribute<String>(this, 'country');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `key_type` attribute.
-  TfRef<String> get keyTypeRef => TfRef.attribute<String>(this, 'key_type');
+  TfRef<String> get keyType => TfRef.attribute<String>(this, 'key_type');
 
   /// Reference to `locality` attribute.
-  TfRef<String> get localityRef => TfRef.attribute<String>(this, 'locality');
+  TfRef<String> get locality => TfRef.attribute<String>(this, 'locality');
 
   /// Reference to `organization` attribute.
-  TfRef<String> get organizationRef =>
+  TfRef<String> get organization =>
       TfRef.attribute<String>(this, 'organization');
 
   /// Reference to `organizational_unit` attribute.
-  TfRef<String> get organizationalUnitRef =>
+  TfRef<String> get organizationalUnit =>
       TfRef.attribute<String>(this, 'organizational_unit');
 
   /// Reference to `sans` attribute.
-  TfRef<List<String>> get sansRef =>
-      TfRef.attribute<List<String>>(this, 'sans');
+  TfRef<List<String>> get sans => TfRef.attribute<List<String>>(this, 'sans');
 
   /// Reference to `state` attribute.
-  TfRef<String> get stateRef => TfRef.attribute<String>(this, 'state');
+  TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

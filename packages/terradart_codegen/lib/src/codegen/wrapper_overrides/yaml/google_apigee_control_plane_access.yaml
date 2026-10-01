@@ -19,7 +19,3 @@ paramOrder:
   - name
   - synchronizer_identities
   - analytics_publisher_identities
-
-extraGetters: |2
-    /// Reference to `id` attribute.
-    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

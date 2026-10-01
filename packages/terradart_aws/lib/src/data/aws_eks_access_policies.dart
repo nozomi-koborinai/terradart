@@ -25,5 +25,5 @@ final class DataAwsEksAccessPolicies extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'access_policies');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

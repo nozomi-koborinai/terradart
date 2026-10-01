@@ -33,7 +33,7 @@ final class DataAwsServerlessapplicationrepositoryApplication extends Data {
       _awsServerlessapplicationrepositoryApplicationSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -51,13 +51,13 @@ final class DataAwsServerlessapplicationrepositoryApplication extends Data {
       TfRef.attribute<String>(this, 'template_url');
 
   /// Reference to `application_id` attribute.
-  TfRef<String> get applicationIdRef =>
+  TfRef<String> get applicationId =>
       TfRef.attribute<String>(this, 'application_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `semantic_version` attribute.
-  TfRef<String> get semanticVersionRef =>
+  TfRef<String> get semanticVersion =>
       TfRef.attribute<String>(this, 'semantic_version');
 }

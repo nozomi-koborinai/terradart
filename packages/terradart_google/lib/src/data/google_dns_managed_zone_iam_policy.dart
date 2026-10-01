@@ -43,9 +43,9 @@ final class DataGoogleDnsManagedZoneIamPolicy extends Data {
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
 
   /// Reference to `managed_zone` attribute.
-  TfRef<String> get managedZoneRef =>
+  TfRef<String> get managedZone =>
       TfRef.attribute<String>(this, 'managed_zone');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

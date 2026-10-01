@@ -78,13 +78,13 @@ final class GoogleServiceAccountIamBinding extends Resource {
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `members` attribute.
-  TfRef<List<String>> get membersRef =>
+  TfRef<List<String>> get members =>
       TfRef.attribute<List<String>>(this, 'members');
 
   /// Reference to `role` attribute.
-  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+  TfRef<String> get role => TfRef.attribute<String>(this, 'role');
 
   /// Reference to `service_account_id` attribute.
-  TfRef<String> get serviceAccountIdRef =>
+  TfRef<String> get serviceAccountId =>
       TfRef.attribute<String>(this, 'service_account_id');
 }

@@ -41,7 +41,7 @@ final class DataGoogleArtifactRegistryFile extends Data {
   Set<String> get sensitiveFields => _googleArtifactRegistryFileSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -68,22 +68,21 @@ final class DataGoogleArtifactRegistryFile extends Data {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `file_id` attribute.
-  TfRef<String> get fileIdRef => TfRef.attribute<String>(this, 'file_id');
+  TfRef<String> get fileId => TfRef.attribute<String>(this, 'file_id');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `output_path` attribute.
-  TfRef<String> get outputPathRef =>
-      TfRef.attribute<String>(this, 'output_path');
+  TfRef<String> get outputPath => TfRef.attribute<String>(this, 'output_path');
 
   /// Reference to `overwrite` attribute.
-  TfRef<bool> get overwriteRef => TfRef.attribute<bool>(this, 'overwrite');
+  TfRef<bool> get overwrite => TfRef.attribute<bool>(this, 'overwrite');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `repository_id` attribute.
-  TfRef<String> get repositoryIdRef =>
+  TfRef<String> get repositoryId =>
       TfRef.attribute<String>(this, 'repository_id');
 }
