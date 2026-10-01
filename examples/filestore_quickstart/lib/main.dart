@@ -73,7 +73,7 @@ final class FilestoreSnapshotStack extends Stack {
         localName: 'snapshot_share_snap',
         name: .literal('snapshot-share-snap-1'),
         location: .literal('us-central1'),
-        instance: .ref(snapshotNfs.id),
+        instance: snapshotNfs.ref,
       ),
     );
   }

@@ -61,7 +61,7 @@ final class HttpFunctionStack extends Stack {
           source: .storageSource(
             Cloudfunctions2FunctionStorageSource(
               bucket: .of(sourceBucket),
-              object: .ref(sourceObject.nameRef),
+              object: sourceObject.ref,
             ),
           ),
           updatePolicy: .automaticUpdatePolicy(

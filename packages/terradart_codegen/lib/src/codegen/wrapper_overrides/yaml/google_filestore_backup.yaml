@@ -29,7 +29,7 @@ curatedDoc: |-
   ///   localName: 'share_backup',
   ///   name: TfArg.literal('share-backup-1'),
   ///   location: TfArg.literal('asia-northeast1'),
-  ///   sourceInstance: TfArg.ref(nfs.id),
+  ///   sourceInstance: nfs.ref,
   ///   sourceFileShare: TfArg.literal('share1'),
   /// );
   /// ```

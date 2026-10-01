@@ -52,7 +52,7 @@ final class RealPlanSrcStack extends Stack {
       GoogleComputeRouterNat(
         localName: r'nat',
         name: .literal(r'example-nat'),
-        router: .ref(router.nameRef),
+        router: router.ref,
         region: .literal(r'us-central1'),
         sourceSubnetworkIpRangesToNat: .literal(.allSubnetworksAllIpRanges),
         natIpAllocateOption: .literal(.autoOnly),

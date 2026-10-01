@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_organization_security_policy.dart'
+    show GoogleComputeOrganizationSecurityPolicy;
+
 /// Sensitive field paths for `google_compute_organization_security_policy_association`.
 const Set<String> _googleComputeOrganizationSecurityPolicyAssociationSensitive =
     <String>{};
@@ -28,7 +31,7 @@ final class GoogleComputeOrganizationSecurityPolicyAssociation
     TfArg<List<String>>? excludedFolders,
     TfArg<List<String>>? excludedProjects,
     required TfArg<String> name,
-    required TfArg<String> policyId,
+    required RefTo<GoogleComputeOrganizationSecurityPolicy> policyId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -41,7 +44,7 @@ final class GoogleComputeOrganizationSecurityPolicyAssociation
            'excluded_folders': ?excludedFolders,
            'excluded_projects': ?excludedProjects,
            'name': name,
-           'policy_id': policyId,
+           'policy_id': policyId.encodeAs('id'),
          },
        );
 

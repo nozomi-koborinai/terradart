@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../logging/google_logging_log_view.dart';
+import '../logging/google_logging_project_bucket_config.dart'
+    show GoogleLoggingProjectBucketConfig;
 
 /// Sensitive field paths for `google_logging_log_view`.
 const Set<String> _googleLoggingLogViewSensitive = <String>{};
@@ -16,7 +18,7 @@ final class DataGoogleLoggingLogView extends Data {
 
   DataGoogleLoggingLogView({
     required super.localName,
-    required TfArg<String> bucket,
+    required RefTo<GoogleLoggingProjectBucketConfig> bucket,
     required TfArg<String> location,
     required TfArg<String> name,
     required TfArg<String> parent,
@@ -25,7 +27,7 @@ final class DataGoogleLoggingLogView extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('id'),
            'location': location,
            'name': name,
            'parent': parent,

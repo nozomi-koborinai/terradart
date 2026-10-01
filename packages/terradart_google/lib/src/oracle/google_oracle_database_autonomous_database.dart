@@ -5,6 +5,10 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../oracle/google_oracle_database_odb_network.dart'
+    show GoogleOracleDatabaseOdbNetwork;
+import '../oracle/google_oracle_database_odb_subnet.dart'
+    show GoogleOracleDatabaseOdbSubnet;
 
 /// Sensitive field paths for `google_oracle_database_autonomous_database`.
 const Set<String> _googleOracleDatabaseAutonomousDatabaseSensitive = <String>{};
@@ -192,8 +196,8 @@ final class GoogleOracleDatabaseAutonomousDatabase extends Resource {
     TfArg<String>? displayName,
     TfArg<String>? adminPassword,
     OracleDatabaseAutonomousDatabaseProperties? properties,
-    TfArg<String>? odbSubnet,
-    TfArg<String>? odbNetwork,
+    RefTo<GoogleOracleDatabaseOdbSubnet>? odbSubnet,
+    RefTo<GoogleOracleDatabaseOdbNetwork>? odbNetwork,
     RefTo<GoogleComputeNetwork>? network,
     TfArg<String>? cidr,
     TfArg<Map<String, String>>? labels,
@@ -215,8 +219,8 @@ final class GoogleOracleDatabaseAutonomousDatabase extends Resource {
            'admin_password': ?adminPassword,
            if (properties != null)
              'properties': TfArg.literal(properties.encode()),
-           'odb_subnet': ?odbSubnet,
-           'odb_network': ?odbNetwork,
+           'odb_subnet': ?odbSubnet?.encodeAs('name'),
+           'odb_network': ?odbNetwork?.encodeAs('name'),
            'network': ?network?.encodeAs('id'),
            'cidr': ?cidr,
            'labels': ?labels,

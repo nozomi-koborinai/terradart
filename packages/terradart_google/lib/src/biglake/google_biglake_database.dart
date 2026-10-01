@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../biglake/google_biglake_catalog.dart' show GoogleBiglakeCatalog;
+
 /// Sensitive field paths for `google_biglake_database`.
 const Set<String> _googleBiglakeDatabaseSensitive = <String>{};
 
@@ -32,7 +34,7 @@ final class GoogleBiglakeDatabase extends Resource {
   GoogleBiglakeDatabase({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> catalog,
+    required RefTo<GoogleBiglakeCatalog> catalog,
     required TfArg<String> type,
     required BiglakeDatabaseHiveOptions hiveOptions,
     TfArg<String>? deletionPolicy,
@@ -44,7 +46,7 @@ final class GoogleBiglakeDatabase extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'catalog': catalog,
+           'catalog': catalog.encodeAs('id'),
            'type': type,
            'hive_options': TfArg.literal(hiveOptions.encode()),
            'deletion_policy': ?deletionPolicy,

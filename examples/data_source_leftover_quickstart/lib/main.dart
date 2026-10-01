@@ -174,7 +174,7 @@ final class DataSourceLeftoverStack extends Stack {
         localName: 'artifact_registry_docker_image',
         imageName: TfArg.literal(leftover),
         location: TfArg.literal(leftover),
-        repositoryId: TfArg.literal(leftover),
+        repositoryId: RefTo.literal(leftover),
       ),
     );
 
@@ -182,7 +182,7 @@ final class DataSourceLeftoverStack extends Stack {
       DataGoogleArtifactRegistryDockerImages(
         localName: 'artifact_registry_docker_images',
         location: TfArg.literal(leftover),
-        repositoryId: TfArg.literal(leftover),
+        repositoryId: RefTo.literal(leftover),
       ),
     );
 
@@ -192,7 +192,7 @@ final class DataSourceLeftoverStack extends Stack {
         fileId: TfArg.literal(leftover),
         location: TfArg.literal(leftover),
         outputPath: TfArg.literal(leftover),
-        repositoryId: TfArg.literal(leftover),
+        repositoryId: RefTo.literal(leftover),
       ),
     );
 
@@ -208,7 +208,7 @@ final class DataSourceLeftoverStack extends Stack {
         artifactId: TfArg.literal(leftover),
         groupId: TfArg.literal(leftover),
         location: TfArg.literal(leftover),
-        repositoryId: TfArg.literal(leftover),
+        repositoryId: RefTo.literal(leftover),
       ),
     );
 
@@ -216,7 +216,7 @@ final class DataSourceLeftoverStack extends Stack {
       DataGoogleArtifactRegistryMavenArtifacts(
         localName: 'artifact_registry_maven_artifacts',
         location: TfArg.literal(leftover),
-        repositoryId: TfArg.literal(leftover),
+        repositoryId: RefTo.literal(leftover),
       ),
     );
 
@@ -225,7 +225,7 @@ final class DataSourceLeftoverStack extends Stack {
         localName: 'artifact_registry_npm_package',
         location: TfArg.literal(leftover),
         packageName: TfArg.literal(leftover),
-        repositoryId: TfArg.literal(leftover),
+        repositoryId: RefTo.literal(leftover),
       ),
     );
 
@@ -233,7 +233,7 @@ final class DataSourceLeftoverStack extends Stack {
       DataGoogleArtifactRegistryNpmPackages(
         localName: 'artifact_registry_npm_packages',
         location: TfArg.literal(leftover),
-        repositoryId: TfArg.literal(leftover),
+        repositoryId: RefTo.literal(leftover),
       ),
     );
 
@@ -242,7 +242,7 @@ final class DataSourceLeftoverStack extends Stack {
         localName: 'artifact_registry_package',
         location: TfArg.literal(leftover),
         name: TfArg.literal(leftover),
-        repositoryId: TfArg.literal(leftover),
+        repositoryId: RefTo.literal(leftover),
       ),
     );
 
@@ -250,7 +250,7 @@ final class DataSourceLeftoverStack extends Stack {
       DataGoogleArtifactRegistryPackages(
         localName: 'artifact_registry_packages',
         location: TfArg.literal(leftover),
-        repositoryId: TfArg.literal(leftover),
+        repositoryId: RefTo.literal(leftover),
       ),
     );
 
@@ -259,7 +259,7 @@ final class DataSourceLeftoverStack extends Stack {
         localName: 'artifact_registry_python_package',
         location: TfArg.literal(leftover),
         packageName: TfArg.literal(leftover),
-        repositoryId: TfArg.literal(leftover),
+        repositoryId: RefTo.literal(leftover),
       ),
     );
 
@@ -267,7 +267,7 @@ final class DataSourceLeftoverStack extends Stack {
       DataGoogleArtifactRegistryPythonPackages(
         localName: 'artifact_registry_python_packages',
         location: TfArg.literal(leftover),
-        repositoryId: TfArg.literal(leftover),
+        repositoryId: RefTo.literal(leftover),
       ),
     );
 
@@ -298,7 +298,7 @@ final class DataSourceLeftoverStack extends Stack {
         localName: 'artifact_registry_tag',
         location: TfArg.literal(leftover),
         packageName: TfArg.literal(leftover),
-        repositoryId: TfArg.literal(leftover),
+        repositoryId: RefTo.literal(leftover),
         tagName: TfArg.literal(leftover),
       ),
     );
@@ -308,7 +308,7 @@ final class DataSourceLeftoverStack extends Stack {
         localName: 'artifact_registry_tags',
         location: TfArg.literal(leftover),
         packageName: TfArg.literal(leftover),
-        repositoryId: TfArg.literal(leftover),
+        repositoryId: RefTo.literal(leftover),
       ),
     );
 
@@ -317,7 +317,7 @@ final class DataSourceLeftoverStack extends Stack {
         localName: 'artifact_registry_version',
         location: TfArg.literal(leftover),
         packageName: TfArg.literal(leftover),
-        repositoryId: TfArg.literal(leftover),
+        repositoryId: RefTo.literal(leftover),
         versionName: TfArg.literal(leftover),
       ),
     );
@@ -327,7 +327,7 @@ final class DataSourceLeftoverStack extends Stack {
         localName: 'artifact_registry_versions',
         location: TfArg.literal(leftover),
         packageName: TfArg.literal(leftover),
-        repositoryId: TfArg.literal(leftover),
+        repositoryId: RefTo.literal(leftover),
       ),
     );
 
@@ -1629,7 +1629,7 @@ final class DataSourceLeftoverStack extends Stack {
     addData(
       DataGoogleDnsKeys(
         localName: 'dns_keys',
-        managedZone: TfArg.literal(leftover),
+        managedZone: RefTo.literal(leftover),
       ),
     );
 
@@ -1652,7 +1652,7 @@ final class DataSourceLeftoverStack extends Stack {
     addData(
       DataGoogleDnsRecordSet(
         localName: 'dns_record_set',
-        managedZone: TfArg.literal(leftover),
+        managedZone: RefTo.literal(leftover),
         name: TfArg.literal(leftover),
         type: TfArg.literal(leftover),
       ),
@@ -1661,7 +1661,7 @@ final class DataSourceLeftoverStack extends Stack {
     addData(
       DataGoogleDnsRecordSets(
         localName: 'dns_record_sets',
-        managedZone: TfArg.literal(leftover),
+        managedZone: RefTo.literal(leftover),
       ),
     );
 
@@ -1698,7 +1698,7 @@ final class DataSourceLeftoverStack extends Stack {
       DataGoogleFirestoreDocument(
         localName: 'firestore_document',
         collection: TfArg.literal(leftover),
-        database: TfArg.literal(leftover),
+        database: RefTo.literal(leftover),
         documentId: TfArg.literal(leftover),
       ),
     );
@@ -1877,7 +1877,7 @@ final class DataSourceLeftoverStack extends Stack {
     addData(
       DataGoogleIamWorkloadIdentityPoolProvider(
         localName: 'iam_workload_identity_pool_provider',
-        workloadIdentityPoolId: TfArg.literal(leftover),
+        workloadIdentityPoolId: RefTo.literal(leftover),
         workloadIdentityPoolProviderId: TfArg.literal(leftover),
       ),
     );
@@ -2010,7 +2010,7 @@ final class DataSourceLeftoverStack extends Stack {
     addData(
       DataGoogleKmsCryptoKey(
         localName: 'kms_crypto_key',
-        keyRing: TfArg.literal(leftover),
+        keyRing: RefTo.literal(leftover),
         name: TfArg.literal(leftover),
       ),
     );
@@ -2046,7 +2046,7 @@ final class DataSourceLeftoverStack extends Stack {
     addData(
       DataGoogleKmsCryptoKeys(
         localName: 'kms_crypto_keys',
-        keyRing: TfArg.literal(leftover),
+        keyRing: RefTo.literal(leftover),
       ),
     );
 
@@ -2129,7 +2129,7 @@ final class DataSourceLeftoverStack extends Stack {
     addData(
       DataGoogleLoggingLogView(
         localName: 'logging_log_view',
-        bucket: TfArg.literal(leftover),
+        bucket: RefTo.literal(leftover),
         location: TfArg.literal(leftover),
         name: TfArg.literal(leftover),
         parent: TfArg.literal(leftover),
@@ -2864,21 +2864,21 @@ final class DataSourceLeftoverStack extends Stack {
     addData(
       DataGoogleSqlBackupRun(
         localName: 'sql_backup_run',
-        instance: TfArg.literal(leftover),
+        instance: RefTo.literal(leftover),
       ),
     );
 
     addData(
       DataGoogleSqlCaCerts(
         localName: 'sql_ca_certs',
-        instance: TfArg.literal(leftover),
+        instance: RefTo.literal(leftover),
       ),
     );
 
     addData(
       DataGoogleSqlDatabase(
         localName: 'sql_database',
-        instance: TfArg.literal(leftover),
+        instance: RefTo.literal(leftover),
         name: TfArg.literal(leftover),
       ),
     );
@@ -2893,7 +2893,7 @@ final class DataSourceLeftoverStack extends Stack {
     addData(
       DataGoogleSqlDatabaseInstanceLatestRecoveryTime(
         localName: 'sql_database_instance_latest_recovery_time',
-        instance: TfArg.literal(leftover),
+        instance: RefTo.literal(leftover),
       ),
     );
 
@@ -2904,7 +2904,7 @@ final class DataSourceLeftoverStack extends Stack {
     addData(
       DataGoogleSqlDatabases(
         localName: 'sql_databases',
-        instance: TfArg.literal(leftover),
+        instance: RefTo.literal(leftover),
       ),
     );
 
@@ -3080,7 +3080,7 @@ final class DataSourceLeftoverStack extends Stack {
     addData(
       DataGoogleTagsTagValue(
         localName: 'tags_tag_value',
-        parent: TfArg.literal(leftover),
+        parent: RefTo.literal(leftover),
         shortName: TfArg.literal(leftover),
       ),
     );

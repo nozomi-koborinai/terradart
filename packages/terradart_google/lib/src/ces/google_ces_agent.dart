@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ces/google_ces_toolset.dart' show GoogleCesToolset;
+
 /// Sensitive field paths for `google_ces_agent`.
 const Set<String> _googleCesAgentSensitive = <String>{};
 
@@ -218,11 +220,11 @@ final class CesAgentToolsets {
 
   final TfArg<List<String>>? toolIds;
 
-  final TfArg<String> toolset;
+  final RefTo<GoogleCesToolset> toolset;
 
   Map<String, Object?> encode() => {
     'tool_ids': ?toolIds?.toTfJson(),
-    'toolset': toolset.toTfJson(),
+    'toolset': toolset.encodeAs('name').toTfJson(),
   };
 }
 

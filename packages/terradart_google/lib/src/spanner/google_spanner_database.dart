@@ -4,6 +4,7 @@
 import 'package:terradart_core/terradart_core.dart';
 
 import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+import '../spanner/google_spanner_instance.dart' show GoogleSpannerInstance;
 
 /// Sensitive field paths for `google_spanner_database`.
 const Set<String> _googleSpannerDatabaseSensitive = <String>{};
@@ -86,7 +87,7 @@ final class SpannerDatabaseEncryptionConfigKmsKeyNames
 /// ```dart
 /// GoogleSpannerDatabase(
 ///   localName: 'main',
-///   instance: TfArg.ref(spanner.nameRef),
+///   instance: spanner.ref,
 ///   name: TfArg.literal('main'),
 ///   versionRetentionPeriod: TfArg.literal('86400s'),
 /// );
@@ -96,7 +97,7 @@ final class GoogleSpannerDatabase extends Resource {
 
   GoogleSpannerDatabase({
     required super.localName,
-    required TfArg<String> instance,
+    required RefTo<GoogleSpannerInstance> instance,
     required TfArg<String> name,
     TfArg<SpannerDatabaseDialect>? databaseDialect,
     TfArg<String>? versionRetentionPeriod,
@@ -113,7 +114,7 @@ final class GoogleSpannerDatabase extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'instance': instance,
+           'instance': instance.encodeAs('name'),
            'name': name,
            'database_dialect': ?databaseDialect,
            'version_retention_period': ?versionRetentionPeriod,

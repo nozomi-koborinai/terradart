@@ -14,7 +14,7 @@ curatedDoc: |-
   /// GoogleDataCatalogPolicyTag(
   ///   localName: 'email',
   ///   displayName: TfArg.literal('email'),
-  ///   taxonomy: TfArg.ref(taxonomy.id),
+  ///   taxonomy: taxonomy.ref,
   ///   description: TfArg.literal('Email addresses'),
   /// );
   /// ```

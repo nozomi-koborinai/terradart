@@ -20,7 +20,7 @@ curatedDoc: |-
   /// ```dart
   /// GoogleIamWorkloadIdentityPoolManagedIdentity(
   ///   localName: 'runner',
-  ///   workloadIdentityPoolId: TfArg.literal('terradart-trust'),
+  ///   workloadIdentityPoolId: .literal('terradart-trust'),
   ///   workloadIdentityPoolNamespaceId: TfArg.literal('terradart-apps'),
   ///   workloadIdentityPoolManagedIdentityId:
   ///       TfArg.literal('terradart-runner'),

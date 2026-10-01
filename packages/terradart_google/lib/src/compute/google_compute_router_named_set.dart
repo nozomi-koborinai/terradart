@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_router.dart' show GoogleComputeRouter;
+
 /// Sensitive field paths for `google_compute_router_named_set`.
 const Set<String> _googleComputeRouterNamedSetSensitive = <String>{};
 
@@ -62,7 +64,7 @@ final class ComputeRouterNamedSetElements {
 /// GoogleComputeRouterNamedSet(
 ///   localName: 'prefixes',
 ///   name: TfArg.literal('terradart-prefixes'),
-///   router: TfArg.ref(router.nameRef),
+///   router: router.ref,
 ///   region: TfArg.literal('us-central1'),
 ///   type: TfArg.literal(ComputeRouterNamedSetType.namedSetTypePrefix),
 ///   elements: [
@@ -79,7 +81,7 @@ final class GoogleComputeRouterNamedSet extends Resource {
   GoogleComputeRouterNamedSet({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> router,
+    required RefTo<GoogleComputeRouter> router,
     required TfArg<ComputeRouterNamedSetType> type,
     TfArg<String>? region,
     TfArg<String>? description,
@@ -94,7 +96,7 @@ final class GoogleComputeRouterNamedSet extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'router': router,
+           'router': router.encodeAs('name'),
            'type': type,
            'region': ?region,
            'description': ?description,

@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../sql/google_sql_database_instance.dart'
+    show GoogleSqlDatabaseInstance;
+
 /// Sensitive field paths for `google_sql_ssl_cert`.
 const Set<String> _googleSqlSslCertSensitive = <String>{
   'cert',
@@ -17,7 +20,7 @@ final class GoogleSqlSslCert extends Resource {
   GoogleSqlSslCert({
     required super.localName,
     required TfArg<String> commonName,
-    required TfArg<String> instance,
+    required RefTo<GoogleSqlDatabaseInstance> instance,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -27,7 +30,7 @@ final class GoogleSqlSslCert extends Resource {
          terraformType: tfType,
          argMap: {
            'common_name': commonName,
-           'instance': instance,
+           'instance': instance.encodeAs('name'),
            'project': ?project,
          },
        );

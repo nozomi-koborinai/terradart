@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ecs/aws_ecs_cluster.dart' show AwsEcsCluster;
 import '../iam/aws_iam_role.dart' show AwsIamRole;
 
 /// Sensitive field paths for `aws_ecs_express_gateway_service`.
@@ -112,11 +113,11 @@ final class AwsEcsExpressGatewayService extends Resource {
 
   AwsEcsExpressGatewayService({
     required super.localName,
-    TfArg<String>? cluster,
+    RefTo<AwsEcsCluster>? cluster,
     TfArg<String>? cpu,
     required RefTo<AwsIamRole> executionRoleArn,
     TfArg<String>? healthCheckPath,
-    required TfArg<String> infrastructureRoleArn,
+    required RefTo<AwsIamRole> infrastructureRoleArn,
     TfArg<String>? memory,
     TfArg<List<Map<String, Object?>>>? networkConfiguration,
     TfArg<String>? region,
@@ -133,11 +134,11 @@ final class AwsEcsExpressGatewayService extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'cluster': ?cluster,
+           'cluster': ?cluster?.encodeAs('arn'),
            'cpu': ?cpu,
            'execution_role_arn': executionRoleArn.encodeAs('arn'),
            'health_check_path': ?healthCheckPath,
-           'infrastructure_role_arn': infrastructureRoleArn,
+           'infrastructure_role_arn': infrastructureRoleArn.encodeAs('arn'),
            'memory': ?memory,
            'network_configuration': ?networkConfiguration,
            'region': ?region,

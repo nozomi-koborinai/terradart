@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+import '../container/google_container_cluster.dart' show GoogleContainerCluster;
 import '../iam/google_service_account.dart' show GoogleServiceAccount;
 
 /// Sensitive field paths for `google_container_node_pool`.
@@ -1623,7 +1624,7 @@ final class ContainerNodePoolStandardRolloutPolicy {
 ///   localName: 'primary',
 ///   name: TfArg.literal('primary-pool'),
 ///   location: TfArg.literal('asia-northeast1'),
-///   cluster: TfArg.ref(cluster.nameRef),
+///   cluster: cluster.ref,
 ///   nodeCount: TfArg.literal(3),
 /// );
 /// ```
@@ -1632,7 +1633,7 @@ final class GoogleContainerNodePool extends Resource {
 
   GoogleContainerNodePool({
     required super.localName,
-    required TfArg<String> cluster,
+    required RefTo<GoogleContainerCluster> cluster,
     TfArg<String>? deletionPolicy,
     TfArg<bool>? ignoreNodeCountChanges,
     TfArg<num>? initialNodeCount,
@@ -1660,7 +1661,7 @@ final class GoogleContainerNodePool extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'cluster': cluster,
+           'cluster': cluster.encodeAs('name'),
            'deletion_policy': ?deletionPolicy,
            'ignore_node_count_changes': ?ignoreNodeCountChanges,
            'initial_node_count': ?initialNodeCount,

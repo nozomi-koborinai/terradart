@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../firestore/google_firestore_database.dart'
+    show GoogleFirestoreDatabase;
+
 /// Sensitive field paths for `google_firestore_change_stream`.
 const Set<String> _googleFirestoreChangeStreamSensitive = <String>{};
 
@@ -110,7 +113,7 @@ final class GoogleFirestoreChangeStream extends Resource {
 
   GoogleFirestoreChangeStream({
     required super.localName,
-    TfArg<String>? database,
+    RefTo<GoogleFirestoreDatabase>? database,
     required TfArg<String> name,
     required FirestoreChangeStreamScope scope,
     required TfArg<String> retentionPeriod,
@@ -123,7 +126,7 @@ final class GoogleFirestoreChangeStream extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'database': ?database,
+           'database': ?database?.encodeAs('name'),
            'name': name,
            ...scope.argMap,
            'retention_period': retentionPeriod,

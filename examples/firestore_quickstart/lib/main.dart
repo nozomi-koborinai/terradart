@@ -45,7 +45,7 @@ final class MessagesStack extends Stack {
       GoogleFirestoreIndex(
         localName: 'messages_by_user_time',
         collection: .literal('messages'),
-        database: .ref(db.nameRef),
+        database: db.ref,
         queryScope: .literal(.collection),
         fields: [
           FirestoreIndexField(
@@ -67,7 +67,7 @@ final class MessagesStack extends Stack {
         localName: 'expires_at_ttl',
         collection: .literal('messages'),
         field: .literal('expires_at'),
-        database: .ref(db.nameRef),
+        database: db.ref,
         ttlConfig: const FirestoreFieldTtlConfig(),
       ),
     );
@@ -75,7 +75,7 @@ final class MessagesStack extends Stack {
     add(
       GoogleFirestoreBackupSchedule(
         localName: 'daily_backup',
-        database: .ref(db.nameRef),
+        database: db.ref,
         retention: .literal('604800s'),
         recurrence: const .daily(),
       ),
@@ -86,7 +86,7 @@ final class MessagesStack extends Stack {
     add(
       GoogleFirestoreChangeStream(
         localName: 'messages_changes',
-        database: .ref(db.nameRef),
+        database: db.ref,
         name: .literal('messages-changes'),
         scope: .collectionGroupScope(
           FirestoreChangeStreamCollectionGroupScope(

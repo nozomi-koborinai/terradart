@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../container/google_gke_hub_scope.dart' show GoogleGkeHubScope;
+
 /// Sensitive field paths for `google_gke_hub_membership_binding`.
 const Set<String> _googleGkeHubMembershipBindingSensitive = <String>{};
 
@@ -28,7 +30,7 @@ final class GoogleGkeHubMembershipBinding extends Resource {
     required TfArg<String> membershipBindingId,
     required TfArg<String> membershipId,
     TfArg<String>? project,
-    required TfArg<String> scope,
+    required RefTo<GoogleGkeHubScope> scope,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -42,7 +44,7 @@ final class GoogleGkeHubMembershipBinding extends Resource {
            'membership_binding_id': membershipBindingId,
            'membership_id': membershipId,
            'project': ?project,
-           'scope': scope,
+           'scope': scope.encodeAs('name'),
          },
        );
 

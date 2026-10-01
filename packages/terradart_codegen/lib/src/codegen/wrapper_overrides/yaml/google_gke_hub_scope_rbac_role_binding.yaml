@@ -22,7 +22,7 @@ curatedDoc: |-
   /// ```dart
   /// GoogleGkeHubScopeRbacRoleBinding(
   ///   localName: 'team_view',
-  ///   scopeId: TfArg.literal('terradart-scope'),
+  ///   scopeId: .literal('terradart-scope'),
   ///   scopeRbacRoleBindingId: TfArg.literal('terradart-scope-rbac'),
   ///   principal: .user(.literal('terradart-fleet-rbac@example.com')),
   ///   role: .predefinedRole(.literal(.view)),

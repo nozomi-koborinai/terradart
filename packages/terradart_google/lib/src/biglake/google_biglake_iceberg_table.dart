@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../biglake/google_biglake_iceberg_catalog.dart'
+    show GoogleBiglakeIcebergCatalog;
+import '../biglake/google_biglake_iceberg_namespace.dart'
+    show GoogleBiglakeIcebergNamespace;
+
 /// Sensitive field paths for `google_biglake_iceberg_table`.
 const Set<String> _googleBiglakeIcebergTableSensitive = <String>{};
 
@@ -152,8 +157,8 @@ final class GoogleBiglakeIcebergTable extends Resource {
 
   GoogleBiglakeIcebergTable({
     required super.localName,
-    required TfArg<String> catalog,
-    required TfArg<String> namespace,
+    required RefTo<GoogleBiglakeIcebergCatalog> catalog,
+    required RefTo<GoogleBiglakeIcebergNamespace> namespace,
     required TfArg<String> name,
     TfArg<String>? location,
     required BiglakeIcebergTableSchema schema,
@@ -169,8 +174,8 @@ final class GoogleBiglakeIcebergTable extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'catalog': catalog,
-           'namespace': namespace,
+           'catalog': catalog.encodeAs('name'),
+           'namespace': namespace.encodeAs('namespace_id'),
            'name': name,
            'location': ?location,
            'schema': TfArg.literal(schema.encode()),

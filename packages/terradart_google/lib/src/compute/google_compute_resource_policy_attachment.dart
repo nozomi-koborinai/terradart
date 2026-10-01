@@ -3,6 +3,10 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_instance.dart' show GoogleComputeInstance;
+import '../compute/google_compute_resource_policy.dart'
+    show GoogleComputeResourcePolicy;
+
 /// Sensitive field paths for `google_compute_resource_policy_attachment`.
 const Set<String> _googleComputeResourcePolicyAttachmentSensitive = <String>{};
 
@@ -24,8 +28,8 @@ final class GoogleComputeResourcePolicyAttachment extends Resource {
 
   GoogleComputeResourcePolicyAttachment({
     required super.localName,
-    required TfArg<String> instance,
-    required TfArg<String> name,
+    required RefTo<GoogleComputeInstance> instance,
+    required RefTo<GoogleComputeResourcePolicy> name,
     TfArg<String>? zone,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
@@ -36,8 +40,8 @@ final class GoogleComputeResourcePolicyAttachment extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'instance': instance,
-           'name': name,
+           'instance': instance.encodeAs('name'),
+           'name': name.encodeAs('name'),
            'zone': ?zone,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,

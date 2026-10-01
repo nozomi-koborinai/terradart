@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../oracle/google_oracle_database_cloud_exadata_infrastructure.dart'
+    show GoogleOracleDatabaseCloudExadataInfrastructure;
+
 /// Sensitive field paths for `google_oracle_database_cloud_exadata_infrastructure_exascale_config`.
 const Set<String>
 _googleOracleDatabaseCloudExadataInfrastructureExascaleConfigSensitive =
@@ -40,7 +43,8 @@ final class GoogleOracleDatabaseCloudExadataInfrastructureExascaleConfig
 
   GoogleOracleDatabaseCloudExadataInfrastructureExascaleConfig({
     required super.localName,
-    required TfArg<String> cloudExadataInfrastructure,
+    required RefTo<GoogleOracleDatabaseCloudExadataInfrastructure>
+    cloudExadataInfrastructure,
     required TfArg<String> location,
     required TfArg<num> totalStorageSizeGb,
     TfArg<String>? deletionPolicy,
@@ -52,7 +56,9 @@ final class GoogleOracleDatabaseCloudExadataInfrastructureExascaleConfig
   }) : super(
          terraformType: tfType,
          argMap: {
-           'cloud_exadata_infrastructure': cloudExadataInfrastructure,
+           'cloud_exadata_infrastructure': cloudExadataInfrastructure.encodeAs(
+             'name',
+           ),
            'location': location,
            'total_storage_size_gb': totalStorageSizeGb,
            'deletion_policy': ?deletionPolicy,

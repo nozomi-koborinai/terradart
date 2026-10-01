@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_backend_service.dart'
+    show GoogleComputeBackendService;
+
 /// Sensitive field paths for `google_compute_backend_service_signed_url_key`.
 const Set<String> _googleComputeBackendServiceSignedUrlKeySensitive = <String>{
   'key_value',
@@ -21,7 +24,7 @@ final class GoogleComputeBackendServiceSignedUrlKey extends Resource {
   GoogleComputeBackendServiceSignedUrlKey({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> backendService,
+    required RefTo<GoogleComputeBackendService> backendService,
     required TfArg<String> keyValue,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
@@ -33,7 +36,7 @@ final class GoogleComputeBackendServiceSignedUrlKey extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'backend_service': backendService,
+           'backend_service': backendService.encodeAs('name'),
            'key_value': keyValue,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,

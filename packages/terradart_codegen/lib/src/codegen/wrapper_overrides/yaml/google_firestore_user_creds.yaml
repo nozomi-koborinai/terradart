@@ -20,7 +20,7 @@ curatedDoc: |-
   /// ```dart
   /// final readerCreds = GoogleFirestoreUserCreds(
   ///   localName: 'reader_creds',
-  ///   database: TfArg.ref(db.nameRef),
+  ///   database: db.ref,
   ///   name: TfArg.literal('analytics-reader'),
   /// );
   /// ```

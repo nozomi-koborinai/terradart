@@ -27,6 +27,6 @@ curatedDoc: |-
   ///   localName: 'share_snap',
   ///   name: TfArg.literal('share-snap-1'),
   ///   location: TfArg.literal('asia-northeast1'),
-  ///   instance: TfArg.ref(nfs.id),
+  ///   instance: nfs.ref,
   /// );
   /// ```

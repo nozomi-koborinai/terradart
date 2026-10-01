@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../dns/google_dns_response_policy.dart' show GoogleDnsResponsePolicy;
+
 /// Sensitive field paths for `google_dns_response_policy_rule`.
 const Set<String> _googleDnsResponsePolicyRuleSensitive = <String>{};
 
@@ -79,7 +81,7 @@ final class GoogleDnsResponsePolicyRule extends Resource {
 
   GoogleDnsResponsePolicyRule({
     required super.localName,
-    required TfArg<String> responsePolicy,
+    required RefTo<GoogleDnsResponsePolicy> responsePolicy,
     required TfArg<String> ruleName,
     required TfArg<String> dnsName,
     TfArg<String>? project,
@@ -91,7 +93,7 @@ final class GoogleDnsResponsePolicyRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'response_policy': responsePolicy,
+           'response_policy': responsePolicy.encodeAs('response_policy_name'),
            'rule_name': ruleName,
            'dns_name': dnsName,
            'project': ?project,

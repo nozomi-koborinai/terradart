@@ -3,6 +3,10 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_disk.dart' show GoogleComputeDisk;
+import '../compute/google_compute_resource_policy.dart'
+    show GoogleComputeResourcePolicy;
+
 /// Sensitive field paths for `google_compute_disk_resource_policy_attachment`.
 const Set<String> _googleComputeDiskResourcePolicyAttachmentSensitive =
     <String>{};
@@ -13,8 +17,8 @@ final class GoogleComputeDiskResourcePolicyAttachment extends Resource {
 
   GoogleComputeDiskResourcePolicyAttachment({
     required super.localName,
-    required TfArg<String> name,
-    required TfArg<String> disk,
+    required RefTo<GoogleComputeResourcePolicy> name,
+    required RefTo<GoogleComputeDisk> disk,
     TfArg<String>? zone,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
@@ -25,8 +29,8 @@ final class GoogleComputeDiskResourcePolicyAttachment extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
-           'disk': disk,
+           'name': name.encodeAs('name'),
+           'disk': disk.encodeAs('name'),
            'zone': ?zone,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,

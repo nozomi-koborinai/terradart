@@ -53,7 +53,7 @@ final class AwsEcsExpressStack extends Stack {
     add(
       AwsEcrLifecyclePolicy(
         localName: 'server',
-        repository: .ref(repo.nameRef),
+        repository: repo.ref,
         policy: .literal(
           jsonEncode({
             'rules': [
@@ -104,9 +104,9 @@ final class AwsEcsExpressStack extends Stack {
       AwsEcsExpressGatewayService(
         localName: 'server',
         serviceName: .literal(_name),
-        cluster: .ref(cluster.nameRef),
+        cluster: cluster.ref,
         executionRoleArn: execution.role.ref,
-        infrastructureRoleArn: .ref(infrastructure.role.arn),
+        infrastructureRoleArn: infrastructure.role.ref,
         cpu: .literal('256'),
         memory: .literal('512'),
         healthCheckPath: .literal('/'),

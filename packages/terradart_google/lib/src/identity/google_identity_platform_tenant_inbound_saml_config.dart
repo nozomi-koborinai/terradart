@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../identity/google_identity_platform_tenant.dart'
+    show GoogleIdentityPlatformTenant;
+
 /// Sensitive field paths for `google_identity_platform_tenant_inbound_saml_config`.
 const Set<String> _googleIdentityPlatformTenantInboundSamlConfigSensitive =
     <String>{};
@@ -95,7 +98,7 @@ final class GoogleIdentityPlatformTenantInboundSamlConfig extends Resource {
     TfArg<bool>? enabled,
     required TfArg<String> name,
     TfArg<String>? project,
-    required TfArg<String> tenant,
+    required RefTo<GoogleIdentityPlatformTenant> tenant,
     required IdentityPlatformTenantInboundSamlConfigIdpConfig idpConfig,
     required IdentityPlatformTenantInboundSamlConfigSpConfig spConfig,
     super.lifecycle,
@@ -110,7 +113,7 @@ final class GoogleIdentityPlatformTenantInboundSamlConfig extends Resource {
            'enabled': ?enabled,
            'name': name,
            'project': ?project,
-           'tenant': tenant,
+           'tenant': tenant.encodeAs('name'),
            'idp_config': TfArg.literal(idpConfig.encode()),
            'sp_config': TfArg.literal(spConfig.encode()),
          },

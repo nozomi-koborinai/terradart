@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../iam/google_iam_workload_identity_pool_provider.dart';
+import '../iam/google_iam_workload_identity_pool.dart'
+    show GoogleIamWorkloadIdentityPool;
 
 /// Sensitive field paths for `google_iam_workload_identity_pool_provider`.
 const Set<String> _googleIamWorkloadIdentityPoolProviderSensitive = <String>{};
@@ -17,7 +19,7 @@ final class DataGoogleIamWorkloadIdentityPoolProvider extends Data {
   DataGoogleIamWorkloadIdentityPoolProvider({
     required super.localName,
     TfArg<String>? project,
-    required TfArg<String> workloadIdentityPoolId,
+    required RefTo<GoogleIamWorkloadIdentityPool> workloadIdentityPoolId,
     required TfArg<String> workloadIdentityPoolProviderId,
     super.provider,
     super.timeouts,
@@ -25,7 +27,9 @@ final class DataGoogleIamWorkloadIdentityPoolProvider extends Data {
          terraformType: tfType,
          argMap: {
            'project': ?project,
-           'workload_identity_pool_id': workloadIdentityPoolId,
+           'workload_identity_pool_id': workloadIdentityPoolId.encodeAs(
+             'workload_identity_pool_id',
+           ),
            'workload_identity_pool_provider_id': workloadIdentityPoolProviderId,
          },
        );

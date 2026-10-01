@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_router.dart' show GoogleComputeRouter;
+
 /// Sensitive field paths for `google_compute_router_peer`.
 const Set<String> _googleComputeRouterPeerSensitive = <String>{
   'md5_authentication_key.key',
@@ -115,7 +117,7 @@ final class GoogleComputeRouterPeer extends Resource {
   GoogleComputeRouterPeer({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> router,
+    required RefTo<GoogleComputeRouter> router,
     required TfArg<String> interface,
     required TfArg<num> peerAsn,
     TfArg<String>? region,
@@ -148,7 +150,7 @@ final class GoogleComputeRouterPeer extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'router': router,
+           'router': router.encodeAs('name'),
            'interface': interface,
            'peer_asn': peerAsn,
            'region': ?region,

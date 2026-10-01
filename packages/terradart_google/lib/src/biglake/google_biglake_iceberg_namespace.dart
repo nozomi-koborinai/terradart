@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../biglake/google_biglake_iceberg_catalog.dart'
+    show GoogleBiglakeIcebergCatalog;
+
 /// Sensitive field paths for `google_biglake_iceberg_namespace`.
 const Set<String> _googleBiglakeIcebergNamespaceSensitive = <String>{};
 
@@ -20,7 +23,7 @@ final class GoogleBiglakeIcebergNamespace extends Resource {
 
   GoogleBiglakeIcebergNamespace({
     required super.localName,
-    required TfArg<String> catalog,
+    required RefTo<GoogleBiglakeIcebergCatalog> catalog,
     required TfArg<String> namespaceId,
     TfArg<Map<String, String>>? properties,
     TfArg<String>? deletionPolicy,
@@ -32,7 +35,7 @@ final class GoogleBiglakeIcebergNamespace extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'catalog': catalog,
+           'catalog': catalog.encodeAs('name'),
            'namespace_id': namespaceId,
            'properties': ?properties,
            'deletion_policy': ?deletionPolicy,

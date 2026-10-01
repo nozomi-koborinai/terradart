@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_iam_workload_identity_pool.dart'
+    show GoogleIamWorkloadIdentityPool;
+
 /// Sensitive field paths for `google_iam_workload_identity_pool_managed_identity`.
 const Set<String> _googleIamWorkloadIdentityPoolManagedIdentitySensitive =
     <String>{};
@@ -41,7 +44,7 @@ final class IamWorkloadIdentityPoolManagedIdentityAttestationRules {
 /// ```dart
 /// GoogleIamWorkloadIdentityPoolManagedIdentity(
 ///   localName: 'runner',
-///   workloadIdentityPoolId: TfArg.literal('terradart-trust'),
+///   workloadIdentityPoolId: .literal('terradart-trust'),
 ///   workloadIdentityPoolNamespaceId: TfArg.literal('terradart-apps'),
 ///   workloadIdentityPoolManagedIdentityId:
 ///       TfArg.literal('terradart-runner'),
@@ -53,7 +56,7 @@ final class GoogleIamWorkloadIdentityPoolManagedIdentity extends Resource {
 
   GoogleIamWorkloadIdentityPoolManagedIdentity({
     required super.localName,
-    required TfArg<String> workloadIdentityPoolId,
+    required RefTo<GoogleIamWorkloadIdentityPool> workloadIdentityPoolId,
     required TfArg<String> workloadIdentityPoolNamespaceId,
     required TfArg<String> workloadIdentityPoolManagedIdentityId,
     TfArg<String>? description,
@@ -69,7 +72,9 @@ final class GoogleIamWorkloadIdentityPoolManagedIdentity extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'workload_identity_pool_id': workloadIdentityPoolId,
+           'workload_identity_pool_id': workloadIdentityPoolId.encodeAs(
+             'workload_identity_pool_id',
+           ),
            'workload_identity_pool_namespace_id':
                workloadIdentityPoolNamespaceId,
            'workload_identity_pool_managed_identity_id':

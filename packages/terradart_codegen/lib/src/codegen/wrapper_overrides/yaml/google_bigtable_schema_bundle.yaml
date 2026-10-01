@@ -20,8 +20,8 @@ curatedDoc: |-
   /// GoogleBigtableSchemaBundle(
   ///   localName: 'events_proto',
   ///   schemaBundleId: TfArg.literal('events-proto'),
-  ///   instance: TfArg.ref(instance.nameRef),
-  ///   table: TfArg.ref(table.nameRef),
+  ///   instance: instance.ref,
+  ///   table: table.ref,
   ///   protoSchema: BigtableSchemaBundleProtoSchema(
   ///     protoDescriptors: TfArg.literal('<base64-encoded FileDescriptorSet>'),
   ///   ),

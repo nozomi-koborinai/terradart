@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../bigquery/google_bigquery_dataset.dart' show GoogleBigqueryDataset;
 import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 
 /// Sensitive field paths for `google_bigquery_data_transfer_config`.
@@ -237,7 +238,7 @@ final class BigqueryDataTransferConfigSecretAccessKeyWo
 ///   localName: 'daily_gcs_import',
 ///   displayName: TfArg.literal('Daily GCS export -> BigQuery'),
 ///   dataSourceId: TfArg.literal('google_cloud_storage'),
-///   destinationDatasetId: TfArg.ref(analytics.datasetIdRef),
+///   destinationDatasetId: analytics.ref,
 ///   location: TfArg.literal('US'),
 ///   schedule: TfArg.literal('every day 03:00'),
 ///   params: TfArg.literal(const {
@@ -260,7 +261,7 @@ final class GoogleBigqueryDataTransferConfig extends Resource {
     required super.localName,
     required TfArg<String> displayName,
     required TfArg<String> dataSourceId,
-    TfArg<String>? destinationDatasetId,
+    RefTo<GoogleBigqueryDataset>? destinationDatasetId,
     TfArg<String>? location,
     required TfArg<Map<String, String>> params,
     TfArg<String>? schedule,
@@ -282,7 +283,9 @@ final class GoogleBigqueryDataTransferConfig extends Resource {
          argMap: {
            'display_name': displayName,
            'data_source_id': dataSourceId,
-           'destination_dataset_id': ?destinationDatasetId,
+           'destination_dataset_id': ?destinationDatasetId?.encodeAs(
+             'dataset_id',
+           ),
            'location': ?location,
            'params': params,
            'schedule': ?schedule,

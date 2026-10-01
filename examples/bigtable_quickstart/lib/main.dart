@@ -51,7 +51,7 @@ final class EventsStack extends Stack {
     final table = add(
       GoogleBigtableTable(
         localName: 'events',
-        instanceName: .ref(instance.nameRef),
+        instanceName: instance.ref,
         name: .literal('events'),
         columnFamily: [BigtableTableColumnFamily(family: .literal('cf1'))],
         dependsOn: [ResourceDependency(instance)],
@@ -61,8 +61,8 @@ final class EventsStack extends Stack {
     final gcPolicy = add(
       GoogleBigtableGcPolicy(
         localName: 'cf1_gc',
-        instanceName: .ref(instance.nameRef),
-        table: .ref(table.nameRef),
+        instanceName: instance.ref,
+        table: table.ref,
         columnFamily: .literal('cf1'),
         policy: .maxAge(days: .literal(7)),
         dependsOn: [ResourceDependency(table)],
@@ -72,8 +72,8 @@ final class EventsStack extends Stack {
     final authorizedView = add(
       GoogleBigtableAuthorizedView(
         localName: 'tenant_a',
-        instanceName: .ref(instance.nameRef),
-        tableName: .ref(table.nameRef),
+        instanceName: instance.ref,
+        tableName: table.ref,
         name: .literal('tenant-a'),
         subsetView: BigtableAuthorizedViewSubsetView(
           // Provider expects base64-encoded row prefix bytes.
@@ -105,7 +105,7 @@ final class EventsStack extends Stack {
       GoogleBigtableAppProfile(
         localName: 'routing',
         appProfileId: .literal('quickstart-routing'),
-        instance: .ref(instance.nameRef),
+        instance: instance.ref,
         routing: .singleClusterRouting(
           BigtableAppProfileSingleClusterRouting(
             clusterId: .literal('events-c1'),
@@ -120,7 +120,7 @@ final class EventsStack extends Stack {
       GoogleBigtableLogicalView(
         localName: 'recent',
         logicalViewId: .literal('recent-events'),
-        instance: .ref(instance.nameRef),
+        instance: instance.ref,
         query: .literal('SELECT _key, cf1 FROM `events`'),
         deletionProtection: .literal(false),
         dependsOn: tableReadyDeps,
@@ -131,7 +131,7 @@ final class EventsStack extends Stack {
       GoogleBigtableMaterializedView(
         localName: 'counts',
         materializedViewId: .literal('event-counts'),
-        instance: .ref(instance.nameRef),
+        instance: instance.ref,
         query: .literal(
           "SELECT _key, COUNT(cf1['col1']) AS event_count FROM `events` GROUP BY _key",
         ),

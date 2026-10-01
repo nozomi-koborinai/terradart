@@ -4,6 +4,32 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_migrate` — this top-level file summarises cross-cutting milestones.
 
+## Unreleased
+
+**Breaking** for the Dart API; read [MIGRATING.md](MIGRATING.md#031x--0320).
+
+### Changed
+
+- **More arguments that name another resource take `RefTo<R>`**
+  (`terradart_codegen`, `terradart_google`, `terradart_google_beta`,
+  `terradart_aws`, `terradart_migrate`) — every Magic Modules `ResourceRef`
+  input of a curated Google resource is now typed from the MM YAML
+  (`- mm: resource-refs` in `tool/reference_targets.yaml`), and the ledger
+  gained rules for the hand-written parents MM does not describe (Cloud
+  SQL, Bigtable, Firestore, KMS key rings, DNS zones, Data Catalog,
+  Dataplex, Private CA, Oracle Database, Tags, ...) and for CloudFront
+  origin access controls and cache policies, ACM certificates, ECR
+  repositories, ECS clusters and Route 53 zones on AWS. Typed reference
+  slots: google 522 → 851, google-beta 22 → 29, aws 1084 → 1108. A call
+  site writes `instance: primary.ref` instead of
+  `instance: .ref(primary.nameRef)`, and a literal is `.literal('name')`.
+  Synth output changes where the typed reference emits the attribute the
+  provider expects instead of the one an example passed: Private CA
+  `pool`, Filestore snapshot `instance`, Workload Identity provider
+  `workload_identity_pool_id`, the Logging bucket inputs (the bucket's
+  `id`), and the MM-imported attribute on a few compute, AlloyDB, Secret
+  Manager and Healthcare inputs.
+
 ## [0.31.0] - 2026-10-01
 
 Lockstep release across the workspace. **Breaking** for the Dart API of every package, not for Terraform: no provider pin moves, and synth output changes only where a typed reference now emits a different attribute. Every exactly-one and at-most-one input group is a sealed type named by concept and built with a Dart 3.10 dot shorthand (`code: .filename(...)`); arguments that name another resource take `RefTo<R>` (`network: vpc.ref`); `addOutput` / `addConstant` replace `addExport`, with a typed `<Stack>Outputs` reader and `outputEnvironment()`; Google blocks take derived helper classes (no `TfArg<Map>` block is left); generated type names are short; and every package requires Dart 3.10. Read the upgrade guide in [MIGRATING.md](MIGRATING.md) before bumping. The `terradart_google` catalog is **1366 curated resource factories + 468 data sources** (1834 entries).

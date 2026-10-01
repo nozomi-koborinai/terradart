@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_node_template.dart'
+    show GoogleComputeNodeTemplate;
+
 /// Sensitive field paths for `google_compute_node_group`.
 const Set<String> _googleComputeNodeGroupSensitive = <String>{};
 
@@ -121,7 +124,7 @@ final class GoogleComputeNodeGroup extends Resource {
     required super.localName,
     required TfArg<String> name,
     TfArg<String>? zone,
-    required TfArg<String> nodeTemplate,
+    required RefTo<GoogleComputeNodeTemplate> nodeTemplate,
     TfArg<num>? initialSize,
     ComputeNodeGroupAutoscalingPolicy? autoscalingPolicy,
     TfArg<String>? maintenancePolicy,
@@ -138,7 +141,7 @@ final class GoogleComputeNodeGroup extends Resource {
          argMap: {
            'name': name,
            'zone': ?zone,
-           'node_template': nodeTemplate,
+           'node_template': nodeTemplate.encodeAs('self_link'),
            'initial_size': ?initialSize,
            if (autoscalingPolicy != null)
              'autoscaling_policy': TfArg.literal(autoscalingPolicy.encode()),

@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../bigquery/google_bigquery_reservation.dart'
+    show GoogleBigqueryReservation;
+
 /// Sensitive field paths for `google_bigquery_reservation_assignment`.
 const Set<String> _googleBigqueryReservationAssignmentSensitive = <String>{};
 
@@ -29,7 +32,7 @@ final class GoogleBigqueryReservationAssignment extends Resource {
     required TfArg<BigqueryReservationAssignmentJobType> jobType,
     TfArg<String>? location,
     TfArg<String>? project,
-    required TfArg<String> reservation,
+    required RefTo<GoogleBigqueryReservation> reservation,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -41,7 +44,7 @@ final class GoogleBigqueryReservationAssignment extends Resource {
            'job_type': jobType,
            'location': ?location,
            'project': ?project,
-           'reservation': reservation,
+           'reservation': reservation.encodeAs('name'),
          },
        );
 

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../discovery_engine/google_discovery_engine_search_engine.dart'
+    show GoogleDiscoveryEngineSearchEngine;
+
 /// Sensitive field paths for `google_discovery_engine_control`.
 const Set<String> _googleDiscoveryEngineControlSensitive = <String>{};
 
@@ -457,7 +460,7 @@ final class GoogleDiscoveryEngineControl extends Resource {
     required super.localName,
     required TfArg<String> location,
     TfArg<String>? collectionId,
-    required TfArg<String> engineId,
+    required RefTo<GoogleDiscoveryEngineSearchEngine> engineId,
     required TfArg<String> controlId,
     required TfArg<String> displayName,
     required TfArg<DiscoveryEngineControlSolutionType> solutionType,
@@ -475,7 +478,7 @@ final class GoogleDiscoveryEngineControl extends Resource {
          argMap: {
            'location': location,
            'collection_id': ?collectionId,
-           'engine_id': engineId,
+           'engine_id': engineId.encodeAs('engine_id'),
            'control_id': controlId,
            'display_name': displayName,
            'solution_type': solutionType,

@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../identity/google_identity_platform_tenant.dart'
+    show GoogleIdentityPlatformTenant;
+
 /// Sensitive field paths for `google_identity_platform_tenant_oauth_idp_config`.
 const Set<String> _googleIdentityPlatformTenantOauthIdpConfigSensitive =
     <String>{};
@@ -35,7 +38,7 @@ const Set<String> _googleIdentityPlatformTenantOauthIdpConfigSensitive =
 /// GoogleIdentityPlatformTenantOauthIdpConfig(
 ///   localName: 'demo_oidc',
 ///   name: TfArg.literal('oidc.terradart'),
-///   tenant: TfArg.ref(tenant.nameRef),
+///   tenant: tenant.ref,
 ///   displayName: TfArg.literal('TerraDart dummy OIDC'),
 ///   issuer: TfArg.literal('https://accounts.example.com'),
 ///   clientId: TfArg.literal('terradart-dummy-client'),
@@ -50,7 +53,7 @@ final class GoogleIdentityPlatformTenantOauthIdpConfig extends Resource {
   GoogleIdentityPlatformTenantOauthIdpConfig({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> tenant,
+    required RefTo<GoogleIdentityPlatformTenant> tenant,
     required TfArg<String> displayName,
     required TfArg<String> issuer,
     required TfArg<String> clientId,
@@ -66,7 +69,7 @@ final class GoogleIdentityPlatformTenantOauthIdpConfig extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'tenant': tenant,
+           'tenant': tenant.encodeAs('name'),
            'display_name': displayName,
            'issuer': issuer,
            'client_id': clientId,
