@@ -1,223 +1,71 @@
 # Migrating terradart
 
-## 0.30.x → next release
+## 0.30.x → 0.31.0
 
-### `addOutput` and `addConstant` replace `addExport`
+0.31.0 is a breaking release for the Dart API of every package, but not for
+Terraform: no provider pin moves, and synthesized JSON changes only where a
+typed reference now emits a different attribute (step 4). Most of the work is
+mechanical — `dart analyze` lists every break, and code completion on the
+argument offers the replacement. The groups after the upgrade guide are
+ordered by how many stacks they touch.
 
-**Breaking (`terradart_core`)** — a Terraform output and a Dart constant are
-separate methods, and the constants file is a constructor parameter.
-`AppExport`, `ResourceIdExport`, `ResourceAttributeExport`, `StringExport`,
-`EnvBackedExport` and `setAppExportsOutputPath` are gone.
+### Upgrade guide
 
-```dart
-// Before
-final class OrdersStack extends Stack {
-  OrdersStack() : super(providers: [...]) {
-    final topic = add(GooglePubsubTopic(localName: 'orders', name: .literal('orders-prod')));
-    addExport('ORDERS_TOPIC_NAME', ResourceIdExport(topic.nameRef));
-    addExport('ORDERS_TOPIC_ID', ResourceIdExport(topic.id, emitTerraformOutput: true));
-    addExport('API_VERSION', StringExport('v1'));
-    setAppExportsOutputPath('lib/generated/orders_stack.app.dart');
-  }
-}
-// OrdersStackExports.ORDERS_TOPIC_NAME
+1. **Install Dart 3.10 or later** (`dart --version`) and raise your stack's
+   SDK constraint; the dot shorthands below need it
+   ([details](#dart-310-is-the-minimum-sdk)):
 
-// After
-final class OrdersStack extends Stack {
-  OrdersStack()
-    : super(
-        providers: [...],
-        appExports: AppExports('lib/generated/orders_stack.app.dart'),
-      ) {
-    final topic = add(GooglePubsubTopic(localName: 'orders', name: .literal('orders-prod')));
-    addConstant('ordersTopicName', .ref(topic.nameRef));
-    addOutput('orders_topic_id', .ref(topic.id));
-    addConstant('apiVersion', const .value('v1'));
-  }
-}
-// OrdersStackConstants.ordersTopicName
-```
+   ```yaml
+   environment:
+     sdk: ^3.10.0
+   ```
 
-| Before | After |
-|--------|-------|
-| `ResourceIdExport(x.attr)` on a literal attribute | `addConstant('name', .ref(x.attr))` |
-| `ResourceIdExport(x.attr)` on an apply-time attribute (it became an output) | `addOutput('name', .ref(x.attr))` |
-| `emitTerraformOutput: true` | a separate `addOutput` |
-| `terraformOutputName: 'x'` | `addOutput('x', ...)` — the output name is the first argument |
-| `StringExport('v')` | `addConstant('name', const .value('v'))` — any `String` / `int` / `double` / `num` / `bool` / `Object`, or a `List` / `String`-keyed `Map` of them |
-| `EnvBackedExport(envVarName: 'X')` | `addConstant('name', .fromEnvironment('X'))` |
-| `setAppExportsOutputPath(path)` | `appExports: AppExports(path)` on the `super(...)` call |
-| `synth(stackName: 'Custom')` | `AppExports(path, name: 'Custom')` |
-| `SynthResult.dartConstants` | `SynthResult.dartSource` (and `dartSourcePath`) |
-| `OrdersStackExports.ORDERS_TOPIC_NAME` | `OrdersStackConstants.ordersTopicName` |
+2. **Raise every TerraDart constraint to `^0.31.0` by hand.** Below 1.0 a
+   caret never crosses a minor, so `dart pub upgrade` alone keeps you on
+   0.30.x. The packages release in lockstep; move them together, then run
+   `dart pub upgrade`:
 
-What changes in behavior:
+   ```yaml
+   dependencies:
+     terradart_core: ^0.31.0
+     terradart_google: ^0.31.0
+     terradart_time: ^0.31.0
+   ```
 
-- **A `.ref` constant that cannot resolve fails synth.** `ResourceIdExport`
-  silently dropped the constant when its attribute was not a literal (and
-  emitted an output instead). `addConstant(.ref(...))` throws a `StateError`
-  that says what the attribute is set by — a reference, a variable, an
-  expression, or nothing (the provider computes it) — or that it is a
-  sensitive field. Use `addOutput` for those values.
-- **Names are checked at registration.** A constant name must be a public
-  Dart identifier (`ordersTopicName`, not `ORDERS_TOPIC_NAME`, although that
-  still compiles); an output name a Terraform identifier. A duplicate of
-  either throws `ArgumentError`, as does an output that reads a sensitive
-  field without `sensitive: true` (Terraform rejects it at plan).
-- **Output names are yours.** An export used to emit its Dart name as the
-  output name; rename outputs to snake_case when you migrate if you like, and
-  update anything that reads them (`terraform output -raw orders_topic_id`,
-  `terraform_remote_state`).
-- **The file is always written** when `appExports` is set, rewritten in full
-  on every synth, and the class is `<Stack>Constants` (was `<Stack>Exports`).
-  The Stack's class name drops a leading `_`.
-- **The file also holds a typed outputs reader**, `<Stack>Outputs`, with a
-  getter per non-sensitive output (`ordersTopicId` for `orders_topic_id`).
-  Replace code that shells out to `terraform output -raw` or reads a
-  hand-named environment variable with
-  `<Stack>Outputs.fromTerraformJson(...)` /
-  `<Stack>Outputs.fromEnvironment(Platform.environment)`. With `appExports`
-  set, an output name whose getter would not be a Dart identifier
-  (`class`), or that shares its getter or variable with another output
-  (`topic_id` / `topic-id`), throws; rename it. A Cloud Run `env` list that
-  hand-copies output values (`name: .literal('DB_INSTANCE'), source:
-  .value(.ref(sql.connectionName))`) can become `addOutput('db_instance',
-  ...)` plus a loop over `outputEnvironment()`.
-- `DartConstantsEmitter`, `LiteralResolver` and the `OutputEmitter` types are
-  no longer exported from `package:terradart_core/terradart_core.dart`; they
-  were synth internals.
+   and `^0.31.0` for any of `terradart_google_beta`, `terradart_aws`,
+   `terradart_cloudflare` and `terradart_appwrite` you use.
+   `terradart_google_beta` now depends on `terradart_google`.
+3. **Fix the compile errors, one group at a time:**
+   1. [Sealed arguments and dot shorthands](#sealed-arguments-and-dot-shorthands)
+      — an argument that takes one of several inputs is one sealed argument
+      named by concept: `code: .filename(...)`, `name: .namePrefix(...)`.
+   2. [Typed references](#typed-references) — an argument that names
+      another resource takes `RefTo<R>`: `network: vpc.ref`.
+   3. [Outputs and constants](#outputs-and-constants) — `addExport` is
+      `addOutput` / `addConstant`, and the constants file moves to
+      `appExports:`.
+   4. [Typed nested helpers](#typed-nested-helpers) — Google blocks take
+      derived helper classes instead of hand-written ones or map literals.
+   5. [Type names](#type-names) — derived helpers, enums and sealed types
+      are `<ResourceStem><Block>`.
+   6. [Other factory changes](#other-factory-changes).
+4. **Synthesize, then run `terraform plan` and read it before you apply.**
+   Typed references emit the attribute the argument expects, which is not
+   always the one a stack passed before — Google `network` / `subnetwork`
+   arguments emit `id` instead of `self_link`, for example
+   ([the full list](#arguments-that-name-another-resource-take-reftor)).
+   The provider accepts both forms, but where it does not treat them as
+   equal the plan shows a change, and on an argument that forces
+   replacement, a replacement. Pin the old attribute
+   (`vpc.ref.pinned('self_link')`) wherever you want the old value exactly.
+   No provider pin changes, so `terraform init -upgrade` is not needed.
+5. **`terradart-migrate` users:** `dart pub global activate
+   terradart_migrate` installs 0.31.0, which writes the new API. A Stack
+   migrated with 0.30 needs the edits above, or a fresh migration.
 
-A Stack `terradart-migrate` wrote before this release has an `addExport` per
-`output` block; re-run the migration, or replace each
-`addExport(r'key', ResourceIdExport(x.attr, emitTerraformOutput: true, ...))`
-with `addOutput(r'<output name>', .ref(x.attr), ...)` and delete the
-`setAppExportsOutputPath` line.
+### Sealed arguments and dot shorthands
 
-### Dart 3.10 is the minimum SDK
-
-**Breaking (every package)** — all `terradart_*` packages declare
-`sdk: ^3.10.0` (was `^3.6.0`). Upgrade the Dart SDK to 3.10 or later
-(`dart --version`), then raise the lower bound in your own stack's
-`pubspec.yaml`:
-
-```yaml
-environment:
-  sdk: ^3.10.0
-```
-
-and run `dart pub upgrade`. Nothing else changes: the Dart API and synth
-output are the same. Raising your package's language version also switches
-`dart format` to the tall style, so expect a one-time reformat of your own
-code.
-
-### Arguments that name another resource take `RefTo<R>`
-
-**Breaking (`terradart_google`, `terradart_aws`, `terradart_cloudflare`)** —
-an argument that names another resource (`network`, `subnetwork`,
-`service_account`, `topic`, `bucket`, `role`, `vpc_id`, `security_group_ids`,
-`zone_id`, ...) takes a `RefTo<Target>` (a list of them for list arguments)
-instead of a `TfArg<String>`. Pass the target's `ref` getter: the argument
-picks the attribute it emits, so passing a subnetwork where a network is
-expected, or an `arn` where a `name` is expected, no longer compiles. The
-types covered, and the attribute each argument emits, are listed in
-[`tool/reference_targets.yaml`](tool/reference_targets.yaml): network,
-subnetwork, service account, KMS crypto key, bucket, Pub/Sub topic and
-BigQuery dataset on google; IAM role, KMS key, S3 bucket, subnet, security
-group, VPC, CloudWatch log group, SNS topic and Lambda function on aws;
-account and zone on cloudflare.
-
-| Before | After |
-|--------|-------|
-| `network: TfArg.ref(vpc.selfLink)` | `network: vpc.ref` |
-| `topic: TfArg.ref(topic.nameRef)` | `topic: topic.ref` |
-| `role: TfArg.ref(role.arn)` | `role: role.ref` |
-| `zoneId: TfArg.ref(zone.id)` | `zoneId: zone.ref` |
-| `network: TfArg.literal('default')` | `network: .literal('default')` |
-| `subnetIds: TfArg.literal([TfArg.ref(a.id), TfArg.ref(b.id)])` | `subnetIds: .literal([a.ref, b.ref])` |
-| `datasetId: TfArg.ref(ds.datasetIdRef)` (data source) | `datasetId: ds.ref` — a data source that reads the type has the same getter |
-| `bucket: TfArg.variable('bucket')` | `bucket: .variable('bucket')` |
-| `bucket: TfArg.ref(TfRef.attribute(module, 'bucket'))` (module output, another Stack) | `bucket: .arg(.ref(TfRef.attribute(module, 'bucket')))` |
-
-`RefTo.literal`, `RefTo.variable` and `RefTo.expression` (written `.literal`,
-`.variable`, `.expression` where the argument type is known) cover values
-that are not a block of the Stack, and `RefTo.arg(TfArg<String>)` takes any
-string argument unchecked. To keep emitting the attribute you passed before,
-pin it: `vpc.ref.pinned('self_link')`.
-
-**Synth output changes** where the old code passed a different attribute
-than the argument now emits. Every new value is one the provider accepts for
-that argument, but run `terraform plan` before applying: where the provider
-does not treat the old and new forms as equal, the argument shows a change,
-and on an argument that forces replacement that means a replacement. Pin the
-old attribute (`vpc.ref.pinned('self_link')`) to keep the exact old value.
-The examples changed in these places:
-
-- google `network` / `subnetwork` arguments emit `id`
-  (`projects/p/global/networks/n`) instead of `self_link` or `name`
-  (Compute addresses, firewalls, forwarding rules, NEGs, instance groups and
-  subnetworks, service networking, GKE clusters, Oracle Database ODB
-  networks, Network Connectivity transports, subnetwork IAM);
-- `topic` on `google_pubsub_topic_iam_member` / `_binding` / `_policy` emits
-  `id` instead of `name`;
-- `service_account` on `google_cloudbuild_trigger` emits `name` instead of
-  `id` (the same `projects/p/serviceAccounts/email` value);
-- `function_name` on `aws_lambda_function_url` emits `function_name`
-  instead of `arn`.
-
-`terradart-migrate` writes `x.ref` for a reference to a migrated block,
-`x.ref.pinned('attr')` when the source reads another attribute, and
-`.literal` / `.variable` / `.expression` otherwise, so migrated stacks keep
-their synth output.
-
-A sealed choice between such arguments takes the same `RefTo<Target>`,
-whether it is a top-level argument or a field of a nested helper. Synth
-output does not change: each variant emits the attribute the plain argument
-emits.
-
-| Resource | Before | After |
-|----------|--------|-------|
-| `cloudflare_ruleset` | `scope: .zoneId(TfArg.ref(zone.id))` | `scope: .zoneId(zone.ref)` |
-| `aws_lambda_function` | `code: .s3Bucket(TfArg.ref(bucket.id))` | `code: .s3Bucket(bucket.ref)` |
-| `aws_lb` / `aws_alb` | `subnet: .subnets(TfArg.literal([a.id.interpolation]))` | `subnet: .subnets(.literal([a.ref]))` |
-| `aws_flow_log` | `source: .vpcId(TfArg.ref(vpc.id))` | `source: .vpcId(vpc.ref)` |
-
-The other sealed members typed this way: `aws_cloudhsm_v2_hsm`
-`subnet_id`, `aws_s3_object` / `aws_s3_bucket_object` `kms_key_id`,
-`aws_launch_template`, `aws_route_table_association`,
-`aws_vpc_block_public_access_exclusion`, `aws_emr_cluster`,
-`aws_networkfirewall_firewall`, `google_dataproc_batch`,
-`google_spanner_backup_schedule` and `google_vertex_ai_index_endpoint`.
-
-Data-source arguments that name a resource take `RefTo<Target>` the same
-way: `DataAwsNatGateway(vpcId: vpc.ref)`,
-`DataCloudflareZoneLockdowns(zoneId: zone.ref)`,
-`DataGoogleKmsCryptoKeyVersion(cryptoKey: key.ref)`. A string that is not a
-block of the Stack takes `.literal(...)`; synth output does not change.
-
-**Breaking (`terradart_appwrite`)** — Appwrite arguments that name another
-Appwrite resource take `RefTo<Target>` the same way, emitting its `id`:
-`project_id`, `database_id` (the database of the same family: TablesDB,
-MongoDB, MySQL or PostgreSQL), `table_id` / `related_table_id`, `bucket_id`,
-`topic_id`, `function_id` and `site_id`.
-
-| Before | After |
-|--------|-------|
-| `databaseId: .ref(db.id)` | `databaseId: db.ref` |
-| `bucketId: .ref(bucket.id)` | `bucketId: bucket.ref` |
-| `projectId: .literal('my-project')` | unchanged (`RefTo.literal`) |
-
-**Breaking (`terradart_google_beta`)** — a beta-only resource argument that
-names a GA resource takes the `terradart_google` `RefTo` type
-(`RefTo<GoogleComputeNetwork>`, `RefTo<GoogleComputeSubnetwork>`,
-`RefTo<GoogleKmsCryptoKey>`, `RefTo<GoogleServiceAccount>`,
-`RefTo<GoogleStorageBucket>`, `RefTo<GoogleBigqueryDataset>`), so
-`terradart_google_beta` now depends on `terradart_google`. Pass the GA
-block's `ref` (`network: vpc.ref`) or `.literal('...')`; the arguments emit
-the attribute the matching GA argument emits (`name` for
-`google_dataflow_flex_template_job.network`, `self_link` for its
-`subnetwork`, as on `google_dataflow_job`).
-
-### Sealed arguments are built with dot shorthands
+#### Sealed arguments are built with dot shorthands
 
 **Breaking (`terradart_aws`, every package with a derived sealed type)** —
 a derived sealed type (an exactly-one or at-most-one input group) declares
@@ -258,7 +106,7 @@ one, with no API change: `name: .literal('orders')`,
 `final` without a type, an untyped `Map<String, dynamic>` passthrough, or a
 `List<Object>` element.
 
-### Sealed arguments take concept names
+#### Sealed arguments take concept names
 
 **Breaking (every package with a derived sealed type)** — a derived sealed
 argument is named after the concept its members share, like a protobuf
@@ -869,90 +717,7 @@ sections below). Each group, by class:
 
 </details>
 
-### Generated type names are short
-
-**Breaking (`terradart_google`, `terradart_google_beta`, `terradart_aws`,
-`terradart_cloudflare`, `terradart_appwrite`)** — a derived helper class, enum or nested sealed
-type is named after its resource stem and its own block or attribute,
-instead of the resource stem followed by every block on the path to it.
-Arguments, variant constructors and synth output do not change; only the
-type names you write do.
-
-| Before (0.30) | After |
-|--------|-------|
-| `CloudRunV2ServiceTemplateContainers` | `CloudRunV2ServiceContainers` |
-| `CloudRunV2ServiceTemplateContainersEnvValueSourceSecretKeyRef` | `CloudRunV2ServiceSecretKeyRef` |
-| `QuicksightDashboardDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfigurationCurrencyDisplayFormatConfigurationSeparatorConfigurationThousandsSeparator` | `QuicksightDashboardThousandsSeparator` |
-| `ZeroTrustAccessApplicationPoliciesConnectionRulesRdpAllowedClipboardLocalToRemoteFormats` | `ZeroTrustAccessApplicationAllowedClipboardLocalToRemoteFormats` |
-
-The rules, in the order `wrap` applies them within one resource:
-
-- **Own name first.** A type is `<ResourceStem><Leaf>`: the block for a
-  helper, the attribute for an enum, the concept (`sealedNames`, or the
-  members' shared prefix or suffix) for a nested sealed type. The two halves
-  drop the words they share, as sealed names already did.
-- **A parent only to tell two apart.** When two differently shaped blocks
-  would take the same name, the shallower keeps it and the deeper takes its
-  nearest parent (`<ResourceStem><Parent><Leaf>`), then its last three
-  segments. The factory's own argument types and sealed types are never
-  taken.
-- **One type per shape.** Blocks of the same name and shape share one
-  helper, and enum inputs of the same name and value set share one enum,
-  named after the shallowest copy. 3,538 fewer types are declared; code
-  that built two copies with two class names now uses one.
-- **Variants replace the concept.** A variant whose member ends with its
-  sealed type's concept replaces the concept instead of repeating it
-  (`StorageControlOrganizationIntelligenceConfigCloudStorageLocations` +
-  `excluded_cloud_storage_locations` →
-  `StorageControlOrganizationIntelligenceConfigExcludedCloudStorageLocations`),
-  and ends in `Choice` when that name is the member block's own helper
-  (`...ExcludedCloudStorageLocationsChoice` here).
-- **Each word once.** A name never repeats the words its resource stem ends
-  with: `ComputeSnapshot` + `snapshot_type` is `ComputeSnapshotType`, and
-  `MongoBackupStorage` + `storage_provider` is
-  `MongoBackupStorageProvider`. The words stay when the shorter name is
-  reserved — for a top-level input of the resource
-  (`HostnameTlsSettingSettingId`, since `id` would take
-  `HostnameTlsSettingId`), or for an input of the resource the dropped words
-  would leave
-  (`AutoscalingGroupTagTag`, since `aws_autoscaling_group`'s `tag` is
-  `AutoscalingGroupTag`).
-
-| Before (0.30) | After |
-|--------|-------|
-| `ComputeSnapshotSnapshotType` | `ComputeSnapshotType` |
-| `S3BucketVersioningVersioningConfiguration` | `S3BucketVersioningConfiguration` |
-| `ComputeFutureReservationReservationMode` (google-beta) | `ComputeFutureReservationMode` |
-| `MongoBackupStorageStorageProvider` (appwrite) | `MongoBackupStorageProvider` |
-
-To migrate, let `dart analyze` list the undefined classes and rename each
-to the resource stem plus the block it builds: the constructor parameter
-that takes it names the block, and code completion on that parameter
-offers the new type. 5,364 google, 170 google-beta, 8,671 aws, 975
-cloudflare and 3 appwrite types are renamed. Hand-written override classes
-(`prelude`) that said their resource twice drop the repeat too:
-
-| Before (0.30) | After |
-|--------|-------|
-| `ComputeSecurityPolicySecurityPolicyRule<Block>` | `ComputeSecurityPolicyRules<Block>` (after the `rules` block; `ComputeSecurityPolicyRule…` is the `google_compute_security_policy_rule` resource's) |
-| `ComputeSecurityPolicySecurityPolicy<Block>` | `ComputeSecurityPolicy<Block>` |
-| `ComputeRegionSecurityPolicyRegionSecurityPolicyRule<Block>` | `ComputeRegionSecurityPolicyRules<Block>` |
-| `ComputeRegionSecurityPolicyRegionSecurityPolicy<Block>` | `ComputeRegionSecurityPolicy<Block>` |
-| `ComputeRegionInstanceGroupManagerRegionInstanceGroupManager<Block>` | `ComputeRegionInstanceGroupManager<Block>` |
-| `ComputeInstanceGroupManagerInstanceGroupManager<Block>` | `ComputeInstanceGroupManager<Block>` |
-| `ComputeAutoscalerAutoscaler<Block>`, `ComputeRegionAutoscalerRegionAutoscaler<Block>` | `ComputeAutoscaler<Block>`, `ComputeRegionAutoscaler<Block>` |
-| `ComputeBackendBucketBackendBucket<Block>` | `ComputeBackendBucket<Block>` |
-| `ComputeFirewallFirewall<Block>`, `ComputeHealthCheckHealthCheck<Block>`, `ComputeRegionHealthCheckRegionHealthCheck<Block>`, `ComputeSubnetworkSubnetwork<Block>` | `ComputeFirewall<Block>`, `ComputeHealthCheck<Block>`, `ComputeRegionHealthCheck<Block>`, `ComputeSubnetwork<Block>` |
-| `ComputeForwardingRuleForwardingRule<Block>`, `ComputeGlobalForwardingRuleGlobalForwardingRule<Block>` | `ComputeForwardingRule<Block>`, `ComputeGlobalForwardingRule<Block>` |
-| `ComputeManagedSslCertificateManagedSslCertificateConfig` | `ComputeManagedSslCertificateConfig` |
-| `ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroup<Block>` | `ComputeRegionNetworkEndpointGroup<Block>` |
-| `BigqueryDatasetDataset<Block>` | `BigqueryDataset<Block>` |
-| `FirestoreIndexIndex<Block>` | `FirestoreIndex<Block>` |
-| `FirebaseAppHostingBackendAppHostingBackendCodebase`, `FirebaseAppHostingDomainAppHostingDomain<Block>`, `FirebaseAppHostingTrafficAppHostingTraffic<Block>` | `FirebaseAppHostingBackendCodebase`, `FirebaseAppHostingDomain<Block>`, `FirebaseAppHostingTraffic<Block>` |
-| `FirebaseRemoteConfigRemoteConfigRemoteConfig<Block>` | `FirebaseRemoteConfigRemoteConfig<Block>` |
-| `BiglakeIcebergCatalogCatalogType`, `ChronicleDashboardChartChartLayout`, `DiscoveryEngineSearchEngineSearchTier`, `NetworkSecurityDnsThreatDetectorThreatDetectorProvider`, `StorageBucketObjectBucketObjectRetention` | `BiglakeIcebergCatalogType`, `ChronicleDashboardChartLayout`, `DiscoveryEngineSearchEngineTier`, `NetworkSecurityDnsThreatDetectorProvider`, `StorageBucketObjectRetention` |
-
-### `terradart_google` Magic Modules input groups are sealed types
+#### `terradart_google` Magic Modules input groups are sealed types
 
 **Breaking (`terradart_google`)** — input groups the Magic Modules YAML
 declares mutually exclusive take one sealed-type argument (or helper field)
@@ -1077,7 +842,7 @@ groups, and a later MM group seals on the weekly schema bump. Group size is
 not capped: `GoogleChronicleFeed`'s 75 `details` feed kinds are one
 `source:` argument (`ChronicleFeedDetails(source: .amazonS3Settings(...))`).
 
-### `terradart_cloudflare` exactly-one inputs are sealed types
+#### `terradart_cloudflare` exactly-one inputs are sealed types
 
 **Breaking (`terradart_cloudflare`)** — 13 input groups across 5 resources
 that the provider requires exactly one of take one required sealed-type
@@ -1108,7 +873,7 @@ doesn't compile. Mutually exclusive inputs the provider lets you
 leave all unset are the next section. `terradart-migrate` picks the variant
 from whichever member the source sets.
 
-### `terradart_cloudflare` at-most-one inputs are nullable sealed types
+#### `terradart_cloudflare` at-most-one inputs are nullable sealed types
 
 **Breaking (`terradart_cloudflare`)** — 14 input groups across 8 resources
 whose members conflict with each other, with no rule requiring one of them,
@@ -1139,23 +904,7 @@ fail at `terraform validate`; now it doesn't compile. `terradart-migrate`
 picks the variant from whichever member the source sets, and leaves the
 argument out when none is set.
 
-### `CloudflareEmailSecurityAllowPolicy` drops the deprecated sender flags
-
-**Breaking (`terradart_cloudflare`)** — `CloudflareEmailSecurityAllowPolicy`
-no longer takes `isSender`, `isSpoof` or `isRecipient`. Cloudflare
-deprecated them on 2025-07-01 with an end of life of 2026-07-01; use the
-replacements the provider names, which the constructor already requires:
-
-| Before | After |
-|--------|-------|
-| `isSender: .literal(true)` | `isTrustedSender: .literal(true)` |
-| `isSpoof: .literal(true)` | `isAcceptableSender: .literal(true)` |
-| `isRecipient: .literal(true)` | `isExemptRecipient: .literal(true)` |
-
-Synth output no longer contains the three keys. `terradart-migrate` keeps a
-policy that sets one of them in the leftover sidecar.
-
-### `terradart_aws` at-most-one inputs are nullable sealed types
+#### `terradart_aws` at-most-one inputs are nullable sealed types
 
 **Breaking (`terradart_aws`)** — 229 input groups across 160 resources whose
 members conflict with each other, with no rule requiring one of them, take
@@ -1192,7 +941,234 @@ typed shape: `AwsS3Bucket` `object_lock_configuration` /
 `terradart-migrate` picks the variant from whichever member the source sets,
 and leaves the argument out when none is set.
 
-### `terradart_google_beta` inputs are typed like `terradart_google`
+### Typed references
+
+#### Arguments that name another resource take `RefTo<R>`
+
+**Breaking (`terradart_google`, `terradart_aws`, `terradart_cloudflare`)** —
+an argument that names another resource (`network`, `subnetwork`,
+`service_account`, `topic`, `bucket`, `role`, `vpc_id`, `security_group_ids`,
+`zone_id`, ...) takes a `RefTo<Target>` (a list of them for list arguments)
+instead of a `TfArg<String>`. Pass the target's `ref` getter: the argument
+picks the attribute it emits, so passing a subnetwork where a network is
+expected, or an `arn` where a `name` is expected, no longer compiles. The
+types covered, and the attribute each argument emits, are listed in
+[`tool/reference_targets.yaml`](tool/reference_targets.yaml): network,
+subnetwork, service account, KMS crypto key, bucket, Pub/Sub topic and
+BigQuery dataset on google; IAM role, KMS key, S3 bucket, subnet, security
+group, VPC, CloudWatch log group, SNS topic and Lambda function on aws;
+account and zone on cloudflare.
+
+| Before | After |
+|--------|-------|
+| `network: TfArg.ref(vpc.selfLink)` | `network: vpc.ref` |
+| `topic: TfArg.ref(topic.nameRef)` | `topic: topic.ref` |
+| `role: TfArg.ref(role.arn)` | `role: role.ref` |
+| `zoneId: TfArg.ref(zone.id)` | `zoneId: zone.ref` |
+| `network: TfArg.literal('default')` | `network: .literal('default')` |
+| `subnetIds: TfArg.literal([TfArg.ref(a.id), TfArg.ref(b.id)])` | `subnetIds: .literal([a.ref, b.ref])` |
+| `datasetId: TfArg.ref(ds.datasetIdRef)` (data source) | `datasetId: ds.ref` — a data source that reads the type has the same getter |
+| `bucket: TfArg.variable('bucket')` | `bucket: .variable('bucket')` |
+| `bucket: TfArg.ref(TfRef.attribute(module, 'bucket'))` (module output, another Stack) | `bucket: .arg(.ref(TfRef.attribute(module, 'bucket')))` |
+
+`RefTo.literal`, `RefTo.variable` and `RefTo.expression` (written `.literal`,
+`.variable`, `.expression` where the argument type is known) cover values
+that are not a block of the Stack, and `RefTo.arg(TfArg<String>)` takes any
+string argument unchecked. To keep emitting the attribute you passed before,
+pin it: `vpc.ref.pinned('self_link')`.
+
+**Synth output changes** where the old code passed a different attribute
+than the argument now emits. Every new value is one the provider accepts for
+that argument, but run `terraform plan` before applying: where the provider
+does not treat the old and new forms as equal, the argument shows a change,
+and on an argument that forces replacement that means a replacement. Pin the
+old attribute (`vpc.ref.pinned('self_link')`) to keep the exact old value.
+The examples changed in these places:
+
+- google `network` / `subnetwork` arguments emit `id`
+  (`projects/p/global/networks/n`) instead of `self_link` or `name`
+  (Compute addresses, firewalls, forwarding rules, NEGs, instance groups and
+  subnetworks, service networking, GKE clusters, Oracle Database ODB
+  networks, Network Connectivity transports, subnetwork IAM);
+- `topic` on `google_pubsub_topic_iam_member` / `_binding` / `_policy` emits
+  `id` instead of `name`;
+- `service_account` on `google_cloudbuild_trigger` emits `name` instead of
+  `id` (the same `projects/p/serviceAccounts/email` value);
+- `function_name` on `aws_lambda_function_url` emits `function_name`
+  instead of `arn`.
+
+`terradart-migrate` writes `x.ref` for a reference to a migrated block,
+`x.ref.pinned('attr')` when the source reads another attribute, and
+`.literal` / `.variable` / `.expression` otherwise, so migrated stacks keep
+their synth output.
+
+A sealed choice between such arguments takes the same `RefTo<Target>`,
+whether it is a top-level argument or a field of a nested helper. Synth
+output does not change: each variant emits the attribute the plain argument
+emits.
+
+| Resource | Before | After |
+|----------|--------|-------|
+| `cloudflare_ruleset` | `scope: .zoneId(TfArg.ref(zone.id))` | `scope: .zoneId(zone.ref)` |
+| `aws_lambda_function` | `code: .s3Bucket(TfArg.ref(bucket.id))` | `code: .s3Bucket(bucket.ref)` |
+| `aws_lb` / `aws_alb` | `subnet: .subnets(TfArg.literal([a.id.interpolation]))` | `subnet: .subnets(.literal([a.ref]))` |
+| `aws_flow_log` | `source: .vpcId(TfArg.ref(vpc.id))` | `source: .vpcId(vpc.ref)` |
+
+The other sealed members typed this way: `aws_cloudhsm_v2_hsm`
+`subnet_id`, `aws_s3_object` / `aws_s3_bucket_object` `kms_key_id`,
+`aws_launch_template`, `aws_route_table_association`,
+`aws_vpc_block_public_access_exclusion`, `aws_emr_cluster`,
+`aws_networkfirewall_firewall`, `google_dataproc_batch`,
+`google_spanner_backup_schedule` and `google_vertex_ai_index_endpoint`.
+
+Data-source arguments that name a resource take `RefTo<Target>` the same
+way: `DataAwsNatGateway(vpcId: vpc.ref)`,
+`DataCloudflareZoneLockdowns(zoneId: zone.ref)`,
+`DataGoogleKmsCryptoKeyVersion(cryptoKey: key.ref)`. A string that is not a
+block of the Stack takes `.literal(...)`; synth output does not change.
+
+**Breaking (`terradart_appwrite`)** — Appwrite arguments that name another
+Appwrite resource take `RefTo<Target>` the same way, emitting its `id`:
+`project_id`, `database_id` (the database of the same family: TablesDB,
+MongoDB, MySQL or PostgreSQL), `table_id` / `related_table_id`, `bucket_id`,
+`topic_id`, `function_id` and `site_id`.
+
+| Before | After |
+|--------|-------|
+| `databaseId: .ref(db.id)` | `databaseId: db.ref` |
+| `bucketId: .ref(bucket.id)` | `bucketId: bucket.ref` |
+| `projectId: .literal('my-project')` | unchanged (`RefTo.literal`) |
+
+**Breaking (`terradart_google_beta`)** — a beta-only resource argument that
+names a GA resource takes the `terradart_google` `RefTo` type
+(`RefTo<GoogleComputeNetwork>`, `RefTo<GoogleComputeSubnetwork>`,
+`RefTo<GoogleKmsCryptoKey>`, `RefTo<GoogleServiceAccount>`,
+`RefTo<GoogleStorageBucket>`, `RefTo<GoogleBigqueryDataset>`), so
+`terradart_google_beta` now depends on `terradart_google`. Pass the GA
+block's `ref` (`network: vpc.ref`) or `.literal('...')`; the arguments emit
+the attribute the matching GA argument emits (`name` for
+`google_dataflow_flex_template_job.network`, `self_link` for its
+`subnetwork`, as on `google_dataflow_job`).
+
+#### Gemini setting bindings and the Observability link take `RefTo<R>`
+
+**Breaking (`terradart_google`)** — these inputs name another resource and
+take a `RefTo<Target>` instead of a `TfArg<String>`. Each emits the
+parent's own id attribute.
+
+| Input | Target (attribute) |
+|-------|--------------------|
+| `<setting>SettingId` on the seven `GoogleGemini*SettingBinding` | the matching `GoogleGemini*Setting` (`*_setting_id`) |
+| `codeRepositoryIndex` on `GoogleGeminiRepositoryGroup` and its IAM adjuncts | `GoogleGeminiCodeRepositoryIndex` (`code_repository_index_id`) |
+| `repositoryGroupId` on the `GoogleGeminiRepositoryGroup` IAM adjuncts | `GoogleGeminiRepositoryGroup` (`repository_group_id`) |
+| `bucket` on `GoogleObservabilityLink` | `GoogleObservabilityBucket` (`bucket_id`) |
+
+| Before | After |
+|--------|-------|
+| `loggingSettingId: .literal('terradart-logging')` | `loggingSettingId: logging.ref` (or keep `.literal('terradart-logging')`) |
+| `bucket: .literal('telemetry')` beside a `GoogleObservabilityBucket` | `bucket: observabilityBucket.ref` |
+
+`.literal(...)`, `.variable(...)` and `.expression(...)` keep compiling with
+the same synth output; only code that passed a `TfArg<String>` value needs a
+change (`.arg(value)` keeps it as is). Switching to `.ref` emits the parent's
+attribute instead of the literal id, so Terraform orders the two.
+
+### Outputs and constants
+
+#### `addOutput` and `addConstant` replace `addExport`
+
+**Breaking (`terradart_core`)** — a Terraform output and a Dart constant are
+separate methods, and the constants file is a constructor parameter.
+`AppExport`, `ResourceIdExport`, `ResourceAttributeExport`, `StringExport`,
+`EnvBackedExport` and `setAppExportsOutputPath` are gone.
+
+```dart
+// Before
+final class OrdersStack extends Stack {
+  OrdersStack() : super(providers: [...]) {
+    final topic = add(GooglePubsubTopic(localName: 'orders', name: .literal('orders-prod')));
+    addExport('ORDERS_TOPIC_NAME', ResourceIdExport(topic.nameRef));
+    addExport('ORDERS_TOPIC_ID', ResourceIdExport(topic.id, emitTerraformOutput: true));
+    addExport('API_VERSION', StringExport('v1'));
+    setAppExportsOutputPath('lib/generated/orders_stack.app.dart');
+  }
+}
+// OrdersStackExports.ORDERS_TOPIC_NAME
+
+// After
+final class OrdersStack extends Stack {
+  OrdersStack()
+    : super(
+        providers: [...],
+        appExports: AppExports('lib/generated/orders_stack.app.dart'),
+      ) {
+    final topic = add(GooglePubsubTopic(localName: 'orders', name: .literal('orders-prod')));
+    addConstant('ordersTopicName', .ref(topic.nameRef));
+    addOutput('orders_topic_id', .ref(topic.id));
+    addConstant('apiVersion', const .value('v1'));
+  }
+}
+// OrdersStackConstants.ordersTopicName
+```
+
+| Before | After |
+|--------|-------|
+| `ResourceIdExport(x.attr)` on a literal attribute | `addConstant('name', .ref(x.attr))` |
+| `ResourceIdExport(x.attr)` on an apply-time attribute (it became an output) | `addOutput('name', .ref(x.attr))` |
+| `emitTerraformOutput: true` | a separate `addOutput` |
+| `terraformOutputName: 'x'` | `addOutput('x', ...)` — the output name is the first argument |
+| `StringExport('v')` | `addConstant('name', const .value('v'))` — any `String` / `int` / `double` / `num` / `bool` / `Object`, or a `List` / `String`-keyed `Map` of them |
+| `EnvBackedExport(envVarName: 'X')` | `addConstant('name', .fromEnvironment('X'))` |
+| `setAppExportsOutputPath(path)` | `appExports: AppExports(path)` on the `super(...)` call |
+| `synth(stackName: 'Custom')` | `AppExports(path, name: 'Custom')` |
+| `SynthResult.dartConstants` | `SynthResult.dartSource` (and `dartSourcePath`) |
+| `OrdersStackExports.ORDERS_TOPIC_NAME` | `OrdersStackConstants.ordersTopicName` |
+
+What changes in behavior:
+
+- **A `.ref` constant that cannot resolve fails synth.** `ResourceIdExport`
+  silently dropped the constant when its attribute was not a literal (and
+  emitted an output instead). `addConstant(.ref(...))` throws a `StateError`
+  that says what the attribute is set by — a reference, a variable, an
+  expression, or nothing (the provider computes it) — or that it is a
+  sensitive field. Use `addOutput` for those values.
+- **Names are checked at registration.** A constant name must be a public
+  Dart identifier (`ordersTopicName`, not `ORDERS_TOPIC_NAME`, although that
+  still compiles); an output name a Terraform identifier. A duplicate of
+  either throws `ArgumentError`, as does an output that reads a sensitive
+  field without `sensitive: true` (Terraform rejects it at plan).
+- **Output names are yours.** An export used to emit its Dart name as the
+  output name; rename outputs to snake_case when you migrate if you like, and
+  update anything that reads them (`terraform output -raw orders_topic_id`,
+  `terraform_remote_state`).
+- **The file is always written** when `appExports` is set, rewritten in full
+  on every synth, and the class is `<Stack>Constants` (was `<Stack>Exports`).
+  The Stack's class name drops a leading `_`.
+- **The file also holds a typed outputs reader**, `<Stack>Outputs`, with a
+  getter per non-sensitive output (`ordersTopicId` for `orders_topic_id`).
+  Replace code that shells out to `terraform output -raw` or reads a
+  hand-named environment variable with
+  `<Stack>Outputs.fromTerraformJson(...)` /
+  `<Stack>Outputs.fromEnvironment(Platform.environment)`. With `appExports`
+  set, an output name whose getter would not be a Dart identifier
+  (`class`), or that shares its getter or variable with another output
+  (`topic_id` / `topic-id`), throws; rename it. A Cloud Run `env` list that
+  hand-copies output values (`name: .literal('DB_INSTANCE'), source:
+  .value(.ref(sql.connectionName))`) can become `addOutput('db_instance',
+  ...)` plus a loop over `outputEnvironment()`.
+- `DartConstantsEmitter`, `LiteralResolver` and the `OutputEmitter` types are
+  no longer exported from `package:terradart_core/terradart_core.dart`; they
+  were synth internals.
+
+A Stack `terradart-migrate` wrote before this release has an `addExport` per
+`output` block; re-run the migration, or replace each
+`addExport(r'key', ResourceIdExport(x.attr, emitTerraformOutput: true, ...))`
+with `addOutput(r'<output name>', .ref(x.attr), ...)` and delete the
+`setAppExportsOutputPath` line.
+
+### Typed nested helpers
+
+#### `terradart_google_beta` inputs are typed like `terradart_google`
 
 **Breaking (`terradart_google_beta`)** — beta factories now derive their
 types from Magic Modules YAML, like the GA package. Synth output is
@@ -1228,35 +1204,34 @@ unchanged, so no Terraform step is needed; fix the compile errors:
 factory. `terradart-migrate` emits the typed form for `google-beta`
 resources.
 
-### `GoogleComputeRegionNetworkEndpointGroup` serverless targets are one argument
+#### Value lists inside helper classes take their element type
 
-**Breaking (`terradart_google`)** — `cloudRun`, `cloudFunction` and
-`appEngine` are one nullable sealed argument, `serverless`. The Magic
-Modules group also names the beta-only `serverless_deployment`, which kept
-it unsealed; `terradart wrap` now drops group members the provider schema
-has no input for. Synth output is unchanged.
-
-| Before | After |
-|--------|-------|
-| `GoogleComputeRegionNetworkEndpointGroup(cloudRun: ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun(service: ...), ...)` | `GoogleComputeRegionNetworkEndpointGroup(serverless: .cloudRun(ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun(service: ...)), ...)` |
-
-### `GoogleStorageFtpServer` `config` uses derived helper types
-
-**Breaking (`terradart_google`)** — the hand-written `StorageFtpServerConfig`
-from 0.30.0 is replaced by the sealed argument `terradart wrap` derives from
-the Magic Modules `internal_config` / `external_config` group. The argument
-keeps its name, `config`; its variants are named after the members and take
-the derived block helpers. The consumer-list entry classes are renamed, and
-`allowedCidrBlocks` is a `TfArg<List<String>>`. Synth output is unchanged.
+**Breaking (`terradart_google`, `terradart_google_beta`, `terradart_aws`,
+`terradart_cloudflare`)** — a list or set of strings, numbers or booleans
+inside a generated helper class is a `TfArg<List<String>>` /
+`TfArg<List<num>>` / `TfArg<List<bool>>` instead of a
+`TfArg<List<Object?>>`, as the same input already was at the top level. A
+list literal (`.literal(['10.0.0.0/8'])`) keeps compiling; a list typed
+`List<Object?>`, or one mixing element types, no longer does. Put an
+attribute of another block in the list as its interpolation string. Lists of
+objects stay `List<Object?>`. Synth output is unchanged.
 
 | Before | After |
 |--------|-------|
-| `config: StorageFtpServerConfig.internal(consumerAcceptList: [...], consumerRejectList: [...])` | `config: .internalConfig(StorageFtpServerInternalConfig(consumerAcceptList: [...], consumerRejectList: [...]))` |
-| `config: StorageFtpServerConfig.external(allowedCidrBlocks: ...)` | `config: .externalConfig(StorageFtpServerExternalConfig(allowedCidrBlocks: ...))` |
-| `StorageFtpServerConsumerAccept(project: ..., connectionLimit: ...)` | `StorageFtpServerConsumerAcceptList(project: ..., connectionLimit: ...)` |
-| `StorageFtpServerConsumerReject(project: ...)` | `StorageFtpServerConsumerRejectList(project: ...)` |
+| `StorageFtpServerExternalConfig(allowedCidrBlocks: .literal(<Object?>['203.0.113.0/24']))` | `StorageFtpServerExternalConfig(allowedCidrBlocks: .literal(['203.0.113.0/24']))` |
+| `values: .literal([TfArg.ref(distribution.arn)])` (an IAM policy document condition) | `values: .literal([distribution.arn.interpolation])` |
+| `values: .literal(<Object?>[0.0, 0.0])` | `values: .literal(<num>[0.0, 0.0])` |
 
-### Compute nested blocks use derived helper types
+On `terradart_aws`, the QuickSight helper classes shared by blocks of one
+shape split where the element type tells the blocks apart: the string
+parameter declaration's `defaultValues` takes
+`Quicksight{Analysis,Dashboard}DefinitionParameterDeclarationsStringParameterDeclarationDefaultValues`
+/ `QuicksightTemplateStringParameterDeclarationDefaultValues`
+(was the decimal declaration's class), and `parameters.decimalParameters` /
+`integerParameters` take `Quicksight{Analysis,Dashboard}ParametersDecimalParameters`
+(was `...ParametersDateTimeParameters`).
+
+#### Compute nested blocks use derived helper types
 
 **Breaking (`terradart_google`)** — the Compute Engine factories below no
 longer carry hand-written helper classes or `TfArg<Map>` blocks; their
@@ -1320,7 +1295,7 @@ Synth output changes in two ways, both accepted by the provider: a
 and a network / subnetwork reference emits `id` where the examples passed
 `self_link`.
 
-### Data and storage nested blocks use derived helper types
+#### Data and storage nested blocks use derived helper types
 
 **Breaking (`terradart_google`)** — the AlloyDB, BigQuery, Bigtable, Cloud
 SQL, Data Catalog, Dataplex, Dataproc Metastore, Filestore, Firestore,
@@ -1421,7 +1396,7 @@ attribute the reference ledger names — `GoogleAlloydbCluster`
 and `GoogleFilestoreInstance` `networks.network` emits the network `name`,
 which is what the Filestore API reads.
 
-### Serverless and application-platform nested blocks use derived helper types
+#### Serverless and application-platform nested blocks use derived helper types
 
 **Breaking (`terradart_google`)** — the Cloud Run v2, Cloud Functions,
 Cloud Build, Cloud Scheduler, Cloud Tasks, Pub/Sub, Eventarc, Artifact
@@ -1521,7 +1496,7 @@ Synth output changes in two ways, both accepted by the provider: a
 Cloud Functions build config the example left without an update policy
 emits `automatic_update_policy {}`, the provider's default.
 
-### Security and operations nested blocks use derived helper types
+#### Security and operations nested blocks use derived helper types
 
 **Breaking (`terradart_google`)** — the Certificate Manager, Private CA,
 Secret Manager, IAM workload / workforce identity, Sensitive Data
@@ -1626,19 +1601,7 @@ Synth output changes in one way, accepted by the provider: a
 `monitored_resource`, `logging_query`, `one_time_schedule`, ...) is an
 object.
 
-### Monitoring snooze and Gemini observability settings use derived helper types
-
-**Breaking (`terradart_google`)** — the blocks the 8.x schema bumps left as
-`TfArg<Map>` take the helper types `terradart wrap` derives from the
-provider schema. Synth output is unchanged.
-
-| Before | After |
-|--------|-------|
-| `GoogleMonitoringSnooze(criteria: .literal({'policies': [...]}), interval: .literal({'end_time': ...}))` | `GoogleMonitoringSnooze(criteria: MonitoringSnoozeCriteria(policies: .literal([...])), interval: MonitoringSnoozeInterval(endTime: ...))` |
-| `GoogleGeminiGdaObservabilitySetting(conversationalAnalyticsSetting: .literal({'logging_enabled': true}))` | `GoogleGeminiGdaObservabilitySetting(conversationalAnalyticsSetting: GeminiGdaObservabilitySettingConversationalAnalyticsSetting(loggingEnabled: .literal(true)))` |
-| `GoogleGeminiGibqObservabilitySetting(conversationalAnalyticsSetting: .literal({...}))` | `GoogleGeminiGibqObservabilitySetting(conversationalAnalyticsSetting: GeminiGibqObservabilitySettingConversationalAnalyticsSetting(...))` |
-
-### GKE nested blocks use derived helper types
+#### GKE nested blocks use derived helper types
 
 **Breaking (`terradart_google`)** — `GoogleContainerCluster` and
 `GoogleContainerNodePool` take a derived helper for every nested block
@@ -1671,7 +1634,35 @@ Newly exposed inputs: `GoogleContainerCluster` `dataplaneOptimizationMode`,
 | `user: .literal('alice@example.com')` | `principal: .user(.literal('alice@example.com'))` |
 | *(not available)* | `principal: .group(.literal('team@example.com'))` |
 
-### The last hand-written Google sealed helpers are derived
+#### Monitoring snooze and Gemini observability settings use derived helper types
+
+**Breaking (`terradart_google`)** — the blocks the 8.x schema bumps left as
+`TfArg<Map>` take the helper types `terradart wrap` derives from the
+provider schema. Synth output is unchanged.
+
+| Before | After |
+|--------|-------|
+| `GoogleMonitoringSnooze(criteria: .literal({'policies': [...]}), interval: .literal({'end_time': ...}))` | `GoogleMonitoringSnooze(criteria: MonitoringSnoozeCriteria(policies: .literal([...])), interval: MonitoringSnoozeInterval(endTime: ...))` |
+| `GoogleGeminiGdaObservabilitySetting(conversationalAnalyticsSetting: .literal({'logging_enabled': true}))` | `GoogleGeminiGdaObservabilitySetting(conversationalAnalyticsSetting: GeminiGdaObservabilitySettingConversationalAnalyticsSetting(loggingEnabled: .literal(true)))` |
+| `GoogleGeminiGibqObservabilitySetting(conversationalAnalyticsSetting: .literal({...}))` | `GoogleGeminiGibqObservabilitySetting(conversationalAnalyticsSetting: GeminiGibqObservabilitySettingConversationalAnalyticsSetting(...))` |
+
+#### `GoogleStorageFtpServer` `config` uses derived helper types
+
+**Breaking (`terradart_google`)** — the hand-written `StorageFtpServerConfig`
+from 0.30.0 is replaced by the sealed argument `terradart wrap` derives from
+the Magic Modules `internal_config` / `external_config` group. The argument
+keeps its name, `config`; its variants are named after the members and take
+the derived block helpers. The consumer-list entry classes are renamed, and
+`allowedCidrBlocks` is a `TfArg<List<String>>`. Synth output is unchanged.
+
+| Before | After |
+|--------|-------|
+| `config: StorageFtpServerConfig.internal(consumerAcceptList: [...], consumerRejectList: [...])` | `config: .internalConfig(StorageFtpServerInternalConfig(consumerAcceptList: [...], consumerRejectList: [...]))` |
+| `config: StorageFtpServerConfig.external(allowedCidrBlocks: ...)` | `config: .externalConfig(StorageFtpServerExternalConfig(allowedCidrBlocks: ...))` |
+| `StorageFtpServerConsumerAccept(project: ..., connectionLimit: ...)` | `StorageFtpServerConsumerAcceptList(project: ..., connectionLimit: ...)` |
+| `StorageFtpServerConsumerReject(project: ...)` | `StorageFtpServerConsumerRejectList(project: ...)` |
+
+#### The last hand-written Google sealed helpers are derived
 
 **Breaking (`terradart_google`)** — six factories that kept a hand-written
 sealed helper take the helpers `terradart wrap` derives, so each variant
@@ -1710,34 +1701,7 @@ provider that sets both:
 `ChronicleFeedFailureDetails` is gone: both blocks are output-only, and
 the API ignored them.
 
-### Value lists inside helper classes take their element type
-
-**Breaking (`terradart_google`, `terradart_google_beta`, `terradart_aws`,
-`terradart_cloudflare`)** — a list or set of strings, numbers or booleans
-inside a generated helper class is a `TfArg<List<String>>` /
-`TfArg<List<num>>` / `TfArg<List<bool>>` instead of a
-`TfArg<List<Object?>>`, as the same input already was at the top level. A
-list literal (`.literal(['10.0.0.0/8'])`) keeps compiling; a list typed
-`List<Object?>`, or one mixing element types, no longer does. Put an
-attribute of another block in the list as its interpolation string. Lists of
-objects stay `List<Object?>`. Synth output is unchanged.
-
-| Before | After |
-|--------|-------|
-| `StorageFtpServerExternalConfig(allowedCidrBlocks: .literal(<Object?>['203.0.113.0/24']))` | `StorageFtpServerExternalConfig(allowedCidrBlocks: .literal(['203.0.113.0/24']))` |
-| `values: .literal([TfArg.ref(distribution.arn)])` (an IAM policy document condition) | `values: .literal([distribution.arn.interpolation])` |
-| `values: .literal(<Object?>[0.0, 0.0])` | `values: .literal(<num>[0.0, 0.0])` |
-
-On `terradart_aws`, the QuickSight helper classes shared by blocks of one
-shape split where the element type tells the blocks apart: the string
-parameter declaration's `defaultValues` takes
-`Quicksight{Analysis,Dashboard}DefinitionParameterDeclarationsStringParameterDeclarationDefaultValues`
-/ `QuicksightTemplateStringParameterDeclarationDefaultValues`
-(was the decimal declaration's class), and `parameters.decimalParameters` /
-`integerParameters` take `Quicksight{Analysis,Dashboard}ParametersDecimalParameters`
-(was `...ParametersDateTimeParameters`).
-
-### Remaining Compute, networking and DNS blocks use derived helper types
+#### Remaining Compute, networking and DNS blocks use derived helper types
 
 **Breaking (`terradart_google`)** — every Compute, networking, DNS and
 certificate override now sets `deriveNestedTypes`, so the blocks that
@@ -1767,7 +1731,7 @@ Newly exposed inputs: `params` (resource manager tags) on
 `GoogleComputeZoneVmExtensionPolicy.instanceSelectors`, and `condition`
 on the two network firewall policy IAM members.
 
-### Remaining data, analytics and storage blocks use derived helper types
+#### Remaining data, analytics and storage blocks use derived helper types
 
 **Breaking (`terradart_google`)** — every BigQuery, BigLake, Dataplex,
 Dataproc, Cloud Storage, Healthcare, Data Catalog, Bigtable, Spanner,
@@ -1777,7 +1741,7 @@ AI and Discovery Engine override, plus the Google data sources, now sets
 helper `terradart wrap` derives from the provider schema. Most are IAM
 conditions: `condition` on the 104 IAM member / binding factories of these
 
-### Remaining platform, serverless and operations blocks use derived helper types
+#### Remaining platform, serverless and operations blocks use derived helper types
 
 **Breaking (`terradart_google`)** — every remaining Google override
 without hand-written helpers (Cloud Run, Cloud Functions, App Engine,
@@ -1809,30 +1773,7 @@ Newly exposed inputs: `GoogleDataplexEntryType.requiredAspects`,
 `GoogleDataplexLake.metastore`, and `condition` on
 `GoogleHealthcareFhirStoreIamMember`.
 
-### Gemini setting bindings and the Observability link take `RefTo<R>`
-
-**Breaking (`terradart_google`)** — these inputs name another resource and
-take a `RefTo<Target>` instead of a `TfArg<String>`. Each emits the
-parent's own id attribute.
-
-| Input | Target (attribute) |
-|-------|--------------------|
-| `<setting>SettingId` on the seven `GoogleGemini*SettingBinding` | the matching `GoogleGemini*Setting` (`*_setting_id`) |
-| `codeRepositoryIndex` on `GoogleGeminiRepositoryGroup` and its IAM adjuncts | `GoogleGeminiCodeRepositoryIndex` (`code_repository_index_id`) |
-| `repositoryGroupId` on the `GoogleGeminiRepositoryGroup` IAM adjuncts | `GoogleGeminiRepositoryGroup` (`repository_group_id`) |
-| `bucket` on `GoogleObservabilityLink` | `GoogleObservabilityBucket` (`bucket_id`) |
-
-| Before | After |
-|--------|-------|
-| `loggingSettingId: .literal('terradart-logging')` | `loggingSettingId: logging.ref` (or keep `.literal('terradart-logging')`) |
-| `bucket: .literal('telemetry')` beside a `GoogleObservabilityBucket` | `bucket: observabilityBucket.ref` |
-
-`.literal(...)`, `.variable(...)` and `.expression(...)` keep compiling with
-the same synth output; only code that passed a `TfArg<String>` value needs a
-change (`.arg(value)` keeps it as is). Switching to `.ref` emits the parent's
-attribute instead of the literal id, so Terraform orders the two.
-
-### Remaining security, IAM and resource-manager blocks use derived helper types
+#### Remaining security, IAM and resource-manager blocks use derived helper types
 
 **Breaking (`terradart_google`)** — every IAP, IAM, KMS, Secret Manager,
 Security Command Center, Secure Source Manager, Private CA, Parameter
@@ -1864,7 +1805,7 @@ the same way.
 Newly exposed inputs: `GoogleMonitoringCustomService.telemetry`, and
 `condition` on the three Cloud Deploy IAM members.
 
-### Hand-curated Google overrides derive their remaining blocks
+#### Hand-curated Google overrides derive their remaining blocks
 
 **Breaking (`terradart_google`)** — 122 overrides with hand-written
 helpers or `customSlots` now also set `deriveNestedTypes`. Their hand
@@ -1905,7 +1846,7 @@ Newly exposed inputs: `params` on `GoogleComputeFirewall`,
 `predefinedValues`, `GoogleSqlUser.passwordPolicy` and
 `GoogleStorageBucketObject.contexts`.
 
-### Hidden and mis-modelled blocks on hand-curated Google factories
+#### Hidden and mis-modelled blocks on hand-curated Google factories
 
 **Breaking (`terradart_google`)** — hand-written overrides that hid
 provider inputs, or modelled them wrongly, now expose every input:
@@ -1948,7 +1889,7 @@ provider inputs, or modelled them wrongly, now expose every input:
 `PrivatecaCertificatePublicKeyFormat` is
 `PrivatecaCertificateFormat`.
 
-### The last Google `TfArg<Map>` blocks use derived helper types
+#### The last Google `TfArg<Map>` blocks use derived helper types
 
 **Breaking (`terradart_google`)** — the seven factories whose overrides
 kept blocks as literal maps take the derived helpers instead, so no
@@ -1974,6 +1915,140 @@ list of maps any more. Synth output is unchanged.
 | `inspectConfig: .literal({'info_types': [{'name': 'EMAIL_ADDRESS'}], 'min_likelihood': 'POSSIBLE'})` | `inspectConfig: DataLossPreventionInspectTemplateInspectConfig(infoTypes: [DataLossPreventionInspectTemplateInfoTypes(name: .literal('EMAIL_ADDRESS'))], minLikelihood: .literal(.possible))` |
 | `scanSpec: .dataProfileSpec(samplingPercent: .literal(10))` | `scanSpec: .dataProfileSpec(DataplexDatascanDataProfileSpec(samplingPercent: .literal(10)))` |
 | `scanSpec: const .dataDiscoverySpec()` | `scanSpec: const .dataDiscoverySpec(DataplexDatascanDataDiscoverySpec())` |
+
+### Type names
+
+#### Generated type names are short
+
+**Breaking (`terradart_google`, `terradart_google_beta`, `terradart_aws`,
+`terradart_cloudflare`, `terradart_appwrite`)** — a derived helper class, enum or nested sealed
+type is named after its resource stem and its own block or attribute,
+instead of the resource stem followed by every block on the path to it.
+Arguments, variant constructors and synth output do not change; only the
+type names you write do.
+
+| Before (0.30) | After |
+|--------|-------|
+| `CloudRunV2ServiceTemplateContainers` | `CloudRunV2ServiceContainers` |
+| `CloudRunV2ServiceTemplateContainersEnvValueSourceSecretKeyRef` | `CloudRunV2ServiceSecretKeyRef` |
+| `QuicksightDashboardDefinitionColumnConfigurationsFormatConfigurationDateTimeFormatConfigurationNumericFormatConfigurationCurrencyDisplayFormatConfigurationSeparatorConfigurationThousandsSeparator` | `QuicksightDashboardThousandsSeparator` |
+| `ZeroTrustAccessApplicationPoliciesConnectionRulesRdpAllowedClipboardLocalToRemoteFormats` | `ZeroTrustAccessApplicationAllowedClipboardLocalToRemoteFormats` |
+
+The rules, in the order `wrap` applies them within one resource:
+
+- **Own name first.** A type is `<ResourceStem><Leaf>`: the block for a
+  helper, the attribute for an enum, the concept (`sealedNames`, or the
+  members' shared prefix or suffix) for a nested sealed type. The two halves
+  drop the words they share, as sealed names already did.
+- **A parent only to tell two apart.** When two differently shaped blocks
+  would take the same name, the shallower keeps it and the deeper takes its
+  nearest parent (`<ResourceStem><Parent><Leaf>`), then its last three
+  segments. The factory's own argument types and sealed types are never
+  taken.
+- **One type per shape.** Blocks of the same name and shape share one
+  helper, and enum inputs of the same name and value set share one enum,
+  named after the shallowest copy. 3,538 fewer types are declared; code
+  that built two copies with two class names now uses one.
+- **Variants replace the concept.** A variant whose member ends with its
+  sealed type's concept replaces the concept instead of repeating it
+  (`StorageControlOrganizationIntelligenceConfigCloudStorageLocations` +
+  `excluded_cloud_storage_locations` →
+  `StorageControlOrganizationIntelligenceConfigExcludedCloudStorageLocations`),
+  and ends in `Choice` when that name is the member block's own helper
+  (`...ExcludedCloudStorageLocationsChoice` here).
+- **Each word once.** A name never repeats the words its resource stem ends
+  with: `ComputeSnapshot` + `snapshot_type` is `ComputeSnapshotType`, and
+  `MongoBackupStorage` + `storage_provider` is
+  `MongoBackupStorageProvider`. The words stay when the shorter name is
+  reserved — for a top-level input of the resource
+  (`HostnameTlsSettingSettingId`, since `id` would take
+  `HostnameTlsSettingId`), or for an input of the resource the dropped words
+  would leave
+  (`AutoscalingGroupTagTag`, since `aws_autoscaling_group`'s `tag` is
+  `AutoscalingGroupTag`).
+
+| Before (0.30) | After |
+|--------|-------|
+| `ComputeSnapshotSnapshotType` | `ComputeSnapshotType` |
+| `S3BucketVersioningVersioningConfiguration` | `S3BucketVersioningConfiguration` |
+| `ComputeFutureReservationReservationMode` (google-beta) | `ComputeFutureReservationMode` |
+| `MongoBackupStorageStorageProvider` (appwrite) | `MongoBackupStorageProvider` |
+
+To migrate, let `dart analyze` list the undefined classes and rename each
+to the resource stem plus the block it builds: the constructor parameter
+that takes it names the block, and code completion on that parameter
+offers the new type. 5,364 google, 170 google-beta, 8,671 aws, 975
+cloudflare and 3 appwrite types are renamed. Hand-written override classes
+(`prelude`) that said their resource twice drop the repeat too:
+
+| Before (0.30) | After |
+|--------|-------|
+| `ComputeSecurityPolicySecurityPolicyRule<Block>` | `ComputeSecurityPolicyRules<Block>` (after the `rules` block; `ComputeSecurityPolicyRule…` is the `google_compute_security_policy_rule` resource's) |
+| `ComputeSecurityPolicySecurityPolicy<Block>` | `ComputeSecurityPolicy<Block>` |
+| `ComputeRegionSecurityPolicyRegionSecurityPolicyRule<Block>` | `ComputeRegionSecurityPolicyRules<Block>` |
+| `ComputeRegionSecurityPolicyRegionSecurityPolicy<Block>` | `ComputeRegionSecurityPolicy<Block>` |
+| `ComputeRegionInstanceGroupManagerRegionInstanceGroupManager<Block>` | `ComputeRegionInstanceGroupManager<Block>` |
+| `ComputeInstanceGroupManagerInstanceGroupManager<Block>` | `ComputeInstanceGroupManager<Block>` |
+| `ComputeAutoscalerAutoscaler<Block>`, `ComputeRegionAutoscalerRegionAutoscaler<Block>` | `ComputeAutoscaler<Block>`, `ComputeRegionAutoscaler<Block>` |
+| `ComputeBackendBucketBackendBucket<Block>` | `ComputeBackendBucket<Block>` |
+| `ComputeFirewallFirewall<Block>`, `ComputeHealthCheckHealthCheck<Block>`, `ComputeRegionHealthCheckRegionHealthCheck<Block>`, `ComputeSubnetworkSubnetwork<Block>` | `ComputeFirewall<Block>`, `ComputeHealthCheck<Block>`, `ComputeRegionHealthCheck<Block>`, `ComputeSubnetwork<Block>` |
+| `ComputeForwardingRuleForwardingRule<Block>`, `ComputeGlobalForwardingRuleGlobalForwardingRule<Block>` | `ComputeForwardingRule<Block>`, `ComputeGlobalForwardingRule<Block>` |
+| `ComputeManagedSslCertificateManagedSslCertificateConfig` | `ComputeManagedSslCertificateConfig` |
+| `ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroup<Block>` | `ComputeRegionNetworkEndpointGroup<Block>` |
+| `BigqueryDatasetDataset<Block>` | `BigqueryDataset<Block>` |
+| `FirestoreIndexIndex<Block>` | `FirestoreIndex<Block>` |
+| `FirebaseAppHostingBackendAppHostingBackendCodebase`, `FirebaseAppHostingDomainAppHostingDomain<Block>`, `FirebaseAppHostingTrafficAppHostingTraffic<Block>` | `FirebaseAppHostingBackendCodebase`, `FirebaseAppHostingDomain<Block>`, `FirebaseAppHostingTraffic<Block>` |
+| `FirebaseRemoteConfigRemoteConfigRemoteConfig<Block>` | `FirebaseRemoteConfigRemoteConfig<Block>` |
+| `BiglakeIcebergCatalogCatalogType`, `ChronicleDashboardChartChartLayout`, `DiscoveryEngineSearchEngineSearchTier`, `NetworkSecurityDnsThreatDetectorThreatDetectorProvider`, `StorageBucketObjectBucketObjectRetention` | `BiglakeIcebergCatalogType`, `ChronicleDashboardChartLayout`, `DiscoveryEngineSearchEngineTier`, `NetworkSecurityDnsThreatDetectorProvider`, `StorageBucketObjectRetention` |
+
+### Dart SDK
+
+#### Dart 3.10 is the minimum SDK
+
+**Breaking (every package)** — all `terradart_*` packages declare
+`sdk: ^3.10.0` (was `^3.6.0`). Upgrade the Dart SDK to 3.10 or later
+(`dart --version`), then raise the lower bound in your own stack's
+`pubspec.yaml`:
+
+```yaml
+environment:
+  sdk: ^3.10.0
+```
+
+and run `dart pub upgrade`. Nothing else changes: the Dart API and synth
+output are the same. Raising your package's language version also switches
+`dart format` to the tall style, so expect a one-time reformat of your own
+code.
+
+### Other factory changes
+
+#### `GoogleComputeRegionNetworkEndpointGroup` serverless targets are one argument
+
+**Breaking (`terradart_google`)** — `cloudRun`, `cloudFunction` and
+`appEngine` are one nullable sealed argument, `serverless`. The Magic
+Modules group also names the beta-only `serverless_deployment`, which kept
+it unsealed; `terradart wrap` now drops group members the provider schema
+has no input for. Synth output is unchanged.
+
+| Before | After |
+|--------|-------|
+| `GoogleComputeRegionNetworkEndpointGroup(cloudRun: ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun(service: ...), ...)` | `GoogleComputeRegionNetworkEndpointGroup(serverless: .cloudRun(ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun(service: ...)), ...)` |
+
+#### `CloudflareEmailSecurityAllowPolicy` drops the deprecated sender flags
+
+**Breaking (`terradart_cloudflare`)** — `CloudflareEmailSecurityAllowPolicy`
+no longer takes `isSender`, `isSpoof` or `isRecipient`. Cloudflare
+deprecated them on 2025-07-01 with an end of life of 2026-07-01; use the
+replacements the provider names, which the constructor already requires:
+
+| Before | After |
+|--------|-------|
+| `isSender: .literal(true)` | `isTrustedSender: .literal(true)` |
+| `isSpoof: .literal(true)` | `isAcceptableSender: .literal(true)` |
+| `isRecipient: .literal(true)` | `isExemptRecipient: .literal(true)` |
+
+Synth output no longer contains the three keys. `terradart-migrate` keeps a
+policy that sets one of them in the leftover sidecar.
 
 ## 0.29.x → 0.30.0
 

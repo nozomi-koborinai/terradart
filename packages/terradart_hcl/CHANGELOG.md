@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.31.0 - 2026-10-01
 
 - pub.dev: add `example/main.dart` (parse a module, walk its resources, write a block back) and dartdoc on every public member. No API changes.
 

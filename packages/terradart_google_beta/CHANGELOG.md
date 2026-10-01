@@ -1,7 +1,8 @@
 # Changelog
 
-## Unreleased
+## 0.31.0 - 2026-10-01
 
+- **Breaking** — generated type names are short: a derived helper, enum or nested sealed type is named after its resource and its own block or attribute instead of the whole block path, a name two blocks would share takes the nearest parent that tells them apart, identical blocks share one helper, and no name repeats the words its resource stem ends with. 170 types are renamed (`ComputeFutureReservationReservationMode` → `ComputeFutureReservationMode`). Arguments, variant constructors and synth output are unchanged; `dart analyze` lists the old names. See [MIGRATING.md](../../MIGRATING.md#generated-type-names-are-short).
 - 586 new `<name>Ref` getters, one per input a resource or data source takes (`TfRef<String> get scopeIdRef`), so another argument, an output or a constant reads what the input is set to with `.ref(...)`.
 - **Breaking** — 39 value-list fields in helper classes take their element type: `TfArg<List<String>>` / `TfArg<List<num>>` instead of `TfArg<List<Object?>>`. Synth output is unchanged. See `MIGRATING.md`.
 - **Breaking** — a Magic Modules `write_only` input and its plaintext sibling are one nullable sealed argument, as the provider rejects setting both: `FirebaseAiLogicConfigGenerativeLanguageConfig(apiKey: .apiKeyWo(...))` instead of separate `apiKey` / `apiKeyWo` fields.
