@@ -36,13 +36,13 @@ curatedDoc: |-
   /// Lifecycle: certificates are **immutable** — any change forces
   /// replacement. Use `namePrefix` for certs expected to rotate.
   ///
-  /// Example (namePrefix, literal PEMs):
+  /// Example (namePrefix; the key from a variable):
   /// ```dart
   /// final cert = GoogleComputeSslCertificate(
   ///   'lb_cert',
   ///   namePrefix: TfArg.literal('lb-cert-'),
-  ///   certificate: TfArg.literal(certPem),
-  ///   privateKey: .privateKey(.literal(keyPem)),
+  ///   certificate: .variable('lb_cert_pem'),
+  ///   privateKey: .privateKey(.variable('lb_cert_private_key')),
   /// );
   /// ```
   ///

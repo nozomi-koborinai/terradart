@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- **Breaking:** an argument the provider schema marks sensitive is `Sensitive<T>` — a variable, an expression or an attribute getter, never `.literal(...)`, write-only `_wo` arguments included. See [MIGRATING.md](../../MIGRATING.md#sensitive-arguments-take-no-literal).
+- **Breaking:** an argument the provider schema marks sensitive is `Sensitive<T>` — a variable, an expression or an attribute getter, never `.literal(...)`. See [MIGRATING.md](../../MIGRATING.md#sensitive-arguments-take-no-literal).
 - **Breaking:** every generated enum is an extension type implementing `TfArg<String>`, so an enum slot takes a member bare (`type: .cname` instead of `.literal(.cname)`). See [MIGRATING.md](../../MIGRATING.md#enums-are-arguments).
 - **Breaking:** every factory takes its local name as the first positional argument: `CloudflareDnsRecord('www', ...)`. See [MIGRATING.md](../../MIGRATING.md#the-local-name-is-the-first-argument).
 

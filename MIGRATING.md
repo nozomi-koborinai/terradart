@@ -277,10 +277,13 @@ reports it as an argument type error. Synth output does not change:
 | `secretData: .literal('...')` (a synth error) | `secretData: .expression('\${file("secret.txt")}')`, or a variable |
 | `secretData: other.secretData` (an attribute getter) | unchanged: a getter is a `Sensitive<T>` |
 
-A write-only `_wo` argument (`passwordWo`) is `Sensitive<T>` too: its
-value stays out of Terraform state, not out of `main.tf.json`. An argument
-an override masks without the schema marking it (`metadataStartupScript`)
-keeps `TfArg<T>` and the synth-time `SensitiveLiteral` check.
+The type follows the schema's `sensitive` flag, so a write-only `_wo`
+argument is `Sensitive<T>` only when the schema marks it sensitive; most
+(`GoogleSqlUser.passwordWo`) are not and keep `TfArg<T>`. Their value stays
+out of Terraform state, not out of `main.tf.json`, so pass them a variable
+as well. An argument an override masks without the schema marking it
+(`metadataStartupScript`) keeps `TfArg<T>` and the synth-time
+`SensitiveLiteral` check.
 
 ### Typed lifecycle
 

@@ -52,7 +52,7 @@ final class TfVariable {
   Map<String, Object?> toTfJson() => {
     if (type != null) 'type': type!.expression,
     if (description != null) 'description': description,
-    if (defaultValue != null) 'default': defaultValue,
+    if (defaultValue != null) 'default': _jsonValue(defaultValue),
     if (sensitive != null) 'sensitive': sensitive,
     if (nullable != null) 'nullable': nullable,
   };
@@ -195,7 +195,7 @@ final class TfOptionalType extends TfType {
   @override
   String get expression => defaultValue == null
       ? 'optional(${type.expression})'
-      : 'optional(${type.expression}, ${jsonEncode(defaultValue)})';
+      : 'optional(${type.expression}, ${jsonEncode(_jsonValue(defaultValue))})';
 }
 
 final class _DartTypeParser {
@@ -253,3 +253,14 @@ final class _DartTypeParser {
     return false;
   }
 }
+
+/// [value] with every `Set` as a list, which is how Terraform's JSON spells a
+/// `set(...)` value and the only collection `jsonEncode` takes.
+Object? _jsonValue(Object? value) => switch (value) {
+  Set<Object?>() => [for (final e in value) _jsonValue(e)],
+  List<Object?>() => [for (final e in value) _jsonValue(e)],
+  Map<Object?, Object?>() => {
+    for (final MapEntry(:key, :value) in value.entries) key: _jsonValue(value),
+  },
+  _ => value,
+};

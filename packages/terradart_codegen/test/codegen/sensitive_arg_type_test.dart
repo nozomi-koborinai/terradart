@@ -57,10 +57,7 @@ void main() {
     expect(attrs['password_wo']!.sensitive, isTrue);
     expect(attrs['user']!.sensitive, isFalse);
 
-    final source = renderNestedTypes(
-      specs,
-      resourceTerraformType: 'x_thing',
-    );
+    final source = renderNestedTypes(specs, resourceTerraformType: 'x_thing');
     expect(source, contains('final Sensitive<String>? password;'));
     expect(source, contains('final Sensitive<String>? passwordWo;'));
     expect(source, contains('final TfArg<String> user;'));
@@ -88,9 +85,7 @@ void main() {
       customSlotKeys: const {},
       excludedPaths: const {},
     );
-    final credentials = [
-      for (final s in specs) s.children.single,
-    ];
+    final credentials = [for (final s in specs) s.children.single];
     expect(
       credentials.map((c) => c.className).toSet(),
       hasLength(1),
