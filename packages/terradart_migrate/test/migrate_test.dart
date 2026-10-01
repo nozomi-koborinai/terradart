@@ -325,7 +325,9 @@ resource "aws_s3_bucket" "logs" {
           'google_pubsub_topic': {
             'kept': {'name': 'k', 'count': r'${var.n}'},
             'unread': {'name': 'u', 'count': r'${var.n}'},
+            'bare': {'name': 'b', 'count': r'${var.n}'},
             'reader': {'name': r'${google_pubsub_topic.kept[0].name}-r'},
+            'counter': {'name': r'n-${length(google_pubsub_topic.bare)}'},
           },
         },
       });
@@ -335,7 +337,10 @@ resource "aws_s3_bucket" "logs" {
       );
       expect(
         r.stackSource,
-        contains("addExternalBlock(r'google_pubsub_topic.kept');"),
+        allOf(
+          contains("addExternalBlock(r'google_pubsub_topic.kept');"),
+          contains("addExternalBlock(r'google_pubsub_topic.bare');"),
+        ),
       );
       expect(r.stackSource, isNot(contains('google_pubsub_topic.unread')));
     });

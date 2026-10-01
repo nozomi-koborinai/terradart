@@ -778,7 +778,9 @@ final class StackEmitter {
     // main.tf.json; synth accepts the reference once it is declared
     // external. It takes the place the block had in the source.
     for (final (:at, :address) in keptAt.reversed) {
-      final read = RegExp('(?<![\\w.\\-])${RegExp.escape(address)}[.\\[]');
+      final read = RegExp(
+        '(?<![\\w.\\-])${RegExp.escape(address)}(?![\\w\\-])',
+      );
       if (!body.any((s) => read.hasMatch(s.text))) continue;
       body.insert(
         at,
