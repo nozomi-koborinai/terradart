@@ -16,8 +16,8 @@ The catalog is the full `hashicorp/aws` provider at its exact pin: every resourc
 
 ```yaml
 dependencies:
-  terradart_core: ^0.30.x
-  terradart_aws: ^0.30.x
+  terradart_core: ^0.31.x
+  terradart_aws: ^0.31.x
 ```
 
 ## Usage example
