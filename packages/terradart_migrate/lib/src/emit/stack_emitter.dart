@@ -1834,7 +1834,7 @@ final class StackEmitter {
       _outputRefs.add(address);
       return (
         statement:
-            'addOutput(${[dartString(o.name), '.ref($ref)', ...args].join(', ')});',
+            'addOutput(${[dartString(o.name), ref, ...args].join(', ')});',
         address: address,
       );
     } on MigrateBlocker catch (e) {

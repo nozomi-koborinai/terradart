@@ -139,7 +139,7 @@ final class ValueEmitter {
   final Set<String> usedVariables = {};
 
   /// Whether the slot being emitted fills a parameter whose static type
-  /// Dart can resolve a dot shorthand against (`.literal(...)`, `.ref(...)`,
+  /// Dart can resolve a dot shorthand against (`.literal(...)`, `.variable(...)`,
   /// an enum's `.member`). A module call's `inputs` map is `Object?`-valued,
   /// so [emitSlot] spells the class out.
   var _typed = true;
@@ -597,9 +597,9 @@ final class ValueEmitter {
   // References
   // ---------------------------------------------------------------------
 
-  /// `TfArg.ref(...)` / `TfArg.variable(...)` for a reference the Stack can
-  /// express, or `null` when the target is not migrated (the caller falls
-  /// back to the verbatim expression).
+  /// An attribute getter (`topic.name`) or `TfArg.variable(...)` for a
+  /// reference the Stack can express, or `null` when the target is not
+  /// migrated (the caller falls back to the verbatim expression).
   String? _refArg(TraversalExpr t, {required String type}) {
     switch (classifyTraversal(t)) {
       case VariableReference(:final name):
@@ -611,12 +611,10 @@ final class ValueEmitter {
         usedTargets.add(address);
         final getter = target.getter(attribute);
         if (getter != null && getter.dartType == type) {
-          return _arg('ref(${target.dartName}.${getter.dartName})');
+          return '${target.dartName}.${getter.dartName}';
         }
-        return _arg(
-          'ref(TfRef.attribute<$type>('
-          '${target.dartName}, ${dartString(attribute)}))',
-        );
+        return 'TfRef.attribute<$type>('
+            '${target.dartName}, ${dartString(attribute)})';
       case ModuleReference(:final address, :final attribute):
         final target = ctx.moduleTargets[address];
         if (target == null || attribute.isEmpty) return null;
@@ -625,12 +623,10 @@ final class ValueEmitter {
         // A module output carries no declared type, so the wrapper's getter
         // is always `TfRef<String>`; anything else spells the ref out.
         if (getter != null && type == 'String') {
-          return _arg('ref(${target.dartName}.${getter.dartName})');
+          return '${target.dartName}.${getter.dartName}';
         }
-        return _arg(
-          'ref(TfRef.attribute<$type>('
-          '${target.dartName}, ${dartString(attribute)}))',
-        );
+        return 'TfRef.attribute<$type>('
+            '${target.dartName}, ${dartString(attribute)})';
       case OtherReference():
         // `terraform.workspace` has a name of its own; everything else the
         // migrator does not resolve stays a verbatim expression.
