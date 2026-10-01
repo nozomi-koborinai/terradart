@@ -11,7 +11,7 @@ import '_provider_meta.dart';
 ///
 /// All configuration fields are plain Dart types (not `TfArg`) — provider
 /// blocks in Terraform JSON do not interpolate references to resources, so
-/// there is no `TfArgRef` use case here. Pass literal strings only.
+/// there is no `TfRef` use case here. Pass literal strings only.
 @immutable
 final class GoogleProvider implements StackProvider {
   const GoogleProvider({this.alias, this.project, this.region, this.zone});

@@ -424,7 +424,7 @@ void main() {
       );
     });
 
-    test('TfArgRef -> interpolation string', () {
+    test('TfRef -> interpolation string', () {
       final ref = TfRef.attribute<String>(
         const AddressStub('data.google_project.this'),
         'project_id',

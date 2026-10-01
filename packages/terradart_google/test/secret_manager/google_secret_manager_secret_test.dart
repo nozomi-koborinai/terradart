@@ -108,7 +108,7 @@ void main() {
       );
     });
 
-    test('secretIdRef + nameRef + id interpolations', () {
+    test('secretId + name + id interpolations', () {
       final s = GoogleSecretManagerSecret(
         localName: 'api_key',
         secretId: TfArg.literal('orders-api-key'),

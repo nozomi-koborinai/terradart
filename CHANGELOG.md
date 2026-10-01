@@ -64,6 +64,19 @@ Per-package changelogs live alongside each package and are the system of record 
   slots as `MigrateSlotKind.principal`, and the migrator writes
   `member: sa.principal` / `.user('a@example.com')`. Synth output is
   unchanged.
+- **A `TfRef` is a `TfArg`, and attribute getters drop the `Ref` suffix**
+  (`terradart_core`, `terradart_codegen`, every provider package,
+  `terradart_migrate`) — `TfRef<T>` is now a sealed subtype of `TfArg<T>`,
+  so an attribute passes straight into an argument of its type
+  (`labels: other.labels`, `addOutput('id', topic.id)`)
+  and `TfArg.ref` / `TfArgRef` are removed. Every generated attribute
+  getter is the attribute's camelCase name (`name`, `email`, `secretId`,
+  where 0.31 had `nameRef`, `email`, `secretIdRef`); a name that is a Dart
+  reserved word or a `Resource` / `Data` member takes an `Attr` suffix
+  (`kindAttr`, `defaultAttr`, `refAttr`, `localNameAttr`, `overrideAttr`,
+  `runtimeTypeAttr`). `IamPrincipal.arg(...)` takes a `TfRef` directly. `AppConstant.ref(...)` stays, as one of its three
+  sealed choices. The migrator writes the plain form. Synth output is
+  unchanged.
 - **Nested blocks use `.new(...)`** — the examples, cookbook, README,
   website, generated doc comments, the aws / cloudflare leftover-example
   generators and `terradart-migrate` output build a block that sits inside

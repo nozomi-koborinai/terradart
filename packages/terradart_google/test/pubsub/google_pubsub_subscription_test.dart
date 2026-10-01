@@ -89,7 +89,7 @@ void main() {
       );
     });
 
-    test('nameRef and id produce stable TfRef interpolations', () {
+    test('name and id produce stable TfRef interpolations', () {
       final topic = GooglePubsubTopic(
         localName: 'orders',
         name: TfArg.literal('orders'),
