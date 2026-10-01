@@ -177,7 +177,7 @@ final class EdgeStack extends Stack {
 }
 ```
 
-Credentials never enter the synthesized JSON: each provider authenticates at apply time through its usual environment variables or credential chain. Per-provider guides: [Dart apps on AWS](https://terradart.dev/docs/providers/aws/) (Lambda, ECS Express Mode, S3 + CloudFront); examples for [Cloudflare DNS](examples/cloudflare_dns_quickstart/), [Appwrite](examples/appwrite_quickstart/) and every [Google Cloud product](examples/).
+Credentials never enter the synthesized JSON: each provider authenticates at apply time through its usual environment variables or credential chain. Per-provider guides: [Google Cloud](https://terradart.dev/docs/providers/google/), [AWS](https://terradart.dev/docs/providers/aws/) (Lambda, ECS Express Mode, S3 + CloudFront), [Cloudflare](https://terradart.dev/docs/providers/cloudflare/) and [Appwrite](https://terradart.dev/docs/providers/appwrite/).
 
 ---
 
