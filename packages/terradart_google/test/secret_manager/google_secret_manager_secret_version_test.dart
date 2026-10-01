@@ -77,10 +77,23 @@ void main() {
           payload: SecretManagerSecretVersionPlaintextPayload(secretData: data),
         );
 
-    test('a literal secret_data fails synth with SensitiveLiteralError', () {
+    test('a literal secret_data fails synth with a SensitiveLiteral issue', () {
       final stack = TestStack(providers: [const GoogleProvider(project: 'p')]);
       stack.add(plaintext(TfArg.literal('legacy-value')));
-      expect(() => stack.synth(), throwsA(isA<SensitiveLiteralError>()));
+      expect(
+        () => stack.synth(),
+        throwsA(
+          isA<SynthException>().having(
+            (e) => e.issues.single,
+            'issue',
+            isA<SensitiveLiteral>().having(
+              (i) => i.field,
+              'field',
+              'secret_data',
+            ),
+          ),
+        ),
+      );
     });
 
     test('a variable secret_data synths to a var reference', () {

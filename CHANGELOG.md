@@ -4,6 +4,16 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_migrate` — this top-level file summarises cross-cutting milestones.
 
+## [Unreleased]
+
+Targets 0.32.0. Read the `0.31.x → 0.32.0` section of [MIGRATING.md](MIGRATING.md).
+
+### Changed
+
+- **Synth reports every problem at once, as one sealed `SynthIssue` type.** `Stack.synth()` / `writeTo()` check the whole Stack first and throw one `SynthException` listing every issue — `NoProviders`, `MissingProvider`, `ProviderConflict`, `UndeclaredVariable`, `UnregisteredReference`, `SensitiveLiteral`, `InvalidTimeout`, `InvalidMoveTarget`, `UnresolvableConstant` — each with the address of the block that holds it and a fix. `Stack.validate()` returns them without throwing. Replaces the `StateError` / `SensitiveLiteralError` / `ArgumentError` synth used to throw at the first problem.
+- **Synth refuses a reference to a block the Stack does not hold** (`UnregisteredReference`): a resource read or `depends_on`'d but never passed to `add(...)` used to synthesize and fail at `terraform plan`. `Stack.addExternalBlock('<address>')` declares a block a hand-written file beside `main.tf.json` holds; `terradart-migrate` writes one for every block it keeps in the sidecar that the Stack still reads.
+- **Names are checked where they are registered.** `add`, `addData`, `addModule`, `addVariable` and `addExternalVariable` throw `ArgumentError` for a `localName` or variable name that is not a Terraform identifier, as `addOutput` already did.
+
 ## [0.31.0] - 2026-10-01
 
 Lockstep release across the workspace. **Breaking** for the Dart API of every package, not for Terraform: no provider pin moves, and synth output changes only where a typed reference now emits a different attribute. Every exactly-one and at-most-one input group is a sealed type named by concept and built with a Dart 3.10 dot shorthand (`code: .filename(...)`); arguments that name another resource take `RefTo<R>` (`network: vpc.ref`); `addOutput` / `addConstant` replace `addExport`, with a typed `<Stack>Outputs` reader and `outputEnvironment()`; Google blocks take derived helper classes (no `TfArg<Map>` block is left); generated type names are short; and every package requires Dart 3.10. Read the upgrade guide in [MIGRATING.md](MIGRATING.md) before bumping. The `terradart_google` catalog is **1366 curated resource factories + 468 data sources** (1834 entries).
