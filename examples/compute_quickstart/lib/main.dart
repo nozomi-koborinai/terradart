@@ -578,7 +578,7 @@ final class NetworkStack extends Stack {
         // rejects it ("Bulk mode is not supported for this Managed Instance
         // Group") — upstream's own example attaches bulk per-instance configs
         // to a plain MIG and only ignores target_size drift.
-        lifecycle: const LifecycleOptions(ignoreChanges: ['target_size']),
+        lifecycle: const .new(ignoreChanges: .of(['target_size'])),
         dependsOn: apiDeps,
       ),
     );
@@ -610,7 +610,7 @@ final class NetworkStack extends Stack {
             instanceTemplate: bulkWorkerTemplate.selfLink,
           ),
         ],
-        lifecycle: const LifecycleOptions(ignoreChanges: ['target_size']),
+        lifecycle: const .new(ignoreChanges: .of(['target_size'])),
         dependsOn: apiDeps,
       ),
     );
@@ -1034,7 +1034,7 @@ final class NetworkStack extends Stack {
             instanceTemplate: regionalWorkerTemplate.selfLink,
           ),
         ],
-        lifecycle: const LifecycleOptions(ignoreChanges: ['target_size']),
+        lifecycle: const .new(ignoreChanges: .of(['target_size'])),
         dependsOn: apiDeps,
       ),
     );

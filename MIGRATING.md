@@ -285,6 +285,28 @@ as well. An argument an override masks without the schema marking it
 (`metadataStartupScript`) keeps `TfArg<T>` and the synth-time
 `SensitiveLiteral` check.
 
+### Typed lifecycle
+
+`LifecycleOptions.ignoreChanges` is an `IgnoreChanges` rather than a list of
+strings, `replaceTriggeredBy` takes resources as well as attribute getters,
+and `conditions` writes `precondition` / `postcondition` blocks:
+
+| 0.31 | 0.32 |
+|------|------|
+| `ignoreChanges: ['target_size']` | `ignoreChanges: .of(['target_size'])` |
+| `ignoreChanges: ['all']` | `ignoreChanges: .all` |
+| `replaceTriggeredBy: [TfRef.resource(template)]` | `replaceTriggeredBy: [template]` |
+| `replaceTriggeredBy: [template.id]` | unchanged |
+| not available | `conditions: [.post(.expression(r'${self.state == "READY"}'), 'not ready')]` |
+| `lifecycle: const LifecycleOptions(...)` | `lifecycle: const .new(...)` (either works) |
+
+`createBeforeDestroy: false` and `preventDestroy: false` are now written to
+`main.tf.json` (0.31 dropped them), so a `false` that overrides the `true`
+Terraform propagates from a dependency takes effect. Synth reports an
+`InvalidLifecycle` for a data source in `replaceTriggeredBy`, an `'all'`
+inside `.of([...])`, and a condition with an empty error message.
+`terradart-migrate` writes the new forms, including the conditions.
+
 ## 0.30.x → 0.31.0
 
 0.31.0 is a breaking release for the Dart API of every package, but not for

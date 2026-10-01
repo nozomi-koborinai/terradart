@@ -14,7 +14,7 @@ enum ResourceKind { resource, data }
 /// the schemantic-backed dead chain that motivated them is fully retired.
 /// `Resource` is now flat: factories pass `argMap` and `sensitiveFields`,
 /// synth consumes both directly.
-abstract base class Resource implements TfAddressed {
+abstract base class Resource implements TfAddressed, ReplaceTrigger {
   Resource(
     this.localName, {
     required this.terraformType,

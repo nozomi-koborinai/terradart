@@ -8,7 +8,13 @@ export 'src/backends.dart' show GcsBackend, LocalBackend, S3Backend;
 export 'src/data.dart' show Data;
 export 'src/duplicate_resource_error.dart' show DuplicateResourceError;
 export 'src/duration_helper.dart' show TerraformDurationExt;
-export 'src/lifecycle.dart' show LifecycleOptions;
+export 'src/lifecycle.dart'
+    show
+        IgnoreAllChanges,
+        IgnoreAttributes,
+        IgnoreChanges,
+        LifecycleCondition,
+        LifecycleOptions;
 export 'src/module_call.dart' show DuplicateModuleError, ModuleCall;
 export 'src/ref_to.dart' show RefTo, RefToList;
 export 'src/resource.dart' show Resource, ResourceKind;
@@ -17,6 +23,7 @@ export 'src/synth/json_encoder.dart' show TfJsonEncoder;
 export 'src/synth/stack_synth.dart' show SynthResult;
 export 'src/synth/synth_issue.dart'
     show
+        InvalidLifecycle,
         InvalidMoveTarget,
         InvalidTimeout,
         MissingProvider,
@@ -33,6 +40,7 @@ export 'src/tf_arg.dart'
         AttributeRef,
         DataRef,
         ResourceRef,
+        ReplaceTrigger,
         Sensitive,
         TfAddressed,
         TfArg,
