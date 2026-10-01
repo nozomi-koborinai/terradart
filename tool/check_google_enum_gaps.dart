@@ -94,9 +94,10 @@ Set<String> _ctorStringFields(String tfType, Map<String, dynamic> ov) {
   final genFile = File(p.join(_genDir.path, outDir, '$tfType.dart'));
   if (!genFile.existsSync()) return {};
   final text = genFile.readAsStringSync();
-  final start = text.indexOf('({');
+  final start = text.indexOf('(super.localName, {');
+  if (start < 0) return {};
   final end = text.indexOf('}) : super(', start);
-  if (start < 0 || end < 0) return {};
+  if (end < 0) return {};
   final ctor = text.substring(start, end);
   final fields = <String>{};
   for (final m in RegExp(
