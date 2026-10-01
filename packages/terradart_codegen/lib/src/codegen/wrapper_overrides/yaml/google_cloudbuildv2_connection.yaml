@@ -72,14 +72,6 @@ deriveOutputGetters: true
 extraImports:
   - "import 'package:meta/meta.dart';"
 
-extraGetters: |2
-    /// Reference to the computed `installation_state` block. Surfaced as a
-    /// dynamic ref because the underlying type is a list of objects
-    /// (`stage`, `message`, `action_uri`) — index into it from HCL when
-    /// needed.
-    TfRef<Object?> get installationStateRef =>
-        TfRef.attribute<Object?>(this, 'installation_state');
-
 prelude: |
   // ===========================================================================
   // SCM configuration nested blocks (max_items=1 each). The Cloud Build v2

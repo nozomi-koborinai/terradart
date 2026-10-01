@@ -11,7 +11,7 @@ curatedDoc: |-
   ///
   /// Enable `oracledatabase.googleapis.com` before apply. Set [properties]
   /// with `shape`, `compute_count`, and `storage_count`. Downstream
-  /// [GoogleOracleDatabaseCloudVmCluster] references [nameRef].
+  /// [GoogleOracleDatabaseCloudVmCluster] references [name].
 
 paramOrder:
   - location

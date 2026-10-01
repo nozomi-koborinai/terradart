@@ -11,7 +11,7 @@ curatedDoc: |-
   /// Enable `chronicle.googleapis.com` before apply. Use [ChronicleNativeDashboardFilter]
   /// for `filters` blocks.
   ///
-  /// Pair with [GoogleChronicleDashboardChart] — charts reference [nameRef].
+  /// Pair with [GoogleChronicleDashboardChart] — charts reference [name].
 
 paramOrder:
   - location
