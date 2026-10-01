@@ -142,9 +142,9 @@ final class ComputeTargetHttpsProxySslCertificates
 ///   `google_compute_target_https_proxy.`).
 /// - `name`: GCP target proxy resource name. Pass
 ///   `TfArg.literal('lb-https-proxy')` or
-///   `TfArg.ref(otherProxy.nameRef)`.
+///   `otherProxy.name`.
 /// - `urlMap`: self-link of the upstream
-///   [GoogleComputeUrlMap]. Pass `TfArg.ref(urlMap.selfLink)` so the
+///   [GoogleComputeUrlMap]. Pass `urlMap.selfLink` so the
 ///   value resolves to
 ///   `${google_compute_url_map.<localName>.self_link}`.
 ///

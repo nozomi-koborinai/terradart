@@ -247,7 +247,7 @@ final class MonitoringNotificationChannelCredentialServiceKeyWo
 ///     'team': 'T01234ABCD',
 ///   }),
 ///   sensitiveLabels: MonitoringNotificationChannelSensitiveLabels(
-///     credential: .authTokenWo(.ref(slackBotTokenSecret.versionRef)),
+///     credential: .authTokenWo(slackBotTokenSecret.version),
 ///     authTokenWoVersion: .literal('1'),
 ///   ),
 ///   userLabels: .literal(const {'team': 'platform'}),

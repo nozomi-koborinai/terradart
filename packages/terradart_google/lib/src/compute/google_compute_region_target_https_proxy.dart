@@ -109,17 +109,17 @@ final class ComputeRegionTargetHttpsProxySslCertificates
 ///   `google_compute_region_target_https_proxy.`).
 /// - `name`: GCP target proxy resource name. Pass
 ///   `TfArg.literal('lb-https-proxy')` or
-///   `TfArg.ref(otherProxy.nameRef)`.
+///   `otherProxy.name`.
 /// - `urlMap`: self-link of the upstream
 ///   [GoogleComputeRegionUrlMap] (the *regional* URL map — not the
-///   global [GoogleComputeUrlMap]). Pass `TfArg.ref(urlMap.selfLink)`
+///   global [GoogleComputeUrlMap]). Pass `urlMap.selfLink`
 ///   so the value resolves to
 ///   `${google_compute_region_url_map.<localName>.self_link}`.
 /// - `region`: GCP region for the proxy. Although the provider schema
 ///   marks `region` as optional (falling back to the provider-level
 ///   region), this wrapper requires it so that regional resources stay
 ///   explicit in module call sites. Pass
-///   `TfArg.literal('us-central1')` or `TfArg.ref(var.region)`.
+///   `TfArg.literal('us-central1')` or `var.region`.
 ///
 /// TLS material — exactly one of:
 /// - `sslCertificates`: list of **regional** SSL certificates

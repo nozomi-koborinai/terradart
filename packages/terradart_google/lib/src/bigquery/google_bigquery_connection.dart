@@ -657,7 +657,7 @@ final class BigqueryConnectionConfiguration extends BigqueryConnectionBackend {
 ///     type: BigqueryConnectionCloudSqlType.postgres,
 ///     credential: .new(
 ///       username: TfArg.literal('bq_federation'),
-///       password: TfArg.ref(pgPasswordVar),
+///       password: pgPasswordVar,
 ///     ),
 ///   ),
 /// );

@@ -43,7 +43,7 @@ class LoggingFolderSinkExclusion {
 ///
 /// Folder-scoped sinks always mint a unique writer service account; grant
 /// it the destination-side IAM role (e.g. `roles/bigquery.dataEditor`) by
-/// passing `TfArg.ref(sink.writerIdentityRef)` to the IAM member resource.
+/// passing `sink.writerIdentity` to the IAM member resource.
 ///
 /// Example:
 /// ```dart

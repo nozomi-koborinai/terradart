@@ -39,7 +39,7 @@ final class PrivatecaCaPoolIamMemberCondition {
 ///
 /// Required identity:
 /// - [localName]: Terraform local name.
-/// - [caPool]: pool ID — `TfArg.ref(pool.id)` from [GooglePrivatecaCaPool].
+/// - [caPool]: pool ID — `pool.id` from [GooglePrivatecaCaPool].
 /// - [role]: CAS role (e.g. `roles/privateca.auditor`).
 /// - [member]: IAM principal (`user:…`, `group:…`, `serviceAccount:…`).
 ///

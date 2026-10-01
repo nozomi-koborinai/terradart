@@ -331,7 +331,7 @@ final class ComputeRegionNetworkEndpointGroupPscData {
 ///   region: TfArg.literal('asia-northeast1'),
 ///   serverless: .cloudRun(
 ///     .new(
-///       service: TfArg.ref(cloudRunService.nameRef),
+///       service: cloudRunService.name,
 ///     ),
 ///   ),
 /// );

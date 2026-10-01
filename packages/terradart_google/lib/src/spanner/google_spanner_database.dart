@@ -80,7 +80,7 @@ final class SpannerDatabaseEncryptionConfigKmsKeyNames
 ///
 /// Required identity:
 /// - [localName]: Terraform local name.
-/// - [instance]: parent instance — `TfArg.ref(spanner.id)` or name.
+/// - [instance]: parent instance — `spanner.id` or name.
 /// - [name]: database ID.
 ///
 /// Example:

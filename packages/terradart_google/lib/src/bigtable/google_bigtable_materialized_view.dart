@@ -18,7 +18,7 @@ const Set<String> _googleBigtableMaterializedViewSensitive = <String>{};
 /// - [localName]: Terraform local name.
 /// - [materializedViewId]: view ID within the instance.
 /// - [query]: SELECT query the view materializes.
-/// - [instance]: parent instance — pass `TfArg.ref(instance.nameRef)`.
+/// - [instance]: parent instance — pass `instance.name`.
 ///
 /// Example:
 /// ```dart

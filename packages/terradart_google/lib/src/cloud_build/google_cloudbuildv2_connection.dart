@@ -473,7 +473,7 @@ final class Cloudbuildv2ConnectionHostBitbucketDataCenterConfig
 /// [GoogleSecretManagerSecretVersion] (format
 /// `projects/*/secrets/*/versions/*`). The secret payload itself stays
 /// in Secret Manager; the connection only stores the reference. Wire
-/// these with `TfArg.ref(oauthVersion.id)` so changes to the underlying
+/// these with `oauthVersion.id` so changes to the underlying
 /// secret version propagate as a connection update.
 ///
 /// Example (GitHub OAuth connection):
@@ -486,7 +486,7 @@ final class Cloudbuildv2ConnectionHostBitbucketDataCenterConfig
 ///     .new(
 ///       appInstallationId: TfArg.literal(123456),
 ///       authorizerCredential: .new(
-///             oauthTokenSecretVersion: TfArg.ref(oauthSecretVersion.id),
+///             oauthTokenSecretVersion: oauthSecretVersion.id,
 ///           ),
 ///     ),
 ///   ),
@@ -495,7 +495,7 @@ final class Cloudbuildv2ConnectionHostBitbucketDataCenterConfig
 ///
 /// Cross-resource references:
 /// - Consumed by [GoogleCloudbuildv2Repository] via `parent_connection`
-///   = `TfArg.ref(connection.nameRef)`.
+///   = `connection.name`.
 ///
 /// Output-only state:
 /// - [installationStateRef]: per-stage installation progress
@@ -579,4 +579,11 @@ final class GoogleCloudbuildv2Connection extends Resource {
 
   /// Reference to `project` attribute.
   TfRef<String> get project => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to the computed `installation_state` block. Surfaced as a
+  /// dynamic ref because the underlying type is a list of objects
+  /// (`stage`, `message`, `action_uri`) — index into it from HCL when
+  /// needed.
+  TfRef<Object?> get installationStateRef =>
+      TfRef.attribute<Object?>(this, 'installation_state');
 }

@@ -245,7 +245,7 @@ class ComputeGlobalForwardingRuleServiceDirectoryRegistration {
 ///   `google_compute_global_forwarding_rule.`).
 /// - `name`: GCP forwarding rule resource name. 1-63 chars, RFC1035.
 /// - `target`: self-link of the upstream target proxy. Typical callers
-///   pass `TfArg.ref(targetHttpsProxy.selfLink)` — see
+///   pass `targetHttpsProxy.selfLink` — see
 ///   [GoogleComputeTargetHttpsProxy] / [GoogleComputeTargetHttpProxy].
 ///
 /// Strongly recommended:
@@ -291,8 +291,8 @@ class ComputeGlobalForwardingRuleServiceDirectoryRegistration {
 /// final feFwd = GoogleComputeGlobalForwardingRule(
 ///   localName: 'fe',
 ///   name: TfArg.literal('lb-https-frontend'),
-///   target: TfArg.ref(httpsProxy.selfLink),
-///   ipAddress: TfArg.ref(lbVip.selfLink),
+///   target: httpsProxy.selfLink,
+///   ipAddress: lbVip.selfLink,
 ///   ipProtocol: TfArg.literal(GlobalForwardingRuleIpProtocol.tcp),
 ///   portRange: TfArg.literal('443'),
 ///   loadBalancingScheme:

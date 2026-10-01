@@ -64,7 +64,7 @@ final class BigtableGcPolicyMaxVersion extends BigtableGcPolicyRule {
 /// Required identity:
 /// - [localName]: Terraform local name.
 /// - [instanceName]: parent instance ID.
-/// - [table]: table ID — pass `TfArg.ref(table.nameRef)`.
+/// - [table]: table ID — pass `table.name`.
 /// - [columnFamily]: column family name.
 /// - [policy]: [BigtableGcPolicyMaxAge] or [BigtableGcPolicyMaxVersion].
 ///

@@ -29,7 +29,7 @@ const Set<String> _googleNetappVolumeSnapshotSensitive = <String>{};
 ///   localName: 'snap',
 ///   name: TfArg.literal('daily'),
 ///   location: TfArg.literal('us-central1'),
-///   volumeName: TfArg.ref(vol.nameRef),
+///   volumeName: vol.name,
 /// );
 /// ```
 final class GoogleNetappVolumeSnapshot extends Resource {

@@ -30,7 +30,7 @@ class LoggingLinkedDatasetBigqueryDataset {
 ///   bucket: auditBucket.ref,
 ///   linkId: TfArg.literal('audit-analytics'),
 ///   bigqueryDataset: LoggingLinkedDatasetBigqueryDataset(
-///     datasetId: TfArg.ref(dataset.datasetIdRef),
+///     datasetId: dataset.datasetId,
 ///   ),
 /// );
 /// ```

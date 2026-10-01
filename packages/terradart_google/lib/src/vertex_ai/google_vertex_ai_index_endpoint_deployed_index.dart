@@ -118,8 +118,8 @@ final class VertexAiIndexEndpointDeployedIndexAuthProvider {
 /// GoogleVertexAiIndexEndpointDeployedIndex(
 ///   localName: 'dep',
 ///   deployedIndexId: TfArg.literal('terradart_dep'),
-///   indexEndpoint: endpoint.nameRef,
-///   index: index.nameRef,
+///   indexEndpoint: endpoint.name,
+///   index: index.name,
 ///   region: TfArg.literal('us-central1'),
 ///   automaticResources: VertexAiIndexEndpointDeployedIndexAutomaticResources(
 ///     minReplicaCount: TfArg.literal(1),

@@ -23,7 +23,7 @@ const Set<String> _googleManagedKafkaTopicSensitive = <String>{};
 /// GoogleManagedKafkaTopic(
 ///   localName: 'events',
 ///   topicId: TfArg.literal('events'),
-///   cluster: TfArg.ref(cluster.clusterIdRef),
+///   cluster: cluster.clusterId,
 ///   location: TfArg.literal('us-central1'),
 ///   replicationFactor: TfArg.literal(3),
 ///   partitionCount: TfArg.literal(3),

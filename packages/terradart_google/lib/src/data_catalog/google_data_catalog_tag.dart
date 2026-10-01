@@ -134,7 +134,7 @@ final class DataCatalogTagField {
 /// ```dart
 /// GoogleDataCatalogTag(
 ///   localName: 'entry_source',
-///   parent: TfArg.ref(entry.id),
+///   parent: entry.id,
 ///   template: template.ref,
 ///   fields: [
 ///     DataCatalogTagField(

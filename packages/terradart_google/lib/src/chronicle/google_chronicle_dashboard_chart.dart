@@ -496,7 +496,7 @@ class ChronicleDashboardChartQuery {
 ///
 /// Chronicle dashboard chart tile managed against a [GoogleChronicleNativeDashboard].
 ///
-/// Set [nativeDashboard] to `TfArg.ref(dashboard.nameRef)`. Use
+/// Set [nativeDashboard] to `dashboard.name`. Use
 /// [ChronicleDashboardChartLayout], [ChronicleDashboardChartSpec], and
 /// [ChronicleDashboardChartQuery] for the nested blocks.
 final class GoogleChronicleDashboardChart extends Resource {

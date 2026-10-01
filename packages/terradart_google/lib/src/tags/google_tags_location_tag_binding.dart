@@ -26,7 +26,7 @@ const Set<String> _googleTagsLocationTagBindingSensitive = <String>{};
 ///   parent: TfArg.literal(
 ///     '//artifactregistry.googleapis.com/projects/'
 ///     '${project.number.interpolation}/locations/asia-northeast1/'
-///     'repositories/${repo.repositoryIdRef.interpolation}',
+///     'repositories/${repo.repositoryId.interpolation}',
 ///   ),
 ///   tagValue: value.ref,
 ///   location: TfArg.literal('asia-northeast1'),

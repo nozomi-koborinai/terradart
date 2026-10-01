@@ -86,7 +86,7 @@ final class IamRoleInlinePolicy {
 /// AWS service assumes at runtime.
 ///
 /// `assumeRolePolicy` is the trust policy JSON. Build it with a
-/// [DataAwsIamPolicyDocument] and pass `TfArg.ref(doc.json)`, so the
+/// [DataAwsIamPolicyDocument] and pass `doc.json`, so the
 /// statements are typed Dart rather than a hand-written JSON string.
 /// Attach managed policies with [AwsIamRolePolicyAttachment].
 final class AwsIamRole extends Resource {

@@ -22,7 +22,7 @@ const Set<String> _googleComposerUserWorkloadsConfigMapSensitive = <String>{};
 /// GoogleComposerUserWorkloadsConfigMap(
 ///   localName: 'cfg',
 ///   name: TfArg.literal('app-config'),
-///   environment: TfArg.ref(env.nameRef),
+///   environment: env.name,
 ///   region: TfArg.literal('us-central1'),
 ///   data: TfArg.literal({
 ///     'KEY': 'value',

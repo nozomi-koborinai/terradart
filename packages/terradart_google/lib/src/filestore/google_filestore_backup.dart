@@ -19,7 +19,7 @@ const Set<String> _googleFilestoreBackupSensitive = <String>{};
 /// - [localName]: Terraform local name.
 /// - [name]: backup ID (unique within the instance).
 /// - [location]: region matching the source instance.
-/// - [sourceInstance]: full instance name — `TfArg.ref(instance.id)`.
+/// - [sourceInstance]: full instance name — `instance.id`.
 /// - [sourceFileShare]: export name from [GoogleFilestoreInstance].
 ///
 /// Example:

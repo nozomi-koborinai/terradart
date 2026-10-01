@@ -383,10 +383,10 @@ class ComputeAutoscalerScalingSchedule {
 ///   provider-level default zone, which makes the stack non-portable
 ///   across environments and silently scales the wrong MIG when callers
 ///   re-target. Pass `TfArg.literal('asia-northeast1-a')` or
-///   `TfArg.ref(...)` against a tfvar.
+///   `...` against a tfvar.
 /// - [target]: self-link to the `google_compute_instance_group_manager`
 ///   this autoscaler will scale. Pass
-///   `TfArg.ref(igm.selfLink)` — `igm.nameRef` (just the bare name) is
+///   `igm.selfLink` — `igm.name` (just the bare name) is
 ///   **not** sufficient because the API requires the full
 ///   `projects/{project}/zones/{zone}/instanceGroupManagers/{name}` URL.
 ///   Both resources must live in the **same zone**.
@@ -411,7 +411,7 @@ class ComputeAutoscalerScalingSchedule {
 ///   baseInstanceName: .literal('web'),
 ///   versions: [
 ///     ComputeInstanceGroupManagerVersion(
-///       instanceTemplate: .ref(template.selfLink),
+///       instanceTemplate: template.selfLink,
 ///     ),
 ///   ],
 /// );

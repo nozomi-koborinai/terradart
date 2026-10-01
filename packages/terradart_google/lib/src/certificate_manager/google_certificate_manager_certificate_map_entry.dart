@@ -87,10 +87,10 @@ final class CertificateManagerCertificateMapEntryMatchMatcher
 /// - [localName]: Terraform local name.
 /// - [name]: entry ID unique within the parent map.
 /// - [map]: full resource name of the parent map — pass
-///   `TfArg.ref(certMap.id)`.
+///   `certMap.id`.
 /// - [match]: the SNI hostname or predefined matcher this entry selects.
 /// - [certificates]: one or more certificate resource names — pass
-///   `TfArg.literal([cert.id.interpolation])` or `TfArg.ref(cert.id)`.
+///   `TfArg.literal([cert.id.interpolation])` or `cert.id`.
 ///
 /// Example:
 /// ```dart

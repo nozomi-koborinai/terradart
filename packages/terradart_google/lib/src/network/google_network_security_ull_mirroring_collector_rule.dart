@@ -69,7 +69,7 @@ class NetworkSecurityUllMirroringCollectorRuleMatch {
 ///
 /// ULL mirroring collector rule — traffic match criteria on a collector.
 ///
-/// Set [ullMirroringCollector] to `TfArg.ref(collector.nameRef)`. Requires a
+/// Set [ullMirroringCollector] to `collector.name`. Requires a
 /// [NetworkSecurityUllMirroringCollectorRuleMatch] block.
 final class GoogleNetworkSecurityUllMirroringCollectorRule extends Resource {
   static const String tfType =

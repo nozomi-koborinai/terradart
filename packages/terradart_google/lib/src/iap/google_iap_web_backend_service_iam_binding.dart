@@ -46,7 +46,7 @@ final class IapWebBackendServiceIamBindingCondition {
 /// Required identity:
 /// - [localName]: Terraform local name.
 /// - `webBackendService`: short backend service name (e.g.
-///   `'koborin-ai-dev-backend'`). Pass `TfArg.ref(backend.nameRef)` from
+///   `'koborin-ai-dev-backend'`). Pass `backend.name` from
 ///   [GoogleComputeBackendService].
 /// - `role`: typically `'roles/iap.httpsResourceAccessor'`.
 /// - `members`: IAM principal strings (`user:…`, `group:…`, `domain:…`).

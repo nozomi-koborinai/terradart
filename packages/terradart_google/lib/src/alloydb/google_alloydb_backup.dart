@@ -32,7 +32,7 @@ final class AlloydbBackupEncryptionConfig {
 /// Required identity:
 /// - [localName]: Terraform local name.
 /// - [backupId]: short backup ID.
-/// - [clusterName]: full cluster resource name — `TfArg.ref(cluster.id)`.
+/// - [clusterName]: full cluster resource name — `cluster.id`.
 /// - [location]: region matching the cluster.
 ///
 /// Example:

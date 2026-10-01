@@ -218,7 +218,7 @@ final class VertexAiFeatureOnlineStoreFeatureviewSyncConfigContinuous
 /// ```dart
 /// final fv = GoogleVertexAiFeatureOnlineStoreFeatureview(
 ///   localName: 'fv',
-///   featureOnlineStore: .ref(fos.nameRef),
+///   featureOnlineStore: fos.name,
 ///   name: .literal('customer_view'),
 ///   region: .literal('us-central1'),
 ///   source: .featureRegistrySource(

@@ -52,7 +52,7 @@ final class ManagedKafkaAclEntries {
 /// GoogleManagedKafkaAcl(
 ///   localName: 'eventsAcl',
 ///   aclId: TfArg.literal('topic/events'),
-///   cluster: TfArg.ref(cluster.clusterIdRef),
+///   cluster: cluster.clusterId,
 ///   location: TfArg.literal('us-central1'),
 ///   aclEntries: [
 ///     ManagedKafkaAclEntries(

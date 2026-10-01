@@ -29,7 +29,7 @@ enum NetworkSecurityUllMirroringCollectorDeletionPolicy
 ///
 /// ULL mirroring collector appliance bound to a [GoogleNetworkSecurityUllMirroringEngine].
 ///
-/// Set [engine] to `TfArg.ref(engine.nameRef)` and [forwardingRule] to a regional
+/// Set [engine] to `engine.name` and [forwardingRule] to a regional
 /// internal forwarding rule self-link receiving mirrored traffic.
 final class GoogleNetworkSecurityUllMirroringCollector extends Resource {
   static const String tfType =

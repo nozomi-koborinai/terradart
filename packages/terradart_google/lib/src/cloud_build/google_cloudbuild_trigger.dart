@@ -1398,7 +1398,7 @@ final class CloudbuildTriggerWebhookConfig {
 ///   serviceAccount: .of(runner),
 ///   buildSpec: .filename(.literal('cloudbuild.yaml')),
 ///   repositoryEventConfig: CloudbuildTriggerRepositoryEventConfig(
-///     repository: .ref(repository.id),
+///     repository: repository.id,
 ///     event: .pullRequest(
 ///       .new(
 ///         branch: .literal(r'^main$'),

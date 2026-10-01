@@ -127,7 +127,7 @@ final class VertexAiFeaturestoreEntitytypeSnapshotAnalysis {
 /// ```dart
 /// GoogleVertexAiFeaturestoreEntitytype(
 ///   localName: 'user',
-///   featurestore: store.nameRef,
+///   featurestore: store.name,
 ///   name: TfArg.literal('user'),
 /// );
 /// ```

@@ -229,7 +229,7 @@ enum BigtableAppProfilePriority implements TerraformEnum {
 /// Required identity:
 /// - [localName]: Terraform local name.
 /// - [appProfileId]: profile ID within the instance.
-/// - [instance]: parent instance — pass `TfArg.ref(instance.nameRef)`.
+/// - [instance]: parent instance — pass `instance.name`.
 /// - [routing]: pick exactly one [BigtableAppProfileRouting] variant
 ///   (single-cluster, or multi-cluster across
 ///   [multiClusterRoutingClusterIds]). [isolation] optionally picks

@@ -325,7 +325,7 @@ final class GkeBackupBackupPlanRetentionPolicy {
 /// - [localName]: Terraform local name.
 /// - `name`: backup plan ID (unique per project/location).
 /// - `location`: GCP region (e.g. `'asia-northeast1'`).
-/// - `cluster`: target cluster — typically `TfArg.ref(cluster.id)`.
+/// - `cluster`: target cluster — typically `cluster.id`.
 ///
 /// Pair with [GoogleGkeBackupRestorePlan] for restore workflows.
 final class GoogleGkeBackupBackupPlan extends Resource {

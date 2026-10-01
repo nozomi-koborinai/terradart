@@ -768,7 +768,7 @@ final class MonitoringSloMetricSumInRange {
 /// ```dart
 /// GoogleMonitoringSlo(
 ///   localName: 'api_availability',
-///   service: .ref(apiService.nameRef),
+///   service: apiService.name,
 ///   goal: .literal(0.99),
 ///   displayName: .literal('API availability'),
 ///   period: .rollingPeriodDays(.literal(30)),

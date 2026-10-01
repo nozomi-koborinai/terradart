@@ -27,7 +27,7 @@ const Set<String> _googleOsLoginSshPublicKeySensitive = <String>{};
 /// ```dart
 /// GoogleOsLoginSshPublicKey(
 ///   localName: 'dummy',
-///   user: TfArg.ref(sa.email),
+///   user: sa.email,
 ///   key: TfArg.literal(
 ///     'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMlTZg5RNgdRr0tVBEkKHZOi3VCrR2eoC7e5stONs4Uw terradart-dummy',
 ///   ),

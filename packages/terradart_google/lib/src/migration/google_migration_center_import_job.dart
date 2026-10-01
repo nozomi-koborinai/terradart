@@ -27,7 +27,7 @@ enum MigrationCenterImportJobDeletionPolicy implements TerraformEnum {
 ///
 /// Migration Center import job that ingests uploaded data into a source.
 ///
-/// Set [assetSource] to `TfArg.ref(source.nameRef)`.
+/// Set [assetSource] to `source.name`.
 final class GoogleMigrationCenterImportJob extends Resource {
   static const String tfType = 'google_migration_center_import_job';
 

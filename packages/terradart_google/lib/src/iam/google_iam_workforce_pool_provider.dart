@@ -432,7 +432,7 @@ final class IamWorkforcePoolProviderSaml {
 /// GoogleIamWorkforcePoolProvider(
 ///   localName: 'oidc',
 ///   location: .literal('global'),
-///   workforcePoolId: .ref(pool.workforcePoolIdRef),
+///   workforcePoolId: pool.workforcePoolId,
 ///   providerId: .literal('terradart-oidc'),
 ///   trustSource: .oidc(
 ///     .new(

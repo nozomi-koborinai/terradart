@@ -43,7 +43,7 @@ const Set<String> _googleServiceNetworkingConnectionSensitive = <String>{};
 /// - `reservedPeeringRanges`: one or more `name` values from
 ///   [GoogleComputeGlobalAddress] resources with
 ///   `purpose: vpcPeering`. The provider rejects full self_links here —
-///   pass `TfArg.ref(psaRange.nameRef)`.
+///   pass `psaRange.name`.
 ///
 /// Example (full Cloud SQL private-IP chain — see also the
 /// `cloud_sql_quickstart` example):

@@ -37,8 +37,8 @@ enum WorkstationsWorkstationState implements TerraformEnum {
 /// GoogleWorkstationsWorkstation(
 ///   localName: 'alice',
 ///   workstationId: TfArg.literal('alice'),
-///   workstationConfigId: TfArg.ref(cfg.workstationConfigIdRef),
-///   workstationClusterId: TfArg.ref(cluster.workstationClusterIdRef),
+///   workstationConfigId: cfg.workstationConfigId,
+///   workstationClusterId: cluster.workstationClusterId,
 ///   location: TfArg.literal('us-central1'),
 /// );
 /// ```

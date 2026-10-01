@@ -42,7 +42,7 @@ const Set<String> _googleCesAppRootAgentAssociationSensitive = <String>{};
 /// GoogleCesAppRootAgentAssociation(
 ///   localName: 'root',
 ///   appId: app.ref,
-///   agentId: TfArg.ref(agent.agentIdRef),
+///   agentId: agent.agentId,
 /// );
 /// ```
 final class GoogleCesAppRootAgentAssociation extends Resource {

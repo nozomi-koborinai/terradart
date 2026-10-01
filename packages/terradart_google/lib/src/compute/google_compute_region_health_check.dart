@@ -504,7 +504,7 @@ class ComputeRegionHealthCheckLogConfig {
 ///   falls back to the provider-level default region, which is rarely
 ///   what callers want and makes the resource non-portable across
 ///   environments. Pass `TfArg.literal('asia-northeast1')` or
-///   `TfArg.ref(...)` against a tfvar.
+///   `...` against a tfvar.
 ///
 /// Example (HTTPS regional health check):
 /// ```dart

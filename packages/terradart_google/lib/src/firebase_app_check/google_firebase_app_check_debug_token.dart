@@ -39,7 +39,7 @@ const Set<String> _googleFirebaseAppCheckDebugTokenSensitive = <String>{
 ///   localName: 'ci_runner',
 ///   appId: TfArg.literal('1:1234567890:web:abcdef'),
 ///   displayName: TfArg.literal('CI runner (e2e tests)'),
-///   token: TfArg.ref(uuid.result),
+///   token: uuid.result,
 /// );
 /// ```
 ///

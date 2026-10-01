@@ -88,7 +88,7 @@ final class RedisClusterUserCreatedConnectionsPscConnection {
 /// ```dart
 /// GoogleRedisClusterUserCreatedConnections(
 ///   localName: 'rc_conn',
-///   name: cluster.nameRef,
+///   name: cluster.name,
 ///   region: TfArg.literal('us-central1'),
 /// );
 /// ```

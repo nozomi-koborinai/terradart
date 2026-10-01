@@ -15,7 +15,7 @@ const Set<String> _googleDataCatalogPolicyTagSensitive = <String>{};
 ///
 /// Data Catalog **policy tag** under a [GoogleDataCatalogTaxonomy] (legacy
 /// Data Catalog API). Pass [taxonomy] as the parent taxonomy resource name
-/// (`TfArg.ref(taxonomy.id)`).
+/// (`taxonomy.id`).
 ///
 /// Example:
 /// ```dart

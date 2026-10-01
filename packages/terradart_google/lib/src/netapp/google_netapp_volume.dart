@@ -553,7 +553,7 @@ enum NetappVolumeTierAction implements TerraformEnum {
 ///   localName: 'vol',
 ///   name: TfArg.literal('data'),
 ///   location: TfArg.literal('us-central1'),
-///   storagePool: TfArg.ref(pool.nameRef),
+///   storagePool: pool.name,
 ///   capacityGib: TfArg.literal('100'),
 ///   protocols: TfArg.literal(['NFSV3']),
 ///   shareName: TfArg.literal('data'),

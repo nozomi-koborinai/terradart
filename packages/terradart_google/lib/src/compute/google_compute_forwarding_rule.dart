@@ -175,7 +175,7 @@ class ComputeForwardingRuleServiceDirectoryRegistration {
 /// - `target` **or** `backendService` (exactly one):
 ///   - `target`: self-link of an upstream regional target proxy. Required
 ///     for proxy / Application Load Balancers. Typical L7 callers pass
-///     `TfArg.ref(regionTargetHttpsProxy.selfLink)`.
+///     `regionTargetHttpsProxy.selfLink`.
 ///   - `backendService`: self-link of a regional backend service.
 ///     Required for **Internal TCP/UDP Load Balancing** and Network Load
 ///     Balancing; **must be omitted** for all other LB types. Wave 6
@@ -236,10 +236,10 @@ class ComputeForwardingRuleServiceDirectoryRegistration {
 ///   localName: 'ilb',
 ///   name: TfArg.literal('ilb-https-frontend'),
 ///   region: TfArg.literal('us-central1'),
-///   target: TfArg.ref(regionTargetHttpsProxy.selfLink),
+///   target: regionTargetHttpsProxy.selfLink,
 ///   network: vpc.ref,
 ///   subnetwork: ilbSubnet.ref,
-///   ipAddress: TfArg.ref(ilbVip.selfLink),
+///   ipAddress: ilbVip.selfLink,
 ///   ipProtocol: TfArg.literal(ForwardingRuleIpProtocol.tcp),
 ///   portRange: TfArg.literal('443'),
 ///   loadBalancingScheme:

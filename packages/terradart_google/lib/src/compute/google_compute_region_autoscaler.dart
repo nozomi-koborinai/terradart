@@ -383,11 +383,11 @@ class ComputeRegionAutoscalerScalingSchedule {
 ///   falls back to the provider-level default region, which makes the
 ///   stack non-portable across environments and silently scales the
 ///   wrong MIG when callers re-target. Pass
-///   `TfArg.literal('asia-northeast1')` or `TfArg.ref(...)` against a
+///   `TfArg.literal('asia-northeast1')` or `...` against a
 ///   tfvar.
 /// - [target]: self-link to the
 ///   `google_compute_region_instance_group_manager` this autoscaler will
-///   scale. Pass `TfArg.ref(rigm.selfLink)` — `rigm.nameRef` (just the
+///   scale. Pass `rigm.selfLink` — `rigm.name` (just the
 ///   bare name) is **not** sufficient because the API requires the full
 ///   `projects/{project}/regions/{region}/instanceGroupManagers/{name}`
 ///   URL. Both resources must live in the **same region**.
@@ -412,7 +412,7 @@ class ComputeRegionAutoscalerScalingSchedule {
 ///   baseInstanceName: .literal('web'),
 ///   versions: [
 ///     ComputeRegionInstanceGroupManagerVersion(
-///       instanceTemplate: .ref(template.selfLink),
+///       instanceTemplate: template.selfLink,
 ///     ),
 ///   ],
 /// );
@@ -420,7 +420,7 @@ class ComputeRegionAutoscalerScalingSchedule {
 ///   localName: 'web_autoscaler',
 ///   name: TfArg.literal('web-autoscaler'),
 ///   region: TfArg.literal('asia-northeast1'),
-///   target: TfArg.ref(rigm.selfLink),
+///   target: rigm.selfLink,
 ///   autoscalingPolicy: ComputeRegionAutoscalerAutoscalingPolicy(
 ///     minReplicas: .literal(2),
 ///     maxReplicas: .literal(20),

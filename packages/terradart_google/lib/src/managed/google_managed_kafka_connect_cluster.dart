@@ -92,7 +92,7 @@ final class ManagedKafkaConnectClusterNetworkConfigs {
 /// GoogleManagedKafkaConnectCluster(
 ///   localName: 'connect',
 ///   connectClusterId: TfArg.literal('terradart-connect'),
-///   kafkaCluster: TfArg.ref(cluster.nameRef),
+///   kafkaCluster: cluster.name,
 ///   location: TfArg.literal('us-central1'),
 ///   capacityConfig: ManagedKafkaConnectClusterCapacityConfig(
 ///     vcpuCount: TfArg.literal('3'),
@@ -102,7 +102,7 @@ final class ManagedKafkaConnectClusterNetworkConfigs {
 ///     accessConfig: .new(
 ///       networkConfigs: [
 ///         .new(
-///           primarySubnet: TfArg.ref(subnet.id),
+///           primarySubnet: subnet.id,
 ///         ),
 ///       ],
 ///     ),
@@ -191,4 +191,11 @@ final class GoogleManagedKafkaConnectCluster extends Resource {
 
   /// Reference to `project` attribute.
   TfRef<String> get project => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `connect_cluster_id` attribute.
+  TfRef<String> get connectClusterIdRef =>
+      TfRef.attribute<String>(this, 'connect_cluster_id');
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

@@ -38,7 +38,7 @@ enum MigrationCenterImportDataFileFormat implements TerraformEnum {
 ///
 /// Migration Center import data file — upload slot for an import job payload.
 ///
-/// Set [importJob] to `TfArg.ref(importJob.nameRef)` and pick a [format]
+/// Set [importJob] to `importJob.name` and pick a [format]
 /// matching the file you upload to the signed URI in [uploadFileInfo].
 final class GoogleMigrationCenterImportDataFile extends Resource {
   static const String tfType = 'google_migration_center_import_data_file';

@@ -82,7 +82,7 @@ final class SqlUserPasswordPolicy {
 /// - [localName]: Terraform local name (the address segment after
 ///   `google_sql_user.`).
 /// - `instance`: parent Cloud SQL instance name. Typically
-///   `TfArg.ref(sqlInstance.nameRef)`. Immutable.
+///   `sqlInstance.name`. Immutable.
 /// - `name`: database username. Immutable.
 ///
 /// Optional knobs:

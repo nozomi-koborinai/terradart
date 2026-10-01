@@ -74,7 +74,7 @@ final class ComputeNetworkParams {
 /// Required identity:
 /// - [localName]: Terraform local name.
 /// - `name`: GCP VPC network name. Pass `TfArg.literal('main-vpc')` or
-///   `TfArg.ref(otherNetwork.nameRef)`.
+///   `otherNetwork.name`.
 ///
 /// Example:
 /// ```dart

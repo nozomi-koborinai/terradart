@@ -226,7 +226,7 @@ final class ComputeSubnetworkParams {
 /// Required identity:
 /// - [localName]: Terraform local name.
 /// - `name`: GCP subnetwork name. Pass `TfArg.literal('main-subnet')` or
-///   `TfArg.ref(otherSubnet.nameRef)`.
+///   `otherSubnet.name`.
 /// - `network`: the parent VPC. Pass `vpc.ref` so the value resolves to
 ///   `${google_compute_network.<localName>.id}`.
 ///

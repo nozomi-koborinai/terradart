@@ -66,7 +66,7 @@ class CloudbuildWorkerPoolNetworkConfig {
 
   /// Self-link of the VPC the workers peer to. Must use the
   /// `projects/{project_number}/global/networks/{network}` form — pass
-  /// `TfArg.ref(vpc.selfLink)` so the value resolves correctly. Note
+  /// `vpc.selfLink` so the value resolves correctly. Note
   /// the path requires a project NUMBER, not a project ID.
   final TfArg<String> peeredNetwork;
 
@@ -154,7 +154,7 @@ class CloudbuildWorkerPoolPrivateServiceConnect {
 ///     noExternalIp: TfArg.literal(true),
 ///   ),
 ///   networkConfig: CloudbuildWorkerPoolNetworkConfig(
-///     peeredNetwork: TfArg.ref(vpc.selfLink),
+///     peeredNetwork: vpc.selfLink,
 ///     peeredNetworkIpRange: TfArg.literal('/29'),
 ///   ),
 /// );

@@ -46,7 +46,7 @@ final class ApigeeInstanceAccessLoggingConfig {
 ///   localName: 'runtime',
 ///   name: TfArg.literal('terradart-apigee'),
 ///   location: TfArg.literal('us-central1'),
-///   orgId: org.nameRef,
+///   orgId: org.name,
 /// );
 /// ```
 final class GoogleApigeeInstance extends Resource {

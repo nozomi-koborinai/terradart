@@ -91,7 +91,7 @@ final class DataCatalogEntryGcsFilesetSpec {
 /// - [DataCatalogEntryCustomType] — `user_specified_type` (+ optional
 ///   [userSpecifiedSystem])
 ///
-/// Pass [entryGroup] as the parent entry-group id (`TfArg.ref(group.id)`).
+/// Pass [entryGroup] as the parent entry-group id (`group.id`).
 ///
 /// Example (custom entry):
 /// ```dart

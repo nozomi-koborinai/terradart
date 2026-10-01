@@ -434,7 +434,7 @@ final class WorkstationsWorkstationConfigReadinessChecks {
 /// GoogleWorkstationsWorkstationConfig(
 ///   localName: 'cfg',
 ///   workstationConfigId: TfArg.literal('dev'),
-///   workstationClusterId: TfArg.ref(cluster.workstationClusterIdRef),
+///   workstationClusterId: cluster.workstationClusterId,
 ///   location: TfArg.literal('us-central1'),
 ///   host: WorkstationsWorkstationConfigHost(
 ///     gceInstance: .new(

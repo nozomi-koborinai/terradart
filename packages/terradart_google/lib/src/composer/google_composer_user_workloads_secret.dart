@@ -21,7 +21,7 @@ const Set<String> _googleComposerUserWorkloadsSecretSensitive = <String>{
 /// GoogleComposerUserWorkloadsSecret(
 ///   localName: 'sec',
 ///   name: TfArg.literal('app-secret'),
-///   environment: TfArg.ref(env.nameRef),
+///   environment: env.name,
 ///   region: TfArg.literal('us-central1'),
 ///   data: TfArg.literal({
 ///     'PASSWORD': 'redacted',

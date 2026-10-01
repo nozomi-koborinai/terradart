@@ -609,7 +609,7 @@ final class PrivatecaCertificateAuthorityUserDefinedAccessUrls {
 /// Required identity:
 /// - [localName]: Terraform local name.
 /// - [certificateAuthorityId]: short CA ID within the pool.
-/// - [pool]: full CAS pool ID — `TfArg.ref(pool.id)` from [GooglePrivatecaCaPool].
+/// - [pool]: full CAS pool ID — `pool.id` from [GooglePrivatecaCaPool].
 /// - [location]: regional location (match the pool).
 /// - [config]: subject + X.509 profile ([PrivatecaCertificateAuthorityConfig]).
 /// - [keySpec]: managed key algorithm ([PrivatecaCertificateAuthorityKeySpec]).

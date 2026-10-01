@@ -47,7 +47,7 @@ final class BigtableTableAutomatedBackupPolicy {
 ///
 /// Required identity:
 /// - [localName]: Terraform local name.
-/// - [instanceName]: parent instance ID — pass `TfArg.ref(instance.nameRef)`.
+/// - [instanceName]: parent instance ID — pass `instance.name`.
 /// - [name]: table ID (1-50 chars, hyphens, underscores, letters).
 /// - [columnFamily]: at least one [BigtableTableColumnFamily].
 ///

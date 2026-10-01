@@ -17,7 +17,7 @@ const Set<String> _googleFirebaseAppHostingDefaultDomainSensitive = <String>{};
 /// - [localName]: Terraform local name (the address segment after
 ///   `google_firebase_app_hosting_default_domain.`).
 /// - `backend`: ID of the backend that this default domain is attached to.
-///   Typically `TfArg.ref(backend.backendIdRef)` where `backend` is a
+///   Typically `backend.backendId` where `backend` is a
 ///   [GoogleFirebaseAppHostingBackend].
 /// - `location`: GCP region of the backend (e.g. `'us-central1'`).
 /// - `domain_id`: Default domain name, which for App Hosting follows the

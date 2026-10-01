@@ -168,7 +168,7 @@ final class FirebaseAppHostingTrafficRoutingTarget
 /// - [localName]: Terraform local name (the address segment after
 ///   `google_firebase_app_hosting_traffic.`).
 /// - `backend`: ID of the backend whose traffic this resource configures.
-///   Typically `TfArg.ref(backend.backendIdRef)` where `backend` is a
+///   Typically `backend.backendId` where `backend` is a
 ///   [GoogleFirebaseAppHostingBackend].
 /// - `location`: GCP region of the backend.
 ///

@@ -523,7 +523,7 @@ final class PrivatecaCertificatePolicyIds {
 /// Required identity:
 /// - [localName]: Terraform local name.
 /// - [name]: certificate ID within the pool.
-/// - [pool]: CAS pool — `.ref(pool.id)` from [GooglePrivatecaCaPool].
+/// - [pool]: CAS pool — `pool.id` from [GooglePrivatecaCaPool].
 /// - [location]: regional location (match the pool).
 ///
 /// Issue via CSR (`request: .pemCsr(...)`) or an inline config

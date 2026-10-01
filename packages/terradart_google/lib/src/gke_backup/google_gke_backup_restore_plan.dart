@@ -627,8 +627,8 @@ enum GkeBackupRestorePlanPolicy implements TerraformEnum {
 /// - [localName]: Terraform local name.
 /// - `name`: restore plan ID (unique per project/location).
 /// - `location`: GCP region (e.g. `'asia-northeast1'`).
-/// - `backupPlan`: source plan — `TfArg.ref(backupPlan.nameRef)`.
-/// - `cluster`: target cluster — `TfArg.ref(cluster.id)`.
+/// - `backupPlan`: source plan — `backupPlan.name`.
+/// - `cluster`: target cluster — `cluster.id`.
 final class GoogleGkeBackupRestorePlan extends Resource {
   static const String tfType = 'google_gke_backup_restore_plan';
 

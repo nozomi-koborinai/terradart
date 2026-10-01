@@ -244,7 +244,7 @@ final class AlloydbInstanceReadPoolConfig {
 ///
 /// Required identity:
 /// - [localName]: Terraform local name.
-/// - [cluster]: parent cluster ID — `TfArg.ref(cluster.id)`.
+/// - [cluster]: parent cluster ID — `cluster.id`.
 /// - [instanceId]: short instance ID within the cluster.
 /// - [instanceType]: [AlloydbInstanceType.primary] for the first node.
 /// - [machineConfig]: CPU count (and optional machine type).

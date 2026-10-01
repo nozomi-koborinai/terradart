@@ -61,7 +61,7 @@ final class ContainerAnalysisOccurrenceSignatures {
 /// ```dart
 /// GoogleContainerAnalysisOccurrence(
 ///   localName: 'image_attestation',
-///   noteName: TfArg.ref(note.id),
+///   noteName: note.id,
 ///   resourceUri: TfArg.literal('https://gcr.io/$projectId/app@sha256:…'),
 ///   attestation: ContainerAnalysisOccurrenceAttestation(
 ///     serializedPayload: TfArg.literal('<base64-payload>'),

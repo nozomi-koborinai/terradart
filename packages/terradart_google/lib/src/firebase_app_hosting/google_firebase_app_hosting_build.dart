@@ -99,7 +99,7 @@ final class FirebaseAppHostingBuildContainer {
 /// - [localName]: Terraform local name (the address segment after
 ///   `google_firebase_app_hosting_build.`).
 /// - `backend`: ID of the backend this build belongs to. Typically
-///   `TfArg.ref(backend.backendIdRef)` where `backend` is a
+///   `backend.backendId` where `backend` is a
 ///   [GoogleFirebaseAppHostingBackend].
 /// - `location`: GCP region of the backend.
 /// - `build_id`: Stable user-chosen identifier of this build.

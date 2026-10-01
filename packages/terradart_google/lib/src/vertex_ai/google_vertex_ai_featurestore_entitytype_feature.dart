@@ -30,7 +30,7 @@ const Set<String> _googleVertexAiFeaturestoreEntitytypeFeatureSensitive =
 /// ```dart
 /// GoogleVertexAiFeaturestoreEntitytypeFeature(
 ///   localName: 'age',
-///   entitytype: entity.nameRef,
+///   entitytype: entity.name,
 ///   name: TfArg.literal('age'),
 ///   valueType: TfArg.literal('INT64'),
 /// );

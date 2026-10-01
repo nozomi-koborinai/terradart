@@ -28,7 +28,7 @@ enum MigrationCenterDiscoveryClientDeletionPolicy implements TerraformEnum {
 ///
 /// Migration Center on-prem discovery client bound to a [GoogleMigrationCenterSource].
 ///
-/// Set [source] to `TfArg.ref(source.nameRef)` and [serviceAccount] to the
+/// Set [source] to `source.name` and [serviceAccount] to the
 /// discovery agent service account email.
 final class GoogleMigrationCenterDiscoveryClient extends Resource {
   static const String tfType = 'google_migration_center_discovery_client';

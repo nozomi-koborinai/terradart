@@ -35890,6 +35890,11 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'project',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'installation_state',
+          dartName: 'installationStateRef',
+          dartType: 'Object?',
+        ),
       ],
     ),
     MigrateEntry(
@@ -122582,6 +122587,12 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'project',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'connect_cluster_id',
+          dartName: 'connectClusterIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(

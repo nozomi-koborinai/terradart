@@ -18,7 +18,7 @@ const Set<String> _googleBigtableLogicalViewSensitive = <String>{};
 /// - [localName]: Terraform local name.
 /// - [logicalViewId]: view ID within the instance.
 /// - [query]: SELECT query defining the view.
-/// - [instance]: parent instance — pass `TfArg.ref(instance.nameRef)`.
+/// - [instance]: parent instance — pass `instance.name`.
 ///
 /// Example:
 /// ```dart

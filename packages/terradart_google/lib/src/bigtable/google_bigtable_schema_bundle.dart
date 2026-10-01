@@ -30,8 +30,8 @@ class BigtableSchemaBundleProtoSchema {
 /// Required identity:
 /// - [localName]: Terraform local name.
 /// - [schemaBundleId]: bundle ID within the instance.
-/// - [instance]: parent instance — pass `TfArg.ref(instance.nameRef)`.
-/// - [table]: parent table — pass `TfArg.ref(table.nameRef)`.
+/// - [instance]: parent instance — pass `instance.name`.
+/// - [table]: parent table — pass `table.name`.
 /// - [protoSchema]: [BigtableSchemaBundleProtoSchema] with base64 descriptors.
 ///
 /// Example:

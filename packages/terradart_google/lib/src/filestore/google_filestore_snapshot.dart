@@ -19,7 +19,7 @@ const Set<String> _googleFilestoreSnapshotSensitive = <String>{};
 /// - [localName]: Terraform local name.
 /// - [name]: snapshot ID (unique within the instance).
 /// - [location]: region matching the source instance.
-/// - [instance]: parent instance — `TfArg.ref(nfs.id)`.
+/// - [instance]: parent instance — `nfs.id`.
 ///
 /// Example:
 /// ```dart

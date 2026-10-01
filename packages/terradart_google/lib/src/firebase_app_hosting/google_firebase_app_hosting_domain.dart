@@ -65,7 +65,7 @@ class FirebaseAppHostingDomainRedirect {
 /// - [localName]: Terraform local name (the address segment after
 ///   `google_firebase_app_hosting_domain.`).
 /// - `backend`: ID of the backend this domain is attached to. Typically
-///   `TfArg.ref(backend.backendIdRef)` where `backend` is a
+///   `backend.backendId` where `backend` is a
 ///   [GoogleFirebaseAppHostingBackend].
 /// - `location`: GCP region of the backend.
 /// - `domain_id`: Fully qualified custom domain name, e.g. `'www.example.com'`.

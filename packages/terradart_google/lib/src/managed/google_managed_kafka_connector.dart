@@ -41,7 +41,7 @@ final class ManagedKafkaConnectorTaskRestartPolicy {
 /// GoogleManagedKafkaConnector(
 ///   localName: 'sink',
 ///   connectorId: TfArg.literal('gcs-sink'),
-///   connectCluster: TfArg.ref(connect.connectClusterIdRef),
+///   connectCluster: connect.connectClusterId,
 ///   location: TfArg.literal('us-central1'),
 ///   configs: TfArg.literal({
 ///     'connector.class': 'com.example.SinkConnector',
