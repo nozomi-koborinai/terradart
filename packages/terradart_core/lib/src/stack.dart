@@ -677,7 +677,11 @@ abstract base class Stack {
   /// inspect them without the throw, e.g. in a test.
   ///
   /// ```dart
-  /// expect(OrdersStack().validate(), isEmpty);
+  /// void report(Stack stack) {
+  ///   for (final issue in stack.validate()) {
+  ///     print(issue);
+  ///   }
+  /// }
   /// ```
   List<SynthIssue> validate() => StackValidator.validate(this);
 
