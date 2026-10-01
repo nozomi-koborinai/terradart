@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../bigtable/google_bigtable_instance.dart' show GoogleBigtableInstance;
+import '../bigtable/google_bigtable_table.dart' show GoogleBigtableTable;
+
 /// Sensitive field paths for `google_bigtable_authorized_view`.
 const Set<String> _googleBigtableAuthorizedViewSensitive = <String>{};
 
@@ -33,8 +36,8 @@ class BigtableAuthorizedViewSubsetView {
 /// ```dart
 /// GoogleBigtableAuthorizedView(
 ///   localName: 'tenant_a',
-///   instanceName: TfArg.ref(instance.nameRef),
-///   tableName: TfArg.ref(table.nameRef),
+///   instanceName: instance.ref,
+///   tableName: table.ref,
 ///   name: TfArg.literal('tenant-a'),
 ///   subsetView: BigtableAuthorizedViewSubsetView(
 ///     rowPrefixes: [TfArg.literal('tenant-a#')],
@@ -46,8 +49,8 @@ final class GoogleBigtableAuthorizedView extends Resource {
 
   GoogleBigtableAuthorizedView({
     required super.localName,
-    required TfArg<String> instanceName,
-    required TfArg<String> tableName,
+    required RefTo<GoogleBigtableInstance> instanceName,
+    required RefTo<GoogleBigtableTable> tableName,
     required TfArg<String> name,
     BigtableAuthorizedViewSubsetView? subsetView,
     TfArg<String>? deletionPolicy,
@@ -60,8 +63,8 @@ final class GoogleBigtableAuthorizedView extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'instance_name': instanceName,
-           'table_name': tableName,
+           'instance_name': instanceName.encodeAs('name'),
+           'table_name': tableName.encodeAs('name'),
            'name': name,
            if (subsetView != null)
              'subset_view': TfArg.literal([subsetView.toArgMap()]),

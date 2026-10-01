@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../privateca/google_privateca_ca_pool.dart' show GooglePrivatecaCaPool;
+
 /// Sensitive field paths for `google_certificate_manager_certificate_issuance_config`.
 const Set<String> _googleCertificateManagerCertificateIssuanceConfigSensitive =
     <String>{};
@@ -26,9 +28,11 @@ final class CertificateManagerCertificateIssuanceConfigCertificateAuthorityServi
     required this.caPool,
   });
 
-  final TfArg<String> caPool;
+  final RefTo<GooglePrivatecaCaPool> caPool;
 
-  Map<String, Object?> encode() => {'ca_pool': caPool};
+  Map<String, Object?> encode() => {
+    'ca_pool': caPool.encodeAs('id').toTfJson(),
+  };
 }
 
 /// Certificate authority backend for [GoogleCertificateManagerCertificateIssuanceConfig].
@@ -73,9 +77,7 @@ final class CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfi
 ///       CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfig(
 ///     certificateAuthorityServiceConfig:
 ///         CertificateManagerCertificateIssuanceConfigCertificateAuthorityServiceConfig(
-///       caPool: TfArg.literal(
-///         'projects/my-project/locations/us-central1/caPools/my-pool',
-///       ),
+///       caPool: pool.ref,
 ///     ),
 ///   ),
 ///   keyAlgorithm: TfArg.literal(

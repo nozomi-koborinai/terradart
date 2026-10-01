@@ -41,7 +41,7 @@ final class NetworkSecurityGatewayPolicyStack extends Stack {
         localName: 'allow_example',
         name: .literal('terradart-allow-example'),
         location: .literal('us-central1'),
-        gatewaySecurityPolicy: .ref(policy.nameRef),
+        gatewaySecurityPolicy: policy.ref,
         enabled: .literal(true),
         priority: .literal(1),
         sessionMatcher: .literal("host() == 'example.com'"),

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../bigtable/google_bigtable_instance.dart' show GoogleBigtableInstance;
+
 /// Sensitive field paths for `google_bigtable_table`.
 const Set<String> _googleBigtableTableSensitive = <String>{};
 
@@ -53,7 +55,7 @@ final class BigtableTableAutomatedBackupPolicy {
 /// ```dart
 /// GoogleBigtableTable(
 ///   localName: 'events',
-///   instanceName: TfArg.ref(instance.nameRef),
+///   instanceName: instance.ref,
 ///   name: TfArg.literal('events'),
 ///   columnFamily: [
 ///     BigtableTableColumnFamily(family: TfArg.literal('cf1')),
@@ -65,7 +67,7 @@ final class GoogleBigtableTable extends Resource {
 
   GoogleBigtableTable({
     required super.localName,
-    required TfArg<String> instanceName,
+    required RefTo<GoogleBigtableInstance> instanceName,
     required TfArg<String> name,
     List<BigtableTableColumnFamily>? columnFamily,
     BigtableTableAutomatedBackupPolicy? automatedBackupPolicy,
@@ -80,7 +82,7 @@ final class GoogleBigtableTable extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'instance_name': instanceName,
+           'instance_name': instanceName.encodeAs('name'),
            'name': name,
            if (columnFamily != null)
              'column_family': TfArg.literal(

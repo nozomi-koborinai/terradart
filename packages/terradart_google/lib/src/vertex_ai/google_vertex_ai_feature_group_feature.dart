@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../vertex_ai/google_vertex_ai_feature_group.dart'
+    show GoogleVertexAiFeatureGroup;
+
 /// Sensitive field paths for `google_vertex_ai_feature_group_feature`.
 const Set<String> _googleVertexAiFeatureGroupFeatureSensitive = <String>{};
 
@@ -27,7 +30,7 @@ const Set<String> _googleVertexAiFeatureGroupFeatureSensitive = <String>{};
 /// ```dart
 /// GoogleVertexAiFeatureGroupFeature(
 ///   localName: 'score',
-///   featureGroup: TfArg.ref(group.nameRef),
+///   featureGroup: group.ref,
 ///   name: TfArg.literal('feature_score'),
 ///   region: TfArg.literal('us-central1'),
 ///   versionColumnName: TfArg.literal('feature_score'),
@@ -38,7 +41,7 @@ final class GoogleVertexAiFeatureGroupFeature extends Resource {
 
   GoogleVertexAiFeatureGroupFeature({
     required super.localName,
-    required TfArg<String> featureGroup,
+    required RefTo<GoogleVertexAiFeatureGroup> featureGroup,
     required TfArg<String> name,
     required TfArg<String> region,
     TfArg<String>? description,
@@ -53,7 +56,7 @@ final class GoogleVertexAiFeatureGroupFeature extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'feature_group': featureGroup,
+           'feature_group': featureGroup.encodeAs('name'),
            'name': name,
            'region': region,
            'description': ?description,

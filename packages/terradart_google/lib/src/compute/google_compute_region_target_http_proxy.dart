@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_region_url_map.dart'
+    show GoogleComputeRegionUrlMap;
+
 /// Sensitive field paths for `google_compute_region_target_http_proxy`.
 const Set<String> _googleComputeRegionTargetHttpProxySensitive = <String>{};
 
@@ -44,7 +47,7 @@ const Set<String> _googleComputeRegionTargetHttpProxySensitive = <String>{};
 /// final httpProxy = GoogleComputeRegionTargetHttpProxy(
 ///   localName: 'lb_http',
 ///   name: TfArg.literal('lb-http-proxy'),
-///   urlMap: TfArg.ref(regionUrlMap.selfLink),
+///   urlMap: regionUrlMap.ref,
 ///   region: TfArg.literal('us-central1'),
 /// );
 /// ```
@@ -58,7 +61,7 @@ final class GoogleComputeRegionTargetHttpProxy extends Resource {
   GoogleComputeRegionTargetHttpProxy({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> urlMap,
+    required RefTo<GoogleComputeRegionUrlMap> urlMap,
     required TfArg<String> region,
     TfArg<num>? httpKeepAliveTimeoutSec,
     TfArg<String>? description,
@@ -71,7 +74,7 @@ final class GoogleComputeRegionTargetHttpProxy extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'url_map': urlMap,
+           'url_map': urlMap.encodeAs('self_link'),
            'region': region,
            'http_keep_alive_timeout_sec': ?httpKeepAliveTimeoutSec,
            'description': ?description,

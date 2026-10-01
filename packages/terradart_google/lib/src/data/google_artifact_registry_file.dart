@@ -2,6 +2,8 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../artifact_registry/google_artifact_registry_repository.dart'
+    show GoogleArtifactRegistryRepository;
 
 /// Sensitive field paths for `google_artifact_registry_file`.
 const Set<String> _googleArtifactRegistryFileSensitive = <String>{};
@@ -20,7 +22,7 @@ final class DataGoogleArtifactRegistryFile extends Data {
     required TfArg<String> outputPath,
     TfArg<bool>? overwrite,
     TfArg<String>? project,
-    required TfArg<String> repositoryId,
+    required RefTo<GoogleArtifactRegistryRepository> repositoryId,
     super.provider,
     super.timeouts,
   }) : super(
@@ -31,7 +33,7 @@ final class DataGoogleArtifactRegistryFile extends Data {
            'output_path': outputPath,
            'overwrite': ?overwrite,
            'project': ?project,
-           'repository_id': repositoryId,
+           'repository_id': repositoryId.encodeAs('repository_id'),
          },
        );
 

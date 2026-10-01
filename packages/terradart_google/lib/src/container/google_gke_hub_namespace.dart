@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../container/google_gke_hub_scope.dart' show GoogleGkeHubScope;
+
 /// Sensitive field paths for `google_gke_hub_namespace`.
 const Set<String> _googleGkeHubNamespaceSensitive = <String>{};
 
@@ -15,8 +17,8 @@ final class GoogleGkeHubNamespace extends Resource {
   GoogleGkeHubNamespace({
     required super.localName,
     required TfArg<String> scopeNamespaceId,
-    required TfArg<String> scopeId,
-    required TfArg<String> scope,
+    required RefTo<GoogleGkeHubScope> scopeId,
+    required RefTo<GoogleGkeHubScope> scope,
     TfArg<Map<String, String>>? labels,
     TfArg<Map<String, String>>? namespaceLabels,
     TfArg<String>? project,
@@ -28,8 +30,8 @@ final class GoogleGkeHubNamespace extends Resource {
          terraformType: tfType,
          argMap: {
            'scope_namespace_id': scopeNamespaceId,
-           'scope_id': scopeId,
-           'scope': scope,
+           'scope_id': scopeId.encodeAs('scope_id'),
+           'scope': scope.encodeAs('name'),
            'labels': ?labels,
            'namespace_labels': ?namespaceLabels,
            'project': ?project,

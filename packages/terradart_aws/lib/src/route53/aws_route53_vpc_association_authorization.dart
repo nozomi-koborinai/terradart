@@ -4,6 +4,7 @@
 import 'package:terradart_core/terradart_core.dart';
 
 import '../ec2/aws_vpc.dart' show AwsVpc;
+import '../route53/aws_route53_zone.dart' show AwsRoute53Zone;
 
 /// Sensitive field paths for `aws_route53_vpc_association_authorization`.
 const Set<String> _awsRoute53VpcAssociationAuthorizationSensitive = <String>{};
@@ -70,7 +71,7 @@ final class AwsRoute53VpcAssociationAuthorization extends Resource {
     required super.localName,
     required RefTo<AwsVpc> vpcId,
     TfArg<Route53VpcAssociationAuthorizationVpcRegion>? vpcRegion,
-    required TfArg<String> zoneId,
+    required RefTo<AwsRoute53Zone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -80,7 +81,7 @@ final class AwsRoute53VpcAssociationAuthorization extends Resource {
          argMap: {
            'vpc_id': vpcId.encodeAs('id'),
            'vpc_region': ?vpcRegion,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('zone_id'),
          },
        );
 

@@ -67,7 +67,7 @@ final class TagsStack extends Stack {
       GoogleTagsTagValue(
         localName: 'prod',
         shortName: .literal('production'),
-        parent: .ref(envKey.id),
+        parent: envKey.ref,
         description: .literal('Production environment'),
       ),
     );
@@ -81,7 +81,7 @@ final class TagsStack extends Stack {
           '//cloudresourcemanager.googleapis.com/projects/'
           '${current.number.interpolation}',
         ),
-        tagValue: .ref(prodValue.id),
+        tagValue: prodValue.ref,
         dependsOn: [ResourceDependency(prodValue)],
       ),
     );

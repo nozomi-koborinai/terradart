@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../dataplex/google_dataplex_lake.dart' show GoogleDataplexLake;
+
 /// Sensitive field paths for `google_dataplex_zone`.
 const Set<String> _googleDataplexZoneSensitive = <String>{};
 
@@ -128,7 +130,7 @@ final class GoogleDataplexZone extends Resource {
   GoogleDataplexZone({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> lake,
+    required RefTo<GoogleDataplexLake> lake,
     required TfArg<String> location,
     required TfArg<DataplexZoneType> type,
     TfArg<String>? displayName,
@@ -146,7 +148,7 @@ final class GoogleDataplexZone extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'lake': lake,
+           'lake': lake.encodeAs('name'),
            'location': location,
            'type': type,
            'display_name': ?displayName,

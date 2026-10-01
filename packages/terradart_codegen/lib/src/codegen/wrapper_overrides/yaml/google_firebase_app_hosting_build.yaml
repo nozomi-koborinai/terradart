@@ -21,7 +21,7 @@ curatedDoc: |-
   /// ```dart
   /// final build = GoogleFirebaseAppHostingBuild(
   ///   localName: 'v1',
-  ///   backend: TfArg.ref(backend.backendIdRef),
+  ///   backend: backend.ref,
   ///   location: TfArg.literal('us-central1'),
   ///   buildId: TfArg.literal('v1'),
   ///   source: .codebase(
@@ -35,7 +35,7 @@ curatedDoc: |-
   /// ```dart
   /// final build = GoogleFirebaseAppHostingBuild(
   ///   localName: 'v1',
-  ///   backend: TfArg.ref(backend.backendIdRef),
+  ///   backend: backend.ref,
   ///   location: TfArg.literal('us-central1'),
   ///   buildId: TfArg.literal('v1'),
   ///   source: .container(

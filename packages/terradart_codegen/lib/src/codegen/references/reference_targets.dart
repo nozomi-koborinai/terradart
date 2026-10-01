@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:yaml/yaml.dart';
 
+import '../../parser/mm_yaml_parser.dart';
 import '../naming.dart';
 
 /// One rule of the reference-target ledger (`tool/reference_targets.yaml`):
@@ -50,6 +51,46 @@ final class ReferenceRule {
   final bool inherited;
 }
 
+/// The `- mm: resource-refs` entry of a ledger section: every Magic Modules
+/// `ResourceRef` input of a curated resource names the MM resource it
+/// imports from, in the same product, and emits the attribute it imports —
+/// unless an explicit rule claims the input first, [attributes] picks
+/// another attribute or [exclude] leaves it a string.
+final class MmReferenceRule {
+  const MmReferenceRule({this.attributes = const {}, this.exclude = const {}});
+
+  /// `<resource type>.<path>` → the attribute that input emits instead.
+  final Map<String, String> attributes;
+
+  /// `<resource type>.<path>` inputs that stay strings.
+  final Set<String> exclude;
+}
+
+/// The `- mm: resource-refs` entry of [providerSource]'s section, or null.
+MmReferenceRule? loadMmReferenceRule(String path, String providerSource) {
+  final doc = loadYaml(
+    File(path).readAsStringSync(),
+    sourceUrl: Uri.file(path),
+  );
+  final section = doc is YamlMap ? doc[providerSource] : null;
+  if (section is! YamlList) return null;
+  for (final (i, raw) in section.indexed) {
+    if (raw is! YamlMap || !raw.containsKey('mm')) continue;
+    final context = '$path: $providerSource[$i]';
+    for (final key in raw.keys) {
+      if (!const {'mm', 'attributes', 'exclude'}.contains(key)) {
+        throw FormatException('$context: unknown key "$key" beside mm');
+      }
+    }
+    if (raw['mm'] != 'resource-refs') {
+      throw FormatException('$context: mm must be "resource-refs"');
+    }
+    final (:attributes, :exclude) = _exceptions(raw, context: context);
+    return MmReferenceRule(attributes: attributes, exclude: exclude);
+  }
+  return null;
+}
+
 /// Loads the rules of [providerSource] (`hashicorp/google`) from the ledger
 /// at [path]; an empty list when the ledger has no section for it.
 List<ReferenceRule> loadReferenceRules(String path, String providerSource) {
@@ -70,7 +111,7 @@ List<ReferenceRule> loadReferenceRules(String path, String providerSource) {
     for (final (i, raw) in section.indexed)
       if (raw is YamlMap && raw.containsKey('inherit'))
         ..._inheritRules(doc, raw, context: '$path: $providerSource[$i]')
-      else
+      else if (raw is! YamlMap || !raw.containsKey('mm'))
         _parseRule(raw, context: '$path: $providerSource[$i]'),
   ];
 }
@@ -98,6 +139,8 @@ List<ReferenceRule> _inheritRules(
     for (final (i, rule) in section.indexed)
       if (rule is YamlMap && rule.containsKey('inherit'))
         throw FormatException('$context: $source[$i] inherits in turn')
+      else if (rule is YamlMap && rule.containsKey('mm'))
+        ...const <ReferenceRule>[]
       else
         _parseRule(
           rule,
@@ -288,6 +331,8 @@ ReferenceResolution resolveReferences({
   required Map<String, String> targetDirs,
   Map<String, Map<String, dynamic>> dataSourceSchemas = const {},
   ExternalTargets? external,
+  MmReferenceRule? mmRule,
+  Map<String, MmResourceOverrides> mm = const {},
   bool complete = true,
 }) {
   final errors = <String>[];
@@ -403,6 +448,68 @@ ReferenceResolution resolveReferences({
       }
     }
   }
+  if (mmRule != null) {
+    final matched = <String>{};
+    for (final type in curated) {
+      final overrides = mm[type];
+      final slots = inputs[(type: type, data: false)];
+      if (overrides == null || slots == null) continue;
+      final prefix = _mmProductPrefix(type, overrides.name);
+      if (prefix == null) continue;
+      for (final MapEntry(key: path, value: (:resource, :imports))
+          in overrides.resourceRefs.entries) {
+        final list = slots[path];
+        if (list == null) continue;
+        final target = '$prefix${mmSnakeCase(resource)}';
+        if (target == type && !path.contains('.')) continue;
+        var targetDir = targetDirs[target];
+        var targetBlock = resourceSchemas[target];
+        var targetData = dataSourceSchemas[target];
+        String? package;
+        if ((targetDir == null || targetBlock == null) && external != null) {
+          targetDir = external.dirs[target];
+          targetBlock = external.resourceSchemas[target];
+          targetData = external.dataSourceSchemas[target];
+          package = external.package;
+        }
+        if (targetDir == null || targetBlock == null) continue;
+        final key = '$type.$path';
+        matched.add(key);
+        if (claimedBy.containsKey(key) || mmRule.exclude.contains(key)) {
+          continue;
+        }
+        final attribute = mmRule.attributes[key] ?? mmSnakeCase(imports);
+        final exported =
+            _attributeNames(targetBlock).contains(attribute) &&
+            (targetData == null ||
+                _attributeNames(targetData).contains(attribute));
+        if (!exported) {
+          if (mmRule.attributes.containsKey(key)) {
+            errors.add(
+              'mm: "$key" emits "$attribute", which $target does not export',
+            );
+          }
+          continue;
+        }
+        claimedBy[key] = 'mm';
+        (byResource[type] ??= {})[path] = ResolvedReference(
+          target: target,
+          className: snakeToPascal(target),
+          outputDir: targetDir,
+          package: package,
+          attribute: attribute,
+          list: list,
+        );
+      }
+    }
+    if (complete) {
+      for (final key in {...mmRule.attributes.keys, ...mmRule.exclude}) {
+        if (!matched.contains(key)) {
+          errors.add('mm: "$key" is not a ResourceRef input of a curated type');
+        }
+      }
+    }
+  }
   if (rules.where((r) => r.inherited).firstOrNull case final rule?
       when complete) {
     for (final key in rule.attributes.keys) {
@@ -471,6 +578,21 @@ Map<String, bool> stringInputs(Map<String, dynamic> block) {
   walk(block, '');
   return out;
 }
+
+/// `google_compute_` for `google_compute_router_nat`, whose MM `name` is
+/// `RouterNat`; null when the type does not end with the name.
+String? _mmProductPrefix(String type, String? name) {
+  if (name == null) return null;
+  final suffix = mmSnakeCase(name);
+  if (!type.endsWith('_$suffix')) return null;
+  return type.substring(0, type.length - suffix.length);
+}
+
+/// Magic Modules' lowerCamel / Pascal names as Terraform snake_case
+/// (`selfLink` → `self_link`, `Hl7V2Store` → `hl7_v2_store`).
+String mmSnakeCase(String camel) => camel
+    .replaceAllMapped(RegExp('(?<=[a-z0-9])([A-Z])'), (m) => '_${m[1]}')
+    .toLowerCase();
 
 Set<String> _attributeNames(Map<String, dynamic> block) =>
     ((block['attributes'] as Map?)?.keys.cast<String>() ?? const <String>[])

@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../discovery_engine/google_discovery_engine_search_engine.dart'
+    show GoogleDiscoveryEngineSearchEngine;
+
 /// Sensitive field paths for `google_discovery_engine_serving_config`.
 const Set<String> _googleDiscoveryEngineServingConfigSensitive = <String>{};
 
@@ -28,7 +31,7 @@ final class GoogleDiscoveryEngineServingConfig extends Resource {
     required super.localName,
     required TfArg<String> location,
     TfArg<String>? collectionId,
-    required TfArg<String> engineId,
+    required RefTo<GoogleDiscoveryEngineSearchEngine> engineId,
     TfArg<String>? servingConfigId,
     TfArg<List<String>>? synonymsControlIds,
     TfArg<List<String>>? filterControlIds,
@@ -45,7 +48,7 @@ final class GoogleDiscoveryEngineServingConfig extends Resource {
          argMap: {
            'location': location,
            'collection_id': ?collectionId,
-           'engine_id': engineId,
+           'engine_id': engineId.encodeAs('engine_id'),
            'serving_config_id': ?servingConfigId,
            'synonyms_control_ids': ?synonymsControlIds,
            'filter_control_ids': ?filterControlIds,

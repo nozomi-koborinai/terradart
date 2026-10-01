@@ -24,7 +24,7 @@ curatedDoc: |-
   ///   localName: 'promote',
   ///   name: .literal('terradart-automation'),
   ///   location: .literal('us-central1'),
-  ///   deliveryPipeline: .ref(pipeline.nameRef),
+  ///   deliveryPipeline: pipeline.ref,
   ///   serviceAccount: .of(deployer),
   ///   suspended: .literal(true),
   ///   selector: ClouddeployAutomationSelector(

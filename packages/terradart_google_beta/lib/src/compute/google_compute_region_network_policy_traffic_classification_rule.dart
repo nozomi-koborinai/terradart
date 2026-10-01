@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_region_network_policy.dart'
+    show GoogleComputeRegionNetworkPolicy;
+
 /// Sensitive field paths for `google_compute_region_network_policy_traffic_classification_rule`.
 const Set<String>
 _googleComputeRegionNetworkPolicyTrafficClassificationRuleSensitive =
@@ -231,7 +234,7 @@ final class GoogleComputeRegionNetworkPolicyTrafficClassificationRule
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     TfArg<bool>? disabled,
-    required TfArg<String> networkPolicy,
+    required RefTo<GoogleComputeRegionNetworkPolicy> networkPolicy,
     required TfArg<num> priority,
     TfArg<String>? project,
     TfArg<String>? region,
@@ -250,7 +253,7 @@ final class GoogleComputeRegionNetworkPolicyTrafficClassificationRule
            'deletion_policy': ?deletionPolicy,
            'description': ?description,
            'disabled': ?disabled,
-           'network_policy': networkPolicy,
+           'network_policy': networkPolicy.encodeAs('name'),
            'priority': priority,
            'project': ?project,
            'region': ?region,

@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../acm/aws_acm_certificate.dart' show AwsAcmCertificate;
+import '../cloudfront/aws_cloudfront_cache_policy.dart'
+    show AwsCloudfrontCachePolicy;
+import '../cloudfront/aws_cloudfront_origin_access_control.dart'
+    show AwsCloudfrontOriginAccessControl;
 import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
 import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 
@@ -112,7 +117,7 @@ final class CloudfrontDistributionDefaultCacheBehavior {
 
   final TfArg<List<String>> allowedMethods;
 
-  final TfArg<String>? cachePolicyId;
+  final RefTo<AwsCloudfrontCachePolicy>? cachePolicyId;
 
   final TfArg<List<String>> cachedMethods;
 
@@ -153,7 +158,7 @@ final class CloudfrontDistributionDefaultCacheBehavior {
 
   Map<String, Object?> encode() => {
     'allowed_methods': allowedMethods.toTfJson(),
-    'cache_policy_id': ?cachePolicyId?.toTfJson(),
+    'cache_policy_id': ?cachePolicyId?.encodeAs('id').toTfJson(),
     'cached_methods': cachedMethods.toTfJson(),
     'compress': ?compress?.toTfJson(),
     'default_ttl': ?defaultTtl?.toTfJson(),
@@ -372,7 +377,7 @@ final class CloudfrontDistributionOrderedCacheBehavior {
 
   final TfArg<List<String>> allowedMethods;
 
-  final TfArg<String>? cachePolicyId;
+  final RefTo<AwsCloudfrontCachePolicy>? cachePolicyId;
 
   final TfArg<List<String>> cachedMethods;
 
@@ -415,7 +420,7 @@ final class CloudfrontDistributionOrderedCacheBehavior {
 
   Map<String, Object?> encode() => {
     'allowed_methods': allowedMethods.toTfJson(),
-    'cache_policy_id': ?cachePolicyId?.toTfJson(),
+    'cache_policy_id': ?cachePolicyId?.encodeAs('id').toTfJson(),
     'cached_methods': cachedMethods.toTfJson(),
     'compress': ?compress?.toTfJson(),
     'default_ttl': ?defaultTtl?.toTfJson(),
@@ -469,7 +474,7 @@ final class CloudfrontDistributionOrigin {
 
   final TfArg<String> domainName;
 
-  final TfArg<String>? originAccessControlId;
+  final RefTo<AwsCloudfrontOriginAccessControl>? originAccessControlId;
 
   final TfArg<String> originId;
 
@@ -491,7 +496,9 @@ final class CloudfrontDistributionOrigin {
     'connection_attempts': ?connectionAttempts?.toTfJson(),
     'connection_timeout': ?connectionTimeout?.toTfJson(),
     'domain_name': domainName.toTfJson(),
-    'origin_access_control_id': ?originAccessControlId?.toTfJson(),
+    'origin_access_control_id': ?originAccessControlId
+        ?.encodeAs('id')
+        .toTfJson(),
     'origin_id': originId.toTfJson(),
     'origin_path': ?originPath?.toTfJson(),
     'response_completion_timeout': ?responseCompletionTimeout?.toTfJson(),
@@ -775,7 +782,7 @@ final class CloudfrontDistributionViewerCertificate {
     this.sslSupportMethod,
   });
 
-  final TfArg<String>? acmCertificateArn;
+  final RefTo<AwsAcmCertificate>? acmCertificateArn;
 
   final TfArg<bool>? cloudfrontDefaultCertificate;
 
@@ -787,7 +794,7 @@ final class CloudfrontDistributionViewerCertificate {
   final TfArg<CloudfrontDistributionSslSupportMethod>? sslSupportMethod;
 
   Map<String, Object?> encode() => {
-    'acm_certificate_arn': ?acmCertificateArn?.toTfJson(),
+    'acm_certificate_arn': ?acmCertificateArn?.encodeAs('arn').toTfJson(),
     'cloudfront_default_certificate': ?cloudfrontDefaultCertificate?.toTfJson(),
     'iam_certificate_id': ?iamCertificateId?.toTfJson(),
     'minimum_protocol_version': ?minimumProtocolVersion?.toTfJson(),

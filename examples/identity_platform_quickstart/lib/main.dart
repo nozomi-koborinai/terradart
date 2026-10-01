@@ -63,7 +63,7 @@ final class IdentityPlatformStack extends Stack {
       GoogleIdentityPlatformTenantOauthIdpConfig(
         localName: 'demo_oidc',
         name: .literal('oidc.terradart'),
-        tenant: .ref(tenant.nameRef),
+        tenant: tenant.ref,
         displayName: .literal('TerraDart dummy OIDC'),
         issuer: .literal('https://accounts.example.com'),
         clientId: .literal('terradart-dummy-client'),

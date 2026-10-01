@@ -70,7 +70,7 @@ final class RegistryStack extends Stack {
       GoogleServiceDirectoryService(
         localName: 'api',
         serviceId: .literal('api'),
-        namespace: .ref(namespace.id),
+        namespace: namespace.ref,
         metadata: .literal(const {'protocol': 'grpc'}),
         dependsOn: [ResourceDependency(namespace)],
       ),
@@ -80,7 +80,7 @@ final class RegistryStack extends Stack {
       GoogleServiceDirectoryEndpoint(
         localName: 'api_primary',
         endpointId: .literal('api-primary'),
-        service: .ref(service.id),
+        service: service.ref,
         address: .literal('10.0.0.42'),
         port: .literal(443),
         metadata: .literal(const {'weight': '100'}),

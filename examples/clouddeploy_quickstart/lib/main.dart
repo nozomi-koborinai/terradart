@@ -180,7 +180,7 @@ final class DeployStack extends Stack {
         localName: 'promote',
         name: .literal('terradart-automation'),
         location: .literal('us-central1'),
-        deliveryPipeline: .ref(pipeline.nameRef),
+        deliveryPipeline: pipeline.ref,
         serviceAccount: deployer.ref,
         suspended: .literal(true),
         selector: ClouddeployAutomationSelector(

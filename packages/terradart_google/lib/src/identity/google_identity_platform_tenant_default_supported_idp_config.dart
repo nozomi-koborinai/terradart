@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../identity/google_identity_platform_tenant.dart'
+    show GoogleIdentityPlatformTenant;
+
 /// Sensitive field paths for `google_identity_platform_tenant_default_supported_idp_config`.
 const Set<String>
 _googleIdentityPlatformTenantDefaultSupportedIdpConfigSensitive = <String>{};
@@ -35,7 +38,7 @@ final class GoogleIdentityPlatformTenantDefaultSupportedIdpConfig
     TfArg<bool>? enabled,
     required TfArg<String> idpId,
     TfArg<String>? project,
-    required TfArg<String> tenant,
+    required RefTo<GoogleIdentityPlatformTenant> tenant,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -49,7 +52,7 @@ final class GoogleIdentityPlatformTenantDefaultSupportedIdpConfig
            'enabled': ?enabled,
            'idp_id': idpId,
            'project': ?project,
-           'tenant': tenant,
+           'tenant': tenant.encodeAs('name'),
          },
        );
 

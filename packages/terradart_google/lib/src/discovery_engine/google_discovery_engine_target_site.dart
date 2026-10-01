@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../discovery_engine/google_discovery_engine_data_store.dart'
+    show GoogleDiscoveryEngineDataStore;
+
 /// Sensitive field paths for `google_discovery_engine_target_site`.
 const Set<String> _googleDiscoveryEngineTargetSiteSensitive = <String>{};
 
@@ -48,7 +51,7 @@ final class GoogleDiscoveryEngineTargetSite extends Resource {
   GoogleDiscoveryEngineTargetSite({
     required super.localName,
     required TfArg<String> location,
-    required TfArg<String> dataStoreId,
+    required RefTo<GoogleDiscoveryEngineDataStore> dataStoreId,
     required TfArg<String> providedUriPattern,
     TfArg<DiscoveryEngineTargetSiteType>? type,
     TfArg<bool>? exactMatch,
@@ -62,7 +65,7 @@ final class GoogleDiscoveryEngineTargetSite extends Resource {
          terraformType: tfType,
          argMap: {
            'location': location,
-           'data_store_id': dataStoreId,
+           'data_store_id': dataStoreId.encodeAs('data_store_id'),
            'provided_uri_pattern': providedUriPattern,
            'type': ?type,
            'exact_match': ?exactMatch,

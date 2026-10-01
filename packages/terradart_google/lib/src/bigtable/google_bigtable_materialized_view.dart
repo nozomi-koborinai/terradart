@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../bigtable/google_bigtable_instance.dart' show GoogleBigtableInstance;
+
 /// Sensitive field paths for `google_bigtable_materialized_view`.
 const Set<String> _googleBigtableMaterializedViewSensitive = <String>{};
 
@@ -23,7 +25,7 @@ const Set<String> _googleBigtableMaterializedViewSensitive = <String>{};
 /// GoogleBigtableMaterializedView(
 ///   localName: 'daily_counts',
 ///   materializedViewId: TfArg.literal('daily-counts'),
-///   instance: TfArg.ref(instance.nameRef),
+///   instance: instance.ref,
 ///   query: TfArg.literal(
 ///     'SELECT COUNT(*) AS cnt FROM events GROUP BY day',
 ///   ),
@@ -36,7 +38,7 @@ final class GoogleBigtableMaterializedView extends Resource {
     required super.localName,
     required TfArg<String> materializedViewId,
     required TfArg<String> query,
-    TfArg<String>? instance,
+    RefTo<GoogleBigtableInstance>? instance,
     TfArg<String>? deletionPolicy,
     TfArg<bool>? deletionProtection,
     TfArg<String>? project,
@@ -49,7 +51,7 @@ final class GoogleBigtableMaterializedView extends Resource {
          argMap: {
            'materialized_view_id': materializedViewId,
            'query': query,
-           'instance': ?instance,
+           'instance': ?instance?.encodeAs('name'),
            'deletion_policy': ?deletionPolicy,
            'deletion_protection': ?deletionProtection,
            'project': ?project,

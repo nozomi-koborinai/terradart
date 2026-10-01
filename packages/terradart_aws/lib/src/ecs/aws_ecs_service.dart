@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
 import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../ecs/aws_ecs_cluster.dart' show AwsEcsCluster;
 import '../iam/aws_iam_role.dart' show AwsIamRole;
 import '../kms/aws_kms_key.dart' show AwsKmsKey;
 
@@ -910,7 +911,7 @@ final class AwsEcsService extends Resource {
   AwsEcsService({
     required super.localName,
     TfArg<EcsServiceAvailabilityZoneRebalancing>? availabilityZoneRebalancing,
-    TfArg<String>? cluster,
+    RefTo<AwsEcsCluster>? cluster,
     TfArg<num>? deploymentMaximumPercent,
     TfArg<num>? deploymentMinimumHealthyPercent,
     TfArg<num>? desiredCount,
@@ -952,7 +953,7 @@ final class AwsEcsService extends Resource {
          terraformType: tfType,
          argMap: {
            'availability_zone_rebalancing': ?availabilityZoneRebalancing,
-           'cluster': ?cluster,
+           'cluster': ?cluster?.encodeAs('arn'),
            'deployment_maximum_percent': ?deploymentMaximumPercent,
            'deployment_minimum_healthy_percent':
                ?deploymentMinimumHealthyPercent,

@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../firebase/google_firebase_hosting_version.dart'
+    show GoogleFirebaseHostingVersion;
+
 /// Sensitive field paths for `google_firebase_hosting_release`.
 const Set<String> _googleFirebaseHostingReleaseSensitive = <String>{};
 
@@ -30,7 +33,7 @@ final class GoogleFirebaseHostingRelease extends Resource {
     TfArg<String>? message,
     required TfArg<String> siteId,
     TfArg<FirebaseHostingReleaseType>? type,
-    TfArg<String>? versionName,
+    RefTo<GoogleFirebaseHostingVersion>? versionName,
     super.lifecycle,
     super.dependsOn,
     String? provider,
@@ -43,7 +46,7 @@ final class GoogleFirebaseHostingRelease extends Resource {
            'message': ?message,
            'site_id': siteId,
            'type': ?type,
-           'version_name': ?versionName,
+           'version_name': ?versionName?.encodeAs('name'),
          },
        );
 

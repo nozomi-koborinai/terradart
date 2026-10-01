@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../filestore/google_filestore_instance.dart'
+    show GoogleFilestoreInstance;
+
 /// Sensitive field paths for `google_filestore_snapshot`.
 const Set<String> _googleFilestoreSnapshotSensitive = <String>{};
 
@@ -24,7 +27,7 @@ const Set<String> _googleFilestoreSnapshotSensitive = <String>{};
 ///   localName: 'share_snap',
 ///   name: TfArg.literal('share-snap-1'),
 ///   location: TfArg.literal('asia-northeast1'),
-///   instance: TfArg.ref(nfs.id),
+///   instance: nfs.ref,
 /// );
 /// ```
 final class GoogleFilestoreSnapshot extends Resource {
@@ -34,7 +37,7 @@ final class GoogleFilestoreSnapshot extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> location,
-    required TfArg<String> instance,
+    required RefTo<GoogleFilestoreInstance> instance,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
     super.lifecycle,
@@ -46,7 +49,7 @@ final class GoogleFilestoreSnapshot extends Resource {
          argMap: {
            'name': name,
            'location': location,
-           'instance': instance,
+           'instance': instance.encodeAs('name'),
            'description': ?description,
            'labels': ?labels,
          },

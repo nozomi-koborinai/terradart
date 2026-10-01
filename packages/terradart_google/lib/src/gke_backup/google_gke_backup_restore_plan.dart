@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../container/google_container_cluster.dart' show GoogleContainerCluster;
+import '../gke_backup/google_gke_backup_backup_plan.dart'
+    show GoogleGkeBackupBackupPlan;
+
 /// Sensitive field paths for `google_gke_backup_restore_plan`.
 const Set<String> _googleGkeBackupRestorePlanSensitive = <String>{};
 
@@ -632,8 +636,8 @@ final class GoogleGkeBackupRestorePlan extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> location,
-    required TfArg<String> backupPlan,
-    required TfArg<String> cluster,
+    required RefTo<GoogleGkeBackupBackupPlan> backupPlan,
+    required RefTo<GoogleContainerCluster> cluster,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
     required GkeBackupRestorePlanRestoreConfig restoreConfig,
@@ -647,8 +651,8 @@ final class GoogleGkeBackupRestorePlan extends Resource {
          argMap: {
            'name': name,
            'location': location,
-           'backup_plan': backupPlan,
-           'cluster': cluster,
+           'backup_plan': backupPlan.encodeAs('id'),
+           'cluster': cluster.encodeAs('id'),
            'description': ?description,
            'labels': ?labels,
            'restore_config': TfArg.literal(restoreConfig.encode()),

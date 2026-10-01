@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_backend_service.dart'
+    show GoogleComputeBackendService;
 import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
 
@@ -255,7 +257,7 @@ final class GoogleComputeForwardingRule extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<String>? target,
-    TfArg<String>? backendService,
+    RefTo<GoogleComputeBackendService>? backendService,
     TfArg<String>? ipAddress,
     TfArg<ForwardingRuleIpProtocol>? ipProtocol,
     TfArg<ForwardingRuleIpVersion>? ipVersion,
@@ -289,7 +291,7 @@ final class GoogleComputeForwardingRule extends Resource {
            'name': name,
            'region': ?region,
            'target': ?target,
-           'backend_service': ?backendService,
+           'backend_service': ?backendService?.encodeAs('self_link'),
            'ip_address': ?ipAddress,
            'ip_protocol': ?ipProtocol,
            'ip_version': ?ipVersion,

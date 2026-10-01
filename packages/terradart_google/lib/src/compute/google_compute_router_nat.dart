@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_address.dart' show GoogleComputeAddress;
+import '../compute/google_compute_router.dart' show GoogleComputeRouter;
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+
 /// Sensitive field paths for `google_compute_router_nat`.
 const Set<String> _googleComputeRouterNatSensitive = <String>{};
 
@@ -91,9 +95,11 @@ enum ComputeRouterNatFilter implements TerraformEnum {
 final class ComputeRouterNatNat64Subnetwork {
   const ComputeRouterNatNat64Subnetwork({required this.name});
 
-  final TfArg<String> name;
+  final RefTo<GoogleComputeSubnetwork> name;
 
-  Map<String, Object?> encode() => {'name': name.toTfJson()};
+  Map<String, Object?> encode() => {
+    'name': name.encodeAs('self_link').toTfJson(),
+  };
 }
 
 /// Typed helper for the `rules` block of
@@ -134,19 +140,27 @@ final class ComputeRouterNatAction {
     this.sourceNatDrainRanges,
   });
 
-  final TfArg<List<String>>? sourceNatActiveIps;
+  final TfArg<List<RefTo<GoogleComputeAddress>>>? sourceNatActiveIps;
 
-  final TfArg<List<String>>? sourceNatActiveRanges;
+  final TfArg<List<RefTo<GoogleComputeSubnetwork>>>? sourceNatActiveRanges;
 
-  final TfArg<List<String>>? sourceNatDrainIps;
+  final TfArg<List<RefTo<GoogleComputeAddress>>>? sourceNatDrainIps;
 
-  final TfArg<List<String>>? sourceNatDrainRanges;
+  final TfArg<List<RefTo<GoogleComputeSubnetwork>>>? sourceNatDrainRanges;
 
   Map<String, Object?> encode() => {
-    'source_nat_active_ips': ?sourceNatActiveIps?.toTfJson(),
-    'source_nat_active_ranges': ?sourceNatActiveRanges?.toTfJson(),
-    'source_nat_drain_ips': ?sourceNatDrainIps?.toTfJson(),
-    'source_nat_drain_ranges': ?sourceNatDrainRanges?.toTfJson(),
+    'source_nat_active_ips': ?sourceNatActiveIps
+        ?.encodeAs('self_link')
+        .toTfJson(),
+    'source_nat_active_ranges': ?sourceNatActiveRanges
+        ?.encodeAs('self_link')
+        .toTfJson(),
+    'source_nat_drain_ips': ?sourceNatDrainIps
+        ?.encodeAs('self_link')
+        .toTfJson(),
+    'source_nat_drain_ranges': ?sourceNatDrainRanges
+        ?.encodeAs('self_link')
+        .toTfJson(),
   };
 }
 
@@ -160,14 +174,14 @@ final class ComputeRouterNatSubnetwork {
     required this.sourceIpRangesToNat,
   });
 
-  final TfArg<String> name;
+  final RefTo<GoogleComputeSubnetwork> name;
 
   final TfArg<List<String>>? secondaryIpRangeNames;
 
   final TfArg<List<String>> sourceIpRangesToNat;
 
   Map<String, Object?> encode() => {
-    'name': name.toTfJson(),
+    'name': name.encodeAs('self_link').toTfJson(),
     'secondary_ip_range_names': ?secondaryIpRangeNames?.toTfJson(),
     'source_ip_ranges_to_nat': sourceIpRangesToNat.toTfJson(),
   };
@@ -190,15 +204,15 @@ final class GoogleComputeRouterNat extends Resource {
   GoogleComputeRouterNat({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> router,
+    required RefTo<GoogleComputeRouter> router,
     TfArg<String>? region,
     required TfArg<ComputeRouterNatSourceSubnetworkIpRangesToNat>
     sourceSubnetworkIpRangesToNat,
     TfArg<ComputeRouterNatIpAllocateOption>? natIpAllocateOption,
     TfArg<ComputeRouterNatType>? type,
-    TfArg<List<String>>? natIps,
-    TfArg<List<String>>? initialNatIps,
-    TfArg<List<String>>? drainNatIps,
+    TfArg<List<RefTo<GoogleComputeAddress>>>? natIps,
+    TfArg<List<RefTo<GoogleComputeAddress>>>? initialNatIps,
+    TfArg<List<RefTo<GoogleComputeAddress>>>? drainNatIps,
     TfArg<num>? minPortsPerVm,
     TfArg<num>? maxPortsPerVm,
     TfArg<bool>? enableDynamicPortAllocation,
@@ -226,14 +240,14 @@ final class GoogleComputeRouterNat extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'router': router,
+           'router': router.encodeAs('name'),
            'region': ?region,
            'source_subnetwork_ip_ranges_to_nat': sourceSubnetworkIpRangesToNat,
            'nat_ip_allocate_option': ?natIpAllocateOption,
            'type': ?type,
-           'nat_ips': ?natIps,
-           'initial_nat_ips': ?initialNatIps,
-           'drain_nat_ips': ?drainNatIps,
+           'nat_ips': ?natIps?.encodeAs('self_link'),
+           'initial_nat_ips': ?initialNatIps?.encodeAs('self_link'),
+           'drain_nat_ips': ?drainNatIps?.encodeAs('self_link'),
            'min_ports_per_vm': ?minPortsPerVm,
            'max_ports_per_vm': ?maxPortsPerVm,
            'enable_dynamic_port_allocation': ?enableDynamicPortAllocation,

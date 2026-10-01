@@ -49,7 +49,7 @@ final class DataCatalogStack extends Stack {
     final customEntry = add(
       GoogleDataCatalogEntry(
         localName: 'custom_entry',
-        entryGroup: .ref(group.id),
+        entryGroup: group.ref,
         entryId: .literal('terradart_entry'),
         entryKind: .customType(
           userSpecifiedType: .literal('terradart_custom_type'),
@@ -75,7 +75,7 @@ final class DataCatalogStack extends Stack {
       GoogleDataCatalogPolicyTag(
         localName: 'email',
         displayName: .literal('email'),
-        taxonomy: .ref(taxonomy.id),
+        taxonomy: taxonomy.ref,
         description: .literal('Email addresses'),
         dependsOn: [ResourceDependency(taxonomy)],
       ),
@@ -106,7 +106,7 @@ final class DataCatalogStack extends Stack {
       GoogleDataCatalogTag(
         localName: 'entry_source',
         parent: .ref(customEntry.id),
-        template: .ref(tagTemplate.id),
+        template: tagTemplate.ref,
         fields: [
           DataCatalogTagField(
             fieldName: .literal('source'),

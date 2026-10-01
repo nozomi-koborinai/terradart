@@ -56,7 +56,7 @@ final class _TypedStack extends Stack {
         direction: TfArg.literal(
           ComputeNetworkFirewallPolicyPacketMirroringRuleDirection.egress,
         ),
-        firewallPolicy: TfArg.literal('policy'),
+        firewallPolicy: RefTo.literal('policy'),
         priority: TfArg.literal(1000),
         match: ComputeNetworkFirewallPolicyPacketMirroringRuleMatch(
           layer4Configs: [

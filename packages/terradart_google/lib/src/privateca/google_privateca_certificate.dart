@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../privateca/google_privateca_ca_pool.dart' show GooglePrivatecaCaPool;
+import '../privateca/google_privateca_certificate_template.dart'
+    show GooglePrivatecaCertificateTemplate;
+
 /// Sensitive field paths for `google_privateca_certificate`.
 const Set<String> _googlePrivatecaCertificateSensitive = <String>{};
 
@@ -530,7 +534,7 @@ final class PrivatecaCertificatePolicyIds {
 /// GooglePrivatecaCertificate(
 ///   localName: 'leaf_cert',
 ///   name: TfArg.literal('app-leaf-cert'),
-///   pool: .ref(caPool.id),
+///   pool: caPool.ref,
 ///   location: TfArg.literal('us-central1'),
 ///   certificateAuthority: TfArg.literal('app-root-ca'),
 ///   lifetime: TfArg.literal('86400s'),
@@ -543,12 +547,12 @@ final class GooglePrivatecaCertificate extends Resource {
   GooglePrivatecaCertificate({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> pool,
+    required RefTo<GooglePrivatecaCaPool> pool,
     required TfArg<String> location,
     TfArg<String>? certificateAuthority,
     TfArg<String>? lifetime,
     required PrivatecaCertificateRequest request,
-    TfArg<String>? certificateTemplate,
+    RefTo<GooglePrivatecaCertificateTemplate>? certificateTemplate,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
@@ -560,12 +564,12 @@ final class GooglePrivatecaCertificate extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'pool': pool,
+           'pool': pool.encodeAs('name'),
            'location': location,
            'certificate_authority': ?certificateAuthority,
            'lifetime': ?lifetime,
            ...request.argMap,
-           'certificate_template': ?certificateTemplate,
+           'certificate_template': ?certificateTemplate?.encodeAs('id'),
            'labels': ?labels,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,

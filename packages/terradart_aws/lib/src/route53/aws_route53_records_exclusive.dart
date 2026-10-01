@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../route53/aws_route53_zone.dart' show AwsRoute53Zone;
+
 /// Sensitive field paths for `aws_route53_records_exclusive`.
 const Set<String> _awsRoute53RecordsExclusiveSensitive = <String>{};
 
@@ -296,7 +298,7 @@ final class AwsRoute53RecordsExclusive extends Resource {
 
   AwsRoute53RecordsExclusive({
     required super.localName,
-    required TfArg<String> zoneId,
+    required RefTo<AwsRoute53Zone> zoneId,
     List<Route53RecordsExclusiveResourceRecordSet>? resourceRecordSet,
     super.lifecycle,
     super.dependsOn,
@@ -305,7 +307,7 @@ final class AwsRoute53RecordsExclusive extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('zone_id'),
            if (resourceRecordSet != null)
              'resource_record_set': TfArg.literal([
                for (final e in resourceRecordSet) e.encode(),

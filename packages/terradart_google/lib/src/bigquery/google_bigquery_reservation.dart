@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../bigquery/google_bigquery_reservation_group.dart'
+    show GoogleBigqueryReservationGroup;
+
 /// Sensitive field paths for `google_bigquery_reservation`.
 const Set<String> _googleBigqueryReservationSensitive = <String>{};
 
@@ -102,7 +105,7 @@ final class GoogleBigqueryReservation extends Resource {
     TfArg<num>? concurrency,
     TfArg<BigqueryReservationEdition>? edition,
     TfArg<String>? secondaryLocation,
-    TfArg<String>? reservationGroup,
+    RefTo<GoogleBigqueryReservationGroup>? reservationGroup,
     BigqueryReservationAutoscale? autoscale,
     TfArg<String>? project,
     super.lifecycle,
@@ -119,7 +122,7 @@ final class GoogleBigqueryReservation extends Resource {
            'concurrency': ?concurrency,
            'edition': ?edition,
            'secondary_location': ?secondaryLocation,
-           'reservation_group': ?reservationGroup,
+           'reservation_group': ?reservationGroup?.encodeAs('name'),
            if (autoscale != null)
              'autoscale': TfArg.literal([autoscale.encode()]),
            'project': ?project,

@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../sql/google_sql_database.dart';
+import '../sql/google_sql_database_instance.dart'
+    show GoogleSqlDatabaseInstance;
 
 /// Sensitive field paths for `google_sql_database`.
 const Set<String> _googleSqlDatabaseSensitive = <String>{};
@@ -16,14 +18,18 @@ final class DataGoogleSqlDatabase extends Data {
 
   DataGoogleSqlDatabase({
     required super.localName,
-    required TfArg<String> instance,
+    required RefTo<GoogleSqlDatabaseInstance> instance,
     required TfArg<String> name,
     TfArg<String>? project,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'instance': instance, 'name': name, 'project': ?project},
+         argMap: {
+           'instance': instance.encodeAs('name'),
+           'name': name,
+           'project': ?project,
+         },
        );
 
   @override

@@ -83,10 +83,7 @@ List<String> repeatedJoins(MigrateManifest manifest) {
   void check(String owner, MigrateSlot slot) {
     if (slot.kind != MigrateSlotKind.sealed) return;
     final variants = slot.variants ?? const <String, String>{};
-    final sealedTypes = {
-      for (final v in variants.values)
-        ?parents[v],
-    };
+    final sealedTypes = {for (final v in variants.values) ?parents[v]};
     for (final sealed in sealedTypes) {
       final stem = _stem(owner, sealed);
       if (stem != null &&

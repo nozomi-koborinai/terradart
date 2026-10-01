@@ -21,7 +21,7 @@ curatedDoc: |-
   /// final repo = GoogleCloudbuildv2Repository(
   ///   localName: 'repo',
   ///   name: TfArg.literal('my-repo'),
-  ///   parentConnection: TfArg.ref(githubConn.nameRef),
+  ///   parentConnection: githubConn.ref,
   ///   remoteUri: TfArg.literal('https://github.com/org/my-repo.git'),
   /// );
   /// ```

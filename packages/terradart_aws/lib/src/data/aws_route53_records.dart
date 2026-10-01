@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../route53/aws_route53_zone.dart' show AwsRoute53Zone;
 
 /// Sensitive field paths for `aws_route53_records`.
 const Set<String> _awsRoute53RecordsSensitive = <String>{};
@@ -13,12 +14,15 @@ final class DataAwsRoute53Records extends Data {
   DataAwsRoute53Records({
     required super.localName,
     TfArg<String>? nameRegex,
-    required TfArg<String> zoneId,
+    required RefTo<AwsRoute53Zone> zoneId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'name_regex': ?nameRegex, 'zone_id': zoneId},
+         argMap: {
+           'name_regex': ?nameRegex,
+           'zone_id': zoneId.encodeAs('zone_id'),
+         },
        );
 
   @override

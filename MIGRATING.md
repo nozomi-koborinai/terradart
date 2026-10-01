@@ -2,11 +2,44 @@
 
 ## 0.31.x → 0.32.0
 
-0.32.0 tightens what synth accepts and how it reports problems. Terraform
-output does not change for a Stack that synthesized before, unless it read a
-block it never registered — which `terraform plan` rejected anyway.
+### More arguments take `RefTo<R>`
+
+More arguments that name another resource are typed `RefTo<R>`, as
+`network: vpc.ref` already was. `dart analyze` reports each one as an
+argument type error; pass the resource's `ref`, or `.literal(...)` for a
+resource outside the stack:
+
+| 0.31 | 0.32 |
+|------|------|
+| `instance: .ref(primary.nameRef)` | `instance: primary.ref` |
+| `keyRing: .ref(ring.id)` | `keyRing: ring.ref` |
+| `managedZone: .ref(zone.nameRef)` | `managedZone: zone.ref` |
+| `router: .ref(router.nameRef)` | `router: router.ref` |
+| `cachePolicyId: .ref(policy.id)` | `cachePolicyId: policy.ref` |
+| `instance: TfArg.literal('db')` | `instance: .literal('db')` |
+
+The reference emits the attribute the provider expects, which is not
+always the one the 0.31 call site passed. Review `terraform plan` for
+these inputs; the new value is the one upstream documents:
+
+| Input | 0.31 example | 0.32 emits |
+|-------|--------------|------------|
+| `GooglePrivatecaCertificate(Authority).pool` | `id` | `name` |
+| `GoogleFilestoreSnapshot.instance` | `id` | `name` |
+| `GoogleIamWorkloadIdentityPoolProvider.workloadIdentityPoolId` | `name` | `workload_identity_pool_id` |
+| `GoogleLoggingLinkedDataset.bucket`, `GoogleLoggingLogView.bucket`, `GoogleLoggingMetric.bucketName` | `bucket_id` | `id` |
+| `GoogleSecretManagerSecretVersion.secret` | `id` | `name` (the same full name) |
+| `GoogleAlloydbInstance.cluster`, `GoogleAlloydbUser.cluster` | `id` | `name` (the same full name) |
+| `AwsRoute53Record.zoneId` | `id` | `zone_id` (the same value) |
+| `AwsEcsExpressGatewayService.cluster` | `name` | `arn` |
+
+The migrator writes the typed form, so re-running `terradart-migrate`
+produces `x.ref` for these inputs.
 
 ### Synth issues
+
+Synth output does not change for a Stack that synthesized before, unless it
+read a block it never registered — which `terraform plan` rejected anyway.
 
 Synth now checks the whole Stack before it encodes anything and throws one
 `SynthException` listing every problem, each a subtype of the sealed

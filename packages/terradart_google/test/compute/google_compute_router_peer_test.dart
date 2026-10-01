@@ -7,7 +7,7 @@ void main() {
     final peer = GoogleComputeRouterPeer(
       localName: 'peer',
       name: TfArg.literal('peer'),
-      router: TfArg.literal('router'),
+      router: RefTo.literal('router'),
       interface: TfArg.literal('if-0'),
       peerAsn: TfArg.literal(65001),
       advertiseMode: TfArg.literal(ComputeRouterPeerAdvertiseMode.custom),

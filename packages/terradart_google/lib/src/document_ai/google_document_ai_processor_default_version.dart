@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../document_ai/google_document_ai_processor.dart'
+    show GoogleDocumentAiProcessor;
+
 /// Sensitive field paths for `google_document_ai_processor_default_version`.
 const Set<String> _googleDocumentAiProcessorDefaultVersionSensitive =
     <String>{};
@@ -29,7 +32,7 @@ const Set<String> _googleDocumentAiProcessorDefaultVersionSensitive =
 /// ```dart
 /// GoogleDocumentAiProcessorDefaultVersion(
 ///   localName: 'ocr_default',
-///   processor: TfArg.ref(ocr.id),
+///   processor: ocr.ref,
 ///   version: TfArg.literal(
 ///     '${ocr.id.interpolation}/processorVersions/stable',
 ///   ),
@@ -40,7 +43,7 @@ final class GoogleDocumentAiProcessorDefaultVersion extends Resource {
 
   GoogleDocumentAiProcessorDefaultVersion({
     required super.localName,
-    required TfArg<String> processor,
+    required RefTo<GoogleDocumentAiProcessor> processor,
     required TfArg<String> version,
     super.lifecycle,
     super.dependsOn,
@@ -48,7 +51,7 @@ final class GoogleDocumentAiProcessorDefaultVersion extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'processor': processor, 'version': version},
+         argMap: {'processor': processor.encodeAs('id'), 'version': version},
        );
 
   @override

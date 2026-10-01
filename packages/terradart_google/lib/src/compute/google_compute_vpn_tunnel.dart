@@ -4,6 +4,14 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_external_vpn_gateway.dart'
+    show GoogleComputeExternalVpnGateway;
+import '../compute/google_compute_ha_vpn_gateway.dart'
+    show GoogleComputeHaVpnGateway;
+import '../compute/google_compute_router.dart' show GoogleComputeRouter;
+import '../compute/google_compute_vpn_gateway.dart'
+    show GoogleComputeVpnGateway;
+
 /// Sensitive field paths for `google_compute_vpn_tunnel`.
 const Set<String> _googleComputeVpnTunnelSensitive = <String>{'shared_secret'};
 
@@ -82,12 +90,12 @@ sealed class ComputeVpnTunnelPeer {
 
   /// Sets `peer_external_gateway`.
   const factory ComputeVpnTunnelPeer.peerExternalGateway(
-    TfArg<String> peerExternalGateway,
+    RefTo<GoogleComputeExternalVpnGateway> peerExternalGateway,
   ) = ComputeVpnTunnelPeerExternalGateway;
 
   /// Sets `peer_gcp_gateway`.
   const factory ComputeVpnTunnelPeer.peerGcpGateway(
-    TfArg<String> peerGcpGateway,
+    RefTo<GoogleComputeHaVpnGateway> peerGcpGateway,
   ) = ComputeVpnTunnelPeerGcpGateway;
 
   /// The Terraform argument this choice sets.
@@ -104,19 +112,21 @@ sealed class ComputeVpnTunnelPeer {
 final class ComputeVpnTunnelPeerExternalGateway extends ComputeVpnTunnelPeer {
   const ComputeVpnTunnelPeerExternalGateway(this.peerExternalGateway);
 
-  final TfArg<String> peerExternalGateway;
+  final RefTo<GoogleComputeExternalVpnGateway> peerExternalGateway;
 
   @override
   String get blockKey => 'peer_external_gateway';
 
   @override
   Map<String, Object?> encode() => {
-    'peer_external_gateway': peerExternalGateway.toTfJson(),
+    'peer_external_gateway': peerExternalGateway
+        .encodeAs('self_link')
+        .toTfJson(),
   };
 
   @override
   Map<String, TfArg<Object?>> get argMap => {
-    'peer_external_gateway': peerExternalGateway,
+    'peer_external_gateway': peerExternalGateway.encodeAs('self_link'),
   };
 }
 
@@ -124,19 +134,19 @@ final class ComputeVpnTunnelPeerExternalGateway extends ComputeVpnTunnelPeer {
 final class ComputeVpnTunnelPeerGcpGateway extends ComputeVpnTunnelPeer {
   const ComputeVpnTunnelPeerGcpGateway(this.peerGcpGateway);
 
-  final TfArg<String> peerGcpGateway;
+  final RefTo<GoogleComputeHaVpnGateway> peerGcpGateway;
 
   @override
   String get blockKey => 'peer_gcp_gateway';
 
   @override
   Map<String, Object?> encode() => {
-    'peer_gcp_gateway': peerGcpGateway.toTfJson(),
+    'peer_gcp_gateway': peerGcpGateway.encodeAs('self_link').toTfJson(),
   };
 
   @override
   Map<String, TfArg<Object?>> get argMap => {
-    'peer_gcp_gateway': peerGcpGateway,
+    'peer_gcp_gateway': peerGcpGateway.encodeAs('self_link'),
   };
 }
 
@@ -228,15 +238,15 @@ final class GoogleComputeVpnTunnel extends Resource {
     required super.localName,
     required TfArg<String> name,
     TfArg<String>? region,
-    TfArg<String>? targetVpnGateway,
-    TfArg<String>? vpnGateway,
+    RefTo<GoogleComputeVpnGateway>? targetVpnGateway,
+    RefTo<GoogleComputeHaVpnGateway>? vpnGateway,
     TfArg<num>? vpnGatewayInterface,
     TfArg<String>? peerIp,
     ComputeVpnTunnelPeer? peer,
     TfArg<num>? peerExternalGatewayInterface,
     required ComputeVpnTunnelSharedSecret sharedSecret,
     TfArg<String>? sharedSecretWoVersion,
-    TfArg<String>? router,
+    RefTo<GoogleComputeRouter>? router,
     TfArg<String>? description,
     TfArg<num>? ikeVersion,
     TfArg<List<String>>? localTrafficSelector,
@@ -255,15 +265,15 @@ final class GoogleComputeVpnTunnel extends Resource {
          argMap: {
            'name': name,
            'region': ?region,
-           'target_vpn_gateway': ?targetVpnGateway,
-           'vpn_gateway': ?vpnGateway,
+           'target_vpn_gateway': ?targetVpnGateway?.encodeAs('self_link'),
+           'vpn_gateway': ?vpnGateway?.encodeAs('self_link'),
            'vpn_gateway_interface': ?vpnGatewayInterface,
            'peer_ip': ?peerIp,
            ...?peer?.argMap,
            'peer_external_gateway_interface': ?peerExternalGatewayInterface,
            ...sharedSecret.argMap,
            'shared_secret_wo_version': ?sharedSecretWoVersion,
-           'router': ?router,
+           'router': ?router?.encodeAs('self_link'),
            'description': ?description,
            'ike_version': ?ikeVersion,
            'local_traffic_selector': ?localTrafficSelector,

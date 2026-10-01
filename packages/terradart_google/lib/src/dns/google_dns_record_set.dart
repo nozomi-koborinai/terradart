@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../dns/google_dns_managed_zone.dart' show GoogleDnsManagedZone;
+
 /// Sensitive field paths for `google_dns_record_set`.
 const Set<String> _googleDnsRecordSetSensitive = <String>{};
 
@@ -164,7 +166,7 @@ final class GoogleDnsRecordSet extends Resource {
 
   GoogleDnsRecordSet({
     required super.localName,
-    required TfArg<String> managedZone,
+    required RefTo<GoogleDnsManagedZone> managedZone,
     required TfArg<String> name,
     TfArg<String>? project,
     TfArg<List<String>>? rrdatas,
@@ -178,7 +180,7 @@ final class GoogleDnsRecordSet extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'managed_zone': managedZone,
+           'managed_zone': managedZone.encodeAs('name'),
            'name': name,
            'project': ?project,
            'rrdatas': ?rrdatas,

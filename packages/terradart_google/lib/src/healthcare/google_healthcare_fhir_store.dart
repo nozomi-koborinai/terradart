@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../healthcare/google_healthcare_dataset.dart'
+    show GoogleHealthcareDataset;
 import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
 
 /// Sensitive field paths for `google_healthcare_fhir_store`.
@@ -231,7 +233,7 @@ final class GoogleHealthcareFhirStore extends Resource {
   GoogleHealthcareFhirStore({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> dataset,
+    required RefTo<GoogleHealthcareDataset> dataset,
     required TfArg<HealthcareFhirStoreVersion> version,
     TfArg<bool>? enableUpdateCreate,
     TfArg<bool>? disableReferentialIntegrity,
@@ -253,7 +255,7 @@ final class GoogleHealthcareFhirStore extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'dataset': dataset,
+           'dataset': dataset.encodeAs('self_link'),
            'version': version,
            'enable_update_create': ?enableUpdateCreate,
            'disable_referential_integrity': ?disableReferentialIntegrity,

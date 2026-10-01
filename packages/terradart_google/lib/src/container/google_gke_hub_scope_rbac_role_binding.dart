@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../container/google_gke_hub_scope.dart' show GoogleGkeHubScope;
+
 /// Sensitive field paths for `google_gke_hub_scope_rbac_role_binding`.
 const Set<String> _googleGkeHubScopeRbacRoleBindingSensitive = <String>{};
 
@@ -150,7 +152,7 @@ enum GkeHubScopeRbacRoleBindingPredefinedRole implements TerraformEnum {
 /// ```dart
 /// GoogleGkeHubScopeRbacRoleBinding(
 ///   localName: 'team_view',
-///   scopeId: TfArg.literal('terradart-scope'),
+///   scopeId: .literal('terradart-scope'),
 ///   scopeRbacRoleBindingId: TfArg.literal('terradart-scope-rbac'),
 ///   principal: .user(.literal('terradart-fleet-rbac@example.com')),
 ///   role: .predefinedRole(.literal(.view)),
@@ -161,7 +163,7 @@ final class GoogleGkeHubScopeRbacRoleBinding extends Resource {
 
   GoogleGkeHubScopeRbacRoleBinding({
     required super.localName,
-    required TfArg<String> scopeId,
+    required RefTo<GoogleGkeHubScope> scopeId,
     required TfArg<String> scopeRbacRoleBindingId,
     required GkeHubScopeRbacRoleBindingPrincipal principal,
     required GkeHubScopeRbacRoleBindingRole role,
@@ -175,7 +177,7 @@ final class GoogleGkeHubScopeRbacRoleBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'scope_id': scopeId,
+           'scope_id': scopeId.encodeAs('scope_id'),
            'scope_rbac_role_binding_id': scopeRbacRoleBindingId,
            ...principal.argMap,
            'role': TfArg.literal(role.encode()),

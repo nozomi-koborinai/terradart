@@ -64,8 +64,8 @@ final class OracleDbSystemStack extends Stack {
         location: .literal(location),
         dbSystemId: .literal('terradart-dbs'),
         displayName: .literal('TerraDart DB System'),
-        odbSubnet: .ref(odbSubnet.nameRef),
-        odbNetwork: .ref(odbNetwork.nameRef),
+        odbSubnet: odbSubnet.ref,
+        odbNetwork: odbNetwork.ref,
         properties: OracleDatabaseDbSystemProperties(
           shape: .literal('VM.Standard2.1'),
           computeCount: .literal(2),

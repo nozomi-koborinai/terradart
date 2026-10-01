@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_instance.dart' show GoogleComputeInstance;
+import '../compute/google_compute_network_endpoint_group.dart'
+    show GoogleComputeNetworkEndpointGroup;
+
 /// Sensitive field paths for `google_compute_network_endpoints`.
 const Set<String> _googleComputeNetworkEndpointsSensitive = <String>{};
 
@@ -13,14 +17,14 @@ const Set<String> _googleComputeNetworkEndpointsSensitive = <String>{};
 final class ComputeNetworkEndpoints {
   const ComputeNetworkEndpoints({this.instance, this.ipAddress, this.port});
 
-  final TfArg<String>? instance;
+  final RefTo<GoogleComputeInstance>? instance;
 
   final TfArg<String>? ipAddress;
 
   final TfArg<num>? port;
 
   Map<String, Object?> encode() => {
-    'instance': ?instance?.toTfJson(),
+    'instance': ?instance?.encodeAs('name').toTfJson(),
     'ip_address': ?ipAddress?.toTfJson(),
     'port': ?port?.toTfJson(),
   };
@@ -51,7 +55,7 @@ final class GoogleComputeNetworkEndpoints extends Resource {
 
   GoogleComputeNetworkEndpoints({
     required super.localName,
-    required TfArg<String> networkEndpointGroup,
+    required RefTo<GoogleComputeNetworkEndpointGroup> networkEndpointGroup,
     List<ComputeNetworkEndpoints>? networkEndpoints,
     TfArg<String>? zone,
     TfArg<String>? deletionPolicy,
@@ -63,7 +67,7 @@ final class GoogleComputeNetworkEndpoints extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'network_endpoint_group': networkEndpointGroup,
+           'network_endpoint_group': networkEndpointGroup.encodeAs('name'),
            if (networkEndpoints != null)
              'network_endpoints': TfArg.literal([
                for (final e in networkEndpoints) e.encode(),

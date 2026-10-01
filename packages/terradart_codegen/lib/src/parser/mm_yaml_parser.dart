@@ -53,17 +53,32 @@ class MmResourceOverrides {
   /// property below one.
   final Set<String> outputPaths;
 
+  /// The resource's MM `name` (`RouterNat`), which [resourceRefs] resolve
+  /// their `resource` against.
+  final String? name;
+
+  /// `type: ResourceRef` properties and parameters (and `Array`s of them)
+  /// by dotted Terraform path: the MM resource they name in the same
+  /// product and the attribute they import, both as written upstream
+  /// (`Router`, `selfLink`).
+  final Map<String, MmResourceRef> resourceRefs;
+
   const MmResourceOverrides({
     required this.fieldOverrides,
     this.description,
     this.product,
+    this.name,
     this.exactlyOneOfGroups = const [],
     this.exactlyOneOfPaths = const [],
     this.atMostOneOfPaths = const [],
     this.enumValuesByPath = const {},
     this.outputPaths = const {},
+    this.resourceRefs = const {},
   });
 }
+
+/// One MM `ResourceRef`: `resource: 'Router'`, `imports: 'name'`.
+typedef MmResourceRef = ({String resource, String imports});
 
 /// Parses one Magic Modules resource YAML file.
 class MmYamlParser {
@@ -90,6 +105,10 @@ class MmYamlParser {
         _walkProperty(p as YamlMap, '', overrides, groups, paths, enums);
       }
     }
+    final refs = <String, MmResourceRef>{};
+    for (final list in [doc['parameters'], props]) {
+      if (list is YamlList) _collectResourceRefs(list, const [], refs);
+    }
     List<List<String>> inputsOnly(List<List<String>> groups) => [
       for (final g in groups)
         if (g.where((m) => !paths.outputs.contains(m)).toList() case final kept
@@ -109,6 +128,8 @@ class MmYamlParser {
       fieldOverrides: overrides,
       description: doc['description'] as String?,
       product: doc['product'] as String?,
+      name: doc['name'] as String?,
+      resourceRefs: refs,
       exactlyOneOfGroups: groups,
       exactlyOneOfPaths: combined.exactlyOne,
       atMostOneOfPaths: combined.atMostOne,
@@ -254,6 +275,40 @@ class MmYamlParser {
           pathSink,
           enumSink,
         );
+      }
+    }
+  }
+
+  /// Adds every input `ResourceRef` under [props] to [sink], keyed by its
+  /// Terraform path below [prefix] (snake-cased `name`s, `flatten_object`
+  /// levels dropped). `api_name` is the REST field and never the Terraform
+  /// one: `backendService` with `api_name: service` is `backend_service`.
+  void _collectResourceRefs(
+    YamlList props,
+    List<String> prefix,
+    Map<String, MmResourceRef> sink,
+  ) {
+    for (final raw in props) {
+      if (raw is! YamlMap || raw['output'] == true) continue;
+      final name = raw['name'];
+      if (name is! String) continue;
+      final path = raw['flatten_object'] == true
+          ? prefix
+          : [...prefix, _toSnakeCase(name)];
+      final item = raw['item_type'];
+      final ref = switch (raw['type']) {
+        'ResourceRef' => raw,
+        'Array' when item is YamlMap && item['type'] == 'ResourceRef' => item,
+        _ => null,
+      };
+      if (ref case {'resource': final String r, 'imports': final String i}) {
+        sink[path.join('.')] = (resource: r, imports: i);
+      }
+      if (raw['properties'] case final YamlList nested) {
+        _collectResourceRefs(nested, path, sink);
+      }
+      if (item is YamlMap && item['properties'] is YamlList) {
+        _collectResourceRefs(item['properties'] as YamlList, path, sink);
       }
     }
   }

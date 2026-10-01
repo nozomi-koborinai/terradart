@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../healthcare/google_healthcare_dataset.dart'
+    show GoogleHealthcareDataset;
+
 /// Sensitive field paths for `google_healthcare_workspace`.
 const Set<String> _googleHealthcareWorkspaceSensitive = <String>{};
 
@@ -35,7 +38,7 @@ final class GoogleHealthcareWorkspace extends Resource {
 
   GoogleHealthcareWorkspace({
     required super.localName,
-    required TfArg<String> dataset,
+    required RefTo<GoogleHealthcareDataset> dataset,
     required TfArg<String> name,
     required HealthcareWorkspaceSettings settings,
     TfArg<Map<String, String>>? labels,
@@ -47,7 +50,7 @@ final class GoogleHealthcareWorkspace extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'dataset': dataset,
+           'dataset': dataset.encodeAs('self_link'),
            'name': name,
            'settings': TfArg.literal(settings.encode()),
            'labels': ?labels,

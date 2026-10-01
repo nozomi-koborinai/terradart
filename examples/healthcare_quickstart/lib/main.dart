@@ -61,7 +61,7 @@ final class HealthcareStack extends Stack {
       GoogleHealthcareDicomStore(
         localName: 'images',
         name: .literal('terradart-images'),
-        dataset: .ref(dataset.id),
+        dataset: dataset.ref,
         labels: .literal(const {'managed-by': 'terradart'}),
         dependsOn: [ResourceDependency(dataset)],
       ),
@@ -71,7 +71,7 @@ final class HealthcareStack extends Stack {
       GoogleHealthcareConsentStore(
         localName: 'consents',
         name: .literal('terradart-consents'),
-        dataset: .ref(dataset.id),
+        dataset: dataset.ref,
         defaultConsentTtl: .literal('86400s'),
         dependsOn: [ResourceDependency(dataset)],
       ),
@@ -81,7 +81,7 @@ final class HealthcareStack extends Stack {
       GoogleHealthcareHl7V2Store(
         localName: 'messages',
         name: .literal('terradart-hl7'),
-        dataset: .ref(dataset.id),
+        dataset: dataset.ref,
         rejectDuplicateMessage: .literal(true),
         parserConfig: HealthcareHl7V2StoreParserConfig(
           version: .literal(.v3),
@@ -95,7 +95,7 @@ final class HealthcareStack extends Stack {
       GoogleHealthcareFhirStore(
         localName: 'clinical',
         name: .literal('terradart-fhir'),
-        dataset: .ref(dataset.id),
+        dataset: dataset.ref,
         version: .literal(.r4),
         labels: .literal(const {'managed-by': 'terradart'}),
         dependsOn: [ResourceDependency(dataset)],

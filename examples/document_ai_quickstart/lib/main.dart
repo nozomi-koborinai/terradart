@@ -47,7 +47,7 @@ final class DocAiStack extends Stack {
     add(
       GoogleDocumentAiProcessorDefaultVersion(
         localName: 'ocr_default',
-        processor: .ref(ocr.id),
+        processor: ocr.ref,
         version: .literal('${ocr.id.interpolation}/processorVersions/stable'),
         // `stable` resolves to the latest channel version; ignore the
         // API-returned concrete id so plans stay clean.

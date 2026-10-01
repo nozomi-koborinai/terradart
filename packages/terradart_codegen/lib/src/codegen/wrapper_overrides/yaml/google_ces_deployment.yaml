@@ -30,7 +30,7 @@ curatedDoc: |-
   ///   localName: 'api',
   ///   location: TfArg.ref(app.locationRef),
   ///   app: TfArg.ref(app.appIdRef),
-  ///   appVersion: TfArg.ref(version.nameRef),
+  ///   appVersion: version.ref,
   ///   displayName: TfArg.literal('terradart-ces-deploy'),
   ///   channelProfile: CesDeploymentChannelProfile(
   ///     channelType: TfArg.literal('API'),
