@@ -1,3 +1,4 @@
+import 'package:terradart_appwrite/auth.dart';
 import 'package:terradart_appwrite/project.dart';
 import 'package:terradart_appwrite/provider.dart';
 import 'package:terradart_appwrite/src/_catalog.g.dart';
@@ -18,6 +19,34 @@ final class _TestStack extends Stack {
       ) {
     add(AppwriteProject(localName: 'p', name: TfArg.literal('demo')));
     add(AppwriteStorageBucket(localName: 'b', name: TfArg.literal('uploads')));
+  }
+}
+
+final class _PermissionStack extends Stack {
+  _PermissionStack()
+    : super(providers: [const AppwriteProvider(endpoint: 'https://x/v1')]) {
+    final team = add(
+      AppwriteAuthTeam(localName: 'editors', name: .literal('editors')),
+    );
+    final user = add(AppwriteAuthUser(localName: 'u'));
+    add(
+      AppwriteStorageBucket(
+        localName: 'b',
+        name: .literal('uploads'),
+        permissions: .literal([
+          .read(.any),
+          .read(.guests),
+          .create(.users()),
+          .create(.users(verified: false)),
+          .update(.user(user.ref, verified: true)),
+          .delete(.team(team.ref, role: 'owner')),
+          .write(.team(.literal('t1'))),
+          .read(.member('m1')),
+          .read(.label('admin')),
+          .literal('read("any")'),
+        ]),
+      ),
+    );
   }
 }
 
@@ -64,5 +93,25 @@ void main() {
     expect(providerBlock.keys, isNot(contains('api_key')));
     expect(providerBlock.keys, isNot(contains('organization_api_key')));
     expect(providerBlock['endpoint'], 'https://cloud.appwrite.io/v1');
+  });
+
+  test('permissions synthesize to the provider strings', () {
+    final bucket =
+        ((_PermissionStack().synth().tfJson['resource']
+                    as Map<String, dynamic>)['appwrite_storage_bucket']
+                as Map<String, dynamic>)['b']
+            as Map<String, dynamic>;
+    expect(bucket['permissions'], [
+      'read("any")',
+      'read("guests")',
+      'create("users")',
+      'create("users/unverified")',
+      r'update("user:${appwrite_auth_user.u.id}/verified")',
+      r'delete("team:${appwrite_auth_team.editors.id}/owner")',
+      'write("team:t1")',
+      'read("member:m1")',
+      'read("label:admin")',
+      'read("any")',
+    ]);
   });
 }

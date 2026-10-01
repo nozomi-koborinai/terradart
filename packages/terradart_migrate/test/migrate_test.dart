@@ -375,6 +375,88 @@ resource "aws_s3_bucket" "logs" {
     });
   });
 
+  group('Appwrite permissions', () {
+    final result = _migrateJson({
+      'terraform': {
+        'required_version': '>= 1.11.0',
+        'required_providers': {
+          'appwrite': {'source': 'appwrite/appwrite', 'version': '2.0.0-beta.1'},
+        },
+      },
+      'variable': {
+        'grants': {'type': 'list(string)'},
+      },
+      'resource': {
+        'appwrite_auth_team': {
+          'editors': {'name': 'Editors'},
+        },
+        'appwrite_storage_bucket': {
+          'uploads': {
+            'name': 'Uploads',
+            'permissions': [
+              'read("any")',
+              'create("users/verified")',
+              'update("user:u1")',
+              'delete("team:t1/owner")',
+              'write("label:admin")',
+              'read("member:m1")',
+              'read("guests")',
+              'read("somebody")',
+              'share("any")',
+              r'write("team:${appwrite_auth_team.editors.id}")',
+            ],
+          },
+        },
+        'appwrite_tablesdb_table': {
+          'orders': {
+            'name': 'orders',
+            'database_id': 'db',
+            'permissions': r'${var.grants}',
+          },
+        },
+      },
+    });
+    final src = result.stackSource;
+
+    test('migrates every block', () {
+      expect(
+        result.report.isComplete,
+        isTrue,
+        reason: result.report.renderText(),
+      );
+    });
+
+    test('a literal takes the named constructors of its action and role', () {
+      expect(
+        src,
+        contains(
+          'permissions: .literal([.read(.any), '
+          '.create(.users(verified: true)), '
+          ".update(.user(.literal('u1'))), "
+          ".delete(.team(.literal('t1'), role: 'owner')), "
+          ".write(.label('admin')), "
+          ".read(.member('m1')), "
+          '.read(.guests), ',
+        ),
+      );
+    });
+
+    test('a role or action it does not spell stays a literal', () {
+      expect(src, contains(""".literal('read("somebody")')"""));
+      expect(src, contains(""".literal('share("any")')"""));
+    });
+
+    test('a template and a whole-list variable stay as they are', () {
+      expect(
+        src,
+        contains(
+          r"""arg(.expression(r'write("team:${appwrite_auth_team.editors.id}")'))""",
+        ),
+      );
+      expect(src, contains("permissions: .variable('grants')"));
+    });
+  });
+
   group('kept in Terraform, with a reason', () {
     Map<String, Object?> module(
       Map<String, Object?> body, {
