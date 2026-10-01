@@ -1325,12 +1325,10 @@ final class ComputeBackendServiceSubjectAltNames {
 ///   ],
 ///   iap: ComputeBackendServiceIap(
 ///     enabled: TfArg.literal(true),
-///     oauth2ClientId: .oauth2ClientId(
-///       TfArg.literal('xxx.apps.googleusercontent.com'),
-///     ),
-///     // sensitive — masked at synth.
+///     // sensitive — a variable or an expression, never a literal.
+///     oauth2ClientId: .oauth2ClientId(.variable('iap_client_id')),
 ///     oauth2ClientSecret: .oauth2ClientSecret(
-///       TfArg.literal('super-secret'),
+///       .variable('iap_client_secret'),
 ///     ),
 ///   ),
 ///   logConfig: ComputeBackendServiceLogConfig(

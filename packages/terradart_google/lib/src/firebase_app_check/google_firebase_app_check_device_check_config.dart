@@ -35,7 +35,7 @@ const Set<String> _googleFirebaseAppCheckDeviceCheckConfigSensitive = <String>{
 ///   'ios_legacy',
 ///   appId: TfArg.literal('1:1234567890:ios:abcdef'),
 ///   keyId: TfArg.literal('ABCDEFGHIJ'),
-///   privateKey: TfArg.literal(privateKeyP8Contents),
+///   privateKey: .variable('device_check_private_key'),
 ///   tokenTtl: TfArg.literal('3600s'),
 /// );
 /// ```
