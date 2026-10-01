@@ -33,7 +33,7 @@ Alpha required every item below; all are done. (This list was the former "beta r
 
 - [x] **Getting Started** on terradart.dev matches the [README quickstart](https://github.com/nozomi-koborinai/terradart#quickstart); no “Coming soon” placeholders on Status or Getting Started.
 - [x] **`tool/check_docs_consistency`** runs in CI and passes (workspace + examples caret minor, catalog count, key meta docs). Workflow: [`.github/workflows/docs-consistency.yml`](https://github.com/nozomi-koborinai/terradart/blob/main/.github/workflows/docs-consistency.yml).
-- [x] **`tool/smoke_quickstart.sh`** runs in CI and passes (`pubsub_quickstart`: pub get → synth → analyze including export consumer stub).
+- [x] **Every example synthesizes and analyzes in CI** (`pubsub_quickstart` included: synth regenerates its export file, then `dart analyze` checks the consumer stub against it).
 - [x] **Examples matrix** on `main` stays green (per-example synth + `terraform validate` on `tf-out/`).
 - [x] **Boundary demo**: [pubsub_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) documents `addConstant` / generated `.app.dart` and includes a subscriber stub that `dart analyze` accepts.
 - [x] **Meta docs aligned** with the current minor: CONTRIBUTING, SECURITY, issue templates, package READMEs, and root README agree on alpha/beta wording, `^0.N.x` pins, and **1366 curated resource factories + 468 data sources** (1834 catalog entries).

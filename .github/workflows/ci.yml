@@ -81,12 +81,14 @@ jobs:
         working-directory: packages/${{ matrix.package }}
 
   example_gates:
-    name: example gates (synth, topology, coverage page)
+    name: example gates (synth, analyze, topology, coverage pages)
     runs-on: ubuntu-latest
     # example_synth_gates synths every example once (running the coverage +
-    # API-enablement gates); the topology gate and the coverage-page freshness
-    # check reuse those tf-outs instead of re-synthing. terraform validate is
-    # skipped here — the per-example terraform_validate matrix covers it.
+    # API-enablement gates); the analyzer then checks the examples against
+    # the files that synth regenerated (lib/generated/*.app.dart), and the
+    # topology gate and the coverage-page freshness check reuse those tf-outs
+    # instead of re-synthing. terraform validate is skipped here — the
+    # per-example terraform_validate matrix covers it.
     steps:
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1
@@ -95,6 +97,8 @@ jobs:
       - run: dart pub get
       - name: Synth all examples + coverage/API gates (populates tf-out)
         run: dart tool/example_synth_gates.dart --skip-validate
+      - name: Analyze examples (after synth)
+        run: dart analyze examples/ --fatal-infos --fatal-warnings
       - name: Topology gate (reuses tf-out)
         run: dart tool/check_example_topology.dart --reuse-tf-out
       - name: Coverage page freshness (reuses tf-out)
