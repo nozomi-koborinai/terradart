@@ -36,15 +36,17 @@ depends on no other TerraDart package.
 ```dart
 import 'package:terradart_hcl/terradart_hcl.dart';
 
-final file = parseHcl(source, fileName: 'main.tf');
-for (final block in file.body.blocksOf('resource')) {
-  print('${block.labels[0].text}.${block.labels[1].text}');
-}
+void describe(String source) {
+  final file = parseHcl(source, fileName: 'main.tf');
+  for (final block in file.body.blocksOf('resource')) {
+    print('${block.labels[0].text}.${block.labels[1].text}');
+  }
 
-final module = TfModule.fromFiles([file]);
-for (final r in module.resources) {
-  final name = r.body.attribute('name')?.value; // an Expr
-  print('${r.type}.${r.name}: ${name is LiteralExpr ? name.value : name}');
+  final module = TfModule.fromFiles([file]);
+  for (final r in module.resources) {
+    final name = r.body.attribute('name')?.value; // an Expr
+    print('${r.type}.${r.name}: ${name is LiteralExpr ? name.value : name}');
+  }
 }
 ```
 

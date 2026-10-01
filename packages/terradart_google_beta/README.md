@@ -19,6 +19,7 @@ dependencies:
 ## Usage example
 
 ```dart
+// lib/my_beta_stack.dart
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google_beta/project.dart';
 import 'package:terradart_google_beta/provider.dart';
@@ -39,7 +40,7 @@ final class MyBetaStack extends Stack {
 
 ```dart
 // bin/infra.dart
-import 'package:my_infra/my_beta_stack.dart';
+import 'package:my_app/my_beta_stack.dart';
 
 Future<void> main() async {
   final stack = MyBetaStack(projectId: 'my-project-id');

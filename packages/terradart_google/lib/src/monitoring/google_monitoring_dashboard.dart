@@ -73,8 +73,6 @@ const Set<String> _googleMonitoringDashboardSensitive = <String>{};
 ///
 /// Example (programmatic assembly via `dart:convert`):
 /// ```dart
-/// import 'dart:convert';
-///
 /// final dashboard = GoogleMonitoringDashboard(
 ///   localName: 'service_overview',
 ///   dashboardJson: TfArg.literal(jsonEncode(<String, dynamic>{

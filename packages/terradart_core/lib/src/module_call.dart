@@ -13,12 +13,13 @@ import 'tf_ref.dart';
 /// final sa = addModule(ModuleCall(
 ///   localName: 'sa_bff',
 ///   source: '../modules/service_account',
-///   inputs: {'account_id': TfArg.literal('app-bff-sa')},
+///   inputs: {'account_id': .literal('app-bff-sa')},
 /// ));
 /// add(GoogleProjectIamMember(
 ///   localName: 'bff_invoker',
-///   member: TfArg.ref(sa.output<String>('member')),
-///   ...
+///   project: .literal('my-project'),
+///   role: .literal('roles/run.invoker'),
+///   member: .ref(sa.output<String>('member')),
 /// ));
 /// ```
 ///

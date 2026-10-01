@@ -92,7 +92,9 @@ final class SqlUserPasswordPolicy {
 ///   MySQL / SQL Server, and required for PostgreSQL built-ins. Cloud IAM
 ///   users authenticate via IAM tokens — leave both `null`.
 ///   * `password` is sensitive in the schema and round-trips through
-///     state; the generated `sensitiveFields` set masks it at synth time.
+///     state. Synth rejects a literal value: pass a sensitive variable,
+///     `TfArg.variable('db_password')`, so the secret arrives at apply
+///     time and never enters `main.tf.json`.
 ///   * `password_wo` is the write-only variant (TF 1.11+). Write-only
 ///     fields never enter Terraform state, so the wrapper's
 ///     `sensitiveFields` set masks only the state-stored `password` —
@@ -103,12 +105,16 @@ final class SqlUserPasswordPolicy {
 ///
 /// Example (built-in PostgreSQL user):
 /// ```dart
+/// addVariable(
+///   'db_password',
+///   const TfVariable(type: 'string', sensitive: true),
+/// );
 /// final appUser = GoogleSqlUser(
 ///   localName: 'app',
 ///   instance: primary.ref,
 ///   name: TfArg.literal('app'),
 ///   type: TfArg.literal(SqlUserType.builtIn),
-///   password: TfArg.literal(Platform.environment['DB_PASSWORD']!),
+///   password: TfArg.variable('db_password'),
 /// );
 /// ```
 ///

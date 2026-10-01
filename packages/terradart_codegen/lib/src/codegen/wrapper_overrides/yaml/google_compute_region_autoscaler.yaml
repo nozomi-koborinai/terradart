@@ -36,7 +36,7 @@ curatedDoc: |-
   ///   schema; the GCP API rejects an autoscaler with no policy block.
   ///
   /// Cross-resource chain:
-  /// ```
+  /// ```text
   /// google_compute_instance_template  (the per-VM blueprint)
   ///   -> google_compute_region_instance_group_manager  (regional MIG)
   ///        -> google_compute_region_autoscaler  (this resource)

@@ -108,25 +108,29 @@ the image.
 The Stack declares the values it owns and the file to generate:
 
 ```dart
+// lib/lunch_stack.dart
 final class LunchStack extends Stack {
-  LunchStack(/* ... */)
+  LunchStack({required String projectId, required String databaseUser})
     : super(
-        providers: [/* ... */],
+        providers: [GoogleProvider(project: projectId, region: region)],
         appExports: AppExports('../shared/lib/generated/lunch_stack.app.dart'),
       ) {
-    // ...
     this
       ..addConstant('projectId', .value(projectId))
       ..addConstant('region', const .value(region))
       ..addConstant('databaseName', const .value(databaseName))
-      ..addConstant('databaseUser', .value(database.databaseUser));
+      ..addConstant('databaseUser', .value(databaseUser));
   }
 }
+
+const region = 'asia-northeast1';
+const databaseName = 'lunch';
 ```
 
 Synth writes `LunchStackConstants`, and the server imports it — the database
 name and user are never re-typed:
 
+<!-- doc-snippets: skip: needs genkit and postgres; tool/check_cookbook.sh analyzes the recipe -->
 ```dart
 import 'package:lunch_concierge_shared/generated/lunch_stack.app.dart';
 
@@ -148,6 +152,7 @@ Endpoint(
 The request/response schemas live once and are shared by both ends of the
 wire:
 
+<!-- doc-snippets: skip: needs genkit, schemantic and flutter; tool/check_cookbook.sh analyzes the recipe -->
 ```dart
 // shared/lib/schema.dart
 @Schema()

@@ -16,7 +16,7 @@ const Set<String> _googleComputeTargetHttpProxySensitive = <String>{};
 /// A global HTTP target proxy — one node in the GCP external HTTP(S)
 /// load-balancer chain. The full chain is:
 ///
-/// ```
+/// ```text
 /// google_compute_global_forwarding_rule.target
 ///   → google_compute_target_http_proxy
 ///     → google_compute_target_http_proxy.url_map

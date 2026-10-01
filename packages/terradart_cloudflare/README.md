@@ -25,6 +25,7 @@ dependencies:
 ## Usage example
 
 ```dart
+// lib/edge_dns_stack.dart
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_cloudflare/provider.dart';
 import 'package:terradart_cloudflare/zone.dart';
@@ -56,7 +57,7 @@ final class EdgeDnsStack extends Stack {
 
 ```dart
 // bin/infra.dart
-import 'package:my_infra/edge_dns_stack.dart';
+import 'package:my_app/edge_dns_stack.dart';
 
 Future<void> main() async {
   final stack = EdgeDnsStack();
