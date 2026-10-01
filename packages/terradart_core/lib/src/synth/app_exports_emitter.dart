@@ -253,20 +253,34 @@ final class $name {
             : 'String.fromEnvironment($quotedName, '
                   'defaultValue: ${type.literal(defaultValue)})';
       case RefConstant(:final ref):
-        final value = _resolve(stack, name, ref);
-        if (!type.conforms(value)) {
-          throw StateError(
-            'Constant "$name" is a ${type.source}, but '
-            '${ref.bareAddress} is set to ${value.runtimeType} $value.',
-          );
-        }
-        return type.literal(value);
+        return switch (_resolve(stack, ref)) {
+          (:final value, problem: null) => type.literal(value),
+          (:final problem?, value: _) => throw StateError(
+            'Constant "$name": $problem',
+          ),
+        };
     }
   }
 
-  /// The literal [ref]'s attribute is set to; throws [StateError] naming
-  /// what the attribute is set by when it is not one.
-  static Object? _resolve(Stack stack, String name, TfRef<Object?> ref) {
+  /// Why the constant [c] of [stack] has no value known at synth, or
+  /// `null` when it resolves to a literal of its type.
+  static String? constantProblem(Stack stack, RefConstant<Object?> c) {
+    final (:value, :problem) = _resolve(stack, c.ref);
+    if (problem != null) return problem;
+    final type = c.valueType!;
+    if (type.conforms(value)) return null;
+    return 'it is a ${type.source}, but ${c.ref.bareAddress} is set to '
+        '${value.runtimeType} $value.';
+  }
+
+  /// The literal [ref]'s attribute is set to, or the problem naming what
+  /// the attribute is set by when it is not one.
+  static ({Object? value, String? problem}) _resolve(
+    Stack stack,
+    TfRef<Object?> ref,
+  ) {
+    ({Object? value, String? problem}) fail(String problem) =>
+        (value: null, problem: problem);
     final (owner, attr) = switch (ref) {
       AttributeRef(:final owner, :final attr) => (owner, attr),
       DataRef(:final owner, :final attr) => (owner, attr),
@@ -275,11 +289,10 @@ final class $name {
     final address = ref.bareAddress;
     // ignore: invalid_use_of_protected_member
     if (owner is Resource && owner.sensitiveFields.contains(attr)) {
-      throw StateError(
-        'Constant "$name" reads $address, a sensitive field; a secret '
-        'never becomes a Dart constant. Use '
-        "addOutput('<name>', .ref(...), sensitive: true) or read it at "
-        'runtime.',
+      return fail(
+        'it reads $address, a sensitive field; a secret never becomes a '
+        "Dart constant. Use addOutput('<name>', .ref(...), sensitive: true) "
+        'or read it at runtime.',
       );
     }
     final Map<String, TfArg<dynamic>?> argMap;
@@ -289,9 +302,9 @@ final class $name {
       case Resource() when owner is! Data && stack.resources.contains(owner):
         argMap = owner.argMap;
       default:
-        throw StateError(
-          'Constant "$name" reads $address, which is not registered on this '
-          'Stack; add it with add(...) / addData(...).',
+        return fail(
+          'it reads $address, which is not registered on this Stack; add '
+          'it with add(...) / addData(...).',
         );
     }
     final arg = argMap[attr];
@@ -299,7 +312,9 @@ final class $name {
       TfArgLiteral(:final value) => _plain(value),
       _ => null,
     };
-    if (arg is TfArgLiteral && value != _notPlain) return value;
+    if (arg is TfArgLiteral && value != _notPlain) {
+      return (value: value, problem: null);
+    }
     final setBy = switch (arg) {
       null => 'not set in the Stack (the provider computes it at apply)',
       TfArgLiteral() => 'a literal holding a reference or template',
@@ -307,10 +322,10 @@ final class $name {
       TfArgVariable(:final name) => 'the variable "$name"',
       TfArgExpression(:final template) => 'the expression $template',
     };
-    throw StateError(
-      'Constant "$name" reads $address, which is $setBy — a Dart constant '
-      'needs a value known at synth. Use '
-      "addOutput('<name>', .ref(...)) for an apply-time value.",
+    return fail(
+      'it reads $address, which is $setBy — a Dart constant needs a value '
+      "known at synth. Use addOutput('<name>', .ref(...)) for an apply-time "
+      'value.',
     );
   }
 

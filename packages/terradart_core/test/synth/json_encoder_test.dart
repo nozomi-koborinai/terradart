@@ -1,12 +1,14 @@
 import 'package:terradart_core/src/backends.dart';
 import 'package:terradart_core/src/lifecycle.dart';
 import 'package:terradart_core/src/synth/json_encoder.dart';
-import 'package:terradart_core/src/synth/sensitive_literal_error.dart';
+import 'package:terradart_core/src/synth/stack_validator.dart';
+import 'package:terradart_core/src/synth/synth_issue.dart';
 import 'package:terradart_core/src/tf_arg.dart';
 import 'package:terradart_core/src/tf_ref.dart';
 import 'package:test/test.dart';
 
 import '../helpers/fake_resources.dart';
+import '../helpers/synth_issues.dart';
 
 void main() {
   group('TfJsonEncoder.terraformBlock', () {
@@ -143,12 +145,11 @@ void main() {
       );
     });
 
-    test('throws when no providers registered', () {
-      final stack = TestStack();
-      expect(
-        () => TfJsonEncoder.terraformBlock(stack),
-        throwsA(isA<StateError>()),
-      );
+    test('a Stack with no provider is a NoProviders issue', () {
+      final stack = TestStack()
+        ..add(FakePubsubTopic(localName: 'orders', argMap: const {}));
+      expect(stack.validate(), [isA<NoProviders>()]);
+      expect(() => stack.synth(), throwsSynthIssue<NoProviders>());
     });
   });
 
@@ -292,28 +293,20 @@ void main() {
                   ),
                 ))
                 .synth(),
-        throwsA(
-          isA<StateError>().having(
-            (e) => e.message,
-            'message',
-            allOf(
-              contains('"google.us"'),
-              contains('data.google_project.current'),
-            ),
+        throwsSynthIssue<MissingProvider>(
+          allOf(
+            startsWith('data.google_project.current: '),
+            contains('"google.us"'),
           ),
         ),
       );
       expect(
         () => stackWith('google.us').synth(),
-        throwsA(
-          isA<StateError>().having(
-            (e) => e.message,
-            'message',
-            allOf(
-              contains('"google.us"'),
-              contains('google_pubsub_topic.orders'),
-              contains("alias: '<alias>'"),
-            ),
+        throwsSynthIssue<MissingProvider>(
+          allOf(
+            startsWith('google_pubsub_topic.orders: '),
+            contains('"google.us"'),
+            contains("alias: 'us'"),
           ),
         ),
       );
@@ -325,21 +318,19 @@ void main() {
         source: 'hashicorp/google',
         versionConstraint: '~> 7.0',
       );
-      Matcher throwsWith(String fragment) => throwsA(
-        isA<StateError>().having(
-          (e) => e.message,
+      Matcher reports(String fragment) => contains(
+        isA<ProviderConflict>().having(
+          (i) => i.message,
           'message',
           contains(fragment),
         ),
       );
       expect(
-        () => TfJsonEncoder.validateProviders(
-          TestStack(providers: const [base, base]),
-        ),
-        throwsWith('registered twice without an alias'),
+        StackValidator.validate(TestStack(providers: const [base, base])),
+        reports('registered twice without an alias'),
       );
       expect(
-        () => TfJsonEncoder.validateProviders(
+        StackValidator.validate(
           TestStack(
             providers: const [
               FakeStackProvider(
@@ -357,10 +348,10 @@ void main() {
             ],
           ),
         ),
-        throwsWith('"google.eu" is registered twice'),
+        reports('"google.eu" is registered twice'),
       );
       expect(
-        () => TfJsonEncoder.validateProviders(
+        StackValidator.validate(
           TestStack(
             providers: const [
               FakeStackProvider(
@@ -372,10 +363,10 @@ void main() {
             ],
           ),
         ),
-        throwsWith('not a Terraform identifier'),
+        reports('not a Terraform identifier'),
       );
       expect(
-        () => TfJsonEncoder.validateProviders(
+        StackValidator.validate(
           TestStack(
             providers: const [
               base,
@@ -388,7 +379,7 @@ void main() {
             ],
           ),
         ),
-        throwsWith('different source / version constraints'),
+        reports('different source / version constraints'),
       );
     });
 
@@ -513,8 +504,8 @@ void main() {
     });
   });
 
-  group('TfJsonEncoder sensitive passthrough (ref + variable)', () {
-    test('preserves sensitive field that is a ref (no masking needed)', () {
+  group('StackValidator.sensitiveLiteralFields (ref + variable)', () {
+    test('a sensitive field set to a ref is no literal', () {
       final argMap = <String, TfArg<dynamic>?>{
         'secret_data': TfArgRef<String>(
           TfRef.attribute<String>(
@@ -523,17 +514,17 @@ void main() {
           ),
         ),
       };
-      final out = TfJsonEncoder.encodeArgMapWithSensitive(
-        argMap: argMap,
-        sensitiveFields: const {'secret_data'},
-        resourceAddress: 'google_secret_manager_secret_version.legacy',
+      expect(
+        StackValidator.sensitiveLiteralFields(argMap, const {'secret_data'}),
+        isEmpty,
       );
-      expect(out, equals({'secret_data': r'${data.external.vault.value}'}));
+      expect(
+        TfJsonEncoder.encodeArgMap(argMap),
+        equals({'secret_data': r'${data.external.vault.value}'}),
+      );
     });
 
-    test('TG-5: nested-path sensitive preserves ref interpolation at leaf', () {
-      // If the leaf is a ref string (`${...}`), Terraform sees only the
-      // interpolation — zeroing it would break the wiring.
+    test('TG-5: a nested sensitive leaf holding a ref is no literal', () {
       final argMap = <String, TfArg<dynamic>?>{
         'customer_encryption': const TfArgLiteral<List<dynamic>>([
           {
@@ -542,21 +533,11 @@ void main() {
           },
         ]),
       };
-      final out = TfJsonEncoder.encodeArgMapWithSensitive(
-        argMap: argMap,
-        sensitiveFields: const {'customer_encryption.encryption_key'},
-        resourceAddress: 'google_storage_bucket_object.legacy',
-      );
       expect(
-        out,
-        equals({
-          'customer_encryption': [
-            {
-              'encryption_algorithm': 'AES256',
-              'encryption_key': r'${var.csek_key}',
-            },
-          ],
+        StackValidator.sensitiveLiteralFields(argMap, const {
+          'customer_encryption.encryption_key',
         }),
+        isEmpty,
       );
     });
 
@@ -568,32 +549,15 @@ void main() {
         }),
       };
       const paths = {'env_vars.*.value'};
+      expect(StackValidator.sensitiveLiteralFields(envVars('hunter2'), paths), [
+        'env_vars.API_KEY.value',
+      ]);
       expect(
-        () => TfJsonEncoder.encodeArgMapWithSensitive(
-          argMap: envVars('hunter2'),
-          sensitiveFields: paths,
-          resourceAddress: 'cloudflare_pages_project.site',
+        StackValidator.sensitiveLiteralFields(
+          envVars(r'${var.api_key}'),
+          paths,
         ),
-        throwsA(
-          isA<SensitiveLiteralError>().having(
-            (e) => e.fieldPath,
-            'fieldPath',
-            'env_vars.API_KEY.value',
-          ),
-        ),
-      );
-      expect(
-        TfJsonEncoder.encodeArgMapWithSensitive(
-          argMap: envVars(r'${var.api_key}'),
-          sensitiveFields: paths,
-          resourceAddress: 'cloudflare_pages_project.site',
-        ),
-        {
-          'env_vars': {
-            'PUBLIC': {'type': 'plain_text', 'value': r'${var.public}'},
-            'API_KEY': {'type': 'secret_text', 'value': r'${var.api_key}'},
-          },
-        },
+        isEmpty,
       );
     });
   });
@@ -717,17 +681,28 @@ void main() {
       expect(out, equals({'name': 'orders-prod', 'provider': 'google-beta'}));
     });
 
-    test('sensitiveFields metadata throws on literal', () {
-      final r = FakeSecretVersion(
-        localName: 'api_key',
-        argMap: const {
-          'secret': TfArgLiteral<String>('projects/x/secrets/api-key'),
-          'secret_data': TfArgLiteral<String>('PLAINTEXT'),
-        },
-      );
+    test('a literal in a sensitiveFields field is a SensitiveLiteral', () {
+      final stack = TestStack()
+        ..add(
+          FakeSecretVersion(
+            localName: 'api_key',
+            argMap: const {
+              'secret': TfArgLiteral<String>('projects/x/secrets/api-key'),
+              'secret_data': TfArgLiteral<String>('PLAINTEXT'),
+            },
+          ),
+        );
       expect(
-        () => TfJsonEncoder.resourceBlock(r),
-        throwsA(isA<SensitiveLiteralError>()),
+        stack.validate(),
+        contains(
+          isA<SensitiveLiteral>()
+              .having(
+                (i) => i.address,
+                'address',
+                'google_secret_manager_secret_version.api_key',
+              )
+              .having((i) => i.field, 'field', 'secret_data'),
+        ),
       );
     });
   });
@@ -814,10 +789,10 @@ void main() {
           'google_pubsub_topic.orders_9',
         );
       expect(
-        () => TfJsonEncoder.movedBlock(stack),
-        throwsA(
-          isA<StateError>().having(
-            (e) => e.message,
+        stack.validate(),
+        contains(
+          isA<InvalidMoveTarget>().having(
+            (i) => i.message,
             'message',
             allOf(
               contains('"google_pubsub_topic.orders_9"'),
@@ -958,179 +933,107 @@ void main() {
     });
   });
 
-  group('TfJsonEncoder sensitive throw (nested)', () {
-    test('throws SensitiveLiteralError on nested literal-on-sensitive', () {
-      final argMap = <String, TfArg<dynamic>?>{
-        'customer_encryption': const TfArgLiteral<List<dynamic>>([
-          {
-            'encryption_algorithm': 'AES256',
-            'encryption_key': 'raw-base64-key',
-          },
-        ]),
-      };
+  group('StackValidator.sensitiveLiteralFields (nested)', () {
+    List<String> literals(
+      Map<String, TfArg<dynamic>?> argMap,
+      Set<String> sensitive,
+    ) => StackValidator.sensitiveLiteralFields(argMap, sensitive);
+
+    test('a nested literal at a sensitive leaf is reported by path', () {
       expect(
-        () => TfJsonEncoder.encodeArgMapWithSensitive(
-          argMap: argMap,
-          sensitiveFields: const {'customer_encryption.encryption_key'},
-          resourceAddress: 'google_storage_bucket_object.assets',
+        literals(
+          {
+            'customer_encryption': const TfArgLiteral<List<dynamic>>([
+              {
+                'encryption_algorithm': 'AES256',
+                'encryption_key': 'raw-base64-key',
+              },
+            ]),
+          },
+          const {'customer_encryption.encryption_key'},
         ),
-        throwsA(
-          isA<SensitiveLiteralError>().having(
-            (e) => e.fieldPath,
-            'fieldPath',
-            equals('customer_encryption.encryption_key'),
-          ),
-        ),
+        ['customer_encryption.encryption_key'],
       );
     });
 
-    test('nested ref interpolation at sensitive leaf passes through', () {
-      final argMap = <String, TfArg<dynamic>?>{
-        'customer_encryption': const TfArgLiteral<List<dynamic>>([
-          {
-            'encryption_algorithm': 'AES256',
-            'encryption_key': r'${var.csek_key}',
-          },
-        ]),
-      };
-      final out = TfJsonEncoder.encodeArgMapWithSensitive(
-        argMap: argMap,
-        sensitiveFields: const {'customer_encryption.encryption_key'},
-        resourceAddress: 'google_storage_bucket_object.assets',
-      );
+    test('a nested expression leaf is no literal, wherever its `\${` sits', () {
       expect(
-        out,
-        equals({
-          'customer_encryption': [
-            {
-              'encryption_algorithm': 'AES256',
-              'encryption_key': r'${var.csek_key}',
-            },
-          ],
-        }),
-      );
-    });
-
-    test('nested expression leaf passes through, wherever its `\${` sits', () {
-      final argMap = <String, TfArg<dynamic>?>{
-        'customer_encryption': TfArg.literal<List<dynamic>>([
+        literals(
           {
-            'encryption_algorithm': 'AES256',
-            'encryption_key': TfArg.expression<String>(r'key-${var.suffix}'),
+            'customer_encryption': TfArg.literal<List<dynamic>>([
+              {
+                'encryption_algorithm': 'AES256',
+                'encryption_key': TfArg.expression<String>(
+                  r'key-${var.suffix}',
+                ),
+              },
+            ]),
           },
-        ]),
-      };
-      final out = TfJsonEncoder.encodeArgMapWithSensitive(
-        argMap: argMap,
-        sensitiveFields: const {'customer_encryption.encryption_key'},
-        resourceAddress: 'google_storage_bucket_object.assets',
-      );
-      expect(
-        (out['customer_encryption'] as List).single['encryption_key'],
-        equals(r'key-${var.suffix}'),
+          const {'customer_encryption.encryption_key'},
+        ),
+        isEmpty,
       );
       // An escaped sequence is literal text, so it is still a plain literal.
       expect(
-        () => TfJsonEncoder.encodeArgMapWithSensitive(
-          argMap: {
+        literals(
+          {
             'customer_encryption': const TfArgLiteral<List<dynamic>>([
               {'encryption_key': r'not-a-template-$${x}'},
             ]),
           },
-          sensitiveFields: const {'customer_encryption.encryption_key'},
-          resourceAddress: 'google_storage_bucket_object.assets',
+          const {'customer_encryption.encryption_key'},
         ),
-        throwsA(isA<SensitiveLiteralError>()),
+        ['customer_encryption.encryption_key'],
       );
     });
 
-    test('nested: multiple sibling sensitive paths — first literal throws', () {
-      final argMap = <String, TfArg<dynamic>?>{
-        'block': const TfArgLiteral<List<dynamic>>([
-          {'a': 'A-val', 'b': 'B-val', 'c': 'C-val'},
-        ]),
-      };
+    test('every sibling sensitive literal is reported', () {
       expect(
-        () => TfJsonEncoder.encodeArgMapWithSensitive(
-          argMap: argMap,
-          sensitiveFields: const {'block.a', 'block.b'},
-          resourceAddress: 'fake.r',
+        literals(
+          {
+            'block': const TfArgLiteral<List<dynamic>>([
+              {'a': 'A-val', 'b': 'B-val', 'c': 'C-val'},
+            ]),
+          },
+          const {'block.a', 'block.b'},
         ),
-        throwsA(
-          isA<SensitiveLiteralError>().having(
-            (e) => e.fieldPath,
-            'fieldPath',
-            equals('block.a'),
-          ),
-        ),
+        unorderedEquals(['block.a', 'block.b']),
       );
     });
   });
 
-  group('TfJsonEncoder sensitive throw (top-level)', () {
-    test('throws SensitiveLiteralError on TfArgLiteral assigned to '
-        'sensitive top-level field', () {
-      final argMap = <String, TfArg<dynamic>?>{
-        'name': const TfArgLiteral<String>('orders-secret'),
-        'secret_data': const TfArgLiteral<String>('SUPER-SECRET'),
-      };
+  group('StackValidator.sensitiveLiteralFields (top-level)', () {
+    const sensitive = {'secret_data'};
+
+    test('a TfArgLiteral in a sensitive top-level field is reported', () {
       expect(
-        () => TfJsonEncoder.encodeArgMapWithSensitive(
-          argMap: argMap,
-          sensitiveFields: const {'secret_data'},
-          resourceAddress: 'google_secret_manager_secret_version.v1',
-        ),
-        throwsA(
-          isA<SensitiveLiteralError>()
-              .having((e) => e.fieldPath, 'fieldPath', equals('secret_data'))
-              .having(
-                (e) => e.resourceAddress,
-                'resourceAddress',
-                equals('google_secret_manager_secret_version.v1'),
-              ),
-        ),
+        StackValidator.sensitiveLiteralFields({
+          'name': const TfArgLiteral<String>('orders-secret'),
+          'secret_data': const TfArgLiteral<String>('SUPER-SECRET'),
+        }, sensitive),
+        ['secret_data'],
       );
     });
 
-    test('TfArgRef on sensitive top-level passes through (no throw)', () {
-      final argMap = <String, TfArg<dynamic>?>{
-        'secret_data': TfArgRef<String>(
+    test('a ref, an expression or a variable is no literal', () {
+      for (final arg in <TfArg<String>>[
+        TfArgRef<String>(
           TfRef.attribute<String>(
             const AddressStub('data.external.vault'),
             'value',
           ),
         ),
-      };
-      final out = TfJsonEncoder.encodeArgMapWithSensitive(
-        argMap: argMap,
-        sensitiveFields: const {'secret_data'},
-        resourceAddress: 'google_secret_manager_secret_version.v1',
-      );
-      expect(out, equals({'secret_data': r'${data.external.vault.value}'}));
-    });
-
-    test('TfArgExpression on sensitive top-level passes through', () {
-      final argMap = <String, TfArg<dynamic>?>{
-        'secret_data': TfArg.expression<String>(r'${base64decode(var.blob)}'),
-      };
-      final out = TfJsonEncoder.encodeArgMapWithSensitive(
-        argMap: argMap,
-        sensitiveFields: const {'secret_data'},
-        resourceAddress: 'google_secret_manager_secret_version.v1',
-      );
-      expect(out, equals({'secret_data': r'${base64decode(var.blob)}'}));
-    });
-
-    test('TfArgVariable on sensitive top-level passes through (no throw)', () {
-      final argMap = <String, TfArg<dynamic>?>{
-        'secret_data': TfArgVariable<String>('db_secret'),
-      };
-      final out = TfJsonEncoder.encodeArgMapWithSensitive(
-        argMap: argMap,
-        sensitiveFields: const {'secret_data'},
-        resourceAddress: 'google_secret_manager_secret_version.v1',
-      );
-      expect(out, equals({'secret_data': r'${var.db_secret}'}));
+        TfArg.expression<String>(r'${base64decode(var.blob)}'),
+        TfArgVariable<String>('db_secret'),
+      ]) {
+        expect(
+          StackValidator.sensitiveLiteralFields({
+            'secret_data': arg,
+          }, sensitive),
+          isEmpty,
+          reason: '$arg',
+        );
+      }
     });
   });
 
@@ -1151,7 +1054,7 @@ void main() {
           provider: 'google-beta',
         ),
       );
-      expect(() => TfJsonEncoder.terraformBlock(stack), returnsNormally);
+      expect(stack.validate(), isEmpty);
     });
 
     test('an explicit provider must still be registered', () {
@@ -1163,10 +1066,13 @@ void main() {
           provider: 'google-beta-nope',
         ),
       );
-      expect(
-        () => TfJsonEncoder.terraformBlock(stack),
-        throwsA(isA<StateError>()),
-      );
+      expect(stack.validate(), [
+        isA<MissingProvider>().having(
+          (i) => i.provider,
+          'provider',
+          'google-beta-nope',
+        ),
+      ]);
     });
 
     test(
@@ -1176,10 +1082,13 @@ void main() {
         stack.add(
           FakePubsubTopic(localName: 't', argMap: {'name': TfArg.literal('x')}),
         );
-        expect(
-          () => TfJsonEncoder.terraformBlock(stack),
-          throwsA(isA<StateError>()),
-        );
+        expect(stack.validate(), [
+          isA<MissingProvider>().having(
+            (i) => i.provider,
+            'provider',
+            'google',
+          ),
+        ]);
       },
     );
   });

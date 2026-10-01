@@ -44,8 +44,8 @@ final class TfVariable {
   final Object? defaultValue;
 
   /// Marks the value as sensitive so Terraform redacts it from plan and
-  /// apply output. Set this on anything that would otherwise trip
-  /// `SensitiveLiteralError`.
+  /// apply output. Set this on a variable that feeds a sensitive field, the
+  /// fix a `SensitiveLiteral` synth issue suggests.
   final bool? sensitive;
 
   /// Whether `null` is an accepted value. Terraform defaults to true.
