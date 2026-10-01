@@ -465,9 +465,11 @@ class WrapCommand extends Command<int> {
     if (referenceLedger != null) {
       final List<ReferenceRule> rules;
       final MmReferenceRule? mmRule;
+      final ParentReferenceRule? parentRule;
       try {
         rules = loadReferenceRules(referenceLedger, provider);
         mmRule = loadMmReferenceRule(referenceLedger, provider);
+        parentRule = loadParentReferenceRule(referenceLedger, provider);
       } on FormatException catch (e) {
         stderr.writeln('[E406] terradart wrap: ${e.message}');
         return CliExitCodes.dataError;
@@ -506,6 +508,7 @@ class WrapCommand extends Command<int> {
         rules: rules,
         mmRule: mmRule,
         mm: mmOverrides,
+        parentRule: parentRule,
         external: external,
         resourceSchemas: _rawSchemaBlocks(
           schemaSrc,

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../dataplex/google_dataplex_datascan.dart' show GoogleDataplexDatascan;
+
 /// Sensitive field paths for `google_dataplex_datascan_iam_member`.
 const Set<String> _googleDataplexDatascanIamMemberSensitive = <String>{};
 
@@ -36,7 +38,7 @@ final class GoogleDataplexDatascanIamMember extends Resource {
 
   GoogleDataplexDatascanIamMember({
     required super.localName,
-    required TfArg<String> dataScanId,
+    required RefTo<GoogleDataplexDatascan> dataScan,
     required TfArg<String> role,
     required TfArg<String> member,
     DataplexDatascanIamMemberCondition? condition,
@@ -49,13 +51,13 @@ final class GoogleDataplexDatascanIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'data_scan_id': dataScanId,
+           'data_scan_id': dataScan.encodeAs('data_scan_id'),
            'role': role,
            'member': member,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? dataScan.alsoAs('location')),
+           'project': ?(project ?? dataScan.alsoAs('project')),
          },
        );
 

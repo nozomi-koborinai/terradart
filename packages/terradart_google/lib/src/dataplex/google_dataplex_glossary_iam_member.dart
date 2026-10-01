@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../dataplex/google_dataplex_glossary.dart' show GoogleDataplexGlossary;
+
 /// Sensitive field paths for `google_dataplex_glossary_iam_member`.
 const Set<String> _googleDataplexGlossaryIamMemberSensitive = <String>{};
 
@@ -36,7 +38,7 @@ final class GoogleDataplexGlossaryIamMember extends Resource {
 
   GoogleDataplexGlossaryIamMember({
     required super.localName,
-    required TfArg<String> glossaryId,
+    required RefTo<GoogleDataplexGlossary> glossary,
     required TfArg<String> role,
     required TfArg<String> member,
     DataplexGlossaryIamMemberCondition? condition,
@@ -49,13 +51,13 @@ final class GoogleDataplexGlossaryIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'glossary_id': glossaryId,
+           'glossary_id': glossary.encodeAs('glossary_id'),
            'role': role,
            'member': member,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? glossary.alsoAs('location')),
+           'project': ?(project ?? glossary.alsoAs('project')),
          },
        );
 

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../tags/google_tags_tag_key.dart' show GoogleTagsTagKey;
+
 /// Sensitive field paths for `google_tags_tag_key_iam_member`.
 const Set<String> _googleTagsTagKeyIamMemberSensitive = <String>{};
 
@@ -36,7 +38,7 @@ final class GoogleTagsTagKeyIamMember extends Resource {
 
   GoogleTagsTagKeyIamMember({
     required super.localName,
-    required TfArg<String> tagKey,
+    required RefTo<GoogleTagsTagKey> tagKey,
     required TfArg<String> role,
     required TfArg<String> member,
     TagsTagKeyIamMemberCondition? condition,
@@ -47,7 +49,7 @@ final class GoogleTagsTagKeyIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'tag_key': tagKey,
+           'tag_key': tagKey.encodeAs('id'),
            'role': role,
            'member': member,
            if (condition != null)

@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../data_catalog/google_data_catalog_policy_tag.dart'
+    show GoogleDataCatalogPolicyTag;
+
 /// Sensitive field paths for `google_data_catalog_policy_tag_iam_policy`.
 const Set<String> _googleDataCatalogPolicyTagIamPolicySensitive = <String>{};
 
@@ -17,7 +20,7 @@ final class GoogleDataCatalogPolicyTagIamPolicy extends Resource {
 
   GoogleDataCatalogPolicyTagIamPolicy({
     required super.localName,
-    required TfArg<String> policyTag,
+    required RefTo<GoogleDataCatalogPolicyTag> policyTag,
     required TfArg<String> policyData,
     super.lifecycle,
     super.dependsOn,
@@ -25,7 +28,10 @@ final class GoogleDataCatalogPolicyTagIamPolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'policy_tag': policyTag, 'policy_data': policyData},
+         argMap: {
+           'policy_tag': policyTag.encodeAs('id'),
+           'policy_data': policyData,
+         },
        );
 
   @override

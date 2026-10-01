@@ -36,6 +36,27 @@ these inputs; the new value is the one upstream documents:
 The migrator writes the typed form, so re-running `terradart-migrate`
 produces `x.ref` for these inputs.
 
+### IAM adjuncts take their parent
+
+Every `*IamMember`, `*IamBinding` and `*IamPolicy` factory takes its parent
+as one `RefTo<R>` argument named after the parent, in place of the
+identity argument (`name`, `secretId`, `datasetId`, ...). Drop the
+`location` / `project` / `region` / `zone` you copied from the parent: they
+default to the parent's own attribute, and stay available as optional
+overrides.
+
+| 0.31 | 0.32 |
+|------|------|
+| `name: .ref(api.nameRef), location: .literal(region)` | `service: api.ref` |
+| `secretId: .ref(secret.id)` | `secret: secret.ref` |
+| `datasetId: dataset.ref, tableId: .ref(t.tableIdRef)` | `table: t.ref` |
+| `name: .literal('my-backend')` | `backendService: .literal('my-backend')` |
+
+Synth output gains the parent's `project` (and its `location`, `region` or
+`zone` where you did not pass one): `"project": "${google_x.y.project}"`.
+It is the value the provider already resolved, so `terraform plan` shows no
+change.
+
 ### Synth issues
 
 Synth output does not change for a Stack that synthesized before, unless it

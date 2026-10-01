@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../api_gateway/google_api_gateway_gateway.dart'
+    show GoogleApiGatewayGateway;
+
 /// Sensitive field paths for `google_api_gateway_gateway_iam_policy`.
 const Set<String> _googleApiGatewayGatewayIamPolicySensitive = <String>{};
 
@@ -17,7 +20,7 @@ final class GoogleApiGatewayGatewayIamPolicy extends Resource {
 
   GoogleApiGatewayGatewayIamPolicy({
     required super.localName,
-    required TfArg<String> gateway,
+    required RefTo<GoogleApiGatewayGateway> gateway,
     required TfArg<String> policyData,
     TfArg<String>? project,
     TfArg<String>? region,
@@ -29,10 +32,10 @@ final class GoogleApiGatewayGatewayIamPolicy extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           'gateway': gateway,
+           'gateway': gateway.encodeAs('name'),
            'policy_data': policyData,
-           'project': ?project,
-           'region': ?region,
+           'project': ?(project ?? gateway.alsoAs('project')),
+           'region': ?(region ?? gateway.alsoAs('region')),
          },
        );
 

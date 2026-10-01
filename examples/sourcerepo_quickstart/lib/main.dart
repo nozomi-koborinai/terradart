@@ -45,7 +45,7 @@ final class SourcerepoStack extends Stack {
     add(
       GoogleSourcerepoRepositoryIamMember(
         localName: 'reader',
-        repository: .ref(repo.nameRef),
+        repository: repo.ref,
         role: .literal('roles/source.reader'),
         member: .ref(reader.iamMember),
         dependsOn: [ResourceDependency(repo), ResourceDependency(reader)],

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../binary_authorization/google_binary_authorization_attestor.dart'
+    show GoogleBinaryAuthorizationAttestor;
+
 /// Sensitive field paths for `google_binary_authorization_attestor_iam_member`.
 const Set<String> _googleBinaryAuthorizationAttestorIamMemberSensitive =
     <String>{};
@@ -40,7 +43,7 @@ final class BinaryAuthorizationAttestorIamMemberCondition {
 /// ```dart
 /// GoogleBinaryAuthorizationAttestorIamMember(
 ///   localName: 'attestor_viewer',
-///   attestor: TfArg.ref(attestor.nameRef),
+///   attestor: attestor.ref,
 ///   role: TfArg.literal('roles/binaryauthorization.attestorViewer'),
 ///   member: TfArg.literal('serviceAccount:ci@$projectId.iam.gserviceaccount.com'),
 /// );
@@ -51,7 +54,7 @@ final class GoogleBinaryAuthorizationAttestorIamMember extends Resource {
 
   GoogleBinaryAuthorizationAttestorIamMember({
     required super.localName,
-    required TfArg<String> attestor,
+    required RefTo<GoogleBinaryAuthorizationAttestor> attestor,
     required TfArg<String> role,
     required TfArg<String> member,
     TfArg<String>? project,
@@ -63,10 +66,10 @@ final class GoogleBinaryAuthorizationAttestorIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'attestor': attestor,
+           'attestor': attestor.encodeAs('name'),
            'role': role,
            'member': member,
-           'project': ?project,
+           'project': ?(project ?? attestor.alsoAs('project')),
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
          },

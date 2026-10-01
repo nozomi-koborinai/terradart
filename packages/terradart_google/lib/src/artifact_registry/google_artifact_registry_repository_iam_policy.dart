@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../artifact_registry/google_artifact_registry_repository.dart'
+    show GoogleArtifactRegistryRepository;
+
 /// Sensitive field paths for `google_artifact_registry_repository_iam_policy`.
 const Set<String> _googleArtifactRegistryRepositoryIamPolicySensitive =
     <String>{};
@@ -18,7 +21,7 @@ final class GoogleArtifactRegistryRepositoryIamPolicy extends Resource {
 
   GoogleArtifactRegistryRepositoryIamPolicy({
     required super.localName,
-    required TfArg<String> repository,
+    required RefTo<GoogleArtifactRegistryRepository> repository,
     required TfArg<String> policyData,
     TfArg<String>? location,
     TfArg<String>? project,
@@ -29,10 +32,10 @@ final class GoogleArtifactRegistryRepositoryIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'repository': repository,
+           'repository': repository.encodeAs('name'),
            'policy_data': policyData,
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? repository.alsoAs('location')),
+           'project': ?(project ?? repository.alsoAs('project')),
          },
        );
 

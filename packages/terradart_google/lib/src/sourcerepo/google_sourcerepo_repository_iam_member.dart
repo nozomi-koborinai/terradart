@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../sourcerepo/google_sourcerepo_repository.dart'
+    show GoogleSourcerepoRepository;
+
 /// Sensitive field paths for `google_sourcerepo_repository_iam_member`.
 const Set<String> _googleSourcerepoRepositoryIamMemberSensitive = <String>{};
 
@@ -40,7 +43,7 @@ final class GoogleSourcerepoRepositoryIamMember extends Resource {
 
   GoogleSourcerepoRepositoryIamMember({
     required super.localName,
-    required TfArg<String> repository,
+    required RefTo<GoogleSourcerepoRepository> repository,
     required TfArg<String> role,
     required TfArg<String> member,
     SourcerepoRepositoryIamMemberCondition? condition,
@@ -52,12 +55,12 @@ final class GoogleSourcerepoRepositoryIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'repository': repository,
+           'repository': repository.encodeAs('name'),
            'role': role,
            'member': member,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'project': ?project,
+           'project': ?(project ?? repository.alsoAs('project')),
          },
        );
 

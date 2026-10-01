@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../sourcerepo/google_sourcerepo_repository.dart'
+    show GoogleSourcerepoRepository;
+
 /// Sensitive field paths for `google_sourcerepo_repository_iam_binding`.
 const Set<String> _googleSourcerepoRepositoryIamBindingSensitive = <String>{};
 
@@ -42,7 +45,7 @@ final class GoogleSourcerepoRepositoryIamBinding extends Resource {
 
   GoogleSourcerepoRepositoryIamBinding({
     required super.localName,
-    required TfArg<String> repository,
+    required RefTo<GoogleSourcerepoRepository> repository,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     SourcerepoRepositoryIamBindingCondition? condition,
@@ -54,12 +57,12 @@ final class GoogleSourcerepoRepositoryIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'repository': repository,
+           'repository': repository.encodeAs('name'),
            'role': role,
            'members': members,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'project': ?project,
+           'project': ?(project ?? repository.alsoAs('project')),
          },
        );
 

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../data_catalog/google_data_catalog_policy_tag.dart'
+    show GoogleDataCatalogPolicyTag;
+
 /// Sensitive field paths for `google_data_catalog_policy_tag_iam_member`.
 const Set<String> _googleDataCatalogPolicyTagIamMemberSensitive = <String>{};
 
@@ -36,7 +39,7 @@ final class GoogleDataCatalogPolicyTagIamMember extends Resource {
 
   GoogleDataCatalogPolicyTagIamMember({
     required super.localName,
-    required TfArg<String> policyTag,
+    required RefTo<GoogleDataCatalogPolicyTag> policyTag,
     required TfArg<String> role,
     required TfArg<String> member,
     DataCatalogPolicyTagIamMemberCondition? condition,
@@ -47,7 +50,7 @@ final class GoogleDataCatalogPolicyTagIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'policy_tag': policyTag,
+           'policy_tag': policyTag.encodeAs('id'),
            'role': role,
            'member': member,
            if (condition != null)

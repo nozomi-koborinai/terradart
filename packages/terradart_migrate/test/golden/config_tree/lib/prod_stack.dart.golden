@@ -194,7 +194,7 @@ final class ProdStack extends Stack {
     add(
       GoogleCloudRunV2ServiceIamMember(
         localName: r'bff_invoker',
-        name: .ref(cloudRunBff.serviceName),
+        service: .arg(.ref(cloudRunBff.serviceName)),
         role: .literal(r'roles/run.invoker'),
         member: .literal(r'allUsers'),
       ),
@@ -210,7 +210,7 @@ final class ProdStack extends Stack {
     add(
       GoogleServiceAccountIamMember(
         localName: r'agent_user',
-        serviceAccountId: .arg(.ref(saAdkAgent.id)),
+        serviceAccount: .arg(.ref(saAdkAgent.id)),
         role: .literal(r'roles/iam.serviceAccountUser'),
         member: .ref(saBff.member),
       ),

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../biglake/google_biglake_hive_database.dart'
+    show GoogleBiglakeHiveDatabase;
+
 /// Sensitive field paths for `google_biglake_hive_database_iam_binding`.
 const Set<String> _googleBiglakeHiveDatabaseIamBindingSensitive = <String>{};
 
@@ -41,9 +44,9 @@ final class GoogleBiglakeHiveDatabaseIamBinding extends Resource {
 
   GoogleBiglakeHiveDatabaseIamBinding({
     required super.localName,
-    required TfArg<String> catalog,
+    TfArg<String>? catalog,
     required TfArg<List<String>> members,
-    required TfArg<String> name,
+    required RefTo<GoogleBiglakeHiveDatabase> database,
     TfArg<String>? project,
     required TfArg<String> role,
     BiglakeHiveDatabaseIamBindingCondition? condition,
@@ -54,10 +57,10 @@ final class GoogleBiglakeHiveDatabaseIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'catalog': catalog,
+           'catalog': ?(catalog ?? database.alsoAs('catalog')),
            'members': members,
-           'name': name,
-           'project': ?project,
+           'name': database.encodeAs('name'),
+           'project': ?(project ?? database.alsoAs('project')),
            'role': role,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),

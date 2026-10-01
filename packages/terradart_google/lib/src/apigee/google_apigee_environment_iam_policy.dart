@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../apigee/google_apigee_environment.dart' show GoogleApigeeEnvironment;
+
 /// Sensitive field paths for `google_apigee_environment_iam_policy`.
 const Set<String> _googleApigeeEnvironmentIamPolicySensitive = <String>{};
 
@@ -17,8 +19,8 @@ final class GoogleApigeeEnvironmentIamPolicy extends Resource {
 
   GoogleApigeeEnvironmentIamPolicy({
     required super.localName,
-    required TfArg<String> orgId,
-    required TfArg<String> envId,
+    TfArg<String>? orgId,
+    required RefTo<GoogleApigeeEnvironment> environment,
     required TfArg<String> policyData,
     super.lifecycle,
     super.dependsOn,
@@ -26,7 +28,11 @@ final class GoogleApigeeEnvironmentIamPolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'org_id': orgId, 'env_id': envId, 'policy_data': policyData},
+         argMap: {
+           'org_id': ?(orgId ?? environment.alsoAs('org_id')),
+           'env_id': environment.encodeAs('name'),
+           'policy_data': policyData,
+         },
        );
 
   @override

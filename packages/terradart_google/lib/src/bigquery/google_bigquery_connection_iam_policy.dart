@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../bigquery/google_bigquery_connection.dart'
+    show GoogleBigqueryConnection;
+
 /// Sensitive field paths for `google_bigquery_connection_iam_policy`.
 const Set<String> _googleBigqueryConnectionIamPolicySensitive = <String>{};
 
@@ -17,7 +20,7 @@ final class GoogleBigqueryConnectionIamPolicy extends Resource {
 
   GoogleBigqueryConnectionIamPolicy({
     required super.localName,
-    required TfArg<String> connectionId,
+    required RefTo<GoogleBigqueryConnection> connection,
     TfArg<String>? location,
     required TfArg<String> policyData,
     TfArg<String>? project,
@@ -28,10 +31,10 @@ final class GoogleBigqueryConnectionIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'connection_id': connectionId,
-           'location': ?location,
+           'connection_id': connection.encodeAs('connection_id'),
+           'location': ?(location ?? connection.alsoAs('location')),
            'policy_data': policyData,
-           'project': ?project,
+           'project': ?(project ?? connection.alsoAs('project')),
          },
        );
 

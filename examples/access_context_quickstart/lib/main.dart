@@ -169,7 +169,7 @@ final class AccessControlsStack extends Stack {
     add(
       GoogleAccessContextManagerAccessPolicyIamMember(
         localName: 'policy_viewer',
-        name: .ref(policy.name),
+        accessPolicy: policy.ref,
         role: .literal('roles/accesscontextmanager.policyViewer'),
         member: .literal('group:security-admins@example.com'),
         dependsOn: [ResourceDependency(policy)],

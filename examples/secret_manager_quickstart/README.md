@@ -70,7 +70,8 @@ The version field tells Terraform "the upstream value changed -- push a new Secr
       "db_password_accessor": {
         "secret_id": "${google_secret_manager_secret.db_password.secret_id}",
         "role": "roles/secretmanager.secretAccessor",
-        "member": "serviceAccount:app@YOUR-PROJECT-ID.iam.gserviceaccount.com"
+        "member": "serviceAccount:app@YOUR-PROJECT-ID.iam.gserviceaccount.com",
+        "project": "${google_secret_manager_secret.db_password.project}"
       }
     }
   }

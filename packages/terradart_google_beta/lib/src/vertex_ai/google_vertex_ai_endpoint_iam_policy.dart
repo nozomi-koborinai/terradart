@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import 'package:terradart_google/terradart_google.dart'
+    show GoogleVertexAiEndpoint;
+
 /// Sensitive field paths for `google_vertex_ai_endpoint_iam_policy`.
 const Set<String> _googleVertexAiEndpointIamPolicySensitive = <String>{};
 
@@ -17,7 +20,7 @@ final class GoogleVertexAiEndpointIamPolicy extends Resource {
 
   GoogleVertexAiEndpointIamPolicy({
     required super.localName,
-    required TfArg<String> endpoint,
+    required RefTo<GoogleVertexAiEndpoint> endpoint,
     TfArg<String>? location,
     required TfArg<String> policyData,
     TfArg<String>? project,
@@ -29,10 +32,10 @@ final class GoogleVertexAiEndpointIamPolicy extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           'endpoint': endpoint,
-           'location': ?location,
+           'endpoint': endpoint.encodeAs('name'),
+           'location': ?(location ?? endpoint.alsoAs('location')),
            'policy_data': policyData,
-           'project': ?project,
+           'project': ?(project ?? endpoint.alsoAs('project')),
          },
        );
 

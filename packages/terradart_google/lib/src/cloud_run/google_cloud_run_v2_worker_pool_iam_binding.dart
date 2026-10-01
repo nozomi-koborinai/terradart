@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloud_run/google_cloud_run_v2_worker_pool.dart'
+    show GoogleCloudRunV2WorkerPool;
+
 /// Sensitive field paths for `google_cloud_run_v2_worker_pool_iam_binding`.
 const Set<String> _googleCloudRunV2WorkerPoolIamBindingSensitive = <String>{};
 
@@ -42,7 +45,7 @@ final class GoogleCloudRunV2WorkerPoolIamBinding extends Resource {
 
   GoogleCloudRunV2WorkerPoolIamBinding({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleCloudRunV2WorkerPool> workerPool,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     CloudRunV2WorkerPoolIamBindingCondition? condition,
@@ -55,13 +58,13 @@ final class GoogleCloudRunV2WorkerPoolIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': workerPool.encodeAs('name'),
            'role': role,
            'members': members,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? workerPool.alsoAs('location')),
+           'project': ?(project ?? workerPool.alsoAs('project')),
          },
        );
 

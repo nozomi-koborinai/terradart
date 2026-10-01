@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloud_run/google_cloud_run_service.dart' show GoogleCloudRunService;
+
 /// Sensitive field paths for `google_cloud_run_service_iam_policy`.
 const Set<String> _googleCloudRunServiceIamPolicySensitive = <String>{};
 
@@ -18,7 +20,7 @@ final class GoogleCloudRunServiceIamPolicy extends Resource {
 
   GoogleCloudRunServiceIamPolicy({
     required super.localName,
-    required TfArg<String> service,
+    required RefTo<GoogleCloudRunService> service,
     required TfArg<String> policyData,
     TfArg<String>? location,
     TfArg<String>? project,
@@ -29,10 +31,10 @@ final class GoogleCloudRunServiceIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'service': service,
+           'service': service.encodeAs('name'),
            'policy_data': policyData,
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? service.alsoAs('location')),
+           'project': ?(project ?? service.alsoAs('project')),
          },
        );
 

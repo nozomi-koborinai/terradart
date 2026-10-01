@@ -69,6 +69,15 @@ extension type const RefTo<R extends Resource>._(_RefSource _source) {
           : TfRef.attribute<String>(owner, attr),
     );
   }
+
+  /// [attribute] of the referenced block, or null for a reference built
+  /// from a value. Generated wrappers fill the keys a parent shares with its
+  /// child (`location`, `project`) this way when the caller sets none.
+  TfArg<String>? alsoAs(String attribute) => switch (_source.owner) {
+    null => null,
+    final Data owner => TfArg.ref(TfRef.data<String>(owner, attribute)),
+    final owner => TfArg.ref(TfRef.attribute<String>(owner, attribute)),
+  };
 }
 
 /// A list-valued reference argument (`security_group_ids`, `subnet_ids`):

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_iam_workload_identity_pool.dart'
+    show GoogleIamWorkloadIdentityPool;
+
 /// Sensitive field paths for `google_iam_workload_identity_pool_iam_member`.
 const Set<String> _googleIamWorkloadIdentityPoolIamMemberSensitive = <String>{};
 
@@ -36,7 +39,7 @@ final class GoogleIamWorkloadIdentityPoolIamMember extends Resource {
 
   GoogleIamWorkloadIdentityPoolIamMember({
     required super.localName,
-    required TfArg<String> workloadIdentityPoolId,
+    required RefTo<GoogleIamWorkloadIdentityPool> workloadIdentityPool,
     required TfArg<String> role,
     required TfArg<String> member,
     TfArg<String>? project,
@@ -48,10 +51,12 @@ final class GoogleIamWorkloadIdentityPoolIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'workload_identity_pool_id': workloadIdentityPoolId,
+           'workload_identity_pool_id': workloadIdentityPool.encodeAs(
+             'workload_identity_pool_id',
+           ),
            'role': role,
            'member': member,
-           'project': ?project,
+           'project': ?(project ?? workloadIdentityPool.alsoAs('project')),
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
          },

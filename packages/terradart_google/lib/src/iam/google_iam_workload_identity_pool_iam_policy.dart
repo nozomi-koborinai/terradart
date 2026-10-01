@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_iam_workload_identity_pool.dart'
+    show GoogleIamWorkloadIdentityPool;
+
 /// Sensitive field paths for `google_iam_workload_identity_pool_iam_policy`.
 const Set<String> _googleIamWorkloadIdentityPoolIamPolicySensitive = <String>{};
 
@@ -17,7 +20,7 @@ final class GoogleIamWorkloadIdentityPoolIamPolicy extends Resource {
 
   GoogleIamWorkloadIdentityPoolIamPolicy({
     required super.localName,
-    required TfArg<String> workloadIdentityPoolId,
+    required RefTo<GoogleIamWorkloadIdentityPool> workloadIdentityPool,
     required TfArg<String> policyData,
     TfArg<String>? project,
     super.lifecycle,
@@ -27,9 +30,11 @@ final class GoogleIamWorkloadIdentityPoolIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'workload_identity_pool_id': workloadIdentityPoolId,
+           'workload_identity_pool_id': workloadIdentityPool.encodeAs(
+             'workload_identity_pool_id',
+           ),
            'policy_data': policyData,
-           'project': ?project,
+           'project': ?(project ?? workloadIdentityPool.alsoAs('project')),
          },
        );
 

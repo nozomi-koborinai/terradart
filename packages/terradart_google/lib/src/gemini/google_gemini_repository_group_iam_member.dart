@@ -4,8 +4,6 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
-import '../gemini/google_gemini_code_repository_index.dart'
-    show GoogleGeminiCodeRepositoryIndex;
 import '../gemini/google_gemini_repository_group.dart'
     show GoogleGeminiRepositoryGroup;
 
@@ -41,8 +39,8 @@ final class GoogleGeminiRepositoryGroupIamMember extends Resource {
 
   GoogleGeminiRepositoryGroupIamMember({
     required super.localName,
-    required RefTo<GoogleGeminiRepositoryGroup> repositoryGroupId,
-    required RefTo<GoogleGeminiCodeRepositoryIndex> codeRepositoryIndex,
+    required RefTo<GoogleGeminiRepositoryGroup> repositoryGroup,
+    TfArg<String>? codeRepositoryIndex,
     required TfArg<String> role,
     required TfArg<String> member,
     GeminiRepositoryGroupIamMemberCondition? condition,
@@ -55,18 +53,18 @@ final class GoogleGeminiRepositoryGroupIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'repository_group_id': repositoryGroupId.encodeAs(
+           'repository_group_id': repositoryGroup.encodeAs(
              'repository_group_id',
            ),
-           'code_repository_index': codeRepositoryIndex.encodeAs(
-             'code_repository_index_id',
-           ),
+           'code_repository_index':
+               ?(codeRepositoryIndex ??
+               repositoryGroup.alsoAs('code_repository_index')),
            'role': role,
            'member': member,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? repositoryGroup.alsoAs('location')),
+           'project': ?(project ?? repositoryGroup.alsoAs('project')),
          },
        );
 

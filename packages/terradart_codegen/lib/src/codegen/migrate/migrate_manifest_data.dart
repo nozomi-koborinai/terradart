@@ -34,6 +34,7 @@ final class MigrateSlotData {
     this.helper,
     this.variants,
     this.attribute,
+    this.defaultsFrom,
     this.reason,
   });
 
@@ -50,6 +51,7 @@ final class MigrateSlotData {
   final String? helper;
   final Map<String, String>? variants;
   final String? attribute;
+  final String? defaultsFrom;
   final String? reason;
 }
 

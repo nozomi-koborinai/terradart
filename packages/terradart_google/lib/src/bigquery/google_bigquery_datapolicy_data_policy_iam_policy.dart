@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../bigquery/google_bigquery_datapolicy_data_policy.dart'
+    show GoogleBigqueryDatapolicyDataPolicy;
+
 /// Sensitive field paths for `google_bigquery_datapolicy_data_policy_iam_policy`.
 const Set<String> _googleBigqueryDatapolicyDataPolicyIamPolicySensitive =
     <String>{};
@@ -19,7 +22,7 @@ final class GoogleBigqueryDatapolicyDataPolicyIamPolicy extends Resource {
 
   GoogleBigqueryDatapolicyDataPolicyIamPolicy({
     required super.localName,
-    required TfArg<String> dataPolicyId,
+    required RefTo<GoogleBigqueryDatapolicyDataPolicy> dataPolicy,
     required TfArg<String> policyData,
     TfArg<String>? location,
     TfArg<String>? project,
@@ -30,10 +33,10 @@ final class GoogleBigqueryDatapolicyDataPolicyIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'data_policy_id': dataPolicyId,
+           'data_policy_id': dataPolicy.encodeAs('data_policy_id'),
            'policy_data': policyData,
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? dataPolicy.alsoAs('location')),
+           'project': ?(project ?? dataPolicy.alsoAs('project')),
          },
        );
 

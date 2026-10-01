@@ -19,7 +19,7 @@ final class GoogleBigqueryDatasetIamPolicy extends Resource {
 
   GoogleBigqueryDatasetIamPolicy({
     required super.localName,
-    required RefTo<GoogleBigqueryDataset> datasetId,
+    required RefTo<GoogleBigqueryDataset> dataset,
     required TfArg<String> policyData,
     TfArg<String>? project,
     super.lifecycle,
@@ -29,9 +29,9 @@ final class GoogleBigqueryDatasetIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'dataset_id': datasetId.encodeAs('dataset_id'),
+           'dataset_id': dataset.encodeAs('dataset_id'),
            'policy_data': policyData,
-           'project': ?project,
+           'project': ?(project ?? dataset.alsoAs('project')),
          },
        );
 

@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../privateca/google_privateca_certificate_template.dart'
+    show GooglePrivatecaCertificateTemplate;
+
 /// Sensitive field paths for `google_privateca_certificate_template_iam_policy`.
 const Set<String> _googlePrivatecaCertificateTemplateIamPolicySensitive =
     <String>{};
@@ -19,7 +22,7 @@ final class GooglePrivatecaCertificateTemplateIamPolicy extends Resource {
 
   GooglePrivatecaCertificateTemplateIamPolicy({
     required super.localName,
-    required TfArg<String> certificateTemplate,
+    required RefTo<GooglePrivatecaCertificateTemplate> certificateTemplate,
     TfArg<String>? location,
     required TfArg<String> policyData,
     TfArg<String>? project,
@@ -30,10 +33,10 @@ final class GooglePrivatecaCertificateTemplateIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'certificate_template': certificateTemplate,
-           'location': ?location,
+           'certificate_template': certificateTemplate.encodeAs('name'),
+           'location': ?(location ?? certificateTemplate.alsoAs('location')),
            'policy_data': policyData,
-           'project': ?project,
+           'project': ?(project ?? certificateTemplate.alsoAs('project')),
          },
        );
 

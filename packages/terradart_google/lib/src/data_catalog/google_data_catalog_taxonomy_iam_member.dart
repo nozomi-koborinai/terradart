@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../data_catalog/google_data_catalog_taxonomy.dart'
+    show GoogleDataCatalogTaxonomy;
+
 /// Sensitive field paths for `google_data_catalog_taxonomy_iam_member`.
 const Set<String> _googleDataCatalogTaxonomyIamMemberSensitive = <String>{};
 
@@ -39,7 +42,7 @@ final class GoogleDataCatalogTaxonomyIamMember extends Resource {
 
   GoogleDataCatalogTaxonomyIamMember({
     required super.localName,
-    required TfArg<String> taxonomy,
+    required RefTo<GoogleDataCatalogTaxonomy> taxonomy,
     required TfArg<String> role,
     required TfArg<String> member,
     DataCatalogTaxonomyIamMemberCondition? condition,
@@ -52,7 +55,7 @@ final class GoogleDataCatalogTaxonomyIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'taxonomy': taxonomy,
+           'taxonomy': taxonomy.encodeAs('id'),
            'role': role,
            'member': member,
            if (condition != null)

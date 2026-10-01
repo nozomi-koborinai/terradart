@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../ces/google_ces_agent.dart' show GoogleCesAgent;
+import '../ces/google_ces_app.dart' show GoogleCesApp;
 import '../ces/google_ces_toolset.dart' show GoogleCesToolset;
 
 /// Sensitive field paths for `google_ces_example`.
@@ -202,8 +203,7 @@ final class CesExampleToolResponse {
 /// ```dart
 /// GoogleCesExample(
 ///   localName: 'greeting',
-///   location: TfArg.ref(app.locationRef),
-///   app: TfArg.ref(app.appIdRef),
+///   app: app.ref,
 ///   exampleId: TfArg.literal('terradart-ces-example'),
 ///   displayName: TfArg.literal('terradart-ces-example'),
 ///   entryAgent: agent.ref,
@@ -224,8 +224,8 @@ final class GoogleCesExample extends Resource {
 
   GoogleCesExample({
     required super.localName,
-    required TfArg<String> location,
-    required TfArg<String> app,
+    TfArg<String>? location,
+    required RefTo<GoogleCesApp> app,
     required TfArg<String> exampleId,
     required TfArg<String> displayName,
     TfArg<String>? description,
@@ -240,8 +240,8 @@ final class GoogleCesExample extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'location': location,
-           'app': app,
+           'location': ?(location ?? app.alsoAs('location')),
+           'app': app.encodeAs('app_id'),
            'example_id': exampleId,
            'display_name': displayName,
            'description': ?description,
@@ -249,7 +249,7 @@ final class GoogleCesExample extends Resource {
            if (messages != null)
              'messages': TfArg.literal([for (final e in messages) e.encode()]),
            'deletion_policy': ?deletionPolicy,
-           'project': ?project,
+           'project': ?(project ?? app.alsoAs('project')),
          },
        );
 

@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../clouddeploy/google_clouddeploy_delivery_pipeline.dart'
+    show GoogleClouddeployDeliveryPipeline;
+
 /// Sensitive field paths for `google_clouddeploy_delivery_pipeline_iam_policy`.
 const Set<String> _googleClouddeployDeliveryPipelineIamPolicySensitive =
     <String>{};
@@ -19,7 +22,7 @@ final class GoogleClouddeployDeliveryPipelineIamPolicy extends Resource {
 
   GoogleClouddeployDeliveryPipelineIamPolicy({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleClouddeployDeliveryPipeline> deliveryPipeline,
     required TfArg<String> policyData,
     TfArg<String>? location,
     TfArg<String>? project,
@@ -30,10 +33,10 @@ final class GoogleClouddeployDeliveryPipelineIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': deliveryPipeline.encodeAs('name'),
            'policy_data': policyData,
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? deliveryPipeline.alsoAs('location')),
+           'project': ?(project ?? deliveryPipeline.alsoAs('project')),
          },
        );
 

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_region_network_firewall_policy.dart'
+    show GoogleComputeRegionNetworkFirewallPolicy;
+
 /// Sensitive field paths for `google_compute_region_network_firewall_policy_iam_binding`.
 const Set<String> _googleComputeRegionNetworkFirewallPolicyIamBindingSensitive =
     <String>{};
@@ -45,7 +48,7 @@ final class GoogleComputeRegionNetworkFirewallPolicyIamBinding
 
   GoogleComputeRegionNetworkFirewallPolicyIamBinding({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleComputeRegionNetworkFirewallPolicy> firewallPolicy,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     ComputeRegionNetworkFirewallPolicyIamBindingCondition? condition,
@@ -58,13 +61,13 @@ final class GoogleComputeRegionNetworkFirewallPolicyIamBinding
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': firewallPolicy.encodeAs('name'),
            'role': role,
            'members': members,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'region': ?region,
-           'project': ?project,
+           'region': ?(region ?? firewallPolicy.alsoAs('region')),
+           'project': ?(project ?? firewallPolicy.alsoAs('project')),
          },
        );
 

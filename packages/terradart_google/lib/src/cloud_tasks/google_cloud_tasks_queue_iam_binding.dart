@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloud_tasks/google_cloud_tasks_queue.dart'
+    show GoogleCloudTasksQueue;
+
 /// Sensitive field paths for `google_cloud_tasks_queue_iam_binding`.
 const Set<String> _googleCloudTasksQueueIamBindingSensitive = <String>{};
 
@@ -41,8 +44,8 @@ final class GoogleCloudTasksQueueIamBinding extends Resource {
 
   GoogleCloudTasksQueueIamBinding({
     required super.localName,
-    required TfArg<String> name,
-    required TfArg<String> location,
+    required RefTo<GoogleCloudTasksQueue> queue,
+    TfArg<String>? location,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     CloudTasksQueueIamBindingCondition? condition,
@@ -54,13 +57,13 @@ final class GoogleCloudTasksQueueIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
-           'location': location,
+           'name': queue.encodeAs('name'),
+           'location': ?(location ?? queue.alsoAs('location')),
            'role': role,
            'members': members,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'project': ?project,
+           'project': ?(project ?? queue.alsoAs('project')),
          },
        );
 

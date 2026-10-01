@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../workstations/google_workstations_workstation.dart'
+    show GoogleWorkstationsWorkstation;
+
 /// Sensitive field paths for `google_workstations_workstation_iam_member`.
 const Set<String> _googleWorkstationsWorkstationIamMemberSensitive = <String>{};
 
@@ -41,9 +44,9 @@ final class GoogleWorkstationsWorkstationIamMember extends Resource {
 
   GoogleWorkstationsWorkstationIamMember({
     required super.localName,
-    required TfArg<String> workstationClusterId,
-    required TfArg<String> workstationConfigId,
-    required TfArg<String> workstationId,
+    TfArg<String>? workstationClusterId,
+    TfArg<String>? workstationConfigId,
+    required RefTo<GoogleWorkstationsWorkstation> workstation,
     required TfArg<String> role,
     required TfArg<String> member,
     TfArg<String>? location,
@@ -56,13 +59,17 @@ final class GoogleWorkstationsWorkstationIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'workstation_cluster_id': workstationClusterId,
-           'workstation_config_id': workstationConfigId,
-           'workstation_id': workstationId,
+           'workstation_cluster_id':
+               ?(workstationClusterId ??
+               workstation.alsoAs('workstation_cluster_id')),
+           'workstation_config_id':
+               ?(workstationConfigId ??
+               workstation.alsoAs('workstation_config_id')),
+           'workstation_id': workstation.encodeAs('workstation_id'),
            'role': role,
            'member': member,
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? workstation.alsoAs('location')),
+           'project': ?(project ?? workstation.alsoAs('project')),
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
          },

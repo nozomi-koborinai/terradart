@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../data_catalog/google_data_catalog_taxonomy.dart'
+    show GoogleDataCatalogTaxonomy;
+
 /// Sensitive field paths for `google_data_catalog_taxonomy_iam_policy`.
 const Set<String> _googleDataCatalogTaxonomyIamPolicySensitive = <String>{};
 
@@ -17,7 +20,7 @@ final class GoogleDataCatalogTaxonomyIamPolicy extends Resource {
 
   GoogleDataCatalogTaxonomyIamPolicy({
     required super.localName,
-    required TfArg<String> taxonomy,
+    required RefTo<GoogleDataCatalogTaxonomy> taxonomy,
     required TfArg<String> policyData,
     TfArg<String>? region,
     TfArg<String>? project,
@@ -28,7 +31,7 @@ final class GoogleDataCatalogTaxonomyIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'taxonomy': taxonomy,
+           'taxonomy': taxonomy.encodeAs('id'),
            'policy_data': policyData,
            'region': ?region,
            'project': ?project,

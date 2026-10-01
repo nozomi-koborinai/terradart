@@ -85,10 +85,9 @@ final class DataformStack extends Stack {
     add(
       GoogleDataformRepositoryIamMember(
         localName: 'repository_editor',
-        repository: .ref(repository.nameRef),
+        repository: repository.ref,
         role: .literal('roles/dataform.editor'),
         member: .ref(runner.iamMember),
-        region: .literal('us-central1'),
         dependsOn: [ResourceDependency(repository), ResourceDependency(runner)],
       ),
     );

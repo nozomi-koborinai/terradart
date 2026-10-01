@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloud_run/google_cloud_run_v2_job.dart' show GoogleCloudRunV2Job;
+
 /// Sensitive field paths for `google_cloud_run_v2_job_iam_member`.
 const Set<String> _googleCloudRunV2JobIamMemberSensitive = <String>{};
 
@@ -36,7 +38,7 @@ final class GoogleCloudRunV2JobIamMember extends Resource {
 
   GoogleCloudRunV2JobIamMember({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleCloudRunV2Job> job,
     required TfArg<String> role,
     required TfArg<String> member,
     CloudRunV2JobIamMemberCondition? condition,
@@ -49,13 +51,13 @@ final class GoogleCloudRunV2JobIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': job.encodeAs('name'),
            'role': role,
            'member': member,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? job.alsoAs('location')),
+           'project': ?(project ?? job.alsoAs('project')),
          },
        );
 

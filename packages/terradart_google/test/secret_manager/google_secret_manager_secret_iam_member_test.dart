@@ -11,17 +11,21 @@ void main() {
     );
     final iam = GoogleSecretManagerSecretIamMember(
       localName: 'api_key_reader',
-      secretId: TfArg.ref(s.secretIdRef),
+      secret: s.ref,
       role: TfArg.literal('roles/secretmanager.secretAccessor'),
       member: TfArg.literal('serviceAccount:reader@p.iam.gserviceaccount.com'),
     );
     expect(
       iam.argMap.keys.toList(),
-      equals(<String>['secret_id', 'role', 'member']),
+      equals(<String>['secret_id', 'role', 'member', 'project']),
     );
     expect(
       iam.argMap['secret_id']!.toTfJson(),
       equals(r'${google_secret_manager_secret.api_key.secret_id}'),
+    );
+    expect(
+      iam.argMap['project']!.toTfJson(),
+      equals(r'${google_secret_manager_secret.api_key.project}'),
     );
     expect(
       iam.terraformType,

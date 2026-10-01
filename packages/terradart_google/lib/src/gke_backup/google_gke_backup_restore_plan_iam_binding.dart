@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../gke_backup/google_gke_backup_restore_plan.dart'
+    show GoogleGkeBackupRestorePlan;
+
 /// Sensitive field paths for `google_gke_backup_restore_plan_iam_binding`.
 const Set<String> _googleGkeBackupRestorePlanIamBindingSensitive = <String>{};
 
@@ -44,7 +47,7 @@ final class GoogleGkeBackupRestorePlanIamBinding extends Resource {
 
   GoogleGkeBackupRestorePlanIamBinding({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleGkeBackupRestorePlan> restorePlan,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     TfArg<String>? location,
@@ -57,13 +60,13 @@ final class GoogleGkeBackupRestorePlanIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': restorePlan.encodeAs('name'),
            'role': role,
            'members': members,
-           'location': ?location,
+           'location': ?(location ?? restorePlan.alsoAs('location')),
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'project': ?project,
+           'project': ?(project ?? restorePlan.alsoAs('project')),
          },
        );
 

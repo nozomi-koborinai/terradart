@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../privateca/google_privateca_ca_pool.dart' show GooglePrivatecaCaPool;
+
 /// Sensitive field paths for `google_privateca_ca_pool_iam_policy`.
 const Set<String> _googlePrivatecaCaPoolIamPolicySensitive = <String>{};
 
@@ -17,7 +19,7 @@ final class GooglePrivatecaCaPoolIamPolicy extends Resource {
 
   GooglePrivatecaCaPoolIamPolicy({
     required super.localName,
-    required TfArg<String> caPool,
+    required RefTo<GooglePrivatecaCaPool> caPool,
     required TfArg<String> policyData,
     super.lifecycle,
     super.dependsOn,
@@ -25,7 +27,7 @@ final class GooglePrivatecaCaPoolIamPolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'ca_pool': caPool, 'policy_data': policyData},
+         argMap: {'ca_pool': caPool.encodeAs('id'), 'policy_data': policyData},
        );
 
   @override

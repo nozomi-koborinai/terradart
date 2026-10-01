@@ -25,7 +25,8 @@
         "name": "${google_cloud_tasks_queue.jobs.name}",
         "location": "${google_cloud_tasks_queue.jobs.location}",
         "role": "roles/cloudtasks.enqueuer",
-        "member": "serviceAccount:enq@demo.iam.gserviceaccount.com"
+        "member": "serviceAccount:enq@demo.iam.gserviceaccount.com",
+        "project": "${google_cloud_tasks_queue.jobs.project}"
       }
     }
   }

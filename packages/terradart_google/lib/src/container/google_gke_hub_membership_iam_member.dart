@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../container/google_gke_hub_membership.dart'
+    show GoogleGkeHubMembership;
+
 /// Sensitive field paths for `google_gke_hub_membership_iam_member`.
 const Set<String> _googleGkeHubMembershipIamMemberSensitive = <String>{};
 
@@ -36,7 +39,7 @@ final class GoogleGkeHubMembershipIamMember extends Resource {
 
   GoogleGkeHubMembershipIamMember({
     required super.localName,
-    required TfArg<String> membershipId,
+    required RefTo<GoogleGkeHubMembership> membership,
     TfArg<String>? location,
     required TfArg<String> role,
     required TfArg<String> member,
@@ -49,11 +52,11 @@ final class GoogleGkeHubMembershipIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'membership_id': membershipId,
-           'location': ?location,
+           'membership_id': membership.encodeAs('membership_id'),
+           'location': ?(location ?? membership.alsoAs('location')),
            'role': role,
            'member': member,
-           'project': ?project,
+           'project': ?(project ?? membership.alsoAs('project')),
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
          },

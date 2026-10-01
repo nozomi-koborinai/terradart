@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../api_gateway/google_api_gateway_api_config.dart'
+    show GoogleApiGatewayApiConfig;
+
 /// Sensitive field paths for `google_api_gateway_api_config_iam_policy`.
 const Set<String> _googleApiGatewayApiConfigIamPolicySensitive = <String>{};
 
@@ -17,8 +20,8 @@ final class GoogleApiGatewayApiConfigIamPolicy extends Resource {
 
   GoogleApiGatewayApiConfigIamPolicy({
     required super.localName,
-    required TfArg<String> api,
-    required TfArg<String> apiConfig,
+    TfArg<String>? api,
+    required RefTo<GoogleApiGatewayApiConfig> apiConfig,
     required TfArg<String> policyData,
     TfArg<String>? project,
     super.lifecycle,
@@ -29,10 +32,10 @@ final class GoogleApiGatewayApiConfigIamPolicy extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           'api': api,
-           'api_config': apiConfig,
+           'api': ?(api ?? apiConfig.alsoAs('api')),
+           'api_config': apiConfig.encodeAs('name'),
            'policy_data': policyData,
-           'project': ?project,
+           'project': ?(project ?? apiConfig.alsoAs('project')),
          },
        );
 

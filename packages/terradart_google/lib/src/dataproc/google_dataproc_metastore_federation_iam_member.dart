@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../dataproc/google_dataproc_metastore_federation.dart'
+    show GoogleDataprocMetastoreFederation;
+
 /// Sensitive field paths for `google_dataproc_metastore_federation_iam_member`.
 const Set<String> _googleDataprocMetastoreFederationIamMemberSensitive =
     <String>{};
@@ -42,7 +45,7 @@ final class GoogleDataprocMetastoreFederationIamMember extends Resource {
 
   GoogleDataprocMetastoreFederationIamMember({
     required super.localName,
-    required TfArg<String> federationId,
+    required RefTo<GoogleDataprocMetastoreFederation> federation,
     required TfArg<String> role,
     required TfArg<String> member,
     TfArg<String>? location,
@@ -55,13 +58,13 @@ final class GoogleDataprocMetastoreFederationIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'federation_id': federationId,
+           'federation_id': federation.encodeAs('federation_id'),
            'role': role,
            'member': member,
-           'location': ?location,
+           'location': ?(location ?? federation.alsoAs('location')),
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'project': ?project,
+           'project': ?(project ?? federation.alsoAs('project')),
          },
        );
 

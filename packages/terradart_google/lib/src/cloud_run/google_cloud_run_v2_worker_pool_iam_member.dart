@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloud_run/google_cloud_run_v2_worker_pool.dart'
+    show GoogleCloudRunV2WorkerPool;
+
 /// Sensitive field paths for `google_cloud_run_v2_worker_pool_iam_member`.
 const Set<String> _googleCloudRunV2WorkerPoolIamMemberSensitive = <String>{};
 
@@ -36,7 +39,7 @@ final class GoogleCloudRunV2WorkerPoolIamMember extends Resource {
 
   GoogleCloudRunV2WorkerPoolIamMember({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleCloudRunV2WorkerPool> workerPool,
     required TfArg<String> role,
     required TfArg<String> member,
     CloudRunV2WorkerPoolIamMemberCondition? condition,
@@ -49,13 +52,13 @@ final class GoogleCloudRunV2WorkerPoolIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': workerPool.encodeAs('name'),
            'role': role,
            'member': member,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? workerPool.alsoAs('location')),
+           'project': ?(project ?? workerPool.alsoAs('project')),
          },
        );
 

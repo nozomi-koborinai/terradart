@@ -4,7 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
-import '../bigquery/google_bigquery_dataset.dart' show GoogleBigqueryDataset;
+import '../bigquery/google_bigquery_table.dart' show GoogleBigqueryTable;
 
 /// Sensitive field paths for `google_bigquery_table_iam_member`.
 const Set<String> _googleBigqueryTableIamMemberSensitive = <String>{};
@@ -38,8 +38,8 @@ final class GoogleBigqueryTableIamMember extends Resource {
 
   GoogleBigqueryTableIamMember({
     required super.localName,
-    required RefTo<GoogleBigqueryDataset> datasetId,
-    required TfArg<String> tableId,
+    TfArg<String>? datasetId,
+    required RefTo<GoogleBigqueryTable> table,
     required TfArg<String> role,
     required TfArg<String> member,
     BigqueryTableIamMemberCondition? condition,
@@ -51,13 +51,13 @@ final class GoogleBigqueryTableIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'dataset_id': datasetId.encodeAs('dataset_id'),
-           'table_id': tableId,
+           'dataset_id': ?(datasetId ?? table.alsoAs('dataset_id')),
+           'table_id': table.encodeAs('table_id'),
            'role': role,
            'member': member,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'project': ?project,
+           'project': ?(project ?? table.alsoAs('project')),
          },
        );
 

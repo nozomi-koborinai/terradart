@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../logging/google_logging_log_view.dart' show GoogleLoggingLogView;
+
 /// Sensitive field paths for `google_logging_log_view_iam_member`.
 const Set<String> _googleLoggingLogViewIamMemberSensitive = <String>{};
 
@@ -36,10 +38,10 @@ final class GoogleLoggingLogViewIamMember extends Resource {
 
   GoogleLoggingLogViewIamMember({
     required super.localName,
-    required TfArg<String> bucket,
+    TfArg<String>? bucket,
     TfArg<String>? location,
-    required TfArg<String> name,
-    required TfArg<String> parent,
+    required RefTo<GoogleLoggingLogView> logView,
+    TfArg<String>? parent,
     required TfArg<String> role,
     required TfArg<String> member,
     LoggingLogViewIamMemberCondition? condition,
@@ -50,10 +52,10 @@ final class GoogleLoggingLogViewIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket': bucket,
-           'location': ?location,
-           'name': name,
-           'parent': parent,
+           'bucket': ?(bucket ?? logView.alsoAs('bucket')),
+           'location': ?(location ?? logView.alsoAs('location')),
+           'name': logView.encodeAs('name'),
+           'parent': ?(parent ?? logView.alsoAs('parent')),
            'role': role,
            'member': member,
            if (condition != null)

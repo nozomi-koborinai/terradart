@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_ekm_connection.dart' show GoogleKmsEkmConnection;
+
 /// Sensitive field paths for `google_kms_ekm_connection_iam_member`.
 const Set<String> _googleKmsEkmConnectionIamMemberSensitive = <String>{};
 
@@ -36,7 +38,7 @@ final class GoogleKmsEkmConnectionIamMember extends Resource {
 
   GoogleKmsEkmConnectionIamMember({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleKmsEkmConnection> connection,
     required TfArg<String> role,
     required TfArg<String> member,
     TfArg<String>? location,
@@ -49,11 +51,11 @@ final class GoogleKmsEkmConnectionIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': connection.encodeAs('name'),
            'role': role,
            'member': member,
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? connection.alsoAs('location')),
+           'project': ?(project ?? connection.alsoAs('project')),
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
          },

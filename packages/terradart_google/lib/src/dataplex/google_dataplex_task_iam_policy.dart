@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../dataplex/google_dataplex_task.dart' show GoogleDataplexTask;
+
 /// Sensitive field paths for `google_dataplex_task_iam_policy`.
 const Set<String> _googleDataplexTaskIamPolicySensitive = <String>{};
 
@@ -17,8 +19,8 @@ final class GoogleDataplexTaskIamPolicy extends Resource {
 
   GoogleDataplexTaskIamPolicy({
     required super.localName,
-    required TfArg<String> taskId,
-    required TfArg<String> lake,
+    required RefTo<GoogleDataplexTask> task,
+    TfArg<String>? lake,
     required TfArg<String> policyData,
     TfArg<String>? location,
     TfArg<String>? project,
@@ -29,11 +31,11 @@ final class GoogleDataplexTaskIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'task_id': taskId,
-           'lake': lake,
+           'task_id': task.encodeAs('task_id'),
+           'lake': ?(lake ?? task.alsoAs('lake')),
            'policy_data': policyData,
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? task.alsoAs('location')),
+           'project': ?(project ?? task.alsoAs('project')),
          },
        );
 

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../clouddeploy/google_clouddeploy_delivery_pipeline.dart'
+    show GoogleClouddeployDeliveryPipeline;
+
 /// Sensitive field paths for `google_clouddeploy_delivery_pipeline_iam_member`.
 const Set<String> _googleClouddeployDeliveryPipelineIamMemberSensitive =
     <String>{};
@@ -38,7 +41,7 @@ final class GoogleClouddeployDeliveryPipelineIamMember extends Resource {
 
   GoogleClouddeployDeliveryPipelineIamMember({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleClouddeployDeliveryPipeline> deliveryPipeline,
     required TfArg<String> role,
     required TfArg<String> member,
     TfArg<String>? location,
@@ -51,13 +54,13 @@ final class GoogleClouddeployDeliveryPipelineIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': deliveryPipeline.encodeAs('name'),
            'role': role,
            'member': member,
-           'location': ?location,
+           'location': ?(location ?? deliveryPipeline.alsoAs('location')),
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'project': ?project,
+           'project': ?(project ?? deliveryPipeline.alsoAs('project')),
          },
        );
 

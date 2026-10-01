@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ces/google_ces_app.dart' show GoogleCesApp;
+
 /// Sensitive field paths for `google_ces_guardrail`.
 const Set<String> _googleCesGuardrailSensitive = <String>{};
 
@@ -454,8 +456,7 @@ enum CesGuardrailThreshold implements TerraformEnum {
 /// ```dart
 /// GoogleCesGuardrail(
 ///   localName: 'safety',
-///   location: TfArg.ref(app.locationRef),
-///   app: TfArg.ref(app.appIdRef),
+///   app: app.ref,
 ///   guardrailId: TfArg.literal('terradart-ces-guardrail'),
 ///   displayName: TfArg.literal('terradart-ces-guardrail'),
 ///   enabled: TfArg.literal(true),
@@ -479,8 +480,8 @@ final class GoogleCesGuardrail extends Resource {
 
   GoogleCesGuardrail({
     required super.localName,
-    required TfArg<String> location,
-    required TfArg<String> app,
+    TfArg<String>? location,
+    required RefTo<GoogleCesApp> app,
     required TfArg<String> guardrailId,
     required TfArg<String> displayName,
     TfArg<String>? description,
@@ -500,8 +501,8 @@ final class GoogleCesGuardrail extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'location': location,
-           'app': app,
+           'location': ?(location ?? app.alsoAs('location')),
+           'app': app.encodeAs('app_id'),
            'guardrail_id': guardrailId,
            'display_name': displayName,
            'description': ?description,
@@ -518,7 +519,7 @@ final class GoogleCesGuardrail extends Resource {
            if (codeCallback != null)
              'code_callback': TfArg.literal(codeCallback.encode()),
            'deletion_policy': ?deletionPolicy,
-           'project': ?project,
+           'project': ?(project ?? app.alsoAs('project')),
          },
        );
 

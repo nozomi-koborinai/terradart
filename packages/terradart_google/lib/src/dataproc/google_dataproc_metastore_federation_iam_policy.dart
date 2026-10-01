@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../dataproc/google_dataproc_metastore_federation.dart'
+    show GoogleDataprocMetastoreFederation;
+
 /// Sensitive field paths for `google_dataproc_metastore_federation_iam_policy`.
 const Set<String> _googleDataprocMetastoreFederationIamPolicySensitive =
     <String>{};
@@ -19,7 +22,7 @@ final class GoogleDataprocMetastoreFederationIamPolicy extends Resource {
 
   GoogleDataprocMetastoreFederationIamPolicy({
     required super.localName,
-    required TfArg<String> federationId,
+    required RefTo<GoogleDataprocMetastoreFederation> federation,
     required TfArg<String> policyData,
     TfArg<String>? location,
     TfArg<String>? project,
@@ -30,10 +33,10 @@ final class GoogleDataprocMetastoreFederationIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'federation_id': federationId,
+           'federation_id': federation.encodeAs('federation_id'),
            'policy_data': policyData,
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? federation.alsoAs('location')),
+           'project': ?(project ?? federation.alsoAs('project')),
          },
        );
 

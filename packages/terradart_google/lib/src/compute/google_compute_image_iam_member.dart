@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_image.dart' show GoogleComputeImage;
+
 /// Sensitive field paths for `google_compute_image_iam_member`.
 const Set<String> _googleComputeImageIamMemberSensitive = <String>{};
 
@@ -36,7 +38,7 @@ final class GoogleComputeImageIamMember extends Resource {
 
   GoogleComputeImageIamMember({
     required super.localName,
-    required TfArg<String> image,
+    required RefTo<GoogleComputeImage> image,
     required TfArg<String> role,
     required TfArg<String> member,
     ComputeImageIamMemberCondition? condition,
@@ -48,12 +50,12 @@ final class GoogleComputeImageIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'image': image,
+           'image': image.encodeAs('name'),
            'role': role,
            'member': member,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'project': ?project,
+           'project': ?(project ?? image.alsoAs('project')),
          },
        );
 
