@@ -6,13 +6,13 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_bedrockagent_agent`.
 const Set<String> _awsBedrockagentAgentSensitive = <String>{};
 
-/// Bedrockagent Agent Agent enum for `agent_collaboration`.
-enum BedrockagentAgentAgentCollaboration implements TerraformEnum {
+/// Bedrockagent Agent enum for `agent_collaboration`.
+enum BedrockagentAgentCollaboration implements TerraformEnum {
   supervisor('SUPERVISOR'),
   supervisorRouter('SUPERVISOR_ROUTER'),
   disabled('DISABLED');
 
-  const BedrockagentAgentAgentCollaboration(this.terraformValue);
+  const BedrockagentAgentCollaboration(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -23,7 +23,7 @@ final class AwsBedrockagentAgent extends Resource {
 
   AwsBedrockagentAgent({
     required super.localName,
-    TfArg<BedrockagentAgentAgentCollaboration>? agentCollaboration,
+    TfArg<BedrockagentAgentCollaboration>? agentCollaboration,
     required TfArg<String> agentName,
     required TfArg<String> agentResourceRoleArn,
     TfArg<String>? customerEncryptionKeyArn,

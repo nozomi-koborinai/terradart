@@ -9,13 +9,13 @@ export 'src/verifiedaccess/aws_verifiedaccess_endpoint.dart'
         VerifiedaccessEndpointAttachmentType,
         VerifiedaccessEndpointCidrOptions,
         VerifiedaccessEndpointCidrOptionsProtocol,
-        VerifiedaccessEndpointEndpointType,
         VerifiedaccessEndpointLoadBalancerOptions,
         VerifiedaccessEndpointLoadBalancerOptionsProtocol,
         VerifiedaccessEndpointNetworkInterfaceOptions,
         VerifiedaccessEndpointPortRange,
         VerifiedaccessEndpointRdsOptions,
-        VerifiedaccessEndpointSseSpecification;
+        VerifiedaccessEndpointSseSpecification,
+        VerifiedaccessEndpointType;
 export 'src/verifiedaccess/aws_verifiedaccess_group.dart'
     show AwsVerifiedaccessGroup, VerifiedaccessGroupSseConfiguration;
 export 'src/verifiedaccess/aws_verifiedaccess_instance.dart'
@@ -37,5 +37,5 @@ export 'src/verifiedaccess/aws_verifiedaccess_trust_provider.dart'
         VerifiedaccessTrustProviderNativeApplicationOidcOptions,
         VerifiedaccessTrustProviderOidcOptions,
         VerifiedaccessTrustProviderSseSpecification,
-        VerifiedaccessTrustProviderTrustProviderType,
+        VerifiedaccessTrustProviderType,
         VerifiedaccessTrustProviderUserTrustProviderType;

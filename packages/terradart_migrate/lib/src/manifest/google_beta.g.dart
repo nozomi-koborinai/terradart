@@ -2020,7 +2020,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'reservationMode',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'ComputeFutureReservationReservationMode',
+          dartType: 'ComputeFutureReservationMode',
         ),
         MigrateSlot(
           tfName: 'reservation_name',
@@ -15858,6 +15858,13 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       name: 'ComputeFutureReservationMaintenanceInterval',
       members: <String, String>{'PERIODIC': 'periodic'},
     ),
+    'ComputeFutureReservationMode': MigrateEnum(
+      name: 'ComputeFutureReservationMode',
+      members: <String, String>{
+        'CALENDAR': 'calendar',
+        'DEFAULT': 'defaultCase',
+      },
+    ),
     'ComputeFutureReservationPlanningStatus': MigrateEnum(
       name: 'ComputeFutureReservationPlanningStatus',
       members: <String, String>{'DRAFT': 'draft', 'SUBMITTED': 'submitted'},
@@ -15865,13 +15872,6 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
     'ComputeFutureReservationPreviousCommitmentTerms': MigrateEnum(
       name: 'ComputeFutureReservationPreviousCommitmentTerms',
       members: <String, String>{'EXTEND': 'extend'},
-    ),
-    'ComputeFutureReservationReservationMode': MigrateEnum(
-      name: 'ComputeFutureReservationReservationMode',
-      members: <String, String>{
-        'CALENDAR': 'calendar',
-        'DEFAULT': 'defaultCase',
-      },
     ),
     'ComputeFutureReservationSchedulingType': MigrateEnum(
       name: 'ComputeFutureReservationSchedulingType',

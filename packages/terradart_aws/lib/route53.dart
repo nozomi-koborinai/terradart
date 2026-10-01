@@ -68,7 +68,7 @@ export 'src/route53/aws_route53_resolver_endpoint.dart'
         Route53ResolverEndpointDirection,
         Route53ResolverEndpointIpAddress,
         Route53ResolverEndpointProtocols,
-        Route53ResolverEndpointResolverEndpointType;
+        Route53ResolverEndpointType;
 export 'src/route53/aws_route53_resolver_firewall_config.dart'
     show
         AwsRoute53ResolverFirewallConfig,
@@ -98,8 +98,8 @@ export 'src/route53/aws_route53_resolver_rule.dart'
     show
         AwsRoute53ResolverRule,
         Route53ResolverRuleProtocol,
-        Route53ResolverRuleRuleType,
-        Route53ResolverRuleTargetIp;
+        Route53ResolverRuleTargetIp,
+        Route53ResolverRuleType;
 export 'src/route53/aws_route53_resolver_rule_association.dart'
     show AwsRoute53ResolverRuleAssociation;
 export 'src/route53/aws_route53_traffic_policy.dart'

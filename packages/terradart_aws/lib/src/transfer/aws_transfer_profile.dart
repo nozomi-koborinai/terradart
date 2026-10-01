@@ -6,12 +6,12 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_transfer_profile`.
 const Set<String> _awsTransferProfileSensitive = <String>{};
 
-/// Transfer Profile Profile enum for `profile_type`.
-enum TransferProfileProfileType implements TerraformEnum {
+/// Transfer Profile enum for `profile_type`.
+enum TransferProfileType implements TerraformEnum {
   local('LOCAL'),
   partner('PARTNER');
 
-  const TransferProfileProfileType(this.terraformValue);
+  const TransferProfileType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -24,7 +24,7 @@ final class AwsTransferProfile extends Resource {
     required super.localName,
     required TfArg<String> as2Id,
     TfArg<List<String>>? certificateIds,
-    required TfArg<TransferProfileProfileType> profileType,
+    required TfArg<TransferProfileType> profileType,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,

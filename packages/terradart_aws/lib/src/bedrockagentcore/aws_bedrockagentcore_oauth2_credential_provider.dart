@@ -51,9 +51,8 @@ _awsBedrockagentcoreOauth2CredentialProviderSensitive = <String>{
   'oauth2_provider_config.slack_oauth2_provider_config.client_secret_wo',
 };
 
-/// Bedrockagentcore Oauth2 Credential Provider Credential Provider enum for `credential_provider_vendor`.
-enum BedrockagentcoreOauth2CredentialProviderCredentialProviderVendor
-    implements TerraformEnum {
+/// Bedrockagentcore Oauth2 Credential Provider enum for `credential_provider_vendor`.
+enum BedrockagentcoreOauth2CredentialProviderVendor implements TerraformEnum {
   googleoauth2('GoogleOauth2'),
   githuboauth2('GithubOauth2'),
   slackoauth2('SlackOauth2'),
@@ -80,9 +79,7 @@ enum BedrockagentcoreOauth2CredentialProviderCredentialProviderVendor
   auth0oauth2('Auth0Oauth2'),
   cognitooauth2('CognitoOauth2');
 
-  const BedrockagentcoreOauth2CredentialProviderCredentialProviderVendor(
-    this.terraformValue,
-  );
+  const BedrockagentcoreOauth2CredentialProviderVendor(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1032,9 +1029,7 @@ final class AwsBedrockagentcoreOauth2CredentialProvider extends Resource {
 
   AwsBedrockagentcoreOauth2CredentialProvider({
     required super.localName,
-    required TfArg<
-      BedrockagentcoreOauth2CredentialProviderCredentialProviderVendor
-    >
+    required TfArg<BedrockagentcoreOauth2CredentialProviderVendor>
     credentialProviderVendor,
     required TfArg<String> name,
     TfArg<String>? region,

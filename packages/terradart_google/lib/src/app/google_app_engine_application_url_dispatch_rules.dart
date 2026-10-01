@@ -11,8 +11,8 @@ const Set<String> _googleAppEngineApplicationUrlDispatchRulesSensitive =
 /// Typed helper for the `dispatch_rules` block of
 /// `google_app_engine_application_url_dispatch_rules` (derived from provider schema).
 @immutable
-final class AppEngineApplicationUrlDispatchRulesDispatchRules {
-  const AppEngineApplicationUrlDispatchRulesDispatchRules({
+final class AppEngineApplicationUrlDispatchRules {
+  const AppEngineApplicationUrlDispatchRules({
     this.domain,
     required this.path,
     required this.service,
@@ -40,8 +40,7 @@ final class GoogleAppEngineApplicationUrlDispatchRules extends Resource {
 
   GoogleAppEngineApplicationUrlDispatchRules({
     required super.localName,
-    required List<AppEngineApplicationUrlDispatchRulesDispatchRules>
-    dispatchRules,
+    required List<AppEngineApplicationUrlDispatchRules> dispatchRules,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,

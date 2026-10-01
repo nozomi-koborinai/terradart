@@ -12,8 +12,8 @@ const Set<String> _googleDialogflowEncryptionSpecSensitive = <String>{};
 /// Typed helper for the `encryption_spec` block of
 /// `google_dialogflow_encryption_spec` (derived from provider schema).
 @immutable
-final class DialogflowEncryptionSpecEncryptionSpec {
-  const DialogflowEncryptionSpecEncryptionSpec({required this.kmsKey});
+final class DialogflowEncryptionSpec {
+  const DialogflowEncryptionSpec({required this.kmsKey});
 
   final RefTo<GoogleKmsCryptoKey> kmsKey;
 
@@ -38,7 +38,7 @@ final class GoogleDialogflowEncryptionSpec extends Resource {
     required super.localName,
     required TfArg<String> location,
     TfArg<String>? project,
-    required DialogflowEncryptionSpecEncryptionSpec encryptionSpec,
+    required DialogflowEncryptionSpec encryptionSpec,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -10,7 +10,7 @@ export 'src/efs/aws_efs_access_point.dart'
         EfsAccessPointPosixUser,
         EfsAccessPointRootDirectory;
 export 'src/efs/aws_efs_backup_policy.dart'
-    show AwsEfsBackupPolicy, EfsBackupPolicyBackupPolicy, EfsBackupPolicyStatus;
+    show AwsEfsBackupPolicy, EfsBackupPolicy, EfsBackupPolicyStatus;
 export 'src/efs/aws_efs_file_system.dart'
     show
         AwsEfsFileSystem,

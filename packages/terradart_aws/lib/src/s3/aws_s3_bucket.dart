@@ -19,12 +19,12 @@ enum S3BucketAccelerationStatus implements TerraformEnum {
   final String terraformValue;
 }
 
-/// S3 Bucket Bucket enum for `bucket_namespace`.
-enum S3BucketBucketNamespace implements TerraformEnum {
+/// S3 Bucket enum for `bucket_namespace`.
+enum S3BucketNamespace implements TerraformEnum {
   accountRegional('account-regional'),
   global('global');
 
-  const S3BucketBucketNamespace(this.terraformValue);
+  const S3BucketNamespace(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -727,7 +727,7 @@ final class AwsS3Bucket extends Resource {
     TfArg<S3BucketAccelerationStatus>? accelerationStatus,
     S3BucketAccess? access,
     S3BucketName? name,
-    TfArg<S3BucketBucketNamespace>? bucketNamespace,
+    TfArg<S3BucketNamespace>? bucketNamespace,
     TfArg<bool>? forceDestroy,
     TfArg<bool>? objectLockEnabled,
     TfArg<String>? policy,

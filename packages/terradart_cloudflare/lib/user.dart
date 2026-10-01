@@ -14,5 +14,5 @@ export 'src/user/cloudflare_user_group.dart'
 export 'src/user/cloudflare_user_group_members.dart'
     show
         CloudflareUserGroupMembers,
-        UserGroupMembersDirection,
-        UserGroupMembersMembers;
+        UserGroupMembers,
+        UserGroupMembersDirection;

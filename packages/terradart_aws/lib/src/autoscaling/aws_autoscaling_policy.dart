@@ -7,14 +7,14 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_autoscaling_policy`.
 const Set<String> _awsAutoscalingPolicySensitive = <String>{};
 
-/// Autoscaling Policy Policy enum for `policy_type`.
-enum AutoscalingPolicyPolicyType implements TerraformEnum {
+/// Autoscaling Policy enum for `policy_type`.
+enum AutoscalingPolicyType implements TerraformEnum {
   predictivescaling('PredictiveScaling'),
   simplescaling('SimpleScaling'),
   stepscaling('StepScaling'),
   targettrackingscaling('TargetTrackingScaling');
 
-  const AutoscalingPolicyPolicyType(this.terraformValue);
+  const AutoscalingPolicyType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -768,7 +768,7 @@ final class AwsAutoscalingPolicy extends Resource {
     TfArg<String>? metricAggregationType,
     TfArg<num>? minAdjustmentMagnitude,
     required TfArg<String> name,
-    TfArg<AutoscalingPolicyPolicyType>? policyType,
+    TfArg<AutoscalingPolicyType>? policyType,
     TfArg<String>? region,
     AutoscalingPolicyAdjustment? adjustment,
     AutoscalingPolicyPredictiveScalingConfiguration?

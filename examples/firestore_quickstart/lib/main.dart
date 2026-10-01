@@ -48,11 +48,11 @@ final class MessagesStack extends Stack {
         database: .ref(db.nameRef),
         queryScope: .literal(.collection),
         fields: [
-          FirestoreIndexIndexField(
+          FirestoreIndexField(
             fieldPath: .literal('user_id'),
             spec: .order(FirestoreIndexOrder.ascending),
           ),
-          FirestoreIndexIndexField(
+          FirestoreIndexField(
             fieldPath: .literal('created_at'),
             spec: .order(FirestoreIndexOrder.descending),
           ),

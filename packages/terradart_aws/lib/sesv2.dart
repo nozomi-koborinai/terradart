@@ -34,11 +34,11 @@ export 'src/sesv2/aws_sesv2_configuration_set.dart'
 export 'src/sesv2/aws_sesv2_configuration_set_event_destination.dart'
     show
         AwsSesv2ConfigurationSetEventDestination,
+        Sesv2ConfigurationSetEventDestination,
         Sesv2ConfigurationSetEventDestinationCloudWatchDestination,
         Sesv2ConfigurationSetEventDestinationDimensionConfiguration,
         Sesv2ConfigurationSetEventDestinationDimensionValueSource,
         Sesv2ConfigurationSetEventDestinationEventBridgeDestination,
-        Sesv2ConfigurationSetEventDestinationEventDestination,
         Sesv2ConfigurationSetEventDestinationKinesisFirehoseDestination,
         Sesv2ConfigurationSetEventDestinationMatchingEventTypes,
         Sesv2ConfigurationSetEventDestinationPinpointDestination,

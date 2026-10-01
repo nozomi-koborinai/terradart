@@ -34,7 +34,7 @@ final class DataCustomHostnameFilter {
 
   final TfArg<DataCustomHostnameDirection>? direction;
 
-  final TfArg<DataCustomHostnameHostnameStatus>? hostnameStatus;
+  final TfArg<DataCustomHostnameFilterHostnameStatus>? hostnameStatus;
 
   final TfArg<String>? id;
 
@@ -84,7 +84,7 @@ enum DataCustomHostnameDirection implements TerraformEnum {
 }
 
 /// `hostname_status` — derived from the provider schema description.
-enum DataCustomHostnameHostnameStatus implements TerraformEnum {
+enum DataCustomHostnameFilterHostnameStatus implements TerraformEnum {
   active('active'),
   pending('pending'),
   activeRedeploying('active_redeploying'),
@@ -102,7 +102,7 @@ enum DataCustomHostnameHostnameStatus implements TerraformEnum {
   provisioned('provisioned'),
   blocked('blocked');
 
-  const DataCustomHostnameHostnameStatus(this.terraformValue);
+  const DataCustomHostnameFilterHostnameStatus(this.terraformValue);
   @override
   final String terraformValue;
 }

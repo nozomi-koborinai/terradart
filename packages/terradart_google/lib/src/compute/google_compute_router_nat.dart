@@ -17,12 +17,12 @@ enum ComputeRouterNatAutoNetworkTier implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Compute Router Nat Nat Ip Allocate enum for `nat_ip_allocate_option`.
-enum ComputeRouterNatNatIpAllocateOption implements TerraformEnum {
+/// Compute Router Nat Ip Allocate enum for `nat_ip_allocate_option`.
+enum ComputeRouterNatIpAllocateOption implements TerraformEnum {
   manualOnly('MANUAL_ONLY'),
   autoOnly('AUTO_ONLY');
 
-  const ComputeRouterNatNatIpAllocateOption(this.terraformValue);
+  const ComputeRouterNatIpAllocateOption(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -194,7 +194,7 @@ final class GoogleComputeRouterNat extends Resource {
     TfArg<String>? region,
     required TfArg<ComputeRouterNatSourceSubnetworkIpRangesToNat>
     sourceSubnetworkIpRangesToNat,
-    TfArg<ComputeRouterNatNatIpAllocateOption>? natIpAllocateOption,
+    TfArg<ComputeRouterNatIpAllocateOption>? natIpAllocateOption,
     TfArg<ComputeRouterNatType>? type,
     TfArg<List<String>>? natIps,
     TfArg<List<String>>? initialNatIps,

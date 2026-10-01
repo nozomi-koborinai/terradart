@@ -21,13 +21,13 @@ enum GlueJobExecutionClass implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Glue Job Job enum for `job_mode`.
-enum GlueJobJobMode implements TerraformEnum {
+/// Glue Job enum for `job_mode`.
+enum GlueJobMode implements TerraformEnum {
   script('SCRIPT'),
   visual('VISUAL'),
   notebook('NOTEBOOK');
 
-  const GlueJobJobMode(this.terraformValue);
+  const GlueJobMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -181,7 +181,7 @@ final class AwsGlueJob extends Resource {
     TfArg<String>? description,
     TfArg<GlueJobExecutionClass>? executionClass,
     TfArg<String>? glueVersion,
-    TfArg<GlueJobJobMode>? jobMode,
+    TfArg<GlueJobMode>? jobMode,
     TfArg<bool>? jobRunQueuingEnabled,
     TfArg<String>? maintenanceWindow,
     TfArg<num>? maxCapacity,

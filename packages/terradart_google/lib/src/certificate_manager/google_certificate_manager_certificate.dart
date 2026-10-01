@@ -122,7 +122,7 @@ final class CertificateManagerCertificateSelfManaged {
     this.pemPrivateKeyWoVersion,
   });
 
-  final CertificateManagerCertificateCertificate certificate;
+  final CertificateManagerCertificateSelfManagedCertificate certificate;
 
   final CertificateManagerCertificatePrivateKey privateKey;
 
@@ -139,18 +139,18 @@ final class CertificateManagerCertificateSelfManaged {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.certificatePem(...)`.
-sealed class CertificateManagerCertificateCertificate {
-  const CertificateManagerCertificateCertificate();
+sealed class CertificateManagerCertificateSelfManagedCertificate {
+  const CertificateManagerCertificateSelfManagedCertificate();
 
   /// Sets `certificate_pem`.
-  const factory CertificateManagerCertificateCertificate.certificatePem(
+  const factory CertificateManagerCertificateSelfManagedCertificate.certificatePem(
     TfArg<String> certificatePem,
-  ) = CertificateManagerCertificateCertificatePem;
+  ) = CertificateManagerCertificateSelfManagedCertificatePem;
 
   /// Sets `pem_certificate`.
-  const factory CertificateManagerCertificateCertificate.pemCertificate(
+  const factory CertificateManagerCertificateSelfManagedCertificate.pemCertificate(
     TfArg<String> pemCertificate,
-  ) = CertificateManagerCertificatePemCertificate;
+  ) = CertificateManagerCertificateSelfManagedPemCertificate;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -158,10 +158,12 @@ sealed class CertificateManagerCertificateCertificate {
   Map<String, Object?> encode();
 }
 
-/// The [CertificateManagerCertificateCertificate.certificatePem] choice: sets `certificate_pem`.
-final class CertificateManagerCertificateCertificatePem
-    extends CertificateManagerCertificateCertificate {
-  const CertificateManagerCertificateCertificatePem(this.certificatePem);
+/// The [CertificateManagerCertificateSelfManagedCertificate.certificatePem] choice: sets `certificate_pem`.
+final class CertificateManagerCertificateSelfManagedCertificatePem
+    extends CertificateManagerCertificateSelfManagedCertificate {
+  const CertificateManagerCertificateSelfManagedCertificatePem(
+    this.certificatePem,
+  );
 
   final TfArg<String> certificatePem;
 
@@ -174,10 +176,12 @@ final class CertificateManagerCertificateCertificatePem
   };
 }
 
-/// The [CertificateManagerCertificateCertificate.pemCertificate] choice: sets `pem_certificate`.
-final class CertificateManagerCertificatePemCertificate
-    extends CertificateManagerCertificateCertificate {
-  const CertificateManagerCertificatePemCertificate(this.pemCertificate);
+/// The [CertificateManagerCertificateSelfManagedCertificate.pemCertificate] choice: sets `pem_certificate`.
+final class CertificateManagerCertificateSelfManagedPemCertificate
+    extends CertificateManagerCertificateSelfManagedCertificate {
+  const CertificateManagerCertificateSelfManagedPemCertificate(
+    this.pemCertificate,
+  );
 
   final TfArg<String> pemCertificate;
 

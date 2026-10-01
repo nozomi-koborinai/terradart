@@ -7,11 +7,11 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_appsync_function`.
 const Set<String> _awsAppsyncFunctionSensitive = <String>{};
 
-/// Appsync Function Function enum for `function_version`.
-enum AppsyncFunctionFunctionVersion implements TerraformEnum {
+/// Appsync Function enum for `function_version`.
+enum AppsyncFunctionVersion implements TerraformEnum {
   v2018x05x29('2018-05-29');
 
-  const AppsyncFunctionFunctionVersion(this.terraformValue);
+  const AppsyncFunctionVersion(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -114,7 +114,7 @@ final class AwsAppsyncFunction extends Resource {
     TfArg<String>? code,
     required TfArg<String> dataSource,
     TfArg<String>? description,
-    TfArg<AppsyncFunctionFunctionVersion>? functionVersion,
+    TfArg<AppsyncFunctionVersion>? functionVersion,
     TfArg<num>? maxBatchSize,
     required TfArg<String> name,
     TfArg<String>? region,

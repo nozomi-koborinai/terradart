@@ -7,13 +7,13 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_compute_interconnect`.
 const Set<String> _googleComputeInterconnectSensitive = <String>{};
 
-/// Compute Interconnect Interconnect enum for `interconnect_type`.
-enum ComputeInterconnectInterconnectType implements TerraformEnum {
+/// Compute Interconnect enum for `interconnect_type`.
+enum ComputeInterconnectType implements TerraformEnum {
   dedicated('DEDICATED'),
   partner('PARTNER'),
   itPrivate('IT_PRIVATE');
 
-  const ComputeInterconnectInterconnectType(this.terraformValue);
+  const ComputeInterconnectType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -113,7 +113,7 @@ final class GoogleComputeInterconnect extends Resource {
   GoogleComputeInterconnect({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<ComputeInterconnectInterconnectType> interconnectType,
+    required TfArg<ComputeInterconnectType> interconnectType,
     required TfArg<ComputeInterconnectLinkType> linkType,
     required TfArg<String> location,
     required TfArg<num> requestedLinkCount,

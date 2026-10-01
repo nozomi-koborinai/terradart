@@ -16,7 +16,7 @@ export 'src/cognito/aws_cognito_identity_pool_roles_attachment.dart'
         CognitoIdentityPoolRolesAttachmentRoleMapping,
         CognitoIdentityPoolRolesAttachmentType;
 export 'src/cognito/aws_cognito_identity_provider.dart'
-    show AwsCognitoIdentityProvider, CognitoIdentityProviderProviderType;
+    show AwsCognitoIdentityProvider, CognitoIdentityProviderType;
 export 'src/cognito/aws_cognito_log_delivery_configuration.dart'
     show
         AwsCognitoLogDeliveryConfiguration,
@@ -122,8 +122,8 @@ export 'src/cognito/aws_cognito_user_pool.dart'
         CognitoUserPoolSmsConfiguration,
         CognitoUserPoolSoftwareTokenMfaConfiguration,
         CognitoUserPoolStringAttributeConstraints,
+        CognitoUserPoolTier,
         CognitoUserPoolUserAttributeUpdateSettings,
-        CognitoUserPoolUserPoolTier,
         CognitoUserPoolUserVerification,
         CognitoUserPoolUsernameAttributes,
         CognitoUserPoolUsernameConfiguration,

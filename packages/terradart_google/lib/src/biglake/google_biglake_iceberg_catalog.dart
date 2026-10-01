@@ -8,12 +8,12 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleBiglakeIcebergCatalogSensitive = <String>{};
 
 /// Terraform `catalog_type` for [GoogleBiglakeIcebergCatalog].
-enum BiglakeIcebergCatalogCatalogType implements TerraformEnum {
+enum BiglakeIcebergCatalogType implements TerraformEnum {
   catalogTypeGcsBucket('CATALOG_TYPE_GCS_BUCKET'),
   catalogTypeBiglake('CATALOG_TYPE_BIGLAKE'),
   catalogTypeFederated('CATALOG_TYPE_FEDERATED');
 
-  const BiglakeIcebergCatalogCatalogType(this.terraformValue);
+  const BiglakeIcebergCatalogType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -184,7 +184,7 @@ final class GoogleBiglakeIcebergCatalog extends Resource {
   GoogleBiglakeIcebergCatalog({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<BiglakeIcebergCatalogCatalogType> catalogType,
+    required TfArg<BiglakeIcebergCatalogType> catalogType,
     TfArg<BiglakeIcebergCatalogCredentialMode>? credentialMode,
     TfArg<String>? primaryLocation,
     TfArg<String>? defaultLocation,

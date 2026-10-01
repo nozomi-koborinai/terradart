@@ -32,8 +32,8 @@ export 'src/s3control/aws_s3control_bucket_policy.dart'
 export 'src/s3control/aws_s3control_directory_bucket_access_point_scope.dart'
     show
         AwsS3controlDirectoryBucketAccessPointScope,
-        S3controlDirectoryBucketAccessPointScopePermissions,
-        S3controlDirectoryBucketAccessPointScopeScope;
+        S3controlDirectoryBucketAccessPointScope,
+        S3controlDirectoryBucketAccessPointScopePermissions;
 export 'src/s3control/aws_s3control_multi_region_access_point.dart'
     show
         AwsS3controlMultiRegionAccessPoint,
@@ -62,6 +62,7 @@ export 'src/s3control/aws_s3control_object_lambda_access_point_policy.dart'
 export 'src/s3control/aws_s3control_storage_lens_configuration.dart'
     show
         AwsS3controlStorageLensConfiguration,
+        S3controlStorageLensConfiguration,
         S3controlStorageLensConfigurationAccountLevel,
         S3controlStorageLensConfigurationActivityMetrics,
         S3controlStorageLensConfigurationAdvancedCostOptimizationMetrics,
@@ -81,6 +82,5 @@ export 'src/s3control/aws_s3control_storage_lens_configuration.dart'
         S3controlStorageLensConfigurationSelectionCriteria,
         S3controlStorageLensConfigurationSseKms,
         S3controlStorageLensConfigurationSseS3,
-        S3controlStorageLensConfigurationStorageLensConfiguration,
         S3controlStorageLensConfigurationStorageLensTableDestination,
         S3controlStorageLensConfigurationStorageMetrics;

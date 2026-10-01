@@ -19,6 +19,7 @@ export 'src/lexv2models/aws_lexv2models_bot_version.dart'
 export 'src/lexv2models/aws_lexv2models_intent.dart'
     show
         AwsLexv2modelsIntent,
+        Lexv2modelsIntent,
         Lexv2modelsIntentAllowedInputTypes,
         Lexv2modelsIntentAudioAndDtmfInputSpecification,
         Lexv2modelsIntentAudioSpecification,
@@ -57,7 +58,6 @@ export 'src/lexv2models/aws_lexv2models_intent.dart'
         Lexv2modelsIntentInitialResponse,
         Lexv2modelsIntentInitialResponseSetting,
         Lexv2modelsIntentInputContext,
-        Lexv2modelsIntentIntent,
         Lexv2modelsIntentKendraConfiguration,
         Lexv2modelsIntentMessage,
         Lexv2modelsIntentMessageGroup,

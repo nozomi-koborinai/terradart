@@ -109,7 +109,7 @@ export 'src/ec2/aws_ec2_client_vpn_endpoint.dart'
         Ec2ClientVpnEndpointClientLoginBannerOptions,
         Ec2ClientVpnEndpointClientRouteEnforcementOptions,
         Ec2ClientVpnEndpointConnectionLogOptions,
-        Ec2ClientVpnEndpointEndpointIpAddressType,
+        Ec2ClientVpnEndpointIpAddressType,
         Ec2ClientVpnEndpointSelfServicePortal,
         Ec2ClientVpnEndpointTrafficIpAddressType,
         Ec2ClientVpnEndpointTransitGatewayConfiguration,
@@ -166,10 +166,10 @@ export 'src/ec2/aws_ec2_host.dart'
     show
         AwsEc2Host,
         Ec2HostAutoPlacement,
-        Ec2HostHostRecovery,
         Ec2HostInstance,
         Ec2HostInstanceFamily,
-        Ec2HostInstanceType;
+        Ec2HostInstanceType,
+        Ec2HostRecovery;
 export 'src/ec2/aws_ec2_image_block_public_access.dart'
     show AwsEc2ImageBlockPublicAccess, Ec2ImageBlockPublicAccessState;
 export 'src/ec2/aws_ec2_instance_connect_endpoint.dart'
@@ -177,7 +177,7 @@ export 'src/ec2/aws_ec2_instance_connect_endpoint.dart'
 export 'src/ec2/aws_ec2_instance_metadata_defaults.dart'
     show AwsEc2InstanceMetadataDefaults;
 export 'src/ec2/aws_ec2_instance_state.dart'
-    show AwsEc2InstanceState, Ec2InstanceStateState;
+    show AwsEc2InstanceState, Ec2InstanceState;
 export 'src/ec2/aws_ec2_local_gateway_route.dart' show AwsEc2LocalGatewayRoute;
 export 'src/ec2/aws_ec2_local_gateway_route_table.dart'
     show AwsEc2LocalGatewayRouteTable, Ec2LocalGatewayRouteTableMode;
@@ -213,7 +213,7 @@ export 'src/ec2/aws_ec2_network_insights_path.dart'
         Ec2NetworkInsightsPathProtocol,
         Ec2NetworkInsightsPathSourcePortRange;
 export 'src/ec2/aws_ec2_secondary_network.dart'
-    show AwsEc2SecondaryNetwork, Ec2SecondaryNetworkNetworkType;
+    show AwsEc2SecondaryNetwork, Ec2SecondaryNetworkType;
 export 'src/ec2/aws_ec2_secondary_subnet.dart'
     show
         AwsEc2SecondarySubnet,
@@ -223,15 +223,15 @@ export 'src/ec2/aws_ec2_secondary_subnet.dart'
 export 'src/ec2/aws_ec2_serial_console_access.dart'
     show AwsEc2SerialConsoleAccess;
 export 'src/ec2/aws_ec2_subnet_cidr_reservation.dart'
-    show AwsEc2SubnetCidrReservation, Ec2SubnetCidrReservationReservationType;
+    show AwsEc2SubnetCidrReservation, Ec2SubnetCidrReservationType;
 export 'src/ec2/aws_ec2_tag.dart' show AwsEc2Tag;
 export 'src/ec2/aws_ec2_traffic_mirror_filter.dart'
     show AwsEc2TrafficMirrorFilter, Ec2TrafficMirrorFilterNetworkServices;
 export 'src/ec2/aws_ec2_traffic_mirror_filter_rule.dart'
     show
         AwsEc2TrafficMirrorFilterRule,
+        Ec2TrafficMirrorFilterRuleAction,
         Ec2TrafficMirrorFilterRuleDestinationPortRange,
-        Ec2TrafficMirrorFilterRuleRuleAction,
         Ec2TrafficMirrorFilterRuleSourcePortRange,
         Ec2TrafficMirrorFilterRuleTrafficDirection;
 export 'src/ec2/aws_ec2_traffic_mirror_session.dart'
@@ -331,8 +331,8 @@ export 'src/ec2/aws_flow_log.dart'
     show
         AwsFlowLog,
         FlowLogDestinationOptions,
+        FlowLogDestinationType,
         FlowLogFileFormat,
-        FlowLogLogDestinationType,
         FlowLogResourceType,
         FlowLogSource,
         FlowLogSourceEniId,
@@ -507,17 +507,16 @@ export 'src/ec2/aws_network_acl_association.dart' show AwsNetworkAclAssociation;
 export 'src/ec2/aws_network_acl_rule.dart'
     show
         AwsNetworkAclRule,
+        NetworkAclRuleAction,
         NetworkAclRuleCidr,
         NetworkAclRuleCidrBlock,
-        NetworkAclRuleCidrIpv6CidrBlock,
-        NetworkAclRuleRuleAction;
+        NetworkAclRuleCidrIpv6CidrBlock;
 export 'src/ec2/aws_network_interface.dart'
     show
         AwsNetworkInterface,
         NetworkInterfaceAttachment,
         NetworkInterfaceEnaSrdSpecification,
         NetworkInterfaceEnaSrdUdpSpecification,
-        NetworkInterfaceInterfaceType,
         NetworkInterfaceIpv4Prefix,
         NetworkInterfaceIpv4PrefixCount,
         NetworkInterfaceIpv4PrefixIpv4Prefixes,
@@ -527,11 +526,12 @@ export 'src/ec2/aws_network_interface.dart'
         NetworkInterfaceIpv6AddressList,
         NetworkInterfaceIpv6Prefix,
         NetworkInterfaceIpv6PrefixCount,
-        NetworkInterfaceIpv6PrefixIpv6Prefixes;
+        NetworkInterfaceIpv6PrefixIpv6Prefixes,
+        NetworkInterfaceType;
 export 'src/ec2/aws_network_interface_attachment.dart'
     show AwsNetworkInterfaceAttachment;
 export 'src/ec2/aws_network_interface_permission.dart'
-    show AwsNetworkInterfacePermission, NetworkInterfacePermissionPermission;
+    show AwsNetworkInterfacePermission, NetworkInterfacePermission;
 export 'src/ec2/aws_network_interface_sg_attachment.dart'
     show AwsNetworkInterfaceSgAttachment;
 export 'src/ec2/aws_placement_group.dart'
@@ -700,7 +700,7 @@ export 'src/ec2/aws_vpc_endpoint.dart'
         VpcEndpointServiceNetworkArn,
         VpcEndpointServiceResourceConfigurationArn,
         VpcEndpointSubnetConfiguration,
-        VpcEndpointVpcEndpointType;
+        VpcEndpointType;
 export 'src/ec2/aws_vpc_endpoint_connection_accepter.dart'
     show AwsVpcEndpointConnectionAccepter;
 export 'src/ec2/aws_vpc_endpoint_connection_notification.dart'

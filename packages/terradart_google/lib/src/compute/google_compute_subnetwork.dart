@@ -83,7 +83,7 @@ enum SubnetworkLogConfigAggregationInterval implements TerraformEnum {
 }
 
 /// VPC flow log metadata-inclusion mode. Pair `customMetadata` with the
-/// [ComputeSubnetworkSubnetworkLogConfig.metadataFields] selector.
+/// [ComputeSubnetworkLogConfig.metadataFields] selector.
 enum SubnetworkLogConfigMetadata implements TerraformEnum {
   includeAllMetadata('INCLUDE_ALL_METADATA'),
   excludeAllMetadata('EXCLUDE_ALL_METADATA'),
@@ -147,8 +147,8 @@ class ComputeSubnetworkSecondaryIpRange {
 /// logging is not supported when the subnetwork `purpose` is
 /// `REGIONAL_MANAGED_PROXY` or `GLOBAL_MANAGED_PROXY`.
 @immutable
-class ComputeSubnetworkSubnetworkLogConfig {
-  const ComputeSubnetworkSubnetworkLogConfig({
+class ComputeSubnetworkLogConfig {
+  const ComputeSubnetworkLogConfig({
     this.aggregationInterval,
     this.flowSampling,
     this.metadata,
@@ -266,7 +266,7 @@ final class GoogleComputeSubnetwork extends Resource {
     List<ComputeSubnetworkSecondaryIpRange>? secondaryIpRange,
     TfArg<bool>? privateIpGoogleAccess,
     TfArg<String>? privateIpv6GoogleAccess,
-    ComputeSubnetworkSubnetworkLogConfig? logConfig,
+    ComputeSubnetworkLogConfig? logConfig,
     TfArg<SubnetworkStackType>? stackType,
     TfArg<SubnetworkIpv6AccessType>? ipv6AccessType,
     TfArg<String>? externalIpv6Prefix,

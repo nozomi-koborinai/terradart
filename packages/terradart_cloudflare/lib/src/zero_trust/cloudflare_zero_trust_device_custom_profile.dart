@@ -9,12 +9,12 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 /// Sensitive field paths for `cloudflare_zero_trust_device_custom_profile`.
 const Set<String> _cloudflareZeroTrustDeviceCustomProfileSensitive = <String>{};
 
-/// Zero Trust Device Custom Profile Profile enum for `profile_type`.
-enum ZeroTrustDeviceCustomProfileProfileType implements TerraformEnum {
+/// Zero Trust Device Custom Profile enum for `profile_type`.
+enum ZeroTrustDeviceCustomProfileType implements TerraformEnum {
   warp('warp'),
   browserExtension('browser_extension');
 
-  const ZeroTrustDeviceCustomProfileProfileType(this.terraformValue);
+  const ZeroTrustDeviceCustomProfileType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -270,7 +270,7 @@ final class CloudflareZeroTrustDeviceCustomProfile extends Resource {
     TfArg<String>? match,
     required TfArg<String> name,
     TfArg<num>? precedence,
-    TfArg<ZeroTrustDeviceCustomProfileProfileType>? profileType,
+    TfArg<ZeroTrustDeviceCustomProfileType>? profileType,
     TfArg<bool>? registerInterfaceIpWithDns,
     TfArg<bool>? sccmVpnBoundarySupport,
     TfArg<String>? supportUrl,

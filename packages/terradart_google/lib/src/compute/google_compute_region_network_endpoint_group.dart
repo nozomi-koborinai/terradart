@@ -60,8 +60,8 @@ enum RegionNetworkEndpointGroupType implements TerraformEnum {
 /// optional [tag] pins traffic to a named revision tag for fine-grained
 /// canary routing.
 @immutable
-class ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun {
-  const ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun({
+class ComputeRegionNetworkEndpointGroupCloudRun {
+  const ComputeRegionNetworkEndpointGroupCloudRun({
     this.service,
     this.tag,
     this.urlMask,
@@ -100,8 +100,8 @@ class ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun {
 /// [urlMask] to route across multiple functions via a URL template (the
 /// schema's `at_least_one_of` rule requires at least one of the two).
 @immutable
-class ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudFunction {
-  const ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudFunction({
+class ComputeRegionNetworkEndpointGroupCloudFunction {
+  const ComputeRegionNetworkEndpointGroupCloudFunction({
     this.function,
     this.urlMask,
   });
@@ -136,8 +136,8 @@ class ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudFunction {
 /// pin a specific service or version, or supply [urlMask] to route across
 /// many at once.
 @immutable
-class ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupAppEngine {
-  const ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupAppEngine({
+class ComputeRegionNetworkEndpointGroupAppEngine {
+  const ComputeRegionNetworkEndpointGroupAppEngine({
     this.service,
     this.version,
     this.urlMask,
@@ -173,20 +173,17 @@ sealed class ComputeRegionNetworkEndpointGroupServerless {
 
   /// Sets `cloud_run`.
   const factory ComputeRegionNetworkEndpointGroupServerless.cloudRun(
-    ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun
-    cloudRun,
+    ComputeRegionNetworkEndpointGroupCloudRun cloudRun,
   ) = ComputeRegionNetworkEndpointGroupServerlessCloudRun;
 
   /// Sets `cloud_function`.
   const factory ComputeRegionNetworkEndpointGroupServerless.cloudFunction(
-    ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudFunction
-    cloudFunction,
+    ComputeRegionNetworkEndpointGroupCloudFunction cloudFunction,
   ) = ComputeRegionNetworkEndpointGroupServerlessCloudFunction;
 
   /// Sets `app_engine`.
   const factory ComputeRegionNetworkEndpointGroupServerless.appEngine(
-    ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupAppEngine
-    appEngine,
+    ComputeRegionNetworkEndpointGroupAppEngine appEngine,
   ) = ComputeRegionNetworkEndpointGroupServerlessAppEngine;
 
   /// The Terraform argument this choice sets.
@@ -204,8 +201,7 @@ final class ComputeRegionNetworkEndpointGroupServerlessCloudRun
     extends ComputeRegionNetworkEndpointGroupServerless {
   const ComputeRegionNetworkEndpointGroupServerlessCloudRun(this.cloudRun);
 
-  final ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun
-  cloudRun;
+  final ComputeRegionNetworkEndpointGroupCloudRun cloudRun;
 
   @override
   String get blockKey => 'cloud_run';
@@ -228,8 +224,7 @@ final class ComputeRegionNetworkEndpointGroupServerlessCloudFunction
     this.cloudFunction,
   );
 
-  final ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudFunction
-  cloudFunction;
+  final ComputeRegionNetworkEndpointGroupCloudFunction cloudFunction;
 
   @override
   String get blockKey => 'cloud_function';
@@ -250,8 +245,7 @@ final class ComputeRegionNetworkEndpointGroupServerlessAppEngine
     extends ComputeRegionNetworkEndpointGroupServerless {
   const ComputeRegionNetworkEndpointGroupServerlessAppEngine(this.appEngine);
 
-  final ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupAppEngine
-  appEngine;
+  final ComputeRegionNetworkEndpointGroupAppEngine appEngine;
 
   @override
   String get blockKey => 'app_engine';
@@ -336,7 +330,7 @@ final class ComputeRegionNetworkEndpointGroupPscData {
 ///   name: TfArg.literal('cloudrun-neg'),
 ///   region: TfArg.literal('asia-northeast1'),
 ///   serverless: .cloudRun(
-///     ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun(
+///     ComputeRegionNetworkEndpointGroupCloudRun(
 ///       service: TfArg.ref(cloudRunService.nameRef),
 ///     ),
 ///   ),

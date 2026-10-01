@@ -11,13 +11,13 @@ import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
 /// Sensitive field paths for `aws_ec2_client_vpn_endpoint`.
 const Set<String> _awsEc2ClientVpnEndpointSensitive = <String>{};
 
-/// Ec2 Client Vpn Endpoint Endpoint Ip Address enum for `endpoint_ip_address_type`.
-enum Ec2ClientVpnEndpointEndpointIpAddressType implements TerraformEnum {
+/// Ec2 Client Vpn Endpoint Ip Address enum for `endpoint_ip_address_type`.
+enum Ec2ClientVpnEndpointIpAddressType implements TerraformEnum {
   ipv4('ipv4'),
   ipv6('ipv6'),
   dualStack('dual-stack');
 
-  const Ec2ClientVpnEndpointEndpointIpAddressType(this.terraformValue);
+  const Ec2ClientVpnEndpointIpAddressType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -254,7 +254,7 @@ final class AwsEc2ClientVpnEndpoint extends Resource {
     TfArg<String>? description,
     TfArg<bool>? disconnectOnSessionTimeout,
     TfArg<List<String>>? dnsServers,
-    TfArg<Ec2ClientVpnEndpointEndpointIpAddressType>? endpointIpAddressType,
+    TfArg<Ec2ClientVpnEndpointIpAddressType>? endpointIpAddressType,
     TfArg<String>? region,
     TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds,
     TfArg<Ec2ClientVpnEndpointSelfServicePortal>? selfServicePortal,

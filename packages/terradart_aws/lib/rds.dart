@@ -7,7 +7,6 @@ export 'src/rds/aws_rds_certificate.dart' show AwsRdsCertificate;
 export 'src/rds/aws_rds_cluster.dart'
     show
         AwsRdsCluster,
-        RdsClusterClusterScalabilityType,
         RdsClusterDatabaseInsightsMode,
         RdsClusterEnabledCloudwatchLogsExports,
         RdsClusterEngineLifecycleSupport,
@@ -23,6 +22,7 @@ export 'src/rds/aws_rds_cluster.dart'
         RdsClusterRestoreToPointInTime,
         RdsClusterRestoreType,
         RdsClusterS3Import,
+        RdsClusterScalabilityType,
         RdsClusterScalingConfiguration,
         RdsClusterServerlessv2ScalingConfiguration,
         RdsClusterSourceCluster,
@@ -73,7 +73,7 @@ export 'src/rds/aws_rds_global_cluster.dart'
         RdsGlobalClusterEngine,
         RdsGlobalClusterEngineLifecycleSupport;
 export 'src/rds/aws_rds_instance_state.dart'
-    show AwsRdsInstanceState, RdsInstanceStateState;
+    show AwsRdsInstanceState, RdsInstanceState;
 export 'src/rds/aws_rds_integration.dart' show AwsRdsIntegration;
 export 'src/rds/aws_rds_reserved_instance.dart' show AwsRdsReservedInstance;
 export 'src/rds/aws_rds_shard_group.dart' show AwsRdsShardGroup;

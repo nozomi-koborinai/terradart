@@ -29,6 +29,7 @@ export 'src/load_balancer/cloudflare_load_balancer_monitor_group.dart'
 export 'src/load_balancer/cloudflare_load_balancer_pool.dart'
     show
         CloudflareLoadBalancerPool,
+        LoadBalancerPool,
         LoadBalancerPoolCheckRegions,
         LoadBalancerPoolDefaultPolicy,
         LoadBalancerPoolHeader,
@@ -39,5 +40,4 @@ export 'src/load_balancer/cloudflare_load_balancer_pool.dart'
         LoadBalancerPoolOriginSteering,
         LoadBalancerPoolOrigins,
         LoadBalancerPoolPolicy,
-        LoadBalancerPoolPool,
         LoadBalancerPoolSessionPolicy;

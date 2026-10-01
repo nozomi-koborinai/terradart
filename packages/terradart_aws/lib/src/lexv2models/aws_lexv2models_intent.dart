@@ -303,7 +303,7 @@ final class Lexv2modelsIntentNextStep {
 
   final List<Lexv2modelsIntentDialogAction>? dialogAction;
 
-  final List<Lexv2modelsIntentIntent>? intent;
+  final List<Lexv2modelsIntent>? intent;
 
   Map<String, Object?> encode() => {
     'session_attributes': ?sessionAttributes?.toTfJson(),
@@ -341,8 +341,8 @@ final class Lexv2modelsIntentDialogAction {
 /// `aws_lexv2models_intent` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Lexv2modelsIntentIntent {
-  const Lexv2modelsIntentIntent({this.name, this.slot});
+final class Lexv2modelsIntent {
+  const Lexv2modelsIntent({this.name, this.slot});
 
   final TfArg<String>? name;
 
@@ -647,7 +647,7 @@ final class Lexv2modelsIntentFailureNextStep {
 
   final List<Lexv2modelsIntentDialogAction>? dialogAction;
 
-  final List<Lexv2modelsIntentIntent>? intent;
+  final List<Lexv2modelsIntent>? intent;
 
   Map<String, Object?> encode() => {
     'session_attributes': ?sessionAttributes?.toTfJson(),
@@ -719,7 +719,7 @@ final class Lexv2modelsIntentSuccessNextStep {
 
   final List<Lexv2modelsIntentDialogAction>? dialogAction;
 
-  final List<Lexv2modelsIntentIntent>? intent;
+  final List<Lexv2modelsIntent>? intent;
 
   Map<String, Object?> encode() => {
     'session_attributes': ?sessionAttributes?.toTfJson(),
@@ -791,7 +791,7 @@ final class Lexv2modelsIntentTimeoutNextStep {
 
   final List<Lexv2modelsIntentDialogAction>? dialogAction;
 
-  final List<Lexv2modelsIntentIntent>? intent;
+  final List<Lexv2modelsIntent>? intent;
 
   Map<String, Object?> encode() => {
     'session_attributes': ?sessionAttributes?.toTfJson(),
@@ -861,7 +861,7 @@ final class Lexv2modelsIntentConfirmationNextStep {
 
   final List<Lexv2modelsIntentDialogAction>? dialogAction;
 
-  final List<Lexv2modelsIntentIntent>? intent;
+  final List<Lexv2modelsIntent>? intent;
 
   Map<String, Object?> encode() => {
     'session_attributes': ?sessionAttributes?.toTfJson(),
@@ -930,7 +930,7 @@ final class Lexv2modelsIntentDeclinationNextStep {
 
   final List<Lexv2modelsIntentDialogAction>? dialogAction;
 
-  final List<Lexv2modelsIntentIntent>? intent;
+  final List<Lexv2modelsIntent>? intent;
 
   Map<String, Object?> encode() => {
     'session_attributes': ?sessionAttributes?.toTfJson(),

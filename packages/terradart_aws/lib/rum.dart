@@ -14,4 +14,4 @@ export 'src/rum/aws_rum_app_monitor.dart'
         RumAppMonitorStatus,
         RumAppMonitorTelemetries;
 export 'src/rum/aws_rum_metrics_destination.dart'
-    show AwsRumMetricsDestination, RumMetricsDestinationDestination;
+    show AwsRumMetricsDestination, RumMetricsDestination;

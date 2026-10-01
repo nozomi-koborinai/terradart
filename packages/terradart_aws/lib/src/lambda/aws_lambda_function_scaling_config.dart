@@ -12,8 +12,8 @@ const Set<String> _awsLambdaFunctionScalingConfigSensitive = <String>{};
 /// Typed helper for the `function_scaling_config` block of
 /// `aws_lambda_function_scaling_config` (derived from provider schema).
 @immutable
-final class LambdaFunctionScalingConfigFunctionScalingConfig {
-  const LambdaFunctionScalingConfigFunctionScalingConfig({
+final class LambdaFunctionScalingConfig {
+  const LambdaFunctionScalingConfig({
     this.maxExecutionEnvironments,
     this.minExecutionEnvironments,
   });
@@ -37,8 +37,7 @@ final class AwsLambdaFunctionScalingConfig extends Resource {
     required RefTo<AwsLambdaFunction> functionName,
     required TfArg<String> qualifier,
     TfArg<String>? region,
-    List<LambdaFunctionScalingConfigFunctionScalingConfig>?
-    functionScalingConfig,
+    List<LambdaFunctionScalingConfig>? functionScalingConfig,
     super.lifecycle,
     super.dependsOn,
     super.provider,

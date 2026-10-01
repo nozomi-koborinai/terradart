@@ -37,7 +37,7 @@ export 'src/access_context_manager/google_access_context_manager_access_level_co
         GoogleAccessContextManagerAccessLevelCondition;
 export 'src/access_context_manager/google_access_context_manager_access_levels.dart'
     show
-        AccessContextManagerAccessLevelsAccessLevels,
+        AccessContextManagerAccessLevels,
         AccessContextManagerAccessLevelsAllowedDeviceManagementLevels,
         AccessContextManagerAccessLevelsAllowedEncryptionStatuses,
         AccessContextManagerAccessLevelsBasic,
@@ -102,12 +102,12 @@ export 'src/access_context_manager/google_access_context_manager_service_perimet
         AccessContextManagerServicePerimeterMethodSelectors,
         AccessContextManagerServicePerimeterModifiers,
         AccessContextManagerServicePerimeterOperations,
-        AccessContextManagerServicePerimeterPerimeterType,
         AccessContextManagerServicePerimeterPscEndpoint,
         AccessContextManagerServicePerimeterSourceRestriction,
         AccessContextManagerServicePerimeterSources,
         AccessContextManagerServicePerimeterSpec,
         AccessContextManagerServicePerimeterStatus,
+        AccessContextManagerServicePerimeterType,
         AccessContextManagerServicePerimeterVpcAccessibleServices,
         GoogleAccessContextManagerServicePerimeter;
 export 'src/access_context_manager/google_access_context_manager_service_perimeter_dry_run_egress_policy.dart'
@@ -158,6 +158,7 @@ export 'src/access_context_manager/google_access_context_manager_service_perimet
     show GoogleAccessContextManagerServicePerimeterResource;
 export 'src/access_context_manager/google_access_context_manager_service_perimeters.dart'
     show
+        AccessContextManagerServicePerimeters,
         AccessContextManagerServicePerimetersAddRequestHeader,
         AccessContextManagerServicePerimetersAllowedServicePatterns,
         AccessContextManagerServicePerimetersEgressFrom,
@@ -172,7 +173,6 @@ export 'src/access_context_manager/google_access_context_manager_service_perimet
         AccessContextManagerServicePerimetersOperations,
         AccessContextManagerServicePerimetersPerimeterType,
         AccessContextManagerServicePerimetersPscEndpoint,
-        AccessContextManagerServicePerimetersServicePerimeters,
         AccessContextManagerServicePerimetersSourceRestriction,
         AccessContextManagerServicePerimetersSources,
         AccessContextManagerServicePerimetersSpec,

@@ -7,16 +7,13 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_chime_voice_connector_streaming`.
 const Set<String> _awsChimeVoiceConnectorStreamingSensitive = <String>{};
 
-/// Chime Voice Connector Streaming Streaming Notification enum for `streaming_notification_targets`.
-enum ChimeVoiceConnectorStreamingStreamingNotificationTargets
-    implements TerraformEnum {
+/// Chime Voice Connector Streaming Notification enum for `streaming_notification_targets`.
+enum ChimeVoiceConnectorStreamingNotificationTargets implements TerraformEnum {
   eventbridge('EventBridge'),
   sns('SNS'),
   sqs('SQS');
 
-  const ChimeVoiceConnectorStreamingStreamingNotificationTargets(
-    this.terraformValue,
-  );
+  const ChimeVoiceConnectorStreamingNotificationTargets(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -49,7 +46,7 @@ final class AwsChimeVoiceConnectorStreaming extends Resource {
     required TfArg<num> dataRetention,
     TfArg<bool>? disabled,
     TfArg<String>? region,
-    List<TfArg<ChimeVoiceConnectorStreamingStreamingNotificationTargets>>?
+    List<TfArg<ChimeVoiceConnectorStreamingNotificationTargets>>?
     streamingNotificationTargets,
     required TfArg<String> voiceConnectorId,
     ChimeVoiceConnectorStreamingMediaInsightsConfiguration?

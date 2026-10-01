@@ -22,15 +22,15 @@ enum VpcEndpointIpAddressType implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Vpc Endpoint Vpc Endpoint enum for `vpc_endpoint_type`.
-enum VpcEndpointVpcEndpointType implements TerraformEnum {
+/// Vpc Endpoint enum for `vpc_endpoint_type`.
+enum VpcEndpointType implements TerraformEnum {
   interface('Interface'),
   gateway('Gateway'),
   gatewayloadbalancer('GatewayLoadBalancer'),
   resource('Resource'),
   servicenetwork('ServiceNetwork');
 
-  const VpcEndpointVpcEndpointType(this.terraformValue);
+  const VpcEndpointType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -214,7 +214,7 @@ final class AwsVpcEndpoint extends Resource {
     TfArg<String>? serviceRegion,
     TfArg<List<RefTo<AwsSubnet>>>? subnetIds,
     TfArg<Map<String, String>>? tags,
-    TfArg<VpcEndpointVpcEndpointType>? vpcEndpointType,
+    TfArg<VpcEndpointType>? vpcEndpointType,
     required RefTo<AwsVpc> vpcId,
     VpcEndpointDnsOptions? dnsOptions,
     List<VpcEndpointSubnetConfiguration>? subnetConfiguration,

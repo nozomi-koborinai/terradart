@@ -6,7 +6,7 @@ library;
 export 'src/mysql/appwrite_mysql_backup_policy.dart'
     show AppwriteMysqlBackupPolicy, MysqlBackupPolicyType;
 export 'src/mysql/appwrite_mysql_backup_storage.dart'
-    show AppwriteMysqlBackupStorage, MysqlBackupStorageStorageProvider;
+    show AppwriteMysqlBackupStorage, MysqlBackupStorageProvider;
 export 'src/mysql/appwrite_mysql_branch.dart' show AppwriteMysqlBranch;
 export 'src/mysql/appwrite_mysql_database.dart'
     show

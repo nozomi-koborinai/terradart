@@ -31,14 +31,14 @@ enum KmsKeyCustomerMasterKeySpec implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Kms Key Key enum for `key_usage`.
-enum KmsKeyKeyUsage implements TerraformEnum {
+/// Kms Key enum for `key_usage`.
+enum KmsKeyUsage implements TerraformEnum {
   signVerify('SIGN_VERIFY'),
   encryptDecrypt('ENCRYPT_DECRYPT'),
   generateVerifyMac('GENERATE_VERIFY_MAC'),
   keyAgreement('KEY_AGREEMENT');
 
-  const KmsKeyKeyUsage(this.terraformValue);
+  const KmsKeyUsage(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -56,7 +56,7 @@ final class AwsKmsKey extends Resource {
     TfArg<String>? description,
     TfArg<bool>? enableKeyRotation,
     TfArg<bool>? isEnabled,
-    TfArg<KmsKeyKeyUsage>? keyUsage,
+    TfArg<KmsKeyUsage>? keyUsage,
     TfArg<bool>? multiRegion,
     TfArg<String>? policy,
     TfArg<String>? region,

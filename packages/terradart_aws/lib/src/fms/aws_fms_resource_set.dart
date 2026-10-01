@@ -10,8 +10,8 @@ const Set<String> _awsFmsResourceSetSensitive = <String>{};
 /// Typed helper for the `resource_set` block of
 /// `aws_fms_resource_set` (derived from provider schema).
 @immutable
-final class FmsResourceSetResourceSet {
-  const FmsResourceSetResourceSet({
+final class FmsResourceSet {
+  const FmsResourceSet({
     this.description,
     required this.name,
     this.resourceSetStatus,
@@ -46,7 +46,7 @@ final class AwsFmsResourceSet extends Resource {
     required super.localName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    List<FmsResourceSetResourceSet>? resourceSet,
+    List<FmsResourceSet>? resourceSet,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -55,8 +55,8 @@ enum NetworkfirewallRuleGroupEncryptionConfigurationType
 /// Typed helper for the `rule_group` block of
 /// `aws_networkfirewall_rule_group` (derived from provider schema).
 @immutable
-final class NetworkfirewallRuleGroupRuleGroup {
-  const NetworkfirewallRuleGroupRuleGroup({
+final class NetworkfirewallRuleGroup {
+  const NetworkfirewallRuleGroup({
     this.referenceSets,
     this.ruleVariables,
     required this.rulesSource,
@@ -703,7 +703,7 @@ final class AwsNetworkfirewallRuleGroup extends Resource {
     TfArg<Map<String, String>>? tags,
     required TfArg<NetworkfirewallRuleGroupType> type,
     NetworkfirewallRuleGroupEncryptionConfiguration? encryptionConfiguration,
-    NetworkfirewallRuleGroupRuleGroup? ruleGroup,
+    NetworkfirewallRuleGroup? ruleGroup,
     super.lifecycle,
     super.dependsOn,
     super.provider,

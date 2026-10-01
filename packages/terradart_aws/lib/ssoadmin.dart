@@ -57,4 +57,4 @@ export 'src/ssoadmin/aws_ssoadmin_trusted_token_issuer.dart'
         SsoadminTrustedTokenIssuerConfiguration,
         SsoadminTrustedTokenIssuerJwksRetrievalOption,
         SsoadminTrustedTokenIssuerOidcJwtConfiguration,
-        SsoadminTrustedTokenIssuerTrustedTokenIssuerType;
+        SsoadminTrustedTokenIssuerType;

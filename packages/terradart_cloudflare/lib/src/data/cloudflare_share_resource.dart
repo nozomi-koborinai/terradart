@@ -15,7 +15,7 @@ const Set<String> _cloudflareShareResourceSensitive = <String>{};
 final class DataShareResourceFilter {
   const DataShareResourceFilter({this.resourceType, this.status});
 
-  final TfArg<DataShareResourceType>? resourceType;
+  final TfArg<DataShareResourceFilterResourceType>? resourceType;
 
   final TfArg<DataShareResourceFilterStatus>? status;
 
@@ -26,7 +26,7 @@ final class DataShareResourceFilter {
 }
 
 /// `resource_type` — derived from the provider schema description.
-enum DataShareResourceType implements TerraformEnum {
+enum DataShareResourceFilterResourceType implements TerraformEnum {
   customRuleset('custom-ruleset'),
   gatewayPolicy('gateway-policy'),
   gatewayDestinationIp('gateway-destination-ip'),
@@ -35,7 +35,7 @@ enum DataShareResourceType implements TerraformEnum {
   idpFederationGrant('idp-federation-grant'),
   trustGrant('trust-grant');
 
-  const DataShareResourceType(this.terraformValue);
+  const DataShareResourceFilterResourceType(this.terraformValue);
   @override
   final String terraformValue;
 }

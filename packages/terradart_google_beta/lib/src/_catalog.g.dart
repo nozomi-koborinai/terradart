@@ -558,7 +558,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[
       'ComputeFutureReservationDeploymentType',
       'ComputeFutureReservationPlanningStatus',
-      'ComputeFutureReservationReservationMode',
+      'ComputeFutureReservationMode',
       'ComputeFutureReservationSchedulingType',
       'ComputeFutureReservationAggregateReservation',
       'ComputeFutureReservationVmFamily',

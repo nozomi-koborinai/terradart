@@ -105,6 +105,7 @@ export 'src/ecs/aws_ecs_express_gateway_service.dart'
 export 'src/ecs/aws_ecs_service.dart'
     show
         AwsEcsService,
+        EcsService,
         EcsServiceAccessLogConfiguration,
         EcsServiceAction,
         EcsServiceAdvancedConfiguration,
@@ -141,7 +142,6 @@ export 'src/ecs/aws_ecs_service.dart'
         EcsServiceResourceType,
         EcsServiceSchedulingStrategy,
         EcsServiceSecretOption,
-        EcsServiceService,
         EcsServiceStrategy,
         EcsServiceTagSpecifications,
         EcsServiceTagSpecificationsPropagateTags,

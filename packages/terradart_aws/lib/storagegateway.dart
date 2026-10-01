@@ -17,12 +17,12 @@ export 'src/storagegateway/aws_storagegateway_gateway.dart'
         StoragegatewayGatewayActivation,
         StoragegatewayGatewayActivationGatewayIpAddress,
         StoragegatewayGatewayActivationKey,
-        StoragegatewayGatewayGatewayType,
         StoragegatewayGatewayMaintenanceStartTime,
         StoragegatewayGatewayMediumChangerType,
         StoragegatewayGatewaySmbActiveDirectorySettings,
         StoragegatewayGatewaySmbSecurityStrategy,
-        StoragegatewayGatewayTapeDriveType;
+        StoragegatewayGatewayTapeDriveType,
+        StoragegatewayGatewayType;
 export 'src/storagegateway/aws_storagegateway_nfs_file_share.dart'
     show
         AwsStoragegatewayNfsFileShare,

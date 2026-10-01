@@ -83,19 +83,19 @@ sealed class BigqueryDatasetAccess {
 
   /// `access` entry referring to a BigQuery view.
   const factory BigqueryDatasetAccess.view({
-    required BigqueryDatasetDatasetView view,
+    required BigqueryDatasetView view,
     BigqueryDatasetAccessCondition? condition,
   }) = BigqueryDatasetAccessView;
 
   /// `access` entry referring to a dataset (transitive read for resource types listed in `targetTypes`).
   const factory BigqueryDatasetAccess.dataset({
-    required BigqueryDatasetDatasetAccessChild dataset,
+    required BigqueryDatasetAccessChild dataset,
     BigqueryDatasetAccessCondition? condition,
   }) = BigqueryDatasetAccessDataset;
 
   /// `access` entry referring to a BigQuery routine.
   const factory BigqueryDatasetAccess.routine({
-    required BigqueryDatasetDatasetRoutineRef routine,
+    required BigqueryDatasetRoutineRef routine,
     BigqueryDatasetAccessCondition? condition,
   }) = BigqueryDatasetAccessRoutine;
 
@@ -217,7 +217,7 @@ final class BigqueryDatasetAccessIamMember extends BigqueryDatasetAccess {
 final class BigqueryDatasetAccessView extends BigqueryDatasetAccess {
   const BigqueryDatasetAccessView({required this.view, super.condition});
 
-  final BigqueryDatasetDatasetView view;
+  final BigqueryDatasetView view;
 
   @override
   Map<String, Object?> encode() => {
@@ -232,7 +232,7 @@ final class BigqueryDatasetAccessView extends BigqueryDatasetAccess {
 final class BigqueryDatasetAccessDataset extends BigqueryDatasetAccess {
   const BigqueryDatasetAccessDataset({required this.dataset, super.condition});
 
-  final BigqueryDatasetDatasetAccessChild dataset;
+  final BigqueryDatasetAccessChild dataset;
 
   @override
   Map<String, Object?> encode() => {
@@ -246,7 +246,7 @@ final class BigqueryDatasetAccessDataset extends BigqueryDatasetAccess {
 final class BigqueryDatasetAccessRoutine extends BigqueryDatasetAccess {
   const BigqueryDatasetAccessRoutine({required this.routine, super.condition});
 
-  final BigqueryDatasetDatasetRoutineRef routine;
+  final BigqueryDatasetRoutineRef routine;
 
   @override
   Map<String, Object?> encode() => {
@@ -261,8 +261,8 @@ final class BigqueryDatasetAccessRoutine extends BigqueryDatasetAccess {
 
 /// `access.view` sub-block — fully qualified BigQuery view reference.
 @immutable
-class BigqueryDatasetDatasetView {
-  const BigqueryDatasetDatasetView({
+class BigqueryDatasetView {
+  const BigqueryDatasetView({
     required this.projectId,
     required this.datasetId,
     required this.tableId,
@@ -282,13 +282,13 @@ class BigqueryDatasetDatasetView {
 /// `access.dataset` sub-block — pairs a [dataset] reference with the
 /// [targetTypes] this binding applies to (currently only `VIEWS`).
 @immutable
-class BigqueryDatasetDatasetAccessChild {
-  const BigqueryDatasetDatasetAccessChild({
+class BigqueryDatasetAccessChild {
+  const BigqueryDatasetAccessChild({
     required this.dataset,
     required this.targetTypes,
   });
 
-  final BigqueryDatasetDatasetReference dataset;
+  final BigqueryDatasetReference dataset;
   final List<TfArg<String>> targetTypes;
 
   Map<String, Object?> encode() => {
@@ -299,8 +299,8 @@ class BigqueryDatasetDatasetAccessChild {
 
 /// `access.dataset.dataset` and `access.routine` projectId+datasetId pair.
 @immutable
-class BigqueryDatasetDatasetReference {
-  const BigqueryDatasetDatasetReference({
+class BigqueryDatasetReference {
+  const BigqueryDatasetReference({
     required this.projectId,
     required this.datasetId,
   });
@@ -316,8 +316,8 @@ class BigqueryDatasetDatasetReference {
 
 /// `access.routine` sub-block — fully qualified BigQuery routine reference.
 @immutable
-class BigqueryDatasetDatasetRoutineRef {
-  const BigqueryDatasetDatasetRoutineRef({
+class BigqueryDatasetRoutineRef {
+  const BigqueryDatasetRoutineRef({
     required this.projectId,
     required this.datasetId,
     required this.routineId,

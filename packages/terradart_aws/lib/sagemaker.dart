@@ -70,12 +70,12 @@ export 'src/sagemaker/aws_sagemaker_algorithm.dart'
 export 'src/sagemaker/aws_sagemaker_app.dart'
     show
         AwsSagemakerApp,
-        SagemakerAppAppType,
         SagemakerAppInstanceType,
         SagemakerAppOwner,
         SagemakerAppOwnerSpaceName,
         SagemakerAppOwnerUserProfileName,
-        SagemakerAppResourceSpec;
+        SagemakerAppResourceSpec,
+        SagemakerAppType;
 export 'src/sagemaker/aws_sagemaker_app_image_config.dart'
     show
         AwsSagemakerAppImageConfig,
@@ -113,7 +113,7 @@ export 'src/sagemaker/aws_sagemaker_data_quality_job_definition.dart'
         SagemakerDataQualityJobDefinitionStoppingCondition,
         SagemakerDataQualityJobDefinitionVpcConfig;
 export 'src/sagemaker/aws_sagemaker_device.dart'
-    show AwsSagemakerDevice, SagemakerDeviceDevice;
+    show AwsSagemakerDevice, SagemakerDevice;
 export 'src/sagemaker/aws_sagemaker_device_fleet.dart'
     show AwsSagemakerDeviceFleet, SagemakerDeviceFleetOutputConfig;
 export 'src/sagemaker/aws_sagemaker_domain.dart'
@@ -357,9 +357,7 @@ export 'src/sagemaker/aws_sagemaker_mlflow_app.dart'
         SagemakerMlflowAppAccountDefaultStatus,
         SagemakerMlflowAppModelRegistrationMode;
 export 'src/sagemaker/aws_sagemaker_mlflow_tracking_server.dart'
-    show
-        AwsSagemakerMlflowTrackingServer,
-        SagemakerMlflowTrackingServerTrackingServerSize;
+    show AwsSagemakerMlflowTrackingServer, SagemakerMlflowTrackingServerSize;
 export 'src/sagemaker/aws_sagemaker_model.dart'
     show
         AwsSagemakerModel,
@@ -383,8 +381,8 @@ export 'src/sagemaker/aws_sagemaker_model.dart'
 export 'src/sagemaker/aws_sagemaker_model_card.dart'
     show
         AwsSagemakerModelCard,
-        SagemakerModelCardModelCardStatus,
-        SagemakerModelCardSecurityConfig;
+        SagemakerModelCardSecurityConfig,
+        SagemakerModelCardStatus;
 export 'src/sagemaker/aws_sagemaker_model_card_export_job.dart'
     show
         AwsSagemakerModelCardExportJob,
@@ -425,10 +423,10 @@ export 'src/sagemaker/aws_sagemaker_notebook_instance.dart'
     show
         AwsSagemakerNotebookInstance,
         SagemakerNotebookInstanceDirectInternetAccess,
-        SagemakerNotebookInstanceInstanceType,
         SagemakerNotebookInstanceMetadataServiceConfiguration,
         SagemakerNotebookInstanceMinimumInstanceMetadataServiceVersion,
-        SagemakerNotebookInstanceRootAccess;
+        SagemakerNotebookInstanceRootAccess,
+        SagemakerNotebookInstanceType;
 export 'src/sagemaker/aws_sagemaker_notebook_instance_lifecycle_configuration.dart'
     show AwsSagemakerNotebookInstanceLifecycleConfiguration;
 export 'src/sagemaker/aws_sagemaker_pipeline.dart'
@@ -447,7 +445,7 @@ export 'src/sagemaker/aws_sagemaker_project.dart'
 export 'src/sagemaker/aws_sagemaker_servicecatalog_portfolio_status.dart'
     show
         AwsSagemakerServicecatalogPortfolioStatus,
-        SagemakerServicecatalogPortfolioStatusStatus;
+        SagemakerServicecatalogPortfolioStatus;
 export 'src/sagemaker/aws_sagemaker_space.dart'
     show
         AwsSagemakerSpace,
@@ -473,7 +471,7 @@ export 'src/sagemaker/aws_sagemaker_space.dart'
 export 'src/sagemaker/aws_sagemaker_studio_lifecycle_config.dart'
     show
         AwsSagemakerStudioLifecycleConfig,
-        SagemakerStudioLifecycleConfigStudioLifecycleConfigAppType;
+        SagemakerStudioLifecycleConfigAppType;
 export 'src/sagemaker/aws_sagemaker_training_job.dart'
     show
         AwsSagemakerTrainingJob,

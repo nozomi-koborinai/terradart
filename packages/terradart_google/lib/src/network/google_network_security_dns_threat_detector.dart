@@ -9,13 +9,10 @@ const Set<String> _googleNetworkSecurityDnsThreatDetectorSensitive = <String>{};
 /// `threat_detector_provider` for [GoogleNetworkSecurityDnsThreatDetector].
 ///
 /// Upstream documents `INFOBLOX` as the only supported value.
-enum NetworkSecurityDnsThreatDetectorThreatDetectorProvider
-    implements TerraformEnum {
+enum NetworkSecurityDnsThreatDetectorProvider implements TerraformEnum {
   infoblox('INFOBLOX');
 
-  const NetworkSecurityDnsThreatDetectorThreatDetectorProvider(
-    this.terraformValue,
-  );
+  const NetworkSecurityDnsThreatDetectorProvider(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -44,7 +41,7 @@ enum NetworkSecurityDnsThreatDetectorThreatDetectorProvider
 ///   name: TfArg.literal('terradart-dns-threat'),
 ///   location: TfArg.literal('global'),
 ///   threatDetectorProvider: TfArg.literal(
-///     NetworkSecurityDnsThreatDetectorThreatDetectorProvider.infoblox,
+///     NetworkSecurityDnsThreatDetectorProvider.infoblox,
 ///   ),
 /// );
 /// ```
@@ -55,8 +52,7 @@ final class GoogleNetworkSecurityDnsThreatDetector extends Resource {
     required super.localName,
     required TfArg<String> name,
     TfArg<String>? location,
-    TfArg<NetworkSecurityDnsThreatDetectorThreatDetectorProvider>?
-    threatDetectorProvider,
+    TfArg<NetworkSecurityDnsThreatDetectorProvider>? threatDetectorProvider,
     TfArg<List<String>>? excludedNetworks,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,

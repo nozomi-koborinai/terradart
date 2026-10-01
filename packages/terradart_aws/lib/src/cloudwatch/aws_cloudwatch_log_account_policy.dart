@@ -6,15 +6,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_cloudwatch_log_account_policy`.
 const Set<String> _awsCloudwatchLogAccountPolicySensitive = <String>{};
 
-/// Cloudwatch Log Account Policy Policy enum for `policy_type`.
-enum CloudwatchLogAccountPolicyPolicyType implements TerraformEnum {
+/// Cloudwatch Log Account Policy enum for `policy_type`.
+enum CloudwatchLogAccountPolicyType implements TerraformEnum {
   dataProtectionPolicy('DATA_PROTECTION_POLICY'),
   subscriptionFilterPolicy('SUBSCRIPTION_FILTER_POLICY'),
   fieldIndexPolicy('FIELD_INDEX_POLICY'),
   transformerPolicy('TRANSFORMER_POLICY'),
   metricExtractionPolicy('METRIC_EXTRACTION_POLICY');
 
-  const CloudwatchLogAccountPolicyPolicyType(this.terraformValue);
+  const CloudwatchLogAccountPolicyType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -36,7 +36,7 @@ final class AwsCloudwatchLogAccountPolicy extends Resource {
     required super.localName,
     required TfArg<String> policyDocument,
     required TfArg<String> policyName,
-    required TfArg<CloudwatchLogAccountPolicyPolicyType> policyType,
+    required TfArg<CloudwatchLogAccountPolicyType> policyType,
     TfArg<String>? region,
     TfArg<CloudwatchLogAccountPolicyScope>? scope,
     TfArg<String>? selectionCriteria,

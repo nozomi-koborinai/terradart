@@ -27,15 +27,15 @@ enum Apigatewayv2IntegrationContentHandlingStrategy implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Apigatewayv2 Integration Integration enum for `integration_type`.
-enum Apigatewayv2IntegrationIntegrationType implements TerraformEnum {
+/// Apigatewayv2 Integration enum for `integration_type`.
+enum Apigatewayv2IntegrationType implements TerraformEnum {
   aws('AWS'),
   http('HTTP'),
   mock('MOCK'),
   httpProxy('HTTP_PROXY'),
   awsProxy('AWS_PROXY');
 
-  const Apigatewayv2IntegrationIntegrationType(this.terraformValue);
+  const Apigatewayv2IntegrationType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -108,7 +108,7 @@ final class AwsApigatewayv2Integration extends Resource {
     TfArg<String>? description,
     TfArg<String>? integrationMethod,
     TfArg<String>? integrationSubtype,
-    required TfArg<Apigatewayv2IntegrationIntegrationType> integrationType,
+    required TfArg<Apigatewayv2IntegrationType> integrationType,
     TfArg<String>? integrationUri,
     TfArg<Apigatewayv2IntegrationPassthroughBehavior>? passthroughBehavior,
     TfArg<Apigatewayv2IntegrationPayloadFormatVersion>? payloadFormatVersion,

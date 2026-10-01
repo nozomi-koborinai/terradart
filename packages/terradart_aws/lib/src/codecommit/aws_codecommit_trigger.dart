@@ -10,8 +10,8 @@ const Set<String> _awsCodecommitTriggerSensitive = <String>{};
 /// Typed helper for the `trigger` block of
 /// `aws_codecommit_trigger` (derived from provider schema).
 @immutable
-final class CodecommitTriggerTrigger {
-  const CodecommitTriggerTrigger({
+final class CodecommitTrigger {
+  const CodecommitTrigger({
     this.branches,
     this.customData,
     required this.destinationArn,
@@ -58,7 +58,7 @@ final class AwsCodecommitTrigger extends Resource {
     required super.localName,
     TfArg<String>? region,
     required TfArg<String> repositoryName,
-    required List<CodecommitTriggerTrigger> trigger,
+    required List<CodecommitTrigger> trigger,
     super.lifecycle,
     super.dependsOn,
     super.provider,

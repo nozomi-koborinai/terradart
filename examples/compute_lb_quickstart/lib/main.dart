@@ -160,7 +160,7 @@ final class ComputeLbStack extends Stack {
       GoogleComputeManagedSslCertificate(
         localName: 'lb_cert',
         name: .literal('app-lb-cert'),
-        managed: ComputeManagedSslCertificateManagedSslCertificateConfig(
+        managed: ComputeManagedSslCertificateConfig(
           domains: ['app.example.com'],
         ),
       ),
@@ -438,14 +438,12 @@ final class ComputeLbStack extends Stack {
         name: .literal('app-lb-armor'),
         type: .literal(.cloudArmor),
         rules: [
-          ComputeSecurityPolicySecurityPolicyRule(
+          ComputeSecurityPolicyRules(
             priority: .literal(2147483647),
             action: SecurityPolicyRuleAction.allow,
-            match: ComputeSecurityPolicySecurityPolicyRuleMatch.config(
+            match: ComputeSecurityPolicyRulesMatch.config(
               versionedExpr: SecurityPolicyRuleMatchVersionedExpr.srcIpsV1,
-              config: ComputeSecurityPolicySecurityPolicyRuleMatchConfig(
-                srcIpRanges: ['*'],
-              ),
+              config: ComputeSecurityPolicyRulesMatchConfig(srcIpRanges: ['*']),
             ),
             description: .literal('default allow-all'),
           ),
@@ -776,7 +774,7 @@ final class ComputeLbStack extends Stack {
         baseInstanceName: .literal('app-web'),
         targetSize: .literal(1),
         versions: [
-          ComputeInstanceGroupManagerInstanceGroupManagerVersion(
+          ComputeInstanceGroupManagerVersion(
             name: .literal('default'),
             instanceTemplate: .ref(webTemplate.selfLink),
           ),
@@ -790,10 +788,10 @@ final class ComputeLbStack extends Stack {
         name: .literal('app-web-autoscaler'),
         zone: .literal(zone),
         target: .ref(webMig.selfLink),
-        autoscalingPolicy: ComputeAutoscalerAutoscalerAutoscalingPolicy(
+        autoscalingPolicy: ComputeAutoscalerAutoscalingPolicy(
           minReplicas: .literal(1),
           maxReplicas: .literal(3),
-          cpuUtilization: ComputeAutoscalerAutoscalerCpuUtilization(
+          cpuUtilization: ComputeAutoscalerCpuUtilization(
             target: .literal(0.7),
           ),
         ),
@@ -906,15 +904,13 @@ final class ComputeLbStack extends Stack {
         name: .literal('app-regional-web-autoscaler'),
         region: .literal(region),
         target: .ref(regionalMig.selfLink),
-        autoscalingPolicy:
-            ComputeRegionAutoscalerRegionAutoscalerAutoscalingPolicy(
-              minReplicas: .literal(2),
-              maxReplicas: .literal(6),
-              cpuUtilization:
-                  ComputeRegionAutoscalerRegionAutoscalerCpuUtilization(
-                    target: .literal(0.65),
-                  ),
-            ),
+        autoscalingPolicy: ComputeRegionAutoscalerAutoscalingPolicy(
+          minReplicas: .literal(2),
+          maxReplicas: .literal(6),
+          cpuUtilization: ComputeRegionAutoscalerCpuUtilization(
+            target: .literal(0.65),
+          ),
+        ),
       ),
     );
 

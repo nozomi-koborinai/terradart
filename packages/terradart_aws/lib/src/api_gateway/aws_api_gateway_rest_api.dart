@@ -7,12 +7,12 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_api_gateway_rest_api`.
 const Set<String> _awsApiGatewayRestApiSensitive = <String>{};
 
-/// Api Gateway Rest Api Api Key enum for `api_key_source`.
-enum ApiGatewayRestApiApiKeySource implements TerraformEnum {
+/// Api Gateway Rest Api Key enum for `api_key_source`.
+enum ApiGatewayRestApiKeySource implements TerraformEnum {
   header('HEADER'),
   authorizer('AUTHORIZER');
 
-  const ApiGatewayRestApiApiKeySource(this.terraformValue);
+  const ApiGatewayRestApiKeySource(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -109,7 +109,7 @@ final class AwsApiGatewayRestApi extends Resource {
 
   AwsApiGatewayRestApi({
     required super.localName,
-    TfArg<ApiGatewayRestApiApiKeySource>? apiKeySource,
+    TfArg<ApiGatewayRestApiKeySource>? apiKeySource,
     TfArg<List<String>>? binaryMediaTypes,
     TfArg<String>? body,
     TfArg<String>? description,

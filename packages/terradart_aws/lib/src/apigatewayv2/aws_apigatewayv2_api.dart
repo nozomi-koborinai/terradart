@@ -7,14 +7,14 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_apigatewayv2_api`.
 const Set<String> _awsApigatewayv2ApiSensitive = <String>{};
 
-/// Apigatewayv2 Api Api Key Selection enum for `api_key_selection_expression`.
-enum Apigatewayv2ApiApiKeySelectionExpression implements TerraformEnum {
+/// Apigatewayv2 Api Key Selection enum for `api_key_selection_expression`.
+enum Apigatewayv2ApiKeySelectionExpression implements TerraformEnum {
   contextAuthorizerUsageidentifierkey(
     '\$context.authorizer.usageIdentifierKey',
   ),
   requestHeaderXApiKey('\$request.header.x-api-key');
 
-  const Apigatewayv2ApiApiKeySelectionExpression(this.terraformValue);
+  const Apigatewayv2ApiKeySelectionExpression(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -80,7 +80,7 @@ final class AwsApigatewayv2Api extends Resource {
 
   AwsApigatewayv2Api({
     required super.localName,
-    TfArg<Apigatewayv2ApiApiKeySelectionExpression>? apiKeySelectionExpression,
+    TfArg<Apigatewayv2ApiKeySelectionExpression>? apiKeySelectionExpression,
     TfArg<String>? body,
     TfArg<String>? credentialsArn,
     TfArg<String>? description,

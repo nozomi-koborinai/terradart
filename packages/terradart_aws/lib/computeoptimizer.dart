@@ -4,9 +4,7 @@
 library;
 
 export 'src/computeoptimizer/aws_computeoptimizer_enrollment_status.dart'
-    show
-        AwsComputeoptimizerEnrollmentStatus,
-        ComputeoptimizerEnrollmentStatusStatus;
+    show AwsComputeoptimizerEnrollmentStatus, ComputeoptimizerEnrollmentStatus;
 export 'src/computeoptimizer/aws_computeoptimizer_recommendation_preferences.dart'
     show
         AwsComputeoptimizerRecommendationPreferences,

@@ -170,8 +170,8 @@ export 'src/dialogflow/google_dialogflow_cx_playbook.dart'
     show
         DialogflowCxPlaybookInstruction,
         DialogflowCxPlaybookLlmModelSettings,
-        DialogflowCxPlaybookPlaybookType,
         DialogflowCxPlaybookSteps,
+        DialogflowCxPlaybookType,
         GoogleDialogflowCxPlaybook;
 export 'src/dialogflow/google_dialogflow_cx_security_settings.dart'
     show
@@ -249,7 +249,7 @@ export 'src/dialogflow/google_dialogflow_cx_webhook.dart'
         DialogflowCxWebhookType,
         GoogleDialogflowCxWebhook;
 export 'src/dialogflow/google_dialogflow_encryption_spec.dart'
-    show DialogflowEncryptionSpecEncryptionSpec, GoogleDialogflowEncryptionSpec;
+    show DialogflowEncryptionSpec, GoogleDialogflowEncryptionSpec;
 export 'src/dialogflow/google_dialogflow_entity_type.dart'
     show
         DialogflowEntityTypeEntities,

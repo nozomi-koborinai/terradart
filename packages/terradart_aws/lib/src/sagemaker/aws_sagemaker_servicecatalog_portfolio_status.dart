@@ -7,12 +7,12 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsSagemakerServicecatalogPortfolioStatusSensitive =
     <String>{};
 
-/// Sagemaker Servicecatalog Portfolio Status enum for `status`.
-enum SagemakerServicecatalogPortfolioStatusStatus implements TerraformEnum {
+/// Sagemaker Servicecatalog Portfolio enum for `status`.
+enum SagemakerServicecatalogPortfolioStatus implements TerraformEnum {
   enabled('Enabled'),
   disabled('Disabled');
 
-  const SagemakerServicecatalogPortfolioStatusStatus(this.terraformValue);
+  const SagemakerServicecatalogPortfolioStatus(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -24,7 +24,7 @@ final class AwsSagemakerServicecatalogPortfolioStatus extends Resource {
   AwsSagemakerServicecatalogPortfolioStatus({
     required super.localName,
     TfArg<String>? region,
-    required TfArg<SagemakerServicecatalogPortfolioStatusStatus> status,
+    required TfArg<SagemakerServicecatalogPortfolioStatus> status,
     super.lifecycle,
     super.dependsOn,
     super.provider,

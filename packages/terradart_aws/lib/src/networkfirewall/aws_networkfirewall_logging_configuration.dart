@@ -10,8 +10,8 @@ const Set<String> _awsNetworkfirewallLoggingConfigurationSensitive = <String>{};
 /// Typed helper for the `logging_configuration` block of
 /// `aws_networkfirewall_logging_configuration` (derived from provider schema).
 @immutable
-final class NetworkfirewallLoggingConfigurationLoggingConfiguration {
-  const NetworkfirewallLoggingConfigurationLoggingConfiguration({
+final class NetworkfirewallLoggingConfiguration {
+  const NetworkfirewallLoggingConfiguration({
     required this.logDestinationConfig,
   });
 
@@ -83,8 +83,7 @@ final class AwsNetworkfirewallLoggingConfiguration extends Resource {
     TfArg<bool>? enableMonitoringDashboard,
     required TfArg<String> firewallArn,
     TfArg<String>? region,
-    required NetworkfirewallLoggingConfigurationLoggingConfiguration
-    loggingConfiguration,
+    required NetworkfirewallLoggingConfiguration loggingConfiguration,
     super.lifecycle,
     super.dependsOn,
     super.provider,

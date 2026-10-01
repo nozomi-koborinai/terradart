@@ -7,7 +7,7 @@ deriveNestedTypes: true
 deriveEnums: true
 
 dartTypeOverrides:
-  playbook_type: DialogflowCxPlaybookPlaybookType
+  playbook_type: DialogflowCxPlaybookType
 
 extraImports:
   - "import 'package:meta/meta.dart';"

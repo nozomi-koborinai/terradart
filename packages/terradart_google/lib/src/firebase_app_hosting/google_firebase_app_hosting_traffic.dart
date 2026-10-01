@@ -17,16 +17,16 @@ const Set<String> _googleFirebaseAppHostingTrafficSensitive = <String>{};
 /// schema each individual entry must be exactly 0 or 100 (so today this
 /// behaves as "single live build" rather than a true weighted split).
 @immutable
-class FirebaseAppHostingTrafficAppHostingTrafficTarget {
-  const FirebaseAppHostingTrafficAppHostingTrafficTarget({required this.splits})
+class FirebaseAppHostingTrafficTarget {
+  const FirebaseAppHostingTrafficTarget({required this.splits})
     : assert(
         splits.length >= 1,
-        'FirebaseAppHostingTrafficAppHostingTrafficTarget.splits must have at least one entry '
+        'FirebaseAppHostingTrafficTarget.splits must have at least one entry '
         '(schema enforces min_items=1)',
       );
 
-  /// At least one [FirebaseAppHostingTrafficAppHostingTrafficSplit] per the schema's `min_items=1`.
-  final List<FirebaseAppHostingTrafficAppHostingTrafficSplit> splits;
+  /// At least one [FirebaseAppHostingTrafficSplit] per the schema's `min_items=1`.
+  final List<FirebaseAppHostingTrafficSplit> splits;
 
   Map<String, Object?> toArgMap() => {
     'splits': splits.map((s) => s.toArgMap()).toList(),
@@ -36,8 +36,8 @@ class FirebaseAppHostingTrafficAppHostingTrafficTarget {
 /// One entry in `target.splits`. Pairs a build with the percentage of
 /// traffic it should receive.
 @immutable
-class FirebaseAppHostingTrafficAppHostingTrafficSplit {
-  const FirebaseAppHostingTrafficAppHostingTrafficSplit({
+class FirebaseAppHostingTrafficSplit {
+  const FirebaseAppHostingTrafficSplit({
     required this.build,
     required this.percent,
   });
@@ -68,8 +68,8 @@ class FirebaseAppHostingTrafficAppHostingTrafficSplit {
 /// triggered exclusively by explicit [GoogleFirebaseAppHostingBuild]
 /// resources.
 @immutable
-class FirebaseAppHostingTrafficAppHostingTrafficRolloutPolicy {
-  const FirebaseAppHostingTrafficAppHostingTrafficRolloutPolicy({
+class FirebaseAppHostingTrafficRolloutPolicy {
+  const FirebaseAppHostingTrafficRolloutPolicy({
     this.codebaseBranch,
     this.disabled,
   });
@@ -97,12 +97,12 @@ sealed class FirebaseAppHostingTrafficRouting {
 
   /// Sets `rollout_policy`.
   const factory FirebaseAppHostingTrafficRouting.rolloutPolicy(
-    FirebaseAppHostingTrafficAppHostingTrafficRolloutPolicy rolloutPolicy,
+    FirebaseAppHostingTrafficRolloutPolicy rolloutPolicy,
   ) = FirebaseAppHostingTrafficRoutingRolloutPolicy;
 
   /// Sets `target`.
   const factory FirebaseAppHostingTrafficRouting.target(
-    FirebaseAppHostingTrafficAppHostingTrafficTarget target,
+    FirebaseAppHostingTrafficTarget target,
   ) = FirebaseAppHostingTrafficRoutingTarget;
 
   /// The Terraform argument this choice sets.
@@ -120,7 +120,7 @@ final class FirebaseAppHostingTrafficRoutingRolloutPolicy
     extends FirebaseAppHostingTrafficRouting {
   const FirebaseAppHostingTrafficRoutingRolloutPolicy(this.rolloutPolicy);
 
-  final FirebaseAppHostingTrafficAppHostingTrafficRolloutPolicy rolloutPolicy;
+  final FirebaseAppHostingTrafficRolloutPolicy rolloutPolicy;
 
   @override
   String get blockKey => 'rollout_policy';
@@ -141,7 +141,7 @@ final class FirebaseAppHostingTrafficRoutingTarget
     extends FirebaseAppHostingTrafficRouting {
   const FirebaseAppHostingTrafficRoutingTarget(this.target);
 
-  final FirebaseAppHostingTrafficAppHostingTrafficTarget target;
+  final FirebaseAppHostingTrafficTarget target;
 
   @override
   String get blockKey => 'target';
@@ -180,9 +180,9 @@ final class FirebaseAppHostingTrafficRoutingTarget
 ///   backend: TfArg.ref(backend.backendIdRef),
 ///   location: TfArg.literal('us-central1'),
 ///   routing: .target(
-///     FirebaseAppHostingTrafficAppHostingTrafficTarget(
+///     FirebaseAppHostingTrafficTarget(
 ///       splits: [
-///         FirebaseAppHostingTrafficAppHostingTrafficSplit(
+///         FirebaseAppHostingTrafficSplit(
 ///           build: TfArg.ref(build.buildIdRef),
 ///           percent: TfArg.literal(100),
 ///         ),
@@ -199,7 +199,7 @@ final class FirebaseAppHostingTrafficRoutingTarget
 ///   backend: TfArg.ref(backend.backendIdRef),
 ///   location: TfArg.literal('us-central1'),
 ///   routing: .rolloutPolicy(
-///     FirebaseAppHostingTrafficAppHostingTrafficRolloutPolicy(
+///     FirebaseAppHostingTrafficRolloutPolicy(
 ///       codebaseBranch: TfArg.literal('main'),
 ///     ),
 ///   ),

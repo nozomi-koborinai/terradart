@@ -7,19 +7,19 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ssm_document`.
 const Set<String> _awsSsmDocumentSensitive = <String>{};
 
-/// Ssm Document Document enum for `document_format`.
-enum SsmDocumentDocumentFormat implements TerraformEnum {
+/// Ssm Document enum for `document_format`.
+enum SsmDocumentFormat implements TerraformEnum {
   yaml('YAML'),
   json('JSON'),
   text('TEXT');
 
-  const SsmDocumentDocumentFormat(this.terraformValue);
+  const SsmDocumentFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
 
-/// Ssm Document Document enum for `document_type`.
-enum SsmDocumentDocumentType implements TerraformEnum {
+/// Ssm Document enum for `document_type`.
+enum SsmDocumentType implements TerraformEnum {
   command('Command'),
   policy('Policy'),
   automation('Automation'),
@@ -38,7 +38,7 @@ enum SsmDocumentDocumentType implements TerraformEnum {
   manualapprovalpolicy('ManualApprovalPolicy'),
   autoapprovalpolicy('AutoApprovalPolicy');
 
-  const SsmDocumentDocumentType(this.terraformValue);
+  const SsmDocumentType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -84,8 +84,8 @@ final class AwsSsmDocument extends Resource {
   AwsSsmDocument({
     required super.localName,
     required TfArg<String> content,
-    TfArg<SsmDocumentDocumentFormat>? documentFormat,
-    required TfArg<SsmDocumentDocumentType> documentType,
+    TfArg<SsmDocumentFormat>? documentFormat,
+    required TfArg<SsmDocumentType> documentType,
     required TfArg<String> name,
     TfArg<Map<String, String>>? permissions,
     TfArg<String>? region,

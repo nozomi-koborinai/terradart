@@ -10,7 +10,7 @@ export 'src/accountaccess/aws_accountaccess_application.dart'
         AwsAccountaccessApplication;
 export 'src/accountaccess/aws_accountaccess_entitlement.dart'
     show
-        AccountaccessEntitlementEntitlement,
+        AccountaccessEntitlement,
         AccountaccessEntitlementIdentityCenter,
         AccountaccessEntitlementPrincipal,
         AccountaccessEntitlementPrincipalRole,

@@ -67,5 +67,5 @@ export 'src/cloudformation/aws_cloudformation_stack_set_instance.dart'
 export 'src/cloudformation/aws_cloudformation_type.dart'
     show
         AwsCloudformationType,
-        CloudformationTypeLoggingConfig,
-        CloudformationTypeType;
+        CloudformationType,
+        CloudformationTypeLoggingConfig;

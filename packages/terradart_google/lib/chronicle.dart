@@ -6,9 +6,9 @@ library;
 
 export 'src/chronicle/google_chronicle_big_query_export.dart'
     show
-        ChronicleBigQueryExportBigQueryExportPackage,
         ChronicleBigQueryExportEntityGraphSettings,
         ChronicleBigQueryExportIocMatchesSettings,
+        ChronicleBigQueryExportPackage,
         ChronicleBigQueryExportRuleDetectionsSettings,
         ChronicleBigQueryExportUdmEventsAggregatesSettings,
         ChronicleBigQueryExportUdmEventsSettings,
@@ -30,11 +30,11 @@ export 'src/chronicle/google_chronicle_dashboard_chart.dart'
     show
         ChronicleDashboardChartAxisType,
         ChronicleDashboardChartButtonStyle,
-        ChronicleDashboardChartChartLayout,
         ChronicleDashboardChartColumnRenderType,
         ChronicleDashboardChartDeletionPolicy,
         ChronicleDashboardChartFilterOperator,
         ChronicleDashboardChartFilterOperatorAndValues,
+        ChronicleDashboardChartLayout,
         ChronicleDashboardChartLegendAlign,
         ChronicleDashboardChartLegendOrient,
         ChronicleDashboardChartMetricDisplayTrend,

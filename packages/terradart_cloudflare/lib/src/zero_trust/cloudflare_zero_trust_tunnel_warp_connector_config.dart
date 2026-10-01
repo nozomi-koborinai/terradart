@@ -25,8 +25,8 @@ enum ZeroTrustTunnelWarpConnectorConfigHaMode implements TerraformEnum {
 /// Typed helper for the `config` block of
 /// `cloudflare_zero_trust_tunnel_warp_connector_config` (derived from provider schema).
 @immutable
-final class ZeroTrustTunnelWarpConnectorConfigConfig {
-  const ZeroTrustTunnelWarpConnectorConfigConfig({
+final class ZeroTrustTunnelWarpConnectorConfig {
+  const ZeroTrustTunnelWarpConnectorConfig({
     this.fnrId,
     this.vips,
     this.vipsPrevious,
@@ -84,7 +84,7 @@ final class CloudflareZeroTrustTunnelWarpConnectorConfig extends Resource {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<ZeroTrustTunnelWarpConnectorConfigHaMode> haMode,
     required TfArg<String> tunnelId,
-    ZeroTrustTunnelWarpConnectorConfigConfig? config,
+    ZeroTrustTunnelWarpConnectorConfig? config,
     super.lifecycle,
     super.dependsOn,
     super.provider,

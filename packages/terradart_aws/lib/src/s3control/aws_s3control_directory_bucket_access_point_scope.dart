@@ -11,8 +11,8 @@ const Set<String> _awsS3controlDirectoryBucketAccessPointScopeSensitive =
 /// Typed helper for the `scope` block of
 /// `aws_s3control_directory_bucket_access_point_scope` (derived from provider schema).
 @immutable
-final class S3controlDirectoryBucketAccessPointScopeScope {
-  const S3controlDirectoryBucketAccessPointScopeScope({
+final class S3controlDirectoryBucketAccessPointScope {
+  const S3controlDirectoryBucketAccessPointScope({
     this.permissions,
     this.prefixes,
   });
@@ -58,7 +58,7 @@ final class AwsS3controlDirectoryBucketAccessPointScope extends Resource {
     required TfArg<String> accountId,
     required TfArg<String> name,
     TfArg<String>? region,
-    List<S3controlDirectoryBucketAccessPointScopeScope>? scope,
+    List<S3controlDirectoryBucketAccessPointScope>? scope,
     super.lifecycle,
     super.dependsOn,
     super.provider,

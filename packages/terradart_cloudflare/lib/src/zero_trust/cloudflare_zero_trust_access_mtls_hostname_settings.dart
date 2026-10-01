@@ -14,8 +14,8 @@ const Set<String> _cloudflareZeroTrustAccessMtlsHostnameSettingsSensitive =
 /// Typed helper for the `settings` block of
 /// `cloudflare_zero_trust_access_mtls_hostname_settings` (derived from provider schema).
 @immutable
-final class ZeroTrustAccessMtlsHostnameSettingsSettings {
-  const ZeroTrustAccessMtlsHostnameSettingsSettings({
+final class ZeroTrustAccessMtlsHostnameSettings {
+  const ZeroTrustAccessMtlsHostnameSettings({
     required this.chinaNetwork,
     required this.clientCertificateForwarding,
     required this.hostname,
@@ -48,7 +48,7 @@ final class CloudflareZeroTrustAccessMtlsHostnameSettings extends Resource {
     required super.localName,
     RefTo<CloudflareAccount>? accountId,
     RefTo<CloudflareZone>? zoneId,
-    required List<ZeroTrustAccessMtlsHostnameSettingsSettings> settings,
+    required List<ZeroTrustAccessMtlsHostnameSettings> settings,
     super.lifecycle,
     super.dependsOn,
     super.provider,

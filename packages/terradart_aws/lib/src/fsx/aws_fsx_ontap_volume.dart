@@ -28,22 +28,22 @@ enum FsxOntapVolumeSecurityStyle implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Fsx Ontap Volume Volume enum for `volume_style`.
-enum FsxOntapVolumeVolumeStyle implements TerraformEnum {
+/// Fsx Ontap Volume enum for `volume_style`.
+enum FsxOntapVolumeStyle implements TerraformEnum {
   flexvol('FLEXVOL'),
   flexgroup('FLEXGROUP');
 
-  const FsxOntapVolumeVolumeStyle(this.terraformValue);
+  const FsxOntapVolumeStyle(this.terraformValue);
   @override
   final String terraformValue;
 }
 
-/// Fsx Ontap Volume Volume enum for `volume_type`.
-enum FsxOntapVolumeVolumeType implements TerraformEnum {
+/// Fsx Ontap Volume enum for `volume_type`.
+enum FsxOntapVolumeType implements TerraformEnum {
   ontap('ONTAP'),
   openzfs('OPENZFS');
 
-  const FsxOntapVolumeVolumeType(this.terraformValue);
+  const FsxOntapVolumeType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -190,7 +190,7 @@ enum FsxOntapVolumeSnaplockType implements TerraformEnum {
 final class FsxOntapVolumeAutocommitPeriod {
   const FsxOntapVolumeAutocommitPeriod({this.type, this.value});
 
-  final TfArg<FsxOntapVolumeType>? type;
+  final TfArg<FsxOntapVolumeAutocommitPeriodType>? type;
 
   final TfArg<num>? value;
 
@@ -201,7 +201,7 @@ final class FsxOntapVolumeAutocommitPeriod {
 }
 
 /// `type` — derived from the provider schema description.
-enum FsxOntapVolumeType implements TerraformEnum {
+enum FsxOntapVolumeAutocommitPeriodType implements TerraformEnum {
   minutes('MINUTES'),
   hours('HOURS'),
   days('DAYS'),
@@ -209,7 +209,7 @@ enum FsxOntapVolumeType implements TerraformEnum {
   years('YEARS'),
   none('NONE');
 
-  const FsxOntapVolumeType(this.terraformValue);
+  const FsxOntapVolumeAutocommitPeriodType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -349,8 +349,8 @@ final class AwsFsxOntapVolume extends Resource {
     TfArg<bool>? storageEfficiencyEnabled,
     required TfArg<String> storageVirtualMachineId,
     TfArg<Map<String, String>>? tags,
-    TfArg<FsxOntapVolumeVolumeStyle>? volumeStyle,
-    TfArg<FsxOntapVolumeVolumeType>? volumeType,
+    TfArg<FsxOntapVolumeStyle>? volumeStyle,
+    TfArg<FsxOntapVolumeType>? volumeType,
     FsxOntapVolumeAggregateConfiguration? aggregateConfiguration,
     FsxOntapVolumeSnaplockConfiguration? snaplockConfiguration,
     FsxOntapVolumeTieringPolicy? tieringPolicy,

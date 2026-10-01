@@ -66,8 +66,8 @@ enum BackendBucketCacheMode implements TerraformEnum {
 /// [includeQueryString] — buckets only expose the
 /// [queryStringWhitelist] / [includeHttpHeaders] axes).
 @immutable
-class ComputeBackendBucketBackendBucketCdnPolicy {
-  const ComputeBackendBucketBackendBucketCdnPolicy({
+class ComputeBackendBucketCdnPolicy {
+  const ComputeBackendBucketCdnPolicy({
     this.cacheMode,
     this.clientTtl,
     this.defaultTtl,
@@ -114,16 +114,16 @@ class ComputeBackendBucketBackendBucketCdnPolicy {
 
   /// Bypass the cache when any of these request headers is present.
   /// Up to 5 entries.
-  final List<ComputeBackendBucketBackendBucketCdnBypassCacheOnRequestHeader>?
+  final List<ComputeBackendBucketCdnBypassCacheOnRequestHeader>?
   bypassCacheOnRequestHeaders;
 
   /// Cache key policy — which request components participate in the
   /// cache key.
-  final ComputeBackendBucketBackendBucketCdnCacheKeyPolicy? cacheKeyPolicy;
+  final ComputeBackendBucketCdnCacheKeyPolicy? cacheKeyPolicy;
 
   /// Per-status-code negative-cache TTLs. Only honored when
   /// [negativeCaching] is `true`.
-  final List<ComputeBackendBucketBackendBucketCdnNegativeCachingPolicy>?
+  final List<ComputeBackendBucketCdnNegativeCachingPolicy>?
   negativeCachingPolicy;
 
   Map<String, Object?> toArgMap() => {
@@ -155,8 +155,8 @@ class ComputeBackendBucketBackendBucketCdnPolicy {
 /// Cache-bypass rule keyed on a request header name (one entry in
 /// `cdn_policy.bypass_cache_on_request_headers`, max 5 entries).
 @immutable
-class ComputeBackendBucketBackendBucketCdnBypassCacheOnRequestHeader {
-  const ComputeBackendBucketBackendBucketCdnBypassCacheOnRequestHeader({
+class ComputeBackendBucketCdnBypassCacheOnRequestHeader {
+  const ComputeBackendBucketCdnBypassCacheOnRequestHeader({
     required this.headerName,
   });
 
@@ -171,8 +171,8 @@ class ComputeBackendBucketBackendBucketCdnBypassCacheOnRequestHeader {
 /// `BackendServiceCdnCacheKeyPolicy`, there is no host / protocol /
 /// query-string-as-a-whole toggle.
 @immutable
-class ComputeBackendBucketBackendBucketCdnCacheKeyPolicy {
-  const ComputeBackendBucketBackendBucketCdnCacheKeyPolicy({
+class ComputeBackendBucketCdnCacheKeyPolicy {
+  const ComputeBackendBucketCdnCacheKeyPolicy({
     this.includeHttpHeaders,
     this.queryStringWhitelist,
   });
@@ -195,11 +195,8 @@ class ComputeBackendBucketBackendBucketCdnCacheKeyPolicy {
 
 /// One row in `cdn_policy.negative_caching_policy`.
 @immutable
-class ComputeBackendBucketBackendBucketCdnNegativeCachingPolicy {
-  const ComputeBackendBucketBackendBucketCdnNegativeCachingPolicy({
-    this.code,
-    this.ttl,
-  });
+class ComputeBackendBucketCdnNegativeCachingPolicy {
+  const ComputeBackendBucketCdnNegativeCachingPolicy({this.code, this.ttl});
 
   /// HTTP status code to apply a TTL to. Valid values per schema:
   /// 300, 301, 308, 404, 405, 410, 421, 451, 501. Each code may
@@ -222,8 +219,8 @@ class ComputeBackendBucketBackendBucketCdnNegativeCachingPolicy {
 /// `params` block — currently only carries resource-manager tags
 /// applied at creation time. Immutable: changes force replacement.
 @immutable
-class ComputeBackendBucketBackendBucketParams {
-  const ComputeBackendBucketBackendBucketParams({this.resourceManagerTags});
+class ComputeBackendBucketParams {
+  const ComputeBackendBucketParams({this.resourceManagerTags});
 
   /// `{tagKeys/<id>: tagValues/<id>}` map of resource-manager tag
   /// bindings.
@@ -283,15 +280,15 @@ class ComputeBackendBucketBackendBucketParams {
 ///   name: TfArg.literal('static-assets'),
 ///   bucketName: .literal('my-static-assets'),
 ///   enableCdn: TfArg.literal(true),
-///   cdnPolicy: ComputeBackendBucketBackendBucketCdnPolicy(
+///   cdnPolicy: ComputeBackendBucketCdnPolicy(
 ///     cacheMode: BackendBucketCacheMode.cacheAllStatic,
 ///     defaultTtl: .literal(3600),
 ///     maxTtl: .literal(86400),
 ///     clientTtl: .literal(3600),
 ///     negativeCaching: .literal(true),
 ///     negativeCachingPolicy: [
-///       ComputeBackendBucketBackendBucketCdnNegativeCachingPolicy(code: .literal(404), ttl: .literal(120)),
-///       ComputeBackendBucketBackendBucketCdnNegativeCachingPolicy(code: .literal(410), ttl: .literal(120)),
+///       ComputeBackendBucketCdnNegativeCachingPolicy(code: .literal(404), ttl: .literal(120)),
+///       ComputeBackendBucketCdnNegativeCachingPolicy(code: .literal(410), ttl: .literal(120)),
 ///     ],
 ///     serveWhileStale: .literal(60),
 ///   ),
@@ -319,10 +316,10 @@ class ComputeBackendBucketBackendBucketParams {
 /// ```
 ///
 /// Nested-type prefix: every helper class for a `cdn_policy` sub-block
-/// is `BackendBucket`-prefixed (e.g. [ComputeBackendBucketBackendBucketCdnPolicy],
-/// [ComputeBackendBucketBackendBucketCdnCacheKeyPolicy],
-/// [ComputeBackendBucketBackendBucketCdnNegativeCachingPolicy],
-/// [ComputeBackendBucketBackendBucketCdnBypassCacheOnRequestHeader]). The shape mirrors the
+/// is `BackendBucket`-prefixed (e.g. [ComputeBackendBucketCdnPolicy],
+/// [ComputeBackendBucketCdnCacheKeyPolicy],
+/// [ComputeBackendBucketCdnNegativeCachingPolicy],
+/// [ComputeBackendBucketCdnBypassCacheOnRequestHeader]). The shape mirrors the
 /// `BackendService*` family but is a **distinct type** — the bucket and
 /// service CDN configurations are not interchangeable, even where the
 /// schema field names agree.
@@ -342,8 +339,8 @@ final class GoogleComputeBackendBucket extends Resource {
     TfArg<List<String>>? customResponseHeaders,
     TfArg<String>? edgeSecurityPolicy,
     TfArg<BackendBucketLoadBalancingScheme>? loadBalancingScheme,
-    ComputeBackendBucketBackendBucketCdnPolicy? cdnPolicy,
-    ComputeBackendBucketBackendBucketParams? params,
+    ComputeBackendBucketCdnPolicy? cdnPolicy,
+    ComputeBackendBucketParams? params,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

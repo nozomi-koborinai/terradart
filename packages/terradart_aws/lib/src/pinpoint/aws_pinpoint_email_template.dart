@@ -10,8 +10,8 @@ const Set<String> _awsPinpointEmailTemplateSensitive = <String>{};
 /// Typed helper for the `email_template` block of
 /// `aws_pinpoint_email_template` (derived from provider schema).
 @immutable
-final class PinpointEmailTemplateEmailTemplate {
-  const PinpointEmailTemplateEmailTemplate({
+final class PinpointEmailTemplate {
+  const PinpointEmailTemplate({
     this.defaultSubstitutions,
     this.description,
     this.htmlPart,
@@ -71,7 +71,7 @@ final class AwsPinpointEmailTemplate extends Resource {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> templateName,
-    List<PinpointEmailTemplateEmailTemplate>? emailTemplate,
+    List<PinpointEmailTemplate>? emailTemplate,
     super.lifecycle,
     super.dependsOn,
     super.provider,

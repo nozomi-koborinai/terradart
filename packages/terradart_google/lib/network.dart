@@ -168,8 +168,8 @@ export 'src/network/google_network_security_authz_policy.dart'
         NetworkSecurityAuthzPolicyNotOperations,
         NetworkSecurityAuthzPolicyParams,
         NetworkSecurityAuthzPolicyPaths,
-        NetworkSecurityAuthzPolicyPolicyProfile,
         NetworkSecurityAuthzPolicyPrincipalSelector,
+        NetworkSecurityAuthzPolicyProfile,
         NetworkSecurityAuthzPolicyResources,
         NetworkSecurityAuthzPolicySnis,
         NetworkSecurityAuthzPolicyTagValueIdSet,
@@ -193,7 +193,7 @@ export 'src/network/google_network_security_client_tls_policy.dart'
 export 'src/network/google_network_security_dns_threat_detector.dart'
     show
         GoogleNetworkSecurityDnsThreatDetector,
-        NetworkSecurityDnsThreatDetectorThreatDetectorProvider;
+        NetworkSecurityDnsThreatDetectorProvider;
 export 'src/network/google_network_security_firewall_endpoint.dart'
     show
         GoogleNetworkSecurityFirewallEndpoint,

@@ -10,8 +10,8 @@ const Set<String> _awsApiGatewayMethodSettingsSensitive = <String>{};
 /// Typed helper for the `settings` block of
 /// `aws_api_gateway_method_settings` (derived from provider schema).
 @immutable
-final class ApiGatewayMethodSettingsSettings {
-  const ApiGatewayMethodSettingsSettings({
+final class ApiGatewayMethodSettings {
+  const ApiGatewayMethodSettings({
     this.cacheDataEncrypted,
     this.cacheTtlInSeconds,
     this.cachingEnabled,
@@ -96,7 +96,7 @@ final class AwsApiGatewayMethodSettings extends Resource {
     TfArg<String>? region,
     required TfArg<String> restApiId,
     required TfArg<String> stageName,
-    required ApiGatewayMethodSettingsSettings settings,
+    required ApiGatewayMethodSettings settings,
     super.lifecycle,
     super.dependsOn,
     super.provider,

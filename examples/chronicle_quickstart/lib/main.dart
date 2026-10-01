@@ -105,7 +105,7 @@ final class ChronicleCustomListStack extends Stack {
         location: .literal('us'),
         instance: .literal(instanceId),
         nativeDashboard: .ref(dashboard.nameRef),
-        chartLayout: ChronicleDashboardChartChartLayout(
+        chartLayout: ChronicleDashboardChartLayout(
           spanX: .literal(42),
           spanY: .literal(27),
         ),

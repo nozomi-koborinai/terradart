@@ -6,6 +6,6 @@ library;
 export 'src/snippet/cloudflare_snippet.dart'
     show CloudflareSnippet, SnippetMetadata;
 export 'src/snippet/cloudflare_snippet_rules.dart'
-    show CloudflareSnippetRules, SnippetRulesRules;
+    show CloudflareSnippetRules, SnippetRules;
 export 'src/snippet/cloudflare_snippets.dart'
     show CloudflareSnippets, SnippetsMetadata;

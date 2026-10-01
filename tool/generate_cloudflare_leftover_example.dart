@@ -803,7 +803,7 @@ const _literalByKey = <String, String>{
   'CloudflareZeroTrustAccessAiControlsMcpServer.authType': "'unauthenticated'",
   'CloudflareMagicWanBgpFilterProfile.matchAction': "'allow'",
   'CloudflareZeroTrustCasbWebhook.authenticationType': "'None'",
-  'ZoneTracingRulesRules.action': "'set_trace_settings'",
+  'ZoneTracingRules.action': "'set_trace_settings'",
 };
 
 /// Number literals for slots whose provider validator bounds the value

@@ -8,7 +8,7 @@ export 'src/dataexchange/aws_dataexchange_data_set.dart'
 export 'src/dataexchange/aws_dataexchange_event_action.dart'
     show
         AwsDataexchangeEventAction,
-        DataexchangeEventActionAction,
+        DataexchangeEventAction,
         DataexchangeEventActionEncryption,
         DataexchangeEventActionEvent,
         DataexchangeEventActionExportRevisionToS3,

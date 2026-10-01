@@ -89,7 +89,7 @@ final class DialogflowSipTrunkStack extends Stack {
       GoogleDialogflowEncryptionSpec(
         localName: 'cmek',
         location: .literal('europe-west3'),
-        encryptionSpec: DialogflowEncryptionSpecEncryptionSpec(
+        encryptionSpec: DialogflowEncryptionSpec(
           kmsKey: .literal(
             'projects/$projectId/locations/europe-west3/keyRings/terradart/cryptoKeys/dialogflow',
           ),

@@ -9,7 +9,7 @@
 
 compute_lb_quickstart:
   google_compute_security_policy.lb_armor: >-
-    rule.match is the hand-written ComputeSecurityPolicySecurityPolicyRuleMatch with
+    rule.match is the hand-written ComputeSecurityPolicyRulesMatch with
     named factory constructors (.config / .expr); the manifest extractor derives
     field slots it cannot construct from, so versioned_expr / config have no Dart
     parameter (manifest extractor gap, #659 follow-up)

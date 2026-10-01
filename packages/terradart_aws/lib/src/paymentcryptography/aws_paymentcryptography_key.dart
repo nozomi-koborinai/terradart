@@ -7,14 +7,14 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_paymentcryptography_key`.
 const Set<String> _awsPaymentcryptographyKeySensitive = <String>{};
 
-/// Paymentcryptography Key Key Check Value enum for `key_check_value_algorithm`.
-enum PaymentcryptographyKeyKeyCheckValueAlgorithm implements TerraformEnum {
+/// Paymentcryptography Key Check Value enum for `key_check_value_algorithm`.
+enum PaymentcryptographyKeyCheckValueAlgorithm implements TerraformEnum {
   cmac('CMAC'),
   ansiX924('ANSI_X9_24'),
   hmac('HMAC'),
   sha1('SHA_1');
 
-  const PaymentcryptographyKeyKeyCheckValueAlgorithm(this.terraformValue);
+  const PaymentcryptographyKeyCheckValueAlgorithm(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -176,7 +176,7 @@ final class AwsPaymentcryptographyKey extends Resource {
     TfArg<num>? deletionWindowInDays,
     TfArg<bool>? enabled,
     required TfArg<bool> exportable,
-    TfArg<PaymentcryptographyKeyKeyCheckValueAlgorithm>? keyCheckValueAlgorithm,
+    TfArg<PaymentcryptographyKeyCheckValueAlgorithm>? keyCheckValueAlgorithm,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<PaymentcryptographyKeyAttributes>? keyAttributes,

@@ -14,12 +14,12 @@ const Set<String> _googleComputeSnapshotSensitive = <String>{
   'source_disk_encryption_key.rsa_encrypted_key',
 };
 
-/// Compute Snapshot Snapshot enum for `snapshot_type`.
-enum ComputeSnapshotSnapshotType implements TerraformEnum {
+/// Compute Snapshot enum for `snapshot_type`.
+enum ComputeSnapshotType implements TerraformEnum {
   archive('ARCHIVE'),
   standard('STANDARD');
 
-  const ComputeSnapshotSnapshotType(this.terraformValue);
+  const ComputeSnapshotType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -174,7 +174,7 @@ final class GoogleComputeSnapshot extends Resource {
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
     TfArg<List<String>>? storageLocations,
-    TfArg<ComputeSnapshotSnapshotType>? snapshotType,
+    TfArg<ComputeSnapshotType>? snapshotType,
     TfArg<String>? chainName,
     TfArg<String>? deletionPolicy,
     TfArg<String>? zone,

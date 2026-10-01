@@ -6,6 +6,7 @@ library;
 export 'src/bedrockagentcore/aws_bedrockagentcore_agent_runtime.dart'
     show
         AwsBedrockagentcoreAgentRuntime,
+        BedrockagentcoreAgentRuntime,
         BedrockagentcoreAgentRuntimeAllowedWorkloadConfiguration,
         BedrockagentcoreAgentRuntimeArtifact,
         BedrockagentcoreAgentRuntimeAuthorizerConfiguration,
@@ -30,7 +31,6 @@ export 'src/bedrockagentcore/aws_bedrockagentcore_agent_runtime.dart'
         BedrockagentcoreAgentRuntimePrivateEndpointOverrides,
         BedrockagentcoreAgentRuntimeProtocolConfiguration,
         BedrockagentcoreAgentRuntimeRequestHeaderConfiguration,
-        BedrockagentcoreAgentRuntimeRuntime,
         BedrockagentcoreAgentRuntimeS3,
         BedrockagentcoreAgentRuntimeS3FilesAccessPoint,
         BedrockagentcoreAgentRuntimeSelfManagedLatticeResource,
@@ -316,7 +316,6 @@ export 'src/bedrockagentcore/aws_bedrockagentcore_oauth2_credential_provider.dar
         BedrockagentcoreOauth2CredentialProviderAuthorizationServerMetadata,
         BedrockagentcoreOauth2CredentialProviderClientAuthenticationMethod,
         BedrockagentcoreOauth2CredentialProviderClientSecretConfig,
-        BedrockagentcoreOauth2CredentialProviderCredentialProviderVendor,
         BedrockagentcoreOauth2CredentialProviderCustomOauth2ProviderConfig,
         BedrockagentcoreOauth2CredentialProviderEndpointIpAddressType,
         BedrockagentcoreOauth2CredentialProviderGithubOauth2ProviderConfig,
@@ -341,7 +340,8 @@ export 'src/bedrockagentcore/aws_bedrockagentcore_oauth2_credential_provider.dar
         BedrockagentcoreOauth2CredentialProviderTenantId,
         BedrockagentcoreOauth2CredentialProviderTenantIdChoice,
         BedrockagentcoreOauth2CredentialProviderTenantIdWo,
-        BedrockagentcoreOauth2CredentialProviderTokenExchangeGrantTypeConfig;
+        BedrockagentcoreOauth2CredentialProviderTokenExchangeGrantTypeConfig,
+        BedrockagentcoreOauth2CredentialProviderVendor;
 export 'src/bedrockagentcore/aws_bedrockagentcore_online_evaluation_config.dart'
     show
         AwsBedrockagentcoreOnlineEvaluationConfig,

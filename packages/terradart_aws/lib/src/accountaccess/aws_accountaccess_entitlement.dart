@@ -12,8 +12,8 @@ const Set<String> _awsAccountaccessEntitlementSensitive = <String>{};
 /// Typed helper for the `entitlement` block of
 /// `aws_accountaccess_entitlement` (derived from provider schema).
 @immutable
-final class AccountaccessEntitlementEntitlement {
-  const AccountaccessEntitlementEntitlement({this.principalRole});
+final class AccountaccessEntitlement {
+  const AccountaccessEntitlement({this.principalRole});
 
   final List<AccountaccessEntitlementPrincipalRole>? principalRole;
 
@@ -81,7 +81,7 @@ final class AwsAccountaccessEntitlement extends Resource {
     required super.localName,
     required TfArg<String> applicationArn,
     TfArg<String>? region,
-    List<AccountaccessEntitlementEntitlement>? entitlement,
+    List<AccountaccessEntitlement>? entitlement,
     super.lifecycle,
     super.dependsOn,
     super.provider,

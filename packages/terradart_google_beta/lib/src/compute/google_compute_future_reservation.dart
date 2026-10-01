@@ -27,12 +27,12 @@ enum ComputeFutureReservationPlanningStatus implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Compute Future Reservation Reservation enum for `reservation_mode`.
-enum ComputeFutureReservationReservationMode implements TerraformEnum {
+/// Compute Future Reservation enum for `reservation_mode`.
+enum ComputeFutureReservationMode implements TerraformEnum {
   calendar('CALENDAR'),
   defaultCase('DEFAULT');
 
-  const ComputeFutureReservationReservationMode(this.terraformValue);
+  const ComputeFutureReservationMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -434,7 +434,7 @@ final class GoogleComputeFutureReservation extends Resource {
     TfArg<String>? namePrefix,
     TfArg<ComputeFutureReservationPlanningStatus>? planningStatus,
     TfArg<String>? project,
-    TfArg<ComputeFutureReservationReservationMode>? reservationMode,
+    TfArg<ComputeFutureReservationMode>? reservationMode,
     TfArg<String>? reservationName,
     TfArg<ComputeFutureReservationSchedulingType>? schedulingType,
     TfArg<bool>? specificReservationRequired,

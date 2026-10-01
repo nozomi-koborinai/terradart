@@ -14,7 +14,7 @@ export 'src/neptune/aws_neptune_cluster.dart'
         NeptuneClusterServerlessV2ScalingConfiguration,
         NeptuneClusterStorageType;
 export 'src/neptune/aws_neptune_cluster_endpoint.dart'
-    show AwsNeptuneClusterEndpoint, NeptuneClusterEndpointEndpointType;
+    show AwsNeptuneClusterEndpoint, NeptuneClusterEndpointType;
 export 'src/neptune/aws_neptune_cluster_instance.dart'
     show
         AwsNeptuneClusterInstance,

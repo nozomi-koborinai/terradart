@@ -97,7 +97,7 @@ final class LoadBalancerPoolNotificationFilter {
 
   final LoadBalancerPoolOrigin? origin;
 
-  final LoadBalancerPoolPool? pool;
+  final LoadBalancerPool? pool;
 
   Map<String, Object?> encode() => {
     'origin': ?origin?.encode(),
@@ -124,8 +124,8 @@ final class LoadBalancerPoolOrigin {
 /// Typed helper for the `notification_filter.pool` block of
 /// `cloudflare_load_balancer_pool` (derived from provider schema).
 @immutable
-final class LoadBalancerPoolPool {
-  const LoadBalancerPoolPool({this.disable, this.healthy});
+final class LoadBalancerPool {
+  const LoadBalancerPool({this.disable, this.healthy});
 
   final TfArg<bool>? disable;
 

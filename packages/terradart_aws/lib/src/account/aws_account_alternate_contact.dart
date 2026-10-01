@@ -6,13 +6,13 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_account_alternate_contact`.
 const Set<String> _awsAccountAlternateContactSensitive = <String>{};
 
-/// Account Alternate Contact Alternate Contact enum for `alternate_contact_type`.
-enum AccountAlternateContactAlternateContactType implements TerraformEnum {
+/// Account Alternate Contact enum for `alternate_contact_type`.
+enum AccountAlternateContactType implements TerraformEnum {
   billing('BILLING'),
   operations('OPERATIONS'),
   security('SECURITY');
 
-  const AccountAlternateContactAlternateContactType(this.terraformValue);
+  const AccountAlternateContactType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -24,8 +24,7 @@ final class AwsAccountAlternateContact extends Resource {
   AwsAccountAlternateContact({
     required super.localName,
     TfArg<String>? accountId,
-    required TfArg<AccountAlternateContactAlternateContactType>
-    alternateContactType,
+    required TfArg<AccountAlternateContactType> alternateContactType,
     required TfArg<String> emailAddress,
     required TfArg<String> name,
     required TfArg<String> phoneNumber,

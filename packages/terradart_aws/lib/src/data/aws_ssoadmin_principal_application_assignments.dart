@@ -11,8 +11,8 @@ const Set<String> _awsSsoadminPrincipalApplicationAssignmentsSensitive =
 /// Typed helper for the `application_assignments` block of
 /// `aws_ssoadmin_principal_application_assignments` (derived from provider schema).
 @immutable
-final class DataSsoadminPrincipalApplicationAssignmentsApplicationAssignments {
-  const DataSsoadminPrincipalApplicationAssignmentsApplicationAssignments();
+final class DataSsoadminPrincipalApplicationAssignments {
+  const DataSsoadminPrincipalApplicationAssignments();
 
   Map<String, Object?> encode() => {};
 }
@@ -27,8 +27,7 @@ final class DataAwsSsoadminPrincipalApplicationAssignments extends Data {
     required TfArg<String> principalId,
     required TfArg<String> principalType,
     TfArg<String>? region,
-    List<DataSsoadminPrincipalApplicationAssignmentsApplicationAssignments>?
-    applicationAssignments,
+    List<DataSsoadminPrincipalApplicationAssignments>? applicationAssignments,
     super.provider,
     super.timeouts,
   }) : super(

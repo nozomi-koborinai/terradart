@@ -7,14 +7,14 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_route53_resolver_rule`.
 const Set<String> _awsRoute53ResolverRuleSensitive = <String>{};
 
-/// Route53 Resolver Rule Rule enum for `rule_type`.
-enum Route53ResolverRuleRuleType implements TerraformEnum {
+/// Route53 Resolver Rule enum for `rule_type`.
+enum Route53ResolverRuleType implements TerraformEnum {
   forward('FORWARD'),
   system('SYSTEM'),
   recursive('RECURSIVE'),
   delegate('DELEGATE');
 
-  const Route53ResolverRuleRuleType(this.terraformValue);
+  const Route53ResolverRuleType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -67,7 +67,7 @@ final class AwsRoute53ResolverRule extends Resource {
     TfArg<String>? name,
     TfArg<String>? region,
     TfArg<String>? resolverEndpointId,
-    required TfArg<Route53ResolverRuleRuleType> ruleType,
+    required TfArg<Route53ResolverRuleType> ruleType,
     TfArg<Map<String, String>>? tags,
     List<Route53ResolverRuleTargetIp>? targetIp,
     super.lifecycle,

@@ -10,8 +10,8 @@ const Set<String> _awsPollyVoicesSensitive = <String>{};
 /// Typed helper for the `voices` block of
 /// `aws_polly_voices` (derived from provider schema).
 @immutable
-final class DataPollyVoicesVoices {
-  const DataPollyVoicesVoices();
+final class DataPollyVoices {
+  const DataPollyVoices();
 
   Map<String, Object?> encode() => {};
 }
@@ -26,7 +26,7 @@ final class DataAwsPollyVoices extends Data {
     TfArg<bool>? includeAdditionalLanguageCodes,
     TfArg<String>? languageCode,
     TfArg<String>? region,
-    List<DataPollyVoicesVoices>? voices,
+    List<DataPollyVoices>? voices,
     super.provider,
     super.timeouts,
   }) : super(

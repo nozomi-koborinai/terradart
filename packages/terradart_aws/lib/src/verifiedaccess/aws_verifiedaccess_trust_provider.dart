@@ -24,12 +24,12 @@ enum VerifiedaccessTrustProviderDeviceTrustProviderType
   final String terraformValue;
 }
 
-/// Verifiedaccess Trust Provider Trust Provider enum for `trust_provider_type`.
-enum VerifiedaccessTrustProviderTrustProviderType implements TerraformEnum {
+/// Verifiedaccess Trust Provider enum for `trust_provider_type`.
+enum VerifiedaccessTrustProviderType implements TerraformEnum {
   user('user'),
   device('device');
 
-  const VerifiedaccessTrustProviderTrustProviderType(this.terraformValue);
+  const VerifiedaccessTrustProviderType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -168,8 +168,7 @@ final class AwsVerifiedaccessTrustProvider extends Resource {
     required TfArg<String> policyReferenceName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required TfArg<VerifiedaccessTrustProviderTrustProviderType>
-    trustProviderType,
+    required TfArg<VerifiedaccessTrustProviderType> trustProviderType,
     TfArg<VerifiedaccessTrustProviderUserTrustProviderType>?
     userTrustProviderType,
     VerifiedaccessTrustProviderDeviceOptions? deviceOptions,

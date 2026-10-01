@@ -34,8 +34,8 @@ enum AppHostingServingLocality implements TerraformEnum {
 /// repository, so commits flowing into the configured branch trigger
 /// builds (see [GoogleFirebaseAppHostingTraffic.rolloutPolicy]).
 @immutable
-class FirebaseAppHostingBackendAppHostingBackendCodebase {
-  const FirebaseAppHostingBackendAppHostingBackendCodebase({
+class FirebaseAppHostingBackendCodebase {
+  const FirebaseAppHostingBackendCodebase({
     required this.repository,
     this.rootDirectory,
   });
@@ -86,7 +86,7 @@ class FirebaseAppHostingBackendAppHostingBackendCodebase {
 ///   appId: TfArg.literal('1:1234567890:web:abcdef'),
 ///   serviceAccount: sa.ref,
 ///   servingLocality: TfArg.literal(AppHostingServingLocality.regionalStrict),
-///   codebase: FirebaseAppHostingBackendAppHostingBackendCodebase(
+///   codebase: FirebaseAppHostingBackendCodebase(
 ///     repository: TfArg.literal(
 ///       'projects/p/locations/us-central1/connections/c/gitRepositoryLinks/r',
 ///     ),
@@ -111,7 +111,7 @@ final class GoogleFirebaseAppHostingBackend extends Resource {
     required TfArg<String> appId,
     required RefTo<GoogleServiceAccount> serviceAccount,
     required TfArg<AppHostingServingLocality> servingLocality,
-    FirebaseAppHostingBackendAppHostingBackendCodebase? codebase,
+    FirebaseAppHostingBackendCodebase? codebase,
     TfArg<String>? environment,
     TfArg<String>? displayName,
     TfArg<Map<String, String>>? annotations,

@@ -41,8 +41,8 @@ enum NetworkfirewallFirewallPolicyType implements TerraformEnum {
 /// Typed helper for the `firewall_policy` block of
 /// `aws_networkfirewall_firewall_policy` (derived from provider schema).
 @immutable
-final class NetworkfirewallFirewallPolicyFirewallPolicy {
-  const NetworkfirewallFirewallPolicyFirewallPolicy({
+final class NetworkfirewallFirewallPolicy {
+  const NetworkfirewallFirewallPolicy({
     this.enableTlsSessionHolding,
     this.statefulDefaultActions,
     required this.statelessDefaultActions,
@@ -345,7 +345,7 @@ final class AwsNetworkfirewallFirewallPolicy extends Resource {
     TfArg<Map<String, String>>? tags,
     NetworkfirewallFirewallPolicyEncryptionConfiguration?
     encryptionConfiguration,
-    required NetworkfirewallFirewallPolicyFirewallPolicy firewallPolicy,
+    required NetworkfirewallFirewallPolicy firewallPolicy,
     super.lifecycle,
     super.dependsOn,
     super.provider,

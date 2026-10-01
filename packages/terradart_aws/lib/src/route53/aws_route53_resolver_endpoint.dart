@@ -32,13 +32,13 @@ enum Route53ResolverEndpointProtocols implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Route53 Resolver Endpoint Resolver Endpoint enum for `resolver_endpoint_type`.
-enum Route53ResolverEndpointResolverEndpointType implements TerraformEnum {
+/// Route53 Resolver Endpoint enum for `resolver_endpoint_type`.
+enum Route53ResolverEndpointType implements TerraformEnum {
   ipv6('IPV6'),
   ipv4('IPV4'),
   dualstack('DUALSTACK');
 
-  const Route53ResolverEndpointResolverEndpointType(this.terraformValue);
+  const Route53ResolverEndpointType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -76,7 +76,7 @@ final class AwsRoute53ResolverEndpoint extends Resource {
     TfArg<String>? name,
     List<TfArg<Route53ResolverEndpointProtocols>>? protocols,
     TfArg<String>? region,
-    TfArg<Route53ResolverEndpointResolverEndpointType>? resolverEndpointType,
+    TfArg<Route53ResolverEndpointType>? resolverEndpointType,
     TfArg<bool>? rniEnhancedMetricsEnabled,
     required TfArg<List<RefTo<AwsSecurityGroup>>> securityGroupIds,
     TfArg<Map<String, String>>? tags,

@@ -32,6 +32,7 @@ export 'src/securityhub/aws_securityhub_automation_rule.dart'
         SecurityhubAutomationRuleCriticality,
         SecurityhubAutomationRuleDateRange,
         SecurityhubAutomationRuleFindingFieldsUpdate,
+        SecurityhubAutomationRuleFindingFieldsUpdateStatus,
         SecurityhubAutomationRuleFindingFieldsUpdateVerificationState,
         SecurityhubAutomationRuleFirstObservedAt,
         SecurityhubAutomationRuleGeneratorId,
@@ -56,7 +57,6 @@ export 'src/securityhub/aws_securityhub_automation_rule.dart'
         SecurityhubAutomationRuleResourceRegion,
         SecurityhubAutomationRuleResourceTags,
         SecurityhubAutomationRuleResourceType,
-        SecurityhubAutomationRuleRuleStatus,
         SecurityhubAutomationRuleSeverity,
         SecurityhubAutomationRuleSeverityLabel,
         SecurityhubAutomationRuleSourceUrl,
@@ -80,8 +80,8 @@ export 'src/securityhub/aws_securityhub_automation_rule_v2.dart'
 export 'src/securityhub/aws_securityhub_configuration_policy.dart'
     show
         AwsSecurityhubConfigurationPolicy,
+        SecurityhubConfigurationPolicy,
         SecurityhubConfigurationPolicyBool,
-        SecurityhubConfigurationPolicyConfigurationPolicy,
         SecurityhubConfigurationPolicyControlIdentifiers,
         SecurityhubConfigurationPolicyDisabledControlIdentifiers,
         SecurityhubConfigurationPolicyDouble,
@@ -220,18 +220,16 @@ export 'src/securityhub/aws_securityhub_organization_admin_account.dart'
 export 'src/securityhub/aws_securityhub_organization_configuration.dart'
     show
         AwsSecurityhubOrganizationConfiguration,
+        SecurityhubOrganizationConfiguration,
         SecurityhubOrganizationConfigurationAutoEnableStandards,
-        SecurityhubOrganizationConfigurationOrganizationConfiguration,
         SecurityhubOrganizationConfigurationType;
 export 'src/securityhub/aws_securityhub_product_subscription.dart'
     show AwsSecurityhubProductSubscription;
 export 'src/securityhub/aws_securityhub_standards_control.dart'
-    show
-        AwsSecurityhubStandardsControl,
-        SecurityhubStandardsControlControlStatus;
+    show AwsSecurityhubStandardsControl, SecurityhubStandardsControlStatus;
 export 'src/securityhub/aws_securityhub_standards_control_association.dart'
     show
         AwsSecurityhubStandardsControlAssociation,
-        SecurityhubStandardsControlAssociationAssociationStatus;
+        SecurityhubStandardsControlAssociationStatus;
 export 'src/securityhub/aws_securityhub_standards_subscription.dart'
     show AwsSecurityhubStandardsSubscription;

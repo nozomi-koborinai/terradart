@@ -33,7 +33,7 @@ export 'src/elasticsearch/aws_elasticsearch_domain_policy.dart'
 export 'src/elasticsearch/aws_elasticsearch_domain_saml_options.dart'
     show
         AwsElasticsearchDomainSamlOptions,
-        ElasticsearchDomainSamlOptionsIdp,
-        ElasticsearchDomainSamlOptionsSamlOptions;
+        ElasticsearchDomainSamlOptions,
+        ElasticsearchDomainSamlOptionsIdp;
 export 'src/elasticsearch/aws_elasticsearch_vpc_endpoint.dart'
     show AwsElasticsearchVpcEndpoint, ElasticsearchVpcEndpointVpcOptions;

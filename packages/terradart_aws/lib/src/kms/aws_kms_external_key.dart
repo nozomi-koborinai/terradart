@@ -6,8 +6,8 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_kms_external_key`.
 const Set<String> _awsKmsExternalKeySensitive = <String>{'key_material_base64'};
 
-/// Kms External Key Key enum for `key_spec`.
-enum KmsExternalKeyKeySpec implements TerraformEnum {
+/// Kms External Key enum for `key_spec`.
+enum KmsExternalKeySpec implements TerraformEnum {
   rsa2048('RSA_2048'),
   rsa3072('RSA_3072'),
   rsa4096('RSA_4096'),
@@ -26,19 +26,19 @@ enum KmsExternalKeyKeySpec implements TerraformEnum {
   mlDsa87('ML_DSA_87'),
   eccNistEdwards25519('ECC_NIST_EDWARDS25519');
 
-  const KmsExternalKeyKeySpec(this.terraformValue);
+  const KmsExternalKeySpec(this.terraformValue);
   @override
   final String terraformValue;
 }
 
-/// Kms External Key Key enum for `key_usage`.
-enum KmsExternalKeyKeyUsage implements TerraformEnum {
+/// Kms External Key enum for `key_usage`.
+enum KmsExternalKeyUsage implements TerraformEnum {
   signVerify('SIGN_VERIFY'),
   encryptDecrypt('ENCRYPT_DECRYPT'),
   generateVerifyMac('GENERATE_VERIFY_MAC'),
   keyAgreement('KEY_AGREEMENT');
 
-  const KmsExternalKeyKeyUsage(this.terraformValue);
+  const KmsExternalKeyUsage(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -54,8 +54,8 @@ final class AwsKmsExternalKey extends Resource {
     TfArg<String>? description,
     TfArg<bool>? enabled,
     TfArg<String>? keyMaterialBase64,
-    TfArg<KmsExternalKeyKeySpec>? keySpec,
-    TfArg<KmsExternalKeyKeyUsage>? keyUsage,
+    TfArg<KmsExternalKeySpec>? keySpec,
+    TfArg<KmsExternalKeyUsage>? keyUsage,
     TfArg<bool>? multiRegion,
     TfArg<String>? policy,
     TfArg<String>? region,

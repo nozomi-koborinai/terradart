@@ -7,12 +7,12 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_kms_custom_key_store`.
 const Set<String> _awsKmsCustomKeyStoreSensitive = <String>{};
 
-/// Kms Custom Key Store Custom Key Store enum for `custom_key_store_type`.
-enum KmsCustomKeyStoreCustomKeyStoreType implements TerraformEnum {
+/// Kms Custom Key Store enum for `custom_key_store_type`.
+enum KmsCustomKeyStoreType implements TerraformEnum {
   awsCloudhsm('AWS_CLOUDHSM'),
   externalKeyStore('EXTERNAL_KEY_STORE');
 
-  const KmsCustomKeyStoreCustomKeyStoreType(this.terraformValue);
+  const KmsCustomKeyStoreType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -54,7 +54,7 @@ final class AwsKmsCustomKeyStore extends Resource {
     required super.localName,
     TfArg<String>? cloudHsmClusterId,
     required TfArg<String> customKeyStoreName,
-    TfArg<KmsCustomKeyStoreCustomKeyStoreType>? customKeyStoreType,
+    TfArg<KmsCustomKeyStoreType>? customKeyStoreType,
     TfArg<String>? keyStorePassword,
     TfArg<String>? region,
     TfArg<String>? trustAnchorCertificate,

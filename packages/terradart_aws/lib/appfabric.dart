@@ -17,12 +17,12 @@ export 'src/appfabric/aws_appfabric_app_authorization_connection.dart'
         AwsAppfabricAppAuthorizationConnection;
 export 'src/appfabric/aws_appfabric_app_bundle.dart' show AwsAppfabricAppBundle;
 export 'src/appfabric/aws_appfabric_ingestion.dart'
-    show AppfabricIngestionIngestionType, AwsAppfabricIngestion;
+    show AppfabricIngestionType, AwsAppfabricIngestion;
 export 'src/appfabric/aws_appfabric_ingestion_destination.dart'
     show
+        AppfabricIngestionDestination,
         AppfabricIngestionDestinationConfiguration,
         AppfabricIngestionDestinationConfigurationAuditLog,
-        AppfabricIngestionDestinationDestination,
         AppfabricIngestionDestinationFirehoseStream,
         AppfabricIngestionDestinationFormat,
         AppfabricIngestionDestinationProcessingConfiguration,

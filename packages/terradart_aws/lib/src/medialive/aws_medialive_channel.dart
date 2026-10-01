@@ -11,12 +11,12 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 /// Sensitive field paths for `aws_medialive_channel`.
 const Set<String> _awsMedialiveChannelSensitive = <String>{};
 
-/// Medialive Channel Channel enum for `channel_class`.
-enum MedialiveChannelChannelClass implements TerraformEnum {
+/// Medialive Channel enum for `channel_class`.
+enum MedialiveChannelClass implements TerraformEnum {
   standard('STANDARD'),
   singlePipeline('SINGLE_PIPELINE');
 
-  const MedialiveChannelChannelClass(this.terraformValue);
+  const MedialiveChannelClass(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -4332,7 +4332,7 @@ final class AwsMedialiveChannel extends Resource {
 
   AwsMedialiveChannel({
     required super.localName,
-    required TfArg<MedialiveChannelChannelClass> channelClass,
+    required TfArg<MedialiveChannelClass> channelClass,
     TfArg<MedialiveChannelLogLevel>? logLevel,
     required TfArg<String> name,
     TfArg<String>? region,

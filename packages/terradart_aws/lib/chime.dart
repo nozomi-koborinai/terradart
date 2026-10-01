@@ -18,10 +18,10 @@ export 'src/chime/aws_chime_voice_connector_streaming.dart'
     show
         AwsChimeVoiceConnectorStreaming,
         ChimeVoiceConnectorStreamingMediaInsightsConfiguration,
-        ChimeVoiceConnectorStreamingStreamingNotificationTargets;
+        ChimeVoiceConnectorStreamingNotificationTargets;
 export 'src/chime/aws_chime_voice_connector_termination.dart'
     show AwsChimeVoiceConnectorTermination;
 export 'src/chime/aws_chime_voice_connector_termination_credentials.dart'
     show
         AwsChimeVoiceConnectorTerminationCredentials,
-        ChimeVoiceConnectorTerminationCredentialsCredentials;
+        ChimeVoiceConnectorTerminationCredentials;

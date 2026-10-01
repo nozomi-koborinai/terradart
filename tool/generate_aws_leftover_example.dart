@@ -846,8 +846,8 @@ const _extraParams = <String, List<String>>{
     'filters',
     'cloudwatchLogs',
   ],
-  'QuicksightRefreshScheduleSchedule': ['scheduleFrequency'],
-  'S3BucketMetadataConfigurationMetadataConfiguration': [
+  'QuicksightRefreshSchedule': ['scheduleFrequency'],
+  'S3BucketMetadataConfiguration': [
     'journalTableConfiguration',
     'inventoryTableConfiguration',
   ],
@@ -864,9 +864,7 @@ const _extraParams = <String, List<String>>{
   ],
   'SecuritylakeSubscriberSource': ['awsLogSourceResource'],
   'ServicecatalogProductProvisioningArtifactParameters': ['templatePhysicalId'],
-  'Sesv2ConfigurationSetEventDestinationEventDestination': [
-    'cloudWatchDestination',
-  ],
+  'Sesv2ConfigurationSetEventDestination': ['cloudWatchDestination'],
   'TimestreamqueryScheduledQueryTimestreamConfiguration': ['dimensionMapping'],
   'WorkspaceswebSessionLoggerEventFilter': ['include'],
 };
@@ -1977,7 +1975,7 @@ const _literalByKey = <String, String>{
   'CodebuildProjectEnvironment.type': '\'WINDOWS_CONTAINER\'',
   'CodebuildProjectSource.type': '\'CODECOMMIT\'',
   'CodebuildReportGroupExportConfig.type': '\'S3\'',
-  'CodecommitTriggerTrigger.events': '[\'all\']',
+  'CodecommitTrigger.events': '[\'all\']',
   'CodepipelineArtifactStore.type': '\'S3\'',
   'CodepipelineCustomActionTypeInputArtifactDetails.maximumCount': '0',
   'CodepipelineCustomActionTypeInputArtifactDetails.minimumCount': '0',
@@ -1996,7 +1994,7 @@ const _literalByKey = <String, String>{
   'ComputeoptimizerRecommendationPreferencesScope.name': '\'Organization\'',
   'ConfigConfigRuleSource.owner': '\'CUSTOM_LAMBDA\'',
   'ConnectHoursOfOperationConfig.day': '\'SUNDAY\'',
-  'ConnectInstanceStorageConfigStorageConfig.storageType': '\'S3\'',
+  'ConnectInstanceStorageConfig.storageType': '\'S3\'',
   'ConnectQuickConnectConfig.quickConnectType': '\'USER\'',
   'ConnectRoutingProfileMediaConcurrencies.channel': '\'VOICE\'',
   'ConnectRoutingProfileMediaConcurrencies.concurrency': '1',
@@ -2075,7 +2073,7 @@ const _literalByKey = <String, String>{
   'Ec2ClientVpnEndpointAuthenticationOptions.type':
       '\'certificate-authentication\'',
   'Ec2FleetTargetCapacitySpecification.defaultTargetCapacityType': '\'spot\'',
-  'EfsBackupPolicyBackupPolicy.status': '\'DISABLED\'',
+  'EfsBackupPolicy.status': '\'DISABLED\'',
   'ElbListener.instanceProtocol': '\'HTTP\'',
   'ElbListener.lbProtocol': '\'HTTP\'',
   'EmrManagedScalingPolicyComputeLimits.unitType': '\'InstanceFleetUnits\'',
@@ -2156,7 +2154,7 @@ const _literalByKey = <String, String>{
   'ObservabilityadminS3TableIntegrationEncryption.sseAlgorithm': '\'aws:kms\'',
   'ObservabilityadminTelemetryRuleForOrganizationRule.telemetryType':
       '\'Logs\'',
-  'ObservabilityadminTelemetryRuleRule.telemetryType': '\'Logs\'',
+  'ObservabilityadminTelemetryRule.telemetryType': '\'Logs\'',
   'OdbCloudAutonomousVmClusterMaintenanceWindow.preference':
       '\'NO_PREFERENCE\'',
   'OdbCloudExadataInfrastructureMaintenanceWindow.patchingMode': '\'ROLLING\'',
@@ -2170,7 +2168,7 @@ const _literalByKey = <String, String>{
       '\'ENABLED\'',
   'QuicksightCustomPermissionsCapabilities.addOrRunAnomalyDetectionForAnalyses':
       '\'DENY\'',
-  'QuicksightRefreshScheduleSchedule.refreshType': '\'INCREMENTAL_REFRESH\'',
+  'QuicksightRefreshSchedule.refreshType': '\'INCREMENTAL_REFRESH\'',
   'QuicksightRefreshScheduleFrequency.interval': '\'MINUTE15\'',
   'RbinRuleRetentionPeriod.retentionPeriodUnit': '\'DAYS\'',
   'RekognitionStreamProcessorConnectedHome.labels': '[\'PERSON\']',
@@ -2191,8 +2189,7 @@ const _literalByKey = <String, String>{
       '[\'NONE\']',
   'S3BucketVersioningConfiguration.status': '\'Enabled\'',
   'S3controlAccessGrantGrantee.granteeType': '\'DIRECTORY_USER\'',
-  'S3controlDirectoryBucketAccessPointScopeScope.permissions':
-      '[\'GetObject\']',
+  'S3controlDirectoryBucketAccessPointScope.permissions': '[\'GetObject\']',
   'S3controlMultiRegionAccessPointRoutesRoute.trafficDialPercentage': '100',
   'S3controlObjectLambdaAccessPointConfiguration.supportingAccessPoint': 'arn',
   'S3controlObjectLambdaAccessPointTransformationConfiguration.actions':
@@ -2223,8 +2220,7 @@ const _literalByKey = <String, String>{
   'SecurityhubAutomationRuleV2Criteria.ocsfFindingCriteriaJson': 'policy',
   'SecurityhubInsightAwsAccountId.comparison': '\'EQUALS\'',
   'SecuritylakeSubscriberAwsLogSourceResource.sourceName': '\'ROUTE53\'',
-  'Sesv2ConfigurationSetEventDestinationEventDestination.matchingEventTypes':
-      '[\'SEND\']',
+  'Sesv2ConfigurationSetEventDestination.matchingEventTypes': '[\'SEND\']',
   'Sesv2ConfigurationSetEventDestinationDimensionConfiguration.dimensionValueSource':
       '\'MESSAGE_TAG\'',
   'SpotInstanceRequestLaunchTemplate.id': '\'lt-0123456789abcdef0\'',

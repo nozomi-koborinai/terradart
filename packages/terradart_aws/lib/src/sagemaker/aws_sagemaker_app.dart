@@ -7,8 +7,8 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_sagemaker_app`.
 const Set<String> _awsSagemakerAppSensitive = <String>{};
 
-/// Sagemaker App App enum for `app_type`.
-enum SagemakerAppAppType implements TerraformEnum {
+/// Sagemaker App enum for `app_type`.
+enum SagemakerAppType implements TerraformEnum {
   jupyterserver('JupyterServer'),
   kernelgateway('KernelGateway'),
   detailedprofiler('DetailedProfiler'),
@@ -19,7 +19,7 @@ enum SagemakerAppAppType implements TerraformEnum {
   rsessiongateway('RSessionGateway'),
   canvas('Canvas');
 
-  const SagemakerAppAppType(this.terraformValue);
+  const SagemakerAppType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -308,7 +308,7 @@ final class AwsSagemakerApp extends Resource {
   AwsSagemakerApp({
     required super.localName,
     required TfArg<String> appName,
-    required TfArg<SagemakerAppAppType> appType,
+    required TfArg<SagemakerAppType> appType,
     required TfArg<String> domainId,
     TfArg<String>? region,
     required SagemakerAppOwner owner,

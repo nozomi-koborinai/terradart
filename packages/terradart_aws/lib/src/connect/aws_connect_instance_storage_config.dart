@@ -38,8 +38,8 @@ enum ConnectInstanceStorageConfigResourceType implements TerraformEnum {
 /// Typed helper for the `storage_config` block of
 /// `aws_connect_instance_storage_config` (derived from provider schema).
 @immutable
-final class ConnectInstanceStorageConfigStorageConfig {
-  const ConnectInstanceStorageConfigStorageConfig({
+final class ConnectInstanceStorageConfig {
+  const ConnectInstanceStorageConfig({
     required this.storageType,
     this.kinesisFirehoseConfig,
     this.kinesisStreamConfig,
@@ -190,7 +190,7 @@ final class AwsConnectInstanceStorageConfig extends Resource {
     required TfArg<String> instanceId,
     TfArg<String>? region,
     required TfArg<ConnectInstanceStorageConfigResourceType> resourceType,
-    required ConnectInstanceStorageConfigStorageConfig storageConfig,
+    required ConnectInstanceStorageConfig storageConfig,
     super.lifecycle,
     super.dependsOn,
     super.provider,

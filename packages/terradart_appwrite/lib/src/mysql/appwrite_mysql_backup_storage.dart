@@ -12,13 +12,13 @@ const Set<String> _appwriteMysqlBackupStorageSensitive = <String>{
   'secret_key',
 };
 
-/// Mysql Backup Storage Storage enum for `storage_provider`.
-enum MysqlBackupStorageStorageProvider implements TerraformEnum {
+/// Mysql Backup Storage enum for `storage_provider`.
+enum MysqlBackupStorageProvider implements TerraformEnum {
   s3('s3'),
   gcs('gcs'),
   azure('azure');
 
-  const MysqlBackupStorageStorageProvider(this.terraformValue);
+  const MysqlBackupStorageProvider(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -50,7 +50,7 @@ final class AppwriteMysqlBackupStorage extends Resource {
     RefTo<AppwriteProject>? projectId,
     TfArg<String>? region,
     required TfArg<String> secretKey,
-    required TfArg<MysqlBackupStorageStorageProvider> storageProvider,
+    required TfArg<MysqlBackupStorageProvider> storageProvider,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -10,8 +10,8 @@ const Set<String> _awsGlueDataCatalogEncryptionSettingsSensitive = <String>{};
 /// Typed helper for the `data_catalog_encryption_settings` block of
 /// `aws_glue_data_catalog_encryption_settings` (derived from provider schema).
 @immutable
-final class GlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettings {
-  const GlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettings({
+final class GlueDataCatalogEncryptionSettings {
+  const GlueDataCatalogEncryptionSettings({
     required this.connectionPasswordEncryption,
     required this.encryptionAtRest,
   });
@@ -94,8 +94,7 @@ final class AwsGlueDataCatalogEncryptionSettings extends Resource {
     required super.localName,
     TfArg<String>? catalogId,
     TfArg<String>? region,
-    required GlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettings
-    dataCatalogEncryptionSettings,
+    required GlueDataCatalogEncryptionSettings dataCatalogEncryptionSettings,
     super.lifecycle,
     super.dependsOn,
     super.provider,

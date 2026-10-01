@@ -6,9 +6,7 @@ library;
 export 'src/postgresql/appwrite_postgresql_backup_policy.dart'
     show AppwritePostgresqlBackupPolicy, PostgresqlBackupPolicyType;
 export 'src/postgresql/appwrite_postgresql_backup_storage.dart'
-    show
-        AppwritePostgresqlBackupStorage,
-        PostgresqlBackupStorageStorageProvider;
+    show AppwritePostgresqlBackupStorage, PostgresqlBackupStorageProvider;
 export 'src/postgresql/appwrite_postgresql_branch.dart'
     show AppwritePostgresqlBranch;
 export 'src/postgresql/appwrite_postgresql_database.dart'

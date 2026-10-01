@@ -11,8 +11,8 @@ const Set<String> _googleAccessContextManagerServicePerimetersSensitive =
 /// Typed helper for the `service_perimeters` block of
 /// `google_access_context_manager_service_perimeters` (derived from provider schema).
 @immutable
-final class AccessContextManagerServicePerimetersServicePerimeters {
-  const AccessContextManagerServicePerimetersServicePerimeters({
+final class AccessContextManagerServicePerimeters {
+  const AccessContextManagerServicePerimeters({
     this.description,
     required this.name,
     this.perimeterType,
@@ -515,8 +515,7 @@ final class GoogleAccessContextManagerServicePerimeters extends Resource {
     required super.localName,
     TfArg<String>? deletionPolicy,
     required TfArg<String> parent,
-    List<AccessContextManagerServicePerimetersServicePerimeters>?
-    servicePerimeters,
+    List<AccessContextManagerServicePerimeters>? servicePerimeters,
     super.lifecycle,
     super.dependsOn,
     super.provider,

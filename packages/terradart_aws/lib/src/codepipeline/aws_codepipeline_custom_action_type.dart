@@ -48,7 +48,7 @@ final class CodepipelineCustomActionTypeConfigurationProperty {
 
   final TfArg<bool> secret;
 
-  final TfArg<CodepipelineCustomActionTypeType>? type;
+  final TfArg<CodepipelineCustomActionType>? type;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -62,12 +62,12 @@ final class CodepipelineCustomActionTypeConfigurationProperty {
 }
 
 /// `type` — derived from the provider schema description.
-enum CodepipelineCustomActionTypeType implements TerraformEnum {
+enum CodepipelineCustomActionType implements TerraformEnum {
   string('String'),
   number('Number'),
   boolean('Boolean');
 
-  const CodepipelineCustomActionTypeType(this.terraformValue);
+  const CodepipelineCustomActionType(this.terraformValue);
   @override
   final String terraformValue;
 }

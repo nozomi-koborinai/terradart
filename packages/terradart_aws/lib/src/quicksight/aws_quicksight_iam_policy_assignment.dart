@@ -7,13 +7,13 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_quicksight_iam_policy_assignment`.
 const Set<String> _awsQuicksightIamPolicyAssignmentSensitive = <String>{};
 
-/// Quicksight Iam Policy Assignment Assignment enum for `assignment_status`.
-enum QuicksightIamPolicyAssignmentAssignmentStatus implements TerraformEnum {
+/// Quicksight Iam Policy Assignment enum for `assignment_status`.
+enum QuicksightIamPolicyAssignmentStatus implements TerraformEnum {
   enabled('ENABLED'),
   draft('DRAFT'),
   disabled('DISABLED');
 
-  const QuicksightIamPolicyAssignmentAssignmentStatus(this.terraformValue);
+  const QuicksightIamPolicyAssignmentStatus(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -41,8 +41,7 @@ final class AwsQuicksightIamPolicyAssignment extends Resource {
   AwsQuicksightIamPolicyAssignment({
     required super.localName,
     required TfArg<String> assignmentName,
-    required TfArg<QuicksightIamPolicyAssignmentAssignmentStatus>
-    assignmentStatus,
+    required TfArg<QuicksightIamPolicyAssignmentStatus> assignmentStatus,
     TfArg<String>? awsAccountId,
     TfArg<String>? namespace,
     TfArg<String>? policyArn,

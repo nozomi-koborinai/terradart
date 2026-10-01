@@ -9,12 +9,12 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 /// Sensitive field paths for `aws_redshift_idc_application`.
 const Set<String> _awsRedshiftIdcApplicationSensitive = <String>{};
 
-/// Redshift Idc Application Application enum for `application_type`.
-enum RedshiftIdcApplicationApplicationType implements TerraformEnum {
+/// Redshift Idc Application enum for `application_type`.
+enum RedshiftIdcApplicationType implements TerraformEnum {
   none('None'),
   lakehouse('Lakehouse');
 
-  const RedshiftIdcApplicationApplicationType(this.terraformValue);
+  const RedshiftIdcApplicationType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -153,7 +153,7 @@ final class AwsRedshiftIdcApplication extends Resource {
 
   AwsRedshiftIdcApplication({
     required super.localName,
-    TfArg<RedshiftIdcApplicationApplicationType>? applicationType,
+    TfArg<RedshiftIdcApplicationType>? applicationType,
     required RefTo<AwsIamRole> iamRoleArn,
     required TfArg<String> idcDisplayName,
     required TfArg<String> idcInstanceArn,

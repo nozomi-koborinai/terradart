@@ -10,8 +10,8 @@ const Set<String> _awsSagemakerDeviceSensitive = <String>{};
 /// Typed helper for the `device` block of
 /// `aws_sagemaker_device` (derived from provider schema).
 @immutable
-final class SagemakerDeviceDevice {
-  const SagemakerDeviceDevice({
+final class SagemakerDevice {
+  const SagemakerDevice({
     this.description,
     required this.deviceName,
     this.iotThingName,
@@ -38,7 +38,7 @@ final class AwsSagemakerDevice extends Resource {
     required super.localName,
     required TfArg<String> deviceFleetName,
     TfArg<String>? region,
-    required SagemakerDeviceDevice device,
+    required SagemakerDevice device,
     super.lifecycle,
     super.dependsOn,
     super.provider,
