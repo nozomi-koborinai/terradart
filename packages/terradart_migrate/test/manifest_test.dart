@@ -100,7 +100,9 @@ void main() {
               case MigrateSlotKind.principal:
                 expect(
                   s.dartType,
-                  'IamPrincipal',
+                  manifest.package == 'terradart_appwrite'
+                      ? 'AppwritePermission'
+                      : 'IamPrincipal',
                   reason: '$where.${s.dartName}',
                 );
               case MigrateSlotKind.manual:

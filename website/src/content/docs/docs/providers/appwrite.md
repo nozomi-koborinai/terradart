@@ -59,6 +59,43 @@ final class BackendStack extends Stack {
 
 Appwrite assigns the IDs on create, so they are outputs: after `terraform apply`, `BackendStackOutputs.fromTerraformJson(...)` reads them from `terraform output -json` — in a build script that passes them to `flutter build` as `--dart-define`s, for example — with a typed getter per ID (`databaseId`, `notesTableId`, `uploadsBucketId`).
 
+Who may read or change a bucket, file, table or row is a list of `AppwritePermission` (from `package:terradart_appwrite/auth.dart`), one per action and role, so a misspelled role does not compile:
+
+```dart
+// lib/uploads_stack.dart
+import 'package:terradart_appwrite/auth.dart';
+import 'package:terradart_appwrite/provider.dart';
+import 'package:terradart_appwrite/storage.dart';
+import 'package:terradart_core/terradart_core.dart';
+
+final class UploadsStack extends Stack {
+  UploadsStack()
+    : super(
+        providers: [
+          const AppwriteProvider(
+            endpoint: 'https://cloud.appwrite.io/v1',
+            projectId: 'my-project',
+          ),
+        ],
+      ) {
+    final editors = add(
+      AppwriteAuthTeam(localName: 'editors', name: .literal('Editors')),
+    );
+    add(AppwriteStorageBucket(
+      localName: 'uploads',
+      name: .literal('uploads'),
+      permissions: .literal([
+        .read(.any),
+        .create(.users(verified: true)),
+        .write(.team(editors.ref, role: 'owner')),
+      ]),
+    ));
+  }
+}
+```
+
+It synthesizes to the provider's strings (`read("any")`, `write("team:${appwrite_auth_team.editors.id}/owner")`). The roles are `.any`, `.guests`, `.users()`, `.user(user.ref)`, `.team(team.ref)`, `.member(id)` and `.label(name)`; `.literal('read("any")')` takes a permission string as it is.
+
 Inputs with a fixed value set are Dart enums, taken from the provider's validators. A sensitive input, such as a backup provider's secret key, is best passed as a Terraform variable (`addVariable` and `TfArg.variable`) so its value arrives at apply time rather than in the Dart source.
 
 ## Examples

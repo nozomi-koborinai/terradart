@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../auth/appwrite_permission.dart' show AppwritePermission;
 import '../project/appwrite_project.dart' show AppwriteProject;
 import '../tablesdb/appwrite_tablesdb.dart' show AppwriteTablesdb;
 
@@ -20,7 +21,7 @@ final class AppwriteTablesdbTable extends Resource {
     required RefTo<AppwriteTablesdb> databaseId,
     TfArg<bool>? enabled,
     required TfArg<String> name,
-    TfArg<List<String>>? permissions,
+    TfArg<List<AppwritePermission>>? permissions,
     RefTo<AppwriteProject>? projectId,
     TfArg<bool>? rowSecurity,
     super.lifecycle,

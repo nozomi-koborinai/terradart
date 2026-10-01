@@ -1,4 +1,5 @@
 import '../catalog_entry_builder.dart' show paramIdentifier;
+import '../references/reference_targets.dart' show principalTypes;
 import '../wrapper_overrides/wrapper_override.dart';
 import 'dart_type_shape.dart';
 import 'helper_class_extractor.dart';
@@ -97,13 +98,12 @@ SlotShape _classify(
   ShapeContext ctx, {
   required bool repeated,
 }) {
-  if (type.name == 'IamPrincipal' && type.args.isEmpty && !type.nullable) {
+  if (principalTypes.containsKey(type.name) &&
+      type.args.isEmpty &&
+      !type.nullable) {
     return repeated
         ? SlotShape.manual('bare list of principals `${type.render()}`')
-        : const SlotShape(
-            kind: MigrateSlotKind.principal,
-            dartType: 'IamPrincipal',
-          );
+        : SlotShape(kind: MigrateSlotKind.principal, dartType: type.name);
   }
   if (_referenceTarget(type) case final target?) {
     return repeated
@@ -114,12 +114,12 @@ SlotShape _classify(
     final payload = type.args.single.nonNullable;
     if (payload.name == 'List' && payload.args.length == 1) {
       final element = payload.args.single;
-      if (element.name == 'IamPrincipal' && element.args.isEmpty) {
+      if (principalTypes.containsKey(element.name) && element.args.isEmpty) {
         return repeated
             ? SlotShape.manual('list of principal lists `${type.render()}`')
-            : const SlotShape(
+            : SlotShape(
                 kind: MigrateSlotKind.principal,
-                dartType: 'IamPrincipal',
+                dartType: element.name,
                 repeated: true,
               );
       }
