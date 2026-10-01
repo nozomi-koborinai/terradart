@@ -33,7 +33,7 @@ final class MyBetaStack extends Stack {
         service: .literal('pubsub.googleapis.com'),
       ),
     );
-    // pubsubAgent.member feeds IAM grants without racing agent creation.
+    // pubsubAgent.principal feeds IAM grants without racing agent creation.
   }
 }
 ```

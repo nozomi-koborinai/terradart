@@ -47,7 +47,7 @@ void main() {
         'cloudasset.googleapis.com',
       );
       expect(
-        identity.member.interpolation,
+        identity.principal.toTfJson(),
         r'${google_project_service_identity.cloudasset.member}',
       );
       expect(
