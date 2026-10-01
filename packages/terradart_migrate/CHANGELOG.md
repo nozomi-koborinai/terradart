@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- A kept block the migrated Stack still reads is declared with `addExternalBlock('<address>')`, which synth now requires for a reference to a block the Stack does not hold.
+
 ## 0.31.0 - 2026-10-01
 
 - A reference to an input attribute (`${google_pubsub_topic.x.labels}`) becomes its `<name>Ref` getter (`.ref(x.labelsRef)`) instead of `TfRef.attribute<Object?>(x, r'labels')`; the fallback remains for an attribute the wrapper has no getter for. The five migration manifests list the new getters.

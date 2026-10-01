@@ -15,8 +15,20 @@ export 'src/ref_to.dart' show RefTo, RefToList;
 export 'src/resource.dart' show Resource, ResourceKind;
 export 'src/stack.dart' show Stack, StackBackend, StackProvider;
 export 'src/synth/json_encoder.dart' show TfJsonEncoder;
-export 'src/synth/sensitive_literal_error.dart' show SensitiveLiteralError;
 export 'src/synth/stack_synth.dart' show SynthResult;
+export 'src/synth/synth_issue.dart'
+    show
+        InvalidMoveTarget,
+        InvalidTimeout,
+        MissingProvider,
+        NoProviders,
+        ProviderConflict,
+        SensitiveLiteral,
+        SynthException,
+        SynthIssue,
+        UndeclaredVariable,
+        UnregisteredReference,
+        UnresolvableConstant;
 export 'src/tf_arg.dart'
     show
         TerraformEnum,

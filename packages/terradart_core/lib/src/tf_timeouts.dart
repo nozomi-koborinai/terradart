@@ -54,34 +54,30 @@ final class TfTimeouts {
       create == null && read == null && update == null && delete == null;
 
   /// The `timeouts` block as Terraform JSON, or `null` when [isEmpty].
-  ///
-  /// Throws [ArgumentError] for a value that is not a Go duration string
-  /// (`30m`, `1h30m`, `1500ms`) — Terraform would reject it at plan time,
-  /// far from the Dart that wrote it.
-  Map<String, String>? toTfJson() {
-    if (isEmpty) return null;
-    final out = <String, String>{};
-    void put(String key, String? value) {
-      if (value == null) return;
-      if (!_duration.hasMatch(value)) {
-        throw ArgumentError.value(
-          value,
-          key,
-          'is not a Terraform duration string (e.g. "30m", "1h30m", "90s")',
-        );
-      }
-      out[key] = value;
-    }
+  Map<String, String>? toTfJson() => isEmpty ? null : Map.fromEntries(_set);
 
-    put('create', create);
-    put('read', read);
-    put('update', update);
-    put('delete', delete);
-    return out;
-  }
+  /// The set operations whose value is not a Go duration string (`30m`,
+  /// `1h30m`, `1500ms`), as `(operation, value)`; synth reports each one
+  /// instead of leaving it for Terraform to reject at plan time.
+  @internal
+  Iterable<(String, String)> get invalidOperations => [
+    for (final MapEntry(:key, :value) in _set)
+      if (!isDuration(value)) (key, value),
+  ];
 
-  /// One or more `<number><unit>` pairs, the units Go's `ParseDuration`
-  /// accepts. A leading sign is not allowed — a negative timeout is a typo.
+  Iterable<MapEntry<String, String>> get _set => [
+    if (create case final v?) MapEntry('create', v),
+    if (read case final v?) MapEntry('read', v),
+    if (update case final v?) MapEntry('update', v),
+    if (delete case final v?) MapEntry('delete', v),
+  ];
+
+  /// Whether [value] is a timeout Terraform accepts: one or more
+  /// `<number><unit>` pairs, the units Go's `ParseDuration` accepts
+  /// (`30m`, `1h30m`, `1500ms`). A leading sign is not allowed — a negative
+  /// timeout is a typo.
+  static bool isDuration(String value) => _duration.hasMatch(value);
+
   static final RegExp _duration = RegExp(
     r'^(\d+(\.\d+)?(ns|us|µs|μs|ms|s|m|h))+$',
   );
