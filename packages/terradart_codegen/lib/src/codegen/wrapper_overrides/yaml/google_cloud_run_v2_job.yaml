@@ -14,7 +14,7 @@ curatedDoc: |-
   ///   template: CloudRunV2JobTemplate(
   ///     template: CloudRunV2JobTemplateTemplate(
   ///       containers: [
-  ///         CloudRunV2JobTemplateTemplateContainers(
+  ///         CloudRunV2JobContainers(
   ///           image: .literal('gcr.io/p/etl:v1'),
   ///         ),
   ///       ],
@@ -115,7 +115,7 @@ prelude: |
     final String terraformValue;
   }
 
-  /// Egress policy for [CloudRunV2JobTemplateTemplateVpcAccess.egress] (`template.template.vpc_access.egress`).
+  /// Egress policy for [CloudRunV2JobVpcAccess.egress] (`template.template.vpc_access.egress`).
   enum CloudRunV2JobVpcAccessEgress implements TerraformEnum {
     allTraffic('ALL_TRAFFIC'),
     privateRangesOnly('PRIVATE_RANGES_ONLY');

@@ -327,7 +327,7 @@ final class CloudwatchMetricAlarmThresholdMetricId
 final class CloudwatchMetricAlarmEvaluationCriteria {
   const CloudwatchMetricAlarmEvaluationCriteria({required this.promqlCriteria});
 
-  final CloudwatchMetricAlarmEvaluationCriteriaPromqlCriteria promqlCriteria;
+  final CloudwatchMetricAlarmPromqlCriteria promqlCriteria;
 
   Map<String, Object?> encode() => {'promql_criteria': promqlCriteria.encode()};
 }
@@ -335,8 +335,8 @@ final class CloudwatchMetricAlarmEvaluationCriteria {
 /// Typed helper for the `evaluation_criteria.promql_criteria` block of
 /// `aws_cloudwatch_metric_alarm` (derived from provider schema).
 @immutable
-final class CloudwatchMetricAlarmEvaluationCriteriaPromqlCriteria {
-  const CloudwatchMetricAlarmEvaluationCriteriaPromqlCriteria({
+final class CloudwatchMetricAlarmPromqlCriteria {
+  const CloudwatchMetricAlarmPromqlCriteria({
     this.pendingPeriod,
     required this.query,
     this.recoveryPeriod,
@@ -381,7 +381,7 @@ final class CloudwatchMetricAlarmMetricQuery {
 
   final TfArg<bool>? returnData;
 
-  final CloudwatchMetricAlarmMetricQueryMetric? metric;
+  final CloudwatchMetricAlarmMetric? metric;
 
   Map<String, Object?> encode() => {
     'account_id': ?accountId?.toTfJson(),
@@ -397,8 +397,8 @@ final class CloudwatchMetricAlarmMetricQuery {
 /// Typed helper for the `metric_query.metric` block of
 /// `aws_cloudwatch_metric_alarm` (derived from provider schema).
 @immutable
-final class CloudwatchMetricAlarmMetricQueryMetric {
-  const CloudwatchMetricAlarmMetricQueryMetric({
+final class CloudwatchMetricAlarmMetric {
+  const CloudwatchMetricAlarmMetric({
     this.dimensions,
     required this.metricName,
     this.namespace,
@@ -415,9 +415,9 @@ final class CloudwatchMetricAlarmMetricQueryMetric {
 
   final TfArg<num> period;
 
-  final TfArg<CloudwatchMetricAlarmMetricQueryMetricStat> stat;
+  final TfArg<CloudwatchMetricAlarmStat> stat;
 
-  final TfArg<CloudwatchMetricAlarmMetricQueryMetricUnit>? unit;
+  final TfArg<CloudwatchMetricAlarmMetricUnit>? unit;
 
   Map<String, Object?> encode() => {
     'dimensions': ?dimensions?.toTfJson(),
@@ -430,20 +430,20 @@ final class CloudwatchMetricAlarmMetricQueryMetric {
 }
 
 /// `stat` — derived from the provider schema description.
-enum CloudwatchMetricAlarmMetricQueryMetricStat implements TerraformEnum {
+enum CloudwatchMetricAlarmStat implements TerraformEnum {
   samplecount('SampleCount'),
   average('Average'),
   sum('Sum'),
   minimum('Minimum'),
   maximum('Maximum');
 
-  const CloudwatchMetricAlarmMetricQueryMetricStat(this.terraformValue);
+  const CloudwatchMetricAlarmStat(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `unit` — derived from the provider schema description.
-enum CloudwatchMetricAlarmMetricQueryMetricUnit implements TerraformEnum {
+enum CloudwatchMetricAlarmMetricUnit implements TerraformEnum {
   seconds('Seconds'),
   microseconds('Microseconds'),
   milliseconds('Milliseconds'),
@@ -472,7 +472,7 @@ enum CloudwatchMetricAlarmMetricQueryMetricUnit implements TerraformEnum {
   countSecond('Count/Second'),
   none('None');
 
-  const CloudwatchMetricAlarmMetricQueryMetricUnit(this.terraformValue);
+  const CloudwatchMetricAlarmMetricUnit(this.terraformValue);
   @override
   final String terraformValue;
 }

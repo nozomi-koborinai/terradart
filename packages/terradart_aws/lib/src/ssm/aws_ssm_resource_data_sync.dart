@@ -31,10 +31,9 @@ final class SsmResourceDataSyncS3Destination {
 
   final TfArg<String> region;
 
-  final TfArg<SsmResourceDataSyncS3DestinationSyncFormat>? syncFormat;
+  final TfArg<SsmResourceDataSyncFormat>? syncFormat;
 
-  final SsmResourceDataSyncS3DestinationDestinationDataSharing?
-  destinationDataSharing;
+  final SsmResourceDataSyncDestinationDataSharing? destinationDataSharing;
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
@@ -47,10 +46,10 @@ final class SsmResourceDataSyncS3Destination {
 }
 
 /// `sync_format` — derived from the provider schema description.
-enum SsmResourceDataSyncS3DestinationSyncFormat implements TerraformEnum {
+enum SsmResourceDataSyncFormat implements TerraformEnum {
   jsonserde('JsonSerDe');
 
-  const SsmResourceDataSyncS3DestinationSyncFormat(this.terraformValue);
+  const SsmResourceDataSyncFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -58,14 +57,12 @@ enum SsmResourceDataSyncS3DestinationSyncFormat implements TerraformEnum {
 /// Typed helper for the `s3_destination.destination_data_sharing` block of
 /// `aws_ssm_resource_data_sync` (derived from provider schema).
 @immutable
-final class SsmResourceDataSyncS3DestinationDestinationDataSharing {
-  const SsmResourceDataSyncS3DestinationDestinationDataSharing({
+final class SsmResourceDataSyncDestinationDataSharing {
+  const SsmResourceDataSyncDestinationDataSharing({
     this.destinationDataSharingType,
   });
 
-  final TfArg<
-    SsmResourceDataSyncS3DestinationDestinationDataSharingDestinationDataSharingType
-  >?
+  final TfArg<SsmResourceDataSyncDestinationDataSharingType>?
   destinationDataSharingType;
 
   Map<String, Object?> encode() => {
@@ -74,13 +71,10 @@ final class SsmResourceDataSyncS3DestinationDestinationDataSharing {
 }
 
 /// `destination_data_sharing_type` — derived from the provider schema description.
-enum SsmResourceDataSyncS3DestinationDestinationDataSharingDestinationDataSharingType
-    implements TerraformEnum {
+enum SsmResourceDataSyncDestinationDataSharingType implements TerraformEnum {
   organization('Organization');
 
-  const SsmResourceDataSyncS3DestinationDestinationDataSharingDestinationDataSharingType(
-    this.terraformValue,
-  );
+  const SsmResourceDataSyncDestinationDataSharingType(this.terraformValue);
   @override
   final String terraformValue;
 }

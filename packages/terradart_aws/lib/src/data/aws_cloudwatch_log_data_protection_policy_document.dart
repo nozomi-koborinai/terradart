@@ -18,9 +18,7 @@ final class DataCloudwatchLogDataProtectionPolicyDocumentConfiguration {
     this.customDataIdentifier,
   });
 
-  final List<
-    DataCloudwatchLogDataProtectionPolicyDocumentConfigurationCustomDataIdentifier
-  >?
+  final List<DataCloudwatchLogDataProtectionPolicyDocumentCustomDataIdentifier>?
   customDataIdentifier;
 
   Map<String, Object?> encode() => {
@@ -34,8 +32,8 @@ final class DataCloudwatchLogDataProtectionPolicyDocumentConfiguration {
 /// Typed helper for the `configuration.custom_data_identifier` block of
 /// `aws_cloudwatch_log_data_protection_policy_document` (derived from provider schema).
 @immutable
-final class DataCloudwatchLogDataProtectionPolicyDocumentConfigurationCustomDataIdentifier {
-  const DataCloudwatchLogDataProtectionPolicyDocumentConfigurationCustomDataIdentifier({
+final class DataCloudwatchLogDataProtectionPolicyDocumentCustomDataIdentifier {
+  const DataCloudwatchLogDataProtectionPolicyDocumentCustomDataIdentifier({
     required this.name,
     required this.regex,
   });
@@ -64,8 +62,7 @@ final class DataCloudwatchLogDataProtectionPolicyDocumentStatement {
 
   final TfArg<String>? sid;
 
-  final DataCloudwatchLogDataProtectionPolicyDocumentStatementOperation
-  operation;
+  final DataCloudwatchLogDataProtectionPolicyDocumentOperation operation;
 
   Map<String, Object?> encode() => {
     'data_identifiers': dataIdentifiers.toTfJson(),
@@ -77,17 +74,15 @@ final class DataCloudwatchLogDataProtectionPolicyDocumentStatement {
 /// Typed helper for the `statement.operation` block of
 /// `aws_cloudwatch_log_data_protection_policy_document` (derived from provider schema).
 @immutable
-final class DataCloudwatchLogDataProtectionPolicyDocumentStatementOperation {
-  const DataCloudwatchLogDataProtectionPolicyDocumentStatementOperation({
+final class DataCloudwatchLogDataProtectionPolicyDocumentOperation {
+  const DataCloudwatchLogDataProtectionPolicyDocumentOperation({
     this.audit,
     this.deidentify,
   });
 
-  final DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationAudit?
-  audit;
+  final DataCloudwatchLogDataProtectionPolicyDocumentAudit? audit;
 
-  final DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationDeidentify?
-  deidentify;
+  final DataCloudwatchLogDataProtectionPolicyDocumentDeidentify? deidentify;
 
   Map<String, Object?> encode() => {
     'audit': ?audit?.encode(),
@@ -98,12 +93,12 @@ final class DataCloudwatchLogDataProtectionPolicyDocumentStatementOperation {
 /// Typed helper for the `statement.operation.audit` block of
 /// `aws_cloudwatch_log_data_protection_policy_document` (derived from provider schema).
 @immutable
-final class DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationAudit {
-  const DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationAudit({
+final class DataCloudwatchLogDataProtectionPolicyDocumentAudit {
+  const DataCloudwatchLogDataProtectionPolicyDocumentAudit({
     required this.findingsDestination,
   });
 
-  final DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationAuditFindingsDestination
+  final DataCloudwatchLogDataProtectionPolicyDocumentFindingsDestination
   findingsDestination;
 
   Map<String, Object?> encode() => {
@@ -114,21 +109,19 @@ final class DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationAudit
 /// Typed helper for the `statement.operation.audit.findings_destination` block of
 /// `aws_cloudwatch_log_data_protection_policy_document` (derived from provider schema).
 @immutable
-final class DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationAuditFindingsDestination {
-  const DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationAuditFindingsDestination({
+final class DataCloudwatchLogDataProtectionPolicyDocumentFindingsDestination {
+  const DataCloudwatchLogDataProtectionPolicyDocumentFindingsDestination({
     this.cloudwatchLogs,
     this.firehose,
     this.s3,
   });
 
-  final DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationAuditFindingsDestinationCloudwatchLogs?
+  final DataCloudwatchLogDataProtectionPolicyDocumentCloudwatchLogs?
   cloudwatchLogs;
 
-  final DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationAuditFindingsDestinationFirehose?
-  firehose;
+  final DataCloudwatchLogDataProtectionPolicyDocumentFirehose? firehose;
 
-  final DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationAuditFindingsDestinationS3?
-  s3;
+  final DataCloudwatchLogDataProtectionPolicyDocumentS3? s3;
 
   Map<String, Object?> encode() => {
     'cloudwatch_logs': ?cloudwatchLogs?.encode(),
@@ -140,8 +133,8 @@ final class DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationAudit
 /// Typed helper for the `statement.operation.audit.findings_destination.cloudwatch_logs` block of
 /// `aws_cloudwatch_log_data_protection_policy_document` (derived from provider schema).
 @immutable
-final class DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationAuditFindingsDestinationCloudwatchLogs {
-  const DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationAuditFindingsDestinationCloudwatchLogs({
+final class DataCloudwatchLogDataProtectionPolicyDocumentCloudwatchLogs {
+  const DataCloudwatchLogDataProtectionPolicyDocumentCloudwatchLogs({
     required this.logGroup,
   });
 
@@ -155,8 +148,8 @@ final class DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationAudit
 /// Typed helper for the `statement.operation.audit.findings_destination.firehose` block of
 /// `aws_cloudwatch_log_data_protection_policy_document` (derived from provider schema).
 @immutable
-final class DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationAuditFindingsDestinationFirehose {
-  const DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationAuditFindingsDestinationFirehose({
+final class DataCloudwatchLogDataProtectionPolicyDocumentFirehose {
+  const DataCloudwatchLogDataProtectionPolicyDocumentFirehose({
     required this.deliveryStream,
   });
 
@@ -170,10 +163,8 @@ final class DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationAudit
 /// Typed helper for the `statement.operation.audit.findings_destination.s3` block of
 /// `aws_cloudwatch_log_data_protection_policy_document` (derived from provider schema).
 @immutable
-final class DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationAuditFindingsDestinationS3 {
-  const DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationAuditFindingsDestinationS3({
-    required this.bucket,
-  });
+final class DataCloudwatchLogDataProtectionPolicyDocumentS3 {
+  const DataCloudwatchLogDataProtectionPolicyDocumentS3({required this.bucket});
 
   final RefTo<AwsS3Bucket> bucket;
 
@@ -183,13 +174,12 @@ final class DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationAudit
 /// Typed helper for the `statement.operation.deidentify` block of
 /// `aws_cloudwatch_log_data_protection_policy_document` (derived from provider schema).
 @immutable
-final class DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationDeidentify {
-  const DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationDeidentify({
+final class DataCloudwatchLogDataProtectionPolicyDocumentDeidentify {
+  const DataCloudwatchLogDataProtectionPolicyDocumentDeidentify({
     required this.maskConfig,
   });
 
-  final DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationDeidentifyMaskConfig
-  maskConfig;
+  final DataCloudwatchLogDataProtectionPolicyDocumentMaskConfig maskConfig;
 
   Map<String, Object?> encode() => {'mask_config': maskConfig.encode()};
 }
@@ -197,8 +187,8 @@ final class DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationDeide
 /// Typed helper for the `statement.operation.deidentify.mask_config` block of
 /// `aws_cloudwatch_log_data_protection_policy_document` (derived from provider schema).
 @immutable
-final class DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationDeidentifyMaskConfig {
-  const DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationDeidentifyMaskConfig();
+final class DataCloudwatchLogDataProtectionPolicyDocumentMaskConfig {
+  const DataCloudwatchLogDataProtectionPolicyDocumentMaskConfig();
 
   Map<String, Object?> encode() => {};
 }

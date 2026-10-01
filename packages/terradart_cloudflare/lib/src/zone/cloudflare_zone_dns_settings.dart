@@ -41,7 +41,7 @@ final class ZoneDnsSettingsNameservers {
 
   final TfArg<num>? nsSet;
 
-  final TfArg<ZoneDnsSettingsNameserversType>? type;
+  final TfArg<ZoneDnsSettingsType>? type;
 
   Map<String, Object?> encode() => {
     'ns_set': ?nsSet?.toTfJson(),
@@ -50,13 +50,13 @@ final class ZoneDnsSettingsNameservers {
 }
 
 /// `type` — derived from the provider schema description.
-enum ZoneDnsSettingsNameserversType implements TerraformEnum {
+enum ZoneDnsSettingsType implements TerraformEnum {
   cloudflareStandard('cloudflare.standard'),
   customAccount('custom.account'),
   customTenant('custom.tenant'),
   customZone('custom.zone');
 
-  const ZoneDnsSettingsNameserversType(this.terraformValue);
+  const ZoneDnsSettingsType(this.terraformValue);
   @override
   final String terraformValue;
 }

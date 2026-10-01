@@ -26,12 +26,12 @@ sealed class DxPrivateVirtualInterfaceGatewayId {
   /// Sets `dx_gateway_id`.
   const factory DxPrivateVirtualInterfaceGatewayId.dxGatewayId(
     TfArg<String> dxGatewayId,
-  ) = DxPrivateVirtualInterfaceGatewayIdDxGatewayId;
+  ) = DxPrivateVirtualInterfaceDxGatewayId;
 
   /// Sets `vpn_gateway_id`.
   const factory DxPrivateVirtualInterfaceGatewayId.vpnGatewayId(
     TfArg<String> vpnGatewayId,
-  ) = DxPrivateVirtualInterfaceGatewayIdVpnGatewayId;
+  ) = DxPrivateVirtualInterfaceVpnGatewayId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -44,9 +44,9 @@ sealed class DxPrivateVirtualInterfaceGatewayId {
 }
 
 /// The [DxPrivateVirtualInterfaceGatewayId.dxGatewayId] choice: sets `dx_gateway_id`.
-final class DxPrivateVirtualInterfaceGatewayIdDxGatewayId
+final class DxPrivateVirtualInterfaceDxGatewayId
     extends DxPrivateVirtualInterfaceGatewayId {
-  const DxPrivateVirtualInterfaceGatewayIdDxGatewayId(this.dxGatewayId);
+  const DxPrivateVirtualInterfaceDxGatewayId(this.dxGatewayId);
 
   final TfArg<String> dxGatewayId;
 
@@ -61,9 +61,9 @@ final class DxPrivateVirtualInterfaceGatewayIdDxGatewayId
 }
 
 /// The [DxPrivateVirtualInterfaceGatewayId.vpnGatewayId] choice: sets `vpn_gateway_id`.
-final class DxPrivateVirtualInterfaceGatewayIdVpnGatewayId
+final class DxPrivateVirtualInterfaceVpnGatewayId
     extends DxPrivateVirtualInterfaceGatewayId {
-  const DxPrivateVirtualInterfaceGatewayIdVpnGatewayId(this.vpnGatewayId);
+  const DxPrivateVirtualInterfaceVpnGatewayId(this.vpnGatewayId);
 
   final TfArg<String> vpnGatewayId;
 

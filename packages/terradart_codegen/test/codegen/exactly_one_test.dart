@@ -661,8 +661,8 @@ void main() {
         sealedNames: {'settings.y, settings.x': 'target'},
       );
       final src = renderNestedTypes(specs, resourceTerraformType: 'aws_thing');
-      expect(src, contains('final ThingSettingsTarget target;'));
-      expect(src, contains('const factory ThingSettingsTarget.x('));
+      expect(src, contains('final ThingTarget target;'));
+      expect(src, contains('const factory ThingTarget.x('));
       expect(nestedSealedNames(specs), [
         (
           key: 'settings.x, settings.y',
@@ -674,7 +674,7 @@ void main() {
       ]);
     });
 
-    test('a nested name clashes with a sealed type another block chose', () {
+    test('names that concatenate alike still get distinct types', () {
       final specs = collectNestedTypes(
         resourceBlock: {
           'block_types': {
@@ -720,15 +720,46 @@ void main() {
         },
       );
       final src = renderNestedTypes(specs, resourceTerraformType: 'aws_thing');
+      expect(src, contains('sealed class ThingBarMatch {'));
+      expect(src, contains('sealed class ThingMatch {'));
       expect(
-        RegExp(r'sealed class ThingFooBarMatch\b').allMatches(src),
-        hasLength(1),
+        [for (final n in nestedSealedNames(specs)) (n.concept, n.error)],
+        [('bar_match', null), ('match', null)],
       );
-      final child = nestedSealedNames(
-        specs,
-      ).singleWhere((n) => n.key == 'foo.bar.r, foo.bar.s');
-      expect(child.concept, 'r_or_s');
-      expect(child.error, contains('ThingFooBarMatch'));
+    });
+
+    test('a variant that would take a helper class gets a Choice suffix', () {
+      Map<String, dynamic> optionalBlock(Map<String, dynamic> attrs) => {
+        'nesting_mode': 'list',
+        'max_items': 1,
+        'block': {'attributes': attrs},
+      };
+      const optionalString = {'type': 'string', 'optional': true};
+      final specs = collectNestedTypes(
+        resourceBlock: {
+          'block_types': {
+            'match_r': optionalBlock({'v': optionalString}),
+            'foo': optionalBlock({
+              'r': optionalString,
+              's': optionalString,
+              't': optionalString,
+            }),
+          },
+        },
+        resourcePrefix: 'Thing',
+        customSlotKeys: const {},
+        excludedPaths: const {},
+        exactlyOneGroups: {
+          'foo': [
+            ['r', 's'],
+          ],
+        },
+        sealedNames: {'foo.r, foo.s': 'match'},
+      );
+      final src = renderNestedTypes(specs, resourceTerraformType: 'aws_thing');
+      expect(src, contains('final class ThingMatchR {'));
+      expect(src, contains('final class ThingMatchRChoice extends ThingMatch'));
+      expect(nestedSealedNames(specs).single.error, isNull);
     });
 
     test('a shared helper takes its name from any copy', () {
@@ -845,7 +876,7 @@ void main() {
     ]);
     final src = renderNestedTypes(specs, resourceTerraformType: 'aws_thing');
     expect(src, isNot(contains('sealed class')));
-    expect(src, contains('final Map<String, ThingSettingsM>? m;'));
+    expect(src, contains('final Map<String, ThingM>? m;'));
   });
 
   test(

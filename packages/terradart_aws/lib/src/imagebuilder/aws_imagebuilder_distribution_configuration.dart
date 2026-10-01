@@ -31,28 +31,22 @@ final class ImagebuilderDistributionConfigurationDistribution {
 
   final TfArg<String> region;
 
-  final ImagebuilderDistributionConfigurationDistributionAmiDistributionConfiguration?
+  final ImagebuilderDistributionConfigurationAmiDistributionConfiguration?
   amiDistributionConfiguration;
 
-  final ImagebuilderDistributionConfigurationDistributionContainerDistributionConfiguration?
+  final ImagebuilderDistributionConfigurationContainerDistributionConfiguration?
   containerDistributionConfiguration;
 
-  final List<
-    ImagebuilderDistributionConfigurationDistributionFastLaunchConfiguration
-  >?
+  final List<ImagebuilderDistributionConfigurationFastLaunchConfiguration>?
   fastLaunchConfiguration;
 
-  final List<
-    ImagebuilderDistributionConfigurationDistributionLaunchTemplateConfiguration
-  >?
+  final List<ImagebuilderDistributionConfigurationLaunchTemplateConfiguration>?
   launchTemplateConfiguration;
 
-  final ImagebuilderDistributionConfigurationDistributionS3ExportConfiguration?
+  final ImagebuilderDistributionConfigurationS3ExportConfiguration?
   s3ExportConfiguration;
 
-  final List<
-    ImagebuilderDistributionConfigurationDistributionSsmParameterConfiguration
-  >?
+  final List<ImagebuilderDistributionConfigurationSsmParameterConfiguration>?
   ssmParameterConfiguration;
 
   Map<String, Object?> encode() => {
@@ -80,8 +74,8 @@ final class ImagebuilderDistributionConfigurationDistribution {
 /// Typed helper for the `distribution.ami_distribution_configuration` block of
 /// `aws_imagebuilder_distribution_configuration` (derived from provider schema).
 @immutable
-final class ImagebuilderDistributionConfigurationDistributionAmiDistributionConfiguration {
-  const ImagebuilderDistributionConfigurationDistributionAmiDistributionConfiguration({
+final class ImagebuilderDistributionConfigurationAmiDistributionConfiguration {
+  const ImagebuilderDistributionConfigurationAmiDistributionConfiguration({
     this.amiTags,
     this.description,
     this.kmsKeyId,
@@ -100,8 +94,7 @@ final class ImagebuilderDistributionConfigurationDistributionAmiDistributionConf
 
   final TfArg<List<String>>? targetAccountIds;
 
-  final ImagebuilderDistributionConfigurationDistributionAmiDistributionConfigurationLaunchPermission?
-  launchPermission;
+  final ImagebuilderDistributionConfigurationLaunchPermission? launchPermission;
 
   Map<String, Object?> encode() => {
     'ami_tags': ?amiTags?.toTfJson(),
@@ -116,8 +109,8 @@ final class ImagebuilderDistributionConfigurationDistributionAmiDistributionConf
 /// Typed helper for the `distribution.ami_distribution_configuration.launch_permission` block of
 /// `aws_imagebuilder_distribution_configuration` (derived from provider schema).
 @immutable
-final class ImagebuilderDistributionConfigurationDistributionAmiDistributionConfigurationLaunchPermission {
-  const ImagebuilderDistributionConfigurationDistributionAmiDistributionConfigurationLaunchPermission({
+final class ImagebuilderDistributionConfigurationLaunchPermission {
+  const ImagebuilderDistributionConfigurationLaunchPermission({
     this.organizationArns,
     this.organizationalUnitArns,
     this.userGroups,
@@ -143,8 +136,8 @@ final class ImagebuilderDistributionConfigurationDistributionAmiDistributionConf
 /// Typed helper for the `distribution.container_distribution_configuration` block of
 /// `aws_imagebuilder_distribution_configuration` (derived from provider schema).
 @immutable
-final class ImagebuilderDistributionConfigurationDistributionContainerDistributionConfiguration {
-  const ImagebuilderDistributionConfigurationDistributionContainerDistributionConfiguration({
+final class ImagebuilderDistributionConfigurationContainerDistributionConfiguration {
+  const ImagebuilderDistributionConfigurationContainerDistributionConfiguration({
     this.containerTags,
     this.description,
     required this.targetRepository,
@@ -154,8 +147,7 @@ final class ImagebuilderDistributionConfigurationDistributionContainerDistributi
 
   final TfArg<String>? description;
 
-  final ImagebuilderDistributionConfigurationDistributionContainerDistributionConfigurationTargetRepository
-  targetRepository;
+  final ImagebuilderDistributionConfigurationTargetRepository targetRepository;
 
   Map<String, Object?> encode() => {
     'container_tags': ?containerTags?.toTfJson(),
@@ -167,18 +159,15 @@ final class ImagebuilderDistributionConfigurationDistributionContainerDistributi
 /// Typed helper for the `distribution.container_distribution_configuration.target_repository` block of
 /// `aws_imagebuilder_distribution_configuration` (derived from provider schema).
 @immutable
-final class ImagebuilderDistributionConfigurationDistributionContainerDistributionConfigurationTargetRepository {
-  const ImagebuilderDistributionConfigurationDistributionContainerDistributionConfigurationTargetRepository({
+final class ImagebuilderDistributionConfigurationTargetRepository {
+  const ImagebuilderDistributionConfigurationTargetRepository({
     required this.repositoryName,
     required this.service,
   });
 
   final TfArg<String> repositoryName;
 
-  final TfArg<
-    ImagebuilderDistributionConfigurationDistributionContainerDistributionConfigurationTargetRepositoryService
-  >
-  service;
+  final TfArg<ImagebuilderDistributionConfigurationService> service;
 
   Map<String, Object?> encode() => {
     'repository_name': repositoryName.toTfJson(),
@@ -187,13 +176,10 @@ final class ImagebuilderDistributionConfigurationDistributionContainerDistributi
 }
 
 /// `service` — derived from the provider schema description.
-enum ImagebuilderDistributionConfigurationDistributionContainerDistributionConfigurationTargetRepositoryService
-    implements TerraformEnum {
+enum ImagebuilderDistributionConfigurationService implements TerraformEnum {
   ecr('ECR');
 
-  const ImagebuilderDistributionConfigurationDistributionContainerDistributionConfigurationTargetRepositoryService(
-    this.terraformValue,
-  );
+  const ImagebuilderDistributionConfigurationService(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -201,8 +187,8 @@ enum ImagebuilderDistributionConfigurationDistributionContainerDistributionConfi
 /// Typed helper for the `distribution.fast_launch_configuration` block of
 /// `aws_imagebuilder_distribution_configuration` (derived from provider schema).
 @immutable
-final class ImagebuilderDistributionConfigurationDistributionFastLaunchConfiguration {
-  const ImagebuilderDistributionConfigurationDistributionFastLaunchConfiguration({
+final class ImagebuilderDistributionConfigurationFastLaunchConfiguration {
+  const ImagebuilderDistributionConfigurationFastLaunchConfiguration({
     required this.accountId,
     required this.enabled,
     this.maxParallelLaunches,
@@ -216,10 +202,9 @@ final class ImagebuilderDistributionConfigurationDistributionFastLaunchConfigura
 
   final TfArg<num>? maxParallelLaunches;
 
-  final ImagebuilderDistributionConfigurationDistributionFastLaunchConfigurationLaunchTemplate?
-  launchTemplate;
+  final ImagebuilderDistributionConfigurationLaunchTemplate? launchTemplate;
 
-  final ImagebuilderDistributionConfigurationDistributionFastLaunchConfigurationSnapshotConfiguration?
+  final ImagebuilderDistributionConfigurationSnapshotConfiguration?
   snapshotConfiguration;
 
   Map<String, Object?> encode() => {
@@ -234,8 +219,8 @@ final class ImagebuilderDistributionConfigurationDistributionFastLaunchConfigura
 /// Typed helper for the `distribution.fast_launch_configuration.launch_template` block of
 /// `aws_imagebuilder_distribution_configuration` (derived from provider schema).
 @immutable
-final class ImagebuilderDistributionConfigurationDistributionFastLaunchConfigurationLaunchTemplate {
-  const ImagebuilderDistributionConfigurationDistributionFastLaunchConfigurationLaunchTemplate({
+final class ImagebuilderDistributionConfigurationLaunchTemplate {
+  const ImagebuilderDistributionConfigurationLaunchTemplate({
     this.launchTemplateId,
     this.launchTemplateName,
     this.launchTemplateVersion,
@@ -257,8 +242,8 @@ final class ImagebuilderDistributionConfigurationDistributionFastLaunchConfigura
 /// Typed helper for the `distribution.fast_launch_configuration.snapshot_configuration` block of
 /// `aws_imagebuilder_distribution_configuration` (derived from provider schema).
 @immutable
-final class ImagebuilderDistributionConfigurationDistributionFastLaunchConfigurationSnapshotConfiguration {
-  const ImagebuilderDistributionConfigurationDistributionFastLaunchConfigurationSnapshotConfiguration({
+final class ImagebuilderDistributionConfigurationSnapshotConfiguration {
+  const ImagebuilderDistributionConfigurationSnapshotConfiguration({
     this.targetResourceCount,
   });
 
@@ -272,8 +257,8 @@ final class ImagebuilderDistributionConfigurationDistributionFastLaunchConfigura
 /// Typed helper for the `distribution.launch_template_configuration` block of
 /// `aws_imagebuilder_distribution_configuration` (derived from provider schema).
 @immutable
-final class ImagebuilderDistributionConfigurationDistributionLaunchTemplateConfiguration {
-  const ImagebuilderDistributionConfigurationDistributionLaunchTemplateConfiguration({
+final class ImagebuilderDistributionConfigurationLaunchTemplateConfiguration {
+  const ImagebuilderDistributionConfigurationLaunchTemplateConfiguration({
     this.accountId,
     this.defaultCase,
     required this.launchTemplateId,
@@ -295,17 +280,15 @@ final class ImagebuilderDistributionConfigurationDistributionLaunchTemplateConfi
 /// Typed helper for the `distribution.s3_export_configuration` block of
 /// `aws_imagebuilder_distribution_configuration` (derived from provider schema).
 @immutable
-final class ImagebuilderDistributionConfigurationDistributionS3ExportConfiguration {
-  const ImagebuilderDistributionConfigurationDistributionS3ExportConfiguration({
+final class ImagebuilderDistributionConfigurationS3ExportConfiguration {
+  const ImagebuilderDistributionConfigurationS3ExportConfiguration({
     required this.diskImageFormat,
     required this.roleName,
     required this.s3Bucket,
     this.s3Prefix,
   });
 
-  final TfArg<
-    ImagebuilderDistributionConfigurationDistributionS3ExportConfigurationDiskImageFormat
-  >
+  final TfArg<ImagebuilderDistributionConfigurationDiskImageFormat>
   diskImageFormat;
 
   final RefTo<AwsIamRole> roleName;
@@ -323,13 +306,13 @@ final class ImagebuilderDistributionConfigurationDistributionS3ExportConfigurati
 }
 
 /// `disk_image_format` — derived from the provider schema description.
-enum ImagebuilderDistributionConfigurationDistributionS3ExportConfigurationDiskImageFormat
+enum ImagebuilderDistributionConfigurationDiskImageFormat
     implements TerraformEnum {
   vmdk('VMDK'),
   raw('RAW'),
   vhd('VHD');
 
-  const ImagebuilderDistributionConfigurationDistributionS3ExportConfigurationDiskImageFormat(
+  const ImagebuilderDistributionConfigurationDiskImageFormat(
     this.terraformValue,
   );
   @override
@@ -339,8 +322,8 @@ enum ImagebuilderDistributionConfigurationDistributionS3ExportConfigurationDiskI
 /// Typed helper for the `distribution.ssm_parameter_configuration` block of
 /// `aws_imagebuilder_distribution_configuration` (derived from provider schema).
 @immutable
-final class ImagebuilderDistributionConfigurationDistributionSsmParameterConfiguration {
-  const ImagebuilderDistributionConfigurationDistributionSsmParameterConfiguration({
+final class ImagebuilderDistributionConfigurationSsmParameterConfiguration {
+  const ImagebuilderDistributionConfigurationSsmParameterConfiguration({
     this.amiAccountId,
     this.dataType,
     required this.parameterName,
@@ -348,10 +331,7 @@ final class ImagebuilderDistributionConfigurationDistributionSsmParameterConfigu
 
   final TfArg<String>? amiAccountId;
 
-  final TfArg<
-    ImagebuilderDistributionConfigurationDistributionSsmParameterConfigurationDataType
-  >?
-  dataType;
+  final TfArg<ImagebuilderDistributionConfigurationDataType>? dataType;
 
   final TfArg<String> parameterName;
 
@@ -363,14 +343,11 @@ final class ImagebuilderDistributionConfigurationDistributionSsmParameterConfigu
 }
 
 /// `data_type` — derived from the provider schema description.
-enum ImagebuilderDistributionConfigurationDistributionSsmParameterConfigurationDataType
-    implements TerraformEnum {
+enum ImagebuilderDistributionConfigurationDataType implements TerraformEnum {
   text('text'),
   awsEc2Image('aws:ec2:image');
 
-  const ImagebuilderDistributionConfigurationDistributionSsmParameterConfigurationDataType(
-    this.terraformValue,
-  );
+  const ImagebuilderDistributionConfigurationDataType(this.terraformValue);
   @override
   final String terraformValue;
 }

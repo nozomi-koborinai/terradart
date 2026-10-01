@@ -7,20 +7,20 @@ export 'src/finspace/aws_finspace_kx_cluster.dart'
     show
         AwsFinspaceKxCluster,
         FinspaceKxClusterAutoScalingConfiguration,
-        FinspaceKxClusterAutoScalingConfigurationAutoScalingMetric,
+        FinspaceKxClusterAutoScalingMetric,
         FinspaceKxClusterAzMode,
+        FinspaceKxClusterCacheConfigurations,
         FinspaceKxClusterCacheStorageConfigurations,
         FinspaceKxClusterCapacityConfiguration,
         FinspaceKxClusterCode,
         FinspaceKxClusterDatabase,
-        FinspaceKxClusterDatabaseCacheConfigurations,
+        FinspaceKxClusterIpAddressType,
         FinspaceKxClusterSavedownStorageConfiguration,
         FinspaceKxClusterSavedownStorageConfigurationType,
         FinspaceKxClusterScalingGroupConfiguration,
         FinspaceKxClusterTickerplantLogConfiguration,
         FinspaceKxClusterType,
-        FinspaceKxClusterVpcConfiguration,
-        FinspaceKxClusterVpcConfigurationIpAddressType;
+        FinspaceKxClusterVpcConfiguration;
 export 'src/finspace/aws_finspace_kx_database.dart' show AwsFinspaceKxDatabase;
 export 'src/finspace/aws_finspace_kx_dataview.dart'
     show
@@ -30,12 +30,12 @@ export 'src/finspace/aws_finspace_kx_dataview.dart'
 export 'src/finspace/aws_finspace_kx_environment.dart'
     show
         AwsFinspaceKxEnvironment,
+        FinspaceKxEnvironmentAttachmentNetworkAclConfiguration,
         FinspaceKxEnvironmentCustomDnsConfiguration,
-        FinspaceKxEnvironmentTransitGatewayConfiguration,
-        FinspaceKxEnvironmentTransitGatewayConfigurationAttachmentNetworkAclConfiguration,
-        FinspaceKxEnvironmentTransitGatewayConfigurationAttachmentNetworkAclConfigurationIcmpTypeCode,
-        FinspaceKxEnvironmentTransitGatewayConfigurationAttachmentNetworkAclConfigurationPortRange,
-        FinspaceKxEnvironmentTransitGatewayConfigurationAttachmentNetworkAclConfigurationRuleAction;
+        FinspaceKxEnvironmentIcmpTypeCode,
+        FinspaceKxEnvironmentPortRange,
+        FinspaceKxEnvironmentRuleAction,
+        FinspaceKxEnvironmentTransitGatewayConfiguration;
 export 'src/finspace/aws_finspace_kx_scaling_group.dart'
     show AwsFinspaceKxScalingGroup;
 export 'src/finspace/aws_finspace_kx_user.dart' show AwsFinspaceKxUser;

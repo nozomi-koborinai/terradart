@@ -8,10 +8,10 @@ export 'src/network/google_network_security_authorization_policy.dart'
     show
         GoogleNetworkSecurityAuthorizationPolicy,
         NetworkSecurityAuthorizationPolicyAction,
+        NetworkSecurityAuthorizationPolicyDestinations,
+        NetworkSecurityAuthorizationPolicyHttpHeaderMatch,
         NetworkSecurityAuthorizationPolicyRules,
-        NetworkSecurityAuthorizationPolicyRulesDestinations,
-        NetworkSecurityAuthorizationPolicyRulesDestinationsHttpHeaderMatch,
-        NetworkSecurityAuthorizationPolicyRulesSources;
+        NetworkSecurityAuthorizationPolicySources;
 export 'src/network/google_network_security_sac_attachment.dart'
     show
         GoogleNetworkSecuritySacAttachment,
@@ -29,6 +29,6 @@ export 'src/network/google_network_services_service_lb_policies.dart'
         NetworkServicesServiceLbPoliciesAutoCapacityDrain,
         NetworkServicesServiceLbPoliciesFailoverConfig,
         NetworkServicesServiceLbPoliciesIsolationConfig,
-        NetworkServicesServiceLbPoliciesIsolationConfigIsolationGranularity,
-        NetworkServicesServiceLbPoliciesIsolationConfigIsolationMode,
+        NetworkServicesServiceLbPoliciesIsolationGranularity,
+        NetworkServicesServiceLbPoliciesIsolationMode,
         NetworkServicesServiceLbPoliciesLoadBalancingAlgorithm;

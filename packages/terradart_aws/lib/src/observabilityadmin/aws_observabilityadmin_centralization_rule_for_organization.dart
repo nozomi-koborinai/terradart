@@ -19,13 +19,10 @@ final class ObservabilityadminCentralizationRuleForOrganizationRule {
     this.source,
   });
 
-  final List<
-    ObservabilityadminCentralizationRuleForOrganizationRuleDestination
-  >?
+  final List<ObservabilityadminCentralizationRuleForOrganizationDestination>?
   destination;
 
-  final List<ObservabilityadminCentralizationRuleForOrganizationRuleSource>?
-  source;
+  final List<ObservabilityadminCentralizationRuleForOrganizationSource>? source;
 
   Map<String, Object?> encode() => {
     if (destination != null)
@@ -37,8 +34,8 @@ final class ObservabilityadminCentralizationRuleForOrganizationRule {
 /// Typed helper for the `rule.destination` block of
 /// `aws_observabilityadmin_centralization_rule_for_organization` (derived from provider schema).
 @immutable
-final class ObservabilityadminCentralizationRuleForOrganizationRuleDestination {
-  const ObservabilityadminCentralizationRuleForOrganizationRuleDestination({
+final class ObservabilityadminCentralizationRuleForOrganizationDestination {
+  const ObservabilityadminCentralizationRuleForOrganizationDestination({
     required this.account,
     required this.region,
     this.destinationLogsConfiguration,
@@ -50,12 +47,12 @@ final class ObservabilityadminCentralizationRuleForOrganizationRuleDestination {
   final TfArg<String> region;
 
   final List<
-    ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfiguration
+    ObservabilityadminCentralizationRuleForOrganizationDestinationLogsConfiguration
   >?
   destinationLogsConfiguration;
 
   final List<
-    ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationMetricsConfiguration
+    ObservabilityadminCentralizationRuleForOrganizationDestinationMetricsConfiguration
   >?
   destinationMetricsConfiguration;
 
@@ -76,8 +73,8 @@ final class ObservabilityadminCentralizationRuleForOrganizationRuleDestination {
 /// Typed helper for the `rule.destination.destination_logs_configuration` block of
 /// `aws_observabilityadmin_centralization_rule_for_organization` (derived from provider schema).
 @immutable
-final class ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfiguration {
-  const ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfiguration({
+final class ObservabilityadminCentralizationRuleForOrganizationDestinationLogsConfiguration {
+  const ObservabilityadminCentralizationRuleForOrganizationDestinationLogsConfiguration({
     this.backupConfiguration,
     this.logGroupNameConfiguration,
     this.logsEncryptionConfiguration,
@@ -85,22 +82,22 @@ final class ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDe
   });
 
   final List<
-    ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationBackupConfiguration
+    ObservabilityadminCentralizationRuleForOrganizationDestinationLogsConfigurationBackupConfiguration
   >?
   backupConfiguration;
 
   final List<
-    ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationLogGroupNameConfiguration
+    ObservabilityadminCentralizationRuleForOrganizationLogGroupNameConfiguration
   >?
   logGroupNameConfiguration;
 
   final List<
-    ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationLogsEncryptionConfiguration
+    ObservabilityadminCentralizationRuleForOrganizationLogsEncryptionConfiguration
   >?
   logsEncryptionConfiguration;
 
   final List<
-    ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationTagPropagationConfiguration
+    ObservabilityadminCentralizationRuleForOrganizationTagPropagationConfiguration
   >?
   tagPropagationConfiguration;
 
@@ -127,8 +124,8 @@ final class ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDe
 /// Typed helper for the `rule.destination.destination_logs_configuration.backup_configuration` block of
 /// `aws_observabilityadmin_centralization_rule_for_organization` (derived from provider schema).
 @immutable
-final class ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationBackupConfiguration {
-  const ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationBackupConfiguration({
+final class ObservabilityadminCentralizationRuleForOrganizationDestinationLogsConfigurationBackupConfiguration {
+  const ObservabilityadminCentralizationRuleForOrganizationDestinationLogsConfigurationBackupConfiguration({
     this.kmsKeyArn,
     this.region,
   });
@@ -146,8 +143,8 @@ final class ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDe
 /// Typed helper for the `rule.destination.destination_logs_configuration.log_group_name_configuration` block of
 /// `aws_observabilityadmin_centralization_rule_for_organization` (derived from provider schema).
 @immutable
-final class ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationLogGroupNameConfiguration {
-  const ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationLogGroupNameConfiguration({
+final class ObservabilityadminCentralizationRuleForOrganizationLogGroupNameConfiguration {
+  const ObservabilityadminCentralizationRuleForOrganizationLogGroupNameConfiguration({
     required this.logGroupNamePattern,
   });
 
@@ -161,8 +158,8 @@ final class ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDe
 /// Typed helper for the `rule.destination.destination_logs_configuration.logs_encryption_configuration` block of
 /// `aws_observabilityadmin_centralization_rule_for_organization` (derived from provider schema).
 @immutable
-final class ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationLogsEncryptionConfiguration {
-  const ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationLogsEncryptionConfiguration({
+final class ObservabilityadminCentralizationRuleForOrganizationLogsEncryptionConfiguration {
+  const ObservabilityadminCentralizationRuleForOrganizationLogsEncryptionConfiguration({
     this.encryptionConflictResolutionStrategy,
     this.encryptionScope,
     required this.encryptionStrategy,
@@ -170,17 +167,17 @@ final class ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDe
   });
 
   final TfArg<
-    ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationLogsEncryptionConfigurationEncryptionConflictResolutionStrategy
+    ObservabilityadminCentralizationRuleForOrganizationEncryptionConflictResolutionStrategy
   >?
   encryptionConflictResolutionStrategy;
 
   final TfArg<
-    ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationLogsEncryptionConfigurationEncryptionScope
+    ObservabilityadminCentralizationRuleForOrganizationEncryptionScope
   >?
   encryptionScope;
 
   final TfArg<
-    ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationLogsEncryptionConfigurationEncryptionStrategy
+    ObservabilityadminCentralizationRuleForOrganizationEncryptionStrategy
   >
   encryptionStrategy;
 
@@ -196,12 +193,12 @@ final class ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDe
 }
 
 /// `encryption_conflict_resolution_strategy` — derived from the provider schema description.
-enum ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationLogsEncryptionConfigurationEncryptionConflictResolutionStrategy
+enum ObservabilityadminCentralizationRuleForOrganizationEncryptionConflictResolutionStrategy
     implements TerraformEnum {
   allow('ALLOW'),
   skip('SKIP');
 
-  const ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationLogsEncryptionConfigurationEncryptionConflictResolutionStrategy(
+  const ObservabilityadminCentralizationRuleForOrganizationEncryptionConflictResolutionStrategy(
     this.terraformValue,
   );
   @override
@@ -209,12 +206,12 @@ enum ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinati
 }
 
 /// `encryption_scope` — derived from the provider schema description.
-enum ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationLogsEncryptionConfigurationEncryptionScope
+enum ObservabilityadminCentralizationRuleForOrganizationEncryptionScope
     implements TerraformEnum {
   encryptedSourceOnly('ENCRYPTED_SOURCE_ONLY'),
   newDestinationLogGroups('NEW_DESTINATION_LOG_GROUPS');
 
-  const ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationLogsEncryptionConfigurationEncryptionScope(
+  const ObservabilityadminCentralizationRuleForOrganizationEncryptionScope(
     this.terraformValue,
   );
   @override
@@ -222,12 +219,12 @@ enum ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinati
 }
 
 /// `encryption_strategy` — derived from the provider schema description.
-enum ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationLogsEncryptionConfigurationEncryptionStrategy
+enum ObservabilityadminCentralizationRuleForOrganizationEncryptionStrategy
     implements TerraformEnum {
   customerManaged('CUSTOMER_MANAGED'),
   awsOwned('AWS_OWNED');
 
-  const ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationLogsEncryptionConfigurationEncryptionStrategy(
+  const ObservabilityadminCentralizationRuleForOrganizationEncryptionStrategy(
     this.terraformValue,
   );
   @override
@@ -237,8 +234,8 @@ enum ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinati
 /// Typed helper for the `rule.destination.destination_logs_configuration.tag_propagation_configuration` block of
 /// `aws_observabilityadmin_centralization_rule_for_organization` (derived from provider schema).
 @immutable
-final class ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationTagPropagationConfiguration {
-  const ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationTagPropagationConfiguration({
+final class ObservabilityadminCentralizationRuleForOrganizationTagPropagationConfiguration {
+  const ObservabilityadminCentralizationRuleForOrganizationTagPropagationConfiguration({
     required this.destinationRoleArn,
     this.tagConflictResolutionStrategy,
   });
@@ -246,7 +243,7 @@ final class ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDe
   final TfArg<String> destinationRoleArn;
 
   final TfArg<
-    ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationTagPropagationConfigurationTagConflictResolutionStrategy
+    ObservabilityadminCentralizationRuleForOrganizationTagConflictResolutionStrategy
   >?
   tagConflictResolutionStrategy;
 
@@ -258,13 +255,13 @@ final class ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDe
 }
 
 /// `tag_conflict_resolution_strategy` — derived from the provider schema description.
-enum ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationTagPropagationConfigurationTagConflictResolutionStrategy
+enum ObservabilityadminCentralizationRuleForOrganizationTagConflictResolutionStrategy
     implements TerraformEnum {
   inSync('IN_SYNC'),
   addOnly('ADD_ONLY'),
   updateSync('UPDATE_SYNC');
 
-  const ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationTagPropagationConfigurationTagConflictResolutionStrategy(
+  const ObservabilityadminCentralizationRuleForOrganizationTagConflictResolutionStrategy(
     this.terraformValue,
   );
   @override
@@ -274,13 +271,13 @@ enum ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinati
 /// Typed helper for the `rule.destination.destination_metrics_configuration` block of
 /// `aws_observabilityadmin_centralization_rule_for_organization` (derived from provider schema).
 @immutable
-final class ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationMetricsConfiguration {
-  const ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationMetricsConfiguration({
+final class ObservabilityadminCentralizationRuleForOrganizationDestinationMetricsConfiguration {
+  const ObservabilityadminCentralizationRuleForOrganizationDestinationMetricsConfiguration({
     this.backupConfiguration,
   });
 
   final List<
-    ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationMetricsConfigurationBackupConfiguration
+    ObservabilityadminCentralizationRuleForOrganizationDestinationMetricsConfigurationBackupConfiguration
   >?
   backupConfiguration;
 
@@ -295,8 +292,8 @@ final class ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDe
 /// Typed helper for the `rule.destination.destination_metrics_configuration.backup_configuration` block of
 /// `aws_observabilityadmin_centralization_rule_for_organization` (derived from provider schema).
 @immutable
-final class ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationMetricsConfigurationBackupConfiguration {
-  const ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationMetricsConfigurationBackupConfiguration({
+final class ObservabilityadminCentralizationRuleForOrganizationDestinationMetricsConfigurationBackupConfiguration {
+  const ObservabilityadminCentralizationRuleForOrganizationDestinationMetricsConfigurationBackupConfiguration({
     required this.region,
   });
 
@@ -308,8 +305,8 @@ final class ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDe
 /// Typed helper for the `rule.source` block of
 /// `aws_observabilityadmin_centralization_rule_for_organization` (derived from provider schema).
 @immutable
-final class ObservabilityadminCentralizationRuleForOrganizationRuleSource {
-  const ObservabilityadminCentralizationRuleForOrganizationRuleSource({
+final class ObservabilityadminCentralizationRuleForOrganizationSource {
+  const ObservabilityadminCentralizationRuleForOrganizationSource({
     required this.regions,
     required this.scope,
     this.sourceLogsConfiguration,
@@ -321,12 +318,12 @@ final class ObservabilityadminCentralizationRuleForOrganizationRuleSource {
   final TfArg<String> scope;
 
   final List<
-    ObservabilityadminCentralizationRuleForOrganizationRuleSourceSourceLogsConfiguration
+    ObservabilityadminCentralizationRuleForOrganizationSourceLogsConfiguration
   >?
   sourceLogsConfiguration;
 
   final List<
-    ObservabilityadminCentralizationRuleForOrganizationRuleSourceSourceMetricsConfiguration
+    ObservabilityadminCentralizationRuleForOrganizationSourceMetricsConfiguration
   >?
   sourceMetricsConfiguration;
 
@@ -347,8 +344,8 @@ final class ObservabilityadminCentralizationRuleForOrganizationRuleSource {
 /// Typed helper for the `rule.source.source_logs_configuration` block of
 /// `aws_observabilityadmin_centralization_rule_for_organization` (derived from provider schema).
 @immutable
-final class ObservabilityadminCentralizationRuleForOrganizationRuleSourceSourceLogsConfiguration {
-  const ObservabilityadminCentralizationRuleForOrganizationRuleSourceSourceLogsConfiguration({
+final class ObservabilityadminCentralizationRuleForOrganizationSourceLogsConfiguration {
+  const ObservabilityadminCentralizationRuleForOrganizationSourceLogsConfiguration({
     this.dataSourceSelectionCriteria,
     required this.encryptedLogGroupStrategy,
     this.logGroupSelectionCriteria,
@@ -357,7 +354,7 @@ final class ObservabilityadminCentralizationRuleForOrganizationRuleSourceSourceL
   final TfArg<String>? dataSourceSelectionCriteria;
 
   final TfArg<
-    ObservabilityadminCentralizationRuleForOrganizationRuleSourceSourceLogsConfigurationEncryptedLogGroupStrategy
+    ObservabilityadminCentralizationRuleForOrganizationEncryptedLogGroupStrategy
   >
   encryptedLogGroupStrategy;
 
@@ -371,12 +368,12 @@ final class ObservabilityadminCentralizationRuleForOrganizationRuleSourceSourceL
 }
 
 /// `encrypted_log_group_strategy` — derived from the provider schema description.
-enum ObservabilityadminCentralizationRuleForOrganizationRuleSourceSourceLogsConfigurationEncryptedLogGroupStrategy
+enum ObservabilityadminCentralizationRuleForOrganizationEncryptedLogGroupStrategy
     implements TerraformEnum {
   allow('ALLOW'),
   skip('SKIP');
 
-  const ObservabilityadminCentralizationRuleForOrganizationRuleSourceSourceLogsConfigurationEncryptedLogGroupStrategy(
+  const ObservabilityadminCentralizationRuleForOrganizationEncryptedLogGroupStrategy(
     this.terraformValue,
   );
   @override
@@ -386,8 +383,8 @@ enum ObservabilityadminCentralizationRuleForOrganizationRuleSourceSourceLogsConf
 /// Typed helper for the `rule.source.source_metrics_configuration` block of
 /// `aws_observabilityadmin_centralization_rule_for_organization` (derived from provider schema).
 @immutable
-final class ObservabilityadminCentralizationRuleForOrganizationRuleSourceSourceMetricsConfiguration {
-  const ObservabilityadminCentralizationRuleForOrganizationRuleSourceSourceMetricsConfiguration({
+final class ObservabilityadminCentralizationRuleForOrganizationSourceMetricsConfiguration {
+  const ObservabilityadminCentralizationRuleForOrganizationSourceMetricsConfiguration({
     required this.metricsSelectionCriteria,
   });
 

@@ -6,14 +6,14 @@ library;
 export 'src/amplify/aws_amplify_app.dart'
     show
         AmplifyAppAutoBranchCreationConfig,
-        AmplifyAppAutoBranchCreationConfigStage,
+        AmplifyAppBuildComputeType,
         AmplifyAppCacheConfig,
-        AmplifyAppCacheConfigType,
         AmplifyAppCustomRule,
-        AmplifyAppCustomRuleStatus,
         AmplifyAppJobConfig,
-        AmplifyAppJobConfigBuildComputeType,
         AmplifyAppPlatform,
+        AmplifyAppStage,
+        AmplifyAppStatus,
+        AmplifyAppType,
         AwsAmplifyApp;
 export 'src/amplify/aws_amplify_backend_environment.dart'
     show AwsAmplifyBackendEnvironment;
@@ -22,7 +22,7 @@ export 'src/amplify/aws_amplify_branch.dart'
 export 'src/amplify/aws_amplify_domain_association.dart'
     show
         AmplifyDomainAssociationCertificateSettings,
-        AmplifyDomainAssociationCertificateSettingsType,
         AmplifyDomainAssociationSubDomain,
+        AmplifyDomainAssociationType,
         AwsAmplifyDomainAssociation;
 export 'src/amplify/aws_amplify_webhook.dart' show AwsAmplifyWebhook;

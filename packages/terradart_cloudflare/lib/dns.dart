@@ -12,8 +12,8 @@ export 'src/dns/cloudflare_dns_record.dart'
         DnsRecordContentChoice,
         DnsRecordContentData,
         DnsRecordData,
-        DnsRecordDataLatDirection,
-        DnsRecordDataLongDirection,
+        DnsRecordLatDirection,
+        DnsRecordLongDirection,
         DnsRecordSettings,
         DnsRecordType;
 export 'src/dns/cloudflare_dns_zone_transfers_acl.dart'

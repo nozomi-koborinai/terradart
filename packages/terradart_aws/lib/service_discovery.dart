@@ -15,10 +15,10 @@ export 'src/service_discovery/aws_service_discovery_service.dart'
     show
         AwsServiceDiscoveryService,
         ServiceDiscoveryServiceDnsConfig,
-        ServiceDiscoveryServiceDnsConfigDnsRecords,
-        ServiceDiscoveryServiceDnsConfigDnsRecordsType,
-        ServiceDiscoveryServiceDnsConfigRoutingPolicy,
+        ServiceDiscoveryServiceDnsRecords,
+        ServiceDiscoveryServiceDnsRecordsType,
         ServiceDiscoveryServiceHealthCheckConfig,
         ServiceDiscoveryServiceHealthCheckConfigType,
         ServiceDiscoveryServiceHealthCheckCustomConfig,
+        ServiceDiscoveryServiceRoutingPolicy,
         ServiceDiscoveryServiceType;

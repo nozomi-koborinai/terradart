@@ -7,12 +7,12 @@ library;
 export 'src/blockchain/google_blockchain_node_engine_blockchain_nodes.dart'
     show
         BlockchainNodeEngineBlockchainNodesBlockchainType,
+        BlockchainNodeEngineBlockchainNodesConsensusClient,
         BlockchainNodeEngineBlockchainNodesEthereumDetails,
-        BlockchainNodeEngineBlockchainNodesEthereumDetailsConsensusClient,
-        BlockchainNodeEngineBlockchainNodesEthereumDetailsExecutionClient,
-        BlockchainNodeEngineBlockchainNodesEthereumDetailsGethDetails,
-        BlockchainNodeEngineBlockchainNodesEthereumDetailsGethDetailsGarbageCollectionMode,
-        BlockchainNodeEngineBlockchainNodesEthereumDetailsNetwork,
-        BlockchainNodeEngineBlockchainNodesEthereumDetailsNodeType,
-        BlockchainNodeEngineBlockchainNodesEthereumDetailsValidatorConfig,
+        BlockchainNodeEngineBlockchainNodesExecutionClient,
+        BlockchainNodeEngineBlockchainNodesGarbageCollectionMode,
+        BlockchainNodeEngineBlockchainNodesGethDetails,
+        BlockchainNodeEngineBlockchainNodesNetwork,
+        BlockchainNodeEngineBlockchainNodesNodeType,
+        BlockchainNodeEngineBlockchainNodesValidatorConfig,
         GoogleBlockchainNodeEngineBlockchainNodes;

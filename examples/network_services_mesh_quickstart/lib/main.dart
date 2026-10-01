@@ -53,10 +53,10 @@ final class NetworkServicesMeshStack extends Stack {
         rules: [
           NetworkServicesHttpRouteRules(
             matches: [
-              NetworkServicesHttpRouteRulesMatches(
+              NetworkServicesHttpRouteMatches(
                 match: .fullPathMatch(.literal('example')),
                 queryParameters: [
-                  NetworkServicesHttpRouteRulesMatchesQueryParameters(
+                  NetworkServicesHttpRouteQueryParameters(
                     queryParameter: .literal('key'),
                     match: .exactMatch(.literal('value')),
                   ),
@@ -78,20 +78,19 @@ final class NetworkServicesMeshStack extends Stack {
         rules: [
           NetworkServicesGrpcRouteRules(
             matches: [
-              NetworkServicesGrpcRouteRulesMatches(
-                method: NetworkServicesGrpcRouteRulesMatchesMethod(
+              NetworkServicesGrpcRouteMatches(
+                method: NetworkServicesGrpcRouteMethod(
                   grpcService: .literal('helloworld.Greeter'),
                   grpcMethod: .literal('SayHello'),
                 ),
               ),
             ],
-            action: NetworkServicesGrpcRouteRulesAction(
-              retryPolicy: NetworkServicesGrpcRouteRulesActionRetryPolicy(
+            action: NetworkServicesGrpcRouteAction(
+              retryPolicy: NetworkServicesGrpcRouteRetryPolicy(
                 numRetries: .literal(1),
                 retryConditions: [
                   .literal(
-                    NetworkServicesGrpcRouteRulesActionRetryPolicyRetryConditions
-                        .connectFailure,
+                    NetworkServicesGrpcRouteRetryConditions.connectFailure,
                   ),
                 ],
               ),
@@ -113,12 +112,12 @@ final class NetworkServicesMeshStack extends Stack {
         rules: [
           NetworkServicesTcpRouteRules(
             matches: [
-              NetworkServicesTcpRouteRulesMatches(
+              NetworkServicesTcpRouteMatches(
                 address: .literal('0.0.0.0/0'),
                 port: .literal('8081'),
               ),
             ],
-            action: NetworkServicesTcpRouteRulesAction(
+            action: NetworkServicesTcpRouteAction(
               originalDestination: .literal(true),
             ),
           ),
@@ -134,13 +133,13 @@ final class NetworkServicesMeshStack extends Stack {
         type: .literal(.sidecarProxy),
         endpointMatcher: NetworkServicesEndpointPolicyEndpointMatcher(
           metadataLabelMatcher:
-              NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcher(
+              NetworkServicesEndpointPolicyMetadataLabelMatcher(
                 metadataLabelMatchCriteria: .literal(
-                  NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcherMetadataLabelMatchCriteria
+                  NetworkServicesEndpointPolicyMetadataLabelMatchCriteria
                       .matchAny,
                 ),
                 metadataLabels: [
-                  NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcherMetadataLabels(
+                  NetworkServicesEndpointPolicyMetadataLabels(
                     labelName: .literal('app'),
                     labelValue: .literal('terradart'),
                   ),

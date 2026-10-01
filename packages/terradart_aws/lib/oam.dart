@@ -6,9 +6,9 @@ library;
 export 'src/oam/aws_oam_link.dart'
     show
         AwsOamLink,
-        OamLinkLinkConfiguration,
-        OamLinkLinkConfigurationLogGroupConfiguration,
-        OamLinkLinkConfigurationMetricConfiguration,
+        OamLinkConfiguration,
+        OamLinkLogGroupConfiguration,
+        OamLinkMetricConfiguration,
         OamLinkResourceTypes;
 export 'src/oam/aws_oam_sink.dart' show AwsOamSink;
 export 'src/oam/aws_oam_sink_policy.dart' show AwsOamSinkPolicy;

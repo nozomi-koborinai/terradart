@@ -25,7 +25,7 @@ final class IdentityPlatformTenantInboundSamlConfigIdpConfig {
 
   final TfArg<String> ssoUrl;
 
-  final List<IdentityPlatformTenantInboundSamlConfigIdpConfigIdpCertificates>
+  final List<IdentityPlatformTenantInboundSamlConfigIdpCertificates>
   idpCertificates;
 
   Map<String, Object?> encode() => {
@@ -39,8 +39,8 @@ final class IdentityPlatformTenantInboundSamlConfigIdpConfig {
 /// Typed helper for the `idp_config.idp_certificates` block of
 /// `google_identity_platform_tenant_inbound_saml_config` (derived from provider schema).
 @immutable
-final class IdentityPlatformTenantInboundSamlConfigIdpConfigIdpCertificates {
-  const IdentityPlatformTenantInboundSamlConfigIdpConfigIdpCertificates({
+final class IdentityPlatformTenantInboundSamlConfigIdpCertificates {
+  const IdentityPlatformTenantInboundSamlConfigIdpCertificates({
     this.x509Certificate,
   });
 

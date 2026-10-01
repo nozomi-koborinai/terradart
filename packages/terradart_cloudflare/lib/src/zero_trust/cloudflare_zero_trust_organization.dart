@@ -68,7 +68,7 @@ final class ZeroTrustOrganizationMfaConfig {
     this.sessionDuration,
   });
 
-  final List<TfArg<ZeroTrustOrganizationMfaConfigAllowedAuthenticators>>?
+  final List<TfArg<ZeroTrustOrganizationAllowedAuthenticators>>?
   allowedAuthenticators;
 
   final TfArg<String>? amrMatchingSessionDuration;
@@ -89,17 +89,14 @@ final class ZeroTrustOrganizationMfaConfig {
 }
 
 /// `allowed_authenticators` — derived from the provider schema description.
-enum ZeroTrustOrganizationMfaConfigAllowedAuthenticators
-    implements TerraformEnum {
+enum ZeroTrustOrganizationAllowedAuthenticators implements TerraformEnum {
   totp('totp'),
   biometrics('biometrics'),
   securityKey('security_key'),
   pivKey('piv_key'),
   sshFido2Key('ssh_fido2_key');
 
-  const ZeroTrustOrganizationMfaConfigAllowedAuthenticators(
-    this.terraformValue,
-  );
+  const ZeroTrustOrganizationAllowedAuthenticators(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -116,18 +113,15 @@ final class ZeroTrustOrganizationMfaSshPivKeyRequirements {
     this.touchPolicy,
   });
 
-  final TfArg<ZeroTrustOrganizationMfaSshPivKeyRequirementsPinPolicy>?
-  pinPolicy;
+  final TfArg<ZeroTrustOrganizationPinPolicy>? pinPolicy;
 
   final TfArg<bool>? requireFipsDevice;
 
   final TfArg<List<num>>? sshKeySize;
 
-  final List<TfArg<ZeroTrustOrganizationMfaSshPivKeyRequirementsSshKeyType>>?
-  sshKeyType;
+  final List<TfArg<ZeroTrustOrganizationSshKeyType>>? sshKeyType;
 
-  final TfArg<ZeroTrustOrganizationMfaSshPivKeyRequirementsTouchPolicy>?
-  touchPolicy;
+  final TfArg<ZeroTrustOrganizationTouchPolicy>? touchPolicy;
 
   Map<String, Object?> encode() => {
     'pin_policy': ?pinPolicy?.toTfJson(),
@@ -140,43 +134,34 @@ final class ZeroTrustOrganizationMfaSshPivKeyRequirements {
 }
 
 /// `pin_policy` — derived from the provider schema description.
-enum ZeroTrustOrganizationMfaSshPivKeyRequirementsPinPolicy
-    implements TerraformEnum {
+enum ZeroTrustOrganizationPinPolicy implements TerraformEnum {
   never('never'),
   once('once'),
   always('always');
 
-  const ZeroTrustOrganizationMfaSshPivKeyRequirementsPinPolicy(
-    this.terraformValue,
-  );
+  const ZeroTrustOrganizationPinPolicy(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `ssh_key_type` — derived from the provider schema description.
-enum ZeroTrustOrganizationMfaSshPivKeyRequirementsSshKeyType
-    implements TerraformEnum {
+enum ZeroTrustOrganizationSshKeyType implements TerraformEnum {
   ecdsa('ecdsa'),
   ed25519('ed25519'),
   rsa('rsa');
 
-  const ZeroTrustOrganizationMfaSshPivKeyRequirementsSshKeyType(
-    this.terraformValue,
-  );
+  const ZeroTrustOrganizationSshKeyType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `touch_policy` — derived from the provider schema description.
-enum ZeroTrustOrganizationMfaSshPivKeyRequirementsTouchPolicy
-    implements TerraformEnum {
+enum ZeroTrustOrganizationTouchPolicy implements TerraformEnum {
   never('never'),
   always('always'),
   cached('cached');
 
-  const ZeroTrustOrganizationMfaSshPivKeyRequirementsTouchPolicy(
-    this.terraformValue,
-  );
+  const ZeroTrustOrganizationTouchPolicy(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -191,7 +176,7 @@ final class ZeroTrustOrganizationServiceTokenInactivity {
     required this.inactivityThresholdDays,
   });
 
-  final TfArg<ZeroTrustOrganizationServiceTokenInactivityAction> action;
+  final TfArg<ZeroTrustOrganizationAction> action;
 
   final TfArg<bool> enabled;
 
@@ -205,12 +190,11 @@ final class ZeroTrustOrganizationServiceTokenInactivity {
 }
 
 /// `action` — derived from the provider schema description.
-enum ZeroTrustOrganizationServiceTokenInactivityAction
-    implements TerraformEnum {
+enum ZeroTrustOrganizationAction implements TerraformEnum {
   disable('disable'),
   delete('delete');
 
-  const ZeroTrustOrganizationServiceTokenInactivityAction(this.terraformValue);
+  const ZeroTrustOrganizationAction(this.terraformValue);
   @override
   final String terraformValue;
 }

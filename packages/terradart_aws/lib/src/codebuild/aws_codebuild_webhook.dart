@@ -89,7 +89,7 @@ final class CodebuildWebhookTriggerFilterGroup extends CodebuildWebhookTrigger {
 final class CodebuildWebhookFilterGroup {
   const CodebuildWebhookFilterGroup({this.filter});
 
-  final List<CodebuildWebhookFilterGroupFilter>? filter;
+  final List<CodebuildWebhookFilter>? filter;
 
   Map<String, Object?> encode() => {
     if (filter != null) 'filter': [for (final e in filter!) e.encode()],
@@ -99,8 +99,8 @@ final class CodebuildWebhookFilterGroup {
 /// Typed helper for the `filter_group.filter` block of
 /// `aws_codebuild_webhook` (derived from provider schema).
 @immutable
-final class CodebuildWebhookFilterGroupFilter {
-  const CodebuildWebhookFilterGroupFilter({
+final class CodebuildWebhookFilter {
+  const CodebuildWebhookFilter({
     this.excludeMatchedPattern,
     required this.pattern,
     required this.type,
@@ -110,7 +110,7 @@ final class CodebuildWebhookFilterGroupFilter {
 
   final TfArg<String> pattern;
 
-  final TfArg<CodebuildWebhookFilterGroupFilterType> type;
+  final TfArg<CodebuildWebhookType> type;
 
   Map<String, Object?> encode() => {
     'exclude_matched_pattern': ?excludeMatchedPattern?.toTfJson(),
@@ -120,7 +120,7 @@ final class CodebuildWebhookFilterGroupFilter {
 }
 
 /// `type` — derived from the provider schema description.
-enum CodebuildWebhookFilterGroupFilterType implements TerraformEnum {
+enum CodebuildWebhookType implements TerraformEnum {
   event('EVENT'),
   baseRef('BASE_REF'),
   headRef('HEAD_REF'),
@@ -133,7 +133,7 @@ enum CodebuildWebhookFilterGroupFilterType implements TerraformEnum {
   repositoryName('REPOSITORY_NAME'),
   organizationName('ORGANIZATION_NAME');
 
-  const CodebuildWebhookFilterGroupFilterType(this.terraformValue);
+  const CodebuildWebhookType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -147,11 +147,9 @@ final class CodebuildWebhookPullRequestBuildPolicy {
     required this.requiresCommentApproval,
   });
 
-  final List<TfArg<CodebuildWebhookPullRequestBuildPolicyApproverRoles>>?
-  approverRoles;
+  final List<TfArg<CodebuildWebhookApproverRoles>>? approverRoles;
 
-  final TfArg<CodebuildWebhookPullRequestBuildPolicyRequiresCommentApproval>
-  requiresCommentApproval;
+  final TfArg<CodebuildWebhookRequiresCommentApproval> requiresCommentApproval;
 
   Map<String, Object?> encode() => {
     if (approverRoles != null)
@@ -161,8 +159,7 @@ final class CodebuildWebhookPullRequestBuildPolicy {
 }
 
 /// `approver_roles` — derived from the provider schema description.
-enum CodebuildWebhookPullRequestBuildPolicyApproverRoles
-    implements TerraformEnum {
+enum CodebuildWebhookApproverRoles implements TerraformEnum {
   githubRead('GITHUB_READ'),
   githubTriage('GITHUB_TRIAGE'),
   githubWrite('GITHUB_WRITE'),
@@ -178,23 +175,18 @@ enum CodebuildWebhookPullRequestBuildPolicyApproverRoles
   bitbucketWrite('BITBUCKET_WRITE'),
   bitbucketAdmin('BITBUCKET_ADMIN');
 
-  const CodebuildWebhookPullRequestBuildPolicyApproverRoles(
-    this.terraformValue,
-  );
+  const CodebuildWebhookApproverRoles(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `requires_comment_approval` — derived from the provider schema description.
-enum CodebuildWebhookPullRequestBuildPolicyRequiresCommentApproval
-    implements TerraformEnum {
+enum CodebuildWebhookRequiresCommentApproval implements TerraformEnum {
   disabled('DISABLED'),
   allPullRequests('ALL_PULL_REQUESTS'),
   forkPullRequests('FORK_PULL_REQUESTS');
 
-  const CodebuildWebhookPullRequestBuildPolicyRequiresCommentApproval(
-    this.terraformValue,
-  );
+  const CodebuildWebhookRequiresCommentApproval(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -213,7 +205,7 @@ final class CodebuildWebhookScopeConfiguration {
 
   final TfArg<String> name;
 
-  final TfArg<CodebuildWebhookScopeConfigurationScope> scope;
+  final TfArg<CodebuildWebhookScope> scope;
 
   Map<String, Object?> encode() => {
     'domain': ?domain?.toTfJson(),
@@ -223,12 +215,12 @@ final class CodebuildWebhookScopeConfiguration {
 }
 
 /// `scope` — derived from the provider schema description.
-enum CodebuildWebhookScopeConfigurationScope implements TerraformEnum {
+enum CodebuildWebhookScope implements TerraformEnum {
   githubOrganization('GITHUB_ORGANIZATION'),
   githubGlobal('GITHUB_GLOBAL'),
   gitlabGroup('GITLAB_GROUP');
 
-  const CodebuildWebhookScopeConfigurationScope(this.terraformValue);
+  const CodebuildWebhookScope(this.terraformValue);
   @override
   final String terraformValue;
 }

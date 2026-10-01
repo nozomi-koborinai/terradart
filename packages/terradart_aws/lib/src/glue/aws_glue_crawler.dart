@@ -157,7 +157,7 @@ final class GlueCrawlerJdbcTarget {
 
   final TfArg<String> connectionName;
 
-  final List<TfArg<GlueCrawlerJdbcTargetEnableAdditionalMetadata>>?
+  final List<TfArg<GlueCrawlerEnableAdditionalMetadata>>?
   enableAdditionalMetadata;
 
   final TfArg<List<String>>? exclusions;
@@ -176,11 +176,11 @@ final class GlueCrawlerJdbcTarget {
 }
 
 /// `enable_additional_metadata` — derived from the provider schema description.
-enum GlueCrawlerJdbcTargetEnableAdditionalMetadata implements TerraformEnum {
+enum GlueCrawlerEnableAdditionalMetadata implements TerraformEnum {
   comments('COMMENTS'),
   rawtypes('RAWTYPES');
 
-  const GlueCrawlerJdbcTargetEnableAdditionalMetadata(this.terraformValue);
+  const GlueCrawlerEnableAdditionalMetadata(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -210,8 +210,7 @@ final class GlueCrawlerLakeFormationConfiguration {
 final class GlueCrawlerLineageConfiguration {
   const GlueCrawlerLineageConfiguration({this.crawlerLineageSettings});
 
-  final TfArg<GlueCrawlerLineageConfigurationCrawlerLineageSettings>?
-  crawlerLineageSettings;
+  final TfArg<GlueCrawlerLineageSettings>? crawlerLineageSettings;
 
   Map<String, Object?> encode() => {
     'crawler_lineage_settings': ?crawlerLineageSettings?.toTfJson(),
@@ -219,14 +218,11 @@ final class GlueCrawlerLineageConfiguration {
 }
 
 /// `crawler_lineage_settings` — derived from the provider schema description.
-enum GlueCrawlerLineageConfigurationCrawlerLineageSettings
-    implements TerraformEnum {
+enum GlueCrawlerLineageSettings implements TerraformEnum {
   enable('ENABLE'),
   disable('DISABLE');
 
-  const GlueCrawlerLineageConfigurationCrawlerLineageSettings(
-    this.terraformValue,
-  );
+  const GlueCrawlerLineageSettings(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -260,7 +256,7 @@ final class GlueCrawlerMongodbTarget {
 final class GlueCrawlerRecrawlPolicy {
   const GlueCrawlerRecrawlPolicy({this.recrawlBehavior});
 
-  final TfArg<GlueCrawlerRecrawlPolicyRecrawlBehavior>? recrawlBehavior;
+  final TfArg<GlueCrawlerRecrawlBehavior>? recrawlBehavior;
 
   Map<String, Object?> encode() => {
     'recrawl_behavior': ?recrawlBehavior?.toTfJson(),
@@ -268,12 +264,12 @@ final class GlueCrawlerRecrawlPolicy {
 }
 
 /// `recrawl_behavior` — derived from the provider schema description.
-enum GlueCrawlerRecrawlPolicyRecrawlBehavior implements TerraformEnum {
+enum GlueCrawlerRecrawlBehavior implements TerraformEnum {
   crawlEverything('CRAWL_EVERYTHING'),
   crawlNewFoldersOnly('CRAWL_NEW_FOLDERS_ONLY'),
   crawlEventMode('CRAWL_EVENT_MODE');
 
-  const GlueCrawlerRecrawlPolicyRecrawlBehavior(this.terraformValue);
+  const GlueCrawlerRecrawlBehavior(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -322,9 +318,9 @@ final class GlueCrawlerSchemaChangePolicy {
     this.updateBehavior,
   });
 
-  final TfArg<GlueCrawlerSchemaChangePolicyDeleteBehavior>? deleteBehavior;
+  final TfArg<GlueCrawlerDeleteBehavior>? deleteBehavior;
 
-  final TfArg<GlueCrawlerSchemaChangePolicyUpdateBehavior>? updateBehavior;
+  final TfArg<GlueCrawlerUpdateBehavior>? updateBehavior;
 
   Map<String, Object?> encode() => {
     'delete_behavior': ?deleteBehavior?.toTfJson(),
@@ -333,22 +329,22 @@ final class GlueCrawlerSchemaChangePolicy {
 }
 
 /// `delete_behavior` — derived from the provider schema description.
-enum GlueCrawlerSchemaChangePolicyDeleteBehavior implements TerraformEnum {
+enum GlueCrawlerDeleteBehavior implements TerraformEnum {
   log('LOG'),
   deleteFromDatabase('DELETE_FROM_DATABASE'),
   deprecateInDatabase('DEPRECATE_IN_DATABASE');
 
-  const GlueCrawlerSchemaChangePolicyDeleteBehavior(this.terraformValue);
+  const GlueCrawlerDeleteBehavior(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `update_behavior` — derived from the provider schema description.
-enum GlueCrawlerSchemaChangePolicyUpdateBehavior implements TerraformEnum {
+enum GlueCrawlerUpdateBehavior implements TerraformEnum {
   log('LOG'),
   updateInDatabase('UPDATE_IN_DATABASE');
 
-  const GlueCrawlerSchemaChangePolicyUpdateBehavior(this.terraformValue);
+  const GlueCrawlerUpdateBehavior(this.terraformValue);
   @override
   final String terraformValue;
 }

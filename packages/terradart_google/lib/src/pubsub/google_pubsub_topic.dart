@@ -43,10 +43,9 @@ final class PubsubTopicIngestionDataSourceSettings {
     this.platformLogsSettings,
   });
 
-  final PubsubTopicIngestionDataSourceSettingsSource? source;
+  final PubsubTopicSource? source;
 
-  final PubsubTopicIngestionDataSourceSettingsPlatformLogsSettings?
-  platformLogsSettings;
+  final PubsubTopicPlatformLogsSettings? platformLogsSettings;
 
   Map<String, Object?> encode() => {
     ...?source?.encode(),
@@ -59,33 +58,31 @@ final class PubsubTopicIngestionDataSourceSettings {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.awsKinesis(...)`.
-sealed class PubsubTopicIngestionDataSourceSettingsSource {
-  const PubsubTopicIngestionDataSourceSettingsSource();
+sealed class PubsubTopicSource {
+  const PubsubTopicSource();
 
   /// Sets `aws_kinesis`.
-  const factory PubsubTopicIngestionDataSourceSettingsSource.awsKinesis(
-    PubsubTopicIngestionDataSourceSettingsAwsKinesis awsKinesis,
-  ) = PubsubTopicIngestionDataSourceSettingsSourceAwsKinesis;
+  const factory PubsubTopicSource.awsKinesis(PubsubTopicAwsKinesis awsKinesis) =
+      PubsubTopicSourceAwsKinesis;
 
   /// Sets `cloud_storage`.
-  const factory PubsubTopicIngestionDataSourceSettingsSource.cloudStorage(
-    PubsubTopicIngestionDataSourceSettingsCloudStorage cloudStorage,
-  ) = PubsubTopicIngestionDataSourceSettingsSourceCloudStorage;
+  const factory PubsubTopicSource.cloudStorage(
+    PubsubTopicCloudStorage cloudStorage,
+  ) = PubsubTopicSourceCloudStorage;
 
   /// Sets `azure_event_hubs`.
-  const factory PubsubTopicIngestionDataSourceSettingsSource.azureEventHubs(
-    PubsubTopicIngestionDataSourceSettingsAzureEventHubs azureEventHubs,
-  ) = PubsubTopicIngestionDataSourceSettingsSourceAzureEventHubs;
+  const factory PubsubTopicSource.azureEventHubs(
+    PubsubTopicAzureEventHubs azureEventHubs,
+  ) = PubsubTopicSourceAzureEventHubs;
 
   /// Sets `aws_msk`.
-  const factory PubsubTopicIngestionDataSourceSettingsSource.awsMsk(
-    PubsubTopicIngestionDataSourceSettingsAwsMsk awsMsk,
-  ) = PubsubTopicIngestionDataSourceSettingsSourceAwsMsk;
+  const factory PubsubTopicSource.awsMsk(PubsubTopicAwsMsk awsMsk) =
+      PubsubTopicSourceAwsMsk;
 
   /// Sets `confluent_cloud`.
-  const factory PubsubTopicIngestionDataSourceSettingsSource.confluentCloud(
-    PubsubTopicIngestionDataSourceSettingsConfluentCloud confluentCloud,
-  ) = PubsubTopicIngestionDataSourceSettingsSourceConfluentCloud;
+  const factory PubsubTopicSource.confluentCloud(
+    PubsubTopicConfluentCloud confluentCloud,
+  ) = PubsubTopicSourceConfluentCloud;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -93,12 +90,11 @@ sealed class PubsubTopicIngestionDataSourceSettingsSource {
   Map<String, Object?> encode();
 }
 
-/// The [PubsubTopicIngestionDataSourceSettingsSource.awsKinesis] choice: sets `aws_kinesis`.
-final class PubsubTopicIngestionDataSourceSettingsSourceAwsKinesis
-    extends PubsubTopicIngestionDataSourceSettingsSource {
-  const PubsubTopicIngestionDataSourceSettingsSourceAwsKinesis(this.awsKinesis);
+/// The [PubsubTopicSource.awsKinesis] choice: sets `aws_kinesis`.
+final class PubsubTopicSourceAwsKinesis extends PubsubTopicSource {
+  const PubsubTopicSourceAwsKinesis(this.awsKinesis);
 
-  final PubsubTopicIngestionDataSourceSettingsAwsKinesis awsKinesis;
+  final PubsubTopicAwsKinesis awsKinesis;
 
   @override
   String get blockKey => 'aws_kinesis';
@@ -107,14 +103,11 @@ final class PubsubTopicIngestionDataSourceSettingsSourceAwsKinesis
   Map<String, Object?> encode() => {'aws_kinesis': awsKinesis.encode()};
 }
 
-/// The [PubsubTopicIngestionDataSourceSettingsSource.cloudStorage] choice: sets `cloud_storage`.
-final class PubsubTopicIngestionDataSourceSettingsSourceCloudStorage
-    extends PubsubTopicIngestionDataSourceSettingsSource {
-  const PubsubTopicIngestionDataSourceSettingsSourceCloudStorage(
-    this.cloudStorage,
-  );
+/// The [PubsubTopicSource.cloudStorage] choice: sets `cloud_storage`.
+final class PubsubTopicSourceCloudStorage extends PubsubTopicSource {
+  const PubsubTopicSourceCloudStorage(this.cloudStorage);
 
-  final PubsubTopicIngestionDataSourceSettingsCloudStorage cloudStorage;
+  final PubsubTopicCloudStorage cloudStorage;
 
   @override
   String get blockKey => 'cloud_storage';
@@ -123,14 +116,11 @@ final class PubsubTopicIngestionDataSourceSettingsSourceCloudStorage
   Map<String, Object?> encode() => {'cloud_storage': cloudStorage.encode()};
 }
 
-/// The [PubsubTopicIngestionDataSourceSettingsSource.azureEventHubs] choice: sets `azure_event_hubs`.
-final class PubsubTopicIngestionDataSourceSettingsSourceAzureEventHubs
-    extends PubsubTopicIngestionDataSourceSettingsSource {
-  const PubsubTopicIngestionDataSourceSettingsSourceAzureEventHubs(
-    this.azureEventHubs,
-  );
+/// The [PubsubTopicSource.azureEventHubs] choice: sets `azure_event_hubs`.
+final class PubsubTopicSourceAzureEventHubs extends PubsubTopicSource {
+  const PubsubTopicSourceAzureEventHubs(this.azureEventHubs);
 
-  final PubsubTopicIngestionDataSourceSettingsAzureEventHubs azureEventHubs;
+  final PubsubTopicAzureEventHubs azureEventHubs;
 
   @override
   String get blockKey => 'azure_event_hubs';
@@ -141,12 +131,11 @@ final class PubsubTopicIngestionDataSourceSettingsSourceAzureEventHubs
   };
 }
 
-/// The [PubsubTopicIngestionDataSourceSettingsSource.awsMsk] choice: sets `aws_msk`.
-final class PubsubTopicIngestionDataSourceSettingsSourceAwsMsk
-    extends PubsubTopicIngestionDataSourceSettingsSource {
-  const PubsubTopicIngestionDataSourceSettingsSourceAwsMsk(this.awsMsk);
+/// The [PubsubTopicSource.awsMsk] choice: sets `aws_msk`.
+final class PubsubTopicSourceAwsMsk extends PubsubTopicSource {
+  const PubsubTopicSourceAwsMsk(this.awsMsk);
 
-  final PubsubTopicIngestionDataSourceSettingsAwsMsk awsMsk;
+  final PubsubTopicAwsMsk awsMsk;
 
   @override
   String get blockKey => 'aws_msk';
@@ -155,14 +144,11 @@ final class PubsubTopicIngestionDataSourceSettingsSourceAwsMsk
   Map<String, Object?> encode() => {'aws_msk': awsMsk.encode()};
 }
 
-/// The [PubsubTopicIngestionDataSourceSettingsSource.confluentCloud] choice: sets `confluent_cloud`.
-final class PubsubTopicIngestionDataSourceSettingsSourceConfluentCloud
-    extends PubsubTopicIngestionDataSourceSettingsSource {
-  const PubsubTopicIngestionDataSourceSettingsSourceConfluentCloud(
-    this.confluentCloud,
-  );
+/// The [PubsubTopicSource.confluentCloud] choice: sets `confluent_cloud`.
+final class PubsubTopicSourceConfluentCloud extends PubsubTopicSource {
+  const PubsubTopicSourceConfluentCloud(this.confluentCloud);
 
-  final PubsubTopicIngestionDataSourceSettingsConfluentCloud confluentCloud;
+  final PubsubTopicConfluentCloud confluentCloud;
 
   @override
   String get blockKey => 'confluent_cloud';
@@ -174,8 +160,8 @@ final class PubsubTopicIngestionDataSourceSettingsSourceConfluentCloud
 /// Typed helper for the `ingestion_data_source_settings.aws_kinesis` block of
 /// `google_pubsub_topic` (derived from provider schema).
 @immutable
-final class PubsubTopicIngestionDataSourceSettingsAwsKinesis {
-  const PubsubTopicIngestionDataSourceSettingsAwsKinesis({
+final class PubsubTopicAwsKinesis {
+  const PubsubTopicAwsKinesis({
     required this.awsRoleArn,
     required this.consumerArn,
     required this.gcpServiceAccount,
@@ -201,8 +187,8 @@ final class PubsubTopicIngestionDataSourceSettingsAwsKinesis {
 /// Typed helper for the `ingestion_data_source_settings.aws_msk` block of
 /// `google_pubsub_topic` (derived from provider schema).
 @immutable
-final class PubsubTopicIngestionDataSourceSettingsAwsMsk {
-  const PubsubTopicIngestionDataSourceSettingsAwsMsk({
+final class PubsubTopicAwsMsk {
+  const PubsubTopicAwsMsk({
     required this.awsRoleArn,
     required this.clusterArn,
     required this.gcpServiceAccount,
@@ -228,8 +214,8 @@ final class PubsubTopicIngestionDataSourceSettingsAwsMsk {
 /// Typed helper for the `ingestion_data_source_settings.azure_event_hubs` block of
 /// `google_pubsub_topic` (derived from provider schema).
 @immutable
-final class PubsubTopicIngestionDataSourceSettingsAzureEventHubs {
-  const PubsubTopicIngestionDataSourceSettingsAzureEventHubs({
+final class PubsubTopicAzureEventHubs {
+  const PubsubTopicAzureEventHubs({
     this.clientId,
     this.eventHub,
     this.gcpServiceAccount,
@@ -267,8 +253,8 @@ final class PubsubTopicIngestionDataSourceSettingsAzureEventHubs {
 /// Typed helper for the `ingestion_data_source_settings.cloud_storage` block of
 /// `google_pubsub_topic` (derived from provider schema).
 @immutable
-final class PubsubTopicIngestionDataSourceSettingsCloudStorage {
-  const PubsubTopicIngestionDataSourceSettingsCloudStorage({
+final class PubsubTopicCloudStorage {
+  const PubsubTopicCloudStorage({
     required this.bucket,
     this.matchGlob,
     this.minimumObjectCreateTime,
@@ -281,7 +267,7 @@ final class PubsubTopicIngestionDataSourceSettingsCloudStorage {
 
   final TfArg<String>? minimumObjectCreateTime;
 
-  final PubsubTopicIngestionDataSourceSettingsCloudStorageFormat format;
+  final PubsubTopicFormat format;
 
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('name').toTfJson(),
@@ -295,24 +281,21 @@ final class PubsubTopicIngestionDataSourceSettingsCloudStorage {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.textFormat(...)`.
-sealed class PubsubTopicIngestionDataSourceSettingsCloudStorageFormat {
-  const PubsubTopicIngestionDataSourceSettingsCloudStorageFormat();
+sealed class PubsubTopicFormat {
+  const PubsubTopicFormat();
 
   /// Sets `text_format`.
-  const factory PubsubTopicIngestionDataSourceSettingsCloudStorageFormat.textFormat(
-    PubsubTopicIngestionDataSourceSettingsCloudStorageTextFormat textFormat,
-  ) = PubsubTopicIngestionDataSourceSettingsCloudStorageFormatTextFormat;
+  const factory PubsubTopicFormat.textFormat(PubsubTopicTextFormat textFormat) =
+      PubsubTopicTextFormatChoice;
 
   /// Sets `avro_format`.
-  const factory PubsubTopicIngestionDataSourceSettingsCloudStorageFormat.avroFormat(
-    PubsubTopicIngestionDataSourceSettingsCloudStorageAvroFormat avroFormat,
-  ) = PubsubTopicIngestionDataSourceSettingsCloudStorageFormatAvroFormat;
+  const factory PubsubTopicFormat.avroFormat(PubsubTopicAvroFormat avroFormat) =
+      PubsubTopicAvroFormatChoice;
 
   /// Sets `pubsub_avro_format`.
-  const factory PubsubTopicIngestionDataSourceSettingsCloudStorageFormat.pubsubAvroFormat(
-    PubsubTopicIngestionDataSourceSettingsCloudStoragePubsubAvroFormat
-    pubsubAvroFormat,
-  ) = PubsubTopicIngestionDataSourceSettingsCloudStorageFormatPubsubAvroFormat;
+  const factory PubsubTopicFormat.pubsubAvroFormat(
+    PubsubTopicPubsubAvroFormat pubsubAvroFormat,
+  ) = PubsubTopicPubsubAvroFormatChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -320,14 +303,11 @@ sealed class PubsubTopicIngestionDataSourceSettingsCloudStorageFormat {
   Map<String, Object?> encode();
 }
 
-/// The [PubsubTopicIngestionDataSourceSettingsCloudStorageFormat.textFormat] choice: sets `text_format`.
-final class PubsubTopicIngestionDataSourceSettingsCloudStorageFormatTextFormat
-    extends PubsubTopicIngestionDataSourceSettingsCloudStorageFormat {
-  const PubsubTopicIngestionDataSourceSettingsCloudStorageFormatTextFormat(
-    this.textFormat,
-  );
+/// The [PubsubTopicFormat.textFormat] choice: sets `text_format`.
+final class PubsubTopicTextFormatChoice extends PubsubTopicFormat {
+  const PubsubTopicTextFormatChoice(this.textFormat);
 
-  final PubsubTopicIngestionDataSourceSettingsCloudStorageTextFormat textFormat;
+  final PubsubTopicTextFormat textFormat;
 
   @override
   String get blockKey => 'text_format';
@@ -336,14 +316,11 @@ final class PubsubTopicIngestionDataSourceSettingsCloudStorageFormatTextFormat
   Map<String, Object?> encode() => {'text_format': textFormat.encode()};
 }
 
-/// The [PubsubTopicIngestionDataSourceSettingsCloudStorageFormat.avroFormat] choice: sets `avro_format`.
-final class PubsubTopicIngestionDataSourceSettingsCloudStorageFormatAvroFormat
-    extends PubsubTopicIngestionDataSourceSettingsCloudStorageFormat {
-  const PubsubTopicIngestionDataSourceSettingsCloudStorageFormatAvroFormat(
-    this.avroFormat,
-  );
+/// The [PubsubTopicFormat.avroFormat] choice: sets `avro_format`.
+final class PubsubTopicAvroFormatChoice extends PubsubTopicFormat {
+  const PubsubTopicAvroFormatChoice(this.avroFormat);
 
-  final PubsubTopicIngestionDataSourceSettingsCloudStorageAvroFormat avroFormat;
+  final PubsubTopicAvroFormat avroFormat;
 
   @override
   String get blockKey => 'avro_format';
@@ -352,15 +329,11 @@ final class PubsubTopicIngestionDataSourceSettingsCloudStorageFormatAvroFormat
   Map<String, Object?> encode() => {'avro_format': avroFormat.encode()};
 }
 
-/// The [PubsubTopicIngestionDataSourceSettingsCloudStorageFormat.pubsubAvroFormat] choice: sets `pubsub_avro_format`.
-final class PubsubTopicIngestionDataSourceSettingsCloudStorageFormatPubsubAvroFormat
-    extends PubsubTopicIngestionDataSourceSettingsCloudStorageFormat {
-  const PubsubTopicIngestionDataSourceSettingsCloudStorageFormatPubsubAvroFormat(
-    this.pubsubAvroFormat,
-  );
+/// The [PubsubTopicFormat.pubsubAvroFormat] choice: sets `pubsub_avro_format`.
+final class PubsubTopicPubsubAvroFormatChoice extends PubsubTopicFormat {
+  const PubsubTopicPubsubAvroFormatChoice(this.pubsubAvroFormat);
 
-  final PubsubTopicIngestionDataSourceSettingsCloudStoragePubsubAvroFormat
-  pubsubAvroFormat;
+  final PubsubTopicPubsubAvroFormat pubsubAvroFormat;
 
   @override
   String get blockKey => 'pubsub_avro_format';
@@ -374,8 +347,8 @@ final class PubsubTopicIngestionDataSourceSettingsCloudStorageFormatPubsubAvroFo
 /// Typed helper for the `ingestion_data_source_settings.cloud_storage.avro_format` block of
 /// `google_pubsub_topic` (derived from provider schema).
 @immutable
-final class PubsubTopicIngestionDataSourceSettingsCloudStorageAvroFormat {
-  const PubsubTopicIngestionDataSourceSettingsCloudStorageAvroFormat();
+final class PubsubTopicAvroFormat {
+  const PubsubTopicAvroFormat();
 
   Map<String, Object?> encode() => {};
 }
@@ -383,8 +356,8 @@ final class PubsubTopicIngestionDataSourceSettingsCloudStorageAvroFormat {
 /// Typed helper for the `ingestion_data_source_settings.cloud_storage.pubsub_avro_format` block of
 /// `google_pubsub_topic` (derived from provider schema).
 @immutable
-final class PubsubTopicIngestionDataSourceSettingsCloudStoragePubsubAvroFormat {
-  const PubsubTopicIngestionDataSourceSettingsCloudStoragePubsubAvroFormat();
+final class PubsubTopicPubsubAvroFormat {
+  const PubsubTopicPubsubAvroFormat();
 
   Map<String, Object?> encode() => {};
 }
@@ -392,10 +365,8 @@ final class PubsubTopicIngestionDataSourceSettingsCloudStoragePubsubAvroFormat {
 /// Typed helper for the `ingestion_data_source_settings.cloud_storage.text_format` block of
 /// `google_pubsub_topic` (derived from provider schema).
 @immutable
-final class PubsubTopicIngestionDataSourceSettingsCloudStorageTextFormat {
-  const PubsubTopicIngestionDataSourceSettingsCloudStorageTextFormat({
-    this.delimiter,
-  });
+final class PubsubTopicTextFormat {
+  const PubsubTopicTextFormat({this.delimiter});
 
   final TfArg<String>? delimiter;
 
@@ -405,8 +376,8 @@ final class PubsubTopicIngestionDataSourceSettingsCloudStorageTextFormat {
 /// Typed helper for the `ingestion_data_source_settings.confluent_cloud` block of
 /// `google_pubsub_topic` (derived from provider schema).
 @immutable
-final class PubsubTopicIngestionDataSourceSettingsConfluentCloud {
-  const PubsubTopicIngestionDataSourceSettingsConfluentCloud({
+final class PubsubTopicConfluentCloud {
+  const PubsubTopicConfluentCloud({
     required this.bootstrapServer,
     this.clusterId,
     required this.gcpServiceAccount,
@@ -436,10 +407,8 @@ final class PubsubTopicIngestionDataSourceSettingsConfluentCloud {
 /// Typed helper for the `ingestion_data_source_settings.platform_logs_settings` block of
 /// `google_pubsub_topic` (derived from provider schema).
 @immutable
-final class PubsubTopicIngestionDataSourceSettingsPlatformLogsSettings {
-  const PubsubTopicIngestionDataSourceSettingsPlatformLogsSettings({
-    this.severity,
-  });
+final class PubsubTopicPlatformLogsSettings {
+  const PubsubTopicPlatformLogsSettings({this.severity});
 
   final TfArg<PubsubTopicPlatformLogsSeverity>? severity;
 
@@ -477,9 +446,9 @@ final class PubsubTopicMessageTransforms {
 
   final TfArg<bool>? disabled;
 
-  final PubsubTopicMessageTransformsAiInference? aiInference;
+  final PubsubTopicAiInference? aiInference;
 
-  final PubsubTopicMessageTransformsJavascriptUdf? javascriptUdf;
+  final PubsubTopicJavascriptUdf? javascriptUdf;
 
   Map<String, Object?> encode() => {
     'disabled': ?disabled?.toTfJson(),
@@ -491,8 +460,8 @@ final class PubsubTopicMessageTransforms {
 /// Typed helper for the `message_transforms.ai_inference` block of
 /// `google_pubsub_topic` (derived from provider schema).
 @immutable
-final class PubsubTopicMessageTransformsAiInference {
-  const PubsubTopicMessageTransformsAiInference({
+final class PubsubTopicAiInference {
+  const PubsubTopicAiInference({
     required this.endpoint,
     this.serviceAccountEmail,
     this.unstructuredInference,
@@ -502,8 +471,7 @@ final class PubsubTopicMessageTransformsAiInference {
 
   final RefTo<GoogleServiceAccount>? serviceAccountEmail;
 
-  final PubsubTopicMessageTransformsAiInferenceUnstructuredInference?
-  unstructuredInference;
+  final PubsubTopicUnstructuredInference? unstructuredInference;
 
   Map<String, Object?> encode() => {
     'endpoint': endpoint.toTfJson(),
@@ -515,10 +483,8 @@ final class PubsubTopicMessageTransformsAiInference {
 /// Typed helper for the `message_transforms.ai_inference.unstructured_inference` block of
 /// `google_pubsub_topic` (derived from provider schema).
 @immutable
-final class PubsubTopicMessageTransformsAiInferenceUnstructuredInference {
-  const PubsubTopicMessageTransformsAiInferenceUnstructuredInference({
-    this.parameters,
-  });
+final class PubsubTopicUnstructuredInference {
+  const PubsubTopicUnstructuredInference({this.parameters});
 
   final TfArg<Map<String, String>>? parameters;
 
@@ -528,8 +494,8 @@ final class PubsubTopicMessageTransformsAiInferenceUnstructuredInference {
 /// Typed helper for the `message_transforms.javascript_udf` block of
 /// `google_pubsub_topic` (derived from provider schema).
 @immutable
-final class PubsubTopicMessageTransformsJavascriptUdf {
-  const PubsubTopicMessageTransformsJavascriptUdf({
+final class PubsubTopicJavascriptUdf {
+  const PubsubTopicJavascriptUdf({
     required this.code,
     required this.functionName,
   });

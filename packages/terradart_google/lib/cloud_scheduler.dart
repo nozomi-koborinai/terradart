@@ -6,14 +6,14 @@ library;
 export 'src/cloud_scheduler/google_cloud_scheduler_job.dart'
     show
         CloudSchedulerJobAppEngineHttpTarget,
-        CloudSchedulerJobAppEngineHttpTargetAppEngineRouting,
+        CloudSchedulerJobAppEngineHttpTargetChoice,
+        CloudSchedulerJobAppEngineRouting,
         CloudSchedulerJobHttpTarget,
-        CloudSchedulerJobHttpTargetOauthToken,
-        CloudSchedulerJobHttpTargetOidcToken,
+        CloudSchedulerJobHttpTargetChoice,
+        CloudSchedulerJobOauthToken,
+        CloudSchedulerJobOidcToken,
         CloudSchedulerJobPubsubTarget,
+        CloudSchedulerJobPubsubTargetChoice,
         CloudSchedulerJobRetryConfig,
         CloudSchedulerJobTarget,
-        CloudSchedulerJobTargetAppEngineHttpTarget,
-        CloudSchedulerJobTargetHttpTarget,
-        CloudSchedulerJobTargetPubsubTarget,
         GoogleCloudSchedulerJob;

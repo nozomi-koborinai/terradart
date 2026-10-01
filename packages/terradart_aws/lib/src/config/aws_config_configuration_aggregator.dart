@@ -21,13 +21,13 @@ sealed class ConfigConfigurationAggregatorAggregationSource {
   const factory ConfigConfigurationAggregatorAggregationSource.accountAggregationSource(
     ConfigConfigurationAggregatorAccountAggregationSource
     accountAggregationSource,
-  ) = ConfigConfigurationAggregatorAggregationSourceAccountAggregationSource;
+  ) = ConfigConfigurationAggregatorAccountAggregationSourceChoice;
 
   /// Sets `organization_aggregation_source`.
   const factory ConfigConfigurationAggregatorAggregationSource.organizationAggregationSource(
     ConfigConfigurationAggregatorOrganizationAggregationSource
     organizationAggregationSource,
-  ) = ConfigConfigurationAggregatorAggregationSourceOrganizationAggregationSource;
+  ) = ConfigConfigurationAggregatorOrganizationAggregationSourceChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -40,9 +40,9 @@ sealed class ConfigConfigurationAggregatorAggregationSource {
 }
 
 /// The [ConfigConfigurationAggregatorAggregationSource.accountAggregationSource] choice: sets `account_aggregation_source`.
-final class ConfigConfigurationAggregatorAggregationSourceAccountAggregationSource
+final class ConfigConfigurationAggregatorAccountAggregationSourceChoice
     extends ConfigConfigurationAggregatorAggregationSource {
-  const ConfigConfigurationAggregatorAggregationSourceAccountAggregationSource(
+  const ConfigConfigurationAggregatorAccountAggregationSourceChoice(
     this.accountAggregationSource,
   );
 
@@ -66,9 +66,9 @@ final class ConfigConfigurationAggregatorAggregationSourceAccountAggregationSour
 }
 
 /// The [ConfigConfigurationAggregatorAggregationSource.organizationAggregationSource] choice: sets `organization_aggregation_source`.
-final class ConfigConfigurationAggregatorAggregationSourceOrganizationAggregationSource
+final class ConfigConfigurationAggregatorOrganizationAggregationSourceChoice
     extends ConfigConfigurationAggregatorAggregationSource {
-  const ConfigConfigurationAggregatorAggregationSourceOrganizationAggregationSource(
+  const ConfigConfigurationAggregatorOrganizationAggregationSourceChoice(
     this.organizationAggregationSource,
   );
 

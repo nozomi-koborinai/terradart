@@ -16,12 +16,12 @@ sealed class NetworkSecurityClientTlsPolicyClientCertificate {
 
   /// Sets `grpc_endpoint`.
   const factory NetworkSecurityClientTlsPolicyClientCertificate.grpcEndpoint(
-    NetworkSecurityClientTlsPolicyClientCertificateGrpcEndpoint grpcEndpoint,
-  ) = NetworkSecurityClientTlsPolicyClientCertificateGrpcEndpointChoice;
+    NetworkSecurityClientTlsPolicyGrpcEndpoint grpcEndpoint,
+  ) = NetworkSecurityClientTlsPolicyClientCertificateGrpcEndpoint;
 
   /// Sets `certificate_provider_instance`.
   const factory NetworkSecurityClientTlsPolicyClientCertificate.certificateProviderInstance(
-    NetworkSecurityClientTlsPolicyClientCertificateCertificateProviderInstance
+    NetworkSecurityClientTlsPolicyCertificateProviderInstance
     certificateProviderInstance,
   ) = NetworkSecurityClientTlsPolicyClientCertificateProviderInstance;
 
@@ -32,14 +32,13 @@ sealed class NetworkSecurityClientTlsPolicyClientCertificate {
 }
 
 /// The [NetworkSecurityClientTlsPolicyClientCertificate.grpcEndpoint] choice: sets `grpc_endpoint`.
-final class NetworkSecurityClientTlsPolicyClientCertificateGrpcEndpointChoice
+final class NetworkSecurityClientTlsPolicyClientCertificateGrpcEndpoint
     extends NetworkSecurityClientTlsPolicyClientCertificate {
-  const NetworkSecurityClientTlsPolicyClientCertificateGrpcEndpointChoice(
+  const NetworkSecurityClientTlsPolicyClientCertificateGrpcEndpoint(
     this.grpcEndpoint,
   );
 
-  final NetworkSecurityClientTlsPolicyClientCertificateGrpcEndpoint
-  grpcEndpoint;
+  final NetworkSecurityClientTlsPolicyGrpcEndpoint grpcEndpoint;
 
   @override
   String get blockKey => 'grpc_endpoint';
@@ -55,7 +54,7 @@ final class NetworkSecurityClientTlsPolicyClientCertificateProviderInstance
     this.certificateProviderInstance,
   );
 
-  final NetworkSecurityClientTlsPolicyClientCertificateCertificateProviderInstance
+  final NetworkSecurityClientTlsPolicyCertificateProviderInstance
   certificateProviderInstance;
 
   @override
@@ -69,9 +68,10 @@ final class NetworkSecurityClientTlsPolicyClientCertificateProviderInstance
 
 /// Typed helper for the `client_certificate.certificate_provider_instance` block of
 /// `google_network_security_client_tls_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class NetworkSecurityClientTlsPolicyClientCertificateCertificateProviderInstance {
-  const NetworkSecurityClientTlsPolicyClientCertificateCertificateProviderInstance({
+final class NetworkSecurityClientTlsPolicyCertificateProviderInstance {
+  const NetworkSecurityClientTlsPolicyCertificateProviderInstance({
     required this.pluginInstance,
   });
 
@@ -84,11 +84,10 @@ final class NetworkSecurityClientTlsPolicyClientCertificateCertificateProviderIn
 
 /// Typed helper for the `client_certificate.grpc_endpoint` block of
 /// `google_network_security_client_tls_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class NetworkSecurityClientTlsPolicyClientCertificateGrpcEndpoint {
-  const NetworkSecurityClientTlsPolicyClientCertificateGrpcEndpoint({
-    required this.targetUri,
-  });
+final class NetworkSecurityClientTlsPolicyGrpcEndpoint {
+  const NetworkSecurityClientTlsPolicyGrpcEndpoint({required this.targetUri});
 
   final TfArg<String> targetUri;
 
@@ -104,14 +103,14 @@ sealed class NetworkSecurityClientTlsPolicyServerValidationCa {
 
   /// Sets `grpc_endpoint`.
   const factory NetworkSecurityClientTlsPolicyServerValidationCa.grpcEndpoint(
-    NetworkSecurityClientTlsPolicyServerValidationCaGrpcEndpoint grpcEndpoint,
-  ) = NetworkSecurityClientTlsPolicyServerValidationCaGrpcEndpointChoice;
+    NetworkSecurityClientTlsPolicyGrpcEndpoint grpcEndpoint,
+  ) = NetworkSecurityClientTlsPolicyServerValidationCaGrpcEndpoint;
 
   /// Sets `certificate_provider_instance`.
   const factory NetworkSecurityClientTlsPolicyServerValidationCa.certificateProviderInstance(
-    NetworkSecurityClientTlsPolicyServerValidationCaCertificateProviderInstance
+    NetworkSecurityClientTlsPolicyCertificateProviderInstance
     certificateProviderInstance,
-  ) = NetworkSecurityClientTlsPolicyServerValidationCaCertificateProviderInstanceChoice;
+  ) = NetworkSecurityClientTlsPolicyServerValidationCaCertificateProviderInstance;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -120,14 +119,13 @@ sealed class NetworkSecurityClientTlsPolicyServerValidationCa {
 }
 
 /// The [NetworkSecurityClientTlsPolicyServerValidationCa.grpcEndpoint] choice: sets `grpc_endpoint`.
-final class NetworkSecurityClientTlsPolicyServerValidationCaGrpcEndpointChoice
+final class NetworkSecurityClientTlsPolicyServerValidationCaGrpcEndpoint
     extends NetworkSecurityClientTlsPolicyServerValidationCa {
-  const NetworkSecurityClientTlsPolicyServerValidationCaGrpcEndpointChoice(
+  const NetworkSecurityClientTlsPolicyServerValidationCaGrpcEndpoint(
     this.grpcEndpoint,
   );
 
-  final NetworkSecurityClientTlsPolicyServerValidationCaGrpcEndpoint
-  grpcEndpoint;
+  final NetworkSecurityClientTlsPolicyGrpcEndpoint grpcEndpoint;
 
   @override
   String get blockKey => 'grpc_endpoint';
@@ -137,13 +135,13 @@ final class NetworkSecurityClientTlsPolicyServerValidationCaGrpcEndpointChoice
 }
 
 /// The [NetworkSecurityClientTlsPolicyServerValidationCa.certificateProviderInstance] choice: sets `certificate_provider_instance`.
-final class NetworkSecurityClientTlsPolicyServerValidationCaCertificateProviderInstanceChoice
+final class NetworkSecurityClientTlsPolicyServerValidationCaCertificateProviderInstance
     extends NetworkSecurityClientTlsPolicyServerValidationCa {
-  const NetworkSecurityClientTlsPolicyServerValidationCaCertificateProviderInstanceChoice(
+  const NetworkSecurityClientTlsPolicyServerValidationCaCertificateProviderInstance(
     this.certificateProviderInstance,
   );
 
-  final NetworkSecurityClientTlsPolicyServerValidationCaCertificateProviderInstance
+  final NetworkSecurityClientTlsPolicyCertificateProviderInstance
   certificateProviderInstance;
 
   @override
@@ -153,34 +151,6 @@ final class NetworkSecurityClientTlsPolicyServerValidationCaCertificateProviderI
   Map<String, Object?> encode() => {
     'certificate_provider_instance': certificateProviderInstance.encode(),
   };
-}
-
-/// Typed helper for the `server_validation_ca.certificate_provider_instance` block of
-/// `google_network_security_client_tls_policy` (derived from provider schema).
-@immutable
-final class NetworkSecurityClientTlsPolicyServerValidationCaCertificateProviderInstance {
-  const NetworkSecurityClientTlsPolicyServerValidationCaCertificateProviderInstance({
-    required this.pluginInstance,
-  });
-
-  final TfArg<String> pluginInstance;
-
-  Map<String, Object?> encode() => {
-    'plugin_instance': pluginInstance.toTfJson(),
-  };
-}
-
-/// Typed helper for the `server_validation_ca.grpc_endpoint` block of
-/// `google_network_security_client_tls_policy` (derived from provider schema).
-@immutable
-final class NetworkSecurityClientTlsPolicyServerValidationCaGrpcEndpoint {
-  const NetworkSecurityClientTlsPolicyServerValidationCaGrpcEndpoint({
-    required this.targetUri,
-  });
-
-  final TfArg<String> targetUri;
-
-  Map<String, Object?> encode() => {'target_uri': targetUri.toTfJson()};
 }
 
 /// Factory wrapper for `google_network_security_client_tls_policy`.

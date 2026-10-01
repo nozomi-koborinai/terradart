@@ -86,7 +86,7 @@ final class HyperdriveConfigOrigin {
 
   final TfArg<num>? port;
 
-  final TfArg<HyperdriveConfigOriginScheme> scheme;
+  final TfArg<HyperdriveConfigScheme> scheme;
 
   final TfArg<String>? serviceId;
 
@@ -106,12 +106,12 @@ final class HyperdriveConfigOrigin {
 }
 
 /// `scheme` — derived from the provider schema description.
-enum HyperdriveConfigOriginScheme implements TerraformEnum {
+enum HyperdriveConfigScheme implements TerraformEnum {
   postgres('postgres'),
   postgresql('postgresql'),
   mysql('mysql');
 
-  const HyperdriveConfigOriginScheme(this.terraformValue);
+  const HyperdriveConfigScheme(this.terraformValue);
   @override
   final String terraformValue;
 }

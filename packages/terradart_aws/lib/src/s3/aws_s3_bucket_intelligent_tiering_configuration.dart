@@ -45,8 +45,7 @@ final class S3BucketIntelligentTieringConfigurationTiering {
     required this.days,
   });
 
-  final TfArg<S3BucketIntelligentTieringConfigurationTieringAccessTier>
-  accessTier;
+  final TfArg<S3BucketIntelligentTieringConfigurationAccessTier> accessTier;
 
   final TfArg<num> days;
 
@@ -57,14 +56,12 @@ final class S3BucketIntelligentTieringConfigurationTiering {
 }
 
 /// `access_tier` — derived from the provider schema description.
-enum S3BucketIntelligentTieringConfigurationTieringAccessTier
+enum S3BucketIntelligentTieringConfigurationAccessTier
     implements TerraformEnum {
   archiveAccess('ARCHIVE_ACCESS'),
   deepArchiveAccess('DEEP_ARCHIVE_ACCESS');
 
-  const S3BucketIntelligentTieringConfigurationTieringAccessTier(
-    this.terraformValue,
-  );
+  const S3BucketIntelligentTieringConfigurationAccessTier(this.terraformValue);
   @override
   final String terraformValue;
 }

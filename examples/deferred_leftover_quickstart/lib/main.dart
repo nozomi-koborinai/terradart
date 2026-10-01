@@ -133,11 +133,10 @@ final class DeferredLeftoverStack extends Stack {
         deletionPolicy: .literal('DELETE'),
         feedId: .literal('terradart-leftover'),
         folder: .literal('folders/123456789'),
-        feedOutputConfig: CloudAssetFolderFeedFeedOutputConfig(
-          pubsubDestination:
-              CloudAssetFolderFeedFeedOutputConfigPubsubDestination(
-                topic: .literal('terradart-leftover'),
-              ),
+        feedOutputConfig: CloudAssetFolderFeedOutputConfig(
+          pubsubDestination: CloudAssetFolderFeedPubsubDestination(
+            topic: .literal('terradart-leftover'),
+          ),
         ),
       ),
     );
@@ -149,11 +148,10 @@ final class DeferredLeftoverStack extends Stack {
         deletionPolicy: .literal('DELETE'),
         feedId: .literal('terradart-leftover'),
         orgId: .literal('organizations/123456789'),
-        feedOutputConfig: CloudAssetOrganizationFeedFeedOutputConfig(
-          pubsubDestination:
-              CloudAssetOrganizationFeedFeedOutputConfigPubsubDestination(
-                topic: .literal('terradart-leftover'),
-              ),
+        feedOutputConfig: CloudAssetOrganizationFeedOutputConfig(
+          pubsubDestination: CloudAssetOrganizationFeedPubsubDestination(
+            topic: .literal('terradart-leftover'),
+          ),
         ),
       ),
     );
@@ -164,9 +162,7 @@ final class DeferredLeftoverStack extends Stack {
         deletionPolicy: .literal('DELETE'),
         labels: .literal({'terradart': 'leftover'}),
         parent: .literal('organizations/123456789'),
-        groupKey: CloudIdentityGroupGroupKey(
-          id: .literal('terradart-leftover'),
-        ),
+        groupKey: CloudIdentityGroupKey(id: .literal('terradart-leftover')),
       ),
     );
 
@@ -221,7 +217,7 @@ final class DeferredLeftoverStack extends Stack {
           CloudSecurityComplianceFrameworkDeploymentCloudControlMetadata(
             enforcementMode: .literal('terradart-leftover'),
             cloudControlDetails:
-                CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudControlDetails(
+                CloudSecurityComplianceFrameworkDeploymentCloudControlDetails(
                   majorRevisionId: .literal('terradart-leftover'),
                   name: .literal('terradart-leftover'),
                 ),
@@ -261,30 +257,26 @@ final class DeferredLeftoverStack extends Stack {
         location: .literal('us-central1'),
         contactSettings: ClouddomainsRegistrationContactSettings(
           privacy: .literal('REDACTED_CONTACT_DATA'),
-          adminContact: ClouddomainsRegistrationContactSettingsAdminContact(
+          adminContact: ClouddomainsRegistrationAdminContact(
             email: .literal('leftover@example.com'),
             phoneNumber: .literal('+15555550100'),
-            postalAddress:
-                ClouddomainsRegistrationContactSettingsAdminContactPostalAddress(
-                  regionCode: .literal('US'),
-                ),
+            postalAddress: ClouddomainsRegistrationPostalAddress(
+              regionCode: .literal('US'),
+            ),
           ),
-          registrantContact:
-              ClouddomainsRegistrationContactSettingsRegistrantContact(
-                email: .literal('leftover@example.com'),
-                phoneNumber: .literal('+15555550100'),
-                postalAddress:
-                    ClouddomainsRegistrationContactSettingsRegistrantContactPostalAddress(
-                      regionCode: .literal('US'),
-                    ),
-              ),
-          technicalContact: ClouddomainsRegistrationContactSettingsTechnicalContact(
+          registrantContact: ClouddomainsRegistrationRegistrantContact(
             email: .literal('leftover@example.com'),
             phoneNumber: .literal('+15555550100'),
-            postalAddress:
-                ClouddomainsRegistrationContactSettingsTechnicalContactPostalAddress(
-                  regionCode: .literal('US'),
-                ),
+            postalAddress: ClouddomainsRegistrationPostalAddress(
+              regionCode: .literal('US'),
+            ),
+          ),
+          technicalContact: ClouddomainsRegistrationTechnicalContact(
+            email: .literal('leftover@example.com'),
+            phoneNumber: .literal('+15555550100'),
+            postalAddress: ClouddomainsRegistrationPostalAddress(
+              regionCode: .literal('US'),
+            ),
           ),
         ),
         yearlyPrice: const ClouddomainsRegistrationYearlyPrice(),
@@ -367,7 +359,7 @@ final class DeferredLeftoverStack extends Stack {
         serviceinstance: .literal('terradart-leftover'),
         sparkApplicationId: .literal('terradart-leftover'),
         workload: const .sparkApplicationConfig(
-          DataprocGdcSparkApplicationSparkApplicationConfig(),
+          DataprocGdcSparkApplicationConfig(),
         ),
       ),
     );
@@ -415,18 +407,14 @@ final class DeferredLeftoverStack extends Stack {
         destinationConfig: DatastreamStreamDestinationConfig(
           destinationConnectionProfile: .literal('terradart-leftover'),
           system: const .gcsDestinationConfig(
-            DatastreamStreamDestinationConfigGcsDestinationConfig(
-              fileFormat: .avroFileFormat(
-                DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormat(),
-              ),
+            DatastreamStreamGcsDestinationConfig(
+              fileFormat: .avroFileFormat(DatastreamStreamAvroFileFormat()),
             ),
           ),
         ),
         sourceConfig: DatastreamStreamSourceConfig(
           sourceConnectionProfile: .literal('terradart-leftover'),
-          system: const .mysqlSourceConfig(
-            DatastreamStreamSourceConfigMysqlSourceConfig(),
-          ),
+          system: const .mysqlSourceConfig(DatastreamStreamMysqlSourceConfig()),
         ),
         backfill: const .backfillNone(DatastreamStreamBackfillNone()),
       ),
@@ -438,7 +426,7 @@ final class DeferredLeftoverStack extends Stack {
         deletionPolicy: .literal('DELETE'),
         name: .literal('terradart-leftover'),
         target: DeploymentManagerDeploymentTarget(
-          config: DeploymentManagerDeploymentTargetConfig(
+          config: DeploymentManagerDeploymentConfig(
             content: .literal('terradart-leftover'),
           ),
         ),
@@ -687,7 +675,7 @@ final class DeferredLeftoverStack extends Stack {
           idpEntityId: .literal('terradart-leftover'),
           ssoUrl: .literal('terradart-leftover'),
           idpCertificates: [
-            const IdentityPlatformInboundSamlConfigIdpConfigIdpCertificates(),
+            const IdentityPlatformInboundSamlConfigIdpCertificates(),
           ],
         ),
         spConfig: const IdentityPlatformInboundSamlConfigSpConfig(),
@@ -716,7 +704,7 @@ final class DeferredLeftoverStack extends Stack {
           idpEntityId: .literal('terradart-leftover'),
           ssoUrl: .literal('terradart-leftover'),
           idpCertificates: [
-            const IdentityPlatformTenantInboundSamlConfigIdpConfigIdpCertificates(),
+            const IdentityPlatformTenantInboundSamlConfigIdpCertificates(),
           ],
         ),
         spConfig: IdentityPlatformTenantInboundSamlConfigSpConfig(
@@ -1000,10 +988,9 @@ final class DeferredLeftoverStack extends Stack {
           SecurityposturePosturePolicySets(
             policySetId: .literal('terradart-leftover'),
             policies: [
-              SecurityposturePosturePolicySetsPolicies(
+              SecurityposturePosturePolicies(
                 policyId: .literal('terradart-leftover'),
-                constraint:
-                    const SecurityposturePosturePolicySetsPoliciesConstraint(),
+                constraint: const SecurityposturePostureConstraint(),
               ),
             ],
           ),
@@ -1157,7 +1144,7 @@ final class DeferredLeftoverStack extends Stack {
         storageDescriptor: BiglakeHiveTableStorageDescriptor(
           locationUri: .literal('gs://terradart-leftover'),
           columns: [
-            BiglakeHiveTableStorageDescriptorColumns(
+            BiglakeHiveTableColumns(
               name: .literal('id'),
               type: .literal('string'),
             ),
@@ -1228,10 +1215,10 @@ final class DeferredLeftoverStack extends Stack {
         folder: .literal('123456789'),
         details: IamFolderAccessPolicyDetails(
           rules: [
-            IamFolderAccessPolicyDetailsRules(
+            IamFolderAccessPolicyRules(
               effect: .literal(.deny),
               principals: .literal(['principalSet://goog/public:all']),
-              operation: IamFolderAccessPolicyDetailsRulesOperation(
+              operation: IamFolderAccessPolicyOperation(
                 permissions: .literal(['storage.googleapis.com/objects.get']),
               ),
             ),
@@ -1247,10 +1234,10 @@ final class DeferredLeftoverStack extends Stack {
         organization: .literal('123456789'),
         details: IamOrganizationAccessPolicyDetails(
           rules: [
-            IamOrganizationAccessPolicyDetailsRules(
+            IamOrganizationAccessPolicyRules(
               effect: .literal(.deny),
               principals: .literal(['principalSet://goog/public:all']),
-              operation: IamOrganizationAccessPolicyDetailsRulesOperation(
+              operation: IamOrganizationAccessPolicyOperation(
                 permissions: .literal(['storage.googleapis.com/objects.get']),
               ),
             ),
@@ -1354,9 +1341,7 @@ final class DeferredLeftoverStack extends Stack {
         region: .literal('us-central1'),
         backend: .vectorDbConfig(
           VertexAiRagCorpusVectorDbConfig(
-            backend: .ragManagedDb(
-              .knn(VertexAiRagCorpusVectorDbConfigRagManagedDbKnn()),
-            ),
+            backend: .ragManagedDb(.knn(VertexAiRagCorpusKnn())),
           ),
         ),
       ),

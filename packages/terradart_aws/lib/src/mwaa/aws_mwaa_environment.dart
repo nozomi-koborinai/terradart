@@ -58,15 +58,15 @@ final class MwaaEnvironmentLoggingConfiguration {
     this.workerLogs,
   });
 
-  final MwaaEnvironmentLoggingConfigurationDagProcessingLogs? dagProcessingLogs;
+  final MwaaEnvironmentDagProcessingLogs? dagProcessingLogs;
 
-  final MwaaEnvironmentLoggingConfigurationSchedulerLogs? schedulerLogs;
+  final MwaaEnvironmentSchedulerLogs? schedulerLogs;
 
-  final MwaaEnvironmentLoggingConfigurationTaskLogs? taskLogs;
+  final MwaaEnvironmentTaskLogs? taskLogs;
 
-  final MwaaEnvironmentLoggingConfigurationWebserverLogs? webserverLogs;
+  final MwaaEnvironmentWebserverLogs? webserverLogs;
 
-  final MwaaEnvironmentLoggingConfigurationWorkerLogs? workerLogs;
+  final MwaaEnvironmentWorkerLogs? workerLogs;
 
   Map<String, Object?> encode() => {
     'dag_processing_logs': ?dagProcessingLogs?.encode(),
@@ -80,16 +80,12 @@ final class MwaaEnvironmentLoggingConfiguration {
 /// Typed helper for the `logging_configuration.dag_processing_logs` block of
 /// `aws_mwaa_environment` (derived from provider schema).
 @immutable
-final class MwaaEnvironmentLoggingConfigurationDagProcessingLogs {
-  const MwaaEnvironmentLoggingConfigurationDagProcessingLogs({
-    this.enabled,
-    this.logLevel,
-  });
+final class MwaaEnvironmentDagProcessingLogs {
+  const MwaaEnvironmentDagProcessingLogs({this.enabled, this.logLevel});
 
   final TfArg<bool>? enabled;
 
-  final TfArg<MwaaEnvironmentLoggingConfigurationDagProcessingLogsLogLevel>?
-  logLevel;
+  final TfArg<MwaaEnvironmentLogLevel>? logLevel;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
@@ -98,17 +94,14 @@ final class MwaaEnvironmentLoggingConfigurationDagProcessingLogs {
 }
 
 /// `log_level` — derived from the provider schema description.
-enum MwaaEnvironmentLoggingConfigurationDagProcessingLogsLogLevel
-    implements TerraformEnum {
+enum MwaaEnvironmentLogLevel implements TerraformEnum {
   critical('CRITICAL'),
   error('ERROR'),
   warning('WARNING'),
   info('INFO'),
   debug('DEBUG');
 
-  const MwaaEnvironmentLoggingConfigurationDagProcessingLogsLogLevel(
-    this.terraformValue,
-  );
+  const MwaaEnvironmentLogLevel(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -116,143 +109,65 @@ enum MwaaEnvironmentLoggingConfigurationDagProcessingLogsLogLevel
 /// Typed helper for the `logging_configuration.scheduler_logs` block of
 /// `aws_mwaa_environment` (derived from provider schema).
 @immutable
-final class MwaaEnvironmentLoggingConfigurationSchedulerLogs {
-  const MwaaEnvironmentLoggingConfigurationSchedulerLogs({
-    this.enabled,
-    this.logLevel,
-  });
+final class MwaaEnvironmentSchedulerLogs {
+  const MwaaEnvironmentSchedulerLogs({this.enabled, this.logLevel});
 
   final TfArg<bool>? enabled;
 
-  final TfArg<MwaaEnvironmentLoggingConfigurationSchedulerLogsLogLevel>?
-  logLevel;
+  final TfArg<MwaaEnvironmentLogLevel>? logLevel;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'log_level': ?logLevel?.toTfJson(),
   };
-}
-
-/// `log_level` — derived from the provider schema description.
-enum MwaaEnvironmentLoggingConfigurationSchedulerLogsLogLevel
-    implements TerraformEnum {
-  critical('CRITICAL'),
-  error('ERROR'),
-  warning('WARNING'),
-  info('INFO'),
-  debug('DEBUG');
-
-  const MwaaEnvironmentLoggingConfigurationSchedulerLogsLogLevel(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `logging_configuration.task_logs` block of
 /// `aws_mwaa_environment` (derived from provider schema).
 @immutable
-final class MwaaEnvironmentLoggingConfigurationTaskLogs {
-  const MwaaEnvironmentLoggingConfigurationTaskLogs({
-    this.enabled,
-    this.logLevel,
-  });
+final class MwaaEnvironmentTaskLogs {
+  const MwaaEnvironmentTaskLogs({this.enabled, this.logLevel});
 
   final TfArg<bool>? enabled;
 
-  final TfArg<MwaaEnvironmentLoggingConfigurationTaskLogsLogLevel>? logLevel;
+  final TfArg<MwaaEnvironmentLogLevel>? logLevel;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'log_level': ?logLevel?.toTfJson(),
   };
-}
-
-/// `log_level` — derived from the provider schema description.
-enum MwaaEnvironmentLoggingConfigurationTaskLogsLogLevel
-    implements TerraformEnum {
-  critical('CRITICAL'),
-  error('ERROR'),
-  warning('WARNING'),
-  info('INFO'),
-  debug('DEBUG');
-
-  const MwaaEnvironmentLoggingConfigurationTaskLogsLogLevel(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `logging_configuration.webserver_logs` block of
 /// `aws_mwaa_environment` (derived from provider schema).
 @immutable
-final class MwaaEnvironmentLoggingConfigurationWebserverLogs {
-  const MwaaEnvironmentLoggingConfigurationWebserverLogs({
-    this.enabled,
-    this.logLevel,
-  });
+final class MwaaEnvironmentWebserverLogs {
+  const MwaaEnvironmentWebserverLogs({this.enabled, this.logLevel});
 
   final TfArg<bool>? enabled;
 
-  final TfArg<MwaaEnvironmentLoggingConfigurationWebserverLogsLogLevel>?
-  logLevel;
+  final TfArg<MwaaEnvironmentLogLevel>? logLevel;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'log_level': ?logLevel?.toTfJson(),
   };
-}
-
-/// `log_level` — derived from the provider schema description.
-enum MwaaEnvironmentLoggingConfigurationWebserverLogsLogLevel
-    implements TerraformEnum {
-  critical('CRITICAL'),
-  error('ERROR'),
-  warning('WARNING'),
-  info('INFO'),
-  debug('DEBUG');
-
-  const MwaaEnvironmentLoggingConfigurationWebserverLogsLogLevel(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `logging_configuration.worker_logs` block of
 /// `aws_mwaa_environment` (derived from provider schema).
 @immutable
-final class MwaaEnvironmentLoggingConfigurationWorkerLogs {
-  const MwaaEnvironmentLoggingConfigurationWorkerLogs({
-    this.enabled,
-    this.logLevel,
-  });
+final class MwaaEnvironmentWorkerLogs {
+  const MwaaEnvironmentWorkerLogs({this.enabled, this.logLevel});
 
   final TfArg<bool>? enabled;
 
-  final TfArg<MwaaEnvironmentLoggingConfigurationWorkerLogsLogLevel>? logLevel;
+  final TfArg<MwaaEnvironmentLogLevel>? logLevel;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'log_level': ?logLevel?.toTfJson(),
   };
-}
-
-/// `log_level` — derived from the provider schema description.
-enum MwaaEnvironmentLoggingConfigurationWorkerLogsLogLevel
-    implements TerraformEnum {
-  critical('CRITICAL'),
-  error('ERROR'),
-  warning('WARNING'),
-  info('INFO'),
-  debug('DEBUG');
-
-  const MwaaEnvironmentLoggingConfigurationWorkerLogsLogLevel(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `network_configuration` block of

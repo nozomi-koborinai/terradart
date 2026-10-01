@@ -69,21 +69,21 @@ export 'src/iap/google_iap_location_web_iam_policy.dart'
 export 'src/iap/google_iap_settings.dart'
     show
         GoogleIapSettings,
+        IapSettingsAccessDeniedPageSettings,
         IapSettingsAccessSettings,
-        IapSettingsAccessSettingsAllowedDomainsSettings,
-        IapSettingsAccessSettingsCorsSettings,
-        IapSettingsAccessSettingsGcipSettings,
-        IapSettingsAccessSettingsOauthSettings,
-        IapSettingsAccessSettingsReauthSettings,
-        IapSettingsAccessSettingsReauthSettingsMethod,
-        IapSettingsAccessSettingsReauthSettingsPolicyType,
-        IapSettingsAccessSettingsWorkforceIdentitySettings,
-        IapSettingsAccessSettingsWorkforceIdentitySettingsOauth2,
+        IapSettingsAllowedDomainsSettings,
         IapSettingsApplicationSettings,
-        IapSettingsApplicationSettingsAccessDeniedPageSettings,
-        IapSettingsApplicationSettingsAttributePropagationSettings,
-        IapSettingsApplicationSettingsAttributePropagationSettingsOutputCredentials,
-        IapSettingsApplicationSettingsCsmSettings;
+        IapSettingsAttributePropagationSettings,
+        IapSettingsCorsSettings,
+        IapSettingsCsmSettings,
+        IapSettingsGcipSettings,
+        IapSettingsMethod,
+        IapSettingsOauth2,
+        IapSettingsOauthSettings,
+        IapSettingsOutputCredentials,
+        IapSettingsPolicyType,
+        IapSettingsReauthSettings,
+        IapSettingsWorkforceIdentitySettings;
 export 'src/iap/google_iap_tunnel_dest_group.dart'
     show GoogleIapTunnelDestGroup;
 export 'src/iap/google_iap_tunnel_dest_group_iam_binding.dart'

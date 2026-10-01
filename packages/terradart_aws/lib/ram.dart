@@ -9,7 +9,7 @@ export 'src/ram/aws_ram_principal_association.dart'
 export 'src/ram/aws_ram_resource_association.dart'
     show AwsRamResourceAssociation;
 export 'src/ram/aws_ram_resource_share.dart'
-    show AwsRamResourceShare, RamResourceShareResourceShareConfiguration;
+    show AwsRamResourceShare, RamResourceShareConfiguration;
 export 'src/ram/aws_ram_resource_share_accepter.dart'
     show AwsRamResourceShareAccepter;
 export 'src/ram/aws_ram_resource_share_associations_exclusive.dart'

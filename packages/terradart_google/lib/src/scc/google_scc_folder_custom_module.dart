@@ -34,13 +34,13 @@ final class SccFolderCustomModuleCustomConfig {
 
   final TfArg<String> recommendation;
 
-  final TfArg<SccFolderCustomModuleCustomConfigSeverity> severity;
+  final TfArg<SccFolderCustomModuleSeverity> severity;
 
-  final SccFolderCustomModuleCustomConfigCustomOutput? customOutput;
+  final SccFolderCustomModuleCustomOutput? customOutput;
 
-  final SccFolderCustomModuleCustomConfigPredicate predicate;
+  final SccFolderCustomModulePredicate predicate;
 
-  final SccFolderCustomModuleCustomConfigResourceSelector resourceSelector;
+  final SccFolderCustomModuleResourceSelector resourceSelector;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -53,13 +53,13 @@ final class SccFolderCustomModuleCustomConfig {
 }
 
 /// `severity` — derived from the provider schema description.
-enum SccFolderCustomModuleCustomConfigSeverity implements TerraformEnum {
+enum SccFolderCustomModuleSeverity implements TerraformEnum {
   critical('CRITICAL'),
   high('HIGH'),
   medium('MEDIUM'),
   low('LOW');
 
-  const SccFolderCustomModuleCustomConfigSeverity(this.terraformValue);
+  const SccFolderCustomModuleSeverity(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -67,11 +67,10 @@ enum SccFolderCustomModuleCustomConfigSeverity implements TerraformEnum {
 /// Typed helper for the `custom_config.custom_output` block of
 /// `google_scc_folder_custom_module` (derived from provider schema).
 @immutable
-final class SccFolderCustomModuleCustomConfigCustomOutput {
-  const SccFolderCustomModuleCustomConfigCustomOutput({this.properties});
+final class SccFolderCustomModuleCustomOutput {
+  const SccFolderCustomModuleCustomOutput({this.properties});
 
-  final List<SccFolderCustomModuleCustomConfigCustomOutputProperties>?
-  properties;
+  final List<SccFolderCustomModuleProperties>? properties;
 
   Map<String, Object?> encode() => {
     if (properties != null)
@@ -82,16 +81,12 @@ final class SccFolderCustomModuleCustomConfigCustomOutput {
 /// Typed helper for the `custom_config.custom_output.properties` block of
 /// `google_scc_folder_custom_module` (derived from provider schema).
 @immutable
-final class SccFolderCustomModuleCustomConfigCustomOutputProperties {
-  const SccFolderCustomModuleCustomConfigCustomOutputProperties({
-    this.name,
-    this.valueExpression,
-  });
+final class SccFolderCustomModuleProperties {
+  const SccFolderCustomModuleProperties({this.name, this.valueExpression});
 
   final TfArg<String>? name;
 
-  final SccFolderCustomModuleCustomConfigCustomOutputPropertiesValueExpression?
-  valueExpression;
+  final SccFolderCustomModuleValueExpression? valueExpression;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
@@ -102,8 +97,8 @@ final class SccFolderCustomModuleCustomConfigCustomOutputProperties {
 /// Typed helper for the `custom_config.custom_output.properties.value_expression` block of
 /// `google_scc_folder_custom_module` (derived from provider schema).
 @immutable
-final class SccFolderCustomModuleCustomConfigCustomOutputPropertiesValueExpression {
-  const SccFolderCustomModuleCustomConfigCustomOutputPropertiesValueExpression({
+final class SccFolderCustomModuleValueExpression {
+  const SccFolderCustomModuleValueExpression({
     this.description,
     required this.expression,
     this.location,
@@ -129,8 +124,8 @@ final class SccFolderCustomModuleCustomConfigCustomOutputPropertiesValueExpressi
 /// Typed helper for the `custom_config.predicate` block of
 /// `google_scc_folder_custom_module` (derived from provider schema).
 @immutable
-final class SccFolderCustomModuleCustomConfigPredicate {
-  const SccFolderCustomModuleCustomConfigPredicate({
+final class SccFolderCustomModulePredicate {
+  const SccFolderCustomModulePredicate({
     this.description,
     required this.expression,
     this.location,
@@ -156,10 +151,8 @@ final class SccFolderCustomModuleCustomConfigPredicate {
 /// Typed helper for the `custom_config.resource_selector` block of
 /// `google_scc_folder_custom_module` (derived from provider schema).
 @immutable
-final class SccFolderCustomModuleCustomConfigResourceSelector {
-  const SccFolderCustomModuleCustomConfigResourceSelector({
-    required this.resourceTypes,
-  });
+final class SccFolderCustomModuleResourceSelector {
+  const SccFolderCustomModuleResourceSelector({required this.resourceTypes});
 
   final TfArg<List<String>> resourceTypes;
 

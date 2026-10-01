@@ -15,8 +15,8 @@ const Set<String> _awsBedrockagentcoreBrowserSensitive = <String>{};
 /// Typed helper for the `browser_signing` block of
 /// `aws_bedrockagentcore_browser` (derived from provider schema).
 @immutable
-final class BedrockagentcoreBrowserBrowserSigning {
-  const BedrockagentcoreBrowserBrowserSigning({required this.enabled});
+final class BedrockagentcoreBrowserSigning {
+  const BedrockagentcoreBrowserSigning({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -42,8 +42,7 @@ final class BedrockagentcoreBrowserCertificate {
 final class BedrockagentcoreBrowserCertificateLocation {
   const BedrockagentcoreBrowserCertificateLocation({this.secretsManager});
 
-  final List<BedrockagentcoreBrowserCertificateLocationSecretsManager>?
-  secretsManager;
+  final List<BedrockagentcoreBrowserSecretsManager>? secretsManager;
 
   Map<String, Object?> encode() => {
     if (secretsManager != null)
@@ -54,10 +53,8 @@ final class BedrockagentcoreBrowserCertificateLocation {
 /// Typed helper for the `certificate.location.secrets_manager` block of
 /// `aws_bedrockagentcore_browser` (derived from provider schema).
 @immutable
-final class BedrockagentcoreBrowserCertificateLocationSecretsManager {
-  const BedrockagentcoreBrowserCertificateLocationSecretsManager({
-    required this.secretArn,
-  });
+final class BedrockagentcoreBrowserSecretsManager {
+  const BedrockagentcoreBrowserSecretsManager({required this.secretArn});
 
   final TfArg<String> secretArn;
 
@@ -70,7 +67,7 @@ final class BedrockagentcoreBrowserCertificateLocationSecretsManager {
 final class BedrockagentcoreBrowserEnterprisePolicy {
   const BedrockagentcoreBrowserEnterprisePolicy({this.type, this.location});
 
-  final TfArg<BedrockagentcoreBrowserEnterprisePolicyType>? type;
+  final TfArg<BedrockagentcoreBrowserType>? type;
 
   final List<BedrockagentcoreBrowserEnterprisePolicyLocation>? location;
 
@@ -81,11 +78,11 @@ final class BedrockagentcoreBrowserEnterprisePolicy {
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockagentcoreBrowserEnterprisePolicyType implements TerraformEnum {
+enum BedrockagentcoreBrowserType implements TerraformEnum {
   managed('MANAGED'),
   recommended('RECOMMENDED');
 
-  const BedrockagentcoreBrowserEnterprisePolicyType(this.terraformValue);
+  const BedrockagentcoreBrowserType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -96,7 +93,7 @@ enum BedrockagentcoreBrowserEnterprisePolicyType implements TerraformEnum {
 final class BedrockagentcoreBrowserEnterprisePolicyLocation {
   const BedrockagentcoreBrowserEnterprisePolicyLocation({this.s3});
 
-  final List<BedrockagentcoreBrowserEnterprisePolicyLocationS3>? s3;
+  final List<BedrockagentcoreBrowserS3>? s3;
 
   Map<String, Object?> encode() => {
     if (s3 != null) 's3': [for (final e in s3!) e.encode()],
@@ -106,8 +103,8 @@ final class BedrockagentcoreBrowserEnterprisePolicyLocation {
 /// Typed helper for the `enterprise_policy.location.s3` block of
 /// `aws_bedrockagentcore_browser` (derived from provider schema).
 @immutable
-final class BedrockagentcoreBrowserEnterprisePolicyLocationS3 {
-  const BedrockagentcoreBrowserEnterprisePolicyLocationS3({
+final class BedrockagentcoreBrowserS3 {
+  const BedrockagentcoreBrowserS3({
     required this.bucket,
     required this.prefix,
     this.versionId,
@@ -135,10 +132,9 @@ final class BedrockagentcoreBrowserNetworkConfiguration {
     this.vpcConfig,
   });
 
-  final TfArg<BedrockagentcoreBrowserNetworkConfigurationNetworkMode>
-  networkMode;
+  final TfArg<BedrockagentcoreBrowserNetworkMode> networkMode;
 
-  final List<BedrockagentcoreBrowserNetworkConfigurationVpcConfig>? vpcConfig;
+  final List<BedrockagentcoreBrowserVpcConfig>? vpcConfig;
 
   Map<String, Object?> encode() => {
     'network_mode': networkMode.toTfJson(),
@@ -148,14 +144,11 @@ final class BedrockagentcoreBrowserNetworkConfiguration {
 }
 
 /// `network_mode` — derived from the provider schema description.
-enum BedrockagentcoreBrowserNetworkConfigurationNetworkMode
-    implements TerraformEnum {
+enum BedrockagentcoreBrowserNetworkMode implements TerraformEnum {
   public('PUBLIC'),
   vpc('VPC');
 
-  const BedrockagentcoreBrowserNetworkConfigurationNetworkMode(
-    this.terraformValue,
-  );
+  const BedrockagentcoreBrowserNetworkMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -163,8 +156,8 @@ enum BedrockagentcoreBrowserNetworkConfigurationNetworkMode
 /// Typed helper for the `network_configuration.vpc_config` block of
 /// `aws_bedrockagentcore_browser` (derived from provider schema).
 @immutable
-final class BedrockagentcoreBrowserNetworkConfigurationVpcConfig {
-  const BedrockagentcoreBrowserNetworkConfigurationVpcConfig({
+final class BedrockagentcoreBrowserVpcConfig {
+  const BedrockagentcoreBrowserVpcConfig({
     required this.securityGroups,
     required this.subnets,
   });
@@ -187,7 +180,7 @@ final class BedrockagentcoreBrowserRecording {
 
   final TfArg<bool>? enabled;
 
-  final List<BedrockagentcoreBrowserRecordingS3Location>? s3Location;
+  final List<BedrockagentcoreBrowserS3Location>? s3Location;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
@@ -199,8 +192,8 @@ final class BedrockagentcoreBrowserRecording {
 /// Typed helper for the `recording.s3_location` block of
 /// `aws_bedrockagentcore_browser` (derived from provider schema).
 @immutable
-final class BedrockagentcoreBrowserRecordingS3Location {
-  const BedrockagentcoreBrowserRecordingS3Location({
+final class BedrockagentcoreBrowserS3Location {
+  const BedrockagentcoreBrowserS3Location({
     required this.bucket,
     required this.prefix,
   });
@@ -226,7 +219,7 @@ final class AwsBedrockagentcoreBrowser extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    List<BedrockagentcoreBrowserBrowserSigning>? browserSigning,
+    List<BedrockagentcoreBrowserSigning>? browserSigning,
     List<BedrockagentcoreBrowserCertificate>? certificate,
     List<BedrockagentcoreBrowserEnterprisePolicy>? enterprisePolicy,
     List<BedrockagentcoreBrowserNetworkConfiguration>? networkConfiguration,

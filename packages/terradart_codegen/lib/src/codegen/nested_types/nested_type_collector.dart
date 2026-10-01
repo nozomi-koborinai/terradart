@@ -4,6 +4,7 @@ import '../enum_value_parser.dart';
 import '../exactly_one_types.dart';
 import '../naming.dart';
 import '../references/reference_targets.dart';
+import 'nested_type_names.dart';
 
 /// One attribute surfaced on a derived nested-type helper class.
 ///
@@ -76,6 +77,12 @@ final class NestedBlockSpec {
   /// bare names as `sealedGroupKeyOf([], members)` joins them.
   final Map<String, String> sealedNames;
 
+  /// The type each sealed group of this block takes, keyed by the group's
+  /// concept (its [sealedNames] entry, else [deriveSealedConcept]) — named
+  /// by [conciseTypeNames] with the classes. A group whose name clashes
+  /// when the emitter lays it out, or that seals the whole block, has none.
+  final Map<String, String> sealedTypeNames;
+
   const NestedBlockSpec({
     required this.tfName,
     required this.path,
@@ -90,6 +97,7 @@ final class NestedBlockSpec {
     this.exactlyOne = const [],
     this.atMostOne = const [],
     this.sealedNames = const {},
+    this.sealedTypeNames = const {},
   });
 }
 
@@ -162,11 +170,16 @@ List<String>? descriptionEnumValues(List<String> path, String? description) =>
 ///   simply absent from the returned list (root-level slot selection is
 ///   already the constructor's `paramOrder`'s job, not this collector's).
 ///
-/// With [shareIdenticalShapes], blocks whose class bodies are structurally
+/// Blocks with the same Terraform name whose class bodies are structurally
 /// identical (same attributes, same child fields, recursively) share one
-/// helper class and its enums. The shared class keeps the name and path of
-/// its shallowest occurrence, ties broken by comparing paths segment by
-/// segment, so that occurrence's name matches the unshared scheme.
+/// helper class and its enums; with [shareIdenticalShapes], blocks of any
+/// name do. The shared class keeps the path of its shallowest occurrence,
+/// ties broken by comparing paths segment by segment.
+///
+/// Each class is named by [conciseTypeNames]: [resourcePrefix] plus the
+/// shortest trailing part of its path no other type of the resource takes
+/// — neither a top-level input's `<prefix><Input>` nor a name in [reserved]
+/// (see [rootSealedTypeNames]).
 ///
 /// [enumValues] decides each leaf attribute's enum value set from its
 /// dotted path and description; the default reads the description with
@@ -198,6 +211,7 @@ List<NestedBlockSpec> collectNestedTypes({
   Map<String, String>? sealedNames,
   ReferenceResolver references = _noReferences,
   Map<String, String> typeOverrides = const {},
+  Set<String> reserved = const {},
 }) {
   final rootKeys = {
     ..._optionalMap(resourceBlock['attributes'], context: 'attributes').keys,
@@ -216,12 +230,128 @@ List<NestedBlockSpec> collectNestedTypes({
     references: references,
     typeOverrides: typeOverrides,
   );
-  return shareIdenticalShapes
-      ? _shareIdenticalShapes(scan.children)
-      : scan.children;
+  final specs = _shareIdenticalShapes(
+    scan.children,
+    acrossNames: shareIdenticalShapes,
+  );
+  return _renameConcisely(specs, resourcePrefix, {
+    ...reserved,
+    for (final MapEntry(:key, :value) in _optionalMap(
+      resourceBlock['attributes'],
+      context: 'attributes',
+    ).entries)
+      if (value is! Map || !value.containsKey('nested_type'))
+        resourcePrefix + snakeToPascal(key),
+  });
 }
 
-List<NestedBlockSpec> _shareIdenticalShapes(List<NestedBlockSpec> roots) {
+/// [specs] with every class and enum named by [conciseTypeNames]. Enum
+/// inputs of the same name and value set share one enum, named after its
+/// shallowest occurrence.
+List<NestedBlockSpec> _renameConcisely(
+  List<NestedBlockSpec> specs,
+  String stem,
+  Set<String> reserved,
+) {
+  final classes = <String, NestedBlockSpec>{};
+  final enums = <String, List<String>>{};
+  String enumKey(NestedAttrSpec a) => '${a.tfName}#${jsonEncode(a.enumValues)}';
+  void visit(NestedBlockSpec s) {
+    if (classes.containsKey(s.className)) return;
+    classes[s.className] = s;
+    for (final a in s.attrs) {
+      if (a.enumValues == null) continue;
+      final path = [...s.path, a.tfName];
+      final current = enums[enumKey(a)];
+      if (current == null || _comparePaths(path, current) < 0) {
+        enums[enumKey(a)] = path;
+      }
+    }
+    s.children.forEach(visit);
+  }
+
+  specs.forEach(visit);
+  final classKeys = classes.keys.toList();
+  final enumKeys = enums.keys.toList();
+  final taken = {
+    for (final c in classes.values) c.path.join('.'),
+    for (final p in enums.values) p.join('.'),
+  };
+  final groups = <(String, String)>[];
+  final groupPaths = <List<String>>[];
+  for (final k in classKeys) {
+    final c = classes[k]!;
+    final inputs =
+        c.attrs.length + c.children.length + c.excludedChildren.length;
+    for (final g in [...c.exactlyOne, ...c.atMostOne]) {
+      if (!c.keyed && g.length == inputs) continue;
+      final concept =
+          c.sealedNames[sealedGroupKeyOf(const [], g)] ??
+          deriveSealedConcept(g);
+      if (concept == null) continue;
+      final path = [...c.path, concept];
+      if (!taken.add(path.join('.'))) continue;
+      groups.add((k, concept));
+      groupPaths.add(path);
+    }
+  }
+  final names = conciseTypeNames(stem, [
+    for (final k in classKeys) classes[k]!.path,
+    for (final k in enumKeys) enums[k]!,
+    ...groupPaths,
+  ], reserved: reserved);
+  final classNames = {
+    for (var i = 0; i < classKeys.length; i++) classKeys[i]: names[i],
+  };
+  final enumNames = {
+    for (var i = 0; i < enumKeys.length; i++)
+      enumKeys[i]: names[classKeys.length + i],
+  };
+  final sealedTypeNames = <String, Map<String, String>>{};
+  for (final (i, (k, concept)) in groups.indexed) {
+    (sealedTypeNames[k] ??= {})[concept] =
+        names[classKeys.length + enumKeys.length + i];
+  }
+
+  NestedBlockSpec rebuild(NestedBlockSpec s) {
+    return NestedBlockSpec(
+      tfName: s.tfName,
+      path: s.path,
+      className: classNames[s.className]!,
+      repeated: s.repeated,
+      keyed: s.keyed,
+      required: s.required,
+      attrs: [
+        for (final a in s.attrs)
+          a.enumValues == null
+              ? a
+              : NestedAttrSpec(
+                  tfName: a.tfName,
+                  dartName: a.dartName,
+                  dartType: enumNames[enumKey(a)]!,
+                  required: a.required,
+                  enumValues: a.enumValues,
+                  repeated: a.repeated,
+                  reference: a.reference,
+                ),
+      ],
+      children: [for (final c in s.children) rebuild(c)],
+      excludedChildren: s.excludedChildren,
+      shared: s.shared,
+      exactlyOne: s.exactlyOne,
+      atMostOne: s.atMostOne,
+      sealedNames: s.sealedNames,
+      sealedTypeNames: sealedTypeNames[s.className] ?? const {},
+    );
+  }
+
+  return [for (final s in specs) rebuild(s)];
+}
+
+List<NestedBlockSpec> _shareIdenticalShapes(
+  List<NestedBlockSpec> roots, {
+  required bool acrossNames,
+}) {
   final shapeIds = <String, int>{};
   final shapeOf = Map<NestedBlockSpec, int>.identity();
   final canonical = <int, NestedBlockSpec>{};
@@ -248,6 +378,7 @@ List<NestedBlockSpec> _shareIdenticalShapes(List<NestedBlockSpec> roots) {
         [e.tfName, e.repeated, e.keyed, e.required, 'excluded'].join('|'),
     ]..sort();
     final key =
+        '${acrossNames ? '' : spec.tfName}#'
         '${attrKeys.join(';')}#${childKeys.join(';')}'
         '#${jsonEncode(spec.exactlyOne)}#${jsonEncode(spec.atMostOne)}';
     final id = shapeIds.putIfAbsent(key, () => shapeIds.length);

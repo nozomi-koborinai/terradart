@@ -46,28 +46,28 @@ final class DmsDataProviderSettings {
     this.sybaseAseSettings,
   });
 
-  final List<DmsDataProviderSettingsDocDbSettings>? docDbSettings;
+  final List<DmsDataProviderDocDbSettings>? docDbSettings;
 
-  final List<DmsDataProviderSettingsIbmDb2LuwSettings>? ibmDb2LuwSettings;
+  final List<DmsDataProviderIbmDb2LuwSettings>? ibmDb2LuwSettings;
 
-  final List<DmsDataProviderSettingsIbmDb2ZosSettings>? ibmDb2ZosSettings;
+  final List<DmsDataProviderIbmDb2ZosSettings>? ibmDb2ZosSettings;
 
-  final List<DmsDataProviderSettingsMariaDbSettings>? mariaDbSettings;
+  final List<DmsDataProviderMariaDbSettings>? mariaDbSettings;
 
-  final List<DmsDataProviderSettingsMicrosoftSqlServerSettings>?
+  final List<DmsDataProviderMicrosoftSqlServerSettings>?
   microsoftSqlServerSettings;
 
-  final List<DmsDataProviderSettingsMongoDbSettings>? mongoDbSettings;
+  final List<DmsDataProviderMongoDbSettings>? mongoDbSettings;
 
-  final List<DmsDataProviderSettingsMysqlSettings>? mysqlSettings;
+  final List<DmsDataProviderMysqlSettings>? mysqlSettings;
 
-  final List<DmsDataProviderSettingsOracleSettings>? oracleSettings;
+  final List<DmsDataProviderOracleSettings>? oracleSettings;
 
-  final List<DmsDataProviderSettingsPostgresqlSettings>? postgresqlSettings;
+  final List<DmsDataProviderPostgresqlSettings>? postgresqlSettings;
 
-  final List<DmsDataProviderSettingsRedshiftSettings>? redshiftSettings;
+  final List<DmsDataProviderRedshiftSettings>? redshiftSettings;
 
-  final List<DmsDataProviderSettingsSybaseAseSettings>? sybaseAseSettings;
+  final List<DmsDataProviderSybaseAseSettings>? sybaseAseSettings;
 
   Map<String, Object?> encode() => {
     if (docDbSettings != null)
@@ -100,8 +100,8 @@ final class DmsDataProviderSettings {
 /// Typed helper for the `settings.doc_db_settings` block of
 /// `aws_dms_data_provider` (derived from provider schema).
 @immutable
-final class DmsDataProviderSettingsDocDbSettings {
-  const DmsDataProviderSettingsDocDbSettings({
+final class DmsDataProviderDocDbSettings {
+  const DmsDataProviderDocDbSettings({
     this.certificateArn,
     this.databaseName,
     this.port,
@@ -131,8 +131,8 @@ final class DmsDataProviderSettingsDocDbSettings {
 /// Typed helper for the `settings.ibm_db2_luw_settings` block of
 /// `aws_dms_data_provider` (derived from provider schema).
 @immutable
-final class DmsDataProviderSettingsIbmDb2LuwSettings {
-  const DmsDataProviderSettingsIbmDb2LuwSettings({
+final class DmsDataProviderIbmDb2LuwSettings {
+  const DmsDataProviderIbmDb2LuwSettings({
     this.certificateArn,
     this.databaseName,
     this.encryptionAlgorithm,
@@ -178,8 +178,8 @@ final class DmsDataProviderSettingsIbmDb2LuwSettings {
 /// Typed helper for the `settings.ibm_db2_zos_settings` block of
 /// `aws_dms_data_provider` (derived from provider schema).
 @immutable
-final class DmsDataProviderSettingsIbmDb2ZosSettings {
-  const DmsDataProviderSettingsIbmDb2ZosSettings({
+final class DmsDataProviderIbmDb2ZosSettings {
+  const DmsDataProviderIbmDb2ZosSettings({
     this.certificateArn,
     this.databaseName,
     this.port,
@@ -217,8 +217,8 @@ final class DmsDataProviderSettingsIbmDb2ZosSettings {
 /// Typed helper for the `settings.maria_db_settings` block of
 /// `aws_dms_data_provider` (derived from provider schema).
 @immutable
-final class DmsDataProviderSettingsMariaDbSettings {
-  const DmsDataProviderSettingsMariaDbSettings({
+final class DmsDataProviderMariaDbSettings {
+  const DmsDataProviderMariaDbSettings({
     this.certificateArn,
     this.port,
     this.s3AccessRoleArn,
@@ -252,8 +252,8 @@ final class DmsDataProviderSettingsMariaDbSettings {
 /// Typed helper for the `settings.microsoft_sql_server_settings` block of
 /// `aws_dms_data_provider` (derived from provider schema).
 @immutable
-final class DmsDataProviderSettingsMicrosoftSqlServerSettings {
-  const DmsDataProviderSettingsMicrosoftSqlServerSettings({
+final class DmsDataProviderMicrosoftSqlServerSettings {
+  const DmsDataProviderMicrosoftSqlServerSettings({
     this.certificateArn,
     this.databaseName,
     this.port,
@@ -291,8 +291,8 @@ final class DmsDataProviderSettingsMicrosoftSqlServerSettings {
 /// Typed helper for the `settings.mongo_db_settings` block of
 /// `aws_dms_data_provider` (derived from provider schema).
 @immutable
-final class DmsDataProviderSettingsMongoDbSettings {
-  const DmsDataProviderSettingsMongoDbSettings({
+final class DmsDataProviderMongoDbSettings {
+  const DmsDataProviderMongoDbSettings({
     this.authMechanism,
     this.authSource,
     this.authType,
@@ -303,12 +303,11 @@ final class DmsDataProviderSettingsMongoDbSettings {
     this.sslMode,
   });
 
-  final TfArg<DmsDataProviderSettingsMongoDbSettingsAuthMechanism>?
-  authMechanism;
+  final TfArg<DmsDataProviderAuthMechanism>? authMechanism;
 
   final TfArg<String>? authSource;
 
-  final TfArg<DmsDataProviderSettingsMongoDbSettingsAuthType>? authType;
+  final TfArg<DmsDataProviderAuthType>? authType;
 
   final TfArg<String>? certificateArn;
 
@@ -333,25 +332,22 @@ final class DmsDataProviderSettingsMongoDbSettings {
 }
 
 /// `auth_mechanism` — derived from the provider schema description.
-enum DmsDataProviderSettingsMongoDbSettingsAuthMechanism
-    implements TerraformEnum {
+enum DmsDataProviderAuthMechanism implements TerraformEnum {
   defaultCase('default'),
   mongodbCr('mongodb_cr'),
   scramSha1('scram_sha_1');
 
-  const DmsDataProviderSettingsMongoDbSettingsAuthMechanism(
-    this.terraformValue,
-  );
+  const DmsDataProviderAuthMechanism(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `auth_type` — derived from the provider schema description.
-enum DmsDataProviderSettingsMongoDbSettingsAuthType implements TerraformEnum {
+enum DmsDataProviderAuthType implements TerraformEnum {
   no('no'),
   password('password');
 
-  const DmsDataProviderSettingsMongoDbSettingsAuthType(this.terraformValue);
+  const DmsDataProviderAuthType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -359,8 +355,8 @@ enum DmsDataProviderSettingsMongoDbSettingsAuthType implements TerraformEnum {
 /// Typed helper for the `settings.mysql_settings` block of
 /// `aws_dms_data_provider` (derived from provider schema).
 @immutable
-final class DmsDataProviderSettingsMysqlSettings {
-  const DmsDataProviderSettingsMysqlSettings({
+final class DmsDataProviderMysqlSettings {
+  const DmsDataProviderMysqlSettings({
     this.certificateArn,
     this.port,
     this.s3AccessRoleArn,
@@ -394,8 +390,8 @@ final class DmsDataProviderSettingsMysqlSettings {
 /// Typed helper for the `settings.oracle_settings` block of
 /// `aws_dms_data_provider` (derived from provider schema).
 @immutable
-final class DmsDataProviderSettingsOracleSettings {
-  const DmsDataProviderSettingsOracleSettings({
+final class DmsDataProviderOracleSettings {
+  const DmsDataProviderOracleSettings({
     this.asmServer,
     this.certificateArn,
     this.databaseName,
@@ -457,8 +453,8 @@ final class DmsDataProviderSettingsOracleSettings {
 /// Typed helper for the `settings.postgresql_settings` block of
 /// `aws_dms_data_provider` (derived from provider schema).
 @immutable
-final class DmsDataProviderSettingsPostgresqlSettings {
-  const DmsDataProviderSettingsPostgresqlSettings({
+final class DmsDataProviderPostgresqlSettings {
+  const DmsDataProviderPostgresqlSettings({
     this.certificateArn,
     this.databaseName,
     this.port,
@@ -496,8 +492,8 @@ final class DmsDataProviderSettingsPostgresqlSettings {
 /// Typed helper for the `settings.redshift_settings` block of
 /// `aws_dms_data_provider` (derived from provider schema).
 @immutable
-final class DmsDataProviderSettingsRedshiftSettings {
-  const DmsDataProviderSettingsRedshiftSettings({
+final class DmsDataProviderRedshiftSettings {
+  const DmsDataProviderRedshiftSettings({
     this.databaseName,
     this.port,
     this.s3AccessRoleArn,
@@ -527,8 +523,8 @@ final class DmsDataProviderSettingsRedshiftSettings {
 /// Typed helper for the `settings.sybase_ase_settings` block of
 /// `aws_dms_data_provider` (derived from provider schema).
 @immutable
-final class DmsDataProviderSettingsSybaseAseSettings {
-  const DmsDataProviderSettingsSybaseAseSettings({
+final class DmsDataProviderSybaseAseSettings {
+  const DmsDataProviderSybaseAseSettings({
     this.certificateArn,
     this.databaseName,
     this.encryptPassword,

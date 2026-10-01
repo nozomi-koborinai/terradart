@@ -10,8 +10,8 @@ const Set<String> _awsRamResourceShareSensitive = <String>{};
 /// Typed helper for the `resource_share_configuration` block of
 /// `aws_ram_resource_share` (derived from provider schema).
 @immutable
-final class RamResourceShareResourceShareConfiguration {
-  const RamResourceShareResourceShareConfiguration({
+final class RamResourceShareConfiguration {
+  const RamResourceShareConfiguration({
     this.retainSharingOnAccountLeaveOrganization,
   });
 
@@ -34,7 +34,7 @@ final class AwsRamResourceShare extends Resource {
     TfArg<List<String>>? permissionArns,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    RamResourceShareResourceShareConfiguration? resourceShareConfiguration,
+    RamResourceShareConfiguration? resourceShareConfiguration,
     super.lifecycle,
     super.dependsOn,
     super.provider,

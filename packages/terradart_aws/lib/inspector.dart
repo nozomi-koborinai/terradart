@@ -8,7 +8,7 @@ export 'src/inspector/aws_inspector_assessment_target.dart'
 export 'src/inspector/aws_inspector_assessment_template.dart'
     show
         AwsInspectorAssessmentTemplate,
-        InspectorAssessmentTemplateEventSubscription,
-        InspectorAssessmentTemplateEventSubscriptionEvent;
+        InspectorAssessmentTemplateEvent,
+        InspectorAssessmentTemplateEventSubscription;
 export 'src/inspector/aws_inspector_resource_group.dart'
     show AwsInspectorResourceGroup;

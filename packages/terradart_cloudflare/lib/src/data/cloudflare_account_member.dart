@@ -15,9 +15,9 @@ const Set<String> _cloudflareAccountMemberSensitive = <String>{};
 final class DataAccountMemberFilter {
   const DataAccountMemberFilter({this.direction, this.order, this.status});
 
-  final TfArg<DataAccountMemberFilterDirection>? direction;
+  final TfArg<DataAccountMemberDirection>? direction;
 
-  final TfArg<DataAccountMemberFilterOrder>? order;
+  final TfArg<DataAccountMemberOrder>? order;
 
   final TfArg<DataAccountMemberFilterStatus>? status;
 
@@ -29,23 +29,23 @@ final class DataAccountMemberFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataAccountMemberFilterDirection implements TerraformEnum {
+enum DataAccountMemberDirection implements TerraformEnum {
   asc('asc'),
   desc('desc');
 
-  const DataAccountMemberFilterDirection(this.terraformValue);
+  const DataAccountMemberDirection(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `order` — derived from the provider schema description.
-enum DataAccountMemberFilterOrder implements TerraformEnum {
+enum DataAccountMemberOrder implements TerraformEnum {
   userFirstName('user.first_name'),
   userLastName('user.last_name'),
   userEmail('user.email'),
   status('status');
 
-  const DataAccountMemberFilterOrder(this.terraformValue);
+  const DataAccountMemberOrder(this.terraformValue);
   @override
   final String terraformValue;
 }

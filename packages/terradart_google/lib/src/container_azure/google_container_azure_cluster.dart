@@ -16,9 +16,9 @@ final class ContainerAzureClusterAuthorization {
     required this.adminUsers,
   });
 
-  final List<ContainerAzureClusterAuthorizationAdminGroups>? adminGroups;
+  final List<ContainerAzureClusterAdminGroups>? adminGroups;
 
-  final List<ContainerAzureClusterAuthorizationAdminUsers> adminUsers;
+  final List<ContainerAzureClusterAdminUsers> adminUsers;
 
   Map<String, Object?> encode() => {
     if (adminGroups != null)
@@ -30,8 +30,8 @@ final class ContainerAzureClusterAuthorization {
 /// Typed helper for the `authorization.admin_groups` block of
 /// `google_container_azure_cluster` (derived from provider schema).
 @immutable
-final class ContainerAzureClusterAuthorizationAdminGroups {
-  const ContainerAzureClusterAuthorizationAdminGroups({required this.group});
+final class ContainerAzureClusterAdminGroups {
+  const ContainerAzureClusterAdminGroups({required this.group});
 
   final TfArg<String> group;
 
@@ -41,8 +41,8 @@ final class ContainerAzureClusterAuthorizationAdminGroups {
 /// Typed helper for the `authorization.admin_users` block of
 /// `google_container_azure_cluster` (derived from provider schema).
 @immutable
-final class ContainerAzureClusterAuthorizationAdminUsers {
-  const ContainerAzureClusterAuthorizationAdminUsers({required this.username});
+final class ContainerAzureClusterAdminUsers {
+  const ContainerAzureClusterAdminUsers({required this.username});
 
   final TfArg<String> username;
 
@@ -93,18 +93,17 @@ final class ContainerAzureClusterControlPlane {
 
   final TfArg<String>? vmSize;
 
-  final ContainerAzureClusterControlPlaneDatabaseEncryption? databaseEncryption;
+  final ContainerAzureClusterDatabaseEncryption? databaseEncryption;
 
-  final ContainerAzureClusterControlPlaneMainVolume? mainVolume;
+  final ContainerAzureClusterMainVolume? mainVolume;
 
-  final ContainerAzureClusterControlPlaneProxyConfig? proxyConfig;
+  final ContainerAzureClusterProxyConfig? proxyConfig;
 
-  final List<ContainerAzureClusterControlPlaneReplicaPlacements>?
-  replicaPlacements;
+  final List<ContainerAzureClusterReplicaPlacements>? replicaPlacements;
 
-  final ContainerAzureClusterControlPlaneRootVolume? rootVolume;
+  final ContainerAzureClusterRootVolume? rootVolume;
 
-  final ContainerAzureClusterControlPlaneSshConfig sshConfig;
+  final ContainerAzureClusterSshConfig sshConfig;
 
   Map<String, Object?> encode() => {
     'subnet_id': subnetId.toTfJson(),
@@ -124,10 +123,8 @@ final class ContainerAzureClusterControlPlane {
 /// Typed helper for the `control_plane.database_encryption` block of
 /// `google_container_azure_cluster` (derived from provider schema).
 @immutable
-final class ContainerAzureClusterControlPlaneDatabaseEncryption {
-  const ContainerAzureClusterControlPlaneDatabaseEncryption({
-    required this.keyId,
-  });
+final class ContainerAzureClusterDatabaseEncryption {
+  const ContainerAzureClusterDatabaseEncryption({required this.keyId});
 
   final TfArg<String> keyId;
 
@@ -137,8 +134,8 @@ final class ContainerAzureClusterControlPlaneDatabaseEncryption {
 /// Typed helper for the `control_plane.main_volume` block of
 /// `google_container_azure_cluster` (derived from provider schema).
 @immutable
-final class ContainerAzureClusterControlPlaneMainVolume {
-  const ContainerAzureClusterControlPlaneMainVolume({this.sizeGib});
+final class ContainerAzureClusterMainVolume {
+  const ContainerAzureClusterMainVolume({this.sizeGib});
 
   final TfArg<num>? sizeGib;
 
@@ -148,8 +145,8 @@ final class ContainerAzureClusterControlPlaneMainVolume {
 /// Typed helper for the `control_plane.proxy_config` block of
 /// `google_container_azure_cluster` (derived from provider schema).
 @immutable
-final class ContainerAzureClusterControlPlaneProxyConfig {
-  const ContainerAzureClusterControlPlaneProxyConfig({
+final class ContainerAzureClusterProxyConfig {
+  const ContainerAzureClusterProxyConfig({
     required this.resourceGroupId,
     required this.secretId,
   });
@@ -167,8 +164,8 @@ final class ContainerAzureClusterControlPlaneProxyConfig {
 /// Typed helper for the `control_plane.replica_placements` block of
 /// `google_container_azure_cluster` (derived from provider schema).
 @immutable
-final class ContainerAzureClusterControlPlaneReplicaPlacements {
-  const ContainerAzureClusterControlPlaneReplicaPlacements({
+final class ContainerAzureClusterReplicaPlacements {
+  const ContainerAzureClusterReplicaPlacements({
     required this.azureAvailabilityZone,
     required this.subnetId,
   });
@@ -186,8 +183,8 @@ final class ContainerAzureClusterControlPlaneReplicaPlacements {
 /// Typed helper for the `control_plane.root_volume` block of
 /// `google_container_azure_cluster` (derived from provider schema).
 @immutable
-final class ContainerAzureClusterControlPlaneRootVolume {
-  const ContainerAzureClusterControlPlaneRootVolume({this.sizeGib});
+final class ContainerAzureClusterRootVolume {
+  const ContainerAzureClusterRootVolume({this.sizeGib});
 
   final TfArg<num>? sizeGib;
 
@@ -197,10 +194,8 @@ final class ContainerAzureClusterControlPlaneRootVolume {
 /// Typed helper for the `control_plane.ssh_config` block of
 /// `google_container_azure_cluster` (derived from provider schema).
 @immutable
-final class ContainerAzureClusterControlPlaneSshConfig {
-  const ContainerAzureClusterControlPlaneSshConfig({
-    required this.authorizedKey,
-  });
+final class ContainerAzureClusterSshConfig {
+  const ContainerAzureClusterSshConfig({required this.authorizedKey});
 
   final TfArg<String> authorizedKey;
 

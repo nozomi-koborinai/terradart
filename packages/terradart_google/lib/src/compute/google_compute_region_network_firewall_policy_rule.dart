@@ -56,7 +56,7 @@ final class ComputeRegionNetworkFirewallPolicyRuleMatch {
 
   final TfArg<List<String>>? destIpRanges;
 
-  final TfArg<ComputeRegionNetworkFirewallPolicyRuleMatchDestNetworkContext>?
+  final TfArg<ComputeRegionNetworkFirewallPolicyRuleDestNetworkContext>?
   destNetworkContext;
 
   final TfArg<List<String>>? destRegionCodes;
@@ -69,7 +69,7 @@ final class ComputeRegionNetworkFirewallPolicyRuleMatch {
 
   final TfArg<List<String>>? srcIpRanges;
 
-  final TfArg<ComputeRegionNetworkFirewallPolicyRuleMatchSrcNetworkContext>?
+  final TfArg<ComputeRegionNetworkFirewallPolicyRuleSrcNetworkContext>?
   srcNetworkContext;
 
   final TfArg<List<String>>? srcNetworks;
@@ -78,10 +78,9 @@ final class ComputeRegionNetworkFirewallPolicyRuleMatch {
 
   final TfArg<List<String>>? srcThreatIntelligences;
 
-  final List<ComputeRegionNetworkFirewallPolicyRuleMatchLayer4Configs>
-  layer4Configs;
+  final List<ComputeRegionNetworkFirewallPolicyRuleLayer4Configs> layer4Configs;
 
-  final List<ComputeRegionNetworkFirewallPolicyRuleMatchSrcSecureTags>?
+  final List<ComputeRegionNetworkFirewallPolicyRuleSrcSecureTags>?
   srcSecureTags;
 
   Map<String, Object?> encode() => {
@@ -105,7 +104,7 @@ final class ComputeRegionNetworkFirewallPolicyRuleMatch {
 }
 
 /// `dest_network_context` — derived from the provider schema description.
-enum ComputeRegionNetworkFirewallPolicyRuleMatchDestNetworkContext
+enum ComputeRegionNetworkFirewallPolicyRuleDestNetworkContext
     implements TerraformEnum {
   unspecified('UNSPECIFIED'),
   internet('INTERNET'),
@@ -113,7 +112,7 @@ enum ComputeRegionNetworkFirewallPolicyRuleMatchDestNetworkContext
   nonInternet('NON_INTERNET'),
   vpcNetworks('VPC_NETWORKS');
 
-  const ComputeRegionNetworkFirewallPolicyRuleMatchDestNetworkContext(
+  const ComputeRegionNetworkFirewallPolicyRuleDestNetworkContext(
     this.terraformValue,
   );
   @override
@@ -121,7 +120,7 @@ enum ComputeRegionNetworkFirewallPolicyRuleMatchDestNetworkContext
 }
 
 /// `src_network_context` — derived from the provider schema description.
-enum ComputeRegionNetworkFirewallPolicyRuleMatchSrcNetworkContext
+enum ComputeRegionNetworkFirewallPolicyRuleSrcNetworkContext
     implements TerraformEnum {
   unspecified('UNSPECIFIED'),
   internet('INTERNET'),
@@ -129,7 +128,7 @@ enum ComputeRegionNetworkFirewallPolicyRuleMatchSrcNetworkContext
   nonInternet('NON_INTERNET'),
   vpcNetworks('VPC_NETWORKS');
 
-  const ComputeRegionNetworkFirewallPolicyRuleMatchSrcNetworkContext(
+  const ComputeRegionNetworkFirewallPolicyRuleSrcNetworkContext(
     this.terraformValue,
   );
   @override
@@ -139,8 +138,8 @@ enum ComputeRegionNetworkFirewallPolicyRuleMatchSrcNetworkContext
 /// Typed helper for the `match.layer4_configs` block of
 /// `google_compute_region_network_firewall_policy_rule` (derived from provider schema).
 @immutable
-final class ComputeRegionNetworkFirewallPolicyRuleMatchLayer4Configs {
-  const ComputeRegionNetworkFirewallPolicyRuleMatchLayer4Configs({
+final class ComputeRegionNetworkFirewallPolicyRuleLayer4Configs {
+  const ComputeRegionNetworkFirewallPolicyRuleLayer4Configs({
     required this.ipProtocol,
     this.ports,
   });
@@ -158,8 +157,8 @@ final class ComputeRegionNetworkFirewallPolicyRuleMatchLayer4Configs {
 /// Typed helper for the `match.src_secure_tags` block of
 /// `google_compute_region_network_firewall_policy_rule` (derived from provider schema).
 @immutable
-final class ComputeRegionNetworkFirewallPolicyRuleMatchSrcSecureTags {
-  const ComputeRegionNetworkFirewallPolicyRuleMatchSrcSecureTags({this.name});
+final class ComputeRegionNetworkFirewallPolicyRuleSrcSecureTags {
+  const ComputeRegionNetworkFirewallPolicyRuleSrcSecureTags({this.name});
 
   final TfArg<String>? name;
 
@@ -199,7 +198,7 @@ final class ComputeRegionNetworkFirewallPolicyRuleTargetSecureTags {
 ///   match: ComputeRegionNetworkFirewallPolicyRuleMatch(
 ///     srcIpRanges: TfArg.literal(['0.0.0.0/0']),
 ///     layer4Configs: [
-///       ComputeRegionNetworkFirewallPolicyRuleMatchLayer4Configs(
+///       ComputeRegionNetworkFirewallPolicyRuleLayer4Configs(
 ///         ipProtocol: TfArg.literal('tcp'),
 ///         ports: TfArg.literal(['443']),
 ///       ),

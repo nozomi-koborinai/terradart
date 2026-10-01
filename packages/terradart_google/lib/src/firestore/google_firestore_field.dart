@@ -11,7 +11,7 @@ const Set<String> _googleFirestoreFieldSensitive = <String>{};
 // Enums (sourced from schema "Possible values" prose)
 // ===========================================================================
 
-/// One [FirestoreFieldIndexConfigIndexes.order] direction. `ASCENDING` / `DESCENDING`.
+/// One [FirestoreFieldIndexes.order] direction. `ASCENDING` / `DESCENDING`.
 enum FirestoreFieldOrder implements TerraformEnum {
   ascending('ASCENDING'),
   descending('DESCENDING');
@@ -43,7 +43,7 @@ enum FirestoreFieldQueryScope implements TerraformEnum {
 final class FirestoreFieldIndexConfig {
   const FirestoreFieldIndexConfig({this.indexes});
 
-  final List<FirestoreFieldIndexConfigIndexes>? indexes;
+  final List<FirestoreFieldIndexes>? indexes;
 
   Map<String, Object?> encode() => {
     if (indexes != null) 'indexes': [for (final e in indexes!) e.encode()],
@@ -53,10 +53,10 @@ final class FirestoreFieldIndexConfig {
 /// Typed helper for the `index_config.indexes` block of
 /// `google_firestore_field` (derived from provider schema).
 @immutable
-final class FirestoreFieldIndexConfigIndexes {
-  const FirestoreFieldIndexConfigIndexes({required this.mode, this.queryScope});
+final class FirestoreFieldIndexes {
+  const FirestoreFieldIndexes({required this.mode, this.queryScope});
 
-  final FirestoreFieldIndexConfigIndexesMode mode;
+  final FirestoreFieldMode mode;
 
   final TfArg<FirestoreFieldQueryScope>? queryScope;
 
@@ -70,18 +70,16 @@ final class FirestoreFieldIndexConfigIndexes {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.order(...)`.
-sealed class FirestoreFieldIndexConfigIndexesMode {
-  const FirestoreFieldIndexConfigIndexesMode();
+sealed class FirestoreFieldMode {
+  const FirestoreFieldMode();
 
   /// Sets `order`.
-  const factory FirestoreFieldIndexConfigIndexesMode.order(
-    TfArg<FirestoreFieldOrder> order,
-  ) = FirestoreFieldIndexConfigIndexesModeOrder;
+  const factory FirestoreFieldMode.order(TfArg<FirestoreFieldOrder> order) =
+      FirestoreFieldModeOrder;
 
   /// Sets `array_config`.
-  const factory FirestoreFieldIndexConfigIndexesMode.arrayConfig(
-    TfArg<String> arrayConfig,
-  ) = FirestoreFieldIndexConfigIndexesModeArrayConfig;
+  const factory FirestoreFieldMode.arrayConfig(TfArg<String> arrayConfig) =
+      FirestoreFieldModeArrayConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -89,10 +87,9 @@ sealed class FirestoreFieldIndexConfigIndexesMode {
   Map<String, Object?> encode();
 }
 
-/// The [FirestoreFieldIndexConfigIndexesMode.order] choice: sets `order`.
-final class FirestoreFieldIndexConfigIndexesModeOrder
-    extends FirestoreFieldIndexConfigIndexesMode {
-  const FirestoreFieldIndexConfigIndexesModeOrder(this.order);
+/// The [FirestoreFieldMode.order] choice: sets `order`.
+final class FirestoreFieldModeOrder extends FirestoreFieldMode {
+  const FirestoreFieldModeOrder(this.order);
 
   final TfArg<FirestoreFieldOrder> order;
 
@@ -103,10 +100,9 @@ final class FirestoreFieldIndexConfigIndexesModeOrder
   Map<String, Object?> encode() => {'order': order.toTfJson()};
 }
 
-/// The [FirestoreFieldIndexConfigIndexesMode.arrayConfig] choice: sets `array_config`.
-final class FirestoreFieldIndexConfigIndexesModeArrayConfig
-    extends FirestoreFieldIndexConfigIndexesMode {
-  const FirestoreFieldIndexConfigIndexesModeArrayConfig(this.arrayConfig);
+/// The [FirestoreFieldMode.arrayConfig] choice: sets `array_config`.
+final class FirestoreFieldModeArrayConfig extends FirestoreFieldMode {
+  const FirestoreFieldModeArrayConfig(this.arrayConfig);
 
   final TfArg<String> arrayConfig;
 

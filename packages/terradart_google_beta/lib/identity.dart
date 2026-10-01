@@ -5,6 +5,6 @@ library;
 
 export 'src/identity/google_cloud_identity_policy.dart'
     show
-        CloudIdentityPolicyPolicyQuery,
+        CloudIdentityPolicyQuery,
         CloudIdentityPolicySetting,
         GoogleCloudIdentityPolicy;

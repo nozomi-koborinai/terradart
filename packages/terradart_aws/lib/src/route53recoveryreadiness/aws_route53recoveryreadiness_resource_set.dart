@@ -21,8 +21,7 @@ final class Route53recoveryreadinessResourceSetResources {
 
   final TfArg<String>? resourceArn;
 
-  final Route53recoveryreadinessResourceSetResourcesDnsTargetResource?
-  dnsTargetResource;
+  final Route53recoveryreadinessResourceSetDnsTargetResource? dnsTargetResource;
 
   Map<String, Object?> encode() => {
     'readiness_scopes': ?readinessScopes?.toTfJson(),
@@ -34,8 +33,8 @@ final class Route53recoveryreadinessResourceSetResources {
 /// Typed helper for the `resources.dns_target_resource` block of
 /// `aws_route53recoveryreadiness_resource_set` (derived from provider schema).
 @immutable
-final class Route53recoveryreadinessResourceSetResourcesDnsTargetResource {
-  const Route53recoveryreadinessResourceSetResourcesDnsTargetResource({
+final class Route53recoveryreadinessResourceSetDnsTargetResource {
+  const Route53recoveryreadinessResourceSetDnsTargetResource({
     required this.domainName,
     this.hostedZoneArn,
     this.recordSetId,
@@ -51,8 +50,7 @@ final class Route53recoveryreadinessResourceSetResourcesDnsTargetResource {
 
   final TfArg<String>? recordType;
 
-  final Route53recoveryreadinessResourceSetResourcesDnsTargetResourceTargetResource?
-  targetResource;
+  final Route53recoveryreadinessResourceSetTargetResource? targetResource;
 
   Map<String, Object?> encode() => {
     'domain_name': domainName.toTfJson(),
@@ -66,17 +64,15 @@ final class Route53recoveryreadinessResourceSetResourcesDnsTargetResource {
 /// Typed helper for the `resources.dns_target_resource.target_resource` block of
 /// `aws_route53recoveryreadiness_resource_set` (derived from provider schema).
 @immutable
-final class Route53recoveryreadinessResourceSetResourcesDnsTargetResourceTargetResource {
-  const Route53recoveryreadinessResourceSetResourcesDnsTargetResourceTargetResource({
+final class Route53recoveryreadinessResourceSetTargetResource {
+  const Route53recoveryreadinessResourceSetTargetResource({
     this.nlbResource,
     this.r53Resource,
   });
 
-  final Route53recoveryreadinessResourceSetResourcesDnsTargetResourceTargetResourceNlbResource?
-  nlbResource;
+  final Route53recoveryreadinessResourceSetNlbResource? nlbResource;
 
-  final Route53recoveryreadinessResourceSetResourcesDnsTargetResourceTargetResourceR53Resource?
-  r53Resource;
+  final Route53recoveryreadinessResourceSetR53Resource? r53Resource;
 
   Map<String, Object?> encode() => {
     'nlb_resource': ?nlbResource?.encode(),
@@ -87,10 +83,8 @@ final class Route53recoveryreadinessResourceSetResourcesDnsTargetResourceTargetR
 /// Typed helper for the `resources.dns_target_resource.target_resource.nlb_resource` block of
 /// `aws_route53recoveryreadiness_resource_set` (derived from provider schema).
 @immutable
-final class Route53recoveryreadinessResourceSetResourcesDnsTargetResourceTargetResourceNlbResource {
-  const Route53recoveryreadinessResourceSetResourcesDnsTargetResourceTargetResourceNlbResource({
-    this.arn,
-  });
+final class Route53recoveryreadinessResourceSetNlbResource {
+  const Route53recoveryreadinessResourceSetNlbResource({this.arn});
 
   final TfArg<String>? arn;
 
@@ -100,8 +94,8 @@ final class Route53recoveryreadinessResourceSetResourcesDnsTargetResourceTargetR
 /// Typed helper for the `resources.dns_target_resource.target_resource.r53_resource` block of
 /// `aws_route53recoveryreadiness_resource_set` (derived from provider schema).
 @immutable
-final class Route53recoveryreadinessResourceSetResourcesDnsTargetResourceTargetResourceR53Resource {
-  const Route53recoveryreadinessResourceSetResourcesDnsTargetResourceTargetResourceR53Resource({
+final class Route53recoveryreadinessResourceSetR53Resource {
+  const Route53recoveryreadinessResourceSetR53Resource({
     this.domainName,
     this.recordSetId,
   });

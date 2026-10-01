@@ -44,14 +44,11 @@ final class BiglakeIcebergCatalogFederatedCatalogOptions {
 
   final TfArg<String>? serviceDirectoryName;
 
-  final BiglakeIcebergCatalogFederatedCatalogOptionsGlueCatalogInfo?
-  glueCatalogInfo;
+  final BiglakeIcebergCatalogGlueCatalogInfo? glueCatalogInfo;
 
-  final BiglakeIcebergCatalogFederatedCatalogOptionsRefreshOptions?
-  refreshOptions;
+  final BiglakeIcebergCatalogRefreshOptions? refreshOptions;
 
-  final BiglakeIcebergCatalogFederatedCatalogOptionsUnityCatalogInfo?
-  unityCatalogInfo;
+  final BiglakeIcebergCatalogUnityCatalogInfo? unityCatalogInfo;
 
   Map<String, Object?> encode() => {
     'secret_name': ?secretName?.toTfJson(),
@@ -65,8 +62,8 @@ final class BiglakeIcebergCatalogFederatedCatalogOptions {
 /// Typed helper for the `federated_catalog_options.glue_catalog_info` block of
 /// `google_biglake_iceberg_catalog` (derived from provider schema).
 @immutable
-final class BiglakeIcebergCatalogFederatedCatalogOptionsGlueCatalogInfo {
-  const BiglakeIcebergCatalogFederatedCatalogOptionsGlueCatalogInfo({
+final class BiglakeIcebergCatalogGlueCatalogInfo {
+  const BiglakeIcebergCatalogGlueCatalogInfo({
     required this.awsRegion,
     required this.awsRoleArn,
     required this.warehouse,
@@ -88,17 +85,15 @@ final class BiglakeIcebergCatalogFederatedCatalogOptionsGlueCatalogInfo {
 /// Typed helper for the `federated_catalog_options.refresh_options` block of
 /// `google_biglake_iceberg_catalog` (derived from provider schema).
 @immutable
-final class BiglakeIcebergCatalogFederatedCatalogOptionsRefreshOptions {
-  const BiglakeIcebergCatalogFederatedCatalogOptionsRefreshOptions({
+final class BiglakeIcebergCatalogRefreshOptions {
+  const BiglakeIcebergCatalogRefreshOptions({
     this.refreshSchedule,
     this.refreshScope,
   });
 
-  final BiglakeIcebergCatalogFederatedCatalogOptionsRefreshOptionsRefreshSchedule?
-  refreshSchedule;
+  final BiglakeIcebergCatalogRefreshSchedule? refreshSchedule;
 
-  final BiglakeIcebergCatalogFederatedCatalogOptionsRefreshOptionsRefreshScope?
-  refreshScope;
+  final BiglakeIcebergCatalogRefreshScope? refreshScope;
 
   Map<String, Object?> encode() => {
     'refresh_schedule': ?refreshSchedule?.encode(),
@@ -109,10 +104,8 @@ final class BiglakeIcebergCatalogFederatedCatalogOptionsRefreshOptions {
 /// Typed helper for the `federated_catalog_options.refresh_options.refresh_schedule` block of
 /// `google_biglake_iceberg_catalog` (derived from provider schema).
 @immutable
-final class BiglakeIcebergCatalogFederatedCatalogOptionsRefreshOptionsRefreshSchedule {
-  const BiglakeIcebergCatalogFederatedCatalogOptionsRefreshOptionsRefreshSchedule({
-    this.refreshInterval,
-  });
+final class BiglakeIcebergCatalogRefreshSchedule {
+  const BiglakeIcebergCatalogRefreshSchedule({this.refreshInterval});
 
   final TfArg<String>? refreshInterval;
 
@@ -124,10 +117,8 @@ final class BiglakeIcebergCatalogFederatedCatalogOptionsRefreshOptionsRefreshSch
 /// Typed helper for the `federated_catalog_options.refresh_options.refresh_scope` block of
 /// `google_biglake_iceberg_catalog` (derived from provider schema).
 @immutable
-final class BiglakeIcebergCatalogFederatedCatalogOptionsRefreshOptionsRefreshScope {
-  const BiglakeIcebergCatalogFederatedCatalogOptionsRefreshOptionsRefreshScope({
-    this.namespaceFilters,
-  });
+final class BiglakeIcebergCatalogRefreshScope {
+  const BiglakeIcebergCatalogRefreshScope({this.namespaceFilters});
 
   final TfArg<List<String>>? namespaceFilters;
 
@@ -139,8 +130,8 @@ final class BiglakeIcebergCatalogFederatedCatalogOptionsRefreshOptionsRefreshSco
 /// Typed helper for the `federated_catalog_options.unity_catalog_info` block of
 /// `google_biglake_iceberg_catalog` (derived from provider schema).
 @immutable
-final class BiglakeIcebergCatalogFederatedCatalogOptionsUnityCatalogInfo {
-  const BiglakeIcebergCatalogFederatedCatalogOptionsUnityCatalogInfo({
+final class BiglakeIcebergCatalogUnityCatalogInfo {
+  const BiglakeIcebergCatalogUnityCatalogInfo({
     required this.catalogName,
     required this.instanceName,
     this.servicePrincipalApplicationId,

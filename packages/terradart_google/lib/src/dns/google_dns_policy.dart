@@ -43,7 +43,7 @@ class DnsPolicyAlternativeNameServerConfig {
 final class DnsPolicyDns64Config {
   const DnsPolicyDns64Config({required this.scope});
 
-  final DnsPolicyDns64ConfigScope scope;
+  final DnsPolicyScope scope;
 
   Map<String, Object?> encode() => {'scope': scope.encode()};
 }
@@ -51,8 +51,8 @@ final class DnsPolicyDns64Config {
 /// Typed helper for the `dns64_config.scope` block of
 /// `google_dns_policy` (derived from provider schema).
 @immutable
-final class DnsPolicyDns64ConfigScope {
-  const DnsPolicyDns64ConfigScope({this.allQueries});
+final class DnsPolicyScope {
+  const DnsPolicyScope({this.allQueries});
 
   final TfArg<bool>? allQueries;
 

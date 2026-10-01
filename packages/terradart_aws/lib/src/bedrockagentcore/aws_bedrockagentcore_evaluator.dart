@@ -27,18 +27,18 @@ enum BedrockagentcoreEvaluatorLevel implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.codeBased(...)`.
-sealed class BedrockagentcoreEvaluatorEvaluatorConfig {
-  const BedrockagentcoreEvaluatorEvaluatorConfig();
+sealed class BedrockagentcoreEvaluatorConfig {
+  const BedrockagentcoreEvaluatorConfig();
 
   /// Sets `code_based`.
-  const factory BedrockagentcoreEvaluatorEvaluatorConfig.codeBased(
-    List<BedrockagentcoreEvaluatorEvaluatorConfigCodeBased> codeBased,
-  ) = BedrockagentcoreEvaluatorEvaluatorConfigCodeBasedChoice;
+  const factory BedrockagentcoreEvaluatorConfig.codeBased(
+    List<BedrockagentcoreEvaluatorCodeBased> codeBased,
+  ) = BedrockagentcoreEvaluatorConfigCodeBased;
 
   /// Sets `llm_as_a_judge`.
-  const factory BedrockagentcoreEvaluatorEvaluatorConfig.llmAsAJudge(
-    List<BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudge> llmAsAJudge,
-  ) = BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeChoice;
+  const factory BedrockagentcoreEvaluatorConfig.llmAsAJudge(
+    List<BedrockagentcoreEvaluatorLlmAsAJudge> llmAsAJudge,
+  ) = BedrockagentcoreEvaluatorConfigLlmAsAJudge;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -46,12 +46,12 @@ sealed class BedrockagentcoreEvaluatorEvaluatorConfig {
   Map<String, Object?> encode();
 }
 
-/// The [BedrockagentcoreEvaluatorEvaluatorConfig.codeBased] choice: sets `code_based`.
-final class BedrockagentcoreEvaluatorEvaluatorConfigCodeBasedChoice
-    extends BedrockagentcoreEvaluatorEvaluatorConfig {
-  const BedrockagentcoreEvaluatorEvaluatorConfigCodeBasedChoice(this.codeBased);
+/// The [BedrockagentcoreEvaluatorConfig.codeBased] choice: sets `code_based`.
+final class BedrockagentcoreEvaluatorConfigCodeBased
+    extends BedrockagentcoreEvaluatorConfig {
+  const BedrockagentcoreEvaluatorConfigCodeBased(this.codeBased);
 
-  final List<BedrockagentcoreEvaluatorEvaluatorConfigCodeBased> codeBased;
+  final List<BedrockagentcoreEvaluatorCodeBased> codeBased;
 
   @override
   String get blockKey => 'code_based';
@@ -62,14 +62,12 @@ final class BedrockagentcoreEvaluatorEvaluatorConfigCodeBasedChoice
   };
 }
 
-/// The [BedrockagentcoreEvaluatorEvaluatorConfig.llmAsAJudge] choice: sets `llm_as_a_judge`.
-final class BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeChoice
-    extends BedrockagentcoreEvaluatorEvaluatorConfig {
-  const BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeChoice(
-    this.llmAsAJudge,
-  );
+/// The [BedrockagentcoreEvaluatorConfig.llmAsAJudge] choice: sets `llm_as_a_judge`.
+final class BedrockagentcoreEvaluatorConfigLlmAsAJudge
+    extends BedrockagentcoreEvaluatorConfig {
+  const BedrockagentcoreEvaluatorConfigLlmAsAJudge(this.llmAsAJudge);
 
-  final List<BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudge> llmAsAJudge;
+  final List<BedrockagentcoreEvaluatorLlmAsAJudge> llmAsAJudge;
 
   @override
   String get blockKey => 'llm_as_a_judge';
@@ -83,11 +81,10 @@ final class BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeChoice
 /// Typed helper for the `evaluator_config.code_based` block of
 /// `aws_bedrockagentcore_evaluator` (derived from provider schema).
 @immutable
-final class BedrockagentcoreEvaluatorEvaluatorConfigCodeBased {
-  const BedrockagentcoreEvaluatorEvaluatorConfigCodeBased({this.lambdaConfig});
+final class BedrockagentcoreEvaluatorCodeBased {
+  const BedrockagentcoreEvaluatorCodeBased({this.lambdaConfig});
 
-  final List<BedrockagentcoreEvaluatorEvaluatorConfigCodeBasedLambdaConfig>?
-  lambdaConfig;
+  final List<BedrockagentcoreEvaluatorLambdaConfig>? lambdaConfig;
 
   Map<String, Object?> encode() => {
     if (lambdaConfig != null)
@@ -98,8 +95,8 @@ final class BedrockagentcoreEvaluatorEvaluatorConfigCodeBased {
 /// Typed helper for the `evaluator_config.code_based.lambda_config` block of
 /// `aws_bedrockagentcore_evaluator` (derived from provider schema).
 @immutable
-final class BedrockagentcoreEvaluatorEvaluatorConfigCodeBasedLambdaConfig {
-  const BedrockagentcoreEvaluatorEvaluatorConfigCodeBasedLambdaConfig({
+final class BedrockagentcoreEvaluatorLambdaConfig {
+  const BedrockagentcoreEvaluatorLambdaConfig({
     required this.lambdaArn,
     this.lambdaTimeoutInSeconds,
   });
@@ -117,8 +114,8 @@ final class BedrockagentcoreEvaluatorEvaluatorConfigCodeBasedLambdaConfig {
 /// Typed helper for the `evaluator_config.llm_as_a_judge` block of
 /// `aws_bedrockagentcore_evaluator` (derived from provider schema).
 @immutable
-final class BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudge {
-  const BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudge({
+final class BedrockagentcoreEvaluatorLlmAsAJudge {
+  const BedrockagentcoreEvaluatorLlmAsAJudge({
     required this.instructions,
     this.modelConfig,
     this.ratingScale,
@@ -126,11 +123,9 @@ final class BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudge {
 
   final TfArg<String> instructions;
 
-  final List<BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeModelConfig>?
-  modelConfig;
+  final List<BedrockagentcoreEvaluatorModelConfig>? modelConfig;
 
-  final List<BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScale>?
-  ratingScale;
+  final List<BedrockagentcoreEvaluatorRatingScale>? ratingScale;
 
   Map<String, Object?> encode() => {
     'instructions': instructions.toTfJson(),
@@ -144,14 +139,12 @@ final class BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudge {
 /// Typed helper for the `evaluator_config.llm_as_a_judge.model_config` block of
 /// `aws_bedrockagentcore_evaluator` (derived from provider schema).
 @immutable
-final class BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeModelConfig {
-  const BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeModelConfig({
+final class BedrockagentcoreEvaluatorModelConfig {
+  const BedrockagentcoreEvaluatorModelConfig({
     this.bedrockEvaluatorModelConfig,
   });
 
-  final List<
-    BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeModelConfigBedrockEvaluatorModelConfig
-  >?
+  final List<BedrockagentcoreEvaluatorBedrockEvaluatorModelConfig>?
   bedrockEvaluatorModelConfig;
 
   Map<String, Object?> encode() => {
@@ -165,8 +158,8 @@ final class BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeModelConfig {
 /// Typed helper for the `evaluator_config.llm_as_a_judge.model_config.bedrock_evaluator_model_config` block of
 /// `aws_bedrockagentcore_evaluator` (derived from provider schema).
 @immutable
-final class BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeModelConfigBedrockEvaluatorModelConfig {
-  const BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeModelConfigBedrockEvaluatorModelConfig({
+final class BedrockagentcoreEvaluatorBedrockEvaluatorModelConfig {
+  const BedrockagentcoreEvaluatorBedrockEvaluatorModelConfig({
     this.additionalModelRequestFields,
     required this.modelId,
     this.inferenceConfig,
@@ -176,10 +169,7 @@ final class BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeModelConfigBedroc
 
   final TfArg<String> modelId;
 
-  final List<
-    BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeModelConfigBedrockEvaluatorModelConfigInferenceConfig
-  >?
-  inferenceConfig;
+  final List<BedrockagentcoreEvaluatorInferenceConfig>? inferenceConfig;
 
   Map<String, Object?> encode() => {
     'additional_model_request_fields': ?additionalModelRequestFields
@@ -193,8 +183,8 @@ final class BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeModelConfigBedroc
 /// Typed helper for the `evaluator_config.llm_as_a_judge.model_config.bedrock_evaluator_model_config.inference_config` block of
 /// `aws_bedrockagentcore_evaluator` (derived from provider schema).
 @immutable
-final class BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeModelConfigBedrockEvaluatorModelConfigInferenceConfig {
-  const BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeModelConfigBedrockEvaluatorModelConfigInferenceConfig({
+final class BedrockagentcoreEvaluatorInferenceConfig {
+  const BedrockagentcoreEvaluatorInferenceConfig({
     this.maxTokens,
     this.stopSequences,
     this.temperature,
@@ -221,24 +211,18 @@ final class BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeModelConfigBedroc
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.categorical(...)`.
-sealed class BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScale {
-  const BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScale();
+sealed class BedrockagentcoreEvaluatorRatingScale {
+  const BedrockagentcoreEvaluatorRatingScale();
 
   /// Sets `categorical`.
-  const factory BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScale.categorical(
-    List<
-      BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleCategorical
-    >
-    categorical,
-  ) = BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleCategoricalChoice;
+  const factory BedrockagentcoreEvaluatorRatingScale.categorical(
+    List<BedrockagentcoreEvaluatorCategorical> categorical,
+  ) = BedrockagentcoreEvaluatorRatingScaleCategorical;
 
   /// Sets `numerical`.
-  const factory BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScale.numerical(
-    List<
-      BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleNumerical
-    >
-    numerical,
-  ) = BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleNumericalChoice;
+  const factory BedrockagentcoreEvaluatorRatingScale.numerical(
+    List<BedrockagentcoreEvaluatorNumerical> numerical,
+  ) = BedrockagentcoreEvaluatorRatingScaleNumerical;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -246,17 +230,12 @@ sealed class BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScale {
   Map<String, Object?> encode();
 }
 
-/// The [BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScale.categorical] choice: sets `categorical`.
-final class BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleCategoricalChoice
-    extends BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScale {
-  const BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleCategoricalChoice(
-    this.categorical,
-  );
+/// The [BedrockagentcoreEvaluatorRatingScale.categorical] choice: sets `categorical`.
+final class BedrockagentcoreEvaluatorRatingScaleCategorical
+    extends BedrockagentcoreEvaluatorRatingScale {
+  const BedrockagentcoreEvaluatorRatingScaleCategorical(this.categorical);
 
-  final List<
-    BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleCategorical
-  >
-  categorical;
+  final List<BedrockagentcoreEvaluatorCategorical> categorical;
 
   @override
   String get blockKey => 'categorical';
@@ -267,17 +246,12 @@ final class BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleCatego
   };
 }
 
-/// The [BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScale.numerical] choice: sets `numerical`.
-final class BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleNumericalChoice
-    extends BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScale {
-  const BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleNumericalChoice(
-    this.numerical,
-  );
+/// The [BedrockagentcoreEvaluatorRatingScale.numerical] choice: sets `numerical`.
+final class BedrockagentcoreEvaluatorRatingScaleNumerical
+    extends BedrockagentcoreEvaluatorRatingScale {
+  const BedrockagentcoreEvaluatorRatingScaleNumerical(this.numerical);
 
-  final List<
-    BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleNumerical
-  >
-  numerical;
+  final List<BedrockagentcoreEvaluatorNumerical> numerical;
 
   @override
   String get blockKey => 'numerical';
@@ -291,8 +265,8 @@ final class BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleNumeri
 /// Typed helper for the `evaluator_config.llm_as_a_judge.rating_scale.categorical` block of
 /// `aws_bedrockagentcore_evaluator` (derived from provider schema).
 @immutable
-final class BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleCategorical {
-  const BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleCategorical({
+final class BedrockagentcoreEvaluatorCategorical {
+  const BedrockagentcoreEvaluatorCategorical({
     required this.definition,
     required this.label,
   });
@@ -310,8 +284,8 @@ final class BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleCatego
 /// Typed helper for the `evaluator_config.llm_as_a_judge.rating_scale.numerical` block of
 /// `aws_bedrockagentcore_evaluator` (derived from provider schema).
 @immutable
-final class BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleNumerical {
-  const BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleNumerical({
+final class BedrockagentcoreEvaluatorNumerical {
+  const BedrockagentcoreEvaluatorNumerical({
     required this.definition,
     required this.label,
     required this.value,
@@ -342,7 +316,7 @@ final class AwsBedrockagentcoreEvaluator extends Resource {
     required TfArg<BedrockagentcoreEvaluatorLevel> level,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    List<BedrockagentcoreEvaluatorEvaluatorConfig>? evaluatorConfig,
+    List<BedrockagentcoreEvaluatorConfig>? evaluatorConfig,
     super.lifecycle,
     super.dependsOn,
     super.provider,

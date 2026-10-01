@@ -12,10 +12,10 @@ export 'src/project/google_project_default_service_accounts.dart'
 export 'src/project/google_project_organization_policy.dart'
     show
         GoogleProjectOrganizationPolicy,
+        ProjectOrganizationPolicyAllow,
         ProjectOrganizationPolicyBooleanPolicy,
+        ProjectOrganizationPolicyDeny,
         ProjectOrganizationPolicyListPolicy,
-        ProjectOrganizationPolicyListPolicyAllow,
-        ProjectOrganizationPolicyListPolicyDeny,
         ProjectOrganizationPolicyRestorePolicy;
 export 'src/project/google_project_service.dart' show GoogleProjectService;
 export 'src/project/google_project_usage_export_bucket.dart'

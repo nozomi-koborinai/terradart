@@ -133,7 +133,7 @@ final class RulesetRules {
     this.ratelimit,
   });
 
-  final TfArg<RulesetRulesAction> action;
+  final TfArg<RulesetAction> action;
 
   final TfArg<String>? description;
 
@@ -143,13 +143,13 @@ final class RulesetRules {
 
   final TfArg<String>? ref;
 
-  final RulesetRulesActionParameters? actionParameters;
+  final RulesetActionParameters? actionParameters;
 
-  final RulesetRulesExposedCredentialCheck? exposedCredentialCheck;
+  final RulesetExposedCredentialCheck? exposedCredentialCheck;
 
-  final RulesetRulesLogging? logging;
+  final RulesetLogging? logging;
 
-  final RulesetRulesRatelimit? ratelimit;
+  final RulesetRatelimit? ratelimit;
 
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
@@ -165,7 +165,7 @@ final class RulesetRules {
 }
 
 /// `action` — derived from the provider schema description.
-enum RulesetRulesAction implements TerraformEnum {
+enum RulesetAction implements TerraformEnum {
   block('block'),
   challenge('challenge'),
   compressResponse('compress_response'),
@@ -187,7 +187,7 @@ enum RulesetRulesAction implements TerraformEnum {
   setConfig('set_config'),
   skip('skip');
 
-  const RulesetRulesAction(this.terraformValue);
+  const RulesetAction(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -195,8 +195,8 @@ enum RulesetRulesAction implements TerraformEnum {
 /// Typed helper for the `rules.action_parameters` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParameters {
-  const RulesetRulesActionParameters({
+final class RulesetActionParameters {
+  const RulesetActionParameters({
     this.additionalCacheablePorts,
     this.body,
     this.automaticHttpsRewrites,
@@ -278,7 +278,7 @@ final class RulesetRulesActionParameters {
 
   final TfArg<List<num>>? additionalCacheablePorts;
 
-  final RulesetRulesActionParametersBody? body;
+  final RulesetBody? body;
 
   final TfArg<bool>? automaticHttpsRewrites;
 
@@ -288,7 +288,7 @@ final class RulesetRulesActionParameters {
 
   final TfArg<bool>? contentConverter;
 
-  final TfArg<RulesetRulesActionParametersContentType>? contentType;
+  final TfArg<RulesetContentType>? contentType;
 
   final TfArg<bool>? disableApps;
 
@@ -298,7 +298,7 @@ final class RulesetRulesActionParameters {
 
   final TfArg<bool>? emailObfuscation;
 
-  final RulesetRulesActionParametersValue? value;
+  final RulesetValue? value;
 
   final TfArg<bool>? fonts;
 
@@ -312,7 +312,7 @@ final class RulesetRulesActionParameters {
 
   final TfArg<bool>? mirage;
 
-  final TfArg<RulesetRulesActionParametersOperation>? operation;
+  final TfArg<RulesetOperation>? operation;
 
   final TfArg<bool>? opportunisticEncryption;
 
@@ -320,37 +320,35 @@ final class RulesetRulesActionParameters {
 
   final TfArg<bool>? originErrorPagePassthru;
 
-  final List<TfArg<RulesetRulesActionParametersPhases>>? phases;
+  final List<TfArg<RulesetPhases>>? phases;
 
-  final TfArg<RulesetRulesActionParametersPolish>? polish;
+  final TfArg<RulesetPolish>? polish;
 
-  final List<TfArg<RulesetRulesActionParametersProducts>>? products;
+  final List<TfArg<RulesetProducts>>? products;
 
   final TfArg<num>? readTimeout;
 
   final TfArg<bool>? redirectsForAiTraining;
 
-  final TfArg<RulesetRulesActionParametersRequestBodyBuffering>?
-  requestBodyBuffering;
+  final TfArg<RulesetRequestBodyBuffering>? requestBodyBuffering;
 
   final TfArg<bool>? respectStrongEtags;
 
-  final TfArg<RulesetRulesActionParametersResponseBodyBuffering>?
-  responseBodyBuffering;
+  final TfArg<RulesetResponseBodyBuffering>? responseBodyBuffering;
 
   final TfArg<bool>? rocketLoader;
 
   final TfArg<Map<String, dynamic>>? rules;
 
-  final TfArg<RulesetRulesActionParametersRuleset>? ruleset;
+  final TfArg<RulesetRuleset>? ruleset;
 
   final TfArg<List<String>>? rulesets;
 
-  final TfArg<RulesetRulesActionParametersSecurityLevel>? securityLevel;
+  final TfArg<RulesetSecurityLevel>? securityLevel;
 
   final TfArg<bool>? serverSideExcludes;
 
-  final TfArg<RulesetRulesActionParametersSsl>? ssl;
+  final TfArg<RulesetSsl>? ssl;
 
   final TfArg<num>? statusCode;
 
@@ -362,76 +360,75 @@ final class RulesetRulesActionParameters {
 
   final TfArg<bool>? sxg;
 
-  final List<RulesetRulesActionParametersAlgorithms>? algorithms;
+  final List<RulesetAlgorithms>? algorithms;
 
-  final RulesetRulesActionParametersAutominify? autominify;
+  final RulesetAutominify? autominify;
 
-  final RulesetRulesActionParametersBrowserTtl? browserTtl;
+  final RulesetBrowserTtl? browserTtl;
 
-  final RulesetRulesActionParametersCacheKey? cacheKey;
+  final RulesetCacheKey? cacheKey;
 
-  final RulesetRulesActionParametersCacheReserve? cacheReserve;
+  final RulesetCacheReserve? cacheReserve;
 
-  final List<RulesetRulesActionParametersCookieFields>? cookieFields;
+  final List<RulesetCookieFields>? cookieFields;
 
-  final RulesetRulesActionParametersEdgeTtl? edgeTtl;
+  final RulesetEdgeTtl? edgeTtl;
 
-  final RulesetRulesActionParametersSource? source;
+  final RulesetSource? source;
 
-  final Map<String, RulesetRulesActionParametersHeaders>? headers;
+  final Map<String, RulesetHeaders>? headers;
 
-  final RulesetRulesActionParametersImmutable? immutable;
+  final RulesetImmutable? immutable;
 
-  final RulesetRulesActionParametersMatchedData? matchedData;
+  final RulesetMatchedData? matchedData;
 
-  final RulesetRulesActionParametersMaxAge? maxAge;
+  final RulesetMaxAge? maxAge;
 
-  final RulesetRulesActionParametersMustRevalidate? mustRevalidate;
+  final RulesetMustRevalidate? mustRevalidate;
 
-  final RulesetRulesActionParametersMustUnderstand? mustUnderstand;
+  final RulesetMustUnderstand? mustUnderstand;
 
-  final RulesetRulesActionParametersNoCache? noCache;
+  final RulesetNoCache? noCache;
 
-  final RulesetRulesActionParametersNoStore? noStore;
+  final RulesetNoStore? noStore;
 
-  final RulesetRulesActionParametersNoTransform? noTransform;
+  final RulesetNoTransform? noTransform;
 
-  final RulesetRulesActionParametersOrigin? origin;
+  final RulesetOrigin? origin;
 
-  final RulesetRulesActionParametersOriginRangeRequests? originRangeRequests;
+  final RulesetOriginRangeRequests? originRangeRequests;
 
-  final RulesetRulesActionParametersOverrides? overrides;
+  final RulesetOverrides? overrides;
 
-  final RulesetRulesActionParametersPrivate? private;
+  final RulesetPrivate? private;
 
-  final RulesetRulesActionParametersProxyRevalidate? proxyRevalidate;
+  final RulesetProxyRevalidate? proxyRevalidate;
 
-  final RulesetRulesActionParametersPublic? public;
+  final RulesetPublic? public;
 
-  final List<RulesetRulesActionParametersRawResponseFields>? rawResponseFields;
+  final List<RulesetRawResponseFields>? rawResponseFields;
 
-  final List<RulesetRulesActionParametersRequestFields>? requestFields;
+  final List<RulesetRequestFields>? requestFields;
 
-  final RulesetRulesActionParametersResponse? response;
+  final RulesetResponse? response;
 
-  final List<RulesetRulesActionParametersResponseFields>? responseFields;
+  final List<RulesetResponseFields>? responseFields;
 
-  final RulesetRulesActionParametersSMaxage? sMaxage;
+  final RulesetSMaxage? sMaxage;
 
-  final RulesetRulesActionParametersServeStale? serveStale;
+  final RulesetServeStale? serveStale;
 
-  final RulesetRulesActionParametersSni? sni;
+  final RulesetSni? sni;
 
-  final RulesetRulesActionParametersStaleIfError? staleIfError;
+  final RulesetStaleIfError? staleIfError;
 
-  final RulesetRulesActionParametersStaleWhileRevalidate? staleWhileRevalidate;
+  final RulesetStaleWhileRevalidate? staleWhileRevalidate;
 
-  final List<RulesetRulesActionParametersTransformedRequestFields>?
-  transformedRequestFields;
+  final List<RulesetTransformedRequestFields>? transformedRequestFields;
 
-  final RulesetRulesActionParametersUri? uri;
+  final RulesetUri? uri;
 
-  final RulesetRulesActionParametersVary? vary;
+  final RulesetVary? vary;
 
   Map<String, Object?> encode() => {
     'additional_cacheable_ports': ?additionalCacheablePorts?.toTfJson(),
@@ -528,18 +525,15 @@ final class RulesetRulesActionParameters {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.assetName(...)`.
-sealed class RulesetRulesActionParametersBody {
-  const RulesetRulesActionParametersBody();
+sealed class RulesetBody {
+  const RulesetBody();
 
   /// Sets `asset_name`.
-  const factory RulesetRulesActionParametersBody.assetName(
-    TfArg<String> assetName,
-  ) = RulesetRulesActionParametersBodyAssetName;
+  const factory RulesetBody.assetName(TfArg<String> assetName) =
+      RulesetBodyAssetName;
 
   /// Sets `content`.
-  const factory RulesetRulesActionParametersBody.content(
-    TfArg<String> content,
-  ) = RulesetRulesActionParametersBodyContent;
+  const factory RulesetBody.content(TfArg<String> content) = RulesetBodyContent;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -547,10 +541,9 @@ sealed class RulesetRulesActionParametersBody {
   Map<String, Object?> encode();
 }
 
-/// The [RulesetRulesActionParametersBody.assetName] choice: sets `asset_name`.
-final class RulesetRulesActionParametersBodyAssetName
-    extends RulesetRulesActionParametersBody {
-  const RulesetRulesActionParametersBodyAssetName(this.assetName);
+/// The [RulesetBody.assetName] choice: sets `asset_name`.
+final class RulesetBodyAssetName extends RulesetBody {
+  const RulesetBodyAssetName(this.assetName);
 
   final TfArg<String> assetName;
 
@@ -561,10 +554,9 @@ final class RulesetRulesActionParametersBodyAssetName
   Map<String, Object?> encode() => {'asset_name': assetName.toTfJson()};
 }
 
-/// The [RulesetRulesActionParametersBody.content] choice: sets `content`.
-final class RulesetRulesActionParametersBodyContent
-    extends RulesetRulesActionParametersBody {
-  const RulesetRulesActionParametersBodyContent(this.content);
+/// The [RulesetBody.content] choice: sets `content`.
+final class RulesetBodyContent extends RulesetBody {
+  const RulesetBodyContent(this.content);
 
   final TfArg<String> content;
 
@@ -580,18 +572,16 @@ final class RulesetRulesActionParametersBodyContent
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.fromList(...)`.
-sealed class RulesetRulesActionParametersSource {
-  const RulesetRulesActionParametersSource();
+sealed class RulesetSource {
+  const RulesetSource();
 
   /// Sets `from_list`.
-  const factory RulesetRulesActionParametersSource.fromList(
-    RulesetRulesActionParametersFromList fromList,
-  ) = RulesetRulesActionParametersSourceFromList;
+  const factory RulesetSource.fromList(RulesetFromList fromList) =
+      RulesetSourceFromList;
 
   /// Sets `from_value`.
-  const factory RulesetRulesActionParametersSource.fromValue(
-    RulesetRulesActionParametersFromValue fromValue,
-  ) = RulesetRulesActionParametersSourceFromValue;
+  const factory RulesetSource.fromValue(RulesetFromValue fromValue) =
+      RulesetSourceFromValue;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -599,12 +589,11 @@ sealed class RulesetRulesActionParametersSource {
   Map<String, Object?> encode();
 }
 
-/// The [RulesetRulesActionParametersSource.fromList] choice: sets `from_list`.
-final class RulesetRulesActionParametersSourceFromList
-    extends RulesetRulesActionParametersSource {
-  const RulesetRulesActionParametersSourceFromList(this.fromList);
+/// The [RulesetSource.fromList] choice: sets `from_list`.
+final class RulesetSourceFromList extends RulesetSource {
+  const RulesetSourceFromList(this.fromList);
 
-  final RulesetRulesActionParametersFromList fromList;
+  final RulesetFromList fromList;
 
   @override
   String get blockKey => 'from_list';
@@ -613,12 +602,11 @@ final class RulesetRulesActionParametersSourceFromList
   Map<String, Object?> encode() => {'from_list': fromList.encode()};
 }
 
-/// The [RulesetRulesActionParametersSource.fromValue] choice: sets `from_value`.
-final class RulesetRulesActionParametersSourceFromValue
-    extends RulesetRulesActionParametersSource {
-  const RulesetRulesActionParametersSourceFromValue(this.fromValue);
+/// The [RulesetSource.fromValue] choice: sets `from_value`.
+final class RulesetSourceFromValue extends RulesetSource {
+  const RulesetSourceFromValue(this.fromValue);
 
-  final RulesetRulesActionParametersFromValue fromValue;
+  final RulesetFromValue fromValue;
 
   @override
   String get blockKey => 'from_value';
@@ -632,18 +620,16 @@ final class RulesetRulesActionParametersSourceFromValue
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.values(...)`.
-sealed class RulesetRulesActionParametersValue {
-  const RulesetRulesActionParametersValue();
+sealed class RulesetValue {
+  const RulesetValue();
 
   /// Sets `values`.
-  const factory RulesetRulesActionParametersValue.values(
-    TfArg<List<String>> values,
-  ) = RulesetRulesActionParametersValueValues;
+  const factory RulesetValue.values(TfArg<List<String>> values) =
+      RulesetValueValues;
 
   /// Sets `expression`.
-  const factory RulesetRulesActionParametersValue.expression(
-    TfArg<String> expression,
-  ) = RulesetRulesActionParametersValueExpression;
+  const factory RulesetValue.expression(TfArg<String> expression) =
+      RulesetValueExpression;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -651,10 +637,9 @@ sealed class RulesetRulesActionParametersValue {
   Map<String, Object?> encode();
 }
 
-/// The [RulesetRulesActionParametersValue.values] choice: sets `values`.
-final class RulesetRulesActionParametersValueValues
-    extends RulesetRulesActionParametersValue {
-  const RulesetRulesActionParametersValueValues(this.values);
+/// The [RulesetValue.values] choice: sets `values`.
+final class RulesetValueValues extends RulesetValue {
+  const RulesetValueValues(this.values);
 
   final TfArg<List<String>> values;
 
@@ -665,10 +650,9 @@ final class RulesetRulesActionParametersValueValues
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
 
-/// The [RulesetRulesActionParametersValue.expression] choice: sets `expression`.
-final class RulesetRulesActionParametersValueExpression
-    extends RulesetRulesActionParametersValue {
-  const RulesetRulesActionParametersValueExpression(this.expression);
+/// The [RulesetValue.expression] choice: sets `expression`.
+final class RulesetValueExpression extends RulesetValue {
+  const RulesetValueExpression(this.expression);
 
   final TfArg<String> expression;
 
@@ -680,30 +664,30 @@ final class RulesetRulesActionParametersValueExpression
 }
 
 /// `content_type` — derived from the provider schema description.
-enum RulesetRulesActionParametersContentType implements TerraformEnum {
+enum RulesetContentType implements TerraformEnum {
   applicationJson('application/json'),
   textHtml('text/html'),
   textPlain('text/plain'),
   textXml('text/xml');
 
-  const RulesetRulesActionParametersContentType(this.terraformValue);
+  const RulesetContentType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `operation` — derived from the provider schema description.
-enum RulesetRulesActionParametersOperation implements TerraformEnum {
+enum RulesetOperation implements TerraformEnum {
   set('set'),
   add('add'),
   remove('remove');
 
-  const RulesetRulesActionParametersOperation(this.terraformValue);
+  const RulesetOperation(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `phases` — derived from the provider schema description.
-enum RulesetRulesActionParametersPhases implements TerraformEnum {
+enum RulesetPhases implements TerraformEnum {
   ddosL4('ddos_l4'),
   ddosL7('ddos_l7'),
   httpConfigSettings('http_config_settings'),
@@ -729,25 +713,25 @@ enum RulesetRulesActionParametersPhases implements TerraformEnum {
   magicTransitManaged('magic_transit_managed'),
   magicTransitRatelimit('magic_transit_ratelimit');
 
-  const RulesetRulesActionParametersPhases(this.terraformValue);
+  const RulesetPhases(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `polish` — derived from the provider schema description.
-enum RulesetRulesActionParametersPolish implements TerraformEnum {
+enum RulesetPolish implements TerraformEnum {
   off('off'),
   lossless('lossless'),
   lossy('lossy'),
   webp('webp');
 
-  const RulesetRulesActionParametersPolish(this.terraformValue);
+  const RulesetPolish(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `products` — derived from the provider schema description.
-enum RulesetRulesActionParametersProducts implements TerraformEnum {
+enum RulesetProducts implements TerraformEnum {
   bic('bic'),
   hot('hot'),
   ratelimit('rateLimit'),
@@ -756,44 +740,43 @@ enum RulesetRulesActionParametersProducts implements TerraformEnum {
   waf('waf'),
   zonelockdown('zoneLockdown');
 
-  const RulesetRulesActionParametersProducts(this.terraformValue);
+  const RulesetProducts(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `request_body_buffering` — derived from the provider schema description.
-enum RulesetRulesActionParametersRequestBodyBuffering implements TerraformEnum {
+enum RulesetRequestBodyBuffering implements TerraformEnum {
   none('none'),
   standard('standard'),
   full('full');
 
-  const RulesetRulesActionParametersRequestBodyBuffering(this.terraformValue);
+  const RulesetRequestBodyBuffering(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `response_body_buffering` — derived from the provider schema description.
-enum RulesetRulesActionParametersResponseBodyBuffering
-    implements TerraformEnum {
+enum RulesetResponseBodyBuffering implements TerraformEnum {
   none('none'),
   standard('standard');
 
-  const RulesetRulesActionParametersResponseBodyBuffering(this.terraformValue);
+  const RulesetResponseBodyBuffering(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `ruleset` — derived from the provider schema description.
-enum RulesetRulesActionParametersRuleset implements TerraformEnum {
+enum RulesetRuleset implements TerraformEnum {
   current('current');
 
-  const RulesetRulesActionParametersRuleset(this.terraformValue);
+  const RulesetRuleset(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `security_level` — derived from the provider schema description.
-enum RulesetRulesActionParametersSecurityLevel implements TerraformEnum {
+enum RulesetSecurityLevel implements TerraformEnum {
   off('off'),
   essentiallyOff('essentially_off'),
   low('low'),
@@ -801,20 +784,20 @@ enum RulesetRulesActionParametersSecurityLevel implements TerraformEnum {
   high('high'),
   underAttack('under_attack');
 
-  const RulesetRulesActionParametersSecurityLevel(this.terraformValue);
+  const RulesetSecurityLevel(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `ssl` — derived from the provider schema description.
-enum RulesetRulesActionParametersSsl implements TerraformEnum {
+enum RulesetSsl implements TerraformEnum {
   off('off'),
   flexible('flexible'),
   full('full'),
   strict('strict'),
   originPull('origin_pull');
 
-  const RulesetRulesActionParametersSsl(this.terraformValue);
+  const RulesetSsl(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -822,16 +805,16 @@ enum RulesetRulesActionParametersSsl implements TerraformEnum {
 /// Typed helper for the `rules.action_parameters.algorithms` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersAlgorithms {
-  const RulesetRulesActionParametersAlgorithms({this.name});
+final class RulesetAlgorithms {
+  const RulesetAlgorithms({this.name});
 
-  final TfArg<RulesetRulesActionParametersAlgorithmsName>? name;
+  final TfArg<RulesetAlgorithmsName>? name;
 
   Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
 /// `name` — derived from the provider schema description.
-enum RulesetRulesActionParametersAlgorithmsName implements TerraformEnum {
+enum RulesetAlgorithmsName implements TerraformEnum {
   none('none'),
   auto('auto'),
   defaultCase('default'),
@@ -839,7 +822,7 @@ enum RulesetRulesActionParametersAlgorithmsName implements TerraformEnum {
   brotli('brotli'),
   zstd('zstd');
 
-  const RulesetRulesActionParametersAlgorithmsName(this.terraformValue);
+  const RulesetAlgorithmsName(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -847,8 +830,8 @@ enum RulesetRulesActionParametersAlgorithmsName implements TerraformEnum {
 /// Typed helper for the `rules.action_parameters.autominify` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersAutominify {
-  const RulesetRulesActionParametersAutominify({this.css, this.html, this.js});
+final class RulesetAutominify {
+  const RulesetAutominify({this.css, this.html, this.js});
 
   final TfArg<bool>? css;
 
@@ -866,15 +849,12 @@ final class RulesetRulesActionParametersAutominify {
 /// Typed helper for the `rules.action_parameters.browser_ttl` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersBrowserTtl {
-  const RulesetRulesActionParametersBrowserTtl({
-    this.defaultCase,
-    required this.mode,
-  });
+final class RulesetBrowserTtl {
+  const RulesetBrowserTtl({this.defaultCase, required this.mode});
 
   final TfArg<num>? defaultCase;
 
-  final TfArg<RulesetRulesActionParametersBrowserTtlMode> mode;
+  final TfArg<RulesetBrowserTtlMode> mode;
 
   Map<String, Object?> encode() => {
     'default': ?defaultCase?.toTfJson(),
@@ -883,13 +863,13 @@ final class RulesetRulesActionParametersBrowserTtl {
 }
 
 /// `mode` — derived from the provider schema description.
-enum RulesetRulesActionParametersBrowserTtlMode implements TerraformEnum {
+enum RulesetBrowserTtlMode implements TerraformEnum {
   respectOrigin('respect_origin'),
   bypassByDefault('bypass_by_default'),
   overrideOrigin('override_origin'),
   bypass('bypass');
 
-  const RulesetRulesActionParametersBrowserTtlMode(this.terraformValue);
+  const RulesetBrowserTtlMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -897,8 +877,8 @@ enum RulesetRulesActionParametersBrowserTtlMode implements TerraformEnum {
 /// Typed helper for the `rules.action_parameters.cache_key` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersCacheKey {
-  const RulesetRulesActionParametersCacheKey({
+final class RulesetCacheKey {
+  const RulesetCacheKey({
     this.cacheByDeviceType,
     this.cacheDeceptionArmor,
     this.ignoreQueryStringsOrder,
@@ -911,7 +891,7 @@ final class RulesetRulesActionParametersCacheKey {
 
   final TfArg<bool>? ignoreQueryStringsOrder;
 
-  final RulesetRulesActionParametersCacheKeyCustomKey? customKey;
+  final RulesetCustomKey? customKey;
 
   Map<String, Object?> encode() => {
     'cache_by_device_type': ?cacheByDeviceType?.toTfJson(),
@@ -924,8 +904,8 @@ final class RulesetRulesActionParametersCacheKey {
 /// Typed helper for the `rules.action_parameters.cache_key.custom_key` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersCacheKeyCustomKey {
-  const RulesetRulesActionParametersCacheKeyCustomKey({
+final class RulesetCustomKey {
+  const RulesetCustomKey({
     this.cookie,
     this.header,
     this.host,
@@ -933,15 +913,15 @@ final class RulesetRulesActionParametersCacheKeyCustomKey {
     this.user,
   });
 
-  final RulesetRulesActionParametersCacheKeyCustomKeyCookie? cookie;
+  final RulesetCookie? cookie;
 
-  final RulesetRulesActionParametersCacheKeyCustomKeyHeader? header;
+  final RulesetHeader? header;
 
-  final RulesetRulesActionParametersCacheKeyCustomKeyHost? host;
+  final RulesetHost? host;
 
-  final RulesetRulesActionParametersCacheKeyCustomKeyQueryString? queryString;
+  final RulesetQueryString? queryString;
 
-  final RulesetRulesActionParametersCacheKeyCustomKeyUser? user;
+  final RulesetUser? user;
 
   Map<String, Object?> encode() => {
     'cookie': ?cookie?.encode(),
@@ -955,11 +935,8 @@ final class RulesetRulesActionParametersCacheKeyCustomKey {
 /// Typed helper for the `rules.action_parameters.cache_key.custom_key.cookie` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersCacheKeyCustomKeyCookie {
-  const RulesetRulesActionParametersCacheKeyCustomKeyCookie({
-    this.checkPresence,
-    this.include,
-  });
+final class RulesetCookie {
+  const RulesetCookie({this.checkPresence, this.include});
 
   final TfArg<List<String>>? checkPresence;
 
@@ -974,8 +951,8 @@ final class RulesetRulesActionParametersCacheKeyCustomKeyCookie {
 /// Typed helper for the `rules.action_parameters.cache_key.custom_key.header` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersCacheKeyCustomKeyHeader {
-  const RulesetRulesActionParametersCacheKeyCustomKeyHeader({
+final class RulesetHeader {
+  const RulesetHeader({
     this.checkPresence,
     this.contains,
     this.excludeOrigin,
@@ -1001,8 +978,8 @@ final class RulesetRulesActionParametersCacheKeyCustomKeyHeader {
 /// Typed helper for the `rules.action_parameters.cache_key.custom_key.host` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersCacheKeyCustomKeyHost {
-  const RulesetRulesActionParametersCacheKeyCustomKeyHost({this.resolved});
+final class RulesetHost {
+  const RulesetHost({this.resolved});
 
   final TfArg<bool>? resolved;
 
@@ -1014,18 +991,16 @@ final class RulesetRulesActionParametersCacheKeyCustomKeyHost {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.include(...)`.
-sealed class RulesetRulesActionParametersCacheKeyCustomKeyQueryString {
-  const RulesetRulesActionParametersCacheKeyCustomKeyQueryString();
+sealed class RulesetQueryString {
+  const RulesetQueryString();
 
   /// Sets `include`.
-  const factory RulesetRulesActionParametersCacheKeyCustomKeyQueryString.include(
-    RulesetRulesActionParametersCacheKeyCustomKeyQueryStringInclude include,
-  ) = RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeChoice;
+  const factory RulesetQueryString.include(RulesetInclude include) =
+      RulesetQueryStringInclude;
 
   /// Sets `exclude`.
-  const factory RulesetRulesActionParametersCacheKeyCustomKeyQueryString.exclude(
-    RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExclude exclude,
-  ) = RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeChoice;
+  const factory RulesetQueryString.exclude(RulesetExclude exclude) =
+      RulesetQueryStringExclude;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1033,14 +1008,11 @@ sealed class RulesetRulesActionParametersCacheKeyCustomKeyQueryString {
   Map<String, Object?> encode();
 }
 
-/// The [RulesetRulesActionParametersCacheKeyCustomKeyQueryString.include] choice: sets `include`.
-final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeChoice
-    extends RulesetRulesActionParametersCacheKeyCustomKeyQueryString {
-  const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeChoice(
-    this.include,
-  );
+/// The [RulesetQueryString.include] choice: sets `include`.
+final class RulesetQueryStringInclude extends RulesetQueryString {
+  const RulesetQueryStringInclude(this.include);
 
-  final RulesetRulesActionParametersCacheKeyCustomKeyQueryStringInclude include;
+  final RulesetInclude include;
 
   @override
   String get blockKey => 'include';
@@ -1049,14 +1021,11 @@ final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeChoic
   Map<String, Object?> encode() => {'include': include.encode()};
 }
 
-/// The [RulesetRulesActionParametersCacheKeyCustomKeyQueryString.exclude] choice: sets `exclude`.
-final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeChoice
-    extends RulesetRulesActionParametersCacheKeyCustomKeyQueryString {
-  const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeChoice(
-    this.exclude,
-  );
+/// The [RulesetQueryString.exclude] choice: sets `exclude`.
+final class RulesetQueryStringExclude extends RulesetQueryString {
+  const RulesetQueryStringExclude(this.exclude);
 
-  final RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExclude exclude;
+  final RulesetExclude exclude;
 
   @override
   String get blockKey => 'exclude';
@@ -1069,18 +1038,15 @@ final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeChoic
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.list(...)`.
-sealed class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExclude {
-  const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExclude();
+sealed class RulesetExclude {
+  const RulesetExclude();
 
   /// Sets `list`.
-  const factory RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExclude.list(
-    TfArg<List<String>> list,
-  ) = RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeList;
+  const factory RulesetExclude.list(TfArg<List<String>> list) =
+      RulesetExcludeList;
 
   /// Sets `all`.
-  const factory RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExclude.all(
-    TfArg<bool> all,
-  ) = RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeAll;
+  const factory RulesetExclude.all(TfArg<bool> all) = RulesetExcludeAll;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1088,12 +1054,9 @@ sealed class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExclude {
   Map<String, Object?> encode();
 }
 
-/// The [RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExclude.list] choice: sets `list`.
-final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeList
-    extends RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExclude {
-  const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeList(
-    this.list,
-  );
+/// The [RulesetExclude.list] choice: sets `list`.
+final class RulesetExcludeList extends RulesetExclude {
+  const RulesetExcludeList(this.list);
 
   final TfArg<List<String>> list;
 
@@ -1104,12 +1067,9 @@ final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeList
   Map<String, Object?> encode() => {'list': list.toTfJson()};
 }
 
-/// The [RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExclude.all] choice: sets `all`.
-final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeAll
-    extends RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExclude {
-  const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeAll(
-    this.all,
-  );
+/// The [RulesetExclude.all] choice: sets `all`.
+final class RulesetExcludeAll extends RulesetExclude {
+  const RulesetExcludeAll(this.all);
 
   final TfArg<bool> all;
 
@@ -1124,18 +1084,15 @@ final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeAll
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.list(...)`.
-sealed class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringInclude {
-  const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringInclude();
+sealed class RulesetInclude {
+  const RulesetInclude();
 
   /// Sets `list`.
-  const factory RulesetRulesActionParametersCacheKeyCustomKeyQueryStringInclude.list(
-    TfArg<List<String>> list,
-  ) = RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeList;
+  const factory RulesetInclude.list(TfArg<List<String>> list) =
+      RulesetIncludeList;
 
   /// Sets `all`.
-  const factory RulesetRulesActionParametersCacheKeyCustomKeyQueryStringInclude.all(
-    TfArg<bool> all,
-  ) = RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeAll;
+  const factory RulesetInclude.all(TfArg<bool> all) = RulesetIncludeAll;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1143,12 +1100,9 @@ sealed class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringInclude {
   Map<String, Object?> encode();
 }
 
-/// The [RulesetRulesActionParametersCacheKeyCustomKeyQueryStringInclude.list] choice: sets `list`.
-final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeList
-    extends RulesetRulesActionParametersCacheKeyCustomKeyQueryStringInclude {
-  const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeList(
-    this.list,
-  );
+/// The [RulesetInclude.list] choice: sets `list`.
+final class RulesetIncludeList extends RulesetInclude {
+  const RulesetIncludeList(this.list);
 
   final TfArg<List<String>> list;
 
@@ -1159,12 +1113,9 @@ final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeList
   Map<String, Object?> encode() => {'list': list.toTfJson()};
 }
 
-/// The [RulesetRulesActionParametersCacheKeyCustomKeyQueryStringInclude.all] choice: sets `all`.
-final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeAll
-    extends RulesetRulesActionParametersCacheKeyCustomKeyQueryStringInclude {
-  const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeAll(
-    this.all,
-  );
+/// The [RulesetInclude.all] choice: sets `all`.
+final class RulesetIncludeAll extends RulesetInclude {
+  const RulesetIncludeAll(this.all);
 
   final TfArg<bool> all;
 
@@ -1178,12 +1129,8 @@ final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeAll
 /// Typed helper for the `rules.action_parameters.cache_key.custom_key.user` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersCacheKeyCustomKeyUser {
-  const RulesetRulesActionParametersCacheKeyCustomKeyUser({
-    this.deviceType,
-    this.geo,
-    this.lang,
-  });
+final class RulesetUser {
+  const RulesetUser({this.deviceType, this.geo, this.lang});
 
   final TfArg<bool>? deviceType;
 
@@ -1201,11 +1148,8 @@ final class RulesetRulesActionParametersCacheKeyCustomKeyUser {
 /// Typed helper for the `rules.action_parameters.cache_reserve` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersCacheReserve {
-  const RulesetRulesActionParametersCacheReserve({
-    required this.eligible,
-    this.minimumFileSize,
-  });
+final class RulesetCacheReserve {
+  const RulesetCacheReserve({required this.eligible, this.minimumFileSize});
 
   final TfArg<bool> eligible;
 
@@ -1220,8 +1164,8 @@ final class RulesetRulesActionParametersCacheReserve {
 /// Typed helper for the `rules.action_parameters.cookie_fields` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersCookieFields {
-  const RulesetRulesActionParametersCookieFields({required this.name});
+final class RulesetCookieFields {
+  const RulesetCookieFields({required this.name});
 
   final TfArg<String> name;
 
@@ -1231,8 +1175,8 @@ final class RulesetRulesActionParametersCookieFields {
 /// Typed helper for the `rules.action_parameters.edge_ttl` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersEdgeTtl {
-  const RulesetRulesActionParametersEdgeTtl({
+final class RulesetEdgeTtl {
+  const RulesetEdgeTtl({
     this.defaultCase,
     required this.mode,
     this.statusCodeTtl,
@@ -1240,9 +1184,9 @@ final class RulesetRulesActionParametersEdgeTtl {
 
   final TfArg<num>? defaultCase;
 
-  final TfArg<RulesetRulesActionParametersEdgeTtlMode> mode;
+  final TfArg<RulesetEdgeTtlMode> mode;
 
-  final List<RulesetRulesActionParametersEdgeTtlStatusCodeTtl>? statusCodeTtl;
+  final List<RulesetStatusCodeTtl>? statusCodeTtl;
 
   Map<String, Object?> encode() => {
     'default': ?defaultCase?.toTfJson(),
@@ -1253,12 +1197,12 @@ final class RulesetRulesActionParametersEdgeTtl {
 }
 
 /// `mode` — derived from the provider schema description.
-enum RulesetRulesActionParametersEdgeTtlMode implements TerraformEnum {
+enum RulesetEdgeTtlMode implements TerraformEnum {
   respectOrigin('respect_origin'),
   bypassByDefault('bypass_by_default'),
   overrideOrigin('override_origin');
 
-  const RulesetRulesActionParametersEdgeTtlMode(this.terraformValue);
+  const RulesetEdgeTtlMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1266,13 +1210,10 @@ enum RulesetRulesActionParametersEdgeTtlMode implements TerraformEnum {
 /// Typed helper for the `rules.action_parameters.edge_ttl.status_code_ttl` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersEdgeTtlStatusCodeTtl {
-  const RulesetRulesActionParametersEdgeTtlStatusCodeTtl({
-    required this.match,
-    required this.value,
-  });
+final class RulesetStatusCodeTtl {
+  const RulesetStatusCodeTtl({required this.match, required this.value});
 
-  final RulesetRulesActionParametersEdgeTtlStatusCodeTtlMatch match;
+  final RulesetMatch match;
 
   final TfArg<num> value;
 
@@ -1286,19 +1227,17 @@ final class RulesetRulesActionParametersEdgeTtlStatusCodeTtl {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.statusCodeRange(...)`.
-sealed class RulesetRulesActionParametersEdgeTtlStatusCodeTtlMatch {
-  const RulesetRulesActionParametersEdgeTtlStatusCodeTtlMatch();
+sealed class RulesetMatch {
+  const RulesetMatch();
 
   /// Sets `status_code_range`.
-  const factory RulesetRulesActionParametersEdgeTtlStatusCodeTtlMatch.statusCodeRange(
-    RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRange
-    statusCodeRange,
-  ) = RulesetRulesActionParametersEdgeTtlStatusCodeTtlMatchStatusCodeRange;
+  const factory RulesetMatch.statusCodeRange(
+    RulesetStatusCodeRange statusCodeRange,
+  ) = RulesetMatchStatusCodeRange;
 
   /// Sets `status_code`.
-  const factory RulesetRulesActionParametersEdgeTtlStatusCodeTtlMatch.statusCode(
-    TfArg<num> statusCode,
-  ) = RulesetRulesActionParametersEdgeTtlStatusCodeTtlMatchStatusCode;
+  const factory RulesetMatch.statusCode(TfArg<num> statusCode) =
+      RulesetMatchStatusCode;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1306,15 +1245,11 @@ sealed class RulesetRulesActionParametersEdgeTtlStatusCodeTtlMatch {
   Map<String, Object?> encode();
 }
 
-/// The [RulesetRulesActionParametersEdgeTtlStatusCodeTtlMatch.statusCodeRange] choice: sets `status_code_range`.
-final class RulesetRulesActionParametersEdgeTtlStatusCodeTtlMatchStatusCodeRange
-    extends RulesetRulesActionParametersEdgeTtlStatusCodeTtlMatch {
-  const RulesetRulesActionParametersEdgeTtlStatusCodeTtlMatchStatusCodeRange(
-    this.statusCodeRange,
-  );
+/// The [RulesetMatch.statusCodeRange] choice: sets `status_code_range`.
+final class RulesetMatchStatusCodeRange extends RulesetMatch {
+  const RulesetMatchStatusCodeRange(this.statusCodeRange);
 
-  final RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRange
-  statusCodeRange;
+  final RulesetStatusCodeRange statusCodeRange;
 
   @override
   String get blockKey => 'status_code_range';
@@ -1325,12 +1260,9 @@ final class RulesetRulesActionParametersEdgeTtlStatusCodeTtlMatchStatusCodeRange
   };
 }
 
-/// The [RulesetRulesActionParametersEdgeTtlStatusCodeTtlMatch.statusCode] choice: sets `status_code`.
-final class RulesetRulesActionParametersEdgeTtlStatusCodeTtlMatchStatusCode
-    extends RulesetRulesActionParametersEdgeTtlStatusCodeTtlMatch {
-  const RulesetRulesActionParametersEdgeTtlStatusCodeTtlMatchStatusCode(
-    this.statusCode,
-  );
+/// The [RulesetMatch.statusCode] choice: sets `status_code`.
+final class RulesetMatchStatusCode extends RulesetMatch {
+  const RulesetMatchStatusCode(this.statusCode);
 
   final TfArg<num> statusCode;
 
@@ -1344,11 +1276,8 @@ final class RulesetRulesActionParametersEdgeTtlStatusCodeTtlMatchStatusCode
 /// Typed helper for the `rules.action_parameters.edge_ttl.status_code_ttl.status_code_range` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRange {
-  const RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRange({
-    this.from,
-    this.to,
-  });
+final class RulesetStatusCodeRange {
+  const RulesetStatusCodeRange({this.from, this.to});
 
   final TfArg<num>? from;
 
@@ -1363,11 +1292,8 @@ final class RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRange {
 /// Typed helper for the `rules.action_parameters.from_list` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersFromList {
-  const RulesetRulesActionParametersFromList({
-    required this.key,
-    required this.name,
-  });
+final class RulesetFromList {
+  const RulesetFromList({required this.key, required this.name});
 
   final TfArg<String> key;
 
@@ -1382,8 +1308,8 @@ final class RulesetRulesActionParametersFromList {
 /// Typed helper for the `rules.action_parameters.from_value` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersFromValue {
-  const RulesetRulesActionParametersFromValue({
+final class RulesetFromValue {
+  const RulesetFromValue({
     this.preserveQueryString,
     this.statusCode,
     required this.targetUrl,
@@ -1393,7 +1319,7 @@ final class RulesetRulesActionParametersFromValue {
 
   final TfArg<num>? statusCode;
 
-  final RulesetRulesActionParametersFromValueTargetUrl targetUrl;
+  final RulesetTargetUrl targetUrl;
 
   Map<String, Object?> encode() => {
     'preserve_query_string': ?preserveQueryString?.toTfJson(),
@@ -1406,18 +1332,16 @@ final class RulesetRulesActionParametersFromValue {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.value(...)`.
-sealed class RulesetRulesActionParametersFromValueTargetUrl {
-  const RulesetRulesActionParametersFromValueTargetUrl();
+sealed class RulesetTargetUrl {
+  const RulesetTargetUrl();
 
   /// Sets `value`.
-  const factory RulesetRulesActionParametersFromValueTargetUrl.value(
-    TfArg<String> value,
-  ) = RulesetRulesActionParametersFromValueTargetUrlValue;
+  const factory RulesetTargetUrl.value(TfArg<String> value) =
+      RulesetTargetUrlValue;
 
   /// Sets `expression`.
-  const factory RulesetRulesActionParametersFromValueTargetUrl.expression(
-    TfArg<String> expression,
-  ) = RulesetRulesActionParametersFromValueTargetUrlExpression;
+  const factory RulesetTargetUrl.expression(TfArg<String> expression) =
+      RulesetTargetUrlExpression;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1425,10 +1349,9 @@ sealed class RulesetRulesActionParametersFromValueTargetUrl {
   Map<String, Object?> encode();
 }
 
-/// The [RulesetRulesActionParametersFromValueTargetUrl.value] choice: sets `value`.
-final class RulesetRulesActionParametersFromValueTargetUrlValue
-    extends RulesetRulesActionParametersFromValueTargetUrl {
-  const RulesetRulesActionParametersFromValueTargetUrlValue(this.value);
+/// The [RulesetTargetUrl.value] choice: sets `value`.
+final class RulesetTargetUrlValue extends RulesetTargetUrl {
+  const RulesetTargetUrlValue(this.value);
 
   final TfArg<String> value;
 
@@ -1439,12 +1362,9 @@ final class RulesetRulesActionParametersFromValueTargetUrlValue
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
-/// The [RulesetRulesActionParametersFromValueTargetUrl.expression] choice: sets `expression`.
-final class RulesetRulesActionParametersFromValueTargetUrlExpression
-    extends RulesetRulesActionParametersFromValueTargetUrl {
-  const RulesetRulesActionParametersFromValueTargetUrlExpression(
-    this.expression,
-  );
+/// The [RulesetTargetUrl.expression] choice: sets `expression`.
+final class RulesetTargetUrlExpression extends RulesetTargetUrl {
+  const RulesetTargetUrlExpression(this.expression);
 
   final TfArg<String> expression;
 
@@ -1458,15 +1378,12 @@ final class RulesetRulesActionParametersFromValueTargetUrlExpression
 /// Typed helper for the `rules.action_parameters.headers` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersHeaders {
-  const RulesetRulesActionParametersHeaders({
-    this.value,
-    required this.operation,
-  });
+final class RulesetHeaders {
+  const RulesetHeaders({this.value, required this.operation});
 
-  final RulesetRulesActionParametersHeadersValue? value;
+  final RulesetHeadersValue? value;
 
-  final TfArg<RulesetRulesActionParametersHeadersOperation> operation;
+  final TfArg<RulesetHeadersOperation> operation;
 
   Map<String, Object?> encode() => {
     ...?value?.encode(),
@@ -1479,18 +1396,16 @@ final class RulesetRulesActionParametersHeaders {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.value(...)`.
-sealed class RulesetRulesActionParametersHeadersValue {
-  const RulesetRulesActionParametersHeadersValue();
+sealed class RulesetHeadersValue {
+  const RulesetHeadersValue();
 
   /// Sets `value`.
-  const factory RulesetRulesActionParametersHeadersValue.value(
-    TfArg<String> value,
-  ) = RulesetRulesActionParametersHeadersValueChoice;
+  const factory RulesetHeadersValue.value(TfArg<String> value) =
+      RulesetHeadersValueChoice;
 
   /// Sets `expression`.
-  const factory RulesetRulesActionParametersHeadersValue.expression(
-    TfArg<String> expression,
-  ) = RulesetRulesActionParametersHeadersValueExpression;
+  const factory RulesetHeadersValue.expression(TfArg<String> expression) =
+      RulesetHeadersValueExpression;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1498,10 +1413,9 @@ sealed class RulesetRulesActionParametersHeadersValue {
   Map<String, Object?> encode();
 }
 
-/// The [RulesetRulesActionParametersHeadersValue.value] choice: sets `value`.
-final class RulesetRulesActionParametersHeadersValueChoice
-    extends RulesetRulesActionParametersHeadersValue {
-  const RulesetRulesActionParametersHeadersValueChoice(this.value);
+/// The [RulesetHeadersValue.value] choice: sets `value`.
+final class RulesetHeadersValueChoice extends RulesetHeadersValue {
+  const RulesetHeadersValueChoice(this.value);
 
   final TfArg<String> value;
 
@@ -1512,10 +1426,9 @@ final class RulesetRulesActionParametersHeadersValueChoice
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
-/// The [RulesetRulesActionParametersHeadersValue.expression] choice: sets `expression`.
-final class RulesetRulesActionParametersHeadersValueExpression
-    extends RulesetRulesActionParametersHeadersValue {
-  const RulesetRulesActionParametersHeadersValueExpression(this.expression);
+/// The [RulesetHeadersValue.expression] choice: sets `expression`.
+final class RulesetHeadersValueExpression extends RulesetHeadersValue {
+  const RulesetHeadersValueExpression(this.expression);
 
   final TfArg<String> expression;
 
@@ -1527,12 +1440,12 @@ final class RulesetRulesActionParametersHeadersValueExpression
 }
 
 /// `operation` — derived from the provider schema description.
-enum RulesetRulesActionParametersHeadersOperation implements TerraformEnum {
+enum RulesetHeadersOperation implements TerraformEnum {
   add('add'),
   set('set'),
   remove('remove');
 
-  const RulesetRulesActionParametersHeadersOperation(this.terraformValue);
+  const RulesetHeadersOperation(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1540,15 +1453,12 @@ enum RulesetRulesActionParametersHeadersOperation implements TerraformEnum {
 /// Typed helper for the `rules.action_parameters.immutable` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersImmutable {
-  const RulesetRulesActionParametersImmutable({
-    this.cloudflareOnly,
-    required this.operation,
-  });
+final class RulesetImmutable {
+  const RulesetImmutable({this.cloudflareOnly, required this.operation});
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<RulesetRulesActionParametersImmutableOperation> operation;
+  final TfArg<RulesetImmutableOperation> operation;
 
   Map<String, Object?> encode() => {
     'cloudflare_only': ?cloudflareOnly?.toTfJson(),
@@ -1557,11 +1467,11 @@ final class RulesetRulesActionParametersImmutable {
 }
 
 /// `operation` — derived from the provider schema description.
-enum RulesetRulesActionParametersImmutableOperation implements TerraformEnum {
+enum RulesetImmutableOperation implements TerraformEnum {
   set('set'),
   remove('remove');
 
-  const RulesetRulesActionParametersImmutableOperation(this.terraformValue);
+  const RulesetImmutableOperation(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1569,8 +1479,8 @@ enum RulesetRulesActionParametersImmutableOperation implements TerraformEnum {
 /// Typed helper for the `rules.action_parameters.matched_data` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersMatchedData {
-  const RulesetRulesActionParametersMatchedData({required this.publicKey});
+final class RulesetMatchedData {
+  const RulesetMatchedData({required this.publicKey});
 
   final TfArg<String> publicKey;
 
@@ -1580,8 +1490,8 @@ final class RulesetRulesActionParametersMatchedData {
 /// Typed helper for the `rules.action_parameters.max_age` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersMaxAge {
-  const RulesetRulesActionParametersMaxAge({
+final class RulesetMaxAge {
+  const RulesetMaxAge({
     this.cloudflareOnly,
     required this.operation,
     this.value,
@@ -1589,7 +1499,7 @@ final class RulesetRulesActionParametersMaxAge {
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<RulesetRulesActionParametersMaxAgeOperation> operation;
+  final TfArg<RulesetImmutableOperation> operation;
 
   final TfArg<num>? value;
 
@@ -1600,60 +1510,31 @@ final class RulesetRulesActionParametersMaxAge {
   };
 }
 
-/// `operation` — derived from the provider schema description.
-enum RulesetRulesActionParametersMaxAgeOperation implements TerraformEnum {
-  set('set'),
-  remove('remove');
-
-  const RulesetRulesActionParametersMaxAgeOperation(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `rules.action_parameters.must_revalidate` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersMustRevalidate {
-  const RulesetRulesActionParametersMustRevalidate({
-    this.cloudflareOnly,
-    required this.operation,
-  });
+final class RulesetMustRevalidate {
+  const RulesetMustRevalidate({this.cloudflareOnly, required this.operation});
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<RulesetRulesActionParametersMustRevalidateOperation> operation;
+  final TfArg<RulesetImmutableOperation> operation;
 
   Map<String, Object?> encode() => {
     'cloudflare_only': ?cloudflareOnly?.toTfJson(),
     'operation': operation.toTfJson(),
   };
-}
-
-/// `operation` — derived from the provider schema description.
-enum RulesetRulesActionParametersMustRevalidateOperation
-    implements TerraformEnum {
-  set('set'),
-  remove('remove');
-
-  const RulesetRulesActionParametersMustRevalidateOperation(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `rules.action_parameters.must_understand` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersMustUnderstand {
-  const RulesetRulesActionParametersMustUnderstand({
-    this.cloudflareOnly,
-    required this.operation,
-  });
+final class RulesetMustUnderstand {
+  const RulesetMustUnderstand({this.cloudflareOnly, required this.operation});
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<RulesetRulesActionParametersMustUnderstandOperation> operation;
+  final TfArg<RulesetImmutableOperation> operation;
 
   Map<String, Object?> encode() => {
     'cloudflare_only': ?cloudflareOnly?.toTfJson(),
@@ -1661,24 +1542,11 @@ final class RulesetRulesActionParametersMustUnderstand {
   };
 }
 
-/// `operation` — derived from the provider schema description.
-enum RulesetRulesActionParametersMustUnderstandOperation
-    implements TerraformEnum {
-  set('set'),
-  remove('remove');
-
-  const RulesetRulesActionParametersMustUnderstandOperation(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `rules.action_parameters.no_cache` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersNoCache {
-  const RulesetRulesActionParametersNoCache({
+final class RulesetNoCache {
+  const RulesetNoCache({
     this.cloudflareOnly,
     required this.operation,
     this.qualifiers,
@@ -1686,7 +1554,7 @@ final class RulesetRulesActionParametersNoCache {
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<RulesetRulesActionParametersNoCacheOperation> operation;
+  final TfArg<RulesetImmutableOperation> operation;
 
   final TfArg<List<String>>? qualifiers;
 
@@ -1697,57 +1565,31 @@ final class RulesetRulesActionParametersNoCache {
   };
 }
 
-/// `operation` — derived from the provider schema description.
-enum RulesetRulesActionParametersNoCacheOperation implements TerraformEnum {
-  set('set'),
-  remove('remove');
-
-  const RulesetRulesActionParametersNoCacheOperation(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `rules.action_parameters.no_store` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersNoStore {
-  const RulesetRulesActionParametersNoStore({
-    this.cloudflareOnly,
-    required this.operation,
-  });
+final class RulesetNoStore {
+  const RulesetNoStore({this.cloudflareOnly, required this.operation});
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<RulesetRulesActionParametersNoStoreOperation> operation;
+  final TfArg<RulesetImmutableOperation> operation;
 
   Map<String, Object?> encode() => {
     'cloudflare_only': ?cloudflareOnly?.toTfJson(),
     'operation': operation.toTfJson(),
   };
-}
-
-/// `operation` — derived from the provider schema description.
-enum RulesetRulesActionParametersNoStoreOperation implements TerraformEnum {
-  set('set'),
-  remove('remove');
-
-  const RulesetRulesActionParametersNoStoreOperation(this.terraformValue);
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `rules.action_parameters.no_transform` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersNoTransform {
-  const RulesetRulesActionParametersNoTransform({
-    this.cloudflareOnly,
-    required this.operation,
-  });
+final class RulesetNoTransform {
+  const RulesetNoTransform({this.cloudflareOnly, required this.operation});
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<RulesetRulesActionParametersNoTransformOperation> operation;
+  final TfArg<RulesetImmutableOperation> operation;
 
   Map<String, Object?> encode() => {
     'cloudflare_only': ?cloudflareOnly?.toTfJson(),
@@ -1755,21 +1597,11 @@ final class RulesetRulesActionParametersNoTransform {
   };
 }
 
-/// `operation` — derived from the provider schema description.
-enum RulesetRulesActionParametersNoTransformOperation implements TerraformEnum {
-  set('set'),
-  remove('remove');
-
-  const RulesetRulesActionParametersNoTransformOperation(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `rules.action_parameters.origin` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersOrigin {
-  const RulesetRulesActionParametersOrigin({this.host, this.port});
+final class RulesetOrigin {
+  const RulesetOrigin({this.host, this.port});
 
   final TfArg<String>? host;
 
@@ -1784,24 +1616,21 @@ final class RulesetRulesActionParametersOrigin {
 /// Typed helper for the `rules.action_parameters.origin_range_requests` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersOriginRangeRequests {
-  const RulesetRulesActionParametersOriginRangeRequests({required this.mode});
+final class RulesetOriginRangeRequests {
+  const RulesetOriginRangeRequests({required this.mode});
 
-  final TfArg<RulesetRulesActionParametersOriginRangeRequestsMode> mode;
+  final TfArg<RulesetOriginRangeRequestsMode> mode;
 
   Map<String, Object?> encode() => {'mode': mode.toTfJson()};
 }
 
 /// `mode` — derived from the provider schema description.
-enum RulesetRulesActionParametersOriginRangeRequestsMode
-    implements TerraformEnum {
+enum RulesetOriginRangeRequestsMode implements TerraformEnum {
   on('on'),
   off('off'),
   defaultCase('default');
 
-  const RulesetRulesActionParametersOriginRangeRequestsMode(
-    this.terraformValue,
-  );
+  const RulesetOriginRangeRequestsMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1809,8 +1638,8 @@ enum RulesetRulesActionParametersOriginRangeRequestsMode
 /// Typed helper for the `rules.action_parameters.overrides` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersOverrides {
-  const RulesetRulesActionParametersOverrides({
+final class RulesetOverrides {
+  const RulesetOverrides({
     this.action,
     this.enabled,
     this.sensitivityLevel,
@@ -1822,12 +1651,11 @@ final class RulesetRulesActionParametersOverrides {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<RulesetRulesActionParametersOverridesSensitivityLevel>?
-  sensitivityLevel;
+  final TfArg<RulesetSensitivityLevel>? sensitivityLevel;
 
-  final List<RulesetRulesActionParametersOverridesCategories>? categories;
+  final List<RulesetCategories>? categories;
 
-  final List<RulesetRulesActionParametersOverridesRules>? rules;
+  final List<RulesetOverridesRules>? rules;
 
   Map<String, Object?> encode() => {
     'action': ?action?.toTfJson(),
@@ -1840,16 +1668,13 @@ final class RulesetRulesActionParametersOverrides {
 }
 
 /// `sensitivity_level` — derived from the provider schema description.
-enum RulesetRulesActionParametersOverridesSensitivityLevel
-    implements TerraformEnum {
+enum RulesetSensitivityLevel implements TerraformEnum {
   defaultCase('default'),
   medium('medium'),
   low('low'),
   eoff('eoff');
 
-  const RulesetRulesActionParametersOverridesSensitivityLevel(
-    this.terraformValue,
-  );
+  const RulesetSensitivityLevel(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1857,8 +1682,8 @@ enum RulesetRulesActionParametersOverridesSensitivityLevel
 /// Typed helper for the `rules.action_parameters.overrides.categories` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersOverridesCategories {
-  const RulesetRulesActionParametersOverridesCategories({
+final class RulesetCategories {
+  const RulesetCategories({
     this.action,
     required this.category,
     this.enabled,
@@ -1871,8 +1696,7 @@ final class RulesetRulesActionParametersOverridesCategories {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<RulesetRulesActionParametersOverridesCategoriesSensitivityLevel>?
-  sensitivityLevel;
+  final TfArg<RulesetSensitivityLevel>? sensitivityLevel;
 
   Map<String, Object?> encode() => {
     'action': ?action?.toTfJson(),
@@ -1882,26 +1706,11 @@ final class RulesetRulesActionParametersOverridesCategories {
   };
 }
 
-/// `sensitivity_level` — derived from the provider schema description.
-enum RulesetRulesActionParametersOverridesCategoriesSensitivityLevel
-    implements TerraformEnum {
-  defaultCase('default'),
-  medium('medium'),
-  low('low'),
-  eoff('eoff');
-
-  const RulesetRulesActionParametersOverridesCategoriesSensitivityLevel(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `rules.action_parameters.overrides.rules` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersOverridesRules {
-  const RulesetRulesActionParametersOverridesRules({
+final class RulesetOverridesRules {
+  const RulesetOverridesRules({
     this.action,
     this.enabled,
     required this.id,
@@ -1917,8 +1726,7 @@ final class RulesetRulesActionParametersOverridesRules {
 
   final TfArg<num>? scoreThreshold;
 
-  final TfArg<RulesetRulesActionParametersOverridesRulesSensitivityLevel>?
-  sensitivityLevel;
+  final TfArg<RulesetSensitivityLevel>? sensitivityLevel;
 
   Map<String, Object?> encode() => {
     'action': ?action?.toTfJson(),
@@ -1929,26 +1737,11 @@ final class RulesetRulesActionParametersOverridesRules {
   };
 }
 
-/// `sensitivity_level` — derived from the provider schema description.
-enum RulesetRulesActionParametersOverridesRulesSensitivityLevel
-    implements TerraformEnum {
-  defaultCase('default'),
-  medium('medium'),
-  low('low'),
-  eoff('eoff');
-
-  const RulesetRulesActionParametersOverridesRulesSensitivityLevel(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `rules.action_parameters.private` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersPrivate {
-  const RulesetRulesActionParametersPrivate({
+final class RulesetPrivate {
+  const RulesetPrivate({
     this.cloudflareOnly,
     required this.operation,
     this.qualifiers,
@@ -1956,7 +1749,7 @@ final class RulesetRulesActionParametersPrivate {
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<RulesetRulesActionParametersPrivateOperation> operation;
+  final TfArg<RulesetImmutableOperation> operation;
 
   final TfArg<List<String>>? qualifiers;
 
@@ -1967,60 +1760,31 @@ final class RulesetRulesActionParametersPrivate {
   };
 }
 
-/// `operation` — derived from the provider schema description.
-enum RulesetRulesActionParametersPrivateOperation implements TerraformEnum {
-  set('set'),
-  remove('remove');
-
-  const RulesetRulesActionParametersPrivateOperation(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `rules.action_parameters.proxy_revalidate` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersProxyRevalidate {
-  const RulesetRulesActionParametersProxyRevalidate({
-    this.cloudflareOnly,
-    required this.operation,
-  });
+final class RulesetProxyRevalidate {
+  const RulesetProxyRevalidate({this.cloudflareOnly, required this.operation});
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<RulesetRulesActionParametersProxyRevalidateOperation> operation;
+  final TfArg<RulesetImmutableOperation> operation;
 
   Map<String, Object?> encode() => {
     'cloudflare_only': ?cloudflareOnly?.toTfJson(),
     'operation': operation.toTfJson(),
   };
-}
-
-/// `operation` — derived from the provider schema description.
-enum RulesetRulesActionParametersProxyRevalidateOperation
-    implements TerraformEnum {
-  set('set'),
-  remove('remove');
-
-  const RulesetRulesActionParametersProxyRevalidateOperation(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `rules.action_parameters.public` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersPublic {
-  const RulesetRulesActionParametersPublic({
-    this.cloudflareOnly,
-    required this.operation,
-  });
+final class RulesetPublic {
+  const RulesetPublic({this.cloudflareOnly, required this.operation});
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<RulesetRulesActionParametersPublicOperation> operation;
+  final TfArg<RulesetImmutableOperation> operation;
 
   Map<String, Object?> encode() => {
     'cloudflare_only': ?cloudflareOnly?.toTfJson(),
@@ -2028,24 +1792,11 @@ final class RulesetRulesActionParametersPublic {
   };
 }
 
-/// `operation` — derived from the provider schema description.
-enum RulesetRulesActionParametersPublicOperation implements TerraformEnum {
-  set('set'),
-  remove('remove');
-
-  const RulesetRulesActionParametersPublicOperation(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `rules.action_parameters.raw_response_fields` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersRawResponseFields {
-  const RulesetRulesActionParametersRawResponseFields({
-    required this.name,
-    this.preserveDuplicates,
-  });
+final class RulesetRawResponseFields {
+  const RulesetRawResponseFields({required this.name, this.preserveDuplicates});
 
   final TfArg<String> name;
 
@@ -2060,8 +1811,8 @@ final class RulesetRulesActionParametersRawResponseFields {
 /// Typed helper for the `rules.action_parameters.request_fields` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersRequestFields {
-  const RulesetRulesActionParametersRequestFields({required this.name});
+final class RulesetRequestFields {
+  const RulesetRequestFields({required this.name});
 
   final TfArg<String> name;
 
@@ -2071,8 +1822,8 @@ final class RulesetRulesActionParametersRequestFields {
 /// Typed helper for the `rules.action_parameters.response` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersResponse {
-  const RulesetRulesActionParametersResponse({
+final class RulesetResponse {
+  const RulesetResponse({
     required this.content,
     required this.contentType,
     required this.statusCode,
@@ -2094,11 +1845,8 @@ final class RulesetRulesActionParametersResponse {
 /// Typed helper for the `rules.action_parameters.response_fields` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersResponseFields {
-  const RulesetRulesActionParametersResponseFields({
-    required this.name,
-    this.preserveDuplicates,
-  });
+final class RulesetResponseFields {
+  const RulesetResponseFields({required this.name, this.preserveDuplicates});
 
   final TfArg<String> name;
 
@@ -2113,8 +1861,8 @@ final class RulesetRulesActionParametersResponseFields {
 /// Typed helper for the `rules.action_parameters.s_maxage` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersSMaxage {
-  const RulesetRulesActionParametersSMaxage({
+final class RulesetSMaxage {
+  const RulesetSMaxage({
     this.cloudflareOnly,
     required this.operation,
     this.value,
@@ -2122,7 +1870,7 @@ final class RulesetRulesActionParametersSMaxage {
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<RulesetRulesActionParametersSMaxageOperation> operation;
+  final TfArg<RulesetImmutableOperation> operation;
 
   final TfArg<num>? value;
 
@@ -2133,23 +1881,11 @@ final class RulesetRulesActionParametersSMaxage {
   };
 }
 
-/// `operation` — derived from the provider schema description.
-enum RulesetRulesActionParametersSMaxageOperation implements TerraformEnum {
-  set('set'),
-  remove('remove');
-
-  const RulesetRulesActionParametersSMaxageOperation(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `rules.action_parameters.serve_stale` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersServeStale {
-  const RulesetRulesActionParametersServeStale({
-    this.disableStaleWhileUpdating,
-  });
+final class RulesetServeStale {
+  const RulesetServeStale({this.disableStaleWhileUpdating});
 
   final TfArg<bool>? disableStaleWhileUpdating;
 
@@ -2161,8 +1897,8 @@ final class RulesetRulesActionParametersServeStale {
 /// Typed helper for the `rules.action_parameters.sni` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersSni {
-  const RulesetRulesActionParametersSni({required this.value});
+final class RulesetSni {
+  const RulesetSni({required this.value});
 
   final TfArg<String> value;
 
@@ -2172,8 +1908,8 @@ final class RulesetRulesActionParametersSni {
 /// Typed helper for the `rules.action_parameters.stale_if_error` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersStaleIfError {
-  const RulesetRulesActionParametersStaleIfError({
+final class RulesetStaleIfError {
+  const RulesetStaleIfError({
     this.cloudflareOnly,
     required this.operation,
     this.value,
@@ -2181,7 +1917,7 @@ final class RulesetRulesActionParametersStaleIfError {
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<RulesetRulesActionParametersStaleIfErrorOperation> operation;
+  final TfArg<RulesetImmutableOperation> operation;
 
   final TfArg<num>? value;
 
@@ -2190,24 +1926,13 @@ final class RulesetRulesActionParametersStaleIfError {
     'operation': operation.toTfJson(),
     'value': ?value?.toTfJson(),
   };
-}
-
-/// `operation` — derived from the provider schema description.
-enum RulesetRulesActionParametersStaleIfErrorOperation
-    implements TerraformEnum {
-  set('set'),
-  remove('remove');
-
-  const RulesetRulesActionParametersStaleIfErrorOperation(this.terraformValue);
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `rules.action_parameters.stale_while_revalidate` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersStaleWhileRevalidate {
-  const RulesetRulesActionParametersStaleWhileRevalidate({
+final class RulesetStaleWhileRevalidate {
+  const RulesetStaleWhileRevalidate({
     this.cloudflareOnly,
     required this.operation,
     this.value,
@@ -2215,8 +1940,7 @@ final class RulesetRulesActionParametersStaleWhileRevalidate {
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<RulesetRulesActionParametersStaleWhileRevalidateOperation>
-  operation;
+  final TfArg<RulesetImmutableOperation> operation;
 
   final TfArg<num>? value;
 
@@ -2227,26 +1951,11 @@ final class RulesetRulesActionParametersStaleWhileRevalidate {
   };
 }
 
-/// `operation` — derived from the provider schema description.
-enum RulesetRulesActionParametersStaleWhileRevalidateOperation
-    implements TerraformEnum {
-  set('set'),
-  remove('remove');
-
-  const RulesetRulesActionParametersStaleWhileRevalidateOperation(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `rules.action_parameters.transformed_request_fields` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersTransformedRequestFields {
-  const RulesetRulesActionParametersTransformedRequestFields({
-    required this.name,
-  });
+final class RulesetTransformedRequestFields {
+  const RulesetTransformedRequestFields({required this.name});
 
   final TfArg<String> name;
 
@@ -2256,12 +1965,12 @@ final class RulesetRulesActionParametersTransformedRequestFields {
 /// Typed helper for the `rules.action_parameters.uri` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersUri {
-  const RulesetRulesActionParametersUri({this.path, this.query});
+final class RulesetUri {
+  const RulesetUri({this.path, this.query});
 
-  final RulesetRulesActionParametersUriPath? path;
+  final RulesetPath? path;
 
-  final RulesetRulesActionParametersUriQuery? query;
+  final RulesetQuery? query;
 
   Map<String, Object?> encode() => {
     'path': ?path?.encode(),
@@ -2273,17 +1982,15 @@ final class RulesetRulesActionParametersUri {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.value(...)`.
-sealed class RulesetRulesActionParametersUriPath {
-  const RulesetRulesActionParametersUriPath();
+sealed class RulesetPath {
+  const RulesetPath();
 
   /// Sets `value`.
-  const factory RulesetRulesActionParametersUriPath.value(TfArg<String> value) =
-      RulesetRulesActionParametersUriPathValue;
+  const factory RulesetPath.value(TfArg<String> value) = RulesetPathValue;
 
   /// Sets `expression`.
-  const factory RulesetRulesActionParametersUriPath.expression(
-    TfArg<String> expression,
-  ) = RulesetRulesActionParametersUriPathExpression;
+  const factory RulesetPath.expression(TfArg<String> expression) =
+      RulesetPathExpression;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -2291,10 +1998,9 @@ sealed class RulesetRulesActionParametersUriPath {
   Map<String, Object?> encode();
 }
 
-/// The [RulesetRulesActionParametersUriPath.value] choice: sets `value`.
-final class RulesetRulesActionParametersUriPathValue
-    extends RulesetRulesActionParametersUriPath {
-  const RulesetRulesActionParametersUriPathValue(this.value);
+/// The [RulesetPath.value] choice: sets `value`.
+final class RulesetPathValue extends RulesetPath {
+  const RulesetPathValue(this.value);
 
   final TfArg<String> value;
 
@@ -2305,10 +2011,9 @@ final class RulesetRulesActionParametersUriPathValue
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
-/// The [RulesetRulesActionParametersUriPath.expression] choice: sets `expression`.
-final class RulesetRulesActionParametersUriPathExpression
-    extends RulesetRulesActionParametersUriPath {
-  const RulesetRulesActionParametersUriPathExpression(this.expression);
+/// The [RulesetPath.expression] choice: sets `expression`.
+final class RulesetPathExpression extends RulesetPath {
+  const RulesetPathExpression(this.expression);
 
   final TfArg<String> expression;
 
@@ -2323,18 +2028,15 @@ final class RulesetRulesActionParametersUriPathExpression
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.value(...)`.
-sealed class RulesetRulesActionParametersUriQuery {
-  const RulesetRulesActionParametersUriQuery();
+sealed class RulesetQuery {
+  const RulesetQuery();
 
   /// Sets `value`.
-  const factory RulesetRulesActionParametersUriQuery.value(
-    TfArg<String> value,
-  ) = RulesetRulesActionParametersUriQueryValue;
+  const factory RulesetQuery.value(TfArg<String> value) = RulesetQueryValue;
 
   /// Sets `expression`.
-  const factory RulesetRulesActionParametersUriQuery.expression(
-    TfArg<String> expression,
-  ) = RulesetRulesActionParametersUriQueryExpression;
+  const factory RulesetQuery.expression(TfArg<String> expression) =
+      RulesetQueryExpression;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -2342,10 +2044,9 @@ sealed class RulesetRulesActionParametersUriQuery {
   Map<String, Object?> encode();
 }
 
-/// The [RulesetRulesActionParametersUriQuery.value] choice: sets `value`.
-final class RulesetRulesActionParametersUriQueryValue
-    extends RulesetRulesActionParametersUriQuery {
-  const RulesetRulesActionParametersUriQueryValue(this.value);
+/// The [RulesetQuery.value] choice: sets `value`.
+final class RulesetQueryValue extends RulesetQuery {
+  const RulesetQueryValue(this.value);
 
   final TfArg<String> value;
 
@@ -2356,10 +2057,9 @@ final class RulesetRulesActionParametersUriQueryValue
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
-/// The [RulesetRulesActionParametersUriQuery.expression] choice: sets `expression`.
-final class RulesetRulesActionParametersUriQueryExpression
-    extends RulesetRulesActionParametersUriQuery {
-  const RulesetRulesActionParametersUriQueryExpression(this.expression);
+/// The [RulesetQuery.expression] choice: sets `expression`.
+final class RulesetQueryExpression extends RulesetQuery {
+  const RulesetQueryExpression(this.expression);
 
   final TfArg<String> expression;
 
@@ -2373,15 +2073,12 @@ final class RulesetRulesActionParametersUriQueryExpression
 /// Typed helper for the `rules.action_parameters.vary` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersVary {
-  const RulesetRulesActionParametersVary({
-    required this.defaultCase,
-    this.headers,
-  });
+final class RulesetVary {
+  const RulesetVary({required this.defaultCase, this.headers});
 
-  final RulesetRulesActionParametersVaryDefault defaultCase;
+  final RulesetDefault defaultCase;
 
-  final Map<String, RulesetRulesActionParametersVaryHeaders>? headers;
+  final Map<String, RulesetVaryHeaders>? headers;
 
   Map<String, Object?> encode() => {
     'default': defaultCase.encode(),
@@ -2393,21 +2090,21 @@ final class RulesetRulesActionParametersVary {
 /// Typed helper for the `rules.action_parameters.vary.default` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersVaryDefault {
-  const RulesetRulesActionParametersVaryDefault({required this.action});
+final class RulesetDefault {
+  const RulesetDefault({required this.action});
 
-  final TfArg<RulesetRulesActionParametersVaryDefaultAction> action;
+  final TfArg<RulesetDefaultAction> action;
 
   Map<String, Object?> encode() => {'action': action.toTfJson()};
 }
 
 /// `action` — derived from the provider schema description.
-enum RulesetRulesActionParametersVaryDefaultAction implements TerraformEnum {
+enum RulesetDefaultAction implements TerraformEnum {
   bypass('bypass'),
   passthrough('passthrough'),
   normalize('normalize');
 
-  const RulesetRulesActionParametersVaryDefaultAction(this.terraformValue);
+  const RulesetDefaultAction(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -2415,14 +2112,14 @@ enum RulesetRulesActionParametersVaryDefaultAction implements TerraformEnum {
 /// Typed helper for the `rules.action_parameters.vary.headers` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesActionParametersVaryHeaders {
-  const RulesetRulesActionParametersVaryHeaders({
+final class RulesetVaryHeaders {
+  const RulesetVaryHeaders({
     required this.action,
     this.languages,
     this.mediaTypes,
   });
 
-  final TfArg<RulesetRulesActionParametersVaryHeadersAction> action;
+  final TfArg<RulesetDefaultAction> action;
 
   final TfArg<List<String>>? languages;
 
@@ -2435,22 +2132,11 @@ final class RulesetRulesActionParametersVaryHeaders {
   };
 }
 
-/// `action` — derived from the provider schema description.
-enum RulesetRulesActionParametersVaryHeadersAction implements TerraformEnum {
-  bypass('bypass'),
-  passthrough('passthrough'),
-  normalize('normalize');
-
-  const RulesetRulesActionParametersVaryHeadersAction(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `rules.exposed_credential_check` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesExposedCredentialCheck {
-  const RulesetRulesExposedCredentialCheck({
+final class RulesetExposedCredentialCheck {
+  const RulesetExposedCredentialCheck({
     required this.passwordExpression,
     required this.usernameExpression,
   });
@@ -2468,8 +2154,8 @@ final class RulesetRulesExposedCredentialCheck {
 /// Typed helper for the `rules.logging` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesLogging {
-  const RulesetRulesLogging({this.enabled});
+final class RulesetLogging {
+  const RulesetLogging({this.enabled});
 
   final TfArg<bool>? enabled;
 
@@ -2479,8 +2165,8 @@ final class RulesetRulesLogging {
 /// Typed helper for the `rules.ratelimit` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
-final class RulesetRulesRatelimit {
-  const RulesetRulesRatelimit({
+final class RulesetRatelimit {
+  const RulesetRatelimit({
     required this.characteristics,
     this.countingExpression,
     this.mitigationTimeout,

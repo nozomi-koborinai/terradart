@@ -56,12 +56,12 @@ final class ContactCenterInsightsQaQuestionPredefinedQuestionConfig {
 /// Typed helper for the `qa_question_data_options` block of
 /// `google_contact_center_insights_qa_question` (derived from provider schema).
 @immutable
-final class ContactCenterInsightsQaQuestionQaQuestionDataOptions {
-  const ContactCenterInsightsQaQuestionQaQuestionDataOptions({
+final class ContactCenterInsightsQaQuestionDataOptions {
+  const ContactCenterInsightsQaQuestionDataOptions({
     this.conversationDataOptions,
   });
 
-  final ContactCenterInsightsQaQuestionQaQuestionDataOptionsConversationDataOptions?
+  final ContactCenterInsightsQaQuestionConversationDataOptions?
   conversationDataOptions;
 
   Map<String, Object?> encode() => {
@@ -72,8 +72,8 @@ final class ContactCenterInsightsQaQuestionQaQuestionDataOptions {
 /// Typed helper for the `qa_question_data_options.conversation_data_options` block of
 /// `google_contact_center_insights_qa_question` (derived from provider schema).
 @immutable
-final class ContactCenterInsightsQaQuestionQaQuestionDataOptionsConversationDataOptions {
-  const ContactCenterInsightsQaQuestionQaQuestionDataOptionsConversationDataOptions({
+final class ContactCenterInsightsQaQuestionConversationDataOptions {
+  const ContactCenterInsightsQaQuestionConversationDataOptions({
     this.includeDialogflowInteractionData,
   });
 
@@ -135,7 +135,7 @@ final class GoogleContactCenterInsightsQaQuestion extends Resource {
     TfArg<List<String>>? tags,
     ContactCenterInsightsQaQuestionPredefinedQuestionConfig?
     predefinedQuestionConfig,
-    ContactCenterInsightsQaQuestionQaQuestionDataOptions? qaQuestionDataOptions,
+    ContactCenterInsightsQaQuestionDataOptions? qaQuestionDataOptions,
     ContactCenterInsightsQaQuestionTuningMetadata? tuningMetadata,
     TfArg<String>? project,
     TfArg<String>? deletionPolicy,

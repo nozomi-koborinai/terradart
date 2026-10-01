@@ -129,7 +129,7 @@ final class StorageBatchOperationsJobOperationPutObjectHold
 final class StorageBatchOperationsJobBucketList {
   const StorageBatchOperationsJobBucketList({required this.buckets});
 
-  final StorageBatchOperationsJobBucketListBuckets buckets;
+  final StorageBatchOperationsJobBuckets buckets;
 
   Map<String, Object?> encode() => {'buckets': buckets.encode()};
 }
@@ -137,15 +137,15 @@ final class StorageBatchOperationsJobBucketList {
 /// Typed helper for the `bucket_list.buckets` block of
 /// `google_storage_batch_operations_job` (derived from provider schema).
 @immutable
-final class StorageBatchOperationsJobBucketListBuckets {
-  const StorageBatchOperationsJobBucketListBuckets({
+final class StorageBatchOperationsJobBuckets {
+  const StorageBatchOperationsJobBuckets({
     required this.bucket,
     required this.objects,
   });
 
   final RefTo<GoogleStorageBucket> bucket;
 
-  final StorageBatchOperationsJobBucketListBucketsObjects objects;
+  final StorageBatchOperationsJobObjects objects;
 
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('name').toTfJson(),
@@ -157,18 +157,18 @@ final class StorageBatchOperationsJobBucketListBuckets {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.prefixList(...)`.
-sealed class StorageBatchOperationsJobBucketListBucketsObjects {
-  const StorageBatchOperationsJobBucketListBucketsObjects();
+sealed class StorageBatchOperationsJobObjects {
+  const StorageBatchOperationsJobObjects();
 
   /// Sets `prefix_list`.
-  const factory StorageBatchOperationsJobBucketListBucketsObjects.prefixList(
-    StorageBatchOperationsJobBucketListBucketsPrefixList prefixList,
-  ) = StorageBatchOperationsJobBucketListBucketsObjectsPrefixList;
+  const factory StorageBatchOperationsJobObjects.prefixList(
+    StorageBatchOperationsJobPrefixList prefixList,
+  ) = StorageBatchOperationsJobObjectsPrefixList;
 
   /// Sets `manifest`.
-  const factory StorageBatchOperationsJobBucketListBucketsObjects.manifest(
-    StorageBatchOperationsJobBucketListBucketsManifest manifest,
-  ) = StorageBatchOperationsJobBucketListBucketsObjectsManifest;
+  const factory StorageBatchOperationsJobObjects.manifest(
+    StorageBatchOperationsJobManifest manifest,
+  ) = StorageBatchOperationsJobObjectsManifest;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -176,14 +176,12 @@ sealed class StorageBatchOperationsJobBucketListBucketsObjects {
   Map<String, Object?> encode();
 }
 
-/// The [StorageBatchOperationsJobBucketListBucketsObjects.prefixList] choice: sets `prefix_list`.
-final class StorageBatchOperationsJobBucketListBucketsObjectsPrefixList
-    extends StorageBatchOperationsJobBucketListBucketsObjects {
-  const StorageBatchOperationsJobBucketListBucketsObjectsPrefixList(
-    this.prefixList,
-  );
+/// The [StorageBatchOperationsJobObjects.prefixList] choice: sets `prefix_list`.
+final class StorageBatchOperationsJobObjectsPrefixList
+    extends StorageBatchOperationsJobObjects {
+  const StorageBatchOperationsJobObjectsPrefixList(this.prefixList);
 
-  final StorageBatchOperationsJobBucketListBucketsPrefixList prefixList;
+  final StorageBatchOperationsJobPrefixList prefixList;
 
   @override
   String get blockKey => 'prefix_list';
@@ -192,14 +190,12 @@ final class StorageBatchOperationsJobBucketListBucketsObjectsPrefixList
   Map<String, Object?> encode() => {'prefix_list': prefixList.encode()};
 }
 
-/// The [StorageBatchOperationsJobBucketListBucketsObjects.manifest] choice: sets `manifest`.
-final class StorageBatchOperationsJobBucketListBucketsObjectsManifest
-    extends StorageBatchOperationsJobBucketListBucketsObjects {
-  const StorageBatchOperationsJobBucketListBucketsObjectsManifest(
-    this.manifest,
-  );
+/// The [StorageBatchOperationsJobObjects.manifest] choice: sets `manifest`.
+final class StorageBatchOperationsJobObjectsManifest
+    extends StorageBatchOperationsJobObjects {
+  const StorageBatchOperationsJobObjectsManifest(this.manifest);
 
-  final StorageBatchOperationsJobBucketListBucketsManifest manifest;
+  final StorageBatchOperationsJobManifest manifest;
 
   @override
   String get blockKey => 'manifest';
@@ -211,10 +207,8 @@ final class StorageBatchOperationsJobBucketListBucketsObjectsManifest
 /// Typed helper for the `bucket_list.buckets.manifest` block of
 /// `google_storage_batch_operations_job` (derived from provider schema).
 @immutable
-final class StorageBatchOperationsJobBucketListBucketsManifest {
-  const StorageBatchOperationsJobBucketListBucketsManifest({
-    this.manifestLocation,
-  });
+final class StorageBatchOperationsJobManifest {
+  const StorageBatchOperationsJobManifest({this.manifestLocation});
 
   final TfArg<String>? manifestLocation;
 
@@ -226,10 +220,8 @@ final class StorageBatchOperationsJobBucketListBucketsManifest {
 /// Typed helper for the `bucket_list.buckets.prefix_list` block of
 /// `google_storage_batch_operations_job` (derived from provider schema).
 @immutable
-final class StorageBatchOperationsJobBucketListBucketsPrefixList {
-  const StorageBatchOperationsJobBucketListBucketsPrefixList({
-    this.includedObjectPrefixes,
-  });
+final class StorageBatchOperationsJobPrefixList {
+  const StorageBatchOperationsJobPrefixList({this.includedObjectPrefixes});
 
   final TfArg<List<String>>? includedObjectPrefixes;
 
@@ -346,10 +338,10 @@ final class StorageBatchOperationsJobRewriteObject {
 ///   jobId: .literal('stamp-meta'),
 ///   deleteProtection: .literal(false),
 ///   bucketList: StorageBatchOperationsJobBucketList(
-///     buckets: StorageBatchOperationsJobBucketListBuckets(
+///     buckets: StorageBatchOperationsJobBuckets(
 ///       bucket: assets.ref,
 ///       objects: .prefixList(
-///         StorageBatchOperationsJobBucketListBucketsPrefixList(
+///         StorageBatchOperationsJobPrefixList(
 ///           includedObjectPrefixes: .literal(['config/']),
 ///         ),
 ///       ),

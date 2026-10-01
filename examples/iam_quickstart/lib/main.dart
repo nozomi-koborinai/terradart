@@ -176,7 +176,7 @@ final class IamShowcaseStack extends Stack {
       GoogleSecretManagerSecret(
         localName: 'demo_secret',
         secretId: .literal('demo-secret'),
-        replication: const .auto(SecretManagerSecretReplicationAuto()),
+        replication: const .auto(SecretManagerSecretAuto()),
         dependsOn: [ResourceDependency(apiSecretManager)],
       ),
     );
@@ -511,9 +511,7 @@ final class IamShowcaseStack extends Stack {
         providerId: .literal('terradart-oidc'),
         keyId: .literal('terradart-key'),
         use: .literal('ENCRYPTION'),
-        keyData: IamWorkforcePoolProviderKeyKeyData(
-          keySpec: .literal(.rsa2048),
-        ),
+        keyData: IamWorkforcePoolProviderKeyData(keySpec: .literal(.rsa2048)),
         deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(wfProvider)],
       ),
@@ -558,12 +556,12 @@ final class IamShowcaseStack extends Stack {
         displayName: .literal('IAM quickstart access policy'),
         details: IamProjectAccessPolicyDetails(
           rules: [
-            IamProjectAccessPolicyDetailsRules(
+            IamProjectAccessPolicyRules(
               effect: .literal(.allow),
               principals: .literal([
                 'principal://iam.googleapis.com/projects/-/serviceAccounts/${sa.email.interpolation}',
               ]),
-              operation: IamProjectAccessPolicyDetailsRulesOperation(
+              operation: IamProjectAccessPolicyOperation(
                 permissions: .literal([
                   'eventarc.googleapis.com/messageBuses.publish',
                 ]),

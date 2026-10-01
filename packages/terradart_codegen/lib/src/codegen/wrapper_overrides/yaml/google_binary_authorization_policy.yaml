@@ -22,10 +22,10 @@ curatedDoc: |-
   ///   localName: 'project_policy',
   ///   defaultAdmissionRule: BinaryAuthorizationPolicyDefaultAdmissionRule(
   ///     evaluationMode: TfArg.literal(
-  ///       BinaryAuthorizationPolicyDefaultAdmissionRuleEvaluationMode.alwaysAllow,
+  ///       BinaryAuthorizationPolicyEvaluationMode.alwaysAllow,
   ///     ),
   ///     enforcementMode: TfArg.literal(
-  ///       BinaryAuthorizationPolicyDefaultAdmissionRuleEnforcementMode.enforcedBlockAndAuditLog,
+  ///       BinaryAuthorizationPolicyEnforcementMode.enforcedBlockAndAuditLog,
   ///     ),
   ///   ),
   /// );

@@ -268,12 +268,12 @@ final class ComputeInstanceTemplateDisk {
 
   final TfArg<String>? type;
 
-  final ComputeInstanceTemplateDiskDiskEncryptionKey? diskEncryptionKey;
+  final ComputeInstanceTemplateDiskEncryptionKey? diskEncryptionKey;
 
-  final ComputeInstanceTemplateDiskSourceImageEncryptionKey?
+  final ComputeInstanceTemplateSourceImageEncryptionKey?
   sourceImageEncryptionKey;
 
-  final ComputeInstanceTemplateDiskSourceSnapshotEncryptionKey?
+  final ComputeInstanceTemplateSourceSnapshotEncryptionKey?
   sourceSnapshotEncryptionKey;
 
   Map<String, Object?> encode() => {
@@ -306,8 +306,8 @@ final class ComputeInstanceTemplateDisk {
 /// Typed helper for the `disk.disk_encryption_key` block of
 /// `google_compute_instance_template` (derived from provider schema).
 @immutable
-final class ComputeInstanceTemplateDiskDiskEncryptionKey {
-  const ComputeInstanceTemplateDiskDiskEncryptionKey({
+final class ComputeInstanceTemplateDiskEncryptionKey {
+  const ComputeInstanceTemplateDiskEncryptionKey({
     this.kmsKeySelfLink,
     this.kmsKeyServiceAccount,
   });
@@ -325,8 +325,8 @@ final class ComputeInstanceTemplateDiskDiskEncryptionKey {
 /// Typed helper for the `disk.source_image_encryption_key` block of
 /// `google_compute_instance_template` (derived from provider schema).
 @immutable
-final class ComputeInstanceTemplateDiskSourceImageEncryptionKey {
-  const ComputeInstanceTemplateDiskSourceImageEncryptionKey({
+final class ComputeInstanceTemplateSourceImageEncryptionKey {
+  const ComputeInstanceTemplateSourceImageEncryptionKey({
     this.kmsKeySelfLink,
     this.kmsKeyServiceAccount,
     this.rawKey,
@@ -352,8 +352,8 @@ final class ComputeInstanceTemplateDiskSourceImageEncryptionKey {
 /// Typed helper for the `disk.source_snapshot_encryption_key` block of
 /// `google_compute_instance_template` (derived from provider schema).
 @immutable
-final class ComputeInstanceTemplateDiskSourceSnapshotEncryptionKey {
-  const ComputeInstanceTemplateDiskSourceSnapshotEncryptionKey({
+final class ComputeInstanceTemplateSourceSnapshotEncryptionKey {
+  const ComputeInstanceTemplateSourceSnapshotEncryptionKey({
     this.kmsKeySelfLink,
     this.kmsKeyServiceAccount,
     this.rawKey,
@@ -441,12 +441,11 @@ final class ComputeInstanceTemplateNetworkInterface {
 
   final TfArg<num>? vlan;
 
-  final List<ComputeInstanceTemplateNetworkInterfaceAccessConfig>? accessConfig;
+  final List<ComputeInstanceTemplateAccessConfig>? accessConfig;
 
-  final List<ComputeInstanceTemplateNetworkInterfaceAliasIpRange>? aliasIpRange;
+  final List<ComputeInstanceTemplateAliasIpRange>? aliasIpRange;
 
-  final List<ComputeInstanceTemplateNetworkInterfaceIpv6AccessConfig>?
-  ipv6AccessConfig;
+  final List<ComputeInstanceTemplateIpv6AccessConfig>? ipv6AccessConfig;
 
   Map<String, Object?> encode() => {
     'igmp_query': ?igmpQuery?.toTfJson(),
@@ -473,11 +472,8 @@ final class ComputeInstanceTemplateNetworkInterface {
 /// Typed helper for the `network_interface.access_config` block of
 /// `google_compute_instance_template` (derived from provider schema).
 @immutable
-final class ComputeInstanceTemplateNetworkInterfaceAccessConfig {
-  const ComputeInstanceTemplateNetworkInterfaceAccessConfig({
-    this.natIp,
-    this.networkTier,
-  });
+final class ComputeInstanceTemplateAccessConfig {
+  const ComputeInstanceTemplateAccessConfig({this.natIp, this.networkTier});
 
   final TfArg<String>? natIp;
 
@@ -492,8 +488,8 @@ final class ComputeInstanceTemplateNetworkInterfaceAccessConfig {
 /// Typed helper for the `network_interface.alias_ip_range` block of
 /// `google_compute_instance_template` (derived from provider schema).
 @immutable
-final class ComputeInstanceTemplateNetworkInterfaceAliasIpRange {
-  const ComputeInstanceTemplateNetworkInterfaceAliasIpRange({
+final class ComputeInstanceTemplateAliasIpRange {
+  const ComputeInstanceTemplateAliasIpRange({
     required this.ipCidrRange,
     this.subnetworkRangeName,
   });
@@ -511,10 +507,8 @@ final class ComputeInstanceTemplateNetworkInterfaceAliasIpRange {
 /// Typed helper for the `network_interface.ipv6_access_config` block of
 /// `google_compute_instance_template` (derived from provider schema).
 @immutable
-final class ComputeInstanceTemplateNetworkInterfaceIpv6AccessConfig {
-  const ComputeInstanceTemplateNetworkInterfaceIpv6AccessConfig({
-    required this.networkTier,
-  });
+final class ComputeInstanceTemplateIpv6AccessConfig {
+  const ComputeInstanceTemplateIpv6AccessConfig({required this.networkTier});
 
   final TfArg<InstanceTemplateAccessConfigNetworkTier> networkTier;
 
@@ -529,9 +523,7 @@ final class ComputeInstanceTemplateNetworkPerformanceConfig {
     required this.totalEgressBandwidthTier,
   });
 
-  final TfArg<
-    ComputeInstanceTemplateNetworkPerformanceConfigTotalEgressBandwidthTier
-  >
+  final TfArg<ComputeInstanceTemplateTotalEgressBandwidthTier>
   totalEgressBandwidthTier;
 
   Map<String, Object?> encode() => {
@@ -540,14 +532,11 @@ final class ComputeInstanceTemplateNetworkPerformanceConfig {
 }
 
 /// `total_egress_bandwidth_tier` — derived from the provider schema description.
-enum ComputeInstanceTemplateNetworkPerformanceConfigTotalEgressBandwidthTier
-    implements TerraformEnum {
+enum ComputeInstanceTemplateTotalEgressBandwidthTier implements TerraformEnum {
   tier1('TIER_1'),
   defaultCase('DEFAULT');
 
-  const ComputeInstanceTemplateNetworkPerformanceConfigTotalEgressBandwidthTier(
-    this.terraformValue,
-  );
+  const ComputeInstanceTemplateTotalEgressBandwidthTier(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -563,8 +552,7 @@ final class ComputeInstanceTemplateReservationAffinity {
 
   final TfArg<InstanceTemplateReservationAffinityType> type;
 
-  final ComputeInstanceTemplateReservationAffinitySpecificReservation?
-  specificReservation;
+  final ComputeInstanceTemplateSpecificReservation? specificReservation;
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
@@ -575,8 +563,8 @@ final class ComputeInstanceTemplateReservationAffinity {
 /// Typed helper for the `reservation_affinity.specific_reservation` block of
 /// `google_compute_instance_template` (derived from provider schema).
 @immutable
-final class ComputeInstanceTemplateReservationAffinitySpecificReservation {
-  const ComputeInstanceTemplateReservationAffinitySpecificReservation({
+final class ComputeInstanceTemplateSpecificReservation {
+  const ComputeInstanceTemplateSpecificReservation({
     required this.key,
     required this.values,
   });
@@ -630,15 +618,14 @@ final class ComputeInstanceTemplateScheduling {
 
   final TfArg<String>? terminationTime;
 
-  final List<ComputeInstanceTemplateSchedulingLocalSsdRecoveryTimeout>?
+  final List<ComputeInstanceTemplateLocalSsdRecoveryTimeout>?
   localSsdRecoveryTimeout;
 
-  final ComputeInstanceTemplateSchedulingMaxRunDuration? maxRunDuration;
+  final ComputeInstanceTemplateMaxRunDuration? maxRunDuration;
 
-  final List<ComputeInstanceTemplateSchedulingNodeAffinities>? nodeAffinities;
+  final List<ComputeInstanceTemplateNodeAffinities>? nodeAffinities;
 
-  final ComputeInstanceTemplateSchedulingOnInstanceStopAction?
-  onInstanceStopAction;
+  final ComputeInstanceTemplateOnInstanceStopAction? onInstanceStopAction;
 
   Map<String, Object?> encode() => {
     'automatic_restart': ?automaticRestart?.toTfJson(),
@@ -664,8 +651,8 @@ final class ComputeInstanceTemplateScheduling {
 /// Typed helper for the `scheduling.local_ssd_recovery_timeout` block of
 /// `google_compute_instance_template` (derived from provider schema).
 @immutable
-final class ComputeInstanceTemplateSchedulingLocalSsdRecoveryTimeout {
-  const ComputeInstanceTemplateSchedulingLocalSsdRecoveryTimeout({
+final class ComputeInstanceTemplateLocalSsdRecoveryTimeout {
+  const ComputeInstanceTemplateLocalSsdRecoveryTimeout({
     this.nanos,
     required this.seconds,
   });
@@ -683,8 +670,8 @@ final class ComputeInstanceTemplateSchedulingLocalSsdRecoveryTimeout {
 /// Typed helper for the `scheduling.max_run_duration` block of
 /// `google_compute_instance_template` (derived from provider schema).
 @immutable
-final class ComputeInstanceTemplateSchedulingMaxRunDuration {
-  const ComputeInstanceTemplateSchedulingMaxRunDuration({
+final class ComputeInstanceTemplateMaxRunDuration {
+  const ComputeInstanceTemplateMaxRunDuration({
     this.nanos,
     required this.seconds,
   });
@@ -702,8 +689,8 @@ final class ComputeInstanceTemplateSchedulingMaxRunDuration {
 /// Typed helper for the `scheduling.node_affinities` block of
 /// `google_compute_instance_template` (derived from provider schema).
 @immutable
-final class ComputeInstanceTemplateSchedulingNodeAffinities {
-  const ComputeInstanceTemplateSchedulingNodeAffinities({
+final class ComputeInstanceTemplateNodeAffinities {
+  const ComputeInstanceTemplateNodeAffinities({
     required this.key,
     required this.operator,
     required this.values,
@@ -725,10 +712,8 @@ final class ComputeInstanceTemplateSchedulingNodeAffinities {
 /// Typed helper for the `scheduling.on_instance_stop_action` block of
 /// `google_compute_instance_template` (derived from provider schema).
 @immutable
-final class ComputeInstanceTemplateSchedulingOnInstanceStopAction {
-  const ComputeInstanceTemplateSchedulingOnInstanceStopAction({
-    this.discardLocalSsd,
-  });
+final class ComputeInstanceTemplateOnInstanceStopAction {
+  const ComputeInstanceTemplateOnInstanceStopAction({this.discardLocalSsd});
 
   final TfArg<bool>? discardLocalSsd;
 
@@ -838,7 +823,7 @@ final class ComputeInstanceTemplateWorkloadIdentityConfig {
 ///   networkInterface: [
 ///     ComputeInstanceTemplateNetworkInterface(
 ///       network: vpc.ref,
-///       accessConfig: [ComputeInstanceTemplateNetworkInterfaceAccessConfig()],
+///       accessConfig: [ComputeInstanceTemplateAccessConfig()],
 ///     ),
 ///   ],
 /// );

@@ -48,14 +48,13 @@ final class BeyondcorpSecurityGatewayApplicationUpstreams {
     this.proxyProtocol,
   });
 
-  final BeyondcorpSecurityGatewayApplicationUpstreamsEgressPolicy? egressPolicy;
+  final BeyondcorpSecurityGatewayApplicationEgressPolicy? egressPolicy;
 
-  final BeyondcorpSecurityGatewayApplicationUpstreamsExternal? external;
+  final BeyondcorpSecurityGatewayApplicationExternal? external;
 
-  final BeyondcorpSecurityGatewayApplicationUpstreamsNetwork? network;
+  final BeyondcorpSecurityGatewayApplicationNetwork? network;
 
-  final BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocol?
-  proxyProtocol;
+  final BeyondcorpSecurityGatewayApplicationProxyProtocol? proxyProtocol;
 
   Map<String, Object?> encode() => {
     'egress_policy': ?egressPolicy?.encode(),
@@ -68,8 +67,8 @@ final class BeyondcorpSecurityGatewayApplicationUpstreams {
 /// Typed helper for the `upstreams.egress_policy` block of
 /// `google_beyondcorp_security_gateway_application` (derived from provider schema).
 @immutable
-final class BeyondcorpSecurityGatewayApplicationUpstreamsEgressPolicy {
-  const BeyondcorpSecurityGatewayApplicationUpstreamsEgressPolicy({
+final class BeyondcorpSecurityGatewayApplicationEgressPolicy {
+  const BeyondcorpSecurityGatewayApplicationEgressPolicy({
     required this.regions,
   });
 
@@ -81,13 +80,10 @@ final class BeyondcorpSecurityGatewayApplicationUpstreamsEgressPolicy {
 /// Typed helper for the `upstreams.external` block of
 /// `google_beyondcorp_security_gateway_application` (derived from provider schema).
 @immutable
-final class BeyondcorpSecurityGatewayApplicationUpstreamsExternal {
-  const BeyondcorpSecurityGatewayApplicationUpstreamsExternal({
-    required this.endpoints,
-  });
+final class BeyondcorpSecurityGatewayApplicationExternal {
+  const BeyondcorpSecurityGatewayApplicationExternal({required this.endpoints});
 
-  final List<BeyondcorpSecurityGatewayApplicationUpstreamsExternalEndpoints>
-  endpoints;
+  final List<BeyondcorpSecurityGatewayApplicationEndpoints> endpoints;
 
   Map<String, Object?> encode() => {
     'endpoints': [for (final e in endpoints) e.encode()],
@@ -97,8 +93,8 @@ final class BeyondcorpSecurityGatewayApplicationUpstreamsExternal {
 /// Typed helper for the `upstreams.external.endpoints` block of
 /// `google_beyondcorp_security_gateway_application` (derived from provider schema).
 @immutable
-final class BeyondcorpSecurityGatewayApplicationUpstreamsExternalEndpoints {
-  const BeyondcorpSecurityGatewayApplicationUpstreamsExternalEndpoints({
+final class BeyondcorpSecurityGatewayApplicationEndpoints {
+  const BeyondcorpSecurityGatewayApplicationEndpoints({
     required this.hostname,
     required this.port,
   });
@@ -116,10 +112,8 @@ final class BeyondcorpSecurityGatewayApplicationUpstreamsExternalEndpoints {
 /// Typed helper for the `upstreams.network` block of
 /// `google_beyondcorp_security_gateway_application` (derived from provider schema).
 @immutable
-final class BeyondcorpSecurityGatewayApplicationUpstreamsNetwork {
-  const BeyondcorpSecurityGatewayApplicationUpstreamsNetwork({
-    required this.name,
-  });
+final class BeyondcorpSecurityGatewayApplicationNetwork {
+  const BeyondcorpSecurityGatewayApplicationNetwork({required this.name});
 
   final TfArg<String> name;
 
@@ -129,8 +123,8 @@ final class BeyondcorpSecurityGatewayApplicationUpstreamsNetwork {
 /// Typed helper for the `upstreams.proxy_protocol` block of
 /// `google_beyondcorp_security_gateway_application` (derived from provider schema).
 @immutable
-final class BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocol {
-  const BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocol({
+final class BeyondcorpSecurityGatewayApplicationProxyProtocol {
+  const BeyondcorpSecurityGatewayApplicationProxyProtocol({
     this.allowedClientHeaders,
     this.clientIp,
     this.gatewayIdentity,
@@ -146,7 +140,7 @@ final class BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocol {
 
   final TfArg<Map<String, String>>? metadataHeaders;
 
-  final BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocolContextualHeaders?
+  final BeyondcorpSecurityGatewayApplicationContextualHeaders?
   contextualHeaders;
 
   Map<String, Object?> encode() => {
@@ -161,27 +155,21 @@ final class BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocol {
 /// Typed helper for the `upstreams.proxy_protocol.contextual_headers` block of
 /// `google_beyondcorp_security_gateway_application` (derived from provider schema).
 @immutable
-final class BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocolContextualHeaders {
-  const BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocolContextualHeaders({
+final class BeyondcorpSecurityGatewayApplicationContextualHeaders {
+  const BeyondcorpSecurityGatewayApplicationContextualHeaders({
     this.outputType,
     this.deviceInfo,
     this.groupInfo,
     this.userInfo,
   });
 
-  final TfArg<
-    BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocolContextualHeadersOutputType
-  >?
-  outputType;
+  final TfArg<BeyondcorpSecurityGatewayApplicationOutputType>? outputType;
 
-  final BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocolContextualHeadersDeviceInfo?
-  deviceInfo;
+  final BeyondcorpSecurityGatewayApplicationDeviceInfo? deviceInfo;
 
-  final BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocolContextualHeadersGroupInfo?
-  groupInfo;
+  final BeyondcorpSecurityGatewayApplicationGroupInfo? groupInfo;
 
-  final BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocolContextualHeadersUserInfo?
-  userInfo;
+  final BeyondcorpSecurityGatewayApplicationUserInfo? userInfo;
 
   Map<String, Object?> encode() => {
     'output_type': ?outputType?.toTfJson(),
@@ -192,15 +180,12 @@ final class BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocolContextual
 }
 
 /// `output_type` — derived from the provider schema description.
-enum BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocolContextualHeadersOutputType
-    implements TerraformEnum {
+enum BeyondcorpSecurityGatewayApplicationOutputType implements TerraformEnum {
   protobuf('PROTOBUF'),
   json('JSON'),
   none('NONE');
 
-  const BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocolContextualHeadersOutputType(
-    this.terraformValue,
-  );
+  const BeyondcorpSecurityGatewayApplicationOutputType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -208,91 +193,34 @@ enum BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocolContextualHeaders
 /// Typed helper for the `upstreams.proxy_protocol.contextual_headers.device_info` block of
 /// `google_beyondcorp_security_gateway_application` (derived from provider schema).
 @immutable
-final class BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocolContextualHeadersDeviceInfo {
-  const BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocolContextualHeadersDeviceInfo({
-    this.outputType,
-  });
+final class BeyondcorpSecurityGatewayApplicationDeviceInfo {
+  const BeyondcorpSecurityGatewayApplicationDeviceInfo({this.outputType});
 
-  final TfArg<
-    BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocolContextualHeadersDeviceInfoOutputType
-  >?
-  outputType;
+  final TfArg<BeyondcorpSecurityGatewayApplicationOutputType>? outputType;
 
   Map<String, Object?> encode() => {'output_type': ?outputType?.toTfJson()};
-}
-
-/// `output_type` — derived from the provider schema description.
-enum BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocolContextualHeadersDeviceInfoOutputType
-    implements TerraformEnum {
-  protobuf('PROTOBUF'),
-  json('JSON'),
-  none('NONE');
-
-  const BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocolContextualHeadersDeviceInfoOutputType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `upstreams.proxy_protocol.contextual_headers.group_info` block of
 /// `google_beyondcorp_security_gateway_application` (derived from provider schema).
 @immutable
-final class BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocolContextualHeadersGroupInfo {
-  const BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocolContextualHeadersGroupInfo({
-    this.outputType,
-  });
+final class BeyondcorpSecurityGatewayApplicationGroupInfo {
+  const BeyondcorpSecurityGatewayApplicationGroupInfo({this.outputType});
 
-  final TfArg<
-    BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocolContextualHeadersGroupInfoOutputType
-  >?
-  outputType;
+  final TfArg<BeyondcorpSecurityGatewayApplicationOutputType>? outputType;
 
   Map<String, Object?> encode() => {'output_type': ?outputType?.toTfJson()};
-}
-
-/// `output_type` — derived from the provider schema description.
-enum BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocolContextualHeadersGroupInfoOutputType
-    implements TerraformEnum {
-  protobuf('PROTOBUF'),
-  json('JSON'),
-  none('NONE');
-
-  const BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocolContextualHeadersGroupInfoOutputType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `upstreams.proxy_protocol.contextual_headers.user_info` block of
 /// `google_beyondcorp_security_gateway_application` (derived from provider schema).
 @immutable
-final class BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocolContextualHeadersUserInfo {
-  const BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocolContextualHeadersUserInfo({
-    this.outputType,
-  });
+final class BeyondcorpSecurityGatewayApplicationUserInfo {
+  const BeyondcorpSecurityGatewayApplicationUserInfo({this.outputType});
 
-  final TfArg<
-    BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocolContextualHeadersUserInfoOutputType
-  >?
-  outputType;
+  final TfArg<BeyondcorpSecurityGatewayApplicationOutputType>? outputType;
 
   Map<String, Object?> encode() => {'output_type': ?outputType?.toTfJson()};
-}
-
-/// `output_type` — derived from the provider schema description.
-enum BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocolContextualHeadersUserInfoOutputType
-    implements TerraformEnum {
-  protobuf('PROTOBUF'),
-  json('JSON'),
-  none('NONE');
-
-  const BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocolContextualHeadersUserInfoOutputType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Factory wrapper for `google_beyondcorp_security_gateway_application`.

@@ -46,24 +46,23 @@ final class WorkbenchInstanceGceSetup {
 
   final TfArg<List<String>>? tags;
 
-  final List<WorkbenchInstanceGceSetupAcceleratorConfigs>? acceleratorConfigs;
+  final List<WorkbenchInstanceAcceleratorConfigs>? acceleratorConfigs;
 
-  final WorkbenchInstanceGceSetupBootDisk? bootDisk;
+  final WorkbenchInstanceBootDisk? bootDisk;
 
-  final WorkbenchInstanceGceSetupConfidentialInstanceConfig?
-  confidentialInstanceConfig;
+  final WorkbenchInstanceConfidentialInstanceConfig? confidentialInstanceConfig;
 
-  final WorkbenchInstanceGceSetupImage? image;
+  final WorkbenchInstanceImage? image;
 
-  final WorkbenchInstanceGceSetupDataDisks? dataDisks;
+  final WorkbenchInstanceDataDisks? dataDisks;
 
-  final List<WorkbenchInstanceGceSetupNetworkInterfaces>? networkInterfaces;
+  final List<WorkbenchInstanceNetworkInterfaces>? networkInterfaces;
 
-  final WorkbenchInstanceGceSetupReservationAffinity? reservationAffinity;
+  final WorkbenchInstanceReservationAffinity? reservationAffinity;
 
-  final List<WorkbenchInstanceGceSetupServiceAccounts>? serviceAccounts;
+  final List<WorkbenchInstanceServiceAccounts>? serviceAccounts;
 
-  final WorkbenchInstanceGceSetupShieldedInstanceConfig? shieldedInstanceConfig;
+  final WorkbenchInstanceShieldedInstanceConfig? shieldedInstanceConfig;
 
   Map<String, Object?> encode() => {
     'disable_public_ip': ?disablePublicIp?.toTfJson(),
@@ -92,18 +91,18 @@ final class WorkbenchInstanceGceSetup {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.vmImage(...)`.
-sealed class WorkbenchInstanceGceSetupImage {
-  const WorkbenchInstanceGceSetupImage();
+sealed class WorkbenchInstanceImage {
+  const WorkbenchInstanceImage();
 
   /// Sets `vm_image`.
-  const factory WorkbenchInstanceGceSetupImage.vmImage(
-    WorkbenchInstanceGceSetupVmImage vmImage,
-  ) = WorkbenchInstanceGceSetupImageVmImage;
+  const factory WorkbenchInstanceImage.vmImage(
+    WorkbenchInstanceVmImage vmImage,
+  ) = WorkbenchInstanceVmImageChoice;
 
   /// Sets `container_image`.
-  const factory WorkbenchInstanceGceSetupImage.containerImage(
-    WorkbenchInstanceGceSetupContainerImage containerImage,
-  ) = WorkbenchInstanceGceSetupImageContainerImage;
+  const factory WorkbenchInstanceImage.containerImage(
+    WorkbenchInstanceContainerImage containerImage,
+  ) = WorkbenchInstanceContainerImageChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -111,12 +110,11 @@ sealed class WorkbenchInstanceGceSetupImage {
   Map<String, Object?> encode();
 }
 
-/// The [WorkbenchInstanceGceSetupImage.vmImage] choice: sets `vm_image`.
-final class WorkbenchInstanceGceSetupImageVmImage
-    extends WorkbenchInstanceGceSetupImage {
-  const WorkbenchInstanceGceSetupImageVmImage(this.vmImage);
+/// The [WorkbenchInstanceImage.vmImage] choice: sets `vm_image`.
+final class WorkbenchInstanceVmImageChoice extends WorkbenchInstanceImage {
+  const WorkbenchInstanceVmImageChoice(this.vmImage);
 
-  final WorkbenchInstanceGceSetupVmImage vmImage;
+  final WorkbenchInstanceVmImage vmImage;
 
   @override
   String get blockKey => 'vm_image';
@@ -125,12 +123,12 @@ final class WorkbenchInstanceGceSetupImageVmImage
   Map<String, Object?> encode() => {'vm_image': vmImage.encode()};
 }
 
-/// The [WorkbenchInstanceGceSetupImage.containerImage] choice: sets `container_image`.
-final class WorkbenchInstanceGceSetupImageContainerImage
-    extends WorkbenchInstanceGceSetupImage {
-  const WorkbenchInstanceGceSetupImageContainerImage(this.containerImage);
+/// The [WorkbenchInstanceImage.containerImage] choice: sets `container_image`.
+final class WorkbenchInstanceContainerImageChoice
+    extends WorkbenchInstanceImage {
+  const WorkbenchInstanceContainerImageChoice(this.containerImage);
 
-  final WorkbenchInstanceGceSetupContainerImage containerImage;
+  final WorkbenchInstanceContainerImage containerImage;
 
   @override
   String get blockKey => 'container_image';
@@ -142,15 +140,12 @@ final class WorkbenchInstanceGceSetupImageContainerImage
 /// Typed helper for the `gce_setup.accelerator_configs` block of
 /// `google_workbench_instance` (derived from provider schema).
 @immutable
-final class WorkbenchInstanceGceSetupAcceleratorConfigs {
-  const WorkbenchInstanceGceSetupAcceleratorConfigs({
-    this.coreCount,
-    this.type,
-  });
+final class WorkbenchInstanceAcceleratorConfigs {
+  const WorkbenchInstanceAcceleratorConfigs({this.coreCount, this.type});
 
   final TfArg<String>? coreCount;
 
-  final TfArg<WorkbenchInstanceGceSetupAcceleratorConfigsType>? type;
+  final TfArg<WorkbenchInstanceType>? type;
 
   Map<String, Object?> encode() => {
     'core_count': ?coreCount?.toTfJson(),
@@ -159,7 +154,7 @@ final class WorkbenchInstanceGceSetupAcceleratorConfigs {
 }
 
 /// `type` — derived from the provider schema description.
-enum WorkbenchInstanceGceSetupAcceleratorConfigsType implements TerraformEnum {
+enum WorkbenchInstanceType implements TerraformEnum {
   nvidiaTeslaP100('NVIDIA_TESLA_P100'),
   nvidiaTeslaV100('NVIDIA_TESLA_V100'),
   nvidiaTeslaP4('NVIDIA_TESLA_P4'),
@@ -176,7 +171,7 @@ enum WorkbenchInstanceGceSetupAcceleratorConfigsType implements TerraformEnum {
   nvidiaTeslaP100Vws('NVIDIA_TESLA_P100_VWS'),
   nvidiaTeslaP4Vws('NVIDIA_TESLA_P4_VWS');
 
-  const WorkbenchInstanceGceSetupAcceleratorConfigsType(this.terraformValue);
+  const WorkbenchInstanceType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -184,19 +179,19 @@ enum WorkbenchInstanceGceSetupAcceleratorConfigsType implements TerraformEnum {
 /// Typed helper for the `gce_setup.boot_disk` block of
 /// `google_workbench_instance` (derived from provider schema).
 @immutable
-final class WorkbenchInstanceGceSetupBootDisk {
-  const WorkbenchInstanceGceSetupBootDisk({
+final class WorkbenchInstanceBootDisk {
+  const WorkbenchInstanceBootDisk({
     this.diskEncryption,
     this.diskSizeGb,
     this.diskType,
     this.kmsKey,
   });
 
-  final TfArg<WorkbenchInstanceGceSetupBootDiskDiskEncryption>? diskEncryption;
+  final TfArg<WorkbenchInstanceDiskEncryption>? diskEncryption;
 
   final TfArg<String>? diskSizeGb;
 
-  final TfArg<WorkbenchInstanceGceSetupBootDiskDiskType>? diskType;
+  final TfArg<WorkbenchInstanceBootDiskType>? diskType;
 
   final RefTo<GoogleKmsCryptoKey>? kmsKey;
 
@@ -209,17 +204,17 @@ final class WorkbenchInstanceGceSetupBootDisk {
 }
 
 /// `disk_encryption` — derived from the provider schema description.
-enum WorkbenchInstanceGceSetupBootDiskDiskEncryption implements TerraformEnum {
+enum WorkbenchInstanceDiskEncryption implements TerraformEnum {
   gmek('GMEK'),
   cmek('CMEK');
 
-  const WorkbenchInstanceGceSetupBootDiskDiskEncryption(this.terraformValue);
+  const WorkbenchInstanceDiskEncryption(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `disk_type` — derived from the provider schema description.
-enum WorkbenchInstanceGceSetupBootDiskDiskType implements TerraformEnum {
+enum WorkbenchInstanceBootDiskType implements TerraformEnum {
   pdStandard('PD_STANDARD'),
   pdSsd('PD_SSD'),
   pdBalanced('PD_BALANCED'),
@@ -228,7 +223,7 @@ enum WorkbenchInstanceGceSetupBootDiskDiskType implements TerraformEnum {
   hyperdiskBalancedHighAvailability('HYPERDISK_BALANCED_HIGH_AVAILABILITY'),
   hyperdiskMl('HYPERDISK_ML');
 
-  const WorkbenchInstanceGceSetupBootDiskDiskType(this.terraformValue);
+  const WorkbenchInstanceBootDiskType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -236,8 +231,8 @@ enum WorkbenchInstanceGceSetupBootDiskDiskType implements TerraformEnum {
 /// Typed helper for the `gce_setup.confidential_instance_config` block of
 /// `google_workbench_instance` (derived from provider schema).
 @immutable
-final class WorkbenchInstanceGceSetupConfidentialInstanceConfig {
-  const WorkbenchInstanceGceSetupConfidentialInstanceConfig({
+final class WorkbenchInstanceConfidentialInstanceConfig {
+  const WorkbenchInstanceConfidentialInstanceConfig({
     this.confidentialInstanceType,
   });
 
@@ -251,11 +246,8 @@ final class WorkbenchInstanceGceSetupConfidentialInstanceConfig {
 /// Typed helper for the `gce_setup.container_image` block of
 /// `google_workbench_instance` (derived from provider schema).
 @immutable
-final class WorkbenchInstanceGceSetupContainerImage {
-  const WorkbenchInstanceGceSetupContainerImage({
-    required this.repository,
-    this.tag,
-  });
+final class WorkbenchInstanceContainerImage {
+  const WorkbenchInstanceContainerImage({required this.repository, this.tag});
 
   final TfArg<String> repository;
 
@@ -270,8 +262,8 @@ final class WorkbenchInstanceGceSetupContainerImage {
 /// Typed helper for the `gce_setup.data_disks` block of
 /// `google_workbench_instance` (derived from provider schema).
 @immutable
-final class WorkbenchInstanceGceSetupDataDisks {
-  const WorkbenchInstanceGceSetupDataDisks({
+final class WorkbenchInstanceDataDisks {
+  const WorkbenchInstanceDataDisks({
     this.diskEncryption,
     this.diskSizeGb,
     this.diskType,
@@ -279,11 +271,11 @@ final class WorkbenchInstanceGceSetupDataDisks {
     this.resourcePolicies,
   });
 
-  final TfArg<WorkbenchInstanceGceSetupDataDisksDiskEncryption>? diskEncryption;
+  final TfArg<WorkbenchInstanceDiskEncryption>? diskEncryption;
 
   final TfArg<String>? diskSizeGb;
 
-  final TfArg<WorkbenchInstanceGceSetupDataDisksDiskType>? diskType;
+  final TfArg<WorkbenchInstanceDataDisksDiskType>? diskType;
 
   final RefTo<GoogleKmsCryptoKey>? kmsKey;
 
@@ -298,18 +290,8 @@ final class WorkbenchInstanceGceSetupDataDisks {
   };
 }
 
-/// `disk_encryption` — derived from the provider schema description.
-enum WorkbenchInstanceGceSetupDataDisksDiskEncryption implements TerraformEnum {
-  gmek('GMEK'),
-  cmek('CMEK');
-
-  const WorkbenchInstanceGceSetupDataDisksDiskEncryption(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
 /// `disk_type` — derived from the provider schema description.
-enum WorkbenchInstanceGceSetupDataDisksDiskType implements TerraformEnum {
+enum WorkbenchInstanceDataDisksDiskType implements TerraformEnum {
   pdStandard('PD_STANDARD'),
   pdSsd('PD_SSD'),
   pdBalanced('PD_BALANCED'),
@@ -320,7 +302,7 @@ enum WorkbenchInstanceGceSetupDataDisksDiskType implements TerraformEnum {
   hyperdiskBalancedHighAvailability('HYPERDISK_BALANCED_HIGH_AVAILABILITY'),
   hyperdiskMl('HYPERDISK_ML');
 
-  const WorkbenchInstanceGceSetupDataDisksDiskType(this.terraformValue);
+  const WorkbenchInstanceDataDisksDiskType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -328,8 +310,8 @@ enum WorkbenchInstanceGceSetupDataDisksDiskType implements TerraformEnum {
 /// Typed helper for the `gce_setup.network_interfaces` block of
 /// `google_workbench_instance` (derived from provider schema).
 @immutable
-final class WorkbenchInstanceGceSetupNetworkInterfaces {
-  const WorkbenchInstanceGceSetupNetworkInterfaces({
+final class WorkbenchInstanceNetworkInterfaces {
+  const WorkbenchInstanceNetworkInterfaces({
     this.network,
     this.nicType,
     this.subnet,
@@ -338,12 +320,11 @@ final class WorkbenchInstanceGceSetupNetworkInterfaces {
 
   final RefTo<GoogleComputeNetwork>? network;
 
-  final TfArg<WorkbenchInstanceGceSetupNetworkInterfacesNicType>? nicType;
+  final TfArg<WorkbenchInstanceNicType>? nicType;
 
   final RefTo<GoogleComputeSubnetwork>? subnet;
 
-  final List<WorkbenchInstanceGceSetupNetworkInterfacesAccessConfigs>?
-  accessConfigs;
+  final List<WorkbenchInstanceAccessConfigs>? accessConfigs;
 
   Map<String, Object?> encode() => {
     'network': ?network?.encodeAs('id').toTfJson(),
@@ -355,12 +336,11 @@ final class WorkbenchInstanceGceSetupNetworkInterfaces {
 }
 
 /// `nic_type` — derived from the provider schema description.
-enum WorkbenchInstanceGceSetupNetworkInterfacesNicType
-    implements TerraformEnum {
+enum WorkbenchInstanceNicType implements TerraformEnum {
   virtioNet('VIRTIO_NET'),
   gvnic('GVNIC');
 
-  const WorkbenchInstanceGceSetupNetworkInterfacesNicType(this.terraformValue);
+  const WorkbenchInstanceNicType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -368,10 +348,8 @@ enum WorkbenchInstanceGceSetupNetworkInterfacesNicType
 /// Typed helper for the `gce_setup.network_interfaces.access_configs` block of
 /// `google_workbench_instance` (derived from provider schema).
 @immutable
-final class WorkbenchInstanceGceSetupNetworkInterfacesAccessConfigs {
-  const WorkbenchInstanceGceSetupNetworkInterfacesAccessConfigs({
-    required this.externalIp,
-  });
+final class WorkbenchInstanceAccessConfigs {
+  const WorkbenchInstanceAccessConfigs({required this.externalIp});
 
   final TfArg<String> externalIp;
 
@@ -381,17 +359,14 @@ final class WorkbenchInstanceGceSetupNetworkInterfacesAccessConfigs {
 /// Typed helper for the `gce_setup.reservation_affinity` block of
 /// `google_workbench_instance` (derived from provider schema).
 @immutable
-final class WorkbenchInstanceGceSetupReservationAffinity {
-  const WorkbenchInstanceGceSetupReservationAffinity({
+final class WorkbenchInstanceReservationAffinity {
+  const WorkbenchInstanceReservationAffinity({
     this.consumeReservationType,
     this.key,
     this.values,
   });
 
-  final TfArg<
-    WorkbenchInstanceGceSetupReservationAffinityConsumeReservationType
-  >?
-  consumeReservationType;
+  final TfArg<WorkbenchInstanceConsumeReservationType>? consumeReservationType;
 
   final TfArg<String>? key;
 
@@ -405,15 +380,12 @@ final class WorkbenchInstanceGceSetupReservationAffinity {
 }
 
 /// `consume_reservation_type` — derived from the provider schema description.
-enum WorkbenchInstanceGceSetupReservationAffinityConsumeReservationType
-    implements TerraformEnum {
+enum WorkbenchInstanceConsumeReservationType implements TerraformEnum {
   reservationNone('RESERVATION_NONE'),
   reservationAny('RESERVATION_ANY'),
   reservationSpecific('RESERVATION_SPECIFIC');
 
-  const WorkbenchInstanceGceSetupReservationAffinityConsumeReservationType(
-    this.terraformValue,
-  );
+  const WorkbenchInstanceConsumeReservationType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -421,8 +393,8 @@ enum WorkbenchInstanceGceSetupReservationAffinityConsumeReservationType
 /// Typed helper for the `gce_setup.service_accounts` block of
 /// `google_workbench_instance` (derived from provider schema).
 @immutable
-final class WorkbenchInstanceGceSetupServiceAccounts {
-  const WorkbenchInstanceGceSetupServiceAccounts({this.email});
+final class WorkbenchInstanceServiceAccounts {
+  const WorkbenchInstanceServiceAccounts({this.email});
 
   final RefTo<GoogleServiceAccount>? email;
 
@@ -434,8 +406,8 @@ final class WorkbenchInstanceGceSetupServiceAccounts {
 /// Typed helper for the `gce_setup.shielded_instance_config` block of
 /// `google_workbench_instance` (derived from provider schema).
 @immutable
-final class WorkbenchInstanceGceSetupShieldedInstanceConfig {
-  const WorkbenchInstanceGceSetupShieldedInstanceConfig({
+final class WorkbenchInstanceShieldedInstanceConfig {
+  const WorkbenchInstanceShieldedInstanceConfig({
     this.enableIntegrityMonitoring,
     this.enableSecureBoot,
     this.enableVtpm,
@@ -457,12 +429,8 @@ final class WorkbenchInstanceGceSetupShieldedInstanceConfig {
 /// Typed helper for the `gce_setup.vm_image` block of
 /// `google_workbench_instance` (derived from provider schema).
 @immutable
-final class WorkbenchInstanceGceSetupVmImage {
-  const WorkbenchInstanceGceSetupVmImage({
-    this.family,
-    this.name,
-    this.project,
-  });
+final class WorkbenchInstanceVmImage {
+  const WorkbenchInstanceVmImage({this.family, this.name, this.project});
 
   final TfArg<String>? family;
 
@@ -502,7 +470,7 @@ final class WorkbenchInstanceGceSetupVmImage {
 ///   gceSetup: WorkbenchInstanceGceSetup(
 ///     machineType: TfArg.literal('n1-standard-1'),
 ///     image: .vmImage(
-///       WorkbenchInstanceGceSetupVmImage(
+///       WorkbenchInstanceVmImage(
 ///         project: TfArg.literal('cloud-notebooks-managed'),
 ///         family: TfArg.literal('workbench-instances'),
 ///       ),

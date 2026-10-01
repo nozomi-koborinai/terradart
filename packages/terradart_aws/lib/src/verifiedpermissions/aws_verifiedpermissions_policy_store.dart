@@ -23,20 +23,17 @@ enum VerifiedpermissionsPolicyStoreDeletionProtection implements TerraformEnum {
 final class VerifiedpermissionsPolicyStoreValidationSettings {
   const VerifiedpermissionsPolicyStoreValidationSettings({required this.mode});
 
-  final TfArg<VerifiedpermissionsPolicyStoreValidationSettingsMode> mode;
+  final TfArg<VerifiedpermissionsPolicyStoreMode> mode;
 
   Map<String, Object?> encode() => {'mode': mode.toTfJson()};
 }
 
 /// `mode` — derived from the provider schema description.
-enum VerifiedpermissionsPolicyStoreValidationSettingsMode
-    implements TerraformEnum {
+enum VerifiedpermissionsPolicyStoreMode implements TerraformEnum {
   off('OFF'),
   strict('STRICT');
 
-  const VerifiedpermissionsPolicyStoreValidationSettingsMode(
-    this.terraformValue,
-  );
+  const VerifiedpermissionsPolicyStoreMode(this.terraformValue);
   @override
   final String terraformValue;
 }

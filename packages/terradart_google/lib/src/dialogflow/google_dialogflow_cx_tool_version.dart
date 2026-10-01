@@ -27,11 +27,11 @@ final class DialogflowCxToolVersionTool {
 
   final TfArg<String> displayName;
 
-  final DialogflowCxToolVersionToolDataStoreSpec? dataStoreSpec;
+  final DialogflowCxToolVersionDataStoreSpec? dataStoreSpec;
 
-  final DialogflowCxToolVersionToolFunctionSpec? functionSpec;
+  final DialogflowCxToolVersionFunctionSpec? functionSpec;
 
-  final DialogflowCxToolVersionToolOpenApiSpec? openApiSpec;
+  final DialogflowCxToolVersionOpenApiSpec? openApiSpec;
 
   Map<String, Object?> encode() => {
     'description': description.toTfJson(),
@@ -45,16 +45,15 @@ final class DialogflowCxToolVersionTool {
 /// Typed helper for the `tool.data_store_spec` block of
 /// `google_dialogflow_cx_tool_version` (derived from provider schema).
 @immutable
-final class DialogflowCxToolVersionToolDataStoreSpec {
-  const DialogflowCxToolVersionToolDataStoreSpec({
+final class DialogflowCxToolVersionDataStoreSpec {
+  const DialogflowCxToolVersionDataStoreSpec({
     required this.dataStoreConnections,
     required this.fallbackPrompt,
   });
 
-  final List<DialogflowCxToolVersionToolDataStoreSpecDataStoreConnections>
-  dataStoreConnections;
+  final List<DialogflowCxToolVersionDataStoreConnections> dataStoreConnections;
 
-  final DialogflowCxToolVersionToolDataStoreSpecFallbackPrompt fallbackPrompt;
+  final DialogflowCxToolVersionFallbackPrompt fallbackPrompt;
 
   Map<String, Object?> encode() => {
     'data_store_connections': [
@@ -67,8 +66,8 @@ final class DialogflowCxToolVersionToolDataStoreSpec {
 /// Typed helper for the `tool.data_store_spec.data_store_connections` block of
 /// `google_dialogflow_cx_tool_version` (derived from provider schema).
 @immutable
-final class DialogflowCxToolVersionToolDataStoreSpecDataStoreConnections {
-  const DialogflowCxToolVersionToolDataStoreSpecDataStoreConnections({
+final class DialogflowCxToolVersionDataStoreConnections {
+  const DialogflowCxToolVersionDataStoreConnections({
     this.dataStore,
     this.dataStoreType,
     this.documentProcessingMode,
@@ -90,8 +89,8 @@ final class DialogflowCxToolVersionToolDataStoreSpecDataStoreConnections {
 /// Typed helper for the `tool.data_store_spec.fallback_prompt` block of
 /// `google_dialogflow_cx_tool_version` (derived from provider schema).
 @immutable
-final class DialogflowCxToolVersionToolDataStoreSpecFallbackPrompt {
-  const DialogflowCxToolVersionToolDataStoreSpecFallbackPrompt();
+final class DialogflowCxToolVersionFallbackPrompt {
+  const DialogflowCxToolVersionFallbackPrompt();
 
   Map<String, Object?> encode() => {};
 }
@@ -99,8 +98,8 @@ final class DialogflowCxToolVersionToolDataStoreSpecFallbackPrompt {
 /// Typed helper for the `tool.function_spec` block of
 /// `google_dialogflow_cx_tool_version` (derived from provider schema).
 @immutable
-final class DialogflowCxToolVersionToolFunctionSpec {
-  const DialogflowCxToolVersionToolFunctionSpec({
+final class DialogflowCxToolVersionFunctionSpec {
+  const DialogflowCxToolVersionFunctionSpec({
     this.inputSchema,
     this.outputSchema,
   });
@@ -118,8 +117,8 @@ final class DialogflowCxToolVersionToolFunctionSpec {
 /// Typed helper for the `tool.open_api_spec` block of
 /// `google_dialogflow_cx_tool_version` (derived from provider schema).
 @immutable
-final class DialogflowCxToolVersionToolOpenApiSpec {
-  const DialogflowCxToolVersionToolOpenApiSpec({
+final class DialogflowCxToolVersionOpenApiSpec {
+  const DialogflowCxToolVersionOpenApiSpec({
     required this.textSchema,
     this.authentication,
     this.serviceDirectoryConfig,
@@ -128,12 +127,11 @@ final class DialogflowCxToolVersionToolOpenApiSpec {
 
   final TfArg<String> textSchema;
 
-  final DialogflowCxToolVersionToolOpenApiSpecAuthentication? authentication;
+  final DialogflowCxToolVersionAuthentication? authentication;
 
-  final DialogflowCxToolVersionToolOpenApiSpecServiceDirectoryConfig?
-  serviceDirectoryConfig;
+  final DialogflowCxToolVersionServiceDirectoryConfig? serviceDirectoryConfig;
 
-  final DialogflowCxToolVersionToolOpenApiSpecTlsConfig? tlsConfig;
+  final DialogflowCxToolVersionTlsConfig? tlsConfig;
 
   Map<String, Object?> encode() => {
     'text_schema': textSchema.toTfJson(),
@@ -146,25 +144,21 @@ final class DialogflowCxToolVersionToolOpenApiSpec {
 /// Typed helper for the `tool.open_api_spec.authentication` block of
 /// `google_dialogflow_cx_tool_version` (derived from provider schema).
 @immutable
-final class DialogflowCxToolVersionToolOpenApiSpecAuthentication {
-  const DialogflowCxToolVersionToolOpenApiSpecAuthentication({
+final class DialogflowCxToolVersionAuthentication {
+  const DialogflowCxToolVersionAuthentication({
     this.apiKeyConfig,
     this.bearerTokenConfig,
     this.oauthConfig,
     this.serviceAgentAuthConfig,
   });
 
-  final DialogflowCxToolVersionToolOpenApiSpecAuthenticationApiKeyConfig?
-  apiKeyConfig;
+  final DialogflowCxToolVersionApiKeyConfig? apiKeyConfig;
 
-  final DialogflowCxToolVersionToolOpenApiSpecAuthenticationBearerTokenConfig?
-  bearerTokenConfig;
+  final DialogflowCxToolVersionBearerTokenConfig? bearerTokenConfig;
 
-  final DialogflowCxToolVersionToolOpenApiSpecAuthenticationOauthConfig?
-  oauthConfig;
+  final DialogflowCxToolVersionOauthConfig? oauthConfig;
 
-  final DialogflowCxToolVersionToolOpenApiSpecAuthenticationServiceAgentAuthConfig?
-  serviceAgentAuthConfig;
+  final DialogflowCxToolVersionServiceAgentAuthConfig? serviceAgentAuthConfig;
 
   Map<String, Object?> encode() => {
     'api_key_config': ?apiKeyConfig?.encode(),
@@ -177,8 +171,8 @@ final class DialogflowCxToolVersionToolOpenApiSpecAuthentication {
 /// Typed helper for the `tool.open_api_spec.authentication.api_key_config` block of
 /// `google_dialogflow_cx_tool_version` (derived from provider schema).
 @immutable
-final class DialogflowCxToolVersionToolOpenApiSpecAuthenticationApiKeyConfig {
-  const DialogflowCxToolVersionToolOpenApiSpecAuthenticationApiKeyConfig({
+final class DialogflowCxToolVersionApiKeyConfig {
+  const DialogflowCxToolVersionApiKeyConfig({
     this.apiKey,
     required this.keyName,
     required this.requestLocation,
@@ -204,8 +198,8 @@ final class DialogflowCxToolVersionToolOpenApiSpecAuthenticationApiKeyConfig {
 /// Typed helper for the `tool.open_api_spec.authentication.bearer_token_config` block of
 /// `google_dialogflow_cx_tool_version` (derived from provider schema).
 @immutable
-final class DialogflowCxToolVersionToolOpenApiSpecAuthenticationBearerTokenConfig {
-  const DialogflowCxToolVersionToolOpenApiSpecAuthenticationBearerTokenConfig({
+final class DialogflowCxToolVersionBearerTokenConfig {
+  const DialogflowCxToolVersionBearerTokenConfig({
     this.secretVersionForToken,
     this.token,
   });
@@ -223,8 +217,8 @@ final class DialogflowCxToolVersionToolOpenApiSpecAuthenticationBearerTokenConfi
 /// Typed helper for the `tool.open_api_spec.authentication.oauth_config` block of
 /// `google_dialogflow_cx_tool_version` (derived from provider schema).
 @immutable
-final class DialogflowCxToolVersionToolOpenApiSpecAuthenticationOauthConfig {
-  const DialogflowCxToolVersionToolOpenApiSpecAuthenticationOauthConfig({
+final class DialogflowCxToolVersionOauthConfig {
+  const DialogflowCxToolVersionOauthConfig({
     required this.clientId,
     this.clientSecret,
     required this.oauthGrantType,
@@ -259,10 +253,8 @@ final class DialogflowCxToolVersionToolOpenApiSpecAuthenticationOauthConfig {
 /// Typed helper for the `tool.open_api_spec.authentication.service_agent_auth_config` block of
 /// `google_dialogflow_cx_tool_version` (derived from provider schema).
 @immutable
-final class DialogflowCxToolVersionToolOpenApiSpecAuthenticationServiceAgentAuthConfig {
-  const DialogflowCxToolVersionToolOpenApiSpecAuthenticationServiceAgentAuthConfig({
-    this.serviceAgentAuth,
-  });
+final class DialogflowCxToolVersionServiceAgentAuthConfig {
+  const DialogflowCxToolVersionServiceAgentAuthConfig({this.serviceAgentAuth});
 
   final TfArg<String>? serviceAgentAuth;
 
@@ -274,10 +266,8 @@ final class DialogflowCxToolVersionToolOpenApiSpecAuthenticationServiceAgentAuth
 /// Typed helper for the `tool.open_api_spec.service_directory_config` block of
 /// `google_dialogflow_cx_tool_version` (derived from provider schema).
 @immutable
-final class DialogflowCxToolVersionToolOpenApiSpecServiceDirectoryConfig {
-  const DialogflowCxToolVersionToolOpenApiSpecServiceDirectoryConfig({
-    required this.service,
-  });
+final class DialogflowCxToolVersionServiceDirectoryConfig {
+  const DialogflowCxToolVersionServiceDirectoryConfig({required this.service});
 
   final TfArg<String> service;
 
@@ -287,12 +277,10 @@ final class DialogflowCxToolVersionToolOpenApiSpecServiceDirectoryConfig {
 /// Typed helper for the `tool.open_api_spec.tls_config` block of
 /// `google_dialogflow_cx_tool_version` (derived from provider schema).
 @immutable
-final class DialogflowCxToolVersionToolOpenApiSpecTlsConfig {
-  const DialogflowCxToolVersionToolOpenApiSpecTlsConfig({
-    required this.caCerts,
-  });
+final class DialogflowCxToolVersionTlsConfig {
+  const DialogflowCxToolVersionTlsConfig({required this.caCerts});
 
-  final List<DialogflowCxToolVersionToolOpenApiSpecTlsConfigCaCerts> caCerts;
+  final List<DialogflowCxToolVersionCaCerts> caCerts;
 
   Map<String, Object?> encode() => {
     'ca_certs': [for (final e in caCerts) e.encode()],
@@ -302,8 +290,8 @@ final class DialogflowCxToolVersionToolOpenApiSpecTlsConfig {
 /// Typed helper for the `tool.open_api_spec.tls_config.ca_certs` block of
 /// `google_dialogflow_cx_tool_version` (derived from provider schema).
 @immutable
-final class DialogflowCxToolVersionToolOpenApiSpecTlsConfigCaCerts {
-  const DialogflowCxToolVersionToolOpenApiSpecTlsConfigCaCerts({
+final class DialogflowCxToolVersionCaCerts {
+  const DialogflowCxToolVersionCaCerts({
     required this.cert,
     required this.displayName,
   });

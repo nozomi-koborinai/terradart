@@ -33,7 +33,7 @@ sealed class AutoscalingplansScalingPlanApplicationSourceSelector {
 
   /// Sets `tag_filter`.
   const factory AutoscalingplansScalingPlanApplicationSourceSelector.tagFilter(
-    List<AutoscalingplansScalingPlanApplicationSourceTagFilter> tagFilter,
+    List<AutoscalingplansScalingPlanTagFilter> tagFilter,
   ) = AutoscalingplansScalingPlanApplicationSourceSelectorTagFilter;
 
   /// The Terraform argument this choice sets.
@@ -67,7 +67,7 @@ final class AutoscalingplansScalingPlanApplicationSourceSelectorTagFilter
     this.tagFilter,
   );
 
-  final List<AutoscalingplansScalingPlanApplicationSourceTagFilter> tagFilter;
+  final List<AutoscalingplansScalingPlanTagFilter> tagFilter;
 
   @override
   String get blockKey => 'tag_filter';
@@ -81,11 +81,8 @@ final class AutoscalingplansScalingPlanApplicationSourceSelectorTagFilter
 /// Typed helper for the `application_source.tag_filter` block of
 /// `aws_autoscalingplans_scaling_plan` (derived from provider schema).
 @immutable
-final class AutoscalingplansScalingPlanApplicationSourceTagFilter {
-  const AutoscalingplansScalingPlanApplicationSourceTagFilter({
-    required this.key,
-    this.values,
-  });
+final class AutoscalingplansScalingPlanTagFilter {
+  const AutoscalingplansScalingPlanTagFilter({required this.key, this.values});
 
   final TfArg<String> key;
 
@@ -124,42 +121,32 @@ final class AutoscalingplansScalingPlanScalingInstruction {
 
   final TfArg<num> minCapacity;
 
-  final TfArg<
-    AutoscalingplansScalingPlanScalingInstructionPredictiveScalingMaxCapacityBehavior
-  >?
+  final TfArg<AutoscalingplansScalingPlanPredictiveScalingMaxCapacityBehavior>?
   predictiveScalingMaxCapacityBehavior;
 
   final TfArg<num>? predictiveScalingMaxCapacityBuffer;
 
-  final TfArg<
-    AutoscalingplansScalingPlanScalingInstructionPredictiveScalingMode
-  >?
+  final TfArg<AutoscalingplansScalingPlanPredictiveScalingMode>?
   predictiveScalingMode;
 
   final TfArg<String> resourceId;
 
-  final TfArg<AutoscalingplansScalingPlanScalingInstructionScalableDimension>
-  scalableDimension;
+  final TfArg<AutoscalingplansScalingPlanScalableDimension> scalableDimension;
 
-  final TfArg<
-    AutoscalingplansScalingPlanScalingInstructionScalingPolicyUpdateBehavior
-  >?
+  final TfArg<AutoscalingplansScalingPlanScalingPolicyUpdateBehavior>?
   scalingPolicyUpdateBehavior;
 
   final TfArg<num>? scheduledActionBufferTime;
 
-  final TfArg<AutoscalingplansScalingPlanScalingInstructionServiceNamespace>
-  serviceNamespace;
+  final TfArg<AutoscalingplansScalingPlanServiceNamespace> serviceNamespace;
 
-  final AutoscalingplansScalingPlanScalingInstructionCustomizedLoadMetricSpecification?
+  final AutoscalingplansScalingPlanCustomizedLoadMetricSpecification?
   customizedLoadMetricSpecification;
 
-  final AutoscalingplansScalingPlanScalingInstructionPredefinedLoadMetricSpecification?
+  final AutoscalingplansScalingPlanPredefinedLoadMetricSpecification?
   predefinedLoadMetricSpecification;
 
-  final List<
-    AutoscalingplansScalingPlanScalingInstructionTargetTrackingConfiguration
-  >
+  final List<AutoscalingplansScalingPlanTargetTrackingConfiguration>
   targetTrackingConfiguration;
 
   Map<String, Object?> encode() => {
@@ -187,13 +174,13 @@ final class AutoscalingplansScalingPlanScalingInstruction {
 }
 
 /// `predictive_scaling_max_capacity_behavior` — derived from the provider schema description.
-enum AutoscalingplansScalingPlanScalingInstructionPredictiveScalingMaxCapacityBehavior
+enum AutoscalingplansScalingPlanPredictiveScalingMaxCapacityBehavior
     implements TerraformEnum {
   setforecastcapacitytomaxcapacity('SetForecastCapacityToMaxCapacity'),
   setmaxcapacitytoforecastcapacity('SetMaxCapacityToForecastCapacity'),
   setmaxcapacityaboveforecastcapacity('SetMaxCapacityAboveForecastCapacity');
 
-  const AutoscalingplansScalingPlanScalingInstructionPredictiveScalingMaxCapacityBehavior(
+  const AutoscalingplansScalingPlanPredictiveScalingMaxCapacityBehavior(
     this.terraformValue,
   );
   @override
@@ -201,21 +188,17 @@ enum AutoscalingplansScalingPlanScalingInstructionPredictiveScalingMaxCapacityBe
 }
 
 /// `predictive_scaling_mode` — derived from the provider schema description.
-enum AutoscalingplansScalingPlanScalingInstructionPredictiveScalingMode
-    implements TerraformEnum {
+enum AutoscalingplansScalingPlanPredictiveScalingMode implements TerraformEnum {
   forecastandscale('ForecastAndScale'),
   forecastonly('ForecastOnly');
 
-  const AutoscalingplansScalingPlanScalingInstructionPredictiveScalingMode(
-    this.terraformValue,
-  );
+  const AutoscalingplansScalingPlanPredictiveScalingMode(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `scalable_dimension` — derived from the provider schema description.
-enum AutoscalingplansScalingPlanScalingInstructionScalableDimension
-    implements TerraformEnum {
+enum AutoscalingplansScalingPlanScalableDimension implements TerraformEnum {
   autoscalingAutoscalinggroupDesiredcapacity(
     'autoscaling:autoScalingGroup:DesiredCapacity',
   ),
@@ -227,20 +210,18 @@ enum AutoscalingplansScalingPlanScalingInstructionScalableDimension
   dynamodbIndexReadcapacityunits('dynamodb:index:ReadCapacityUnits'),
   dynamodbIndexWritecapacityunits('dynamodb:index:WriteCapacityUnits');
 
-  const AutoscalingplansScalingPlanScalingInstructionScalableDimension(
-    this.terraformValue,
-  );
+  const AutoscalingplansScalingPlanScalableDimension(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `scaling_policy_update_behavior` — derived from the provider schema description.
-enum AutoscalingplansScalingPlanScalingInstructionScalingPolicyUpdateBehavior
+enum AutoscalingplansScalingPlanScalingPolicyUpdateBehavior
     implements TerraformEnum {
   keepexternalpolicies('KeepExternalPolicies'),
   replaceexternalpolicies('ReplaceExternalPolicies');
 
-  const AutoscalingplansScalingPlanScalingInstructionScalingPolicyUpdateBehavior(
+  const AutoscalingplansScalingPlanScalingPolicyUpdateBehavior(
     this.terraformValue,
   );
   @override
@@ -248,17 +229,14 @@ enum AutoscalingplansScalingPlanScalingInstructionScalingPolicyUpdateBehavior
 }
 
 /// `service_namespace` — derived from the provider schema description.
-enum AutoscalingplansScalingPlanScalingInstructionServiceNamespace
-    implements TerraformEnum {
+enum AutoscalingplansScalingPlanServiceNamespace implements TerraformEnum {
   autoscaling('autoscaling'),
   ecs('ecs'),
   ec2('ec2'),
   rds('rds'),
   dynamodb('dynamodb');
 
-  const AutoscalingplansScalingPlanScalingInstructionServiceNamespace(
-    this.terraformValue,
-  );
+  const AutoscalingplansScalingPlanServiceNamespace(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -266,8 +244,8 @@ enum AutoscalingplansScalingPlanScalingInstructionServiceNamespace
 /// Typed helper for the `scaling_instruction.customized_load_metric_specification` block of
 /// `aws_autoscalingplans_scaling_plan` (derived from provider schema).
 @immutable
-final class AutoscalingplansScalingPlanScalingInstructionCustomizedLoadMetricSpecification {
-  const AutoscalingplansScalingPlanScalingInstructionCustomizedLoadMetricSpecification({
+final class AutoscalingplansScalingPlanCustomizedLoadMetricSpecification {
+  const AutoscalingplansScalingPlanCustomizedLoadMetricSpecification({
     this.dimensions,
     required this.metricName,
     required this.namespace,
@@ -281,10 +259,7 @@ final class AutoscalingplansScalingPlanScalingInstructionCustomizedLoadMetricSpe
 
   final TfArg<String> namespace;
 
-  final TfArg<
-    AutoscalingplansScalingPlanScalingInstructionCustomizedLoadMetricSpecificationStatistic
-  >
-  statistic;
+  final TfArg<AutoscalingplansScalingPlanStatistic> statistic;
 
   final TfArg<String>? unit;
 
@@ -298,13 +273,10 @@ final class AutoscalingplansScalingPlanScalingInstructionCustomizedLoadMetricSpe
 }
 
 /// `statistic` — derived from the provider schema description.
-enum AutoscalingplansScalingPlanScalingInstructionCustomizedLoadMetricSpecificationStatistic
-    implements TerraformEnum {
+enum AutoscalingplansScalingPlanStatistic implements TerraformEnum {
   sum('Sum');
 
-  const AutoscalingplansScalingPlanScalingInstructionCustomizedLoadMetricSpecificationStatistic(
-    this.terraformValue,
-  );
+  const AutoscalingplansScalingPlanStatistic(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -312,15 +284,13 @@ enum AutoscalingplansScalingPlanScalingInstructionCustomizedLoadMetricSpecificat
 /// Typed helper for the `scaling_instruction.predefined_load_metric_specification` block of
 /// `aws_autoscalingplans_scaling_plan` (derived from provider schema).
 @immutable
-final class AutoscalingplansScalingPlanScalingInstructionPredefinedLoadMetricSpecification {
-  const AutoscalingplansScalingPlanScalingInstructionPredefinedLoadMetricSpecification({
+final class AutoscalingplansScalingPlanPredefinedLoadMetricSpecification {
+  const AutoscalingplansScalingPlanPredefinedLoadMetricSpecification({
     required this.predefinedLoadMetricType,
     this.resourceLabel,
   });
 
-  final TfArg<
-    AutoscalingplansScalingPlanScalingInstructionPredefinedLoadMetricSpecificationPredefinedLoadMetricType
-  >
+  final TfArg<AutoscalingplansScalingPlanPredefinedLoadMetricType>
   predefinedLoadMetricType;
 
   final TfArg<String>? resourceLabel;
@@ -332,14 +302,14 @@ final class AutoscalingplansScalingPlanScalingInstructionPredefinedLoadMetricSpe
 }
 
 /// `predefined_load_metric_type` — derived from the provider schema description.
-enum AutoscalingplansScalingPlanScalingInstructionPredefinedLoadMetricSpecificationPredefinedLoadMetricType
+enum AutoscalingplansScalingPlanPredefinedLoadMetricType
     implements TerraformEnum {
   asgtotalcpuutilization('ASGTotalCPUUtilization'),
   asgtotalnetworkin('ASGTotalNetworkIn'),
   asgtotalnetworkout('ASGTotalNetworkOut'),
   albtargetgrouprequestcount('ALBTargetGroupRequestCount');
 
-  const AutoscalingplansScalingPlanScalingInstructionPredefinedLoadMetricSpecificationPredefinedLoadMetricType(
+  const AutoscalingplansScalingPlanPredefinedLoadMetricType(
     this.terraformValue,
   );
   @override
@@ -349,8 +319,8 @@ enum AutoscalingplansScalingPlanScalingInstructionPredefinedLoadMetricSpecificat
 /// Typed helper for the `scaling_instruction.target_tracking_configuration` block of
 /// `aws_autoscalingplans_scaling_plan` (derived from provider schema).
 @immutable
-final class AutoscalingplansScalingPlanScalingInstructionTargetTrackingConfiguration {
-  const AutoscalingplansScalingPlanScalingInstructionTargetTrackingConfiguration({
+final class AutoscalingplansScalingPlanTargetTrackingConfiguration {
+  const AutoscalingplansScalingPlanTargetTrackingConfiguration({
     this.disableScaleIn,
     this.estimatedInstanceWarmup,
     this.scaleInCooldown,
@@ -370,10 +340,10 @@ final class AutoscalingplansScalingPlanScalingInstructionTargetTrackingConfigura
 
   final TfArg<num> targetValue;
 
-  final AutoscalingplansScalingPlanScalingInstructionTargetTrackingConfigurationCustomizedScalingMetricSpecification?
+  final AutoscalingplansScalingPlanCustomizedScalingMetricSpecification?
   customizedScalingMetricSpecification;
 
-  final AutoscalingplansScalingPlanScalingInstructionTargetTrackingConfigurationPredefinedScalingMetricSpecification?
+  final AutoscalingplansScalingPlanPredefinedScalingMetricSpecification?
   predefinedScalingMetricSpecification;
 
   Map<String, Object?> encode() => {
@@ -392,8 +362,8 @@ final class AutoscalingplansScalingPlanScalingInstructionTargetTrackingConfigura
 /// Typed helper for the `scaling_instruction.target_tracking_configuration.customized_scaling_metric_specification` block of
 /// `aws_autoscalingplans_scaling_plan` (derived from provider schema).
 @immutable
-final class AutoscalingplansScalingPlanScalingInstructionTargetTrackingConfigurationCustomizedScalingMetricSpecification {
-  const AutoscalingplansScalingPlanScalingInstructionTargetTrackingConfigurationCustomizedScalingMetricSpecification({
+final class AutoscalingplansScalingPlanCustomizedScalingMetricSpecification {
+  const AutoscalingplansScalingPlanCustomizedScalingMetricSpecification({
     this.dimensions,
     required this.metricName,
     required this.namespace,
@@ -408,7 +378,7 @@ final class AutoscalingplansScalingPlanScalingInstructionTargetTrackingConfigura
   final TfArg<String> namespace;
 
   final TfArg<
-    AutoscalingplansScalingPlanScalingInstructionTargetTrackingConfigurationCustomizedScalingMetricSpecificationStatistic
+    AutoscalingplansScalingPlanCustomizedScalingMetricSpecificationStatistic
   >
   statistic;
 
@@ -424,7 +394,7 @@ final class AutoscalingplansScalingPlanScalingInstructionTargetTrackingConfigura
 }
 
 /// `statistic` — derived from the provider schema description.
-enum AutoscalingplansScalingPlanScalingInstructionTargetTrackingConfigurationCustomizedScalingMetricSpecificationStatistic
+enum AutoscalingplansScalingPlanCustomizedScalingMetricSpecificationStatistic
     implements TerraformEnum {
   average('Average'),
   minimum('Minimum'),
@@ -432,7 +402,7 @@ enum AutoscalingplansScalingPlanScalingInstructionTargetTrackingConfigurationCus
   samplecount('SampleCount'),
   sum('Sum');
 
-  const AutoscalingplansScalingPlanScalingInstructionTargetTrackingConfigurationCustomizedScalingMetricSpecificationStatistic(
+  const AutoscalingplansScalingPlanCustomizedScalingMetricSpecificationStatistic(
     this.terraformValue,
   );
   @override
@@ -442,15 +412,13 @@ enum AutoscalingplansScalingPlanScalingInstructionTargetTrackingConfigurationCus
 /// Typed helper for the `scaling_instruction.target_tracking_configuration.predefined_scaling_metric_specification` block of
 /// `aws_autoscalingplans_scaling_plan` (derived from provider schema).
 @immutable
-final class AutoscalingplansScalingPlanScalingInstructionTargetTrackingConfigurationPredefinedScalingMetricSpecification {
-  const AutoscalingplansScalingPlanScalingInstructionTargetTrackingConfigurationPredefinedScalingMetricSpecification({
+final class AutoscalingplansScalingPlanPredefinedScalingMetricSpecification {
+  const AutoscalingplansScalingPlanPredefinedScalingMetricSpecification({
     required this.predefinedScalingMetricType,
     this.resourceLabel,
   });
 
-  final TfArg<
-    AutoscalingplansScalingPlanScalingInstructionTargetTrackingConfigurationPredefinedScalingMetricSpecificationPredefinedScalingMetricType
-  >
+  final TfArg<AutoscalingplansScalingPlanPredefinedScalingMetricType>
   predefinedScalingMetricType;
 
   final TfArg<String>? resourceLabel;
@@ -462,7 +430,7 @@ final class AutoscalingplansScalingPlanScalingInstructionTargetTrackingConfigura
 }
 
 /// `predefined_scaling_metric_type` — derived from the provider schema description.
-enum AutoscalingplansScalingPlanScalingInstructionTargetTrackingConfigurationPredefinedScalingMetricSpecificationPredefinedScalingMetricType
+enum AutoscalingplansScalingPlanPredefinedScalingMetricType
     implements TerraformEnum {
   asgaveragecpuutilization('ASGAverageCPUUtilization'),
   asgaveragenetworkin('ASGAverageNetworkIn'),
@@ -480,7 +448,7 @@ enum AutoscalingplansScalingPlanScalingInstructionTargetTrackingConfigurationPre
   ec2spotfleetrequestaveragenetworkin('EC2SpotFleetRequestAverageNetworkIn'),
   ec2spotfleetrequestaveragenetworkout('EC2SpotFleetRequestAverageNetworkOut');
 
-  const AutoscalingplansScalingPlanScalingInstructionTargetTrackingConfigurationPredefinedScalingMetricSpecificationPredefinedScalingMetricType(
+  const AutoscalingplansScalingPlanPredefinedScalingMetricType(
     this.terraformValue,
   );
   @override

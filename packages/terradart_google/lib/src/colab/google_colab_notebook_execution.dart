@@ -21,17 +21,17 @@ sealed class ColabNotebookExecutionSource {
   /// Sets `dataform_repository_source`.
   const factory ColabNotebookExecutionSource.dataformRepositorySource(
     ColabNotebookExecutionDataformRepositorySource dataformRepositorySource,
-  ) = ColabNotebookExecutionSourceDataformRepositorySource;
+  ) = ColabNotebookExecutionDataformRepositorySourceChoice;
 
   /// Sets `gcs_notebook_source`.
   const factory ColabNotebookExecutionSource.gcsNotebookSource(
     ColabNotebookExecutionGcsNotebookSource gcsNotebookSource,
-  ) = ColabNotebookExecutionSourceGcsNotebookSource;
+  ) = ColabNotebookExecutionGcsNotebookSourceChoice;
 
   /// Sets `direct_notebook_source`.
   const factory ColabNotebookExecutionSource.directNotebookSource(
     ColabNotebookExecutionDirectNotebookSource directNotebookSource,
-  ) = ColabNotebookExecutionSourceDirectNotebookSource;
+  ) = ColabNotebookExecutionDirectNotebookSourceChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -44,9 +44,9 @@ sealed class ColabNotebookExecutionSource {
 }
 
 /// The [ColabNotebookExecutionSource.dataformRepositorySource] choice: sets `dataform_repository_source`.
-final class ColabNotebookExecutionSourceDataformRepositorySource
+final class ColabNotebookExecutionDataformRepositorySourceChoice
     extends ColabNotebookExecutionSource {
-  const ColabNotebookExecutionSourceDataformRepositorySource(
+  const ColabNotebookExecutionDataformRepositorySourceChoice(
     this.dataformRepositorySource,
   );
 
@@ -69,9 +69,9 @@ final class ColabNotebookExecutionSourceDataformRepositorySource
 }
 
 /// The [ColabNotebookExecutionSource.gcsNotebookSource] choice: sets `gcs_notebook_source`.
-final class ColabNotebookExecutionSourceGcsNotebookSource
+final class ColabNotebookExecutionGcsNotebookSourceChoice
     extends ColabNotebookExecutionSource {
-  const ColabNotebookExecutionSourceGcsNotebookSource(this.gcsNotebookSource);
+  const ColabNotebookExecutionGcsNotebookSourceChoice(this.gcsNotebookSource);
 
   final ColabNotebookExecutionGcsNotebookSource gcsNotebookSource;
 
@@ -90,9 +90,9 @@ final class ColabNotebookExecutionSourceGcsNotebookSource
 }
 
 /// The [ColabNotebookExecutionSource.directNotebookSource] choice: sets `direct_notebook_source`.
-final class ColabNotebookExecutionSourceDirectNotebookSource
+final class ColabNotebookExecutionDirectNotebookSourceChoice
     extends ColabNotebookExecutionSource {
-  const ColabNotebookExecutionSourceDirectNotebookSource(
+  const ColabNotebookExecutionDirectNotebookSourceChoice(
     this.directNotebookSource,
   );
 
@@ -263,15 +263,13 @@ final class ColabNotebookExecutionCustomEnvironmentSpec {
     this.shieldedInstanceConfig,
   });
 
-  final ColabNotebookExecutionCustomEnvironmentSpecMachineSpec? machineSpec;
+  final ColabNotebookExecutionMachineSpec? machineSpec;
 
-  final ColabNotebookExecutionCustomEnvironmentSpecNetworkSpec? networkSpec;
+  final ColabNotebookExecutionNetworkSpec? networkSpec;
 
-  final ColabNotebookExecutionCustomEnvironmentSpecPersistentDiskSpec?
-  persistentDiskSpec;
+  final ColabNotebookExecutionPersistentDiskSpec? persistentDiskSpec;
 
-  final ColabNotebookExecutionCustomEnvironmentSpecShieldedInstanceConfig?
-  shieldedInstanceConfig;
+  final ColabNotebookExecutionShieldedInstanceConfig? shieldedInstanceConfig;
 
   Map<String, Object?> encode() => {
     'machine_spec': ?machineSpec?.encode(),
@@ -284,8 +282,8 @@ final class ColabNotebookExecutionCustomEnvironmentSpec {
 /// Typed helper for the `custom_environment_spec.machine_spec` block of
 /// `google_colab_notebook_execution` (derived from provider schema).
 @immutable
-final class ColabNotebookExecutionCustomEnvironmentSpecMachineSpec {
-  const ColabNotebookExecutionCustomEnvironmentSpecMachineSpec({
+final class ColabNotebookExecutionMachineSpec {
+  const ColabNotebookExecutionMachineSpec({
     this.acceleratorCount,
     this.acceleratorType,
     this.machineType,
@@ -307,8 +305,8 @@ final class ColabNotebookExecutionCustomEnvironmentSpecMachineSpec {
 /// Typed helper for the `custom_environment_spec.network_spec` block of
 /// `google_colab_notebook_execution` (derived from provider schema).
 @immutable
-final class ColabNotebookExecutionCustomEnvironmentSpecNetworkSpec {
-  const ColabNotebookExecutionCustomEnvironmentSpecNetworkSpec({
+final class ColabNotebookExecutionNetworkSpec {
+  const ColabNotebookExecutionNetworkSpec({
     this.enableInternetAccess,
     this.network,
     this.subnetwork,
@@ -330,8 +328,8 @@ final class ColabNotebookExecutionCustomEnvironmentSpecNetworkSpec {
 /// Typed helper for the `custom_environment_spec.persistent_disk_spec` block of
 /// `google_colab_notebook_execution` (derived from provider schema).
 @immutable
-final class ColabNotebookExecutionCustomEnvironmentSpecPersistentDiskSpec {
-  const ColabNotebookExecutionCustomEnvironmentSpecPersistentDiskSpec({
+final class ColabNotebookExecutionPersistentDiskSpec {
+  const ColabNotebookExecutionPersistentDiskSpec({
     this.diskSizeGb,
     this.diskType,
   });
@@ -349,8 +347,8 @@ final class ColabNotebookExecutionCustomEnvironmentSpecPersistentDiskSpec {
 /// Typed helper for the `custom_environment_spec.shielded_instance_config` block of
 /// `google_colab_notebook_execution` (derived from provider schema).
 @immutable
-final class ColabNotebookExecutionCustomEnvironmentSpecShieldedInstanceConfig {
-  const ColabNotebookExecutionCustomEnvironmentSpecShieldedInstanceConfig({
+final class ColabNotebookExecutionShieldedInstanceConfig {
+  const ColabNotebookExecutionShieldedInstanceConfig({
     this.enableIntegrityMonitoring,
     this.enableSecureBoot,
     this.enableVtpm,
@@ -425,7 +423,7 @@ final class ColabNotebookExecutionGcsNotebookSource {
 final class ColabNotebookExecutionWorkbenchRuntime {
   const ColabNotebookExecutionWorkbenchRuntime({required this.vmImage});
 
-  final ColabNotebookExecutionWorkbenchRuntimeVmImage vmImage;
+  final ColabNotebookExecutionVmImage vmImage;
 
   Map<String, Object?> encode() => {'vm_image': vmImage.encode()};
 }
@@ -433,13 +431,10 @@ final class ColabNotebookExecutionWorkbenchRuntime {
 /// Typed helper for the `workbench_runtime.vm_image` block of
 /// `google_colab_notebook_execution` (derived from provider schema).
 @immutable
-final class ColabNotebookExecutionWorkbenchRuntimeVmImage {
-  const ColabNotebookExecutionWorkbenchRuntimeVmImage({
-    required this.selector,
-    this.project,
-  });
+final class ColabNotebookExecutionVmImage {
+  const ColabNotebookExecutionVmImage({required this.selector, this.project});
 
-  final ColabNotebookExecutionWorkbenchRuntimeVmImageSelector selector;
+  final ColabNotebookExecutionSelector selector;
 
   final TfArg<String>? project;
 
@@ -453,18 +448,16 @@ final class ColabNotebookExecutionWorkbenchRuntimeVmImage {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.family(...)`.
-sealed class ColabNotebookExecutionWorkbenchRuntimeVmImageSelector {
-  const ColabNotebookExecutionWorkbenchRuntimeVmImageSelector();
+sealed class ColabNotebookExecutionSelector {
+  const ColabNotebookExecutionSelector();
 
   /// Sets `family`.
-  const factory ColabNotebookExecutionWorkbenchRuntimeVmImageSelector.family(
-    TfArg<String> family,
-  ) = ColabNotebookExecutionWorkbenchRuntimeVmImageSelectorFamily;
+  const factory ColabNotebookExecutionSelector.family(TfArg<String> family) =
+      ColabNotebookExecutionSelectorFamily;
 
   /// Sets `name`.
-  const factory ColabNotebookExecutionWorkbenchRuntimeVmImageSelector.name(
-    TfArg<String> name,
-  ) = ColabNotebookExecutionWorkbenchRuntimeVmImageSelectorName;
+  const factory ColabNotebookExecutionSelector.name(TfArg<String> name) =
+      ColabNotebookExecutionSelectorName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -472,12 +465,10 @@ sealed class ColabNotebookExecutionWorkbenchRuntimeVmImageSelector {
   Map<String, Object?> encode();
 }
 
-/// The [ColabNotebookExecutionWorkbenchRuntimeVmImageSelector.family] choice: sets `family`.
-final class ColabNotebookExecutionWorkbenchRuntimeVmImageSelectorFamily
-    extends ColabNotebookExecutionWorkbenchRuntimeVmImageSelector {
-  const ColabNotebookExecutionWorkbenchRuntimeVmImageSelectorFamily(
-    this.family,
-  );
+/// The [ColabNotebookExecutionSelector.family] choice: sets `family`.
+final class ColabNotebookExecutionSelectorFamily
+    extends ColabNotebookExecutionSelector {
+  const ColabNotebookExecutionSelectorFamily(this.family);
 
   final TfArg<String> family;
 
@@ -488,10 +479,10 @@ final class ColabNotebookExecutionWorkbenchRuntimeVmImageSelectorFamily
   Map<String, Object?> encode() => {'family': family.toTfJson()};
 }
 
-/// The [ColabNotebookExecutionWorkbenchRuntimeVmImageSelector.name] choice: sets `name`.
-final class ColabNotebookExecutionWorkbenchRuntimeVmImageSelectorName
-    extends ColabNotebookExecutionWorkbenchRuntimeVmImageSelector {
-  const ColabNotebookExecutionWorkbenchRuntimeVmImageSelectorName(this.name);
+/// The [ColabNotebookExecutionSelector.name] choice: sets `name`.
+final class ColabNotebookExecutionSelectorName
+    extends ColabNotebookExecutionSelector {
+  const ColabNotebookExecutionSelectorName(this.name);
 
   final TfArg<String> name;
 

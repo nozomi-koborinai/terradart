@@ -31,7 +31,7 @@ final class ComputeFirewallPolicyWithRulesRule {
 
   final TfArg<String>? description;
 
-  final TfArg<ComputeFirewallPolicyWithRulesRuleDirection>? direction;
+  final TfArg<ComputeFirewallPolicyWithRulesDirection>? direction;
 
   final TfArg<bool>? disabled;
 
@@ -49,10 +49,9 @@ final class ComputeFirewallPolicyWithRulesRule {
 
   final TfArg<bool>? tlsInspect;
 
-  final ComputeFirewallPolicyWithRulesRuleMatch match;
+  final ComputeFirewallPolicyWithRulesMatch match;
 
-  final List<ComputeFirewallPolicyWithRulesRuleTargetSecureTag>?
-  targetSecureTag;
+  final List<ComputeFirewallPolicyWithRulesTargetSecureTag>? targetSecureTag;
 
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
@@ -73,11 +72,11 @@ final class ComputeFirewallPolicyWithRulesRule {
 }
 
 /// `direction` — derived from the provider schema description.
-enum ComputeFirewallPolicyWithRulesRuleDirection implements TerraformEnum {
+enum ComputeFirewallPolicyWithRulesDirection implements TerraformEnum {
   ingress('INGRESS'),
   egress('EGRESS');
 
-  const ComputeFirewallPolicyWithRulesRuleDirection(this.terraformValue);
+  const ComputeFirewallPolicyWithRulesDirection(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -85,8 +84,8 @@ enum ComputeFirewallPolicyWithRulesRuleDirection implements TerraformEnum {
 /// Typed helper for the `rule.match` block of
 /// `google_compute_firewall_policy_with_rules` (derived from provider schema).
 @immutable
-final class ComputeFirewallPolicyWithRulesRuleMatch {
-  const ComputeFirewallPolicyWithRulesRuleMatch({
+final class ComputeFirewallPolicyWithRulesMatch {
+  const ComputeFirewallPolicyWithRulesMatch({
     this.destAddressGroups,
     this.destFqdns,
     this.destIpRanges,
@@ -121,9 +120,9 @@ final class ComputeFirewallPolicyWithRulesRuleMatch {
 
   final TfArg<List<String>>? srcThreatIntelligences;
 
-  final List<ComputeFirewallPolicyWithRulesRuleMatchLayer4Config> layer4Config;
+  final List<ComputeFirewallPolicyWithRulesLayer4Config> layer4Config;
 
-  final List<ComputeFirewallPolicyWithRulesRuleMatchSrcSecureTag>? srcSecureTag;
+  final List<ComputeFirewallPolicyWithRulesSrcSecureTag>? srcSecureTag;
 
   Map<String, Object?> encode() => {
     'dest_address_groups': ?destAddressGroups?.toTfJson(),
@@ -145,8 +144,8 @@ final class ComputeFirewallPolicyWithRulesRuleMatch {
 /// Typed helper for the `rule.match.layer4_config` block of
 /// `google_compute_firewall_policy_with_rules` (derived from provider schema).
 @immutable
-final class ComputeFirewallPolicyWithRulesRuleMatchLayer4Config {
-  const ComputeFirewallPolicyWithRulesRuleMatchLayer4Config({
+final class ComputeFirewallPolicyWithRulesLayer4Config {
+  const ComputeFirewallPolicyWithRulesLayer4Config({
     required this.ipProtocol,
     this.ports,
   });
@@ -164,8 +163,8 @@ final class ComputeFirewallPolicyWithRulesRuleMatchLayer4Config {
 /// Typed helper for the `rule.match.src_secure_tag` block of
 /// `google_compute_firewall_policy_with_rules` (derived from provider schema).
 @immutable
-final class ComputeFirewallPolicyWithRulesRuleMatchSrcSecureTag {
-  const ComputeFirewallPolicyWithRulesRuleMatchSrcSecureTag({this.name});
+final class ComputeFirewallPolicyWithRulesSrcSecureTag {
+  const ComputeFirewallPolicyWithRulesSrcSecureTag({this.name});
 
   final TfArg<String>? name;
 
@@ -175,8 +174,8 @@ final class ComputeFirewallPolicyWithRulesRuleMatchSrcSecureTag {
 /// Typed helper for the `rule.target_secure_tag` block of
 /// `google_compute_firewall_policy_with_rules` (derived from provider schema).
 @immutable
-final class ComputeFirewallPolicyWithRulesRuleTargetSecureTag {
-  const ComputeFirewallPolicyWithRulesRuleTargetSecureTag({this.name});
+final class ComputeFirewallPolicyWithRulesTargetSecureTag {
+  const ComputeFirewallPolicyWithRulesTargetSecureTag({this.name});
 
   final TfArg<String>? name;
 

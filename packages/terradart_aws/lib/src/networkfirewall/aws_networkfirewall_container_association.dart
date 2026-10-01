@@ -28,9 +28,7 @@ final class NetworkfirewallContainerAssociationContainerMonitoringConfiguration 
 
   final TfArg<String> clusterArn;
 
-  final List<
-    NetworkfirewallContainerAssociationContainerMonitoringConfigurationAttributeFilter
-  >?
+  final List<NetworkfirewallContainerAssociationAttributeFilter>?
   attributeFilter;
 
   Map<String, Object?> encode() => {
@@ -43,8 +41,8 @@ final class NetworkfirewallContainerAssociationContainerMonitoringConfiguration 
 /// Typed helper for the `container_monitoring_configuration.attribute_filter` block of
 /// `aws_networkfirewall_container_association` (derived from provider schema).
 @immutable
-final class NetworkfirewallContainerAssociationContainerMonitoringConfigurationAttributeFilter {
-  const NetworkfirewallContainerAssociationContainerMonitoringConfigurationAttributeFilter({
+final class NetworkfirewallContainerAssociationAttributeFilter {
+  const NetworkfirewallContainerAssociationAttributeFilter({
     required this.key,
     required this.value,
   });

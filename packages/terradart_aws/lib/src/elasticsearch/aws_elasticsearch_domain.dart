@@ -29,8 +29,7 @@ final class ElasticsearchDomainAdvancedSecurityOptions {
 
   final TfArg<bool>? internalUserDatabaseEnabled;
 
-  final ElasticsearchDomainAdvancedSecurityOptionsMasterUserOptions?
-  masterUserOptions;
+  final ElasticsearchDomainMasterUserOptions? masterUserOptions;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
@@ -42,8 +41,8 @@ final class ElasticsearchDomainAdvancedSecurityOptions {
 /// Typed helper for the `advanced_security_options.master_user_options` block of
 /// `aws_elasticsearch_domain` (derived from provider schema).
 @immutable
-final class ElasticsearchDomainAdvancedSecurityOptionsMasterUserOptions {
-  const ElasticsearchDomainAdvancedSecurityOptionsMasterUserOptions({
+final class ElasticsearchDomainMasterUserOptions {
+  const ElasticsearchDomainMasterUserOptions({
     this.masterUserArn,
     this.masterUserName,
     this.masterUserPassword,
@@ -72,13 +71,11 @@ final class ElasticsearchDomainAutoTuneOptions {
     this.maintenanceSchedule,
   });
 
-  final TfArg<ElasticsearchDomainAutoTuneOptionsDesiredState> desiredState;
+  final TfArg<ElasticsearchDomainDesiredState> desiredState;
 
-  final TfArg<ElasticsearchDomainAutoTuneOptionsRollbackOnDisable>?
-  rollbackOnDisable;
+  final TfArg<ElasticsearchDomainRollbackOnDisable>? rollbackOnDisable;
 
-  final List<ElasticsearchDomainAutoTuneOptionsMaintenanceSchedule>?
-  maintenanceSchedule;
+  final List<ElasticsearchDomainMaintenanceSchedule>? maintenanceSchedule;
 
   Map<String, Object?> encode() => {
     'desired_state': desiredState.toTfJson(),
@@ -91,24 +88,21 @@ final class ElasticsearchDomainAutoTuneOptions {
 }
 
 /// `desired_state` — derived from the provider schema description.
-enum ElasticsearchDomainAutoTuneOptionsDesiredState implements TerraformEnum {
+enum ElasticsearchDomainDesiredState implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const ElasticsearchDomainAutoTuneOptionsDesiredState(this.terraformValue);
+  const ElasticsearchDomainDesiredState(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `rollback_on_disable` — derived from the provider schema description.
-enum ElasticsearchDomainAutoTuneOptionsRollbackOnDisable
-    implements TerraformEnum {
+enum ElasticsearchDomainRollbackOnDisable implements TerraformEnum {
   noRollback('NO_ROLLBACK'),
   defaultRollback('DEFAULT_ROLLBACK');
 
-  const ElasticsearchDomainAutoTuneOptionsRollbackOnDisable(
-    this.terraformValue,
-  );
+  const ElasticsearchDomainRollbackOnDisable(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -116,8 +110,8 @@ enum ElasticsearchDomainAutoTuneOptionsRollbackOnDisable
 /// Typed helper for the `auto_tune_options.maintenance_schedule` block of
 /// `aws_elasticsearch_domain` (derived from provider schema).
 @immutable
-final class ElasticsearchDomainAutoTuneOptionsMaintenanceSchedule {
-  const ElasticsearchDomainAutoTuneOptionsMaintenanceSchedule({
+final class ElasticsearchDomainMaintenanceSchedule {
+  const ElasticsearchDomainMaintenanceSchedule({
     required this.cronExpressionForRecurrence,
     required this.startAt,
     required this.duration,
@@ -127,7 +121,7 @@ final class ElasticsearchDomainAutoTuneOptionsMaintenanceSchedule {
 
   final TfArg<String> startAt;
 
-  final ElasticsearchDomainAutoTuneOptionsMaintenanceScheduleDuration duration;
+  final ElasticsearchDomainDuration duration;
 
   Map<String, Object?> encode() => {
     'cron_expression_for_recurrence': cronExpressionForRecurrence.toTfJson(),
@@ -139,14 +133,10 @@ final class ElasticsearchDomainAutoTuneOptionsMaintenanceSchedule {
 /// Typed helper for the `auto_tune_options.maintenance_schedule.duration` block of
 /// `aws_elasticsearch_domain` (derived from provider schema).
 @immutable
-final class ElasticsearchDomainAutoTuneOptionsMaintenanceScheduleDuration {
-  const ElasticsearchDomainAutoTuneOptionsMaintenanceScheduleDuration({
-    required this.unit,
-    required this.value,
-  });
+final class ElasticsearchDomainDuration {
+  const ElasticsearchDomainDuration({required this.unit, required this.value});
 
-  final TfArg<ElasticsearchDomainAutoTuneOptionsMaintenanceScheduleDurationUnit>
-  unit;
+  final TfArg<ElasticsearchDomainUnit> unit;
 
   final TfArg<num> value;
 
@@ -157,13 +147,10 @@ final class ElasticsearchDomainAutoTuneOptionsMaintenanceScheduleDuration {
 }
 
 /// `unit` — derived from the provider schema description.
-enum ElasticsearchDomainAutoTuneOptionsMaintenanceScheduleDurationUnit
-    implements TerraformEnum {
+enum ElasticsearchDomainUnit implements TerraformEnum {
   hours('HOURS');
 
-  const ElasticsearchDomainAutoTuneOptionsMaintenanceScheduleDurationUnit(
-    this.terraformValue,
-  );
+  const ElasticsearchDomainUnit(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -204,10 +191,9 @@ final class ElasticsearchDomainClusterConfig {
 
   final TfArg<bool>? zoneAwarenessEnabled;
 
-  final ElasticsearchDomainClusterConfigColdStorageOptions? coldStorageOptions;
+  final ElasticsearchDomainColdStorageOptions? coldStorageOptions;
 
-  final ElasticsearchDomainClusterConfigZoneAwarenessConfig?
-  zoneAwarenessConfig;
+  final ElasticsearchDomainZoneAwarenessConfig? zoneAwarenessConfig;
 
   Map<String, Object?> encode() => {
     'dedicated_master_count': ?dedicatedMasterCount?.toTfJson(),
@@ -227,8 +213,8 @@ final class ElasticsearchDomainClusterConfig {
 /// Typed helper for the `cluster_config.cold_storage_options` block of
 /// `aws_elasticsearch_domain` (derived from provider schema).
 @immutable
-final class ElasticsearchDomainClusterConfigColdStorageOptions {
-  const ElasticsearchDomainClusterConfigColdStorageOptions({this.enabled});
+final class ElasticsearchDomainColdStorageOptions {
+  const ElasticsearchDomainColdStorageOptions({this.enabled});
 
   final TfArg<bool>? enabled;
 
@@ -238,10 +224,8 @@ final class ElasticsearchDomainClusterConfigColdStorageOptions {
 /// Typed helper for the `cluster_config.zone_awareness_config` block of
 /// `aws_elasticsearch_domain` (derived from provider schema).
 @immutable
-final class ElasticsearchDomainClusterConfigZoneAwarenessConfig {
-  const ElasticsearchDomainClusterConfigZoneAwarenessConfig({
-    this.availabilityZoneCount,
-  });
+final class ElasticsearchDomainZoneAwarenessConfig {
+  const ElasticsearchDomainZoneAwarenessConfig({this.availabilityZoneCount});
 
   final TfArg<num>? availabilityZoneCount;
 
@@ -280,8 +264,8 @@ final class ElasticsearchDomainCognitoOptions {
 /// Typed helper for the `domain_endpoint_options` block of
 /// `aws_elasticsearch_domain` (derived from provider schema).
 @immutable
-final class ElasticsearchDomainDomainEndpointOptions {
-  const ElasticsearchDomainDomainEndpointOptions({
+final class ElasticsearchDomainEndpointOptions {
+  const ElasticsearchDomainEndpointOptions({
     this.customEndpoint,
     this.customEndpointCertificateArn,
     this.customEndpointEnabled,
@@ -297,8 +281,7 @@ final class ElasticsearchDomainDomainEndpointOptions {
 
   final TfArg<bool>? enforceHttps;
 
-  final TfArg<ElasticsearchDomainDomainEndpointOptionsTlsSecurityPolicy>?
-  tlsSecurityPolicy;
+  final TfArg<ElasticsearchDomainTlsSecurityPolicy>? tlsSecurityPolicy;
 
   Map<String, Object?> encode() => {
     'custom_endpoint': ?customEndpoint?.toTfJson(),
@@ -311,16 +294,13 @@ final class ElasticsearchDomainDomainEndpointOptions {
 }
 
 /// `tls_security_policy` — derived from the provider schema description.
-enum ElasticsearchDomainDomainEndpointOptionsTlsSecurityPolicy
-    implements TerraformEnum {
+enum ElasticsearchDomainTlsSecurityPolicy implements TerraformEnum {
   policyMinTls10201907('Policy-Min-TLS-1-0-2019-07'),
   policyMinTls12201907('Policy-Min-TLS-1-2-2019-07'),
   policyMinTls12Pfs202310('Policy-Min-TLS-1-2-PFS-2023-10'),
   policyMinTls12Rfc9151Fips202408('Policy-Min-TLS-1-2-RFC9151-FIPS-2024-08');
 
-  const ElasticsearchDomainDomainEndpointOptionsTlsSecurityPolicy(
-    this.terraformValue,
-  );
+  const ElasticsearchDomainTlsSecurityPolicy(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -345,7 +325,7 @@ final class ElasticsearchDomainEbsOptions {
 
   final TfArg<num>? volumeSize;
 
-  final TfArg<ElasticsearchDomainEbsOptionsVolumeType>? volumeType;
+  final TfArg<ElasticsearchDomainVolumeType>? volumeType;
 
   Map<String, Object?> encode() => {
     'ebs_enabled': ebsEnabled.toTfJson(),
@@ -357,13 +337,13 @@ final class ElasticsearchDomainEbsOptions {
 }
 
 /// `volume_type` — derived from the provider schema description.
-enum ElasticsearchDomainEbsOptionsVolumeType implements TerraformEnum {
+enum ElasticsearchDomainVolumeType implements TerraformEnum {
   standard('standard'),
   gp2('gp2'),
   io1('io1'),
   gp3('gp3');
 
-  const ElasticsearchDomainEbsOptionsVolumeType(this.terraformValue);
+  const ElasticsearchDomainVolumeType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -401,7 +381,7 @@ final class ElasticsearchDomainLogPublishingOptions {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<ElasticsearchDomainLogPublishingOptionsLogType> logType;
+  final TfArg<ElasticsearchDomainLogType> logType;
 
   Map<String, Object?> encode() => {
     'cloudwatch_log_group_arn': cloudwatchLogGroupArn
@@ -413,13 +393,13 @@ final class ElasticsearchDomainLogPublishingOptions {
 }
 
 /// `log_type` — derived from the provider schema description.
-enum ElasticsearchDomainLogPublishingOptionsLogType implements TerraformEnum {
+enum ElasticsearchDomainLogType implements TerraformEnum {
   indexSlowLogs('INDEX_SLOW_LOGS'),
   searchSlowLogs('SEARCH_SLOW_LOGS'),
   esApplicationLogs('ES_APPLICATION_LOGS'),
   auditLogs('AUDIT_LOGS');
 
-  const ElasticsearchDomainLogPublishingOptionsLogType(this.terraformValue);
+  const ElasticsearchDomainLogType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -482,7 +462,7 @@ final class AwsElasticsearchDomain extends Resource {
     ElasticsearchDomainAutoTuneOptions? autoTuneOptions,
     ElasticsearchDomainClusterConfig? clusterConfig,
     ElasticsearchDomainCognitoOptions? cognitoOptions,
-    ElasticsearchDomainDomainEndpointOptions? domainEndpointOptions,
+    ElasticsearchDomainEndpointOptions? domainEndpointOptions,
     ElasticsearchDomainEbsOptions? ebsOptions,
     ElasticsearchDomainEncryptAtRest? encryptAtRest,
     List<ElasticsearchDomainLogPublishingOptions>? logPublishingOptions,

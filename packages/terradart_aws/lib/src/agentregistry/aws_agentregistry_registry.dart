@@ -17,10 +17,7 @@ const Set<String> _awsAgentregistryRegistrySensitive = <String>{};
 final class AgentregistryRegistryApprovalConfiguration {
   const AgentregistryRegistryApprovalConfiguration({this.autoApprovalRules});
 
-  final List<
-    TfArg<AgentregistryRegistryApprovalConfigurationAutoApprovalRules>
-  >?
-  autoApprovalRules;
+  final List<TfArg<AgentregistryRegistryAutoApprovalRules>>? autoApprovalRules;
 
   Map<String, Object?> encode() => {
     if (autoApprovalRules != null)
@@ -29,13 +26,10 @@ final class AgentregistryRegistryApprovalConfiguration {
 }
 
 /// `auto_approval_rules` — derived from the provider schema description.
-enum AgentregistryRegistryApprovalConfigurationAutoApprovalRules
-    implements TerraformEnum {
+enum AgentregistryRegistryAutoApprovalRules implements TerraformEnum {
   approveAll('APPROVE_ALL');
 
-  const AgentregistryRegistryApprovalConfigurationAutoApprovalRules(
-    this.terraformValue,
-  );
+  const AgentregistryRegistryAutoApprovalRules(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -51,7 +45,7 @@ final class AgentregistryRegistryAutoDetectionConfiguration {
 
   final TfArg<bool> enabled;
 
-  final TfArg<AgentregistryRegistryAutoDetectionConfigurationScope> scope;
+  final TfArg<AgentregistryRegistryScope> scope;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
@@ -60,13 +54,10 @@ final class AgentregistryRegistryAutoDetectionConfiguration {
 }
 
 /// `scope` — derived from the provider schema description.
-enum AgentregistryRegistryAutoDetectionConfigurationScope
-    implements TerraformEnum {
+enum AgentregistryRegistryScope implements TerraformEnum {
   organization('ORGANIZATION');
 
-  const AgentregistryRegistryAutoDetectionConfigurationScope(
-    this.terraformValue,
-  );
+  const AgentregistryRegistryScope(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -80,12 +71,9 @@ final class AgentregistryRegistryDiscoveryConfiguration {
     this.authorizerConfiguration,
   });
 
-  final TfArg<AgentregistryRegistryDiscoveryConfigurationAuthorizerType>
-  authorizerType;
+  final TfArg<AgentregistryRegistryAuthorizerType> authorizerType;
 
-  final List<
-    AgentregistryRegistryDiscoveryConfigurationAuthorizerConfiguration
-  >?
+  final List<AgentregistryRegistryAuthorizerConfiguration>?
   authorizerConfiguration;
 
   Map<String, Object?> encode() => {
@@ -98,14 +86,11 @@ final class AgentregistryRegistryDiscoveryConfiguration {
 }
 
 /// `authorizer_type` — derived from the provider schema description.
-enum AgentregistryRegistryDiscoveryConfigurationAuthorizerType
-    implements TerraformEnum {
+enum AgentregistryRegistryAuthorizerType implements TerraformEnum {
   customJwt('CUSTOM_JWT'),
   awsIam('AWS_IAM');
 
-  const AgentregistryRegistryDiscoveryConfigurationAuthorizerType(
-    this.terraformValue,
-  );
+  const AgentregistryRegistryAuthorizerType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -113,15 +98,12 @@ enum AgentregistryRegistryDiscoveryConfigurationAuthorizerType
 /// Typed helper for the `discovery_configuration.authorizer_configuration` block of
 /// `aws_agentregistry_registry` (derived from provider schema).
 @immutable
-final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfiguration {
-  const AgentregistryRegistryDiscoveryConfigurationAuthorizerConfiguration({
+final class AgentregistryRegistryAuthorizerConfiguration {
+  const AgentregistryRegistryAuthorizerConfiguration({
     this.customJwtAuthorizer,
   });
 
-  final List<
-    AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizer
-  >?
-  customJwtAuthorizer;
+  final List<AgentregistryRegistryCustomJwtAuthorizer>? customJwtAuthorizer;
 
   Map<String, Object?> encode() => {
     if (customJwtAuthorizer != null)
@@ -134,8 +116,8 @@ final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfiguration {
 /// Typed helper for the `discovery_configuration.authorizer_configuration.custom_jwt_authorizer` block of
 /// `aws_agentregistry_registry` (derived from provider schema).
 @immutable
-final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizer {
-  const AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizer({
+final class AgentregistryRegistryCustomJwtAuthorizer {
+  const AgentregistryRegistryCustomJwtAuthorizer({
     this.allowedAudience,
     this.allowedClients,
     this.allowedScopes,
@@ -153,19 +135,11 @@ final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCu
 
   final TfArg<String> discoveryUrl;
 
-  final List<
-    AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerCustomClaim
-  >?
-  customClaim;
+  final List<AgentregistryRegistryCustomClaim>? customClaim;
 
-  final List<
-    AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpoint
-  >?
-  privateEndpoint;
+  final List<AgentregistryRegistryPrivateEndpoint>? privateEndpoint;
 
-  final List<
-    AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverride
-  >?
+  final List<AgentregistryRegistryPrivateEndpointOverride>?
   privateEndpointOverride;
 
   Map<String, Object?> encode() => {
@@ -187,8 +161,8 @@ final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCu
 /// Typed helper for the `discovery_configuration.authorizer_configuration.custom_jwt_authorizer.custom_claim` block of
 /// `aws_agentregistry_registry` (derived from provider schema).
 @immutable
-final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerCustomClaim {
-  const AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerCustomClaim({
+final class AgentregistryRegistryCustomClaim {
+  const AgentregistryRegistryCustomClaim({
     required this.inboundTokenClaimName,
     required this.inboundTokenClaimValueType,
     this.authorizingClaimMatchValue,
@@ -196,14 +170,10 @@ final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCu
 
   final TfArg<String> inboundTokenClaimName;
 
-  final TfArg<
-    AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerCustomClaimInboundTokenClaimValueType
-  >
+  final TfArg<AgentregistryRegistryInboundTokenClaimValueType>
   inboundTokenClaimValueType;
 
-  final List<
-    AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValue
-  >?
+  final List<AgentregistryRegistryAuthorizingClaimMatchValue>?
   authorizingClaimMatchValue;
 
   Map<String, Object?> encode() => {
@@ -217,14 +187,11 @@ final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCu
 }
 
 /// `inbound_token_claim_value_type` — derived from the provider schema description.
-enum AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerCustomClaimInboundTokenClaimValueType
-    implements TerraformEnum {
+enum AgentregistryRegistryInboundTokenClaimValueType implements TerraformEnum {
   string('STRING'),
   stringArray('STRING_ARRAY');
 
-  const AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerCustomClaimInboundTokenClaimValueType(
-    this.terraformValue,
-  );
+  const AgentregistryRegistryInboundTokenClaimValueType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -232,21 +199,15 @@ enum AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwt
 /// Typed helper for the `discovery_configuration.authorizer_configuration.custom_jwt_authorizer.custom_claim.authorizing_claim_match_value` block of
 /// `aws_agentregistry_registry` (derived from provider schema).
 @immutable
-final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValue {
-  const AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValue({
+final class AgentregistryRegistryAuthorizingClaimMatchValue {
+  const AgentregistryRegistryAuthorizingClaimMatchValue({
     required this.claimMatchOperator,
     this.claimMatchValue,
   });
 
-  final TfArg<
-    AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchOperator
-  >
-  claimMatchOperator;
+  final TfArg<AgentregistryRegistryClaimMatchOperator> claimMatchOperator;
 
-  final List<
-    AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchValue
-  >?
-  claimMatchValue;
+  final List<AgentregistryRegistryClaimMatchValue>? claimMatchValue;
 
   Map<String, Object?> encode() => {
     'claim_match_operator': claimMatchOperator.toTfJson(),
@@ -256,15 +217,12 @@ final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCu
 }
 
 /// `claim_match_operator` — derived from the provider schema description.
-enum AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchOperator
-    implements TerraformEnum {
+enum AgentregistryRegistryClaimMatchOperator implements TerraformEnum {
   equals('EQUALS'),
   contains('CONTAINS'),
   containsAny('CONTAINS_ANY');
 
-  const AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchOperator(
-    this.terraformValue,
-  );
+  const AgentregistryRegistryClaimMatchOperator(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -272,8 +230,8 @@ enum AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwt
 /// Typed helper for the `discovery_configuration.authorizer_configuration.custom_jwt_authorizer.custom_claim.authorizing_claim_match_value.claim_match_value` block of
 /// `aws_agentregistry_registry` (derived from provider schema).
 @immutable
-final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchValue {
-  const AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchValue({
+final class AgentregistryRegistryClaimMatchValue {
+  const AgentregistryRegistryClaimMatchValue({
     this.matchValueString,
     this.matchValueStringList,
   });
@@ -290,21 +248,17 @@ final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCu
 
 /// Typed helper for the `discovery_configuration.authorizer_configuration.custom_jwt_authorizer.private_endpoint` block of
 /// `aws_agentregistry_registry` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpoint {
-  const AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpoint({
+final class AgentregistryRegistryPrivateEndpoint {
+  const AgentregistryRegistryPrivateEndpoint({
     this.managedVpcResource,
     this.selfManagedLatticeResource,
   });
 
-  final List<
-    AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResource
-  >?
-  managedVpcResource;
+  final List<AgentregistryRegistryManagedVpcResource>? managedVpcResource;
 
-  final List<
-    AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointSelfManagedLatticeResource
-  >?
+  final List<AgentregistryRegistrySelfManagedLatticeResource>?
   selfManagedLatticeResource;
 
   Map<String, Object?> encode() => {
@@ -319,9 +273,10 @@ final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCu
 
 /// Typed helper for the `discovery_configuration.authorizer_configuration.custom_jwt_authorizer.private_endpoint.managed_vpc_resource` block of
 /// `aws_agentregistry_registry` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResource {
-  const AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResource({
+final class AgentregistryRegistryManagedVpcResource {
+  const AgentregistryRegistryManagedVpcResource({
     required this.endpointIpAddressType,
     this.routingDomain,
     this.securityGroupIds,
@@ -330,10 +285,7 @@ final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCu
     required this.vpcIdentifier,
   });
 
-  final TfArg<
-    AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResourceEndpointIpAddressType
-  >
-  endpointIpAddressType;
+  final TfArg<AgentregistryRegistryEndpointIpAddressType> endpointIpAddressType;
 
   final TfArg<String>? routingDomain;
 
@@ -356,23 +308,21 @@ final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCu
 }
 
 /// `endpoint_ip_address_type` — derived from the provider schema description.
-enum AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResourceEndpointIpAddressType
-    implements TerraformEnum {
+enum AgentregistryRegistryEndpointIpAddressType implements TerraformEnum {
   ipv4('IPV4'),
   ipv6('IPV6');
 
-  const AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResourceEndpointIpAddressType(
-    this.terraformValue,
-  );
+  const AgentregistryRegistryEndpointIpAddressType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `discovery_configuration.authorizer_configuration.custom_jwt_authorizer.private_endpoint.self_managed_lattice_resource` block of
 /// `aws_agentregistry_registry` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointSelfManagedLatticeResource {
-  const AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointSelfManagedLatticeResource({
+final class AgentregistryRegistrySelfManagedLatticeResource {
+  const AgentregistryRegistrySelfManagedLatticeResource({
     this.resourceConfigurationIdentifier,
   });
 
@@ -387,119 +337,20 @@ final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCu
 /// Typed helper for the `discovery_configuration.authorizer_configuration.custom_jwt_authorizer.private_endpoint_override` block of
 /// `aws_agentregistry_registry` (derived from provider schema).
 @immutable
-final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverride {
-  const AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverride({
+final class AgentregistryRegistryPrivateEndpointOverride {
+  const AgentregistryRegistryPrivateEndpointOverride({
     required this.domain,
     this.privateEndpoint,
   });
 
   final TfArg<String> domain;
 
-  final List<
-    AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridePrivateEndpoint
-  >?
-  privateEndpoint;
+  final List<AgentregistryRegistryPrivateEndpoint>? privateEndpoint;
 
   Map<String, Object?> encode() => {
     'domain': domain.toTfJson(),
     if (privateEndpoint != null)
       'private_endpoint': [for (final e in privateEndpoint!) e.encode()],
-  };
-}
-
-/// Typed helper for the `discovery_configuration.authorizer_configuration.custom_jwt_authorizer.private_endpoint_override.private_endpoint` block of
-/// `aws_agentregistry_registry` (derived from provider schema).
-@immutable
-final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridePrivateEndpoint {
-  const AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridePrivateEndpoint({
-    this.managedVpcResource,
-    this.selfManagedLatticeResource,
-  });
-
-  final List<
-    AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridePrivateEndpointManagedVpcResource
-  >?
-  managedVpcResource;
-
-  final List<
-    AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridePrivateEndpointSelfManagedLatticeResource
-  >?
-  selfManagedLatticeResource;
-
-  Map<String, Object?> encode() => {
-    if (managedVpcResource != null)
-      'managed_vpc_resource': [for (final e in managedVpcResource!) e.encode()],
-    if (selfManagedLatticeResource != null)
-      'self_managed_lattice_resource': [
-        for (final e in selfManagedLatticeResource!) e.encode(),
-      ],
-  };
-}
-
-/// Typed helper for the `discovery_configuration.authorizer_configuration.custom_jwt_authorizer.private_endpoint_override.private_endpoint.managed_vpc_resource` block of
-/// `aws_agentregistry_registry` (derived from provider schema).
-@immutable
-final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridePrivateEndpointManagedVpcResource {
-  const AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridePrivateEndpointManagedVpcResource({
-    required this.endpointIpAddressType,
-    this.routingDomain,
-    this.securityGroupIds,
-    required this.subnetIds,
-    this.tags,
-    required this.vpcIdentifier,
-  });
-
-  final TfArg<
-    AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridePrivateEndpointManagedVpcResourceEndpointIpAddressType
-  >
-  endpointIpAddressType;
-
-  final TfArg<String>? routingDomain;
-
-  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
-
-  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
-
-  final TfArg<Map<String, String>>? tags;
-
-  final TfArg<String> vpcIdentifier;
-
-  Map<String, Object?> encode() => {
-    'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
-    'routing_domain': ?routingDomain?.toTfJson(),
-    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
-    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
-    'tags': ?tags?.toTfJson(),
-    'vpc_identifier': vpcIdentifier.toTfJson(),
-  };
-}
-
-/// `endpoint_ip_address_type` — derived from the provider schema description.
-enum AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridePrivateEndpointManagedVpcResourceEndpointIpAddressType
-    implements TerraformEnum {
-  ipv4('IPV4'),
-  ipv6('IPV6');
-
-  const AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridePrivateEndpointManagedVpcResourceEndpointIpAddressType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `discovery_configuration.authorizer_configuration.custom_jwt_authorizer.private_endpoint_override.private_endpoint.self_managed_lattice_resource` block of
-/// `aws_agentregistry_registry` (derived from provider schema).
-@immutable
-final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridePrivateEndpointSelfManagedLatticeResource {
-  const AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridePrivateEndpointSelfManagedLatticeResource({
-    this.resourceConfigurationIdentifier,
-  });
-
-  final TfArg<String>? resourceConfigurationIdentifier;
-
-  Map<String, Object?> encode() => {
-    'resource_configuration_identifier': ?resourceConfigurationIdentifier
-        ?.toTfJson(),
   };
 }
 

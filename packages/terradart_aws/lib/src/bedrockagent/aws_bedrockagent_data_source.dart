@@ -24,8 +24,8 @@ enum BedrockagentDataSourceDataDeletionPolicy implements TerraformEnum {
 /// Typed helper for the `data_source_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceDataSourceConfiguration {
-  const BedrockagentDataSourceDataSourceConfiguration({
+final class BedrockagentDataSourceConfiguration {
+  const BedrockagentDataSourceConfiguration({
     required this.type,
     this.confluenceConfiguration,
     this.managedKnowledgeBaseConnectorConfiguration,
@@ -35,33 +35,23 @@ final class BedrockagentDataSourceDataSourceConfiguration {
     this.webConfiguration,
   });
 
-  final TfArg<BedrockagentDataSourceDataSourceConfigurationType> type;
+  final TfArg<BedrockagentDataSourceType> type;
 
-  final List<
-    BedrockagentDataSourceDataSourceConfigurationConfluenceConfiguration
-  >?
+  final List<BedrockagentDataSourceConfluenceConfiguration>?
   confluenceConfiguration;
 
-  final List<
-    BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfiguration
-  >?
+  final List<BedrockagentDataSourceManagedKnowledgeBaseConnectorConfiguration>?
   managedKnowledgeBaseConnectorConfiguration;
 
-  final List<BedrockagentDataSourceDataSourceConfigurationS3Configuration>?
-  s3Configuration;
+  final List<BedrockagentDataSourceS3Configuration>? s3Configuration;
 
-  final List<
-    BedrockagentDataSourceDataSourceConfigurationSalesforceConfiguration
-  >?
+  final List<BedrockagentDataSourceSalesforceConfiguration>?
   salesforceConfiguration;
 
-  final List<
-    BedrockagentDataSourceDataSourceConfigurationSharePointConfiguration
-  >?
+  final List<BedrockagentDataSourceSharePointConfiguration>?
   sharePointConfiguration;
 
-  final List<BedrockagentDataSourceDataSourceConfigurationWebConfiguration>?
-  webConfiguration;
+  final List<BedrockagentDataSourceWebConfiguration>? webConfiguration;
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
@@ -89,8 +79,7 @@ final class BedrockagentDataSourceDataSourceConfiguration {
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockagentDataSourceDataSourceConfigurationType
-    implements TerraformEnum {
+enum BedrockagentDataSourceType implements TerraformEnum {
   s3('S3'),
   web('WEB'),
   confluence('CONFLUENCE'),
@@ -100,7 +89,7 @@ enum BedrockagentDataSourceDataSourceConfigurationType
   redshiftMetadata('REDSHIFT_METADATA'),
   managedKnowledgeBaseConnector('MANAGED_KNOWLEDGE_BASE_CONNECTOR');
 
-  const BedrockagentDataSourceDataSourceConfigurationType(this.terraformValue);
+  const BedrockagentDataSourceType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -108,20 +97,16 @@ enum BedrockagentDataSourceDataSourceConfigurationType
 /// Typed helper for the `data_source_configuration.confluence_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceDataSourceConfigurationConfluenceConfiguration {
-  const BedrockagentDataSourceDataSourceConfigurationConfluenceConfiguration({
+final class BedrockagentDataSourceConfluenceConfiguration {
+  const BedrockagentDataSourceConfluenceConfiguration({
     this.crawlerConfiguration,
     this.sourceConfiguration,
   });
 
-  final List<
-    BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationCrawlerConfiguration
-  >?
+  final List<BedrockagentDataSourceConfluenceConfigurationCrawlerConfiguration>?
   crawlerConfiguration;
 
-  final List<
-    BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationSourceConfiguration
-  >?
+  final List<BedrockagentDataSourceConfluenceConfigurationSourceConfiguration>?
   sourceConfiguration;
 
   Map<String, Object?> encode() => {
@@ -138,16 +123,14 @@ final class BedrockagentDataSourceDataSourceConfigurationConfluenceConfiguration
 
 /// Typed helper for the `data_source_configuration.confluence_configuration.crawler_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationCrawlerConfiguration {
-  const BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationCrawlerConfiguration({
+final class BedrockagentDataSourceConfluenceConfigurationCrawlerConfiguration {
+  const BedrockagentDataSourceConfluenceConfigurationCrawlerConfiguration({
     this.filterConfiguration,
   });
 
-  final List<
-    BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationCrawlerConfigurationFilterConfiguration
-  >?
-  filterConfiguration;
+  final List<BedrockagentDataSourceFilterConfiguration>? filterConfiguration;
 
   Map<String, Object?> encode() => {
     if (filterConfiguration != null)
@@ -159,19 +142,17 @@ final class BedrockagentDataSourceDataSourceConfigurationConfluenceConfiguration
 
 /// Typed helper for the `data_source_configuration.confluence_configuration.crawler_configuration.filter_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationCrawlerConfigurationFilterConfiguration {
-  const BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationCrawlerConfigurationFilterConfiguration({
+final class BedrockagentDataSourceFilterConfiguration {
+  const BedrockagentDataSourceFilterConfiguration({
     required this.type,
     this.patternObjectFilter,
   });
 
   final TfArg<String> type;
 
-  final List<
-    BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationCrawlerConfigurationFilterConfigurationPatternObjectFilter
-  >?
-  patternObjectFilter;
+  final List<BedrockagentDataSourcePatternObjectFilter>? patternObjectFilter;
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
@@ -184,16 +165,12 @@ final class BedrockagentDataSourceDataSourceConfigurationConfluenceConfiguration
 
 /// Typed helper for the `data_source_configuration.confluence_configuration.crawler_configuration.filter_configuration.pattern_object_filter` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationCrawlerConfigurationFilterConfigurationPatternObjectFilter {
-  const BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationCrawlerConfigurationFilterConfigurationPatternObjectFilter({
-    this.filters,
-  });
+final class BedrockagentDataSourcePatternObjectFilter {
+  const BedrockagentDataSourcePatternObjectFilter({this.filters});
 
-  final List<
-    BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationCrawlerConfigurationFilterConfigurationPatternObjectFilterFilters
-  >?
-  filters;
+  final List<BedrockagentDataSourceFilters>? filters;
 
   Map<String, Object?> encode() => {
     if (filters != null) 'filters': [for (final e in filters!) e.encode()],
@@ -202,9 +179,10 @@ final class BedrockagentDataSourceDataSourceConfigurationConfluenceConfiguration
 
 /// Typed helper for the `data_source_configuration.confluence_configuration.crawler_configuration.filter_configuration.pattern_object_filter.filters` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationCrawlerConfigurationFilterConfigurationPatternObjectFilterFilters {
-  const BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationCrawlerConfigurationFilterConfigurationPatternObjectFilterFilters({
+final class BedrockagentDataSourceFilters {
+  const BedrockagentDataSourceFilters({
     this.exclusionFilters,
     this.inclusionFilters,
     required this.objectType,
@@ -226,25 +204,19 @@ final class BedrockagentDataSourceDataSourceConfigurationConfluenceConfiguration
 /// Typed helper for the `data_source_configuration.confluence_configuration.source_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationSourceConfiguration {
-  const BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationSourceConfiguration({
+final class BedrockagentDataSourceConfluenceConfigurationSourceConfiguration {
+  const BedrockagentDataSourceConfluenceConfigurationSourceConfiguration({
     required this.authType,
     required this.credentialsSecretArn,
     required this.hostType,
     required this.hostUrl,
   });
 
-  final TfArg<
-    BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationSourceConfigurationAuthType
-  >
-  authType;
+  final TfArg<BedrockagentDataSourceConfluenceConfigurationAuthType> authType;
 
   final TfArg<String> credentialsSecretArn;
 
-  final TfArg<
-    BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationSourceConfigurationHostType
-  >
-  hostType;
+  final TfArg<BedrockagentDataSourceConfluenceConfigurationHostType> hostType;
 
   final TfArg<String> hostUrl;
 
@@ -257,12 +229,12 @@ final class BedrockagentDataSourceDataSourceConfigurationConfluenceConfiguration
 }
 
 /// `auth_type` — derived from the provider schema description.
-enum BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationSourceConfigurationAuthType
+enum BedrockagentDataSourceConfluenceConfigurationAuthType
     implements TerraformEnum {
   basic('BASIC'),
   oauth2ClientCredentials('OAUTH2_CLIENT_CREDENTIALS');
 
-  const BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationSourceConfigurationAuthType(
+  const BedrockagentDataSourceConfluenceConfigurationAuthType(
     this.terraformValue,
   );
   @override
@@ -270,11 +242,11 @@ enum BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationSourceC
 }
 
 /// `host_type` — derived from the provider schema description.
-enum BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationSourceConfigurationHostType
+enum BedrockagentDataSourceConfluenceConfigurationHostType
     implements TerraformEnum {
   saas('SAAS');
 
-  const BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationSourceConfigurationHostType(
+  const BedrockagentDataSourceConfluenceConfigurationHostType(
     this.terraformValue,
   );
   @override
@@ -284,8 +256,8 @@ enum BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationSourceC
 /// Typed helper for the `data_source_configuration.managed_knowledge_base_connector_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfiguration {
-  const BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfiguration({
+final class BedrockagentDataSourceManagedKnowledgeBaseConnectorConfiguration {
+  const BedrockagentDataSourceManagedKnowledgeBaseConnectorConfiguration({
     this.connectorParameters,
     this.deletionProtectionConfiguration,
     this.mediaExtractionConfiguration,
@@ -293,14 +265,10 @@ final class BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseCon
 
   final TfArg<String>? connectorParameters;
 
-  final List<
-    BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationDeletionProtectionConfiguration
-  >?
+  final List<BedrockagentDataSourceDeletionProtectionConfiguration>?
   deletionProtectionConfiguration;
 
-  final List<
-    BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfiguration
-  >?
+  final List<BedrockagentDataSourceMediaExtractionConfiguration>?
   mediaExtractionConfiguration;
 
   Map<String, Object?> encode() => {
@@ -319,15 +287,13 @@ final class BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseCon
 /// Typed helper for the `data_source_configuration.managed_knowledge_base_connector_configuration.deletion_protection_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationDeletionProtectionConfiguration {
-  const BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationDeletionProtectionConfiguration({
+final class BedrockagentDataSourceDeletionProtectionConfiguration {
+  const BedrockagentDataSourceDeletionProtectionConfiguration({
     required this.deletionProtectionStatus,
     this.deletionProtectionThreshold,
   });
 
-  final TfArg<
-    BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationDeletionProtectionConfigurationDeletionProtectionStatus
-  >
+  final TfArg<BedrockagentDataSourceDeletionProtectionStatus>
   deletionProtectionStatus;
 
   final TfArg<num>? deletionProtectionThreshold;
@@ -339,14 +305,11 @@ final class BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseCon
 }
 
 /// `deletion_protection_status` — derived from the provider schema description.
-enum BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationDeletionProtectionConfigurationDeletionProtectionStatus
-    implements TerraformEnum {
+enum BedrockagentDataSourceDeletionProtectionStatus implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationDeletionProtectionConfigurationDeletionProtectionStatus(
-    this.terraformValue,
-  );
+  const BedrockagentDataSourceDeletionProtectionStatus(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -354,26 +317,20 @@ enum BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorC
 /// Typed helper for the `data_source_configuration.managed_knowledge_base_connector_configuration.media_extraction_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfiguration {
-  const BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfiguration({
+final class BedrockagentDataSourceMediaExtractionConfiguration {
+  const BedrockagentDataSourceMediaExtractionConfiguration({
     this.audioExtractionConfiguration,
     this.imageExtractionConfiguration,
     this.videoExtractionConfiguration,
   });
 
-  final List<
-    BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfigurationAudioExtractionConfiguration
-  >?
+  final List<BedrockagentDataSourceAudioExtractionConfiguration>?
   audioExtractionConfiguration;
 
-  final List<
-    BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfigurationImageExtractionConfiguration
-  >?
+  final List<BedrockagentDataSourceImageExtractionConfiguration>?
   imageExtractionConfiguration;
 
-  final List<
-    BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfigurationVideoExtractionConfiguration
-  >?
+  final List<BedrockagentDataSourceVideoExtractionConfiguration>?
   videoExtractionConfiguration;
 
   Map<String, Object?> encode() => {
@@ -395,14 +352,12 @@ final class BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseCon
 /// Typed helper for the `data_source_configuration.managed_knowledge_base_connector_configuration.media_extraction_configuration.audio_extraction_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfigurationAudioExtractionConfiguration {
-  const BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfigurationAudioExtractionConfiguration({
+final class BedrockagentDataSourceAudioExtractionConfiguration {
+  const BedrockagentDataSourceAudioExtractionConfiguration({
     required this.audioExtractionStatus,
   });
 
-  final TfArg<
-    BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfigurationAudioExtractionConfigurationAudioExtractionStatus
-  >
+  final TfArg<BedrockagentDataSourceAudioExtractionStatus>
   audioExtractionStatus;
 
   Map<String, Object?> encode() => {
@@ -411,14 +366,11 @@ final class BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseCon
 }
 
 /// `audio_extraction_status` — derived from the provider schema description.
-enum BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfigurationAudioExtractionConfigurationAudioExtractionStatus
-    implements TerraformEnum {
+enum BedrockagentDataSourceAudioExtractionStatus implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfigurationAudioExtractionConfigurationAudioExtractionStatus(
-    this.terraformValue,
-  );
+  const BedrockagentDataSourceAudioExtractionStatus(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -426,14 +378,12 @@ enum BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorC
 /// Typed helper for the `data_source_configuration.managed_knowledge_base_connector_configuration.media_extraction_configuration.image_extraction_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfigurationImageExtractionConfiguration {
-  const BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfigurationImageExtractionConfiguration({
+final class BedrockagentDataSourceImageExtractionConfiguration {
+  const BedrockagentDataSourceImageExtractionConfiguration({
     required this.imageExtractionStatus,
   });
 
-  final TfArg<
-    BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfigurationImageExtractionConfigurationImageExtractionStatus
-  >
+  final TfArg<BedrockagentDataSourceImageExtractionStatus>
   imageExtractionStatus;
 
   Map<String, Object?> encode() => {
@@ -442,14 +392,11 @@ final class BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseCon
 }
 
 /// `image_extraction_status` — derived from the provider schema description.
-enum BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfigurationImageExtractionConfigurationImageExtractionStatus
-    implements TerraformEnum {
+enum BedrockagentDataSourceImageExtractionStatus implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfigurationImageExtractionConfigurationImageExtractionStatus(
-    this.terraformValue,
-  );
+  const BedrockagentDataSourceImageExtractionStatus(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -457,14 +404,12 @@ enum BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorC
 /// Typed helper for the `data_source_configuration.managed_knowledge_base_connector_configuration.media_extraction_configuration.video_extraction_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfigurationVideoExtractionConfiguration {
-  const BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfigurationVideoExtractionConfiguration({
+final class BedrockagentDataSourceVideoExtractionConfiguration {
+  const BedrockagentDataSourceVideoExtractionConfiguration({
     required this.videoExtractionStatus,
   });
 
-  final TfArg<
-    BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfigurationVideoExtractionConfigurationVideoExtractionStatus
-  >
+  final TfArg<BedrockagentDataSourceVideoExtractionStatus>
   videoExtractionStatus;
 
   Map<String, Object?> encode() => {
@@ -473,14 +418,11 @@ final class BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseCon
 }
 
 /// `video_extraction_status` — derived from the provider schema description.
-enum BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfigurationVideoExtractionConfigurationVideoExtractionStatus
-    implements TerraformEnum {
+enum BedrockagentDataSourceVideoExtractionStatus implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfigurationVideoExtractionConfigurationVideoExtractionStatus(
-    this.terraformValue,
-  );
+  const BedrockagentDataSourceVideoExtractionStatus(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -488,8 +430,8 @@ enum BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorC
 /// Typed helper for the `data_source_configuration.s3_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceDataSourceConfigurationS3Configuration {
-  const BedrockagentDataSourceDataSourceConfigurationS3Configuration({
+final class BedrockagentDataSourceS3Configuration {
+  const BedrockagentDataSourceS3Configuration({
     required this.bucketArn,
     this.bucketOwnerAccountId,
     this.inclusionPrefixes,
@@ -511,20 +453,16 @@ final class BedrockagentDataSourceDataSourceConfigurationS3Configuration {
 /// Typed helper for the `data_source_configuration.salesforce_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceDataSourceConfigurationSalesforceConfiguration {
-  const BedrockagentDataSourceDataSourceConfigurationSalesforceConfiguration({
+final class BedrockagentDataSourceSalesforceConfiguration {
+  const BedrockagentDataSourceSalesforceConfiguration({
     this.crawlerConfiguration,
     this.sourceConfiguration,
   });
 
-  final List<
-    BedrockagentDataSourceDataSourceConfigurationSalesforceConfigurationCrawlerConfiguration
-  >?
+  final List<BedrockagentDataSourceConfluenceConfigurationCrawlerConfiguration>?
   crawlerConfiguration;
 
-  final List<
-    BedrockagentDataSourceDataSourceConfigurationSalesforceConfigurationSourceConfiguration
-  >?
+  final List<BedrockagentDataSourceSalesforceConfigurationSourceConfiguration>?
   sourceConfiguration;
 
   Map<String, Object?> encode() => {
@@ -539,107 +477,17 @@ final class BedrockagentDataSourceDataSourceConfigurationSalesforceConfiguration
   };
 }
 
-/// Typed helper for the `data_source_configuration.salesforce_configuration.crawler_configuration` block of
-/// `aws_bedrockagent_data_source` (derived from provider schema).
-@immutable
-final class BedrockagentDataSourceDataSourceConfigurationSalesforceConfigurationCrawlerConfiguration {
-  const BedrockagentDataSourceDataSourceConfigurationSalesforceConfigurationCrawlerConfiguration({
-    this.filterConfiguration,
-  });
-
-  final List<
-    BedrockagentDataSourceDataSourceConfigurationSalesforceConfigurationCrawlerConfigurationFilterConfiguration
-  >?
-  filterConfiguration;
-
-  Map<String, Object?> encode() => {
-    if (filterConfiguration != null)
-      'filter_configuration': [
-        for (final e in filterConfiguration!) e.encode(),
-      ],
-  };
-}
-
-/// Typed helper for the `data_source_configuration.salesforce_configuration.crawler_configuration.filter_configuration` block of
-/// `aws_bedrockagent_data_source` (derived from provider schema).
-@immutable
-final class BedrockagentDataSourceDataSourceConfigurationSalesforceConfigurationCrawlerConfigurationFilterConfiguration {
-  const BedrockagentDataSourceDataSourceConfigurationSalesforceConfigurationCrawlerConfigurationFilterConfiguration({
-    required this.type,
-    this.patternObjectFilter,
-  });
-
-  final TfArg<String> type;
-
-  final List<
-    BedrockagentDataSourceDataSourceConfigurationSalesforceConfigurationCrawlerConfigurationFilterConfigurationPatternObjectFilter
-  >?
-  patternObjectFilter;
-
-  Map<String, Object?> encode() => {
-    'type': type.toTfJson(),
-    if (patternObjectFilter != null)
-      'pattern_object_filter': [
-        for (final e in patternObjectFilter!) e.encode(),
-      ],
-  };
-}
-
-/// Typed helper for the `data_source_configuration.salesforce_configuration.crawler_configuration.filter_configuration.pattern_object_filter` block of
-/// `aws_bedrockagent_data_source` (derived from provider schema).
-@immutable
-final class BedrockagentDataSourceDataSourceConfigurationSalesforceConfigurationCrawlerConfigurationFilterConfigurationPatternObjectFilter {
-  const BedrockagentDataSourceDataSourceConfigurationSalesforceConfigurationCrawlerConfigurationFilterConfigurationPatternObjectFilter({
-    this.filters,
-  });
-
-  final List<
-    BedrockagentDataSourceDataSourceConfigurationSalesforceConfigurationCrawlerConfigurationFilterConfigurationPatternObjectFilterFilters
-  >?
-  filters;
-
-  Map<String, Object?> encode() => {
-    if (filters != null) 'filters': [for (final e in filters!) e.encode()],
-  };
-}
-
-/// Typed helper for the `data_source_configuration.salesforce_configuration.crawler_configuration.filter_configuration.pattern_object_filter.filters` block of
-/// `aws_bedrockagent_data_source` (derived from provider schema).
-@immutable
-final class BedrockagentDataSourceDataSourceConfigurationSalesforceConfigurationCrawlerConfigurationFilterConfigurationPatternObjectFilterFilters {
-  const BedrockagentDataSourceDataSourceConfigurationSalesforceConfigurationCrawlerConfigurationFilterConfigurationPatternObjectFilterFilters({
-    this.exclusionFilters,
-    this.inclusionFilters,
-    required this.objectType,
-  });
-
-  final TfArg<List<String>>? exclusionFilters;
-
-  final TfArg<List<String>>? inclusionFilters;
-
-  final TfArg<String> objectType;
-
-  Map<String, Object?> encode() => {
-    'exclusion_filters': ?exclusionFilters?.toTfJson(),
-    'inclusion_filters': ?inclusionFilters?.toTfJson(),
-    'object_type': objectType.toTfJson(),
-  };
-}
-
 /// Typed helper for the `data_source_configuration.salesforce_configuration.source_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceDataSourceConfigurationSalesforceConfigurationSourceConfiguration {
-  const BedrockagentDataSourceDataSourceConfigurationSalesforceConfigurationSourceConfiguration({
+final class BedrockagentDataSourceSalesforceConfigurationSourceConfiguration {
+  const BedrockagentDataSourceSalesforceConfigurationSourceConfiguration({
     required this.authType,
     required this.credentialsSecretArn,
     required this.hostUrl,
   });
 
-  final TfArg<
-    BedrockagentDataSourceDataSourceConfigurationSalesforceConfigurationSourceConfigurationAuthType
-  >
-  authType;
+  final TfArg<BedrockagentDataSourceSalesforceConfigurationAuthType> authType;
 
   final TfArg<String> credentialsSecretArn;
 
@@ -653,11 +501,11 @@ final class BedrockagentDataSourceDataSourceConfigurationSalesforceConfiguration
 }
 
 /// `auth_type` — derived from the provider schema description.
-enum BedrockagentDataSourceDataSourceConfigurationSalesforceConfigurationSourceConfigurationAuthType
+enum BedrockagentDataSourceSalesforceConfigurationAuthType
     implements TerraformEnum {
   oauth2ClientCredentials('OAUTH2_CLIENT_CREDENTIALS');
 
-  const BedrockagentDataSourceDataSourceConfigurationSalesforceConfigurationSourceConfigurationAuthType(
+  const BedrockagentDataSourceSalesforceConfigurationAuthType(
     this.terraformValue,
   );
   @override
@@ -667,20 +515,16 @@ enum BedrockagentDataSourceDataSourceConfigurationSalesforceConfigurationSourceC
 /// Typed helper for the `data_source_configuration.share_point_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceDataSourceConfigurationSharePointConfiguration {
-  const BedrockagentDataSourceDataSourceConfigurationSharePointConfiguration({
+final class BedrockagentDataSourceSharePointConfiguration {
+  const BedrockagentDataSourceSharePointConfiguration({
     this.crawlerConfiguration,
     this.sourceConfiguration,
   });
 
-  final List<
-    BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationCrawlerConfiguration
-  >?
+  final List<BedrockagentDataSourceConfluenceConfigurationCrawlerConfiguration>?
   crawlerConfiguration;
 
-  final List<
-    BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationSourceConfiguration
-  >?
+  final List<BedrockagentDataSourceSharePointConfigurationSourceConfiguration>?
   sourceConfiguration;
 
   Map<String, Object?> encode() => {
@@ -695,98 +539,11 @@ final class BedrockagentDataSourceDataSourceConfigurationSharePointConfiguration
   };
 }
 
-/// Typed helper for the `data_source_configuration.share_point_configuration.crawler_configuration` block of
-/// `aws_bedrockagent_data_source` (derived from provider schema).
-@immutable
-final class BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationCrawlerConfiguration {
-  const BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationCrawlerConfiguration({
-    this.filterConfiguration,
-  });
-
-  final List<
-    BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationCrawlerConfigurationFilterConfiguration
-  >?
-  filterConfiguration;
-
-  Map<String, Object?> encode() => {
-    if (filterConfiguration != null)
-      'filter_configuration': [
-        for (final e in filterConfiguration!) e.encode(),
-      ],
-  };
-}
-
-/// Typed helper for the `data_source_configuration.share_point_configuration.crawler_configuration.filter_configuration` block of
-/// `aws_bedrockagent_data_source` (derived from provider schema).
-@immutable
-final class BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationCrawlerConfigurationFilterConfiguration {
-  const BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationCrawlerConfigurationFilterConfiguration({
-    required this.type,
-    this.patternObjectFilter,
-  });
-
-  final TfArg<String> type;
-
-  final List<
-    BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationCrawlerConfigurationFilterConfigurationPatternObjectFilter
-  >?
-  patternObjectFilter;
-
-  Map<String, Object?> encode() => {
-    'type': type.toTfJson(),
-    if (patternObjectFilter != null)
-      'pattern_object_filter': [
-        for (final e in patternObjectFilter!) e.encode(),
-      ],
-  };
-}
-
-/// Typed helper for the `data_source_configuration.share_point_configuration.crawler_configuration.filter_configuration.pattern_object_filter` block of
-/// `aws_bedrockagent_data_source` (derived from provider schema).
-@immutable
-final class BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationCrawlerConfigurationFilterConfigurationPatternObjectFilter {
-  const BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationCrawlerConfigurationFilterConfigurationPatternObjectFilter({
-    this.filters,
-  });
-
-  final List<
-    BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationCrawlerConfigurationFilterConfigurationPatternObjectFilterFilters
-  >?
-  filters;
-
-  Map<String, Object?> encode() => {
-    if (filters != null) 'filters': [for (final e in filters!) e.encode()],
-  };
-}
-
-/// Typed helper for the `data_source_configuration.share_point_configuration.crawler_configuration.filter_configuration.pattern_object_filter.filters` block of
-/// `aws_bedrockagent_data_source` (derived from provider schema).
-@immutable
-final class BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationCrawlerConfigurationFilterConfigurationPatternObjectFilterFilters {
-  const BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationCrawlerConfigurationFilterConfigurationPatternObjectFilterFilters({
-    this.exclusionFilters,
-    this.inclusionFilters,
-    required this.objectType,
-  });
-
-  final TfArg<List<String>>? exclusionFilters;
-
-  final TfArg<List<String>>? inclusionFilters;
-
-  final TfArg<String> objectType;
-
-  Map<String, Object?> encode() => {
-    'exclusion_filters': ?exclusionFilters?.toTfJson(),
-    'inclusion_filters': ?inclusionFilters?.toTfJson(),
-    'object_type': objectType.toTfJson(),
-  };
-}
-
 /// Typed helper for the `data_source_configuration.share_point_configuration.source_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationSourceConfiguration {
-  const BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationSourceConfiguration({
+final class BedrockagentDataSourceSharePointConfigurationSourceConfiguration {
+  const BedrockagentDataSourceSharePointConfigurationSourceConfiguration({
     required this.authType,
     required this.credentialsSecretArn,
     required this.domain,
@@ -795,19 +552,13 @@ final class BedrockagentDataSourceDataSourceConfigurationSharePointConfiguration
     this.tenantId,
   });
 
-  final TfArg<
-    BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationSourceConfigurationAuthType
-  >
-  authType;
+  final TfArg<BedrockagentDataSourceSharePointConfigurationAuthType> authType;
 
   final TfArg<String> credentialsSecretArn;
 
   final TfArg<String> domain;
 
-  final TfArg<
-    BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationSourceConfigurationHostType
-  >
-  hostType;
+  final TfArg<BedrockagentDataSourceSharePointConfigurationHostType> hostType;
 
   final TfArg<List<String>> siteUrls;
 
@@ -824,14 +575,14 @@ final class BedrockagentDataSourceDataSourceConfigurationSharePointConfiguration
 }
 
 /// `auth_type` — derived from the provider schema description.
-enum BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationSourceConfigurationAuthType
+enum BedrockagentDataSourceSharePointConfigurationAuthType
     implements TerraformEnum {
   oauth2ClientCredentials('OAUTH2_CLIENT_CREDENTIALS'),
   oauth2SharepointAppOnlyClientCredentials(
     'OAUTH2_SHAREPOINT_APP_ONLY_CLIENT_CREDENTIALS',
   );
 
-  const BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationSourceConfigurationAuthType(
+  const BedrockagentDataSourceSharePointConfigurationAuthType(
     this.terraformValue,
   );
   @override
@@ -839,11 +590,11 @@ enum BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationSourceC
 }
 
 /// `host_type` — derived from the provider schema description.
-enum BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationSourceConfigurationHostType
+enum BedrockagentDataSourceSharePointConfigurationHostType
     implements TerraformEnum {
   online('ONLINE');
 
-  const BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationSourceConfigurationHostType(
+  const BedrockagentDataSourceSharePointConfigurationHostType(
     this.terraformValue,
   );
   @override
@@ -853,20 +604,16 @@ enum BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationSourceC
 /// Typed helper for the `data_source_configuration.web_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceDataSourceConfigurationWebConfiguration {
-  const BedrockagentDataSourceDataSourceConfigurationWebConfiguration({
+final class BedrockagentDataSourceWebConfiguration {
+  const BedrockagentDataSourceWebConfiguration({
     this.crawlerConfiguration,
     this.sourceConfiguration,
   });
 
-  final List<
-    BedrockagentDataSourceDataSourceConfigurationWebConfigurationCrawlerConfiguration
-  >?
+  final List<BedrockagentDataSourceWebConfigurationCrawlerConfiguration>?
   crawlerConfiguration;
 
-  final List<
-    BedrockagentDataSourceDataSourceConfigurationWebConfigurationSourceConfiguration
-  >?
+  final List<BedrockagentDataSourceWebConfigurationSourceConfiguration>?
   sourceConfiguration;
 
   Map<String, Object?> encode() => {
@@ -884,8 +631,8 @@ final class BedrockagentDataSourceDataSourceConfigurationWebConfiguration {
 /// Typed helper for the `data_source_configuration.web_configuration.crawler_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceDataSourceConfigurationWebConfigurationCrawlerConfiguration {
-  const BedrockagentDataSourceDataSourceConfigurationWebConfigurationCrawlerConfiguration({
+final class BedrockagentDataSourceWebConfigurationCrawlerConfiguration {
+  const BedrockagentDataSourceWebConfigurationCrawlerConfiguration({
     this.exclusionFilters,
     this.inclusionFilters,
     this.scope,
@@ -897,17 +644,11 @@ final class BedrockagentDataSourceDataSourceConfigurationWebConfigurationCrawler
 
   final TfArg<List<String>>? inclusionFilters;
 
-  final TfArg<
-    BedrockagentDataSourceDataSourceConfigurationWebConfigurationCrawlerConfigurationScope
-  >?
-  scope;
+  final TfArg<BedrockagentDataSourceScope>? scope;
 
   final TfArg<String>? userAgent;
 
-  final List<
-    BedrockagentDataSourceDataSourceConfigurationWebConfigurationCrawlerConfigurationCrawlerLimits
-  >?
-  crawlerLimits;
+  final List<BedrockagentDataSourceCrawlerLimits>? crawlerLimits;
 
   Map<String, Object?> encode() => {
     'exclusion_filters': ?exclusionFilters?.toTfJson(),
@@ -920,14 +661,11 @@ final class BedrockagentDataSourceDataSourceConfigurationWebConfigurationCrawler
 }
 
 /// `scope` — derived from the provider schema description.
-enum BedrockagentDataSourceDataSourceConfigurationWebConfigurationCrawlerConfigurationScope
-    implements TerraformEnum {
+enum BedrockagentDataSourceScope implements TerraformEnum {
   hostOnly('HOST_ONLY'),
   subdomains('SUBDOMAINS');
 
-  const BedrockagentDataSourceDataSourceConfigurationWebConfigurationCrawlerConfigurationScope(
-    this.terraformValue,
-  );
+  const BedrockagentDataSourceScope(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -935,11 +673,8 @@ enum BedrockagentDataSourceDataSourceConfigurationWebConfigurationCrawlerConfigu
 /// Typed helper for the `data_source_configuration.web_configuration.crawler_configuration.crawler_limits` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceDataSourceConfigurationWebConfigurationCrawlerConfigurationCrawlerLimits {
-  const BedrockagentDataSourceDataSourceConfigurationWebConfigurationCrawlerConfigurationCrawlerLimits({
-    this.maxPages,
-    this.rateLimit,
-  });
+final class BedrockagentDataSourceCrawlerLimits {
+  const BedrockagentDataSourceCrawlerLimits({this.maxPages, this.rateLimit});
 
   final TfArg<num>? maxPages;
 
@@ -954,15 +689,12 @@ final class BedrockagentDataSourceDataSourceConfigurationWebConfigurationCrawler
 /// Typed helper for the `data_source_configuration.web_configuration.source_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceDataSourceConfigurationWebConfigurationSourceConfiguration {
-  const BedrockagentDataSourceDataSourceConfigurationWebConfigurationSourceConfiguration({
+final class BedrockagentDataSourceWebConfigurationSourceConfiguration {
+  const BedrockagentDataSourceWebConfigurationSourceConfiguration({
     this.urlConfiguration,
   });
 
-  final List<
-    BedrockagentDataSourceDataSourceConfigurationWebConfigurationSourceConfigurationUrlConfiguration
-  >?
-  urlConfiguration;
+  final List<BedrockagentDataSourceUrlConfiguration>? urlConfiguration;
 
   Map<String, Object?> encode() => {
     if (urlConfiguration != null)
@@ -973,15 +705,10 @@ final class BedrockagentDataSourceDataSourceConfigurationWebConfigurationSourceC
 /// Typed helper for the `data_source_configuration.web_configuration.source_configuration.url_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceDataSourceConfigurationWebConfigurationSourceConfigurationUrlConfiguration {
-  const BedrockagentDataSourceDataSourceConfigurationWebConfigurationSourceConfigurationUrlConfiguration({
-    this.seedUrls,
-  });
+final class BedrockagentDataSourceUrlConfiguration {
+  const BedrockagentDataSourceUrlConfiguration({this.seedUrls});
 
-  final List<
-    BedrockagentDataSourceDataSourceConfigurationWebConfigurationSourceConfigurationUrlConfigurationSeedUrls
-  >?
-  seedUrls;
+  final List<BedrockagentDataSourceSeedUrls>? seedUrls;
 
   Map<String, Object?> encode() => {
     if (seedUrls != null) 'seed_urls': [for (final e in seedUrls!) e.encode()],
@@ -991,10 +718,8 @@ final class BedrockagentDataSourceDataSourceConfigurationWebConfigurationSourceC
 /// Typed helper for the `data_source_configuration.web_configuration.source_configuration.url_configuration.seed_urls` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceDataSourceConfigurationWebConfigurationSourceConfigurationUrlConfigurationSeedUrls {
-  const BedrockagentDataSourceDataSourceConfigurationWebConfigurationSourceConfigurationUrlConfigurationSeedUrls({
-    this.url,
-  });
+final class BedrockagentDataSourceSeedUrls {
+  const BedrockagentDataSourceSeedUrls({this.url});
 
   final TfArg<String>? url;
 
@@ -1026,20 +751,13 @@ final class BedrockagentDataSourceVectorIngestionConfiguration {
     this.parsingConfiguration,
   });
 
-  final List<
-    BedrockagentDataSourceVectorIngestionConfigurationChunkingConfiguration
-  >?
+  final List<BedrockagentDataSourceChunkingConfiguration>?
   chunkingConfiguration;
 
-  final List<
-    BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfiguration
-  >?
+  final List<BedrockagentDataSourceCustomTransformationConfiguration>?
   customTransformationConfiguration;
 
-  final List<
-    BedrockagentDataSourceVectorIngestionConfigurationParsingConfiguration
-  >?
-  parsingConfiguration;
+  final List<BedrockagentDataSourceParsingConfiguration>? parsingConfiguration;
 
   Map<String, Object?> encode() => {
     if (chunkingConfiguration != null)
@@ -1060,19 +778,15 @@ final class BedrockagentDataSourceVectorIngestionConfiguration {
 /// Typed helper for the `vector_ingestion_configuration.chunking_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfiguration {
-  const BedrockagentDataSourceVectorIngestionConfigurationChunkingConfiguration({
+final class BedrockagentDataSourceChunkingConfiguration {
+  const BedrockagentDataSourceChunkingConfiguration({
     required this.chunkingStrategy,
     this.strategy,
   });
 
-  final TfArg<
-    BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationChunkingStrategy
-  >
-  chunkingStrategy;
+  final TfArg<BedrockagentDataSourceChunkingStrategy> chunkingStrategy;
 
-  final BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategy?
-  strategy;
+  final BedrockagentDataSourceStrategy? strategy;
 
   Map<String, Object?> encode() => {
     'chunking_strategy': chunkingStrategy.toTfJson(),
@@ -1085,32 +799,26 @@ final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurat
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.fixedSizeChunkingConfiguration(...)`.
-sealed class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategy {
-  const BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategy();
+sealed class BedrockagentDataSourceStrategy {
+  const BedrockagentDataSourceStrategy();
 
   /// Sets `fixed_size_chunking_configuration`.
-  const factory BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategy.fixedSizeChunkingConfiguration(
-    List<
-      BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationFixedSizeChunkingConfiguration
-    >
+  const factory BedrockagentDataSourceStrategy.fixedSizeChunkingConfiguration(
+    List<BedrockagentDataSourceFixedSizeChunkingConfiguration>
     fixedSizeChunkingConfiguration,
-  ) = BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategyFixedSizeChunkingConfiguration;
+  ) = BedrockagentDataSourceStrategyFixedSizeChunkingConfiguration;
 
   /// Sets `hierarchical_chunking_configuration`.
-  const factory BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategy.hierarchicalChunkingConfiguration(
-    List<
-      BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationHierarchicalChunkingConfiguration
-    >
+  const factory BedrockagentDataSourceStrategy.hierarchicalChunkingConfiguration(
+    List<BedrockagentDataSourceHierarchicalChunkingConfiguration>
     hierarchicalChunkingConfiguration,
-  ) = BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategyHierarchicalChunkingConfiguration;
+  ) = BedrockagentDataSourceStrategyHierarchicalChunkingConfiguration;
 
   /// Sets `semantic_chunking_configuration`.
-  const factory BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategy.semanticChunkingConfiguration(
-    List<
-      BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationSemanticChunkingConfiguration
-    >
+  const factory BedrockagentDataSourceStrategy.semanticChunkingConfiguration(
+    List<BedrockagentDataSourceSemanticChunkingConfiguration>
     semanticChunkingConfiguration,
-  ) = BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategySemanticChunkingConfiguration;
+  ) = BedrockagentDataSourceStrategySemanticChunkingConfiguration;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1118,17 +826,14 @@ sealed class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigura
   Map<String, Object?> encode();
 }
 
-/// The [BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategy.fixedSizeChunkingConfiguration] choice: sets `fixed_size_chunking_configuration`.
-final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategyFixedSizeChunkingConfiguration
-    extends
-        BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategy {
-  const BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategyFixedSizeChunkingConfiguration(
+/// The [BedrockagentDataSourceStrategy.fixedSizeChunkingConfiguration] choice: sets `fixed_size_chunking_configuration`.
+final class BedrockagentDataSourceStrategyFixedSizeChunkingConfiguration
+    extends BedrockagentDataSourceStrategy {
+  const BedrockagentDataSourceStrategyFixedSizeChunkingConfiguration(
     this.fixedSizeChunkingConfiguration,
   );
 
-  final List<
-    BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationFixedSizeChunkingConfiguration
-  >
+  final List<BedrockagentDataSourceFixedSizeChunkingConfiguration>
   fixedSizeChunkingConfiguration;
 
   @override
@@ -1142,17 +847,14 @@ final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurat
   };
 }
 
-/// The [BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategy.hierarchicalChunkingConfiguration] choice: sets `hierarchical_chunking_configuration`.
-final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategyHierarchicalChunkingConfiguration
-    extends
-        BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategy {
-  const BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategyHierarchicalChunkingConfiguration(
+/// The [BedrockagentDataSourceStrategy.hierarchicalChunkingConfiguration] choice: sets `hierarchical_chunking_configuration`.
+final class BedrockagentDataSourceStrategyHierarchicalChunkingConfiguration
+    extends BedrockagentDataSourceStrategy {
+  const BedrockagentDataSourceStrategyHierarchicalChunkingConfiguration(
     this.hierarchicalChunkingConfiguration,
   );
 
-  final List<
-    BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationHierarchicalChunkingConfiguration
-  >
+  final List<BedrockagentDataSourceHierarchicalChunkingConfiguration>
   hierarchicalChunkingConfiguration;
 
   @override
@@ -1166,17 +868,14 @@ final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurat
   };
 }
 
-/// The [BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategy.semanticChunkingConfiguration] choice: sets `semantic_chunking_configuration`.
-final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategySemanticChunkingConfiguration
-    extends
-        BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategy {
-  const BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategySemanticChunkingConfiguration(
+/// The [BedrockagentDataSourceStrategy.semanticChunkingConfiguration] choice: sets `semantic_chunking_configuration`.
+final class BedrockagentDataSourceStrategySemanticChunkingConfiguration
+    extends BedrockagentDataSourceStrategy {
+  const BedrockagentDataSourceStrategySemanticChunkingConfiguration(
     this.semanticChunkingConfiguration,
   );
 
-  final List<
-    BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationSemanticChunkingConfiguration
-  >
+  final List<BedrockagentDataSourceSemanticChunkingConfiguration>
   semanticChunkingConfiguration;
 
   @override
@@ -1191,16 +890,13 @@ final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurat
 }
 
 /// `chunking_strategy` — derived from the provider schema description.
-enum BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationChunkingStrategy
-    implements TerraformEnum {
+enum BedrockagentDataSourceChunkingStrategy implements TerraformEnum {
   fixedSize('FIXED_SIZE'),
   none('NONE'),
   hierarchical('HIERARCHICAL'),
   semantic('SEMANTIC');
 
-  const BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationChunkingStrategy(
-    this.terraformValue,
-  );
+  const BedrockagentDataSourceChunkingStrategy(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1208,8 +904,8 @@ enum BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationChun
 /// Typed helper for the `vector_ingestion_configuration.chunking_configuration.fixed_size_chunking_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationFixedSizeChunkingConfiguration {
-  const BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationFixedSizeChunkingConfiguration({
+final class BedrockagentDataSourceFixedSizeChunkingConfiguration {
+  const BedrockagentDataSourceFixedSizeChunkingConfiguration({
     required this.maxTokens,
     required this.overlapPercentage,
   });
@@ -1227,18 +923,15 @@ final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurat
 /// Typed helper for the `vector_ingestion_configuration.chunking_configuration.hierarchical_chunking_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationHierarchicalChunkingConfiguration {
-  const BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationHierarchicalChunkingConfiguration({
+final class BedrockagentDataSourceHierarchicalChunkingConfiguration {
+  const BedrockagentDataSourceHierarchicalChunkingConfiguration({
     required this.overlapTokens,
     this.levelConfiguration,
   });
 
   final TfArg<num> overlapTokens;
 
-  final List<
-    BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationHierarchicalChunkingConfigurationLevelConfiguration
-  >?
-  levelConfiguration;
+  final List<BedrockagentDataSourceLevelConfiguration>? levelConfiguration;
 
   Map<String, Object?> encode() => {
     'overlap_tokens': overlapTokens.toTfJson(),
@@ -1250,10 +943,8 @@ final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurat
 /// Typed helper for the `vector_ingestion_configuration.chunking_configuration.hierarchical_chunking_configuration.level_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationHierarchicalChunkingConfigurationLevelConfiguration {
-  const BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationHierarchicalChunkingConfigurationLevelConfiguration({
-    required this.maxTokens,
-  });
+final class BedrockagentDataSourceLevelConfiguration {
+  const BedrockagentDataSourceLevelConfiguration({required this.maxTokens});
 
   final TfArg<num> maxTokens;
 
@@ -1263,8 +954,8 @@ final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurat
 /// Typed helper for the `vector_ingestion_configuration.chunking_configuration.semantic_chunking_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationSemanticChunkingConfiguration {
-  const BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationSemanticChunkingConfiguration({
+final class BedrockagentDataSourceSemanticChunkingConfiguration {
+  const BedrockagentDataSourceSemanticChunkingConfiguration({
     required this.breakpointPercentileThreshold,
     required this.bufferSize,
     required this.maxToken,
@@ -1286,21 +977,15 @@ final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurat
 /// Typed helper for the `vector_ingestion_configuration.custom_transformation_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfiguration {
-  const BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfiguration({
+final class BedrockagentDataSourceCustomTransformationConfiguration {
+  const BedrockagentDataSourceCustomTransformationConfiguration({
     this.intermediateStorage,
     this.transformation,
   });
 
-  final List<
-    BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfigurationIntermediateStorage
-  >?
-  intermediateStorage;
+  final List<BedrockagentDataSourceIntermediateStorage>? intermediateStorage;
 
-  final List<
-    BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfigurationTransformation
-  >?
-  transformation;
+  final List<BedrockagentDataSourceTransformation>? transformation;
 
   Map<String, Object?> encode() => {
     if (intermediateStorage != null)
@@ -1315,15 +1000,10 @@ final class BedrockagentDataSourceVectorIngestionConfigurationCustomTransformati
 /// Typed helper for the `vector_ingestion_configuration.custom_transformation_configuration.intermediate_storage` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfigurationIntermediateStorage {
-  const BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfigurationIntermediateStorage({
-    this.s3Location,
-  });
+final class BedrockagentDataSourceIntermediateStorage {
+  const BedrockagentDataSourceIntermediateStorage({this.s3Location});
 
-  final List<
-    BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfigurationIntermediateStorageS3Location
-  >?
-  s3Location;
+  final List<BedrockagentDataSourceS3Location>? s3Location;
 
   Map<String, Object?> encode() => {
     if (s3Location != null)
@@ -1334,10 +1014,8 @@ final class BedrockagentDataSourceVectorIngestionConfigurationCustomTransformati
 /// Typed helper for the `vector_ingestion_configuration.custom_transformation_configuration.intermediate_storage.s3_location` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfigurationIntermediateStorageS3Location {
-  const BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfigurationIntermediateStorageS3Location({
-    required this.uri,
-  });
+final class BedrockagentDataSourceS3Location {
+  const BedrockagentDataSourceS3Location({required this.uri});
 
   final TfArg<String> uri;
 
@@ -1347,20 +1025,15 @@ final class BedrockagentDataSourceVectorIngestionConfigurationCustomTransformati
 /// Typed helper for the `vector_ingestion_configuration.custom_transformation_configuration.transformation` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfigurationTransformation {
-  const BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfigurationTransformation({
+final class BedrockagentDataSourceTransformation {
+  const BedrockagentDataSourceTransformation({
     required this.stepToApply,
     this.transformationFunction,
   });
 
-  final TfArg<
-    BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfigurationTransformationStepToApply
-  >
-  stepToApply;
+  final TfArg<BedrockagentDataSourceStepToApply> stepToApply;
 
-  final List<
-    BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfigurationTransformationTransformationFunction
-  >?
+  final List<BedrockagentDataSourceTransformationFunction>?
   transformationFunction;
 
   Map<String, Object?> encode() => {
@@ -1373,13 +1046,10 @@ final class BedrockagentDataSourceVectorIngestionConfigurationCustomTransformati
 }
 
 /// `step_to_apply` — derived from the provider schema description.
-enum BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfigurationTransformationStepToApply
-    implements TerraformEnum {
+enum BedrockagentDataSourceStepToApply implements TerraformEnum {
   postChunking('POST_CHUNKING');
 
-  const BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfigurationTransformationStepToApply(
-    this.terraformValue,
-  );
+  const BedrockagentDataSourceStepToApply(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1387,14 +1057,12 @@ enum BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfi
 /// Typed helper for the `vector_ingestion_configuration.custom_transformation_configuration.transformation.transformation_function` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfigurationTransformationTransformationFunction {
-  const BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfigurationTransformationTransformationFunction({
+final class BedrockagentDataSourceTransformationFunction {
+  const BedrockagentDataSourceTransformationFunction({
     this.transformationLambdaConfiguration,
   });
 
-  final List<
-    BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfigurationTransformationTransformationFunctionTransformationLambdaConfiguration
-  >?
+  final List<BedrockagentDataSourceTransformationLambdaConfiguration>?
   transformationLambdaConfiguration;
 
   Map<String, Object?> encode() => {
@@ -1408,8 +1076,8 @@ final class BedrockagentDataSourceVectorIngestionConfigurationCustomTransformati
 /// Typed helper for the `vector_ingestion_configuration.custom_transformation_configuration.transformation.transformation_function.transformation_lambda_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfigurationTransformationTransformationFunctionTransformationLambdaConfiguration {
-  const BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfigurationTransformationTransformationFunctionTransformationLambdaConfiguration({
+final class BedrockagentDataSourceTransformationLambdaConfiguration {
+  const BedrockagentDataSourceTransformationLambdaConfiguration({
     required this.lambdaArn,
   });
 
@@ -1423,26 +1091,19 @@ final class BedrockagentDataSourceVectorIngestionConfigurationCustomTransformati
 /// Typed helper for the `vector_ingestion_configuration.parsing_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceVectorIngestionConfigurationParsingConfiguration {
-  const BedrockagentDataSourceVectorIngestionConfigurationParsingConfiguration({
+final class BedrockagentDataSourceParsingConfiguration {
+  const BedrockagentDataSourceParsingConfiguration({
     required this.parsingStrategy,
     this.bedrockDataAutomationConfiguration,
     this.bedrockFoundationModelConfiguration,
   });
 
-  final TfArg<
-    BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationParsingStrategy
-  >
-  parsingStrategy;
+  final TfArg<BedrockagentDataSourceParsingStrategy> parsingStrategy;
 
-  final List<
-    BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationBedrockDataAutomationConfiguration
-  >?
+  final List<BedrockagentDataSourceBedrockDataAutomationConfiguration>?
   bedrockDataAutomationConfiguration;
 
-  final List<
-    BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationBedrockFoundationModelConfiguration
-  >?
+  final List<BedrockagentDataSourceBedrockFoundationModelConfiguration>?
   bedrockFoundationModelConfiguration;
 
   Map<String, Object?> encode() => {
@@ -1459,16 +1120,13 @@ final class BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurati
 }
 
 /// `parsing_strategy` — derived from the provider schema description.
-enum BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationParsingStrategy
-    implements TerraformEnum {
+enum BedrockagentDataSourceParsingStrategy implements TerraformEnum {
   bedrockFoundationModel('BEDROCK_FOUNDATION_MODEL'),
   bedrockDataAutomation('BEDROCK_DATA_AUTOMATION'),
   smartParsing('SMART_PARSING'),
   multiModalEmbeddings('MULTI_MODAL_EMBEDDINGS');
 
-  const BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationParsingStrategy(
-    this.terraformValue,
-  );
+  const BedrockagentDataSourceParsingStrategy(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1476,15 +1134,12 @@ enum BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationParsi
 /// Typed helper for the `vector_ingestion_configuration.parsing_configuration.bedrock_data_automation_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationBedrockDataAutomationConfiguration {
-  const BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationBedrockDataAutomationConfiguration({
+final class BedrockagentDataSourceBedrockDataAutomationConfiguration {
+  const BedrockagentDataSourceBedrockDataAutomationConfiguration({
     this.parsingModality,
   });
 
-  final TfArg<
-    BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationBedrockDataAutomationConfigurationParsingModality
-  >?
-  parsingModality;
+  final TfArg<BedrockagentDataSourceParsingModality>? parsingModality;
 
   Map<String, Object?> encode() => {
     'parsing_modality': ?parsingModality?.toTfJson(),
@@ -1492,13 +1147,10 @@ final class BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurati
 }
 
 /// `parsing_modality` — derived from the provider schema description.
-enum BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationBedrockDataAutomationConfigurationParsingModality
-    implements TerraformEnum {
+enum BedrockagentDataSourceParsingModality implements TerraformEnum {
   multimodal('MULTIMODAL');
 
-  const BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationBedrockDataAutomationConfigurationParsingModality(
-    this.terraformValue,
-  );
+  const BedrockagentDataSourceParsingModality(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1506,8 +1158,8 @@ enum BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationBedro
 /// Typed helper for the `vector_ingestion_configuration.parsing_configuration.bedrock_foundation_model_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationBedrockFoundationModelConfiguration {
-  const BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationBedrockFoundationModelConfiguration({
+final class BedrockagentDataSourceBedrockFoundationModelConfiguration {
+  const BedrockagentDataSourceBedrockFoundationModelConfiguration({
     required this.modelArn,
     this.parsingModality,
     this.parsingPrompt,
@@ -1515,15 +1167,9 @@ final class BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurati
 
   final TfArg<String> modelArn;
 
-  final TfArg<
-    BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationBedrockFoundationModelConfigurationParsingModality
-  >?
-  parsingModality;
+  final TfArg<BedrockagentDataSourceParsingModality>? parsingModality;
 
-  final List<
-    BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationBedrockFoundationModelConfigurationParsingPrompt
-  >?
-  parsingPrompt;
+  final List<BedrockagentDataSourceParsingPrompt>? parsingPrompt;
 
   Map<String, Object?> encode() => {
     'model_arn': modelArn.toTfJson(),
@@ -1533,23 +1179,11 @@ final class BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurati
   };
 }
 
-/// `parsing_modality` — derived from the provider schema description.
-enum BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationBedrockFoundationModelConfigurationParsingModality
-    implements TerraformEnum {
-  multimodal('MULTIMODAL');
-
-  const BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationBedrockFoundationModelConfigurationParsingModality(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `vector_ingestion_configuration.parsing_configuration.bedrock_foundation_model_configuration.parsing_prompt` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationBedrockFoundationModelConfigurationParsingPrompt {
-  const BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationBedrockFoundationModelConfigurationParsingPrompt({
+final class BedrockagentDataSourceParsingPrompt {
+  const BedrockagentDataSourceParsingPrompt({
     required this.parsingPromptString,
   });
 
@@ -1571,8 +1205,7 @@ final class AwsBedrockagentDataSource extends Resource {
     required TfArg<String> knowledgeBaseId,
     required TfArg<String> name,
     TfArg<String>? region,
-    List<BedrockagentDataSourceDataSourceConfiguration>?
-    dataSourceConfiguration,
+    List<BedrockagentDataSourceConfiguration>? dataSourceConfiguration,
     List<BedrockagentDataSourceServerSideEncryptionConfiguration>?
     serverSideEncryptionConfiguration,
     List<BedrockagentDataSourceVectorIngestionConfiguration>?

@@ -26,10 +26,9 @@ final class VectorSearchIndexDedicatedInfrastructure {
     this.autoscalingSpec,
   });
 
-  final TfArg<VectorSearchIndexDedicatedInfrastructureMode>? mode;
+  final TfArg<VectorSearchIndexMode>? mode;
 
-  final VectorSearchIndexDedicatedInfrastructureAutoscalingSpec?
-  autoscalingSpec;
+  final VectorSearchIndexAutoscalingSpec? autoscalingSpec;
 
   Map<String, Object?> encode() => {
     'mode': ?mode?.toTfJson(),
@@ -38,12 +37,12 @@ final class VectorSearchIndexDedicatedInfrastructure {
 }
 
 /// `mode` — derived from the provider schema description.
-enum VectorSearchIndexDedicatedInfrastructureMode implements TerraformEnum {
+enum VectorSearchIndexMode implements TerraformEnum {
   modeUnspecified('MODE_UNSPECIFIED'),
   storageOptimized('STORAGE_OPTIMIZED'),
   performanceOptimized('PERFORMANCE_OPTIMIZED');
 
-  const VectorSearchIndexDedicatedInfrastructureMode(this.terraformValue);
+  const VectorSearchIndexMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -51,8 +50,8 @@ enum VectorSearchIndexDedicatedInfrastructureMode implements TerraformEnum {
 /// Typed helper for the `dedicated_infrastructure.autoscaling_spec` block of
 /// `google_vector_search_index` (derived from provider schema).
 @immutable
-final class VectorSearchIndexDedicatedInfrastructureAutoscalingSpec {
-  const VectorSearchIndexDedicatedInfrastructureAutoscalingSpec({
+final class VectorSearchIndexAutoscalingSpec {
+  const VectorSearchIndexAutoscalingSpec({
     this.maxReplicaCount,
     this.minReplicaCount,
   });
@@ -73,7 +72,7 @@ final class VectorSearchIndexDedicatedInfrastructureAutoscalingSpec {
 final class VectorSearchIndexDenseScann {
   const VectorSearchIndexDenseScann({this.featureNormType});
 
-  final TfArg<VectorSearchIndexDenseScannFeatureNormType>? featureNormType;
+  final TfArg<VectorSearchIndexFeatureNormType>? featureNormType;
 
   Map<String, Object?> encode() => {
     'feature_norm_type': ?featureNormType?.toTfJson(),
@@ -81,12 +80,12 @@ final class VectorSearchIndexDenseScann {
 }
 
 /// `feature_norm_type` — derived from the provider schema description.
-enum VectorSearchIndexDenseScannFeatureNormType implements TerraformEnum {
+enum VectorSearchIndexFeatureNormType implements TerraformEnum {
   featureNormTypeUnspecified('FEATURE_NORM_TYPE_UNSPECIFIED'),
   none('NONE'),
   unitL2Norm('UNIT_L2_NORM');
 
-  const VectorSearchIndexDenseScannFeatureNormType(this.terraformValue);
+  const VectorSearchIndexFeatureNormType(this.terraformValue);
   @override
   final String terraformValue;
 }

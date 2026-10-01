@@ -93,9 +93,9 @@ export 'src/logging/google_logging_saved_query.dart'
         LoggingSavedQueryDefinitionLoggingQuery,
         LoggingSavedQueryDefinitionOpsAnalyticsQuery,
         LoggingSavedQueryLoggingQuery,
-        LoggingSavedQueryLoggingQuerySummaryField,
-        LoggingSavedQueryLoggingQuerySummaryFieldEnd,
-        LoggingSavedQueryLoggingQuerySummaryFieldStart,
-        LoggingSavedQueryLoggingQuerySummaryFields,
         LoggingSavedQueryOpsAnalyticsQuery,
+        LoggingSavedQuerySummaryField,
+        LoggingSavedQuerySummaryFieldEnd,
+        LoggingSavedQuerySummaryFieldStart,
+        LoggingSavedQuerySummaryFields,
         LoggingSavedQueryVisibility;

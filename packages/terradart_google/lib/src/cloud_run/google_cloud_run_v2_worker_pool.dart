@@ -61,7 +61,7 @@ final class CloudRunV2WorkerPoolBinaryAuthorization {
 
   final TfArg<String>? breakglassJustification;
 
-  final CloudRunV2WorkerPoolBinaryAuthorizationPolicy? policy;
+  final CloudRunV2WorkerPoolPolicy? policy;
 
   Map<String, Object?> encode() => {
     'breakglass_justification': ?breakglassJustification?.toTfJson(),
@@ -74,18 +74,16 @@ final class CloudRunV2WorkerPoolBinaryAuthorization {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.useDefault(...)`.
-sealed class CloudRunV2WorkerPoolBinaryAuthorizationPolicy {
-  const CloudRunV2WorkerPoolBinaryAuthorizationPolicy();
+sealed class CloudRunV2WorkerPoolPolicy {
+  const CloudRunV2WorkerPoolPolicy();
 
   /// Sets `use_default`.
-  const factory CloudRunV2WorkerPoolBinaryAuthorizationPolicy.useDefault(
-    TfArg<bool> useDefault,
-  ) = CloudRunV2WorkerPoolBinaryAuthorizationPolicyUseDefault;
+  const factory CloudRunV2WorkerPoolPolicy.useDefault(TfArg<bool> useDefault) =
+      CloudRunV2WorkerPoolPolicyUseDefault;
 
   /// Sets `policy`.
-  const factory CloudRunV2WorkerPoolBinaryAuthorizationPolicy.policy(
-    TfArg<String> policy,
-  ) = CloudRunV2WorkerPoolBinaryAuthorizationPolicyChoice;
+  const factory CloudRunV2WorkerPoolPolicy.policy(TfArg<String> policy) =
+      CloudRunV2WorkerPoolPolicyChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -93,12 +91,10 @@ sealed class CloudRunV2WorkerPoolBinaryAuthorizationPolicy {
   Map<String, Object?> encode();
 }
 
-/// The [CloudRunV2WorkerPoolBinaryAuthorizationPolicy.useDefault] choice: sets `use_default`.
-final class CloudRunV2WorkerPoolBinaryAuthorizationPolicyUseDefault
-    extends CloudRunV2WorkerPoolBinaryAuthorizationPolicy {
-  const CloudRunV2WorkerPoolBinaryAuthorizationPolicyUseDefault(
-    this.useDefault,
-  );
+/// The [CloudRunV2WorkerPoolPolicy.useDefault] choice: sets `use_default`.
+final class CloudRunV2WorkerPoolPolicyUseDefault
+    extends CloudRunV2WorkerPoolPolicy {
+  const CloudRunV2WorkerPoolPolicyUseDefault(this.useDefault);
 
   final TfArg<bool> useDefault;
 
@@ -109,10 +105,10 @@ final class CloudRunV2WorkerPoolBinaryAuthorizationPolicyUseDefault
   Map<String, Object?> encode() => {'use_default': useDefault.toTfJson()};
 }
 
-/// The [CloudRunV2WorkerPoolBinaryAuthorizationPolicy.policy] choice: sets `policy`.
-final class CloudRunV2WorkerPoolBinaryAuthorizationPolicyChoice
-    extends CloudRunV2WorkerPoolBinaryAuthorizationPolicy {
-  const CloudRunV2WorkerPoolBinaryAuthorizationPolicyChoice(this.policy);
+/// The [CloudRunV2WorkerPoolPolicy.policy] choice: sets `policy`.
+final class CloudRunV2WorkerPoolPolicyChoice
+    extends CloudRunV2WorkerPoolPolicy {
+  const CloudRunV2WorkerPoolPolicyChoice(this.policy);
 
   final TfArg<String> policy;
 
@@ -215,13 +211,13 @@ final class CloudRunV2WorkerPoolTemplate {
 
   final RefTo<GoogleServiceAccount>? serviceAccount;
 
-  final List<CloudRunV2WorkerPoolTemplateContainers>? containers;
+  final List<CloudRunV2WorkerPoolContainers>? containers;
 
-  final CloudRunV2WorkerPoolTemplateNodeSelector? nodeSelector;
+  final CloudRunV2WorkerPoolNodeSelector? nodeSelector;
 
-  final List<CloudRunV2WorkerPoolTemplateVolumes>? volumes;
+  final List<CloudRunV2WorkerPoolVolumes>? volumes;
 
-  final CloudRunV2WorkerPoolTemplateVpcAccess? vpcAccess;
+  final CloudRunV2WorkerPoolVpcAccess? vpcAccess;
 
   Map<String, Object?> encode() => {
     'annotations': ?annotations?.toTfJson(),
@@ -247,8 +243,8 @@ final class CloudRunV2WorkerPoolTemplate {
 /// Typed helper for the `template.containers` block of
 /// `google_cloud_run_v2_worker_pool` (derived from provider schema).
 @immutable
-final class CloudRunV2WorkerPoolTemplateContainers {
-  const CloudRunV2WorkerPoolTemplateContainers({
+final class CloudRunV2WorkerPoolContainers {
+  const CloudRunV2WorkerPoolContainers({
     this.args,
     this.command,
     this.dependsOn,
@@ -277,15 +273,15 @@ final class CloudRunV2WorkerPoolTemplateContainers {
 
   final TfArg<String>? workingDir;
 
-  final List<CloudRunV2WorkerPoolTemplateContainersEnv>? env;
+  final List<CloudRunV2WorkerPoolEnv>? env;
 
-  final CloudRunV2WorkerPoolTemplateContainersLivenessProbe? livenessProbe;
+  final CloudRunV2WorkerPoolLivenessProbe? livenessProbe;
 
-  final CloudRunV2WorkerPoolTemplateContainersResources? resources;
+  final CloudRunV2WorkerPoolResources? resources;
 
-  final CloudRunV2WorkerPoolTemplateContainersStartupProbe? startupProbe;
+  final CloudRunV2WorkerPoolStartupProbe? startupProbe;
 
-  final List<CloudRunV2WorkerPoolTemplateContainersVolumeMounts>? volumeMounts;
+  final List<CloudRunV2WorkerPoolVolumeMounts>? volumeMounts;
 
   Map<String, Object?> encode() => {
     'args': ?args?.toTfJson(),
@@ -307,15 +303,12 @@ final class CloudRunV2WorkerPoolTemplateContainers {
 /// Typed helper for the `template.containers.env` block of
 /// `google_cloud_run_v2_worker_pool` (derived from provider schema).
 @immutable
-final class CloudRunV2WorkerPoolTemplateContainersEnv {
-  const CloudRunV2WorkerPoolTemplateContainersEnv({
-    required this.name,
-    required this.source,
-  });
+final class CloudRunV2WorkerPoolEnv {
+  const CloudRunV2WorkerPoolEnv({required this.name, required this.source});
 
   final TfArg<String> name;
 
-  final CloudRunV2WorkerPoolTemplateContainersEnvSource source;
+  final CloudRunV2WorkerPoolEnvSource source;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -327,18 +320,17 @@ final class CloudRunV2WorkerPoolTemplateContainersEnv {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.value(...)`.
-sealed class CloudRunV2WorkerPoolTemplateContainersEnvSource {
-  const CloudRunV2WorkerPoolTemplateContainersEnvSource();
+sealed class CloudRunV2WorkerPoolEnvSource {
+  const CloudRunV2WorkerPoolEnvSource();
 
   /// Sets `value`.
-  const factory CloudRunV2WorkerPoolTemplateContainersEnvSource.value(
-    TfArg<String> value,
-  ) = CloudRunV2WorkerPoolTemplateContainersEnvSourceValue;
+  const factory CloudRunV2WorkerPoolEnvSource.value(TfArg<String> value) =
+      CloudRunV2WorkerPoolEnvSourceValue;
 
   /// Sets `value_source`.
-  const factory CloudRunV2WorkerPoolTemplateContainersEnvSource.valueSource(
-    CloudRunV2WorkerPoolTemplateContainersEnvValueSource valueSource,
-  ) = CloudRunV2WorkerPoolTemplateContainersEnvSourceValueSource;
+  const factory CloudRunV2WorkerPoolEnvSource.valueSource(
+    CloudRunV2WorkerPoolValueSource valueSource,
+  ) = CloudRunV2WorkerPoolEnvValueSource;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -346,10 +338,10 @@ sealed class CloudRunV2WorkerPoolTemplateContainersEnvSource {
   Map<String, Object?> encode();
 }
 
-/// The [CloudRunV2WorkerPoolTemplateContainersEnvSource.value] choice: sets `value`.
-final class CloudRunV2WorkerPoolTemplateContainersEnvSourceValue
-    extends CloudRunV2WorkerPoolTemplateContainersEnvSource {
-  const CloudRunV2WorkerPoolTemplateContainersEnvSourceValue(this.value);
+/// The [CloudRunV2WorkerPoolEnvSource.value] choice: sets `value`.
+final class CloudRunV2WorkerPoolEnvSourceValue
+    extends CloudRunV2WorkerPoolEnvSource {
+  const CloudRunV2WorkerPoolEnvSourceValue(this.value);
 
   final TfArg<String> value;
 
@@ -360,14 +352,12 @@ final class CloudRunV2WorkerPoolTemplateContainersEnvSourceValue
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
-/// The [CloudRunV2WorkerPoolTemplateContainersEnvSource.valueSource] choice: sets `value_source`.
-final class CloudRunV2WorkerPoolTemplateContainersEnvSourceValueSource
-    extends CloudRunV2WorkerPoolTemplateContainersEnvSource {
-  const CloudRunV2WorkerPoolTemplateContainersEnvSourceValueSource(
-    this.valueSource,
-  );
+/// The [CloudRunV2WorkerPoolEnvSource.valueSource] choice: sets `value_source`.
+final class CloudRunV2WorkerPoolEnvValueSource
+    extends CloudRunV2WorkerPoolEnvSource {
+  const CloudRunV2WorkerPoolEnvValueSource(this.valueSource);
 
-  final CloudRunV2WorkerPoolTemplateContainersEnvValueSource valueSource;
+  final CloudRunV2WorkerPoolValueSource valueSource;
 
   @override
   String get blockKey => 'value_source';
@@ -379,13 +369,10 @@ final class CloudRunV2WorkerPoolTemplateContainersEnvSourceValueSource
 /// Typed helper for the `template.containers.env.value_source` block of
 /// `google_cloud_run_v2_worker_pool` (derived from provider schema).
 @immutable
-final class CloudRunV2WorkerPoolTemplateContainersEnvValueSource {
-  const CloudRunV2WorkerPoolTemplateContainersEnvValueSource({
-    this.secretKeyRef,
-  });
+final class CloudRunV2WorkerPoolValueSource {
+  const CloudRunV2WorkerPoolValueSource({this.secretKeyRef});
 
-  final CloudRunV2WorkerPoolTemplateContainersEnvValueSourceSecretKeyRef?
-  secretKeyRef;
+  final CloudRunV2WorkerPoolSecretKeyRef? secretKeyRef;
 
   Map<String, Object?> encode() => {'secret_key_ref': ?secretKeyRef?.encode()};
 }
@@ -393,11 +380,8 @@ final class CloudRunV2WorkerPoolTemplateContainersEnvValueSource {
 /// Typed helper for the `template.containers.env.value_source.secret_key_ref` block of
 /// `google_cloud_run_v2_worker_pool` (derived from provider schema).
 @immutable
-final class CloudRunV2WorkerPoolTemplateContainersEnvValueSourceSecretKeyRef {
-  const CloudRunV2WorkerPoolTemplateContainersEnvValueSourceSecretKeyRef({
-    required this.secret,
-    this.version,
-  });
+final class CloudRunV2WorkerPoolSecretKeyRef {
+  const CloudRunV2WorkerPoolSecretKeyRef({required this.secret, this.version});
 
   final TfArg<String> secret;
 
@@ -412,8 +396,8 @@ final class CloudRunV2WorkerPoolTemplateContainersEnvValueSourceSecretKeyRef {
 /// Typed helper for the `template.containers.liveness_probe` block of
 /// `google_cloud_run_v2_worker_pool` (derived from provider schema).
 @immutable
-final class CloudRunV2WorkerPoolTemplateContainersLivenessProbe {
-  const CloudRunV2WorkerPoolTemplateContainersLivenessProbe({
+final class CloudRunV2WorkerPoolLivenessProbe {
+  const CloudRunV2WorkerPoolLivenessProbe({
     this.failureThreshold,
     this.initialDelaySeconds,
     this.periodSeconds,
@@ -431,11 +415,11 @@ final class CloudRunV2WorkerPoolTemplateContainersLivenessProbe {
 
   final TfArg<num>? timeoutSeconds;
 
-  final CloudRunV2WorkerPoolTemplateContainersLivenessProbeGrpc? grpc;
+  final CloudRunV2WorkerPoolGrpc? grpc;
 
-  final CloudRunV2WorkerPoolTemplateContainersLivenessProbeHttpGet? httpGet;
+  final CloudRunV2WorkerPoolHttpGet? httpGet;
 
-  final CloudRunV2WorkerPoolTemplateContainersLivenessProbeTcpSocket? tcpSocket;
+  final CloudRunV2WorkerPoolTcpSocket? tcpSocket;
 
   Map<String, Object?> encode() => {
     'failure_threshold': ?failureThreshold?.toTfJson(),
@@ -450,12 +434,10 @@ final class CloudRunV2WorkerPoolTemplateContainersLivenessProbe {
 
 /// Typed helper for the `template.containers.liveness_probe.grpc` block of
 /// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CloudRunV2WorkerPoolTemplateContainersLivenessProbeGrpc {
-  const CloudRunV2WorkerPoolTemplateContainersLivenessProbeGrpc({
-    this.port,
-    this.service,
-  });
+final class CloudRunV2WorkerPoolGrpc {
+  const CloudRunV2WorkerPoolGrpc({this.port, this.service});
 
   final TfArg<num>? port;
 
@@ -469,22 +451,16 @@ final class CloudRunV2WorkerPoolTemplateContainersLivenessProbeGrpc {
 
 /// Typed helper for the `template.containers.liveness_probe.http_get` block of
 /// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CloudRunV2WorkerPoolTemplateContainersLivenessProbeHttpGet {
-  const CloudRunV2WorkerPoolTemplateContainersLivenessProbeHttpGet({
-    this.path,
-    this.port,
-    this.httpHeaders,
-  });
+final class CloudRunV2WorkerPoolHttpGet {
+  const CloudRunV2WorkerPoolHttpGet({this.path, this.port, this.httpHeaders});
 
   final TfArg<String>? path;
 
   final TfArg<num>? port;
 
-  final List<
-    CloudRunV2WorkerPoolTemplateContainersLivenessProbeHttpGetHttpHeaders
-  >?
-  httpHeaders;
+  final List<CloudRunV2WorkerPoolHttpHeaders>? httpHeaders;
 
   Map<String, Object?> encode() => {
     'path': ?path?.toTfJson(),
@@ -496,12 +472,10 @@ final class CloudRunV2WorkerPoolTemplateContainersLivenessProbeHttpGet {
 
 /// Typed helper for the `template.containers.liveness_probe.http_get.http_headers` block of
 /// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CloudRunV2WorkerPoolTemplateContainersLivenessProbeHttpGetHttpHeaders {
-  const CloudRunV2WorkerPoolTemplateContainersLivenessProbeHttpGetHttpHeaders({
-    required this.name,
-    this.value,
-  });
+final class CloudRunV2WorkerPoolHttpHeaders {
+  const CloudRunV2WorkerPoolHttpHeaders({required this.name, this.value});
 
   final TfArg<String> name;
 
@@ -515,11 +489,10 @@ final class CloudRunV2WorkerPoolTemplateContainersLivenessProbeHttpGetHttpHeader
 
 /// Typed helper for the `template.containers.liveness_probe.tcp_socket` block of
 /// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CloudRunV2WorkerPoolTemplateContainersLivenessProbeTcpSocket {
-  const CloudRunV2WorkerPoolTemplateContainersLivenessProbeTcpSocket({
-    this.port,
-  });
+final class CloudRunV2WorkerPoolTcpSocket {
+  const CloudRunV2WorkerPoolTcpSocket({this.port});
 
   final TfArg<num>? port;
 
@@ -529,8 +502,8 @@ final class CloudRunV2WorkerPoolTemplateContainersLivenessProbeTcpSocket {
 /// Typed helper for the `template.containers.resources` block of
 /// `google_cloud_run_v2_worker_pool` (derived from provider schema).
 @immutable
-final class CloudRunV2WorkerPoolTemplateContainersResources {
-  const CloudRunV2WorkerPoolTemplateContainersResources({this.limits});
+final class CloudRunV2WorkerPoolResources {
+  const CloudRunV2WorkerPoolResources({this.limits});
 
   final TfArg<Map<String, String>>? limits;
 
@@ -540,8 +513,8 @@ final class CloudRunV2WorkerPoolTemplateContainersResources {
 /// Typed helper for the `template.containers.startup_probe` block of
 /// `google_cloud_run_v2_worker_pool` (derived from provider schema).
 @immutable
-final class CloudRunV2WorkerPoolTemplateContainersStartupProbe {
-  const CloudRunV2WorkerPoolTemplateContainersStartupProbe({
+final class CloudRunV2WorkerPoolStartupProbe {
+  const CloudRunV2WorkerPoolStartupProbe({
     this.failureThreshold,
     this.initialDelaySeconds,
     this.periodSeconds,
@@ -559,11 +532,11 @@ final class CloudRunV2WorkerPoolTemplateContainersStartupProbe {
 
   final TfArg<num>? timeoutSeconds;
 
-  final CloudRunV2WorkerPoolTemplateContainersStartupProbeGrpc? grpc;
+  final CloudRunV2WorkerPoolGrpc? grpc;
 
-  final CloudRunV2WorkerPoolTemplateContainersStartupProbeHttpGet? httpGet;
+  final CloudRunV2WorkerPoolHttpGet? httpGet;
 
-  final CloudRunV2WorkerPoolTemplateContainersStartupProbeTcpSocket? tcpSocket;
+  final CloudRunV2WorkerPoolTcpSocket? tcpSocket;
 
   Map<String, Object?> encode() => {
     'failure_threshold': ?failureThreshold?.toTfJson(),
@@ -576,89 +549,11 @@ final class CloudRunV2WorkerPoolTemplateContainersStartupProbe {
   };
 }
 
-/// Typed helper for the `template.containers.startup_probe.grpc` block of
-/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
-@immutable
-final class CloudRunV2WorkerPoolTemplateContainersStartupProbeGrpc {
-  const CloudRunV2WorkerPoolTemplateContainersStartupProbeGrpc({
-    this.port,
-    this.service,
-  });
-
-  final TfArg<num>? port;
-
-  final TfArg<String>? service;
-
-  Map<String, Object?> encode() => {
-    'port': ?port?.toTfJson(),
-    'service': ?service?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `template.containers.startup_probe.http_get` block of
-/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
-@immutable
-final class CloudRunV2WorkerPoolTemplateContainersStartupProbeHttpGet {
-  const CloudRunV2WorkerPoolTemplateContainersStartupProbeHttpGet({
-    this.path,
-    this.port,
-    this.httpHeaders,
-  });
-
-  final TfArg<String>? path;
-
-  final TfArg<num>? port;
-
-  final List<
-    CloudRunV2WorkerPoolTemplateContainersStartupProbeHttpGetHttpHeaders
-  >?
-  httpHeaders;
-
-  Map<String, Object?> encode() => {
-    'path': ?path?.toTfJson(),
-    'port': ?port?.toTfJson(),
-    if (httpHeaders != null)
-      'http_headers': [for (final e in httpHeaders!) e.encode()],
-  };
-}
-
-/// Typed helper for the `template.containers.startup_probe.http_get.http_headers` block of
-/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
-@immutable
-final class CloudRunV2WorkerPoolTemplateContainersStartupProbeHttpGetHttpHeaders {
-  const CloudRunV2WorkerPoolTemplateContainersStartupProbeHttpGetHttpHeaders({
-    required this.name,
-    this.value,
-  });
-
-  final TfArg<String> name;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'name': name.toTfJson(),
-    'value': ?value?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `template.containers.startup_probe.tcp_socket` block of
-/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
-@immutable
-final class CloudRunV2WorkerPoolTemplateContainersStartupProbeTcpSocket {
-  const CloudRunV2WorkerPoolTemplateContainersStartupProbeTcpSocket({
-    this.port,
-  });
-
-  final TfArg<num>? port;
-
-  Map<String, Object?> encode() => {'port': ?port?.toTfJson()};
-}
-
 /// Typed helper for the `template.containers.volume_mounts` block of
 /// `google_cloud_run_v2_worker_pool` (derived from provider schema).
 @immutable
-final class CloudRunV2WorkerPoolTemplateContainersVolumeMounts {
-  const CloudRunV2WorkerPoolTemplateContainersVolumeMounts({
+final class CloudRunV2WorkerPoolVolumeMounts {
+  const CloudRunV2WorkerPoolVolumeMounts({
     required this.mountPath,
     required this.name,
     this.subPath,
@@ -680,8 +575,8 @@ final class CloudRunV2WorkerPoolTemplateContainersVolumeMounts {
 /// Typed helper for the `template.node_selector` block of
 /// `google_cloud_run_v2_worker_pool` (derived from provider schema).
 @immutable
-final class CloudRunV2WorkerPoolTemplateNodeSelector {
-  const CloudRunV2WorkerPoolTemplateNodeSelector({required this.accelerator});
+final class CloudRunV2WorkerPoolNodeSelector {
+  const CloudRunV2WorkerPoolNodeSelector({required this.accelerator});
 
   final TfArg<String> accelerator;
 
@@ -691,15 +586,12 @@ final class CloudRunV2WorkerPoolTemplateNodeSelector {
 /// Typed helper for the `template.volumes` block of
 /// `google_cloud_run_v2_worker_pool` (derived from provider schema).
 @immutable
-final class CloudRunV2WorkerPoolTemplateVolumes {
-  const CloudRunV2WorkerPoolTemplateVolumes({
-    required this.name,
-    required this.source,
-  });
+final class CloudRunV2WorkerPoolVolumes {
+  const CloudRunV2WorkerPoolVolumes({required this.name, required this.source});
 
   final TfArg<String> name;
 
-  final CloudRunV2WorkerPoolTemplateVolumesSource source;
+  final CloudRunV2WorkerPoolSource source;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -711,33 +603,31 @@ final class CloudRunV2WorkerPoolTemplateVolumes {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.cloudSqlInstance(...)`.
-sealed class CloudRunV2WorkerPoolTemplateVolumesSource {
-  const CloudRunV2WorkerPoolTemplateVolumesSource();
+sealed class CloudRunV2WorkerPoolSource {
+  const CloudRunV2WorkerPoolSource();
 
   /// Sets `cloud_sql_instance`.
-  const factory CloudRunV2WorkerPoolTemplateVolumesSource.cloudSqlInstance(
-    CloudRunV2WorkerPoolTemplateVolumesCloudSqlInstance cloudSqlInstance,
-  ) = CloudRunV2WorkerPoolTemplateVolumesSourceCloudSqlInstance;
+  const factory CloudRunV2WorkerPoolSource.cloudSqlInstance(
+    CloudRunV2WorkerPoolCloudSqlInstance cloudSqlInstance,
+  ) = CloudRunV2WorkerPoolSourceCloudSqlInstance;
 
   /// Sets `empty_dir`.
-  const factory CloudRunV2WorkerPoolTemplateVolumesSource.emptyDir(
-    CloudRunV2WorkerPoolTemplateVolumesEmptyDir emptyDir,
-  ) = CloudRunV2WorkerPoolTemplateVolumesSourceEmptyDir;
+  const factory CloudRunV2WorkerPoolSource.emptyDir(
+    CloudRunV2WorkerPoolEmptyDir emptyDir,
+  ) = CloudRunV2WorkerPoolSourceEmptyDir;
 
   /// Sets `gcs`.
-  const factory CloudRunV2WorkerPoolTemplateVolumesSource.gcs(
-    CloudRunV2WorkerPoolTemplateVolumesGcs gcs,
-  ) = CloudRunV2WorkerPoolTemplateVolumesSourceGcs;
+  const factory CloudRunV2WorkerPoolSource.gcs(CloudRunV2WorkerPoolGcs gcs) =
+      CloudRunV2WorkerPoolSourceGcs;
 
   /// Sets `nfs`.
-  const factory CloudRunV2WorkerPoolTemplateVolumesSource.nfs(
-    CloudRunV2WorkerPoolTemplateVolumesNfs nfs,
-  ) = CloudRunV2WorkerPoolTemplateVolumesSourceNfs;
+  const factory CloudRunV2WorkerPoolSource.nfs(CloudRunV2WorkerPoolNfs nfs) =
+      CloudRunV2WorkerPoolSourceNfs;
 
   /// Sets `secret`.
-  const factory CloudRunV2WorkerPoolTemplateVolumesSource.secret(
-    CloudRunV2WorkerPoolTemplateVolumesSecret secret,
-  ) = CloudRunV2WorkerPoolTemplateVolumesSourceSecret;
+  const factory CloudRunV2WorkerPoolSource.secret(
+    CloudRunV2WorkerPoolSecret secret,
+  ) = CloudRunV2WorkerPoolSourceSecret;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -745,14 +635,12 @@ sealed class CloudRunV2WorkerPoolTemplateVolumesSource {
   Map<String, Object?> encode();
 }
 
-/// The [CloudRunV2WorkerPoolTemplateVolumesSource.cloudSqlInstance] choice: sets `cloud_sql_instance`.
-final class CloudRunV2WorkerPoolTemplateVolumesSourceCloudSqlInstance
-    extends CloudRunV2WorkerPoolTemplateVolumesSource {
-  const CloudRunV2WorkerPoolTemplateVolumesSourceCloudSqlInstance(
-    this.cloudSqlInstance,
-  );
+/// The [CloudRunV2WorkerPoolSource.cloudSqlInstance] choice: sets `cloud_sql_instance`.
+final class CloudRunV2WorkerPoolSourceCloudSqlInstance
+    extends CloudRunV2WorkerPoolSource {
+  const CloudRunV2WorkerPoolSourceCloudSqlInstance(this.cloudSqlInstance);
 
-  final CloudRunV2WorkerPoolTemplateVolumesCloudSqlInstance cloudSqlInstance;
+  final CloudRunV2WorkerPoolCloudSqlInstance cloudSqlInstance;
 
   @override
   String get blockKey => 'cloud_sql_instance';
@@ -763,12 +651,12 @@ final class CloudRunV2WorkerPoolTemplateVolumesSourceCloudSqlInstance
   };
 }
 
-/// The [CloudRunV2WorkerPoolTemplateVolumesSource.emptyDir] choice: sets `empty_dir`.
-final class CloudRunV2WorkerPoolTemplateVolumesSourceEmptyDir
-    extends CloudRunV2WorkerPoolTemplateVolumesSource {
-  const CloudRunV2WorkerPoolTemplateVolumesSourceEmptyDir(this.emptyDir);
+/// The [CloudRunV2WorkerPoolSource.emptyDir] choice: sets `empty_dir`.
+final class CloudRunV2WorkerPoolSourceEmptyDir
+    extends CloudRunV2WorkerPoolSource {
+  const CloudRunV2WorkerPoolSourceEmptyDir(this.emptyDir);
 
-  final CloudRunV2WorkerPoolTemplateVolumesEmptyDir emptyDir;
+  final CloudRunV2WorkerPoolEmptyDir emptyDir;
 
   @override
   String get blockKey => 'empty_dir';
@@ -777,12 +665,11 @@ final class CloudRunV2WorkerPoolTemplateVolumesSourceEmptyDir
   Map<String, Object?> encode() => {'empty_dir': emptyDir.encode()};
 }
 
-/// The [CloudRunV2WorkerPoolTemplateVolumesSource.gcs] choice: sets `gcs`.
-final class CloudRunV2WorkerPoolTemplateVolumesSourceGcs
-    extends CloudRunV2WorkerPoolTemplateVolumesSource {
-  const CloudRunV2WorkerPoolTemplateVolumesSourceGcs(this.gcs);
+/// The [CloudRunV2WorkerPoolSource.gcs] choice: sets `gcs`.
+final class CloudRunV2WorkerPoolSourceGcs extends CloudRunV2WorkerPoolSource {
+  const CloudRunV2WorkerPoolSourceGcs(this.gcs);
 
-  final CloudRunV2WorkerPoolTemplateVolumesGcs gcs;
+  final CloudRunV2WorkerPoolGcs gcs;
 
   @override
   String get blockKey => 'gcs';
@@ -791,12 +678,11 @@ final class CloudRunV2WorkerPoolTemplateVolumesSourceGcs
   Map<String, Object?> encode() => {'gcs': gcs.encode()};
 }
 
-/// The [CloudRunV2WorkerPoolTemplateVolumesSource.nfs] choice: sets `nfs`.
-final class CloudRunV2WorkerPoolTemplateVolumesSourceNfs
-    extends CloudRunV2WorkerPoolTemplateVolumesSource {
-  const CloudRunV2WorkerPoolTemplateVolumesSourceNfs(this.nfs);
+/// The [CloudRunV2WorkerPoolSource.nfs] choice: sets `nfs`.
+final class CloudRunV2WorkerPoolSourceNfs extends CloudRunV2WorkerPoolSource {
+  const CloudRunV2WorkerPoolSourceNfs(this.nfs);
 
-  final CloudRunV2WorkerPoolTemplateVolumesNfs nfs;
+  final CloudRunV2WorkerPoolNfs nfs;
 
   @override
   String get blockKey => 'nfs';
@@ -805,12 +691,12 @@ final class CloudRunV2WorkerPoolTemplateVolumesSourceNfs
   Map<String, Object?> encode() => {'nfs': nfs.encode()};
 }
 
-/// The [CloudRunV2WorkerPoolTemplateVolumesSource.secret] choice: sets `secret`.
-final class CloudRunV2WorkerPoolTemplateVolumesSourceSecret
-    extends CloudRunV2WorkerPoolTemplateVolumesSource {
-  const CloudRunV2WorkerPoolTemplateVolumesSourceSecret(this.secret);
+/// The [CloudRunV2WorkerPoolSource.secret] choice: sets `secret`.
+final class CloudRunV2WorkerPoolSourceSecret
+    extends CloudRunV2WorkerPoolSource {
+  const CloudRunV2WorkerPoolSourceSecret(this.secret);
 
-  final CloudRunV2WorkerPoolTemplateVolumesSecret secret;
+  final CloudRunV2WorkerPoolSecret secret;
 
   @override
   String get blockKey => 'secret';
@@ -822,8 +708,8 @@ final class CloudRunV2WorkerPoolTemplateVolumesSourceSecret
 /// Typed helper for the `template.volumes.cloud_sql_instance` block of
 /// `google_cloud_run_v2_worker_pool` (derived from provider schema).
 @immutable
-final class CloudRunV2WorkerPoolTemplateVolumesCloudSqlInstance {
-  const CloudRunV2WorkerPoolTemplateVolumesCloudSqlInstance({this.instances});
+final class CloudRunV2WorkerPoolCloudSqlInstance {
+  const CloudRunV2WorkerPoolCloudSqlInstance({this.instances});
 
   final TfArg<List<String>>? instances;
 
@@ -833,11 +719,8 @@ final class CloudRunV2WorkerPoolTemplateVolumesCloudSqlInstance {
 /// Typed helper for the `template.volumes.empty_dir` block of
 /// `google_cloud_run_v2_worker_pool` (derived from provider schema).
 @immutable
-final class CloudRunV2WorkerPoolTemplateVolumesEmptyDir {
-  const CloudRunV2WorkerPoolTemplateVolumesEmptyDir({
-    this.medium,
-    this.sizeLimit,
-  });
+final class CloudRunV2WorkerPoolEmptyDir {
+  const CloudRunV2WorkerPoolEmptyDir({this.medium, this.sizeLimit});
 
   final TfArg<EmptyDirMedium>? medium;
 
@@ -852,8 +735,8 @@ final class CloudRunV2WorkerPoolTemplateVolumesEmptyDir {
 /// Typed helper for the `template.volumes.gcs` block of
 /// `google_cloud_run_v2_worker_pool` (derived from provider schema).
 @immutable
-final class CloudRunV2WorkerPoolTemplateVolumesGcs {
-  const CloudRunV2WorkerPoolTemplateVolumesGcs({
+final class CloudRunV2WorkerPoolGcs {
+  const CloudRunV2WorkerPoolGcs({
     required this.bucket,
     this.mountOptions,
     this.readOnly,
@@ -875,8 +758,8 @@ final class CloudRunV2WorkerPoolTemplateVolumesGcs {
 /// Typed helper for the `template.volumes.nfs` block of
 /// `google_cloud_run_v2_worker_pool` (derived from provider schema).
 @immutable
-final class CloudRunV2WorkerPoolTemplateVolumesNfs {
-  const CloudRunV2WorkerPoolTemplateVolumesNfs({
+final class CloudRunV2WorkerPoolNfs {
+  const CloudRunV2WorkerPoolNfs({
     required this.path,
     this.readOnly,
     required this.server,
@@ -898,8 +781,8 @@ final class CloudRunV2WorkerPoolTemplateVolumesNfs {
 /// Typed helper for the `template.volumes.secret` block of
 /// `google_cloud_run_v2_worker_pool` (derived from provider schema).
 @immutable
-final class CloudRunV2WorkerPoolTemplateVolumesSecret {
-  const CloudRunV2WorkerPoolTemplateVolumesSecret({
+final class CloudRunV2WorkerPoolSecret {
+  const CloudRunV2WorkerPoolSecret({
     this.defaultMode,
     required this.secret,
     this.items,
@@ -909,7 +792,7 @@ final class CloudRunV2WorkerPoolTemplateVolumesSecret {
 
   final TfArg<String> secret;
 
-  final List<CloudRunV2WorkerPoolTemplateVolumesSecretItems>? items;
+  final List<CloudRunV2WorkerPoolItems>? items;
 
   Map<String, Object?> encode() => {
     'default_mode': ?defaultMode?.toTfJson(),
@@ -921,8 +804,8 @@ final class CloudRunV2WorkerPoolTemplateVolumesSecret {
 /// Typed helper for the `template.volumes.secret.items` block of
 /// `google_cloud_run_v2_worker_pool` (derived from provider schema).
 @immutable
-final class CloudRunV2WorkerPoolTemplateVolumesSecretItems {
-  const CloudRunV2WorkerPoolTemplateVolumesSecretItems({
+final class CloudRunV2WorkerPoolItems {
+  const CloudRunV2WorkerPoolItems({
     this.mode,
     required this.path,
     this.version,
@@ -944,8 +827,8 @@ final class CloudRunV2WorkerPoolTemplateVolumesSecretItems {
 /// Typed helper for the `template.vpc_access` block of
 /// `google_cloud_run_v2_worker_pool` (derived from provider schema).
 @immutable
-final class CloudRunV2WorkerPoolTemplateVpcAccess {
-  const CloudRunV2WorkerPoolTemplateVpcAccess({
+final class CloudRunV2WorkerPoolVpcAccess {
+  const CloudRunV2WorkerPoolVpcAccess({
     this.connector,
     this.egress,
     this.networkInterfaces,
@@ -953,10 +836,9 @@ final class CloudRunV2WorkerPoolTemplateVpcAccess {
 
   final TfArg<String>? connector;
 
-  final TfArg<CloudRunV2WorkerPoolTemplateVpcAccessEgress>? egress;
+  final TfArg<CloudRunV2WorkerPoolEgress>? egress;
 
-  final List<CloudRunV2WorkerPoolTemplateVpcAccessNetworkInterfaces>?
-  networkInterfaces;
+  final List<CloudRunV2WorkerPoolNetworkInterfaces>? networkInterfaces;
 
   Map<String, Object?> encode() => {
     'connector': ?connector?.toTfJson(),
@@ -967,11 +849,11 @@ final class CloudRunV2WorkerPoolTemplateVpcAccess {
 }
 
 /// `egress` — derived from the provider schema description.
-enum CloudRunV2WorkerPoolTemplateVpcAccessEgress implements TerraformEnum {
+enum CloudRunV2WorkerPoolEgress implements TerraformEnum {
   allTraffic('ALL_TRAFFIC'),
   privateRangesOnly('PRIVATE_RANGES_ONLY');
 
-  const CloudRunV2WorkerPoolTemplateVpcAccessEgress(this.terraformValue);
+  const CloudRunV2WorkerPoolEgress(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -979,8 +861,8 @@ enum CloudRunV2WorkerPoolTemplateVpcAccessEgress implements TerraformEnum {
 /// Typed helper for the `template.vpc_access.network_interfaces` block of
 /// `google_cloud_run_v2_worker_pool` (derived from provider schema).
 @immutable
-final class CloudRunV2WorkerPoolTemplateVpcAccessNetworkInterfaces {
-  const CloudRunV2WorkerPoolTemplateVpcAccessNetworkInterfaces({
+final class CloudRunV2WorkerPoolNetworkInterfaces {
+  const CloudRunV2WorkerPoolNetworkInterfaces({
     this.network,
     this.subnetwork,
     this.tags,

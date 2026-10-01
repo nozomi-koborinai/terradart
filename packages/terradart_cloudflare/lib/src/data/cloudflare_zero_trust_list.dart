@@ -21,11 +21,11 @@ final class DataZeroTrustListFilter {
     this.type,
   });
 
-  final TfArg<DataZeroTrustListFilterDirection>? direction;
+  final TfArg<DataZeroTrustListDirection>? direction;
 
   final TfArg<List<String>>? filter;
 
-  final TfArg<DataZeroTrustListFilterOrderBy>? orderBy;
+  final TfArg<DataZeroTrustListOrderBy>? orderBy;
 
   final TfArg<String>? search;
 
@@ -41,23 +41,23 @@ final class DataZeroTrustListFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataZeroTrustListFilterDirection implements TerraformEnum {
+enum DataZeroTrustListDirection implements TerraformEnum {
   asc('asc'),
   desc('desc');
 
-  const DataZeroTrustListFilterDirection(this.terraformValue);
+  const DataZeroTrustListDirection(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `order_by` — derived from the provider schema description.
-enum DataZeroTrustListFilterOrderBy implements TerraformEnum {
+enum DataZeroTrustListOrderBy implements TerraformEnum {
   name('name'),
   createdAt('created_at'),
   updatedAt('updated_at'),
   itemCount('item_count');
 
-  const DataZeroTrustListFilterOrderBy(this.terraformValue);
+  const DataZeroTrustListOrderBy(this.terraformValue);
   @override
   final String terraformValue;
 }

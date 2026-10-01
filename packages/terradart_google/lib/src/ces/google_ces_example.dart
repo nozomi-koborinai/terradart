@@ -15,7 +15,7 @@ final class CesExampleMessages {
 
   final TfArg<String>? role;
 
-  final List<CesExampleMessagesChunks>? chunks;
+  final List<CesExampleChunks>? chunks;
 
   Map<String, Object?> encode() => {
     'role': ?role?.toTfJson(),
@@ -26,8 +26,8 @@ final class CesExampleMessages {
 /// Typed helper for the `messages.chunks` block of
 /// `google_ces_example` (derived from provider schema).
 @immutable
-final class CesExampleMessagesChunks {
-  const CesExampleMessagesChunks({
+final class CesExampleChunks {
+  const CesExampleChunks({
     this.text,
     this.updatedVariables,
     this.agentTransfer,
@@ -41,15 +41,15 @@ final class CesExampleMessagesChunks {
 
   final TfArg<String>? updatedVariables;
 
-  final CesExampleMessagesChunksAgentTransfer? agentTransfer;
+  final CesExampleAgentTransfer? agentTransfer;
 
-  final CesExampleMessagesChunksBlob? blob;
+  final CesExampleBlob? blob;
 
-  final CesExampleMessagesChunksImage? image;
+  final CesExampleImage? image;
 
-  final CesExampleMessagesChunksToolCall? toolCall;
+  final CesExampleToolCall? toolCall;
 
-  final CesExampleMessagesChunksToolResponse? toolResponse;
+  final CesExampleToolResponse? toolResponse;
 
   Map<String, Object?> encode() => {
     'text': ?text?.toTfJson(),
@@ -65,8 +65,8 @@ final class CesExampleMessagesChunks {
 /// Typed helper for the `messages.chunks.agent_transfer` block of
 /// `google_ces_example` (derived from provider schema).
 @immutable
-final class CesExampleMessagesChunksAgentTransfer {
-  const CesExampleMessagesChunksAgentTransfer({required this.targetAgent});
+final class CesExampleAgentTransfer {
+  const CesExampleAgentTransfer({required this.targetAgent});
 
   final TfArg<String> targetAgent;
 
@@ -76,11 +76,8 @@ final class CesExampleMessagesChunksAgentTransfer {
 /// Typed helper for the `messages.chunks.blob` block of
 /// `google_ces_example` (derived from provider schema).
 @immutable
-final class CesExampleMessagesChunksBlob {
-  const CesExampleMessagesChunksBlob({
-    required this.data,
-    required this.mimeType,
-  });
+final class CesExampleBlob {
+  const CesExampleBlob({required this.data, required this.mimeType});
 
   final TfArg<String> data;
 
@@ -95,8 +92,8 @@ final class CesExampleMessagesChunksBlob {
 /// Typed helper for the `messages.chunks.image` block of
 /// `google_ces_example` (derived from provider schema).
 @immutable
-final class CesExampleMessagesChunksImage {
-  const CesExampleMessagesChunksImage({
+final class CesExampleImage {
+  const CesExampleImage({
     this.altText,
     required this.data,
     required this.mimeType,
@@ -118,13 +115,8 @@ final class CesExampleMessagesChunksImage {
 /// Typed helper for the `messages.chunks.tool_call` block of
 /// `google_ces_example` (derived from provider schema).
 @immutable
-final class CesExampleMessagesChunksToolCall {
-  const CesExampleMessagesChunksToolCall({
-    this.args,
-    this.id,
-    this.tool,
-    this.toolsetTool,
-  });
+final class CesExampleToolCall {
+  const CesExampleToolCall({this.args, this.id, this.tool, this.toolsetTool});
 
   final TfArg<String>? args;
 
@@ -132,7 +124,7 @@ final class CesExampleMessagesChunksToolCall {
 
   final TfArg<String>? tool;
 
-  final CesExampleMessagesChunksToolCallToolsetTool? toolsetTool;
+  final CesExampleToolsetTool? toolsetTool;
 
   Map<String, Object?> encode() => {
     'args': ?args?.toTfJson(),
@@ -144,12 +136,10 @@ final class CesExampleMessagesChunksToolCall {
 
 /// Typed helper for the `messages.chunks.tool_call.toolset_tool` block of
 /// `google_ces_example` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CesExampleMessagesChunksToolCallToolsetTool {
-  const CesExampleMessagesChunksToolCallToolsetTool({
-    this.toolId,
-    required this.toolset,
-  });
+final class CesExampleToolsetTool {
+  const CesExampleToolsetTool({this.toolId, required this.toolset});
 
   final TfArg<String>? toolId;
 
@@ -164,8 +154,8 @@ final class CesExampleMessagesChunksToolCallToolsetTool {
 /// Typed helper for the `messages.chunks.tool_response` block of
 /// `google_ces_example` (derived from provider schema).
 @immutable
-final class CesExampleMessagesChunksToolResponse {
-  const CesExampleMessagesChunksToolResponse({
+final class CesExampleToolResponse {
+  const CesExampleToolResponse({
     this.id,
     required this.response,
     this.tool,
@@ -178,32 +168,13 @@ final class CesExampleMessagesChunksToolResponse {
 
   final TfArg<String>? tool;
 
-  final CesExampleMessagesChunksToolResponseToolsetTool? toolsetTool;
+  final CesExampleToolsetTool? toolsetTool;
 
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'response': response.toTfJson(),
     'tool': ?tool?.toTfJson(),
     'toolset_tool': ?toolsetTool?.encode(),
-  };
-}
-
-/// Typed helper for the `messages.chunks.tool_response.toolset_tool` block of
-/// `google_ces_example` (derived from provider schema).
-@immutable
-final class CesExampleMessagesChunksToolResponseToolsetTool {
-  const CesExampleMessagesChunksToolResponseToolsetTool({
-    this.toolId,
-    required this.toolset,
-  });
-
-  final TfArg<String>? toolId;
-
-  final TfArg<String> toolset;
-
-  Map<String, Object?> encode() => {
-    'tool_id': ?toolId?.toTfJson(),
-    'toolset': toolset.toTfJson(),
   };
 }
 
@@ -237,7 +208,7 @@ final class CesExampleMessagesChunksToolResponseToolsetTool {
 ///     CesExampleMessages(
 ///       role: TfArg.literal('user'),
 ///       chunks: [
-///         CesExampleMessagesChunks(
+///         CesExampleChunks(
 ///           text: TfArg.literal('Hello'),
 ///         ),
 ///       ],

@@ -1779,7 +1779,7 @@ resource "google_pubsub_subscription" "s" {
         src,
         contains(
           "delivery: .pushConfig(PubsubSubscriptionPushConfig(pushEndpoint: .literal(r'https://x'), "
-          "oidcToken: PubsubSubscriptionPushConfigOidcToken(serviceAccountEmail: .literal(r'sa@x'))))",
+          "oidcToken: PubsubSubscriptionOidcToken(serviceAccountEmail: .literal(r'sa@x'))))",
         ),
       );
       expect(src, contains('dependsOn: [ResourceDependency(t)]'));

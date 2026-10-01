@@ -20,13 +20,13 @@ final class BackupSelectionCondition {
     this.stringNotLike,
   });
 
-  final List<BackupSelectionConditionStringEquals>? stringEquals;
+  final List<BackupSelectionStringEquals>? stringEquals;
 
-  final List<BackupSelectionConditionStringLike>? stringLike;
+  final List<BackupSelectionStringLike>? stringLike;
 
-  final List<BackupSelectionConditionStringNotEquals>? stringNotEquals;
+  final List<BackupSelectionStringNotEquals>? stringNotEquals;
 
-  final List<BackupSelectionConditionStringNotLike>? stringNotLike;
+  final List<BackupSelectionStringNotLike>? stringNotLike;
 
   Map<String, Object?> encode() => {
     if (stringEquals != null)
@@ -43,11 +43,8 @@ final class BackupSelectionCondition {
 /// Typed helper for the `condition.string_equals` block of
 /// `aws_backup_selection` (derived from provider schema).
 @immutable
-final class BackupSelectionConditionStringEquals {
-  const BackupSelectionConditionStringEquals({
-    required this.key,
-    required this.value,
-  });
+final class BackupSelectionStringEquals {
+  const BackupSelectionStringEquals({required this.key, required this.value});
 
   final TfArg<String> key;
 
@@ -62,11 +59,8 @@ final class BackupSelectionConditionStringEquals {
 /// Typed helper for the `condition.string_like` block of
 /// `aws_backup_selection` (derived from provider schema).
 @immutable
-final class BackupSelectionConditionStringLike {
-  const BackupSelectionConditionStringLike({
-    required this.key,
-    required this.value,
-  });
+final class BackupSelectionStringLike {
+  const BackupSelectionStringLike({required this.key, required this.value});
 
   final TfArg<String> key;
 
@@ -81,8 +75,8 @@ final class BackupSelectionConditionStringLike {
 /// Typed helper for the `condition.string_not_equals` block of
 /// `aws_backup_selection` (derived from provider schema).
 @immutable
-final class BackupSelectionConditionStringNotEquals {
-  const BackupSelectionConditionStringNotEquals({
+final class BackupSelectionStringNotEquals {
+  const BackupSelectionStringNotEquals({
     required this.key,
     required this.value,
   });
@@ -100,11 +94,8 @@ final class BackupSelectionConditionStringNotEquals {
 /// Typed helper for the `condition.string_not_like` block of
 /// `aws_backup_selection` (derived from provider schema).
 @immutable
-final class BackupSelectionConditionStringNotLike {
-  const BackupSelectionConditionStringNotLike({
-    required this.key,
-    required this.value,
-  });
+final class BackupSelectionStringNotLike {
+  const BackupSelectionStringNotLike({required this.key, required this.value});
 
   final TfArg<String> key;
 
@@ -119,8 +110,8 @@ final class BackupSelectionConditionStringNotLike {
 /// Typed helper for the `selection_tag` block of
 /// `aws_backup_selection` (derived from provider schema).
 @immutable
-final class BackupSelectionSelectionTag {
-  const BackupSelectionSelectionTag({
+final class BackupSelectionTag {
+  const BackupSelectionTag({
     required this.key,
     required this.type,
     required this.value,
@@ -128,7 +119,7 @@ final class BackupSelectionSelectionTag {
 
   final TfArg<String> key;
 
-  final TfArg<BackupSelectionSelectionTagType> type;
+  final TfArg<BackupSelectionType> type;
 
   final TfArg<String> value;
 
@@ -140,10 +131,10 @@ final class BackupSelectionSelectionTag {
 }
 
 /// `type` — derived from the provider schema description.
-enum BackupSelectionSelectionTagType implements TerraformEnum {
+enum BackupSelectionType implements TerraformEnum {
   stringequals('STRINGEQUALS');
 
-  const BackupSelectionSelectionTagType(this.terraformValue);
+  const BackupSelectionType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -161,7 +152,7 @@ final class AwsBackupSelection extends Resource {
     TfArg<String>? region,
     TfArg<List<String>>? resources,
     List<BackupSelectionCondition>? condition,
-    List<BackupSelectionSelectionTag>? selectionTag,
+    List<BackupSelectionTag>? selectionTag,
     super.lifecycle,
     super.dependsOn,
     super.provider,

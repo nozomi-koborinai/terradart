@@ -23,7 +23,7 @@ enum BedrockagentcorePolicyValidationMode implements TerraformEnum {
 final class BedrockagentcorePolicyDefinition {
   const BedrockagentcorePolicyDefinition({this.cedar});
 
-  final List<BedrockagentcorePolicyDefinitionCedar>? cedar;
+  final List<BedrockagentcorePolicyCedar>? cedar;
 
   Map<String, Object?> encode() => {
     if (cedar != null) 'cedar': [for (final e in cedar!) e.encode()],
@@ -33,8 +33,8 @@ final class BedrockagentcorePolicyDefinition {
 /// Typed helper for the `definition.cedar` block of
 /// `aws_bedrockagentcore_policy` (derived from provider schema).
 @immutable
-final class BedrockagentcorePolicyDefinitionCedar {
-  const BedrockagentcorePolicyDefinitionCedar({required this.statement});
+final class BedrockagentcorePolicyCedar {
+  const BedrockagentcorePolicyCedar({required this.statement});
 
   final TfArg<String> statement;
 

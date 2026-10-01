@@ -83,11 +83,11 @@ final class SsmPatchBaselineApprovalRule {
 
   final TfArg<String>? approveUntilDate;
 
-  final TfArg<SsmPatchBaselineApprovalRuleComplianceLevel>? complianceLevel;
+  final TfArg<SsmPatchBaselineComplianceLevel>? complianceLevel;
 
   final TfArg<bool>? enableNonSecurity;
 
-  final List<SsmPatchBaselineApprovalRulePatchFilter> patchFilter;
+  final List<SsmPatchBaselinePatchFilter> patchFilter;
 
   Map<String, Object?> encode() => {
     'approve_after_days': ?approveAfterDays?.toTfJson(),
@@ -99,7 +99,7 @@ final class SsmPatchBaselineApprovalRule {
 }
 
 /// `compliance_level` — derived from the provider schema description.
-enum SsmPatchBaselineApprovalRuleComplianceLevel implements TerraformEnum {
+enum SsmPatchBaselineComplianceLevel implements TerraformEnum {
   critical('CRITICAL'),
   high('HIGH'),
   medium('MEDIUM'),
@@ -107,7 +107,7 @@ enum SsmPatchBaselineApprovalRuleComplianceLevel implements TerraformEnum {
   informational('INFORMATIONAL'),
   unspecified('UNSPECIFIED');
 
-  const SsmPatchBaselineApprovalRuleComplianceLevel(this.terraformValue);
+  const SsmPatchBaselineComplianceLevel(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -115,13 +115,10 @@ enum SsmPatchBaselineApprovalRuleComplianceLevel implements TerraformEnum {
 /// Typed helper for the `approval_rule.patch_filter` block of
 /// `aws_ssm_patch_baseline` (derived from provider schema).
 @immutable
-final class SsmPatchBaselineApprovalRulePatchFilter {
-  const SsmPatchBaselineApprovalRulePatchFilter({
-    required this.key,
-    required this.values,
-  });
+final class SsmPatchBaselinePatchFilter {
+  const SsmPatchBaselinePatchFilter({required this.key, required this.values});
 
-  final TfArg<SsmPatchBaselineApprovalRulePatchFilterKey> key;
+  final TfArg<SsmPatchBaselineKey> key;
 
   final TfArg<List<String>> values;
 
@@ -132,7 +129,7 @@ final class SsmPatchBaselineApprovalRulePatchFilter {
 }
 
 /// `key` — derived from the provider schema description.
-enum SsmPatchBaselineApprovalRulePatchFilterKey implements TerraformEnum {
+enum SsmPatchBaselineKey implements TerraformEnum {
   arch('ARCH'),
   advisoryId('ADVISORY_ID'),
   bugzillaId('BUGZILLA_ID'),
@@ -153,7 +150,7 @@ enum SsmPatchBaselineApprovalRulePatchFilterKey implements TerraformEnum {
   security('SECURITY'),
   version('VERSION');
 
-  const SsmPatchBaselineApprovalRulePatchFilterKey(this.terraformValue);
+  const SsmPatchBaselineKey(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -164,7 +161,7 @@ enum SsmPatchBaselineApprovalRulePatchFilterKey implements TerraformEnum {
 final class SsmPatchBaselineGlobalFilter {
   const SsmPatchBaselineGlobalFilter({required this.key, required this.values});
 
-  final TfArg<SsmPatchBaselineGlobalFilterKey> key;
+  final TfArg<SsmPatchBaselineKey> key;
 
   final TfArg<List<String>> values;
 
@@ -172,33 +169,6 @@ final class SsmPatchBaselineGlobalFilter {
     'key': key.toTfJson(),
     'values': values.toTfJson(),
   };
-}
-
-/// `key` — derived from the provider schema description.
-enum SsmPatchBaselineGlobalFilterKey implements TerraformEnum {
-  arch('ARCH'),
-  advisoryId('ADVISORY_ID'),
-  bugzillaId('BUGZILLA_ID'),
-  patchSet('PATCH_SET'),
-  product('PRODUCT'),
-  productFamily('PRODUCT_FAMILY'),
-  classification('CLASSIFICATION'),
-  cveId('CVE_ID'),
-  epoch('EPOCH'),
-  msrcSeverity('MSRC_SEVERITY'),
-  name('NAME'),
-  patchId('PATCH_ID'),
-  section('SECTION'),
-  priority('PRIORITY'),
-  repository('REPOSITORY'),
-  release('RELEASE'),
-  severity('SEVERITY'),
-  security('SECURITY'),
-  version('VERSION');
-
-  const SsmPatchBaselineGlobalFilterKey(this.terraformValue);
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `source` block of

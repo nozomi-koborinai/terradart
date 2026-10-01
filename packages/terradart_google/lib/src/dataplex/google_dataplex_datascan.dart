@@ -214,10 +214,9 @@ final class DataplexDatascanDataDiscoverySpec {
     this.storageConfig,
   });
 
-  final DataplexDatascanDataDiscoverySpecBigqueryPublishingConfig?
-  bigqueryPublishingConfig;
+  final DataplexDatascanBigqueryPublishingConfig? bigqueryPublishingConfig;
 
-  final DataplexDatascanDataDiscoverySpecStorageConfig? storageConfig;
+  final DataplexDatascanStorageConfig? storageConfig;
 
   Map<String, Object?> encode() => {
     'bigquery_publishing_config': ?bigqueryPublishingConfig?.encode(),
@@ -228,8 +227,8 @@ final class DataplexDatascanDataDiscoverySpec {
 /// Typed helper for the `data_discovery_spec.bigquery_publishing_config` block of
 /// `google_dataplex_datascan` (derived from provider schema).
 @immutable
-final class DataplexDatascanDataDiscoverySpecBigqueryPublishingConfig {
-  const DataplexDatascanDataDiscoverySpecBigqueryPublishingConfig({
+final class DataplexDatascanBigqueryPublishingConfig {
+  const DataplexDatascanBigqueryPublishingConfig({
     this.connection,
     this.location,
     this.project,
@@ -242,10 +241,7 @@ final class DataplexDatascanDataDiscoverySpecBigqueryPublishingConfig {
 
   final TfArg<String>? project;
 
-  final TfArg<
-    DataplexDatascanDataDiscoverySpecBigqueryPublishingConfigTableType
-  >?
-  tableType;
+  final TfArg<DataplexDatascanTableType>? tableType;
 
   Map<String, Object?> encode() => {
     'connection': ?connection?.toTfJson(),
@@ -256,15 +252,12 @@ final class DataplexDatascanDataDiscoverySpecBigqueryPublishingConfig {
 }
 
 /// `table_type` — derived from the provider schema description.
-enum DataplexDatascanDataDiscoverySpecBigqueryPublishingConfigTableType
-    implements TerraformEnum {
+enum DataplexDatascanTableType implements TerraformEnum {
   tableTypeUnspecified('TABLE_TYPE_UNSPECIFIED'),
   external('EXTERNAL'),
   biglake('BIGLAKE');
 
-  const DataplexDatascanDataDiscoverySpecBigqueryPublishingConfigTableType(
-    this.terraformValue,
-  );
+  const DataplexDatascanTableType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -272,8 +265,8 @@ enum DataplexDatascanDataDiscoverySpecBigqueryPublishingConfigTableType
 /// Typed helper for the `data_discovery_spec.storage_config` block of
 /// `google_dataplex_datascan` (derived from provider schema).
 @immutable
-final class DataplexDatascanDataDiscoverySpecStorageConfig {
-  const DataplexDatascanDataDiscoverySpecStorageConfig({
+final class DataplexDatascanStorageConfig {
+  const DataplexDatascanStorageConfig({
     this.excludePatterns,
     this.includePatterns,
     this.csvOptions,
@@ -284,9 +277,9 @@ final class DataplexDatascanDataDiscoverySpecStorageConfig {
 
   final TfArg<List<String>>? includePatterns;
 
-  final DataplexDatascanDataDiscoverySpecStorageConfigCsvOptions? csvOptions;
+  final DataplexDatascanCsvOptions? csvOptions;
 
-  final DataplexDatascanDataDiscoverySpecStorageConfigJsonOptions? jsonOptions;
+  final DataplexDatascanJsonOptions? jsonOptions;
 
   Map<String, Object?> encode() => {
     'exclude_patterns': ?excludePatterns?.toTfJson(),
@@ -299,8 +292,8 @@ final class DataplexDatascanDataDiscoverySpecStorageConfig {
 /// Typed helper for the `data_discovery_spec.storage_config.csv_options` block of
 /// `google_dataplex_datascan` (derived from provider schema).
 @immutable
-final class DataplexDatascanDataDiscoverySpecStorageConfigCsvOptions {
-  const DataplexDatascanDataDiscoverySpecStorageConfigCsvOptions({
+final class DataplexDatascanCsvOptions {
+  const DataplexDatascanCsvOptions({
     this.delimiter,
     this.encoding,
     this.headerRows,
@@ -330,8 +323,8 @@ final class DataplexDatascanDataDiscoverySpecStorageConfigCsvOptions {
 /// Typed helper for the `data_discovery_spec.storage_config.json_options` block of
 /// `google_dataplex_datascan` (derived from provider schema).
 @immutable
-final class DataplexDatascanDataDiscoverySpecStorageConfigJsonOptions {
-  const DataplexDatascanDataDiscoverySpecStorageConfigJsonOptions({
+final class DataplexDatascanJsonOptions {
+  const DataplexDatascanJsonOptions({
     this.encoding,
     this.typeInferenceDisabled,
   });
@@ -357,7 +350,7 @@ final class DataplexDatascanDataDocumentationSpec {
 
   final TfArg<bool>? catalogPublishingEnabled;
 
-  final TfArg<DataplexDatascanDataDocumentationSpecSqlDialect>? sqlDialect;
+  final TfArg<DataplexDatascanSqlDialect>? sqlDialect;
 
   Map<String, Object?> encode() => {
     'catalog_publishing_enabled': ?catalogPublishingEnabled?.toTfJson(),
@@ -366,11 +359,11 @@ final class DataplexDatascanDataDocumentationSpec {
 }
 
 /// `sql_dialect` — derived from the provider schema description.
-enum DataplexDatascanDataDocumentationSpecSqlDialect implements TerraformEnum {
+enum DataplexDatascanSqlDialect implements TerraformEnum {
   googleSql('GOOGLE_SQL'),
   sparkSql('SPARK_SQL');
 
-  const DataplexDatascanDataDocumentationSpecSqlDialect(this.terraformValue);
+  const DataplexDatascanSqlDialect(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -394,9 +387,9 @@ final class DataplexDatascanDataProfileSpec {
 
   final TfArg<num>? samplingPercent;
 
-  final DataplexDatascanDataProfileSpecExcludeFields? excludeFields;
+  final DataplexDatascanExcludeFields? excludeFields;
 
-  final DataplexDatascanDataProfileSpecIncludeFields? includeFields;
+  final DataplexDatascanIncludeFields? includeFields;
 
   final DataplexDatascanDataProfileSpecPostScanActions? postScanActions;
 
@@ -413,8 +406,8 @@ final class DataplexDatascanDataProfileSpec {
 /// Typed helper for the `data_profile_spec.exclude_fields` block of
 /// `google_dataplex_datascan` (derived from provider schema).
 @immutable
-final class DataplexDatascanDataProfileSpecExcludeFields {
-  const DataplexDatascanDataProfileSpecExcludeFields({this.fieldNames});
+final class DataplexDatascanExcludeFields {
+  const DataplexDatascanExcludeFields({this.fieldNames});
 
   final TfArg<List<String>>? fieldNames;
 
@@ -424,8 +417,8 @@ final class DataplexDatascanDataProfileSpecExcludeFields {
 /// Typed helper for the `data_profile_spec.include_fields` block of
 /// `google_dataplex_datascan` (derived from provider schema).
 @immutable
-final class DataplexDatascanDataProfileSpecIncludeFields {
-  const DataplexDatascanDataProfileSpecIncludeFields({this.fieldNames});
+final class DataplexDatascanIncludeFields {
+  const DataplexDatascanIncludeFields({this.fieldNames});
 
   final TfArg<List<String>>? fieldNames;
 
@@ -438,8 +431,7 @@ final class DataplexDatascanDataProfileSpecIncludeFields {
 final class DataplexDatascanDataProfileSpecPostScanActions {
   const DataplexDatascanDataProfileSpecPostScanActions({this.bigqueryExport});
 
-  final DataplexDatascanDataProfileSpecPostScanActionsBigqueryExport?
-  bigqueryExport;
+  final DataplexDatascanBigqueryExport? bigqueryExport;
 
   Map<String, Object?> encode() => {
     'bigquery_export': ?bigqueryExport?.encode(),
@@ -448,11 +440,10 @@ final class DataplexDatascanDataProfileSpecPostScanActions {
 
 /// Typed helper for the `data_profile_spec.post_scan_actions.bigquery_export` block of
 /// `google_dataplex_datascan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataplexDatascanDataProfileSpecPostScanActionsBigqueryExport {
-  const DataplexDatascanDataProfileSpecPostScanActionsBigqueryExport({
-    this.resultsTable,
-  });
+final class DataplexDatascanBigqueryExport {
+  const DataplexDatascanBigqueryExport({this.resultsTable});
 
   final TfArg<String>? resultsTable;
 
@@ -485,7 +476,7 @@ final class DataplexDatascanDataQualitySpec {
 
   final DataplexDatascanDataQualitySpecPostScanActions? postScanActions;
 
-  final List<DataplexDatascanDataQualitySpecRules>? rules;
+  final List<DataplexDatascanRules>? rules;
 
   Map<String, Object?> encode() => {
     'catalog_publishing_enabled': ?catalogPublishingEnabled?.toTfJson(),
@@ -507,11 +498,9 @@ final class DataplexDatascanDataQualitySpecPostScanActions {
     this.notificationReport,
   });
 
-  final DataplexDatascanDataQualitySpecPostScanActionsBigqueryExport?
-  bigqueryExport;
+  final DataplexDatascanBigqueryExport? bigqueryExport;
 
-  final DataplexDatascanDataQualitySpecPostScanActionsNotificationReport?
-  notificationReport;
+  final DataplexDatascanNotificationReport? notificationReport;
 
   Map<String, Object?> encode() => {
     'bigquery_export': ?bigqueryExport?.encode(),
@@ -519,41 +508,24 @@ final class DataplexDatascanDataQualitySpecPostScanActions {
   };
 }
 
-/// Typed helper for the `data_quality_spec.post_scan_actions.bigquery_export` block of
-/// `google_dataplex_datascan` (derived from provider schema).
-@immutable
-final class DataplexDatascanDataQualitySpecPostScanActionsBigqueryExport {
-  const DataplexDatascanDataQualitySpecPostScanActionsBigqueryExport({
-    this.resultsTable,
-  });
-
-  final TfArg<String>? resultsTable;
-
-  Map<String, Object?> encode() => {'results_table': ?resultsTable?.toTfJson()};
-}
-
 /// Typed helper for the `data_quality_spec.post_scan_actions.notification_report` block of
 /// `google_dataplex_datascan` (derived from provider schema).
 @immutable
-final class DataplexDatascanDataQualitySpecPostScanActionsNotificationReport {
-  const DataplexDatascanDataQualitySpecPostScanActionsNotificationReport({
+final class DataplexDatascanNotificationReport {
+  const DataplexDatascanNotificationReport({
     this.jobEndTrigger,
     this.jobFailureTrigger,
     required this.recipients,
     this.scoreThresholdTrigger,
   });
 
-  final DataplexDatascanDataQualitySpecPostScanActionsNotificationReportJobEndTrigger?
-  jobEndTrigger;
+  final DataplexDatascanJobEndTrigger? jobEndTrigger;
 
-  final DataplexDatascanDataQualitySpecPostScanActionsNotificationReportJobFailureTrigger?
-  jobFailureTrigger;
+  final DataplexDatascanJobFailureTrigger? jobFailureTrigger;
 
-  final DataplexDatascanDataQualitySpecPostScanActionsNotificationReportRecipients
-  recipients;
+  final DataplexDatascanRecipients recipients;
 
-  final DataplexDatascanDataQualitySpecPostScanActionsNotificationReportScoreThresholdTrigger?
-  scoreThresholdTrigger;
+  final DataplexDatascanScoreThresholdTrigger? scoreThresholdTrigger;
 
   Map<String, Object?> encode() => {
     'job_end_trigger': ?jobEndTrigger?.encode(),
@@ -566,8 +538,8 @@ final class DataplexDatascanDataQualitySpecPostScanActionsNotificationReport {
 /// Typed helper for the `data_quality_spec.post_scan_actions.notification_report.job_end_trigger` block of
 /// `google_dataplex_datascan` (derived from provider schema).
 @immutable
-final class DataplexDatascanDataQualitySpecPostScanActionsNotificationReportJobEndTrigger {
-  const DataplexDatascanDataQualitySpecPostScanActionsNotificationReportJobEndTrigger();
+final class DataplexDatascanJobEndTrigger {
+  const DataplexDatascanJobEndTrigger();
 
   Map<String, Object?> encode() => {};
 }
@@ -575,8 +547,8 @@ final class DataplexDatascanDataQualitySpecPostScanActionsNotificationReportJobE
 /// Typed helper for the `data_quality_spec.post_scan_actions.notification_report.job_failure_trigger` block of
 /// `google_dataplex_datascan` (derived from provider schema).
 @immutable
-final class DataplexDatascanDataQualitySpecPostScanActionsNotificationReportJobFailureTrigger {
-  const DataplexDatascanDataQualitySpecPostScanActionsNotificationReportJobFailureTrigger();
+final class DataplexDatascanJobFailureTrigger {
+  const DataplexDatascanJobFailureTrigger();
 
   Map<String, Object?> encode() => {};
 }
@@ -584,10 +556,8 @@ final class DataplexDatascanDataQualitySpecPostScanActionsNotificationReportJobF
 /// Typed helper for the `data_quality_spec.post_scan_actions.notification_report.recipients` block of
 /// `google_dataplex_datascan` (derived from provider schema).
 @immutable
-final class DataplexDatascanDataQualitySpecPostScanActionsNotificationReportRecipients {
-  const DataplexDatascanDataQualitySpecPostScanActionsNotificationReportRecipients({
-    this.emails,
-  });
+final class DataplexDatascanRecipients {
+  const DataplexDatascanRecipients({this.emails});
 
   final TfArg<List<String>>? emails;
 
@@ -597,10 +567,8 @@ final class DataplexDatascanDataQualitySpecPostScanActionsNotificationReportReci
 /// Typed helper for the `data_quality_spec.post_scan_actions.notification_report.score_threshold_trigger` block of
 /// `google_dataplex_datascan` (derived from provider schema).
 @immutable
-final class DataplexDatascanDataQualitySpecPostScanActionsNotificationReportScoreThresholdTrigger {
-  const DataplexDatascanDataQualitySpecPostScanActionsNotificationReportScoreThresholdTrigger({
-    this.scoreThreshold,
-  });
+final class DataplexDatascanScoreThresholdTrigger {
+  const DataplexDatascanScoreThresholdTrigger({this.scoreThreshold});
 
   final TfArg<num>? scoreThreshold;
 
@@ -612,8 +580,8 @@ final class DataplexDatascanDataQualitySpecPostScanActionsNotificationReportScor
 /// Typed helper for the `data_quality_spec.rules` block of
 /// `google_dataplex_datascan` (derived from provider schema).
 @immutable
-final class DataplexDatascanDataQualitySpecRules {
-  const DataplexDatascanDataQualitySpecRules({
+final class DataplexDatascanRules {
+  const DataplexDatascanRules({
     this.attributes,
     this.column,
     this.description,
@@ -650,31 +618,25 @@ final class DataplexDatascanDataQualitySpecRules {
 
   final TfArg<num>? threshold;
 
-  final DataplexDatascanDataQualitySpecRulesNonNullExpectation?
-  nonNullExpectation;
+  final DataplexDatascanNonNullExpectation? nonNullExpectation;
 
-  final DataplexDatascanDataQualitySpecRulesRangeExpectation? rangeExpectation;
+  final DataplexDatascanRangeExpectation? rangeExpectation;
 
-  final DataplexDatascanDataQualitySpecRulesRegexExpectation? regexExpectation;
+  final DataplexDatascanRegexExpectation? regexExpectation;
 
-  final DataplexDatascanDataQualitySpecRulesRowConditionExpectation?
-  rowConditionExpectation;
+  final DataplexDatascanRowConditionExpectation? rowConditionExpectation;
 
-  final DataplexDatascanDataQualitySpecRulesSetExpectation? setExpectation;
+  final DataplexDatascanSetExpectation? setExpectation;
 
-  final DataplexDatascanDataQualitySpecRulesSqlAssertion? sqlAssertion;
+  final DataplexDatascanSqlAssertion? sqlAssertion;
 
-  final DataplexDatascanDataQualitySpecRulesStatisticRangeExpectation?
-  statisticRangeExpectation;
+  final DataplexDatascanStatisticRangeExpectation? statisticRangeExpectation;
 
-  final DataplexDatascanDataQualitySpecRulesTableConditionExpectation?
-  tableConditionExpectation;
+  final DataplexDatascanTableConditionExpectation? tableConditionExpectation;
 
-  final DataplexDatascanDataQualitySpecRulesTemplateReference?
-  templateReference;
+  final DataplexDatascanTemplateReference? templateReference;
 
-  final DataplexDatascanDataQualitySpecRulesUniquenessExpectation?
-  uniquenessExpectation;
+  final DataplexDatascanUniquenessExpectation? uniquenessExpectation;
 
   Map<String, Object?> encode() => {
     'attributes': ?attributes?.toTfJson(),
@@ -701,8 +663,8 @@ final class DataplexDatascanDataQualitySpecRules {
 /// Typed helper for the `data_quality_spec.rules.non_null_expectation` block of
 /// `google_dataplex_datascan` (derived from provider schema).
 @immutable
-final class DataplexDatascanDataQualitySpecRulesNonNullExpectation {
-  const DataplexDatascanDataQualitySpecRulesNonNullExpectation();
+final class DataplexDatascanNonNullExpectation {
+  const DataplexDatascanNonNullExpectation();
 
   Map<String, Object?> encode() => {};
 }
@@ -710,8 +672,8 @@ final class DataplexDatascanDataQualitySpecRulesNonNullExpectation {
 /// Typed helper for the `data_quality_spec.rules.range_expectation` block of
 /// `google_dataplex_datascan` (derived from provider schema).
 @immutable
-final class DataplexDatascanDataQualitySpecRulesRangeExpectation {
-  const DataplexDatascanDataQualitySpecRulesRangeExpectation({
+final class DataplexDatascanRangeExpectation {
+  const DataplexDatascanRangeExpectation({
     this.maxValue,
     this.minValue,
     this.strictMaxEnabled,
@@ -737,10 +699,8 @@ final class DataplexDatascanDataQualitySpecRulesRangeExpectation {
 /// Typed helper for the `data_quality_spec.rules.regex_expectation` block of
 /// `google_dataplex_datascan` (derived from provider schema).
 @immutable
-final class DataplexDatascanDataQualitySpecRulesRegexExpectation {
-  const DataplexDatascanDataQualitySpecRulesRegexExpectation({
-    required this.regex,
-  });
+final class DataplexDatascanRegexExpectation {
+  const DataplexDatascanRegexExpectation({required this.regex});
 
   final TfArg<String> regex;
 
@@ -750,10 +710,8 @@ final class DataplexDatascanDataQualitySpecRulesRegexExpectation {
 /// Typed helper for the `data_quality_spec.rules.row_condition_expectation` block of
 /// `google_dataplex_datascan` (derived from provider schema).
 @immutable
-final class DataplexDatascanDataQualitySpecRulesRowConditionExpectation {
-  const DataplexDatascanDataQualitySpecRulesRowConditionExpectation({
-    required this.sqlExpression,
-  });
+final class DataplexDatascanRowConditionExpectation {
+  const DataplexDatascanRowConditionExpectation({required this.sqlExpression});
 
   final TfArg<String> sqlExpression;
 
@@ -763,10 +721,8 @@ final class DataplexDatascanDataQualitySpecRulesRowConditionExpectation {
 /// Typed helper for the `data_quality_spec.rules.set_expectation` block of
 /// `google_dataplex_datascan` (derived from provider schema).
 @immutable
-final class DataplexDatascanDataQualitySpecRulesSetExpectation {
-  const DataplexDatascanDataQualitySpecRulesSetExpectation({
-    required this.values,
-  });
+final class DataplexDatascanSetExpectation {
+  const DataplexDatascanSetExpectation({required this.values});
 
   final TfArg<List<String>> values;
 
@@ -776,10 +732,8 @@ final class DataplexDatascanDataQualitySpecRulesSetExpectation {
 /// Typed helper for the `data_quality_spec.rules.sql_assertion` block of
 /// `google_dataplex_datascan` (derived from provider schema).
 @immutable
-final class DataplexDatascanDataQualitySpecRulesSqlAssertion {
-  const DataplexDatascanDataQualitySpecRulesSqlAssertion({
-    required this.sqlStatement,
-  });
+final class DataplexDatascanSqlAssertion {
+  const DataplexDatascanSqlAssertion({required this.sqlStatement});
 
   final TfArg<String> sqlStatement;
 
@@ -789,8 +743,8 @@ final class DataplexDatascanDataQualitySpecRulesSqlAssertion {
 /// Typed helper for the `data_quality_spec.rules.statistic_range_expectation` block of
 /// `google_dataplex_datascan` (derived from provider schema).
 @immutable
-final class DataplexDatascanDataQualitySpecRulesStatisticRangeExpectation {
-  const DataplexDatascanDataQualitySpecRulesStatisticRangeExpectation({
+final class DataplexDatascanStatisticRangeExpectation {
+  const DataplexDatascanStatisticRangeExpectation({
     this.maxValue,
     this.minValue,
     required this.statistic,
@@ -802,10 +756,7 @@ final class DataplexDatascanDataQualitySpecRulesStatisticRangeExpectation {
 
   final TfArg<String>? minValue;
 
-  final TfArg<
-    DataplexDatascanDataQualitySpecRulesStatisticRangeExpectationStatistic
-  >
-  statistic;
+  final TfArg<DataplexDatascanStatistic> statistic;
 
   final TfArg<bool>? strictMaxEnabled;
 
@@ -821,16 +772,13 @@ final class DataplexDatascanDataQualitySpecRulesStatisticRangeExpectation {
 }
 
 /// `statistic` — derived from the provider schema description.
-enum DataplexDatascanDataQualitySpecRulesStatisticRangeExpectationStatistic
-    implements TerraformEnum {
+enum DataplexDatascanStatistic implements TerraformEnum {
   statisticUndefined('STATISTIC_UNDEFINED'),
   mean('MEAN'),
   min('MIN'),
   max('MAX');
 
-  const DataplexDatascanDataQualitySpecRulesStatisticRangeExpectationStatistic(
-    this.terraformValue,
-  );
+  const DataplexDatascanStatistic(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -838,8 +786,8 @@ enum DataplexDatascanDataQualitySpecRulesStatisticRangeExpectationStatistic
 /// Typed helper for the `data_quality_spec.rules.table_condition_expectation` block of
 /// `google_dataplex_datascan` (derived from provider schema).
 @immutable
-final class DataplexDatascanDataQualitySpecRulesTableConditionExpectation {
-  const DataplexDatascanDataQualitySpecRulesTableConditionExpectation({
+final class DataplexDatascanTableConditionExpectation {
+  const DataplexDatascanTableConditionExpectation({
     required this.sqlExpression,
   });
 
@@ -851,16 +799,12 @@ final class DataplexDatascanDataQualitySpecRulesTableConditionExpectation {
 /// Typed helper for the `data_quality_spec.rules.template_reference` block of
 /// `google_dataplex_datascan` (derived from provider schema).
 @immutable
-final class DataplexDatascanDataQualitySpecRulesTemplateReference {
-  const DataplexDatascanDataQualitySpecRulesTemplateReference({
-    required this.name,
-    this.values,
-  });
+final class DataplexDatascanTemplateReference {
+  const DataplexDatascanTemplateReference({required this.name, this.values});
 
   final TfArg<String> name;
 
-  final List<DataplexDatascanDataQualitySpecRulesTemplateReferenceValues>?
-  values;
+  final List<DataplexDatascanValues>? values;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -871,11 +815,8 @@ final class DataplexDatascanDataQualitySpecRulesTemplateReference {
 /// Typed helper for the `data_quality_spec.rules.template_reference.values` block of
 /// `google_dataplex_datascan` (derived from provider schema).
 @immutable
-final class DataplexDatascanDataQualitySpecRulesTemplateReferenceValues {
-  const DataplexDatascanDataQualitySpecRulesTemplateReferenceValues({
-    required this.name,
-    required this.value,
-  });
+final class DataplexDatascanValues {
+  const DataplexDatascanValues({required this.name, required this.value});
 
   final TfArg<String> name;
 
@@ -890,8 +831,8 @@ final class DataplexDatascanDataQualitySpecRulesTemplateReferenceValues {
 /// Typed helper for the `data_quality_spec.rules.uniqueness_expectation` block of
 /// `google_dataplex_datascan` (derived from provider schema).
 @immutable
-final class DataplexDatascanDataQualitySpecRulesUniquenessExpectation {
-  const DataplexDatascanDataQualitySpecRulesUniquenessExpectation();
+final class DataplexDatascanUniquenessExpectation {
+  const DataplexDatascanUniquenessExpectation();
 
   Map<String, Object?> encode() => {};
 }
@@ -905,18 +846,18 @@ sealed class DataplexDatascanExecutionIdentity {
 
   /// Sets `dataplex_service_agent`.
   const factory DataplexDatascanExecutionIdentity.dataplexServiceAgent(
-    DataplexDatascanExecutionIdentityDataplexServiceAgent dataplexServiceAgent,
-  ) = DataplexDatascanExecutionIdentityDataplexServiceAgentChoice;
+    DataplexDatascanDataplexServiceAgent dataplexServiceAgent,
+  ) = DataplexDatascanExecutionIdentityDataplexServiceAgent;
 
   /// Sets `user_credential`.
   const factory DataplexDatascanExecutionIdentity.userCredential(
-    DataplexDatascanExecutionIdentityUserCredential userCredential,
-  ) = DataplexDatascanExecutionIdentityUserCredentialChoice;
+    DataplexDatascanUserCredential userCredential,
+  ) = DataplexDatascanExecutionIdentityUserCredential;
 
   /// Sets `service_account`.
   const factory DataplexDatascanExecutionIdentity.serviceAccount(
-    DataplexDatascanExecutionIdentityServiceAccount serviceAccount,
-  ) = DataplexDatascanExecutionIdentityServiceAccountChoice;
+    DataplexDatascanServiceAccount serviceAccount,
+  ) = DataplexDatascanExecutionIdentityServiceAccount;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -925,14 +866,13 @@ sealed class DataplexDatascanExecutionIdentity {
 }
 
 /// The [DataplexDatascanExecutionIdentity.dataplexServiceAgent] choice: sets `dataplex_service_agent`.
-final class DataplexDatascanExecutionIdentityDataplexServiceAgentChoice
+final class DataplexDatascanExecutionIdentityDataplexServiceAgent
     extends DataplexDatascanExecutionIdentity {
-  const DataplexDatascanExecutionIdentityDataplexServiceAgentChoice(
+  const DataplexDatascanExecutionIdentityDataplexServiceAgent(
     this.dataplexServiceAgent,
   );
 
-  final DataplexDatascanExecutionIdentityDataplexServiceAgent
-  dataplexServiceAgent;
+  final DataplexDatascanDataplexServiceAgent dataplexServiceAgent;
 
   @override
   String get blockKey => 'dataplex_service_agent';
@@ -944,13 +884,11 @@ final class DataplexDatascanExecutionIdentityDataplexServiceAgentChoice
 }
 
 /// The [DataplexDatascanExecutionIdentity.userCredential] choice: sets `user_credential`.
-final class DataplexDatascanExecutionIdentityUserCredentialChoice
+final class DataplexDatascanExecutionIdentityUserCredential
     extends DataplexDatascanExecutionIdentity {
-  const DataplexDatascanExecutionIdentityUserCredentialChoice(
-    this.userCredential,
-  );
+  const DataplexDatascanExecutionIdentityUserCredential(this.userCredential);
 
-  final DataplexDatascanExecutionIdentityUserCredential userCredential;
+  final DataplexDatascanUserCredential userCredential;
 
   @override
   String get blockKey => 'user_credential';
@@ -960,13 +898,11 @@ final class DataplexDatascanExecutionIdentityUserCredentialChoice
 }
 
 /// The [DataplexDatascanExecutionIdentity.serviceAccount] choice: sets `service_account`.
-final class DataplexDatascanExecutionIdentityServiceAccountChoice
+final class DataplexDatascanExecutionIdentityServiceAccount
     extends DataplexDatascanExecutionIdentity {
-  const DataplexDatascanExecutionIdentityServiceAccountChoice(
-    this.serviceAccount,
-  );
+  const DataplexDatascanExecutionIdentityServiceAccount(this.serviceAccount);
 
-  final DataplexDatascanExecutionIdentityServiceAccount serviceAccount;
+  final DataplexDatascanServiceAccount serviceAccount;
 
   @override
   String get blockKey => 'service_account';
@@ -978,8 +914,8 @@ final class DataplexDatascanExecutionIdentityServiceAccountChoice
 /// Typed helper for the `execution_identity.dataplex_service_agent` block of
 /// `google_dataplex_datascan` (derived from provider schema).
 @immutable
-final class DataplexDatascanExecutionIdentityDataplexServiceAgent {
-  const DataplexDatascanExecutionIdentityDataplexServiceAgent();
+final class DataplexDatascanDataplexServiceAgent {
+  const DataplexDatascanDataplexServiceAgent();
 
   Map<String, Object?> encode() => {};
 }
@@ -987,8 +923,8 @@ final class DataplexDatascanExecutionIdentityDataplexServiceAgent {
 /// Typed helper for the `execution_identity.service_account` block of
 /// `google_dataplex_datascan` (derived from provider schema).
 @immutable
-final class DataplexDatascanExecutionIdentityServiceAccount {
-  const DataplexDatascanExecutionIdentityServiceAccount({required this.email});
+final class DataplexDatascanServiceAccount {
+  const DataplexDatascanServiceAccount({required this.email});
 
   final RefTo<GoogleServiceAccount> email;
 
@@ -1000,8 +936,8 @@ final class DataplexDatascanExecutionIdentityServiceAccount {
 /// Typed helper for the `execution_identity.user_credential` block of
 /// `google_dataplex_datascan` (derived from provider schema).
 @immutable
-final class DataplexDatascanExecutionIdentityUserCredential {
-  const DataplexDatascanExecutionIdentityUserCredential();
+final class DataplexDatascanUserCredential {
+  const DataplexDatascanUserCredential();
 
   Map<String, Object?> encode() => {};
 }
@@ -1014,7 +950,7 @@ final class DataplexDatascanExecutionSpec {
 
   final TfArg<String>? field;
 
-  final DataplexDatascanExecutionSpecTrigger trigger;
+  final DataplexDatascanTrigger trigger;
 
   Map<String, Object?> encode() => {
     'field': ?field?.toTfJson(),
@@ -1026,23 +962,23 @@ final class DataplexDatascanExecutionSpec {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.onDemand(...)`.
-sealed class DataplexDatascanExecutionSpecTrigger {
-  const DataplexDatascanExecutionSpecTrigger();
+sealed class DataplexDatascanTrigger {
+  const DataplexDatascanTrigger();
 
   /// Sets `on_demand`.
-  const factory DataplexDatascanExecutionSpecTrigger.onDemand(
-    DataplexDatascanExecutionSpecTriggerOnDemand onDemand,
-  ) = DataplexDatascanExecutionSpecTriggerOnDemandChoice;
+  const factory DataplexDatascanTrigger.onDemand(
+    DataplexDatascanOnDemand onDemand,
+  ) = DataplexDatascanTriggerOnDemand;
 
   /// Sets `schedule`.
-  const factory DataplexDatascanExecutionSpecTrigger.schedule(
-    DataplexDatascanExecutionSpecTriggerSchedule schedule,
-  ) = DataplexDatascanExecutionSpecTriggerScheduleChoice;
+  const factory DataplexDatascanTrigger.schedule(
+    DataplexDatascanSchedule schedule,
+  ) = DataplexDatascanTriggerSchedule;
 
   /// Sets `one_time`.
-  const factory DataplexDatascanExecutionSpecTrigger.oneTime(
-    DataplexDatascanExecutionSpecTriggerOneTime oneTime,
-  ) = DataplexDatascanExecutionSpecTriggerOneTimeChoice;
+  const factory DataplexDatascanTrigger.oneTime(
+    DataplexDatascanOneTime oneTime,
+  ) = DataplexDatascanTriggerOneTime;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1050,12 +986,11 @@ sealed class DataplexDatascanExecutionSpecTrigger {
   Map<String, Object?> encode();
 }
 
-/// The [DataplexDatascanExecutionSpecTrigger.onDemand] choice: sets `on_demand`.
-final class DataplexDatascanExecutionSpecTriggerOnDemandChoice
-    extends DataplexDatascanExecutionSpecTrigger {
-  const DataplexDatascanExecutionSpecTriggerOnDemandChoice(this.onDemand);
+/// The [DataplexDatascanTrigger.onDemand] choice: sets `on_demand`.
+final class DataplexDatascanTriggerOnDemand extends DataplexDatascanTrigger {
+  const DataplexDatascanTriggerOnDemand(this.onDemand);
 
-  final DataplexDatascanExecutionSpecTriggerOnDemand onDemand;
+  final DataplexDatascanOnDemand onDemand;
 
   @override
   String get blockKey => 'on_demand';
@@ -1064,12 +999,11 @@ final class DataplexDatascanExecutionSpecTriggerOnDemandChoice
   Map<String, Object?> encode() => {'on_demand': onDemand.encode()};
 }
 
-/// The [DataplexDatascanExecutionSpecTrigger.schedule] choice: sets `schedule`.
-final class DataplexDatascanExecutionSpecTriggerScheduleChoice
-    extends DataplexDatascanExecutionSpecTrigger {
-  const DataplexDatascanExecutionSpecTriggerScheduleChoice(this.schedule);
+/// The [DataplexDatascanTrigger.schedule] choice: sets `schedule`.
+final class DataplexDatascanTriggerSchedule extends DataplexDatascanTrigger {
+  const DataplexDatascanTriggerSchedule(this.schedule);
 
-  final DataplexDatascanExecutionSpecTriggerSchedule schedule;
+  final DataplexDatascanSchedule schedule;
 
   @override
   String get blockKey => 'schedule';
@@ -1078,12 +1012,11 @@ final class DataplexDatascanExecutionSpecTriggerScheduleChoice
   Map<String, Object?> encode() => {'schedule': schedule.encode()};
 }
 
-/// The [DataplexDatascanExecutionSpecTrigger.oneTime] choice: sets `one_time`.
-final class DataplexDatascanExecutionSpecTriggerOneTimeChoice
-    extends DataplexDatascanExecutionSpecTrigger {
-  const DataplexDatascanExecutionSpecTriggerOneTimeChoice(this.oneTime);
+/// The [DataplexDatascanTrigger.oneTime] choice: sets `one_time`.
+final class DataplexDatascanTriggerOneTime extends DataplexDatascanTrigger {
+  const DataplexDatascanTriggerOneTime(this.oneTime);
 
-  final DataplexDatascanExecutionSpecTriggerOneTime oneTime;
+  final DataplexDatascanOneTime oneTime;
 
   @override
   String get blockKey => 'one_time';
@@ -1095,8 +1028,8 @@ final class DataplexDatascanExecutionSpecTriggerOneTimeChoice
 /// Typed helper for the `execution_spec.trigger.on_demand` block of
 /// `google_dataplex_datascan` (derived from provider schema).
 @immutable
-final class DataplexDatascanExecutionSpecTriggerOnDemand {
-  const DataplexDatascanExecutionSpecTriggerOnDemand();
+final class DataplexDatascanOnDemand {
+  const DataplexDatascanOnDemand();
 
   Map<String, Object?> encode() => {};
 }
@@ -1104,10 +1037,8 @@ final class DataplexDatascanExecutionSpecTriggerOnDemand {
 /// Typed helper for the `execution_spec.trigger.one_time` block of
 /// `google_dataplex_datascan` (derived from provider schema).
 @immutable
-final class DataplexDatascanExecutionSpecTriggerOneTime {
-  const DataplexDatascanExecutionSpecTriggerOneTime({
-    this.ttlAfterScanCompletion,
-  });
+final class DataplexDatascanOneTime {
+  const DataplexDatascanOneTime({this.ttlAfterScanCompletion});
 
   final TfArg<String>? ttlAfterScanCompletion;
 
@@ -1119,8 +1050,8 @@ final class DataplexDatascanExecutionSpecTriggerOneTime {
 /// Typed helper for the `execution_spec.trigger.schedule` block of
 /// `google_dataplex_datascan` (derived from provider schema).
 @immutable
-final class DataplexDatascanExecutionSpecTriggerSchedule {
-  const DataplexDatascanExecutionSpecTriggerSchedule({required this.cron});
+final class DataplexDatascanSchedule {
+  const DataplexDatascanSchedule({required this.cron});
 
   final TfArg<String> cron;
 

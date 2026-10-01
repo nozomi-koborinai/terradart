@@ -173,7 +173,7 @@ final class IamWorkloadIdentityPoolProviderSaml {
 final class IamWorkloadIdentityPoolProviderX509 {
   const IamWorkloadIdentityPoolProviderX509({required this.trustStore});
 
-  final IamWorkloadIdentityPoolProviderX509TrustStore trustStore;
+  final IamWorkloadIdentityPoolProviderTrustStore trustStore;
 
   Map<String, Object?> encode() => {'trust_store': trustStore.encode()};
 }
@@ -181,17 +181,15 @@ final class IamWorkloadIdentityPoolProviderX509 {
 /// Typed helper for the `x509.trust_store` block of
 /// `google_iam_workload_identity_pool_provider` (derived from provider schema).
 @immutable
-final class IamWorkloadIdentityPoolProviderX509TrustStore {
-  const IamWorkloadIdentityPoolProviderX509TrustStore({
+final class IamWorkloadIdentityPoolProviderTrustStore {
+  const IamWorkloadIdentityPoolProviderTrustStore({
     this.intermediateCas,
     required this.trustAnchors,
   });
 
-  final List<IamWorkloadIdentityPoolProviderX509TrustStoreIntermediateCas>?
-  intermediateCas;
+  final List<IamWorkloadIdentityPoolProviderIntermediateCas>? intermediateCas;
 
-  final List<IamWorkloadIdentityPoolProviderX509TrustStoreTrustAnchors>
-  trustAnchors;
+  final List<IamWorkloadIdentityPoolProviderTrustAnchors> trustAnchors;
 
   Map<String, Object?> encode() => {
     if (intermediateCas != null)
@@ -203,10 +201,8 @@ final class IamWorkloadIdentityPoolProviderX509TrustStore {
 /// Typed helper for the `x509.trust_store.intermediate_cas` block of
 /// `google_iam_workload_identity_pool_provider` (derived from provider schema).
 @immutable
-final class IamWorkloadIdentityPoolProviderX509TrustStoreIntermediateCas {
-  const IamWorkloadIdentityPoolProviderX509TrustStoreIntermediateCas({
-    this.pemCertificate,
-  });
+final class IamWorkloadIdentityPoolProviderIntermediateCas {
+  const IamWorkloadIdentityPoolProviderIntermediateCas({this.pemCertificate});
 
   final TfArg<String>? pemCertificate;
 
@@ -218,10 +214,8 @@ final class IamWorkloadIdentityPoolProviderX509TrustStoreIntermediateCas {
 /// Typed helper for the `x509.trust_store.trust_anchors` block of
 /// `google_iam_workload_identity_pool_provider` (derived from provider schema).
 @immutable
-final class IamWorkloadIdentityPoolProviderX509TrustStoreTrustAnchors {
-  const IamWorkloadIdentityPoolProviderX509TrustStoreTrustAnchors({
-    this.pemCertificate,
-  });
+final class IamWorkloadIdentityPoolProviderTrustAnchors {
+  const IamWorkloadIdentityPoolProviderTrustAnchors({this.pemCertificate});
 
   final TfArg<String>? pemCertificate;
 

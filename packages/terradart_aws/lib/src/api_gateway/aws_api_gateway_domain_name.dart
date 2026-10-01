@@ -61,10 +61,9 @@ final class ApiGatewayDomainNameEndpointConfiguration {
     required this.types,
   });
 
-  final TfArg<ApiGatewayDomainNameEndpointConfigurationIpAddressType>?
-  ipAddressType;
+  final TfArg<ApiGatewayDomainNameIpAddressType>? ipAddressType;
 
-  final List<TfArg<ApiGatewayDomainNameEndpointConfigurationTypes>> types;
+  final List<TfArg<ApiGatewayDomainNameTypes>> types;
 
   Map<String, Object?> encode() => {
     'ip_address_type': ?ipAddressType?.toTfJson(),
@@ -73,25 +72,22 @@ final class ApiGatewayDomainNameEndpointConfiguration {
 }
 
 /// `ip_address_type` — derived from the provider schema description.
-enum ApiGatewayDomainNameEndpointConfigurationIpAddressType
-    implements TerraformEnum {
+enum ApiGatewayDomainNameIpAddressType implements TerraformEnum {
   ipv4('ipv4'),
   dualstack('dualstack');
 
-  const ApiGatewayDomainNameEndpointConfigurationIpAddressType(
-    this.terraformValue,
-  );
+  const ApiGatewayDomainNameIpAddressType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `types` — derived from the provider schema description.
-enum ApiGatewayDomainNameEndpointConfigurationTypes implements TerraformEnum {
+enum ApiGatewayDomainNameTypes implements TerraformEnum {
   regional('REGIONAL'),
   edge('EDGE'),
   private('PRIVATE');
 
-  const ApiGatewayDomainNameEndpointConfigurationTypes(this.terraformValue);
+  const ApiGatewayDomainNameTypes(this.terraformValue);
   @override
   final String terraformValue;
 }

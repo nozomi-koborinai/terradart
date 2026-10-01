@@ -29,9 +29,9 @@ final class ZeroTrustTunnelCloudflaredConfigConfig {
     this.originRequest,
   });
 
-  final List<ZeroTrustTunnelCloudflaredConfigConfigIngress>? ingress;
+  final List<ZeroTrustTunnelCloudflaredConfigIngress>? ingress;
 
-  final ZeroTrustTunnelCloudflaredConfigConfigOriginRequest? originRequest;
+  final ZeroTrustTunnelCloudflaredConfigOriginRequest? originRequest;
 
   Map<String, Object?> encode() => {
     if (ingress != null) 'ingress': [for (final e in ingress!) e.encode()],
@@ -42,8 +42,8 @@ final class ZeroTrustTunnelCloudflaredConfigConfig {
 /// Typed helper for the `config.ingress` block of
 /// `cloudflare_zero_trust_tunnel_cloudflared_config` (derived from provider schema).
 @immutable
-final class ZeroTrustTunnelCloudflaredConfigConfigIngress {
-  const ZeroTrustTunnelCloudflaredConfigConfigIngress({
+final class ZeroTrustTunnelCloudflaredConfigIngress {
+  const ZeroTrustTunnelCloudflaredConfigIngress({
     this.hostname,
     this.path,
     required this.service,
@@ -56,8 +56,7 @@ final class ZeroTrustTunnelCloudflaredConfigConfigIngress {
 
   final TfArg<String> service;
 
-  final ZeroTrustTunnelCloudflaredConfigConfigIngressOriginRequest?
-  originRequest;
+  final ZeroTrustTunnelCloudflaredConfigOriginRequest? originRequest;
 
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.toTfJson(),
@@ -67,106 +66,12 @@ final class ZeroTrustTunnelCloudflaredConfigConfigIngress {
   };
 }
 
-/// Typed helper for the `config.ingress.origin_request` block of
-/// `cloudflare_zero_trust_tunnel_cloudflared_config` (derived from provider schema).
-@immutable
-final class ZeroTrustTunnelCloudflaredConfigConfigIngressOriginRequest {
-  const ZeroTrustTunnelCloudflaredConfigConfigIngressOriginRequest({
-    this.caPool,
-    this.connectTimeout,
-    this.disableChunkedEncoding,
-    this.http2Origin,
-    this.httpHostHeader,
-    this.keepAliveConnections,
-    this.keepAliveTimeout,
-    this.matchSnItoHost,
-    this.noHappyEyeballs,
-    this.noTlsVerify,
-    this.originServerName,
-    this.proxyType,
-    this.tcpKeepAlive,
-    this.tlsTimeout,
-    this.access,
-  });
-
-  final TfArg<String>? caPool;
-
-  final TfArg<num>? connectTimeout;
-
-  final TfArg<bool>? disableChunkedEncoding;
-
-  final TfArg<bool>? http2Origin;
-
-  final TfArg<String>? httpHostHeader;
-
-  final TfArg<num>? keepAliveConnections;
-
-  final TfArg<num>? keepAliveTimeout;
-
-  final TfArg<bool>? matchSnItoHost;
-
-  final TfArg<bool>? noHappyEyeballs;
-
-  final TfArg<bool>? noTlsVerify;
-
-  final TfArg<String>? originServerName;
-
-  final TfArg<String>? proxyType;
-
-  final TfArg<num>? tcpKeepAlive;
-
-  final TfArg<num>? tlsTimeout;
-
-  final ZeroTrustTunnelCloudflaredConfigConfigIngressOriginRequestAccess?
-  access;
-
-  Map<String, Object?> encode() => {
-    'ca_pool': ?caPool?.toTfJson(),
-    'connect_timeout': ?connectTimeout?.toTfJson(),
-    'disable_chunked_encoding': ?disableChunkedEncoding?.toTfJson(),
-    'http2_origin': ?http2Origin?.toTfJson(),
-    'http_host_header': ?httpHostHeader?.toTfJson(),
-    'keep_alive_connections': ?keepAliveConnections?.toTfJson(),
-    'keep_alive_timeout': ?keepAliveTimeout?.toTfJson(),
-    'match_sn_ito_host': ?matchSnItoHost?.toTfJson(),
-    'no_happy_eyeballs': ?noHappyEyeballs?.toTfJson(),
-    'no_tls_verify': ?noTlsVerify?.toTfJson(),
-    'origin_server_name': ?originServerName?.toTfJson(),
-    'proxy_type': ?proxyType?.toTfJson(),
-    'tcp_keep_alive': ?tcpKeepAlive?.toTfJson(),
-    'tls_timeout': ?tlsTimeout?.toTfJson(),
-    'access': ?access?.encode(),
-  };
-}
-
-/// Typed helper for the `config.ingress.origin_request.access` block of
-/// `cloudflare_zero_trust_tunnel_cloudflared_config` (derived from provider schema).
-@immutable
-final class ZeroTrustTunnelCloudflaredConfigConfigIngressOriginRequestAccess {
-  const ZeroTrustTunnelCloudflaredConfigConfigIngressOriginRequestAccess({
-    required this.audTag,
-    this.required,
-    required this.teamName,
-  });
-
-  final TfArg<List<String>> audTag;
-
-  final TfArg<bool>? required;
-
-  final TfArg<String> teamName;
-
-  Map<String, Object?> encode() => {
-    'aud_tag': audTag.toTfJson(),
-    'required': ?required?.toTfJson(),
-    'team_name': teamName.toTfJson(),
-  };
-}
-
 /// Typed helper for the `config.origin_request` block of
 /// `cloudflare_zero_trust_tunnel_cloudflared_config` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustTunnelCloudflaredConfigConfigOriginRequest {
-  const ZeroTrustTunnelCloudflaredConfigConfigOriginRequest({
+final class ZeroTrustTunnelCloudflaredConfigOriginRequest {
+  const ZeroTrustTunnelCloudflaredConfigOriginRequest({
     this.caPool,
     this.connectTimeout,
     this.disableChunkedEncoding,
@@ -212,7 +117,7 @@ final class ZeroTrustTunnelCloudflaredConfigConfigOriginRequest {
 
   final TfArg<num>? tlsTimeout;
 
-  final ZeroTrustTunnelCloudflaredConfigConfigOriginRequestAccess? access;
+  final ZeroTrustTunnelCloudflaredConfigAccess? access;
 
   Map<String, Object?> encode() => {
     'ca_pool': ?caPool?.toTfJson(),
@@ -235,9 +140,10 @@ final class ZeroTrustTunnelCloudflaredConfigConfigOriginRequest {
 
 /// Typed helper for the `config.origin_request.access` block of
 /// `cloudflare_zero_trust_tunnel_cloudflared_config` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustTunnelCloudflaredConfigConfigOriginRequestAccess {
-  const ZeroTrustTunnelCloudflaredConfigConfigOriginRequestAccess({
+final class ZeroTrustTunnelCloudflaredConfigAccess {
+  const ZeroTrustTunnelCloudflaredConfigAccess({
     required this.audTag,
     this.required,
     required this.teamName,

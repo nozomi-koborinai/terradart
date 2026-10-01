@@ -24,9 +24,7 @@ final class WorkspaceswebDataProtectionSettingsInlineRedactionConfiguration {
 
   final TfArg<List<String>>? globalExemptUrls;
 
-  final List<
-    WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlineRedactionPattern
-  >?
+  final List<WorkspaceswebDataProtectionSettingsInlineRedactionPattern>?
   inlineRedactionPattern;
 
   Map<String, Object?> encode() => {
@@ -43,8 +41,8 @@ final class WorkspaceswebDataProtectionSettingsInlineRedactionConfiguration {
 /// Typed helper for the `inline_redaction_configuration.inline_redaction_pattern` block of
 /// `aws_workspacesweb_data_protection_settings` (derived from provider schema).
 @immutable
-final class WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlineRedactionPattern {
-  const WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlineRedactionPattern({
+final class WorkspaceswebDataProtectionSettingsInlineRedactionPattern {
+  const WorkspaceswebDataProtectionSettingsInlineRedactionPattern({
     this.builtInPatternId,
     this.confidenceLevel,
     this.enforcedUrls,
@@ -61,14 +59,9 @@ final class WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlin
 
   final TfArg<List<String>>? exemptUrls;
 
-  final List<
-    WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlineRedactionPatternCustomPattern
-  >?
-  customPattern;
+  final List<WorkspaceswebDataProtectionSettingsCustomPattern>? customPattern;
 
-  final List<
-    WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlineRedactionPatternRedactionPlaceHolder
-  >?
+  final List<WorkspaceswebDataProtectionSettingsRedactionPlaceHolder>?
   redactionPlaceHolder;
 
   Map<String, Object?> encode() => {
@@ -88,8 +81,8 @@ final class WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlin
 /// Typed helper for the `inline_redaction_configuration.inline_redaction_pattern.custom_pattern` block of
 /// `aws_workspacesweb_data_protection_settings` (derived from provider schema).
 @immutable
-final class WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlineRedactionPatternCustomPattern {
-  const WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlineRedactionPatternCustomPattern({
+final class WorkspaceswebDataProtectionSettingsCustomPattern {
+  const WorkspaceswebDataProtectionSettingsCustomPattern({
     this.keywordRegex,
     this.patternDescription,
     required this.patternName,
@@ -115,17 +108,15 @@ final class WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlin
 /// Typed helper for the `inline_redaction_configuration.inline_redaction_pattern.redaction_place_holder` block of
 /// `aws_workspacesweb_data_protection_settings` (derived from provider schema).
 @immutable
-final class WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlineRedactionPatternRedactionPlaceHolder {
-  const WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlineRedactionPatternRedactionPlaceHolder({
+final class WorkspaceswebDataProtectionSettingsRedactionPlaceHolder {
+  const WorkspaceswebDataProtectionSettingsRedactionPlaceHolder({
     this.redactionPlaceHolderText,
     required this.redactionPlaceHolderType,
   });
 
   final TfArg<String>? redactionPlaceHolderText;
 
-  final TfArg<
-    WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlineRedactionPatternRedactionPlaceHolderRedactionPlaceHolderType
-  >
+  final TfArg<WorkspaceswebDataProtectionSettingsRedactionPlaceHolderType>
   redactionPlaceHolderType;
 
   Map<String, Object?> encode() => {
@@ -135,11 +126,11 @@ final class WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlin
 }
 
 /// `redaction_place_holder_type` — derived from the provider schema description.
-enum WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlineRedactionPatternRedactionPlaceHolderRedactionPlaceHolderType
+enum WorkspaceswebDataProtectionSettingsRedactionPlaceHolderType
     implements TerraformEnum {
   customtext('CustomText');
 
-  const WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlineRedactionPatternRedactionPlaceHolderRedactionPlaceHolderType(
+  const WorkspaceswebDataProtectionSettingsRedactionPlaceHolderType(
     this.terraformValue,
   );
   @override

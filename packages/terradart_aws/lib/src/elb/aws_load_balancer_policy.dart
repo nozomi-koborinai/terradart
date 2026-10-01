@@ -10,8 +10,8 @@ const Set<String> _awsLoadBalancerPolicySensitive = <String>{};
 /// Typed helper for the `policy_attribute` block of
 /// `aws_load_balancer_policy` (derived from provider schema).
 @immutable
-final class LoadBalancerPolicyPolicyAttribute {
-  const LoadBalancerPolicyPolicyAttribute({this.name, this.value});
+final class LoadBalancerPolicyAttribute {
+  const LoadBalancerPolicyAttribute({this.name, this.value});
 
   final TfArg<String>? name;
 
@@ -33,7 +33,7 @@ final class AwsLoadBalancerPolicy extends Resource {
     required TfArg<String> policyName,
     required TfArg<String> policyTypeName,
     TfArg<String>? region,
-    List<LoadBalancerPolicyPolicyAttribute>? policyAttribute,
+    List<LoadBalancerPolicyAttribute>? policyAttribute,
     super.lifecycle,
     super.dependsOn,
     super.provider,

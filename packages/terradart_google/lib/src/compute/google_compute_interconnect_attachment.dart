@@ -95,10 +95,9 @@ final class ComputeInterconnectAttachmentL2Forwarding {
 
   final TfArg<String>? tunnelEndpointIpAddress;
 
-  final List<ComputeInterconnectAttachmentL2ForwardingApplianceMappings>?
-  applianceMappings;
+  final List<ComputeInterconnectAttachmentApplianceMappings>? applianceMappings;
 
-  final ComputeInterconnectAttachmentL2ForwardingGeneveHeader? geneveHeader;
+  final ComputeInterconnectAttachmentGeneveHeader? geneveHeader;
 
   Map<String, Object?> encode() => {
     'default_appliance_ip_address': ?defaultApplianceIpAddress?.toTfJson(),
@@ -113,8 +112,8 @@ final class ComputeInterconnectAttachmentL2Forwarding {
 /// Typed helper for the `l2_forwarding.appliance_mappings` block of
 /// `google_compute_interconnect_attachment` (derived from provider schema).
 @immutable
-final class ComputeInterconnectAttachmentL2ForwardingApplianceMappings {
-  const ComputeInterconnectAttachmentL2ForwardingApplianceMappings({
+final class ComputeInterconnectAttachmentApplianceMappings {
+  const ComputeInterconnectAttachmentApplianceMappings({
     this.applianceIpAddress,
     this.name,
     this.vlanId,
@@ -127,9 +126,7 @@ final class ComputeInterconnectAttachmentL2ForwardingApplianceMappings {
 
   final TfArg<String>? vlanId;
 
-  final List<
-    ComputeInterconnectAttachmentL2ForwardingApplianceMappingsInnerVlanToApplianceMappings
-  >?
+  final List<ComputeInterconnectAttachmentInnerVlanToApplianceMappings>?
   innerVlanToApplianceMappings;
 
   Map<String, Object?> encode() => {
@@ -146,8 +143,8 @@ final class ComputeInterconnectAttachmentL2ForwardingApplianceMappings {
 /// Typed helper for the `l2_forwarding.appliance_mappings.inner_vlan_to_appliance_mappings` block of
 /// `google_compute_interconnect_attachment` (derived from provider schema).
 @immutable
-final class ComputeInterconnectAttachmentL2ForwardingApplianceMappingsInnerVlanToApplianceMappings {
-  const ComputeInterconnectAttachmentL2ForwardingApplianceMappingsInnerVlanToApplianceMappings({
+final class ComputeInterconnectAttachmentInnerVlanToApplianceMappings {
+  const ComputeInterconnectAttachmentInnerVlanToApplianceMappings({
     this.innerApplianceIpAddress,
     this.innerVlanTags,
   });
@@ -165,8 +162,8 @@ final class ComputeInterconnectAttachmentL2ForwardingApplianceMappingsInnerVlanT
 /// Typed helper for the `l2_forwarding.geneve_header` block of
 /// `google_compute_interconnect_attachment` (derived from provider schema).
 @immutable
-final class ComputeInterconnectAttachmentL2ForwardingGeneveHeader {
-  const ComputeInterconnectAttachmentL2ForwardingGeneveHeader({this.vni});
+final class ComputeInterconnectAttachmentGeneveHeader {
+  const ComputeInterconnectAttachmentGeneveHeader({this.vni});
 
   final TfArg<num>? vni;
 

@@ -21,7 +21,7 @@ curatedDoc: |-
   ///   sli: .basicSli(
   ///     MonitoringSloBasicSli(
   ///       objective: .availability(
-  ///         MonitoringSloBasicSliAvailability(enabled: .literal(true)),
+  ///         MonitoringSloAvailability(enabled: .literal(true)),
   ///       ),
   ///     ),
   ///   ),

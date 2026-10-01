@@ -69,91 +69,91 @@ final class OracleDatabaseGoldengateConnectionProperties {
 
   final TfArg<String>? routingMethod;
 
-  final OracleDatabaseGoldengateConnectionPropertiesAmazonKinesisConnectionProperties?
+  final OracleDatabaseGoldengateConnectionAmazonKinesisConnectionProperties?
   amazonKinesisConnectionProperties;
 
-  final OracleDatabaseGoldengateConnectionPropertiesAmazonRedshiftConnectionProperties?
+  final OracleDatabaseGoldengateConnectionAmazonRedshiftConnectionProperties?
   amazonRedshiftConnectionProperties;
 
-  final OracleDatabaseGoldengateConnectionPropertiesAmazonS3ConnectionProperties?
+  final OracleDatabaseGoldengateConnectionAmazonS3ConnectionProperties?
   amazonS3ConnectionProperties;
 
-  final OracleDatabaseGoldengateConnectionPropertiesAzureDataLakeStorageConnectionProperties?
+  final OracleDatabaseGoldengateConnectionAzureDataLakeStorageConnectionProperties?
   azureDataLakeStorageConnectionProperties;
 
-  final OracleDatabaseGoldengateConnectionPropertiesAzureSynapseAnalyticsConnectionProperties?
+  final OracleDatabaseGoldengateConnectionAzureSynapseAnalyticsConnectionProperties?
   azureSynapseAnalyticsConnectionProperties;
 
-  final OracleDatabaseGoldengateConnectionPropertiesDatabricksConnectionProperties?
+  final OracleDatabaseGoldengateConnectionDatabricksConnectionProperties?
   databricksConnectionProperties;
 
-  final OracleDatabaseGoldengateConnectionPropertiesDb2ConnectionProperties?
+  final OracleDatabaseGoldengateConnectionDb2ConnectionProperties?
   db2ConnectionProperties;
 
-  final OracleDatabaseGoldengateConnectionPropertiesElasticsearchConnectionProperties?
+  final OracleDatabaseGoldengateConnectionElasticsearchConnectionProperties?
   elasticsearchConnectionProperties;
 
-  final OracleDatabaseGoldengateConnectionPropertiesGenericConnectionProperties?
+  final OracleDatabaseGoldengateConnectionGenericConnectionProperties?
   genericConnectionProperties;
 
-  final OracleDatabaseGoldengateConnectionPropertiesGoldengateConnectionProperties?
+  final OracleDatabaseGoldengateConnectionGoldengateConnectionProperties?
   goldengateConnectionProperties;
 
-  final OracleDatabaseGoldengateConnectionPropertiesGoogleBigQueryConnectionProperties?
+  final OracleDatabaseGoldengateConnectionGoogleBigQueryConnectionProperties?
   googleBigQueryConnectionProperties;
 
-  final OracleDatabaseGoldengateConnectionPropertiesGoogleCloudStorageConnectionProperties?
+  final OracleDatabaseGoldengateConnectionGoogleCloudStorageConnectionProperties?
   googleCloudStorageConnectionProperties;
 
-  final OracleDatabaseGoldengateConnectionPropertiesGooglePubsubConnectionProperties?
+  final OracleDatabaseGoldengateConnectionGooglePubsubConnectionProperties?
   googlePubsubConnectionProperties;
 
-  final OracleDatabaseGoldengateConnectionPropertiesHdfsConnectionProperties?
+  final OracleDatabaseGoldengateConnectionHdfsConnectionProperties?
   hdfsConnectionProperties;
 
-  final OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionProperties?
+  final OracleDatabaseGoldengateConnectionIcebergConnectionProperties?
   icebergConnectionProperties;
 
-  final OracleDatabaseGoldengateConnectionPropertiesJavaMessageServiceConnectionProperties?
+  final OracleDatabaseGoldengateConnectionJavaMessageServiceConnectionProperties?
   javaMessageServiceConnectionProperties;
 
-  final OracleDatabaseGoldengateConnectionPropertiesKafkaConnectionProperties?
+  final OracleDatabaseGoldengateConnectionKafkaConnectionProperties?
   kafkaConnectionProperties;
 
-  final OracleDatabaseGoldengateConnectionPropertiesKafkaSchemaRegistryConnectionProperties?
+  final OracleDatabaseGoldengateConnectionKafkaSchemaRegistryConnectionProperties?
   kafkaSchemaRegistryConnectionProperties;
 
-  final OracleDatabaseGoldengateConnectionPropertiesMicrosoftFabricConnectionProperties?
+  final OracleDatabaseGoldengateConnectionMicrosoftFabricConnectionProperties?
   microsoftFabricConnectionProperties;
 
-  final OracleDatabaseGoldengateConnectionPropertiesMicrosoftSqlserverConnectionProperties?
+  final OracleDatabaseGoldengateConnectionMicrosoftSqlserverConnectionProperties?
   microsoftSqlserverConnectionProperties;
 
-  final OracleDatabaseGoldengateConnectionPropertiesMongodbConnectionProperties?
+  final OracleDatabaseGoldengateConnectionMongodbConnectionProperties?
   mongodbConnectionProperties;
 
-  final OracleDatabaseGoldengateConnectionPropertiesMysqlConnectionProperties?
+  final OracleDatabaseGoldengateConnectionMysqlConnectionProperties?
   mysqlConnectionProperties;
 
-  final OracleDatabaseGoldengateConnectionPropertiesOciObjectStorageConnectionProperties?
+  final OracleDatabaseGoldengateConnectionOciObjectStorageConnectionProperties?
   ociObjectStorageConnectionProperties;
 
-  final OracleDatabaseGoldengateConnectionPropertiesOracleAiDataPlatformConnectionProperties?
+  final OracleDatabaseGoldengateConnectionOracleAiDataPlatformConnectionProperties?
   oracleAiDataPlatformConnectionProperties;
 
-  final OracleDatabaseGoldengateConnectionPropertiesOracleConnectionProperties?
+  final OracleDatabaseGoldengateConnectionOracleConnectionProperties?
   oracleConnectionProperties;
 
-  final OracleDatabaseGoldengateConnectionPropertiesOracleNosqlConnectionProperties?
+  final OracleDatabaseGoldengateConnectionOracleNosqlConnectionProperties?
   oracleNosqlConnectionProperties;
 
-  final OracleDatabaseGoldengateConnectionPropertiesPostgresqlConnectionProperties?
+  final OracleDatabaseGoldengateConnectionPostgresqlConnectionProperties?
   postgresqlConnectionProperties;
 
-  final OracleDatabaseGoldengateConnectionPropertiesRedisConnectionProperties?
+  final OracleDatabaseGoldengateConnectionRedisConnectionProperties?
   redisConnectionProperties;
 
-  final OracleDatabaseGoldengateConnectionPropertiesSnowflakeConnectionProperties?
+  final OracleDatabaseGoldengateConnectionSnowflakeConnectionProperties?
   snowflakeConnectionProperties;
 
   Map<String, Object?> encode() => {
@@ -214,8 +214,8 @@ final class OracleDatabaseGoldengateConnectionProperties {
 /// Typed helper for the `properties.amazon_kinesis_connection_properties` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesAmazonKinesisConnectionProperties {
-  const OracleDatabaseGoldengateConnectionPropertiesAmazonKinesisConnectionProperties({
+final class OracleDatabaseGoldengateConnectionAmazonKinesisConnectionProperties {
+  const OracleDatabaseGoldengateConnectionAmazonKinesisConnectionProperties({
     this.accessKeyId,
     this.awsRegion,
     this.endpoint,
@@ -245,8 +245,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesAmazonKinesisConnectionP
 /// Typed helper for the `properties.amazon_redshift_connection_properties` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesAmazonRedshiftConnectionProperties {
-  const OracleDatabaseGoldengateConnectionPropertiesAmazonRedshiftConnectionProperties({
+final class OracleDatabaseGoldengateConnectionAmazonRedshiftConnectionProperties {
+  const OracleDatabaseGoldengateConnectionAmazonRedshiftConnectionProperties({
     this.connectionUrl,
     this.password,
     this.passwordSecretVersion,
@@ -276,8 +276,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesAmazonRedshiftConnection
 /// Typed helper for the `properties.amazon_s3_connection_properties` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesAmazonS3ConnectionProperties {
-  const OracleDatabaseGoldengateConnectionPropertiesAmazonS3ConnectionProperties({
+final class OracleDatabaseGoldengateConnectionAmazonS3ConnectionProperties {
+  const OracleDatabaseGoldengateConnectionAmazonS3ConnectionProperties({
     this.accessKeyId,
     this.endpoint,
     this.region,
@@ -307,8 +307,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesAmazonS3ConnectionProper
 /// Typed helper for the `properties.azure_data_lake_storage_connection_properties` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesAzureDataLakeStorageConnectionProperties {
-  const OracleDatabaseGoldengateConnectionPropertiesAzureDataLakeStorageConnectionProperties({
+final class OracleDatabaseGoldengateConnectionAzureDataLakeStorageConnectionProperties {
+  const OracleDatabaseGoldengateConnectionAzureDataLakeStorageConnectionProperties({
     this.account,
     this.accountKeySecret,
     this.authenticationType,
@@ -358,8 +358,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesAzureDataLakeStorageConn
 /// Typed helper for the `properties.azure_synapse_analytics_connection_properties` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesAzureSynapseAnalyticsConnectionProperties {
-  const OracleDatabaseGoldengateConnectionPropertiesAzureSynapseAnalyticsConnectionProperties({
+final class OracleDatabaseGoldengateConnectionAzureSynapseAnalyticsConnectionProperties {
+  const OracleDatabaseGoldengateConnectionAzureSynapseAnalyticsConnectionProperties({
     this.connectionString,
     this.password,
     this.passwordSecretVersion,
@@ -389,8 +389,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesAzureSynapseAnalyticsCon
 /// Typed helper for the `properties.databricks_connection_properties` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesDatabricksConnectionProperties {
-  const OracleDatabaseGoldengateConnectionPropertiesDatabricksConnectionProperties({
+final class OracleDatabaseGoldengateConnectionDatabricksConnectionProperties {
+  const OracleDatabaseGoldengateConnectionDatabricksConnectionProperties({
     this.authenticationType,
     this.clientId,
     this.clientSecret,
@@ -432,8 +432,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesDatabricksConnectionProp
 /// Typed helper for the `properties.db2_connection_properties` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesDb2ConnectionProperties {
-  const OracleDatabaseGoldengateConnectionPropertiesDb2ConnectionProperties({
+final class OracleDatabaseGoldengateConnectionDb2ConnectionProperties {
+  const OracleDatabaseGoldengateConnectionDb2ConnectionProperties({
     this.database,
     this.host,
     this.password,
@@ -470,9 +470,7 @@ final class OracleDatabaseGoldengateConnectionPropertiesDb2ConnectionProperties 
 
   final TfArg<String>? username;
 
-  final List<
-    OracleDatabaseGoldengateConnectionPropertiesDb2ConnectionPropertiesAdditionalAttributes
-  >?
+  final List<OracleDatabaseGoldengateConnectionAdditionalAttributes>?
   additionalAttributes;
 
   Map<String, Object?> encode() => {
@@ -496,9 +494,10 @@ final class OracleDatabaseGoldengateConnectionPropertiesDb2ConnectionProperties 
 
 /// Typed helper for the `properties.db2_connection_properties.additional_attributes` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesDb2ConnectionPropertiesAdditionalAttributes {
-  const OracleDatabaseGoldengateConnectionPropertiesDb2ConnectionPropertiesAdditionalAttributes({
+final class OracleDatabaseGoldengateConnectionAdditionalAttributes {
+  const OracleDatabaseGoldengateConnectionAdditionalAttributes({
     required this.key,
     required this.value,
   });
@@ -516,8 +515,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesDb2ConnectionPropertiesA
 /// Typed helper for the `properties.elasticsearch_connection_properties` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesElasticsearchConnectionProperties {
-  const OracleDatabaseGoldengateConnectionPropertiesElasticsearchConnectionProperties({
+final class OracleDatabaseGoldengateConnectionElasticsearchConnectionProperties {
+  const OracleDatabaseGoldengateConnectionElasticsearchConnectionProperties({
     this.authenticationType,
     this.fingerprint,
     this.password,
@@ -559,8 +558,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesElasticsearchConnectionP
 /// Typed helper for the `properties.generic_connection_properties` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesGenericConnectionProperties {
-  const OracleDatabaseGoldengateConnectionPropertiesGenericConnectionProperties({
+final class OracleDatabaseGoldengateConnectionGenericConnectionProperties {
+  const OracleDatabaseGoldengateConnectionGenericConnectionProperties({
     this.host,
     this.technologyType,
   });
@@ -578,8 +577,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesGenericConnectionPropert
 /// Typed helper for the `properties.goldengate_connection_properties` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesGoldengateConnectionProperties {
-  const OracleDatabaseGoldengateConnectionPropertiesGoldengateConnectionProperties({
+final class OracleDatabaseGoldengateConnectionGoldengateConnectionProperties {
+  const OracleDatabaseGoldengateConnectionGoldengateConnectionProperties({
     this.goldengateDeploymentId,
     this.host,
     this.password,
@@ -617,8 +616,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesGoldengateConnectionProp
 /// Typed helper for the `properties.google_big_query_connection_properties` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesGoogleBigQueryConnectionProperties {
-  const OracleDatabaseGoldengateConnectionPropertiesGoogleBigQueryConnectionProperties({
+final class OracleDatabaseGoldengateConnectionGoogleBigQueryConnectionProperties {
+  const OracleDatabaseGoldengateConnectionGoogleBigQueryConnectionProperties({
     this.serviceAccountKeyFile,
     this.technologyType,
   });
@@ -636,8 +635,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesGoogleBigQueryConnection
 /// Typed helper for the `properties.google_cloud_storage_connection_properties` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesGoogleCloudStorageConnectionProperties {
-  const OracleDatabaseGoldengateConnectionPropertiesGoogleCloudStorageConnectionProperties({
+final class OracleDatabaseGoldengateConnectionGoogleCloudStorageConnectionProperties {
+  const OracleDatabaseGoldengateConnectionGoogleCloudStorageConnectionProperties({
     this.serviceAccountKeyFile,
     this.technologyType,
   });
@@ -655,8 +654,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesGoogleCloudStorageConnec
 /// Typed helper for the `properties.google_pubsub_connection_properties` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesGooglePubsubConnectionProperties {
-  const OracleDatabaseGoldengateConnectionPropertiesGooglePubsubConnectionProperties({
+final class OracleDatabaseGoldengateConnectionGooglePubsubConnectionProperties {
+  const OracleDatabaseGoldengateConnectionGooglePubsubConnectionProperties({
     this.serviceAccountKeyFile,
     this.technologyType,
   });
@@ -674,8 +673,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesGooglePubsubConnectionPr
 /// Typed helper for the `properties.hdfs_connection_properties` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesHdfsConnectionProperties {
-  const OracleDatabaseGoldengateConnectionPropertiesHdfsConnectionProperties({
+final class OracleDatabaseGoldengateConnectionHdfsConnectionProperties {
+  const OracleDatabaseGoldengateConnectionHdfsConnectionProperties({
     this.coreSiteXml,
     this.technologyType,
   });
@@ -693,8 +692,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesHdfsConnectionProperties
 /// Typed helper for the `properties.iceberg_connection_properties` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionProperties {
-  const OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionProperties({
+final class OracleDatabaseGoldengateConnectionIcebergConnectionProperties {
+  const OracleDatabaseGoldengateConnectionIcebergConnectionProperties({
     required this.technologyType,
     required this.catalog,
     required this.storage,
@@ -702,11 +701,9 @@ final class OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropert
 
   final TfArg<String> technologyType;
 
-  final OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesCatalog
-  catalog;
+  final OracleDatabaseGoldengateConnectionCatalog catalog;
 
-  final OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesStorage
-  storage;
+  final OracleDatabaseGoldengateConnectionStorage storage;
 
   Map<String, Object?> encode() => {
     'technology_type': technologyType.toTfJson(),
@@ -718,8 +715,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropert
 /// Typed helper for the `properties.iceberg_connection_properties.catalog` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesCatalog {
-  const OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesCatalog({
+final class OracleDatabaseGoldengateConnectionCatalog {
+  const OracleDatabaseGoldengateConnectionCatalog({
     required this.catalogType,
     this.glueIcebergCatalog,
     this.nessieIcebergCatalog,
@@ -729,16 +726,16 @@ final class OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropert
 
   final TfArg<String> catalogType;
 
-  final OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesCatalogGlueIcebergCatalog?
+  final OracleDatabaseGoldengateConnectionGlueIcebergCatalog?
   glueIcebergCatalog;
 
-  final OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesCatalogNessieIcebergCatalog?
+  final OracleDatabaseGoldengateConnectionNessieIcebergCatalog?
   nessieIcebergCatalog;
 
-  final OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesCatalogPolarisIcebergCatalog?
+  final OracleDatabaseGoldengateConnectionPolarisIcebergCatalog?
   polarisIcebergCatalog;
 
-  final OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesCatalogRestIcebergCatalog?
+  final OracleDatabaseGoldengateConnectionRestIcebergCatalog?
   restIcebergCatalog;
 
   Map<String, Object?> encode() => {
@@ -753,8 +750,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropert
 /// Typed helper for the `properties.iceberg_connection_properties.catalog.glue_iceberg_catalog` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesCatalogGlueIcebergCatalog {
-  const OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesCatalogGlueIcebergCatalog({
+final class OracleDatabaseGoldengateConnectionGlueIcebergCatalog {
+  const OracleDatabaseGoldengateConnectionGlueIcebergCatalog({
     required this.glueId,
   });
 
@@ -766,8 +763,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropert
 /// Typed helper for the `properties.iceberg_connection_properties.catalog.nessie_iceberg_catalog` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesCatalogNessieIcebergCatalog {
-  const OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesCatalogNessieIcebergCatalog({
+final class OracleDatabaseGoldengateConnectionNessieIcebergCatalog {
+  const OracleDatabaseGoldengateConnectionNessieIcebergCatalog({
     required this.branch,
     required this.uri,
   });
@@ -785,8 +782,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropert
 /// Typed helper for the `properties.iceberg_connection_properties.catalog.polaris_iceberg_catalog` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesCatalogPolarisIcebergCatalog {
-  const OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesCatalogPolarisIcebergCatalog({
+final class OracleDatabaseGoldengateConnectionPolarisIcebergCatalog {
+  const OracleDatabaseGoldengateConnectionPolarisIcebergCatalog({
     required this.clientId,
     this.clientSecret,
     required this.polarisCatalog,
@@ -816,8 +813,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropert
 /// Typed helper for the `properties.iceberg_connection_properties.catalog.rest_iceberg_catalog` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesCatalogRestIcebergCatalog {
-  const OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesCatalogRestIcebergCatalog({
+final class OracleDatabaseGoldengateConnectionRestIcebergCatalog {
+  const OracleDatabaseGoldengateConnectionRestIcebergCatalog({
     this.properties,
     required this.uri,
   });
@@ -835,8 +832,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropert
 /// Typed helper for the `properties.iceberg_connection_properties.storage` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesStorage {
-  const OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesStorage({
+final class OracleDatabaseGoldengateConnectionStorage {
+  const OracleDatabaseGoldengateConnectionStorage({
     required this.storageType,
     this.amazonS3IcebergStorage,
     this.azureDataLakeStorageIcebergStorage,
@@ -845,13 +842,13 @@ final class OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropert
 
   final TfArg<String> storageType;
 
-  final OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesStorageAmazonS3IcebergStorage?
+  final OracleDatabaseGoldengateConnectionAmazonS3IcebergStorage?
   amazonS3IcebergStorage;
 
-  final OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesStorageAzureDataLakeStorageIcebergStorage?
+  final OracleDatabaseGoldengateConnectionAzureDataLakeStorageIcebergStorage?
   azureDataLakeStorageIcebergStorage;
 
-  final OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesStorageGoogleCloudStorageIcebergStorage?
+  final OracleDatabaseGoldengateConnectionGoogleCloudStorageIcebergStorage?
   googleCloudStorageIcebergStorage;
 
   Map<String, Object?> encode() => {
@@ -867,8 +864,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropert
 /// Typed helper for the `properties.iceberg_connection_properties.storage.amazon_s3_iceberg_storage` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesStorageAmazonS3IcebergStorage {
-  const OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesStorageAmazonS3IcebergStorage({
+final class OracleDatabaseGoldengateConnectionAmazonS3IcebergStorage {
+  const OracleDatabaseGoldengateConnectionAmazonS3IcebergStorage({
     required this.accessKeyId,
     required this.bucket,
     this.endpoint,
@@ -902,8 +899,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropert
 /// Typed helper for the `properties.iceberg_connection_properties.storage.azure_data_lake_storage_iceberg_storage` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesStorageAzureDataLakeStorageIcebergStorage {
-  const OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesStorageAzureDataLakeStorageIcebergStorage({
+final class OracleDatabaseGoldengateConnectionAzureDataLakeStorageIcebergStorage {
+  const OracleDatabaseGoldengateConnectionAzureDataLakeStorageIcebergStorage({
     this.accountKeySecret,
     required this.azureAccount,
     required this.container,
@@ -929,8 +926,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropert
 /// Typed helper for the `properties.iceberg_connection_properties.storage.google_cloud_storage_iceberg_storage` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesStorageGoogleCloudStorageIcebergStorage {
-  const OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesStorageGoogleCloudStorageIcebergStorage({
+final class OracleDatabaseGoldengateConnectionGoogleCloudStorageIcebergStorage {
+  const OracleDatabaseGoldengateConnectionGoogleCloudStorageIcebergStorage({
     required this.bucket,
     required this.projectId,
     this.serviceAccountKeyFile,
@@ -952,8 +949,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropert
 /// Typed helper for the `properties.java_message_service_connection_properties` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesJavaMessageServiceConnectionProperties {
-  const OracleDatabaseGoldengateConnectionPropertiesJavaMessageServiceConnectionProperties({
+final class OracleDatabaseGoldengateConnectionJavaMessageServiceConnectionProperties {
+  const OracleDatabaseGoldengateConnectionJavaMessageServiceConnectionProperties({
     this.authenticationType,
     this.connectionFactory,
     this.connectionUrl,
@@ -1054,8 +1051,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesJavaMessageServiceConnec
 /// Typed helper for the `properties.kafka_connection_properties` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesKafkaConnectionProperties {
-  const OracleDatabaseGoldengateConnectionPropertiesKafkaConnectionProperties({
+final class OracleDatabaseGoldengateConnectionKafkaConnectionProperties {
+  const OracleDatabaseGoldengateConnectionKafkaConnectionProperties({
     this.clusterId,
     this.consumerPropertiesFile,
     this.keyStoreFile,
@@ -1113,9 +1110,7 @@ final class OracleDatabaseGoldengateConnectionPropertiesKafkaConnectionPropertie
 
   final TfArg<String>? username;
 
-  final List<
-    OracleDatabaseGoldengateConnectionPropertiesKafkaConnectionPropertiesBootstrapServers
-  >?
+  final List<OracleDatabaseGoldengateConnectionBootstrapServers>?
   bootstrapServers;
 
   Map<String, Object?> encode() => {
@@ -1147,8 +1142,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesKafkaConnectionPropertie
 /// Typed helper for the `properties.kafka_connection_properties.bootstrap_servers` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesKafkaConnectionPropertiesBootstrapServers {
-  const OracleDatabaseGoldengateConnectionPropertiesKafkaConnectionPropertiesBootstrapServers({
+final class OracleDatabaseGoldengateConnectionBootstrapServers {
+  const OracleDatabaseGoldengateConnectionBootstrapServers({
     required this.host,
     this.port,
     this.privateIpAddress,
@@ -1170,8 +1165,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesKafkaConnectionPropertie
 /// Typed helper for the `properties.kafka_schema_registry_connection_properties` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesKafkaSchemaRegistryConnectionProperties {
-  const OracleDatabaseGoldengateConnectionPropertiesKafkaSchemaRegistryConnectionProperties({
+final class OracleDatabaseGoldengateConnectionKafkaSchemaRegistryConnectionProperties {
+  const OracleDatabaseGoldengateConnectionKafkaSchemaRegistryConnectionProperties({
     this.authenticationType,
     this.keyStoreFile,
     this.keyStorePassword,
@@ -1239,8 +1234,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesKafkaSchemaRegistryConne
 /// Typed helper for the `properties.microsoft_fabric_connection_properties` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesMicrosoftFabricConnectionProperties {
-  const OracleDatabaseGoldengateConnectionPropertiesMicrosoftFabricConnectionProperties({
+final class OracleDatabaseGoldengateConnectionMicrosoftFabricConnectionProperties {
+  const OracleDatabaseGoldengateConnectionMicrosoftFabricConnectionProperties({
     this.clientId,
     this.clientSecret,
     this.endpoint,
@@ -1270,8 +1265,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesMicrosoftFabricConnectio
 /// Typed helper for the `properties.microsoft_sqlserver_connection_properties` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesMicrosoftSqlserverConnectionProperties {
-  const OracleDatabaseGoldengateConnectionPropertiesMicrosoftSqlserverConnectionProperties({
+final class OracleDatabaseGoldengateConnectionMicrosoftSqlserverConnectionProperties {
+  const OracleDatabaseGoldengateConnectionMicrosoftSqlserverConnectionProperties({
     this.database,
     this.host,
     this.password,
@@ -1305,9 +1300,7 @@ final class OracleDatabaseGoldengateConnectionPropertiesMicrosoftSqlserverConnec
 
   final TfArg<String>? username;
 
-  final List<
-    OracleDatabaseGoldengateConnectionPropertiesMicrosoftSqlserverConnectionPropertiesAdditionalAttributes
-  >?
+  final List<OracleDatabaseGoldengateConnectionAdditionalAttributes>?
   additionalAttributes;
 
   Map<String, Object?> encode() => {
@@ -1329,30 +1322,11 @@ final class OracleDatabaseGoldengateConnectionPropertiesMicrosoftSqlserverConnec
   };
 }
 
-/// Typed helper for the `properties.microsoft_sqlserver_connection_properties.additional_attributes` block of
-/// `google_oracle_database_goldengate_connection` (derived from provider schema).
-@immutable
-final class OracleDatabaseGoldengateConnectionPropertiesMicrosoftSqlserverConnectionPropertiesAdditionalAttributes {
-  const OracleDatabaseGoldengateConnectionPropertiesMicrosoftSqlserverConnectionPropertiesAdditionalAttributes({
-    required this.key,
-    required this.value,
-  });
-
-  final TfArg<String> key;
-
-  final TfArg<String> value;
-
-  Map<String, Object?> encode() => {
-    'key': key.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
-
 /// Typed helper for the `properties.mongodb_connection_properties` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesMongodbConnectionProperties {
-  const OracleDatabaseGoldengateConnectionPropertiesMongodbConnectionProperties({
+final class OracleDatabaseGoldengateConnectionMongodbConnectionProperties {
+  const OracleDatabaseGoldengateConnectionMongodbConnectionProperties({
     this.connectionString,
     this.databaseId,
     this.password,
@@ -1408,8 +1382,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesMongodbConnectionPropert
 /// Typed helper for the `properties.mysql_connection_properties` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesMysqlConnectionProperties {
-  const OracleDatabaseGoldengateConnectionPropertiesMysqlConnectionProperties({
+final class OracleDatabaseGoldengateConnectionMysqlConnectionProperties {
+  const OracleDatabaseGoldengateConnectionMysqlConnectionProperties({
     this.database,
     this.dbSystemId,
     this.host,
@@ -1455,9 +1429,7 @@ final class OracleDatabaseGoldengateConnectionPropertiesMysqlConnectionPropertie
 
   final TfArg<String>? username;
 
-  final List<
-    OracleDatabaseGoldengateConnectionPropertiesMysqlConnectionPropertiesAdditionalAttributes
-  >?
+  final List<OracleDatabaseGoldengateConnectionAdditionalAttributes>?
   additionalAttributes;
 
   Map<String, Object?> encode() => {
@@ -1482,30 +1454,11 @@ final class OracleDatabaseGoldengateConnectionPropertiesMysqlConnectionPropertie
   };
 }
 
-/// Typed helper for the `properties.mysql_connection_properties.additional_attributes` block of
-/// `google_oracle_database_goldengate_connection` (derived from provider schema).
-@immutable
-final class OracleDatabaseGoldengateConnectionPropertiesMysqlConnectionPropertiesAdditionalAttributes {
-  const OracleDatabaseGoldengateConnectionPropertiesMysqlConnectionPropertiesAdditionalAttributes({
-    required this.key,
-    required this.value,
-  });
-
-  final TfArg<String> key;
-
-  final TfArg<String> value;
-
-  Map<String, Object?> encode() => {
-    'key': key.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
-
 /// Typed helper for the `properties.oci_object_storage_connection_properties` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesOciObjectStorageConnectionProperties {
-  const OracleDatabaseGoldengateConnectionPropertiesOciObjectStorageConnectionProperties({
+final class OracleDatabaseGoldengateConnectionOciObjectStorageConnectionProperties {
+  const OracleDatabaseGoldengateConnectionOciObjectStorageConnectionProperties({
     this.privateKeyFile,
     this.privateKeyPassphraseSecret,
     this.publicKeyFingerprint,
@@ -1547,8 +1500,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesOciObjectStorageConnecti
 /// Typed helper for the `properties.oracle_ai_data_platform_connection_properties` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesOracleAiDataPlatformConnectionProperties {
-  const OracleDatabaseGoldengateConnectionPropertiesOracleAiDataPlatformConnectionProperties({
+final class OracleDatabaseGoldengateConnectionOracleAiDataPlatformConnectionProperties {
+  const OracleDatabaseGoldengateConnectionOracleAiDataPlatformConnectionProperties({
     this.connectionUrl,
     this.privateKeyFile,
     this.privateKeyPassphraseSecret,
@@ -1594,8 +1547,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesOracleAiDataPlatformConn
 /// Typed helper for the `properties.oracle_connection_properties` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesOracleConnectionProperties {
-  const OracleDatabaseGoldengateConnectionPropertiesOracleConnectionProperties({
+final class OracleDatabaseGoldengateConnectionOracleConnectionProperties {
+  const OracleDatabaseGoldengateConnectionOracleConnectionProperties({
     this.authenticationMode,
     this.connectionString,
     this.gcpOracleDatabaseId,
@@ -1641,8 +1594,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesOracleConnectionProperti
 /// Typed helper for the `properties.oracle_nosql_connection_properties` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesOracleNosqlConnectionProperties {
-  const OracleDatabaseGoldengateConnectionPropertiesOracleNosqlConnectionProperties({
+final class OracleDatabaseGoldengateConnectionOracleNosqlConnectionProperties {
+  const OracleDatabaseGoldengateConnectionOracleNosqlConnectionProperties({
     this.privateKeyFile,
     this.privateKeyPassphraseSecret,
     this.publicKeyFingerprint,
@@ -1684,8 +1637,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesOracleNosqlConnectionPro
 /// Typed helper for the `properties.postgresql_connection_properties` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesPostgresqlConnectionProperties {
-  const OracleDatabaseGoldengateConnectionPropertiesPostgresqlConnectionProperties({
+final class OracleDatabaseGoldengateConnectionPostgresqlConnectionProperties {
+  const OracleDatabaseGoldengateConnectionPostgresqlConnectionProperties({
     this.database,
     this.dbSystemId,
     this.host,
@@ -1731,9 +1684,7 @@ final class OracleDatabaseGoldengateConnectionPropertiesPostgresqlConnectionProp
 
   final TfArg<String>? username;
 
-  final List<
-    OracleDatabaseGoldengateConnectionPropertiesPostgresqlConnectionPropertiesAdditionalAttributes
-  >?
+  final List<OracleDatabaseGoldengateConnectionAdditionalAttributes>?
   additionalAttributes;
 
   Map<String, Object?> encode() => {
@@ -1758,30 +1709,11 @@ final class OracleDatabaseGoldengateConnectionPropertiesPostgresqlConnectionProp
   };
 }
 
-/// Typed helper for the `properties.postgresql_connection_properties.additional_attributes` block of
-/// `google_oracle_database_goldengate_connection` (derived from provider schema).
-@immutable
-final class OracleDatabaseGoldengateConnectionPropertiesPostgresqlConnectionPropertiesAdditionalAttributes {
-  const OracleDatabaseGoldengateConnectionPropertiesPostgresqlConnectionPropertiesAdditionalAttributes({
-    required this.key,
-    required this.value,
-  });
-
-  final TfArg<String> key;
-
-  final TfArg<String> value;
-
-  Map<String, Object?> encode() => {
-    'key': key.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
-
 /// Typed helper for the `properties.redis_connection_properties` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesRedisConnectionProperties {
-  const OracleDatabaseGoldengateConnectionPropertiesRedisConnectionProperties({
+final class OracleDatabaseGoldengateConnectionRedisConnectionProperties {
+  const OracleDatabaseGoldengateConnectionRedisConnectionProperties({
     this.authenticationType,
     this.keyStoreFile,
     this.keyStorePassword,
@@ -1849,8 +1781,8 @@ final class OracleDatabaseGoldengateConnectionPropertiesRedisConnectionPropertie
 /// Typed helper for the `properties.snowflake_connection_properties` block of
 /// `google_oracle_database_goldengate_connection` (derived from provider schema).
 @immutable
-final class OracleDatabaseGoldengateConnectionPropertiesSnowflakeConnectionProperties {
-  const OracleDatabaseGoldengateConnectionPropertiesSnowflakeConnectionProperties({
+final class OracleDatabaseGoldengateConnectionSnowflakeConnectionProperties {
+  const OracleDatabaseGoldengateConnectionSnowflakeConnectionProperties({
     this.authenticationType,
     this.connectionUrl,
     this.password,

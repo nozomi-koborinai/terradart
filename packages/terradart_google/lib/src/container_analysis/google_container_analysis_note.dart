@@ -13,7 +13,7 @@ const Set<String> _googleContainerAnalysisNoteSensitive = <String>{};
 final class ContainerAnalysisNoteAttestationAuthority {
   const ContainerAnalysisNoteAttestationAuthority({required this.hint});
 
-  final ContainerAnalysisNoteAttestationAuthorityHint hint;
+  final ContainerAnalysisNoteHint hint;
 
   Map<String, Object?> encode() => {'hint': hint.encode()};
 }
@@ -21,10 +21,8 @@ final class ContainerAnalysisNoteAttestationAuthority {
 /// Typed helper for the `attestation_authority.hint` block of
 /// `google_container_analysis_note` (derived from provider schema).
 @immutable
-final class ContainerAnalysisNoteAttestationAuthorityHint {
-  const ContainerAnalysisNoteAttestationAuthorityHint({
-    required this.humanReadableName,
-  });
+final class ContainerAnalysisNoteHint {
+  const ContainerAnalysisNoteHint({required this.humanReadableName});
 
   final TfArg<String> humanReadableName;
 
@@ -67,7 +65,7 @@ final class ContainerAnalysisNoteRelatedUrl {
 ///   localName: 'attestor',
 ///   name: TfArg.literal('terradart-attestor-note'),
 ///   attestationAuthority: ContainerAnalysisNoteAttestationAuthority(
-///     hint: ContainerAnalysisNoteAttestationAuthorityHint(
+///     hint: ContainerAnalysisNoteHint(
 ///       humanReadableName: TfArg.literal('TerraDart attestor'),
 ///     ),
 ///   ),

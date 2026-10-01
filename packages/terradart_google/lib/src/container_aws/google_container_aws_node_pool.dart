@@ -54,18 +54,18 @@ final class ContainerAwsNodePoolConfig {
 
   final TfArg<Map<String, String>>? tags;
 
-  final ContainerAwsNodePoolConfigAutoscalingMetricsCollection?
+  final ContainerAwsNodePoolAutoscalingMetricsCollection?
   autoscalingMetricsCollection;
 
-  final ContainerAwsNodePoolConfigConfigEncryption configEncryption;
+  final ContainerAwsNodePoolConfigEncryption configEncryption;
 
-  final ContainerAwsNodePoolConfigProxyConfig? proxyConfig;
+  final ContainerAwsNodePoolProxyConfig? proxyConfig;
 
-  final ContainerAwsNodePoolConfigRootVolume? rootVolume;
+  final ContainerAwsNodePoolRootVolume? rootVolume;
 
-  final ContainerAwsNodePoolConfigSshConfig? sshConfig;
+  final ContainerAwsNodePoolSshConfig? sshConfig;
 
-  final List<ContainerAwsNodePoolConfigTaints>? taints;
+  final List<ContainerAwsNodePoolTaints>? taints;
 
   Map<String, Object?> encode() => {
     'iam_instance_profile': iamInstanceProfile.toTfJson(),
@@ -85,8 +85,8 @@ final class ContainerAwsNodePoolConfig {
 /// Typed helper for the `config.autoscaling_metrics_collection` block of
 /// `google_container_aws_node_pool` (derived from provider schema).
 @immutable
-final class ContainerAwsNodePoolConfigAutoscalingMetricsCollection {
-  const ContainerAwsNodePoolConfigAutoscalingMetricsCollection({
+final class ContainerAwsNodePoolAutoscalingMetricsCollection {
+  const ContainerAwsNodePoolAutoscalingMetricsCollection({
     required this.granularity,
     this.metrics,
   });
@@ -104,8 +104,8 @@ final class ContainerAwsNodePoolConfigAutoscalingMetricsCollection {
 /// Typed helper for the `config.config_encryption` block of
 /// `google_container_aws_node_pool` (derived from provider schema).
 @immutable
-final class ContainerAwsNodePoolConfigConfigEncryption {
-  const ContainerAwsNodePoolConfigConfigEncryption({required this.kmsKeyArn});
+final class ContainerAwsNodePoolConfigEncryption {
+  const ContainerAwsNodePoolConfigEncryption({required this.kmsKeyArn});
 
   final TfArg<String> kmsKeyArn;
 
@@ -115,8 +115,8 @@ final class ContainerAwsNodePoolConfigConfigEncryption {
 /// Typed helper for the `config.proxy_config` block of
 /// `google_container_aws_node_pool` (derived from provider schema).
 @immutable
-final class ContainerAwsNodePoolConfigProxyConfig {
-  const ContainerAwsNodePoolConfigProxyConfig({
+final class ContainerAwsNodePoolProxyConfig {
+  const ContainerAwsNodePoolProxyConfig({
     required this.secretArn,
     required this.secretVersion,
   });
@@ -134,8 +134,8 @@ final class ContainerAwsNodePoolConfigProxyConfig {
 /// Typed helper for the `config.root_volume` block of
 /// `google_container_aws_node_pool` (derived from provider schema).
 @immutable
-final class ContainerAwsNodePoolConfigRootVolume {
-  const ContainerAwsNodePoolConfigRootVolume({
+final class ContainerAwsNodePoolRootVolume {
+  const ContainerAwsNodePoolRootVolume({
     this.iops,
     this.kmsKeyArn,
     this.sizeGib,
@@ -151,7 +151,7 @@ final class ContainerAwsNodePoolConfigRootVolume {
 
   final TfArg<num>? throughput;
 
-  final TfArg<ContainerAwsNodePoolConfigRootVolumeVolumeType>? volumeType;
+  final TfArg<ContainerAwsNodePoolVolumeType>? volumeType;
 
   Map<String, Object?> encode() => {
     'iops': ?iops?.toTfJson(),
@@ -163,12 +163,12 @@ final class ContainerAwsNodePoolConfigRootVolume {
 }
 
 /// `volume_type` — derived from the provider schema description.
-enum ContainerAwsNodePoolConfigRootVolumeVolumeType implements TerraformEnum {
+enum ContainerAwsNodePoolVolumeType implements TerraformEnum {
   volumeTypeUnspecified('VOLUME_TYPE_UNSPECIFIED'),
   gp2('GP2'),
   gp3('GP3');
 
-  const ContainerAwsNodePoolConfigRootVolumeVolumeType(this.terraformValue);
+  const ContainerAwsNodePoolVolumeType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -176,8 +176,8 @@ enum ContainerAwsNodePoolConfigRootVolumeVolumeType implements TerraformEnum {
 /// Typed helper for the `config.ssh_config` block of
 /// `google_container_aws_node_pool` (derived from provider schema).
 @immutable
-final class ContainerAwsNodePoolConfigSshConfig {
-  const ContainerAwsNodePoolConfigSshConfig({required this.ec2KeyPair});
+final class ContainerAwsNodePoolSshConfig {
+  const ContainerAwsNodePoolSshConfig({required this.ec2KeyPair});
 
   final TfArg<String> ec2KeyPair;
 
@@ -187,14 +187,14 @@ final class ContainerAwsNodePoolConfigSshConfig {
 /// Typed helper for the `config.taints` block of
 /// `google_container_aws_node_pool` (derived from provider schema).
 @immutable
-final class ContainerAwsNodePoolConfigTaints {
-  const ContainerAwsNodePoolConfigTaints({
+final class ContainerAwsNodePoolTaints {
+  const ContainerAwsNodePoolTaints({
     required this.effect,
     required this.key,
     required this.value,
   });
 
-  final TfArg<ContainerAwsNodePoolConfigTaintsEffect> effect;
+  final TfArg<ContainerAwsNodePoolEffect> effect;
 
   final TfArg<String> key;
 
@@ -208,13 +208,13 @@ final class ContainerAwsNodePoolConfigTaints {
 }
 
 /// `effect` — derived from the provider schema description.
-enum ContainerAwsNodePoolConfigTaintsEffect implements TerraformEnum {
+enum ContainerAwsNodePoolEffect implements TerraformEnum {
   effectUnspecified('EFFECT_UNSPECIFIED'),
   noSchedule('NO_SCHEDULE'),
   preferNoSchedule('PREFER_NO_SCHEDULE'),
   noExecute('NO_EXECUTE');
 
-  const ContainerAwsNodePoolConfigTaintsEffect(this.terraformValue);
+  const ContainerAwsNodePoolEffect(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -276,7 +276,7 @@ final class ContainerAwsNodePoolMaxPodsConstraint {
 final class ContainerAwsNodePoolUpdateSettings {
   const ContainerAwsNodePoolUpdateSettings({this.surgeSettings});
 
-  final ContainerAwsNodePoolUpdateSettingsSurgeSettings? surgeSettings;
+  final ContainerAwsNodePoolSurgeSettings? surgeSettings;
 
   Map<String, Object?> encode() => {'surge_settings': ?surgeSettings?.encode()};
 }
@@ -284,11 +284,8 @@ final class ContainerAwsNodePoolUpdateSettings {
 /// Typed helper for the `update_settings.surge_settings` block of
 /// `google_container_aws_node_pool` (derived from provider schema).
 @immutable
-final class ContainerAwsNodePoolUpdateSettingsSurgeSettings {
-  const ContainerAwsNodePoolUpdateSettingsSurgeSettings({
-    this.maxSurge,
-    this.maxUnavailable,
-  });
+final class ContainerAwsNodePoolSurgeSettings {
+  const ContainerAwsNodePoolSurgeSettings({this.maxSurge, this.maxUnavailable});
 
   final TfArg<num>? maxSurge;
 

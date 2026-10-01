@@ -45,7 +45,7 @@ final class DialogflowCxIntentTrainingPhrases {
 
   final TfArg<num>? repeatCount;
 
-  final List<DialogflowCxIntentTrainingPhrasesParts> parts;
+  final List<DialogflowCxIntentParts> parts;
 
   Map<String, Object?> encode() => {
     'repeat_count': ?repeatCount?.toTfJson(),
@@ -56,11 +56,8 @@ final class DialogflowCxIntentTrainingPhrases {
 /// Typed helper for the `training_phrases.parts` block of
 /// `google_dialogflow_cx_intent` (derived from provider schema).
 @immutable
-final class DialogflowCxIntentTrainingPhrasesParts {
-  const DialogflowCxIntentTrainingPhrasesParts({
-    this.parameterId,
-    required this.text,
-  });
+final class DialogflowCxIntentParts {
+  const DialogflowCxIntentParts({this.parameterId, required this.text});
 
   final TfArg<String>? parameterId;
 

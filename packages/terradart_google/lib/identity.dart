@@ -8,50 +8,49 @@ library;
 
 export 'src/identity/google_cloud_identity_group.dart'
     show
-        CloudIdentityGroupGroupKey,
         CloudIdentityGroupInitialGroupConfig,
+        CloudIdentityGroupKey,
         GoogleCloudIdentityGroup;
 export 'src/identity/google_cloud_identity_group_membership.dart'
     show
+        CloudIdentityGroupMembershipExpiryDetail,
         CloudIdentityGroupMembershipPreferredMemberKey,
         CloudIdentityGroupMembershipRoles,
-        CloudIdentityGroupMembershipRolesExpiryDetail,
         CloudIdentityGroupMembershipRolesName,
         GoogleCloudIdentityGroupMembership;
 export 'src/identity/google_identity_platform_config.dart'
     show
         GoogleIdentityPlatformConfig,
+        IdentityPlatformConfigAllowByDefault,
+        IdentityPlatformConfigAllowlistOnly,
+        IdentityPlatformConfigAnonymous,
         IdentityPlatformConfigBlockingFunctions,
-        IdentityPlatformConfigBlockingFunctionsForwardInboundCredentials,
-        IdentityPlatformConfigBlockingFunctionsTriggers,
         IdentityPlatformConfigClient,
-        IdentityPlatformConfigClientPermissions,
+        IdentityPlatformConfigEmail,
+        IdentityPlatformConfigForwardInboundCredentials,
         IdentityPlatformConfigMfa,
-        IdentityPlatformConfigMfaProviderConfigs,
-        IdentityPlatformConfigMfaProviderConfigsState,
-        IdentityPlatformConfigMfaProviderConfigsTotpProviderConfig,
-        IdentityPlatformConfigMfaState,
         IdentityPlatformConfigMonitoring,
-        IdentityPlatformConfigMonitoringRequestLogging,
         IdentityPlatformConfigMultiTenant,
+        IdentityPlatformConfigPermissions,
+        IdentityPlatformConfigPhoneNumber,
+        IdentityPlatformConfigProviderConfigs,
         IdentityPlatformConfigQuota,
-        IdentityPlatformConfigQuotaSignUpQuotaConfig,
+        IdentityPlatformConfigRequestLogging,
         IdentityPlatformConfigSignIn,
-        IdentityPlatformConfigSignInAnonymous,
-        IdentityPlatformConfigSignInEmail,
-        IdentityPlatformConfigSignInPhoneNumber,
+        IdentityPlatformConfigSignUpQuotaConfig,
         IdentityPlatformConfigSmsRegionConfig,
         IdentityPlatformConfigSmsRegionConfigAllowByDefault,
-        IdentityPlatformConfigSmsRegionConfigAllowByDefaultChoice,
         IdentityPlatformConfigSmsRegionConfigAllowlistOnly,
-        IdentityPlatformConfigSmsRegionConfigAllowlistOnlyChoice;
+        IdentityPlatformConfigState,
+        IdentityPlatformConfigTotpProviderConfig,
+        IdentityPlatformConfigTriggers;
 export 'src/identity/google_identity_platform_default_supported_idp_config.dart'
     show GoogleIdentityPlatformDefaultSupportedIdpConfig;
 export 'src/identity/google_identity_platform_inbound_saml_config.dart'
     show
         GoogleIdentityPlatformInboundSamlConfig,
+        IdentityPlatformInboundSamlConfigIdpCertificates,
         IdentityPlatformInboundSamlConfigIdpConfig,
-        IdentityPlatformInboundSamlConfigIdpConfigIdpCertificates,
         IdentityPlatformInboundSamlConfigSpConfig;
 export 'src/identity/google_identity_platform_oauth_idp_config.dart'
     show
@@ -61,15 +60,15 @@ export 'src/identity/google_identity_platform_tenant.dart'
     show
         GoogleIdentityPlatformTenant,
         IdentityPlatformTenantClient,
-        IdentityPlatformTenantClientPermissions,
-        IdentityPlatformTenantDeletionPolicy;
+        IdentityPlatformTenantDeletionPolicy,
+        IdentityPlatformTenantPermissions;
 export 'src/identity/google_identity_platform_tenant_default_supported_idp_config.dart'
     show GoogleIdentityPlatformTenantDefaultSupportedIdpConfig;
 export 'src/identity/google_identity_platform_tenant_inbound_saml_config.dart'
     show
         GoogleIdentityPlatformTenantInboundSamlConfig,
+        IdentityPlatformTenantInboundSamlConfigIdpCertificates,
         IdentityPlatformTenantInboundSamlConfigIdpConfig,
-        IdentityPlatformTenantInboundSamlConfigIdpConfigIdpCertificates,
         IdentityPlatformTenantInboundSamlConfigSpConfig;
 export 'src/identity/google_identity_platform_tenant_oauth_idp_config.dart'
     show GoogleIdentityPlatformTenantOauthIdpConfig;

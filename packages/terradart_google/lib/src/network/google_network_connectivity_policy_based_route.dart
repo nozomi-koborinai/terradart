@@ -167,7 +167,7 @@ final class NetworkConnectivityPolicyBasedRouteFilter {
 
   final TfArg<String>? ipProtocol;
 
-  final TfArg<NetworkConnectivityPolicyBasedRouteFilterProtocolVersion>
+  final TfArg<NetworkConnectivityPolicyBasedRouteProtocolVersion>
   protocolVersion;
 
   final TfArg<String>? srcRange;
@@ -181,14 +181,12 @@ final class NetworkConnectivityPolicyBasedRouteFilter {
 }
 
 /// `protocol_version` — derived from the provider schema description.
-enum NetworkConnectivityPolicyBasedRouteFilterProtocolVersion
+enum NetworkConnectivityPolicyBasedRouteProtocolVersion
     implements TerraformEnum {
   ipv4('IPV4'),
   ipv6('IPV6');
 
-  const NetworkConnectivityPolicyBasedRouteFilterProtocolVersion(
-    this.terraformValue,
-  );
+  const NetworkConnectivityPolicyBasedRouteProtocolVersion(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -247,7 +245,7 @@ final class NetworkConnectivityPolicyBasedRouteVirtualMachine {
 ///   network: vpc.ref,
 ///   filter: NetworkConnectivityPolicyBasedRouteFilter(
 ///     protocolVersion: TfArg.literal(
-///       NetworkConnectivityPolicyBasedRouteFilterProtocolVersion.ipv4,
+///       NetworkConnectivityPolicyBasedRouteProtocolVersion.ipv4,
 ///     ),
 ///   ),
 ///   nextHop: NetworkConnectivityPolicyBasedRouteNextHop.otherRoutes(

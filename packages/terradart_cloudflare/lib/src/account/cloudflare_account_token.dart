@@ -26,7 +26,7 @@ enum AccountTokenStatus implements TerraformEnum {
 final class AccountTokenCondition {
   const AccountTokenCondition({this.requestIp});
 
-  final AccountTokenConditionRequestIp? requestIp;
+  final AccountTokenRequestIp? requestIp;
 
   Map<String, Object?> encode() => {'request_ip': ?requestIp?.encode()};
 }
@@ -34,8 +34,8 @@ final class AccountTokenCondition {
 /// Typed helper for the `condition.request_ip` block of
 /// `cloudflare_account_token` (derived from provider schema).
 @immutable
-final class AccountTokenConditionRequestIp {
-  const AccountTokenConditionRequestIp({this.inCase, this.notIn});
+final class AccountTokenRequestIp {
+  const AccountTokenRequestIp({this.inCase, this.notIn});
 
   final TfArg<List<String>>? inCase;
 
@@ -57,11 +57,11 @@ final class AccountTokenPolicies {
     required this.permissionGroups,
   });
 
-  final TfArg<AccountTokenPoliciesEffect> effect;
+  final TfArg<AccountTokenEffect> effect;
 
   final TfArg<String> resources;
 
-  final List<AccountTokenPoliciesPermissionGroups> permissionGroups;
+  final List<AccountTokenPermissionGroups> permissionGroups;
 
   Map<String, Object?> encode() => {
     'effect': effect.toTfJson(),
@@ -71,11 +71,11 @@ final class AccountTokenPolicies {
 }
 
 /// `effect` — derived from the provider schema description.
-enum AccountTokenPoliciesEffect implements TerraformEnum {
+enum AccountTokenEffect implements TerraformEnum {
   allow('allow'),
   deny('deny');
 
-  const AccountTokenPoliciesEffect(this.terraformValue);
+  const AccountTokenEffect(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -83,8 +83,8 @@ enum AccountTokenPoliciesEffect implements TerraformEnum {
 /// Typed helper for the `policies.permission_groups` block of
 /// `cloudflare_account_token` (derived from provider schema).
 @immutable
-final class AccountTokenPoliciesPermissionGroups {
-  const AccountTokenPoliciesPermissionGroups({required this.id});
+final class AccountTokenPermissionGroups {
+  const AccountTokenPermissionGroups({required this.id});
 
   final TfArg<String> id;
 

@@ -53,18 +53,18 @@ final class DataRoute53TrafficPolicyDocumentRule {
 
   final TfArg<String>? type;
 
-  final List<DataRoute53TrafficPolicyDocumentRuleGeoProximityLocation>?
+  final List<DataRoute53TrafficPolicyDocumentGeoProximityLocation>?
   geoProximityLocation;
 
-  final List<DataRoute53TrafficPolicyDocumentRuleItems>? items;
+  final List<DataRoute53TrafficPolicyDocumentItems>? items;
 
-  final List<DataRoute53TrafficPolicyDocumentRuleLocation>? location;
+  final List<DataRoute53TrafficPolicyDocumentLocation>? location;
 
-  final DataRoute53TrafficPolicyDocumentRulePrimary? primary;
+  final DataRoute53TrafficPolicyDocumentPrimary? primary;
 
-  final List<DataRoute53TrafficPolicyDocumentRuleRegion>? region;
+  final List<DataRoute53TrafficPolicyDocumentRegion>? region;
 
-  final DataRoute53TrafficPolicyDocumentRuleSecondary? secondary;
+  final DataRoute53TrafficPolicyDocumentSecondary? secondary;
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
@@ -84,8 +84,8 @@ final class DataRoute53TrafficPolicyDocumentRule {
 /// Typed helper for the `rule.geo_proximity_location` block of
 /// `aws_route53_traffic_policy_document` (derived from provider schema).
 @immutable
-final class DataRoute53TrafficPolicyDocumentRuleGeoProximityLocation {
-  const DataRoute53TrafficPolicyDocumentRuleGeoProximityLocation({
+final class DataRoute53TrafficPolicyDocumentGeoProximityLocation {
+  const DataRoute53TrafficPolicyDocumentGeoProximityLocation({
     this.bias,
     this.endpointReference,
     this.evaluateTargetHealth,
@@ -127,8 +127,8 @@ final class DataRoute53TrafficPolicyDocumentRuleGeoProximityLocation {
 /// Typed helper for the `rule.items` block of
 /// `aws_route53_traffic_policy_document` (derived from provider schema).
 @immutable
-final class DataRoute53TrafficPolicyDocumentRuleItems {
-  const DataRoute53TrafficPolicyDocumentRuleItems({
+final class DataRoute53TrafficPolicyDocumentItems {
+  const DataRoute53TrafficPolicyDocumentItems({
     this.endpointReference,
     this.healthCheck,
   });
@@ -146,8 +146,8 @@ final class DataRoute53TrafficPolicyDocumentRuleItems {
 /// Typed helper for the `rule.location` block of
 /// `aws_route53_traffic_policy_document` (derived from provider schema).
 @immutable
-final class DataRoute53TrafficPolicyDocumentRuleLocation {
-  const DataRoute53TrafficPolicyDocumentRuleLocation({
+final class DataRoute53TrafficPolicyDocumentLocation {
+  const DataRoute53TrafficPolicyDocumentLocation({
     this.continent,
     this.country,
     this.endpointReference,
@@ -189,8 +189,8 @@ final class DataRoute53TrafficPolicyDocumentRuleLocation {
 /// Typed helper for the `rule.primary` block of
 /// `aws_route53_traffic_policy_document` (derived from provider schema).
 @immutable
-final class DataRoute53TrafficPolicyDocumentRulePrimary {
-  const DataRoute53TrafficPolicyDocumentRulePrimary({
+final class DataRoute53TrafficPolicyDocumentPrimary {
+  const DataRoute53TrafficPolicyDocumentPrimary({
     this.endpointReference,
     this.evaluateTargetHealth,
     this.healthCheck,
@@ -216,8 +216,8 @@ final class DataRoute53TrafficPolicyDocumentRulePrimary {
 /// Typed helper for the `rule.region` block of
 /// `aws_route53_traffic_policy_document` (derived from provider schema).
 @immutable
-final class DataRoute53TrafficPolicyDocumentRuleRegion {
-  const DataRoute53TrafficPolicyDocumentRuleRegion({
+final class DataRoute53TrafficPolicyDocumentRegion {
+  const DataRoute53TrafficPolicyDocumentRegion({
     this.endpointReference,
     this.evaluateTargetHealth,
     this.healthCheck,
@@ -247,8 +247,8 @@ final class DataRoute53TrafficPolicyDocumentRuleRegion {
 /// Typed helper for the `rule.secondary` block of
 /// `aws_route53_traffic_policy_document` (derived from provider schema).
 @immutable
-final class DataRoute53TrafficPolicyDocumentRuleSecondary {
-  const DataRoute53TrafficPolicyDocumentRuleSecondary({
+final class DataRoute53TrafficPolicyDocumentSecondary {
+  const DataRoute53TrafficPolicyDocumentSecondary({
     this.endpointReference,
     this.evaluateTargetHealth,
     this.healthCheck,

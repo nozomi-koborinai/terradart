@@ -24,7 +24,7 @@ enum ApiTokenStatus implements TerraformEnum {
 final class ApiTokenCondition {
   const ApiTokenCondition({this.requestIp});
 
-  final ApiTokenConditionRequestIp? requestIp;
+  final ApiTokenRequestIp? requestIp;
 
   Map<String, Object?> encode() => {'request_ip': ?requestIp?.encode()};
 }
@@ -32,8 +32,8 @@ final class ApiTokenCondition {
 /// Typed helper for the `condition.request_ip` block of
 /// `cloudflare_api_token` (derived from provider schema).
 @immutable
-final class ApiTokenConditionRequestIp {
-  const ApiTokenConditionRequestIp({this.inCase, this.notIn});
+final class ApiTokenRequestIp {
+  const ApiTokenRequestIp({this.inCase, this.notIn});
 
   final TfArg<List<String>>? inCase;
 
@@ -55,11 +55,11 @@ final class ApiTokenPolicies {
     required this.permissionGroups,
   });
 
-  final TfArg<ApiTokenPoliciesEffect> effect;
+  final TfArg<ApiTokenEffect> effect;
 
   final TfArg<String> resources;
 
-  final List<ApiTokenPoliciesPermissionGroups> permissionGroups;
+  final List<ApiTokenPermissionGroups> permissionGroups;
 
   Map<String, Object?> encode() => {
     'effect': effect.toTfJson(),
@@ -69,11 +69,11 @@ final class ApiTokenPolicies {
 }
 
 /// `effect` — derived from the provider schema description.
-enum ApiTokenPoliciesEffect implements TerraformEnum {
+enum ApiTokenEffect implements TerraformEnum {
   allow('allow'),
   deny('deny');
 
-  const ApiTokenPoliciesEffect(this.terraformValue);
+  const ApiTokenEffect(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -81,8 +81,8 @@ enum ApiTokenPoliciesEffect implements TerraformEnum {
 /// Typed helper for the `policies.permission_groups` block of
 /// `cloudflare_api_token` (derived from provider schema).
 @immutable
-final class ApiTokenPoliciesPermissionGroups {
-  const ApiTokenPoliciesPermissionGroups({required this.id});
+final class ApiTokenPermissionGroups {
+  const ApiTokenPermissionGroups({required this.id});
 
   final TfArg<String> id;
 

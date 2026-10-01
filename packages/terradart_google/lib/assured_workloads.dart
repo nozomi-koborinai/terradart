@@ -8,11 +8,11 @@ library;
 export 'src/assured_workloads/google_assured_workloads_workload.dart'
     show
         AssuredWorkloadsWorkloadComplianceRegime,
+        AssuredWorkloadsWorkloadKajEnrollmentType,
         AssuredWorkloadsWorkloadKmsSettings,
+        AssuredWorkloadsWorkloadOptions,
         AssuredWorkloadsWorkloadPartner,
         AssuredWorkloadsWorkloadPartnerPermissions,
         AssuredWorkloadsWorkloadResourceSettings,
-        AssuredWorkloadsWorkloadResourceSettingsResourceType,
-        AssuredWorkloadsWorkloadWorkloadOptions,
-        AssuredWorkloadsWorkloadWorkloadOptionsKajEnrollmentType,
+        AssuredWorkloadsWorkloadResourceType,
         GoogleAssuredWorkloadsWorkload;

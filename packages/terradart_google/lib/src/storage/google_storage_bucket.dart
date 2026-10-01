@@ -107,13 +107,13 @@ final class StorageBucketEncryption {
 
   final TfArg<String>? defaultKmsKeyName;
 
-  final StorageBucketEncryptionCustomerManagedEncryptionEnforcementConfig?
+  final StorageBucketCustomerManagedEncryptionEnforcementConfig?
   customerManagedEncryptionEnforcementConfig;
 
-  final StorageBucketEncryptionCustomerSuppliedEncryptionEnforcementConfig?
+  final StorageBucketCustomerSuppliedEncryptionEnforcementConfig?
   customerSuppliedEncryptionEnforcementConfig;
 
-  final StorageBucketEncryptionGoogleManagedEncryptionEnforcementConfig?
+  final StorageBucketGoogleManagedEncryptionEnforcementConfig?
   googleManagedEncryptionEnforcementConfig;
 
   Map<String, Object?> encode() => {
@@ -130,8 +130,8 @@ final class StorageBucketEncryption {
 /// Typed helper for the `encryption.customer_managed_encryption_enforcement_config` block of
 /// `google_storage_bucket` (derived from provider schema).
 @immutable
-final class StorageBucketEncryptionCustomerManagedEncryptionEnforcementConfig {
-  const StorageBucketEncryptionCustomerManagedEncryptionEnforcementConfig({
+final class StorageBucketCustomerManagedEncryptionEnforcementConfig {
+  const StorageBucketCustomerManagedEncryptionEnforcementConfig({
     required this.restrictionMode,
   });
 
@@ -145,8 +145,8 @@ final class StorageBucketEncryptionCustomerManagedEncryptionEnforcementConfig {
 /// Typed helper for the `encryption.customer_supplied_encryption_enforcement_config` block of
 /// `google_storage_bucket` (derived from provider schema).
 @immutable
-final class StorageBucketEncryptionCustomerSuppliedEncryptionEnforcementConfig {
-  const StorageBucketEncryptionCustomerSuppliedEncryptionEnforcementConfig({
+final class StorageBucketCustomerSuppliedEncryptionEnforcementConfig {
+  const StorageBucketCustomerSuppliedEncryptionEnforcementConfig({
     required this.restrictionMode,
   });
 
@@ -160,8 +160,8 @@ final class StorageBucketEncryptionCustomerSuppliedEncryptionEnforcementConfig {
 /// Typed helper for the `encryption.google_managed_encryption_enforcement_config` block of
 /// `google_storage_bucket` (derived from provider schema).
 @immutable
-final class StorageBucketEncryptionGoogleManagedEncryptionEnforcementConfig {
-  const StorageBucketEncryptionGoogleManagedEncryptionEnforcementConfig({
+final class StorageBucketGoogleManagedEncryptionEnforcementConfig {
+  const StorageBucketGoogleManagedEncryptionEnforcementConfig({
     required this.restrictionMode,
   });
 
@@ -201,9 +201,9 @@ final class StorageBucketIpFilter {
 
   final TfArg<String> mode;
 
-  final StorageBucketIpFilterPublicNetworkSource? publicNetworkSource;
+  final StorageBucketPublicNetworkSource? publicNetworkSource;
 
-  final List<StorageBucketIpFilterVpcNetworkSources>? vpcNetworkSources;
+  final List<StorageBucketVpcNetworkSources>? vpcNetworkSources;
 
   Map<String, Object?> encode() => {
     'allow_all_service_agent_access': ?allowAllServiceAgentAccess?.toTfJson(),
@@ -218,10 +218,8 @@ final class StorageBucketIpFilter {
 /// Typed helper for the `ip_filter.public_network_source` block of
 /// `google_storage_bucket` (derived from provider schema).
 @immutable
-final class StorageBucketIpFilterPublicNetworkSource {
-  const StorageBucketIpFilterPublicNetworkSource({
-    required this.allowedIpCidrRanges,
-  });
+final class StorageBucketPublicNetworkSource {
+  const StorageBucketPublicNetworkSource({required this.allowedIpCidrRanges});
 
   final TfArg<List<String>> allowedIpCidrRanges;
 
@@ -233,8 +231,8 @@ final class StorageBucketIpFilterPublicNetworkSource {
 /// Typed helper for the `ip_filter.vpc_network_sources` block of
 /// `google_storage_bucket` (derived from provider schema).
 @immutable
-final class StorageBucketIpFilterVpcNetworkSources {
-  const StorageBucketIpFilterVpcNetworkSources({
+final class StorageBucketVpcNetworkSources {
+  const StorageBucketVpcNetworkSources({
     required this.allowedIpCidrRanges,
     required this.network,
   });
@@ -258,9 +256,9 @@ final class StorageBucketLifecycleRule {
     required this.condition,
   });
 
-  final StorageBucketLifecycleRuleAction action;
+  final StorageBucketAction action;
 
-  final StorageBucketLifecycleRuleCondition condition;
+  final StorageBucketCondition condition;
 
   Map<String, Object?> encode() => {
     'action': action.encode(),
@@ -271,11 +269,8 @@ final class StorageBucketLifecycleRule {
 /// Typed helper for the `lifecycle_rule.action` block of
 /// `google_storage_bucket` (derived from provider schema).
 @immutable
-final class StorageBucketLifecycleRuleAction {
-  const StorageBucketLifecycleRuleAction({
-    this.storageClass,
-    required this.type,
-  });
+final class StorageBucketAction {
+  const StorageBucketAction({this.storageClass, required this.type});
 
   final TfArg<BucketStorageClass>? storageClass;
 
@@ -290,8 +285,8 @@ final class StorageBucketLifecycleRuleAction {
 /// Typed helper for the `lifecycle_rule.condition` block of
 /// `google_storage_bucket` (derived from provider schema).
 @immutable
-final class StorageBucketLifecycleRuleCondition {
-  const StorageBucketLifecycleRuleCondition({
+final class StorageBucketCondition {
+  const StorageBucketCondition({
     this.age,
     this.createdBefore,
     this.customTimeBefore,

@@ -6,10 +6,10 @@ library;
 export 'src/media/aws_media_convert_queue.dart'
     show
         AwsMediaConvertQueue,
+        MediaConvertQueueCommitment,
         MediaConvertQueuePricingPlan,
+        MediaConvertQueueRenewalType,
         MediaConvertQueueReservationPlanSettings,
-        MediaConvertQueueReservationPlanSettingsCommitment,
-        MediaConvertQueueReservationPlanSettingsRenewalType,
         MediaConvertQueueStatus;
 export 'src/media/aws_media_package_channel.dart' show AwsMediaPackageChannel;
 export 'src/media/aws_media_packagev2_channel_group.dart'

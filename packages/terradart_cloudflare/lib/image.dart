@@ -7,6 +7,6 @@ export 'src/image/cloudflare_image.dart' show CloudflareImage;
 export 'src/image/cloudflare_image_variant.dart'
     show
         CloudflareImageVariant,
-        ImageVariantOptions,
-        ImageVariantOptionsFit,
-        ImageVariantOptionsMetadata;
+        ImageVariantFit,
+        ImageVariantMetadata,
+        ImageVariantOptions;

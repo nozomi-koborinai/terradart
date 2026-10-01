@@ -25,8 +25,7 @@ final class IdentityPlatformInboundSamlConfigIdpConfig {
 
   final TfArg<String> ssoUrl;
 
-  final List<IdentityPlatformInboundSamlConfigIdpConfigIdpCertificates>
-  idpCertificates;
+  final List<IdentityPlatformInboundSamlConfigIdpCertificates> idpCertificates;
 
   Map<String, Object?> encode() => {
     'idp_entity_id': idpEntityId.toTfJson(),
@@ -39,8 +38,8 @@ final class IdentityPlatformInboundSamlConfigIdpConfig {
 /// Typed helper for the `idp_config.idp_certificates` block of
 /// `google_identity_platform_inbound_saml_config` (derived from provider schema).
 @immutable
-final class IdentityPlatformInboundSamlConfigIdpConfigIdpCertificates {
-  const IdentityPlatformInboundSamlConfigIdpConfigIdpCertificates({
+final class IdentityPlatformInboundSamlConfigIdpCertificates {
+  const IdentityPlatformInboundSamlConfigIdpCertificates({
     this.x509Certificate,
   });
 

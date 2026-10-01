@@ -35,8 +35,7 @@ final class SagemakerUserProfileUserSettings {
     this.tensorBoardAppSettings,
   });
 
-  final TfArg<SagemakerUserProfileUserSettingsAutoMountHomeEfs>?
-  autoMountHomeEfs;
+  final TfArg<SagemakerUserProfileAutoMountHomeEfs>? autoMountHomeEfs;
 
   final TfArg<String>? defaultLandingUri;
 
@@ -44,44 +43,35 @@ final class SagemakerUserProfileUserSettings {
 
   final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroups;
 
-  final TfArg<SagemakerUserProfileUserSettingsStudioWebPortal>? studioWebPortal;
+  final TfArg<SagemakerUserProfileStudioWebPortal>? studioWebPortal;
 
-  final SagemakerUserProfileUserSettingsCanvasAppSettings? canvasAppSettings;
+  final SagemakerUserProfileCanvasAppSettings? canvasAppSettings;
 
-  final SagemakerUserProfileUserSettingsCodeEditorAppSettings?
-  codeEditorAppSettings;
+  final SagemakerUserProfileCodeEditorAppSettings? codeEditorAppSettings;
 
-  final List<SagemakerUserProfileUserSettingsCustomFileSystemConfig>?
+  final List<SagemakerUserProfileCustomFileSystemConfig>?
   customFileSystemConfig;
 
-  final SagemakerUserProfileUserSettingsCustomPosixUserConfig?
-  customPosixUserConfig;
+  final SagemakerUserProfileCustomPosixUserConfig? customPosixUserConfig;
 
-  final SagemakerUserProfileUserSettingsJupyterLabAppSettings?
-  jupyterLabAppSettings;
+  final SagemakerUserProfileJupyterLabAppSettings? jupyterLabAppSettings;
 
-  final SagemakerUserProfileUserSettingsJupyterServerAppSettings?
-  jupyterServerAppSettings;
+  final SagemakerUserProfileJupyterServerAppSettings? jupyterServerAppSettings;
 
-  final SagemakerUserProfileUserSettingsKernelGatewayAppSettings?
-  kernelGatewayAppSettings;
+  final SagemakerUserProfileKernelGatewayAppSettings? kernelGatewayAppSettings;
 
-  final SagemakerUserProfileUserSettingsRSessionAppSettings?
-  rSessionAppSettings;
+  final SagemakerUserProfileRSessionAppSettings? rSessionAppSettings;
 
-  final SagemakerUserProfileUserSettingsRStudioServerProAppSettings?
+  final SagemakerUserProfileRStudioServerProAppSettings?
   rStudioServerProAppSettings;
 
-  final SagemakerUserProfileUserSettingsSharingSettings? sharingSettings;
+  final SagemakerUserProfileSharingSettings? sharingSettings;
 
-  final SagemakerUserProfileUserSettingsSpaceStorageSettings?
-  spaceStorageSettings;
+  final SagemakerUserProfileSpaceStorageSettings? spaceStorageSettings;
 
-  final SagemakerUserProfileUserSettingsStudioWebPortalSettings?
-  studioWebPortalSettings;
+  final SagemakerUserProfileStudioWebPortalSettings? studioWebPortalSettings;
 
-  final SagemakerUserProfileUserSettingsTensorBoardAppSettings?
-  tensorBoardAppSettings;
+  final SagemakerUserProfileTensorBoardAppSettings? tensorBoardAppSettings;
 
   Map<String, Object?> encode() => {
     'auto_mount_home_efs': ?autoMountHomeEfs?.toTfJson(),
@@ -109,22 +99,22 @@ final class SagemakerUserProfileUserSettings {
 }
 
 /// `auto_mount_home_efs` — derived from the provider schema description.
-enum SagemakerUserProfileUserSettingsAutoMountHomeEfs implements TerraformEnum {
+enum SagemakerUserProfileAutoMountHomeEfs implements TerraformEnum {
   enabled('Enabled'),
   disabled('Disabled'),
   defaultasdomain('DefaultAsDomain');
 
-  const SagemakerUserProfileUserSettingsAutoMountHomeEfs(this.terraformValue);
+  const SagemakerUserProfileAutoMountHomeEfs(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `studio_web_portal` — derived from the provider schema description.
-enum SagemakerUserProfileUserSettingsStudioWebPortal implements TerraformEnum {
+enum SagemakerUserProfileStudioWebPortal implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const SagemakerUserProfileUserSettingsStudioWebPortal(this.terraformValue);
+  const SagemakerUserProfileStudioWebPortal(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -132,8 +122,8 @@ enum SagemakerUserProfileUserSettingsStudioWebPortal implements TerraformEnum {
 /// Typed helper for the `user_settings.canvas_app_settings` block of
 /// `aws_sagemaker_user_profile` (derived from provider schema).
 @immutable
-final class SagemakerUserProfileUserSettingsCanvasAppSettings {
-  const SagemakerUserProfileUserSettingsCanvasAppSettings({
+final class SagemakerUserProfileCanvasAppSettings {
+  const SagemakerUserProfileCanvasAppSettings({
     this.directDeploySettings,
     this.emrServerlessSettings,
     this.generativeAiSettings,
@@ -144,31 +134,23 @@ final class SagemakerUserProfileUserSettingsCanvasAppSettings {
     this.workspaceSettings,
   });
 
-  final SagemakerUserProfileUserSettingsCanvasAppSettingsDirectDeploySettings?
-  directDeploySettings;
+  final SagemakerUserProfileDirectDeploySettings? directDeploySettings;
 
-  final SagemakerUserProfileUserSettingsCanvasAppSettingsEmrServerlessSettings?
-  emrServerlessSettings;
+  final SagemakerUserProfileEmrServerlessSettings? emrServerlessSettings;
 
-  final SagemakerUserProfileUserSettingsCanvasAppSettingsGenerativeAiSettings?
-  generativeAiSettings;
+  final SagemakerUserProfileGenerativeAiSettings? generativeAiSettings;
 
-  final List<
-    SagemakerUserProfileUserSettingsCanvasAppSettingsIdentityProviderOauthSettings
-  >?
+  final List<SagemakerUserProfileIdentityProviderOauthSettings>?
   identityProviderOauthSettings;
 
-  final SagemakerUserProfileUserSettingsCanvasAppSettingsKendraSettings?
-  kendraSettings;
+  final SagemakerUserProfileKendraSettings? kendraSettings;
 
-  final SagemakerUserProfileUserSettingsCanvasAppSettingsModelRegisterSettings?
-  modelRegisterSettings;
+  final SagemakerUserProfileModelRegisterSettings? modelRegisterSettings;
 
-  final SagemakerUserProfileUserSettingsCanvasAppSettingsTimeSeriesForecastingSettings?
+  final SagemakerUserProfileTimeSeriesForecastingSettings?
   timeSeriesForecastingSettings;
 
-  final SagemakerUserProfileUserSettingsCanvasAppSettingsWorkspaceSettings?
-  workspaceSettings;
+  final SagemakerUserProfileWorkspaceSettings? workspaceSettings;
 
   Map<String, Object?> encode() => {
     'direct_deploy_settings': ?directDeploySettings?.encode(),
@@ -189,28 +171,20 @@ final class SagemakerUserProfileUserSettingsCanvasAppSettings {
 /// Typed helper for the `user_settings.canvas_app_settings.direct_deploy_settings` block of
 /// `aws_sagemaker_user_profile` (derived from provider schema).
 @immutable
-final class SagemakerUserProfileUserSettingsCanvasAppSettingsDirectDeploySettings {
-  const SagemakerUserProfileUserSettingsCanvasAppSettingsDirectDeploySettings({
-    this.status,
-  });
+final class SagemakerUserProfileDirectDeploySettings {
+  const SagemakerUserProfileDirectDeploySettings({this.status});
 
-  final TfArg<
-    SagemakerUserProfileUserSettingsCanvasAppSettingsDirectDeploySettingsStatus
-  >?
-  status;
+  final TfArg<SagemakerUserProfileStatus>? status;
 
   Map<String, Object?> encode() => {'status': ?status?.toTfJson()};
 }
 
 /// `status` — derived from the provider schema description.
-enum SagemakerUserProfileUserSettingsCanvasAppSettingsDirectDeploySettingsStatus
-    implements TerraformEnum {
+enum SagemakerUserProfileStatus implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const SagemakerUserProfileUserSettingsCanvasAppSettingsDirectDeploySettingsStatus(
-    this.terraformValue,
-  );
+  const SagemakerUserProfileStatus(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -218,18 +192,15 @@ enum SagemakerUserProfileUserSettingsCanvasAppSettingsDirectDeploySettingsStatus
 /// Typed helper for the `user_settings.canvas_app_settings.emr_serverless_settings` block of
 /// `aws_sagemaker_user_profile` (derived from provider schema).
 @immutable
-final class SagemakerUserProfileUserSettingsCanvasAppSettingsEmrServerlessSettings {
-  const SagemakerUserProfileUserSettingsCanvasAppSettingsEmrServerlessSettings({
+final class SagemakerUserProfileEmrServerlessSettings {
+  const SagemakerUserProfileEmrServerlessSettings({
     this.executionRoleArn,
     this.status,
   });
 
   final RefTo<AwsIamRole>? executionRoleArn;
 
-  final TfArg<
-    SagemakerUserProfileUserSettingsCanvasAppSettingsEmrServerlessSettingsStatus
-  >?
-  status;
+  final TfArg<SagemakerUserProfileStatus>? status;
 
   Map<String, Object?> encode() => {
     'execution_role_arn': ?executionRoleArn?.encodeAs('arn').toTfJson(),
@@ -237,26 +208,11 @@ final class SagemakerUserProfileUserSettingsCanvasAppSettingsEmrServerlessSettin
   };
 }
 
-/// `status` — derived from the provider schema description.
-enum SagemakerUserProfileUserSettingsCanvasAppSettingsEmrServerlessSettingsStatus
-    implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
-
-  const SagemakerUserProfileUserSettingsCanvasAppSettingsEmrServerlessSettingsStatus(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `user_settings.canvas_app_settings.generative_ai_settings` block of
 /// `aws_sagemaker_user_profile` (derived from provider schema).
 @immutable
-final class SagemakerUserProfileUserSettingsCanvasAppSettingsGenerativeAiSettings {
-  const SagemakerUserProfileUserSettingsCanvasAppSettingsGenerativeAiSettings({
-    this.amazonBedrockRoleArn,
-  });
+final class SagemakerUserProfileGenerativeAiSettings {
+  const SagemakerUserProfileGenerativeAiSettings({this.amazonBedrockRoleArn});
 
   final TfArg<String>? amazonBedrockRoleArn;
 
@@ -268,24 +224,18 @@ final class SagemakerUserProfileUserSettingsCanvasAppSettingsGenerativeAiSetting
 /// Typed helper for the `user_settings.canvas_app_settings.identity_provider_oauth_settings` block of
 /// `aws_sagemaker_user_profile` (derived from provider schema).
 @immutable
-final class SagemakerUserProfileUserSettingsCanvasAppSettingsIdentityProviderOauthSettings {
-  const SagemakerUserProfileUserSettingsCanvasAppSettingsIdentityProviderOauthSettings({
+final class SagemakerUserProfileIdentityProviderOauthSettings {
+  const SagemakerUserProfileIdentityProviderOauthSettings({
     this.dataSourceName,
     required this.secretArn,
     this.status,
   });
 
-  final TfArg<
-    SagemakerUserProfileUserSettingsCanvasAppSettingsIdentityProviderOauthSettingsDataSourceName
-  >?
-  dataSourceName;
+  final TfArg<SagemakerUserProfileDataSourceName>? dataSourceName;
 
   final TfArg<String> secretArn;
 
-  final TfArg<
-    SagemakerUserProfileUserSettingsCanvasAppSettingsIdentityProviderOauthSettingsStatus
-  >?
-  status;
+  final TfArg<SagemakerUserProfileStatus>? status;
 
   Map<String, Object?> encode() => {
     'data_source_name': ?dataSourceName?.toTfJson(),
@@ -295,27 +245,11 @@ final class SagemakerUserProfileUserSettingsCanvasAppSettingsIdentityProviderOau
 }
 
 /// `data_source_name` — derived from the provider schema description.
-enum SagemakerUserProfileUserSettingsCanvasAppSettingsIdentityProviderOauthSettingsDataSourceName
-    implements TerraformEnum {
+enum SagemakerUserProfileDataSourceName implements TerraformEnum {
   salesforcegenie('SalesforceGenie'),
   snowflake('Snowflake');
 
-  const SagemakerUserProfileUserSettingsCanvasAppSettingsIdentityProviderOauthSettingsDataSourceName(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `status` — derived from the provider schema description.
-enum SagemakerUserProfileUserSettingsCanvasAppSettingsIdentityProviderOauthSettingsStatus
-    implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
-
-  const SagemakerUserProfileUserSettingsCanvasAppSettingsIdentityProviderOauthSettingsStatus(
-    this.terraformValue,
-  );
+  const SagemakerUserProfileDataSourceName(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -323,47 +257,26 @@ enum SagemakerUserProfileUserSettingsCanvasAppSettingsIdentityProviderOauthSetti
 /// Typed helper for the `user_settings.canvas_app_settings.kendra_settings` block of
 /// `aws_sagemaker_user_profile` (derived from provider schema).
 @immutable
-final class SagemakerUserProfileUserSettingsCanvasAppSettingsKendraSettings {
-  const SagemakerUserProfileUserSettingsCanvasAppSettingsKendraSettings({
-    this.status,
-  });
+final class SagemakerUserProfileKendraSettings {
+  const SagemakerUserProfileKendraSettings({this.status});
 
-  final TfArg<
-    SagemakerUserProfileUserSettingsCanvasAppSettingsKendraSettingsStatus
-  >?
-  status;
+  final TfArg<SagemakerUserProfileStatus>? status;
 
   Map<String, Object?> encode() => {'status': ?status?.toTfJson()};
-}
-
-/// `status` — derived from the provider schema description.
-enum SagemakerUserProfileUserSettingsCanvasAppSettingsKendraSettingsStatus
-    implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
-
-  const SagemakerUserProfileUserSettingsCanvasAppSettingsKendraSettingsStatus(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `user_settings.canvas_app_settings.model_register_settings` block of
 /// `aws_sagemaker_user_profile` (derived from provider schema).
 @immutable
-final class SagemakerUserProfileUserSettingsCanvasAppSettingsModelRegisterSettings {
-  const SagemakerUserProfileUserSettingsCanvasAppSettingsModelRegisterSettings({
+final class SagemakerUserProfileModelRegisterSettings {
+  const SagemakerUserProfileModelRegisterSettings({
     this.crossAccountModelRegisterRoleArn,
     this.status,
   });
 
   final TfArg<String>? crossAccountModelRegisterRoleArn;
 
-  final TfArg<
-    SagemakerUserProfileUserSettingsCanvasAppSettingsModelRegisterSettingsStatus
-  >?
-  status;
+  final TfArg<SagemakerUserProfileStatus>? status;
 
   Map<String, Object?> encode() => {
     'cross_account_model_register_role_arn': ?crossAccountModelRegisterRoleArn
@@ -372,34 +285,18 @@ final class SagemakerUserProfileUserSettingsCanvasAppSettingsModelRegisterSettin
   };
 }
 
-/// `status` — derived from the provider schema description.
-enum SagemakerUserProfileUserSettingsCanvasAppSettingsModelRegisterSettingsStatus
-    implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
-
-  const SagemakerUserProfileUserSettingsCanvasAppSettingsModelRegisterSettingsStatus(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `user_settings.canvas_app_settings.time_series_forecasting_settings` block of
 /// `aws_sagemaker_user_profile` (derived from provider schema).
 @immutable
-final class SagemakerUserProfileUserSettingsCanvasAppSettingsTimeSeriesForecastingSettings {
-  const SagemakerUserProfileUserSettingsCanvasAppSettingsTimeSeriesForecastingSettings({
+final class SagemakerUserProfileTimeSeriesForecastingSettings {
+  const SagemakerUserProfileTimeSeriesForecastingSettings({
     this.amazonForecastRoleArn,
     this.status,
   });
 
   final TfArg<String>? amazonForecastRoleArn;
 
-  final TfArg<
-    SagemakerUserProfileUserSettingsCanvasAppSettingsTimeSeriesForecastingSettingsStatus
-  >?
-  status;
+  final TfArg<SagemakerUserProfileStatus>? status;
 
   Map<String, Object?> encode() => {
     'amazon_forecast_role_arn': ?amazonForecastRoleArn?.toTfJson(),
@@ -407,24 +304,11 @@ final class SagemakerUserProfileUserSettingsCanvasAppSettingsTimeSeriesForecasti
   };
 }
 
-/// `status` — derived from the provider schema description.
-enum SagemakerUserProfileUserSettingsCanvasAppSettingsTimeSeriesForecastingSettingsStatus
-    implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
-
-  const SagemakerUserProfileUserSettingsCanvasAppSettingsTimeSeriesForecastingSettingsStatus(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `user_settings.canvas_app_settings.workspace_settings` block of
 /// `aws_sagemaker_user_profile` (derived from provider schema).
 @immutable
-final class SagemakerUserProfileUserSettingsCanvasAppSettingsWorkspaceSettings {
-  const SagemakerUserProfileUserSettingsCanvasAppSettingsWorkspaceSettings({
+final class SagemakerUserProfileWorkspaceSettings {
+  const SagemakerUserProfileWorkspaceSettings({
     this.s3ArtifactPath,
     this.s3KmsKeyId,
   });
@@ -442,8 +326,8 @@ final class SagemakerUserProfileUserSettingsCanvasAppSettingsWorkspaceSettings {
 /// Typed helper for the `user_settings.code_editor_app_settings` block of
 /// `aws_sagemaker_user_profile` (derived from provider schema).
 @immutable
-final class SagemakerUserProfileUserSettingsCodeEditorAppSettings {
-  const SagemakerUserProfileUserSettingsCodeEditorAppSettings({
+final class SagemakerUserProfileCodeEditorAppSettings {
+  const SagemakerUserProfileCodeEditorAppSettings({
     this.builtInLifecycleConfigArn,
     this.lifecycleConfigArns,
     this.appLifecycleManagement,
@@ -455,14 +339,11 @@ final class SagemakerUserProfileUserSettingsCodeEditorAppSettings {
 
   final TfArg<List<String>>? lifecycleConfigArns;
 
-  final SagemakerUserProfileUserSettingsCodeEditorAppSettingsAppLifecycleManagement?
-  appLifecycleManagement;
+  final SagemakerUserProfileAppLifecycleManagement? appLifecycleManagement;
 
-  final List<SagemakerUserProfileUserSettingsCodeEditorAppSettingsCustomImage>?
-  customImage;
+  final List<SagemakerUserProfileCustomImage>? customImage;
 
-  final SagemakerUserProfileUserSettingsCodeEditorAppSettingsDefaultResourceSpec?
-  defaultResourceSpec;
+  final SagemakerUserProfileDefaultResourceSpec? defaultResourceSpec;
 
   Map<String, Object?> encode() => {
     'built_in_lifecycle_config_arn': ?builtInLifecycleConfigArn?.toTfJson(),
@@ -476,23 +357,22 @@ final class SagemakerUserProfileUserSettingsCodeEditorAppSettings {
 
 /// Typed helper for the `user_settings.code_editor_app_settings.app_lifecycle_management` block of
 /// `aws_sagemaker_user_profile` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class SagemakerUserProfileUserSettingsCodeEditorAppSettingsAppLifecycleManagement {
-  const SagemakerUserProfileUserSettingsCodeEditorAppSettingsAppLifecycleManagement({
-    this.idleSettings,
-  });
+final class SagemakerUserProfileAppLifecycleManagement {
+  const SagemakerUserProfileAppLifecycleManagement({this.idleSettings});
 
-  final SagemakerUserProfileUserSettingsCodeEditorAppSettingsAppLifecycleManagementIdleSettings?
-  idleSettings;
+  final SagemakerUserProfileIdleSettings? idleSettings;
 
   Map<String, Object?> encode() => {'idle_settings': ?idleSettings?.encode()};
 }
 
 /// Typed helper for the `user_settings.code_editor_app_settings.app_lifecycle_management.idle_settings` block of
 /// `aws_sagemaker_user_profile` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class SagemakerUserProfileUserSettingsCodeEditorAppSettingsAppLifecycleManagementIdleSettings {
-  const SagemakerUserProfileUserSettingsCodeEditorAppSettingsAppLifecycleManagementIdleSettings({
+final class SagemakerUserProfileIdleSettings {
+  const SagemakerUserProfileIdleSettings({
     this.idleTimeoutInMinutes,
     this.lifecycleManagement,
     this.maxIdleTimeoutInMinutes,
@@ -501,10 +381,7 @@ final class SagemakerUserProfileUserSettingsCodeEditorAppSettingsAppLifecycleMan
 
   final TfArg<num>? idleTimeoutInMinutes;
 
-  final TfArg<
-    SagemakerUserProfileUserSettingsCodeEditorAppSettingsAppLifecycleManagementIdleSettingsLifecycleManagement
-  >?
-  lifecycleManagement;
+  final TfArg<SagemakerUserProfileLifecycleManagement>? lifecycleManagement;
 
   final TfArg<num>? maxIdleTimeoutInMinutes;
 
@@ -519,23 +396,21 @@ final class SagemakerUserProfileUserSettingsCodeEditorAppSettingsAppLifecycleMan
 }
 
 /// `lifecycle_management` — derived from the provider schema description.
-enum SagemakerUserProfileUserSettingsCodeEditorAppSettingsAppLifecycleManagementIdleSettingsLifecycleManagement
-    implements TerraformEnum {
+enum SagemakerUserProfileLifecycleManagement implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const SagemakerUserProfileUserSettingsCodeEditorAppSettingsAppLifecycleManagementIdleSettingsLifecycleManagement(
-    this.terraformValue,
-  );
+  const SagemakerUserProfileLifecycleManagement(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `user_settings.code_editor_app_settings.custom_image` block of
 /// `aws_sagemaker_user_profile` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class SagemakerUserProfileUserSettingsCodeEditorAppSettingsCustomImage {
-  const SagemakerUserProfileUserSettingsCodeEditorAppSettingsCustomImage({
+final class SagemakerUserProfileCustomImage {
+  const SagemakerUserProfileCustomImage({
     required this.appImageConfigName,
     required this.imageName,
     this.imageVersionNumber,
@@ -556,9 +431,10 @@ final class SagemakerUserProfileUserSettingsCodeEditorAppSettingsCustomImage {
 
 /// Typed helper for the `user_settings.code_editor_app_settings.default_resource_spec` block of
 /// `aws_sagemaker_user_profile` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class SagemakerUserProfileUserSettingsCodeEditorAppSettingsDefaultResourceSpec {
-  const SagemakerUserProfileUserSettingsCodeEditorAppSettingsDefaultResourceSpec({
+final class SagemakerUserProfileDefaultResourceSpec {
+  const SagemakerUserProfileDefaultResourceSpec({
     this.instanceType,
     this.lifecycleConfigArn,
     this.sagemakerImageArn,
@@ -566,10 +442,7 @@ final class SagemakerUserProfileUserSettingsCodeEditorAppSettingsDefaultResource
     this.sagemakerImageVersionArn,
   });
 
-  final TfArg<
-    SagemakerUserProfileUserSettingsCodeEditorAppSettingsDefaultResourceSpecInstanceType
-  >?
-  instanceType;
+  final TfArg<SagemakerUserProfileInstanceType>? instanceType;
 
   final TfArg<String>? lifecycleConfigArn;
 
@@ -589,8 +462,7 @@ final class SagemakerUserProfileUserSettingsCodeEditorAppSettingsDefaultResource
 }
 
 /// `instance_type` — derived from the provider schema description.
-enum SagemakerUserProfileUserSettingsCodeEditorAppSettingsDefaultResourceSpecInstanceType
-    implements TerraformEnum {
+enum SagemakerUserProfileInstanceType implements TerraformEnum {
   system('system'),
   mlT3Micro('ml.t3.micro'),
   mlT3Small('ml.t3.small'),
@@ -768,9 +640,7 @@ enum SagemakerUserProfileUserSettingsCodeEditorAppSettingsDefaultResourceSpecIns
   mlG7e24xlarge('ml.g7e.24xlarge'),
   mlG7e48xlarge('ml.g7e.48xlarge');
 
-  const SagemakerUserProfileUserSettingsCodeEditorAppSettingsDefaultResourceSpecInstanceType(
-    this.terraformValue,
-  );
+  const SagemakerUserProfileInstanceType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -778,15 +648,10 @@ enum SagemakerUserProfileUserSettingsCodeEditorAppSettingsDefaultResourceSpecIns
 /// Typed helper for the `user_settings.custom_file_system_config` block of
 /// `aws_sagemaker_user_profile` (derived from provider schema).
 @immutable
-final class SagemakerUserProfileUserSettingsCustomFileSystemConfig {
-  const SagemakerUserProfileUserSettingsCustomFileSystemConfig({
-    this.efsFileSystemConfig,
-  });
+final class SagemakerUserProfileCustomFileSystemConfig {
+  const SagemakerUserProfileCustomFileSystemConfig({this.efsFileSystemConfig});
 
-  final List<
-    SagemakerUserProfileUserSettingsCustomFileSystemConfigEfsFileSystemConfig
-  >?
-  efsFileSystemConfig;
+  final List<SagemakerUserProfileEfsFileSystemConfig>? efsFileSystemConfig;
 
   Map<String, Object?> encode() => {
     if (efsFileSystemConfig != null)
@@ -799,8 +664,8 @@ final class SagemakerUserProfileUserSettingsCustomFileSystemConfig {
 /// Typed helper for the `user_settings.custom_file_system_config.efs_file_system_config` block of
 /// `aws_sagemaker_user_profile` (derived from provider schema).
 @immutable
-final class SagemakerUserProfileUserSettingsCustomFileSystemConfigEfsFileSystemConfig {
-  const SagemakerUserProfileUserSettingsCustomFileSystemConfigEfsFileSystemConfig({
+final class SagemakerUserProfileEfsFileSystemConfig {
+  const SagemakerUserProfileEfsFileSystemConfig({
     required this.fileSystemId,
     this.fileSystemPath,
   });
@@ -818,8 +683,8 @@ final class SagemakerUserProfileUserSettingsCustomFileSystemConfigEfsFileSystemC
 /// Typed helper for the `user_settings.custom_posix_user_config` block of
 /// `aws_sagemaker_user_profile` (derived from provider schema).
 @immutable
-final class SagemakerUserProfileUserSettingsCustomPosixUserConfig {
-  const SagemakerUserProfileUserSettingsCustomPosixUserConfig({
+final class SagemakerUserProfileCustomPosixUserConfig {
+  const SagemakerUserProfileCustomPosixUserConfig({
     required this.gid,
     required this.uid,
   });
@@ -837,8 +702,8 @@ final class SagemakerUserProfileUserSettingsCustomPosixUserConfig {
 /// Typed helper for the `user_settings.jupyter_lab_app_settings` block of
 /// `aws_sagemaker_user_profile` (derived from provider schema).
 @immutable
-final class SagemakerUserProfileUserSettingsJupyterLabAppSettings {
-  const SagemakerUserProfileUserSettingsJupyterLabAppSettings({
+final class SagemakerUserProfileJupyterLabAppSettings {
+  const SagemakerUserProfileJupyterLabAppSettings({
     this.builtInLifecycleConfigArn,
     this.lifecycleConfigArns,
     this.appLifecycleManagement,
@@ -852,22 +717,15 @@ final class SagemakerUserProfileUserSettingsJupyterLabAppSettings {
 
   final TfArg<List<String>>? lifecycleConfigArns;
 
-  final SagemakerUserProfileUserSettingsJupyterLabAppSettingsAppLifecycleManagement?
-  appLifecycleManagement;
+  final SagemakerUserProfileAppLifecycleManagement? appLifecycleManagement;
 
-  final List<
-    SagemakerUserProfileUserSettingsJupyterLabAppSettingsCodeRepository
-  >?
-  codeRepository;
+  final List<SagemakerUserProfileCodeRepository>? codeRepository;
 
-  final List<SagemakerUserProfileUserSettingsJupyterLabAppSettingsCustomImage>?
-  customImage;
+  final List<SagemakerUserProfileCustomImage>? customImage;
 
-  final SagemakerUserProfileUserSettingsJupyterLabAppSettingsDefaultResourceSpec?
-  defaultResourceSpec;
+  final SagemakerUserProfileDefaultResourceSpec? defaultResourceSpec;
 
-  final SagemakerUserProfileUserSettingsJupyterLabAppSettingsEmrSettings?
-  emrSettings;
+  final SagemakerUserProfileEmrSettings? emrSettings;
 
   Map<String, Object?> encode() => {
     'built_in_lifecycle_config_arn': ?builtInLifecycleConfigArn?.toTfJson(),
@@ -882,325 +740,23 @@ final class SagemakerUserProfileUserSettingsJupyterLabAppSettings {
   };
 }
 
-/// Typed helper for the `user_settings.jupyter_lab_app_settings.app_lifecycle_management` block of
-/// `aws_sagemaker_user_profile` (derived from provider schema).
-@immutable
-final class SagemakerUserProfileUserSettingsJupyterLabAppSettingsAppLifecycleManagement {
-  const SagemakerUserProfileUserSettingsJupyterLabAppSettingsAppLifecycleManagement({
-    this.idleSettings,
-  });
-
-  final SagemakerUserProfileUserSettingsJupyterLabAppSettingsAppLifecycleManagementIdleSettings?
-  idleSettings;
-
-  Map<String, Object?> encode() => {'idle_settings': ?idleSettings?.encode()};
-}
-
-/// Typed helper for the `user_settings.jupyter_lab_app_settings.app_lifecycle_management.idle_settings` block of
-/// `aws_sagemaker_user_profile` (derived from provider schema).
-@immutable
-final class SagemakerUserProfileUserSettingsJupyterLabAppSettingsAppLifecycleManagementIdleSettings {
-  const SagemakerUserProfileUserSettingsJupyterLabAppSettingsAppLifecycleManagementIdleSettings({
-    this.idleTimeoutInMinutes,
-    this.lifecycleManagement,
-    this.maxIdleTimeoutInMinutes,
-    this.minIdleTimeoutInMinutes,
-  });
-
-  final TfArg<num>? idleTimeoutInMinutes;
-
-  final TfArg<
-    SagemakerUserProfileUserSettingsJupyterLabAppSettingsAppLifecycleManagementIdleSettingsLifecycleManagement
-  >?
-  lifecycleManagement;
-
-  final TfArg<num>? maxIdleTimeoutInMinutes;
-
-  final TfArg<num>? minIdleTimeoutInMinutes;
-
-  Map<String, Object?> encode() => {
-    'idle_timeout_in_minutes': ?idleTimeoutInMinutes?.toTfJson(),
-    'lifecycle_management': ?lifecycleManagement?.toTfJson(),
-    'max_idle_timeout_in_minutes': ?maxIdleTimeoutInMinutes?.toTfJson(),
-    'min_idle_timeout_in_minutes': ?minIdleTimeoutInMinutes?.toTfJson(),
-  };
-}
-
-/// `lifecycle_management` — derived from the provider schema description.
-enum SagemakerUserProfileUserSettingsJupyterLabAppSettingsAppLifecycleManagementIdleSettingsLifecycleManagement
-    implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
-
-  const SagemakerUserProfileUserSettingsJupyterLabAppSettingsAppLifecycleManagementIdleSettingsLifecycleManagement(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `user_settings.jupyter_lab_app_settings.code_repository` block of
 /// `aws_sagemaker_user_profile` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class SagemakerUserProfileUserSettingsJupyterLabAppSettingsCodeRepository {
-  const SagemakerUserProfileUserSettingsJupyterLabAppSettingsCodeRepository({
-    required this.repositoryUrl,
-  });
+final class SagemakerUserProfileCodeRepository {
+  const SagemakerUserProfileCodeRepository({required this.repositoryUrl});
 
   final TfArg<String> repositoryUrl;
 
   Map<String, Object?> encode() => {'repository_url': repositoryUrl.toTfJson()};
 }
 
-/// Typed helper for the `user_settings.jupyter_lab_app_settings.custom_image` block of
-/// `aws_sagemaker_user_profile` (derived from provider schema).
-@immutable
-final class SagemakerUserProfileUserSettingsJupyterLabAppSettingsCustomImage {
-  const SagemakerUserProfileUserSettingsJupyterLabAppSettingsCustomImage({
-    required this.appImageConfigName,
-    required this.imageName,
-    this.imageVersionNumber,
-  });
-
-  final TfArg<String> appImageConfigName;
-
-  final TfArg<String> imageName;
-
-  final TfArg<num>? imageVersionNumber;
-
-  Map<String, Object?> encode() => {
-    'app_image_config_name': appImageConfigName.toTfJson(),
-    'image_name': imageName.toTfJson(),
-    'image_version_number': ?imageVersionNumber?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `user_settings.jupyter_lab_app_settings.default_resource_spec` block of
-/// `aws_sagemaker_user_profile` (derived from provider schema).
-@immutable
-final class SagemakerUserProfileUserSettingsJupyterLabAppSettingsDefaultResourceSpec {
-  const SagemakerUserProfileUserSettingsJupyterLabAppSettingsDefaultResourceSpec({
-    this.instanceType,
-    this.lifecycleConfigArn,
-    this.sagemakerImageArn,
-    this.sagemakerImageVersionAlias,
-    this.sagemakerImageVersionArn,
-  });
-
-  final TfArg<
-    SagemakerUserProfileUserSettingsJupyterLabAppSettingsDefaultResourceSpecInstanceType
-  >?
-  instanceType;
-
-  final TfArg<String>? lifecycleConfigArn;
-
-  final TfArg<String>? sagemakerImageArn;
-
-  final TfArg<String>? sagemakerImageVersionAlias;
-
-  final TfArg<String>? sagemakerImageVersionArn;
-
-  Map<String, Object?> encode() => {
-    'instance_type': ?instanceType?.toTfJson(),
-    'lifecycle_config_arn': ?lifecycleConfigArn?.toTfJson(),
-    'sagemaker_image_arn': ?sagemakerImageArn?.toTfJson(),
-    'sagemaker_image_version_alias': ?sagemakerImageVersionAlias?.toTfJson(),
-    'sagemaker_image_version_arn': ?sagemakerImageVersionArn?.toTfJson(),
-  };
-}
-
-/// `instance_type` — derived from the provider schema description.
-enum SagemakerUserProfileUserSettingsJupyterLabAppSettingsDefaultResourceSpecInstanceType
-    implements TerraformEnum {
-  system('system'),
-  mlT3Micro('ml.t3.micro'),
-  mlT3Small('ml.t3.small'),
-  mlT3Medium('ml.t3.medium'),
-  mlT3Large('ml.t3.large'),
-  mlT3Xlarge('ml.t3.xlarge'),
-  mlT3p2xlarge('ml.t3.2xlarge'),
-  mlM5Large('ml.m5.large'),
-  mlM5Xlarge('ml.m5.xlarge'),
-  mlM5p2xlarge('ml.m5.2xlarge'),
-  mlM5p4xlarge('ml.m5.4xlarge'),
-  mlM5p8xlarge('ml.m5.8xlarge'),
-  mlM5p12xlarge('ml.m5.12xlarge'),
-  mlM5p16xlarge('ml.m5.16xlarge'),
-  mlM5p24xlarge('ml.m5.24xlarge'),
-  mlM5dLarge('ml.m5d.large'),
-  mlM5dXlarge('ml.m5d.xlarge'),
-  mlM5d2xlarge('ml.m5d.2xlarge'),
-  mlM5d4xlarge('ml.m5d.4xlarge'),
-  mlM5d8xlarge('ml.m5d.8xlarge'),
-  mlM5d12xlarge('ml.m5d.12xlarge'),
-  mlM5d16xlarge('ml.m5d.16xlarge'),
-  mlM5d24xlarge('ml.m5d.24xlarge'),
-  mlC5Large('ml.c5.large'),
-  mlC5Xlarge('ml.c5.xlarge'),
-  mlC5p2xlarge('ml.c5.2xlarge'),
-  mlC5p4xlarge('ml.c5.4xlarge'),
-  mlC5p9xlarge('ml.c5.9xlarge'),
-  mlC5p12xlarge('ml.c5.12xlarge'),
-  mlC5p18xlarge('ml.c5.18xlarge'),
-  mlC5p24xlarge('ml.c5.24xlarge'),
-  mlP3p2xlarge('ml.p3.2xlarge'),
-  mlP3p8xlarge('ml.p3.8xlarge'),
-  mlP3p16xlarge('ml.p3.16xlarge'),
-  mlP3dn24xlarge('ml.p3dn.24xlarge'),
-  mlG4dnXlarge('ml.g4dn.xlarge'),
-  mlG4dn2xlarge('ml.g4dn.2xlarge'),
-  mlG4dn4xlarge('ml.g4dn.4xlarge'),
-  mlG4dn8xlarge('ml.g4dn.8xlarge'),
-  mlG4dn12xlarge('ml.g4dn.12xlarge'),
-  mlG4dn16xlarge('ml.g4dn.16xlarge'),
-  mlR5Large('ml.r5.large'),
-  mlR5Xlarge('ml.r5.xlarge'),
-  mlR5p2xlarge('ml.r5.2xlarge'),
-  mlR5p4xlarge('ml.r5.4xlarge'),
-  mlR5p8xlarge('ml.r5.8xlarge'),
-  mlR5p12xlarge('ml.r5.12xlarge'),
-  mlR5p16xlarge('ml.r5.16xlarge'),
-  mlR5p24xlarge('ml.r5.24xlarge'),
-  mlG5Xlarge('ml.g5.xlarge'),
-  mlG5p2xlarge('ml.g5.2xlarge'),
-  mlG5p4xlarge('ml.g5.4xlarge'),
-  mlG5p8xlarge('ml.g5.8xlarge'),
-  mlG5p16xlarge('ml.g5.16xlarge'),
-  mlG5p12xlarge('ml.g5.12xlarge'),
-  mlG5p24xlarge('ml.g5.24xlarge'),
-  mlG5p48xlarge('ml.g5.48xlarge'),
-  mlG6Xlarge('ml.g6.xlarge'),
-  mlG6p2xlarge('ml.g6.2xlarge'),
-  mlG6p4xlarge('ml.g6.4xlarge'),
-  mlG6p8xlarge('ml.g6.8xlarge'),
-  mlG6p12xlarge('ml.g6.12xlarge'),
-  mlG6p16xlarge('ml.g6.16xlarge'),
-  mlG6p24xlarge('ml.g6.24xlarge'),
-  mlG6p48xlarge('ml.g6.48xlarge'),
-  mlG6eXlarge('ml.g6e.xlarge'),
-  mlG6e2xlarge('ml.g6e.2xlarge'),
-  mlG6e4xlarge('ml.g6e.4xlarge'),
-  mlG6e8xlarge('ml.g6e.8xlarge'),
-  mlG6e12xlarge('ml.g6e.12xlarge'),
-  mlG6e16xlarge('ml.g6e.16xlarge'),
-  mlG6e24xlarge('ml.g6e.24xlarge'),
-  mlG6e48xlarge('ml.g6e.48xlarge'),
-  mlGeospatialInteractive('ml.geospatial.interactive'),
-  mlP4d24xlarge('ml.p4d.24xlarge'),
-  mlP4de24xlarge('ml.p4de.24xlarge'),
-  mlTrn1p2xlarge('ml.trn1.2xlarge'),
-  mlTrn1p32xlarge('ml.trn1.32xlarge'),
-  mlTrn1n32xlarge('ml.trn1n.32xlarge'),
-  mlP5p48xlarge('ml.p5.48xlarge'),
-  mlP5en48xlarge('ml.p5en.48xlarge'),
-  mlP6B200p48xlarge('ml.p6-b200.48xlarge'),
-  mlM6iLarge('ml.m6i.large'),
-  mlM6iXlarge('ml.m6i.xlarge'),
-  mlM6i2xlarge('ml.m6i.2xlarge'),
-  mlM6i4xlarge('ml.m6i.4xlarge'),
-  mlM6i8xlarge('ml.m6i.8xlarge'),
-  mlM6i12xlarge('ml.m6i.12xlarge'),
-  mlM6i16xlarge('ml.m6i.16xlarge'),
-  mlM6i24xlarge('ml.m6i.24xlarge'),
-  mlM6i32xlarge('ml.m6i.32xlarge'),
-  mlM7iLarge('ml.m7i.large'),
-  mlM7iXlarge('ml.m7i.xlarge'),
-  mlM7i2xlarge('ml.m7i.2xlarge'),
-  mlM7i4xlarge('ml.m7i.4xlarge'),
-  mlM7i8xlarge('ml.m7i.8xlarge'),
-  mlM7i12xlarge('ml.m7i.12xlarge'),
-  mlM7i16xlarge('ml.m7i.16xlarge'),
-  mlM7i24xlarge('ml.m7i.24xlarge'),
-  mlM7i48xlarge('ml.m7i.48xlarge'),
-  mlC6iLarge('ml.c6i.large'),
-  mlC6iXlarge('ml.c6i.xlarge'),
-  mlC6i2xlarge('ml.c6i.2xlarge'),
-  mlC6i4xlarge('ml.c6i.4xlarge'),
-  mlC6i8xlarge('ml.c6i.8xlarge'),
-  mlC6i12xlarge('ml.c6i.12xlarge'),
-  mlC6i16xlarge('ml.c6i.16xlarge'),
-  mlC6i24xlarge('ml.c6i.24xlarge'),
-  mlC6i32xlarge('ml.c6i.32xlarge'),
-  mlC7iLarge('ml.c7i.large'),
-  mlC7iXlarge('ml.c7i.xlarge'),
-  mlC7i2xlarge('ml.c7i.2xlarge'),
-  mlC7i4xlarge('ml.c7i.4xlarge'),
-  mlC7i8xlarge('ml.c7i.8xlarge'),
-  mlC7i12xlarge('ml.c7i.12xlarge'),
-  mlC7i16xlarge('ml.c7i.16xlarge'),
-  mlC7i24xlarge('ml.c7i.24xlarge'),
-  mlC7i48xlarge('ml.c7i.48xlarge'),
-  mlR6iLarge('ml.r6i.large'),
-  mlR6iXlarge('ml.r6i.xlarge'),
-  mlR6i2xlarge('ml.r6i.2xlarge'),
-  mlR6i4xlarge('ml.r6i.4xlarge'),
-  mlR6i8xlarge('ml.r6i.8xlarge'),
-  mlR6i12xlarge('ml.r6i.12xlarge'),
-  mlR6i16xlarge('ml.r6i.16xlarge'),
-  mlR6i24xlarge('ml.r6i.24xlarge'),
-  mlR6i32xlarge('ml.r6i.32xlarge'),
-  mlR7iLarge('ml.r7i.large'),
-  mlR7iXlarge('ml.r7i.xlarge'),
-  mlR7i2xlarge('ml.r7i.2xlarge'),
-  mlR7i4xlarge('ml.r7i.4xlarge'),
-  mlR7i8xlarge('ml.r7i.8xlarge'),
-  mlR7i12xlarge('ml.r7i.12xlarge'),
-  mlR7i16xlarge('ml.r7i.16xlarge'),
-  mlR7i24xlarge('ml.r7i.24xlarge'),
-  mlR7i48xlarge('ml.r7i.48xlarge'),
-  mlM6idLarge('ml.m6id.large'),
-  mlM6idXlarge('ml.m6id.xlarge'),
-  mlM6id2xlarge('ml.m6id.2xlarge'),
-  mlM6id4xlarge('ml.m6id.4xlarge'),
-  mlM6id8xlarge('ml.m6id.8xlarge'),
-  mlM6id12xlarge('ml.m6id.12xlarge'),
-  mlM6id16xlarge('ml.m6id.16xlarge'),
-  mlM6id24xlarge('ml.m6id.24xlarge'),
-  mlM6id32xlarge('ml.m6id.32xlarge'),
-  mlC6idLarge('ml.c6id.large'),
-  mlC6idXlarge('ml.c6id.xlarge'),
-  mlC6id2xlarge('ml.c6id.2xlarge'),
-  mlC6id4xlarge('ml.c6id.4xlarge'),
-  mlC6id8xlarge('ml.c6id.8xlarge'),
-  mlC6id12xlarge('ml.c6id.12xlarge'),
-  mlC6id16xlarge('ml.c6id.16xlarge'),
-  mlC6id24xlarge('ml.c6id.24xlarge'),
-  mlC6id32xlarge('ml.c6id.32xlarge'),
-  mlR6idLarge('ml.r6id.large'),
-  mlR6idXlarge('ml.r6id.xlarge'),
-  mlR6id2xlarge('ml.r6id.2xlarge'),
-  mlR6id4xlarge('ml.r6id.4xlarge'),
-  mlR6id8xlarge('ml.r6id.8xlarge'),
-  mlR6id12xlarge('ml.r6id.12xlarge'),
-  mlR6id16xlarge('ml.r6id.16xlarge'),
-  mlR6id24xlarge('ml.r6id.24xlarge'),
-  mlR6id32xlarge('ml.r6id.32xlarge'),
-  mlP5p4xlarge('ml.p5.4xlarge'),
-  mlG7p2xlarge('ml.g7.2xlarge'),
-  mlG7p4xlarge('ml.g7.4xlarge'),
-  mlG7p8xlarge('ml.g7.8xlarge'),
-  mlG7p12xlarge('ml.g7.12xlarge'),
-  mlG7p24xlarge('ml.g7.24xlarge'),
-  mlG7p48xlarge('ml.g7.48xlarge'),
-  mlG7e2xlarge('ml.g7e.2xlarge'),
-  mlG7e4xlarge('ml.g7e.4xlarge'),
-  mlG7e8xlarge('ml.g7e.8xlarge'),
-  mlG7e12xlarge('ml.g7e.12xlarge'),
-  mlG7e24xlarge('ml.g7e.24xlarge'),
-  mlG7e48xlarge('ml.g7e.48xlarge');
-
-  const SagemakerUserProfileUserSettingsJupyterLabAppSettingsDefaultResourceSpecInstanceType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `user_settings.jupyter_lab_app_settings.emr_settings` block of
 /// `aws_sagemaker_user_profile` (derived from provider schema).
 @immutable
-final class SagemakerUserProfileUserSettingsJupyterLabAppSettingsEmrSettings {
-  const SagemakerUserProfileUserSettingsJupyterLabAppSettingsEmrSettings({
+final class SagemakerUserProfileEmrSettings {
+  const SagemakerUserProfileEmrSettings({
     this.assumableRoleArns,
     this.executionRoleArns,
   });
@@ -1218,8 +774,8 @@ final class SagemakerUserProfileUserSettingsJupyterLabAppSettingsEmrSettings {
 /// Typed helper for the `user_settings.jupyter_server_app_settings` block of
 /// `aws_sagemaker_user_profile` (derived from provider schema).
 @immutable
-final class SagemakerUserProfileUserSettingsJupyterServerAppSettings {
-  const SagemakerUserProfileUserSettingsJupyterServerAppSettings({
+final class SagemakerUserProfileJupyterServerAppSettings {
+  const SagemakerUserProfileJupyterServerAppSettings({
     this.lifecycleConfigArns,
     this.codeRepository,
     this.defaultResourceSpec,
@@ -1227,13 +783,9 @@ final class SagemakerUserProfileUserSettingsJupyterServerAppSettings {
 
   final TfArg<List<String>>? lifecycleConfigArns;
 
-  final List<
-    SagemakerUserProfileUserSettingsJupyterServerAppSettingsCodeRepository
-  >?
-  codeRepository;
+  final List<SagemakerUserProfileCodeRepository>? codeRepository;
 
-  final SagemakerUserProfileUserSettingsJupyterServerAppSettingsDefaultResourceSpec?
-  defaultResourceSpec;
+  final SagemakerUserProfileDefaultResourceSpec? defaultResourceSpec;
 
   Map<String, Object?> encode() => {
     'lifecycle_config_arns': ?lifecycleConfigArns?.toTfJson(),
@@ -1243,245 +795,11 @@ final class SagemakerUserProfileUserSettingsJupyterServerAppSettings {
   };
 }
 
-/// Typed helper for the `user_settings.jupyter_server_app_settings.code_repository` block of
-/// `aws_sagemaker_user_profile` (derived from provider schema).
-@immutable
-final class SagemakerUserProfileUserSettingsJupyterServerAppSettingsCodeRepository {
-  const SagemakerUserProfileUserSettingsJupyterServerAppSettingsCodeRepository({
-    required this.repositoryUrl,
-  });
-
-  final TfArg<String> repositoryUrl;
-
-  Map<String, Object?> encode() => {'repository_url': repositoryUrl.toTfJson()};
-}
-
-/// Typed helper for the `user_settings.jupyter_server_app_settings.default_resource_spec` block of
-/// `aws_sagemaker_user_profile` (derived from provider schema).
-@immutable
-final class SagemakerUserProfileUserSettingsJupyterServerAppSettingsDefaultResourceSpec {
-  const SagemakerUserProfileUserSettingsJupyterServerAppSettingsDefaultResourceSpec({
-    this.instanceType,
-    this.lifecycleConfigArn,
-    this.sagemakerImageArn,
-    this.sagemakerImageVersionAlias,
-    this.sagemakerImageVersionArn,
-  });
-
-  final TfArg<
-    SagemakerUserProfileUserSettingsJupyterServerAppSettingsDefaultResourceSpecInstanceType
-  >?
-  instanceType;
-
-  final TfArg<String>? lifecycleConfigArn;
-
-  final TfArg<String>? sagemakerImageArn;
-
-  final TfArg<String>? sagemakerImageVersionAlias;
-
-  final TfArg<String>? sagemakerImageVersionArn;
-
-  Map<String, Object?> encode() => {
-    'instance_type': ?instanceType?.toTfJson(),
-    'lifecycle_config_arn': ?lifecycleConfigArn?.toTfJson(),
-    'sagemaker_image_arn': ?sagemakerImageArn?.toTfJson(),
-    'sagemaker_image_version_alias': ?sagemakerImageVersionAlias?.toTfJson(),
-    'sagemaker_image_version_arn': ?sagemakerImageVersionArn?.toTfJson(),
-  };
-}
-
-/// `instance_type` — derived from the provider schema description.
-enum SagemakerUserProfileUserSettingsJupyterServerAppSettingsDefaultResourceSpecInstanceType
-    implements TerraformEnum {
-  system('system'),
-  mlT3Micro('ml.t3.micro'),
-  mlT3Small('ml.t3.small'),
-  mlT3Medium('ml.t3.medium'),
-  mlT3Large('ml.t3.large'),
-  mlT3Xlarge('ml.t3.xlarge'),
-  mlT3p2xlarge('ml.t3.2xlarge'),
-  mlM5Large('ml.m5.large'),
-  mlM5Xlarge('ml.m5.xlarge'),
-  mlM5p2xlarge('ml.m5.2xlarge'),
-  mlM5p4xlarge('ml.m5.4xlarge'),
-  mlM5p8xlarge('ml.m5.8xlarge'),
-  mlM5p12xlarge('ml.m5.12xlarge'),
-  mlM5p16xlarge('ml.m5.16xlarge'),
-  mlM5p24xlarge('ml.m5.24xlarge'),
-  mlM5dLarge('ml.m5d.large'),
-  mlM5dXlarge('ml.m5d.xlarge'),
-  mlM5d2xlarge('ml.m5d.2xlarge'),
-  mlM5d4xlarge('ml.m5d.4xlarge'),
-  mlM5d8xlarge('ml.m5d.8xlarge'),
-  mlM5d12xlarge('ml.m5d.12xlarge'),
-  mlM5d16xlarge('ml.m5d.16xlarge'),
-  mlM5d24xlarge('ml.m5d.24xlarge'),
-  mlC5Large('ml.c5.large'),
-  mlC5Xlarge('ml.c5.xlarge'),
-  mlC5p2xlarge('ml.c5.2xlarge'),
-  mlC5p4xlarge('ml.c5.4xlarge'),
-  mlC5p9xlarge('ml.c5.9xlarge'),
-  mlC5p12xlarge('ml.c5.12xlarge'),
-  mlC5p18xlarge('ml.c5.18xlarge'),
-  mlC5p24xlarge('ml.c5.24xlarge'),
-  mlP3p2xlarge('ml.p3.2xlarge'),
-  mlP3p8xlarge('ml.p3.8xlarge'),
-  mlP3p16xlarge('ml.p3.16xlarge'),
-  mlP3dn24xlarge('ml.p3dn.24xlarge'),
-  mlG4dnXlarge('ml.g4dn.xlarge'),
-  mlG4dn2xlarge('ml.g4dn.2xlarge'),
-  mlG4dn4xlarge('ml.g4dn.4xlarge'),
-  mlG4dn8xlarge('ml.g4dn.8xlarge'),
-  mlG4dn12xlarge('ml.g4dn.12xlarge'),
-  mlG4dn16xlarge('ml.g4dn.16xlarge'),
-  mlR5Large('ml.r5.large'),
-  mlR5Xlarge('ml.r5.xlarge'),
-  mlR5p2xlarge('ml.r5.2xlarge'),
-  mlR5p4xlarge('ml.r5.4xlarge'),
-  mlR5p8xlarge('ml.r5.8xlarge'),
-  mlR5p12xlarge('ml.r5.12xlarge'),
-  mlR5p16xlarge('ml.r5.16xlarge'),
-  mlR5p24xlarge('ml.r5.24xlarge'),
-  mlG5Xlarge('ml.g5.xlarge'),
-  mlG5p2xlarge('ml.g5.2xlarge'),
-  mlG5p4xlarge('ml.g5.4xlarge'),
-  mlG5p8xlarge('ml.g5.8xlarge'),
-  mlG5p16xlarge('ml.g5.16xlarge'),
-  mlG5p12xlarge('ml.g5.12xlarge'),
-  mlG5p24xlarge('ml.g5.24xlarge'),
-  mlG5p48xlarge('ml.g5.48xlarge'),
-  mlG6Xlarge('ml.g6.xlarge'),
-  mlG6p2xlarge('ml.g6.2xlarge'),
-  mlG6p4xlarge('ml.g6.4xlarge'),
-  mlG6p8xlarge('ml.g6.8xlarge'),
-  mlG6p12xlarge('ml.g6.12xlarge'),
-  mlG6p16xlarge('ml.g6.16xlarge'),
-  mlG6p24xlarge('ml.g6.24xlarge'),
-  mlG6p48xlarge('ml.g6.48xlarge'),
-  mlG6eXlarge('ml.g6e.xlarge'),
-  mlG6e2xlarge('ml.g6e.2xlarge'),
-  mlG6e4xlarge('ml.g6e.4xlarge'),
-  mlG6e8xlarge('ml.g6e.8xlarge'),
-  mlG6e12xlarge('ml.g6e.12xlarge'),
-  mlG6e16xlarge('ml.g6e.16xlarge'),
-  mlG6e24xlarge('ml.g6e.24xlarge'),
-  mlG6e48xlarge('ml.g6e.48xlarge'),
-  mlGeospatialInteractive('ml.geospatial.interactive'),
-  mlP4d24xlarge('ml.p4d.24xlarge'),
-  mlP4de24xlarge('ml.p4de.24xlarge'),
-  mlTrn1p2xlarge('ml.trn1.2xlarge'),
-  mlTrn1p32xlarge('ml.trn1.32xlarge'),
-  mlTrn1n32xlarge('ml.trn1n.32xlarge'),
-  mlP5p48xlarge('ml.p5.48xlarge'),
-  mlP5en48xlarge('ml.p5en.48xlarge'),
-  mlP6B200p48xlarge('ml.p6-b200.48xlarge'),
-  mlM6iLarge('ml.m6i.large'),
-  mlM6iXlarge('ml.m6i.xlarge'),
-  mlM6i2xlarge('ml.m6i.2xlarge'),
-  mlM6i4xlarge('ml.m6i.4xlarge'),
-  mlM6i8xlarge('ml.m6i.8xlarge'),
-  mlM6i12xlarge('ml.m6i.12xlarge'),
-  mlM6i16xlarge('ml.m6i.16xlarge'),
-  mlM6i24xlarge('ml.m6i.24xlarge'),
-  mlM6i32xlarge('ml.m6i.32xlarge'),
-  mlM7iLarge('ml.m7i.large'),
-  mlM7iXlarge('ml.m7i.xlarge'),
-  mlM7i2xlarge('ml.m7i.2xlarge'),
-  mlM7i4xlarge('ml.m7i.4xlarge'),
-  mlM7i8xlarge('ml.m7i.8xlarge'),
-  mlM7i12xlarge('ml.m7i.12xlarge'),
-  mlM7i16xlarge('ml.m7i.16xlarge'),
-  mlM7i24xlarge('ml.m7i.24xlarge'),
-  mlM7i48xlarge('ml.m7i.48xlarge'),
-  mlC6iLarge('ml.c6i.large'),
-  mlC6iXlarge('ml.c6i.xlarge'),
-  mlC6i2xlarge('ml.c6i.2xlarge'),
-  mlC6i4xlarge('ml.c6i.4xlarge'),
-  mlC6i8xlarge('ml.c6i.8xlarge'),
-  mlC6i12xlarge('ml.c6i.12xlarge'),
-  mlC6i16xlarge('ml.c6i.16xlarge'),
-  mlC6i24xlarge('ml.c6i.24xlarge'),
-  mlC6i32xlarge('ml.c6i.32xlarge'),
-  mlC7iLarge('ml.c7i.large'),
-  mlC7iXlarge('ml.c7i.xlarge'),
-  mlC7i2xlarge('ml.c7i.2xlarge'),
-  mlC7i4xlarge('ml.c7i.4xlarge'),
-  mlC7i8xlarge('ml.c7i.8xlarge'),
-  mlC7i12xlarge('ml.c7i.12xlarge'),
-  mlC7i16xlarge('ml.c7i.16xlarge'),
-  mlC7i24xlarge('ml.c7i.24xlarge'),
-  mlC7i48xlarge('ml.c7i.48xlarge'),
-  mlR6iLarge('ml.r6i.large'),
-  mlR6iXlarge('ml.r6i.xlarge'),
-  mlR6i2xlarge('ml.r6i.2xlarge'),
-  mlR6i4xlarge('ml.r6i.4xlarge'),
-  mlR6i8xlarge('ml.r6i.8xlarge'),
-  mlR6i12xlarge('ml.r6i.12xlarge'),
-  mlR6i16xlarge('ml.r6i.16xlarge'),
-  mlR6i24xlarge('ml.r6i.24xlarge'),
-  mlR6i32xlarge('ml.r6i.32xlarge'),
-  mlR7iLarge('ml.r7i.large'),
-  mlR7iXlarge('ml.r7i.xlarge'),
-  mlR7i2xlarge('ml.r7i.2xlarge'),
-  mlR7i4xlarge('ml.r7i.4xlarge'),
-  mlR7i8xlarge('ml.r7i.8xlarge'),
-  mlR7i12xlarge('ml.r7i.12xlarge'),
-  mlR7i16xlarge('ml.r7i.16xlarge'),
-  mlR7i24xlarge('ml.r7i.24xlarge'),
-  mlR7i48xlarge('ml.r7i.48xlarge'),
-  mlM6idLarge('ml.m6id.large'),
-  mlM6idXlarge('ml.m6id.xlarge'),
-  mlM6id2xlarge('ml.m6id.2xlarge'),
-  mlM6id4xlarge('ml.m6id.4xlarge'),
-  mlM6id8xlarge('ml.m6id.8xlarge'),
-  mlM6id12xlarge('ml.m6id.12xlarge'),
-  mlM6id16xlarge('ml.m6id.16xlarge'),
-  mlM6id24xlarge('ml.m6id.24xlarge'),
-  mlM6id32xlarge('ml.m6id.32xlarge'),
-  mlC6idLarge('ml.c6id.large'),
-  mlC6idXlarge('ml.c6id.xlarge'),
-  mlC6id2xlarge('ml.c6id.2xlarge'),
-  mlC6id4xlarge('ml.c6id.4xlarge'),
-  mlC6id8xlarge('ml.c6id.8xlarge'),
-  mlC6id12xlarge('ml.c6id.12xlarge'),
-  mlC6id16xlarge('ml.c6id.16xlarge'),
-  mlC6id24xlarge('ml.c6id.24xlarge'),
-  mlC6id32xlarge('ml.c6id.32xlarge'),
-  mlR6idLarge('ml.r6id.large'),
-  mlR6idXlarge('ml.r6id.xlarge'),
-  mlR6id2xlarge('ml.r6id.2xlarge'),
-  mlR6id4xlarge('ml.r6id.4xlarge'),
-  mlR6id8xlarge('ml.r6id.8xlarge'),
-  mlR6id12xlarge('ml.r6id.12xlarge'),
-  mlR6id16xlarge('ml.r6id.16xlarge'),
-  mlR6id24xlarge('ml.r6id.24xlarge'),
-  mlR6id32xlarge('ml.r6id.32xlarge'),
-  mlP5p4xlarge('ml.p5.4xlarge'),
-  mlG7p2xlarge('ml.g7.2xlarge'),
-  mlG7p4xlarge('ml.g7.4xlarge'),
-  mlG7p8xlarge('ml.g7.8xlarge'),
-  mlG7p12xlarge('ml.g7.12xlarge'),
-  mlG7p24xlarge('ml.g7.24xlarge'),
-  mlG7p48xlarge('ml.g7.48xlarge'),
-  mlG7e2xlarge('ml.g7e.2xlarge'),
-  mlG7e4xlarge('ml.g7e.4xlarge'),
-  mlG7e8xlarge('ml.g7e.8xlarge'),
-  mlG7e12xlarge('ml.g7e.12xlarge'),
-  mlG7e24xlarge('ml.g7e.24xlarge'),
-  mlG7e48xlarge('ml.g7e.48xlarge');
-
-  const SagemakerUserProfileUserSettingsJupyterServerAppSettingsDefaultResourceSpecInstanceType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `user_settings.kernel_gateway_app_settings` block of
 /// `aws_sagemaker_user_profile` (derived from provider schema).
 @immutable
-final class SagemakerUserProfileUserSettingsKernelGatewayAppSettings {
-  const SagemakerUserProfileUserSettingsKernelGatewayAppSettings({
+final class SagemakerUserProfileKernelGatewayAppSettings {
+  const SagemakerUserProfileKernelGatewayAppSettings({
     this.lifecycleConfigArns,
     this.customImage,
     this.defaultResourceSpec,
@@ -1489,13 +807,9 @@ final class SagemakerUserProfileUserSettingsKernelGatewayAppSettings {
 
   final TfArg<List<String>>? lifecycleConfigArns;
 
-  final List<
-    SagemakerUserProfileUserSettingsKernelGatewayAppSettingsCustomImage
-  >?
-  customImage;
+  final List<SagemakerUserProfileCustomImage>? customImage;
 
-  final SagemakerUserProfileUserSettingsKernelGatewayAppSettingsDefaultResourceSpec?
-  defaultResourceSpec;
+  final SagemakerUserProfileDefaultResourceSpec? defaultResourceSpec;
 
   Map<String, Object?> encode() => {
     'lifecycle_config_arns': ?lifecycleConfigArns?.toTfJson(),
@@ -1505,264 +819,18 @@ final class SagemakerUserProfileUserSettingsKernelGatewayAppSettings {
   };
 }
 
-/// Typed helper for the `user_settings.kernel_gateway_app_settings.custom_image` block of
-/// `aws_sagemaker_user_profile` (derived from provider schema).
-@immutable
-final class SagemakerUserProfileUserSettingsKernelGatewayAppSettingsCustomImage {
-  const SagemakerUserProfileUserSettingsKernelGatewayAppSettingsCustomImage({
-    required this.appImageConfigName,
-    required this.imageName,
-    this.imageVersionNumber,
-  });
-
-  final TfArg<String> appImageConfigName;
-
-  final TfArg<String> imageName;
-
-  final TfArg<num>? imageVersionNumber;
-
-  Map<String, Object?> encode() => {
-    'app_image_config_name': appImageConfigName.toTfJson(),
-    'image_name': imageName.toTfJson(),
-    'image_version_number': ?imageVersionNumber?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `user_settings.kernel_gateway_app_settings.default_resource_spec` block of
-/// `aws_sagemaker_user_profile` (derived from provider schema).
-@immutable
-final class SagemakerUserProfileUserSettingsKernelGatewayAppSettingsDefaultResourceSpec {
-  const SagemakerUserProfileUserSettingsKernelGatewayAppSettingsDefaultResourceSpec({
-    this.instanceType,
-    this.lifecycleConfigArn,
-    this.sagemakerImageArn,
-    this.sagemakerImageVersionAlias,
-    this.sagemakerImageVersionArn,
-  });
-
-  final TfArg<
-    SagemakerUserProfileUserSettingsKernelGatewayAppSettingsDefaultResourceSpecInstanceType
-  >?
-  instanceType;
-
-  final TfArg<String>? lifecycleConfigArn;
-
-  final TfArg<String>? sagemakerImageArn;
-
-  final TfArg<String>? sagemakerImageVersionAlias;
-
-  final TfArg<String>? sagemakerImageVersionArn;
-
-  Map<String, Object?> encode() => {
-    'instance_type': ?instanceType?.toTfJson(),
-    'lifecycle_config_arn': ?lifecycleConfigArn?.toTfJson(),
-    'sagemaker_image_arn': ?sagemakerImageArn?.toTfJson(),
-    'sagemaker_image_version_alias': ?sagemakerImageVersionAlias?.toTfJson(),
-    'sagemaker_image_version_arn': ?sagemakerImageVersionArn?.toTfJson(),
-  };
-}
-
-/// `instance_type` — derived from the provider schema description.
-enum SagemakerUserProfileUserSettingsKernelGatewayAppSettingsDefaultResourceSpecInstanceType
-    implements TerraformEnum {
-  system('system'),
-  mlT3Micro('ml.t3.micro'),
-  mlT3Small('ml.t3.small'),
-  mlT3Medium('ml.t3.medium'),
-  mlT3Large('ml.t3.large'),
-  mlT3Xlarge('ml.t3.xlarge'),
-  mlT3p2xlarge('ml.t3.2xlarge'),
-  mlM5Large('ml.m5.large'),
-  mlM5Xlarge('ml.m5.xlarge'),
-  mlM5p2xlarge('ml.m5.2xlarge'),
-  mlM5p4xlarge('ml.m5.4xlarge'),
-  mlM5p8xlarge('ml.m5.8xlarge'),
-  mlM5p12xlarge('ml.m5.12xlarge'),
-  mlM5p16xlarge('ml.m5.16xlarge'),
-  mlM5p24xlarge('ml.m5.24xlarge'),
-  mlM5dLarge('ml.m5d.large'),
-  mlM5dXlarge('ml.m5d.xlarge'),
-  mlM5d2xlarge('ml.m5d.2xlarge'),
-  mlM5d4xlarge('ml.m5d.4xlarge'),
-  mlM5d8xlarge('ml.m5d.8xlarge'),
-  mlM5d12xlarge('ml.m5d.12xlarge'),
-  mlM5d16xlarge('ml.m5d.16xlarge'),
-  mlM5d24xlarge('ml.m5d.24xlarge'),
-  mlC5Large('ml.c5.large'),
-  mlC5Xlarge('ml.c5.xlarge'),
-  mlC5p2xlarge('ml.c5.2xlarge'),
-  mlC5p4xlarge('ml.c5.4xlarge'),
-  mlC5p9xlarge('ml.c5.9xlarge'),
-  mlC5p12xlarge('ml.c5.12xlarge'),
-  mlC5p18xlarge('ml.c5.18xlarge'),
-  mlC5p24xlarge('ml.c5.24xlarge'),
-  mlP3p2xlarge('ml.p3.2xlarge'),
-  mlP3p8xlarge('ml.p3.8xlarge'),
-  mlP3p16xlarge('ml.p3.16xlarge'),
-  mlP3dn24xlarge('ml.p3dn.24xlarge'),
-  mlG4dnXlarge('ml.g4dn.xlarge'),
-  mlG4dn2xlarge('ml.g4dn.2xlarge'),
-  mlG4dn4xlarge('ml.g4dn.4xlarge'),
-  mlG4dn8xlarge('ml.g4dn.8xlarge'),
-  mlG4dn12xlarge('ml.g4dn.12xlarge'),
-  mlG4dn16xlarge('ml.g4dn.16xlarge'),
-  mlR5Large('ml.r5.large'),
-  mlR5Xlarge('ml.r5.xlarge'),
-  mlR5p2xlarge('ml.r5.2xlarge'),
-  mlR5p4xlarge('ml.r5.4xlarge'),
-  mlR5p8xlarge('ml.r5.8xlarge'),
-  mlR5p12xlarge('ml.r5.12xlarge'),
-  mlR5p16xlarge('ml.r5.16xlarge'),
-  mlR5p24xlarge('ml.r5.24xlarge'),
-  mlG5Xlarge('ml.g5.xlarge'),
-  mlG5p2xlarge('ml.g5.2xlarge'),
-  mlG5p4xlarge('ml.g5.4xlarge'),
-  mlG5p8xlarge('ml.g5.8xlarge'),
-  mlG5p16xlarge('ml.g5.16xlarge'),
-  mlG5p12xlarge('ml.g5.12xlarge'),
-  mlG5p24xlarge('ml.g5.24xlarge'),
-  mlG5p48xlarge('ml.g5.48xlarge'),
-  mlG6Xlarge('ml.g6.xlarge'),
-  mlG6p2xlarge('ml.g6.2xlarge'),
-  mlG6p4xlarge('ml.g6.4xlarge'),
-  mlG6p8xlarge('ml.g6.8xlarge'),
-  mlG6p12xlarge('ml.g6.12xlarge'),
-  mlG6p16xlarge('ml.g6.16xlarge'),
-  mlG6p24xlarge('ml.g6.24xlarge'),
-  mlG6p48xlarge('ml.g6.48xlarge'),
-  mlG6eXlarge('ml.g6e.xlarge'),
-  mlG6e2xlarge('ml.g6e.2xlarge'),
-  mlG6e4xlarge('ml.g6e.4xlarge'),
-  mlG6e8xlarge('ml.g6e.8xlarge'),
-  mlG6e12xlarge('ml.g6e.12xlarge'),
-  mlG6e16xlarge('ml.g6e.16xlarge'),
-  mlG6e24xlarge('ml.g6e.24xlarge'),
-  mlG6e48xlarge('ml.g6e.48xlarge'),
-  mlGeospatialInteractive('ml.geospatial.interactive'),
-  mlP4d24xlarge('ml.p4d.24xlarge'),
-  mlP4de24xlarge('ml.p4de.24xlarge'),
-  mlTrn1p2xlarge('ml.trn1.2xlarge'),
-  mlTrn1p32xlarge('ml.trn1.32xlarge'),
-  mlTrn1n32xlarge('ml.trn1n.32xlarge'),
-  mlP5p48xlarge('ml.p5.48xlarge'),
-  mlP5en48xlarge('ml.p5en.48xlarge'),
-  mlP6B200p48xlarge('ml.p6-b200.48xlarge'),
-  mlM6iLarge('ml.m6i.large'),
-  mlM6iXlarge('ml.m6i.xlarge'),
-  mlM6i2xlarge('ml.m6i.2xlarge'),
-  mlM6i4xlarge('ml.m6i.4xlarge'),
-  mlM6i8xlarge('ml.m6i.8xlarge'),
-  mlM6i12xlarge('ml.m6i.12xlarge'),
-  mlM6i16xlarge('ml.m6i.16xlarge'),
-  mlM6i24xlarge('ml.m6i.24xlarge'),
-  mlM6i32xlarge('ml.m6i.32xlarge'),
-  mlM7iLarge('ml.m7i.large'),
-  mlM7iXlarge('ml.m7i.xlarge'),
-  mlM7i2xlarge('ml.m7i.2xlarge'),
-  mlM7i4xlarge('ml.m7i.4xlarge'),
-  mlM7i8xlarge('ml.m7i.8xlarge'),
-  mlM7i12xlarge('ml.m7i.12xlarge'),
-  mlM7i16xlarge('ml.m7i.16xlarge'),
-  mlM7i24xlarge('ml.m7i.24xlarge'),
-  mlM7i48xlarge('ml.m7i.48xlarge'),
-  mlC6iLarge('ml.c6i.large'),
-  mlC6iXlarge('ml.c6i.xlarge'),
-  mlC6i2xlarge('ml.c6i.2xlarge'),
-  mlC6i4xlarge('ml.c6i.4xlarge'),
-  mlC6i8xlarge('ml.c6i.8xlarge'),
-  mlC6i12xlarge('ml.c6i.12xlarge'),
-  mlC6i16xlarge('ml.c6i.16xlarge'),
-  mlC6i24xlarge('ml.c6i.24xlarge'),
-  mlC6i32xlarge('ml.c6i.32xlarge'),
-  mlC7iLarge('ml.c7i.large'),
-  mlC7iXlarge('ml.c7i.xlarge'),
-  mlC7i2xlarge('ml.c7i.2xlarge'),
-  mlC7i4xlarge('ml.c7i.4xlarge'),
-  mlC7i8xlarge('ml.c7i.8xlarge'),
-  mlC7i12xlarge('ml.c7i.12xlarge'),
-  mlC7i16xlarge('ml.c7i.16xlarge'),
-  mlC7i24xlarge('ml.c7i.24xlarge'),
-  mlC7i48xlarge('ml.c7i.48xlarge'),
-  mlR6iLarge('ml.r6i.large'),
-  mlR6iXlarge('ml.r6i.xlarge'),
-  mlR6i2xlarge('ml.r6i.2xlarge'),
-  mlR6i4xlarge('ml.r6i.4xlarge'),
-  mlR6i8xlarge('ml.r6i.8xlarge'),
-  mlR6i12xlarge('ml.r6i.12xlarge'),
-  mlR6i16xlarge('ml.r6i.16xlarge'),
-  mlR6i24xlarge('ml.r6i.24xlarge'),
-  mlR6i32xlarge('ml.r6i.32xlarge'),
-  mlR7iLarge('ml.r7i.large'),
-  mlR7iXlarge('ml.r7i.xlarge'),
-  mlR7i2xlarge('ml.r7i.2xlarge'),
-  mlR7i4xlarge('ml.r7i.4xlarge'),
-  mlR7i8xlarge('ml.r7i.8xlarge'),
-  mlR7i12xlarge('ml.r7i.12xlarge'),
-  mlR7i16xlarge('ml.r7i.16xlarge'),
-  mlR7i24xlarge('ml.r7i.24xlarge'),
-  mlR7i48xlarge('ml.r7i.48xlarge'),
-  mlM6idLarge('ml.m6id.large'),
-  mlM6idXlarge('ml.m6id.xlarge'),
-  mlM6id2xlarge('ml.m6id.2xlarge'),
-  mlM6id4xlarge('ml.m6id.4xlarge'),
-  mlM6id8xlarge('ml.m6id.8xlarge'),
-  mlM6id12xlarge('ml.m6id.12xlarge'),
-  mlM6id16xlarge('ml.m6id.16xlarge'),
-  mlM6id24xlarge('ml.m6id.24xlarge'),
-  mlM6id32xlarge('ml.m6id.32xlarge'),
-  mlC6idLarge('ml.c6id.large'),
-  mlC6idXlarge('ml.c6id.xlarge'),
-  mlC6id2xlarge('ml.c6id.2xlarge'),
-  mlC6id4xlarge('ml.c6id.4xlarge'),
-  mlC6id8xlarge('ml.c6id.8xlarge'),
-  mlC6id12xlarge('ml.c6id.12xlarge'),
-  mlC6id16xlarge('ml.c6id.16xlarge'),
-  mlC6id24xlarge('ml.c6id.24xlarge'),
-  mlC6id32xlarge('ml.c6id.32xlarge'),
-  mlR6idLarge('ml.r6id.large'),
-  mlR6idXlarge('ml.r6id.xlarge'),
-  mlR6id2xlarge('ml.r6id.2xlarge'),
-  mlR6id4xlarge('ml.r6id.4xlarge'),
-  mlR6id8xlarge('ml.r6id.8xlarge'),
-  mlR6id12xlarge('ml.r6id.12xlarge'),
-  mlR6id16xlarge('ml.r6id.16xlarge'),
-  mlR6id24xlarge('ml.r6id.24xlarge'),
-  mlR6id32xlarge('ml.r6id.32xlarge'),
-  mlP5p4xlarge('ml.p5.4xlarge'),
-  mlG7p2xlarge('ml.g7.2xlarge'),
-  mlG7p4xlarge('ml.g7.4xlarge'),
-  mlG7p8xlarge('ml.g7.8xlarge'),
-  mlG7p12xlarge('ml.g7.12xlarge'),
-  mlG7p24xlarge('ml.g7.24xlarge'),
-  mlG7p48xlarge('ml.g7.48xlarge'),
-  mlG7e2xlarge('ml.g7e.2xlarge'),
-  mlG7e4xlarge('ml.g7e.4xlarge'),
-  mlG7e8xlarge('ml.g7e.8xlarge'),
-  mlG7e12xlarge('ml.g7e.12xlarge'),
-  mlG7e24xlarge('ml.g7e.24xlarge'),
-  mlG7e48xlarge('ml.g7e.48xlarge');
-
-  const SagemakerUserProfileUserSettingsKernelGatewayAppSettingsDefaultResourceSpecInstanceType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `user_settings.r_session_app_settings` block of
 /// `aws_sagemaker_user_profile` (derived from provider schema).
 @immutable
-final class SagemakerUserProfileUserSettingsRSessionAppSettings {
-  const SagemakerUserProfileUserSettingsRSessionAppSettings({
+final class SagemakerUserProfileRSessionAppSettings {
+  const SagemakerUserProfileRSessionAppSettings({
     this.customImage,
     this.defaultResourceSpec,
   });
 
-  final List<SagemakerUserProfileUserSettingsRSessionAppSettingsCustomImage>?
-  customImage;
+  final List<SagemakerUserProfileCustomImage>? customImage;
 
-  final SagemakerUserProfileUserSettingsRSessionAppSettingsDefaultResourceSpec?
-  defaultResourceSpec;
+  final SagemakerUserProfileDefaultResourceSpec? defaultResourceSpec;
 
   Map<String, Object?> encode() => {
     if (customImage != null)
@@ -1771,268 +839,18 @@ final class SagemakerUserProfileUserSettingsRSessionAppSettings {
   };
 }
 
-/// Typed helper for the `user_settings.r_session_app_settings.custom_image` block of
-/// `aws_sagemaker_user_profile` (derived from provider schema).
-@immutable
-final class SagemakerUserProfileUserSettingsRSessionAppSettingsCustomImage {
-  const SagemakerUserProfileUserSettingsRSessionAppSettingsCustomImage({
-    required this.appImageConfigName,
-    required this.imageName,
-    this.imageVersionNumber,
-  });
-
-  final TfArg<String> appImageConfigName;
-
-  final TfArg<String> imageName;
-
-  final TfArg<num>? imageVersionNumber;
-
-  Map<String, Object?> encode() => {
-    'app_image_config_name': appImageConfigName.toTfJson(),
-    'image_name': imageName.toTfJson(),
-    'image_version_number': ?imageVersionNumber?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `user_settings.r_session_app_settings.default_resource_spec` block of
-/// `aws_sagemaker_user_profile` (derived from provider schema).
-@immutable
-final class SagemakerUserProfileUserSettingsRSessionAppSettingsDefaultResourceSpec {
-  const SagemakerUserProfileUserSettingsRSessionAppSettingsDefaultResourceSpec({
-    this.instanceType,
-    this.lifecycleConfigArn,
-    this.sagemakerImageArn,
-    this.sagemakerImageVersionAlias,
-    this.sagemakerImageVersionArn,
-  });
-
-  final TfArg<
-    SagemakerUserProfileUserSettingsRSessionAppSettingsDefaultResourceSpecInstanceType
-  >?
-  instanceType;
-
-  final TfArg<String>? lifecycleConfigArn;
-
-  final TfArg<String>? sagemakerImageArn;
-
-  final TfArg<String>? sagemakerImageVersionAlias;
-
-  final TfArg<String>? sagemakerImageVersionArn;
-
-  Map<String, Object?> encode() => {
-    'instance_type': ?instanceType?.toTfJson(),
-    'lifecycle_config_arn': ?lifecycleConfigArn?.toTfJson(),
-    'sagemaker_image_arn': ?sagemakerImageArn?.toTfJson(),
-    'sagemaker_image_version_alias': ?sagemakerImageVersionAlias?.toTfJson(),
-    'sagemaker_image_version_arn': ?sagemakerImageVersionArn?.toTfJson(),
-  };
-}
-
-/// `instance_type` — derived from the provider schema description.
-enum SagemakerUserProfileUserSettingsRSessionAppSettingsDefaultResourceSpecInstanceType
-    implements TerraformEnum {
-  system('system'),
-  mlT3Micro('ml.t3.micro'),
-  mlT3Small('ml.t3.small'),
-  mlT3Medium('ml.t3.medium'),
-  mlT3Large('ml.t3.large'),
-  mlT3Xlarge('ml.t3.xlarge'),
-  mlT3p2xlarge('ml.t3.2xlarge'),
-  mlM5Large('ml.m5.large'),
-  mlM5Xlarge('ml.m5.xlarge'),
-  mlM5p2xlarge('ml.m5.2xlarge'),
-  mlM5p4xlarge('ml.m5.4xlarge'),
-  mlM5p8xlarge('ml.m5.8xlarge'),
-  mlM5p12xlarge('ml.m5.12xlarge'),
-  mlM5p16xlarge('ml.m5.16xlarge'),
-  mlM5p24xlarge('ml.m5.24xlarge'),
-  mlM5dLarge('ml.m5d.large'),
-  mlM5dXlarge('ml.m5d.xlarge'),
-  mlM5d2xlarge('ml.m5d.2xlarge'),
-  mlM5d4xlarge('ml.m5d.4xlarge'),
-  mlM5d8xlarge('ml.m5d.8xlarge'),
-  mlM5d12xlarge('ml.m5d.12xlarge'),
-  mlM5d16xlarge('ml.m5d.16xlarge'),
-  mlM5d24xlarge('ml.m5d.24xlarge'),
-  mlC5Large('ml.c5.large'),
-  mlC5Xlarge('ml.c5.xlarge'),
-  mlC5p2xlarge('ml.c5.2xlarge'),
-  mlC5p4xlarge('ml.c5.4xlarge'),
-  mlC5p9xlarge('ml.c5.9xlarge'),
-  mlC5p12xlarge('ml.c5.12xlarge'),
-  mlC5p18xlarge('ml.c5.18xlarge'),
-  mlC5p24xlarge('ml.c5.24xlarge'),
-  mlP3p2xlarge('ml.p3.2xlarge'),
-  mlP3p8xlarge('ml.p3.8xlarge'),
-  mlP3p16xlarge('ml.p3.16xlarge'),
-  mlP3dn24xlarge('ml.p3dn.24xlarge'),
-  mlG4dnXlarge('ml.g4dn.xlarge'),
-  mlG4dn2xlarge('ml.g4dn.2xlarge'),
-  mlG4dn4xlarge('ml.g4dn.4xlarge'),
-  mlG4dn8xlarge('ml.g4dn.8xlarge'),
-  mlG4dn12xlarge('ml.g4dn.12xlarge'),
-  mlG4dn16xlarge('ml.g4dn.16xlarge'),
-  mlR5Large('ml.r5.large'),
-  mlR5Xlarge('ml.r5.xlarge'),
-  mlR5p2xlarge('ml.r5.2xlarge'),
-  mlR5p4xlarge('ml.r5.4xlarge'),
-  mlR5p8xlarge('ml.r5.8xlarge'),
-  mlR5p12xlarge('ml.r5.12xlarge'),
-  mlR5p16xlarge('ml.r5.16xlarge'),
-  mlR5p24xlarge('ml.r5.24xlarge'),
-  mlG5Xlarge('ml.g5.xlarge'),
-  mlG5p2xlarge('ml.g5.2xlarge'),
-  mlG5p4xlarge('ml.g5.4xlarge'),
-  mlG5p8xlarge('ml.g5.8xlarge'),
-  mlG5p16xlarge('ml.g5.16xlarge'),
-  mlG5p12xlarge('ml.g5.12xlarge'),
-  mlG5p24xlarge('ml.g5.24xlarge'),
-  mlG5p48xlarge('ml.g5.48xlarge'),
-  mlG6Xlarge('ml.g6.xlarge'),
-  mlG6p2xlarge('ml.g6.2xlarge'),
-  mlG6p4xlarge('ml.g6.4xlarge'),
-  mlG6p8xlarge('ml.g6.8xlarge'),
-  mlG6p12xlarge('ml.g6.12xlarge'),
-  mlG6p16xlarge('ml.g6.16xlarge'),
-  mlG6p24xlarge('ml.g6.24xlarge'),
-  mlG6p48xlarge('ml.g6.48xlarge'),
-  mlG6eXlarge('ml.g6e.xlarge'),
-  mlG6e2xlarge('ml.g6e.2xlarge'),
-  mlG6e4xlarge('ml.g6e.4xlarge'),
-  mlG6e8xlarge('ml.g6e.8xlarge'),
-  mlG6e12xlarge('ml.g6e.12xlarge'),
-  mlG6e16xlarge('ml.g6e.16xlarge'),
-  mlG6e24xlarge('ml.g6e.24xlarge'),
-  mlG6e48xlarge('ml.g6e.48xlarge'),
-  mlGeospatialInteractive('ml.geospatial.interactive'),
-  mlP4d24xlarge('ml.p4d.24xlarge'),
-  mlP4de24xlarge('ml.p4de.24xlarge'),
-  mlTrn1p2xlarge('ml.trn1.2xlarge'),
-  mlTrn1p32xlarge('ml.trn1.32xlarge'),
-  mlTrn1n32xlarge('ml.trn1n.32xlarge'),
-  mlP5p48xlarge('ml.p5.48xlarge'),
-  mlP5en48xlarge('ml.p5en.48xlarge'),
-  mlP6B200p48xlarge('ml.p6-b200.48xlarge'),
-  mlM6iLarge('ml.m6i.large'),
-  mlM6iXlarge('ml.m6i.xlarge'),
-  mlM6i2xlarge('ml.m6i.2xlarge'),
-  mlM6i4xlarge('ml.m6i.4xlarge'),
-  mlM6i8xlarge('ml.m6i.8xlarge'),
-  mlM6i12xlarge('ml.m6i.12xlarge'),
-  mlM6i16xlarge('ml.m6i.16xlarge'),
-  mlM6i24xlarge('ml.m6i.24xlarge'),
-  mlM6i32xlarge('ml.m6i.32xlarge'),
-  mlM7iLarge('ml.m7i.large'),
-  mlM7iXlarge('ml.m7i.xlarge'),
-  mlM7i2xlarge('ml.m7i.2xlarge'),
-  mlM7i4xlarge('ml.m7i.4xlarge'),
-  mlM7i8xlarge('ml.m7i.8xlarge'),
-  mlM7i12xlarge('ml.m7i.12xlarge'),
-  mlM7i16xlarge('ml.m7i.16xlarge'),
-  mlM7i24xlarge('ml.m7i.24xlarge'),
-  mlM7i48xlarge('ml.m7i.48xlarge'),
-  mlC6iLarge('ml.c6i.large'),
-  mlC6iXlarge('ml.c6i.xlarge'),
-  mlC6i2xlarge('ml.c6i.2xlarge'),
-  mlC6i4xlarge('ml.c6i.4xlarge'),
-  mlC6i8xlarge('ml.c6i.8xlarge'),
-  mlC6i12xlarge('ml.c6i.12xlarge'),
-  mlC6i16xlarge('ml.c6i.16xlarge'),
-  mlC6i24xlarge('ml.c6i.24xlarge'),
-  mlC6i32xlarge('ml.c6i.32xlarge'),
-  mlC7iLarge('ml.c7i.large'),
-  mlC7iXlarge('ml.c7i.xlarge'),
-  mlC7i2xlarge('ml.c7i.2xlarge'),
-  mlC7i4xlarge('ml.c7i.4xlarge'),
-  mlC7i8xlarge('ml.c7i.8xlarge'),
-  mlC7i12xlarge('ml.c7i.12xlarge'),
-  mlC7i16xlarge('ml.c7i.16xlarge'),
-  mlC7i24xlarge('ml.c7i.24xlarge'),
-  mlC7i48xlarge('ml.c7i.48xlarge'),
-  mlR6iLarge('ml.r6i.large'),
-  mlR6iXlarge('ml.r6i.xlarge'),
-  mlR6i2xlarge('ml.r6i.2xlarge'),
-  mlR6i4xlarge('ml.r6i.4xlarge'),
-  mlR6i8xlarge('ml.r6i.8xlarge'),
-  mlR6i12xlarge('ml.r6i.12xlarge'),
-  mlR6i16xlarge('ml.r6i.16xlarge'),
-  mlR6i24xlarge('ml.r6i.24xlarge'),
-  mlR6i32xlarge('ml.r6i.32xlarge'),
-  mlR7iLarge('ml.r7i.large'),
-  mlR7iXlarge('ml.r7i.xlarge'),
-  mlR7i2xlarge('ml.r7i.2xlarge'),
-  mlR7i4xlarge('ml.r7i.4xlarge'),
-  mlR7i8xlarge('ml.r7i.8xlarge'),
-  mlR7i12xlarge('ml.r7i.12xlarge'),
-  mlR7i16xlarge('ml.r7i.16xlarge'),
-  mlR7i24xlarge('ml.r7i.24xlarge'),
-  mlR7i48xlarge('ml.r7i.48xlarge'),
-  mlM6idLarge('ml.m6id.large'),
-  mlM6idXlarge('ml.m6id.xlarge'),
-  mlM6id2xlarge('ml.m6id.2xlarge'),
-  mlM6id4xlarge('ml.m6id.4xlarge'),
-  mlM6id8xlarge('ml.m6id.8xlarge'),
-  mlM6id12xlarge('ml.m6id.12xlarge'),
-  mlM6id16xlarge('ml.m6id.16xlarge'),
-  mlM6id24xlarge('ml.m6id.24xlarge'),
-  mlM6id32xlarge('ml.m6id.32xlarge'),
-  mlC6idLarge('ml.c6id.large'),
-  mlC6idXlarge('ml.c6id.xlarge'),
-  mlC6id2xlarge('ml.c6id.2xlarge'),
-  mlC6id4xlarge('ml.c6id.4xlarge'),
-  mlC6id8xlarge('ml.c6id.8xlarge'),
-  mlC6id12xlarge('ml.c6id.12xlarge'),
-  mlC6id16xlarge('ml.c6id.16xlarge'),
-  mlC6id24xlarge('ml.c6id.24xlarge'),
-  mlC6id32xlarge('ml.c6id.32xlarge'),
-  mlR6idLarge('ml.r6id.large'),
-  mlR6idXlarge('ml.r6id.xlarge'),
-  mlR6id2xlarge('ml.r6id.2xlarge'),
-  mlR6id4xlarge('ml.r6id.4xlarge'),
-  mlR6id8xlarge('ml.r6id.8xlarge'),
-  mlR6id12xlarge('ml.r6id.12xlarge'),
-  mlR6id16xlarge('ml.r6id.16xlarge'),
-  mlR6id24xlarge('ml.r6id.24xlarge'),
-  mlR6id32xlarge('ml.r6id.32xlarge'),
-  mlP5p4xlarge('ml.p5.4xlarge'),
-  mlG7p2xlarge('ml.g7.2xlarge'),
-  mlG7p4xlarge('ml.g7.4xlarge'),
-  mlG7p8xlarge('ml.g7.8xlarge'),
-  mlG7p12xlarge('ml.g7.12xlarge'),
-  mlG7p24xlarge('ml.g7.24xlarge'),
-  mlG7p48xlarge('ml.g7.48xlarge'),
-  mlG7e2xlarge('ml.g7e.2xlarge'),
-  mlG7e4xlarge('ml.g7e.4xlarge'),
-  mlG7e8xlarge('ml.g7e.8xlarge'),
-  mlG7e12xlarge('ml.g7e.12xlarge'),
-  mlG7e24xlarge('ml.g7e.24xlarge'),
-  mlG7e48xlarge('ml.g7e.48xlarge');
-
-  const SagemakerUserProfileUserSettingsRSessionAppSettingsDefaultResourceSpecInstanceType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `user_settings.r_studio_server_pro_app_settings` block of
 /// `aws_sagemaker_user_profile` (derived from provider schema).
 @immutable
-final class SagemakerUserProfileUserSettingsRStudioServerProAppSettings {
-  const SagemakerUserProfileUserSettingsRStudioServerProAppSettings({
+final class SagemakerUserProfileRStudioServerProAppSettings {
+  const SagemakerUserProfileRStudioServerProAppSettings({
     this.accessStatus,
     this.userGroup,
   });
 
-  final TfArg<
-    SagemakerUserProfileUserSettingsRStudioServerProAppSettingsAccessStatus
-  >?
-  accessStatus;
+  final TfArg<SagemakerUserProfileAccessStatus>? accessStatus;
 
-  final TfArg<
-    SagemakerUserProfileUserSettingsRStudioServerProAppSettingsUserGroup
-  >?
-  userGroup;
+  final TfArg<SagemakerUserProfileUserGroup>? userGroup;
 
   Map<String, Object?> encode() => {
     'access_status': ?accessStatus?.toTfJson(),
@@ -2041,27 +859,21 @@ final class SagemakerUserProfileUserSettingsRStudioServerProAppSettings {
 }
 
 /// `access_status` — derived from the provider schema description.
-enum SagemakerUserProfileUserSettingsRStudioServerProAppSettingsAccessStatus
-    implements TerraformEnum {
+enum SagemakerUserProfileAccessStatus implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const SagemakerUserProfileUserSettingsRStudioServerProAppSettingsAccessStatus(
-    this.terraformValue,
-  );
+  const SagemakerUserProfileAccessStatus(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `user_group` — derived from the provider schema description.
-enum SagemakerUserProfileUserSettingsRStudioServerProAppSettingsUserGroup
-    implements TerraformEnum {
+enum SagemakerUserProfileUserGroup implements TerraformEnum {
   rStudioAdmin('R_STUDIO_ADMIN'),
   rStudioUser('R_STUDIO_USER');
 
-  const SagemakerUserProfileUserSettingsRStudioServerProAppSettingsUserGroup(
-    this.terraformValue,
-  );
+  const SagemakerUserProfileUserGroup(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -2069,17 +881,14 @@ enum SagemakerUserProfileUserSettingsRStudioServerProAppSettingsUserGroup
 /// Typed helper for the `user_settings.sharing_settings` block of
 /// `aws_sagemaker_user_profile` (derived from provider schema).
 @immutable
-final class SagemakerUserProfileUserSettingsSharingSettings {
-  const SagemakerUserProfileUserSettingsSharingSettings({
+final class SagemakerUserProfileSharingSettings {
+  const SagemakerUserProfileSharingSettings({
     this.notebookOutputOption,
     this.s3KmsKeyId,
     this.s3OutputPath,
   });
 
-  final TfArg<
-    SagemakerUserProfileUserSettingsSharingSettingsNotebookOutputOption
-  >?
-  notebookOutputOption;
+  final TfArg<SagemakerUserProfileNotebookOutputOption>? notebookOutputOption;
 
   final TfArg<String>? s3KmsKeyId;
 
@@ -2093,14 +902,11 @@ final class SagemakerUserProfileUserSettingsSharingSettings {
 }
 
 /// `notebook_output_option` — derived from the provider schema description.
-enum SagemakerUserProfileUserSettingsSharingSettingsNotebookOutputOption
-    implements TerraformEnum {
+enum SagemakerUserProfileNotebookOutputOption implements TerraformEnum {
   allowed('Allowed'),
   disabled('Disabled');
 
-  const SagemakerUserProfileUserSettingsSharingSettingsNotebookOutputOption(
-    this.terraformValue,
-  );
+  const SagemakerUserProfileNotebookOutputOption(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -2108,12 +914,12 @@ enum SagemakerUserProfileUserSettingsSharingSettingsNotebookOutputOption
 /// Typed helper for the `user_settings.space_storage_settings` block of
 /// `aws_sagemaker_user_profile` (derived from provider schema).
 @immutable
-final class SagemakerUserProfileUserSettingsSpaceStorageSettings {
-  const SagemakerUserProfileUserSettingsSpaceStorageSettings({
+final class SagemakerUserProfileSpaceStorageSettings {
+  const SagemakerUserProfileSpaceStorageSettings({
     this.defaultEbsStorageSettings,
   });
 
-  final SagemakerUserProfileUserSettingsSpaceStorageSettingsDefaultEbsStorageSettings?
+  final SagemakerUserProfileDefaultEbsStorageSettings?
   defaultEbsStorageSettings;
 
   Map<String, Object?> encode() => {
@@ -2124,8 +930,8 @@ final class SagemakerUserProfileUserSettingsSpaceStorageSettings {
 /// Typed helper for the `user_settings.space_storage_settings.default_ebs_storage_settings` block of
 /// `aws_sagemaker_user_profile` (derived from provider schema).
 @immutable
-final class SagemakerUserProfileUserSettingsSpaceStorageSettingsDefaultEbsStorageSettings {
-  const SagemakerUserProfileUserSettingsSpaceStorageSettingsDefaultEbsStorageSettings({
+final class SagemakerUserProfileDefaultEbsStorageSettings {
+  const SagemakerUserProfileDefaultEbsStorageSettings({
     required this.defaultEbsVolumeSizeInGb,
     required this.maximumEbsVolumeSizeInGb,
   });
@@ -2143,29 +949,19 @@ final class SagemakerUserProfileUserSettingsSpaceStorageSettingsDefaultEbsStorag
 /// Typed helper for the `user_settings.studio_web_portal_settings` block of
 /// `aws_sagemaker_user_profile` (derived from provider schema).
 @immutable
-final class SagemakerUserProfileUserSettingsStudioWebPortalSettings {
-  const SagemakerUserProfileUserSettingsStudioWebPortalSettings({
+final class SagemakerUserProfileStudioWebPortalSettings {
+  const SagemakerUserProfileStudioWebPortalSettings({
     this.hiddenAppTypes,
     this.hiddenInstanceTypes,
     this.hiddenMlTools,
   });
 
-  final List<
-    TfArg<SagemakerUserProfileUserSettingsStudioWebPortalSettingsHiddenAppTypes>
-  >?
-  hiddenAppTypes;
+  final List<TfArg<SagemakerUserProfileHiddenAppTypes>>? hiddenAppTypes;
 
-  final List<
-    TfArg<
-      SagemakerUserProfileUserSettingsStudioWebPortalSettingsHiddenInstanceTypes
-    >
-  >?
+  final List<TfArg<SagemakerUserProfileHiddenInstanceTypes>>?
   hiddenInstanceTypes;
 
-  final List<
-    TfArg<SagemakerUserProfileUserSettingsStudioWebPortalSettingsHiddenMlTools>
-  >?
-  hiddenMlTools;
+  final List<TfArg<SagemakerUserProfileHiddenMlTools>>? hiddenMlTools;
 
   Map<String, Object?> encode() => {
     if (hiddenAppTypes != null)
@@ -2180,8 +976,7 @@ final class SagemakerUserProfileUserSettingsStudioWebPortalSettings {
 }
 
 /// `hidden_app_types` — derived from the provider schema description.
-enum SagemakerUserProfileUserSettingsStudioWebPortalSettingsHiddenAppTypes
-    implements TerraformEnum {
+enum SagemakerUserProfileHiddenAppTypes implements TerraformEnum {
   jupyterserver('JupyterServer'),
   kernelgateway('KernelGateway'),
   detailedprofiler('DetailedProfiler'),
@@ -2192,16 +987,13 @@ enum SagemakerUserProfileUserSettingsStudioWebPortalSettingsHiddenAppTypes
   rsessiongateway('RSessionGateway'),
   canvas('Canvas');
 
-  const SagemakerUserProfileUserSettingsStudioWebPortalSettingsHiddenAppTypes(
-    this.terraformValue,
-  );
+  const SagemakerUserProfileHiddenAppTypes(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `hidden_instance_types` — derived from the provider schema description.
-enum SagemakerUserProfileUserSettingsStudioWebPortalSettingsHiddenInstanceTypes
-    implements TerraformEnum {
+enum SagemakerUserProfileHiddenInstanceTypes implements TerraformEnum {
   system('system'),
   mlT3Micro('ml.t3.micro'),
   mlT3Small('ml.t3.small'),
@@ -2379,16 +1171,13 @@ enum SagemakerUserProfileUserSettingsStudioWebPortalSettingsHiddenInstanceTypes
   mlG7e24xlarge('ml.g7e.24xlarge'),
   mlG7e48xlarge('ml.g7e.48xlarge');
 
-  const SagemakerUserProfileUserSettingsStudioWebPortalSettingsHiddenInstanceTypes(
-    this.terraformValue,
-  );
+  const SagemakerUserProfileHiddenInstanceTypes(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `hidden_ml_tools` — derived from the provider schema description.
-enum SagemakerUserProfileUserSettingsStudioWebPortalSettingsHiddenMlTools
-    implements TerraformEnum {
+enum SagemakerUserProfileHiddenMlTools implements TerraformEnum {
   datawrangler('DataWrangler'),
   featurestore('FeatureStore'),
   emrclusters('EmrClusters'),
@@ -2413,9 +1202,7 @@ enum SagemakerUserProfileUserSettingsStudioWebPortalSettingsHiddenMlTools
   datasets('Datasets'),
   evaluators('Evaluators');
 
-  const SagemakerUserProfileUserSettingsStudioWebPortalSettingsHiddenMlTools(
-    this.terraformValue,
-  );
+  const SagemakerUserProfileHiddenMlTools(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -2423,238 +1210,14 @@ enum SagemakerUserProfileUserSettingsStudioWebPortalSettingsHiddenMlTools
 /// Typed helper for the `user_settings.tensor_board_app_settings` block of
 /// `aws_sagemaker_user_profile` (derived from provider schema).
 @immutable
-final class SagemakerUserProfileUserSettingsTensorBoardAppSettings {
-  const SagemakerUserProfileUserSettingsTensorBoardAppSettings({
-    this.defaultResourceSpec,
-  });
+final class SagemakerUserProfileTensorBoardAppSettings {
+  const SagemakerUserProfileTensorBoardAppSettings({this.defaultResourceSpec});
 
-  final SagemakerUserProfileUserSettingsTensorBoardAppSettingsDefaultResourceSpec?
-  defaultResourceSpec;
+  final SagemakerUserProfileDefaultResourceSpec? defaultResourceSpec;
 
   Map<String, Object?> encode() => {
     'default_resource_spec': ?defaultResourceSpec?.encode(),
   };
-}
-
-/// Typed helper for the `user_settings.tensor_board_app_settings.default_resource_spec` block of
-/// `aws_sagemaker_user_profile` (derived from provider schema).
-@immutable
-final class SagemakerUserProfileUserSettingsTensorBoardAppSettingsDefaultResourceSpec {
-  const SagemakerUserProfileUserSettingsTensorBoardAppSettingsDefaultResourceSpec({
-    this.instanceType,
-    this.lifecycleConfigArn,
-    this.sagemakerImageArn,
-    this.sagemakerImageVersionAlias,
-    this.sagemakerImageVersionArn,
-  });
-
-  final TfArg<
-    SagemakerUserProfileUserSettingsTensorBoardAppSettingsDefaultResourceSpecInstanceType
-  >?
-  instanceType;
-
-  final TfArg<String>? lifecycleConfigArn;
-
-  final TfArg<String>? sagemakerImageArn;
-
-  final TfArg<String>? sagemakerImageVersionAlias;
-
-  final TfArg<String>? sagemakerImageVersionArn;
-
-  Map<String, Object?> encode() => {
-    'instance_type': ?instanceType?.toTfJson(),
-    'lifecycle_config_arn': ?lifecycleConfigArn?.toTfJson(),
-    'sagemaker_image_arn': ?sagemakerImageArn?.toTfJson(),
-    'sagemaker_image_version_alias': ?sagemakerImageVersionAlias?.toTfJson(),
-    'sagemaker_image_version_arn': ?sagemakerImageVersionArn?.toTfJson(),
-  };
-}
-
-/// `instance_type` — derived from the provider schema description.
-enum SagemakerUserProfileUserSettingsTensorBoardAppSettingsDefaultResourceSpecInstanceType
-    implements TerraformEnum {
-  system('system'),
-  mlT3Micro('ml.t3.micro'),
-  mlT3Small('ml.t3.small'),
-  mlT3Medium('ml.t3.medium'),
-  mlT3Large('ml.t3.large'),
-  mlT3Xlarge('ml.t3.xlarge'),
-  mlT3p2xlarge('ml.t3.2xlarge'),
-  mlM5Large('ml.m5.large'),
-  mlM5Xlarge('ml.m5.xlarge'),
-  mlM5p2xlarge('ml.m5.2xlarge'),
-  mlM5p4xlarge('ml.m5.4xlarge'),
-  mlM5p8xlarge('ml.m5.8xlarge'),
-  mlM5p12xlarge('ml.m5.12xlarge'),
-  mlM5p16xlarge('ml.m5.16xlarge'),
-  mlM5p24xlarge('ml.m5.24xlarge'),
-  mlM5dLarge('ml.m5d.large'),
-  mlM5dXlarge('ml.m5d.xlarge'),
-  mlM5d2xlarge('ml.m5d.2xlarge'),
-  mlM5d4xlarge('ml.m5d.4xlarge'),
-  mlM5d8xlarge('ml.m5d.8xlarge'),
-  mlM5d12xlarge('ml.m5d.12xlarge'),
-  mlM5d16xlarge('ml.m5d.16xlarge'),
-  mlM5d24xlarge('ml.m5d.24xlarge'),
-  mlC5Large('ml.c5.large'),
-  mlC5Xlarge('ml.c5.xlarge'),
-  mlC5p2xlarge('ml.c5.2xlarge'),
-  mlC5p4xlarge('ml.c5.4xlarge'),
-  mlC5p9xlarge('ml.c5.9xlarge'),
-  mlC5p12xlarge('ml.c5.12xlarge'),
-  mlC5p18xlarge('ml.c5.18xlarge'),
-  mlC5p24xlarge('ml.c5.24xlarge'),
-  mlP3p2xlarge('ml.p3.2xlarge'),
-  mlP3p8xlarge('ml.p3.8xlarge'),
-  mlP3p16xlarge('ml.p3.16xlarge'),
-  mlP3dn24xlarge('ml.p3dn.24xlarge'),
-  mlG4dnXlarge('ml.g4dn.xlarge'),
-  mlG4dn2xlarge('ml.g4dn.2xlarge'),
-  mlG4dn4xlarge('ml.g4dn.4xlarge'),
-  mlG4dn8xlarge('ml.g4dn.8xlarge'),
-  mlG4dn12xlarge('ml.g4dn.12xlarge'),
-  mlG4dn16xlarge('ml.g4dn.16xlarge'),
-  mlR5Large('ml.r5.large'),
-  mlR5Xlarge('ml.r5.xlarge'),
-  mlR5p2xlarge('ml.r5.2xlarge'),
-  mlR5p4xlarge('ml.r5.4xlarge'),
-  mlR5p8xlarge('ml.r5.8xlarge'),
-  mlR5p12xlarge('ml.r5.12xlarge'),
-  mlR5p16xlarge('ml.r5.16xlarge'),
-  mlR5p24xlarge('ml.r5.24xlarge'),
-  mlG5Xlarge('ml.g5.xlarge'),
-  mlG5p2xlarge('ml.g5.2xlarge'),
-  mlG5p4xlarge('ml.g5.4xlarge'),
-  mlG5p8xlarge('ml.g5.8xlarge'),
-  mlG5p16xlarge('ml.g5.16xlarge'),
-  mlG5p12xlarge('ml.g5.12xlarge'),
-  mlG5p24xlarge('ml.g5.24xlarge'),
-  mlG5p48xlarge('ml.g5.48xlarge'),
-  mlG6Xlarge('ml.g6.xlarge'),
-  mlG6p2xlarge('ml.g6.2xlarge'),
-  mlG6p4xlarge('ml.g6.4xlarge'),
-  mlG6p8xlarge('ml.g6.8xlarge'),
-  mlG6p12xlarge('ml.g6.12xlarge'),
-  mlG6p16xlarge('ml.g6.16xlarge'),
-  mlG6p24xlarge('ml.g6.24xlarge'),
-  mlG6p48xlarge('ml.g6.48xlarge'),
-  mlG6eXlarge('ml.g6e.xlarge'),
-  mlG6e2xlarge('ml.g6e.2xlarge'),
-  mlG6e4xlarge('ml.g6e.4xlarge'),
-  mlG6e8xlarge('ml.g6e.8xlarge'),
-  mlG6e12xlarge('ml.g6e.12xlarge'),
-  mlG6e16xlarge('ml.g6e.16xlarge'),
-  mlG6e24xlarge('ml.g6e.24xlarge'),
-  mlG6e48xlarge('ml.g6e.48xlarge'),
-  mlGeospatialInteractive('ml.geospatial.interactive'),
-  mlP4d24xlarge('ml.p4d.24xlarge'),
-  mlP4de24xlarge('ml.p4de.24xlarge'),
-  mlTrn1p2xlarge('ml.trn1.2xlarge'),
-  mlTrn1p32xlarge('ml.trn1.32xlarge'),
-  mlTrn1n32xlarge('ml.trn1n.32xlarge'),
-  mlP5p48xlarge('ml.p5.48xlarge'),
-  mlP5en48xlarge('ml.p5en.48xlarge'),
-  mlP6B200p48xlarge('ml.p6-b200.48xlarge'),
-  mlM6iLarge('ml.m6i.large'),
-  mlM6iXlarge('ml.m6i.xlarge'),
-  mlM6i2xlarge('ml.m6i.2xlarge'),
-  mlM6i4xlarge('ml.m6i.4xlarge'),
-  mlM6i8xlarge('ml.m6i.8xlarge'),
-  mlM6i12xlarge('ml.m6i.12xlarge'),
-  mlM6i16xlarge('ml.m6i.16xlarge'),
-  mlM6i24xlarge('ml.m6i.24xlarge'),
-  mlM6i32xlarge('ml.m6i.32xlarge'),
-  mlM7iLarge('ml.m7i.large'),
-  mlM7iXlarge('ml.m7i.xlarge'),
-  mlM7i2xlarge('ml.m7i.2xlarge'),
-  mlM7i4xlarge('ml.m7i.4xlarge'),
-  mlM7i8xlarge('ml.m7i.8xlarge'),
-  mlM7i12xlarge('ml.m7i.12xlarge'),
-  mlM7i16xlarge('ml.m7i.16xlarge'),
-  mlM7i24xlarge('ml.m7i.24xlarge'),
-  mlM7i48xlarge('ml.m7i.48xlarge'),
-  mlC6iLarge('ml.c6i.large'),
-  mlC6iXlarge('ml.c6i.xlarge'),
-  mlC6i2xlarge('ml.c6i.2xlarge'),
-  mlC6i4xlarge('ml.c6i.4xlarge'),
-  mlC6i8xlarge('ml.c6i.8xlarge'),
-  mlC6i12xlarge('ml.c6i.12xlarge'),
-  mlC6i16xlarge('ml.c6i.16xlarge'),
-  mlC6i24xlarge('ml.c6i.24xlarge'),
-  mlC6i32xlarge('ml.c6i.32xlarge'),
-  mlC7iLarge('ml.c7i.large'),
-  mlC7iXlarge('ml.c7i.xlarge'),
-  mlC7i2xlarge('ml.c7i.2xlarge'),
-  mlC7i4xlarge('ml.c7i.4xlarge'),
-  mlC7i8xlarge('ml.c7i.8xlarge'),
-  mlC7i12xlarge('ml.c7i.12xlarge'),
-  mlC7i16xlarge('ml.c7i.16xlarge'),
-  mlC7i24xlarge('ml.c7i.24xlarge'),
-  mlC7i48xlarge('ml.c7i.48xlarge'),
-  mlR6iLarge('ml.r6i.large'),
-  mlR6iXlarge('ml.r6i.xlarge'),
-  mlR6i2xlarge('ml.r6i.2xlarge'),
-  mlR6i4xlarge('ml.r6i.4xlarge'),
-  mlR6i8xlarge('ml.r6i.8xlarge'),
-  mlR6i12xlarge('ml.r6i.12xlarge'),
-  mlR6i16xlarge('ml.r6i.16xlarge'),
-  mlR6i24xlarge('ml.r6i.24xlarge'),
-  mlR6i32xlarge('ml.r6i.32xlarge'),
-  mlR7iLarge('ml.r7i.large'),
-  mlR7iXlarge('ml.r7i.xlarge'),
-  mlR7i2xlarge('ml.r7i.2xlarge'),
-  mlR7i4xlarge('ml.r7i.4xlarge'),
-  mlR7i8xlarge('ml.r7i.8xlarge'),
-  mlR7i12xlarge('ml.r7i.12xlarge'),
-  mlR7i16xlarge('ml.r7i.16xlarge'),
-  mlR7i24xlarge('ml.r7i.24xlarge'),
-  mlR7i48xlarge('ml.r7i.48xlarge'),
-  mlM6idLarge('ml.m6id.large'),
-  mlM6idXlarge('ml.m6id.xlarge'),
-  mlM6id2xlarge('ml.m6id.2xlarge'),
-  mlM6id4xlarge('ml.m6id.4xlarge'),
-  mlM6id8xlarge('ml.m6id.8xlarge'),
-  mlM6id12xlarge('ml.m6id.12xlarge'),
-  mlM6id16xlarge('ml.m6id.16xlarge'),
-  mlM6id24xlarge('ml.m6id.24xlarge'),
-  mlM6id32xlarge('ml.m6id.32xlarge'),
-  mlC6idLarge('ml.c6id.large'),
-  mlC6idXlarge('ml.c6id.xlarge'),
-  mlC6id2xlarge('ml.c6id.2xlarge'),
-  mlC6id4xlarge('ml.c6id.4xlarge'),
-  mlC6id8xlarge('ml.c6id.8xlarge'),
-  mlC6id12xlarge('ml.c6id.12xlarge'),
-  mlC6id16xlarge('ml.c6id.16xlarge'),
-  mlC6id24xlarge('ml.c6id.24xlarge'),
-  mlC6id32xlarge('ml.c6id.32xlarge'),
-  mlR6idLarge('ml.r6id.large'),
-  mlR6idXlarge('ml.r6id.xlarge'),
-  mlR6id2xlarge('ml.r6id.2xlarge'),
-  mlR6id4xlarge('ml.r6id.4xlarge'),
-  mlR6id8xlarge('ml.r6id.8xlarge'),
-  mlR6id12xlarge('ml.r6id.12xlarge'),
-  mlR6id16xlarge('ml.r6id.16xlarge'),
-  mlR6id24xlarge('ml.r6id.24xlarge'),
-  mlR6id32xlarge('ml.r6id.32xlarge'),
-  mlP5p4xlarge('ml.p5.4xlarge'),
-  mlG7p2xlarge('ml.g7.2xlarge'),
-  mlG7p4xlarge('ml.g7.4xlarge'),
-  mlG7p8xlarge('ml.g7.8xlarge'),
-  mlG7p12xlarge('ml.g7.12xlarge'),
-  mlG7p24xlarge('ml.g7.24xlarge'),
-  mlG7p48xlarge('ml.g7.48xlarge'),
-  mlG7e2xlarge('ml.g7e.2xlarge'),
-  mlG7e4xlarge('ml.g7e.4xlarge'),
-  mlG7e8xlarge('ml.g7e.8xlarge'),
-  mlG7e12xlarge('ml.g7e.12xlarge'),
-  mlG7e24xlarge('ml.g7e.24xlarge'),
-  mlG7e48xlarge('ml.g7e.48xlarge');
-
-  const SagemakerUserProfileUserSettingsTensorBoardAppSettingsDefaultResourceSpecInstanceType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_sagemaker_user_profile`.

@@ -198,9 +198,9 @@ final class DataprocBatchEnvironmentConfig {
     this.peripheralsConfig,
   });
 
-  final DataprocBatchEnvironmentConfigExecutionConfig? executionConfig;
+  final DataprocBatchExecutionConfig? executionConfig;
 
-  final DataprocBatchEnvironmentConfigPeripheralsConfig? peripheralsConfig;
+  final DataprocBatchPeripheralsConfig? peripheralsConfig;
 
   Map<String, Object?> encode() => {
     'execution_config': ?executionConfig?.encode(),
@@ -211,8 +211,8 @@ final class DataprocBatchEnvironmentConfig {
 /// Typed helper for the `environment_config.execution_config` block of
 /// `google_dataproc_batch` (derived from provider schema).
 @immutable
-final class DataprocBatchEnvironmentConfigExecutionConfig {
-  const DataprocBatchEnvironmentConfigExecutionConfig({
+final class DataprocBatchExecutionConfig {
+  const DataprocBatchExecutionConfig({
     this.kmsKey,
     this.networkTags,
     this.network,
@@ -226,7 +226,7 @@ final class DataprocBatchEnvironmentConfigExecutionConfig {
 
   final TfArg<List<String>>? networkTags;
 
-  final DataprocBatchEnvironmentConfigExecutionConfigNetwork? network;
+  final DataprocBatchNetwork? network;
 
   final RefTo<GoogleServiceAccount>? serviceAccount;
 
@@ -234,8 +234,7 @@ final class DataprocBatchEnvironmentConfigExecutionConfig {
 
   final TfArg<String>? ttl;
 
-  final DataprocBatchEnvironmentConfigExecutionConfigAuthenticationConfig?
-  authenticationConfig;
+  final DataprocBatchAuthenticationConfig? authenticationConfig;
 
   Map<String, Object?> encode() => {
     'kms_key': ?kmsKey?.encodeAs('id').toTfJson(),
@@ -253,18 +252,18 @@ final class DataprocBatchEnvironmentConfigExecutionConfig {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.networkUri(...)`.
-sealed class DataprocBatchEnvironmentConfigExecutionConfigNetwork {
-  const DataprocBatchEnvironmentConfigExecutionConfigNetwork();
+sealed class DataprocBatchNetwork {
+  const DataprocBatchNetwork();
 
   /// Sets `network_uri`.
-  const factory DataprocBatchEnvironmentConfigExecutionConfigNetwork.networkUri(
+  const factory DataprocBatchNetwork.networkUri(
     RefTo<GoogleComputeNetwork> networkUri,
-  ) = DataprocBatchEnvironmentConfigExecutionConfigNetworkUri;
+  ) = DataprocBatchNetworkUri;
 
   /// Sets `subnetwork_uri`.
-  const factory DataprocBatchEnvironmentConfigExecutionConfigNetwork.subnetworkUri(
+  const factory DataprocBatchNetwork.subnetworkUri(
     RefTo<GoogleComputeSubnetwork> subnetworkUri,
-  ) = DataprocBatchEnvironmentConfigExecutionConfigNetworkSubnetworkUri;
+  ) = DataprocBatchNetworkSubnetworkUri;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -272,12 +271,9 @@ sealed class DataprocBatchEnvironmentConfigExecutionConfigNetwork {
   Map<String, Object?> encode();
 }
 
-/// The [DataprocBatchEnvironmentConfigExecutionConfigNetwork.networkUri] choice: sets `network_uri`.
-final class DataprocBatchEnvironmentConfigExecutionConfigNetworkUri
-    extends DataprocBatchEnvironmentConfigExecutionConfigNetwork {
-  const DataprocBatchEnvironmentConfigExecutionConfigNetworkUri(
-    this.networkUri,
-  );
+/// The [DataprocBatchNetwork.networkUri] choice: sets `network_uri`.
+final class DataprocBatchNetworkUri extends DataprocBatchNetwork {
+  const DataprocBatchNetworkUri(this.networkUri);
 
   final RefTo<GoogleComputeNetwork> networkUri;
 
@@ -290,12 +286,9 @@ final class DataprocBatchEnvironmentConfigExecutionConfigNetworkUri
   };
 }
 
-/// The [DataprocBatchEnvironmentConfigExecutionConfigNetwork.subnetworkUri] choice: sets `subnetwork_uri`.
-final class DataprocBatchEnvironmentConfigExecutionConfigNetworkSubnetworkUri
-    extends DataprocBatchEnvironmentConfigExecutionConfigNetwork {
-  const DataprocBatchEnvironmentConfigExecutionConfigNetworkSubnetworkUri(
-    this.subnetworkUri,
-  );
+/// The [DataprocBatchNetwork.subnetworkUri] choice: sets `subnetwork_uri`.
+final class DataprocBatchNetworkSubnetworkUri extends DataprocBatchNetwork {
+  const DataprocBatchNetworkSubnetworkUri(this.subnetworkUri);
 
   final RefTo<GoogleComputeSubnetwork> subnetworkUri;
 
@@ -311,14 +304,12 @@ final class DataprocBatchEnvironmentConfigExecutionConfigNetworkSubnetworkUri
 /// Typed helper for the `environment_config.execution_config.authentication_config` block of
 /// `google_dataproc_batch` (derived from provider schema).
 @immutable
-final class DataprocBatchEnvironmentConfigExecutionConfigAuthenticationConfig {
-  const DataprocBatchEnvironmentConfigExecutionConfigAuthenticationConfig({
+final class DataprocBatchAuthenticationConfig {
+  const DataprocBatchAuthenticationConfig({
     this.userWorkloadAuthenticationType,
   });
 
-  final TfArg<
-    DataprocBatchEnvironmentConfigExecutionConfigAuthenticationConfigUserWorkloadAuthenticationType
-  >?
+  final TfArg<DataprocBatchUserWorkloadAuthenticationType>?
   userWorkloadAuthenticationType;
 
   Map<String, Object?> encode() => {
@@ -328,14 +319,11 @@ final class DataprocBatchEnvironmentConfigExecutionConfigAuthenticationConfig {
 }
 
 /// `user_workload_authentication_type` — derived from the provider schema description.
-enum DataprocBatchEnvironmentConfigExecutionConfigAuthenticationConfigUserWorkloadAuthenticationType
-    implements TerraformEnum {
+enum DataprocBatchUserWorkloadAuthenticationType implements TerraformEnum {
   serviceAccount('SERVICE_ACCOUNT'),
   endUserCredentials('END_USER_CREDENTIALS');
 
-  const DataprocBatchEnvironmentConfigExecutionConfigAuthenticationConfigUserWorkloadAuthenticationType(
-    this.terraformValue,
-  );
+  const DataprocBatchUserWorkloadAuthenticationType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -343,16 +331,15 @@ enum DataprocBatchEnvironmentConfigExecutionConfigAuthenticationConfigUserWorklo
 /// Typed helper for the `environment_config.peripherals_config` block of
 /// `google_dataproc_batch` (derived from provider schema).
 @immutable
-final class DataprocBatchEnvironmentConfigPeripheralsConfig {
-  const DataprocBatchEnvironmentConfigPeripheralsConfig({
+final class DataprocBatchPeripheralsConfig {
+  const DataprocBatchPeripheralsConfig({
     this.metastoreService,
     this.sparkHistoryServerConfig,
   });
 
   final TfArg<String>? metastoreService;
 
-  final DataprocBatchEnvironmentConfigPeripheralsConfigSparkHistoryServerConfig?
-  sparkHistoryServerConfig;
+  final DataprocBatchSparkHistoryServerConfig? sparkHistoryServerConfig;
 
   Map<String, Object?> encode() => {
     'metastore_service': ?metastoreService?.toTfJson(),
@@ -363,10 +350,8 @@ final class DataprocBatchEnvironmentConfigPeripheralsConfig {
 /// Typed helper for the `environment_config.peripherals_config.spark_history_server_config` block of
 /// `google_dataproc_batch` (derived from provider schema).
 @immutable
-final class DataprocBatchEnvironmentConfigPeripheralsConfigSparkHistoryServerConfig {
-  const DataprocBatchEnvironmentConfigPeripheralsConfigSparkHistoryServerConfig({
-    this.dataprocCluster,
-  });
+final class DataprocBatchSparkHistoryServerConfig {
+  const DataprocBatchSparkHistoryServerConfig({this.dataprocCluster});
 
   final TfArg<String>? dataprocCluster;
 
@@ -395,7 +380,7 @@ final class DataprocBatchRuntimeConfig {
 
   final TfArg<String>? version;
 
-  final DataprocBatchRuntimeConfigAutotuningConfig? autotuningConfig;
+  final DataprocBatchAutotuningConfig? autotuningConfig;
 
   Map<String, Object?> encode() => {
     'cohort': ?cohort?.toTfJson(),
@@ -409,11 +394,10 @@ final class DataprocBatchRuntimeConfig {
 /// Typed helper for the `runtime_config.autotuning_config` block of
 /// `google_dataproc_batch` (derived from provider schema).
 @immutable
-final class DataprocBatchRuntimeConfigAutotuningConfig {
-  const DataprocBatchRuntimeConfigAutotuningConfig({this.scenarios});
+final class DataprocBatchAutotuningConfig {
+  const DataprocBatchAutotuningConfig({this.scenarios});
 
-  final List<TfArg<DataprocBatchRuntimeConfigAutotuningConfigScenarios>>?
-  scenarios;
+  final List<TfArg<DataprocBatchScenarios>>? scenarios;
 
   Map<String, Object?> encode() => {
     if (scenarios != null)
@@ -422,16 +406,13 @@ final class DataprocBatchRuntimeConfigAutotuningConfig {
 }
 
 /// `scenarios` — derived from the provider schema description.
-enum DataprocBatchRuntimeConfigAutotuningConfigScenarios
-    implements TerraformEnum {
+enum DataprocBatchScenarios implements TerraformEnum {
   auto('AUTO'),
   scaling('SCALING'),
   broadcastHashJoin('BROADCAST_HASH_JOIN'),
   memory('MEMORY');
 
-  const DataprocBatchRuntimeConfigAutotuningConfigScenarios(
-    this.terraformValue,
-  );
+  const DataprocBatchScenarios(this.terraformValue);
   @override
   final String terraformValue;
 }

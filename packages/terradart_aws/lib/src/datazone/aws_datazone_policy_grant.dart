@@ -62,40 +62,38 @@ final class DatazonePolicyGrantDetail {
     this.useAssetType,
   });
 
-  final List<DatazonePolicyGrantDetailAddToProjectMemberPool>?
-  addToProjectMemberPool;
+  final List<DatazonePolicyGrantAddToProjectMemberPool>? addToProjectMemberPool;
 
-  final List<DatazonePolicyGrantDetailCreateAssetType>? createAssetType;
+  final List<DatazonePolicyGrantCreateAssetType>? createAssetType;
 
-  final List<DatazonePolicyGrantDetailCreateDomainUnit>? createDomainUnit;
+  final List<DatazonePolicyGrantCreateDomainUnit>? createDomainUnit;
 
-  final List<DatazonePolicyGrantDetailCreateEnvironment>? createEnvironment;
+  final List<DatazonePolicyGrantCreateEnvironment>? createEnvironment;
 
-  final List<DatazonePolicyGrantDetailCreateEnvironmentFromBlueprint>?
+  final List<DatazonePolicyGrantCreateEnvironmentFromBlueprint>?
   createEnvironmentFromBlueprint;
 
-  final List<DatazonePolicyGrantDetailCreateEnvironmentProfile>?
+  final List<DatazonePolicyGrantCreateEnvironmentProfile>?
   createEnvironmentProfile;
 
-  final List<DatazonePolicyGrantDetailCreateFormType>? createFormType;
+  final List<DatazonePolicyGrantCreateFormType>? createFormType;
 
-  final List<DatazonePolicyGrantDetailCreateGlossary>? createGlossary;
+  final List<DatazonePolicyGrantCreateGlossary>? createGlossary;
 
-  final List<DatazonePolicyGrantDetailCreateProject>? createProject;
+  final List<DatazonePolicyGrantCreateProject>? createProject;
 
-  final List<DatazonePolicyGrantDetailCreateProjectFromProjectProfile>?
+  final List<DatazonePolicyGrantCreateProjectFromProjectProfile>?
   createProjectFromProjectProfile;
 
-  final List<DatazonePolicyGrantDetailDelegateCreateEnvironmentProfile>?
+  final List<DatazonePolicyGrantDelegateCreateEnvironmentProfile>?
   delegateCreateEnvironmentProfile;
 
-  final List<DatazonePolicyGrantDetailOverrideDomainUnitOwners>?
+  final List<DatazonePolicyGrantOverrideDomainUnitOwners>?
   overrideDomainUnitOwners;
 
-  final List<DatazonePolicyGrantDetailOverrideProjectOwners>?
-  overrideProjectOwners;
+  final List<DatazonePolicyGrantOverrideProjectOwners>? overrideProjectOwners;
 
-  final List<DatazonePolicyGrantDetailUseAssetType>? useAssetType;
+  final List<DatazonePolicyGrantUseAssetType>? useAssetType;
 
   Map<String, Object?> encode() => {
     if (addToProjectMemberPool != null)
@@ -146,8 +144,8 @@ final class DatazonePolicyGrantDetail {
 /// Typed helper for the `detail.add_to_project_member_pool` block of
 /// `aws_datazone_policy_grant` (derived from provider schema).
 @immutable
-final class DatazonePolicyGrantDetailAddToProjectMemberPool {
-  const DatazonePolicyGrantDetailAddToProjectMemberPool({
+final class DatazonePolicyGrantAddToProjectMemberPool {
+  const DatazonePolicyGrantAddToProjectMemberPool({
     this.includeChildDomainUnits,
   });
 
@@ -161,10 +159,8 @@ final class DatazonePolicyGrantDetailAddToProjectMemberPool {
 /// Typed helper for the `detail.create_asset_type` block of
 /// `aws_datazone_policy_grant` (derived from provider schema).
 @immutable
-final class DatazonePolicyGrantDetailCreateAssetType {
-  const DatazonePolicyGrantDetailCreateAssetType({
-    this.includeChildDomainUnits,
-  });
+final class DatazonePolicyGrantCreateAssetType {
+  const DatazonePolicyGrantCreateAssetType({this.includeChildDomainUnits});
 
   final TfArg<bool>? includeChildDomainUnits;
 
@@ -176,10 +172,8 @@ final class DatazonePolicyGrantDetailCreateAssetType {
 /// Typed helper for the `detail.create_domain_unit` block of
 /// `aws_datazone_policy_grant` (derived from provider schema).
 @immutable
-final class DatazonePolicyGrantDetailCreateDomainUnit {
-  const DatazonePolicyGrantDetailCreateDomainUnit({
-    this.includeChildDomainUnits,
-  });
+final class DatazonePolicyGrantCreateDomainUnit {
+  const DatazonePolicyGrantCreateDomainUnit({this.includeChildDomainUnits});
 
   final TfArg<bool>? includeChildDomainUnits;
 
@@ -191,8 +185,8 @@ final class DatazonePolicyGrantDetailCreateDomainUnit {
 /// Typed helper for the `detail.create_environment` block of
 /// `aws_datazone_policy_grant` (derived from provider schema).
 @immutable
-final class DatazonePolicyGrantDetailCreateEnvironment {
-  const DatazonePolicyGrantDetailCreateEnvironment();
+final class DatazonePolicyGrantCreateEnvironment {
+  const DatazonePolicyGrantCreateEnvironment();
 
   Map<String, Object?> encode() => {};
 }
@@ -200,8 +194,8 @@ final class DatazonePolicyGrantDetailCreateEnvironment {
 /// Typed helper for the `detail.create_environment_from_blueprint` block of
 /// `aws_datazone_policy_grant` (derived from provider schema).
 @immutable
-final class DatazonePolicyGrantDetailCreateEnvironmentFromBlueprint {
-  const DatazonePolicyGrantDetailCreateEnvironmentFromBlueprint();
+final class DatazonePolicyGrantCreateEnvironmentFromBlueprint {
+  const DatazonePolicyGrantCreateEnvironmentFromBlueprint();
 
   Map<String, Object?> encode() => {};
 }
@@ -209,8 +203,8 @@ final class DatazonePolicyGrantDetailCreateEnvironmentFromBlueprint {
 /// Typed helper for the `detail.create_environment_profile` block of
 /// `aws_datazone_policy_grant` (derived from provider schema).
 @immutable
-final class DatazonePolicyGrantDetailCreateEnvironmentProfile {
-  const DatazonePolicyGrantDetailCreateEnvironmentProfile({this.domainUnitId});
+final class DatazonePolicyGrantCreateEnvironmentProfile {
+  const DatazonePolicyGrantCreateEnvironmentProfile({this.domainUnitId});
 
   final TfArg<String>? domainUnitId;
 
@@ -222,8 +216,8 @@ final class DatazonePolicyGrantDetailCreateEnvironmentProfile {
 /// Typed helper for the `detail.create_form_type` block of
 /// `aws_datazone_policy_grant` (derived from provider schema).
 @immutable
-final class DatazonePolicyGrantDetailCreateFormType {
-  const DatazonePolicyGrantDetailCreateFormType({this.includeChildDomainUnits});
+final class DatazonePolicyGrantCreateFormType {
+  const DatazonePolicyGrantCreateFormType({this.includeChildDomainUnits});
 
   final TfArg<bool>? includeChildDomainUnits;
 
@@ -235,8 +229,8 @@ final class DatazonePolicyGrantDetailCreateFormType {
 /// Typed helper for the `detail.create_glossary` block of
 /// `aws_datazone_policy_grant` (derived from provider schema).
 @immutable
-final class DatazonePolicyGrantDetailCreateGlossary {
-  const DatazonePolicyGrantDetailCreateGlossary({this.includeChildDomainUnits});
+final class DatazonePolicyGrantCreateGlossary {
+  const DatazonePolicyGrantCreateGlossary({this.includeChildDomainUnits});
 
   final TfArg<bool>? includeChildDomainUnits;
 
@@ -248,8 +242,8 @@ final class DatazonePolicyGrantDetailCreateGlossary {
 /// Typed helper for the `detail.create_project` block of
 /// `aws_datazone_policy_grant` (derived from provider schema).
 @immutable
-final class DatazonePolicyGrantDetailCreateProject {
-  const DatazonePolicyGrantDetailCreateProject({this.includeChildDomainUnits});
+final class DatazonePolicyGrantCreateProject {
+  const DatazonePolicyGrantCreateProject({this.includeChildDomainUnits});
 
   final TfArg<bool>? includeChildDomainUnits;
 
@@ -261,8 +255,8 @@ final class DatazonePolicyGrantDetailCreateProject {
 /// Typed helper for the `detail.create_project_from_project_profile` block of
 /// `aws_datazone_policy_grant` (derived from provider schema).
 @immutable
-final class DatazonePolicyGrantDetailCreateProjectFromProjectProfile {
-  const DatazonePolicyGrantDetailCreateProjectFromProjectProfile({
+final class DatazonePolicyGrantCreateProjectFromProjectProfile {
+  const DatazonePolicyGrantCreateProjectFromProjectProfile({
     this.includeChildDomainUnits,
     this.projectProfiles,
   });
@@ -280,8 +274,8 @@ final class DatazonePolicyGrantDetailCreateProjectFromProjectProfile {
 /// Typed helper for the `detail.delegate_create_environment_profile` block of
 /// `aws_datazone_policy_grant` (derived from provider schema).
 @immutable
-final class DatazonePolicyGrantDetailDelegateCreateEnvironmentProfile {
-  const DatazonePolicyGrantDetailDelegateCreateEnvironmentProfile();
+final class DatazonePolicyGrantDelegateCreateEnvironmentProfile {
+  const DatazonePolicyGrantDelegateCreateEnvironmentProfile();
 
   Map<String, Object?> encode() => {};
 }
@@ -289,8 +283,8 @@ final class DatazonePolicyGrantDetailDelegateCreateEnvironmentProfile {
 /// Typed helper for the `detail.override_domain_unit_owners` block of
 /// `aws_datazone_policy_grant` (derived from provider schema).
 @immutable
-final class DatazonePolicyGrantDetailOverrideDomainUnitOwners {
-  const DatazonePolicyGrantDetailOverrideDomainUnitOwners({
+final class DatazonePolicyGrantOverrideDomainUnitOwners {
+  const DatazonePolicyGrantOverrideDomainUnitOwners({
     this.includeChildDomainUnits,
   });
 
@@ -304,8 +298,8 @@ final class DatazonePolicyGrantDetailOverrideDomainUnitOwners {
 /// Typed helper for the `detail.override_project_owners` block of
 /// `aws_datazone_policy_grant` (derived from provider schema).
 @immutable
-final class DatazonePolicyGrantDetailOverrideProjectOwners {
-  const DatazonePolicyGrantDetailOverrideProjectOwners({
+final class DatazonePolicyGrantOverrideProjectOwners {
+  const DatazonePolicyGrantOverrideProjectOwners({
     this.includeChildDomainUnits,
   });
 
@@ -319,8 +313,8 @@ final class DatazonePolicyGrantDetailOverrideProjectOwners {
 /// Typed helper for the `detail.use_asset_type` block of
 /// `aws_datazone_policy_grant` (derived from provider schema).
 @immutable
-final class DatazonePolicyGrantDetailUseAssetType {
-  const DatazonePolicyGrantDetailUseAssetType({this.domainUnitId});
+final class DatazonePolicyGrantUseAssetType {
+  const DatazonePolicyGrantUseAssetType({this.domainUnitId});
 
   final TfArg<String>? domainUnitId;
 
@@ -340,13 +334,13 @@ final class DatazonePolicyGrantPrincipal {
     this.user,
   });
 
-  final List<DatazonePolicyGrantPrincipalDomainUnit>? domainUnit;
+  final List<DatazonePolicyGrantDomainUnit>? domainUnit;
 
-  final List<DatazonePolicyGrantPrincipalGroup>? group;
+  final List<DatazonePolicyGrantGroup>? group;
 
-  final List<DatazonePolicyGrantPrincipalProject>? project;
+  final List<DatazonePolicyGrantProject>? project;
 
-  final List<DatazonePolicyGrantPrincipalUser>? user;
+  final List<DatazonePolicyGrantUser>? user;
 
   Map<String, Object?> encode() => {
     if (domainUnit != null)
@@ -360,19 +354,18 @@ final class DatazonePolicyGrantPrincipal {
 /// Typed helper for the `principal.domain_unit` block of
 /// `aws_datazone_policy_grant` (derived from provider schema).
 @immutable
-final class DatazonePolicyGrantPrincipalDomainUnit {
-  const DatazonePolicyGrantPrincipalDomainUnit({
+final class DatazonePolicyGrantDomainUnit {
+  const DatazonePolicyGrantDomainUnit({
     required this.domainUnitDesignation,
     this.domainUnitIdentifier,
     this.allDomainUnitsGrantFilter,
   });
 
-  final TfArg<DatazonePolicyGrantPrincipalDomainUnitDomainUnitDesignation>
-  domainUnitDesignation;
+  final TfArg<DatazonePolicyGrantDomainUnitDesignation> domainUnitDesignation;
 
   final TfArg<String>? domainUnitIdentifier;
 
-  final List<DatazonePolicyGrantPrincipalDomainUnitAllDomainUnitsGrantFilter>?
+  final List<DatazonePolicyGrantAllDomainUnitsGrantFilter>?
   allDomainUnitsGrantFilter;
 
   Map<String, Object?> encode() => {
@@ -386,13 +379,10 @@ final class DatazonePolicyGrantPrincipalDomainUnit {
 }
 
 /// `domain_unit_designation` — derived from the provider schema description.
-enum DatazonePolicyGrantPrincipalDomainUnitDomainUnitDesignation
-    implements TerraformEnum {
+enum DatazonePolicyGrantDomainUnitDesignation implements TerraformEnum {
   owner('OWNER');
 
-  const DatazonePolicyGrantPrincipalDomainUnitDomainUnitDesignation(
-    this.terraformValue,
-  );
+  const DatazonePolicyGrantDomainUnitDesignation(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -400,8 +390,8 @@ enum DatazonePolicyGrantPrincipalDomainUnitDomainUnitDesignation
 /// Typed helper for the `principal.domain_unit.all_domain_units_grant_filter` block of
 /// `aws_datazone_policy_grant` (derived from provider schema).
 @immutable
-final class DatazonePolicyGrantPrincipalDomainUnitAllDomainUnitsGrantFilter {
-  const DatazonePolicyGrantPrincipalDomainUnitAllDomainUnitsGrantFilter();
+final class DatazonePolicyGrantAllDomainUnitsGrantFilter {
+  const DatazonePolicyGrantAllDomainUnitsGrantFilter();
 
   Map<String, Object?> encode() => {};
 }
@@ -409,8 +399,8 @@ final class DatazonePolicyGrantPrincipalDomainUnitAllDomainUnitsGrantFilter {
 /// Typed helper for the `principal.group` block of
 /// `aws_datazone_policy_grant` (derived from provider schema).
 @immutable
-final class DatazonePolicyGrantPrincipalGroup {
-  const DatazonePolicyGrantPrincipalGroup({required this.groupIdentifier});
+final class DatazonePolicyGrantGroup {
+  const DatazonePolicyGrantGroup({required this.groupIdentifier});
 
   final TfArg<String> groupIdentifier;
 
@@ -422,20 +412,18 @@ final class DatazonePolicyGrantPrincipalGroup {
 /// Typed helper for the `principal.project` block of
 /// `aws_datazone_policy_grant` (derived from provider schema).
 @immutable
-final class DatazonePolicyGrantPrincipalProject {
-  const DatazonePolicyGrantPrincipalProject({
+final class DatazonePolicyGrantProject {
+  const DatazonePolicyGrantProject({
     required this.projectDesignation,
     this.projectIdentifier,
     this.domainUnitFilter,
   });
 
-  final TfArg<DatazonePolicyGrantPrincipalProjectProjectDesignation>
-  projectDesignation;
+  final TfArg<DatazonePolicyGrantProjectDesignation> projectDesignation;
 
   final TfArg<String>? projectIdentifier;
 
-  final List<DatazonePolicyGrantPrincipalProjectDomainUnitFilter>?
-  domainUnitFilter;
+  final List<DatazonePolicyGrantDomainUnitFilter>? domainUnitFilter;
 
   Map<String, Object?> encode() => {
     'project_designation': projectDesignation.toTfJson(),
@@ -446,15 +434,12 @@ final class DatazonePolicyGrantPrincipalProject {
 }
 
 /// `project_designation` — derived from the provider schema description.
-enum DatazonePolicyGrantPrincipalProjectProjectDesignation
-    implements TerraformEnum {
+enum DatazonePolicyGrantProjectDesignation implements TerraformEnum {
   owner('OWNER'),
   contributor('CONTRIBUTOR'),
   projectCatalogSteward('PROJECT_CATALOG_STEWARD');
 
-  const DatazonePolicyGrantPrincipalProjectProjectDesignation(
-    this.terraformValue,
-  );
+  const DatazonePolicyGrantProjectDesignation(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -462,8 +447,8 @@ enum DatazonePolicyGrantPrincipalProjectProjectDesignation
 /// Typed helper for the `principal.project.domain_unit_filter` block of
 /// `aws_datazone_policy_grant` (derived from provider schema).
 @immutable
-final class DatazonePolicyGrantPrincipalProjectDomainUnitFilter {
-  const DatazonePolicyGrantPrincipalProjectDomainUnitFilter({
+final class DatazonePolicyGrantDomainUnitFilter {
+  const DatazonePolicyGrantDomainUnitFilter({
     required this.domainUnit,
     this.includeChildDomainUnits,
   });
@@ -481,16 +466,15 @@ final class DatazonePolicyGrantPrincipalProjectDomainUnitFilter {
 /// Typed helper for the `principal.user` block of
 /// `aws_datazone_policy_grant` (derived from provider schema).
 @immutable
-final class DatazonePolicyGrantPrincipalUser {
-  const DatazonePolicyGrantPrincipalUser({
+final class DatazonePolicyGrantUser {
+  const DatazonePolicyGrantUser({
     this.userIdentifier,
     this.allUsersGrantFilter,
   });
 
   final TfArg<String>? userIdentifier;
 
-  final List<DatazonePolicyGrantPrincipalUserAllUsersGrantFilter>?
-  allUsersGrantFilter;
+  final List<DatazonePolicyGrantAllUsersGrantFilter>? allUsersGrantFilter;
 
   Map<String, Object?> encode() => {
     'user_identifier': ?userIdentifier?.toTfJson(),
@@ -504,8 +488,8 @@ final class DatazonePolicyGrantPrincipalUser {
 /// Typed helper for the `principal.user.all_users_grant_filter` block of
 /// `aws_datazone_policy_grant` (derived from provider schema).
 @immutable
-final class DatazonePolicyGrantPrincipalUserAllUsersGrantFilter {
-  const DatazonePolicyGrantPrincipalUserAllUsersGrantFilter();
+final class DatazonePolicyGrantAllUsersGrantFilter {
+  const DatazonePolicyGrantAllUsersGrantFilter();
 
   Map<String, Object?> encode() => {};
 }

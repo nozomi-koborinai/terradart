@@ -30,6 +30,7 @@ enum ApigeeApiProductQuotaCounterScope implements TerraformEnum {
 
 /// Typed helper for the `attributes` block of
 /// `google_apigee_api_product` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
 final class ApigeeApiProductAttributes {
   const ApigeeApiProductAttributes({this.name, this.value});
@@ -53,8 +54,7 @@ final class ApigeeApiProductGraphqlOperationGroup {
     this.operationConfigs,
   });
 
-  final TfArg<ApigeeApiProductGraphqlOperationGroupOperationConfigType>?
-  operationConfigType;
+  final TfArg<ApigeeApiProductOperationConfigType>? operationConfigType;
 
   final List<ApigeeApiProductGraphqlOperationGroupOperationConfigs>?
   operationConfigs;
@@ -67,14 +67,11 @@ final class ApigeeApiProductGraphqlOperationGroup {
 }
 
 /// `operation_config_type` — derived from the provider schema description.
-enum ApigeeApiProductGraphqlOperationGroupOperationConfigType
-    implements TerraformEnum {
+enum ApigeeApiProductOperationConfigType implements TerraformEnum {
   proxy('proxy'),
   remoteservice('remoteservice');
 
-  const ApigeeApiProductGraphqlOperationGroupOperationConfigType(
-    this.terraformValue,
-  );
+  const ApigeeApiProductOperationConfigType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -92,13 +89,11 @@ final class ApigeeApiProductGraphqlOperationGroupOperationConfigs {
 
   final TfArg<String>? apiSource;
 
-  final List<ApigeeApiProductGraphqlOperationGroupOperationConfigsAttributes>?
-  attributes;
+  final List<ApigeeApiProductAttributes>? attributes;
 
-  final List<ApigeeApiProductGraphqlOperationGroupOperationConfigsOperations>?
-  operations;
+  final List<ApigeeApiProductGraphqlOperationGroupOperations>? operations;
 
-  final ApigeeApiProductGraphqlOperationGroupOperationConfigsQuota? quota;
+  final ApigeeApiProductOperationConfigsQuota? quota;
 
   Map<String, Object?> encode() => {
     'api_source': ?apiSource?.toTfJson(),
@@ -110,30 +105,11 @@ final class ApigeeApiProductGraphqlOperationGroupOperationConfigs {
   };
 }
 
-/// Typed helper for the `graphql_operation_group.operation_configs.attributes` block of
-/// `google_apigee_api_product` (derived from provider schema).
-@immutable
-final class ApigeeApiProductGraphqlOperationGroupOperationConfigsAttributes {
-  const ApigeeApiProductGraphqlOperationGroupOperationConfigsAttributes({
-    this.name,
-    this.value,
-  });
-
-  final TfArg<String>? name;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'name': ?name?.toTfJson(),
-    'value': ?value?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `graphql_operation_group.operation_configs.operations` block of
 /// `google_apigee_api_product` (derived from provider schema).
 @immutable
-final class ApigeeApiProductGraphqlOperationGroupOperationConfigsOperations {
-  const ApigeeApiProductGraphqlOperationGroupOperationConfigsOperations({
+final class ApigeeApiProductGraphqlOperationGroupOperations {
+  const ApigeeApiProductGraphqlOperationGroupOperations({
     this.operation,
     this.operationTypes,
   });
@@ -150,9 +126,10 @@ final class ApigeeApiProductGraphqlOperationGroupOperationConfigsOperations {
 
 /// Typed helper for the `graphql_operation_group.operation_configs.quota` block of
 /// `google_apigee_api_product` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ApigeeApiProductGraphqlOperationGroupOperationConfigsQuota {
-  const ApigeeApiProductGraphqlOperationGroupOperationConfigsQuota({
+final class ApigeeApiProductOperationConfigsQuota {
+  const ApigeeApiProductOperationConfigsQuota({
     this.interval,
     this.limit,
     this.timeUnit,
@@ -204,10 +181,9 @@ final class ApigeeApiProductGrpcOperationGroupOperationConfigs {
 
   final TfArg<String>? service;
 
-  final List<ApigeeApiProductGrpcOperationGroupOperationConfigsAttributes>?
-  attributes;
+  final List<ApigeeApiProductAttributes>? attributes;
 
-  final ApigeeApiProductGrpcOperationGroupOperationConfigsQuota? quota;
+  final ApigeeApiProductOperationConfigsQuota? quota;
 
   Map<String, Object?> encode() => {
     'api_source': ?apiSource?.toTfJson(),
@@ -216,48 +192,6 @@ final class ApigeeApiProductGrpcOperationGroupOperationConfigs {
     if (attributes != null)
       'attributes': [for (final e in attributes!) e.encode()],
     'quota': ?quota?.encode(),
-  };
-}
-
-/// Typed helper for the `grpc_operation_group.operation_configs.attributes` block of
-/// `google_apigee_api_product` (derived from provider schema).
-@immutable
-final class ApigeeApiProductGrpcOperationGroupOperationConfigsAttributes {
-  const ApigeeApiProductGrpcOperationGroupOperationConfigsAttributes({
-    this.name,
-    this.value,
-  });
-
-  final TfArg<String>? name;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'name': ?name?.toTfJson(),
-    'value': ?value?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `grpc_operation_group.operation_configs.quota` block of
-/// `google_apigee_api_product` (derived from provider schema).
-@immutable
-final class ApigeeApiProductGrpcOperationGroupOperationConfigsQuota {
-  const ApigeeApiProductGrpcOperationGroupOperationConfigsQuota({
-    this.interval,
-    this.limit,
-    this.timeUnit,
-  });
-
-  final TfArg<String>? interval;
-
-  final TfArg<String>? limit;
-
-  final TfArg<String>? timeUnit;
-
-  Map<String, Object?> encode() => {
-    'interval': ?interval?.toTfJson(),
-    'limit': ?limit?.toTfJson(),
-    'time_unit': ?timeUnit?.toTfJson(),
   };
 }
 
@@ -270,8 +204,7 @@ final class ApigeeApiProductOperationGroup {
     this.operationConfigs,
   });
 
-  final TfArg<ApigeeApiProductOperationGroupOperationConfigType>?
-  operationConfigType;
+  final TfArg<ApigeeApiProductOperationConfigType>? operationConfigType;
 
   final List<ApigeeApiProductOperationGroupOperationConfigs>? operationConfigs;
 
@@ -280,17 +213,6 @@ final class ApigeeApiProductOperationGroup {
     if (operationConfigs != null)
       'operation_configs': [for (final e in operationConfigs!) e.encode()],
   };
-}
-
-/// `operation_config_type` — derived from the provider schema description.
-enum ApigeeApiProductOperationGroupOperationConfigType
-    implements TerraformEnum {
-  proxy('proxy'),
-  remoteservice('remoteservice');
-
-  const ApigeeApiProductOperationGroupOperationConfigType(this.terraformValue);
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `operation_group.operation_configs` block of
@@ -306,13 +228,11 @@ final class ApigeeApiProductOperationGroupOperationConfigs {
 
   final TfArg<String>? apiSource;
 
-  final List<ApigeeApiProductOperationGroupOperationConfigsAttributes>?
-  attributes;
+  final List<ApigeeApiProductAttributes>? attributes;
 
-  final List<ApigeeApiProductOperationGroupOperationConfigsOperations>?
-  operations;
+  final List<ApigeeApiProductOperationGroupOperations>? operations;
 
-  final ApigeeApiProductOperationGroupOperationConfigsQuota? quota;
+  final ApigeeApiProductOperationConfigsQuota? quota;
 
   Map<String, Object?> encode() => {
     'api_source': ?apiSource?.toTfJson(),
@@ -324,33 +244,11 @@ final class ApigeeApiProductOperationGroupOperationConfigs {
   };
 }
 
-/// Typed helper for the `operation_group.operation_configs.attributes` block of
-/// `google_apigee_api_product` (derived from provider schema).
-@immutable
-final class ApigeeApiProductOperationGroupOperationConfigsAttributes {
-  const ApigeeApiProductOperationGroupOperationConfigsAttributes({
-    this.name,
-    this.value,
-  });
-
-  final TfArg<String>? name;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'name': ?name?.toTfJson(),
-    'value': ?value?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `operation_group.operation_configs.operations` block of
 /// `google_apigee_api_product` (derived from provider schema).
 @immutable
-final class ApigeeApiProductOperationGroupOperationConfigsOperations {
-  const ApigeeApiProductOperationGroupOperationConfigsOperations({
-    this.methods,
-    this.resource,
-  });
+final class ApigeeApiProductOperationGroupOperations {
+  const ApigeeApiProductOperationGroupOperations({this.methods, this.resource});
 
   final TfArg<List<String>>? methods;
 
@@ -359,29 +257,6 @@ final class ApigeeApiProductOperationGroupOperationConfigsOperations {
   Map<String, Object?> encode() => {
     'methods': ?methods?.toTfJson(),
     'resource': ?resource?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `operation_group.operation_configs.quota` block of
-/// `google_apigee_api_product` (derived from provider schema).
-@immutable
-final class ApigeeApiProductOperationGroupOperationConfigsQuota {
-  const ApigeeApiProductOperationGroupOperationConfigsQuota({
-    this.interval,
-    this.limit,
-    this.timeUnit,
-  });
-
-  final TfArg<String>? interval;
-
-  final TfArg<String>? limit;
-
-  final TfArg<String>? timeUnit;
-
-  Map<String, Object?> encode() => {
-    'interval': ?interval?.toTfJson(),
-    'limit': ?limit?.toTfJson(),
-    'time_unit': ?timeUnit?.toTfJson(),
   };
 }
 

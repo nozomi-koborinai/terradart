@@ -9,13 +9,13 @@ export 'src/mq/aws_mq_broker.dart'
         MqBrokerAuthenticationStrategy,
         MqBrokerConfiguration,
         MqBrokerDataReplicationMode,
+        MqBrokerDayOfWeek,
         MqBrokerDeploymentMode,
         MqBrokerEncryptionOptions,
         MqBrokerEngineType,
         MqBrokerLdapServerMetadata,
         MqBrokerLogs,
         MqBrokerMaintenanceWindowStartTime,
-        MqBrokerMaintenanceWindowStartTimeDayOfWeek,
         MqBrokerStorageType,
         MqBrokerUser;
 export 'src/mq/aws_mq_configuration.dart'

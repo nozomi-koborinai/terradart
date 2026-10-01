@@ -59,15 +59,15 @@ final class CloudTasksQueueHttpTarget {
     this.uriOverride,
   });
 
-  final TfArg<CloudTasksQueueHttpTargetHttpMethod>? httpMethod;
+  final TfArg<CloudTasksQueueHttpMethod>? httpMethod;
 
-  final List<CloudTasksQueueHttpTargetHeaderOverrides>? headerOverrides;
+  final List<CloudTasksQueueHeaderOverrides>? headerOverrides;
 
-  final CloudTasksQueueHttpTargetOauthToken? oauthToken;
+  final CloudTasksQueueOauthToken? oauthToken;
 
-  final CloudTasksQueueHttpTargetOidcToken? oidcToken;
+  final CloudTasksQueueOidcToken? oidcToken;
 
-  final CloudTasksQueueHttpTargetUriOverride? uriOverride;
+  final CloudTasksQueueUriOverride? uriOverride;
 
   Map<String, Object?> encode() => {
     'http_method': ?httpMethod?.toTfJson(),
@@ -80,7 +80,7 @@ final class CloudTasksQueueHttpTarget {
 }
 
 /// `http_method` — derived from the provider schema description.
-enum CloudTasksQueueHttpTargetHttpMethod implements TerraformEnum {
+enum CloudTasksQueueHttpMethod implements TerraformEnum {
   httpMethodUnspecified('HTTP_METHOD_UNSPECIFIED'),
   post('POST'),
   get('GET'),
@@ -90,7 +90,7 @@ enum CloudTasksQueueHttpTargetHttpMethod implements TerraformEnum {
   patch('PATCH'),
   options('OPTIONS');
 
-  const CloudTasksQueueHttpTargetHttpMethod(this.terraformValue);
+  const CloudTasksQueueHttpMethod(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -98,10 +98,10 @@ enum CloudTasksQueueHttpTargetHttpMethod implements TerraformEnum {
 /// Typed helper for the `http_target.header_overrides` block of
 /// `google_cloud_tasks_queue` (derived from provider schema).
 @immutable
-final class CloudTasksQueueHttpTargetHeaderOverrides {
-  const CloudTasksQueueHttpTargetHeaderOverrides({required this.header});
+final class CloudTasksQueueHeaderOverrides {
+  const CloudTasksQueueHeaderOverrides({required this.header});
 
-  final CloudTasksQueueHttpTargetHeaderOverridesHeader header;
+  final CloudTasksQueueHeader header;
 
   Map<String, Object?> encode() => {'header': header.encode()};
 }
@@ -109,11 +109,8 @@ final class CloudTasksQueueHttpTargetHeaderOverrides {
 /// Typed helper for the `http_target.header_overrides.header` block of
 /// `google_cloud_tasks_queue` (derived from provider schema).
 @immutable
-final class CloudTasksQueueHttpTargetHeaderOverridesHeader {
-  const CloudTasksQueueHttpTargetHeaderOverridesHeader({
-    required this.key,
-    required this.value,
-  });
+final class CloudTasksQueueHeader {
+  const CloudTasksQueueHeader({required this.key, required this.value});
 
   final TfArg<String> key;
 
@@ -128,8 +125,8 @@ final class CloudTasksQueueHttpTargetHeaderOverridesHeader {
 /// Typed helper for the `http_target.oauth_token` block of
 /// `google_cloud_tasks_queue` (derived from provider schema).
 @immutable
-final class CloudTasksQueueHttpTargetOauthToken {
-  const CloudTasksQueueHttpTargetOauthToken({
+final class CloudTasksQueueOauthToken {
+  const CloudTasksQueueOauthToken({
     this.scope,
     required this.serviceAccountEmail,
   });
@@ -147,8 +144,8 @@ final class CloudTasksQueueHttpTargetOauthToken {
 /// Typed helper for the `http_target.oidc_token` block of
 /// `google_cloud_tasks_queue` (derived from provider schema).
 @immutable
-final class CloudTasksQueueHttpTargetOidcToken {
-  const CloudTasksQueueHttpTargetOidcToken({
+final class CloudTasksQueueOidcToken {
+  const CloudTasksQueueOidcToken({
     this.audience,
     required this.serviceAccountEmail,
   });
@@ -166,8 +163,8 @@ final class CloudTasksQueueHttpTargetOidcToken {
 /// Typed helper for the `http_target.uri_override` block of
 /// `google_cloud_tasks_queue` (derived from provider schema).
 @immutable
-final class CloudTasksQueueHttpTargetUriOverride {
-  const CloudTasksQueueHttpTargetUriOverride({
+final class CloudTasksQueueUriOverride {
+  const CloudTasksQueueUriOverride({
     this.host,
     this.port,
     this.scheme,
@@ -180,14 +177,13 @@ final class CloudTasksQueueHttpTargetUriOverride {
 
   final TfArg<String>? port;
 
-  final TfArg<CloudTasksQueueHttpTargetUriOverrideScheme>? scheme;
+  final TfArg<CloudTasksQueueScheme>? scheme;
 
-  final TfArg<CloudTasksQueueHttpTargetUriOverrideUriOverrideEnforceMode>?
-  uriOverrideEnforceMode;
+  final TfArg<CloudTasksQueueUriOverrideEnforceMode>? uriOverrideEnforceMode;
 
-  final CloudTasksQueueHttpTargetUriOverridePathOverride? pathOverride;
+  final CloudTasksQueuePathOverride? pathOverride;
 
-  final CloudTasksQueueHttpTargetUriOverrideQueryOverride? queryOverride;
+  final CloudTasksQueueQueryOverride? queryOverride;
 
   Map<String, Object?> encode() => {
     'host': ?host?.toTfJson(),
@@ -200,24 +196,21 @@ final class CloudTasksQueueHttpTargetUriOverride {
 }
 
 /// `scheme` — derived from the provider schema description.
-enum CloudTasksQueueHttpTargetUriOverrideScheme implements TerraformEnum {
+enum CloudTasksQueueScheme implements TerraformEnum {
   http('HTTP'),
   https('HTTPS');
 
-  const CloudTasksQueueHttpTargetUriOverrideScheme(this.terraformValue);
+  const CloudTasksQueueScheme(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `uri_override_enforce_mode` — derived from the provider schema description.
-enum CloudTasksQueueHttpTargetUriOverrideUriOverrideEnforceMode
-    implements TerraformEnum {
+enum CloudTasksQueueUriOverrideEnforceMode implements TerraformEnum {
   always('ALWAYS'),
   ifNotExists('IF_NOT_EXISTS');
 
-  const CloudTasksQueueHttpTargetUriOverrideUriOverrideEnforceMode(
-    this.terraformValue,
-  );
+  const CloudTasksQueueUriOverrideEnforceMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -225,8 +218,8 @@ enum CloudTasksQueueHttpTargetUriOverrideUriOverrideEnforceMode
 /// Typed helper for the `http_target.uri_override.path_override` block of
 /// `google_cloud_tasks_queue` (derived from provider schema).
 @immutable
-final class CloudTasksQueueHttpTargetUriOverridePathOverride {
-  const CloudTasksQueueHttpTargetUriOverridePathOverride({this.path});
+final class CloudTasksQueuePathOverride {
+  const CloudTasksQueuePathOverride({this.path});
 
   final TfArg<String>? path;
 
@@ -236,8 +229,8 @@ final class CloudTasksQueueHttpTargetUriOverridePathOverride {
 /// Typed helper for the `http_target.uri_override.query_override` block of
 /// `google_cloud_tasks_queue` (derived from provider schema).
 @immutable
-final class CloudTasksQueueHttpTargetUriOverrideQueryOverride {
-  const CloudTasksQueueHttpTargetUriOverrideQueryOverride({this.queryParams});
+final class CloudTasksQueueQueryOverride {
+  const CloudTasksQueueQueryOverride({this.queryParams});
 
   final TfArg<String>? queryParams;
 

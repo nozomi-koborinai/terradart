@@ -33,7 +33,7 @@ final class PinpointEmailTemplateEmailTemplate {
 
   final TfArg<String>? textPart;
 
-  final List<PinpointEmailTemplateEmailTemplateHeader>? header;
+  final List<PinpointEmailTemplateHeader>? header;
 
   Map<String, Object?> encode() => {
     'default_substitutions': ?defaultSubstitutions?.toTfJson(),
@@ -49,8 +49,8 @@ final class PinpointEmailTemplateEmailTemplate {
 /// Typed helper for the `email_template.header` block of
 /// `aws_pinpoint_email_template` (derived from provider schema).
 @immutable
-final class PinpointEmailTemplateEmailTemplateHeader {
-  const PinpointEmailTemplateEmailTemplateHeader({this.name, this.value});
+final class PinpointEmailTemplateHeader {
+  const PinpointEmailTemplateHeader({this.name, this.value});
 
   final TfArg<String>? name;
 

@@ -26,7 +26,7 @@ final class ApihubPluginInstanceActions {
 
   final TfArg<String>? scheduleTimeZone;
 
-  final ApihubPluginInstanceActionsCurationConfig? curationConfig;
+  final ApihubPluginInstanceCurationConfig? curationConfig;
 
   Map<String, Object?> encode() => {
     'action_id': actionId.toTfJson(),
@@ -39,15 +39,15 @@ final class ApihubPluginInstanceActions {
 /// Typed helper for the `actions.curation_config` block of
 /// `google_apihub_plugin_instance` (derived from provider schema).
 @immutable
-final class ApihubPluginInstanceActionsCurationConfig {
-  const ApihubPluginInstanceActionsCurationConfig({
+final class ApihubPluginInstanceCurationConfig {
+  const ApihubPluginInstanceCurationConfig({
     this.curationType,
     this.customCuration,
   });
 
   final TfArg<String>? curationType;
 
-  final ApihubPluginInstanceActionsCurationConfigCustomCuration? customCuration;
+  final ApihubPluginInstanceCustomCuration? customCuration;
 
   Map<String, Object?> encode() => {
     'curation_type': ?curationType?.toTfJson(),
@@ -58,10 +58,8 @@ final class ApihubPluginInstanceActionsCurationConfig {
 /// Typed helper for the `actions.curation_config.custom_curation` block of
 /// `google_apihub_plugin_instance` (derived from provider schema).
 @immutable
-final class ApihubPluginInstanceActionsCurationConfigCustomCuration {
-  const ApihubPluginInstanceActionsCurationConfigCustomCuration({
-    required this.curation,
-  });
+final class ApihubPluginInstanceCustomCuration {
+  const ApihubPluginInstanceCustomCuration({required this.curation});
 
   final TfArg<String> curation;
 
@@ -82,15 +80,15 @@ final class ApihubPluginInstanceAuthConfig {
 
   final TfArg<String> authType;
 
-  final ApihubPluginInstanceAuthConfigApiKeyConfig? apiKeyConfig;
+  final ApihubPluginInstanceApiKeyConfig? apiKeyConfig;
 
-  final ApihubPluginInstanceAuthConfigGoogleServiceAccountConfig?
+  final ApihubPluginInstanceGoogleServiceAccountConfig?
   googleServiceAccountConfig;
 
-  final ApihubPluginInstanceAuthConfigOauth2ClientCredentialsConfig?
+  final ApihubPluginInstanceOauth2ClientCredentialsConfig?
   oauth2ClientCredentialsConfig;
 
-  final ApihubPluginInstanceAuthConfigUserPasswordConfig? userPasswordConfig;
+  final ApihubPluginInstanceUserPasswordConfig? userPasswordConfig;
 
   Map<String, Object?> encode() => {
     'auth_type': authType.toTfJson(),
@@ -105,8 +103,8 @@ final class ApihubPluginInstanceAuthConfig {
 /// Typed helper for the `auth_config.api_key_config` block of
 /// `google_apihub_plugin_instance` (derived from provider schema).
 @immutable
-final class ApihubPluginInstanceAuthConfigApiKeyConfig {
-  const ApihubPluginInstanceAuthConfigApiKeyConfig({
+final class ApihubPluginInstanceApiKeyConfig {
+  const ApihubPluginInstanceApiKeyConfig({
     required this.httpElementLocation,
     required this.name,
     required this.apiKey,
@@ -116,7 +114,7 @@ final class ApihubPluginInstanceAuthConfigApiKeyConfig {
 
   final TfArg<String> name;
 
-  final ApihubPluginInstanceAuthConfigApiKeyConfigApiKey apiKey;
+  final ApihubPluginInstanceApiKey apiKey;
 
   Map<String, Object?> encode() => {
     'http_element_location': httpElementLocation.toTfJson(),
@@ -128,10 +126,8 @@ final class ApihubPluginInstanceAuthConfigApiKeyConfig {
 /// Typed helper for the `auth_config.api_key_config.api_key` block of
 /// `google_apihub_plugin_instance` (derived from provider schema).
 @immutable
-final class ApihubPluginInstanceAuthConfigApiKeyConfigApiKey {
-  const ApihubPluginInstanceAuthConfigApiKeyConfigApiKey({
-    required this.secretVersion,
-  });
+final class ApihubPluginInstanceApiKey {
+  const ApihubPluginInstanceApiKey({required this.secretVersion});
 
   final TfArg<String> secretVersion;
 
@@ -141,8 +137,8 @@ final class ApihubPluginInstanceAuthConfigApiKeyConfigApiKey {
 /// Typed helper for the `auth_config.google_service_account_config` block of
 /// `google_apihub_plugin_instance` (derived from provider schema).
 @immutable
-final class ApihubPluginInstanceAuthConfigGoogleServiceAccountConfig {
-  const ApihubPluginInstanceAuthConfigGoogleServiceAccountConfig({
+final class ApihubPluginInstanceGoogleServiceAccountConfig {
+  const ApihubPluginInstanceGoogleServiceAccountConfig({
     required this.serviceAccount,
   });
 
@@ -156,16 +152,15 @@ final class ApihubPluginInstanceAuthConfigGoogleServiceAccountConfig {
 /// Typed helper for the `auth_config.oauth2_client_credentials_config` block of
 /// `google_apihub_plugin_instance` (derived from provider schema).
 @immutable
-final class ApihubPluginInstanceAuthConfigOauth2ClientCredentialsConfig {
-  const ApihubPluginInstanceAuthConfigOauth2ClientCredentialsConfig({
+final class ApihubPluginInstanceOauth2ClientCredentialsConfig {
+  const ApihubPluginInstanceOauth2ClientCredentialsConfig({
     required this.clientId,
     required this.clientSecret,
   });
 
   final TfArg<String> clientId;
 
-  final ApihubPluginInstanceAuthConfigOauth2ClientCredentialsConfigClientSecret
-  clientSecret;
+  final ApihubPluginInstanceClientSecret clientSecret;
 
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
@@ -176,10 +171,8 @@ final class ApihubPluginInstanceAuthConfigOauth2ClientCredentialsConfig {
 /// Typed helper for the `auth_config.oauth2_client_credentials_config.client_secret` block of
 /// `google_apihub_plugin_instance` (derived from provider schema).
 @immutable
-final class ApihubPluginInstanceAuthConfigOauth2ClientCredentialsConfigClientSecret {
-  const ApihubPluginInstanceAuthConfigOauth2ClientCredentialsConfigClientSecret({
-    required this.secretVersion,
-  });
+final class ApihubPluginInstanceClientSecret {
+  const ApihubPluginInstanceClientSecret({required this.secretVersion});
 
   final TfArg<String> secretVersion;
 
@@ -189,15 +182,15 @@ final class ApihubPluginInstanceAuthConfigOauth2ClientCredentialsConfigClientSec
 /// Typed helper for the `auth_config.user_password_config` block of
 /// `google_apihub_plugin_instance` (derived from provider schema).
 @immutable
-final class ApihubPluginInstanceAuthConfigUserPasswordConfig {
-  const ApihubPluginInstanceAuthConfigUserPasswordConfig({
+final class ApihubPluginInstanceUserPasswordConfig {
+  const ApihubPluginInstanceUserPasswordConfig({
     required this.username,
     required this.password,
   });
 
   final TfArg<String> username;
 
-  final ApihubPluginInstanceAuthConfigUserPasswordConfigPassword password;
+  final ApihubPluginInstancePassword password;
 
   Map<String, Object?> encode() => {
     'username': username.toTfJson(),
@@ -208,10 +201,8 @@ final class ApihubPluginInstanceAuthConfigUserPasswordConfig {
 /// Typed helper for the `auth_config.user_password_config.password` block of
 /// `google_apihub_plugin_instance` (derived from provider schema).
 @immutable
-final class ApihubPluginInstanceAuthConfigUserPasswordConfigPassword {
-  const ApihubPluginInstanceAuthConfigUserPasswordConfigPassword({
-    required this.secretVersion,
-  });
+final class ApihubPluginInstancePassword {
+  const ApihubPluginInstancePassword({required this.secretVersion});
 
   final TfArg<String> secretVersion;
 

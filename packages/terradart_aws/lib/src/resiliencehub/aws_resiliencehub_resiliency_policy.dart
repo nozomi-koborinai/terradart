@@ -46,13 +46,13 @@ final class ResiliencehubResiliencyPolicyPolicy {
     this.software,
   });
 
-  final List<ResiliencehubResiliencyPolicyPolicyAz>? az;
+  final List<ResiliencehubResiliencyPolicyAz>? az;
 
-  final List<ResiliencehubResiliencyPolicyPolicyHardware>? hardware;
+  final List<ResiliencehubResiliencyPolicyHardware>? hardware;
 
   final List<ResiliencehubResiliencyPolicyPolicyRegion>? region;
 
-  final List<ResiliencehubResiliencyPolicyPolicySoftware>? software;
+  final List<ResiliencehubResiliencyPolicySoftware>? software;
 
   Map<String, Object?> encode() => {
     if (az != null) 'az': [for (final e in az!) e.encode()],
@@ -65,11 +65,8 @@ final class ResiliencehubResiliencyPolicyPolicy {
 /// Typed helper for the `policy.az` block of
 /// `aws_resiliencehub_resiliency_policy` (derived from provider schema).
 @immutable
-final class ResiliencehubResiliencyPolicyPolicyAz {
-  const ResiliencehubResiliencyPolicyPolicyAz({
-    required this.rpo,
-    required this.rto,
-  });
+final class ResiliencehubResiliencyPolicyAz {
+  const ResiliencehubResiliencyPolicyAz({required this.rpo, required this.rto});
 
   final TfArg<String> rpo;
 
@@ -84,8 +81,8 @@ final class ResiliencehubResiliencyPolicyPolicyAz {
 /// Typed helper for the `policy.hardware` block of
 /// `aws_resiliencehub_resiliency_policy` (derived from provider schema).
 @immutable
-final class ResiliencehubResiliencyPolicyPolicyHardware {
-  const ResiliencehubResiliencyPolicyPolicyHardware({
+final class ResiliencehubResiliencyPolicyHardware {
+  const ResiliencehubResiliencyPolicyHardware({
     required this.rpo,
     required this.rto,
   });
@@ -119,8 +116,8 @@ final class ResiliencehubResiliencyPolicyPolicyRegion {
 /// Typed helper for the `policy.software` block of
 /// `aws_resiliencehub_resiliency_policy` (derived from provider schema).
 @immutable
-final class ResiliencehubResiliencyPolicyPolicySoftware {
-  const ResiliencehubResiliencyPolicyPolicySoftware({
+final class ResiliencehubResiliencyPolicySoftware {
+  const ResiliencehubResiliencyPolicySoftware({
     required this.rpo,
     required this.rto,
   });

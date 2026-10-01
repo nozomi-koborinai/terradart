@@ -6,24 +6,20 @@ library;
 export 'src/customerprofiles/aws_customerprofiles_domain.dart'
     show
         AwsCustomerprofilesDomain,
+        CustomerprofilesDomainAttributeMatchingModel,
+        CustomerprofilesDomainAttributeTypesSelector,
+        CustomerprofilesDomainAutoMerging,
+        CustomerprofilesDomainConflictResolution,
+        CustomerprofilesDomainConflictResolvingModel,
+        CustomerprofilesDomainConsolidation,
+        CustomerprofilesDomainDayOfTheWeek,
+        CustomerprofilesDomainExportingConfig,
+        CustomerprofilesDomainJobSchedule,
         CustomerprofilesDomainMatching,
-        CustomerprofilesDomainMatchingAutoMerging,
-        CustomerprofilesDomainMatchingAutoMergingConflictResolution,
-        CustomerprofilesDomainMatchingAutoMergingConflictResolutionConflictResolvingModel,
-        CustomerprofilesDomainMatchingAutoMergingConsolidation,
-        CustomerprofilesDomainMatchingExportingConfig,
-        CustomerprofilesDomainMatchingExportingConfigS3Exporting,
-        CustomerprofilesDomainMatchingJobSchedule,
-        CustomerprofilesDomainMatchingJobScheduleDayOfTheWeek,
+        CustomerprofilesDomainMatchingRules,
         CustomerprofilesDomainRuleBasedMatching,
-        CustomerprofilesDomainRuleBasedMatchingAttributeTypesSelector,
-        CustomerprofilesDomainRuleBasedMatchingAttributeTypesSelectorAttributeMatchingModel,
-        CustomerprofilesDomainRuleBasedMatchingConflictResolution,
-        CustomerprofilesDomainRuleBasedMatchingConflictResolutionConflictResolvingModel,
-        CustomerprofilesDomainRuleBasedMatchingExportingConfig,
-        CustomerprofilesDomainRuleBasedMatchingExportingConfigS3Exporting,
-        CustomerprofilesDomainRuleBasedMatchingMatchingRules,
-        CustomerprofilesDomainRuleBasedMatchingStatus;
+        CustomerprofilesDomainS3Exporting,
+        CustomerprofilesDomainStatus;
 export 'src/customerprofiles/aws_customerprofiles_profile.dart'
     show
         AwsCustomerprofilesProfile,

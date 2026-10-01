@@ -15,9 +15,7 @@ final class AppEngineServiceNetworkSettingsNetworkSettings {
     this.ingressTrafficAllowed,
   });
 
-  final TfArg<
-    AppEngineServiceNetworkSettingsNetworkSettingsIngressTrafficAllowed
-  >?
+  final TfArg<AppEngineServiceNetworkSettingsIngressTrafficAllowed>?
   ingressTrafficAllowed;
 
   Map<String, Object?> encode() => {
@@ -26,14 +24,14 @@ final class AppEngineServiceNetworkSettingsNetworkSettings {
 }
 
 /// `ingress_traffic_allowed` — derived from the provider schema description.
-enum AppEngineServiceNetworkSettingsNetworkSettingsIngressTrafficAllowed
+enum AppEngineServiceNetworkSettingsIngressTrafficAllowed
     implements TerraformEnum {
   ingressTrafficAllowedUnspecified('INGRESS_TRAFFIC_ALLOWED_UNSPECIFIED'),
   ingressTrafficAllowedAll('INGRESS_TRAFFIC_ALLOWED_ALL'),
   ingressTrafficAllowedInternalOnly('INGRESS_TRAFFIC_ALLOWED_INTERNAL_ONLY'),
   ingressTrafficAllowedInternalAndLb('INGRESS_TRAFFIC_ALLOWED_INTERNAL_AND_LB');
 
-  const AppEngineServiceNetworkSettingsNetworkSettingsIngressTrafficAllowed(
+  const AppEngineServiceNetworkSettingsIngressTrafficAllowed(
     this.terraformValue,
   );
   @override

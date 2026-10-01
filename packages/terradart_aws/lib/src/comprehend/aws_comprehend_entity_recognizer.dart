@@ -101,13 +101,13 @@ final class ComprehendEntityRecognizerInputDataConfig {
     required this.entityTypes,
   });
 
-  final TfArg<ComprehendEntityRecognizerInputDataConfigDataFormat>? dataFormat;
+  final TfArg<ComprehendEntityRecognizerDataFormat>? dataFormat;
 
-  final ComprehendEntityRecognizerInputDataConfigLabels labels;
+  final ComprehendEntityRecognizerLabels labels;
 
-  final ComprehendEntityRecognizerInputDataConfigSource source;
+  final ComprehendEntityRecognizerSource source;
 
-  final List<ComprehendEntityRecognizerInputDataConfigEntityTypes> entityTypes;
+  final List<ComprehendEntityRecognizerEntityTypes> entityTypes;
 
   Map<String, Object?> encode() => {
     'data_format': ?dataFormat?.toTfJson(),
@@ -121,18 +121,18 @@ final class ComprehendEntityRecognizerInputDataConfig {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.annotations(...)`.
-sealed class ComprehendEntityRecognizerInputDataConfigLabels {
-  const ComprehendEntityRecognizerInputDataConfigLabels();
+sealed class ComprehendEntityRecognizerLabels {
+  const ComprehendEntityRecognizerLabels();
 
   /// Sets `annotations`.
-  const factory ComprehendEntityRecognizerInputDataConfigLabels.annotations(
-    ComprehendEntityRecognizerInputDataConfigAnnotations annotations,
-  ) = ComprehendEntityRecognizerInputDataConfigLabelsAnnotations;
+  const factory ComprehendEntityRecognizerLabels.annotations(
+    ComprehendEntityRecognizerAnnotations annotations,
+  ) = ComprehendEntityRecognizerLabelsAnnotations;
 
   /// Sets `entity_list`.
-  const factory ComprehendEntityRecognizerInputDataConfigLabels.entityList(
-    ComprehendEntityRecognizerInputDataConfigEntityList entityList,
-  ) = ComprehendEntityRecognizerInputDataConfigLabelsEntityList;
+  const factory ComprehendEntityRecognizerLabels.entityList(
+    ComprehendEntityRecognizerEntityList entityList,
+  ) = ComprehendEntityRecognizerLabelsEntityList;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -140,14 +140,12 @@ sealed class ComprehendEntityRecognizerInputDataConfigLabels {
   Map<String, Object?> encode();
 }
 
-/// The [ComprehendEntityRecognizerInputDataConfigLabels.annotations] choice: sets `annotations`.
-final class ComprehendEntityRecognizerInputDataConfigLabelsAnnotations
-    extends ComprehendEntityRecognizerInputDataConfigLabels {
-  const ComprehendEntityRecognizerInputDataConfigLabelsAnnotations(
-    this.annotations,
-  );
+/// The [ComprehendEntityRecognizerLabels.annotations] choice: sets `annotations`.
+final class ComprehendEntityRecognizerLabelsAnnotations
+    extends ComprehendEntityRecognizerLabels {
+  const ComprehendEntityRecognizerLabelsAnnotations(this.annotations);
 
-  final ComprehendEntityRecognizerInputDataConfigAnnotations annotations;
+  final ComprehendEntityRecognizerAnnotations annotations;
 
   @override
   String get blockKey => 'annotations';
@@ -156,14 +154,12 @@ final class ComprehendEntityRecognizerInputDataConfigLabelsAnnotations
   Map<String, Object?> encode() => {'annotations': annotations.encode()};
 }
 
-/// The [ComprehendEntityRecognizerInputDataConfigLabels.entityList] choice: sets `entity_list`.
-final class ComprehendEntityRecognizerInputDataConfigLabelsEntityList
-    extends ComprehendEntityRecognizerInputDataConfigLabels {
-  const ComprehendEntityRecognizerInputDataConfigLabelsEntityList(
-    this.entityList,
-  );
+/// The [ComprehendEntityRecognizerLabels.entityList] choice: sets `entity_list`.
+final class ComprehendEntityRecognizerLabelsEntityList
+    extends ComprehendEntityRecognizerLabels {
+  const ComprehendEntityRecognizerLabelsEntityList(this.entityList);
 
-  final ComprehendEntityRecognizerInputDataConfigEntityList entityList;
+  final ComprehendEntityRecognizerEntityList entityList;
 
   @override
   String get blockKey => 'entity_list';
@@ -176,19 +172,18 @@ final class ComprehendEntityRecognizerInputDataConfigLabelsEntityList
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.augmentedManifests(...)`.
-sealed class ComprehendEntityRecognizerInputDataConfigSource {
-  const ComprehendEntityRecognizerInputDataConfigSource();
+sealed class ComprehendEntityRecognizerSource {
+  const ComprehendEntityRecognizerSource();
 
   /// Sets `augmented_manifests`.
-  const factory ComprehendEntityRecognizerInputDataConfigSource.augmentedManifests(
-    List<ComprehendEntityRecognizerInputDataConfigAugmentedManifests>
-    augmentedManifests,
-  ) = ComprehendEntityRecognizerInputDataConfigSourceAugmentedManifests;
+  const factory ComprehendEntityRecognizerSource.augmentedManifests(
+    List<ComprehendEntityRecognizerAugmentedManifests> augmentedManifests,
+  ) = ComprehendEntityRecognizerSourceAugmentedManifests;
 
   /// Sets `documents`.
-  const factory ComprehendEntityRecognizerInputDataConfigSource.documents(
-    ComprehendEntityRecognizerInputDataConfigDocuments documents,
-  ) = ComprehendEntityRecognizerInputDataConfigSourceDocuments;
+  const factory ComprehendEntityRecognizerSource.documents(
+    ComprehendEntityRecognizerDocuments documents,
+  ) = ComprehendEntityRecognizerSourceDocuments;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -196,15 +191,14 @@ sealed class ComprehendEntityRecognizerInputDataConfigSource {
   Map<String, Object?> encode();
 }
 
-/// The [ComprehendEntityRecognizerInputDataConfigSource.augmentedManifests] choice: sets `augmented_manifests`.
-final class ComprehendEntityRecognizerInputDataConfigSourceAugmentedManifests
-    extends ComprehendEntityRecognizerInputDataConfigSource {
-  const ComprehendEntityRecognizerInputDataConfigSourceAugmentedManifests(
+/// The [ComprehendEntityRecognizerSource.augmentedManifests] choice: sets `augmented_manifests`.
+final class ComprehendEntityRecognizerSourceAugmentedManifests
+    extends ComprehendEntityRecognizerSource {
+  const ComprehendEntityRecognizerSourceAugmentedManifests(
     this.augmentedManifests,
   );
 
-  final List<ComprehendEntityRecognizerInputDataConfigAugmentedManifests>
-  augmentedManifests;
+  final List<ComprehendEntityRecognizerAugmentedManifests> augmentedManifests;
 
   @override
   String get blockKey => 'augmented_manifests';
@@ -215,14 +209,12 @@ final class ComprehendEntityRecognizerInputDataConfigSourceAugmentedManifests
   };
 }
 
-/// The [ComprehendEntityRecognizerInputDataConfigSource.documents] choice: sets `documents`.
-final class ComprehendEntityRecognizerInputDataConfigSourceDocuments
-    extends ComprehendEntityRecognizerInputDataConfigSource {
-  const ComprehendEntityRecognizerInputDataConfigSourceDocuments(
-    this.documents,
-  );
+/// The [ComprehendEntityRecognizerSource.documents] choice: sets `documents`.
+final class ComprehendEntityRecognizerSourceDocuments
+    extends ComprehendEntityRecognizerSource {
+  const ComprehendEntityRecognizerSourceDocuments(this.documents);
 
-  final ComprehendEntityRecognizerInputDataConfigDocuments documents;
+  final ComprehendEntityRecognizerDocuments documents;
 
   @override
   String get blockKey => 'documents';
@@ -232,14 +224,11 @@ final class ComprehendEntityRecognizerInputDataConfigSourceDocuments
 }
 
 /// `data_format` — derived from the provider schema description.
-enum ComprehendEntityRecognizerInputDataConfigDataFormat
-    implements TerraformEnum {
+enum ComprehendEntityRecognizerDataFormat implements TerraformEnum {
   comprehendCsv('COMPREHEND_CSV'),
   augmentedManifest('AUGMENTED_MANIFEST');
 
-  const ComprehendEntityRecognizerInputDataConfigDataFormat(
-    this.terraformValue,
-  );
+  const ComprehendEntityRecognizerDataFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -247,8 +236,8 @@ enum ComprehendEntityRecognizerInputDataConfigDataFormat
 /// Typed helper for the `input_data_config.annotations` block of
 /// `aws_comprehend_entity_recognizer` (derived from provider schema).
 @immutable
-final class ComprehendEntityRecognizerInputDataConfigAnnotations {
-  const ComprehendEntityRecognizerInputDataConfigAnnotations({
+final class ComprehendEntityRecognizerAnnotations {
+  const ComprehendEntityRecognizerAnnotations({
     required this.s3Uri,
     this.testS3Uri,
   });
@@ -266,8 +255,8 @@ final class ComprehendEntityRecognizerInputDataConfigAnnotations {
 /// Typed helper for the `input_data_config.augmented_manifests` block of
 /// `aws_comprehend_entity_recognizer` (derived from provider schema).
 @immutable
-final class ComprehendEntityRecognizerInputDataConfigAugmentedManifests {
-  const ComprehendEntityRecognizerInputDataConfigAugmentedManifests({
+final class ComprehendEntityRecognizerAugmentedManifests {
+  const ComprehendEntityRecognizerAugmentedManifests({
     this.annotationDataS3Uri,
     required this.attributeNames,
     this.documentType,
@@ -280,17 +269,13 @@ final class ComprehendEntityRecognizerInputDataConfigAugmentedManifests {
 
   final TfArg<List<String>> attributeNames;
 
-  final TfArg<
-    ComprehendEntityRecognizerInputDataConfigAugmentedManifestsDocumentType
-  >?
-  documentType;
+  final TfArg<ComprehendEntityRecognizerDocumentType>? documentType;
 
   final TfArg<String> s3Uri;
 
   final TfArg<String>? sourceDocumentsS3Uri;
 
-  final TfArg<ComprehendEntityRecognizerInputDataConfigAugmentedManifestsSplit>?
-  split;
+  final TfArg<ComprehendEntityRecognizerSplit>? split;
 
   Map<String, Object?> encode() => {
     'annotation_data_s3_uri': ?annotationDataS3Uri?.toTfJson(),
@@ -303,27 +288,21 @@ final class ComprehendEntityRecognizerInputDataConfigAugmentedManifests {
 }
 
 /// `document_type` — derived from the provider schema description.
-enum ComprehendEntityRecognizerInputDataConfigAugmentedManifestsDocumentType
-    implements TerraformEnum {
+enum ComprehendEntityRecognizerDocumentType implements TerraformEnum {
   plainTextDocument('PLAIN_TEXT_DOCUMENT'),
   semiStructuredDocument('SEMI_STRUCTURED_DOCUMENT');
 
-  const ComprehendEntityRecognizerInputDataConfigAugmentedManifestsDocumentType(
-    this.terraformValue,
-  );
+  const ComprehendEntityRecognizerDocumentType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `split` — derived from the provider schema description.
-enum ComprehendEntityRecognizerInputDataConfigAugmentedManifestsSplit
-    implements TerraformEnum {
+enum ComprehendEntityRecognizerSplit implements TerraformEnum {
   train('TRAIN'),
   test('TEST');
 
-  const ComprehendEntityRecognizerInputDataConfigAugmentedManifestsSplit(
-    this.terraformValue,
-  );
+  const ComprehendEntityRecognizerSplit(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -331,15 +310,14 @@ enum ComprehendEntityRecognizerInputDataConfigAugmentedManifestsSplit
 /// Typed helper for the `input_data_config.documents` block of
 /// `aws_comprehend_entity_recognizer` (derived from provider schema).
 @immutable
-final class ComprehendEntityRecognizerInputDataConfigDocuments {
-  const ComprehendEntityRecognizerInputDataConfigDocuments({
+final class ComprehendEntityRecognizerDocuments {
+  const ComprehendEntityRecognizerDocuments({
     this.inputFormat,
     required this.s3Uri,
     this.testS3Uri,
   });
 
-  final TfArg<ComprehendEntityRecognizerInputDataConfigDocumentsInputFormat>?
-  inputFormat;
+  final TfArg<ComprehendEntityRecognizerInputFormat>? inputFormat;
 
   final TfArg<String> s3Uri;
 
@@ -353,14 +331,11 @@ final class ComprehendEntityRecognizerInputDataConfigDocuments {
 }
 
 /// `input_format` — derived from the provider schema description.
-enum ComprehendEntityRecognizerInputDataConfigDocumentsInputFormat
-    implements TerraformEnum {
+enum ComprehendEntityRecognizerInputFormat implements TerraformEnum {
   oneDocPerFile('ONE_DOC_PER_FILE'),
   oneDocPerLine('ONE_DOC_PER_LINE');
 
-  const ComprehendEntityRecognizerInputDataConfigDocumentsInputFormat(
-    this.terraformValue,
-  );
+  const ComprehendEntityRecognizerInputFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -368,10 +343,8 @@ enum ComprehendEntityRecognizerInputDataConfigDocumentsInputFormat
 /// Typed helper for the `input_data_config.entity_list` block of
 /// `aws_comprehend_entity_recognizer` (derived from provider schema).
 @immutable
-final class ComprehendEntityRecognizerInputDataConfigEntityList {
-  const ComprehendEntityRecognizerInputDataConfigEntityList({
-    required this.s3Uri,
-  });
+final class ComprehendEntityRecognizerEntityList {
+  const ComprehendEntityRecognizerEntityList({required this.s3Uri});
 
   final TfArg<String> s3Uri;
 
@@ -381,10 +354,8 @@ final class ComprehendEntityRecognizerInputDataConfigEntityList {
 /// Typed helper for the `input_data_config.entity_types` block of
 /// `aws_comprehend_entity_recognizer` (derived from provider schema).
 @immutable
-final class ComprehendEntityRecognizerInputDataConfigEntityTypes {
-  const ComprehendEntityRecognizerInputDataConfigEntityTypes({
-    required this.type,
-  });
+final class ComprehendEntityRecognizerEntityTypes {
+  const ComprehendEntityRecognizerEntityTypes({required this.type});
 
   final TfArg<String> type;
 

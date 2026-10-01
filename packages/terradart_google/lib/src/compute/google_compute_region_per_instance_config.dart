@@ -20,13 +20,11 @@ final class ComputeRegionPerInstanceConfigPreservedState {
 
   final TfArg<Map<String, String>>? metadata;
 
-  final List<ComputeRegionPerInstanceConfigPreservedStateDisk>? disk;
+  final List<ComputeRegionPerInstanceConfigDisk>? disk;
 
-  final List<ComputeRegionPerInstanceConfigPreservedStateExternalIp>?
-  externalIp;
+  final List<ComputeRegionPerInstanceConfigExternalIp>? externalIp;
 
-  final List<ComputeRegionPerInstanceConfigPreservedStateInternalIp>?
-  internalIp;
+  final List<ComputeRegionPerInstanceConfigInternalIp>? internalIp;
 
   Map<String, Object?> encode() => {
     'metadata': ?metadata?.toTfJson(),
@@ -41,20 +39,19 @@ final class ComputeRegionPerInstanceConfigPreservedState {
 /// Typed helper for the `preserved_state.disk` block of
 /// `google_compute_region_per_instance_config` (derived from provider schema).
 @immutable
-final class ComputeRegionPerInstanceConfigPreservedStateDisk {
-  const ComputeRegionPerInstanceConfigPreservedStateDisk({
+final class ComputeRegionPerInstanceConfigDisk {
+  const ComputeRegionPerInstanceConfigDisk({
     this.deleteRule,
     required this.deviceName,
     this.mode,
     required this.source,
   });
 
-  final TfArg<ComputeRegionPerInstanceConfigPreservedStateDiskDeleteRule>?
-  deleteRule;
+  final TfArg<ComputeRegionPerInstanceConfigDeleteRule>? deleteRule;
 
   final TfArg<String> deviceName;
 
-  final TfArg<ComputeRegionPerInstanceConfigPreservedStateDiskMode>? mode;
+  final TfArg<ComputeRegionPerInstanceConfigMode>? mode;
 
   final TfArg<String> source;
 
@@ -67,27 +64,21 @@ final class ComputeRegionPerInstanceConfigPreservedStateDisk {
 }
 
 /// `delete_rule` — derived from the provider schema description.
-enum ComputeRegionPerInstanceConfigPreservedStateDiskDeleteRule
-    implements TerraformEnum {
+enum ComputeRegionPerInstanceConfigDeleteRule implements TerraformEnum {
   never('NEVER'),
   onPermanentInstanceDeletion('ON_PERMANENT_INSTANCE_DELETION');
 
-  const ComputeRegionPerInstanceConfigPreservedStateDiskDeleteRule(
-    this.terraformValue,
-  );
+  const ComputeRegionPerInstanceConfigDeleteRule(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `mode` — derived from the provider schema description.
-enum ComputeRegionPerInstanceConfigPreservedStateDiskMode
-    implements TerraformEnum {
+enum ComputeRegionPerInstanceConfigMode implements TerraformEnum {
   readOnly('READ_ONLY'),
   readWrite('READ_WRITE');
 
-  const ComputeRegionPerInstanceConfigPreservedStateDiskMode(
-    this.terraformValue,
-  );
+  const ComputeRegionPerInstanceConfigMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -95,20 +86,18 @@ enum ComputeRegionPerInstanceConfigPreservedStateDiskMode
 /// Typed helper for the `preserved_state.external_ip` block of
 /// `google_compute_region_per_instance_config` (derived from provider schema).
 @immutable
-final class ComputeRegionPerInstanceConfigPreservedStateExternalIp {
-  const ComputeRegionPerInstanceConfigPreservedStateExternalIp({
+final class ComputeRegionPerInstanceConfigExternalIp {
+  const ComputeRegionPerInstanceConfigExternalIp({
     this.autoDelete,
     required this.interfaceName,
     this.ipAddress,
   });
 
-  final TfArg<ComputeRegionPerInstanceConfigPreservedStateExternalIpAutoDelete>?
-  autoDelete;
+  final TfArg<ComputeRegionPerInstanceConfigAutoDelete>? autoDelete;
 
   final TfArg<String> interfaceName;
 
-  final ComputeRegionPerInstanceConfigPreservedStateExternalIpIpAddress?
-  ipAddress;
+  final ComputeRegionPerInstanceConfigIpAddress? ipAddress;
 
   Map<String, Object?> encode() => {
     'auto_delete': ?autoDelete?.toTfJson(),
@@ -118,25 +107,21 @@ final class ComputeRegionPerInstanceConfigPreservedStateExternalIp {
 }
 
 /// `auto_delete` — derived from the provider schema description.
-enum ComputeRegionPerInstanceConfigPreservedStateExternalIpAutoDelete
-    implements TerraformEnum {
+enum ComputeRegionPerInstanceConfigAutoDelete implements TerraformEnum {
   never('NEVER'),
   onPermanentInstanceDeletion('ON_PERMANENT_INSTANCE_DELETION');
 
-  const ComputeRegionPerInstanceConfigPreservedStateExternalIpAutoDelete(
-    this.terraformValue,
-  );
+  const ComputeRegionPerInstanceConfigAutoDelete(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `preserved_state.external_ip.ip_address` block of
 /// `google_compute_region_per_instance_config` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeRegionPerInstanceConfigPreservedStateExternalIpIpAddress {
-  const ComputeRegionPerInstanceConfigPreservedStateExternalIpIpAddress({
-    this.address,
-  });
+final class ComputeRegionPerInstanceConfigIpAddress {
+  const ComputeRegionPerInstanceConfigIpAddress({this.address});
 
   final TfArg<String>? address;
 
@@ -146,52 +131,24 @@ final class ComputeRegionPerInstanceConfigPreservedStateExternalIpIpAddress {
 /// Typed helper for the `preserved_state.internal_ip` block of
 /// `google_compute_region_per_instance_config` (derived from provider schema).
 @immutable
-final class ComputeRegionPerInstanceConfigPreservedStateInternalIp {
-  const ComputeRegionPerInstanceConfigPreservedStateInternalIp({
+final class ComputeRegionPerInstanceConfigInternalIp {
+  const ComputeRegionPerInstanceConfigInternalIp({
     this.autoDelete,
     required this.interfaceName,
     this.ipAddress,
   });
 
-  final TfArg<ComputeRegionPerInstanceConfigPreservedStateInternalIpAutoDelete>?
-  autoDelete;
+  final TfArg<ComputeRegionPerInstanceConfigAutoDelete>? autoDelete;
 
   final TfArg<String> interfaceName;
 
-  final ComputeRegionPerInstanceConfigPreservedStateInternalIpIpAddress?
-  ipAddress;
+  final ComputeRegionPerInstanceConfigIpAddress? ipAddress;
 
   Map<String, Object?> encode() => {
     'auto_delete': ?autoDelete?.toTfJson(),
     'interface_name': interfaceName.toTfJson(),
     'ip_address': ?ipAddress?.encode(),
   };
-}
-
-/// `auto_delete` — derived from the provider schema description.
-enum ComputeRegionPerInstanceConfigPreservedStateInternalIpAutoDelete
-    implements TerraformEnum {
-  never('NEVER'),
-  onPermanentInstanceDeletion('ON_PERMANENT_INSTANCE_DELETION');
-
-  const ComputeRegionPerInstanceConfigPreservedStateInternalIpAutoDelete(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `preserved_state.internal_ip.ip_address` block of
-/// `google_compute_region_per_instance_config` (derived from provider schema).
-@immutable
-final class ComputeRegionPerInstanceConfigPreservedStateInternalIpIpAddress {
-  const ComputeRegionPerInstanceConfigPreservedStateInternalIpIpAddress({
-    this.address,
-  });
-
-  final TfArg<String>? address;
-
-  Map<String, Object?> encode() => {'address': ?address?.toTfJson()};
 }
 
 /// Factory wrapper for `google_compute_region_per_instance_config`.

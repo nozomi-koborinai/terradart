@@ -12,8 +12,8 @@ export 'src/chime/aws_chime_voice_connector_logging.dart'
 export 'src/chime/aws_chime_voice_connector_origination.dart'
     show
         AwsChimeVoiceConnectorOrigination,
-        ChimeVoiceConnectorOriginationRoute,
-        ChimeVoiceConnectorOriginationRouteProtocol;
+        ChimeVoiceConnectorOriginationProtocol,
+        ChimeVoiceConnectorOriginationRoute;
 export 'src/chime/aws_chime_voice_connector_streaming.dart'
     show
         AwsChimeVoiceConnectorStreaming,

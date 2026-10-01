@@ -15,25 +15,23 @@ const Set<String> _googleAgentIdentityAuthProviderSensitive = <String>{
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.apiKey(...)`.
-sealed class AgentIdentityAuthProviderAuthProviderTypeParams {
-  const AgentIdentityAuthProviderAuthProviderTypeParams();
+sealed class AgentIdentityAuthProviderTypeParams {
+  const AgentIdentityAuthProviderTypeParams();
 
   /// Sets `api_key`.
-  const factory AgentIdentityAuthProviderAuthProviderTypeParams.apiKey(
-    AgentIdentityAuthProviderAuthProviderTypeParamsApiKey apiKey,
-  ) = AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyChoice;
+  const factory AgentIdentityAuthProviderTypeParams.apiKey(
+    AgentIdentityAuthProviderApiKey apiKey,
+  ) = AgentIdentityAuthProviderTypeParamsApiKey;
 
   /// Sets `three_legged_oauth`.
-  const factory AgentIdentityAuthProviderAuthProviderTypeParams.threeLeggedOauth(
-    AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauth
-    threeLeggedOauth,
-  ) = AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthChoice;
+  const factory AgentIdentityAuthProviderTypeParams.threeLeggedOauth(
+    AgentIdentityAuthProviderThreeLeggedOauth threeLeggedOauth,
+  ) = AgentIdentityAuthProviderTypeParamsThreeLeggedOauth;
 
   /// Sets `two_legged_oauth`.
-  const factory AgentIdentityAuthProviderAuthProviderTypeParams.twoLeggedOauth(
-    AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauth
-    twoLeggedOauth,
-  ) = AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthChoice;
+  const factory AgentIdentityAuthProviderTypeParams.twoLeggedOauth(
+    AgentIdentityAuthProviderTwoLeggedOauth twoLeggedOauth,
+  ) = AgentIdentityAuthProviderTypeParamsTwoLeggedOauth;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -41,14 +39,12 @@ sealed class AgentIdentityAuthProviderAuthProviderTypeParams {
   Map<String, Object?> encode();
 }
 
-/// The [AgentIdentityAuthProviderAuthProviderTypeParams.apiKey] choice: sets `api_key`.
-final class AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyChoice
-    extends AgentIdentityAuthProviderAuthProviderTypeParams {
-  const AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyChoice(
-    this.apiKey,
-  );
+/// The [AgentIdentityAuthProviderTypeParams.apiKey] choice: sets `api_key`.
+final class AgentIdentityAuthProviderTypeParamsApiKey
+    extends AgentIdentityAuthProviderTypeParams {
+  const AgentIdentityAuthProviderTypeParamsApiKey(this.apiKey);
 
-  final AgentIdentityAuthProviderAuthProviderTypeParamsApiKey apiKey;
+  final AgentIdentityAuthProviderApiKey apiKey;
 
   @override
   String get blockKey => 'api_key';
@@ -57,15 +53,14 @@ final class AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyChoice
   Map<String, Object?> encode() => {'api_key': apiKey.encode()};
 }
 
-/// The [AgentIdentityAuthProviderAuthProviderTypeParams.threeLeggedOauth] choice: sets `three_legged_oauth`.
-final class AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthChoice
-    extends AgentIdentityAuthProviderAuthProviderTypeParams {
-  const AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthChoice(
+/// The [AgentIdentityAuthProviderTypeParams.threeLeggedOauth] choice: sets `three_legged_oauth`.
+final class AgentIdentityAuthProviderTypeParamsThreeLeggedOauth
+    extends AgentIdentityAuthProviderTypeParams {
+  const AgentIdentityAuthProviderTypeParamsThreeLeggedOauth(
     this.threeLeggedOauth,
   );
 
-  final AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauth
-  threeLeggedOauth;
+  final AgentIdentityAuthProviderThreeLeggedOauth threeLeggedOauth;
 
   @override
   String get blockKey => 'three_legged_oauth';
@@ -76,15 +71,12 @@ final class AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthChoic
   };
 }
 
-/// The [AgentIdentityAuthProviderAuthProviderTypeParams.twoLeggedOauth] choice: sets `two_legged_oauth`.
-final class AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthChoice
-    extends AgentIdentityAuthProviderAuthProviderTypeParams {
-  const AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthChoice(
-    this.twoLeggedOauth,
-  );
+/// The [AgentIdentityAuthProviderTypeParams.twoLeggedOauth] choice: sets `two_legged_oauth`.
+final class AgentIdentityAuthProviderTypeParamsTwoLeggedOauth
+    extends AgentIdentityAuthProviderTypeParams {
+  const AgentIdentityAuthProviderTypeParamsTwoLeggedOauth(this.twoLeggedOauth);
 
-  final AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauth
-  twoLeggedOauth;
+  final AgentIdentityAuthProviderTwoLeggedOauth twoLeggedOauth;
 
   @override
   String get blockKey => 'two_legged_oauth';
@@ -98,8 +90,8 @@ final class AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthChoice
 /// Typed helper for the `auth_provider_type_params.api_key` block of
 /// `google_agent_identity_auth_provider` (derived from provider schema).
 @immutable
-final class AgentIdentityAuthProviderAuthProviderTypeParamsApiKey {
-  const AgentIdentityAuthProviderAuthProviderTypeParamsApiKey({this.apiKey});
+final class AgentIdentityAuthProviderApiKey {
+  const AgentIdentityAuthProviderApiKey({this.apiKey});
 
   final TfArg<String>? apiKey;
 
@@ -109,8 +101,8 @@ final class AgentIdentityAuthProviderAuthProviderTypeParamsApiKey {
 /// Typed helper for the `auth_provider_type_params.three_legged_oauth` block of
 /// `google_agent_identity_auth_provider` (derived from provider schema).
 @immutable
-final class AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauth {
-  const AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauth({
+final class AgentIdentityAuthProviderThreeLeggedOauth {
+  const AgentIdentityAuthProviderThreeLeggedOauth({
     this.authorizationUrl,
     this.clientId,
     this.clientSecret,
@@ -124,8 +116,7 @@ final class AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauth {
 
   final TfArg<String>? clientId;
 
-  final AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecret?
-  clientSecret;
+  final AgentIdentityAuthProviderThreeLeggedOauthClientSecret? clientSecret;
 
   final TfArg<String>? clientSecretWoVersion;
 
@@ -151,18 +142,18 @@ final class AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauth {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.clientSecret(...)`.
-sealed class AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecret {
-  const AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecret();
+sealed class AgentIdentityAuthProviderThreeLeggedOauthClientSecret {
+  const AgentIdentityAuthProviderThreeLeggedOauthClientSecret();
 
   /// Sets `client_secret`.
-  const factory AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecret.clientSecret(
+  const factory AgentIdentityAuthProviderThreeLeggedOauthClientSecret.clientSecret(
     TfArg<String> clientSecret,
-  ) = AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecretChoice;
+  ) = AgentIdentityAuthProviderThreeLeggedOauthClientSecretChoice;
 
   /// Sets `client_secret_wo`.
-  const factory AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecret.clientSecretWo(
+  const factory AgentIdentityAuthProviderThreeLeggedOauthClientSecret.clientSecretWo(
     TfArg<String> clientSecretWo,
-  ) = AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecretWo;
+  ) = AgentIdentityAuthProviderThreeLeggedOauthClientSecretWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -170,11 +161,10 @@ sealed class AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClie
   Map<String, Object?> encode();
 }
 
-/// The [AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecret.clientSecret] choice: sets `client_secret`.
-final class AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecretChoice
-    extends
-        AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecret {
-  const AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecretChoice(
+/// The [AgentIdentityAuthProviderThreeLeggedOauthClientSecret.clientSecret] choice: sets `client_secret`.
+final class AgentIdentityAuthProviderThreeLeggedOauthClientSecretChoice
+    extends AgentIdentityAuthProviderThreeLeggedOauthClientSecret {
+  const AgentIdentityAuthProviderThreeLeggedOauthClientSecretChoice(
     this.clientSecret,
   );
 
@@ -187,11 +177,10 @@ final class AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClien
   Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
 }
 
-/// The [AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecret.clientSecretWo] choice: sets `client_secret_wo`.
-final class AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecretWo
-    extends
-        AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecret {
-  const AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecretWo(
+/// The [AgentIdentityAuthProviderThreeLeggedOauthClientSecret.clientSecretWo] choice: sets `client_secret_wo`.
+final class AgentIdentityAuthProviderThreeLeggedOauthClientSecretWo
+    extends AgentIdentityAuthProviderThreeLeggedOauthClientSecret {
+  const AgentIdentityAuthProviderThreeLeggedOauthClientSecretWo(
     this.clientSecretWo,
   );
 
@@ -209,8 +198,8 @@ final class AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClien
 /// Typed helper for the `auth_provider_type_params.two_legged_oauth` block of
 /// `google_agent_identity_auth_provider` (derived from provider schema).
 @immutable
-final class AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauth {
-  const AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauth({
+final class AgentIdentityAuthProviderTwoLeggedOauth {
+  const AgentIdentityAuthProviderTwoLeggedOauth({
     this.clientId,
     this.clientSecret,
     this.clientSecretWoVersion,
@@ -219,8 +208,7 @@ final class AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauth {
 
   final TfArg<String>? clientId;
 
-  final AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecret?
-  clientSecret;
+  final AgentIdentityAuthProviderTwoLeggedOauthClientSecret? clientSecret;
 
   final TfArg<String>? clientSecretWoVersion;
 
@@ -239,18 +227,18 @@ final class AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauth {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.clientSecret(...)`.
-sealed class AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecret {
-  const AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecret();
+sealed class AgentIdentityAuthProviderTwoLeggedOauthClientSecret {
+  const AgentIdentityAuthProviderTwoLeggedOauthClientSecret();
 
   /// Sets `client_secret`.
-  const factory AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecret.clientSecret(
+  const factory AgentIdentityAuthProviderTwoLeggedOauthClientSecret.clientSecret(
     TfArg<String> clientSecret,
-  ) = AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecretChoice;
+  ) = AgentIdentityAuthProviderTwoLeggedOauthClientSecretChoice;
 
   /// Sets `client_secret_wo`.
-  const factory AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecret.clientSecretWo(
+  const factory AgentIdentityAuthProviderTwoLeggedOauthClientSecret.clientSecretWo(
     TfArg<String> clientSecretWo,
-  ) = AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecretWo;
+  ) = AgentIdentityAuthProviderTwoLeggedOauthClientSecretWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -258,11 +246,10 @@ sealed class AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClient
   Map<String, Object?> encode();
 }
 
-/// The [AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecret.clientSecret] choice: sets `client_secret`.
-final class AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecretChoice
-    extends
-        AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecret {
-  const AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecretChoice(
+/// The [AgentIdentityAuthProviderTwoLeggedOauthClientSecret.clientSecret] choice: sets `client_secret`.
+final class AgentIdentityAuthProviderTwoLeggedOauthClientSecretChoice
+    extends AgentIdentityAuthProviderTwoLeggedOauthClientSecret {
+  const AgentIdentityAuthProviderTwoLeggedOauthClientSecretChoice(
     this.clientSecret,
   );
 
@@ -275,11 +262,10 @@ final class AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientS
   Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
 }
 
-/// The [AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecret.clientSecretWo] choice: sets `client_secret_wo`.
-final class AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecretWo
-    extends
-        AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecret {
-  const AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecretWo(
+/// The [AgentIdentityAuthProviderTwoLeggedOauthClientSecret.clientSecretWo] choice: sets `client_secret_wo`.
+final class AgentIdentityAuthProviderTwoLeggedOauthClientSecretWo
+    extends AgentIdentityAuthProviderTwoLeggedOauthClientSecret {
+  const AgentIdentityAuthProviderTwoLeggedOauthClientSecretWo(
     this.clientSecretWo,
   );
 
@@ -317,8 +303,7 @@ final class GoogleAgentIdentityAuthProvider extends Resource {
     required super.localName,
     required TfArg<String> location,
     required TfArg<String> authProviderId,
-    required AgentIdentityAuthProviderAuthProviderTypeParams
-    authProviderTypeParams,
+    required AgentIdentityAuthProviderTypeParams authProviderTypeParams,
     TfArg<List<String>>? allowedScopes,
     TfArg<List<String>>? blockedScopes,
     TfArg<String>? description,

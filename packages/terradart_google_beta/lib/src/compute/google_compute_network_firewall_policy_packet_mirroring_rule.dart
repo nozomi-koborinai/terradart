@@ -35,7 +35,7 @@ final class ComputeNetworkFirewallPolicyPacketMirroringRuleMatch {
 
   final TfArg<List<String>>? srcIpRanges;
 
-  final List<ComputeNetworkFirewallPolicyPacketMirroringRuleMatchLayer4Configs>
+  final List<ComputeNetworkFirewallPolicyPacketMirroringRuleLayer4Configs>
   layer4Configs;
 
   Map<String, Object?> encode() => {
@@ -48,8 +48,8 @@ final class ComputeNetworkFirewallPolicyPacketMirroringRuleMatch {
 /// Typed helper for the `match.layer4_configs` block of
 /// `google_compute_network_firewall_policy_packet_mirroring_rule` (derived from provider schema).
 @immutable
-final class ComputeNetworkFirewallPolicyPacketMirroringRuleMatchLayer4Configs {
-  const ComputeNetworkFirewallPolicyPacketMirroringRuleMatchLayer4Configs({
+final class ComputeNetworkFirewallPolicyPacketMirroringRuleLayer4Configs {
+  const ComputeNetworkFirewallPolicyPacketMirroringRuleLayer4Configs({
     required this.ipProtocol,
     this.ports,
   });

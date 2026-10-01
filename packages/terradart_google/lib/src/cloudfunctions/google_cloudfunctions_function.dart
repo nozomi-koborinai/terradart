@@ -33,7 +33,7 @@ final class CloudfunctionsFunctionEventTrigger {
 
   final TfArg<String> resource;
 
-  final CloudfunctionsFunctionEventTriggerFailurePolicy? failurePolicy;
+  final CloudfunctionsFunctionFailurePolicy? failurePolicy;
 
   Map<String, Object?> encode() => {
     'event_type': eventType.toTfJson(),
@@ -45,8 +45,8 @@ final class CloudfunctionsFunctionEventTrigger {
 /// Typed helper for the `event_trigger.failure_policy` block of
 /// `google_cloudfunctions_function` (derived from provider schema).
 @immutable
-final class CloudfunctionsFunctionEventTriggerFailurePolicy {
-  const CloudfunctionsFunctionEventTriggerFailurePolicy({required this.retry});
+final class CloudfunctionsFunctionFailurePolicy {
+  const CloudfunctionsFunctionFailurePolicy({required this.retry});
 
   final TfArg<bool> retry;
 
@@ -106,7 +106,7 @@ final class CloudfunctionsFunctionSecretVolumes {
 
   final TfArg<String> secret;
 
-  final List<CloudfunctionsFunctionSecretVolumesVersions>? versions;
+  final List<CloudfunctionsFunctionVersions>? versions;
 
   Map<String, Object?> encode() => {
     'mount_path': mountPath.toTfJson(),
@@ -119,8 +119,8 @@ final class CloudfunctionsFunctionSecretVolumes {
 /// Typed helper for the `secret_volumes.versions` block of
 /// `google_cloudfunctions_function` (derived from provider schema).
 @immutable
-final class CloudfunctionsFunctionSecretVolumesVersions {
-  const CloudfunctionsFunctionSecretVolumesVersions({
+final class CloudfunctionsFunctionVersions {
+  const CloudfunctionsFunctionVersions({
     required this.path,
     required this.version,
   });

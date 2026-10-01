@@ -13,7 +13,7 @@ const Set<String> _awsAppmeshVirtualRouterSensitive = <String>{};
 final class AppmeshVirtualRouterSpec {
   const AppmeshVirtualRouterSpec({this.listener});
 
-  final List<AppmeshVirtualRouterSpecListener>? listener;
+  final List<AppmeshVirtualRouterListener>? listener;
 
   Map<String, Object?> encode() => {
     if (listener != null) 'listener': [for (final e in listener!) e.encode()],
@@ -23,10 +23,10 @@ final class AppmeshVirtualRouterSpec {
 /// Typed helper for the `spec.listener` block of
 /// `aws_appmesh_virtual_router` (derived from provider schema).
 @immutable
-final class AppmeshVirtualRouterSpecListener {
-  const AppmeshVirtualRouterSpecListener({required this.portMapping});
+final class AppmeshVirtualRouterListener {
+  const AppmeshVirtualRouterListener({required this.portMapping});
 
-  final AppmeshVirtualRouterSpecListenerPortMapping portMapping;
+  final AppmeshVirtualRouterPortMapping portMapping;
 
   Map<String, Object?> encode() => {'port_mapping': portMapping.encode()};
 }
@@ -34,15 +34,15 @@ final class AppmeshVirtualRouterSpecListener {
 /// Typed helper for the `spec.listener.port_mapping` block of
 /// `aws_appmesh_virtual_router` (derived from provider schema).
 @immutable
-final class AppmeshVirtualRouterSpecListenerPortMapping {
-  const AppmeshVirtualRouterSpecListenerPortMapping({
+final class AppmeshVirtualRouterPortMapping {
+  const AppmeshVirtualRouterPortMapping({
     required this.port,
     required this.protocol,
   });
 
   final TfArg<num> port;
 
-  final TfArg<AppmeshVirtualRouterSpecListenerPortMappingProtocol> protocol;
+  final TfArg<AppmeshVirtualRouterProtocol> protocol;
 
   Map<String, Object?> encode() => {
     'port': port.toTfJson(),
@@ -51,16 +51,13 @@ final class AppmeshVirtualRouterSpecListenerPortMapping {
 }
 
 /// `protocol` — derived from the provider schema description.
-enum AppmeshVirtualRouterSpecListenerPortMappingProtocol
-    implements TerraformEnum {
+enum AppmeshVirtualRouterProtocol implements TerraformEnum {
   http('http'),
   tcp('tcp'),
   http2('http2'),
   grpc('grpc');
 
-  const AppmeshVirtualRouterSpecListenerPortMappingProtocol(
-    this.terraformValue,
-  );
+  const AppmeshVirtualRouterProtocol(this.terraformValue);
   @override
   final String terraformValue;
 }

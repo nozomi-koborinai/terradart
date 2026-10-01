@@ -78,11 +78,11 @@ curatedDoc: |-
   ///       name: TfArg.literal('allpaths'),
   ///       defaultService: TfArg.ref(login.selfLink),
   ///       pathRule: [
-  ///         ComputeRegionUrlMapPathMatcherPathRule(
+  ///         ComputeRegionUrlMapPathRule(
   ///           paths: TfArg.literal(const ['/home']),
   ///           service: TfArg.ref(login.selfLink),
   ///         ),
-  ///         ComputeRegionUrlMapPathMatcherPathRule(
+  ///         ComputeRegionUrlMapPathRule(
   ///           paths: TfArg.literal(const ['/static']),
   ///           service: TfArg.ref(staticBucket.selfLink),
   ///         ),
@@ -108,7 +108,7 @@ curatedDoc: |-
   ///
   /// Traffic-policy sub-blocks (`path_matcher.default_route_action`,
   /// `path_rule.route_action`, `route_rules.route_action`, ...) are typed
-  /// helpers too (e.g. [ComputeRegionUrlMapPathMatcherPathRuleRouteAction]); the top-level
+  /// helpers too (e.g. [ComputeRegionUrlMapPathRuleRouteAction]); the top-level
   /// `default_url_redirect` / `default_route_action` pair is the sealed
   /// [defaultAction] argument (`.defaultUrlRedirect(...)` /
   /// `.defaultRouteAction(...)`).

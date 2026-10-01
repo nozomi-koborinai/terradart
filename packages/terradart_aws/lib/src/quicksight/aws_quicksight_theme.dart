@@ -18,13 +18,13 @@ final class QuicksightThemeConfiguration {
     this.uiColorPalette,
   });
 
-  final QuicksightThemeConfigurationDataColorPalette? dataColorPalette;
+  final QuicksightThemeDataColorPalette? dataColorPalette;
 
-  final QuicksightThemeConfigurationSheet? sheet;
+  final QuicksightThemeSheet? sheet;
 
-  final QuicksightThemeConfigurationTypography? typography;
+  final QuicksightThemeTypography? typography;
 
-  final QuicksightThemeConfigurationUiColorPalette? uiColorPalette;
+  final QuicksightThemeUiColorPalette? uiColorPalette;
 
   Map<String, Object?> encode() => {
     'data_color_palette': ?dataColorPalette?.encode(),
@@ -37,8 +37,8 @@ final class QuicksightThemeConfiguration {
 /// Typed helper for the `configuration.data_color_palette` block of
 /// `aws_quicksight_theme` (derived from provider schema).
 @immutable
-final class QuicksightThemeConfigurationDataColorPalette {
-  const QuicksightThemeConfigurationDataColorPalette({
+final class QuicksightThemeDataColorPalette {
+  const QuicksightThemeDataColorPalette({
     this.colors,
     this.emptyFillColor,
     this.minMaxGradient,
@@ -60,12 +60,12 @@ final class QuicksightThemeConfigurationDataColorPalette {
 /// Typed helper for the `configuration.sheet` block of
 /// `aws_quicksight_theme` (derived from provider schema).
 @immutable
-final class QuicksightThemeConfigurationSheet {
-  const QuicksightThemeConfigurationSheet({this.tile, this.tileLayout});
+final class QuicksightThemeSheet {
+  const QuicksightThemeSheet({this.tile, this.tileLayout});
 
-  final QuicksightThemeConfigurationSheetTile? tile;
+  final QuicksightThemeTile? tile;
 
-  final QuicksightThemeConfigurationSheetTileLayout? tileLayout;
+  final QuicksightThemeTileLayout? tileLayout;
 
   Map<String, Object?> encode() => {
     'tile': ?tile?.encode(),
@@ -76,10 +76,10 @@ final class QuicksightThemeConfigurationSheet {
 /// Typed helper for the `configuration.sheet.tile` block of
 /// `aws_quicksight_theme` (derived from provider schema).
 @immutable
-final class QuicksightThemeConfigurationSheetTile {
-  const QuicksightThemeConfigurationSheetTile({this.border});
+final class QuicksightThemeTile {
+  const QuicksightThemeTile({this.border});
 
-  final QuicksightThemeConfigurationSheetTileBorder? border;
+  final QuicksightThemeBorder? border;
 
   Map<String, Object?> encode() => {'border': ?border?.encode()};
 }
@@ -87,8 +87,8 @@ final class QuicksightThemeConfigurationSheetTile {
 /// Typed helper for the `configuration.sheet.tile.border` block of
 /// `aws_quicksight_theme` (derived from provider schema).
 @immutable
-final class QuicksightThemeConfigurationSheetTileBorder {
-  const QuicksightThemeConfigurationSheetTileBorder({this.show});
+final class QuicksightThemeBorder {
+  const QuicksightThemeBorder({this.show});
 
   final TfArg<bool>? show;
 
@@ -98,12 +98,12 @@ final class QuicksightThemeConfigurationSheetTileBorder {
 /// Typed helper for the `configuration.sheet.tile_layout` block of
 /// `aws_quicksight_theme` (derived from provider schema).
 @immutable
-final class QuicksightThemeConfigurationSheetTileLayout {
-  const QuicksightThemeConfigurationSheetTileLayout({this.gutter, this.margin});
+final class QuicksightThemeTileLayout {
+  const QuicksightThemeTileLayout({this.gutter, this.margin});
 
-  final QuicksightThemeConfigurationSheetTileLayoutGutter? gutter;
+  final QuicksightThemeGutter? gutter;
 
-  final QuicksightThemeConfigurationSheetTileLayoutMargin? margin;
+  final QuicksightThemeMargin? margin;
 
   Map<String, Object?> encode() => {
     'gutter': ?gutter?.encode(),
@@ -114,8 +114,8 @@ final class QuicksightThemeConfigurationSheetTileLayout {
 /// Typed helper for the `configuration.sheet.tile_layout.gutter` block of
 /// `aws_quicksight_theme` (derived from provider schema).
 @immutable
-final class QuicksightThemeConfigurationSheetTileLayoutGutter {
-  const QuicksightThemeConfigurationSheetTileLayoutGutter({this.show});
+final class QuicksightThemeGutter {
+  const QuicksightThemeGutter({this.show});
 
   final TfArg<bool>? show;
 
@@ -125,8 +125,8 @@ final class QuicksightThemeConfigurationSheetTileLayoutGutter {
 /// Typed helper for the `configuration.sheet.tile_layout.margin` block of
 /// `aws_quicksight_theme` (derived from provider schema).
 @immutable
-final class QuicksightThemeConfigurationSheetTileLayoutMargin {
-  const QuicksightThemeConfigurationSheetTileLayoutMargin({this.show});
+final class QuicksightThemeMargin {
+  const QuicksightThemeMargin({this.show});
 
   final TfArg<bool>? show;
 
@@ -136,10 +136,10 @@ final class QuicksightThemeConfigurationSheetTileLayoutMargin {
 /// Typed helper for the `configuration.typography` block of
 /// `aws_quicksight_theme` (derived from provider schema).
 @immutable
-final class QuicksightThemeConfigurationTypography {
-  const QuicksightThemeConfigurationTypography({this.fontFamilies});
+final class QuicksightThemeTypography {
+  const QuicksightThemeTypography({this.fontFamilies});
 
-  final List<QuicksightThemeConfigurationTypographyFontFamilies>? fontFamilies;
+  final List<QuicksightThemeFontFamilies>? fontFamilies;
 
   Map<String, Object?> encode() => {
     if (fontFamilies != null)
@@ -150,8 +150,8 @@ final class QuicksightThemeConfigurationTypography {
 /// Typed helper for the `configuration.typography.font_families` block of
 /// `aws_quicksight_theme` (derived from provider schema).
 @immutable
-final class QuicksightThemeConfigurationTypographyFontFamilies {
-  const QuicksightThemeConfigurationTypographyFontFamilies({this.fontFamily});
+final class QuicksightThemeFontFamilies {
+  const QuicksightThemeFontFamilies({this.fontFamily});
 
   final TfArg<String>? fontFamily;
 
@@ -161,8 +161,8 @@ final class QuicksightThemeConfigurationTypographyFontFamilies {
 /// Typed helper for the `configuration.ui_color_palette` block of
 /// `aws_quicksight_theme` (derived from provider schema).
 @immutable
-final class QuicksightThemeConfigurationUiColorPalette {
-  const QuicksightThemeConfigurationUiColorPalette({
+final class QuicksightThemeUiColorPalette {
+  const QuicksightThemeUiColorPalette({
     this.accent,
     this.accentForeground,
     this.danger,

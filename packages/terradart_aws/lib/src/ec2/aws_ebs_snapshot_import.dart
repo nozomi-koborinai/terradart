@@ -50,9 +50,9 @@ final class EbsSnapshotImportDiskContainer {
 
   final TfArg<String>? description;
 
-  final TfArg<EbsSnapshotImportDiskContainerFormat> format;
+  final TfArg<EbsSnapshotImportFormat> format;
 
-  final EbsSnapshotImportDiskContainerSource source;
+  final EbsSnapshotImportSource source;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -65,17 +65,17 @@ final class EbsSnapshotImportDiskContainer {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.url(...)`.
-sealed class EbsSnapshotImportDiskContainerSource {
-  const EbsSnapshotImportDiskContainerSource();
+sealed class EbsSnapshotImportSource {
+  const EbsSnapshotImportSource();
 
   /// Sets `url`.
-  const factory EbsSnapshotImportDiskContainerSource.url(TfArg<String> url) =
-      EbsSnapshotImportDiskContainerSourceUrl;
+  const factory EbsSnapshotImportSource.url(TfArg<String> url) =
+      EbsSnapshotImportSourceUrl;
 
   /// Sets `user_bucket`.
-  const factory EbsSnapshotImportDiskContainerSource.userBucket(
-    EbsSnapshotImportDiskContainerUserBucket userBucket,
-  ) = EbsSnapshotImportDiskContainerSourceUserBucket;
+  const factory EbsSnapshotImportSource.userBucket(
+    EbsSnapshotImportUserBucket userBucket,
+  ) = EbsSnapshotImportSourceUserBucket;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -83,10 +83,9 @@ sealed class EbsSnapshotImportDiskContainerSource {
   Map<String, Object?> encode();
 }
 
-/// The [EbsSnapshotImportDiskContainerSource.url] choice: sets `url`.
-final class EbsSnapshotImportDiskContainerSourceUrl
-    extends EbsSnapshotImportDiskContainerSource {
-  const EbsSnapshotImportDiskContainerSourceUrl(this.url);
+/// The [EbsSnapshotImportSource.url] choice: sets `url`.
+final class EbsSnapshotImportSourceUrl extends EbsSnapshotImportSource {
+  const EbsSnapshotImportSourceUrl(this.url);
 
   final TfArg<String> url;
 
@@ -97,12 +96,11 @@ final class EbsSnapshotImportDiskContainerSourceUrl
   Map<String, Object?> encode() => {'url': url.toTfJson()};
 }
 
-/// The [EbsSnapshotImportDiskContainerSource.userBucket] choice: sets `user_bucket`.
-final class EbsSnapshotImportDiskContainerSourceUserBucket
-    extends EbsSnapshotImportDiskContainerSource {
-  const EbsSnapshotImportDiskContainerSourceUserBucket(this.userBucket);
+/// The [EbsSnapshotImportSource.userBucket] choice: sets `user_bucket`.
+final class EbsSnapshotImportSourceUserBucket extends EbsSnapshotImportSource {
+  const EbsSnapshotImportSourceUserBucket(this.userBucket);
 
-  final EbsSnapshotImportDiskContainerUserBucket userBucket;
+  final EbsSnapshotImportUserBucket userBucket;
 
   @override
   String get blockKey => 'user_bucket';
@@ -112,12 +110,12 @@ final class EbsSnapshotImportDiskContainerSourceUserBucket
 }
 
 /// `format` — derived from the provider schema description.
-enum EbsSnapshotImportDiskContainerFormat implements TerraformEnum {
+enum EbsSnapshotImportFormat implements TerraformEnum {
   vmdk('VMDK'),
   raw('RAW'),
   vhd('VHD');
 
-  const EbsSnapshotImportDiskContainerFormat(this.terraformValue);
+  const EbsSnapshotImportFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -125,8 +123,8 @@ enum EbsSnapshotImportDiskContainerFormat implements TerraformEnum {
 /// Typed helper for the `disk_container.user_bucket` block of
 /// `aws_ebs_snapshot_import` (derived from provider schema).
 @immutable
-final class EbsSnapshotImportDiskContainerUserBucket {
-  const EbsSnapshotImportDiskContainerUserBucket({
+final class EbsSnapshotImportUserBucket {
+  const EbsSnapshotImportUserBucket({
     required this.s3Bucket,
     required this.s3Key,
   });

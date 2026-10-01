@@ -46,25 +46,18 @@ enum AcmpcaCertificateAuthorityUsageMode implements TerraformEnum {
 /// Typed helper for the `certificate_authority_configuration` block of
 /// `aws_acmpca_certificate_authority` (derived from provider schema).
 @immutable
-final class AcmpcaCertificateAuthorityCertificateAuthorityConfiguration {
-  const AcmpcaCertificateAuthorityCertificateAuthorityConfiguration({
+final class AcmpcaCertificateAuthorityConfiguration {
+  const AcmpcaCertificateAuthorityConfiguration({
     required this.keyAlgorithm,
     required this.signingAlgorithm,
     required this.subject,
   });
 
-  final TfArg<
-    AcmpcaCertificateAuthorityCertificateAuthorityConfigurationKeyAlgorithm
-  >
-  keyAlgorithm;
+  final TfArg<AcmpcaCertificateAuthorityKeyAlgorithm> keyAlgorithm;
 
-  final TfArg<
-    AcmpcaCertificateAuthorityCertificateAuthorityConfigurationSigningAlgorithm
-  >
-  signingAlgorithm;
+  final TfArg<AcmpcaCertificateAuthoritySigningAlgorithm> signingAlgorithm;
 
-  final AcmpcaCertificateAuthorityCertificateAuthorityConfigurationSubject
-  subject;
+  final AcmpcaCertificateAuthoritySubject subject;
 
   Map<String, Object?> encode() => {
     'key_algorithm': keyAlgorithm.toTfJson(),
@@ -74,8 +67,7 @@ final class AcmpcaCertificateAuthorityCertificateAuthorityConfiguration {
 }
 
 /// `key_algorithm` — derived from the provider schema description.
-enum AcmpcaCertificateAuthorityCertificateAuthorityConfigurationKeyAlgorithm
-    implements TerraformEnum {
+enum AcmpcaCertificateAuthorityKeyAlgorithm implements TerraformEnum {
   rsa2048('RSA_2048'),
   rsa3072('RSA_3072'),
   rsa4096('RSA_4096'),
@@ -87,16 +79,13 @@ enum AcmpcaCertificateAuthorityCertificateAuthorityConfigurationKeyAlgorithm
   mlDsa87('ML_DSA_87'),
   sm2('SM2');
 
-  const AcmpcaCertificateAuthorityCertificateAuthorityConfigurationKeyAlgorithm(
-    this.terraformValue,
-  );
+  const AcmpcaCertificateAuthorityKeyAlgorithm(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `signing_algorithm` — derived from the provider schema description.
-enum AcmpcaCertificateAuthorityCertificateAuthorityConfigurationSigningAlgorithm
-    implements TerraformEnum {
+enum AcmpcaCertificateAuthoritySigningAlgorithm implements TerraformEnum {
   sha256withecdsa('SHA256WITHECDSA'),
   sha384withecdsa('SHA384WITHECDSA'),
   sha512withecdsa('SHA512WITHECDSA'),
@@ -111,9 +100,7 @@ enum AcmpcaCertificateAuthorityCertificateAuthorityConfigurationSigningAlgorithm
   mlDsa65('ML_DSA_65'),
   mlDsa87('ML_DSA_87');
 
-  const AcmpcaCertificateAuthorityCertificateAuthorityConfigurationSigningAlgorithm(
-    this.terraformValue,
-  );
+  const AcmpcaCertificateAuthoritySigningAlgorithm(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -121,8 +108,8 @@ enum AcmpcaCertificateAuthorityCertificateAuthorityConfigurationSigningAlgorithm
 /// Typed helper for the `certificate_authority_configuration.subject` block of
 /// `aws_acmpca_certificate_authority` (derived from provider schema).
 @immutable
-final class AcmpcaCertificateAuthorityCertificateAuthorityConfigurationSubject {
-  const AcmpcaCertificateAuthorityCertificateAuthorityConfigurationSubject({
+final class AcmpcaCertificateAuthoritySubject {
+  const AcmpcaCertificateAuthoritySubject({
     this.commonName,
     this.country,
     this.distinguishedNameQualifier,
@@ -190,11 +177,9 @@ final class AcmpcaCertificateAuthorityRevocationConfiguration {
     this.ocspConfiguration,
   });
 
-  final AcmpcaCertificateAuthorityRevocationConfigurationCrlConfiguration?
-  crlConfiguration;
+  final AcmpcaCertificateAuthorityCrlConfiguration? crlConfiguration;
 
-  final AcmpcaCertificateAuthorityRevocationConfigurationOcspConfiguration?
-  ocspConfiguration;
+  final AcmpcaCertificateAuthorityOcspConfiguration? ocspConfiguration;
 
   Map<String, Object?> encode() => {
     'crl_configuration': ?crlConfiguration?.encode(),
@@ -205,8 +190,8 @@ final class AcmpcaCertificateAuthorityRevocationConfiguration {
 /// Typed helper for the `revocation_configuration.crl_configuration` block of
 /// `aws_acmpca_certificate_authority` (derived from provider schema).
 @immutable
-final class AcmpcaCertificateAuthorityRevocationConfigurationCrlConfiguration {
-  const AcmpcaCertificateAuthorityRevocationConfigurationCrlConfiguration({
+final class AcmpcaCertificateAuthorityCrlConfiguration {
+  const AcmpcaCertificateAuthorityCrlConfiguration({
     this.customCname,
     this.customPath,
     this.enabled,
@@ -225,10 +210,7 @@ final class AcmpcaCertificateAuthorityRevocationConfigurationCrlConfiguration {
 
   final RefTo<AwsS3Bucket>? s3BucketName;
 
-  final TfArg<
-    AcmpcaCertificateAuthorityRevocationConfigurationCrlConfigurationS3ObjectAcl
-  >?
-  s3ObjectAcl;
+  final TfArg<AcmpcaCertificateAuthorityS3ObjectAcl>? s3ObjectAcl;
 
   Map<String, Object?> encode() => {
     'custom_cname': ?customCname?.toTfJson(),
@@ -241,14 +223,11 @@ final class AcmpcaCertificateAuthorityRevocationConfigurationCrlConfiguration {
 }
 
 /// `s3_object_acl` — derived from the provider schema description.
-enum AcmpcaCertificateAuthorityRevocationConfigurationCrlConfigurationS3ObjectAcl
-    implements TerraformEnum {
+enum AcmpcaCertificateAuthorityS3ObjectAcl implements TerraformEnum {
   publicRead('PUBLIC_READ'),
   bucketOwnerFullControl('BUCKET_OWNER_FULL_CONTROL');
 
-  const AcmpcaCertificateAuthorityRevocationConfigurationCrlConfigurationS3ObjectAcl(
-    this.terraformValue,
-  );
+  const AcmpcaCertificateAuthorityS3ObjectAcl(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -256,8 +235,8 @@ enum AcmpcaCertificateAuthorityRevocationConfigurationCrlConfigurationS3ObjectAc
 /// Typed helper for the `revocation_configuration.ocsp_configuration` block of
 /// `aws_acmpca_certificate_authority` (derived from provider schema).
 @immutable
-final class AcmpcaCertificateAuthorityRevocationConfigurationOcspConfiguration {
-  const AcmpcaCertificateAuthorityRevocationConfigurationOcspConfiguration({
+final class AcmpcaCertificateAuthorityOcspConfiguration {
+  const AcmpcaCertificateAuthorityOcspConfiguration({
     required this.enabled,
     this.ocspCustomCname,
   });
@@ -286,7 +265,7 @@ final class AwsAcmpcaCertificateAuthority extends Resource {
     TfArg<Map<String, String>>? tags,
     TfArg<AcmpcaCertificateAuthorityType>? type,
     TfArg<AcmpcaCertificateAuthorityUsageMode>? usageMode,
-    required AcmpcaCertificateAuthorityCertificateAuthorityConfiguration
+    required AcmpcaCertificateAuthorityConfiguration
     certificateAuthorityConfiguration,
     AcmpcaCertificateAuthorityRevocationConfiguration? revocationConfiguration,
     super.lifecycle,

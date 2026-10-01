@@ -33,9 +33,9 @@ final class DialogflowEnvironmentFulfillment {
 
   final TfArg<String>? name;
 
-  final List<DialogflowEnvironmentFulfillmentFeatures>? features;
+  final List<DialogflowEnvironmentFeatures>? features;
 
-  final DialogflowEnvironmentFulfillmentGenericWebService? genericWebService;
+  final DialogflowEnvironmentGenericWebService? genericWebService;
 
   Map<String, Object?> encode() => {
     'display_name': ?displayName?.toTfJson(),
@@ -48,20 +48,20 @@ final class DialogflowEnvironmentFulfillment {
 /// Typed helper for the `fulfillment.features` block of
 /// `google_dialogflow_environment` (derived from provider schema).
 @immutable
-final class DialogflowEnvironmentFulfillmentFeatures {
-  const DialogflowEnvironmentFulfillmentFeatures({required this.type});
+final class DialogflowEnvironmentFeatures {
+  const DialogflowEnvironmentFeatures({required this.type});
 
-  final TfArg<DialogflowEnvironmentFulfillmentFeaturesType> type;
+  final TfArg<DialogflowEnvironmentType> type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum DialogflowEnvironmentFulfillmentFeaturesType implements TerraformEnum {
+enum DialogflowEnvironmentType implements TerraformEnum {
   typeUnspecified('TYPE_UNSPECIFIED'),
   smalltalk('SMALLTALK');
 
-  const DialogflowEnvironmentFulfillmentFeaturesType(this.terraformValue);
+  const DialogflowEnvironmentType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -69,8 +69,8 @@ enum DialogflowEnvironmentFulfillmentFeaturesType implements TerraformEnum {
 /// Typed helper for the `fulfillment.generic_web_service` block of
 /// `google_dialogflow_environment` (derived from provider schema).
 @immutable
-final class DialogflowEnvironmentFulfillmentGenericWebService {
-  const DialogflowEnvironmentFulfillmentGenericWebService({
+final class DialogflowEnvironmentGenericWebService {
+  const DialogflowEnvironmentGenericWebService({
     this.password,
     this.requestHeaders,
     required this.uri,
@@ -106,12 +106,11 @@ final class DialogflowEnvironmentTextToSpeechSettings {
 
   final TfArg<bool>? enableTextToSpeech;
 
-  final TfArg<DialogflowEnvironmentTextToSpeechSettingsOutputAudioEncoding>?
-  outputAudioEncoding;
+  final TfArg<DialogflowEnvironmentOutputAudioEncoding>? outputAudioEncoding;
 
   final TfArg<num>? sampleRateHertz;
 
-  final List<DialogflowEnvironmentTextToSpeechSettingsSynthesizeSpeechConfigs>?
+  final List<DialogflowEnvironmentSynthesizeSpeechConfigs>?
   synthesizeSpeechConfigs;
 
   Map<String, Object?> encode() => {
@@ -126,8 +125,7 @@ final class DialogflowEnvironmentTextToSpeechSettings {
 }
 
 /// `output_audio_encoding` — derived from the provider schema description.
-enum DialogflowEnvironmentTextToSpeechSettingsOutputAudioEncoding
-    implements TerraformEnum {
+enum DialogflowEnvironmentOutputAudioEncoding implements TerraformEnum {
   outputAudioEncodingUnspecified('OUTPUT_AUDIO_ENCODING_UNSPECIFIED'),
   outputAudioEncodingLinear16('OUTPUT_AUDIO_ENCODING_LINEAR_16'),
   outputAudioEncodingMp3('OUTPUT_AUDIO_ENCODING_MP3'),
@@ -136,9 +134,7 @@ enum DialogflowEnvironmentTextToSpeechSettingsOutputAudioEncoding
   outputAudioEncodingMulaw('OUTPUT_AUDIO_ENCODING_MULAW'),
   outputAudioEncodingAlaw('OUTPUT_AUDIO_ENCODING_ALAW');
 
-  const DialogflowEnvironmentTextToSpeechSettingsOutputAudioEncoding(
-    this.terraformValue,
-  );
+  const DialogflowEnvironmentOutputAudioEncoding(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -146,8 +142,8 @@ enum DialogflowEnvironmentTextToSpeechSettingsOutputAudioEncoding
 /// Typed helper for the `text_to_speech_settings.synthesize_speech_configs` block of
 /// `google_dialogflow_environment` (derived from provider schema).
 @immutable
-final class DialogflowEnvironmentTextToSpeechSettingsSynthesizeSpeechConfigs {
-  const DialogflowEnvironmentTextToSpeechSettingsSynthesizeSpeechConfigs({
+final class DialogflowEnvironmentSynthesizeSpeechConfigs {
+  const DialogflowEnvironmentSynthesizeSpeechConfigs({
     this.effectsProfileId,
     required this.language,
     this.pitch,
@@ -166,8 +162,7 @@ final class DialogflowEnvironmentTextToSpeechSettingsSynthesizeSpeechConfigs {
 
   final TfArg<num>? volumeGainDb;
 
-  final DialogflowEnvironmentTextToSpeechSettingsSynthesizeSpeechConfigsVoice?
-  voice;
+  final DialogflowEnvironmentVoice? voice;
 
   Map<String, Object?> encode() => {
     'effects_profile_id': ?effectsProfileId?.toTfJson(),
@@ -182,18 +177,12 @@ final class DialogflowEnvironmentTextToSpeechSettingsSynthesizeSpeechConfigs {
 /// Typed helper for the `text_to_speech_settings.synthesize_speech_configs.voice` block of
 /// `google_dialogflow_environment` (derived from provider schema).
 @immutable
-final class DialogflowEnvironmentTextToSpeechSettingsSynthesizeSpeechConfigsVoice {
-  const DialogflowEnvironmentTextToSpeechSettingsSynthesizeSpeechConfigsVoice({
-    this.name,
-    this.ssmlGender,
-  });
+final class DialogflowEnvironmentVoice {
+  const DialogflowEnvironmentVoice({this.name, this.ssmlGender});
 
   final TfArg<String>? name;
 
-  final TfArg<
-    DialogflowEnvironmentTextToSpeechSettingsSynthesizeSpeechConfigsVoiceSsmlGender
-  >?
-  ssmlGender;
+  final TfArg<DialogflowEnvironmentSsmlGender>? ssmlGender;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
@@ -202,16 +191,13 @@ final class DialogflowEnvironmentTextToSpeechSettingsSynthesizeSpeechConfigsVoic
 }
 
 /// `ssml_gender` — derived from the provider schema description.
-enum DialogflowEnvironmentTextToSpeechSettingsSynthesizeSpeechConfigsVoiceSsmlGender
-    implements TerraformEnum {
+enum DialogflowEnvironmentSsmlGender implements TerraformEnum {
   ssmlVoiceGenderUnspecified('SSML_VOICE_GENDER_UNSPECIFIED'),
   ssmlVoiceGenderMale('SSML_VOICE_GENDER_MALE'),
   ssmlVoiceGenderFemale('SSML_VOICE_GENDER_FEMALE'),
   ssmlVoiceGenderNeutral('SSML_VOICE_GENDER_NEUTRAL');
 
-  const DialogflowEnvironmentTextToSpeechSettingsSynthesizeSpeechConfigsVoiceSsmlGender(
-    this.terraformValue,
-  );
+  const DialogflowEnvironmentSsmlGender(this.terraformValue);
   @override
   final String terraformValue;
 }

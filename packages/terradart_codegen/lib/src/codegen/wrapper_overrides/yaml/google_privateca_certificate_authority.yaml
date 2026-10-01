@@ -50,23 +50,23 @@ curatedDoc: |-
   ///   pool: TfArg.ref(caPool.id),
   ///   location: TfArg.literal('us-central1'),
   ///   config: PrivatecaCertificateAuthorityConfig(
-  ///     subjectConfig: PrivatecaCertificateAuthorityConfigSubjectConfig(
-  ///       subject: PrivatecaCertificateAuthorityConfigSubjectConfigSubject(
+  ///     subjectConfig: PrivatecaCertificateAuthoritySubjectConfig(
+  ///       subject: PrivatecaCertificateAuthoritySubject(
   ///         commonName: TfArg.literal('app.example.com'),
   ///       ),
   ///     ),
-  ///     x509Config: PrivatecaCertificateAuthorityConfigX509Config(
-  ///       caOptions: PrivatecaCertificateAuthorityConfigX509ConfigCaOptions(
+  ///     x509Config: PrivatecaCertificateAuthorityX509Config(
+  ///       caOptions: PrivatecaCertificateAuthorityCaOptions(
   ///         isCa: .literal(true),
   ///       ),
-  ///       keyUsage: PrivatecaCertificateAuthorityConfigX509ConfigKeyUsage(
+  ///       keyUsage: PrivatecaCertificateAuthorityKeyUsage(
   ///         baseKeyUsage:
-  ///             PrivatecaCertificateAuthorityConfigX509ConfigKeyUsageBaseKeyUsage(
+  ///             PrivatecaCertificateAuthorityBaseKeyUsage(
   ///           certSign: .literal(true),
   ///           crlSign: .literal(true),
   ///         ),
   ///         extendedKeyUsage:
-  ///             PrivatecaCertificateAuthorityConfigX509ConfigKeyUsageExtendedKeyUsage(),
+  ///             PrivatecaCertificateAuthorityExtendedKeyUsage(),
   ///       ),
   ///     ),
   ///   ),

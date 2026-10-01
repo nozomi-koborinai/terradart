@@ -10,22 +10,21 @@ const Set<String> _awsConnectQuickConnectSensitive = <String>{};
 /// Typed helper for the `quick_connect_config` block of
 /// `aws_connect_quick_connect` (derived from provider schema).
 @immutable
-final class ConnectQuickConnectQuickConnectConfig {
-  const ConnectQuickConnectQuickConnectConfig({
+final class ConnectQuickConnectConfig {
+  const ConnectQuickConnectConfig({
     required this.quickConnectType,
     this.phoneConfig,
     this.queueConfig,
     this.userConfig,
   });
 
-  final TfArg<ConnectQuickConnectQuickConnectConfigQuickConnectType>
-  quickConnectType;
+  final TfArg<ConnectQuickConnectType> quickConnectType;
 
-  final List<ConnectQuickConnectQuickConnectConfigPhoneConfig>? phoneConfig;
+  final List<ConnectQuickConnectPhoneConfig>? phoneConfig;
 
-  final List<ConnectQuickConnectQuickConnectConfigQueueConfig>? queueConfig;
+  final List<ConnectQuickConnectQueueConfig>? queueConfig;
 
-  final List<ConnectQuickConnectQuickConnectConfigUserConfig>? userConfig;
+  final List<ConnectQuickConnectUserConfig>? userConfig;
 
   Map<String, Object?> encode() => {
     'quick_connect_type': quickConnectType.toTfJson(),
@@ -39,16 +38,13 @@ final class ConnectQuickConnectQuickConnectConfig {
 }
 
 /// `quick_connect_type` — derived from the provider schema description.
-enum ConnectQuickConnectQuickConnectConfigQuickConnectType
-    implements TerraformEnum {
+enum ConnectQuickConnectType implements TerraformEnum {
   user('USER'),
   queue('QUEUE'),
   phoneNumber('PHONE_NUMBER'),
   flow('FLOW');
 
-  const ConnectQuickConnectQuickConnectConfigQuickConnectType(
-    this.terraformValue,
-  );
+  const ConnectQuickConnectType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -56,10 +52,8 @@ enum ConnectQuickConnectQuickConnectConfigQuickConnectType
 /// Typed helper for the `quick_connect_config.phone_config` block of
 /// `aws_connect_quick_connect` (derived from provider schema).
 @immutable
-final class ConnectQuickConnectQuickConnectConfigPhoneConfig {
-  const ConnectQuickConnectQuickConnectConfigPhoneConfig({
-    required this.phoneNumber,
-  });
+final class ConnectQuickConnectPhoneConfig {
+  const ConnectQuickConnectPhoneConfig({required this.phoneNumber});
 
   final TfArg<String> phoneNumber;
 
@@ -69,8 +63,8 @@ final class ConnectQuickConnectQuickConnectConfigPhoneConfig {
 /// Typed helper for the `quick_connect_config.queue_config` block of
 /// `aws_connect_quick_connect` (derived from provider schema).
 @immutable
-final class ConnectQuickConnectQuickConnectConfigQueueConfig {
-  const ConnectQuickConnectQuickConnectConfigQueueConfig({
+final class ConnectQuickConnectQueueConfig {
+  const ConnectQuickConnectQueueConfig({
     required this.contactFlowId,
     required this.queueId,
   });
@@ -88,8 +82,8 @@ final class ConnectQuickConnectQuickConnectConfigQueueConfig {
 /// Typed helper for the `quick_connect_config.user_config` block of
 /// `aws_connect_quick_connect` (derived from provider schema).
 @immutable
-final class ConnectQuickConnectQuickConnectConfigUserConfig {
-  const ConnectQuickConnectQuickConnectConfigUserConfig({
+final class ConnectQuickConnectUserConfig {
+  const ConnectQuickConnectUserConfig({
     required this.contactFlowId,
     required this.userId,
   });
@@ -115,7 +109,7 @@ final class AwsConnectQuickConnect extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required ConnectQuickConnectQuickConnectConfig quickConnectConfig,
+    required ConnectQuickConnectConfig quickConnectConfig,
     super.lifecycle,
     super.dependsOn,
     super.provider,

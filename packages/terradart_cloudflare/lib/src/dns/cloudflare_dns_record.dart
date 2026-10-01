@@ -159,7 +159,7 @@ final class DnsRecordData {
 
   final TfArg<num>? latDegrees;
 
-  final TfArg<DnsRecordDataLatDirection>? latDirection;
+  final TfArg<DnsRecordLatDirection>? latDirection;
 
   final TfArg<num>? latMinutes;
 
@@ -167,7 +167,7 @@ final class DnsRecordData {
 
   final TfArg<num>? longDegrees;
 
-  final TfArg<DnsRecordDataLongDirection>? longDirection;
+  final TfArg<DnsRecordLongDirection>? longDirection;
 
   final TfArg<num>? longMinutes;
 
@@ -254,21 +254,21 @@ final class DnsRecordData {
 }
 
 /// `lat_direction` — derived from the provider schema description.
-enum DnsRecordDataLatDirection implements TerraformEnum {
+enum DnsRecordLatDirection implements TerraformEnum {
   n('N'),
   s('S');
 
-  const DnsRecordDataLatDirection(this.terraformValue);
+  const DnsRecordLatDirection(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `long_direction` — derived from the provider schema description.
-enum DnsRecordDataLongDirection implements TerraformEnum {
+enum DnsRecordLongDirection implements TerraformEnum {
   e('E'),
   w('W');
 
-  const DnsRecordDataLongDirection(this.terraformValue);
+  const DnsRecordLongDirection(this.terraformValue);
   @override
   final String terraformValue;
 }

@@ -7,8 +7,8 @@ export 'src/resourcegroups/aws_resourcegroups_group.dart'
     show
         AwsResourcegroupsGroup,
         ResourcegroupsGroupConfiguration,
-        ResourcegroupsGroupConfigurationParameters,
+        ResourcegroupsGroupParameters,
         ResourcegroupsGroupResourceQuery,
-        ResourcegroupsGroupResourceQueryType;
+        ResourcegroupsGroupType;
 export 'src/resourcegroups/aws_resourcegroups_resource.dart'
     show AwsResourcegroupsResource;

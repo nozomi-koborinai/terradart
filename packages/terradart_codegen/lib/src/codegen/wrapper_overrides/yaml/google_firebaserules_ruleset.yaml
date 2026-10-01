@@ -28,7 +28,7 @@ curatedDoc: |-
   ///   localName: 'deny_all',
   ///   source: FirebaserulesRulesetSource(
   ///     files: [
-  ///       FirebaserulesRulesetSourceFiles(
+  ///       FirebaserulesRulesetFiles(
   ///         name: TfArg.literal('firestore.rules'),
   ///         content: TfArg.literal(
   ///           'service cloud.firestore {'

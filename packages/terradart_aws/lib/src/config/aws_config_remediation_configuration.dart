@@ -22,7 +22,7 @@ enum ConfigRemediationConfigurationTargetType implements TerraformEnum {
 final class ConfigRemediationConfigurationExecutionControls {
   const ConfigRemediationConfigurationExecutionControls({this.ssmControls});
 
-  final ConfigRemediationConfigurationExecutionControlsSsmControls? ssmControls;
+  final ConfigRemediationConfigurationSsmControls? ssmControls;
 
   Map<String, Object?> encode() => {'ssm_controls': ?ssmControls?.encode()};
 }
@@ -30,8 +30,8 @@ final class ConfigRemediationConfigurationExecutionControls {
 /// Typed helper for the `execution_controls.ssm_controls` block of
 /// `aws_config_remediation_configuration` (derived from provider schema).
 @immutable
-final class ConfigRemediationConfigurationExecutionControlsSsmControls {
-  const ConfigRemediationConfigurationExecutionControlsSsmControls({
+final class ConfigRemediationConfigurationSsmControls {
+  const ConfigRemediationConfigurationSsmControls({
     this.concurrentExecutionRatePercentage,
     this.errorPercentage,
   });

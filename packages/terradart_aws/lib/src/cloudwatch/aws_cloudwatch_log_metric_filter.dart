@@ -30,7 +30,7 @@ final class CloudwatchLogMetricFilterMetricTransformation {
 
   final TfArg<String> namespace;
 
-  final TfArg<CloudwatchLogMetricFilterMetricTransformationUnit>? unit;
+  final TfArg<CloudwatchLogMetricFilterUnit>? unit;
 
   final TfArg<String> value;
 
@@ -45,8 +45,7 @@ final class CloudwatchLogMetricFilterMetricTransformation {
 }
 
 /// `unit` — derived from the provider schema description.
-enum CloudwatchLogMetricFilterMetricTransformationUnit
-    implements TerraformEnum {
+enum CloudwatchLogMetricFilterUnit implements TerraformEnum {
   seconds('Seconds'),
   microseconds('Microseconds'),
   milliseconds('Milliseconds'),
@@ -75,7 +74,7 @@ enum CloudwatchLogMetricFilterMetricTransformationUnit
   countSecond('Count/Second'),
   none('None');
 
-  const CloudwatchLogMetricFilterMetricTransformationUnit(this.terraformValue);
+  const CloudwatchLogMetricFilterUnit(this.terraformValue);
   @override
   final String terraformValue;
 }

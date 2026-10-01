@@ -23,11 +23,11 @@ final class DataShareFilter {
     this.targetType,
   });
 
-  final TfArg<DataShareFilterDirection>? direction;
+  final TfArg<DataShareDirection>? direction;
 
   final TfArg<DataShareFilterKind>? kind;
 
-  final TfArg<DataShareFilterOrder>? order;
+  final TfArg<DataShareOrder>? order;
 
   final TfArg<List<String>>? resourceTypes;
 
@@ -49,11 +49,11 @@ final class DataShareFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataShareFilterDirection implements TerraformEnum {
+enum DataShareDirection implements TerraformEnum {
   asc('asc'),
   desc('desc');
 
-  const DataShareFilterDirection(this.terraformValue);
+  const DataShareDirection(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -69,11 +69,11 @@ enum DataShareFilterKind implements TerraformEnum {
 }
 
 /// `order` — derived from the provider schema description.
-enum DataShareFilterOrder implements TerraformEnum {
+enum DataShareOrder implements TerraformEnum {
   name('name'),
   created('created');
 
-  const DataShareFilterOrder(this.terraformValue);
+  const DataShareOrder(this.terraformValue);
   @override
   final String terraformValue;
 }

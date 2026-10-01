@@ -8,15 +8,15 @@ export 'src/spanner/google_spanner_backup_schedule.dart'
     show
         GoogleSpannerBackupSchedule,
         SpannerBackupScheduleBackupSpec,
+        SpannerBackupScheduleCronSpec,
         SpannerBackupScheduleEncryptionConfig,
-        SpannerBackupScheduleEncryptionConfigEncryptionType,
-        SpannerBackupScheduleEncryptionConfigKmsKeyName,
-        SpannerBackupScheduleEncryptionConfigKmsKeyNameChoice,
-        SpannerBackupScheduleEncryptionConfigKmsKeyNameKmsKeyNames,
+        SpannerBackupScheduleEncryptionType,
         SpannerBackupScheduleFullBackupSpec,
         SpannerBackupScheduleIncrementalBackupSpec,
-        SpannerBackupScheduleSpec,
-        SpannerBackupScheduleSpecCronSpec;
+        SpannerBackupScheduleKmsKeyName,
+        SpannerBackupScheduleKmsKeyNameChoice,
+        SpannerBackupScheduleKmsKeyNameKmsKeyNames,
+        SpannerBackupScheduleSpec;
 export 'src/spanner/google_spanner_database.dart'
     show
         GoogleSpannerDatabase,
@@ -33,34 +33,34 @@ export 'src/spanner/google_spanner_database_iam_policy.dart'
 export 'src/spanner/google_spanner_instance.dart'
     show
         GoogleSpannerInstance,
+        SpannerInstanceAsymmetricAutoscalingOptions,
         SpannerInstanceAutoscalingConfig,
-        SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptions,
-        SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverrides,
-        SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimits,
-        SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMax,
-        SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMaxNodes,
-        SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMaxProcessingUnits,
-        SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMin,
-        SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMinNodes,
-        SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMinProcessingUnits,
-        SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsReplicaSelection,
-        SpannerInstanceAutoscalingConfigAutoscalingLimits,
-        SpannerInstanceAutoscalingConfigAutoscalingLimitsMax,
-        SpannerInstanceAutoscalingConfigAutoscalingLimitsMaxNodes,
-        SpannerInstanceAutoscalingConfigAutoscalingLimitsMaxProcessingUnits,
-        SpannerInstanceAutoscalingConfigAutoscalingLimitsMin,
-        SpannerInstanceAutoscalingConfigAutoscalingLimitsMinNodes,
-        SpannerInstanceAutoscalingConfigAutoscalingLimitsMinProcessingUnits,
-        SpannerInstanceAutoscalingConfigAutoscalingTargets,
+        SpannerInstanceAutoscalingLimits,
+        SpannerInstanceAutoscalingLimitsMax,
+        SpannerInstanceAutoscalingLimitsMaxNodes,
+        SpannerInstanceAutoscalingLimitsMaxProcessingUnits,
+        SpannerInstanceAutoscalingLimitsMin,
+        SpannerInstanceAutoscalingLimitsMinNodes,
+        SpannerInstanceAutoscalingLimitsMinProcessingUnits,
+        SpannerInstanceAutoscalingTargets,
         SpannerInstanceDefaultBackupScheduleType,
         SpannerInstanceEdition,
         SpannerInstanceInstanceType,
+        SpannerInstanceMax,
+        SpannerInstanceMaxNodes,
+        SpannerInstanceMaxProcessingUnits,
+        SpannerInstanceMin,
+        SpannerInstanceMinNodes,
+        SpannerInstanceMinProcessingUnits,
+        SpannerInstanceOverrides,
+        SpannerInstanceOverridesAutoscalingLimits,
+        SpannerInstanceReplicaSelection,
         SpannerInstanceState;
 export 'src/spanner/google_spanner_instance_config.dart'
     show
         GoogleSpannerInstanceConfig,
         SpannerInstanceConfigReplicas,
-        SpannerInstanceConfigReplicasType;
+        SpannerInstanceConfigType;
 export 'src/spanner/google_spanner_instance_iam_binding.dart'
     show GoogleSpannerInstanceIamBinding, SpannerInstanceIamBindingCondition;
 export 'src/spanner/google_spanner_instance_iam_member.dart'
@@ -71,16 +71,16 @@ export 'src/spanner/google_spanner_instance_partition.dart'
     show
         GoogleSpannerInstancePartition,
         SpannerInstancePartitionAutoscalingConfig,
-        SpannerInstancePartitionAutoscalingConfigAutoscalingLimits,
-        SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxCapacity,
-        SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxCapacityMaxNodes,
-        SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxCapacityMaxProcessingUnits,
-        SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinCapacity,
-        SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinCapacityMinNodes,
-        SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinCapacityMinProcessingUnits,
-        SpannerInstancePartitionAutoscalingConfigAutoscalingTargets,
+        SpannerInstancePartitionAutoscalingLimits,
+        SpannerInstancePartitionAutoscalingTargets,
         SpannerInstancePartitionCapacity,
         SpannerInstancePartitionCapacityAutoscalingConfig,
         SpannerInstancePartitionCapacityNodeCount,
         SpannerInstancePartitionCapacityProcessingUnits,
+        SpannerInstancePartitionMaxCapacity,
+        SpannerInstancePartitionMaxCapacityMaxNodes,
+        SpannerInstancePartitionMaxCapacityMaxProcessingUnits,
+        SpannerInstancePartitionMinCapacity,
+        SpannerInstancePartitionMinCapacityMinNodes,
+        SpannerInstancePartitionMinCapacityMinProcessingUnits,
         SpannerInstancePartitionState;

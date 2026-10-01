@@ -6,9 +6,9 @@ library;
 export 'src/s3files/aws_s3files_access_point.dart'
     show
         AwsS3filesAccessPoint,
+        S3filesAccessPointCreationPermissions,
         S3filesAccessPointPosixUser,
-        S3filesAccessPointRootDirectory,
-        S3filesAccessPointRootDirectoryCreationPermissions;
+        S3filesAccessPointRootDirectory;
 export 'src/s3files/aws_s3files_file_system.dart' show AwsS3filesFileSystem;
 export 'src/s3files/aws_s3files_file_system_policy.dart'
     show AwsS3filesFileSystemPolicy;
@@ -19,4 +19,4 @@ export 'src/s3files/aws_s3files_synchronization_configuration.dart'
         AwsS3filesSynchronizationConfiguration,
         S3filesSynchronizationConfigurationExpirationDataRule,
         S3filesSynchronizationConfigurationImportDataRule,
-        S3filesSynchronizationConfigurationImportDataRuleTrigger;
+        S3filesSynchronizationConfigurationTrigger;

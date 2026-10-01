@@ -101,7 +101,7 @@ final class SchedulerScheduleFlexibleTimeWindow {
 
   final TfArg<num>? maximumWindowInMinutes;
 
-  final TfArg<SchedulerScheduleFlexibleTimeWindowMode> mode;
+  final TfArg<SchedulerScheduleMode> mode;
 
   Map<String, Object?> encode() => {
     'maximum_window_in_minutes': ?maximumWindowInMinutes?.toTfJson(),
@@ -110,11 +110,11 @@ final class SchedulerScheduleFlexibleTimeWindow {
 }
 
 /// `mode` — derived from the provider schema description.
-enum SchedulerScheduleFlexibleTimeWindowMode implements TerraformEnum {
+enum SchedulerScheduleMode implements TerraformEnum {
   off('OFF'),
   flexible('FLEXIBLE');
 
-  const SchedulerScheduleFlexibleTimeWindowMode(this.terraformValue);
+  const SchedulerScheduleMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -142,20 +142,20 @@ final class SchedulerScheduleTarget {
 
   final RefTo<AwsIamRole> roleArn;
 
-  final SchedulerScheduleTargetDeadLetterConfig? deadLetterConfig;
+  final SchedulerScheduleDeadLetterConfig? deadLetterConfig;
 
-  final SchedulerScheduleTargetEcsParameters? ecsParameters;
+  final SchedulerScheduleEcsParameters? ecsParameters;
 
-  final SchedulerScheduleTargetEventbridgeParameters? eventbridgeParameters;
+  final SchedulerScheduleEventbridgeParameters? eventbridgeParameters;
 
-  final SchedulerScheduleTargetKinesisParameters? kinesisParameters;
+  final SchedulerScheduleKinesisParameters? kinesisParameters;
 
-  final SchedulerScheduleTargetRetryPolicy? retryPolicy;
+  final SchedulerScheduleRetryPolicy? retryPolicy;
 
-  final SchedulerScheduleTargetSagemakerPipelineParameters?
+  final SchedulerScheduleSagemakerPipelineParameters?
   sagemakerPipelineParameters;
 
-  final SchedulerScheduleTargetSqsParameters? sqsParameters;
+  final SchedulerScheduleSqsParameters? sqsParameters;
 
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
@@ -174,8 +174,8 @@ final class SchedulerScheduleTarget {
 /// Typed helper for the `target.dead_letter_config` block of
 /// `aws_scheduler_schedule` (derived from provider schema).
 @immutable
-final class SchedulerScheduleTargetDeadLetterConfig {
-  const SchedulerScheduleTargetDeadLetterConfig({required this.arn});
+final class SchedulerScheduleDeadLetterConfig {
+  const SchedulerScheduleDeadLetterConfig({required this.arn});
 
   final TfArg<String> arn;
 
@@ -185,8 +185,8 @@ final class SchedulerScheduleTargetDeadLetterConfig {
 /// Typed helper for the `target.ecs_parameters` block of
 /// `aws_scheduler_schedule` (derived from provider schema).
 @immutable
-final class SchedulerScheduleTargetEcsParameters {
-  const SchedulerScheduleTargetEcsParameters({
+final class SchedulerScheduleEcsParameters {
+  const SchedulerScheduleEcsParameters({
     this.enableEcsManagedTags,
     this.enableExecuteCommand,
     this.group,
@@ -209,11 +209,11 @@ final class SchedulerScheduleTargetEcsParameters {
 
   final TfArg<String>? group;
 
-  final TfArg<SchedulerScheduleTargetEcsParametersLaunchType>? launchType;
+  final TfArg<SchedulerScheduleLaunchType>? launchType;
 
   final TfArg<String>? platformVersion;
 
-  final TfArg<SchedulerScheduleTargetEcsParametersPropagateTags>? propagateTags;
+  final TfArg<SchedulerSchedulePropagateTags>? propagateTags;
 
   final TfArg<String>? referenceId;
 
@@ -223,17 +223,14 @@ final class SchedulerScheduleTargetEcsParameters {
 
   final TfArg<String> taskDefinitionArn;
 
-  final List<SchedulerScheduleTargetEcsParametersCapacityProviderStrategy>?
+  final List<SchedulerScheduleCapacityProviderStrategy>?
   capacityProviderStrategy;
 
-  final SchedulerScheduleTargetEcsParametersNetworkConfiguration?
-  networkConfiguration;
+  final SchedulerScheduleNetworkConfiguration? networkConfiguration;
 
-  final List<SchedulerScheduleTargetEcsParametersPlacementConstraints>?
-  placementConstraints;
+  final List<SchedulerSchedulePlacementConstraints>? placementConstraints;
 
-  final List<SchedulerScheduleTargetEcsParametersPlacementStrategy>?
-  placementStrategy;
+  final List<SchedulerSchedulePlacementStrategy>? placementStrategy;
 
   Map<String, Object?> encode() => {
     'enable_ecs_managed_tags': ?enableEcsManagedTags?.toTfJson(),
@@ -261,22 +258,21 @@ final class SchedulerScheduleTargetEcsParameters {
 }
 
 /// `launch_type` — derived from the provider schema description.
-enum SchedulerScheduleTargetEcsParametersLaunchType implements TerraformEnum {
+enum SchedulerScheduleLaunchType implements TerraformEnum {
   ec2('EC2'),
   fargate('FARGATE'),
   external('EXTERNAL');
 
-  const SchedulerScheduleTargetEcsParametersLaunchType(this.terraformValue);
+  const SchedulerScheduleLaunchType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `propagate_tags` — derived from the provider schema description.
-enum SchedulerScheduleTargetEcsParametersPropagateTags
-    implements TerraformEnum {
+enum SchedulerSchedulePropagateTags implements TerraformEnum {
   taskDefinition('TASK_DEFINITION');
 
-  const SchedulerScheduleTargetEcsParametersPropagateTags(this.terraformValue);
+  const SchedulerSchedulePropagateTags(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -284,8 +280,8 @@ enum SchedulerScheduleTargetEcsParametersPropagateTags
 /// Typed helper for the `target.ecs_parameters.capacity_provider_strategy` block of
 /// `aws_scheduler_schedule` (derived from provider schema).
 @immutable
-final class SchedulerScheduleTargetEcsParametersCapacityProviderStrategy {
-  const SchedulerScheduleTargetEcsParametersCapacityProviderStrategy({
+final class SchedulerScheduleCapacityProviderStrategy {
+  const SchedulerScheduleCapacityProviderStrategy({
     this.base,
     required this.capacityProvider,
     this.weight,
@@ -307,8 +303,8 @@ final class SchedulerScheduleTargetEcsParametersCapacityProviderStrategy {
 /// Typed helper for the `target.ecs_parameters.network_configuration` block of
 /// `aws_scheduler_schedule` (derived from provider schema).
 @immutable
-final class SchedulerScheduleTargetEcsParametersNetworkConfiguration {
-  const SchedulerScheduleTargetEcsParametersNetworkConfiguration({
+final class SchedulerScheduleNetworkConfiguration {
+  const SchedulerScheduleNetworkConfiguration({
     this.assignPublicIp,
     this.securityGroups,
     required this.subnets,
@@ -330,16 +326,15 @@ final class SchedulerScheduleTargetEcsParametersNetworkConfiguration {
 /// Typed helper for the `target.ecs_parameters.placement_constraints` block of
 /// `aws_scheduler_schedule` (derived from provider schema).
 @immutable
-final class SchedulerScheduleTargetEcsParametersPlacementConstraints {
-  const SchedulerScheduleTargetEcsParametersPlacementConstraints({
+final class SchedulerSchedulePlacementConstraints {
+  const SchedulerSchedulePlacementConstraints({
     this.expression,
     required this.type,
   });
 
   final TfArg<String>? expression;
 
-  final TfArg<SchedulerScheduleTargetEcsParametersPlacementConstraintsType>
-  type;
+  final TfArg<SchedulerSchedulePlacementConstraintsType> type;
 
   Map<String, Object?> encode() => {
     'expression': ?expression?.toTfJson(),
@@ -348,14 +343,11 @@ final class SchedulerScheduleTargetEcsParametersPlacementConstraints {
 }
 
 /// `type` — derived from the provider schema description.
-enum SchedulerScheduleTargetEcsParametersPlacementConstraintsType
-    implements TerraformEnum {
+enum SchedulerSchedulePlacementConstraintsType implements TerraformEnum {
   distinctinstance('distinctInstance'),
   memberof('memberOf');
 
-  const SchedulerScheduleTargetEcsParametersPlacementConstraintsType(
-    this.terraformValue,
-  );
+  const SchedulerSchedulePlacementConstraintsType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -363,15 +355,12 @@ enum SchedulerScheduleTargetEcsParametersPlacementConstraintsType
 /// Typed helper for the `target.ecs_parameters.placement_strategy` block of
 /// `aws_scheduler_schedule` (derived from provider schema).
 @immutable
-final class SchedulerScheduleTargetEcsParametersPlacementStrategy {
-  const SchedulerScheduleTargetEcsParametersPlacementStrategy({
-    this.field,
-    required this.type,
-  });
+final class SchedulerSchedulePlacementStrategy {
+  const SchedulerSchedulePlacementStrategy({this.field, required this.type});
 
   final TfArg<String>? field;
 
-  final TfArg<SchedulerScheduleTargetEcsParametersPlacementStrategyType> type;
+  final TfArg<SchedulerSchedulePlacementStrategyType> type;
 
   Map<String, Object?> encode() => {
     'field': ?field?.toTfJson(),
@@ -380,15 +369,12 @@ final class SchedulerScheduleTargetEcsParametersPlacementStrategy {
 }
 
 /// `type` — derived from the provider schema description.
-enum SchedulerScheduleTargetEcsParametersPlacementStrategyType
-    implements TerraformEnum {
+enum SchedulerSchedulePlacementStrategyType implements TerraformEnum {
   random('random'),
   spread('spread'),
   binpack('binpack');
 
-  const SchedulerScheduleTargetEcsParametersPlacementStrategyType(
-    this.terraformValue,
-  );
+  const SchedulerSchedulePlacementStrategyType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -396,8 +382,8 @@ enum SchedulerScheduleTargetEcsParametersPlacementStrategyType
 /// Typed helper for the `target.eventbridge_parameters` block of
 /// `aws_scheduler_schedule` (derived from provider schema).
 @immutable
-final class SchedulerScheduleTargetEventbridgeParameters {
-  const SchedulerScheduleTargetEventbridgeParameters({
+final class SchedulerScheduleEventbridgeParameters {
+  const SchedulerScheduleEventbridgeParameters({
     required this.detailType,
     required this.source,
   });
@@ -415,8 +401,8 @@ final class SchedulerScheduleTargetEventbridgeParameters {
 /// Typed helper for the `target.kinesis_parameters` block of
 /// `aws_scheduler_schedule` (derived from provider schema).
 @immutable
-final class SchedulerScheduleTargetKinesisParameters {
-  const SchedulerScheduleTargetKinesisParameters({required this.partitionKey});
+final class SchedulerScheduleKinesisParameters {
+  const SchedulerScheduleKinesisParameters({required this.partitionKey});
 
   final TfArg<String> partitionKey;
 
@@ -426,8 +412,8 @@ final class SchedulerScheduleTargetKinesisParameters {
 /// Typed helper for the `target.retry_policy` block of
 /// `aws_scheduler_schedule` (derived from provider schema).
 @immutable
-final class SchedulerScheduleTargetRetryPolicy {
-  const SchedulerScheduleTargetRetryPolicy({
+final class SchedulerScheduleRetryPolicy {
+  const SchedulerScheduleRetryPolicy({
     this.maximumEventAgeInSeconds,
     this.maximumRetryAttempts,
   });
@@ -445,15 +431,10 @@ final class SchedulerScheduleTargetRetryPolicy {
 /// Typed helper for the `target.sagemaker_pipeline_parameters` block of
 /// `aws_scheduler_schedule` (derived from provider schema).
 @immutable
-final class SchedulerScheduleTargetSagemakerPipelineParameters {
-  const SchedulerScheduleTargetSagemakerPipelineParameters({
-    this.pipelineParameter,
-  });
+final class SchedulerScheduleSagemakerPipelineParameters {
+  const SchedulerScheduleSagemakerPipelineParameters({this.pipelineParameter});
 
-  final List<
-    SchedulerScheduleTargetSagemakerPipelineParametersPipelineParameter
-  >?
-  pipelineParameter;
+  final List<SchedulerSchedulePipelineParameter>? pipelineParameter;
 
   Map<String, Object?> encode() => {
     if (pipelineParameter != null)
@@ -464,8 +445,8 @@ final class SchedulerScheduleTargetSagemakerPipelineParameters {
 /// Typed helper for the `target.sagemaker_pipeline_parameters.pipeline_parameter` block of
 /// `aws_scheduler_schedule` (derived from provider schema).
 @immutable
-final class SchedulerScheduleTargetSagemakerPipelineParametersPipelineParameter {
-  const SchedulerScheduleTargetSagemakerPipelineParametersPipelineParameter({
+final class SchedulerSchedulePipelineParameter {
+  const SchedulerSchedulePipelineParameter({
     required this.name,
     required this.value,
   });
@@ -483,8 +464,8 @@ final class SchedulerScheduleTargetSagemakerPipelineParametersPipelineParameter 
 /// Typed helper for the `target.sqs_parameters` block of
 /// `aws_scheduler_schedule` (derived from provider schema).
 @immutable
-final class SchedulerScheduleTargetSqsParameters {
-  const SchedulerScheduleTargetSqsParameters({this.messageGroupId});
+final class SchedulerScheduleSqsParameters {
+  const SchedulerScheduleSqsParameters({this.messageGroupId});
 
   final TfArg<String>? messageGroupId;
 

@@ -32,7 +32,7 @@ final class SiteVerificationWebResourceSite {
 
   final TfArg<String> identifier;
 
-  final TfArg<SiteVerificationWebResourceSiteType> type;
+  final TfArg<SiteVerificationWebResourceType> type;
 
   Map<String, Object?> encode() => {
     'identifier': identifier.toTfJson(),
@@ -41,11 +41,11 @@ final class SiteVerificationWebResourceSite {
 }
 
 /// `type` — derived from the provider schema description.
-enum SiteVerificationWebResourceSiteType implements TerraformEnum {
+enum SiteVerificationWebResourceType implements TerraformEnum {
   inetDomain('INET_DOMAIN'),
   site('SITE');
 
-  const SiteVerificationWebResourceSiteType(this.terraformValue);
+  const SiteVerificationWebResourceType(this.terraformValue);
   @override
   final String terraformValue;
 }

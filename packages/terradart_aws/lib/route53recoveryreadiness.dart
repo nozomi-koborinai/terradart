@@ -12,8 +12,8 @@ export 'src/route53recoveryreadiness/aws_route53recoveryreadiness_recovery_group
 export 'src/route53recoveryreadiness/aws_route53recoveryreadiness_resource_set.dart'
     show
         AwsRoute53recoveryreadinessResourceSet,
+        Route53recoveryreadinessResourceSetDnsTargetResource,
+        Route53recoveryreadinessResourceSetNlbResource,
+        Route53recoveryreadinessResourceSetR53Resource,
         Route53recoveryreadinessResourceSetResources,
-        Route53recoveryreadinessResourceSetResourcesDnsTargetResource,
-        Route53recoveryreadinessResourceSetResourcesDnsTargetResourceTargetResource,
-        Route53recoveryreadinessResourceSetResourcesDnsTargetResourceTargetResourceNlbResource,
-        Route53recoveryreadinessResourceSetResourcesDnsTargetResourceTargetResourceR53Resource;
+        Route53recoveryreadinessResourceSetTargetResource;

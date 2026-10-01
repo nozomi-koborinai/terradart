@@ -28,7 +28,7 @@ enum TransferWebAppWebAppEndpointPolicy implements TerraformEnum {
 final class TransferWebAppEndpointDetails {
   const TransferWebAppEndpointDetails({this.vpc});
 
-  final List<TransferWebAppEndpointDetailsVpc>? vpc;
+  final List<TransferWebAppVpc>? vpc;
 
   Map<String, Object?> encode() => {
     if (vpc != null) 'vpc': [for (final e in vpc!) e.encode()],
@@ -38,8 +38,8 @@ final class TransferWebAppEndpointDetails {
 /// Typed helper for the `endpoint_details.vpc` block of
 /// `aws_transfer_web_app` (derived from provider schema).
 @immutable
-final class TransferWebAppEndpointDetailsVpc {
-  const TransferWebAppEndpointDetailsVpc({
+final class TransferWebAppVpc {
+  const TransferWebAppVpc({
     this.securityGroupIds,
     required this.subnetIds,
     required this.vpcId,
@@ -64,8 +64,7 @@ final class TransferWebAppEndpointDetailsVpc {
 final class TransferWebAppIdentityProviderDetails {
   const TransferWebAppIdentityProviderDetails({this.identityCenterConfig});
 
-  final List<TransferWebAppIdentityProviderDetailsIdentityCenterConfig>?
-  identityCenterConfig;
+  final List<TransferWebAppIdentityCenterConfig>? identityCenterConfig;
 
   Map<String, Object?> encode() => {
     if (identityCenterConfig != null)
@@ -78,11 +77,8 @@ final class TransferWebAppIdentityProviderDetails {
 /// Typed helper for the `identity_provider_details.identity_center_config` block of
 /// `aws_transfer_web_app` (derived from provider schema).
 @immutable
-final class TransferWebAppIdentityProviderDetailsIdentityCenterConfig {
-  const TransferWebAppIdentityProviderDetailsIdentityCenterConfig({
-    this.instanceArn,
-    this.role,
-  });
+final class TransferWebAppIdentityCenterConfig {
+  const TransferWebAppIdentityCenterConfig({this.instanceArn, this.role});
 
   final TfArg<String>? instanceArn;
 

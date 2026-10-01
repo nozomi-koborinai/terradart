@@ -35,11 +35,11 @@ final class DataLossPreventionJobTriggerInspectJob {
 
   final TfArg<String>? inspectTemplateName;
 
-  final List<DataLossPreventionJobTriggerInspectJobActions>? actions;
+  final List<DataLossPreventionJobTriggerActions>? actions;
 
-  final DataLossPreventionJobTriggerInspectJobInspectConfig? inspectConfig;
+  final DataLossPreventionJobTriggerInspectConfig? inspectConfig;
 
-  final DataLossPreventionJobTriggerInspectJobStorageConfig storageConfig;
+  final DataLossPreventionJobTriggerStorageConfig storageConfig;
 
   Map<String, Object?> encode() => {
     'inspect_template_name': ?inspectTemplateName?.toTfJson(),
@@ -52,8 +52,8 @@ final class DataLossPreventionJobTriggerInspectJob {
 /// Typed helper for the `inspect_job.actions` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobActions {
-  const DataLossPreventionJobTriggerInspectJobActions({
+final class DataLossPreventionJobTriggerActions {
+  const DataLossPreventionJobTriggerActions({
     this.deidentify,
     this.jobNotificationEmails,
     this.pubSub,
@@ -63,23 +63,21 @@ final class DataLossPreventionJobTriggerInspectJobActions {
     this.saveFindings,
   });
 
-  final DataLossPreventionJobTriggerInspectJobActionsDeidentify? deidentify;
+  final DataLossPreventionJobTriggerDeidentify? deidentify;
 
-  final DataLossPreventionJobTriggerInspectJobActionsJobNotificationEmails?
+  final DataLossPreventionJobTriggerJobNotificationEmails?
   jobNotificationEmails;
 
-  final DataLossPreventionJobTriggerInspectJobActionsPubSub? pubSub;
+  final DataLossPreventionJobTriggerPubSub? pubSub;
 
-  final DataLossPreventionJobTriggerInspectJobActionsPublishFindingsToDataplexCatalog?
+  final DataLossPreventionJobTriggerPublishFindingsToDataplexCatalog?
   publishFindingsToDataplexCatalog;
 
-  final DataLossPreventionJobTriggerInspectJobActionsPublishSummaryToCscc?
-  publishSummaryToCscc;
+  final DataLossPreventionJobTriggerPublishSummaryToCscc? publishSummaryToCscc;
 
-  final DataLossPreventionJobTriggerInspectJobActionsPublishToStackdriver?
-  publishToStackdriver;
+  final DataLossPreventionJobTriggerPublishToStackdriver? publishToStackdriver;
 
-  final DataLossPreventionJobTriggerInspectJobActionsSaveFindings? saveFindings;
+  final DataLossPreventionJobTriggerSaveFindings? saveFindings;
 
   Map<String, Object?> encode() => {
     'deidentify': ?deidentify?.encode(),
@@ -96,8 +94,8 @@ final class DataLossPreventionJobTriggerInspectJobActions {
 /// Typed helper for the `inspect_job.actions.deidentify` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobActionsDeidentify {
-  const DataLossPreventionJobTriggerInspectJobActionsDeidentify({
+final class DataLossPreventionJobTriggerDeidentify {
+  const DataLossPreventionJobTriggerDeidentify({
     required this.cloudStorageOutput,
     this.fileTypesToTransform,
     this.transformationConfig,
@@ -106,17 +104,12 @@ final class DataLossPreventionJobTriggerInspectJobActionsDeidentify {
 
   final TfArg<String> cloudStorageOutput;
 
-  final List<
-    TfArg<
-      DataLossPreventionJobTriggerInspectJobActionsDeidentifyFileTypesToTransform
-    >
-  >?
+  final List<TfArg<DataLossPreventionJobTriggerFileTypesToTransform>>?
   fileTypesToTransform;
 
-  final DataLossPreventionJobTriggerInspectJobActionsDeidentifyTransformationConfig?
-  transformationConfig;
+  final DataLossPreventionJobTriggerTransformationConfig? transformationConfig;
 
-  final DataLossPreventionJobTriggerInspectJobActionsDeidentifyTransformationDetailsStorageConfig?
+  final DataLossPreventionJobTriggerTransformationDetailsStorageConfig?
   transformationDetailsStorageConfig;
 
   Map<String, Object?> encode() => {
@@ -132,16 +125,13 @@ final class DataLossPreventionJobTriggerInspectJobActionsDeidentify {
 }
 
 /// `file_types_to_transform` — derived from the provider schema description.
-enum DataLossPreventionJobTriggerInspectJobActionsDeidentifyFileTypesToTransform
-    implements TerraformEnum {
+enum DataLossPreventionJobTriggerFileTypesToTransform implements TerraformEnum {
   image('IMAGE'),
   textFile('TEXT_FILE'),
   csv('CSV'),
   tsv('TSV');
 
-  const DataLossPreventionJobTriggerInspectJobActionsDeidentifyFileTypesToTransform(
-    this.terraformValue,
-  );
+  const DataLossPreventionJobTriggerFileTypesToTransform(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -149,8 +139,8 @@ enum DataLossPreventionJobTriggerInspectJobActionsDeidentifyFileTypesToTransform
 /// Typed helper for the `inspect_job.actions.deidentify.transformation_config` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobActionsDeidentifyTransformationConfig {
-  const DataLossPreventionJobTriggerInspectJobActionsDeidentifyTransformationConfig({
+final class DataLossPreventionJobTriggerTransformationConfig {
+  const DataLossPreventionJobTriggerTransformationConfig({
     this.deidentifyTemplate,
     this.imageRedactTemplate,
     this.structuredDeidentifyTemplate,
@@ -172,22 +162,22 @@ final class DataLossPreventionJobTriggerInspectJobActionsDeidentifyTransformatio
 /// Typed helper for the `inspect_job.actions.deidentify.transformation_details_storage_config` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobActionsDeidentifyTransformationDetailsStorageConfig {
-  const DataLossPreventionJobTriggerInspectJobActionsDeidentifyTransformationDetailsStorageConfig({
+final class DataLossPreventionJobTriggerTransformationDetailsStorageConfig {
+  const DataLossPreventionJobTriggerTransformationDetailsStorageConfig({
     required this.table,
   });
 
-  final DataLossPreventionJobTriggerInspectJobActionsDeidentifyTransformationDetailsStorageConfigTable
-  table;
+  final DataLossPreventionJobTriggerTable table;
 
   Map<String, Object?> encode() => {'table': table.encode()};
 }
 
 /// Typed helper for the `inspect_job.actions.deidentify.transformation_details_storage_config.table` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionJobTriggerInspectJobActionsDeidentifyTransformationDetailsStorageConfigTable {
-  const DataLossPreventionJobTriggerInspectJobActionsDeidentifyTransformationDetailsStorageConfigTable({
+final class DataLossPreventionJobTriggerTable {
+  const DataLossPreventionJobTriggerTable({
     required this.datasetId,
     required this.projectId,
     this.tableId,
@@ -209,8 +199,8 @@ final class DataLossPreventionJobTriggerInspectJobActionsDeidentifyTransformatio
 /// Typed helper for the `inspect_job.actions.job_notification_emails` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobActionsJobNotificationEmails {
-  const DataLossPreventionJobTriggerInspectJobActionsJobNotificationEmails();
+final class DataLossPreventionJobTriggerJobNotificationEmails {
+  const DataLossPreventionJobTriggerJobNotificationEmails();
 
   Map<String, Object?> encode() => {};
 }
@@ -218,10 +208,8 @@ final class DataLossPreventionJobTriggerInspectJobActionsJobNotificationEmails {
 /// Typed helper for the `inspect_job.actions.pub_sub` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobActionsPubSub {
-  const DataLossPreventionJobTriggerInspectJobActionsPubSub({
-    required this.topic,
-  });
+final class DataLossPreventionJobTriggerPubSub {
+  const DataLossPreventionJobTriggerPubSub({required this.topic});
 
   final RefTo<GooglePubsubTopic> topic;
 
@@ -231,8 +219,8 @@ final class DataLossPreventionJobTriggerInspectJobActionsPubSub {
 /// Typed helper for the `inspect_job.actions.publish_findings_to_dataplex_catalog` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobActionsPublishFindingsToDataplexCatalog {
-  const DataLossPreventionJobTriggerInspectJobActionsPublishFindingsToDataplexCatalog();
+final class DataLossPreventionJobTriggerPublishFindingsToDataplexCatalog {
+  const DataLossPreventionJobTriggerPublishFindingsToDataplexCatalog();
 
   Map<String, Object?> encode() => {};
 }
@@ -240,8 +228,8 @@ final class DataLossPreventionJobTriggerInspectJobActionsPublishFindingsToDatapl
 /// Typed helper for the `inspect_job.actions.publish_summary_to_cscc` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobActionsPublishSummaryToCscc {
-  const DataLossPreventionJobTriggerInspectJobActionsPublishSummaryToCscc();
+final class DataLossPreventionJobTriggerPublishSummaryToCscc {
+  const DataLossPreventionJobTriggerPublishSummaryToCscc();
 
   Map<String, Object?> encode() => {};
 }
@@ -249,8 +237,8 @@ final class DataLossPreventionJobTriggerInspectJobActionsPublishSummaryToCscc {
 /// Typed helper for the `inspect_job.actions.publish_to_stackdriver` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobActionsPublishToStackdriver {
-  const DataLossPreventionJobTriggerInspectJobActionsPublishToStackdriver();
+final class DataLossPreventionJobTriggerPublishToStackdriver {
+  const DataLossPreventionJobTriggerPublishToStackdriver();
 
   Map<String, Object?> encode() => {};
 }
@@ -258,13 +246,10 @@ final class DataLossPreventionJobTriggerInspectJobActionsPublishToStackdriver {
 /// Typed helper for the `inspect_job.actions.save_findings` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobActionsSaveFindings {
-  const DataLossPreventionJobTriggerInspectJobActionsSaveFindings({
-    required this.outputConfig,
-  });
+final class DataLossPreventionJobTriggerSaveFindings {
+  const DataLossPreventionJobTriggerSaveFindings({required this.outputConfig});
 
-  final DataLossPreventionJobTriggerInspectJobActionsSaveFindingsOutputConfig
-  outputConfig;
+  final DataLossPreventionJobTriggerOutputConfig outputConfig;
 
   Map<String, Object?> encode() => {'output_config': outputConfig.encode()};
 }
@@ -272,23 +257,18 @@ final class DataLossPreventionJobTriggerInspectJobActionsSaveFindings {
 /// Typed helper for the `inspect_job.actions.save_findings.output_config` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobActionsSaveFindingsOutputConfig {
-  const DataLossPreventionJobTriggerInspectJobActionsSaveFindingsOutputConfig({
+final class DataLossPreventionJobTriggerOutputConfig {
+  const DataLossPreventionJobTriggerOutputConfig({
     this.outputSchema,
     this.storagePath,
     this.table,
   });
 
-  final TfArg<
-    DataLossPreventionJobTriggerInspectJobActionsSaveFindingsOutputConfigOutputSchema
-  >?
-  outputSchema;
+  final TfArg<DataLossPreventionJobTriggerOutputSchema>? outputSchema;
 
-  final DataLossPreventionJobTriggerInspectJobActionsSaveFindingsOutputConfigStoragePath?
-  storagePath;
+  final DataLossPreventionJobTriggerStoragePath? storagePath;
 
-  final DataLossPreventionJobTriggerInspectJobActionsSaveFindingsOutputConfigTable?
-  table;
+  final DataLossPreventionJobTriggerTable? table;
 
   Map<String, Object?> encode() => {
     'output_schema': ?outputSchema?.toTfJson(),
@@ -298,17 +278,14 @@ final class DataLossPreventionJobTriggerInspectJobActionsSaveFindingsOutputConfi
 }
 
 /// `output_schema` — derived from the provider schema description.
-enum DataLossPreventionJobTriggerInspectJobActionsSaveFindingsOutputConfigOutputSchema
-    implements TerraformEnum {
+enum DataLossPreventionJobTriggerOutputSchema implements TerraformEnum {
   basicColumns('BASIC_COLUMNS'),
   gcsColumns('GCS_COLUMNS'),
   datastoreColumns('DATASTORE_COLUMNS'),
   bigQueryColumns('BIG_QUERY_COLUMNS'),
   allColumns('ALL_COLUMNS');
 
-  const DataLossPreventionJobTriggerInspectJobActionsSaveFindingsOutputConfigOutputSchema(
-    this.terraformValue,
-  );
+  const DataLossPreventionJobTriggerOutputSchema(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -316,44 +293,19 @@ enum DataLossPreventionJobTriggerInspectJobActionsSaveFindingsOutputConfigOutput
 /// Typed helper for the `inspect_job.actions.save_findings.output_config.storage_path` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobActionsSaveFindingsOutputConfigStoragePath {
-  const DataLossPreventionJobTriggerInspectJobActionsSaveFindingsOutputConfigStoragePath({
-    required this.path,
-  });
+final class DataLossPreventionJobTriggerStoragePath {
+  const DataLossPreventionJobTriggerStoragePath({required this.path});
 
   final TfArg<String> path;
 
   Map<String, Object?> encode() => {'path': path.toTfJson()};
 }
 
-/// Typed helper for the `inspect_job.actions.save_findings.output_config.table` block of
-/// `google_data_loss_prevention_job_trigger` (derived from provider schema).
-@immutable
-final class DataLossPreventionJobTriggerInspectJobActionsSaveFindingsOutputConfigTable {
-  const DataLossPreventionJobTriggerInspectJobActionsSaveFindingsOutputConfigTable({
-    required this.datasetId,
-    required this.projectId,
-    this.tableId,
-  });
-
-  final RefTo<GoogleBigqueryDataset> datasetId;
-
-  final TfArg<String> projectId;
-
-  final TfArg<String>? tableId;
-
-  Map<String, Object?> encode() => {
-    'dataset_id': datasetId.encodeAs('dataset_id').toTfJson(),
-    'project_id': projectId.toTfJson(),
-    'table_id': ?tableId?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `inspect_job.inspect_config` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfig {
-  const DataLossPreventionJobTriggerInspectJobInspectConfig({
+final class DataLossPreventionJobTriggerInspectConfig {
+  const DataLossPreventionJobTriggerInspectConfig({
     this.excludeInfoTypes,
     this.includeQuote,
     this.minLikelihood,
@@ -367,21 +319,15 @@ final class DataLossPreventionJobTriggerInspectJobInspectConfig {
 
   final TfArg<bool>? includeQuote;
 
-  final TfArg<DataLossPreventionJobTriggerInspectJobInspectConfigMinLikelihood>?
-  minLikelihood;
+  final TfArg<DataLossPreventionJobTriggerMinLikelihood>? minLikelihood;
 
-  final List<
-    DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypes
-  >?
-  customInfoTypes;
+  final List<DataLossPreventionJobTriggerCustomInfoTypes>? customInfoTypes;
 
-  final List<DataLossPreventionJobTriggerInspectJobInspectConfigInfoTypes>?
-  infoTypes;
+  final List<DataLossPreventionJobTriggerInfoTypes>? infoTypes;
 
-  final DataLossPreventionJobTriggerInspectJobInspectConfigLimits? limits;
+  final DataLossPreventionJobTriggerLimits? limits;
 
-  final List<DataLossPreventionJobTriggerInspectJobInspectConfigRuleSet>?
-  ruleSet;
+  final List<DataLossPreventionJobTriggerRuleSet>? ruleSet;
 
   Map<String, Object?> encode() => {
     'exclude_info_types': ?excludeInfoTypes?.toTfJson(),
@@ -397,17 +343,14 @@ final class DataLossPreventionJobTriggerInspectJobInspectConfig {
 }
 
 /// `min_likelihood` — derived from the provider schema description.
-enum DataLossPreventionJobTriggerInspectJobInspectConfigMinLikelihood
-    implements TerraformEnum {
+enum DataLossPreventionJobTriggerMinLikelihood implements TerraformEnum {
   veryUnlikely('VERY_UNLIKELY'),
   unlikely('UNLIKELY'),
   possible('POSSIBLE'),
   likely('LIKELY'),
   veryLikely('VERY_LIKELY');
 
-  const DataLossPreventionJobTriggerInspectJobInspectConfigMinLikelihood(
-    this.terraformValue,
-  );
+  const DataLossPreventionJobTriggerMinLikelihood(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -415,8 +358,8 @@ enum DataLossPreventionJobTriggerInspectJobInspectConfigMinLikelihood
 /// Typed helper for the `inspect_job.inspect_config.custom_info_types` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypes {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypes({
+final class DataLossPreventionJobTriggerCustomInfoTypes {
+  const DataLossPreventionJobTriggerCustomInfoTypes({
     this.exclusionType,
     this.likelihood,
     this.dictionary,
@@ -429,28 +372,19 @@ final class DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypes {
 
   final TfArg<String>? exclusionType;
 
-  final TfArg<
-    DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesLikelihood
-  >?
-  likelihood;
+  final TfArg<DataLossPreventionJobTriggerLikelihood>? likelihood;
 
-  final DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesDictionary?
-  dictionary;
+  final DataLossPreventionJobTriggerDictionary? dictionary;
 
-  final DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesInfoType
-  infoType;
+  final DataLossPreventionJobTriggerInfoType infoType;
 
-  final DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesRegex?
-  regex;
+  final DataLossPreventionJobTriggerRegex? regex;
 
-  final DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesSensitivityScore?
-  sensitivityScore;
+  final DataLossPreventionJobTriggerSensitivityScore? sensitivityScore;
 
-  final DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesStoredType?
-  storedType;
+  final DataLossPreventionJobTriggerStoredType? storedType;
 
-  final DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesSurrogateType?
-  surrogateType;
+  final DataLossPreventionJobTriggerSurrogateType? surrogateType;
 
   Map<String, Object?> encode() => {
     'exclusion_type': ?exclusionType?.toTfJson(),
@@ -465,35 +399,31 @@ final class DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypes {
 }
 
 /// `likelihood` — derived from the provider schema description.
-enum DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesLikelihood
-    implements TerraformEnum {
+enum DataLossPreventionJobTriggerLikelihood implements TerraformEnum {
   veryUnlikely('VERY_UNLIKELY'),
   unlikely('UNLIKELY'),
   possible('POSSIBLE'),
   likely('LIKELY'),
   veryLikely('VERY_LIKELY');
 
-  const DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesLikelihood(
-    this.terraformValue,
-  );
+  const DataLossPreventionJobTriggerLikelihood(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `inspect_job.inspect_config.custom_info_types.dictionary` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesDictionary {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesDictionary({
+final class DataLossPreventionJobTriggerDictionary {
+  const DataLossPreventionJobTriggerDictionary({
     this.cloudStoragePath,
     this.wordList,
   });
 
-  final DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesDictionaryCloudStoragePath?
-  cloudStoragePath;
+  final DataLossPreventionJobTriggerCloudStoragePath? cloudStoragePath;
 
-  final DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesDictionaryWordList?
-  wordList;
+  final DataLossPreventionJobTriggerWordList? wordList;
 
   Map<String, Object?> encode() => {
     'cloud_storage_path': ?cloudStoragePath?.encode(),
@@ -503,11 +433,10 @@ final class DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesDi
 
 /// Typed helper for the `inspect_job.inspect_config.custom_info_types.dictionary.cloud_storage_path` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesDictionaryCloudStoragePath {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesDictionaryCloudStoragePath({
-    required this.path,
-  });
+final class DataLossPreventionJobTriggerCloudStoragePath {
+  const DataLossPreventionJobTriggerCloudStoragePath({required this.path});
 
   final TfArg<String> path;
 
@@ -516,11 +445,10 @@ final class DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesDi
 
 /// Typed helper for the `inspect_job.inspect_config.custom_info_types.dictionary.word_list` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesDictionaryWordList {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesDictionaryWordList({
-    required this.words,
-  });
+final class DataLossPreventionJobTriggerWordList {
+  const DataLossPreventionJobTriggerWordList({required this.words});
 
   final TfArg<List<String>> words;
 
@@ -529,9 +457,10 @@ final class DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesDi
 
 /// Typed helper for the `inspect_job.inspect_config.custom_info_types.info_type` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesInfoType {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesInfoType({
+final class DataLossPreventionJobTriggerInfoType {
+  const DataLossPreventionJobTriggerInfoType({
     required this.name,
     this.version,
     this.sensitivityScore,
@@ -541,8 +470,7 @@ final class DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesIn
 
   final TfArg<String>? version;
 
-  final DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesInfoTypeSensitivityScore?
-  sensitivityScore;
+  final DataLossPreventionJobTriggerSensitivityScore? sensitivityScore;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -551,41 +479,35 @@ final class DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesIn
   };
 }
 
-/// Typed helper for the `inspect_job.inspect_config.custom_info_types.info_type.sensitivity_score` block of
+/// Typed helper for the `inspect_job.inspect_config.custom_info_types.sensitivity_score` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesInfoTypeSensitivityScore {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesInfoTypeSensitivityScore({
-    required this.score,
-  });
+final class DataLossPreventionJobTriggerSensitivityScore {
+  const DataLossPreventionJobTriggerSensitivityScore({required this.score});
 
-  final TfArg<
-    DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesInfoTypeSensitivityScoreScore
-  >
-  score;
+  final TfArg<DataLossPreventionJobTriggerScore> score;
 
   Map<String, Object?> encode() => {'score': score.toTfJson()};
 }
 
 /// `score` — derived from the provider schema description.
-enum DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesInfoTypeSensitivityScoreScore
-    implements TerraformEnum {
+enum DataLossPreventionJobTriggerScore implements TerraformEnum {
   sensitivityLow('SENSITIVITY_LOW'),
   sensitivityModerate('SENSITIVITY_MODERATE'),
   sensitivityHigh('SENSITIVITY_HIGH');
 
-  const DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesInfoTypeSensitivityScoreScore(
-    this.terraformValue,
-  );
+  const DataLossPreventionJobTriggerScore(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `inspect_job.inspect_config.custom_info_types.regex` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesRegex {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesRegex({
+final class DataLossPreventionJobTriggerRegex {
+  const DataLossPreventionJobTriggerRegex({
     this.groupIndexes,
     required this.pattern,
   });
@@ -600,43 +522,11 @@ final class DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesRe
   };
 }
 
-/// Typed helper for the `inspect_job.inspect_config.custom_info_types.sensitivity_score` block of
-/// `google_data_loss_prevention_job_trigger` (derived from provider schema).
-@immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesSensitivityScore {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesSensitivityScore({
-    required this.score,
-  });
-
-  final TfArg<
-    DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesSensitivityScoreScore
-  >
-  score;
-
-  Map<String, Object?> encode() => {'score': score.toTfJson()};
-}
-
-/// `score` — derived from the provider schema description.
-enum DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesSensitivityScoreScore
-    implements TerraformEnum {
-  sensitivityLow('SENSITIVITY_LOW'),
-  sensitivityModerate('SENSITIVITY_MODERATE'),
-  sensitivityHigh('SENSITIVITY_HIGH');
-
-  const DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesSensitivityScoreScore(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `inspect_job.inspect_config.custom_info_types.stored_type` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesStoredType {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesStoredType({
-    required this.name,
-  });
+final class DataLossPreventionJobTriggerStoredType {
+  const DataLossPreventionJobTriggerStoredType({required this.name});
 
   final TfArg<String> name;
 
@@ -646,17 +536,18 @@ final class DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesSt
 /// Typed helper for the `inspect_job.inspect_config.custom_info_types.surrogate_type` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesSurrogateType {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigCustomInfoTypesSurrogateType();
+final class DataLossPreventionJobTriggerSurrogateType {
+  const DataLossPreventionJobTriggerSurrogateType();
 
   Map<String, Object?> encode() => {};
 }
 
 /// Typed helper for the `inspect_job.inspect_config.info_types` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigInfoTypes {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigInfoTypes({
+final class DataLossPreventionJobTriggerInfoTypes {
+  const DataLossPreventionJobTriggerInfoTypes({
     required this.name,
     this.version,
     this.sensitivityScore,
@@ -666,8 +557,7 @@ final class DataLossPreventionJobTriggerInspectJobInspectConfigInfoTypes {
 
   final TfArg<String>? version;
 
-  final DataLossPreventionJobTriggerInspectJobInspectConfigInfoTypesSensitivityScore?
-  sensitivityScore;
+  final DataLossPreventionJobTriggerSensitivityScore? sensitivityScore;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -676,41 +566,11 @@ final class DataLossPreventionJobTriggerInspectJobInspectConfigInfoTypes {
   };
 }
 
-/// Typed helper for the `inspect_job.inspect_config.info_types.sensitivity_score` block of
-/// `google_data_loss_prevention_job_trigger` (derived from provider schema).
-@immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigInfoTypesSensitivityScore {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigInfoTypesSensitivityScore({
-    required this.score,
-  });
-
-  final TfArg<
-    DataLossPreventionJobTriggerInspectJobInspectConfigInfoTypesSensitivityScoreScore
-  >
-  score;
-
-  Map<String, Object?> encode() => {'score': score.toTfJson()};
-}
-
-/// `score` — derived from the provider schema description.
-enum DataLossPreventionJobTriggerInspectJobInspectConfigInfoTypesSensitivityScoreScore
-    implements TerraformEnum {
-  sensitivityLow('SENSITIVITY_LOW'),
-  sensitivityModerate('SENSITIVITY_MODERATE'),
-  sensitivityHigh('SENSITIVITY_HIGH');
-
-  const DataLossPreventionJobTriggerInspectJobInspectConfigInfoTypesSensitivityScoreScore(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `inspect_job.inspect_config.limits` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigLimits {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigLimits({
+final class DataLossPreventionJobTriggerLimits {
+  const DataLossPreventionJobTriggerLimits({
     this.maxFindingsPerItem,
     this.maxFindingsPerRequest,
     this.maxFindingsPerInfoType,
@@ -720,9 +580,7 @@ final class DataLossPreventionJobTriggerInspectJobInspectConfigLimits {
 
   final TfArg<num>? maxFindingsPerRequest;
 
-  final List<
-    DataLossPreventionJobTriggerInspectJobInspectConfigLimitsMaxFindingsPerInfoType
-  >?
+  final List<DataLossPreventionJobTriggerMaxFindingsPerInfoType>?
   maxFindingsPerInfoType;
 
   Map<String, Object?> encode() => {
@@ -738,16 +596,15 @@ final class DataLossPreventionJobTriggerInspectJobInspectConfigLimits {
 /// Typed helper for the `inspect_job.inspect_config.limits.max_findings_per_info_type` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigLimitsMaxFindingsPerInfoType {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigLimitsMaxFindingsPerInfoType({
+final class DataLossPreventionJobTriggerMaxFindingsPerInfoType {
+  const DataLossPreventionJobTriggerMaxFindingsPerInfoType({
     this.maxFindings,
     this.infoType,
   });
 
   final TfArg<num>? maxFindings;
 
-  final DataLossPreventionJobTriggerInspectJobInspectConfigLimitsMaxFindingsPerInfoTypeInfoType?
-  infoType;
+  final DataLossPreventionJobTriggerInfoType? infoType;
 
   Map<String, Object?> encode() => {
     'max_findings': ?maxFindings?.toTfJson(),
@@ -755,76 +612,18 @@ final class DataLossPreventionJobTriggerInspectJobInspectConfigLimitsMaxFindings
   };
 }
 
-/// Typed helper for the `inspect_job.inspect_config.limits.max_findings_per_info_type.info_type` block of
-/// `google_data_loss_prevention_job_trigger` (derived from provider schema).
-@immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigLimitsMaxFindingsPerInfoTypeInfoType {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigLimitsMaxFindingsPerInfoTypeInfoType({
-    required this.name,
-    this.version,
-    this.sensitivityScore,
-  });
-
-  final TfArg<String> name;
-
-  final TfArg<String>? version;
-
-  final DataLossPreventionJobTriggerInspectJobInspectConfigLimitsMaxFindingsPerInfoTypeInfoTypeSensitivityScore?
-  sensitivityScore;
-
-  Map<String, Object?> encode() => {
-    'name': name.toTfJson(),
-    'version': ?version?.toTfJson(),
-    'sensitivity_score': ?sensitivityScore?.encode(),
-  };
-}
-
-/// Typed helper for the `inspect_job.inspect_config.limits.max_findings_per_info_type.info_type.sensitivity_score` block of
-/// `google_data_loss_prevention_job_trigger` (derived from provider schema).
-@immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigLimitsMaxFindingsPerInfoTypeInfoTypeSensitivityScore {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigLimitsMaxFindingsPerInfoTypeInfoTypeSensitivityScore({
-    required this.score,
-  });
-
-  final TfArg<
-    DataLossPreventionJobTriggerInspectJobInspectConfigLimitsMaxFindingsPerInfoTypeInfoTypeSensitivityScoreScore
-  >
-  score;
-
-  Map<String, Object?> encode() => {'score': score.toTfJson()};
-}
-
-/// `score` — derived from the provider schema description.
-enum DataLossPreventionJobTriggerInspectJobInspectConfigLimitsMaxFindingsPerInfoTypeInfoTypeSensitivityScoreScore
-    implements TerraformEnum {
-  sensitivityLow('SENSITIVITY_LOW'),
-  sensitivityModerate('SENSITIVITY_MODERATE'),
-  sensitivityHigh('SENSITIVITY_HIGH');
-
-  const DataLossPreventionJobTriggerInspectJobInspectConfigLimitsMaxFindingsPerInfoTypeInfoTypeSensitivityScoreScore(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `inspect_job.inspect_config.rule_set` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigRuleSet {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigRuleSet({
+final class DataLossPreventionJobTriggerRuleSet {
+  const DataLossPreventionJobTriggerRuleSet({
     this.infoTypes,
     required this.rules,
   });
 
-  final List<
-    DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetInfoTypes
-  >?
-  infoTypes;
+  final List<DataLossPreventionJobTriggerInfoTypes>? infoTypes;
 
-  final List<DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRules>
-  rules;
+  final List<DataLossPreventionJobTriggerRules> rules;
 
   Map<String, Object?> encode() => {
     if (infoTypes != null)
@@ -833,74 +632,18 @@ final class DataLossPreventionJobTriggerInspectJobInspectConfigRuleSet {
   };
 }
 
-/// Typed helper for the `inspect_job.inspect_config.rule_set.info_types` block of
-/// `google_data_loss_prevention_job_trigger` (derived from provider schema).
-@immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetInfoTypes {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetInfoTypes({
-    required this.name,
-    this.version,
-    this.sensitivityScore,
-  });
-
-  final TfArg<String> name;
-
-  final TfArg<String>? version;
-
-  final DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetInfoTypesSensitivityScore?
-  sensitivityScore;
-
-  Map<String, Object?> encode() => {
-    'name': name.toTfJson(),
-    'version': ?version?.toTfJson(),
-    'sensitivity_score': ?sensitivityScore?.encode(),
-  };
-}
-
-/// Typed helper for the `inspect_job.inspect_config.rule_set.info_types.sensitivity_score` block of
-/// `google_data_loss_prevention_job_trigger` (derived from provider schema).
-@immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetInfoTypesSensitivityScore {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetInfoTypesSensitivityScore({
-    required this.score,
-  });
-
-  final TfArg<
-    DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetInfoTypesSensitivityScoreScore
-  >
-  score;
-
-  Map<String, Object?> encode() => {'score': score.toTfJson()};
-}
-
-/// `score` — derived from the provider schema description.
-enum DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetInfoTypesSensitivityScoreScore
-    implements TerraformEnum {
-  sensitivityLow('SENSITIVITY_LOW'),
-  sensitivityModerate('SENSITIVITY_MODERATE'),
-  sensitivityHigh('SENSITIVITY_HIGH');
-
-  const DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetInfoTypesSensitivityScoreScore(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `inspect_job.inspect_config.rule_set.rules` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRules {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRules({
+final class DataLossPreventionJobTriggerRules {
+  const DataLossPreventionJobTriggerRules({
     this.exclusionRule,
     this.hotwordRule,
   });
 
-  final DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRule?
-  exclusionRule;
+  final DataLossPreventionJobTriggerExclusionRule? exclusionRule;
 
-  final DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesHotwordRule?
-  hotwordRule;
+  final DataLossPreventionJobTriggerHotwordRule? hotwordRule;
 
   Map<String, Object?> encode() => {
     'exclusion_rule': ?exclusionRule?.encode(),
@@ -911,8 +654,8 @@ final class DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRules {
 /// Typed helper for the `inspect_job.inspect_config.rule_set.rules.exclusion_rule` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRule {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRule({
+final class DataLossPreventionJobTriggerExclusionRule {
+  const DataLossPreventionJobTriggerExclusionRule({
     required this.matchingType,
     this.dictionary,
     this.excludeByHotword,
@@ -920,22 +663,15 @@ final class DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclu
     this.regex,
   });
 
-  final TfArg<
-    DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleMatchingType
-  >
-  matchingType;
+  final TfArg<DataLossPreventionJobTriggerMatchingType> matchingType;
 
-  final DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleDictionary?
-  dictionary;
+  final DataLossPreventionJobTriggerDictionary? dictionary;
 
-  final DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleExcludeByHotword?
-  excludeByHotword;
+  final DataLossPreventionJobTriggerExcludeByHotword? excludeByHotword;
 
-  final DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleExcludeInfoTypes?
-  excludeInfoTypes;
+  final DataLossPreventionJobTriggerExcludeInfoTypes? excludeInfoTypes;
 
-  final DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleRegex?
-  regex;
+  final DataLossPreventionJobTriggerRegex? regex;
 
   Map<String, Object?> encode() => {
     'matching_type': matchingType.toTfJson(),
@@ -947,80 +683,28 @@ final class DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclu
 }
 
 /// `matching_type` — derived from the provider schema description.
-enum DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleMatchingType
-    implements TerraformEnum {
+enum DataLossPreventionJobTriggerMatchingType implements TerraformEnum {
   matchingTypeFullMatch('MATCHING_TYPE_FULL_MATCH'),
   matchingTypePartialMatch('MATCHING_TYPE_PARTIAL_MATCH'),
   matchingTypeInverseMatch('MATCHING_TYPE_INVERSE_MATCH');
 
-  const DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleMatchingType(
-    this.terraformValue,
-  );
+  const DataLossPreventionJobTriggerMatchingType(this.terraformValue);
   @override
   final String terraformValue;
-}
-
-/// Typed helper for the `inspect_job.inspect_config.rule_set.rules.exclusion_rule.dictionary` block of
-/// `google_data_loss_prevention_job_trigger` (derived from provider schema).
-@immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleDictionary {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleDictionary({
-    this.cloudStoragePath,
-    this.wordList,
-  });
-
-  final DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleDictionaryCloudStoragePath?
-  cloudStoragePath;
-
-  final DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleDictionaryWordList?
-  wordList;
-
-  Map<String, Object?> encode() => {
-    'cloud_storage_path': ?cloudStoragePath?.encode(),
-    'word_list': ?wordList?.encode(),
-  };
-}
-
-/// Typed helper for the `inspect_job.inspect_config.rule_set.rules.exclusion_rule.dictionary.cloud_storage_path` block of
-/// `google_data_loss_prevention_job_trigger` (derived from provider schema).
-@immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleDictionaryCloudStoragePath {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleDictionaryCloudStoragePath({
-    required this.path,
-  });
-
-  final TfArg<String> path;
-
-  Map<String, Object?> encode() => {'path': path.toTfJson()};
-}
-
-/// Typed helper for the `inspect_job.inspect_config.rule_set.rules.exclusion_rule.dictionary.word_list` block of
-/// `google_data_loss_prevention_job_trigger` (derived from provider schema).
-@immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleDictionaryWordList {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleDictionaryWordList({
-    required this.words,
-  });
-
-  final TfArg<List<String>> words;
-
-  Map<String, Object?> encode() => {'words': words.toTfJson()};
 }
 
 /// Typed helper for the `inspect_job.inspect_config.rule_set.rules.exclusion_rule.exclude_by_hotword` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleExcludeByHotword {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleExcludeByHotword({
+final class DataLossPreventionJobTriggerExcludeByHotword {
+  const DataLossPreventionJobTriggerExcludeByHotword({
     this.hotwordRegex,
     this.proximity,
   });
 
-  final DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleExcludeByHotwordHotwordRegex?
-  hotwordRegex;
+  final DataLossPreventionJobTriggerHotwordRegex? hotwordRegex;
 
-  final DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleExcludeByHotwordProximity?
-  proximity;
+  final DataLossPreventionJobTriggerProximity? proximity;
 
   Map<String, Object?> encode() => {
     'hotword_regex': ?hotwordRegex?.encode(),
@@ -1028,11 +712,12 @@ final class DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclu
   };
 }
 
-/// Typed helper for the `inspect_job.inspect_config.rule_set.rules.exclusion_rule.exclude_by_hotword.hotword_regex` block of
+/// Typed helper for the `inspect_job.inspect_config.rule_set.rules.hotword_rule.hotword_regex` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleExcludeByHotwordHotwordRegex {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleExcludeByHotwordHotwordRegex({
+final class DataLossPreventionJobTriggerHotwordRegex {
+  const DataLossPreventionJobTriggerHotwordRegex({
     this.groupIndexes,
     this.pattern,
   });
@@ -1047,11 +732,12 @@ final class DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclu
   };
 }
 
-/// Typed helper for the `inspect_job.inspect_config.rule_set.rules.exclusion_rule.exclude_by_hotword.proximity` block of
+/// Typed helper for the `inspect_job.inspect_config.rule_set.rules.hotword_rule.proximity` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleExcludeByHotwordProximity {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleExcludeByHotwordProximity({
+final class DataLossPreventionJobTriggerProximity {
+  const DataLossPreventionJobTriggerProximity({
     this.windowAfter,
     this.windowBefore,
   });
@@ -1069,112 +755,31 @@ final class DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclu
 /// Typed helper for the `inspect_job.inspect_config.rule_set.rules.exclusion_rule.exclude_info_types` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleExcludeInfoTypes {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleExcludeInfoTypes({
-    required this.infoTypes,
-  });
+final class DataLossPreventionJobTriggerExcludeInfoTypes {
+  const DataLossPreventionJobTriggerExcludeInfoTypes({required this.infoTypes});
 
-  final List<
-    DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleExcludeInfoTypesInfoTypes
-  >
-  infoTypes;
+  final List<DataLossPreventionJobTriggerInfoTypes> infoTypes;
 
   Map<String, Object?> encode() => {
     'info_types': [for (final e in infoTypes) e.encode()],
   };
 }
 
-/// Typed helper for the `inspect_job.inspect_config.rule_set.rules.exclusion_rule.exclude_info_types.info_types` block of
-/// `google_data_loss_prevention_job_trigger` (derived from provider schema).
-@immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleExcludeInfoTypesInfoTypes {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleExcludeInfoTypesInfoTypes({
-    required this.name,
-    this.version,
-    this.sensitivityScore,
-  });
-
-  final TfArg<String> name;
-
-  final TfArg<String>? version;
-
-  final DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleExcludeInfoTypesInfoTypesSensitivityScore?
-  sensitivityScore;
-
-  Map<String, Object?> encode() => {
-    'name': name.toTfJson(),
-    'version': ?version?.toTfJson(),
-    'sensitivity_score': ?sensitivityScore?.encode(),
-  };
-}
-
-/// Typed helper for the `inspect_job.inspect_config.rule_set.rules.exclusion_rule.exclude_info_types.info_types.sensitivity_score` block of
-/// `google_data_loss_prevention_job_trigger` (derived from provider schema).
-@immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleExcludeInfoTypesInfoTypesSensitivityScore {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleExcludeInfoTypesInfoTypesSensitivityScore({
-    required this.score,
-  });
-
-  final TfArg<
-    DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleExcludeInfoTypesInfoTypesSensitivityScoreScore
-  >
-  score;
-
-  Map<String, Object?> encode() => {'score': score.toTfJson()};
-}
-
-/// `score` — derived from the provider schema description.
-enum DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleExcludeInfoTypesInfoTypesSensitivityScoreScore
-    implements TerraformEnum {
-  sensitivityLow('SENSITIVITY_LOW'),
-  sensitivityModerate('SENSITIVITY_MODERATE'),
-  sensitivityHigh('SENSITIVITY_HIGH');
-
-  const DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleExcludeInfoTypesInfoTypesSensitivityScoreScore(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `inspect_job.inspect_config.rule_set.rules.exclusion_rule.regex` block of
-/// `google_data_loss_prevention_job_trigger` (derived from provider schema).
-@immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleRegex {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesExclusionRuleRegex({
-    this.groupIndexes,
-    required this.pattern,
-  });
-
-  final TfArg<List<num>>? groupIndexes;
-
-  final TfArg<String> pattern;
-
-  Map<String, Object?> encode() => {
-    'group_indexes': ?groupIndexes?.toTfJson(),
-    'pattern': pattern.toTfJson(),
-  };
-}
-
 /// Typed helper for the `inspect_job.inspect_config.rule_set.rules.hotword_rule` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesHotwordRule {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesHotwordRule({
+final class DataLossPreventionJobTriggerHotwordRule {
+  const DataLossPreventionJobTriggerHotwordRule({
     this.hotwordRegex,
     this.likelihoodAdjustment,
     this.proximity,
   });
 
-  final DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesHotwordRuleHotwordRegex?
-  hotwordRegex;
+  final DataLossPreventionJobTriggerHotwordRegex? hotwordRegex;
 
-  final DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesHotwordRuleLikelihoodAdjustment?
-  likelihoodAdjustment;
+  final DataLossPreventionJobTriggerLikelihoodAdjustment? likelihoodAdjustment;
 
-  final DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesHotwordRuleProximity?
-  proximity;
+  final DataLossPreventionJobTriggerProximity? proximity;
 
   Map<String, Object?> encode() => {
     'hotword_regex': ?hotwordRegex?.encode(),
@@ -1183,38 +788,16 @@ final class DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesHotwo
   };
 }
 
-/// Typed helper for the `inspect_job.inspect_config.rule_set.rules.hotword_rule.hotword_regex` block of
-/// `google_data_loss_prevention_job_trigger` (derived from provider schema).
-@immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesHotwordRuleHotwordRegex {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesHotwordRuleHotwordRegex({
-    this.groupIndexes,
-    this.pattern,
-  });
-
-  final TfArg<List<num>>? groupIndexes;
-
-  final TfArg<String>? pattern;
-
-  Map<String, Object?> encode() => {
-    'group_indexes': ?groupIndexes?.toTfJson(),
-    'pattern': ?pattern?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `inspect_job.inspect_config.rule_set.rules.hotword_rule.likelihood_adjustment` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesHotwordRuleLikelihoodAdjustment {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesHotwordRuleLikelihoodAdjustment({
+final class DataLossPreventionJobTriggerLikelihoodAdjustment {
+  const DataLossPreventionJobTriggerLikelihoodAdjustment({
     this.fixedLikelihood,
     this.relativeLikelihood,
   });
 
-  final TfArg<
-    DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesHotwordRuleLikelihoodAdjustmentFixedLikelihood
-  >?
-  fixedLikelihood;
+  final TfArg<DataLossPreventionJobTriggerFixedLikelihood>? fixedLikelihood;
 
   final TfArg<num>? relativeLikelihood;
 
@@ -1225,45 +808,23 @@ final class DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesHotwo
 }
 
 /// `fixed_likelihood` — derived from the provider schema description.
-enum DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesHotwordRuleLikelihoodAdjustmentFixedLikelihood
-    implements TerraformEnum {
+enum DataLossPreventionJobTriggerFixedLikelihood implements TerraformEnum {
   veryUnlikely('VERY_UNLIKELY'),
   unlikely('UNLIKELY'),
   possible('POSSIBLE'),
   likely('LIKELY'),
   veryLikely('VERY_LIKELY');
 
-  const DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesHotwordRuleLikelihoodAdjustmentFixedLikelihood(
-    this.terraformValue,
-  );
+  const DataLossPreventionJobTriggerFixedLikelihood(this.terraformValue);
   @override
   final String terraformValue;
-}
-
-/// Typed helper for the `inspect_job.inspect_config.rule_set.rules.hotword_rule.proximity` block of
-/// `google_data_loss_prevention_job_trigger` (derived from provider schema).
-@immutable
-final class DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesHotwordRuleProximity {
-  const DataLossPreventionJobTriggerInspectJobInspectConfigRuleSetRulesHotwordRuleProximity({
-    this.windowAfter,
-    this.windowBefore,
-  });
-
-  final TfArg<num>? windowAfter;
-
-  final TfArg<num>? windowBefore;
-
-  Map<String, Object?> encode() => {
-    'window_after': ?windowAfter?.toTfJson(),
-    'window_before': ?windowBefore?.toTfJson(),
-  };
 }
 
 /// Typed helper for the `inspect_job.storage_config` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobStorageConfig {
-  const DataLossPreventionJobTriggerInspectJobStorageConfig({
+final class DataLossPreventionJobTriggerStorageConfig {
+  const DataLossPreventionJobTriggerStorageConfig({
     this.bigQueryOptions,
     this.cloudStorageOptions,
     this.datastoreOptions,
@@ -1271,20 +832,15 @@ final class DataLossPreventionJobTriggerInspectJobStorageConfig {
     this.timespanConfig,
   });
 
-  final DataLossPreventionJobTriggerInspectJobStorageConfigBigQueryOptions?
-  bigQueryOptions;
+  final DataLossPreventionJobTriggerBigQueryOptions? bigQueryOptions;
 
-  final DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptions?
-  cloudStorageOptions;
+  final DataLossPreventionJobTriggerCloudStorageOptions? cloudStorageOptions;
 
-  final DataLossPreventionJobTriggerInspectJobStorageConfigDatastoreOptions?
-  datastoreOptions;
+  final DataLossPreventionJobTriggerDatastoreOptions? datastoreOptions;
 
-  final DataLossPreventionJobTriggerInspectJobStorageConfigHybridOptions?
-  hybridOptions;
+  final DataLossPreventionJobTriggerHybridOptions? hybridOptions;
 
-  final DataLossPreventionJobTriggerInspectJobStorageConfigTimespanConfig?
-  timespanConfig;
+  final DataLossPreventionJobTriggerTimespanConfig? timespanConfig;
 
   Map<String, Object?> encode() => {
     'big_query_options': ?bigQueryOptions?.encode(),
@@ -1298,8 +854,8 @@ final class DataLossPreventionJobTriggerInspectJobStorageConfig {
 /// Typed helper for the `inspect_job.storage_config.big_query_options` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobStorageConfigBigQueryOptions {
-  const DataLossPreventionJobTriggerInspectJobStorageConfigBigQueryOptions({
+final class DataLossPreventionJobTriggerBigQueryOptions {
+  const DataLossPreventionJobTriggerBigQueryOptions({
     this.rowsLimit,
     this.rowsLimitPercent,
     this.sampleMethod,
@@ -1313,28 +869,15 @@ final class DataLossPreventionJobTriggerInspectJobStorageConfigBigQueryOptions {
 
   final TfArg<num>? rowsLimitPercent;
 
-  final TfArg<
-    DataLossPreventionJobTriggerInspectJobStorageConfigBigQueryOptionsSampleMethod
-  >?
-  sampleMethod;
+  final TfArg<DataLossPreventionJobTriggerSampleMethod>? sampleMethod;
 
-  final List<
-    DataLossPreventionJobTriggerInspectJobStorageConfigBigQueryOptionsExcludedFields
-  >?
-  excludedFields;
+  final List<DataLossPreventionJobTriggerExcludedFields>? excludedFields;
 
-  final List<
-    DataLossPreventionJobTriggerInspectJobStorageConfigBigQueryOptionsIdentifyingFields
-  >?
-  identifyingFields;
+  final List<DataLossPreventionJobTriggerIdentifyingFields>? identifyingFields;
 
-  final List<
-    DataLossPreventionJobTriggerInspectJobStorageConfigBigQueryOptionsIncludedFields
-  >?
-  includedFields;
+  final List<DataLossPreventionJobTriggerIncludedFields>? includedFields;
 
-  final DataLossPreventionJobTriggerInspectJobStorageConfigBigQueryOptionsTableReference
-  tableReference;
+  final DataLossPreventionJobTriggerTableReference tableReference;
 
   Map<String, Object?> encode() => {
     'rows_limit': ?rowsLimit?.toTfJson(),
@@ -1351,14 +894,11 @@ final class DataLossPreventionJobTriggerInspectJobStorageConfigBigQueryOptions {
 }
 
 /// `sample_method` — derived from the provider schema description.
-enum DataLossPreventionJobTriggerInspectJobStorageConfigBigQueryOptionsSampleMethod
-    implements TerraformEnum {
+enum DataLossPreventionJobTriggerSampleMethod implements TerraformEnum {
   top('TOP'),
   randomStart('RANDOM_START');
 
-  const DataLossPreventionJobTriggerInspectJobStorageConfigBigQueryOptionsSampleMethod(
-    this.terraformValue,
-  );
+  const DataLossPreventionJobTriggerSampleMethod(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1366,10 +906,8 @@ enum DataLossPreventionJobTriggerInspectJobStorageConfigBigQueryOptionsSampleMet
 /// Typed helper for the `inspect_job.storage_config.big_query_options.excluded_fields` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobStorageConfigBigQueryOptionsExcludedFields {
-  const DataLossPreventionJobTriggerInspectJobStorageConfigBigQueryOptionsExcludedFields({
-    required this.name,
-  });
+final class DataLossPreventionJobTriggerExcludedFields {
+  const DataLossPreventionJobTriggerExcludedFields({required this.name});
 
   final TfArg<String> name;
 
@@ -1378,11 +916,10 @@ final class DataLossPreventionJobTriggerInspectJobStorageConfigBigQueryOptionsEx
 
 /// Typed helper for the `inspect_job.storage_config.big_query_options.identifying_fields` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionJobTriggerInspectJobStorageConfigBigQueryOptionsIdentifyingFields {
-  const DataLossPreventionJobTriggerInspectJobStorageConfigBigQueryOptionsIdentifyingFields({
-    required this.name,
-  });
+final class DataLossPreventionJobTriggerIdentifyingFields {
+  const DataLossPreventionJobTriggerIdentifyingFields({required this.name});
 
   final TfArg<String> name;
 
@@ -1392,10 +929,8 @@ final class DataLossPreventionJobTriggerInspectJobStorageConfigBigQueryOptionsId
 /// Typed helper for the `inspect_job.storage_config.big_query_options.included_fields` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobStorageConfigBigQueryOptionsIncludedFields {
-  const DataLossPreventionJobTriggerInspectJobStorageConfigBigQueryOptionsIncludedFields({
-    required this.name,
-  });
+final class DataLossPreventionJobTriggerIncludedFields {
+  const DataLossPreventionJobTriggerIncludedFields({required this.name});
 
   final TfArg<String> name;
 
@@ -1405,8 +940,8 @@ final class DataLossPreventionJobTriggerInspectJobStorageConfigBigQueryOptionsIn
 /// Typed helper for the `inspect_job.storage_config.big_query_options.table_reference` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobStorageConfigBigQueryOptionsTableReference {
-  const DataLossPreventionJobTriggerInspectJobStorageConfigBigQueryOptionsTableReference({
+final class DataLossPreventionJobTriggerTableReference {
+  const DataLossPreventionJobTriggerTableReference({
     required this.datasetId,
     required this.projectId,
     required this.tableId,
@@ -1428,8 +963,8 @@ final class DataLossPreventionJobTriggerInspectJobStorageConfigBigQueryOptionsTa
 /// Typed helper for the `inspect_job.storage_config.cloud_storage_options` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptions {
-  const DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptions({
+final class DataLossPreventionJobTriggerCloudStorageOptions {
+  const DataLossPreventionJobTriggerCloudStorageOptions({
     this.bytesLimitPerFile,
     this.bytesLimitPerFilePercent,
     this.fileTypes,
@@ -1442,22 +977,13 @@ final class DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptio
 
   final TfArg<num>? bytesLimitPerFilePercent;
 
-  final List<
-    TfArg<
-      DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsFileTypes
-    >
-  >?
-  fileTypes;
+  final List<TfArg<DataLossPreventionJobTriggerFileTypes>>? fileTypes;
 
   final TfArg<num>? filesLimitPercent;
 
-  final TfArg<
-    DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsSampleMethod
-  >?
-  sampleMethod;
+  final TfArg<DataLossPreventionJobTriggerSampleMethod>? sampleMethod;
 
-  final DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsFileSet
-  fileSet;
+  final DataLossPreventionJobTriggerFileSet fileSet;
 
   Map<String, Object?> encode() => {
     'bytes_limit_per_file': ?bytesLimitPerFile?.toTfJson(),
@@ -1471,8 +997,7 @@ final class DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptio
 }
 
 /// `file_types` — derived from the provider schema description.
-enum DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsFileTypes
-    implements TerraformEnum {
+enum DataLossPreventionJobTriggerFileTypes implements TerraformEnum {
   binaryFile('BINARY_FILE'),
   textFile('TEXT_FILE'),
   image('IMAGE'),
@@ -1484,22 +1009,7 @@ enum DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsFileT
   powerpoint('POWERPOINT'),
   excel('EXCEL');
 
-  const DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsFileTypes(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `sample_method` — derived from the provider schema description.
-enum DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsSampleMethod
-    implements TerraformEnum {
-  top('TOP'),
-  randomStart('RANDOM_START');
-
-  const DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsSampleMethod(
-    this.terraformValue,
-  );
+  const DataLossPreventionJobTriggerFileTypes(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1508,19 +1018,17 @@ enum DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsSampl
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.url(...)`.
-sealed class DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsFileSet {
-  const DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsFileSet();
+sealed class DataLossPreventionJobTriggerFileSet {
+  const DataLossPreventionJobTriggerFileSet();
 
   /// Sets `url`.
-  const factory DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsFileSet.url(
-    TfArg<String> url,
-  ) = DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsFileSetUrl;
+  const factory DataLossPreventionJobTriggerFileSet.url(TfArg<String> url) =
+      DataLossPreventionJobTriggerFileSetUrl;
 
   /// Sets `regex_file_set`.
-  const factory DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsFileSet.regexFileSet(
-    DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsFileSetRegexFileSet
-    regexFileSet,
-  ) = DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsFileSetRegexFileSetChoice;
+  const factory DataLossPreventionJobTriggerFileSet.regexFileSet(
+    DataLossPreventionJobTriggerRegexFileSet regexFileSet,
+  ) = DataLossPreventionJobTriggerRegexFileSetChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1528,13 +1036,10 @@ sealed class DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOpti
   Map<String, Object?> encode();
 }
 
-/// The [DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsFileSet.url] choice: sets `url`.
-final class DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsFileSetUrl
-    extends
-        DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsFileSet {
-  const DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsFileSetUrl(
-    this.url,
-  );
+/// The [DataLossPreventionJobTriggerFileSet.url] choice: sets `url`.
+final class DataLossPreventionJobTriggerFileSetUrl
+    extends DataLossPreventionJobTriggerFileSet {
+  const DataLossPreventionJobTriggerFileSetUrl(this.url);
 
   final TfArg<String> url;
 
@@ -1545,16 +1050,12 @@ final class DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptio
   Map<String, Object?> encode() => {'url': url.toTfJson()};
 }
 
-/// The [DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsFileSet.regexFileSet] choice: sets `regex_file_set`.
-final class DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsFileSetRegexFileSetChoice
-    extends
-        DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsFileSet {
-  const DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsFileSetRegexFileSetChoice(
-    this.regexFileSet,
-  );
+/// The [DataLossPreventionJobTriggerFileSet.regexFileSet] choice: sets `regex_file_set`.
+final class DataLossPreventionJobTriggerRegexFileSetChoice
+    extends DataLossPreventionJobTriggerFileSet {
+  const DataLossPreventionJobTriggerRegexFileSetChoice(this.regexFileSet);
 
-  final DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsFileSetRegexFileSet
-  regexFileSet;
+  final DataLossPreventionJobTriggerRegexFileSet regexFileSet;
 
   @override
   String get blockKey => 'regex_file_set';
@@ -1566,8 +1067,8 @@ final class DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptio
 /// Typed helper for the `inspect_job.storage_config.cloud_storage_options.file_set.regex_file_set` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsFileSetRegexFileSet {
-  const DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsFileSetRegexFileSet({
+final class DataLossPreventionJobTriggerRegexFileSet {
+  const DataLossPreventionJobTriggerRegexFileSet({
     required this.bucketName,
     this.excludeRegex,
     this.includeRegex,
@@ -1589,17 +1090,15 @@ final class DataLossPreventionJobTriggerInspectJobStorageConfigCloudStorageOptio
 /// Typed helper for the `inspect_job.storage_config.datastore_options` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobStorageConfigDatastoreOptions {
-  const DataLossPreventionJobTriggerInspectJobStorageConfigDatastoreOptions({
+final class DataLossPreventionJobTriggerDatastoreOptions {
+  const DataLossPreventionJobTriggerDatastoreOptions({
     required this.kind,
     required this.partitionId,
   });
 
-  final DataLossPreventionJobTriggerInspectJobStorageConfigDatastoreOptionsKind
-  kind;
+  final DataLossPreventionJobTriggerKind kind;
 
-  final DataLossPreventionJobTriggerInspectJobStorageConfigDatastoreOptionsPartitionId
-  partitionId;
+  final DataLossPreventionJobTriggerPartitionId partitionId;
 
   Map<String, Object?> encode() => {
     'kind': kind.encode(),
@@ -1610,10 +1109,8 @@ final class DataLossPreventionJobTriggerInspectJobStorageConfigDatastoreOptions 
 /// Typed helper for the `inspect_job.storage_config.datastore_options.kind` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobStorageConfigDatastoreOptionsKind {
-  const DataLossPreventionJobTriggerInspectJobStorageConfigDatastoreOptionsKind({
-    required this.name,
-  });
+final class DataLossPreventionJobTriggerKind {
+  const DataLossPreventionJobTriggerKind({required this.name});
 
   final TfArg<String> name;
 
@@ -1623,8 +1120,8 @@ final class DataLossPreventionJobTriggerInspectJobStorageConfigDatastoreOptionsK
 /// Typed helper for the `inspect_job.storage_config.datastore_options.partition_id` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobStorageConfigDatastoreOptionsPartitionId {
-  const DataLossPreventionJobTriggerInspectJobStorageConfigDatastoreOptionsPartitionId({
+final class DataLossPreventionJobTriggerPartitionId {
+  const DataLossPreventionJobTriggerPartitionId({
     this.namespaceId,
     required this.projectId,
   });
@@ -1642,8 +1139,8 @@ final class DataLossPreventionJobTriggerInspectJobStorageConfigDatastoreOptionsP
 /// Typed helper for the `inspect_job.storage_config.hybrid_options` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobStorageConfigHybridOptions {
-  const DataLossPreventionJobTriggerInspectJobStorageConfigHybridOptions({
+final class DataLossPreventionJobTriggerHybridOptions {
+  const DataLossPreventionJobTriggerHybridOptions({
     this.description,
     this.labels,
     this.requiredFindingLabelKeys,
@@ -1656,8 +1153,7 @@ final class DataLossPreventionJobTriggerInspectJobStorageConfigHybridOptions {
 
   final TfArg<List<String>>? requiredFindingLabelKeys;
 
-  final DataLossPreventionJobTriggerInspectJobStorageConfigHybridOptionsTableOptions?
-  tableOptions;
+  final DataLossPreventionJobTriggerTableOptions? tableOptions;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -1670,15 +1166,10 @@ final class DataLossPreventionJobTriggerInspectJobStorageConfigHybridOptions {
 /// Typed helper for the `inspect_job.storage_config.hybrid_options.table_options` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobStorageConfigHybridOptionsTableOptions {
-  const DataLossPreventionJobTriggerInspectJobStorageConfigHybridOptionsTableOptions({
-    this.identifyingFields,
-  });
+final class DataLossPreventionJobTriggerTableOptions {
+  const DataLossPreventionJobTriggerTableOptions({this.identifyingFields});
 
-  final List<
-    DataLossPreventionJobTriggerInspectJobStorageConfigHybridOptionsTableOptionsIdentifyingFields
-  >?
-  identifyingFields;
+  final List<DataLossPreventionJobTriggerIdentifyingFields>? identifyingFields;
 
   Map<String, Object?> encode() => {
     if (identifyingFields != null)
@@ -1686,36 +1177,21 @@ final class DataLossPreventionJobTriggerInspectJobStorageConfigHybridOptionsTabl
   };
 }
 
-/// Typed helper for the `inspect_job.storage_config.hybrid_options.table_options.identifying_fields` block of
-/// `google_data_loss_prevention_job_trigger` (derived from provider schema).
-@immutable
-final class DataLossPreventionJobTriggerInspectJobStorageConfigHybridOptionsTableOptionsIdentifyingFields {
-  const DataLossPreventionJobTriggerInspectJobStorageConfigHybridOptionsTableOptionsIdentifyingFields({
-    required this.name,
-  });
-
-  final TfArg<String> name;
-
-  Map<String, Object?> encode() => {'name': name.toTfJson()};
-}
-
 /// Typed helper for the `inspect_job.storage_config.timespan_config` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobStorageConfigTimespanConfig {
-  const DataLossPreventionJobTriggerInspectJobStorageConfigTimespanConfig({
+final class DataLossPreventionJobTriggerTimespanConfig {
+  const DataLossPreventionJobTriggerTimespanConfig({
     this.start,
     this.endTime,
     this.timestampField,
   });
 
-  final DataLossPreventionJobTriggerInspectJobStorageConfigTimespanConfigStart?
-  start;
+  final DataLossPreventionJobTriggerStart? start;
 
   final TfArg<String>? endTime;
 
-  final DataLossPreventionJobTriggerInspectJobStorageConfigTimespanConfigTimestampField?
-  timestampField;
+  final DataLossPreventionJobTriggerTimestampField? timestampField;
 
   Map<String, Object?> encode() => {
     ...?start?.encode(),
@@ -1729,18 +1205,18 @@ final class DataLossPreventionJobTriggerInspectJobStorageConfigTimespanConfig {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.startTime(...)`.
-sealed class DataLossPreventionJobTriggerInspectJobStorageConfigTimespanConfigStart {
-  const DataLossPreventionJobTriggerInspectJobStorageConfigTimespanConfigStart();
+sealed class DataLossPreventionJobTriggerStart {
+  const DataLossPreventionJobTriggerStart();
 
   /// Sets `start_time`.
-  const factory DataLossPreventionJobTriggerInspectJobStorageConfigTimespanConfigStart.startTime(
+  const factory DataLossPreventionJobTriggerStart.startTime(
     TfArg<String> startTime,
-  ) = DataLossPreventionJobTriggerInspectJobStorageConfigTimespanConfigStartTime;
+  ) = DataLossPreventionJobTriggerStartTime;
 
   /// Sets `enable_auto_population_of_timespan_config`.
-  const factory DataLossPreventionJobTriggerInspectJobStorageConfigTimespanConfigStart.enableAutoPopulationOfTimespanConfig(
+  const factory DataLossPreventionJobTriggerStart.enableAutoPopulationOfTimespanConfig(
     TfArg<bool> enableAutoPopulationOfTimespanConfig,
-  ) = DataLossPreventionJobTriggerInspectJobStorageConfigTimespanConfigStartEnableAutoPopulationOfTimespanConfig;
+  ) = DataLossPreventionJobTriggerStartEnableAutoPopulationOfTimespanConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1748,13 +1224,10 @@ sealed class DataLossPreventionJobTriggerInspectJobStorageConfigTimespanConfigSt
   Map<String, Object?> encode();
 }
 
-/// The [DataLossPreventionJobTriggerInspectJobStorageConfigTimespanConfigStart.startTime] choice: sets `start_time`.
-final class DataLossPreventionJobTriggerInspectJobStorageConfigTimespanConfigStartTime
-    extends
-        DataLossPreventionJobTriggerInspectJobStorageConfigTimespanConfigStart {
-  const DataLossPreventionJobTriggerInspectJobStorageConfigTimespanConfigStartTime(
-    this.startTime,
-  );
+/// The [DataLossPreventionJobTriggerStart.startTime] choice: sets `start_time`.
+final class DataLossPreventionJobTriggerStartTime
+    extends DataLossPreventionJobTriggerStart {
+  const DataLossPreventionJobTriggerStartTime(this.startTime);
 
   final TfArg<String> startTime;
 
@@ -1765,11 +1238,10 @@ final class DataLossPreventionJobTriggerInspectJobStorageConfigTimespanConfigSta
   Map<String, Object?> encode() => {'start_time': startTime.toTfJson()};
 }
 
-/// The [DataLossPreventionJobTriggerInspectJobStorageConfigTimespanConfigStart.enableAutoPopulationOfTimespanConfig] choice: sets `enable_auto_population_of_timespan_config`.
-final class DataLossPreventionJobTriggerInspectJobStorageConfigTimespanConfigStartEnableAutoPopulationOfTimespanConfig
-    extends
-        DataLossPreventionJobTriggerInspectJobStorageConfigTimespanConfigStart {
-  const DataLossPreventionJobTriggerInspectJobStorageConfigTimespanConfigStartEnableAutoPopulationOfTimespanConfig(
+/// The [DataLossPreventionJobTriggerStart.enableAutoPopulationOfTimespanConfig] choice: sets `enable_auto_population_of_timespan_config`.
+final class DataLossPreventionJobTriggerStartEnableAutoPopulationOfTimespanConfig
+    extends DataLossPreventionJobTriggerStart {
+  const DataLossPreventionJobTriggerStartEnableAutoPopulationOfTimespanConfig(
     this.enableAutoPopulationOfTimespanConfig,
   );
 
@@ -1788,10 +1260,8 @@ final class DataLossPreventionJobTriggerInspectJobStorageConfigTimespanConfigSta
 /// Typed helper for the `inspect_job.storage_config.timespan_config.timestamp_field` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerInspectJobStorageConfigTimespanConfigTimestampField {
-  const DataLossPreventionJobTriggerInspectJobStorageConfigTimespanConfigTimestampField({
-    required this.name,
-  });
+final class DataLossPreventionJobTriggerTimestampField {
+  const DataLossPreventionJobTriggerTimestampField({required this.name});
 
   final TfArg<String> name;
 
@@ -1804,9 +1274,9 @@ final class DataLossPreventionJobTriggerInspectJobStorageConfigTimespanConfigTim
 final class DataLossPreventionJobTriggerTriggers {
   const DataLossPreventionJobTriggerTriggers({this.manual, this.schedule});
 
-  final DataLossPreventionJobTriggerTriggersManual? manual;
+  final DataLossPreventionJobTriggerManual? manual;
 
-  final DataLossPreventionJobTriggerTriggersSchedule? schedule;
+  final DataLossPreventionJobTriggerSchedule? schedule;
 
   Map<String, Object?> encode() => {
     'manual': ?manual?.encode(),
@@ -1817,8 +1287,8 @@ final class DataLossPreventionJobTriggerTriggers {
 /// Typed helper for the `triggers.manual` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerTriggersManual {
-  const DataLossPreventionJobTriggerTriggersManual();
+final class DataLossPreventionJobTriggerManual {
+  const DataLossPreventionJobTriggerManual();
 
   Map<String, Object?> encode() => {};
 }
@@ -1826,10 +1296,8 @@ final class DataLossPreventionJobTriggerTriggersManual {
 /// Typed helper for the `triggers.schedule` block of
 /// `google_data_loss_prevention_job_trigger` (derived from provider schema).
 @immutable
-final class DataLossPreventionJobTriggerTriggersSchedule {
-  const DataLossPreventionJobTriggerTriggersSchedule({
-    this.recurrencePeriodDuration,
-  });
+final class DataLossPreventionJobTriggerSchedule {
+  const DataLossPreventionJobTriggerSchedule({this.recurrencePeriodDuration});
 
   final TfArg<String>? recurrencePeriodDuration;
 

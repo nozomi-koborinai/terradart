@@ -113,7 +113,7 @@ final class RbinRuleExcludeResourceTags {
 final class RbinRuleLockConfiguration {
   const RbinRuleLockConfiguration({required this.unlockDelay});
 
-  final RbinRuleLockConfigurationUnlockDelay unlockDelay;
+  final RbinRuleUnlockDelay unlockDelay;
 
   Map<String, Object?> encode() => {'unlock_delay': unlockDelay.encode()};
 }
@@ -121,14 +121,13 @@ final class RbinRuleLockConfiguration {
 /// Typed helper for the `lock_configuration.unlock_delay` block of
 /// `aws_rbin_rule` (derived from provider schema).
 @immutable
-final class RbinRuleLockConfigurationUnlockDelay {
-  const RbinRuleLockConfigurationUnlockDelay({
+final class RbinRuleUnlockDelay {
+  const RbinRuleUnlockDelay({
     required this.unlockDelayUnit,
     required this.unlockDelayValue,
   });
 
-  final TfArg<RbinRuleLockConfigurationUnlockDelayUnlockDelayUnit>
-  unlockDelayUnit;
+  final TfArg<RbinRuleUnlockDelayUnit> unlockDelayUnit;
 
   final TfArg<num> unlockDelayValue;
 
@@ -139,13 +138,10 @@ final class RbinRuleLockConfigurationUnlockDelay {
 }
 
 /// `unlock_delay_unit` — derived from the provider schema description.
-enum RbinRuleLockConfigurationUnlockDelayUnlockDelayUnit
-    implements TerraformEnum {
+enum RbinRuleUnlockDelayUnit implements TerraformEnum {
   days('DAYS');
 
-  const RbinRuleLockConfigurationUnlockDelayUnlockDelayUnit(
-    this.terraformValue,
-  );
+  const RbinRuleUnlockDelayUnit(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -178,7 +174,7 @@ final class RbinRuleRetentionPeriod {
     required this.retentionPeriodValue,
   });
 
-  final TfArg<RbinRuleRetentionPeriodRetentionPeriodUnit> retentionPeriodUnit;
+  final TfArg<RbinRuleRetentionPeriodUnit> retentionPeriodUnit;
 
   final TfArg<num> retentionPeriodValue;
 
@@ -189,10 +185,10 @@ final class RbinRuleRetentionPeriod {
 }
 
 /// `retention_period_unit` — derived from the provider schema description.
-enum RbinRuleRetentionPeriodRetentionPeriodUnit implements TerraformEnum {
+enum RbinRuleRetentionPeriodUnit implements TerraformEnum {
   days('DAYS');
 
-  const RbinRuleRetentionPeriodRetentionPeriodUnit(this.terraformValue);
+  const RbinRuleRetentionPeriodUnit(this.terraformValue);
   @override
   final String terraformValue;
 }

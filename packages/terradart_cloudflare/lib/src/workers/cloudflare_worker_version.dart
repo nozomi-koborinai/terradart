@@ -58,7 +58,7 @@ final class WorkerVersionAssets {
 
   final WorkerVersionAssetsSource? source;
 
-  final WorkerVersionAssetsConfig? config;
+  final WorkerVersionConfig? config;
 
   Map<String, Object?> encode() => {
     ...?source?.encode(),
@@ -118,8 +118,8 @@ final class WorkerVersionAssetsSourceJwt extends WorkerVersionAssetsSource {
 /// Typed helper for the `assets.config` block of
 /// `cloudflare_worker_version` (derived from provider schema).
 @immutable
-final class WorkerVersionAssetsConfig {
-  const WorkerVersionAssetsConfig({
+final class WorkerVersionConfig {
+  const WorkerVersionConfig({
     this.basePath,
     this.htmlHandling,
     this.notFoundHandling,
@@ -128,9 +128,9 @@ final class WorkerVersionAssetsConfig {
 
   final TfArg<String>? basePath;
 
-  final TfArg<WorkerVersionAssetsConfigHtmlHandling>? htmlHandling;
+  final TfArg<WorkerVersionHtmlHandling>? htmlHandling;
 
-  final TfArg<WorkerVersionAssetsConfigNotFoundHandling>? notFoundHandling;
+  final TfArg<WorkerVersionNotFoundHandling>? notFoundHandling;
 
   final TfArg<Object?>? runWorkerFirst;
 
@@ -143,24 +143,24 @@ final class WorkerVersionAssetsConfig {
 }
 
 /// `html_handling` — derived from the provider schema description.
-enum WorkerVersionAssetsConfigHtmlHandling implements TerraformEnum {
+enum WorkerVersionHtmlHandling implements TerraformEnum {
   autoTrailingSlash('auto-trailing-slash'),
   forceTrailingSlash('force-trailing-slash'),
   dropTrailingSlash('drop-trailing-slash'),
   none('none');
 
-  const WorkerVersionAssetsConfigHtmlHandling(this.terraformValue);
+  const WorkerVersionHtmlHandling(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `not_found_handling` — derived from the provider schema description.
-enum WorkerVersionAssetsConfigNotFoundHandling implements TerraformEnum {
+enum WorkerVersionNotFoundHandling implements TerraformEnum {
   none('none'),
   v404Page('404-page'),
   singlePageApplication('single-page-application');
 
-  const WorkerVersionAssetsConfigNotFoundHandling(this.terraformValue);
+  const WorkerVersionNotFoundHandling(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -242,11 +242,11 @@ final class WorkerVersionBindings {
 
   final TfArg<String>? environment;
 
-  final TfArg<WorkerVersionBindingsFormat>? format;
+  final TfArg<WorkerVersionFormat>? format;
 
   final TfArg<String>? id;
 
-  final TfArg<WorkerVersionBindingsIdentity>? identity;
+  final TfArg<WorkerVersionIdentity>? identity;
 
   final TfArg<String>? indexName;
 
@@ -254,7 +254,7 @@ final class WorkerVersionBindings {
 
   final TfArg<String>? json;
 
-  final TfArg<WorkerVersionBindingsJurisdiction>? jurisdiction;
+  final TfArg<WorkerVersionJurisdiction>? jurisdiction;
 
   final TfArg<String>? keyBase64;
 
@@ -300,9 +300,9 @@ final class WorkerVersionBindings {
 
   final TfArg<String>? workflowName;
 
-  final WorkerVersionBindingsOutbound? outbound;
+  final WorkerVersionOutbound? outbound;
 
-  final WorkerVersionBindingsSimple? simple;
+  final WorkerVersionSimple? simple;
 
   Map<String, Object?> encode() => {
     'algorithm': ?algorithm?.toTfJson(),
@@ -353,34 +353,34 @@ final class WorkerVersionBindings {
 }
 
 /// `format` — derived from the provider schema description.
-enum WorkerVersionBindingsFormat implements TerraformEnum {
+enum WorkerVersionFormat implements TerraformEnum {
   raw('raw'),
   pkcs8('pkcs8'),
   spki('spki'),
   jwk('jwk');
 
-  const WorkerVersionBindingsFormat(this.terraformValue);
+  const WorkerVersionFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `identity` — derived from the provider schema description.
-enum WorkerVersionBindingsIdentity implements TerraformEnum {
+enum WorkerVersionIdentity implements TerraformEnum {
   runtimeEmailAlpha('runtime-email-alpha');
 
-  const WorkerVersionBindingsIdentity(this.terraformValue);
+  const WorkerVersionIdentity(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `jurisdiction` — derived from the provider schema description.
-enum WorkerVersionBindingsJurisdiction implements TerraformEnum {
+enum WorkerVersionJurisdiction implements TerraformEnum {
   eu('eu'),
   fedramp('fedramp'),
   fedrampHigh('fedramp-high'),
   us('us');
 
-  const WorkerVersionBindingsJurisdiction(this.terraformValue);
+  const WorkerVersionJurisdiction(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -433,12 +433,12 @@ enum WorkerVersionBindingsType implements TerraformEnum {
 /// Typed helper for the `bindings.outbound` block of
 /// `cloudflare_worker_version` (derived from provider schema).
 @immutable
-final class WorkerVersionBindingsOutbound {
-  const WorkerVersionBindingsOutbound({this.params, this.worker});
+final class WorkerVersionOutbound {
+  const WorkerVersionOutbound({this.params, this.worker});
 
-  final List<WorkerVersionBindingsOutboundParams>? params;
+  final List<WorkerVersionParams>? params;
 
-  final WorkerVersionBindingsOutboundWorker? worker;
+  final WorkerVersionWorker? worker;
 
   Map<String, Object?> encode() => {
     if (params != null) 'params': [for (final e in params!) e.encode()],
@@ -449,8 +449,8 @@ final class WorkerVersionBindingsOutbound {
 /// Typed helper for the `bindings.outbound.params` block of
 /// `cloudflare_worker_version` (derived from provider schema).
 @immutable
-final class WorkerVersionBindingsOutboundParams {
-  const WorkerVersionBindingsOutboundParams({required this.name});
+final class WorkerVersionParams {
+  const WorkerVersionParams({required this.name});
 
   final TfArg<String> name;
 
@@ -460,12 +460,8 @@ final class WorkerVersionBindingsOutboundParams {
 /// Typed helper for the `bindings.outbound.worker` block of
 /// `cloudflare_worker_version` (derived from provider schema).
 @immutable
-final class WorkerVersionBindingsOutboundWorker {
-  const WorkerVersionBindingsOutboundWorker({
-    this.entrypoint,
-    this.environment,
-    this.service,
-  });
+final class WorkerVersionWorker {
+  const WorkerVersionWorker({this.entrypoint, this.environment, this.service});
 
   final TfArg<String>? entrypoint;
 
@@ -483,8 +479,8 @@ final class WorkerVersionBindingsOutboundWorker {
 /// Typed helper for the `bindings.simple` block of
 /// `cloudflare_worker_version` (derived from provider schema).
 @immutable
-final class WorkerVersionBindingsSimple {
-  const WorkerVersionBindingsSimple({
+final class WorkerVersionSimple {
+  const WorkerVersionSimple({
     required this.limit,
     this.mitigationTimeout,
     required this.period,
@@ -546,9 +542,9 @@ final class WorkerVersionExports {
 
   final TfArg<String>? renamedTo;
 
-  final TfArg<WorkerVersionExportsState>? state;
+  final TfArg<WorkerVersionState>? state;
 
-  final TfArg<WorkerVersionExportsStorage>? storage;
+  final TfArg<WorkerVersionStorage>? storage;
 
   final TfArg<String>? transferFrom;
 
@@ -556,7 +552,7 @@ final class WorkerVersionExports {
 
   final TfArg<WorkerVersionExportsType> type;
 
-  final WorkerVersionExportsCache? cache;
+  final WorkerVersionCache? cache;
 
   Map<String, Object?> encode() => {
     'renamed_to': ?renamedTo?.toTfJson(),
@@ -570,24 +566,24 @@ final class WorkerVersionExports {
 }
 
 /// `state` — derived from the provider schema description.
-enum WorkerVersionExportsState implements TerraformEnum {
+enum WorkerVersionState implements TerraformEnum {
   created('created'),
   deleted('deleted'),
   renamed('renamed'),
   transferred('transferred'),
   expectingTransfer('expecting-transfer');
 
-  const WorkerVersionExportsState(this.terraformValue);
+  const WorkerVersionState(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `storage` — derived from the provider schema description.
-enum WorkerVersionExportsStorage implements TerraformEnum {
+enum WorkerVersionStorage implements TerraformEnum {
   sqlite('sqlite'),
   legacyKv('legacy-kv');
 
-  const WorkerVersionExportsStorage(this.terraformValue);
+  const WorkerVersionStorage(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -605,8 +601,8 @@ enum WorkerVersionExportsType implements TerraformEnum {
 /// Typed helper for the `exports.cache` block of
 /// `cloudflare_worker_version` (derived from provider schema).
 @immutable
-final class WorkerVersionExportsCache {
-  const WorkerVersionExportsCache({required this.enabled});
+final class WorkerVersionCache {
+  const WorkerVersionCache({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -654,11 +650,11 @@ final class WorkerVersionMigrations {
 
   final TfArg<String>? oldTag;
 
-  final List<WorkerVersionMigrationsRenamedClasses>? renamedClasses;
+  final List<WorkerVersionRenamedClasses>? renamedClasses;
 
-  final List<WorkerVersionMigrationsSteps>? steps;
+  final List<WorkerVersionSteps>? steps;
 
-  final List<WorkerVersionMigrationsTransferredClasses>? transferredClasses;
+  final List<WorkerVersionTransferredClasses>? transferredClasses;
 
   Map<String, Object?> encode() => {
     'deleted_classes': ?deletedClasses?.toTfJson(),
@@ -676,9 +672,10 @@ final class WorkerVersionMigrations {
 
 /// Typed helper for the `migrations.renamed_classes` block of
 /// `cloudflare_worker_version` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class WorkerVersionMigrationsRenamedClasses {
-  const WorkerVersionMigrationsRenamedClasses({this.from, this.to});
+final class WorkerVersionRenamedClasses {
+  const WorkerVersionRenamedClasses({this.from, this.to});
 
   final TfArg<String>? from;
 
@@ -693,8 +690,8 @@ final class WorkerVersionMigrationsRenamedClasses {
 /// Typed helper for the `migrations.steps` block of
 /// `cloudflare_worker_version` (derived from provider schema).
 @immutable
-final class WorkerVersionMigrationsSteps {
-  const WorkerVersionMigrationsSteps({
+final class WorkerVersionSteps {
+  const WorkerVersionSteps({
     this.deletedClasses,
     this.newClasses,
     this.newSqliteClasses,
@@ -708,10 +705,9 @@ final class WorkerVersionMigrationsSteps {
 
   final TfArg<List<String>>? newSqliteClasses;
 
-  final List<WorkerVersionMigrationsStepsRenamedClasses>? renamedClasses;
+  final List<WorkerVersionRenamedClasses>? renamedClasses;
 
-  final List<WorkerVersionMigrationsStepsTransferredClasses>?
-  transferredClasses;
+  final List<WorkerVersionTransferredClasses>? transferredClasses;
 
   Map<String, Object?> encode() => {
     'deleted_classes': ?deletedClasses?.toTfJson(),
@@ -724,54 +720,12 @@ final class WorkerVersionMigrationsSteps {
   };
 }
 
-/// Typed helper for the `migrations.steps.renamed_classes` block of
-/// `cloudflare_worker_version` (derived from provider schema).
-@immutable
-final class WorkerVersionMigrationsStepsRenamedClasses {
-  const WorkerVersionMigrationsStepsRenamedClasses({this.from, this.to});
-
-  final TfArg<String>? from;
-
-  final TfArg<String>? to;
-
-  Map<String, Object?> encode() => {
-    'from': ?from?.toTfJson(),
-    'to': ?to?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `migrations.steps.transferred_classes` block of
-/// `cloudflare_worker_version` (derived from provider schema).
-@immutable
-final class WorkerVersionMigrationsStepsTransferredClasses {
-  const WorkerVersionMigrationsStepsTransferredClasses({
-    this.from,
-    this.fromScript,
-    this.to,
-  });
-
-  final TfArg<String>? from;
-
-  final TfArg<String>? fromScript;
-
-  final TfArg<String>? to;
-
-  Map<String, Object?> encode() => {
-    'from': ?from?.toTfJson(),
-    'from_script': ?fromScript?.toTfJson(),
-    'to': ?to?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `migrations.transferred_classes` block of
 /// `cloudflare_worker_version` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class WorkerVersionMigrationsTransferredClasses {
-  const WorkerVersionMigrationsTransferredClasses({
-    this.from,
-    this.fromScript,
-    this.to,
-  });
+final class WorkerVersionTransferredClasses {
+  const WorkerVersionTransferredClasses({this.from, this.fromScript, this.to});
 
   final TfArg<String>? from;
 
@@ -796,7 +750,7 @@ final class WorkerVersionModules {
     required this.name,
   });
 
-  final WorkerVersionModulesContent content;
+  final WorkerVersionContent content;
 
   final TfArg<String> contentType;
 
@@ -813,18 +767,17 @@ final class WorkerVersionModules {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.contentBase64(...)`.
-sealed class WorkerVersionModulesContent {
-  const WorkerVersionModulesContent();
+sealed class WorkerVersionContent {
+  const WorkerVersionContent();
 
   /// Sets `content_base64`.
-  const factory WorkerVersionModulesContent.contentBase64(
+  const factory WorkerVersionContent.contentBase64(
     TfArg<String> contentBase64,
-  ) = WorkerVersionModulesContentBase64;
+  ) = WorkerVersionContentBase64;
 
   /// Sets `content_file`.
-  const factory WorkerVersionModulesContent.contentFile(
-    TfArg<String> contentFile,
-  ) = WorkerVersionModulesContentFile;
+  const factory WorkerVersionContent.contentFile(TfArg<String> contentFile) =
+      WorkerVersionContentFile;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -832,10 +785,9 @@ sealed class WorkerVersionModulesContent {
   Map<String, Object?> encode();
 }
 
-/// The [WorkerVersionModulesContent.contentBase64] choice: sets `content_base64`.
-final class WorkerVersionModulesContentBase64
-    extends WorkerVersionModulesContent {
-  const WorkerVersionModulesContentBase64(this.contentBase64);
+/// The [WorkerVersionContent.contentBase64] choice: sets `content_base64`.
+final class WorkerVersionContentBase64 extends WorkerVersionContent {
+  const WorkerVersionContentBase64(this.contentBase64);
 
   final TfArg<String> contentBase64;
 
@@ -846,10 +798,9 @@ final class WorkerVersionModulesContentBase64
   Map<String, Object?> encode() => {'content_base64': contentBase64.toTfJson()};
 }
 
-/// The [WorkerVersionModulesContent.contentFile] choice: sets `content_file`.
-final class WorkerVersionModulesContentFile
-    extends WorkerVersionModulesContent {
-  const WorkerVersionModulesContentFile(this.contentFile);
+/// The [WorkerVersionContent.contentFile] choice: sets `content_file`.
+final class WorkerVersionContentFile extends WorkerVersionContent {
+  const WorkerVersionContentFile(this.contentFile);
 
   final TfArg<String> contentFile;
 
@@ -899,11 +850,11 @@ final class WorkerVersionPlacement {
 
   final TfArg<String>? hostname;
 
-  final TfArg<WorkerVersionPlacementMode>? mode;
+  final TfArg<WorkerVersionMode>? mode;
 
   final TfArg<String>? region;
 
-  final List<WorkerVersionPlacementTarget>? target;
+  final List<WorkerVersionTarget>? target;
 
   Map<String, Object?> encode() => {
     'host': ?host?.toTfJson(),
@@ -915,11 +866,11 @@ final class WorkerVersionPlacement {
 }
 
 /// `mode` — derived from the provider schema description.
-enum WorkerVersionPlacementMode implements TerraformEnum {
+enum WorkerVersionMode implements TerraformEnum {
   smart('smart'),
   targeted('targeted');
 
-  const WorkerVersionPlacementMode(this.terraformValue);
+  const WorkerVersionMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -927,8 +878,8 @@ enum WorkerVersionPlacementMode implements TerraformEnum {
 /// Typed helper for the `placement.target` block of
 /// `cloudflare_worker_version` (derived from provider schema).
 @immutable
-final class WorkerVersionPlacementTarget {
-  const WorkerVersionPlacementTarget({this.host, this.hostname, this.region});
+final class WorkerVersionTarget {
+  const WorkerVersionTarget({this.host, this.hostname, this.region});
 
   final TfArg<String>? host;
 

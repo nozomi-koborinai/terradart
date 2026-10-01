@@ -122,13 +122,11 @@ final class NetworkManagementConnectivityTestSource {
 
   final TfArg<String>? projectId;
 
-  final NetworkManagementConnectivityTestSourceAppEngineVersion?
-  appEngineVersion;
+  final NetworkManagementConnectivityTestAppEngineVersion? appEngineVersion;
 
-  final NetworkManagementConnectivityTestSourceCloudFunction? cloudFunction;
+  final NetworkManagementConnectivityTestCloudFunction? cloudFunction;
 
-  final NetworkManagementConnectivityTestSourceCloudRunRevision?
-  cloudRunRevision;
+  final NetworkManagementConnectivityTestCloudRunRevision? cloudRunRevision;
 
   Map<String, Object?> encode() => {
     'cloud_sql_instance': ?cloudSqlInstance?.toTfJson(),
@@ -159,8 +157,8 @@ enum NetworkManagementConnectivityTestSourceNetworkType
 /// Typed helper for the `source.app_engine_version` block of
 /// `google_network_management_connectivity_test` (derived from provider schema).
 @immutable
-final class NetworkManagementConnectivityTestSourceAppEngineVersion {
-  const NetworkManagementConnectivityTestSourceAppEngineVersion({this.uri});
+final class NetworkManagementConnectivityTestAppEngineVersion {
+  const NetworkManagementConnectivityTestAppEngineVersion({this.uri});
 
   final TfArg<String>? uri;
 
@@ -170,8 +168,8 @@ final class NetworkManagementConnectivityTestSourceAppEngineVersion {
 /// Typed helper for the `source.cloud_function` block of
 /// `google_network_management_connectivity_test` (derived from provider schema).
 @immutable
-final class NetworkManagementConnectivityTestSourceCloudFunction {
-  const NetworkManagementConnectivityTestSourceCloudFunction({this.uri});
+final class NetworkManagementConnectivityTestCloudFunction {
+  const NetworkManagementConnectivityTestCloudFunction({this.uri});
 
   final TfArg<String>? uri;
 
@@ -181,8 +179,8 @@ final class NetworkManagementConnectivityTestSourceCloudFunction {
 /// Typed helper for the `source.cloud_run_revision` block of
 /// `google_network_management_connectivity_test` (derived from provider schema).
 @immutable
-final class NetworkManagementConnectivityTestSourceCloudRunRevision {
-  const NetworkManagementConnectivityTestSourceCloudRunRevision({this.uri});
+final class NetworkManagementConnectivityTestCloudRunRevision {
+  const NetworkManagementConnectivityTestCloudRunRevision({this.uri});
 
   final TfArg<String>? uri;
 

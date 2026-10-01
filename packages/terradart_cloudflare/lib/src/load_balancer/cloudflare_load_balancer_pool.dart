@@ -56,11 +56,11 @@ final class LoadBalancerPoolLoadShedding {
 
   final TfArg<num>? defaultPercent;
 
-  final TfArg<LoadBalancerPoolLoadSheddingDefaultPolicy>? defaultPolicy;
+  final TfArg<LoadBalancerPoolDefaultPolicy>? defaultPolicy;
 
   final TfArg<num>? sessionPercent;
 
-  final TfArg<LoadBalancerPoolLoadSheddingSessionPolicy>? sessionPolicy;
+  final TfArg<LoadBalancerPoolSessionPolicy>? sessionPolicy;
 
   Map<String, Object?> encode() => {
     'default_percent': ?defaultPercent?.toTfJson(),
@@ -71,20 +71,20 @@ final class LoadBalancerPoolLoadShedding {
 }
 
 /// `default_policy` — derived from the provider schema description.
-enum LoadBalancerPoolLoadSheddingDefaultPolicy implements TerraformEnum {
+enum LoadBalancerPoolDefaultPolicy implements TerraformEnum {
   random('random'),
   hash('hash');
 
-  const LoadBalancerPoolLoadSheddingDefaultPolicy(this.terraformValue);
+  const LoadBalancerPoolDefaultPolicy(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `session_policy` — derived from the provider schema description.
-enum LoadBalancerPoolLoadSheddingSessionPolicy implements TerraformEnum {
+enum LoadBalancerPoolSessionPolicy implements TerraformEnum {
   hash('hash');
 
-  const LoadBalancerPoolLoadSheddingSessionPolicy(this.terraformValue);
+  const LoadBalancerPoolSessionPolicy(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -95,9 +95,9 @@ enum LoadBalancerPoolLoadSheddingSessionPolicy implements TerraformEnum {
 final class LoadBalancerPoolNotificationFilter {
   const LoadBalancerPoolNotificationFilter({this.origin, this.pool});
 
-  final LoadBalancerPoolNotificationFilterOrigin? origin;
+  final LoadBalancerPoolOrigin? origin;
 
-  final LoadBalancerPoolNotificationFilterPool? pool;
+  final LoadBalancerPoolPool? pool;
 
   Map<String, Object?> encode() => {
     'origin': ?origin?.encode(),
@@ -108,8 +108,8 @@ final class LoadBalancerPoolNotificationFilter {
 /// Typed helper for the `notification_filter.origin` block of
 /// `cloudflare_load_balancer_pool` (derived from provider schema).
 @immutable
-final class LoadBalancerPoolNotificationFilterOrigin {
-  const LoadBalancerPoolNotificationFilterOrigin({this.disable, this.healthy});
+final class LoadBalancerPoolOrigin {
+  const LoadBalancerPoolOrigin({this.disable, this.healthy});
 
   final TfArg<bool>? disable;
 
@@ -124,8 +124,8 @@ final class LoadBalancerPoolNotificationFilterOrigin {
 /// Typed helper for the `notification_filter.pool` block of
 /// `cloudflare_load_balancer_pool` (derived from provider schema).
 @immutable
-final class LoadBalancerPoolNotificationFilterPool {
-  const LoadBalancerPoolNotificationFilterPool({this.disable, this.healthy});
+final class LoadBalancerPoolPool {
+  const LoadBalancerPoolPool({this.disable, this.healthy});
 
   final TfArg<bool>? disable;
 
@@ -143,19 +143,19 @@ final class LoadBalancerPoolNotificationFilterPool {
 final class LoadBalancerPoolOriginSteering {
   const LoadBalancerPoolOriginSteering({this.policy});
 
-  final TfArg<LoadBalancerPoolOriginSteeringPolicy>? policy;
+  final TfArg<LoadBalancerPoolPolicy>? policy;
 
   Map<String, Object?> encode() => {'policy': ?policy?.toTfJson()};
 }
 
 /// `policy` — derived from the provider schema description.
-enum LoadBalancerPoolOriginSteeringPolicy implements TerraformEnum {
+enum LoadBalancerPoolPolicy implements TerraformEnum {
   random('random'),
   hash('hash'),
   leastOutstandingRequests('least_outstanding_requests'),
   leastConnections('least_connections');
 
-  const LoadBalancerPoolOriginSteeringPolicy(this.terraformValue);
+  const LoadBalancerPoolPolicy(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -189,7 +189,7 @@ final class LoadBalancerPoolOrigins {
 
   final TfArg<num>? weight;
 
-  final LoadBalancerPoolOriginsHeader? header;
+  final LoadBalancerPoolHeader? header;
 
   Map<String, Object?> encode() => {
     'address': ?address?.toTfJson(),
@@ -206,8 +206,8 @@ final class LoadBalancerPoolOrigins {
 /// Typed helper for the `origins.header` block of
 /// `cloudflare_load_balancer_pool` (derived from provider schema).
 @immutable
-final class LoadBalancerPoolOriginsHeader {
-  const LoadBalancerPoolOriginsHeader({this.host});
+final class LoadBalancerPoolHeader {
+  const LoadBalancerPoolHeader({this.host});
 
   final TfArg<List<String>>? host;
 

@@ -18,7 +18,7 @@ final class ContainerAnalysisOccurrenceAttestation {
 
   final TfArg<String> serializedPayload;
 
-  final List<ContainerAnalysisOccurrenceAttestationSignatures> signatures;
+  final List<ContainerAnalysisOccurrenceSignatures> signatures;
 
   Map<String, Object?> encode() => {
     'serialized_payload': serializedPayload.toTfJson(),
@@ -29,8 +29,8 @@ final class ContainerAnalysisOccurrenceAttestation {
 /// Typed helper for the `attestation.signatures` block of
 /// `google_container_analysis_occurrence` (derived from provider schema).
 @immutable
-final class ContainerAnalysisOccurrenceAttestationSignatures {
-  const ContainerAnalysisOccurrenceAttestationSignatures({
+final class ContainerAnalysisOccurrenceSignatures {
+  const ContainerAnalysisOccurrenceSignatures({
     required this.publicKeyId,
     this.signature,
   });
@@ -66,7 +66,7 @@ final class ContainerAnalysisOccurrenceAttestationSignatures {
 ///   attestation: ContainerAnalysisOccurrenceAttestation(
 ///     serializedPayload: TfArg.literal('<base64-payload>'),
 ///     signatures: [
-///       ContainerAnalysisOccurrenceAttestationSignatures(
+///       ContainerAnalysisOccurrenceSignatures(
 ///         publicKeyId: TfArg.literal('//cloudkms.googleapis.com/…'),
 ///         signature: TfArg.literal('<base64-signature>'),
 ///       ),

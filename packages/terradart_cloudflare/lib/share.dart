@@ -4,11 +4,7 @@
 library;
 
 export 'src/share/cloudflare_share.dart'
-    show
-        CloudflareShare,
-        ShareRecipients,
-        ShareResources,
-        ShareResourcesResourceType;
+    show CloudflareShare, ShareRecipients, ShareResourceType, ShareResources;
 export 'src/share/cloudflare_share_recipient.dart'
     show CloudflareShareRecipient;
 export 'src/share/cloudflare_share_resource.dart'

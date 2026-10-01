@@ -239,11 +239,11 @@ final class CesAgentTransferRules {
 
   final TfArg<String> childAgent;
 
-  final TfArg<CesAgentTransferRulesDirection> direction;
+  final TfArg<CesAgentDirection> direction;
 
-  final CesAgentTransferRulesDeterministicTransfer? deterministicTransfer;
+  final CesAgentDeterministicTransfer? deterministicTransfer;
 
-  final CesAgentTransferRulesDisablePlannerTransfer? disablePlannerTransfer;
+  final CesAgentDisablePlannerTransfer? disablePlannerTransfer;
 
   Map<String, Object?> encode() => {
     'child_agent': childAgent.toTfJson(),
@@ -254,11 +254,11 @@ final class CesAgentTransferRules {
 }
 
 /// `direction` — derived from the provider schema description.
-enum CesAgentTransferRulesDirection implements TerraformEnum {
+enum CesAgentDirection implements TerraformEnum {
   parentToChild('PARENT_TO_CHILD'),
   childToParent('CHILD_TO_PARENT');
 
-  const CesAgentTransferRulesDirection(this.terraformValue);
+  const CesAgentDirection(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -266,17 +266,15 @@ enum CesAgentTransferRulesDirection implements TerraformEnum {
 /// Typed helper for the `transfer_rules.deterministic_transfer` block of
 /// `google_ces_agent` (derived from provider schema).
 @immutable
-final class CesAgentTransferRulesDeterministicTransfer {
-  const CesAgentTransferRulesDeterministicTransfer({
+final class CesAgentDeterministicTransfer {
+  const CesAgentDeterministicTransfer({
     this.expressionCondition,
     this.pythonCodeCondition,
   });
 
-  final CesAgentTransferRulesDeterministicTransferExpressionCondition?
-  expressionCondition;
+  final CesAgentExpressionCondition? expressionCondition;
 
-  final CesAgentTransferRulesDeterministicTransferPythonCodeCondition?
-  pythonCodeCondition;
+  final CesAgentPythonCodeCondition? pythonCodeCondition;
 
   Map<String, Object?> encode() => {
     'expression_condition': ?expressionCondition?.encode(),
@@ -286,11 +284,10 @@ final class CesAgentTransferRulesDeterministicTransfer {
 
 /// Typed helper for the `transfer_rules.deterministic_transfer.expression_condition` block of
 /// `google_ces_agent` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CesAgentTransferRulesDeterministicTransferExpressionCondition {
-  const CesAgentTransferRulesDeterministicTransferExpressionCondition({
-    required this.expression,
-  });
+final class CesAgentExpressionCondition {
+  const CesAgentExpressionCondition({required this.expression});
 
   final TfArg<String> expression;
 
@@ -300,10 +297,8 @@ final class CesAgentTransferRulesDeterministicTransferExpressionCondition {
 /// Typed helper for the `transfer_rules.deterministic_transfer.python_code_condition` block of
 /// `google_ces_agent` (derived from provider schema).
 @immutable
-final class CesAgentTransferRulesDeterministicTransferPythonCodeCondition {
-  const CesAgentTransferRulesDeterministicTransferPythonCodeCondition({
-    required this.pythonCode,
-  });
+final class CesAgentPythonCodeCondition {
+  const CesAgentPythonCodeCondition({required this.pythonCode});
 
   final TfArg<String> pythonCode;
 
@@ -313,30 +308,14 @@ final class CesAgentTransferRulesDeterministicTransferPythonCodeCondition {
 /// Typed helper for the `transfer_rules.disable_planner_transfer` block of
 /// `google_ces_agent` (derived from provider schema).
 @immutable
-final class CesAgentTransferRulesDisablePlannerTransfer {
-  const CesAgentTransferRulesDisablePlannerTransfer({
-    required this.expressionCondition,
-  });
+final class CesAgentDisablePlannerTransfer {
+  const CesAgentDisablePlannerTransfer({required this.expressionCondition});
 
-  final CesAgentTransferRulesDisablePlannerTransferExpressionCondition
-  expressionCondition;
+  final CesAgentExpressionCondition expressionCondition;
 
   Map<String, Object?> encode() => {
     'expression_condition': expressionCondition.encode(),
   };
-}
-
-/// Typed helper for the `transfer_rules.disable_planner_transfer.expression_condition` block of
-/// `google_ces_agent` (derived from provider schema).
-@immutable
-final class CesAgentTransferRulesDisablePlannerTransferExpressionCondition {
-  const CesAgentTransferRulesDisablePlannerTransferExpressionCondition({
-    required this.expression,
-  });
-
-  final TfArg<String> expression;
-
-  Map<String, Object?> encode() => {'expression': expression.toTfJson()};
 }
 
 /// Factory wrapper for `google_ces_agent`.

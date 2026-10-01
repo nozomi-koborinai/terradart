@@ -195,8 +195,7 @@ final class LakeformationResourceLfTagTableWithColumns {
 
   final TfArg<String> name;
 
-  final List<LakeformationResourceLfTagTableWithColumnsColumnWildcard>?
-  columnWildcard;
+  final List<LakeformationResourceLfTagColumnWildcard>? columnWildcard;
 
   Map<String, Object?> encode() => {
     'catalog_id': ?catalogId?.toTfJson(),
@@ -211,10 +210,8 @@ final class LakeformationResourceLfTagTableWithColumns {
 /// Typed helper for the `table_with_columns.column_wildcard` block of
 /// `aws_lakeformation_resource_lf_tag` (derived from provider schema).
 @immutable
-final class LakeformationResourceLfTagTableWithColumnsColumnWildcard {
-  const LakeformationResourceLfTagTableWithColumnsColumnWildcard({
-    this.excludedColumnNames,
-  });
+final class LakeformationResourceLfTagColumnWildcard {
+  const LakeformationResourceLfTagColumnWildcard({this.excludedColumnNames});
 
   final TfArg<List<String>>? excludedColumnNames;
 

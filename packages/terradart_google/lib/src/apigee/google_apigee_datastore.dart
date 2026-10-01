@@ -32,8 +32,8 @@ enum ApigeeDatastoreDeletionPolicy implements TerraformEnum {
 /// Typed helper for the `datastore_config` block of
 /// `google_apigee_datastore` (derived from provider schema).
 @immutable
-final class ApigeeDatastoreDatastoreConfig {
-  const ApigeeDatastoreDatastoreConfig({
+final class ApigeeDatastoreConfig {
+  const ApigeeDatastoreConfig({
     this.bucketName,
     this.datasetName,
     this.path,
@@ -73,7 +73,7 @@ final class GoogleApigeeDatastore extends Resource {
     required TfArg<String> orgId,
     required TfArg<String> displayName,
     required TfArg<ApigeeDatastoreTargetType> targetType,
-    required ApigeeDatastoreDatastoreConfig datastoreConfig,
+    required ApigeeDatastoreConfig datastoreConfig,
     TfArg<ApigeeDatastoreDeletionPolicy>? deletionPolicy,
     super.lifecycle,
     super.dependsOn,

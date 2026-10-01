@@ -21,18 +21,15 @@ final class AccessContextManagerServicePerimeterEgressPolicyEgressFrom {
 
   final TfArg<List<String>>? identities;
 
-  final TfArg<
-    AccessContextManagerServicePerimeterEgressPolicyEgressFromIdentityType
-  >?
+  final TfArg<AccessContextManagerServicePerimeterEgressPolicyIdentityType>?
   identityType;
 
   final TfArg<
-    AccessContextManagerServicePerimeterEgressPolicyEgressFromSourceRestriction
+    AccessContextManagerServicePerimeterEgressPolicySourceRestriction
   >?
   sourceRestriction;
 
-  final List<AccessContextManagerServicePerimeterEgressPolicyEgressFromSources>?
-  sources;
+  final List<AccessContextManagerServicePerimeterEgressPolicySources>? sources;
 
   Map<String, Object?> encode() => {
     'identities': ?identities?.toTfJson(),
@@ -43,13 +40,13 @@ final class AccessContextManagerServicePerimeterEgressPolicyEgressFrom {
 }
 
 /// `identity_type` — derived from the provider schema description.
-enum AccessContextManagerServicePerimeterEgressPolicyEgressFromIdentityType
+enum AccessContextManagerServicePerimeterEgressPolicyIdentityType
     implements TerraformEnum {
   anyIdentity('ANY_IDENTITY'),
   anyUserAccount('ANY_USER_ACCOUNT'),
   anyServiceAccount('ANY_SERVICE_ACCOUNT');
 
-  const AccessContextManagerServicePerimeterEgressPolicyEgressFromIdentityType(
+  const AccessContextManagerServicePerimeterEgressPolicyIdentityType(
     this.terraformValue,
   );
   @override
@@ -57,13 +54,13 @@ enum AccessContextManagerServicePerimeterEgressPolicyEgressFromIdentityType
 }
 
 /// `source_restriction` — derived from the provider schema description.
-enum AccessContextManagerServicePerimeterEgressPolicyEgressFromSourceRestriction
+enum AccessContextManagerServicePerimeterEgressPolicySourceRestriction
     implements TerraformEnum {
   sourceRestrictionUnspecified('SOURCE_RESTRICTION_UNSPECIFIED'),
   sourceRestrictionEnabled('SOURCE_RESTRICTION_ENABLED'),
   sourceRestrictionDisabled('SOURCE_RESTRICTION_DISABLED');
 
-  const AccessContextManagerServicePerimeterEgressPolicyEgressFromSourceRestriction(
+  const AccessContextManagerServicePerimeterEgressPolicySourceRestriction(
     this.terraformValue,
   );
   @override
@@ -73,8 +70,8 @@ enum AccessContextManagerServicePerimeterEgressPolicyEgressFromSourceRestriction
 /// Typed helper for the `egress_from.sources` block of
 /// `google_access_context_manager_service_perimeter_egress_policy` (derived from provider schema).
 @immutable
-final class AccessContextManagerServicePerimeterEgressPolicyEgressFromSources {
-  const AccessContextManagerServicePerimeterEgressPolicyEgressFromSources({
+final class AccessContextManagerServicePerimeterEgressPolicySources {
+  const AccessContextManagerServicePerimeterEgressPolicySources({
     this.accessLevel,
     this.resource,
     this.pscEndpoint,
@@ -84,7 +81,7 @@ final class AccessContextManagerServicePerimeterEgressPolicyEgressFromSources {
 
   final TfArg<String>? resource;
 
-  final AccessContextManagerServicePerimeterEgressPolicyEgressFromSourcesPscEndpoint?
+  final AccessContextManagerServicePerimeterEgressPolicyPscEndpoint?
   pscEndpoint;
 
   Map<String, Object?> encode() => {
@@ -97,8 +94,8 @@ final class AccessContextManagerServicePerimeterEgressPolicyEgressFromSources {
 /// Typed helper for the `egress_from.sources.psc_endpoint` block of
 /// `google_access_context_manager_service_perimeter_egress_policy` (derived from provider schema).
 @immutable
-final class AccessContextManagerServicePerimeterEgressPolicyEgressFromSourcesPscEndpoint {
-  const AccessContextManagerServicePerimeterEgressPolicyEgressFromSourcesPscEndpoint({
+final class AccessContextManagerServicePerimeterEgressPolicyPscEndpoint {
+  const AccessContextManagerServicePerimeterEgressPolicyPscEndpoint({
     this.forwardingRule,
   });
 
@@ -126,9 +123,7 @@ final class AccessContextManagerServicePerimeterEgressPolicyEgressTo {
 
   final TfArg<List<String>>? roles;
 
-  final List<
-    AccessContextManagerServicePerimeterEgressPolicyEgressToOperations
-  >?
+  final List<AccessContextManagerServicePerimeterEgressPolicyOperations>?
   operations;
 
   Map<String, Object?> encode() => {
@@ -143,17 +138,15 @@ final class AccessContextManagerServicePerimeterEgressPolicyEgressTo {
 /// Typed helper for the `egress_to.operations` block of
 /// `google_access_context_manager_service_perimeter_egress_policy` (derived from provider schema).
 @immutable
-final class AccessContextManagerServicePerimeterEgressPolicyEgressToOperations {
-  const AccessContextManagerServicePerimeterEgressPolicyEgressToOperations({
+final class AccessContextManagerServicePerimeterEgressPolicyOperations {
+  const AccessContextManagerServicePerimeterEgressPolicyOperations({
     this.serviceName,
     this.methodSelectors,
   });
 
   final TfArg<String>? serviceName;
 
-  final List<
-    AccessContextManagerServicePerimeterEgressPolicyEgressToOperationsMethodSelectors
-  >?
+  final List<AccessContextManagerServicePerimeterEgressPolicyMethodSelectors>?
   methodSelectors;
 
   Map<String, Object?> encode() => {
@@ -166,8 +159,8 @@ final class AccessContextManagerServicePerimeterEgressPolicyEgressToOperations {
 /// Typed helper for the `egress_to.operations.method_selectors` block of
 /// `google_access_context_manager_service_perimeter_egress_policy` (derived from provider schema).
 @immutable
-final class AccessContextManagerServicePerimeterEgressPolicyEgressToOperationsMethodSelectors {
-  const AccessContextManagerServicePerimeterEgressPolicyEgressToOperationsMethodSelectors({
+final class AccessContextManagerServicePerimeterEgressPolicyMethodSelectors {
+  const AccessContextManagerServicePerimeterEgressPolicyMethodSelectors({
     this.method,
     this.permission,
   });

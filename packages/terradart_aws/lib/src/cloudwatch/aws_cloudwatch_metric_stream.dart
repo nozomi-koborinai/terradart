@@ -31,12 +31,12 @@ sealed class CloudwatchMetricStreamFilter {
   /// Sets `exclude_filter`.
   const factory CloudwatchMetricStreamFilter.excludeFilter(
     List<CloudwatchMetricStreamExcludeFilter> excludeFilter,
-  ) = CloudwatchMetricStreamFilterExcludeFilter;
+  ) = CloudwatchMetricStreamExcludeFilterChoice;
 
   /// Sets `include_filter`.
   const factory CloudwatchMetricStreamFilter.includeFilter(
     List<CloudwatchMetricStreamIncludeFilter> includeFilter,
-  ) = CloudwatchMetricStreamFilterIncludeFilter;
+  ) = CloudwatchMetricStreamIncludeFilterChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -49,9 +49,9 @@ sealed class CloudwatchMetricStreamFilter {
 }
 
 /// The [CloudwatchMetricStreamFilter.excludeFilter] choice: sets `exclude_filter`.
-final class CloudwatchMetricStreamFilterExcludeFilter
+final class CloudwatchMetricStreamExcludeFilterChoice
     extends CloudwatchMetricStreamFilter {
-  const CloudwatchMetricStreamFilterExcludeFilter(this.excludeFilter);
+  const CloudwatchMetricStreamExcludeFilterChoice(this.excludeFilter);
 
   final List<CloudwatchMetricStreamExcludeFilter> excludeFilter;
 
@@ -72,9 +72,9 @@ final class CloudwatchMetricStreamFilterExcludeFilter
 }
 
 /// The [CloudwatchMetricStreamFilter.includeFilter] choice: sets `include_filter`.
-final class CloudwatchMetricStreamFilterIncludeFilter
+final class CloudwatchMetricStreamIncludeFilterChoice
     extends CloudwatchMetricStreamFilter {
-  const CloudwatchMetricStreamFilterIncludeFilter(this.includeFilter);
+  const CloudwatchMetricStreamIncludeFilterChoice(this.includeFilter);
 
   final List<CloudwatchMetricStreamIncludeFilter> includeFilter;
 
@@ -204,8 +204,7 @@ final class CloudwatchMetricStreamStatisticsConfiguration {
 
   final TfArg<List<String>> additionalStatistics;
 
-  final List<CloudwatchMetricStreamStatisticsConfigurationIncludeMetric>
-  includeMetric;
+  final List<CloudwatchMetricStreamIncludeMetric> includeMetric;
 
   Map<String, Object?> encode() => {
     'additional_statistics': additionalStatistics.toTfJson(),
@@ -216,8 +215,8 @@ final class CloudwatchMetricStreamStatisticsConfiguration {
 /// Typed helper for the `statistics_configuration.include_metric` block of
 /// `aws_cloudwatch_metric_stream` (derived from provider schema).
 @immutable
-final class CloudwatchMetricStreamStatisticsConfigurationIncludeMetric {
-  const CloudwatchMetricStreamStatisticsConfigurationIncludeMetric({
+final class CloudwatchMetricStreamIncludeMetric {
+  const CloudwatchMetricStreamIncludeMetric({
     required this.metricName,
     required this.namespace,
   });

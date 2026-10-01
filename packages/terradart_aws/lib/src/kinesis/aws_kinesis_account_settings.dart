@@ -15,21 +15,17 @@ final class KinesisAccountSettingsMinimumThroughputBillingCommitment {
     required this.status,
   });
 
-  final TfArg<KinesisAccountSettingsMinimumThroughputBillingCommitmentStatus>
-  status;
+  final TfArg<KinesisAccountSettingsStatus> status;
 
   Map<String, Object?> encode() => {'status': status.toTfJson()};
 }
 
 /// `status` — derived from the provider schema description.
-enum KinesisAccountSettingsMinimumThroughputBillingCommitmentStatus
-    implements TerraformEnum {
+enum KinesisAccountSettingsStatus implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const KinesisAccountSettingsMinimumThroughputBillingCommitmentStatus(
-    this.terraformValue,
-  );
+  const KinesisAccountSettingsStatus(this.terraformValue);
   @override
   final String terraformValue;
 }

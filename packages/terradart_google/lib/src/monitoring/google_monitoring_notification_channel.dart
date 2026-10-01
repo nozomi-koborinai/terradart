@@ -22,7 +22,7 @@ final class MonitoringNotificationChannelSensitiveLabels {
     this.serviceKeyWoVersion,
   });
 
-  final MonitoringNotificationChannelSensitiveLabelsCredential credential;
+  final MonitoringNotificationChannelCredential credential;
 
   final TfArg<String>? authTokenWoVersion;
 
@@ -42,38 +42,38 @@ final class MonitoringNotificationChannelSensitiveLabels {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.authToken(...)`.
-sealed class MonitoringNotificationChannelSensitiveLabelsCredential {
-  const MonitoringNotificationChannelSensitiveLabelsCredential();
+sealed class MonitoringNotificationChannelCredential {
+  const MonitoringNotificationChannelCredential();
 
   /// Sets `auth_token`.
-  const factory MonitoringNotificationChannelSensitiveLabelsCredential.authToken(
+  const factory MonitoringNotificationChannelCredential.authToken(
     TfArg<String> authToken,
-  ) = MonitoringNotificationChannelSensitiveLabelsCredentialAuthToken;
+  ) = MonitoringNotificationChannelCredentialAuthToken;
 
   /// Sets `auth_token_wo`.
-  const factory MonitoringNotificationChannelSensitiveLabelsCredential.authTokenWo(
+  const factory MonitoringNotificationChannelCredential.authTokenWo(
     TfArg<String> authTokenWo,
-  ) = MonitoringNotificationChannelSensitiveLabelsCredentialAuthTokenWo;
+  ) = MonitoringNotificationChannelCredentialAuthTokenWo;
 
   /// Sets `password`.
-  const factory MonitoringNotificationChannelSensitiveLabelsCredential.password(
+  const factory MonitoringNotificationChannelCredential.password(
     TfArg<String> password,
-  ) = MonitoringNotificationChannelSensitiveLabelsCredentialPassword;
+  ) = MonitoringNotificationChannelCredentialPassword;
 
   /// Sets `password_wo`.
-  const factory MonitoringNotificationChannelSensitiveLabelsCredential.passwordWo(
+  const factory MonitoringNotificationChannelCredential.passwordWo(
     TfArg<String> passwordWo,
-  ) = MonitoringNotificationChannelSensitiveLabelsCredentialPasswordWo;
+  ) = MonitoringNotificationChannelCredentialPasswordWo;
 
   /// Sets `service_key`.
-  const factory MonitoringNotificationChannelSensitiveLabelsCredential.serviceKey(
+  const factory MonitoringNotificationChannelCredential.serviceKey(
     TfArg<String> serviceKey,
-  ) = MonitoringNotificationChannelSensitiveLabelsCredentialServiceKey;
+  ) = MonitoringNotificationChannelCredentialServiceKey;
 
   /// Sets `service_key_wo`.
-  const factory MonitoringNotificationChannelSensitiveLabelsCredential.serviceKeyWo(
+  const factory MonitoringNotificationChannelCredential.serviceKeyWo(
     TfArg<String> serviceKeyWo,
-  ) = MonitoringNotificationChannelSensitiveLabelsCredentialServiceKeyWo;
+  ) = MonitoringNotificationChannelCredentialServiceKeyWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -81,12 +81,10 @@ sealed class MonitoringNotificationChannelSensitiveLabelsCredential {
   Map<String, Object?> encode();
 }
 
-/// The [MonitoringNotificationChannelSensitiveLabelsCredential.authToken] choice: sets `auth_token`.
-final class MonitoringNotificationChannelSensitiveLabelsCredentialAuthToken
-    extends MonitoringNotificationChannelSensitiveLabelsCredential {
-  const MonitoringNotificationChannelSensitiveLabelsCredentialAuthToken(
-    this.authToken,
-  );
+/// The [MonitoringNotificationChannelCredential.authToken] choice: sets `auth_token`.
+final class MonitoringNotificationChannelCredentialAuthToken
+    extends MonitoringNotificationChannelCredential {
+  const MonitoringNotificationChannelCredentialAuthToken(this.authToken);
 
   final TfArg<String> authToken;
 
@@ -97,12 +95,10 @@ final class MonitoringNotificationChannelSensitiveLabelsCredentialAuthToken
   Map<String, Object?> encode() => {'auth_token': authToken.toTfJson()};
 }
 
-/// The [MonitoringNotificationChannelSensitiveLabelsCredential.authTokenWo] choice: sets `auth_token_wo`.
-final class MonitoringNotificationChannelSensitiveLabelsCredentialAuthTokenWo
-    extends MonitoringNotificationChannelSensitiveLabelsCredential {
-  const MonitoringNotificationChannelSensitiveLabelsCredentialAuthTokenWo(
-    this.authTokenWo,
-  );
+/// The [MonitoringNotificationChannelCredential.authTokenWo] choice: sets `auth_token_wo`.
+final class MonitoringNotificationChannelCredentialAuthTokenWo
+    extends MonitoringNotificationChannelCredential {
+  const MonitoringNotificationChannelCredentialAuthTokenWo(this.authTokenWo);
 
   final TfArg<String> authTokenWo;
 
@@ -113,12 +109,10 @@ final class MonitoringNotificationChannelSensitiveLabelsCredentialAuthTokenWo
   Map<String, Object?> encode() => {'auth_token_wo': authTokenWo.toTfJson()};
 }
 
-/// The [MonitoringNotificationChannelSensitiveLabelsCredential.password] choice: sets `password`.
-final class MonitoringNotificationChannelSensitiveLabelsCredentialPassword
-    extends MonitoringNotificationChannelSensitiveLabelsCredential {
-  const MonitoringNotificationChannelSensitiveLabelsCredentialPassword(
-    this.password,
-  );
+/// The [MonitoringNotificationChannelCredential.password] choice: sets `password`.
+final class MonitoringNotificationChannelCredentialPassword
+    extends MonitoringNotificationChannelCredential {
+  const MonitoringNotificationChannelCredentialPassword(this.password);
 
   final TfArg<String> password;
 
@@ -129,12 +123,10 @@ final class MonitoringNotificationChannelSensitiveLabelsCredentialPassword
   Map<String, Object?> encode() => {'password': password.toTfJson()};
 }
 
-/// The [MonitoringNotificationChannelSensitiveLabelsCredential.passwordWo] choice: sets `password_wo`.
-final class MonitoringNotificationChannelSensitiveLabelsCredentialPasswordWo
-    extends MonitoringNotificationChannelSensitiveLabelsCredential {
-  const MonitoringNotificationChannelSensitiveLabelsCredentialPasswordWo(
-    this.passwordWo,
-  );
+/// The [MonitoringNotificationChannelCredential.passwordWo] choice: sets `password_wo`.
+final class MonitoringNotificationChannelCredentialPasswordWo
+    extends MonitoringNotificationChannelCredential {
+  const MonitoringNotificationChannelCredentialPasswordWo(this.passwordWo);
 
   final TfArg<String> passwordWo;
 
@@ -145,12 +137,10 @@ final class MonitoringNotificationChannelSensitiveLabelsCredentialPasswordWo
   Map<String, Object?> encode() => {'password_wo': passwordWo.toTfJson()};
 }
 
-/// The [MonitoringNotificationChannelSensitiveLabelsCredential.serviceKey] choice: sets `service_key`.
-final class MonitoringNotificationChannelSensitiveLabelsCredentialServiceKey
-    extends MonitoringNotificationChannelSensitiveLabelsCredential {
-  const MonitoringNotificationChannelSensitiveLabelsCredentialServiceKey(
-    this.serviceKey,
-  );
+/// The [MonitoringNotificationChannelCredential.serviceKey] choice: sets `service_key`.
+final class MonitoringNotificationChannelCredentialServiceKey
+    extends MonitoringNotificationChannelCredential {
+  const MonitoringNotificationChannelCredentialServiceKey(this.serviceKey);
 
   final TfArg<String> serviceKey;
 
@@ -161,12 +151,10 @@ final class MonitoringNotificationChannelSensitiveLabelsCredentialServiceKey
   Map<String, Object?> encode() => {'service_key': serviceKey.toTfJson()};
 }
 
-/// The [MonitoringNotificationChannelSensitiveLabelsCredential.serviceKeyWo] choice: sets `service_key_wo`.
-final class MonitoringNotificationChannelSensitiveLabelsCredentialServiceKeyWo
-    extends MonitoringNotificationChannelSensitiveLabelsCredential {
-  const MonitoringNotificationChannelSensitiveLabelsCredentialServiceKeyWo(
-    this.serviceKeyWo,
-  );
+/// The [MonitoringNotificationChannelCredential.serviceKeyWo] choice: sets `service_key_wo`.
+final class MonitoringNotificationChannelCredentialServiceKeyWo
+    extends MonitoringNotificationChannelCredential {
+  const MonitoringNotificationChannelCredentialServiceKeyWo(this.serviceKeyWo);
 
   final TfArg<String> serviceKeyWo;
 

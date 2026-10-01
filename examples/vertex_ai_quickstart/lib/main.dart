@@ -83,7 +83,7 @@ final class FeatureStack extends Stack {
         region: .literal('us-central1'),
         description: .literal('Customer features backed by BigQuery'),
         bigQuery: VertexAiFeatureGroupBigQuery(
-          bigQuerySource: VertexAiFeatureGroupBigQueryBigQuerySource(
+          bigQuerySource: VertexAiFeatureGroupBigQuerySource(
             inputUri: .literal('bq://$projectId.vertex_features.entities'),
           ),
           entityIdColumns: .literal(['entity_id']),

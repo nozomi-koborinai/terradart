@@ -29,7 +29,7 @@ final class CeAnomalySubscriptionSubscriber {
 
   final TfArg<String> address;
 
-  final TfArg<CeAnomalySubscriptionSubscriberType> type;
+  final TfArg<CeAnomalySubscriptionType> type;
 
   Map<String, Object?> encode() => {
     'address': address.toTfJson(),
@@ -38,11 +38,11 @@ final class CeAnomalySubscriptionSubscriber {
 }
 
 /// `type` — derived from the provider schema description.
-enum CeAnomalySubscriptionSubscriberType implements TerraformEnum {
+enum CeAnomalySubscriptionType implements TerraformEnum {
   email('EMAIL'),
   sns('SNS');
 
-  const CeAnomalySubscriptionSubscriberType(this.terraformValue);
+  const CeAnomalySubscriptionType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -60,15 +60,15 @@ final class CeAnomalySubscriptionThresholdExpression {
     this.tags,
   });
 
-  final List<CeAnomalySubscriptionThresholdExpressionAnd>? and;
+  final List<CeAnomalySubscriptionAnd>? and;
 
-  final CeAnomalySubscriptionThresholdExpressionCostCategory? costCategory;
+  final CeAnomalySubscriptionCostCategory? costCategory;
 
-  final CeAnomalySubscriptionThresholdExpressionDimension? dimension;
+  final CeAnomalySubscriptionDimension? dimension;
 
-  final CeAnomalySubscriptionThresholdExpressionNot? not;
+  final CeAnomalySubscriptionNot? not;
 
-  final List<CeAnomalySubscriptionThresholdExpressionOr>? or;
+  final List<CeAnomalySubscriptionOr>? or;
 
   final CeAnomalySubscriptionThresholdExpressionTags? tags;
 
@@ -85,18 +85,18 @@ final class CeAnomalySubscriptionThresholdExpression {
 /// Typed helper for the `threshold_expression.and` block of
 /// `aws_ce_anomaly_subscription` (derived from provider schema).
 @immutable
-final class CeAnomalySubscriptionThresholdExpressionAnd {
-  const CeAnomalySubscriptionThresholdExpressionAnd({
+final class CeAnomalySubscriptionAnd {
+  const CeAnomalySubscriptionAnd({
     this.costCategory,
     this.dimension,
     this.tags,
   });
 
-  final CeAnomalySubscriptionThresholdExpressionAndCostCategory? costCategory;
+  final CeAnomalySubscriptionAndCostCategory? costCategory;
 
-  final CeAnomalySubscriptionThresholdExpressionAndDimension? dimension;
+  final CeAnomalySubscriptionAndDimension? dimension;
 
-  final CeAnomalySubscriptionThresholdExpressionAndTags? tags;
+  final CeAnomalySubscriptionAndTags? tags;
 
   Map<String, Object?> encode() => {
     'cost_category': ?costCategory?.encode(),
@@ -107,9 +107,10 @@ final class CeAnomalySubscriptionThresholdExpressionAnd {
 
 /// Typed helper for the `threshold_expression.and.cost_category` block of
 /// `aws_ce_anomaly_subscription` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CeAnomalySubscriptionThresholdExpressionAndCostCategory {
-  const CeAnomalySubscriptionThresholdExpressionAndCostCategory({
+final class CeAnomalySubscriptionAndCostCategory {
+  const CeAnomalySubscriptionAndCostCategory({
     this.key,
     this.matchOptions,
     this.values,
@@ -130,9 +131,10 @@ final class CeAnomalySubscriptionThresholdExpressionAndCostCategory {
 
 /// Typed helper for the `threshold_expression.and.dimension` block of
 /// `aws_ce_anomaly_subscription` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CeAnomalySubscriptionThresholdExpressionAndDimension {
-  const CeAnomalySubscriptionThresholdExpressionAndDimension({
+final class CeAnomalySubscriptionAndDimension {
+  const CeAnomalySubscriptionAndDimension({
     this.key,
     this.matchOptions,
     this.values,
@@ -153,9 +155,10 @@ final class CeAnomalySubscriptionThresholdExpressionAndDimension {
 
 /// Typed helper for the `threshold_expression.and.tags` block of
 /// `aws_ce_anomaly_subscription` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CeAnomalySubscriptionThresholdExpressionAndTags {
-  const CeAnomalySubscriptionThresholdExpressionAndTags({
+final class CeAnomalySubscriptionAndTags {
+  const CeAnomalySubscriptionAndTags({
     this.key,
     this.matchOptions,
     this.values,
@@ -177,8 +180,8 @@ final class CeAnomalySubscriptionThresholdExpressionAndTags {
 /// Typed helper for the `threshold_expression.cost_category` block of
 /// `aws_ce_anomaly_subscription` (derived from provider schema).
 @immutable
-final class CeAnomalySubscriptionThresholdExpressionCostCategory {
-  const CeAnomalySubscriptionThresholdExpressionCostCategory({
+final class CeAnomalySubscriptionCostCategory {
+  const CeAnomalySubscriptionCostCategory({
     this.key,
     this.matchOptions,
     this.values,
@@ -186,10 +189,7 @@ final class CeAnomalySubscriptionThresholdExpressionCostCategory {
 
   final TfArg<String>? key;
 
-  final List<
-    TfArg<CeAnomalySubscriptionThresholdExpressionCostCategoryMatchOptions>
-  >?
-  matchOptions;
+  final List<TfArg<CeAnomalySubscriptionMatchOptions>>? matchOptions;
 
   final TfArg<List<String>>? values;
 
@@ -202,8 +202,7 @@ final class CeAnomalySubscriptionThresholdExpressionCostCategory {
 }
 
 /// `match_options` — derived from the provider schema description.
-enum CeAnomalySubscriptionThresholdExpressionCostCategoryMatchOptions
-    implements TerraformEnum {
+enum CeAnomalySubscriptionMatchOptions implements TerraformEnum {
   equals('EQUALS'),
   absent('ABSENT'),
   startsWith('STARTS_WITH'),
@@ -213,9 +212,7 @@ enum CeAnomalySubscriptionThresholdExpressionCostCategoryMatchOptions
   caseInsensitive('CASE_INSENSITIVE'),
   greaterThanOrEqual('GREATER_THAN_OR_EQUAL');
 
-  const CeAnomalySubscriptionThresholdExpressionCostCategoryMatchOptions(
-    this.terraformValue,
-  );
+  const CeAnomalySubscriptionMatchOptions(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -223,19 +220,16 @@ enum CeAnomalySubscriptionThresholdExpressionCostCategoryMatchOptions
 /// Typed helper for the `threshold_expression.dimension` block of
 /// `aws_ce_anomaly_subscription` (derived from provider schema).
 @immutable
-final class CeAnomalySubscriptionThresholdExpressionDimension {
-  const CeAnomalySubscriptionThresholdExpressionDimension({
+final class CeAnomalySubscriptionDimension {
+  const CeAnomalySubscriptionDimension({
     this.key,
     this.matchOptions,
     this.values,
   });
 
-  final TfArg<CeAnomalySubscriptionThresholdExpressionDimensionKey>? key;
+  final TfArg<CeAnomalySubscriptionKey>? key;
 
-  final List<
-    TfArg<CeAnomalySubscriptionThresholdExpressionDimensionMatchOptions>
-  >?
-  matchOptions;
+  final List<TfArg<CeAnomalySubscriptionMatchOptions>>? matchOptions;
 
   final TfArg<List<String>>? values;
 
@@ -248,8 +242,7 @@ final class CeAnomalySubscriptionThresholdExpressionDimension {
 }
 
 /// `key` — derived from the provider schema description.
-enum CeAnomalySubscriptionThresholdExpressionDimensionKey
-    implements TerraformEnum {
+enum CeAnomalySubscriptionKey implements TerraformEnum {
   az('AZ'),
   instanceType('INSTANCE_TYPE'),
   linkedAccount('LINKED_ACCOUNT'),
@@ -286,28 +279,7 @@ enum CeAnomalySubscriptionThresholdExpressionDimensionKey
   anomalyTotalImpactAbsolute('ANOMALY_TOTAL_IMPACT_ABSOLUTE'),
   anomalyTotalImpactPercentage('ANOMALY_TOTAL_IMPACT_PERCENTAGE');
 
-  const CeAnomalySubscriptionThresholdExpressionDimensionKey(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `match_options` — derived from the provider schema description.
-enum CeAnomalySubscriptionThresholdExpressionDimensionMatchOptions
-    implements TerraformEnum {
-  equals('EQUALS'),
-  absent('ABSENT'),
-  startsWith('STARTS_WITH'),
-  endsWith('ENDS_WITH'),
-  contains('CONTAINS'),
-  caseSensitive('CASE_SENSITIVE'),
-  caseInsensitive('CASE_INSENSITIVE'),
-  greaterThanOrEqual('GREATER_THAN_OR_EQUAL');
-
-  const CeAnomalySubscriptionThresholdExpressionDimensionMatchOptions(
-    this.terraformValue,
-  );
+  const CeAnomalySubscriptionKey(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -315,184 +287,42 @@ enum CeAnomalySubscriptionThresholdExpressionDimensionMatchOptions
 /// Typed helper for the `threshold_expression.not` block of
 /// `aws_ce_anomaly_subscription` (derived from provider schema).
 @immutable
-final class CeAnomalySubscriptionThresholdExpressionNot {
-  const CeAnomalySubscriptionThresholdExpressionNot({
+final class CeAnomalySubscriptionNot {
+  const CeAnomalySubscriptionNot({
     this.costCategory,
     this.dimension,
     this.tags,
   });
 
-  final CeAnomalySubscriptionThresholdExpressionNotCostCategory? costCategory;
+  final CeAnomalySubscriptionAndCostCategory? costCategory;
 
-  final CeAnomalySubscriptionThresholdExpressionNotDimension? dimension;
+  final CeAnomalySubscriptionAndDimension? dimension;
 
-  final CeAnomalySubscriptionThresholdExpressionNotTags? tags;
+  final CeAnomalySubscriptionAndTags? tags;
 
   Map<String, Object?> encode() => {
     'cost_category': ?costCategory?.encode(),
     'dimension': ?dimension?.encode(),
     'tags': ?tags?.encode(),
-  };
-}
-
-/// Typed helper for the `threshold_expression.not.cost_category` block of
-/// `aws_ce_anomaly_subscription` (derived from provider schema).
-@immutable
-final class CeAnomalySubscriptionThresholdExpressionNotCostCategory {
-  const CeAnomalySubscriptionThresholdExpressionNotCostCategory({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `threshold_expression.not.dimension` block of
-/// `aws_ce_anomaly_subscription` (derived from provider schema).
-@immutable
-final class CeAnomalySubscriptionThresholdExpressionNotDimension {
-  const CeAnomalySubscriptionThresholdExpressionNotDimension({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `threshold_expression.not.tags` block of
-/// `aws_ce_anomaly_subscription` (derived from provider schema).
-@immutable
-final class CeAnomalySubscriptionThresholdExpressionNotTags {
-  const CeAnomalySubscriptionThresholdExpressionNotTags({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
   };
 }
 
 /// Typed helper for the `threshold_expression.or` block of
 /// `aws_ce_anomaly_subscription` (derived from provider schema).
 @immutable
-final class CeAnomalySubscriptionThresholdExpressionOr {
-  const CeAnomalySubscriptionThresholdExpressionOr({
-    this.costCategory,
-    this.dimension,
-    this.tags,
-  });
+final class CeAnomalySubscriptionOr {
+  const CeAnomalySubscriptionOr({this.costCategory, this.dimension, this.tags});
 
-  final CeAnomalySubscriptionThresholdExpressionOrCostCategory? costCategory;
+  final CeAnomalySubscriptionAndCostCategory? costCategory;
 
-  final CeAnomalySubscriptionThresholdExpressionOrDimension? dimension;
+  final CeAnomalySubscriptionAndDimension? dimension;
 
-  final CeAnomalySubscriptionThresholdExpressionOrTags? tags;
+  final CeAnomalySubscriptionAndTags? tags;
 
   Map<String, Object?> encode() => {
     'cost_category': ?costCategory?.encode(),
     'dimension': ?dimension?.encode(),
     'tags': ?tags?.encode(),
-  };
-}
-
-/// Typed helper for the `threshold_expression.or.cost_category` block of
-/// `aws_ce_anomaly_subscription` (derived from provider schema).
-@immutable
-final class CeAnomalySubscriptionThresholdExpressionOrCostCategory {
-  const CeAnomalySubscriptionThresholdExpressionOrCostCategory({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `threshold_expression.or.dimension` block of
-/// `aws_ce_anomaly_subscription` (derived from provider schema).
-@immutable
-final class CeAnomalySubscriptionThresholdExpressionOrDimension {
-  const CeAnomalySubscriptionThresholdExpressionOrDimension({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `threshold_expression.or.tags` block of
-/// `aws_ce_anomaly_subscription` (derived from provider schema).
-@immutable
-final class CeAnomalySubscriptionThresholdExpressionOrTags {
-  const CeAnomalySubscriptionThresholdExpressionOrTags({
-    this.key,
-    this.matchOptions,
-    this.values,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? matchOptions;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'match_options': ?matchOptions?.toTfJson(),
-    'values': ?values?.toTfJson(),
   };
 }
 
@@ -508,8 +338,7 @@ final class CeAnomalySubscriptionThresholdExpressionTags {
 
   final TfArg<String>? key;
 
-  final List<TfArg<CeAnomalySubscriptionThresholdExpressionTagsMatchOptions>>?
-  matchOptions;
+  final List<TfArg<CeAnomalySubscriptionMatchOptions>>? matchOptions;
 
   final TfArg<List<String>>? values;
 
@@ -519,25 +348,6 @@ final class CeAnomalySubscriptionThresholdExpressionTags {
       'match_options': [for (final e in matchOptions!) e.toTfJson()],
     'values': ?values?.toTfJson(),
   };
-}
-
-/// `match_options` — derived from the provider schema description.
-enum CeAnomalySubscriptionThresholdExpressionTagsMatchOptions
-    implements TerraformEnum {
-  equals('EQUALS'),
-  absent('ABSENT'),
-  startsWith('STARTS_WITH'),
-  endsWith('ENDS_WITH'),
-  contains('CONTAINS'),
-  caseSensitive('CASE_SENSITIVE'),
-  caseInsensitive('CASE_INSENSITIVE'),
-  greaterThanOrEqual('GREATER_THAN_OR_EQUAL');
-
-  const CeAnomalySubscriptionThresholdExpressionTagsMatchOptions(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_ce_anomaly_subscription`.

@@ -25,10 +25,8 @@ enum GkeonpremBareMetalAdminClusterState implements TerraformEnum {
 /// Typed helper for the `cluster_operations` block of
 /// `google_gkeonprem_bare_metal_admin_cluster` (derived from provider schema).
 @immutable
-final class GkeonpremBareMetalAdminClusterClusterOperations {
-  const GkeonpremBareMetalAdminClusterClusterOperations({
-    this.enableApplicationLogs,
-  });
+final class GkeonpremBareMetalAdminClusterOperations {
+  const GkeonpremBareMetalAdminClusterOperations({this.enableApplicationLogs});
 
   final TfArg<bool>? enableApplicationLogs;
 
@@ -46,10 +44,9 @@ final class GkeonpremBareMetalAdminClusterControlPlane {
     required this.controlPlaneNodePoolConfig,
   });
 
-  final List<GkeonpremBareMetalAdminClusterControlPlaneApiServerArgs>?
-  apiServerArgs;
+  final List<GkeonpremBareMetalAdminClusterApiServerArgs>? apiServerArgs;
 
-  final GkeonpremBareMetalAdminClusterControlPlaneControlPlaneNodePoolConfig
+  final GkeonpremBareMetalAdminClusterControlPlaneNodePoolConfig
   controlPlaneNodePoolConfig;
 
   Map<String, Object?> encode() => {
@@ -62,8 +59,8 @@ final class GkeonpremBareMetalAdminClusterControlPlane {
 /// Typed helper for the `control_plane.api_server_args` block of
 /// `google_gkeonprem_bare_metal_admin_cluster` (derived from provider schema).
 @immutable
-final class GkeonpremBareMetalAdminClusterControlPlaneApiServerArgs {
-  const GkeonpremBareMetalAdminClusterControlPlaneApiServerArgs({
+final class GkeonpremBareMetalAdminClusterApiServerArgs {
+  const GkeonpremBareMetalAdminClusterApiServerArgs({
     required this.argument,
     required this.value,
   });
@@ -81,13 +78,12 @@ final class GkeonpremBareMetalAdminClusterControlPlaneApiServerArgs {
 /// Typed helper for the `control_plane.control_plane_node_pool_config` block of
 /// `google_gkeonprem_bare_metal_admin_cluster` (derived from provider schema).
 @immutable
-final class GkeonpremBareMetalAdminClusterControlPlaneControlPlaneNodePoolConfig {
-  const GkeonpremBareMetalAdminClusterControlPlaneControlPlaneNodePoolConfig({
+final class GkeonpremBareMetalAdminClusterControlPlaneNodePoolConfig {
+  const GkeonpremBareMetalAdminClusterControlPlaneNodePoolConfig({
     required this.nodePoolConfig,
   });
 
-  final GkeonpremBareMetalAdminClusterControlPlaneControlPlaneNodePoolConfigNodePoolConfig
-  nodePoolConfig;
+  final GkeonpremBareMetalAdminClusterNodePoolConfig nodePoolConfig;
 
   Map<String, Object?> encode() => {
     'node_pool_config': nodePoolConfig.encode(),
@@ -97,8 +93,8 @@ final class GkeonpremBareMetalAdminClusterControlPlaneControlPlaneNodePoolConfig
 /// Typed helper for the `control_plane.control_plane_node_pool_config.node_pool_config` block of
 /// `google_gkeonprem_bare_metal_admin_cluster` (derived from provider schema).
 @immutable
-final class GkeonpremBareMetalAdminClusterControlPlaneControlPlaneNodePoolConfigNodePoolConfig {
-  const GkeonpremBareMetalAdminClusterControlPlaneControlPlaneNodePoolConfigNodePoolConfig({
+final class GkeonpremBareMetalAdminClusterNodePoolConfig {
+  const GkeonpremBareMetalAdminClusterNodePoolConfig({
     this.labels,
     this.operatingSystem,
     this.nodeConfigs,
@@ -109,15 +105,9 @@ final class GkeonpremBareMetalAdminClusterControlPlaneControlPlaneNodePoolConfig
 
   final TfArg<String>? operatingSystem;
 
-  final List<
-    GkeonpremBareMetalAdminClusterControlPlaneControlPlaneNodePoolConfigNodePoolConfigNodeConfigs
-  >?
-  nodeConfigs;
+  final List<GkeonpremBareMetalAdminClusterNodeConfigs>? nodeConfigs;
 
-  final List<
-    GkeonpremBareMetalAdminClusterControlPlaneControlPlaneNodePoolConfigNodePoolConfigTaints
-  >?
-  taints;
+  final List<GkeonpremBareMetalAdminClusterTaints>? taints;
 
   Map<String, Object?> encode() => {
     'labels': ?labels?.toTfJson(),
@@ -130,12 +120,10 @@ final class GkeonpremBareMetalAdminClusterControlPlaneControlPlaneNodePoolConfig
 
 /// Typed helper for the `control_plane.control_plane_node_pool_config.node_pool_config.node_configs` block of
 /// `google_gkeonprem_bare_metal_admin_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class GkeonpremBareMetalAdminClusterControlPlaneControlPlaneNodePoolConfigNodePoolConfigNodeConfigs {
-  const GkeonpremBareMetalAdminClusterControlPlaneControlPlaneNodePoolConfigNodePoolConfigNodeConfigs({
-    this.labels,
-    this.nodeIp,
-  });
+final class GkeonpremBareMetalAdminClusterNodeConfigs {
+  const GkeonpremBareMetalAdminClusterNodeConfigs({this.labels, this.nodeIp});
 
   final TfArg<Map<String, String>>? labels;
 
@@ -150,17 +138,14 @@ final class GkeonpremBareMetalAdminClusterControlPlaneControlPlaneNodePoolConfig
 /// Typed helper for the `control_plane.control_plane_node_pool_config.node_pool_config.taints` block of
 /// `google_gkeonprem_bare_metal_admin_cluster` (derived from provider schema).
 @immutable
-final class GkeonpremBareMetalAdminClusterControlPlaneControlPlaneNodePoolConfigNodePoolConfigTaints {
-  const GkeonpremBareMetalAdminClusterControlPlaneControlPlaneNodePoolConfigNodePoolConfigTaints({
+final class GkeonpremBareMetalAdminClusterTaints {
+  const GkeonpremBareMetalAdminClusterTaints({
     this.effect,
     this.key,
     this.value,
   });
 
-  final TfArg<
-    GkeonpremBareMetalAdminClusterControlPlaneControlPlaneNodePoolConfigNodePoolConfigTaintsEffect
-  >?
-  effect;
+  final TfArg<GkeonpremBareMetalAdminClusterEffect>? effect;
 
   final TfArg<String>? key;
 
@@ -174,15 +159,12 @@ final class GkeonpremBareMetalAdminClusterControlPlaneControlPlaneNodePoolConfig
 }
 
 /// `effect` — derived from the provider schema description.
-enum GkeonpremBareMetalAdminClusterControlPlaneControlPlaneNodePoolConfigNodePoolConfigTaintsEffect
-    implements TerraformEnum {
+enum GkeonpremBareMetalAdminClusterEffect implements TerraformEnum {
   effectUnspecified('EFFECT_UNSPECIFIED'),
   preferNoSchedule('PREFER_NO_SCHEDULE'),
   noExecute('NO_EXECUTE');
 
-  const GkeonpremBareMetalAdminClusterControlPlaneControlPlaneNodePoolConfigNodePoolConfigTaintsEffect(
-    this.terraformValue,
-  );
+  const GkeonpremBareMetalAdminClusterEffect(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -198,14 +180,13 @@ final class GkeonpremBareMetalAdminClusterLoadBalancer {
     required this.vipConfig,
   });
 
-  final GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfig? bgpLbConfig;
+  final GkeonpremBareMetalAdminClusterBgpLbConfig? bgpLbConfig;
 
-  final GkeonpremBareMetalAdminClusterLoadBalancerManualLbConfig?
-  manualLbConfig;
+  final GkeonpremBareMetalAdminClusterManualLbConfig? manualLbConfig;
 
-  final GkeonpremBareMetalAdminClusterLoadBalancerPortConfig portConfig;
+  final GkeonpremBareMetalAdminClusterPortConfig portConfig;
 
-  final GkeonpremBareMetalAdminClusterLoadBalancerVipConfig vipConfig;
+  final GkeonpremBareMetalAdminClusterVipConfig vipConfig;
 
   Map<String, Object?> encode() => {
     'bgp_lb_config': ?bgpLbConfig?.encode(),
@@ -218,8 +199,8 @@ final class GkeonpremBareMetalAdminClusterLoadBalancer {
 /// Typed helper for the `load_balancer.bgp_lb_config` block of
 /// `google_gkeonprem_bare_metal_admin_cluster` (derived from provider schema).
 @immutable
-final class GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfig {
-  const GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfig({
+final class GkeonpremBareMetalAdminClusterBgpLbConfig {
+  const GkeonpremBareMetalAdminClusterBgpLbConfig({
     this.asn,
     this.addressPools,
     this.bgpPeerConfigs,
@@ -228,15 +209,11 @@ final class GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfig {
 
   final TfArg<num>? asn;
 
-  final List<GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigAddressPools>?
-  addressPools;
+  final List<GkeonpremBareMetalAdminClusterAddressPools>? addressPools;
 
-  final List<
-    GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigBgpPeerConfigs
-  >?
-  bgpPeerConfigs;
+  final List<GkeonpremBareMetalAdminClusterBgpPeerConfigs>? bgpPeerConfigs;
 
-  final GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigLoadBalancerNodePoolConfig?
+  final GkeonpremBareMetalAdminClusterLoadBalancerNodePoolConfig?
   loadBalancerNodePoolConfig;
 
   Map<String, Object?> encode() => {
@@ -252,8 +229,8 @@ final class GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfig {
 /// Typed helper for the `load_balancer.bgp_lb_config.address_pools` block of
 /// `google_gkeonprem_bare_metal_admin_cluster` (derived from provider schema).
 @immutable
-final class GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigAddressPools {
-  const GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigAddressPools({
+final class GkeonpremBareMetalAdminClusterAddressPools {
+  const GkeonpremBareMetalAdminClusterAddressPools({
     this.addresses,
     this.avoidBuggyIps,
     this.manualAssign,
@@ -279,8 +256,8 @@ final class GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigAddressPools {
 /// Typed helper for the `load_balancer.bgp_lb_config.bgp_peer_configs` block of
 /// `google_gkeonprem_bare_metal_admin_cluster` (derived from provider schema).
 @immutable
-final class GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigBgpPeerConfigs {
-  const GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigBgpPeerConfigs({
+final class GkeonpremBareMetalAdminClusterBgpPeerConfigs {
+  const GkeonpremBareMetalAdminClusterBgpPeerConfigs({
     this.asn,
     this.controlPlaneNodes,
     this.ipAddress,
@@ -302,12 +279,12 @@ final class GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigBgpPeerConfigs 
 /// Typed helper for the `load_balancer.bgp_lb_config.load_balancer_node_pool_config` block of
 /// `google_gkeonprem_bare_metal_admin_cluster` (derived from provider schema).
 @immutable
-final class GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigLoadBalancerNodePoolConfig {
-  const GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigLoadBalancerNodePoolConfig({
+final class GkeonpremBareMetalAdminClusterLoadBalancerNodePoolConfig {
+  const GkeonpremBareMetalAdminClusterLoadBalancerNodePoolConfig({
     this.nodePoolConfig,
   });
 
-  final GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigLoadBalancerNodePoolConfigNodePoolConfig?
+  final GkeonpremBareMetalAdminClusterLoadBalancerNodePoolConfigNodePoolConfig?
   nodePoolConfig;
 
   Map<String, Object?> encode() => {
@@ -318,8 +295,8 @@ final class GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigLoadBalancerNod
 /// Typed helper for the `load_balancer.bgp_lb_config.load_balancer_node_pool_config.node_pool_config` block of
 /// `google_gkeonprem_bare_metal_admin_cluster` (derived from provider schema).
 @immutable
-final class GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigLoadBalancerNodePoolConfigNodePoolConfig {
-  const GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigLoadBalancerNodePoolConfigNodePoolConfig({
+final class GkeonpremBareMetalAdminClusterLoadBalancerNodePoolConfigNodePoolConfig {
+  const GkeonpremBareMetalAdminClusterLoadBalancerNodePoolConfigNodePoolConfig({
     this.labels,
     this.operatingSystem,
     this.kubeletConfig,
@@ -331,18 +308,11 @@ final class GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigLoadBalancerNod
 
   final TfArg<String>? operatingSystem;
 
-  final GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigLoadBalancerNodePoolConfigNodePoolConfigKubeletConfig?
-  kubeletConfig;
+  final GkeonpremBareMetalAdminClusterKubeletConfig? kubeletConfig;
 
-  final List<
-    GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigLoadBalancerNodePoolConfigNodePoolConfigNodeConfigs
-  >?
-  nodeConfigs;
+  final List<GkeonpremBareMetalAdminClusterNodeConfigs>? nodeConfigs;
 
-  final List<
-    GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigLoadBalancerNodePoolConfigNodePoolConfigTaints
-  >?
-  taints;
+  final List<GkeonpremBareMetalAdminClusterNodePoolConfigTaints>? taints;
 
   Map<String, Object?> encode() => {
     'labels': ?labels?.toTfJson(),
@@ -357,8 +327,8 @@ final class GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigLoadBalancerNod
 /// Typed helper for the `load_balancer.bgp_lb_config.load_balancer_node_pool_config.node_pool_config.kubelet_config` block of
 /// `google_gkeonprem_bare_metal_admin_cluster` (derived from provider schema).
 @immutable
-final class GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigLoadBalancerNodePoolConfigNodePoolConfigKubeletConfig {
-  const GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigLoadBalancerNodePoolConfigNodePoolConfigKubeletConfig({
+final class GkeonpremBareMetalAdminClusterKubeletConfig {
+  const GkeonpremBareMetalAdminClusterKubeletConfig({
     this.registryBurst,
     this.registryPullQps,
     this.serializeImagePullsDisabled,
@@ -377,30 +347,11 @@ final class GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigLoadBalancerNod
   };
 }
 
-/// Typed helper for the `load_balancer.bgp_lb_config.load_balancer_node_pool_config.node_pool_config.node_configs` block of
-/// `google_gkeonprem_bare_metal_admin_cluster` (derived from provider schema).
-@immutable
-final class GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigLoadBalancerNodePoolConfigNodePoolConfigNodeConfigs {
-  const GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigLoadBalancerNodePoolConfigNodePoolConfigNodeConfigs({
-    this.labels,
-    this.nodeIp,
-  });
-
-  final TfArg<Map<String, String>>? labels;
-
-  final TfArg<String>? nodeIp;
-
-  Map<String, Object?> encode() => {
-    'labels': ?labels?.toTfJson(),
-    'node_ip': ?nodeIp?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `load_balancer.bgp_lb_config.load_balancer_node_pool_config.node_pool_config.taints` block of
 /// `google_gkeonprem_bare_metal_admin_cluster` (derived from provider schema).
 @immutable
-final class GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigLoadBalancerNodePoolConfigNodePoolConfigTaints {
-  const GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigLoadBalancerNodePoolConfigNodePoolConfigTaints({
+final class GkeonpremBareMetalAdminClusterNodePoolConfigTaints {
+  const GkeonpremBareMetalAdminClusterNodePoolConfigTaints({
     this.effect,
     this.key,
     this.value,
@@ -422,10 +373,8 @@ final class GkeonpremBareMetalAdminClusterLoadBalancerBgpLbConfigLoadBalancerNod
 /// Typed helper for the `load_balancer.manual_lb_config` block of
 /// `google_gkeonprem_bare_metal_admin_cluster` (derived from provider schema).
 @immutable
-final class GkeonpremBareMetalAdminClusterLoadBalancerManualLbConfig {
-  const GkeonpremBareMetalAdminClusterLoadBalancerManualLbConfig({
-    required this.enabled,
-  });
+final class GkeonpremBareMetalAdminClusterManualLbConfig {
+  const GkeonpremBareMetalAdminClusterManualLbConfig({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -435,8 +384,8 @@ final class GkeonpremBareMetalAdminClusterLoadBalancerManualLbConfig {
 /// Typed helper for the `load_balancer.port_config` block of
 /// `google_gkeonprem_bare_metal_admin_cluster` (derived from provider schema).
 @immutable
-final class GkeonpremBareMetalAdminClusterLoadBalancerPortConfig {
-  const GkeonpremBareMetalAdminClusterLoadBalancerPortConfig({
+final class GkeonpremBareMetalAdminClusterPortConfig {
+  const GkeonpremBareMetalAdminClusterPortConfig({
     required this.controlPlaneLoadBalancerPort,
   });
 
@@ -450,8 +399,8 @@ final class GkeonpremBareMetalAdminClusterLoadBalancerPortConfig {
 /// Typed helper for the `load_balancer.vip_config` block of
 /// `google_gkeonprem_bare_metal_admin_cluster` (derived from provider schema).
 @immutable
-final class GkeonpremBareMetalAdminClusterLoadBalancerVipConfig {
-  const GkeonpremBareMetalAdminClusterLoadBalancerVipConfig({
+final class GkeonpremBareMetalAdminClusterVipConfig {
+  const GkeonpremBareMetalAdminClusterVipConfig({
     required this.controlPlaneVip,
   });
 
@@ -489,10 +438,9 @@ final class GkeonpremBareMetalAdminClusterNetworkConfig {
 
   final TfArg<bool>? advancedNetworking;
 
-  final GkeonpremBareMetalAdminClusterNetworkConfigIslandModeCidr?
-  islandModeCidr;
+  final GkeonpremBareMetalAdminClusterIslandModeCidr? islandModeCidr;
 
-  final GkeonpremBareMetalAdminClusterNetworkConfigMultipleNetworkInterfacesConfig?
+  final GkeonpremBareMetalAdminClusterMultipleNetworkInterfacesConfig?
   multipleNetworkInterfacesConfig;
 
   Map<String, Object?> encode() => {
@@ -506,8 +454,8 @@ final class GkeonpremBareMetalAdminClusterNetworkConfig {
 /// Typed helper for the `network_config.island_mode_cidr` block of
 /// `google_gkeonprem_bare_metal_admin_cluster` (derived from provider schema).
 @immutable
-final class GkeonpremBareMetalAdminClusterNetworkConfigIslandModeCidr {
-  const GkeonpremBareMetalAdminClusterNetworkConfigIslandModeCidr({
+final class GkeonpremBareMetalAdminClusterIslandModeCidr {
+  const GkeonpremBareMetalAdminClusterIslandModeCidr({
     required this.podAddressCidrBlocks,
     required this.serviceAddressCidrBlocks,
   });
@@ -525,8 +473,8 @@ final class GkeonpremBareMetalAdminClusterNetworkConfigIslandModeCidr {
 /// Typed helper for the `network_config.multiple_network_interfaces_config` block of
 /// `google_gkeonprem_bare_metal_admin_cluster` (derived from provider schema).
 @immutable
-final class GkeonpremBareMetalAdminClusterNetworkConfigMultipleNetworkInterfacesConfig {
-  const GkeonpremBareMetalAdminClusterNetworkConfigMultipleNetworkInterfacesConfig({
+final class GkeonpremBareMetalAdminClusterMultipleNetworkInterfacesConfig {
+  const GkeonpremBareMetalAdminClusterMultipleNetworkInterfacesConfig({
     this.enabled,
   });
 
@@ -581,8 +529,7 @@ final class GkeonpremBareMetalAdminClusterProxy {
 final class GkeonpremBareMetalAdminClusterSecurityConfig {
   const GkeonpremBareMetalAdminClusterSecurityConfig({this.authorization});
 
-  final GkeonpremBareMetalAdminClusterSecurityConfigAuthorization?
-  authorization;
+  final GkeonpremBareMetalAdminClusterAuthorization? authorization;
 
   Map<String, Object?> encode() => {'authorization': ?authorization?.encode()};
 }
@@ -590,15 +537,10 @@ final class GkeonpremBareMetalAdminClusterSecurityConfig {
 /// Typed helper for the `security_config.authorization` block of
 /// `google_gkeonprem_bare_metal_admin_cluster` (derived from provider schema).
 @immutable
-final class GkeonpremBareMetalAdminClusterSecurityConfigAuthorization {
-  const GkeonpremBareMetalAdminClusterSecurityConfigAuthorization({
-    required this.adminUsers,
-  });
+final class GkeonpremBareMetalAdminClusterAuthorization {
+  const GkeonpremBareMetalAdminClusterAuthorization({required this.adminUsers});
 
-  final List<
-    GkeonpremBareMetalAdminClusterSecurityConfigAuthorizationAdminUsers
-  >
-  adminUsers;
+  final List<GkeonpremBareMetalAdminClusterAdminUsers> adminUsers;
 
   Map<String, Object?> encode() => {
     'admin_users': [for (final e in adminUsers) e.encode()],
@@ -608,10 +550,8 @@ final class GkeonpremBareMetalAdminClusterSecurityConfigAuthorization {
 /// Typed helper for the `security_config.authorization.admin_users` block of
 /// `google_gkeonprem_bare_metal_admin_cluster` (derived from provider schema).
 @immutable
-final class GkeonpremBareMetalAdminClusterSecurityConfigAuthorizationAdminUsers {
-  const GkeonpremBareMetalAdminClusterSecurityConfigAuthorizationAdminUsers({
-    required this.username,
-  });
+final class GkeonpremBareMetalAdminClusterAdminUsers {
+  const GkeonpremBareMetalAdminClusterAdminUsers({required this.username});
 
   final TfArg<String> username;
 
@@ -627,10 +567,9 @@ final class GkeonpremBareMetalAdminClusterStorage {
     required this.lvpShareConfig,
   });
 
-  final GkeonpremBareMetalAdminClusterStorageLvpNodeMountsConfig
-  lvpNodeMountsConfig;
+  final GkeonpremBareMetalAdminClusterLvpNodeMountsConfig lvpNodeMountsConfig;
 
-  final GkeonpremBareMetalAdminClusterStorageLvpShareConfig lvpShareConfig;
+  final GkeonpremBareMetalAdminClusterLvpShareConfig lvpShareConfig;
 
   Map<String, Object?> encode() => {
     'lvp_node_mounts_config': lvpNodeMountsConfig.encode(),
@@ -641,8 +580,8 @@ final class GkeonpremBareMetalAdminClusterStorage {
 /// Typed helper for the `storage.lvp_node_mounts_config` block of
 /// `google_gkeonprem_bare_metal_admin_cluster` (derived from provider schema).
 @immutable
-final class GkeonpremBareMetalAdminClusterStorageLvpNodeMountsConfig {
-  const GkeonpremBareMetalAdminClusterStorageLvpNodeMountsConfig({
+final class GkeonpremBareMetalAdminClusterLvpNodeMountsConfig {
+  const GkeonpremBareMetalAdminClusterLvpNodeMountsConfig({
     required this.path,
     required this.storageClass,
   });
@@ -660,15 +599,15 @@ final class GkeonpremBareMetalAdminClusterStorageLvpNodeMountsConfig {
 /// Typed helper for the `storage.lvp_share_config` block of
 /// `google_gkeonprem_bare_metal_admin_cluster` (derived from provider schema).
 @immutable
-final class GkeonpremBareMetalAdminClusterStorageLvpShareConfig {
-  const GkeonpremBareMetalAdminClusterStorageLvpShareConfig({
+final class GkeonpremBareMetalAdminClusterLvpShareConfig {
+  const GkeonpremBareMetalAdminClusterLvpShareConfig({
     this.sharedPathPvCount,
     required this.lvpConfig,
   });
 
   final TfArg<num>? sharedPathPvCount;
 
-  final GkeonpremBareMetalAdminClusterStorageLvpShareConfigLvpConfig lvpConfig;
+  final GkeonpremBareMetalAdminClusterLvpConfig lvpConfig;
 
   Map<String, Object?> encode() => {
     'shared_path_pv_count': ?sharedPathPvCount?.toTfJson(),
@@ -679,8 +618,8 @@ final class GkeonpremBareMetalAdminClusterStorageLvpShareConfig {
 /// Typed helper for the `storage.lvp_share_config.lvp_config` block of
 /// `google_gkeonprem_bare_metal_admin_cluster` (derived from provider schema).
 @immutable
-final class GkeonpremBareMetalAdminClusterStorageLvpShareConfigLvpConfig {
-  const GkeonpremBareMetalAdminClusterStorageLvpShareConfigLvpConfig({
+final class GkeonpremBareMetalAdminClusterLvpConfig {
+  const GkeonpremBareMetalAdminClusterLvpConfig({
     required this.path,
     required this.storageClass,
   });
@@ -726,7 +665,7 @@ final class GoogleGkeonpremBareMetalAdminCluster extends Resource {
     GkeonpremBareMetalAdminClusterNodeAccessConfig? nodeAccessConfig,
     GkeonpremBareMetalAdminClusterSecurityConfig? securityConfig,
     GkeonpremBareMetalAdminClusterMaintenanceConfig? maintenanceConfig,
-    GkeonpremBareMetalAdminClusterClusterOperations? clusterOperations,
+    GkeonpremBareMetalAdminClusterOperations? clusterOperations,
     GkeonpremBareMetalAdminClusterProxy? proxy,
     TfArg<Map<String, String>>? annotations,
     TfArg<String>? project,

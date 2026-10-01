@@ -16,14 +16,13 @@ sealed class BedrockagentcoreGatewayRuleAction {
 
   /// Sets `configuration_bundle`.
   const factory BedrockagentcoreGatewayRuleAction.configurationBundle(
-    List<BedrockagentcoreGatewayRuleActionConfigurationBundle>
-    configurationBundle,
-  ) = BedrockagentcoreGatewayRuleActionConfigurationBundleChoice;
+    List<BedrockagentcoreGatewayRuleConfigurationBundle> configurationBundle,
+  ) = BedrockagentcoreGatewayRuleActionConfigurationBundle;
 
   /// Sets `route_to_target`.
   const factory BedrockagentcoreGatewayRuleAction.routeToTarget(
-    List<BedrockagentcoreGatewayRuleActionRouteToTarget> routeToTarget,
-  ) = BedrockagentcoreGatewayRuleActionRouteToTargetChoice;
+    List<BedrockagentcoreGatewayRuleRouteToTarget> routeToTarget,
+  ) = BedrockagentcoreGatewayRuleActionRouteToTarget;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -32,13 +31,13 @@ sealed class BedrockagentcoreGatewayRuleAction {
 }
 
 /// The [BedrockagentcoreGatewayRuleAction.configurationBundle] choice: sets `configuration_bundle`.
-final class BedrockagentcoreGatewayRuleActionConfigurationBundleChoice
+final class BedrockagentcoreGatewayRuleActionConfigurationBundle
     extends BedrockagentcoreGatewayRuleAction {
-  const BedrockagentcoreGatewayRuleActionConfigurationBundleChoice(
+  const BedrockagentcoreGatewayRuleActionConfigurationBundle(
     this.configurationBundle,
   );
 
-  final List<BedrockagentcoreGatewayRuleActionConfigurationBundle>
+  final List<BedrockagentcoreGatewayRuleConfigurationBundle>
   configurationBundle;
 
   @override
@@ -51,13 +50,11 @@ final class BedrockagentcoreGatewayRuleActionConfigurationBundleChoice
 }
 
 /// The [BedrockagentcoreGatewayRuleAction.routeToTarget] choice: sets `route_to_target`.
-final class BedrockagentcoreGatewayRuleActionRouteToTargetChoice
+final class BedrockagentcoreGatewayRuleActionRouteToTarget
     extends BedrockagentcoreGatewayRuleAction {
-  const BedrockagentcoreGatewayRuleActionRouteToTargetChoice(
-    this.routeToTarget,
-  );
+  const BedrockagentcoreGatewayRuleActionRouteToTarget(this.routeToTarget);
 
-  final List<BedrockagentcoreGatewayRuleActionRouteToTarget> routeToTarget;
+  final List<BedrockagentcoreGatewayRuleRouteToTarget> routeToTarget;
 
   @override
   String get blockKey => 'route_to_target';
@@ -72,20 +69,18 @@ final class BedrockagentcoreGatewayRuleActionRouteToTargetChoice
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.staticOverride(...)`.
-sealed class BedrockagentcoreGatewayRuleActionConfigurationBundle {
-  const BedrockagentcoreGatewayRuleActionConfigurationBundle();
+sealed class BedrockagentcoreGatewayRuleConfigurationBundle {
+  const BedrockagentcoreGatewayRuleConfigurationBundle();
 
   /// Sets `static_override`.
-  const factory BedrockagentcoreGatewayRuleActionConfigurationBundle.staticOverride(
-    List<BedrockagentcoreGatewayRuleActionConfigurationBundleStaticOverride>
-    staticOverride,
-  ) = BedrockagentcoreGatewayRuleActionConfigurationBundleStaticOverrideChoice;
+  const factory BedrockagentcoreGatewayRuleConfigurationBundle.staticOverride(
+    List<BedrockagentcoreGatewayRuleStaticOverride> staticOverride,
+  ) = BedrockagentcoreGatewayRuleConfigurationBundleStaticOverride;
 
   /// Sets `weighted_override`.
-  const factory BedrockagentcoreGatewayRuleActionConfigurationBundle.weightedOverride(
-    List<BedrockagentcoreGatewayRuleActionConfigurationBundleWeightedOverride>
-    weightedOverride,
-  ) = BedrockagentcoreGatewayRuleActionConfigurationBundleWeightedOverrideChoice;
+  const factory BedrockagentcoreGatewayRuleConfigurationBundle.weightedOverride(
+    List<BedrockagentcoreGatewayRuleWeightedOverride> weightedOverride,
+  ) = BedrockagentcoreGatewayRuleConfigurationBundleWeightedOverride;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -93,15 +88,14 @@ sealed class BedrockagentcoreGatewayRuleActionConfigurationBundle {
   Map<String, Object?> encode();
 }
 
-/// The [BedrockagentcoreGatewayRuleActionConfigurationBundle.staticOverride] choice: sets `static_override`.
-final class BedrockagentcoreGatewayRuleActionConfigurationBundleStaticOverrideChoice
-    extends BedrockagentcoreGatewayRuleActionConfigurationBundle {
-  const BedrockagentcoreGatewayRuleActionConfigurationBundleStaticOverrideChoice(
+/// The [BedrockagentcoreGatewayRuleConfigurationBundle.staticOverride] choice: sets `static_override`.
+final class BedrockagentcoreGatewayRuleConfigurationBundleStaticOverride
+    extends BedrockagentcoreGatewayRuleConfigurationBundle {
+  const BedrockagentcoreGatewayRuleConfigurationBundleStaticOverride(
     this.staticOverride,
   );
 
-  final List<BedrockagentcoreGatewayRuleActionConfigurationBundleStaticOverride>
-  staticOverride;
+  final List<BedrockagentcoreGatewayRuleStaticOverride> staticOverride;
 
   @override
   String get blockKey => 'static_override';
@@ -112,17 +106,14 @@ final class BedrockagentcoreGatewayRuleActionConfigurationBundleStaticOverrideCh
   };
 }
 
-/// The [BedrockagentcoreGatewayRuleActionConfigurationBundle.weightedOverride] choice: sets `weighted_override`.
-final class BedrockagentcoreGatewayRuleActionConfigurationBundleWeightedOverrideChoice
-    extends BedrockagentcoreGatewayRuleActionConfigurationBundle {
-  const BedrockagentcoreGatewayRuleActionConfigurationBundleWeightedOverrideChoice(
+/// The [BedrockagentcoreGatewayRuleConfigurationBundle.weightedOverride] choice: sets `weighted_override`.
+final class BedrockagentcoreGatewayRuleConfigurationBundleWeightedOverride
+    extends BedrockagentcoreGatewayRuleConfigurationBundle {
+  const BedrockagentcoreGatewayRuleConfigurationBundleWeightedOverride(
     this.weightedOverride,
   );
 
-  final List<
-    BedrockagentcoreGatewayRuleActionConfigurationBundleWeightedOverride
-  >
-  weightedOverride;
+  final List<BedrockagentcoreGatewayRuleWeightedOverride> weightedOverride;
 
   @override
   String get blockKey => 'weighted_override';
@@ -136,8 +127,8 @@ final class BedrockagentcoreGatewayRuleActionConfigurationBundleWeightedOverride
 /// Typed helper for the `action.configuration_bundle.static_override` block of
 /// `aws_bedrockagentcore_gateway_rule` (derived from provider schema).
 @immutable
-final class BedrockagentcoreGatewayRuleActionConfigurationBundleStaticOverride {
-  const BedrockagentcoreGatewayRuleActionConfigurationBundleStaticOverride({
+final class BedrockagentcoreGatewayRuleStaticOverride {
+  const BedrockagentcoreGatewayRuleStaticOverride({
     required this.bundleArn,
     required this.bundleVersion,
   });
@@ -155,14 +146,10 @@ final class BedrockagentcoreGatewayRuleActionConfigurationBundleStaticOverride {
 /// Typed helper for the `action.configuration_bundle.weighted_override` block of
 /// `aws_bedrockagentcore_gateway_rule` (derived from provider schema).
 @immutable
-final class BedrockagentcoreGatewayRuleActionConfigurationBundleWeightedOverride {
-  const BedrockagentcoreGatewayRuleActionConfigurationBundleWeightedOverride({
-    this.trafficSplit,
-  });
+final class BedrockagentcoreGatewayRuleWeightedOverride {
+  const BedrockagentcoreGatewayRuleWeightedOverride({this.trafficSplit});
 
-  final List<
-    BedrockagentcoreGatewayRuleActionConfigurationBundleWeightedOverrideTrafficSplit
-  >?
+  final List<BedrockagentcoreGatewayRuleWeightedOverrideTrafficSplit>?
   trafficSplit;
 
   Map<String, Object?> encode() => {
@@ -174,8 +161,8 @@ final class BedrockagentcoreGatewayRuleActionConfigurationBundleWeightedOverride
 /// Typed helper for the `action.configuration_bundle.weighted_override.traffic_split` block of
 /// `aws_bedrockagentcore_gateway_rule` (derived from provider schema).
 @immutable
-final class BedrockagentcoreGatewayRuleActionConfigurationBundleWeightedOverrideTrafficSplit {
-  const BedrockagentcoreGatewayRuleActionConfigurationBundleWeightedOverrideTrafficSplit({
+final class BedrockagentcoreGatewayRuleWeightedOverrideTrafficSplit {
+  const BedrockagentcoreGatewayRuleWeightedOverrideTrafficSplit({
     this.description,
     this.metadata,
     required this.name,
@@ -191,9 +178,7 @@ final class BedrockagentcoreGatewayRuleActionConfigurationBundleWeightedOverride
 
   final TfArg<num> weight;
 
-  final List<
-    BedrockagentcoreGatewayRuleActionConfigurationBundleWeightedOverrideTrafficSplitConfigurationBundle
-  >?
+  final List<BedrockagentcoreGatewayRuleTrafficSplitConfigurationBundle>?
   configurationBundle;
 
   Map<String, Object?> encode() => {
@@ -211,8 +196,8 @@ final class BedrockagentcoreGatewayRuleActionConfigurationBundleWeightedOverride
 /// Typed helper for the `action.configuration_bundle.weighted_override.traffic_split.configuration_bundle` block of
 /// `aws_bedrockagentcore_gateway_rule` (derived from provider schema).
 @immutable
-final class BedrockagentcoreGatewayRuleActionConfigurationBundleWeightedOverrideTrafficSplitConfigurationBundle {
-  const BedrockagentcoreGatewayRuleActionConfigurationBundleWeightedOverrideTrafficSplitConfigurationBundle({
+final class BedrockagentcoreGatewayRuleTrafficSplitConfigurationBundle {
+  const BedrockagentcoreGatewayRuleTrafficSplitConfigurationBundle({
     required this.bundleArn,
     required this.bundleVersion,
   });
@@ -231,19 +216,18 @@ final class BedrockagentcoreGatewayRuleActionConfigurationBundleWeightedOverride
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.staticRoute(...)`.
-sealed class BedrockagentcoreGatewayRuleActionRouteToTarget {
-  const BedrockagentcoreGatewayRuleActionRouteToTarget();
+sealed class BedrockagentcoreGatewayRuleRouteToTarget {
+  const BedrockagentcoreGatewayRuleRouteToTarget();
 
   /// Sets `static_route`.
-  const factory BedrockagentcoreGatewayRuleActionRouteToTarget.staticRoute(
-    List<BedrockagentcoreGatewayRuleActionRouteToTargetStaticRoute> staticRoute,
-  ) = BedrockagentcoreGatewayRuleActionRouteToTargetStaticRouteChoice;
+  const factory BedrockagentcoreGatewayRuleRouteToTarget.staticRoute(
+    List<BedrockagentcoreGatewayRuleStaticRoute> staticRoute,
+  ) = BedrockagentcoreGatewayRuleRouteToTargetStaticRoute;
 
   /// Sets `weighted_route`.
-  const factory BedrockagentcoreGatewayRuleActionRouteToTarget.weightedRoute(
-    List<BedrockagentcoreGatewayRuleActionRouteToTargetWeightedRoute>
-    weightedRoute,
-  ) = BedrockagentcoreGatewayRuleActionRouteToTargetWeightedRouteChoice;
+  const factory BedrockagentcoreGatewayRuleRouteToTarget.weightedRoute(
+    List<BedrockagentcoreGatewayRuleWeightedRoute> weightedRoute,
+  ) = BedrockagentcoreGatewayRuleRouteToTargetWeightedRoute;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -251,15 +235,12 @@ sealed class BedrockagentcoreGatewayRuleActionRouteToTarget {
   Map<String, Object?> encode();
 }
 
-/// The [BedrockagentcoreGatewayRuleActionRouteToTarget.staticRoute] choice: sets `static_route`.
-final class BedrockagentcoreGatewayRuleActionRouteToTargetStaticRouteChoice
-    extends BedrockagentcoreGatewayRuleActionRouteToTarget {
-  const BedrockagentcoreGatewayRuleActionRouteToTargetStaticRouteChoice(
-    this.staticRoute,
-  );
+/// The [BedrockagentcoreGatewayRuleRouteToTarget.staticRoute] choice: sets `static_route`.
+final class BedrockagentcoreGatewayRuleRouteToTargetStaticRoute
+    extends BedrockagentcoreGatewayRuleRouteToTarget {
+  const BedrockagentcoreGatewayRuleRouteToTargetStaticRoute(this.staticRoute);
 
-  final List<BedrockagentcoreGatewayRuleActionRouteToTargetStaticRoute>
-  staticRoute;
+  final List<BedrockagentcoreGatewayRuleStaticRoute> staticRoute;
 
   @override
   String get blockKey => 'static_route';
@@ -270,15 +251,14 @@ final class BedrockagentcoreGatewayRuleActionRouteToTargetStaticRouteChoice
   };
 }
 
-/// The [BedrockagentcoreGatewayRuleActionRouteToTarget.weightedRoute] choice: sets `weighted_route`.
-final class BedrockagentcoreGatewayRuleActionRouteToTargetWeightedRouteChoice
-    extends BedrockagentcoreGatewayRuleActionRouteToTarget {
-  const BedrockagentcoreGatewayRuleActionRouteToTargetWeightedRouteChoice(
+/// The [BedrockagentcoreGatewayRuleRouteToTarget.weightedRoute] choice: sets `weighted_route`.
+final class BedrockagentcoreGatewayRuleRouteToTargetWeightedRoute
+    extends BedrockagentcoreGatewayRuleRouteToTarget {
+  const BedrockagentcoreGatewayRuleRouteToTargetWeightedRoute(
     this.weightedRoute,
   );
 
-  final List<BedrockagentcoreGatewayRuleActionRouteToTargetWeightedRoute>
-  weightedRoute;
+  final List<BedrockagentcoreGatewayRuleWeightedRoute> weightedRoute;
 
   @override
   String get blockKey => 'weighted_route';
@@ -292,10 +272,8 @@ final class BedrockagentcoreGatewayRuleActionRouteToTargetWeightedRouteChoice
 /// Typed helper for the `action.route_to_target.static_route` block of
 /// `aws_bedrockagentcore_gateway_rule` (derived from provider schema).
 @immutable
-final class BedrockagentcoreGatewayRuleActionRouteToTargetStaticRoute {
-  const BedrockagentcoreGatewayRuleActionRouteToTargetStaticRoute({
-    required this.targetName,
-  });
+final class BedrockagentcoreGatewayRuleStaticRoute {
+  const BedrockagentcoreGatewayRuleStaticRoute({required this.targetName});
 
   final TfArg<String> targetName;
 
@@ -305,14 +283,10 @@ final class BedrockagentcoreGatewayRuleActionRouteToTargetStaticRoute {
 /// Typed helper for the `action.route_to_target.weighted_route` block of
 /// `aws_bedrockagentcore_gateway_rule` (derived from provider schema).
 @immutable
-final class BedrockagentcoreGatewayRuleActionRouteToTargetWeightedRoute {
-  const BedrockagentcoreGatewayRuleActionRouteToTargetWeightedRoute({
-    this.trafficSplit,
-  });
+final class BedrockagentcoreGatewayRuleWeightedRoute {
+  const BedrockagentcoreGatewayRuleWeightedRoute({this.trafficSplit});
 
-  final List<
-    BedrockagentcoreGatewayRuleActionRouteToTargetWeightedRouteTrafficSplit
-  >?
+  final List<BedrockagentcoreGatewayRuleWeightedRouteTrafficSplit>?
   trafficSplit;
 
   Map<String, Object?> encode() => {
@@ -324,8 +298,8 @@ final class BedrockagentcoreGatewayRuleActionRouteToTargetWeightedRoute {
 /// Typed helper for the `action.route_to_target.weighted_route.traffic_split` block of
 /// `aws_bedrockagentcore_gateway_rule` (derived from provider schema).
 @immutable
-final class BedrockagentcoreGatewayRuleActionRouteToTargetWeightedRouteTrafficSplit {
-  const BedrockagentcoreGatewayRuleActionRouteToTargetWeightedRouteTrafficSplit({
+final class BedrockagentcoreGatewayRuleWeightedRouteTrafficSplit {
+  const BedrockagentcoreGatewayRuleWeightedRouteTrafficSplit({
     this.description,
     this.metadata,
     required this.name,
@@ -361,13 +335,13 @@ sealed class BedrockagentcoreGatewayRuleCondition {
 
   /// Sets `match_paths`.
   const factory BedrockagentcoreGatewayRuleCondition.matchPaths(
-    List<BedrockagentcoreGatewayRuleConditionMatchPaths> matchPaths,
-  ) = BedrockagentcoreGatewayRuleConditionMatchPathsChoice;
+    List<BedrockagentcoreGatewayRuleMatchPaths> matchPaths,
+  ) = BedrockagentcoreGatewayRuleConditionMatchPaths;
 
   /// Sets `match_principals`.
   const factory BedrockagentcoreGatewayRuleCondition.matchPrincipals(
-    List<BedrockagentcoreGatewayRuleConditionMatchPrincipals> matchPrincipals,
-  ) = BedrockagentcoreGatewayRuleConditionMatchPrincipalsChoice;
+    List<BedrockagentcoreGatewayRuleMatchPrincipals> matchPrincipals,
+  ) = BedrockagentcoreGatewayRuleConditionMatchPrincipals;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -376,11 +350,11 @@ sealed class BedrockagentcoreGatewayRuleCondition {
 }
 
 /// The [BedrockagentcoreGatewayRuleCondition.matchPaths] choice: sets `match_paths`.
-final class BedrockagentcoreGatewayRuleConditionMatchPathsChoice
+final class BedrockagentcoreGatewayRuleConditionMatchPaths
     extends BedrockagentcoreGatewayRuleCondition {
-  const BedrockagentcoreGatewayRuleConditionMatchPathsChoice(this.matchPaths);
+  const BedrockagentcoreGatewayRuleConditionMatchPaths(this.matchPaths);
 
-  final List<BedrockagentcoreGatewayRuleConditionMatchPaths> matchPaths;
+  final List<BedrockagentcoreGatewayRuleMatchPaths> matchPaths;
 
   @override
   String get blockKey => 'match_paths';
@@ -392,14 +366,13 @@ final class BedrockagentcoreGatewayRuleConditionMatchPathsChoice
 }
 
 /// The [BedrockagentcoreGatewayRuleCondition.matchPrincipals] choice: sets `match_principals`.
-final class BedrockagentcoreGatewayRuleConditionMatchPrincipalsChoice
+final class BedrockagentcoreGatewayRuleConditionMatchPrincipals
     extends BedrockagentcoreGatewayRuleCondition {
-  const BedrockagentcoreGatewayRuleConditionMatchPrincipalsChoice(
+  const BedrockagentcoreGatewayRuleConditionMatchPrincipals(
     this.matchPrincipals,
   );
 
-  final List<BedrockagentcoreGatewayRuleConditionMatchPrincipals>
-  matchPrincipals;
+  final List<BedrockagentcoreGatewayRuleMatchPrincipals> matchPrincipals;
 
   @override
   String get blockKey => 'match_principals';
@@ -413,8 +386,8 @@ final class BedrockagentcoreGatewayRuleConditionMatchPrincipalsChoice
 /// Typed helper for the `condition.match_paths` block of
 /// `aws_bedrockagentcore_gateway_rule` (derived from provider schema).
 @immutable
-final class BedrockagentcoreGatewayRuleConditionMatchPaths {
-  const BedrockagentcoreGatewayRuleConditionMatchPaths({required this.anyOf});
+final class BedrockagentcoreGatewayRuleMatchPaths {
+  const BedrockagentcoreGatewayRuleMatchPaths({required this.anyOf});
 
   final TfArg<List<String>> anyOf;
 
@@ -424,10 +397,10 @@ final class BedrockagentcoreGatewayRuleConditionMatchPaths {
 /// Typed helper for the `condition.match_principals` block of
 /// `aws_bedrockagentcore_gateway_rule` (derived from provider schema).
 @immutable
-final class BedrockagentcoreGatewayRuleConditionMatchPrincipals {
-  const BedrockagentcoreGatewayRuleConditionMatchPrincipals({this.anyOf});
+final class BedrockagentcoreGatewayRuleMatchPrincipals {
+  const BedrockagentcoreGatewayRuleMatchPrincipals({this.anyOf});
 
-  final List<BedrockagentcoreGatewayRuleConditionMatchPrincipalsAnyOf>? anyOf;
+  final List<BedrockagentcoreGatewayRuleAnyOf>? anyOf;
 
   Map<String, Object?> encode() => {
     if (anyOf != null) 'any_of': [for (final e in anyOf!) e.encode()],
@@ -437,15 +410,10 @@ final class BedrockagentcoreGatewayRuleConditionMatchPrincipals {
 /// Typed helper for the `condition.match_principals.any_of` block of
 /// `aws_bedrockagentcore_gateway_rule` (derived from provider schema).
 @immutable
-final class BedrockagentcoreGatewayRuleConditionMatchPrincipalsAnyOf {
-  const BedrockagentcoreGatewayRuleConditionMatchPrincipalsAnyOf({
-    this.iamPrincipal,
-  });
+final class BedrockagentcoreGatewayRuleAnyOf {
+  const BedrockagentcoreGatewayRuleAnyOf({this.iamPrincipal});
 
-  final List<
-    BedrockagentcoreGatewayRuleConditionMatchPrincipalsAnyOfIamPrincipal
-  >?
-  iamPrincipal;
+  final List<BedrockagentcoreGatewayRuleIamPrincipal>? iamPrincipal;
 
   Map<String, Object?> encode() => {
     if (iamPrincipal != null)
@@ -456,18 +424,15 @@ final class BedrockagentcoreGatewayRuleConditionMatchPrincipalsAnyOf {
 /// Typed helper for the `condition.match_principals.any_of.iam_principal` block of
 /// `aws_bedrockagentcore_gateway_rule` (derived from provider schema).
 @immutable
-final class BedrockagentcoreGatewayRuleConditionMatchPrincipalsAnyOfIamPrincipal {
-  const BedrockagentcoreGatewayRuleConditionMatchPrincipalsAnyOfIamPrincipal({
+final class BedrockagentcoreGatewayRuleIamPrincipal {
+  const BedrockagentcoreGatewayRuleIamPrincipal({
     required this.arn,
     this.operator,
   });
 
   final TfArg<String> arn;
 
-  final TfArg<
-    BedrockagentcoreGatewayRuleConditionMatchPrincipalsAnyOfIamPrincipalOperator
-  >?
-  operator;
+  final TfArg<BedrockagentcoreGatewayRuleOperator>? operator;
 
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
@@ -476,14 +441,11 @@ final class BedrockagentcoreGatewayRuleConditionMatchPrincipalsAnyOfIamPrincipal
 }
 
 /// `operator` — derived from the provider schema description.
-enum BedrockagentcoreGatewayRuleConditionMatchPrincipalsAnyOfIamPrincipalOperator
-    implements TerraformEnum {
+enum BedrockagentcoreGatewayRuleOperator implements TerraformEnum {
   stringequals('StringEquals'),
   stringlike('StringLike');
 
-  const BedrockagentcoreGatewayRuleConditionMatchPrincipalsAnyOfIamPrincipalOperator(
-    this.terraformValue,
-  );
+  const BedrockagentcoreGatewayRuleOperator(this.terraformValue);
   @override
   final String terraformValue;
 }

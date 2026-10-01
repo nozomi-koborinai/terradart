@@ -11,14 +11,11 @@ export 'src/organization/google_org_policy_custom_constraint.dart'
 export 'src/organization/google_org_policy_policy.dart'
     show
         GoogleOrgPolicyPolicy,
+        OrgPolicyPolicyCondition,
         OrgPolicyPolicyDryRunSpec,
-        OrgPolicyPolicyDryRunSpecRules,
-        OrgPolicyPolicyDryRunSpecRulesCondition,
-        OrgPolicyPolicyDryRunSpecRulesValues,
+        OrgPolicyPolicyRules,
         OrgPolicyPolicySpec,
-        OrgPolicyPolicySpecRules,
-        OrgPolicyPolicySpecRulesCondition,
-        OrgPolicyPolicySpecRulesValues;
+        OrgPolicyPolicyValues;
 export 'src/organization/google_organization_access_approval_settings.dart'
     show
         GoogleOrganizationAccessApprovalSettings,
@@ -38,8 +35,8 @@ export 'src/organization/google_organization_iam_policy.dart'
 export 'src/organization/google_organization_policy.dart'
     show
         GoogleOrganizationPolicy,
+        OrganizationPolicyAllow,
         OrganizationPolicyBooleanPolicy,
+        OrganizationPolicyDeny,
         OrganizationPolicyListPolicy,
-        OrganizationPolicyListPolicyAllow,
-        OrganizationPolicyListPolicyDeny,
         OrganizationPolicyRestorePolicy;

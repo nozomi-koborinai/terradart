@@ -20,7 +20,7 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResource {
 
   final TfArg<String>? id;
 
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1Payload?
+  final OsConfigV2PolicyOrchestratorOsPolicyAssignmentV1Payload?
   osPolicyAssignmentV1Payload;
 
   Map<String, Object?> encode() => {
@@ -32,8 +32,8 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResource {
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
 @immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1Payload {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1Payload({
+final class OsConfigV2PolicyOrchestratorOsPolicyAssignmentV1Payload {
+  const OsConfigV2PolicyOrchestratorOsPolicyAssignmentV1Payload({
     this.description,
     this.name,
     required this.instanceFilter,
@@ -45,16 +45,11 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 
   final TfArg<String>? name;
 
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilter
-  instanceFilter;
+  final OsConfigV2PolicyOrchestratorInstanceFilter instanceFilter;
 
-  final List<
-    OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPolicies
-  >
-  osPolicies;
+  final List<OsConfigV2PolicyOrchestratorOsPolicies> osPolicies;
 
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadRollout
-  rollout;
+  final OsConfigV2PolicyOrchestratorRollout rollout;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -68,8 +63,8 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.instance_filter` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
 @immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilter {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilter({
+final class OsConfigV2PolicyOrchestratorInstanceFilter {
+  const OsConfigV2PolicyOrchestratorInstanceFilter({
     this.all,
     this.exclusionLabels,
     this.inclusionLabels,
@@ -78,20 +73,11 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 
   final TfArg<bool>? all;
 
-  final List<
-    OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilterExclusionLabels
-  >?
-  exclusionLabels;
+  final List<OsConfigV2PolicyOrchestratorExclusionLabels>? exclusionLabels;
 
-  final List<
-    OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilterInclusionLabels
-  >?
-  inclusionLabels;
+  final List<OsConfigV2PolicyOrchestratorInclusionLabels>? inclusionLabels;
 
-  final List<
-    OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilterInventories
-  >?
-  inventories;
+  final List<OsConfigV2PolicyOrchestratorInventories>? inventories;
 
   Map<String, Object?> encode() => {
     'all': ?all?.toTfJson(),
@@ -107,10 +93,8 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.instance_filter.exclusion_labels` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
 @immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilterExclusionLabels {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilterExclusionLabels({
-    this.labels,
-  });
+final class OsConfigV2PolicyOrchestratorExclusionLabels {
+  const OsConfigV2PolicyOrchestratorExclusionLabels({this.labels});
 
   final TfArg<Map<String, String>>? labels;
 
@@ -120,10 +104,8 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.instance_filter.inclusion_labels` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
 @immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilterInclusionLabels {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilterInclusionLabels({
-    this.labels,
-  });
+final class OsConfigV2PolicyOrchestratorInclusionLabels {
+  const OsConfigV2PolicyOrchestratorInclusionLabels({this.labels});
 
   final TfArg<Map<String, String>>? labels;
 
@@ -133,8 +115,8 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.instance_filter.inventories` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
 @immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilterInventories {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilterInventories({
+final class OsConfigV2PolicyOrchestratorInventories {
+  const OsConfigV2PolicyOrchestratorInventories({
     required this.osShortName,
     this.osVersion,
   });
@@ -152,8 +134,8 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
 @immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPolicies {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPolicies({
+final class OsConfigV2PolicyOrchestratorOsPolicies {
+  const OsConfigV2PolicyOrchestratorOsPolicies({
     this.allowNoResourceGroupMatch,
     this.description,
     required this.id,
@@ -169,10 +151,7 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 
   final TfArg<String> mode;
 
-  final List<
-    OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroups
-  >
-  resourceGroups;
+  final List<OsConfigV2PolicyOrchestratorResourceGroups> resourceGroups;
 
   Map<String, Object?> encode() => {
     'allow_no_resource_group_match': ?allowNoResourceGroupMatch?.toTfJson(),
@@ -186,21 +165,15 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
 @immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroups {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroups({
+final class OsConfigV2PolicyOrchestratorResourceGroups {
+  const OsConfigV2PolicyOrchestratorResourceGroups({
     this.inventoryFilters,
     required this.resources,
   });
 
-  final List<
-    OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsInventoryFilters
-  >?
-  inventoryFilters;
+  final List<OsConfigV2PolicyOrchestratorInventoryFilters>? inventoryFilters;
 
-  final List<
-    OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResources
-  >
-  resources;
+  final List<OsConfigV2PolicyOrchestratorResources> resources;
 
   Map<String, Object?> encode() => {
     if (inventoryFilters != null)
@@ -212,8 +185,8 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.inventory_filters` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
 @immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsInventoryFilters {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsInventoryFilters({
+final class OsConfigV2PolicyOrchestratorInventoryFilters {
+  const OsConfigV2PolicyOrchestratorInventoryFilters({
     required this.osShortName,
     this.osVersion,
   });
@@ -231,8 +204,8 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
 @immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResources {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResources({
+final class OsConfigV2PolicyOrchestratorResources {
+  const OsConfigV2PolicyOrchestratorResources({
     required this.id,
     this.exec,
     this.file,
@@ -242,17 +215,13 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 
   final TfArg<String> id;
 
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesExec?
-  exec;
+  final OsConfigV2PolicyOrchestratorExec? exec;
 
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesFile?
-  file;
+  final OsConfigV2PolicyOrchestratorFile? file;
 
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkg?
-  pkg;
+  final OsConfigV2PolicyOrchestratorPkg? pkg;
 
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesRepository?
-  repository;
+  final OsConfigV2PolicyOrchestratorRepository? repository;
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
@@ -266,17 +235,15 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.exec` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
 @immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesExec {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesExec({
+final class OsConfigV2PolicyOrchestratorExec {
+  const OsConfigV2PolicyOrchestratorExec({
     this.enforce,
     required this.validate,
   });
 
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesExecEnforce?
-  enforce;
+  final OsConfigV2PolicyOrchestratorEnforce? enforce;
 
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesExecValidate
-  validate;
+  final OsConfigV2PolicyOrchestratorValidate validate;
 
   Map<String, Object?> encode() => {
     'enforce': ?enforce?.encode(),
@@ -287,8 +254,8 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.exec.enforce` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
 @immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesExecEnforce {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesExecEnforce({
+final class OsConfigV2PolicyOrchestratorEnforce {
+  const OsConfigV2PolicyOrchestratorEnforce({
     this.args,
     required this.interpreter,
     this.outputFilePath,
@@ -304,229 +271,23 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 
   final TfArg<String>? script;
 
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesExecEnforceFile?
-  file;
+  final OsConfigV2PolicyOrchestratorFileFile? file;
 
   Map<String, Object?> encode() => {
     'args': ?args?.toTfJson(),
     'interpreter': interpreter.toTfJson(),
     'output_file_path': ?outputFilePath?.toTfJson(),
     'script': ?script?.toTfJson(),
-    'file': ?file?.encode(),
-  };
-}
-
-/// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.exec.enforce.file` block of
-/// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
-@immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesExecEnforceFile {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesExecEnforceFile({
-    this.allowInsecure,
-    this.localPath,
-    this.gcs,
-    this.remote,
-  });
-
-  final TfArg<bool>? allowInsecure;
-
-  final TfArg<String>? localPath;
-
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesExecEnforceFileGcs?
-  gcs;
-
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesExecEnforceFileRemote?
-  remote;
-
-  Map<String, Object?> encode() => {
-    'allow_insecure': ?allowInsecure?.toTfJson(),
-    'local_path': ?localPath?.toTfJson(),
-    'gcs': ?gcs?.encode(),
-    'remote': ?remote?.encode(),
-  };
-}
-
-/// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.exec.enforce.file.gcs` block of
-/// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
-@immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesExecEnforceFileGcs {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesExecEnforceFileGcs({
-    required this.bucket,
-    this.generation,
-    required this.object,
-  });
-
-  final RefTo<GoogleStorageBucket> bucket;
-
-  final TfArg<String>? generation;
-
-  final TfArg<String> object;
-
-  Map<String, Object?> encode() => {
-    'bucket': bucket.encodeAs('name').toTfJson(),
-    'generation': ?generation?.toTfJson(),
-    'object': object.toTfJson(),
-  };
-}
-
-/// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.exec.enforce.file.remote` block of
-/// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
-@immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesExecEnforceFileRemote {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesExecEnforceFileRemote({
-    this.sha256Checksum,
-    required this.uri,
-  });
-
-  final TfArg<String>? sha256Checksum;
-
-  final TfArg<String> uri;
-
-  Map<String, Object?> encode() => {
-    'sha256_checksum': ?sha256Checksum?.toTfJson(),
-    'uri': uri.toTfJson(),
-  };
-}
-
-/// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.exec.validate` block of
-/// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
-@immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesExecValidate {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesExecValidate({
-    this.args,
-    required this.interpreter,
-    this.outputFilePath,
-    this.script,
-    this.file,
-  });
-
-  final TfArg<List<String>>? args;
-
-  final TfArg<String> interpreter;
-
-  final TfArg<String>? outputFilePath;
-
-  final TfArg<String>? script;
-
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesExecValidateFile?
-  file;
-
-  Map<String, Object?> encode() => {
-    'args': ?args?.toTfJson(),
-    'interpreter': interpreter.toTfJson(),
-    'output_file_path': ?outputFilePath?.toTfJson(),
-    'script': ?script?.toTfJson(),
-    'file': ?file?.encode(),
-  };
-}
-
-/// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.exec.validate.file` block of
-/// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
-@immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesExecValidateFile {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesExecValidateFile({
-    this.allowInsecure,
-    this.localPath,
-    this.gcs,
-    this.remote,
-  });
-
-  final TfArg<bool>? allowInsecure;
-
-  final TfArg<String>? localPath;
-
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesExecValidateFileGcs?
-  gcs;
-
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesExecValidateFileRemote?
-  remote;
-
-  Map<String, Object?> encode() => {
-    'allow_insecure': ?allowInsecure?.toTfJson(),
-    'local_path': ?localPath?.toTfJson(),
-    'gcs': ?gcs?.encode(),
-    'remote': ?remote?.encode(),
-  };
-}
-
-/// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.exec.validate.file.gcs` block of
-/// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
-@immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesExecValidateFileGcs {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesExecValidateFileGcs({
-    required this.bucket,
-    this.generation,
-    required this.object,
-  });
-
-  final RefTo<GoogleStorageBucket> bucket;
-
-  final TfArg<String>? generation;
-
-  final TfArg<String> object;
-
-  Map<String, Object?> encode() => {
-    'bucket': bucket.encodeAs('name').toTfJson(),
-    'generation': ?generation?.toTfJson(),
-    'object': object.toTfJson(),
-  };
-}
-
-/// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.exec.validate.file.remote` block of
-/// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
-@immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesExecValidateFileRemote {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesExecValidateFileRemote({
-    this.sha256Checksum,
-    required this.uri,
-  });
-
-  final TfArg<String>? sha256Checksum;
-
-  final TfArg<String> uri;
-
-  Map<String, Object?> encode() => {
-    'sha256_checksum': ?sha256Checksum?.toTfJson(),
-    'uri': uri.toTfJson(),
-  };
-}
-
-/// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.file` block of
-/// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
-@immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesFile {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesFile({
-    this.content,
-    required this.path,
-    this.permissions,
-    required this.state,
-    this.file,
-  });
-
-  final TfArg<String>? content;
-
-  final TfArg<String> path;
-
-  final TfArg<String>? permissions;
-
-  final TfArg<String> state;
-
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesFileFile?
-  file;
-
-  Map<String, Object?> encode() => {
-    'content': ?content?.toTfJson(),
-    'path': path.toTfJson(),
-    'permissions': ?permissions?.toTfJson(),
-    'state': state.toTfJson(),
     'file': ?file?.encode(),
   };
 }
 
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.file.file` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesFileFile {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesFileFile({
+final class OsConfigV2PolicyOrchestratorFileFile {
+  const OsConfigV2PolicyOrchestratorFileFile({
     this.allowInsecure,
     this.localPath,
     this.gcs,
@@ -537,11 +298,9 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 
   final TfArg<String>? localPath;
 
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesFileFileGcs?
-  gcs;
+  final OsConfigV2PolicyOrchestratorGcs? gcs;
 
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesFileFileRemote?
-  remote;
+  final OsConfigV2PolicyOrchestratorRemote? remote;
 
   Map<String, Object?> encode() => {
     'allow_insecure': ?allowInsecure?.toTfJson(),
@@ -553,9 +312,10 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.file.file.gcs` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesFileFileGcs {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesFileFileGcs({
+final class OsConfigV2PolicyOrchestratorGcs {
+  const OsConfigV2PolicyOrchestratorGcs({
     required this.bucket,
     this.generation,
     required this.object,
@@ -576,9 +336,10 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.file.file.remote` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesFileFileRemote {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesFileFileRemote({
+final class OsConfigV2PolicyOrchestratorRemote {
+  const OsConfigV2PolicyOrchestratorRemote({
     this.sha256Checksum,
     required this.uri,
   });
@@ -593,11 +354,73 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
   };
 }
 
+/// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.exec.validate` block of
+/// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
+@immutable
+final class OsConfigV2PolicyOrchestratorValidate {
+  const OsConfigV2PolicyOrchestratorValidate({
+    this.args,
+    required this.interpreter,
+    this.outputFilePath,
+    this.script,
+    this.file,
+  });
+
+  final TfArg<List<String>>? args;
+
+  final TfArg<String> interpreter;
+
+  final TfArg<String>? outputFilePath;
+
+  final TfArg<String>? script;
+
+  final OsConfigV2PolicyOrchestratorFileFile? file;
+
+  Map<String, Object?> encode() => {
+    'args': ?args?.toTfJson(),
+    'interpreter': interpreter.toTfJson(),
+    'output_file_path': ?outputFilePath?.toTfJson(),
+    'script': ?script?.toTfJson(),
+    'file': ?file?.encode(),
+  };
+}
+
+/// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.file` block of
+/// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
+@immutable
+final class OsConfigV2PolicyOrchestratorFile {
+  const OsConfigV2PolicyOrchestratorFile({
+    this.content,
+    required this.path,
+    this.permissions,
+    required this.state,
+    this.file,
+  });
+
+  final TfArg<String>? content;
+
+  final TfArg<String> path;
+
+  final TfArg<String>? permissions;
+
+  final TfArg<String> state;
+
+  final OsConfigV2PolicyOrchestratorFileFile? file;
+
+  Map<String, Object?> encode() => {
+    'content': ?content?.toTfJson(),
+    'path': path.toTfJson(),
+    'permissions': ?permissions?.toTfJson(),
+    'state': state.toTfJson(),
+    'file': ?file?.encode(),
+  };
+}
+
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.pkg` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
 @immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkg {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkg({
+final class OsConfigV2PolicyOrchestratorPkg {
+  const OsConfigV2PolicyOrchestratorPkg({
     required this.desiredState,
     this.apt,
     this.deb,
@@ -610,26 +433,19 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 
   final TfArg<String> desiredState;
 
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgApt?
-  apt;
+  final OsConfigV2PolicyOrchestratorPkgApt? apt;
 
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgDeb?
-  deb;
+  final OsConfigV2PolicyOrchestratorDeb? deb;
 
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgGooget?
-  googet;
+  final OsConfigV2PolicyOrchestratorGooget? googet;
 
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgMsi?
-  msi;
+  final OsConfigV2PolicyOrchestratorMsi? msi;
 
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgRpm?
-  rpm;
+  final OsConfigV2PolicyOrchestratorRpm? rpm;
 
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgYum?
-  yum;
+  final OsConfigV2PolicyOrchestratorPkgYum? yum;
 
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgZypper?
-  zypper;
+  final OsConfigV2PolicyOrchestratorPkgZypper? zypper;
 
   Map<String, Object?> encode() => {
     'desired_state': desiredState.toTfJson(),
@@ -646,10 +462,8 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.pkg.apt` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
 @immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgApt {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgApt({
-    required this.name,
-  });
+final class OsConfigV2PolicyOrchestratorPkgApt {
+  const OsConfigV2PolicyOrchestratorPkgApt({required this.name});
 
   final TfArg<String> name;
 
@@ -659,16 +473,12 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.pkg.deb` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
 @immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgDeb {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgDeb({
-    this.pullDeps,
-    required this.source,
-  });
+final class OsConfigV2PolicyOrchestratorDeb {
+  const OsConfigV2PolicyOrchestratorDeb({this.pullDeps, required this.source});
 
   final TfArg<bool>? pullDeps;
 
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgDebSource
-  source;
+  final OsConfigV2PolicyOrchestratorSource source;
 
   Map<String, Object?> encode() => {
     'pull_deps': ?pullDeps?.toTfJson(),
@@ -678,9 +488,10 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.pkg.deb.source` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgDebSource {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgDebSource({
+final class OsConfigV2PolicyOrchestratorSource {
+  const OsConfigV2PolicyOrchestratorSource({
     this.allowInsecure,
     this.localPath,
     this.gcs,
@@ -691,11 +502,9 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 
   final TfArg<String>? localPath;
 
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgDebSourceGcs?
-  gcs;
+  final OsConfigV2PolicyOrchestratorGcs? gcs;
 
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgDebSourceRemote?
-  remote;
+  final OsConfigV2PolicyOrchestratorRemote? remote;
 
   Map<String, Object?> encode() => {
     'allow_insecure': ?allowInsecure?.toTfJson(),
@@ -705,55 +514,11 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
   };
 }
 
-/// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.pkg.deb.source.gcs` block of
-/// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
-@immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgDebSourceGcs {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgDebSourceGcs({
-    required this.bucket,
-    this.generation,
-    required this.object,
-  });
-
-  final RefTo<GoogleStorageBucket> bucket;
-
-  final TfArg<String>? generation;
-
-  final TfArg<String> object;
-
-  Map<String, Object?> encode() => {
-    'bucket': bucket.encodeAs('name').toTfJson(),
-    'generation': ?generation?.toTfJson(),
-    'object': object.toTfJson(),
-  };
-}
-
-/// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.pkg.deb.source.remote` block of
-/// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
-@immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgDebSourceRemote {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgDebSourceRemote({
-    this.sha256Checksum,
-    required this.uri,
-  });
-
-  final TfArg<String>? sha256Checksum;
-
-  final TfArg<String> uri;
-
-  Map<String, Object?> encode() => {
-    'sha256_checksum': ?sha256Checksum?.toTfJson(),
-    'uri': uri.toTfJson(),
-  };
-}
-
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.pkg.googet` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
 @immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgGooget {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgGooget({
-    required this.name,
-  });
+final class OsConfigV2PolicyOrchestratorGooget {
+  const OsConfigV2PolicyOrchestratorGooget({required this.name});
 
   final TfArg<String> name;
 
@@ -763,16 +528,15 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.pkg.msi` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
 @immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgMsi {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgMsi({
+final class OsConfigV2PolicyOrchestratorMsi {
+  const OsConfigV2PolicyOrchestratorMsi({
     this.properties,
     required this.source,
   });
 
   final TfArg<List<String>>? properties;
 
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgMsiSource
-  source;
+  final OsConfigV2PolicyOrchestratorSource source;
 
   Map<String, Object?> encode() => {
     'properties': ?properties?.toTfJson(),
@@ -780,90 +544,15 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
   };
 }
 
-/// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.pkg.msi.source` block of
-/// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
-@immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgMsiSource {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgMsiSource({
-    this.allowInsecure,
-    this.localPath,
-    this.gcs,
-    this.remote,
-  });
-
-  final TfArg<bool>? allowInsecure;
-
-  final TfArg<String>? localPath;
-
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgMsiSourceGcs?
-  gcs;
-
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgMsiSourceRemote?
-  remote;
-
-  Map<String, Object?> encode() => {
-    'allow_insecure': ?allowInsecure?.toTfJson(),
-    'local_path': ?localPath?.toTfJson(),
-    'gcs': ?gcs?.encode(),
-    'remote': ?remote?.encode(),
-  };
-}
-
-/// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.pkg.msi.source.gcs` block of
-/// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
-@immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgMsiSourceGcs {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgMsiSourceGcs({
-    required this.bucket,
-    this.generation,
-    required this.object,
-  });
-
-  final RefTo<GoogleStorageBucket> bucket;
-
-  final TfArg<String>? generation;
-
-  final TfArg<String> object;
-
-  Map<String, Object?> encode() => {
-    'bucket': bucket.encodeAs('name').toTfJson(),
-    'generation': ?generation?.toTfJson(),
-    'object': object.toTfJson(),
-  };
-}
-
-/// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.pkg.msi.source.remote` block of
-/// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
-@immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgMsiSourceRemote {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgMsiSourceRemote({
-    this.sha256Checksum,
-    required this.uri,
-  });
-
-  final TfArg<String>? sha256Checksum;
-
-  final TfArg<String> uri;
-
-  Map<String, Object?> encode() => {
-    'sha256_checksum': ?sha256Checksum?.toTfJson(),
-    'uri': uri.toTfJson(),
-  };
-}
-
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.pkg.rpm` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
 @immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgRpm {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgRpm({
-    this.pullDeps,
-    required this.source,
-  });
+final class OsConfigV2PolicyOrchestratorRpm {
+  const OsConfigV2PolicyOrchestratorRpm({this.pullDeps, required this.source});
 
   final TfArg<bool>? pullDeps;
 
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgRpmSource
-  source;
+  final OsConfigV2PolicyOrchestratorSource source;
 
   Map<String, Object?> encode() => {
     'pull_deps': ?pullDeps?.toTfJson(),
@@ -871,84 +560,11 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
   };
 }
 
-/// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.pkg.rpm.source` block of
-/// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
-@immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgRpmSource {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgRpmSource({
-    this.allowInsecure,
-    this.localPath,
-    this.gcs,
-    this.remote,
-  });
-
-  final TfArg<bool>? allowInsecure;
-
-  final TfArg<String>? localPath;
-
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgRpmSourceGcs?
-  gcs;
-
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgRpmSourceRemote?
-  remote;
-
-  Map<String, Object?> encode() => {
-    'allow_insecure': ?allowInsecure?.toTfJson(),
-    'local_path': ?localPath?.toTfJson(),
-    'gcs': ?gcs?.encode(),
-    'remote': ?remote?.encode(),
-  };
-}
-
-/// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.pkg.rpm.source.gcs` block of
-/// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
-@immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgRpmSourceGcs {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgRpmSourceGcs({
-    required this.bucket,
-    this.generation,
-    required this.object,
-  });
-
-  final RefTo<GoogleStorageBucket> bucket;
-
-  final TfArg<String>? generation;
-
-  final TfArg<String> object;
-
-  Map<String, Object?> encode() => {
-    'bucket': bucket.encodeAs('name').toTfJson(),
-    'generation': ?generation?.toTfJson(),
-    'object': object.toTfJson(),
-  };
-}
-
-/// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.pkg.rpm.source.remote` block of
-/// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
-@immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgRpmSourceRemote {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgRpmSourceRemote({
-    this.sha256Checksum,
-    required this.uri,
-  });
-
-  final TfArg<String>? sha256Checksum;
-
-  final TfArg<String> uri;
-
-  Map<String, Object?> encode() => {
-    'sha256_checksum': ?sha256Checksum?.toTfJson(),
-    'uri': uri.toTfJson(),
-  };
-}
-
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.pkg.yum` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
 @immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgYum {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgYum({
-    required this.name,
-  });
+final class OsConfigV2PolicyOrchestratorPkgYum {
+  const OsConfigV2PolicyOrchestratorPkgYum({required this.name});
 
   final TfArg<String> name;
 
@@ -958,10 +574,8 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.pkg.zypper` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
 @immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgZypper {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesPkgZypper({
-    required this.name,
-  });
+final class OsConfigV2PolicyOrchestratorPkgZypper {
+  const OsConfigV2PolicyOrchestratorPkgZypper({required this.name});
 
   final TfArg<String> name;
 
@@ -971,25 +585,21 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.repository` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
 @immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesRepository {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesRepository({
+final class OsConfigV2PolicyOrchestratorRepository {
+  const OsConfigV2PolicyOrchestratorRepository({
     this.apt,
     this.goo,
     this.yum,
     this.zypper,
   });
 
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesRepositoryApt?
-  apt;
+  final OsConfigV2PolicyOrchestratorRepositoryApt? apt;
 
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesRepositoryGoo?
-  goo;
+  final OsConfigV2PolicyOrchestratorGoo? goo;
 
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesRepositoryYum?
-  yum;
+  final OsConfigV2PolicyOrchestratorRepositoryYum? yum;
 
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesRepositoryZypper?
-  zypper;
+  final OsConfigV2PolicyOrchestratorRepositoryZypper? zypper;
 
   Map<String, Object?> encode() => {
     'apt': ?apt?.encode(),
@@ -1002,8 +612,8 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.repository.apt` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
 @immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesRepositoryApt {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesRepositoryApt({
+final class OsConfigV2PolicyOrchestratorRepositoryApt {
+  const OsConfigV2PolicyOrchestratorRepositoryApt({
     required this.archiveType,
     required this.components,
     required this.distribution,
@@ -1033,8 +643,8 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.repository.goo` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
 @immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesRepositoryGoo {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesRepositoryGoo({
+final class OsConfigV2PolicyOrchestratorGoo {
+  const OsConfigV2PolicyOrchestratorGoo({
     required this.name,
     required this.url,
   });
@@ -1052,8 +662,8 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.repository.yum` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
 @immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesRepositoryYum {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesRepositoryYum({
+final class OsConfigV2PolicyOrchestratorRepositoryYum {
+  const OsConfigV2PolicyOrchestratorRepositoryYum({
     required this.baseUrl,
     this.displayName,
     this.gpgKeys,
@@ -1079,8 +689,8 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.repository.zypper` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
 @immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesRepositoryZypper {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesRepositoryZypper({
+final class OsConfigV2PolicyOrchestratorRepositoryZypper {
+  const OsConfigV2PolicyOrchestratorRepositoryZypper({
     required this.baseUrl,
     this.displayName,
     this.gpgKeys,
@@ -1106,16 +716,15 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.rollout` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
 @immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadRollout {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadRollout({
+final class OsConfigV2PolicyOrchestratorRollout {
+  const OsConfigV2PolicyOrchestratorRollout({
     required this.minWaitDuration,
     required this.disruptionBudget,
   });
 
   final TfArg<String> minWaitDuration;
 
-  final OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadRolloutDisruptionBudget
-  disruptionBudget;
+  final OsConfigV2PolicyOrchestratorDisruptionBudget disruptionBudget;
 
   Map<String, Object?> encode() => {
     'min_wait_duration': minWaitDuration.toTfJson(),
@@ -1126,8 +735,8 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.rollout.disruption_budget` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
 @immutable
-final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadRolloutDisruptionBudget {
-  const OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadRolloutDisruptionBudget({
+final class OsConfigV2PolicyOrchestratorDisruptionBudget {
+  const OsConfigV2PolicyOrchestratorDisruptionBudget({
     this.fixed,
     this.percent,
   });
@@ -1148,8 +757,7 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 final class OsConfigV2PolicyOrchestratorOrchestrationScope {
   const OsConfigV2PolicyOrchestratorOrchestrationScope({this.selectors});
 
-  final List<OsConfigV2PolicyOrchestratorOrchestrationScopeSelectors>?
-  selectors;
+  final List<OsConfigV2PolicyOrchestratorSelectors>? selectors;
 
   Map<String, Object?> encode() => {
     if (selectors != null)
@@ -1160,16 +768,15 @@ final class OsConfigV2PolicyOrchestratorOrchestrationScope {
 /// Typed helper for the `orchestration_scope.selectors` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
 @immutable
-final class OsConfigV2PolicyOrchestratorOrchestrationScopeSelectors {
-  const OsConfigV2PolicyOrchestratorOrchestrationScopeSelectors({
+final class OsConfigV2PolicyOrchestratorSelectors {
+  const OsConfigV2PolicyOrchestratorSelectors({
     this.locationSelector,
     this.resourceHierarchySelector,
   });
 
-  final OsConfigV2PolicyOrchestratorOrchestrationScopeSelectorsLocationSelector?
-  locationSelector;
+  final OsConfigV2PolicyOrchestratorLocationSelector? locationSelector;
 
-  final OsConfigV2PolicyOrchestratorOrchestrationScopeSelectorsResourceHierarchySelector?
+  final OsConfigV2PolicyOrchestratorResourceHierarchySelector?
   resourceHierarchySelector;
 
   Map<String, Object?> encode() => {
@@ -1181,10 +788,8 @@ final class OsConfigV2PolicyOrchestratorOrchestrationScopeSelectors {
 /// Typed helper for the `orchestration_scope.selectors.location_selector` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
 @immutable
-final class OsConfigV2PolicyOrchestratorOrchestrationScopeSelectorsLocationSelector {
-  const OsConfigV2PolicyOrchestratorOrchestrationScopeSelectorsLocationSelector({
-    this.includedLocations,
-  });
+final class OsConfigV2PolicyOrchestratorLocationSelector {
+  const OsConfigV2PolicyOrchestratorLocationSelector({this.includedLocations});
 
   final TfArg<List<String>>? includedLocations;
 
@@ -1196,8 +801,8 @@ final class OsConfigV2PolicyOrchestratorOrchestrationScopeSelectorsLocationSelec
 /// Typed helper for the `orchestration_scope.selectors.resource_hierarchy_selector` block of
 /// `google_os_config_v2_policy_orchestrator` (derived from provider schema).
 @immutable
-final class OsConfigV2PolicyOrchestratorOrchestrationScopeSelectorsResourceHierarchySelector {
-  const OsConfigV2PolicyOrchestratorOrchestrationScopeSelectorsResourceHierarchySelector({
+final class OsConfigV2PolicyOrchestratorResourceHierarchySelector {
+  const OsConfigV2PolicyOrchestratorResourceHierarchySelector({
     this.includedFolders,
     this.includedProjects,
   });
@@ -1239,18 +844,18 @@ final class OsConfigV2PolicyOrchestratorOrchestrationScopeSelectorsResourceHiera
 ///   state: TfArg.literal('STOPPED'),
 ///   orchestratedResource: OsConfigV2PolicyOrchestratorOrchestratedResource(
 ///     osPolicyAssignmentV1Payload:
-///         OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1Payload(
+///         OsConfigV2PolicyOrchestratorOsPolicyAssignmentV1Payload(
 ///       osPolicies: [
-///         OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPolicies(
+///         OsConfigV2PolicyOrchestratorOsPolicies(
 ///           id: TfArg.literal('test-os-policy'),
 ///           mode: TfArg.literal('VALIDATION'),
 ///           resourceGroups: [
-///             OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroups(
+///             OsConfigV2PolicyOrchestratorResourceGroups(
 ///               resources: [
-///                 OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResources(
+///                 OsConfigV2PolicyOrchestratorResources(
 ///                   id: .literal('resource-tf'),
 ///                   file:
-///                       OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesFile(
+///                       OsConfigV2PolicyOrchestratorFile(
 ///                     content: .literal('file-content-tf'),
 ///                     path: .literal('file-path-tf-1'),
 ///                     state: .literal('PRESENT'),
@@ -1262,17 +867,17 @@ final class OsConfigV2PolicyOrchestratorOrchestrationScopeSelectorsResourceHiera
 ///         ),
 ///       ],
 ///       instanceFilter:
-///           OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilter(
+///           OsConfigV2PolicyOrchestratorInstanceFilter(
 ///         inventories: [
-///           OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilterInventories(
+///           OsConfigV2PolicyOrchestratorInventories(
 ///             osShortName: TfArg.literal('windows-10'),
 ///           ),
 ///         ],
 ///       ),
 ///       rollout:
-///           OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadRollout(
+///           OsConfigV2PolicyOrchestratorRollout(
 ///         disruptionBudget:
-///             OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadRolloutDisruptionBudget(
+///             OsConfigV2PolicyOrchestratorDisruptionBudget(
 ///           percent: TfArg.literal(100),
 ///         ),
 ///         minWaitDuration: TfArg.literal('60s'),

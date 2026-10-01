@@ -11,9 +11,9 @@ export 'src/timestreaminfluxdb/aws_timestreaminfluxdb_db_cluster.dart'
         TimestreaminfluxdbDbClusterDeploymentType,
         TimestreaminfluxdbDbClusterFailoverMode,
         TimestreaminfluxdbDbClusterLogDeliveryConfiguration,
-        TimestreaminfluxdbDbClusterLogDeliveryConfigurationS3Configuration,
         TimestreaminfluxdbDbClusterMaintenanceSchedule,
-        TimestreaminfluxdbDbClusterNetworkType;
+        TimestreaminfluxdbDbClusterNetworkType,
+        TimestreaminfluxdbDbClusterS3Configuration;
 export 'src/timestreaminfluxdb/aws_timestreaminfluxdb_db_instance.dart'
     show
         AwsTimestreaminfluxdbDbInstance,
@@ -21,6 +21,6 @@ export 'src/timestreaminfluxdb/aws_timestreaminfluxdb_db_instance.dart'
         TimestreaminfluxdbDbInstanceDbStorageType,
         TimestreaminfluxdbDbInstanceDeploymentType,
         TimestreaminfluxdbDbInstanceLogDeliveryConfiguration,
-        TimestreaminfluxdbDbInstanceLogDeliveryConfigurationS3Configuration,
         TimestreaminfluxdbDbInstanceMaintenanceSchedule,
-        TimestreaminfluxdbDbInstanceNetworkType;
+        TimestreaminfluxdbDbInstanceNetworkType,
+        TimestreaminfluxdbDbInstanceS3Configuration;

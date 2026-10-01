@@ -19,7 +19,7 @@ sealed class S3BucketAclPolicy {
   /// Sets `access_control_policy`.
   const factory S3BucketAclPolicy.accessControlPolicy(
     S3BucketAclAccessControlPolicy accessControlPolicy,
-  ) = S3BucketAclPolicyAccessControlPolicy;
+  ) = S3BucketAclAccessControlPolicyChoice;
 
   /// Sets `acl`.
   const factory S3BucketAclPolicy.acl(TfArg<String> acl) = S3BucketAclPolicyAcl;
@@ -35,8 +35,8 @@ sealed class S3BucketAclPolicy {
 }
 
 /// The [S3BucketAclPolicy.accessControlPolicy] choice: sets `access_control_policy`.
-final class S3BucketAclPolicyAccessControlPolicy extends S3BucketAclPolicy {
-  const S3BucketAclPolicyAccessControlPolicy(this.accessControlPolicy);
+final class S3BucketAclAccessControlPolicyChoice extends S3BucketAclPolicy {
+  const S3BucketAclAccessControlPolicyChoice(this.accessControlPolicy);
 
   final S3BucketAclAccessControlPolicy accessControlPolicy;
 
@@ -76,9 +76,9 @@ final class S3BucketAclPolicyAcl extends S3BucketAclPolicy {
 final class S3BucketAclAccessControlPolicy {
   const S3BucketAclAccessControlPolicy({this.grant, required this.owner});
 
-  final List<S3BucketAclAccessControlPolicyGrant>? grant;
+  final List<S3BucketAclGrant>? grant;
 
-  final S3BucketAclAccessControlPolicyOwner owner;
+  final S3BucketAclOwner owner;
 
   Map<String, Object?> encode() => {
     if (grant != null) 'grant': [for (final e in grant!) e.encode()],
@@ -89,15 +89,12 @@ final class S3BucketAclAccessControlPolicy {
 /// Typed helper for the `access_control_policy.grant` block of
 /// `aws_s3_bucket_acl` (derived from provider schema).
 @immutable
-final class S3BucketAclAccessControlPolicyGrant {
-  const S3BucketAclAccessControlPolicyGrant({
-    required this.permission,
-    this.grantee,
-  });
+final class S3BucketAclGrant {
+  const S3BucketAclGrant({required this.permission, this.grantee});
 
-  final TfArg<S3BucketAclAccessControlPolicyGrantPermission> permission;
+  final TfArg<S3BucketAclPermission> permission;
 
-  final S3BucketAclAccessControlPolicyGrantGrantee? grantee;
+  final S3BucketAclGrantee? grantee;
 
   Map<String, Object?> encode() => {
     'permission': permission.toTfJson(),
@@ -106,14 +103,14 @@ final class S3BucketAclAccessControlPolicyGrant {
 }
 
 /// `permission` — derived from the provider schema description.
-enum S3BucketAclAccessControlPolicyGrantPermission implements TerraformEnum {
+enum S3BucketAclPermission implements TerraformEnum {
   fullControl('FULL_CONTROL'),
   write('WRITE'),
   writeAcp('WRITE_ACP'),
   read('READ'),
   readAcp('READ_ACP');
 
-  const S3BucketAclAccessControlPolicyGrantPermission(this.terraformValue);
+  const S3BucketAclPermission(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -121,8 +118,8 @@ enum S3BucketAclAccessControlPolicyGrantPermission implements TerraformEnum {
 /// Typed helper for the `access_control_policy.grant.grantee` block of
 /// `aws_s3_bucket_acl` (derived from provider schema).
 @immutable
-final class S3BucketAclAccessControlPolicyGrantGrantee {
-  const S3BucketAclAccessControlPolicyGrantGrantee({
+final class S3BucketAclGrantee {
+  const S3BucketAclGrantee({
     this.emailAddress,
     this.id,
     required this.type,
@@ -133,7 +130,7 @@ final class S3BucketAclAccessControlPolicyGrantGrantee {
 
   final TfArg<String>? id;
 
-  final TfArg<S3BucketAclAccessControlPolicyGrantGranteeType> type;
+  final TfArg<S3BucketAclType> type;
 
   final TfArg<String>? uri;
 
@@ -146,12 +143,12 @@ final class S3BucketAclAccessControlPolicyGrantGrantee {
 }
 
 /// `type` — derived from the provider schema description.
-enum S3BucketAclAccessControlPolicyGrantGranteeType implements TerraformEnum {
+enum S3BucketAclType implements TerraformEnum {
   canonicaluser('CanonicalUser'),
   amazoncustomerbyemail('AmazonCustomerByEmail'),
   group('Group');
 
-  const S3BucketAclAccessControlPolicyGrantGranteeType(this.terraformValue);
+  const S3BucketAclType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -159,11 +156,8 @@ enum S3BucketAclAccessControlPolicyGrantGranteeType implements TerraformEnum {
 /// Typed helper for the `access_control_policy.owner` block of
 /// `aws_s3_bucket_acl` (derived from provider schema).
 @immutable
-final class S3BucketAclAccessControlPolicyOwner {
-  const S3BucketAclAccessControlPolicyOwner({
-    this.displayName,
-    required this.id,
-  });
+final class S3BucketAclOwner {
+  const S3BucketAclOwner({this.displayName, required this.id});
 
   final TfArg<String>? displayName;
 

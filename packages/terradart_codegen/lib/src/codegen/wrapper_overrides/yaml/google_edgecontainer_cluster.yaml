@@ -40,12 +40,12 @@ curatedDoc: |-
   ///     project: TfArg.literal('projects/$projectNumber'),
   ///   ),
   ///   authorization: EdgecontainerClusterAuthorization(
-  ///     adminUsers: EdgecontainerClusterAuthorizationAdminUsers(
+  ///     adminUsers: EdgecontainerClusterAdminUsers(
   ///       username: TfArg.literal('admin@example.com'),
   ///     ),
   ///   ),
   ///   controlPlane: .remote(
-  ///     EdgecontainerClusterControlPlaneRemote(
+  ///     EdgecontainerClusterRemote(
   ///       nodeLocation: .literal('us-central1-edge-customer-a'),
   ///     ),
   ///   ),

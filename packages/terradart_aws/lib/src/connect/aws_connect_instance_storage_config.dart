@@ -47,18 +47,17 @@ final class ConnectInstanceStorageConfigStorageConfig {
     this.s3Config,
   });
 
-  final TfArg<ConnectInstanceStorageConfigStorageConfigStorageType> storageType;
+  final TfArg<ConnectInstanceStorageConfigStorageType> storageType;
 
-  final ConnectInstanceStorageConfigStorageConfigKinesisFirehoseConfig?
+  final ConnectInstanceStorageConfigKinesisFirehoseConfig?
   kinesisFirehoseConfig;
 
-  final ConnectInstanceStorageConfigStorageConfigKinesisStreamConfig?
-  kinesisStreamConfig;
+  final ConnectInstanceStorageConfigKinesisStreamConfig? kinesisStreamConfig;
 
-  final ConnectInstanceStorageConfigStorageConfigKinesisVideoStreamConfig?
+  final ConnectInstanceStorageConfigKinesisVideoStreamConfig?
   kinesisVideoStreamConfig;
 
-  final ConnectInstanceStorageConfigStorageConfigS3Config? s3Config;
+  final ConnectInstanceStorageConfigS3Config? s3Config;
 
   Map<String, Object?> encode() => {
     'storage_type': storageType.toTfJson(),
@@ -70,16 +69,13 @@ final class ConnectInstanceStorageConfigStorageConfig {
 }
 
 /// `storage_type` — derived from the provider schema description.
-enum ConnectInstanceStorageConfigStorageConfigStorageType
-    implements TerraformEnum {
+enum ConnectInstanceStorageConfigStorageType implements TerraformEnum {
   s3('S3'),
   kinesisVideoStream('KINESIS_VIDEO_STREAM'),
   kinesisStream('KINESIS_STREAM'),
   kinesisFirehose('KINESIS_FIREHOSE');
 
-  const ConnectInstanceStorageConfigStorageConfigStorageType(
-    this.terraformValue,
-  );
+  const ConnectInstanceStorageConfigStorageType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -87,8 +83,8 @@ enum ConnectInstanceStorageConfigStorageConfigStorageType
 /// Typed helper for the `storage_config.kinesis_firehose_config` block of
 /// `aws_connect_instance_storage_config` (derived from provider schema).
 @immutable
-final class ConnectInstanceStorageConfigStorageConfigKinesisFirehoseConfig {
-  const ConnectInstanceStorageConfigStorageConfigKinesisFirehoseConfig({
+final class ConnectInstanceStorageConfigKinesisFirehoseConfig {
+  const ConnectInstanceStorageConfigKinesisFirehoseConfig({
     required this.firehoseArn,
   });
 
@@ -100,8 +96,8 @@ final class ConnectInstanceStorageConfigStorageConfigKinesisFirehoseConfig {
 /// Typed helper for the `storage_config.kinesis_stream_config` block of
 /// `aws_connect_instance_storage_config` (derived from provider schema).
 @immutable
-final class ConnectInstanceStorageConfigStorageConfigKinesisStreamConfig {
-  const ConnectInstanceStorageConfigStorageConfigKinesisStreamConfig({
+final class ConnectInstanceStorageConfigKinesisStreamConfig {
+  const ConnectInstanceStorageConfigKinesisStreamConfig({
     required this.streamArn,
   });
 
@@ -113,8 +109,8 @@ final class ConnectInstanceStorageConfigStorageConfigKinesisStreamConfig {
 /// Typed helper for the `storage_config.kinesis_video_stream_config` block of
 /// `aws_connect_instance_storage_config` (derived from provider schema).
 @immutable
-final class ConnectInstanceStorageConfigStorageConfigKinesisVideoStreamConfig {
-  const ConnectInstanceStorageConfigStorageConfigKinesisVideoStreamConfig({
+final class ConnectInstanceStorageConfigKinesisVideoStreamConfig {
+  const ConnectInstanceStorageConfigKinesisVideoStreamConfig({
     required this.prefix,
     required this.retentionPeriodHours,
     required this.encryptionConfig,
@@ -124,8 +120,7 @@ final class ConnectInstanceStorageConfigStorageConfigKinesisVideoStreamConfig {
 
   final TfArg<num> retentionPeriodHours;
 
-  final ConnectInstanceStorageConfigStorageConfigKinesisVideoStreamConfigEncryptionConfig
-  encryptionConfig;
+  final ConnectInstanceStorageConfigEncryptionConfig encryptionConfig;
 
   Map<String, Object?> encode() => {
     'prefix': prefix.toTfJson(),
@@ -136,17 +131,15 @@ final class ConnectInstanceStorageConfigStorageConfigKinesisVideoStreamConfig {
 
 /// Typed helper for the `storage_config.kinesis_video_stream_config.encryption_config` block of
 /// `aws_connect_instance_storage_config` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ConnectInstanceStorageConfigStorageConfigKinesisVideoStreamConfigEncryptionConfig {
-  const ConnectInstanceStorageConfigStorageConfigKinesisVideoStreamConfigEncryptionConfig({
+final class ConnectInstanceStorageConfigEncryptionConfig {
+  const ConnectInstanceStorageConfigEncryptionConfig({
     required this.encryptionType,
     required this.keyId,
   });
 
-  final TfArg<
-    ConnectInstanceStorageConfigStorageConfigKinesisVideoStreamConfigEncryptionConfigEncryptionType
-  >
-  encryptionType;
+  final TfArg<ConnectInstanceStorageConfigEncryptionType> encryptionType;
 
   final RefTo<AwsKmsKey> keyId;
 
@@ -157,13 +150,10 @@ final class ConnectInstanceStorageConfigStorageConfigKinesisVideoStreamConfigEnc
 }
 
 /// `encryption_type` — derived from the provider schema description.
-enum ConnectInstanceStorageConfigStorageConfigKinesisVideoStreamConfigEncryptionConfigEncryptionType
-    implements TerraformEnum {
+enum ConnectInstanceStorageConfigEncryptionType implements TerraformEnum {
   kms('KMS');
 
-  const ConnectInstanceStorageConfigStorageConfigKinesisVideoStreamConfigEncryptionConfigEncryptionType(
-    this.terraformValue,
-  );
+  const ConnectInstanceStorageConfigEncryptionType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -171,8 +161,8 @@ enum ConnectInstanceStorageConfigStorageConfigKinesisVideoStreamConfigEncryption
 /// Typed helper for the `storage_config.s3_config` block of
 /// `aws_connect_instance_storage_config` (derived from provider schema).
 @immutable
-final class ConnectInstanceStorageConfigStorageConfigS3Config {
-  const ConnectInstanceStorageConfigStorageConfigS3Config({
+final class ConnectInstanceStorageConfigS3Config {
+  const ConnectInstanceStorageConfigS3Config({
     required this.bucketName,
     required this.bucketPrefix,
     this.encryptionConfig,
@@ -182,48 +172,13 @@ final class ConnectInstanceStorageConfigStorageConfigS3Config {
 
   final TfArg<String> bucketPrefix;
 
-  final ConnectInstanceStorageConfigStorageConfigS3ConfigEncryptionConfig?
-  encryptionConfig;
+  final ConnectInstanceStorageConfigEncryptionConfig? encryptionConfig;
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
     'bucket_prefix': bucketPrefix.toTfJson(),
     'encryption_config': ?encryptionConfig?.encode(),
   };
-}
-
-/// Typed helper for the `storage_config.s3_config.encryption_config` block of
-/// `aws_connect_instance_storage_config` (derived from provider schema).
-@immutable
-final class ConnectInstanceStorageConfigStorageConfigS3ConfigEncryptionConfig {
-  const ConnectInstanceStorageConfigStorageConfigS3ConfigEncryptionConfig({
-    required this.encryptionType,
-    required this.keyId,
-  });
-
-  final TfArg<
-    ConnectInstanceStorageConfigStorageConfigS3ConfigEncryptionConfigEncryptionType
-  >
-  encryptionType;
-
-  final RefTo<AwsKmsKey> keyId;
-
-  Map<String, Object?> encode() => {
-    'encryption_type': encryptionType.toTfJson(),
-    'key_id': keyId.encodeAs('arn').toTfJson(),
-  };
-}
-
-/// `encryption_type` — derived from the provider schema description.
-enum ConnectInstanceStorageConfigStorageConfigS3ConfigEncryptionConfigEncryptionType
-    implements TerraformEnum {
-  kms('KMS');
-
-  const ConnectInstanceStorageConfigStorageConfigS3ConfigEncryptionConfigEncryptionType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_connect_instance_storage_config`.

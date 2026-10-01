@@ -98,13 +98,13 @@ final class ChronicleFeedDetails {
 
   final TfArg<String>? assetNamespace;
 
-  final TfArg<ChronicleFeedDetailsFeedSourceType>? feedSourceType;
+  final TfArg<ChronicleFeedSourceType>? feedSourceType;
 
   final TfArg<Map<String, String>>? labels;
 
   final TfArg<String> logType;
 
-  final ChronicleFeedDetailsSource source;
+  final ChronicleFeedSource source;
 
   Map<String, Object?> encode() => {
     'asset_namespace': ?assetNamespace?.toTfJson(),
@@ -119,390 +119,389 @@ final class ChronicleFeedDetails {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.anomaliSettings(...)`.
-sealed class ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSource();
+sealed class ChronicleFeedSource {
+  const ChronicleFeedSource();
 
   /// Sets `anomali_settings`.
-  const factory ChronicleFeedDetailsSource.anomaliSettings(
-    ChronicleFeedDetailsAnomaliSettings anomaliSettings,
-  ) = ChronicleFeedDetailsSourceAnomaliSettings;
+  const factory ChronicleFeedSource.anomaliSettings(
+    ChronicleFeedAnomaliSettings anomaliSettings,
+  ) = ChronicleFeedSourceAnomaliSettings;
 
   /// Sets `azure_ad_context_settings`.
-  const factory ChronicleFeedDetailsSource.azureAdContextSettings(
-    ChronicleFeedDetailsAzureAdContextSettings azureAdContextSettings,
-  ) = ChronicleFeedDetailsSourceAzureAdContextSettings;
+  const factory ChronicleFeedSource.azureAdContextSettings(
+    ChronicleFeedAzureAdContextSettings azureAdContextSettings,
+  ) = ChronicleFeedSourceAzureAdContextSettings;
 
   /// Sets `cloud_passage_settings`.
-  const factory ChronicleFeedDetailsSource.cloudPassageSettings(
-    ChronicleFeedDetailsCloudPassageSettings cloudPassageSettings,
-  ) = ChronicleFeedDetailsSourceCloudPassageSettings;
+  const factory ChronicleFeedSource.cloudPassageSettings(
+    ChronicleFeedCloudPassageSettings cloudPassageSettings,
+  ) = ChronicleFeedSourceCloudPassageSettings;
 
   /// Sets `cortex_xdr_settings`.
-  const factory ChronicleFeedDetailsSource.cortexXdrSettings(
-    ChronicleFeedDetailsCortexXdrSettings cortexXdrSettings,
-  ) = ChronicleFeedDetailsSourceCortexXdrSettings;
+  const factory ChronicleFeedSource.cortexXdrSettings(
+    ChronicleFeedCortexXdrSettings cortexXdrSettings,
+  ) = ChronicleFeedSourceCortexXdrSettings;
 
   /// Sets `duo_auth_settings`.
-  const factory ChronicleFeedDetailsSource.duoAuthSettings(
-    ChronicleFeedDetailsDuoAuthSettings duoAuthSettings,
-  ) = ChronicleFeedDetailsSourceDuoAuthSettings;
+  const factory ChronicleFeedSource.duoAuthSettings(
+    ChronicleFeedDuoAuthSettings duoAuthSettings,
+  ) = ChronicleFeedSourceDuoAuthSettings;
 
   /// Sets `duo_user_context_settings`.
-  const factory ChronicleFeedDetailsSource.duoUserContextSettings(
-    ChronicleFeedDetailsDuoUserContextSettings duoUserContextSettings,
-  ) = ChronicleFeedDetailsSourceDuoUserContextSettings;
+  const factory ChronicleFeedSource.duoUserContextSettings(
+    ChronicleFeedDuoUserContextSettings duoUserContextSettings,
+  ) = ChronicleFeedSourceDuoUserContextSettings;
 
   /// Sets `microsoft_graph_alert_settings`.
-  const factory ChronicleFeedDetailsSource.microsoftGraphAlertSettings(
-    ChronicleFeedDetailsMicrosoftGraphAlertSettings microsoftGraphAlertSettings,
-  ) = ChronicleFeedDetailsSourceMicrosoftGraphAlertSettings;
+  const factory ChronicleFeedSource.microsoftGraphAlertSettings(
+    ChronicleFeedMicrosoftGraphAlertSettings microsoftGraphAlertSettings,
+  ) = ChronicleFeedSourceMicrosoftGraphAlertSettings;
 
   /// Sets `microsoft_security_center_alert_settings`.
-  const factory ChronicleFeedDetailsSource.microsoftSecurityCenterAlertSettings(
-    ChronicleFeedDetailsMicrosoftSecurityCenterAlertSettings
+  const factory ChronicleFeedSource.microsoftSecurityCenterAlertSettings(
+    ChronicleFeedMicrosoftSecurityCenterAlertSettings
     microsoftSecurityCenterAlertSettings,
-  ) = ChronicleFeedDetailsSourceMicrosoftSecurityCenterAlertSettings;
+  ) = ChronicleFeedSourceMicrosoftSecurityCenterAlertSettings;
 
   /// Sets `mimecast_mail_settings`.
-  const factory ChronicleFeedDetailsSource.mimecastMailSettings(
-    ChronicleFeedDetailsMimecastMailSettings mimecastMailSettings,
-  ) = ChronicleFeedDetailsSourceMimecastMailSettings;
+  const factory ChronicleFeedSource.mimecastMailSettings(
+    ChronicleFeedMimecastMailSettings mimecastMailSettings,
+  ) = ChronicleFeedSourceMimecastMailSettings;
 
   /// Sets `office365_settings`.
-  const factory ChronicleFeedDetailsSource.office365Settings(
-    ChronicleFeedDetailsOffice365Settings office365Settings,
-  ) = ChronicleFeedDetailsSourceOffice365Settings;
+  const factory ChronicleFeedSource.office365Settings(
+    ChronicleFeedOffice365Settings office365Settings,
+  ) = ChronicleFeedSourceOffice365Settings;
 
   /// Sets `proofpoint_mail_settings`.
-  const factory ChronicleFeedDetailsSource.proofpointMailSettings(
-    ChronicleFeedDetailsProofpointMailSettings proofpointMailSettings,
-  ) = ChronicleFeedDetailsSourceProofpointMailSettings;
+  const factory ChronicleFeedSource.proofpointMailSettings(
+    ChronicleFeedProofpointMailSettings proofpointMailSettings,
+  ) = ChronicleFeedSourceProofpointMailSettings;
 
   /// Sets `recorded_future_ioc_settings`.
-  const factory ChronicleFeedDetailsSource.recordedFutureIocSettings(
-    ChronicleFeedDetailsRecordedFutureIocSettings recordedFutureIocSettings,
-  ) = ChronicleFeedDetailsSourceRecordedFutureIocSettings;
+  const factory ChronicleFeedSource.recordedFutureIocSettings(
+    ChronicleFeedRecordedFutureIocSettings recordedFutureIocSettings,
+  ) = ChronicleFeedSourceRecordedFutureIocSettings;
 
   /// Sets `workday_settings`.
-  const factory ChronicleFeedDetailsSource.workdaySettings(
-    ChronicleFeedDetailsWorkdaySettings workdaySettings,
-  ) = ChronicleFeedDetailsSourceWorkdaySettings;
+  const factory ChronicleFeedSource.workdaySettings(
+    ChronicleFeedWorkdaySettings workdaySettings,
+  ) = ChronicleFeedSourceWorkdaySettings;
 
   /// Sets `pan_ioc_settings`.
-  const factory ChronicleFeedDetailsSource.panIocSettings(
-    ChronicleFeedDetailsPanIocSettings panIocSettings,
-  ) = ChronicleFeedDetailsSourcePanIocSettings;
+  const factory ChronicleFeedSource.panIocSettings(
+    ChronicleFeedPanIocSettings panIocSettings,
+  ) = ChronicleFeedSourcePanIocSettings;
 
   /// Sets `okta_settings`.
-  const factory ChronicleFeedDetailsSource.oktaSettings(
-    ChronicleFeedDetailsOktaSettings oktaSettings,
-  ) = ChronicleFeedDetailsSourceOktaSettings;
+  const factory ChronicleFeedSource.oktaSettings(
+    ChronicleFeedOktaSettings oktaSettings,
+  ) = ChronicleFeedSourceOktaSettings;
 
   /// Sets `okta_user_context_settings`.
-  const factory ChronicleFeedDetailsSource.oktaUserContextSettings(
-    ChronicleFeedDetailsOktaUserContextSettings oktaUserContextSettings,
-  ) = ChronicleFeedDetailsSourceOktaUserContextSettings;
+  const factory ChronicleFeedSource.oktaUserContextSettings(
+    ChronicleFeedOktaUserContextSettings oktaUserContextSettings,
+  ) = ChronicleFeedSourceOktaUserContextSettings;
 
   /// Sets `fox_it_stix_settings`.
-  const factory ChronicleFeedDetailsSource.foxItStixSettings(
-    ChronicleFeedDetailsFoxItStixSettings foxItStixSettings,
-  ) = ChronicleFeedDetailsSourceFoxItStixSettings;
+  const factory ChronicleFeedSource.foxItStixSettings(
+    ChronicleFeedFoxItStixSettings foxItStixSettings,
+  ) = ChronicleFeedSourceFoxItStixSettings;
 
   /// Sets `threat_connect_ioc_settings`.
-  const factory ChronicleFeedDetailsSource.threatConnectIocSettings(
-    ChronicleFeedDetailsThreatConnectIocSettings threatConnectIocSettings,
-  ) = ChronicleFeedDetailsSourceThreatConnectIocSettings;
+  const factory ChronicleFeedSource.threatConnectIocSettings(
+    ChronicleFeedThreatConnectIocSettings threatConnectIocSettings,
+  ) = ChronicleFeedSourceThreatConnectIocSettings;
 
   /// Sets `service_now_cmdb_settings`.
-  const factory ChronicleFeedDetailsSource.serviceNowCmdbSettings(
-    ChronicleFeedDetailsServiceNowCmdbSettings serviceNowCmdbSettings,
-  ) = ChronicleFeedDetailsSourceServiceNowCmdbSettings;
+  const factory ChronicleFeedSource.serviceNowCmdbSettings(
+    ChronicleFeedServiceNowCmdbSettings serviceNowCmdbSettings,
+  ) = ChronicleFeedSourceServiceNowCmdbSettings;
 
   /// Sets `imperva_waf_settings`.
-  const factory ChronicleFeedDetailsSource.impervaWafSettings(
-    ChronicleFeedDetailsImpervaWafSettings impervaWafSettings,
-  ) = ChronicleFeedDetailsSourceImpervaWafSettings;
+  const factory ChronicleFeedSource.impervaWafSettings(
+    ChronicleFeedImpervaWafSettings impervaWafSettings,
+  ) = ChronicleFeedSourceImpervaWafSettings;
 
   /// Sets `thinkst_canary_settings`.
-  const factory ChronicleFeedDetailsSource.thinkstCanarySettings(
-    ChronicleFeedDetailsThinkstCanarySettings thinkstCanarySettings,
-  ) = ChronicleFeedDetailsSourceThinkstCanarySettings;
+  const factory ChronicleFeedSource.thinkstCanarySettings(
+    ChronicleFeedThinkstCanarySettings thinkstCanarySettings,
+  ) = ChronicleFeedSourceThinkstCanarySettings;
 
   /// Sets `rh_isac_ioc_settings`.
-  const factory ChronicleFeedDetailsSource.rhIsacIocSettings(
-    ChronicleFeedDetailsRhIsacIocSettings rhIsacIocSettings,
-  ) = ChronicleFeedDetailsSourceRhIsacIocSettings;
+  const factory ChronicleFeedSource.rhIsacIocSettings(
+    ChronicleFeedRhIsacIocSettings rhIsacIocSettings,
+  ) = ChronicleFeedSourceRhIsacIocSettings;
 
   /// Sets `rapid7_insight_settings`.
-  const factory ChronicleFeedDetailsSource.rapid7InsightSettings(
-    ChronicleFeedDetailsRapid7InsightSettings rapid7InsightSettings,
-  ) = ChronicleFeedDetailsSourceRapid7InsightSettings;
+  const factory ChronicleFeedSource.rapid7InsightSettings(
+    ChronicleFeedRapid7InsightSettings rapid7InsightSettings,
+  ) = ChronicleFeedSourceRapid7InsightSettings;
 
   /// Sets `salesforce_settings`.
-  const factory ChronicleFeedDetailsSource.salesforceSettings(
-    ChronicleFeedDetailsSalesforceSettings salesforceSettings,
-  ) = ChronicleFeedDetailsSourceSalesforceSettings;
+  const factory ChronicleFeedSource.salesforceSettings(
+    ChronicleFeedSalesforceSettings salesforceSettings,
+  ) = ChronicleFeedSourceSalesforceSettings;
 
   /// Sets `netskope_alert_settings`.
-  const factory ChronicleFeedDetailsSource.netskopeAlertSettings(
-    ChronicleFeedDetailsNetskopeAlertSettings netskopeAlertSettings,
-  ) = ChronicleFeedDetailsSourceNetskopeAlertSettings;
+  const factory ChronicleFeedSource.netskopeAlertSettings(
+    ChronicleFeedNetskopeAlertSettings netskopeAlertSettings,
+  ) = ChronicleFeedSourceNetskopeAlertSettings;
 
   /// Sets `azure_mdm_intune_settings`.
-  const factory ChronicleFeedDetailsSource.azureMdmIntuneSettings(
-    ChronicleFeedDetailsAzureMdmIntuneSettings azureMdmIntuneSettings,
-  ) = ChronicleFeedDetailsSourceAzureMdmIntuneSettings;
+  const factory ChronicleFeedSource.azureMdmIntuneSettings(
+    ChronicleFeedAzureMdmIntuneSettings azureMdmIntuneSettings,
+  ) = ChronicleFeedSourceAzureMdmIntuneSettings;
 
   /// Sets `azure_ad_settings`.
-  const factory ChronicleFeedDetailsSource.azureAdSettings(
-    ChronicleFeedDetailsAzureAdSettings azureAdSettings,
-  ) = ChronicleFeedDetailsSourceAzureAdSettings;
+  const factory ChronicleFeedSource.azureAdSettings(
+    ChronicleFeedAzureAdSettings azureAdSettings,
+  ) = ChronicleFeedSourceAzureAdSettings;
 
   /// Sets `proofpoint_on_demand_settings`.
-  const factory ChronicleFeedDetailsSource.proofpointOnDemandSettings(
-    ChronicleFeedDetailsProofpointOnDemandSettings proofpointOnDemandSettings,
-  ) = ChronicleFeedDetailsSourceProofpointOnDemandSettings;
+  const factory ChronicleFeedSource.proofpointOnDemandSettings(
+    ChronicleFeedProofpointOnDemandSettings proofpointOnDemandSettings,
+  ) = ChronicleFeedSourceProofpointOnDemandSettings;
 
   /// Sets `workspace_users_settings`.
-  const factory ChronicleFeedDetailsSource.workspaceUsersSettings(
-    ChronicleFeedDetailsWorkspaceUsersSettings workspaceUsersSettings,
-  ) = ChronicleFeedDetailsSourceWorkspaceUsersSettings;
+  const factory ChronicleFeedSource.workspaceUsersSettings(
+    ChronicleFeedWorkspaceUsersSettings workspaceUsersSettings,
+  ) = ChronicleFeedSourceWorkspaceUsersSettings;
 
   /// Sets `workspace_activity_settings`.
-  const factory ChronicleFeedDetailsSource.workspaceActivitySettings(
-    ChronicleFeedDetailsWorkspaceActivitySettings workspaceActivitySettings,
-  ) = ChronicleFeedDetailsSourceWorkspaceActivitySettings;
+  const factory ChronicleFeedSource.workspaceActivitySettings(
+    ChronicleFeedWorkspaceActivitySettings workspaceActivitySettings,
+  ) = ChronicleFeedSourceWorkspaceActivitySettings;
 
   /// Sets `workspace_alerts_settings`.
-  const factory ChronicleFeedDetailsSource.workspaceAlertsSettings(
-    ChronicleFeedDetailsWorkspaceAlertsSettings workspaceAlertsSettings,
-  ) = ChronicleFeedDetailsSourceWorkspaceAlertsSettings;
+  const factory ChronicleFeedSource.workspaceAlertsSettings(
+    ChronicleFeedWorkspaceAlertsSettings workspaceAlertsSettings,
+  ) = ChronicleFeedSourceWorkspaceAlertsSettings;
 
   /// Sets `workspace_privileges_settings`.
-  const factory ChronicleFeedDetailsSource.workspacePrivilegesSettings(
-    ChronicleFeedDetailsWorkspacePrivilegesSettings workspacePrivilegesSettings,
-  ) = ChronicleFeedDetailsSourceWorkspacePrivilegesSettings;
+  const factory ChronicleFeedSource.workspacePrivilegesSettings(
+    ChronicleFeedWorkspacePrivilegesSettings workspacePrivilegesSettings,
+  ) = ChronicleFeedSourceWorkspacePrivilegesSettings;
 
   /// Sets `workspace_mobile_settings`.
-  const factory ChronicleFeedDetailsSource.workspaceMobileSettings(
-    ChronicleFeedDetailsWorkspaceMobileSettings workspaceMobileSettings,
-  ) = ChronicleFeedDetailsSourceWorkspaceMobileSettings;
+  const factory ChronicleFeedSource.workspaceMobileSettings(
+    ChronicleFeedWorkspaceMobileSettings workspaceMobileSettings,
+  ) = ChronicleFeedSourceWorkspaceMobileSettings;
 
   /// Sets `workspace_chrome_os_settings`.
-  const factory ChronicleFeedDetailsSource.workspaceChromeOsSettings(
-    ChronicleFeedDetailsWorkspaceChromeOsSettings workspaceChromeOsSettings,
-  ) = ChronicleFeedDetailsSourceWorkspaceChromeOsSettings;
+  const factory ChronicleFeedSource.workspaceChromeOsSettings(
+    ChronicleFeedWorkspaceChromeOsSettings workspaceChromeOsSettings,
+  ) = ChronicleFeedSourceWorkspaceChromeOsSettings;
 
   /// Sets `workspace_groups_settings`.
-  const factory ChronicleFeedDetailsSource.workspaceGroupsSettings(
-    ChronicleFeedDetailsWorkspaceGroupsSettings workspaceGroupsSettings,
-  ) = ChronicleFeedDetailsSourceWorkspaceGroupsSettings;
+  const factory ChronicleFeedSource.workspaceGroupsSettings(
+    ChronicleFeedWorkspaceGroupsSettings workspaceGroupsSettings,
+  ) = ChronicleFeedSourceWorkspaceGroupsSettings;
 
   /// Sets `azure_ad_audit_settings`.
-  const factory ChronicleFeedDetailsSource.azureAdAuditSettings(
-    ChronicleFeedDetailsAzureAdAuditSettings azureAdAuditSettings,
-  ) = ChronicleFeedDetailsSourceAzureAdAuditSettings;
+  const factory ChronicleFeedSource.azureAdAuditSettings(
+    ChronicleFeedAzureAdAuditSettings azureAdAuditSettings,
+  ) = ChronicleFeedSourceAzureAdAuditSettings;
 
   /// Sets `symantec_event_export_settings`.
-  const factory ChronicleFeedDetailsSource.symantecEventExportSettings(
-    ChronicleFeedDetailsSymantecEventExportSettings symantecEventExportSettings,
-  ) = ChronicleFeedDetailsSourceSymantecEventExportSettings;
+  const factory ChronicleFeedSource.symantecEventExportSettings(
+    ChronicleFeedSymantecEventExportSettings symantecEventExportSettings,
+  ) = ChronicleFeedSourceSymantecEventExportSettings;
 
   /// Sets `qualys_vm_settings`.
-  const factory ChronicleFeedDetailsSource.qualysVmSettings(
-    ChronicleFeedDetailsQualysVmSettings qualysVmSettings,
-  ) = ChronicleFeedDetailsSourceQualysVmSettings;
+  const factory ChronicleFeedSource.qualysVmSettings(
+    ChronicleFeedQualysVmSettings qualysVmSettings,
+  ) = ChronicleFeedSourceQualysVmSettings;
 
   /// Sets `pan_prisma_cloud_settings`.
-  const factory ChronicleFeedDetailsSource.panPrismaCloudSettings(
-    ChronicleFeedDetailsPanPrismaCloudSettings panPrismaCloudSettings,
-  ) = ChronicleFeedDetailsSourcePanPrismaCloudSettings;
+  const factory ChronicleFeedSource.panPrismaCloudSettings(
+    ChronicleFeedPanPrismaCloudSettings panPrismaCloudSettings,
+  ) = ChronicleFeedSourcePanPrismaCloudSettings;
 
   /// Sets `gcs_settings`.
-  const factory ChronicleFeedDetailsSource.gcsSettings(
-    ChronicleFeedDetailsGcsSettings gcsSettings,
-  ) = ChronicleFeedDetailsSourceGcsSettings;
+  const factory ChronicleFeedSource.gcsSettings(
+    ChronicleFeedGcsSettings gcsSettings,
+  ) = ChronicleFeedSourceGcsSettings;
 
   /// Sets `http_settings`.
-  const factory ChronicleFeedDetailsSource.httpSettings(
-    ChronicleFeedDetailsHttpSettings httpSettings,
-  ) = ChronicleFeedDetailsSourceHttpSettings;
+  const factory ChronicleFeedSource.httpSettings(
+    ChronicleFeedHttpSettings httpSettings,
+  ) = ChronicleFeedSourceHttpSettings;
 
   /// Sets `sftp_settings`.
-  const factory ChronicleFeedDetailsSource.sftpSettings(
-    ChronicleFeedDetailsSftpSettings sftpSettings,
-  ) = ChronicleFeedDetailsSourceSftpSettings;
+  const factory ChronicleFeedSource.sftpSettings(
+    ChronicleFeedSftpSettings sftpSettings,
+  ) = ChronicleFeedSourceSftpSettings;
 
   /// Sets `amazon_s3_settings`.
-  const factory ChronicleFeedDetailsSource.amazonS3Settings(
-    ChronicleFeedDetailsAmazonS3Settings amazonS3Settings,
-  ) = ChronicleFeedDetailsSourceAmazonS3Settings;
+  const factory ChronicleFeedSource.amazonS3Settings(
+    ChronicleFeedAmazonS3Settings amazonS3Settings,
+  ) = ChronicleFeedSourceAmazonS3Settings;
 
   /// Sets `azure_blob_store_settings`.
-  const factory ChronicleFeedDetailsSource.azureBlobStoreSettings(
-    ChronicleFeedDetailsAzureBlobStoreSettings azureBlobStoreSettings,
-  ) = ChronicleFeedDetailsSourceAzureBlobStoreSettings;
+  const factory ChronicleFeedSource.azureBlobStoreSettings(
+    ChronicleFeedAzureBlobStoreSettings azureBlobStoreSettings,
+  ) = ChronicleFeedSourceAzureBlobStoreSettings;
 
   /// Sets `amazon_sqs_settings`.
-  const factory ChronicleFeedDetailsSource.amazonSqsSettings(
-    ChronicleFeedDetailsAmazonSqsSettings amazonSqsSettings,
-  ) = ChronicleFeedDetailsSourceAmazonSqsSettings;
+  const factory ChronicleFeedSource.amazonSqsSettings(
+    ChronicleFeedAmazonSqsSettings amazonSqsSettings,
+  ) = ChronicleFeedSourceAmazonSqsSettings;
 
   /// Sets `google_cloud_identity_devices_settings`.
-  const factory ChronicleFeedDetailsSource.googleCloudIdentityDevicesSettings(
-    ChronicleFeedDetailsGoogleCloudIdentityDevicesSettings
+  const factory ChronicleFeedSource.googleCloudIdentityDevicesSettings(
+    ChronicleFeedGoogleCloudIdentityDevicesSettings
     googleCloudIdentityDevicesSettings,
-  ) = ChronicleFeedDetailsSourceGoogleCloudIdentityDevicesSettings;
+  ) = ChronicleFeedSourceGoogleCloudIdentityDevicesSettings;
 
   /// Sets `google_cloud_identity_device_users_settings`.
-  const factory ChronicleFeedDetailsSource.googleCloudIdentityDeviceUsersSettings(
-    ChronicleFeedDetailsGoogleCloudIdentityDeviceUsersSettings
+  const factory ChronicleFeedSource.googleCloudIdentityDeviceUsersSettings(
+    ChronicleFeedGoogleCloudIdentityDeviceUsersSettings
     googleCloudIdentityDeviceUsersSettings,
-  ) = ChronicleFeedDetailsSourceGoogleCloudIdentityDeviceUsersSettings;
+  ) = ChronicleFeedSourceGoogleCloudIdentityDeviceUsersSettings;
 
   /// Sets `crowdstrike_detects_settings`.
-  const factory ChronicleFeedDetailsSource.crowdstrikeDetectsSettings(
-    ChronicleFeedDetailsCrowdstrikeDetectsSettings crowdstrikeDetectsSettings,
-  ) = ChronicleFeedDetailsSourceCrowdstrikeDetectsSettings;
+  const factory ChronicleFeedSource.crowdstrikeDetectsSettings(
+    ChronicleFeedCrowdstrikeDetectsSettings crowdstrikeDetectsSettings,
+  ) = ChronicleFeedSourceCrowdstrikeDetectsSettings;
 
   /// Sets `mandiant_ioc_settings`.
-  const factory ChronicleFeedDetailsSource.mandiantIocSettings(
-    ChronicleFeedDetailsMandiantIocSettings mandiantIocSettings,
-  ) = ChronicleFeedDetailsSourceMandiantIocSettings;
+  const factory ChronicleFeedSource.mandiantIocSettings(
+    ChronicleFeedMandiantIocSettings mandiantIocSettings,
+  ) = ChronicleFeedSourceMandiantIocSettings;
 
   /// Sets `sentinelone_alert_settings`.
-  const factory ChronicleFeedDetailsSource.sentineloneAlertSettings(
-    ChronicleFeedDetailsSentineloneAlertSettings sentineloneAlertSettings,
-  ) = ChronicleFeedDetailsSourceSentineloneAlertSettings;
+  const factory ChronicleFeedSource.sentineloneAlertSettings(
+    ChronicleFeedSentineloneAlertSettings sentineloneAlertSettings,
+  ) = ChronicleFeedSourceSentineloneAlertSettings;
 
   /// Sets `qualys_scan_settings`.
-  const factory ChronicleFeedDetailsSource.qualysScanSettings(
-    ChronicleFeedDetailsQualysScanSettings qualysScanSettings,
-  ) = ChronicleFeedDetailsSourceQualysScanSettings;
+  const factory ChronicleFeedSource.qualysScanSettings(
+    ChronicleFeedQualysScanSettings qualysScanSettings,
+  ) = ChronicleFeedSourceQualysScanSettings;
 
   /// Sets `pubsub_settings`.
-  const factory ChronicleFeedDetailsSource.pubsubSettings(
-    ChronicleFeedDetailsPubsubSettings pubsubSettings,
-  ) = ChronicleFeedDetailsSourcePubsubSettings;
+  const factory ChronicleFeedSource.pubsubSettings(
+    ChronicleFeedPubsubSettings pubsubSettings,
+  ) = ChronicleFeedSourcePubsubSettings;
 
   /// Sets `amazon_kinesis_firehose_settings`.
-  const factory ChronicleFeedDetailsSource.amazonKinesisFirehoseSettings(
-    ChronicleFeedDetailsAmazonKinesisFirehoseSettings
-    amazonKinesisFirehoseSettings,
-  ) = ChronicleFeedDetailsSourceAmazonKinesisFirehoseSettings;
+  const factory ChronicleFeedSource.amazonKinesisFirehoseSettings(
+    ChronicleFeedAmazonKinesisFirehoseSettings amazonKinesisFirehoseSettings,
+  ) = ChronicleFeedSourceAmazonKinesisFirehoseSettings;
 
   /// Sets `webhook_settings`.
-  const factory ChronicleFeedDetailsSource.webhookSettings(
-    ChronicleFeedDetailsWebhookSettings webhookSettings,
-  ) = ChronicleFeedDetailsSourceWebhookSettings;
+  const factory ChronicleFeedSource.webhookSettings(
+    ChronicleFeedWebhookSettings webhookSettings,
+  ) = ChronicleFeedSourceWebhookSettings;
 
   /// Sets `dummy_log_type_settings`.
-  const factory ChronicleFeedDetailsSource.dummyLogTypeSettings(
-    ChronicleFeedDetailsDummyLogTypeSettings dummyLogTypeSettings,
-  ) = ChronicleFeedDetailsSourceDummyLogTypeSettings;
+  const factory ChronicleFeedSource.dummyLogTypeSettings(
+    ChronicleFeedDummyLogTypeSettings dummyLogTypeSettings,
+  ) = ChronicleFeedSourceDummyLogTypeSettings;
 
   /// Sets `https_push_google_cloud_pubsub_settings`.
-  const factory ChronicleFeedDetailsSource.httpsPushGoogleCloudPubsubSettings(
-    ChronicleFeedDetailsHttpsPushGoogleCloudPubsubSettings
+  const factory ChronicleFeedSource.httpsPushGoogleCloudPubsubSettings(
+    ChronicleFeedHttpsPushGoogleCloudPubsubSettings
     httpsPushGoogleCloudPubsubSettings,
-  ) = ChronicleFeedDetailsSourceHttpsPushGoogleCloudPubsubSettings;
+  ) = ChronicleFeedSourceHttpsPushGoogleCloudPubsubSettings;
 
   /// Sets `https_push_amazon_kinesis_firehose_settings`.
-  const factory ChronicleFeedDetailsSource.httpsPushAmazonKinesisFirehoseSettings(
-    ChronicleFeedDetailsHttpsPushAmazonKinesisFirehoseSettings
+  const factory ChronicleFeedSource.httpsPushAmazonKinesisFirehoseSettings(
+    ChronicleFeedHttpsPushAmazonKinesisFirehoseSettings
     httpsPushAmazonKinesisFirehoseSettings,
-  ) = ChronicleFeedDetailsSourceHttpsPushAmazonKinesisFirehoseSettings;
+  ) = ChronicleFeedSourceHttpsPushAmazonKinesisFirehoseSettings;
 
   /// Sets `https_push_webhook_settings`.
-  const factory ChronicleFeedDetailsSource.httpsPushWebhookSettings(
-    ChronicleFeedDetailsHttpsPushWebhookSettings httpsPushWebhookSettings,
-  ) = ChronicleFeedDetailsSourceHttpsPushWebhookSettings;
+  const factory ChronicleFeedSource.httpsPushWebhookSettings(
+    ChronicleFeedHttpsPushWebhookSettings httpsPushWebhookSettings,
+  ) = ChronicleFeedSourceHttpsPushWebhookSettings;
 
   /// Sets `aws_ec2_hosts_settings`.
-  const factory ChronicleFeedDetailsSource.awsEc2HostsSettings(
-    ChronicleFeedDetailsAwsEc2HostsSettings awsEc2HostsSettings,
-  ) = ChronicleFeedDetailsSourceAwsEc2HostsSettings;
+  const factory ChronicleFeedSource.awsEc2HostsSettings(
+    ChronicleFeedAwsEc2HostsSettings awsEc2HostsSettings,
+  ) = ChronicleFeedSourceAwsEc2HostsSettings;
 
   /// Sets `aws_ec2_instances_settings`.
-  const factory ChronicleFeedDetailsSource.awsEc2InstancesSettings(
-    ChronicleFeedDetailsAwsEc2InstancesSettings awsEc2InstancesSettings,
-  ) = ChronicleFeedDetailsSourceAwsEc2InstancesSettings;
+  const factory ChronicleFeedSource.awsEc2InstancesSettings(
+    ChronicleFeedAwsEc2InstancesSettings awsEc2InstancesSettings,
+  ) = ChronicleFeedSourceAwsEc2InstancesSettings;
 
   /// Sets `aws_ec2_vpcs_settings`.
-  const factory ChronicleFeedDetailsSource.awsEc2VpcsSettings(
-    ChronicleFeedDetailsAwsEc2VpcsSettings awsEc2VpcsSettings,
-  ) = ChronicleFeedDetailsSourceAwsEc2VpcsSettings;
+  const factory ChronicleFeedSource.awsEc2VpcsSettings(
+    ChronicleFeedAwsEc2VpcsSettings awsEc2VpcsSettings,
+  ) = ChronicleFeedSourceAwsEc2VpcsSettings;
 
   /// Sets `aws_iam_settings`.
-  const factory ChronicleFeedDetailsSource.awsIamSettings(
-    ChronicleFeedDetailsAwsIamSettings awsIamSettings,
-  ) = ChronicleFeedDetailsSourceAwsIamSettings;
+  const factory ChronicleFeedSource.awsIamSettings(
+    ChronicleFeedAwsIamSettings awsIamSettings,
+  ) = ChronicleFeedSourceAwsIamSettings;
 
   /// Sets `netskope_alert_v2_settings`.
-  const factory ChronicleFeedDetailsSource.netskopeAlertV2Settings(
-    ChronicleFeedDetailsNetskopeAlertV2Settings netskopeAlertV2Settings,
-  ) = ChronicleFeedDetailsSourceNetskopeAlertV2Settings;
+  const factory ChronicleFeedSource.netskopeAlertV2Settings(
+    ChronicleFeedNetskopeAlertV2Settings netskopeAlertV2Settings,
+  ) = ChronicleFeedSourceNetskopeAlertV2Settings;
 
   /// Sets `gcs_v2_settings`.
-  const factory ChronicleFeedDetailsSource.gcsV2Settings(
-    ChronicleFeedDetailsGcsV2Settings gcsV2Settings,
-  ) = ChronicleFeedDetailsSourceGcsV2Settings;
+  const factory ChronicleFeedSource.gcsV2Settings(
+    ChronicleFeedGcsV2Settings gcsV2Settings,
+  ) = ChronicleFeedSourceGcsV2Settings;
 
   /// Sets `amazon_s3_v2_settings`.
-  const factory ChronicleFeedDetailsSource.amazonS3V2Settings(
-    ChronicleFeedDetailsAmazonS3V2Settings amazonS3V2Settings,
-  ) = ChronicleFeedDetailsSourceAmazonS3V2Settings;
+  const factory ChronicleFeedSource.amazonS3V2Settings(
+    ChronicleFeedAmazonS3V2Settings amazonS3V2Settings,
+  ) = ChronicleFeedSourceAmazonS3V2Settings;
 
   /// Sets `amazon_sqs_v2_settings`.
-  const factory ChronicleFeedDetailsSource.amazonSqsV2Settings(
-    ChronicleFeedDetailsAmazonSqsV2Settings amazonSqsV2Settings,
-  ) = ChronicleFeedDetailsSourceAmazonSqsV2Settings;
+  const factory ChronicleFeedSource.amazonSqsV2Settings(
+    ChronicleFeedAmazonSqsV2Settings amazonSqsV2Settings,
+  ) = ChronicleFeedSourceAmazonSqsV2Settings;
 
   /// Sets `azure_event_hub_settings`.
-  const factory ChronicleFeedDetailsSource.azureEventHubSettings(
-    ChronicleFeedDetailsAzureEventHubSettings azureEventHubSettings,
-  ) = ChronicleFeedDetailsSourceAzureEventHubSettings;
+  const factory ChronicleFeedSource.azureEventHubSettings(
+    ChronicleFeedAzureEventHubSettings azureEventHubSettings,
+  ) = ChronicleFeedSourceAzureEventHubSettings;
 
   /// Sets `trellix_hx_hosts_settings`.
-  const factory ChronicleFeedDetailsSource.trellixHxHostsSettings(
-    ChronicleFeedDetailsTrellixHxHostsSettings trellixHxHostsSettings,
-  ) = ChronicleFeedDetailsSourceTrellixHxHostsSettings;
+  const factory ChronicleFeedSource.trellixHxHostsSettings(
+    ChronicleFeedTrellixHxHostsSettings trellixHxHostsSettings,
+  ) = ChronicleFeedSourceTrellixHxHostsSettings;
 
   /// Sets `azure_blob_store_v2_settings`.
-  const factory ChronicleFeedDetailsSource.azureBlobStoreV2Settings(
-    ChronicleFeedDetailsAzureBlobStoreV2Settings azureBlobStoreV2Settings,
-  ) = ChronicleFeedDetailsSourceAzureBlobStoreV2Settings;
+  const factory ChronicleFeedSource.azureBlobStoreV2Settings(
+    ChronicleFeedAzureBlobStoreV2Settings azureBlobStoreV2Settings,
+  ) = ChronicleFeedSourceAzureBlobStoreV2Settings;
 
   /// Sets `trellix_hx_alerts_settings`.
-  const factory ChronicleFeedDetailsSource.trellixHxAlertsSettings(
-    ChronicleFeedDetailsTrellixHxAlertsSettings trellixHxAlertsSettings,
-  ) = ChronicleFeedDetailsSourceTrellixHxAlertsSettings;
+  const factory ChronicleFeedSource.trellixHxAlertsSettings(
+    ChronicleFeedTrellixHxAlertsSettings trellixHxAlertsSettings,
+  ) = ChronicleFeedSourceTrellixHxAlertsSettings;
 
   /// Sets `google_cloud_storage_event_driven_settings`.
-  const factory ChronicleFeedDetailsSource.googleCloudStorageEventDrivenSettings(
-    ChronicleFeedDetailsGoogleCloudStorageEventDrivenSettings
+  const factory ChronicleFeedSource.googleCloudStorageEventDrivenSettings(
+    ChronicleFeedGoogleCloudStorageEventDrivenSettings
     googleCloudStorageEventDrivenSettings,
-  ) = ChronicleFeedDetailsSourceGoogleCloudStorageEventDrivenSettings;
+  ) = ChronicleFeedSourceGoogleCloudStorageEventDrivenSettings;
 
   /// Sets `crowdstrike_alerts_settings`.
-  const factory ChronicleFeedDetailsSource.crowdstrikeAlertsSettings(
-    ChronicleFeedDetailsCrowdstrikeAlertsSettings crowdstrikeAlertsSettings,
-  ) = ChronicleFeedDetailsSourceCrowdstrikeAlertsSettings;
+  const factory ChronicleFeedSource.crowdstrikeAlertsSettings(
+    ChronicleFeedCrowdstrikeAlertsSettings crowdstrikeAlertsSettings,
+  ) = ChronicleFeedSourceCrowdstrikeAlertsSettings;
 
   /// Sets `trellix_hx_bulk_acqs_settings`.
-  const factory ChronicleFeedDetailsSource.trellixHxBulkAcqsSettings(
-    ChronicleFeedDetailsTrellixHxBulkAcqsSettings trellixHxBulkAcqsSettings,
-  ) = ChronicleFeedDetailsSourceTrellixHxBulkAcqsSettings;
+  const factory ChronicleFeedSource.trellixHxBulkAcqsSettings(
+    ChronicleFeedTrellixHxBulkAcqsSettings trellixHxBulkAcqsSettings,
+  ) = ChronicleFeedSourceTrellixHxBulkAcqsSettings;
 
   /// Sets `mimecast_mail_v2_settings`.
-  const factory ChronicleFeedDetailsSource.mimecastMailV2Settings(
-    ChronicleFeedDetailsMimecastMailV2Settings mimecastMailV2Settings,
-  ) = ChronicleFeedDetailsSourceMimecastMailV2Settings;
+  const factory ChronicleFeedSource.mimecastMailV2Settings(
+    ChronicleFeedMimecastMailV2Settings mimecastMailV2Settings,
+  ) = ChronicleFeedSourceMimecastMailV2Settings;
 
   /// Sets `threat_connect_ioc_v3_settings`.
-  const factory ChronicleFeedDetailsSource.threatConnectIocV3Settings(
-    ChronicleFeedDetailsThreatConnectIocV3Settings threatConnectIocV3Settings,
-  ) = ChronicleFeedDetailsSourceThreatConnectIocV3Settings;
+  const factory ChronicleFeedSource.threatConnectIocV3Settings(
+    ChronicleFeedThreatConnectIocV3Settings threatConnectIocV3Settings,
+  ) = ChronicleFeedSourceThreatConnectIocV3Settings;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -510,12 +509,11 @@ sealed class ChronicleFeedDetailsSource {
   Map<String, Object?> encode();
 }
 
-/// The [ChronicleFeedDetailsSource.anomaliSettings] choice: sets `anomali_settings`.
-final class ChronicleFeedDetailsSourceAnomaliSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceAnomaliSettings(this.anomaliSettings);
+/// The [ChronicleFeedSource.anomaliSettings] choice: sets `anomali_settings`.
+final class ChronicleFeedSourceAnomaliSettings extends ChronicleFeedSource {
+  const ChronicleFeedSourceAnomaliSettings(this.anomaliSettings);
 
-  final ChronicleFeedDetailsAnomaliSettings anomaliSettings;
+  final ChronicleFeedAnomaliSettings anomaliSettings;
 
   @override
   String get blockKey => 'anomali_settings';
@@ -526,14 +524,12 @@ final class ChronicleFeedDetailsSourceAnomaliSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.azureAdContextSettings] choice: sets `azure_ad_context_settings`.
-final class ChronicleFeedDetailsSourceAzureAdContextSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceAzureAdContextSettings(
-    this.azureAdContextSettings,
-  );
+/// The [ChronicleFeedSource.azureAdContextSettings] choice: sets `azure_ad_context_settings`.
+final class ChronicleFeedSourceAzureAdContextSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceAzureAdContextSettings(this.azureAdContextSettings);
 
-  final ChronicleFeedDetailsAzureAdContextSettings azureAdContextSettings;
+  final ChronicleFeedAzureAdContextSettings azureAdContextSettings;
 
   @override
   String get blockKey => 'azure_ad_context_settings';
@@ -544,14 +540,12 @@ final class ChronicleFeedDetailsSourceAzureAdContextSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.cloudPassageSettings] choice: sets `cloud_passage_settings`.
-final class ChronicleFeedDetailsSourceCloudPassageSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceCloudPassageSettings(
-    this.cloudPassageSettings,
-  );
+/// The [ChronicleFeedSource.cloudPassageSettings] choice: sets `cloud_passage_settings`.
+final class ChronicleFeedSourceCloudPassageSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceCloudPassageSettings(this.cloudPassageSettings);
 
-  final ChronicleFeedDetailsCloudPassageSettings cloudPassageSettings;
+  final ChronicleFeedCloudPassageSettings cloudPassageSettings;
 
   @override
   String get blockKey => 'cloud_passage_settings';
@@ -562,12 +556,11 @@ final class ChronicleFeedDetailsSourceCloudPassageSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.cortexXdrSettings] choice: sets `cortex_xdr_settings`.
-final class ChronicleFeedDetailsSourceCortexXdrSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceCortexXdrSettings(this.cortexXdrSettings);
+/// The [ChronicleFeedSource.cortexXdrSettings] choice: sets `cortex_xdr_settings`.
+final class ChronicleFeedSourceCortexXdrSettings extends ChronicleFeedSource {
+  const ChronicleFeedSourceCortexXdrSettings(this.cortexXdrSettings);
 
-  final ChronicleFeedDetailsCortexXdrSettings cortexXdrSettings;
+  final ChronicleFeedCortexXdrSettings cortexXdrSettings;
 
   @override
   String get blockKey => 'cortex_xdr_settings';
@@ -578,12 +571,11 @@ final class ChronicleFeedDetailsSourceCortexXdrSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.duoAuthSettings] choice: sets `duo_auth_settings`.
-final class ChronicleFeedDetailsSourceDuoAuthSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceDuoAuthSettings(this.duoAuthSettings);
+/// The [ChronicleFeedSource.duoAuthSettings] choice: sets `duo_auth_settings`.
+final class ChronicleFeedSourceDuoAuthSettings extends ChronicleFeedSource {
+  const ChronicleFeedSourceDuoAuthSettings(this.duoAuthSettings);
 
-  final ChronicleFeedDetailsDuoAuthSettings duoAuthSettings;
+  final ChronicleFeedDuoAuthSettings duoAuthSettings;
 
   @override
   String get blockKey => 'duo_auth_settings';
@@ -594,14 +586,12 @@ final class ChronicleFeedDetailsSourceDuoAuthSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.duoUserContextSettings] choice: sets `duo_user_context_settings`.
-final class ChronicleFeedDetailsSourceDuoUserContextSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceDuoUserContextSettings(
-    this.duoUserContextSettings,
-  );
+/// The [ChronicleFeedSource.duoUserContextSettings] choice: sets `duo_user_context_settings`.
+final class ChronicleFeedSourceDuoUserContextSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceDuoUserContextSettings(this.duoUserContextSettings);
 
-  final ChronicleFeedDetailsDuoUserContextSettings duoUserContextSettings;
+  final ChronicleFeedDuoUserContextSettings duoUserContextSettings;
 
   @override
   String get blockKey => 'duo_user_context_settings';
@@ -612,15 +602,14 @@ final class ChronicleFeedDetailsSourceDuoUserContextSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.microsoftGraphAlertSettings] choice: sets `microsoft_graph_alert_settings`.
-final class ChronicleFeedDetailsSourceMicrosoftGraphAlertSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceMicrosoftGraphAlertSettings(
+/// The [ChronicleFeedSource.microsoftGraphAlertSettings] choice: sets `microsoft_graph_alert_settings`.
+final class ChronicleFeedSourceMicrosoftGraphAlertSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceMicrosoftGraphAlertSettings(
     this.microsoftGraphAlertSettings,
   );
 
-  final ChronicleFeedDetailsMicrosoftGraphAlertSettings
-  microsoftGraphAlertSettings;
+  final ChronicleFeedMicrosoftGraphAlertSettings microsoftGraphAlertSettings;
 
   @override
   String get blockKey => 'microsoft_graph_alert_settings';
@@ -631,14 +620,14 @@ final class ChronicleFeedDetailsSourceMicrosoftGraphAlertSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.microsoftSecurityCenterAlertSettings] choice: sets `microsoft_security_center_alert_settings`.
-final class ChronicleFeedDetailsSourceMicrosoftSecurityCenterAlertSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceMicrosoftSecurityCenterAlertSettings(
+/// The [ChronicleFeedSource.microsoftSecurityCenterAlertSettings] choice: sets `microsoft_security_center_alert_settings`.
+final class ChronicleFeedSourceMicrosoftSecurityCenterAlertSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceMicrosoftSecurityCenterAlertSettings(
     this.microsoftSecurityCenterAlertSettings,
   );
 
-  final ChronicleFeedDetailsMicrosoftSecurityCenterAlertSettings
+  final ChronicleFeedMicrosoftSecurityCenterAlertSettings
   microsoftSecurityCenterAlertSettings;
 
   @override
@@ -651,14 +640,12 @@ final class ChronicleFeedDetailsSourceMicrosoftSecurityCenterAlertSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.mimecastMailSettings] choice: sets `mimecast_mail_settings`.
-final class ChronicleFeedDetailsSourceMimecastMailSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceMimecastMailSettings(
-    this.mimecastMailSettings,
-  );
+/// The [ChronicleFeedSource.mimecastMailSettings] choice: sets `mimecast_mail_settings`.
+final class ChronicleFeedSourceMimecastMailSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceMimecastMailSettings(this.mimecastMailSettings);
 
-  final ChronicleFeedDetailsMimecastMailSettings mimecastMailSettings;
+  final ChronicleFeedMimecastMailSettings mimecastMailSettings;
 
   @override
   String get blockKey => 'mimecast_mail_settings';
@@ -669,12 +656,11 @@ final class ChronicleFeedDetailsSourceMimecastMailSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.office365Settings] choice: sets `office365_settings`.
-final class ChronicleFeedDetailsSourceOffice365Settings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceOffice365Settings(this.office365Settings);
+/// The [ChronicleFeedSource.office365Settings] choice: sets `office365_settings`.
+final class ChronicleFeedSourceOffice365Settings extends ChronicleFeedSource {
+  const ChronicleFeedSourceOffice365Settings(this.office365Settings);
 
-  final ChronicleFeedDetailsOffice365Settings office365Settings;
+  final ChronicleFeedOffice365Settings office365Settings;
 
   @override
   String get blockKey => 'office365_settings';
@@ -685,14 +671,12 @@ final class ChronicleFeedDetailsSourceOffice365Settings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.proofpointMailSettings] choice: sets `proofpoint_mail_settings`.
-final class ChronicleFeedDetailsSourceProofpointMailSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceProofpointMailSettings(
-    this.proofpointMailSettings,
-  );
+/// The [ChronicleFeedSource.proofpointMailSettings] choice: sets `proofpoint_mail_settings`.
+final class ChronicleFeedSourceProofpointMailSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceProofpointMailSettings(this.proofpointMailSettings);
 
-  final ChronicleFeedDetailsProofpointMailSettings proofpointMailSettings;
+  final ChronicleFeedProofpointMailSettings proofpointMailSettings;
 
   @override
   String get blockKey => 'proofpoint_mail_settings';
@@ -703,14 +687,14 @@ final class ChronicleFeedDetailsSourceProofpointMailSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.recordedFutureIocSettings] choice: sets `recorded_future_ioc_settings`.
-final class ChronicleFeedDetailsSourceRecordedFutureIocSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceRecordedFutureIocSettings(
+/// The [ChronicleFeedSource.recordedFutureIocSettings] choice: sets `recorded_future_ioc_settings`.
+final class ChronicleFeedSourceRecordedFutureIocSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceRecordedFutureIocSettings(
     this.recordedFutureIocSettings,
   );
 
-  final ChronicleFeedDetailsRecordedFutureIocSettings recordedFutureIocSettings;
+  final ChronicleFeedRecordedFutureIocSettings recordedFutureIocSettings;
 
   @override
   String get blockKey => 'recorded_future_ioc_settings';
@@ -721,12 +705,11 @@ final class ChronicleFeedDetailsSourceRecordedFutureIocSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.workdaySettings] choice: sets `workday_settings`.
-final class ChronicleFeedDetailsSourceWorkdaySettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceWorkdaySettings(this.workdaySettings);
+/// The [ChronicleFeedSource.workdaySettings] choice: sets `workday_settings`.
+final class ChronicleFeedSourceWorkdaySettings extends ChronicleFeedSource {
+  const ChronicleFeedSourceWorkdaySettings(this.workdaySettings);
 
-  final ChronicleFeedDetailsWorkdaySettings workdaySettings;
+  final ChronicleFeedWorkdaySettings workdaySettings;
 
   @override
   String get blockKey => 'workday_settings';
@@ -737,12 +720,11 @@ final class ChronicleFeedDetailsSourceWorkdaySettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.panIocSettings] choice: sets `pan_ioc_settings`.
-final class ChronicleFeedDetailsSourcePanIocSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourcePanIocSettings(this.panIocSettings);
+/// The [ChronicleFeedSource.panIocSettings] choice: sets `pan_ioc_settings`.
+final class ChronicleFeedSourcePanIocSettings extends ChronicleFeedSource {
+  const ChronicleFeedSourcePanIocSettings(this.panIocSettings);
 
-  final ChronicleFeedDetailsPanIocSettings panIocSettings;
+  final ChronicleFeedPanIocSettings panIocSettings;
 
   @override
   String get blockKey => 'pan_ioc_settings';
@@ -753,12 +735,11 @@ final class ChronicleFeedDetailsSourcePanIocSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.oktaSettings] choice: sets `okta_settings`.
-final class ChronicleFeedDetailsSourceOktaSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceOktaSettings(this.oktaSettings);
+/// The [ChronicleFeedSource.oktaSettings] choice: sets `okta_settings`.
+final class ChronicleFeedSourceOktaSettings extends ChronicleFeedSource {
+  const ChronicleFeedSourceOktaSettings(this.oktaSettings);
 
-  final ChronicleFeedDetailsOktaSettings oktaSettings;
+  final ChronicleFeedOktaSettings oktaSettings;
 
   @override
   String get blockKey => 'okta_settings';
@@ -767,14 +748,14 @@ final class ChronicleFeedDetailsSourceOktaSettings
   Map<String, Object?> encode() => {'okta_settings': oktaSettings.encode()};
 }
 
-/// The [ChronicleFeedDetailsSource.oktaUserContextSettings] choice: sets `okta_user_context_settings`.
-final class ChronicleFeedDetailsSourceOktaUserContextSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceOktaUserContextSettings(
+/// The [ChronicleFeedSource.oktaUserContextSettings] choice: sets `okta_user_context_settings`.
+final class ChronicleFeedSourceOktaUserContextSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceOktaUserContextSettings(
     this.oktaUserContextSettings,
   );
 
-  final ChronicleFeedDetailsOktaUserContextSettings oktaUserContextSettings;
+  final ChronicleFeedOktaUserContextSettings oktaUserContextSettings;
 
   @override
   String get blockKey => 'okta_user_context_settings';
@@ -785,12 +766,11 @@ final class ChronicleFeedDetailsSourceOktaUserContextSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.foxItStixSettings] choice: sets `fox_it_stix_settings`.
-final class ChronicleFeedDetailsSourceFoxItStixSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceFoxItStixSettings(this.foxItStixSettings);
+/// The [ChronicleFeedSource.foxItStixSettings] choice: sets `fox_it_stix_settings`.
+final class ChronicleFeedSourceFoxItStixSettings extends ChronicleFeedSource {
+  const ChronicleFeedSourceFoxItStixSettings(this.foxItStixSettings);
 
-  final ChronicleFeedDetailsFoxItStixSettings foxItStixSettings;
+  final ChronicleFeedFoxItStixSettings foxItStixSettings;
 
   @override
   String get blockKey => 'fox_it_stix_settings';
@@ -801,14 +781,14 @@ final class ChronicleFeedDetailsSourceFoxItStixSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.threatConnectIocSettings] choice: sets `threat_connect_ioc_settings`.
-final class ChronicleFeedDetailsSourceThreatConnectIocSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceThreatConnectIocSettings(
+/// The [ChronicleFeedSource.threatConnectIocSettings] choice: sets `threat_connect_ioc_settings`.
+final class ChronicleFeedSourceThreatConnectIocSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceThreatConnectIocSettings(
     this.threatConnectIocSettings,
   );
 
-  final ChronicleFeedDetailsThreatConnectIocSettings threatConnectIocSettings;
+  final ChronicleFeedThreatConnectIocSettings threatConnectIocSettings;
 
   @override
   String get blockKey => 'threat_connect_ioc_settings';
@@ -819,14 +799,12 @@ final class ChronicleFeedDetailsSourceThreatConnectIocSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.serviceNowCmdbSettings] choice: sets `service_now_cmdb_settings`.
-final class ChronicleFeedDetailsSourceServiceNowCmdbSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceServiceNowCmdbSettings(
-    this.serviceNowCmdbSettings,
-  );
+/// The [ChronicleFeedSource.serviceNowCmdbSettings] choice: sets `service_now_cmdb_settings`.
+final class ChronicleFeedSourceServiceNowCmdbSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceServiceNowCmdbSettings(this.serviceNowCmdbSettings);
 
-  final ChronicleFeedDetailsServiceNowCmdbSettings serviceNowCmdbSettings;
+  final ChronicleFeedServiceNowCmdbSettings serviceNowCmdbSettings;
 
   @override
   String get blockKey => 'service_now_cmdb_settings';
@@ -837,12 +815,11 @@ final class ChronicleFeedDetailsSourceServiceNowCmdbSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.impervaWafSettings] choice: sets `imperva_waf_settings`.
-final class ChronicleFeedDetailsSourceImpervaWafSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceImpervaWafSettings(this.impervaWafSettings);
+/// The [ChronicleFeedSource.impervaWafSettings] choice: sets `imperva_waf_settings`.
+final class ChronicleFeedSourceImpervaWafSettings extends ChronicleFeedSource {
+  const ChronicleFeedSourceImpervaWafSettings(this.impervaWafSettings);
 
-  final ChronicleFeedDetailsImpervaWafSettings impervaWafSettings;
+  final ChronicleFeedImpervaWafSettings impervaWafSettings;
 
   @override
   String get blockKey => 'imperva_waf_settings';
@@ -853,14 +830,12 @@ final class ChronicleFeedDetailsSourceImpervaWafSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.thinkstCanarySettings] choice: sets `thinkst_canary_settings`.
-final class ChronicleFeedDetailsSourceThinkstCanarySettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceThinkstCanarySettings(
-    this.thinkstCanarySettings,
-  );
+/// The [ChronicleFeedSource.thinkstCanarySettings] choice: sets `thinkst_canary_settings`.
+final class ChronicleFeedSourceThinkstCanarySettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceThinkstCanarySettings(this.thinkstCanarySettings);
 
-  final ChronicleFeedDetailsThinkstCanarySettings thinkstCanarySettings;
+  final ChronicleFeedThinkstCanarySettings thinkstCanarySettings;
 
   @override
   String get blockKey => 'thinkst_canary_settings';
@@ -871,12 +846,11 @@ final class ChronicleFeedDetailsSourceThinkstCanarySettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.rhIsacIocSettings] choice: sets `rh_isac_ioc_settings`.
-final class ChronicleFeedDetailsSourceRhIsacIocSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceRhIsacIocSettings(this.rhIsacIocSettings);
+/// The [ChronicleFeedSource.rhIsacIocSettings] choice: sets `rh_isac_ioc_settings`.
+final class ChronicleFeedSourceRhIsacIocSettings extends ChronicleFeedSource {
+  const ChronicleFeedSourceRhIsacIocSettings(this.rhIsacIocSettings);
 
-  final ChronicleFeedDetailsRhIsacIocSettings rhIsacIocSettings;
+  final ChronicleFeedRhIsacIocSettings rhIsacIocSettings;
 
   @override
   String get blockKey => 'rh_isac_ioc_settings';
@@ -887,14 +861,12 @@ final class ChronicleFeedDetailsSourceRhIsacIocSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.rapid7InsightSettings] choice: sets `rapid7_insight_settings`.
-final class ChronicleFeedDetailsSourceRapid7InsightSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceRapid7InsightSettings(
-    this.rapid7InsightSettings,
-  );
+/// The [ChronicleFeedSource.rapid7InsightSettings] choice: sets `rapid7_insight_settings`.
+final class ChronicleFeedSourceRapid7InsightSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceRapid7InsightSettings(this.rapid7InsightSettings);
 
-  final ChronicleFeedDetailsRapid7InsightSettings rapid7InsightSettings;
+  final ChronicleFeedRapid7InsightSettings rapid7InsightSettings;
 
   @override
   String get blockKey => 'rapid7_insight_settings';
@@ -905,12 +877,11 @@ final class ChronicleFeedDetailsSourceRapid7InsightSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.salesforceSettings] choice: sets `salesforce_settings`.
-final class ChronicleFeedDetailsSourceSalesforceSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceSalesforceSettings(this.salesforceSettings);
+/// The [ChronicleFeedSource.salesforceSettings] choice: sets `salesforce_settings`.
+final class ChronicleFeedSourceSalesforceSettings extends ChronicleFeedSource {
+  const ChronicleFeedSourceSalesforceSettings(this.salesforceSettings);
 
-  final ChronicleFeedDetailsSalesforceSettings salesforceSettings;
+  final ChronicleFeedSalesforceSettings salesforceSettings;
 
   @override
   String get blockKey => 'salesforce_settings';
@@ -921,14 +892,12 @@ final class ChronicleFeedDetailsSourceSalesforceSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.netskopeAlertSettings] choice: sets `netskope_alert_settings`.
-final class ChronicleFeedDetailsSourceNetskopeAlertSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceNetskopeAlertSettings(
-    this.netskopeAlertSettings,
-  );
+/// The [ChronicleFeedSource.netskopeAlertSettings] choice: sets `netskope_alert_settings`.
+final class ChronicleFeedSourceNetskopeAlertSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceNetskopeAlertSettings(this.netskopeAlertSettings);
 
-  final ChronicleFeedDetailsNetskopeAlertSettings netskopeAlertSettings;
+  final ChronicleFeedNetskopeAlertSettings netskopeAlertSettings;
 
   @override
   String get blockKey => 'netskope_alert_settings';
@@ -939,14 +908,12 @@ final class ChronicleFeedDetailsSourceNetskopeAlertSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.azureMdmIntuneSettings] choice: sets `azure_mdm_intune_settings`.
-final class ChronicleFeedDetailsSourceAzureMdmIntuneSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceAzureMdmIntuneSettings(
-    this.azureMdmIntuneSettings,
-  );
+/// The [ChronicleFeedSource.azureMdmIntuneSettings] choice: sets `azure_mdm_intune_settings`.
+final class ChronicleFeedSourceAzureMdmIntuneSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceAzureMdmIntuneSettings(this.azureMdmIntuneSettings);
 
-  final ChronicleFeedDetailsAzureMdmIntuneSettings azureMdmIntuneSettings;
+  final ChronicleFeedAzureMdmIntuneSettings azureMdmIntuneSettings;
 
   @override
   String get blockKey => 'azure_mdm_intune_settings';
@@ -957,12 +924,11 @@ final class ChronicleFeedDetailsSourceAzureMdmIntuneSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.azureAdSettings] choice: sets `azure_ad_settings`.
-final class ChronicleFeedDetailsSourceAzureAdSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceAzureAdSettings(this.azureAdSettings);
+/// The [ChronicleFeedSource.azureAdSettings] choice: sets `azure_ad_settings`.
+final class ChronicleFeedSourceAzureAdSettings extends ChronicleFeedSource {
+  const ChronicleFeedSourceAzureAdSettings(this.azureAdSettings);
 
-  final ChronicleFeedDetailsAzureAdSettings azureAdSettings;
+  final ChronicleFeedAzureAdSettings azureAdSettings;
 
   @override
   String get blockKey => 'azure_ad_settings';
@@ -973,15 +939,14 @@ final class ChronicleFeedDetailsSourceAzureAdSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.proofpointOnDemandSettings] choice: sets `proofpoint_on_demand_settings`.
-final class ChronicleFeedDetailsSourceProofpointOnDemandSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceProofpointOnDemandSettings(
+/// The [ChronicleFeedSource.proofpointOnDemandSettings] choice: sets `proofpoint_on_demand_settings`.
+final class ChronicleFeedSourceProofpointOnDemandSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceProofpointOnDemandSettings(
     this.proofpointOnDemandSettings,
   );
 
-  final ChronicleFeedDetailsProofpointOnDemandSettings
-  proofpointOnDemandSettings;
+  final ChronicleFeedProofpointOnDemandSettings proofpointOnDemandSettings;
 
   @override
   String get blockKey => 'proofpoint_on_demand_settings';
@@ -992,14 +957,12 @@ final class ChronicleFeedDetailsSourceProofpointOnDemandSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.workspaceUsersSettings] choice: sets `workspace_users_settings`.
-final class ChronicleFeedDetailsSourceWorkspaceUsersSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceWorkspaceUsersSettings(
-    this.workspaceUsersSettings,
-  );
+/// The [ChronicleFeedSource.workspaceUsersSettings] choice: sets `workspace_users_settings`.
+final class ChronicleFeedSourceWorkspaceUsersSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceWorkspaceUsersSettings(this.workspaceUsersSettings);
 
-  final ChronicleFeedDetailsWorkspaceUsersSettings workspaceUsersSettings;
+  final ChronicleFeedWorkspaceUsersSettings workspaceUsersSettings;
 
   @override
   String get blockKey => 'workspace_users_settings';
@@ -1010,14 +973,14 @@ final class ChronicleFeedDetailsSourceWorkspaceUsersSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.workspaceActivitySettings] choice: sets `workspace_activity_settings`.
-final class ChronicleFeedDetailsSourceWorkspaceActivitySettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceWorkspaceActivitySettings(
+/// The [ChronicleFeedSource.workspaceActivitySettings] choice: sets `workspace_activity_settings`.
+final class ChronicleFeedSourceWorkspaceActivitySettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceWorkspaceActivitySettings(
     this.workspaceActivitySettings,
   );
 
-  final ChronicleFeedDetailsWorkspaceActivitySettings workspaceActivitySettings;
+  final ChronicleFeedWorkspaceActivitySettings workspaceActivitySettings;
 
   @override
   String get blockKey => 'workspace_activity_settings';
@@ -1028,14 +991,14 @@ final class ChronicleFeedDetailsSourceWorkspaceActivitySettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.workspaceAlertsSettings] choice: sets `workspace_alerts_settings`.
-final class ChronicleFeedDetailsSourceWorkspaceAlertsSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceWorkspaceAlertsSettings(
+/// The [ChronicleFeedSource.workspaceAlertsSettings] choice: sets `workspace_alerts_settings`.
+final class ChronicleFeedSourceWorkspaceAlertsSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceWorkspaceAlertsSettings(
     this.workspaceAlertsSettings,
   );
 
-  final ChronicleFeedDetailsWorkspaceAlertsSettings workspaceAlertsSettings;
+  final ChronicleFeedWorkspaceAlertsSettings workspaceAlertsSettings;
 
   @override
   String get blockKey => 'workspace_alerts_settings';
@@ -1046,15 +1009,14 @@ final class ChronicleFeedDetailsSourceWorkspaceAlertsSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.workspacePrivilegesSettings] choice: sets `workspace_privileges_settings`.
-final class ChronicleFeedDetailsSourceWorkspacePrivilegesSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceWorkspacePrivilegesSettings(
+/// The [ChronicleFeedSource.workspacePrivilegesSettings] choice: sets `workspace_privileges_settings`.
+final class ChronicleFeedSourceWorkspacePrivilegesSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceWorkspacePrivilegesSettings(
     this.workspacePrivilegesSettings,
   );
 
-  final ChronicleFeedDetailsWorkspacePrivilegesSettings
-  workspacePrivilegesSettings;
+  final ChronicleFeedWorkspacePrivilegesSettings workspacePrivilegesSettings;
 
   @override
   String get blockKey => 'workspace_privileges_settings';
@@ -1065,14 +1027,14 @@ final class ChronicleFeedDetailsSourceWorkspacePrivilegesSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.workspaceMobileSettings] choice: sets `workspace_mobile_settings`.
-final class ChronicleFeedDetailsSourceWorkspaceMobileSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceWorkspaceMobileSettings(
+/// The [ChronicleFeedSource.workspaceMobileSettings] choice: sets `workspace_mobile_settings`.
+final class ChronicleFeedSourceWorkspaceMobileSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceWorkspaceMobileSettings(
     this.workspaceMobileSettings,
   );
 
-  final ChronicleFeedDetailsWorkspaceMobileSettings workspaceMobileSettings;
+  final ChronicleFeedWorkspaceMobileSettings workspaceMobileSettings;
 
   @override
   String get blockKey => 'workspace_mobile_settings';
@@ -1083,14 +1045,14 @@ final class ChronicleFeedDetailsSourceWorkspaceMobileSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.workspaceChromeOsSettings] choice: sets `workspace_chrome_os_settings`.
-final class ChronicleFeedDetailsSourceWorkspaceChromeOsSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceWorkspaceChromeOsSettings(
+/// The [ChronicleFeedSource.workspaceChromeOsSettings] choice: sets `workspace_chrome_os_settings`.
+final class ChronicleFeedSourceWorkspaceChromeOsSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceWorkspaceChromeOsSettings(
     this.workspaceChromeOsSettings,
   );
 
-  final ChronicleFeedDetailsWorkspaceChromeOsSettings workspaceChromeOsSettings;
+  final ChronicleFeedWorkspaceChromeOsSettings workspaceChromeOsSettings;
 
   @override
   String get blockKey => 'workspace_chrome_os_settings';
@@ -1101,14 +1063,14 @@ final class ChronicleFeedDetailsSourceWorkspaceChromeOsSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.workspaceGroupsSettings] choice: sets `workspace_groups_settings`.
-final class ChronicleFeedDetailsSourceWorkspaceGroupsSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceWorkspaceGroupsSettings(
+/// The [ChronicleFeedSource.workspaceGroupsSettings] choice: sets `workspace_groups_settings`.
+final class ChronicleFeedSourceWorkspaceGroupsSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceWorkspaceGroupsSettings(
     this.workspaceGroupsSettings,
   );
 
-  final ChronicleFeedDetailsWorkspaceGroupsSettings workspaceGroupsSettings;
+  final ChronicleFeedWorkspaceGroupsSettings workspaceGroupsSettings;
 
   @override
   String get blockKey => 'workspace_groups_settings';
@@ -1119,14 +1081,12 @@ final class ChronicleFeedDetailsSourceWorkspaceGroupsSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.azureAdAuditSettings] choice: sets `azure_ad_audit_settings`.
-final class ChronicleFeedDetailsSourceAzureAdAuditSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceAzureAdAuditSettings(
-    this.azureAdAuditSettings,
-  );
+/// The [ChronicleFeedSource.azureAdAuditSettings] choice: sets `azure_ad_audit_settings`.
+final class ChronicleFeedSourceAzureAdAuditSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceAzureAdAuditSettings(this.azureAdAuditSettings);
 
-  final ChronicleFeedDetailsAzureAdAuditSettings azureAdAuditSettings;
+  final ChronicleFeedAzureAdAuditSettings azureAdAuditSettings;
 
   @override
   String get blockKey => 'azure_ad_audit_settings';
@@ -1137,15 +1097,14 @@ final class ChronicleFeedDetailsSourceAzureAdAuditSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.symantecEventExportSettings] choice: sets `symantec_event_export_settings`.
-final class ChronicleFeedDetailsSourceSymantecEventExportSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceSymantecEventExportSettings(
+/// The [ChronicleFeedSource.symantecEventExportSettings] choice: sets `symantec_event_export_settings`.
+final class ChronicleFeedSourceSymantecEventExportSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceSymantecEventExportSettings(
     this.symantecEventExportSettings,
   );
 
-  final ChronicleFeedDetailsSymantecEventExportSettings
-  symantecEventExportSettings;
+  final ChronicleFeedSymantecEventExportSettings symantecEventExportSettings;
 
   @override
   String get blockKey => 'symantec_event_export_settings';
@@ -1156,12 +1115,11 @@ final class ChronicleFeedDetailsSourceSymantecEventExportSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.qualysVmSettings] choice: sets `qualys_vm_settings`.
-final class ChronicleFeedDetailsSourceQualysVmSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceQualysVmSettings(this.qualysVmSettings);
+/// The [ChronicleFeedSource.qualysVmSettings] choice: sets `qualys_vm_settings`.
+final class ChronicleFeedSourceQualysVmSettings extends ChronicleFeedSource {
+  const ChronicleFeedSourceQualysVmSettings(this.qualysVmSettings);
 
-  final ChronicleFeedDetailsQualysVmSettings qualysVmSettings;
+  final ChronicleFeedQualysVmSettings qualysVmSettings;
 
   @override
   String get blockKey => 'qualys_vm_settings';
@@ -1172,14 +1130,12 @@ final class ChronicleFeedDetailsSourceQualysVmSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.panPrismaCloudSettings] choice: sets `pan_prisma_cloud_settings`.
-final class ChronicleFeedDetailsSourcePanPrismaCloudSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourcePanPrismaCloudSettings(
-    this.panPrismaCloudSettings,
-  );
+/// The [ChronicleFeedSource.panPrismaCloudSettings] choice: sets `pan_prisma_cloud_settings`.
+final class ChronicleFeedSourcePanPrismaCloudSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourcePanPrismaCloudSettings(this.panPrismaCloudSettings);
 
-  final ChronicleFeedDetailsPanPrismaCloudSettings panPrismaCloudSettings;
+  final ChronicleFeedPanPrismaCloudSettings panPrismaCloudSettings;
 
   @override
   String get blockKey => 'pan_prisma_cloud_settings';
@@ -1190,12 +1146,11 @@ final class ChronicleFeedDetailsSourcePanPrismaCloudSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.gcsSettings] choice: sets `gcs_settings`.
-final class ChronicleFeedDetailsSourceGcsSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceGcsSettings(this.gcsSettings);
+/// The [ChronicleFeedSource.gcsSettings] choice: sets `gcs_settings`.
+final class ChronicleFeedSourceGcsSettings extends ChronicleFeedSource {
+  const ChronicleFeedSourceGcsSettings(this.gcsSettings);
 
-  final ChronicleFeedDetailsGcsSettings gcsSettings;
+  final ChronicleFeedGcsSettings gcsSettings;
 
   @override
   String get blockKey => 'gcs_settings';
@@ -1204,12 +1159,11 @@ final class ChronicleFeedDetailsSourceGcsSettings
   Map<String, Object?> encode() => {'gcs_settings': gcsSettings.encode()};
 }
 
-/// The [ChronicleFeedDetailsSource.httpSettings] choice: sets `http_settings`.
-final class ChronicleFeedDetailsSourceHttpSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceHttpSettings(this.httpSettings);
+/// The [ChronicleFeedSource.httpSettings] choice: sets `http_settings`.
+final class ChronicleFeedSourceHttpSettings extends ChronicleFeedSource {
+  const ChronicleFeedSourceHttpSettings(this.httpSettings);
 
-  final ChronicleFeedDetailsHttpSettings httpSettings;
+  final ChronicleFeedHttpSettings httpSettings;
 
   @override
   String get blockKey => 'http_settings';
@@ -1218,12 +1172,11 @@ final class ChronicleFeedDetailsSourceHttpSettings
   Map<String, Object?> encode() => {'http_settings': httpSettings.encode()};
 }
 
-/// The [ChronicleFeedDetailsSource.sftpSettings] choice: sets `sftp_settings`.
-final class ChronicleFeedDetailsSourceSftpSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceSftpSettings(this.sftpSettings);
+/// The [ChronicleFeedSource.sftpSettings] choice: sets `sftp_settings`.
+final class ChronicleFeedSourceSftpSettings extends ChronicleFeedSource {
+  const ChronicleFeedSourceSftpSettings(this.sftpSettings);
 
-  final ChronicleFeedDetailsSftpSettings sftpSettings;
+  final ChronicleFeedSftpSettings sftpSettings;
 
   @override
   String get blockKey => 'sftp_settings';
@@ -1232,12 +1185,11 @@ final class ChronicleFeedDetailsSourceSftpSettings
   Map<String, Object?> encode() => {'sftp_settings': sftpSettings.encode()};
 }
 
-/// The [ChronicleFeedDetailsSource.amazonS3Settings] choice: sets `amazon_s3_settings`.
-final class ChronicleFeedDetailsSourceAmazonS3Settings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceAmazonS3Settings(this.amazonS3Settings);
+/// The [ChronicleFeedSource.amazonS3Settings] choice: sets `amazon_s3_settings`.
+final class ChronicleFeedSourceAmazonS3Settings extends ChronicleFeedSource {
+  const ChronicleFeedSourceAmazonS3Settings(this.amazonS3Settings);
 
-  final ChronicleFeedDetailsAmazonS3Settings amazonS3Settings;
+  final ChronicleFeedAmazonS3Settings amazonS3Settings;
 
   @override
   String get blockKey => 'amazon_s3_settings';
@@ -1248,14 +1200,12 @@ final class ChronicleFeedDetailsSourceAmazonS3Settings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.azureBlobStoreSettings] choice: sets `azure_blob_store_settings`.
-final class ChronicleFeedDetailsSourceAzureBlobStoreSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceAzureBlobStoreSettings(
-    this.azureBlobStoreSettings,
-  );
+/// The [ChronicleFeedSource.azureBlobStoreSettings] choice: sets `azure_blob_store_settings`.
+final class ChronicleFeedSourceAzureBlobStoreSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceAzureBlobStoreSettings(this.azureBlobStoreSettings);
 
-  final ChronicleFeedDetailsAzureBlobStoreSettings azureBlobStoreSettings;
+  final ChronicleFeedAzureBlobStoreSettings azureBlobStoreSettings;
 
   @override
   String get blockKey => 'azure_blob_store_settings';
@@ -1266,12 +1216,11 @@ final class ChronicleFeedDetailsSourceAzureBlobStoreSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.amazonSqsSettings] choice: sets `amazon_sqs_settings`.
-final class ChronicleFeedDetailsSourceAmazonSqsSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceAmazonSqsSettings(this.amazonSqsSettings);
+/// The [ChronicleFeedSource.amazonSqsSettings] choice: sets `amazon_sqs_settings`.
+final class ChronicleFeedSourceAmazonSqsSettings extends ChronicleFeedSource {
+  const ChronicleFeedSourceAmazonSqsSettings(this.amazonSqsSettings);
 
-  final ChronicleFeedDetailsAmazonSqsSettings amazonSqsSettings;
+  final ChronicleFeedAmazonSqsSettings amazonSqsSettings;
 
   @override
   String get blockKey => 'amazon_sqs_settings';
@@ -1282,14 +1231,14 @@ final class ChronicleFeedDetailsSourceAmazonSqsSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.googleCloudIdentityDevicesSettings] choice: sets `google_cloud_identity_devices_settings`.
-final class ChronicleFeedDetailsSourceGoogleCloudIdentityDevicesSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceGoogleCloudIdentityDevicesSettings(
+/// The [ChronicleFeedSource.googleCloudIdentityDevicesSettings] choice: sets `google_cloud_identity_devices_settings`.
+final class ChronicleFeedSourceGoogleCloudIdentityDevicesSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceGoogleCloudIdentityDevicesSettings(
     this.googleCloudIdentityDevicesSettings,
   );
 
-  final ChronicleFeedDetailsGoogleCloudIdentityDevicesSettings
+  final ChronicleFeedGoogleCloudIdentityDevicesSettings
   googleCloudIdentityDevicesSettings;
 
   @override
@@ -1302,14 +1251,14 @@ final class ChronicleFeedDetailsSourceGoogleCloudIdentityDevicesSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.googleCloudIdentityDeviceUsersSettings] choice: sets `google_cloud_identity_device_users_settings`.
-final class ChronicleFeedDetailsSourceGoogleCloudIdentityDeviceUsersSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceGoogleCloudIdentityDeviceUsersSettings(
+/// The [ChronicleFeedSource.googleCloudIdentityDeviceUsersSettings] choice: sets `google_cloud_identity_device_users_settings`.
+final class ChronicleFeedSourceGoogleCloudIdentityDeviceUsersSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceGoogleCloudIdentityDeviceUsersSettings(
     this.googleCloudIdentityDeviceUsersSettings,
   );
 
-  final ChronicleFeedDetailsGoogleCloudIdentityDeviceUsersSettings
+  final ChronicleFeedGoogleCloudIdentityDeviceUsersSettings
   googleCloudIdentityDeviceUsersSettings;
 
   @override
@@ -1322,15 +1271,14 @@ final class ChronicleFeedDetailsSourceGoogleCloudIdentityDeviceUsersSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.crowdstrikeDetectsSettings] choice: sets `crowdstrike_detects_settings`.
-final class ChronicleFeedDetailsSourceCrowdstrikeDetectsSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceCrowdstrikeDetectsSettings(
+/// The [ChronicleFeedSource.crowdstrikeDetectsSettings] choice: sets `crowdstrike_detects_settings`.
+final class ChronicleFeedSourceCrowdstrikeDetectsSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceCrowdstrikeDetectsSettings(
     this.crowdstrikeDetectsSettings,
   );
 
-  final ChronicleFeedDetailsCrowdstrikeDetectsSettings
-  crowdstrikeDetectsSettings;
+  final ChronicleFeedCrowdstrikeDetectsSettings crowdstrikeDetectsSettings;
 
   @override
   String get blockKey => 'crowdstrike_detects_settings';
@@ -1341,12 +1289,11 @@ final class ChronicleFeedDetailsSourceCrowdstrikeDetectsSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.mandiantIocSettings] choice: sets `mandiant_ioc_settings`.
-final class ChronicleFeedDetailsSourceMandiantIocSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceMandiantIocSettings(this.mandiantIocSettings);
+/// The [ChronicleFeedSource.mandiantIocSettings] choice: sets `mandiant_ioc_settings`.
+final class ChronicleFeedSourceMandiantIocSettings extends ChronicleFeedSource {
+  const ChronicleFeedSourceMandiantIocSettings(this.mandiantIocSettings);
 
-  final ChronicleFeedDetailsMandiantIocSettings mandiantIocSettings;
+  final ChronicleFeedMandiantIocSettings mandiantIocSettings;
 
   @override
   String get blockKey => 'mandiant_ioc_settings';
@@ -1357,14 +1304,14 @@ final class ChronicleFeedDetailsSourceMandiantIocSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.sentineloneAlertSettings] choice: sets `sentinelone_alert_settings`.
-final class ChronicleFeedDetailsSourceSentineloneAlertSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceSentineloneAlertSettings(
+/// The [ChronicleFeedSource.sentineloneAlertSettings] choice: sets `sentinelone_alert_settings`.
+final class ChronicleFeedSourceSentineloneAlertSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceSentineloneAlertSettings(
     this.sentineloneAlertSettings,
   );
 
-  final ChronicleFeedDetailsSentineloneAlertSettings sentineloneAlertSettings;
+  final ChronicleFeedSentineloneAlertSettings sentineloneAlertSettings;
 
   @override
   String get blockKey => 'sentinelone_alert_settings';
@@ -1375,12 +1322,11 @@ final class ChronicleFeedDetailsSourceSentineloneAlertSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.qualysScanSettings] choice: sets `qualys_scan_settings`.
-final class ChronicleFeedDetailsSourceQualysScanSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceQualysScanSettings(this.qualysScanSettings);
+/// The [ChronicleFeedSource.qualysScanSettings] choice: sets `qualys_scan_settings`.
+final class ChronicleFeedSourceQualysScanSettings extends ChronicleFeedSource {
+  const ChronicleFeedSourceQualysScanSettings(this.qualysScanSettings);
 
-  final ChronicleFeedDetailsQualysScanSettings qualysScanSettings;
+  final ChronicleFeedQualysScanSettings qualysScanSettings;
 
   @override
   String get blockKey => 'qualys_scan_settings';
@@ -1391,12 +1337,11 @@ final class ChronicleFeedDetailsSourceQualysScanSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.pubsubSettings] choice: sets `pubsub_settings`.
-final class ChronicleFeedDetailsSourcePubsubSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourcePubsubSettings(this.pubsubSettings);
+/// The [ChronicleFeedSource.pubsubSettings] choice: sets `pubsub_settings`.
+final class ChronicleFeedSourcePubsubSettings extends ChronicleFeedSource {
+  const ChronicleFeedSourcePubsubSettings(this.pubsubSettings);
 
-  final ChronicleFeedDetailsPubsubSettings pubsubSettings;
+  final ChronicleFeedPubsubSettings pubsubSettings;
 
   @override
   String get blockKey => 'pubsub_settings';
@@ -1405,14 +1350,14 @@ final class ChronicleFeedDetailsSourcePubsubSettings
   Map<String, Object?> encode() => {'pubsub_settings': pubsubSettings.encode()};
 }
 
-/// The [ChronicleFeedDetailsSource.amazonKinesisFirehoseSettings] choice: sets `amazon_kinesis_firehose_settings`.
-final class ChronicleFeedDetailsSourceAmazonKinesisFirehoseSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceAmazonKinesisFirehoseSettings(
+/// The [ChronicleFeedSource.amazonKinesisFirehoseSettings] choice: sets `amazon_kinesis_firehose_settings`.
+final class ChronicleFeedSourceAmazonKinesisFirehoseSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceAmazonKinesisFirehoseSettings(
     this.amazonKinesisFirehoseSettings,
   );
 
-  final ChronicleFeedDetailsAmazonKinesisFirehoseSettings
+  final ChronicleFeedAmazonKinesisFirehoseSettings
   amazonKinesisFirehoseSettings;
 
   @override
@@ -1424,12 +1369,11 @@ final class ChronicleFeedDetailsSourceAmazonKinesisFirehoseSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.webhookSettings] choice: sets `webhook_settings`.
-final class ChronicleFeedDetailsSourceWebhookSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceWebhookSettings(this.webhookSettings);
+/// The [ChronicleFeedSource.webhookSettings] choice: sets `webhook_settings`.
+final class ChronicleFeedSourceWebhookSettings extends ChronicleFeedSource {
+  const ChronicleFeedSourceWebhookSettings(this.webhookSettings);
 
-  final ChronicleFeedDetailsWebhookSettings webhookSettings;
+  final ChronicleFeedWebhookSettings webhookSettings;
 
   @override
   String get blockKey => 'webhook_settings';
@@ -1440,14 +1384,12 @@ final class ChronicleFeedDetailsSourceWebhookSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.dummyLogTypeSettings] choice: sets `dummy_log_type_settings`.
-final class ChronicleFeedDetailsSourceDummyLogTypeSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceDummyLogTypeSettings(
-    this.dummyLogTypeSettings,
-  );
+/// The [ChronicleFeedSource.dummyLogTypeSettings] choice: sets `dummy_log_type_settings`.
+final class ChronicleFeedSourceDummyLogTypeSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceDummyLogTypeSettings(this.dummyLogTypeSettings);
 
-  final ChronicleFeedDetailsDummyLogTypeSettings dummyLogTypeSettings;
+  final ChronicleFeedDummyLogTypeSettings dummyLogTypeSettings;
 
   @override
   String get blockKey => 'dummy_log_type_settings';
@@ -1458,14 +1400,14 @@ final class ChronicleFeedDetailsSourceDummyLogTypeSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.httpsPushGoogleCloudPubsubSettings] choice: sets `https_push_google_cloud_pubsub_settings`.
-final class ChronicleFeedDetailsSourceHttpsPushGoogleCloudPubsubSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceHttpsPushGoogleCloudPubsubSettings(
+/// The [ChronicleFeedSource.httpsPushGoogleCloudPubsubSettings] choice: sets `https_push_google_cloud_pubsub_settings`.
+final class ChronicleFeedSourceHttpsPushGoogleCloudPubsubSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceHttpsPushGoogleCloudPubsubSettings(
     this.httpsPushGoogleCloudPubsubSettings,
   );
 
-  final ChronicleFeedDetailsHttpsPushGoogleCloudPubsubSettings
+  final ChronicleFeedHttpsPushGoogleCloudPubsubSettings
   httpsPushGoogleCloudPubsubSettings;
 
   @override
@@ -1478,14 +1420,14 @@ final class ChronicleFeedDetailsSourceHttpsPushGoogleCloudPubsubSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.httpsPushAmazonKinesisFirehoseSettings] choice: sets `https_push_amazon_kinesis_firehose_settings`.
-final class ChronicleFeedDetailsSourceHttpsPushAmazonKinesisFirehoseSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceHttpsPushAmazonKinesisFirehoseSettings(
+/// The [ChronicleFeedSource.httpsPushAmazonKinesisFirehoseSettings] choice: sets `https_push_amazon_kinesis_firehose_settings`.
+final class ChronicleFeedSourceHttpsPushAmazonKinesisFirehoseSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceHttpsPushAmazonKinesisFirehoseSettings(
     this.httpsPushAmazonKinesisFirehoseSettings,
   );
 
-  final ChronicleFeedDetailsHttpsPushAmazonKinesisFirehoseSettings
+  final ChronicleFeedHttpsPushAmazonKinesisFirehoseSettings
   httpsPushAmazonKinesisFirehoseSettings;
 
   @override
@@ -1498,14 +1440,14 @@ final class ChronicleFeedDetailsSourceHttpsPushAmazonKinesisFirehoseSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.httpsPushWebhookSettings] choice: sets `https_push_webhook_settings`.
-final class ChronicleFeedDetailsSourceHttpsPushWebhookSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceHttpsPushWebhookSettings(
+/// The [ChronicleFeedSource.httpsPushWebhookSettings] choice: sets `https_push_webhook_settings`.
+final class ChronicleFeedSourceHttpsPushWebhookSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceHttpsPushWebhookSettings(
     this.httpsPushWebhookSettings,
   );
 
-  final ChronicleFeedDetailsHttpsPushWebhookSettings httpsPushWebhookSettings;
+  final ChronicleFeedHttpsPushWebhookSettings httpsPushWebhookSettings;
 
   @override
   String get blockKey => 'https_push_webhook_settings';
@@ -1516,12 +1458,11 @@ final class ChronicleFeedDetailsSourceHttpsPushWebhookSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.awsEc2HostsSettings] choice: sets `aws_ec2_hosts_settings`.
-final class ChronicleFeedDetailsSourceAwsEc2HostsSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceAwsEc2HostsSettings(this.awsEc2HostsSettings);
+/// The [ChronicleFeedSource.awsEc2HostsSettings] choice: sets `aws_ec2_hosts_settings`.
+final class ChronicleFeedSourceAwsEc2HostsSettings extends ChronicleFeedSource {
+  const ChronicleFeedSourceAwsEc2HostsSettings(this.awsEc2HostsSettings);
 
-  final ChronicleFeedDetailsAwsEc2HostsSettings awsEc2HostsSettings;
+  final ChronicleFeedAwsEc2HostsSettings awsEc2HostsSettings;
 
   @override
   String get blockKey => 'aws_ec2_hosts_settings';
@@ -1532,14 +1473,14 @@ final class ChronicleFeedDetailsSourceAwsEc2HostsSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.awsEc2InstancesSettings] choice: sets `aws_ec2_instances_settings`.
-final class ChronicleFeedDetailsSourceAwsEc2InstancesSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceAwsEc2InstancesSettings(
+/// The [ChronicleFeedSource.awsEc2InstancesSettings] choice: sets `aws_ec2_instances_settings`.
+final class ChronicleFeedSourceAwsEc2InstancesSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceAwsEc2InstancesSettings(
     this.awsEc2InstancesSettings,
   );
 
-  final ChronicleFeedDetailsAwsEc2InstancesSettings awsEc2InstancesSettings;
+  final ChronicleFeedAwsEc2InstancesSettings awsEc2InstancesSettings;
 
   @override
   String get blockKey => 'aws_ec2_instances_settings';
@@ -1550,12 +1491,11 @@ final class ChronicleFeedDetailsSourceAwsEc2InstancesSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.awsEc2VpcsSettings] choice: sets `aws_ec2_vpcs_settings`.
-final class ChronicleFeedDetailsSourceAwsEc2VpcsSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceAwsEc2VpcsSettings(this.awsEc2VpcsSettings);
+/// The [ChronicleFeedSource.awsEc2VpcsSettings] choice: sets `aws_ec2_vpcs_settings`.
+final class ChronicleFeedSourceAwsEc2VpcsSettings extends ChronicleFeedSource {
+  const ChronicleFeedSourceAwsEc2VpcsSettings(this.awsEc2VpcsSettings);
 
-  final ChronicleFeedDetailsAwsEc2VpcsSettings awsEc2VpcsSettings;
+  final ChronicleFeedAwsEc2VpcsSettings awsEc2VpcsSettings;
 
   @override
   String get blockKey => 'aws_ec2_vpcs_settings';
@@ -1566,12 +1506,11 @@ final class ChronicleFeedDetailsSourceAwsEc2VpcsSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.awsIamSettings] choice: sets `aws_iam_settings`.
-final class ChronicleFeedDetailsSourceAwsIamSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceAwsIamSettings(this.awsIamSettings);
+/// The [ChronicleFeedSource.awsIamSettings] choice: sets `aws_iam_settings`.
+final class ChronicleFeedSourceAwsIamSettings extends ChronicleFeedSource {
+  const ChronicleFeedSourceAwsIamSettings(this.awsIamSettings);
 
-  final ChronicleFeedDetailsAwsIamSettings awsIamSettings;
+  final ChronicleFeedAwsIamSettings awsIamSettings;
 
   @override
   String get blockKey => 'aws_iam_settings';
@@ -1582,14 +1521,14 @@ final class ChronicleFeedDetailsSourceAwsIamSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.netskopeAlertV2Settings] choice: sets `netskope_alert_v2_settings`.
-final class ChronicleFeedDetailsSourceNetskopeAlertV2Settings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceNetskopeAlertV2Settings(
+/// The [ChronicleFeedSource.netskopeAlertV2Settings] choice: sets `netskope_alert_v2_settings`.
+final class ChronicleFeedSourceNetskopeAlertV2Settings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceNetskopeAlertV2Settings(
     this.netskopeAlertV2Settings,
   );
 
-  final ChronicleFeedDetailsNetskopeAlertV2Settings netskopeAlertV2Settings;
+  final ChronicleFeedNetskopeAlertV2Settings netskopeAlertV2Settings;
 
   @override
   String get blockKey => 'netskope_alert_v2_settings';
@@ -1600,12 +1539,11 @@ final class ChronicleFeedDetailsSourceNetskopeAlertV2Settings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.gcsV2Settings] choice: sets `gcs_v2_settings`.
-final class ChronicleFeedDetailsSourceGcsV2Settings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceGcsV2Settings(this.gcsV2Settings);
+/// The [ChronicleFeedSource.gcsV2Settings] choice: sets `gcs_v2_settings`.
+final class ChronicleFeedSourceGcsV2Settings extends ChronicleFeedSource {
+  const ChronicleFeedSourceGcsV2Settings(this.gcsV2Settings);
 
-  final ChronicleFeedDetailsGcsV2Settings gcsV2Settings;
+  final ChronicleFeedGcsV2Settings gcsV2Settings;
 
   @override
   String get blockKey => 'gcs_v2_settings';
@@ -1614,12 +1552,11 @@ final class ChronicleFeedDetailsSourceGcsV2Settings
   Map<String, Object?> encode() => {'gcs_v2_settings': gcsV2Settings.encode()};
 }
 
-/// The [ChronicleFeedDetailsSource.amazonS3V2Settings] choice: sets `amazon_s3_v2_settings`.
-final class ChronicleFeedDetailsSourceAmazonS3V2Settings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceAmazonS3V2Settings(this.amazonS3V2Settings);
+/// The [ChronicleFeedSource.amazonS3V2Settings] choice: sets `amazon_s3_v2_settings`.
+final class ChronicleFeedSourceAmazonS3V2Settings extends ChronicleFeedSource {
+  const ChronicleFeedSourceAmazonS3V2Settings(this.amazonS3V2Settings);
 
-  final ChronicleFeedDetailsAmazonS3V2Settings amazonS3V2Settings;
+  final ChronicleFeedAmazonS3V2Settings amazonS3V2Settings;
 
   @override
   String get blockKey => 'amazon_s3_v2_settings';
@@ -1630,12 +1567,11 @@ final class ChronicleFeedDetailsSourceAmazonS3V2Settings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.amazonSqsV2Settings] choice: sets `amazon_sqs_v2_settings`.
-final class ChronicleFeedDetailsSourceAmazonSqsV2Settings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceAmazonSqsV2Settings(this.amazonSqsV2Settings);
+/// The [ChronicleFeedSource.amazonSqsV2Settings] choice: sets `amazon_sqs_v2_settings`.
+final class ChronicleFeedSourceAmazonSqsV2Settings extends ChronicleFeedSource {
+  const ChronicleFeedSourceAmazonSqsV2Settings(this.amazonSqsV2Settings);
 
-  final ChronicleFeedDetailsAmazonSqsV2Settings amazonSqsV2Settings;
+  final ChronicleFeedAmazonSqsV2Settings amazonSqsV2Settings;
 
   @override
   String get blockKey => 'amazon_sqs_v2_settings';
@@ -1646,14 +1582,12 @@ final class ChronicleFeedDetailsSourceAmazonSqsV2Settings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.azureEventHubSettings] choice: sets `azure_event_hub_settings`.
-final class ChronicleFeedDetailsSourceAzureEventHubSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceAzureEventHubSettings(
-    this.azureEventHubSettings,
-  );
+/// The [ChronicleFeedSource.azureEventHubSettings] choice: sets `azure_event_hub_settings`.
+final class ChronicleFeedSourceAzureEventHubSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceAzureEventHubSettings(this.azureEventHubSettings);
 
-  final ChronicleFeedDetailsAzureEventHubSettings azureEventHubSettings;
+  final ChronicleFeedAzureEventHubSettings azureEventHubSettings;
 
   @override
   String get blockKey => 'azure_event_hub_settings';
@@ -1664,14 +1598,12 @@ final class ChronicleFeedDetailsSourceAzureEventHubSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.trellixHxHostsSettings] choice: sets `trellix_hx_hosts_settings`.
-final class ChronicleFeedDetailsSourceTrellixHxHostsSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceTrellixHxHostsSettings(
-    this.trellixHxHostsSettings,
-  );
+/// The [ChronicleFeedSource.trellixHxHostsSettings] choice: sets `trellix_hx_hosts_settings`.
+final class ChronicleFeedSourceTrellixHxHostsSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceTrellixHxHostsSettings(this.trellixHxHostsSettings);
 
-  final ChronicleFeedDetailsTrellixHxHostsSettings trellixHxHostsSettings;
+  final ChronicleFeedTrellixHxHostsSettings trellixHxHostsSettings;
 
   @override
   String get blockKey => 'trellix_hx_hosts_settings';
@@ -1682,14 +1614,14 @@ final class ChronicleFeedDetailsSourceTrellixHxHostsSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.azureBlobStoreV2Settings] choice: sets `azure_blob_store_v2_settings`.
-final class ChronicleFeedDetailsSourceAzureBlobStoreV2Settings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceAzureBlobStoreV2Settings(
+/// The [ChronicleFeedSource.azureBlobStoreV2Settings] choice: sets `azure_blob_store_v2_settings`.
+final class ChronicleFeedSourceAzureBlobStoreV2Settings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceAzureBlobStoreV2Settings(
     this.azureBlobStoreV2Settings,
   );
 
-  final ChronicleFeedDetailsAzureBlobStoreV2Settings azureBlobStoreV2Settings;
+  final ChronicleFeedAzureBlobStoreV2Settings azureBlobStoreV2Settings;
 
   @override
   String get blockKey => 'azure_blob_store_v2_settings';
@@ -1700,14 +1632,14 @@ final class ChronicleFeedDetailsSourceAzureBlobStoreV2Settings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.trellixHxAlertsSettings] choice: sets `trellix_hx_alerts_settings`.
-final class ChronicleFeedDetailsSourceTrellixHxAlertsSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceTrellixHxAlertsSettings(
+/// The [ChronicleFeedSource.trellixHxAlertsSettings] choice: sets `trellix_hx_alerts_settings`.
+final class ChronicleFeedSourceTrellixHxAlertsSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceTrellixHxAlertsSettings(
     this.trellixHxAlertsSettings,
   );
 
-  final ChronicleFeedDetailsTrellixHxAlertsSettings trellixHxAlertsSettings;
+  final ChronicleFeedTrellixHxAlertsSettings trellixHxAlertsSettings;
 
   @override
   String get blockKey => 'trellix_hx_alerts_settings';
@@ -1718,14 +1650,14 @@ final class ChronicleFeedDetailsSourceTrellixHxAlertsSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.googleCloudStorageEventDrivenSettings] choice: sets `google_cloud_storage_event_driven_settings`.
-final class ChronicleFeedDetailsSourceGoogleCloudStorageEventDrivenSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceGoogleCloudStorageEventDrivenSettings(
+/// The [ChronicleFeedSource.googleCloudStorageEventDrivenSettings] choice: sets `google_cloud_storage_event_driven_settings`.
+final class ChronicleFeedSourceGoogleCloudStorageEventDrivenSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceGoogleCloudStorageEventDrivenSettings(
     this.googleCloudStorageEventDrivenSettings,
   );
 
-  final ChronicleFeedDetailsGoogleCloudStorageEventDrivenSettings
+  final ChronicleFeedGoogleCloudStorageEventDrivenSettings
   googleCloudStorageEventDrivenSettings;
 
   @override
@@ -1738,14 +1670,14 @@ final class ChronicleFeedDetailsSourceGoogleCloudStorageEventDrivenSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.crowdstrikeAlertsSettings] choice: sets `crowdstrike_alerts_settings`.
-final class ChronicleFeedDetailsSourceCrowdstrikeAlertsSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceCrowdstrikeAlertsSettings(
+/// The [ChronicleFeedSource.crowdstrikeAlertsSettings] choice: sets `crowdstrike_alerts_settings`.
+final class ChronicleFeedSourceCrowdstrikeAlertsSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceCrowdstrikeAlertsSettings(
     this.crowdstrikeAlertsSettings,
   );
 
-  final ChronicleFeedDetailsCrowdstrikeAlertsSettings crowdstrikeAlertsSettings;
+  final ChronicleFeedCrowdstrikeAlertsSettings crowdstrikeAlertsSettings;
 
   @override
   String get blockKey => 'crowdstrike_alerts_settings';
@@ -1756,14 +1688,14 @@ final class ChronicleFeedDetailsSourceCrowdstrikeAlertsSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.trellixHxBulkAcqsSettings] choice: sets `trellix_hx_bulk_acqs_settings`.
-final class ChronicleFeedDetailsSourceTrellixHxBulkAcqsSettings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceTrellixHxBulkAcqsSettings(
+/// The [ChronicleFeedSource.trellixHxBulkAcqsSettings] choice: sets `trellix_hx_bulk_acqs_settings`.
+final class ChronicleFeedSourceTrellixHxBulkAcqsSettings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceTrellixHxBulkAcqsSettings(
     this.trellixHxBulkAcqsSettings,
   );
 
-  final ChronicleFeedDetailsTrellixHxBulkAcqsSettings trellixHxBulkAcqsSettings;
+  final ChronicleFeedTrellixHxBulkAcqsSettings trellixHxBulkAcqsSettings;
 
   @override
   String get blockKey => 'trellix_hx_bulk_acqs_settings';
@@ -1774,14 +1706,12 @@ final class ChronicleFeedDetailsSourceTrellixHxBulkAcqsSettings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.mimecastMailV2Settings] choice: sets `mimecast_mail_v2_settings`.
-final class ChronicleFeedDetailsSourceMimecastMailV2Settings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceMimecastMailV2Settings(
-    this.mimecastMailV2Settings,
-  );
+/// The [ChronicleFeedSource.mimecastMailV2Settings] choice: sets `mimecast_mail_v2_settings`.
+final class ChronicleFeedSourceMimecastMailV2Settings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceMimecastMailV2Settings(this.mimecastMailV2Settings);
 
-  final ChronicleFeedDetailsMimecastMailV2Settings mimecastMailV2Settings;
+  final ChronicleFeedMimecastMailV2Settings mimecastMailV2Settings;
 
   @override
   String get blockKey => 'mimecast_mail_v2_settings';
@@ -1792,15 +1722,14 @@ final class ChronicleFeedDetailsSourceMimecastMailV2Settings
   };
 }
 
-/// The [ChronicleFeedDetailsSource.threatConnectIocV3Settings] choice: sets `threat_connect_ioc_v3_settings`.
-final class ChronicleFeedDetailsSourceThreatConnectIocV3Settings
-    extends ChronicleFeedDetailsSource {
-  const ChronicleFeedDetailsSourceThreatConnectIocV3Settings(
+/// The [ChronicleFeedSource.threatConnectIocV3Settings] choice: sets `threat_connect_ioc_v3_settings`.
+final class ChronicleFeedSourceThreatConnectIocV3Settings
+    extends ChronicleFeedSource {
+  const ChronicleFeedSourceThreatConnectIocV3Settings(
     this.threatConnectIocV3Settings,
   );
 
-  final ChronicleFeedDetailsThreatConnectIocV3Settings
-  threatConnectIocV3Settings;
+  final ChronicleFeedThreatConnectIocV3Settings threatConnectIocV3Settings;
 
   @override
   String get blockKey => 'threat_connect_ioc_v3_settings';
@@ -1812,7 +1741,7 @@ final class ChronicleFeedDetailsSourceThreatConnectIocV3Settings
 }
 
 /// `feed_source_type` — derived from the provider schema description.
-enum ChronicleFeedDetailsFeedSourceType implements TerraformEnum {
+enum ChronicleFeedSourceType implements TerraformEnum {
   googleCloudStorage('GOOGLE_CLOUD_STORAGE'),
   http('HTTP'),
   sftp('SFTP'),
@@ -1833,7 +1762,7 @@ enum ChronicleFeedDetailsFeedSourceType implements TerraformEnum {
   azureBlobstoreV2('AZURE_BLOBSTORE_V2'),
   googleCloudStorageEventDriven('GOOGLE_CLOUD_STORAGE_EVENT_DRIVEN');
 
-  const ChronicleFeedDetailsFeedSourceType(this.terraformValue);
+  const ChronicleFeedSourceType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1841,8 +1770,8 @@ enum ChronicleFeedDetailsFeedSourceType implements TerraformEnum {
 /// Typed helper for the `details.amazon_kinesis_firehose_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsAmazonKinesisFirehoseSettings {
-  const ChronicleFeedDetailsAmazonKinesisFirehoseSettings();
+final class ChronicleFeedAmazonKinesisFirehoseSettings {
+  const ChronicleFeedAmazonKinesisFirehoseSettings();
 
   Map<String, Object?> encode() => {};
 }
@@ -1850,8 +1779,8 @@ final class ChronicleFeedDetailsAmazonKinesisFirehoseSettings {
 /// Typed helper for the `details.amazon_s3_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsAmazonS3Settings {
-  const ChronicleFeedDetailsAmazonS3Settings({
+final class ChronicleFeedAmazonS3Settings {
+  const ChronicleFeedAmazonS3Settings({
     required this.s3Uri,
     required this.sourceDeletionOption,
     required this.sourceType,
@@ -1864,7 +1793,7 @@ final class ChronicleFeedDetailsAmazonS3Settings {
 
   final TfArg<String> sourceType;
 
-  final ChronicleFeedDetailsAmazonS3SettingsAuthentication? authentication;
+  final ChronicleFeedAmazonS3SettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     's3_uri': s3Uri.toTfJson(),
@@ -1877,8 +1806,8 @@ final class ChronicleFeedDetailsAmazonS3Settings {
 /// Typed helper for the `details.amazon_s3_settings.authentication` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsAmazonS3SettingsAuthentication {
-  const ChronicleFeedDetailsAmazonS3SettingsAuthentication({
+final class ChronicleFeedAmazonS3SettingsAuthentication {
+  const ChronicleFeedAmazonS3SettingsAuthentication({
     this.accessKeyId,
     this.clientId,
     this.clientSecret,
@@ -1912,8 +1841,8 @@ final class ChronicleFeedDetailsAmazonS3SettingsAuthentication {
 /// Typed helper for the `details.amazon_s3_v2_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsAmazonS3V2Settings {
-  const ChronicleFeedDetailsAmazonS3V2Settings({
+final class ChronicleFeedAmazonS3V2Settings {
+  const ChronicleFeedAmazonS3V2Settings({
     this.maxLookbackDays,
     required this.s3Uri,
     this.sourceDeletionOption,
@@ -1926,7 +1855,7 @@ final class ChronicleFeedDetailsAmazonS3V2Settings {
 
   final TfArg<String>? sourceDeletionOption;
 
-  final ChronicleFeedDetailsAmazonS3V2SettingsAuthentication authentication;
+  final ChronicleFeedAmazonS3V2SettingsAuthentication authentication;
 
   Map<String, Object?> encode() => {
     'max_lookback_days': ?maxLookbackDays?.toTfJson(),
@@ -1939,17 +1868,15 @@ final class ChronicleFeedDetailsAmazonS3V2Settings {
 /// Typed helper for the `details.amazon_s3_v2_settings.authentication` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsAmazonS3V2SettingsAuthentication {
-  const ChronicleFeedDetailsAmazonS3V2SettingsAuthentication({
+final class ChronicleFeedAmazonS3V2SettingsAuthentication {
+  const ChronicleFeedAmazonS3V2SettingsAuthentication({
     this.accessKeySecretAuth,
     this.awsIamRoleAuth,
   });
 
-  final ChronicleFeedDetailsAmazonS3V2SettingsAuthenticationAccessKeySecretAuth?
-  accessKeySecretAuth;
+  final ChronicleFeedAccessKeySecretAuth? accessKeySecretAuth;
 
-  final ChronicleFeedDetailsAmazonS3V2SettingsAuthenticationAwsIamRoleAuth?
-  awsIamRoleAuth;
+  final ChronicleFeedAwsIamRoleAuth? awsIamRoleAuth;
 
   Map<String, Object?> encode() => {
     'access_key_secret_auth': ?accessKeySecretAuth?.encode(),
@@ -1960,8 +1887,8 @@ final class ChronicleFeedDetailsAmazonS3V2SettingsAuthentication {
 /// Typed helper for the `details.amazon_s3_v2_settings.authentication.access_key_secret_auth` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsAmazonS3V2SettingsAuthenticationAccessKeySecretAuth {
-  const ChronicleFeedDetailsAmazonS3V2SettingsAuthenticationAccessKeySecretAuth({
+final class ChronicleFeedAccessKeySecretAuth {
+  const ChronicleFeedAccessKeySecretAuth({
     required this.accessKeyId,
     required this.secretAccessKey,
   });
@@ -1978,12 +1905,10 @@ final class ChronicleFeedDetailsAmazonS3V2SettingsAuthenticationAccessKeySecretA
 
 /// Typed helper for the `details.amazon_s3_v2_settings.authentication.aws_iam_role_auth` block of
 /// `google_chronicle_feed` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ChronicleFeedDetailsAmazonS3V2SettingsAuthenticationAwsIamRoleAuth {
-  const ChronicleFeedDetailsAmazonS3V2SettingsAuthenticationAwsIamRoleAuth({
-    this.awsIamRoleArn,
-    this.subjectId,
-  });
+final class ChronicleFeedAwsIamRoleAuth {
+  const ChronicleFeedAwsIamRoleAuth({this.awsIamRoleArn, this.subjectId});
 
   final TfArg<String>? awsIamRoleArn;
 
@@ -1998,8 +1923,8 @@ final class ChronicleFeedDetailsAmazonS3V2SettingsAuthenticationAwsIamRoleAuth {
 /// Typed helper for the `details.amazon_sqs_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsAmazonSqsSettings {
-  const ChronicleFeedDetailsAmazonSqsSettings({
+final class ChronicleFeedAmazonSqsSettings {
+  const ChronicleFeedAmazonSqsSettings({
     this.accountNumber,
     this.queue,
     this.region,
@@ -2015,7 +1940,7 @@ final class ChronicleFeedDetailsAmazonSqsSettings {
 
   final TfArg<String>? sourceDeletionOption;
 
-  final ChronicleFeedDetailsAmazonSqsSettingsAuthentication? authentication;
+  final ChronicleFeedAmazonSqsSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'account_number': ?accountNumber?.toTfJson(),
@@ -2029,17 +1954,16 @@ final class ChronicleFeedDetailsAmazonSqsSettings {
 /// Typed helper for the `details.amazon_sqs_settings.authentication` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsAmazonSqsSettingsAuthentication {
-  const ChronicleFeedDetailsAmazonSqsSettingsAuthentication({
+final class ChronicleFeedAmazonSqsSettingsAuthentication {
+  const ChronicleFeedAmazonSqsSettingsAuthentication({
     this.additionalS3AccessKeySecretAuth,
     this.sqsAccessKeySecretAuth,
   });
 
-  final ChronicleFeedDetailsAmazonSqsSettingsAuthenticationAdditionalS3AccessKeySecretAuth?
+  final ChronicleFeedAdditionalS3AccessKeySecretAuth?
   additionalS3AccessKeySecretAuth;
 
-  final ChronicleFeedDetailsAmazonSqsSettingsAuthenticationSqsAccessKeySecretAuth?
-  sqsAccessKeySecretAuth;
+  final ChronicleFeedSqsAccessKeySecretAuth? sqsAccessKeySecretAuth;
 
   Map<String, Object?> encode() => {
     'additional_s3_access_key_secret_auth': ?additionalS3AccessKeySecretAuth
@@ -2051,8 +1975,8 @@ final class ChronicleFeedDetailsAmazonSqsSettingsAuthentication {
 /// Typed helper for the `details.amazon_sqs_settings.authentication.additional_s3_access_key_secret_auth` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsAmazonSqsSettingsAuthenticationAdditionalS3AccessKeySecretAuth {
-  const ChronicleFeedDetailsAmazonSqsSettingsAuthenticationAdditionalS3AccessKeySecretAuth({
+final class ChronicleFeedAdditionalS3AccessKeySecretAuth {
+  const ChronicleFeedAdditionalS3AccessKeySecretAuth({
     this.accessKeyId,
     this.secretAccessKey,
   });
@@ -2070,8 +1994,8 @@ final class ChronicleFeedDetailsAmazonSqsSettingsAuthenticationAdditionalS3Acces
 /// Typed helper for the `details.amazon_sqs_settings.authentication.sqs_access_key_secret_auth` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsAmazonSqsSettingsAuthenticationSqsAccessKeySecretAuth {
-  const ChronicleFeedDetailsAmazonSqsSettingsAuthenticationSqsAccessKeySecretAuth({
+final class ChronicleFeedSqsAccessKeySecretAuth {
+  const ChronicleFeedSqsAccessKeySecretAuth({
     this.accessKeyId,
     this.secretAccessKey,
   });
@@ -2089,8 +2013,8 @@ final class ChronicleFeedDetailsAmazonSqsSettingsAuthenticationSqsAccessKeySecre
 /// Typed helper for the `details.amazon_sqs_v2_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsAmazonSqsV2Settings {
-  const ChronicleFeedDetailsAmazonSqsV2Settings({
+final class ChronicleFeedAmazonSqsV2Settings {
+  const ChronicleFeedAmazonSqsV2Settings({
     this.maxLookbackDays,
     required this.queue,
     required this.s3Uri,
@@ -2106,7 +2030,7 @@ final class ChronicleFeedDetailsAmazonSqsV2Settings {
 
   final TfArg<String>? sourceDeletionOption;
 
-  final ChronicleFeedDetailsAmazonSqsV2SettingsAuthentication authentication;
+  final ChronicleFeedAmazonSqsV2SettingsAuthentication authentication;
 
   Map<String, Object?> encode() => {
     'max_lookback_days': ?maxLookbackDays?.toTfJson(),
@@ -2120,17 +2044,15 @@ final class ChronicleFeedDetailsAmazonSqsV2Settings {
 /// Typed helper for the `details.amazon_sqs_v2_settings.authentication` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsAmazonSqsV2SettingsAuthentication {
-  const ChronicleFeedDetailsAmazonSqsV2SettingsAuthentication({
+final class ChronicleFeedAmazonSqsV2SettingsAuthentication {
+  const ChronicleFeedAmazonSqsV2SettingsAuthentication({
     required this.awsIamRoleAuth,
     required this.sqsV2AccessKeySecretAuth,
   });
 
-  final ChronicleFeedDetailsAmazonSqsV2SettingsAuthenticationAwsIamRoleAuth
-  awsIamRoleAuth;
+  final ChronicleFeedAwsIamRoleAuth awsIamRoleAuth;
 
-  final ChronicleFeedDetailsAmazonSqsV2SettingsAuthenticationSqsV2AccessKeySecretAuth
-  sqsV2AccessKeySecretAuth;
+  final ChronicleFeedSqsV2AccessKeySecretAuth sqsV2AccessKeySecretAuth;
 
   Map<String, Object?> encode() => {
     'aws_iam_role_auth': awsIamRoleAuth.encode(),
@@ -2138,30 +2060,11 @@ final class ChronicleFeedDetailsAmazonSqsV2SettingsAuthentication {
   };
 }
 
-/// Typed helper for the `details.amazon_sqs_v2_settings.authentication.aws_iam_role_auth` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsAmazonSqsV2SettingsAuthenticationAwsIamRoleAuth {
-  const ChronicleFeedDetailsAmazonSqsV2SettingsAuthenticationAwsIamRoleAuth({
-    this.awsIamRoleArn,
-    this.subjectId,
-  });
-
-  final TfArg<String>? awsIamRoleArn;
-
-  final TfArg<String>? subjectId;
-
-  Map<String, Object?> encode() => {
-    'aws_iam_role_arn': ?awsIamRoleArn?.toTfJson(),
-    'subject_id': ?subjectId?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.amazon_sqs_v2_settings.authentication.sqs_v2_access_key_secret_auth` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsAmazonSqsV2SettingsAuthenticationSqsV2AccessKeySecretAuth {
-  const ChronicleFeedDetailsAmazonSqsV2SettingsAuthenticationSqsV2AccessKeySecretAuth({
+final class ChronicleFeedSqsV2AccessKeySecretAuth {
+  const ChronicleFeedSqsV2AccessKeySecretAuth({
     this.accessKeyId,
     this.secretAccessKey,
   });
@@ -2179,10 +2082,10 @@ final class ChronicleFeedDetailsAmazonSqsV2SettingsAuthenticationSqsV2AccessKeyS
 /// Typed helper for the `details.anomali_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsAnomaliSettings {
-  const ChronicleFeedDetailsAnomaliSettings({this.authentication});
+final class ChronicleFeedAnomaliSettings {
+  const ChronicleFeedAnomaliSettings({this.authentication});
 
-  final ChronicleFeedDetailsAnomaliSettingsAuthentication? authentication;
+  final ChronicleFeedAnomaliSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'authentication': ?authentication?.encode(),
@@ -2191,12 +2094,10 @@ final class ChronicleFeedDetailsAnomaliSettings {
 
 /// Typed helper for the `details.anomali_settings.authentication` block of
 /// `google_chronicle_feed` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ChronicleFeedDetailsAnomaliSettingsAuthentication {
-  const ChronicleFeedDetailsAnomaliSettingsAuthentication({
-    this.secret,
-    this.user,
-  });
+final class ChronicleFeedAnomaliSettingsAuthentication {
+  const ChronicleFeedAnomaliSettingsAuthentication({this.secret, this.user});
 
   final TfArg<String>? secret;
 
@@ -2211,109 +2112,51 @@ final class ChronicleFeedDetailsAnomaliSettingsAuthentication {
 /// Typed helper for the `details.aws_ec2_hosts_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsAwsEc2HostsSettings {
-  const ChronicleFeedDetailsAwsEc2HostsSettings({this.authentication});
+final class ChronicleFeedAwsEc2HostsSettings {
+  const ChronicleFeedAwsEc2HostsSettings({this.authentication});
 
-  final ChronicleFeedDetailsAwsEc2HostsSettingsAuthentication? authentication;
+  final ChronicleFeedAnomaliSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'authentication': ?authentication?.encode(),
-  };
-}
-
-/// Typed helper for the `details.aws_ec2_hosts_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsAwsEc2HostsSettingsAuthentication {
-  const ChronicleFeedDetailsAwsEc2HostsSettingsAuthentication({
-    this.secret,
-    this.user,
-  });
-
-  final TfArg<String>? secret;
-
-  final TfArg<String>? user;
-
-  Map<String, Object?> encode() => {
-    'secret': ?secret?.toTfJson(),
-    'user': ?user?.toTfJson(),
   };
 }
 
 /// Typed helper for the `details.aws_ec2_instances_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsAwsEc2InstancesSettings {
-  const ChronicleFeedDetailsAwsEc2InstancesSettings({this.authentication});
+final class ChronicleFeedAwsEc2InstancesSettings {
+  const ChronicleFeedAwsEc2InstancesSettings({this.authentication});
 
-  final ChronicleFeedDetailsAwsEc2InstancesSettingsAuthentication?
-  authentication;
+  final ChronicleFeedAnomaliSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'authentication': ?authentication?.encode(),
-  };
-}
-
-/// Typed helper for the `details.aws_ec2_instances_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsAwsEc2InstancesSettingsAuthentication {
-  const ChronicleFeedDetailsAwsEc2InstancesSettingsAuthentication({
-    this.secret,
-    this.user,
-  });
-
-  final TfArg<String>? secret;
-
-  final TfArg<String>? user;
-
-  Map<String, Object?> encode() => {
-    'secret': ?secret?.toTfJson(),
-    'user': ?user?.toTfJson(),
   };
 }
 
 /// Typed helper for the `details.aws_ec2_vpcs_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsAwsEc2VpcsSettings {
-  const ChronicleFeedDetailsAwsEc2VpcsSettings({this.authentication});
+final class ChronicleFeedAwsEc2VpcsSettings {
+  const ChronicleFeedAwsEc2VpcsSettings({this.authentication});
 
-  final ChronicleFeedDetailsAwsEc2VpcsSettingsAuthentication? authentication;
+  final ChronicleFeedAnomaliSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'authentication': ?authentication?.encode(),
   };
 }
 
-/// Typed helper for the `details.aws_ec2_vpcs_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsAwsEc2VpcsSettingsAuthentication {
-  const ChronicleFeedDetailsAwsEc2VpcsSettingsAuthentication({
-    this.secret,
-    this.user,
-  });
-
-  final TfArg<String>? secret;
-
-  final TfArg<String>? user;
-
-  Map<String, Object?> encode() => {
-    'secret': ?secret?.toTfJson(),
-    'user': ?user?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.aws_iam_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsAwsIamSettings {
-  const ChronicleFeedDetailsAwsIamSettings({this.apiType, this.authentication});
+final class ChronicleFeedAwsIamSettings {
+  const ChronicleFeedAwsIamSettings({this.apiType, this.authentication});
 
   final TfArg<String>? apiType;
 
-  final ChronicleFeedDetailsAwsIamSettingsAuthentication? authentication;
+  final ChronicleFeedAnomaliSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'api_type': ?apiType?.toTfJson(),
@@ -2321,30 +2164,11 @@ final class ChronicleFeedDetailsAwsIamSettings {
   };
 }
 
-/// Typed helper for the `details.aws_iam_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsAwsIamSettingsAuthentication {
-  const ChronicleFeedDetailsAwsIamSettingsAuthentication({
-    this.secret,
-    this.user,
-  });
-
-  final TfArg<String>? secret;
-
-  final TfArg<String>? user;
-
-  Map<String, Object?> encode() => {
-    'secret': ?secret?.toTfJson(),
-    'user': ?user?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.azure_ad_audit_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsAzureAdAuditSettings {
-  const ChronicleFeedDetailsAzureAdAuditSettings({
+final class ChronicleFeedAzureAdAuditSettings {
+  const ChronicleFeedAzureAdAuditSettings({
     this.authEndpoint,
     this.hostname,
     this.tenantId,
@@ -2357,7 +2181,7 @@ final class ChronicleFeedDetailsAzureAdAuditSettings {
 
   final TfArg<String>? tenantId;
 
-  final ChronicleFeedDetailsAzureAdAuditSettingsAuthentication? authentication;
+  final ChronicleFeedAzureAdAuditSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'auth_endpoint': ?authEndpoint?.toTfJson(),
@@ -2369,9 +2193,10 @@ final class ChronicleFeedDetailsAzureAdAuditSettings {
 
 /// Typed helper for the `details.azure_ad_audit_settings.authentication` block of
 /// `google_chronicle_feed` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ChronicleFeedDetailsAzureAdAuditSettingsAuthentication {
-  const ChronicleFeedDetailsAzureAdAuditSettingsAuthentication({
+final class ChronicleFeedAzureAdAuditSettingsAuthentication {
+  const ChronicleFeedAzureAdAuditSettingsAuthentication({
     this.clientId,
     this.clientSecret,
   });
@@ -2389,8 +2214,8 @@ final class ChronicleFeedDetailsAzureAdAuditSettingsAuthentication {
 /// Typed helper for the `details.azure_ad_context_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsAzureAdContextSettings {
-  const ChronicleFeedDetailsAzureAdContextSettings({
+final class ChronicleFeedAzureAdContextSettings {
+  const ChronicleFeedAzureAdContextSettings({
     this.authEndpoint,
     this.hostname,
     this.retrieveDevices,
@@ -2409,8 +2234,7 @@ final class ChronicleFeedDetailsAzureAdContextSettings {
 
   final TfArg<String>? tenantId;
 
-  final ChronicleFeedDetailsAzureAdContextSettingsAuthentication?
-  authentication;
+  final ChronicleFeedAzureAdAuditSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'auth_endpoint': ?authEndpoint?.toTfJson(),
@@ -2422,30 +2246,11 @@ final class ChronicleFeedDetailsAzureAdContextSettings {
   };
 }
 
-/// Typed helper for the `details.azure_ad_context_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsAzureAdContextSettingsAuthentication {
-  const ChronicleFeedDetailsAzureAdContextSettingsAuthentication({
-    this.clientId,
-    this.clientSecret,
-  });
-
-  final TfArg<String>? clientId;
-
-  final TfArg<String>? clientSecret;
-
-  Map<String, Object?> encode() => {
-    'client_id': ?clientId?.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.azure_ad_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsAzureAdSettings {
-  const ChronicleFeedDetailsAzureAdSettings({
+final class ChronicleFeedAzureAdSettings {
+  const ChronicleFeedAzureAdSettings({
     this.authEndpoint,
     this.hostname,
     this.tenantId,
@@ -2458,7 +2263,7 @@ final class ChronicleFeedDetailsAzureAdSettings {
 
   final TfArg<String>? tenantId;
 
-  final ChronicleFeedDetailsAzureAdSettingsAuthentication? authentication;
+  final ChronicleFeedAzureAdAuditSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'auth_endpoint': ?authEndpoint?.toTfJson(),
@@ -2468,30 +2273,11 @@ final class ChronicleFeedDetailsAzureAdSettings {
   };
 }
 
-/// Typed helper for the `details.azure_ad_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsAzureAdSettingsAuthentication {
-  const ChronicleFeedDetailsAzureAdSettingsAuthentication({
-    this.clientId,
-    this.clientSecret,
-  });
-
-  final TfArg<String>? clientId;
-
-  final TfArg<String>? clientSecret;
-
-  Map<String, Object?> encode() => {
-    'client_id': ?clientId?.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.azure_blob_store_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsAzureBlobStoreSettings {
-  const ChronicleFeedDetailsAzureBlobStoreSettings({
+final class ChronicleFeedAzureBlobStoreSettings {
+  const ChronicleFeedAzureBlobStoreSettings({
     this.azureUri,
     this.sourceDeletionOption,
     this.sourceType,
@@ -2504,8 +2290,7 @@ final class ChronicleFeedDetailsAzureBlobStoreSettings {
 
   final TfArg<String>? sourceType;
 
-  final ChronicleFeedDetailsAzureBlobStoreSettingsAuthentication?
-  authentication;
+  final ChronicleFeedAzureBlobStoreSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'azure_uri': ?azureUri?.toTfJson(),
@@ -2518,8 +2303,8 @@ final class ChronicleFeedDetailsAzureBlobStoreSettings {
 /// Typed helper for the `details.azure_blob_store_settings.authentication` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsAzureBlobStoreSettingsAuthentication {
-  const ChronicleFeedDetailsAzureBlobStoreSettingsAuthentication({
+final class ChronicleFeedAzureBlobStoreSettingsAuthentication {
+  const ChronicleFeedAzureBlobStoreSettingsAuthentication({
     this.sasToken,
     this.sharedKey,
   });
@@ -2537,8 +2322,8 @@ final class ChronicleFeedDetailsAzureBlobStoreSettingsAuthentication {
 /// Typed helper for the `details.azure_blob_store_v2_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsAzureBlobStoreV2Settings {
-  const ChronicleFeedDetailsAzureBlobStoreV2Settings({
+final class ChronicleFeedAzureBlobStoreV2Settings {
+  const ChronicleFeedAzureBlobStoreV2Settings({
     required this.azureUri,
     this.maxLookbackDays,
     this.sourceDeletionOption,
@@ -2551,8 +2336,7 @@ final class ChronicleFeedDetailsAzureBlobStoreV2Settings {
 
   final TfArg<String>? sourceDeletionOption;
 
-  final ChronicleFeedDetailsAzureBlobStoreV2SettingsAuthentication
-  authentication;
+  final ChronicleFeedAzureBlobStoreV2SettingsAuthentication authentication;
 
   Map<String, Object?> encode() => {
     'azure_uri': azureUri.toTfJson(),
@@ -2565,8 +2349,8 @@ final class ChronicleFeedDetailsAzureBlobStoreV2Settings {
 /// Typed helper for the `details.azure_blob_store_v2_settings.authentication` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsAzureBlobStoreV2SettingsAuthentication {
-  const ChronicleFeedDetailsAzureBlobStoreV2SettingsAuthentication({
+final class ChronicleFeedAzureBlobStoreV2SettingsAuthentication {
+  const ChronicleFeedAzureBlobStoreV2SettingsAuthentication({
     required this.accessKey,
     required this.sasToken,
     required this.azureV2WorkloadIdentityFederation,
@@ -2576,7 +2360,7 @@ final class ChronicleFeedDetailsAzureBlobStoreV2SettingsAuthentication {
 
   final TfArg<String> sasToken;
 
-  final ChronicleFeedDetailsAzureBlobStoreV2SettingsAuthenticationAzureV2WorkloadIdentityFederation
+  final ChronicleFeedAzureV2WorkloadIdentityFederation
   azureV2WorkloadIdentityFederation;
 
   Map<String, Object?> encode() => {
@@ -2590,8 +2374,8 @@ final class ChronicleFeedDetailsAzureBlobStoreV2SettingsAuthentication {
 /// Typed helper for the `details.azure_blob_store_v2_settings.authentication.azure_v2_workload_identity_federation` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsAzureBlobStoreV2SettingsAuthenticationAzureV2WorkloadIdentityFederation {
-  const ChronicleFeedDetailsAzureBlobStoreV2SettingsAuthenticationAzureV2WorkloadIdentityFederation({
+final class ChronicleFeedAzureV2WorkloadIdentityFederation {
+  const ChronicleFeedAzureV2WorkloadIdentityFederation({
     required this.clientId,
     required this.subjectId,
     required this.tenantId,
@@ -2613,8 +2397,8 @@ final class ChronicleFeedDetailsAzureBlobStoreV2SettingsAuthenticationAzureV2Wor
 /// Typed helper for the `details.azure_event_hub_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsAzureEventHubSettings {
-  const ChronicleFeedDetailsAzureEventHubSettings({
+final class ChronicleFeedAzureEventHubSettings {
+  const ChronicleFeedAzureEventHubSettings({
     this.azureSasToken,
     this.azureStorageConnectionString,
     this.azureStorageContainer,
@@ -2649,8 +2433,8 @@ final class ChronicleFeedDetailsAzureEventHubSettings {
 /// Typed helper for the `details.azure_mdm_intune_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsAzureMdmIntuneSettings {
-  const ChronicleFeedDetailsAzureMdmIntuneSettings({
+final class ChronicleFeedAzureMdmIntuneSettings {
+  const ChronicleFeedAzureMdmIntuneSettings({
     this.authEndpoint,
     this.hostname,
     this.tenantId,
@@ -2663,8 +2447,7 @@ final class ChronicleFeedDetailsAzureMdmIntuneSettings {
 
   final TfArg<String>? tenantId;
 
-  final ChronicleFeedDetailsAzureMdmIntuneSettingsAuthentication?
-  authentication;
+  final ChronicleFeedAzureAdAuditSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'auth_endpoint': ?authEndpoint?.toTfJson(),
@@ -2674,37 +2457,18 @@ final class ChronicleFeedDetailsAzureMdmIntuneSettings {
   };
 }
 
-/// Typed helper for the `details.azure_mdm_intune_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsAzureMdmIntuneSettingsAuthentication {
-  const ChronicleFeedDetailsAzureMdmIntuneSettingsAuthentication({
-    this.clientId,
-    this.clientSecret,
-  });
-
-  final TfArg<String>? clientId;
-
-  final TfArg<String>? clientSecret;
-
-  Map<String, Object?> encode() => {
-    'client_id': ?clientId?.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.cloud_passage_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsCloudPassageSettings {
-  const ChronicleFeedDetailsCloudPassageSettings({
+final class ChronicleFeedCloudPassageSettings {
+  const ChronicleFeedCloudPassageSettings({
     this.eventTypes,
     this.authentication,
   });
 
   final TfArg<List<String>>? eventTypes;
 
-  final ChronicleFeedDetailsCloudPassageSettingsAuthentication? authentication;
+  final ChronicleFeedAnomaliSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'event_types': ?eventTypes?.toTfJson(),
@@ -2712,30 +2476,11 @@ final class ChronicleFeedDetailsCloudPassageSettings {
   };
 }
 
-/// Typed helper for the `details.cloud_passage_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsCloudPassageSettingsAuthentication {
-  const ChronicleFeedDetailsCloudPassageSettingsAuthentication({
-    this.secret,
-    this.user,
-  });
-
-  final TfArg<String>? secret;
-
-  final TfArg<String>? user;
-
-  Map<String, Object?> encode() => {
-    'secret': ?secret?.toTfJson(),
-    'user': ?user?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.cortex_xdr_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsCortexXdrSettings {
-  const ChronicleFeedDetailsCortexXdrSettings({
+final class ChronicleFeedCortexXdrSettings {
+  const ChronicleFeedCortexXdrSettings({
     this.endpoint,
     this.hostname,
     this.authentication,
@@ -2745,7 +2490,7 @@ final class ChronicleFeedDetailsCortexXdrSettings {
 
   final TfArg<String>? hostname;
 
-  final ChronicleFeedDetailsCortexXdrSettingsAuthentication? authentication;
+  final ChronicleFeedCortexXdrSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'endpoint': ?endpoint?.toTfJson(),
@@ -2756,16 +2501,12 @@ final class ChronicleFeedDetailsCortexXdrSettings {
 
 /// Typed helper for the `details.cortex_xdr_settings.authentication` block of
 /// `google_chronicle_feed` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ChronicleFeedDetailsCortexXdrSettingsAuthentication {
-  const ChronicleFeedDetailsCortexXdrSettingsAuthentication({
-    this.headerKeyValues,
-  });
+final class ChronicleFeedCortexXdrSettingsAuthentication {
+  const ChronicleFeedCortexXdrSettingsAuthentication({this.headerKeyValues});
 
-  final List<
-    ChronicleFeedDetailsCortexXdrSettingsAuthenticationHeaderKeyValues
-  >?
-  headerKeyValues;
+  final List<ChronicleFeedHeaderKeyValues>? headerKeyValues;
 
   Map<String, Object?> encode() => {
     if (headerKeyValues != null)
@@ -2775,12 +2516,10 @@ final class ChronicleFeedDetailsCortexXdrSettingsAuthentication {
 
 /// Typed helper for the `details.cortex_xdr_settings.authentication.header_key_values` block of
 /// `google_chronicle_feed` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ChronicleFeedDetailsCortexXdrSettingsAuthenticationHeaderKeyValues {
-  const ChronicleFeedDetailsCortexXdrSettingsAuthenticationHeaderKeyValues({
-    this.key,
-    this.value,
-  });
+final class ChronicleFeedHeaderKeyValues {
+  const ChronicleFeedHeaderKeyValues({this.key, this.value});
 
   final TfArg<String>? key;
 
@@ -2795,8 +2534,8 @@ final class ChronicleFeedDetailsCortexXdrSettingsAuthenticationHeaderKeyValues {
 /// Typed helper for the `details.crowdstrike_alerts_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsCrowdstrikeAlertsSettings {
-  const ChronicleFeedDetailsCrowdstrikeAlertsSettings({
+final class ChronicleFeedCrowdstrikeAlertsSettings {
+  const ChronicleFeedCrowdstrikeAlertsSettings({
     required this.hostname,
     this.ingestionType,
     required this.authentication,
@@ -2806,8 +2545,7 @@ final class ChronicleFeedDetailsCrowdstrikeAlertsSettings {
 
   final TfArg<String>? ingestionType;
 
-  final ChronicleFeedDetailsCrowdstrikeAlertsSettingsAuthentication
-  authentication;
+  final ChronicleFeedCrowdstrikeAlertsSettingsAuthentication authentication;
 
   Map<String, Object?> encode() => {
     'hostname': hostname.toTfJson(),
@@ -2818,9 +2556,10 @@ final class ChronicleFeedDetailsCrowdstrikeAlertsSettings {
 
 /// Typed helper for the `details.crowdstrike_alerts_settings.authentication` block of
 /// `google_chronicle_feed` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ChronicleFeedDetailsCrowdstrikeAlertsSettingsAuthentication {
-  const ChronicleFeedDetailsCrowdstrikeAlertsSettingsAuthentication({
+final class ChronicleFeedCrowdstrikeAlertsSettingsAuthentication {
+  const ChronicleFeedCrowdstrikeAlertsSettingsAuthentication({
     this.clientId,
     this.clientSecret,
     this.tokenEndpoint,
@@ -2842,8 +2581,8 @@ final class ChronicleFeedDetailsCrowdstrikeAlertsSettingsAuthentication {
 /// Typed helper for the `details.crowdstrike_detects_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsCrowdstrikeDetectsSettings {
-  const ChronicleFeedDetailsCrowdstrikeDetectsSettings({
+final class ChronicleFeedCrowdstrikeDetectsSettings {
+  const ChronicleFeedCrowdstrikeDetectsSettings({
     this.hostname,
     this.ingestionType,
     this.authentication,
@@ -2853,8 +2592,7 @@ final class ChronicleFeedDetailsCrowdstrikeDetectsSettings {
 
   final TfArg<String>? ingestionType;
 
-  final ChronicleFeedDetailsCrowdstrikeDetectsSettingsAuthentication?
-  authentication;
+  final ChronicleFeedCrowdstrikeAlertsSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.toTfJson(),
@@ -2863,41 +2601,18 @@ final class ChronicleFeedDetailsCrowdstrikeDetectsSettings {
   };
 }
 
-/// Typed helper for the `details.crowdstrike_detects_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsCrowdstrikeDetectsSettingsAuthentication {
-  const ChronicleFeedDetailsCrowdstrikeDetectsSettingsAuthentication({
-    this.clientId,
-    this.clientSecret,
-    this.tokenEndpoint,
-  });
-
-  final TfArg<String>? clientId;
-
-  final TfArg<String>? clientSecret;
-
-  final TfArg<String>? tokenEndpoint;
-
-  Map<String, Object?> encode() => {
-    'client_id': ?clientId?.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-    'token_endpoint': ?tokenEndpoint?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.dummy_log_type_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsDummyLogTypeSettings {
-  const ChronicleFeedDetailsDummyLogTypeSettings({
+final class ChronicleFeedDummyLogTypeSettings {
+  const ChronicleFeedDummyLogTypeSettings({
     this.apiEndpoint,
     this.authentication,
   });
 
   final TfArg<String>? apiEndpoint;
 
-  final ChronicleFeedDetailsDummyLogTypeSettingsAuthentication? authentication;
+  final ChronicleFeedCortexXdrSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'api_endpoint': ?apiEndpoint?.toTfJson(),
@@ -2905,95 +2620,34 @@ final class ChronicleFeedDetailsDummyLogTypeSettings {
   };
 }
 
-/// Typed helper for the `details.dummy_log_type_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsDummyLogTypeSettingsAuthentication {
-  const ChronicleFeedDetailsDummyLogTypeSettingsAuthentication({
-    this.headerKeyValues,
-  });
-
-  final List<
-    ChronicleFeedDetailsDummyLogTypeSettingsAuthenticationHeaderKeyValues
-  >?
-  headerKeyValues;
-
-  Map<String, Object?> encode() => {
-    if (headerKeyValues != null)
-      'header_key_values': [for (final e in headerKeyValues!) e.encode()],
-  };
-}
-
-/// Typed helper for the `details.dummy_log_type_settings.authentication.header_key_values` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsDummyLogTypeSettingsAuthenticationHeaderKeyValues {
-  const ChronicleFeedDetailsDummyLogTypeSettingsAuthenticationHeaderKeyValues({
-    this.key,
-    this.value,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'value': ?value?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.duo_auth_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsDuoAuthSettings {
-  const ChronicleFeedDetailsDuoAuthSettings({
-    this.hostname,
-    this.authentication,
-  });
+final class ChronicleFeedDuoAuthSettings {
+  const ChronicleFeedDuoAuthSettings({this.hostname, this.authentication});
 
   final TfArg<String>? hostname;
 
-  final ChronicleFeedDetailsDuoAuthSettingsAuthentication? authentication;
+  final ChronicleFeedAnomaliSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.toTfJson(),
     'authentication': ?authentication?.encode(),
-  };
-}
-
-/// Typed helper for the `details.duo_auth_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsDuoAuthSettingsAuthentication {
-  const ChronicleFeedDetailsDuoAuthSettingsAuthentication({
-    this.secret,
-    this.user,
-  });
-
-  final TfArg<String>? secret;
-
-  final TfArg<String>? user;
-
-  Map<String, Object?> encode() => {
-    'secret': ?secret?.toTfJson(),
-    'user': ?user?.toTfJson(),
   };
 }
 
 /// Typed helper for the `details.duo_user_context_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsDuoUserContextSettings {
-  const ChronicleFeedDetailsDuoUserContextSettings({
+final class ChronicleFeedDuoUserContextSettings {
+  const ChronicleFeedDuoUserContextSettings({
     this.hostname,
     this.authentication,
   });
 
   final TfArg<String>? hostname;
 
-  final ChronicleFeedDetailsDuoUserContextSettingsAuthentication?
-  authentication;
+  final ChronicleFeedAnomaliSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.toTfJson(),
@@ -3001,30 +2655,11 @@ final class ChronicleFeedDetailsDuoUserContextSettings {
   };
 }
 
-/// Typed helper for the `details.duo_user_context_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsDuoUserContextSettingsAuthentication {
-  const ChronicleFeedDetailsDuoUserContextSettingsAuthentication({
-    this.secret,
-    this.user,
-  });
-
-  final TfArg<String>? secret;
-
-  final TfArg<String>? user;
-
-  Map<String, Object?> encode() => {
-    'secret': ?secret?.toTfJson(),
-    'user': ?user?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.fox_it_stix_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsFoxItStixSettings {
-  const ChronicleFeedDetailsFoxItStixSettings({
+final class ChronicleFeedFoxItStixSettings {
+  const ChronicleFeedFoxItStixSettings({
     this.collection,
     this.pollServiceUri,
     this.authentication,
@@ -3035,9 +2670,9 @@ final class ChronicleFeedDetailsFoxItStixSettings {
 
   final TfArg<String>? pollServiceUri;
 
-  final ChronicleFeedDetailsFoxItStixSettingsAuthentication? authentication;
+  final ChronicleFeedAnomaliSettingsAuthentication? authentication;
 
-  final ChronicleFeedDetailsFoxItStixSettingsSsl? ssl;
+  final ChronicleFeedSsl? ssl;
 
   Map<String, Object?> encode() => {
     'collection': ?collection?.toTfJson(),
@@ -3047,33 +2682,11 @@ final class ChronicleFeedDetailsFoxItStixSettings {
   };
 }
 
-/// Typed helper for the `details.fox_it_stix_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsFoxItStixSettingsAuthentication {
-  const ChronicleFeedDetailsFoxItStixSettingsAuthentication({
-    this.secret,
-    this.user,
-  });
-
-  final TfArg<String>? secret;
-
-  final TfArg<String>? user;
-
-  Map<String, Object?> encode() => {
-    'secret': ?secret?.toTfJson(),
-    'user': ?user?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.fox_it_stix_settings.ssl` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsFoxItStixSettingsSsl {
-  const ChronicleFeedDetailsFoxItStixSettingsSsl({
-    this.encodedPrivateKey,
-    this.sslCertificate,
-  });
+final class ChronicleFeedSsl {
+  const ChronicleFeedSsl({this.encodedPrivateKey, this.sslCertificate});
 
   final TfArg<String>? encodedPrivateKey;
 
@@ -3088,8 +2701,8 @@ final class ChronicleFeedDetailsFoxItStixSettingsSsl {
 /// Typed helper for the `details.gcs_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsGcsSettings {
-  const ChronicleFeedDetailsGcsSettings({
+final class ChronicleFeedGcsSettings {
+  const ChronicleFeedGcsSettings({
     this.bucketUri,
     this.sourceDeletionOption,
     this.sourceType,
@@ -3111,8 +2724,8 @@ final class ChronicleFeedDetailsGcsSettings {
 /// Typed helper for the `details.gcs_v2_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsGcsV2Settings {
-  const ChronicleFeedDetailsGcsV2Settings({
+final class ChronicleFeedGcsV2Settings {
+  const ChronicleFeedGcsV2Settings({
     required this.bucketUri,
     this.maxLookbackDays,
     this.sourceDeletionOption,
@@ -3134,12 +2747,12 @@ final class ChronicleFeedDetailsGcsV2Settings {
 /// Typed helper for the `details.google_cloud_identity_device_users_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsGoogleCloudIdentityDeviceUsersSettings {
-  const ChronicleFeedDetailsGoogleCloudIdentityDeviceUsersSettings({
+final class ChronicleFeedGoogleCloudIdentityDeviceUsersSettings {
+  const ChronicleFeedGoogleCloudIdentityDeviceUsersSettings({
     this.authentication,
   });
 
-  final ChronicleFeedDetailsGoogleCloudIdentityDeviceUsersSettingsAuthentication?
+  final ChronicleFeedGoogleCloudIdentityDeviceUsersSettingsAuthentication?
   authentication;
 
   Map<String, Object?> encode() => {
@@ -3149,9 +2762,10 @@ final class ChronicleFeedDetailsGoogleCloudIdentityDeviceUsersSettings {
 
 /// Typed helper for the `details.google_cloud_identity_device_users_settings.authentication` block of
 /// `google_chronicle_feed` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ChronicleFeedDetailsGoogleCloudIdentityDeviceUsersSettingsAuthentication {
-  const ChronicleFeedDetailsGoogleCloudIdentityDeviceUsersSettingsAuthentication({
+final class ChronicleFeedGoogleCloudIdentityDeviceUsersSettingsAuthentication {
+  const ChronicleFeedGoogleCloudIdentityDeviceUsersSettingsAuthentication({
     this.tokenEndpoint,
     this.claims,
     this.rsCredentials,
@@ -3159,11 +2773,9 @@ final class ChronicleFeedDetailsGoogleCloudIdentityDeviceUsersSettingsAuthentica
 
   final TfArg<String>? tokenEndpoint;
 
-  final ChronicleFeedDetailsGoogleCloudIdentityDeviceUsersSettingsAuthenticationClaims?
-  claims;
+  final ChronicleFeedClaims? claims;
 
-  final ChronicleFeedDetailsGoogleCloudIdentityDeviceUsersSettingsAuthenticationRsCredentials?
-  rsCredentials;
+  final ChronicleFeedRsCredentials? rsCredentials;
 
   Map<String, Object?> encode() => {
     'token_endpoint': ?tokenEndpoint?.toTfJson(),
@@ -3174,13 +2786,10 @@ final class ChronicleFeedDetailsGoogleCloudIdentityDeviceUsersSettingsAuthentica
 
 /// Typed helper for the `details.google_cloud_identity_device_users_settings.authentication.claims` block of
 /// `google_chronicle_feed` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ChronicleFeedDetailsGoogleCloudIdentityDeviceUsersSettingsAuthenticationClaims {
-  const ChronicleFeedDetailsGoogleCloudIdentityDeviceUsersSettingsAuthenticationClaims({
-    this.audience,
-    this.issuer,
-    this.subject,
-  });
+final class ChronicleFeedClaims {
+  const ChronicleFeedClaims({this.audience, this.issuer, this.subject});
 
   final TfArg<String>? audience;
 
@@ -3197,11 +2806,10 @@ final class ChronicleFeedDetailsGoogleCloudIdentityDeviceUsersSettingsAuthentica
 
 /// Typed helper for the `details.google_cloud_identity_device_users_settings.authentication.rs_credentials` block of
 /// `google_chronicle_feed` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ChronicleFeedDetailsGoogleCloudIdentityDeviceUsersSettingsAuthenticationRsCredentials {
-  const ChronicleFeedDetailsGoogleCloudIdentityDeviceUsersSettingsAuthenticationRsCredentials({
-    this.privateKey,
-  });
+final class ChronicleFeedRsCredentials {
+  const ChronicleFeedRsCredentials({this.privateKey});
 
   final TfArg<String>? privateKey;
 
@@ -3211,15 +2819,15 @@ final class ChronicleFeedDetailsGoogleCloudIdentityDeviceUsersSettingsAuthentica
 /// Typed helper for the `details.google_cloud_identity_devices_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsGoogleCloudIdentityDevicesSettings {
-  const ChronicleFeedDetailsGoogleCloudIdentityDevicesSettings({
+final class ChronicleFeedGoogleCloudIdentityDevicesSettings {
+  const ChronicleFeedGoogleCloudIdentityDevicesSettings({
     this.apiVersion,
     this.authentication,
   });
 
   final TfArg<String>? apiVersion;
 
-  final ChronicleFeedDetailsGoogleCloudIdentityDevicesSettingsAuthentication?
+  final ChronicleFeedGoogleCloudIdentityDeviceUsersSettingsAuthentication?
   authentication;
 
   Map<String, Object?> encode() => {
@@ -3228,72 +2836,11 @@ final class ChronicleFeedDetailsGoogleCloudIdentityDevicesSettings {
   };
 }
 
-/// Typed helper for the `details.google_cloud_identity_devices_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsGoogleCloudIdentityDevicesSettingsAuthentication {
-  const ChronicleFeedDetailsGoogleCloudIdentityDevicesSettingsAuthentication({
-    this.tokenEndpoint,
-    this.claims,
-    this.rsCredentials,
-  });
-
-  final TfArg<String>? tokenEndpoint;
-
-  final ChronicleFeedDetailsGoogleCloudIdentityDevicesSettingsAuthenticationClaims?
-  claims;
-
-  final ChronicleFeedDetailsGoogleCloudIdentityDevicesSettingsAuthenticationRsCredentials?
-  rsCredentials;
-
-  Map<String, Object?> encode() => {
-    'token_endpoint': ?tokenEndpoint?.toTfJson(),
-    'claims': ?claims?.encode(),
-    'rs_credentials': ?rsCredentials?.encode(),
-  };
-}
-
-/// Typed helper for the `details.google_cloud_identity_devices_settings.authentication.claims` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsGoogleCloudIdentityDevicesSettingsAuthenticationClaims {
-  const ChronicleFeedDetailsGoogleCloudIdentityDevicesSettingsAuthenticationClaims({
-    this.audience,
-    this.issuer,
-    this.subject,
-  });
-
-  final TfArg<String>? audience;
-
-  final TfArg<String>? issuer;
-
-  final TfArg<String>? subject;
-
-  Map<String, Object?> encode() => {
-    'audience': ?audience?.toTfJson(),
-    'issuer': ?issuer?.toTfJson(),
-    'subject': ?subject?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `details.google_cloud_identity_devices_settings.authentication.rs_credentials` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsGoogleCloudIdentityDevicesSettingsAuthenticationRsCredentials {
-  const ChronicleFeedDetailsGoogleCloudIdentityDevicesSettingsAuthenticationRsCredentials({
-    this.privateKey,
-  });
-
-  final TfArg<String>? privateKey;
-
-  Map<String, Object?> encode() => {'private_key': ?privateKey?.toTfJson()};
-}
-
 /// Typed helper for the `details.google_cloud_storage_event_driven_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsGoogleCloudStorageEventDrivenSettings {
-  const ChronicleFeedDetailsGoogleCloudStorageEventDrivenSettings({
+final class ChronicleFeedGoogleCloudStorageEventDrivenSettings {
+  const ChronicleFeedGoogleCloudStorageEventDrivenSettings({
     required this.bucketUri,
     this.maxLookbackDays,
     required this.pubsubSubscription,
@@ -3319,8 +2866,8 @@ final class ChronicleFeedDetailsGoogleCloudStorageEventDrivenSettings {
 /// Typed helper for the `details.http_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsHttpSettings {
-  const ChronicleFeedDetailsHttpSettings({
+final class ChronicleFeedHttpSettings {
+  const ChronicleFeedHttpSettings({
     this.sourceDeletionOption,
     this.sourceType,
     this.uri,
@@ -3342,8 +2889,8 @@ final class ChronicleFeedDetailsHttpSettings {
 /// Typed helper for the `details.https_push_amazon_kinesis_firehose_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsHttpsPushAmazonKinesisFirehoseSettings {
-  const ChronicleFeedDetailsHttpsPushAmazonKinesisFirehoseSettings({
+final class ChronicleFeedHttpsPushAmazonKinesisFirehoseSettings {
+  const ChronicleFeedHttpsPushAmazonKinesisFirehoseSettings({
     this.splitDelimiter,
   });
 
@@ -3357,10 +2904,8 @@ final class ChronicleFeedDetailsHttpsPushAmazonKinesisFirehoseSettings {
 /// Typed helper for the `details.https_push_google_cloud_pubsub_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsHttpsPushGoogleCloudPubsubSettings {
-  const ChronicleFeedDetailsHttpsPushGoogleCloudPubsubSettings({
-    this.splitDelimiter,
-  });
+final class ChronicleFeedHttpsPushGoogleCloudPubsubSettings {
+  const ChronicleFeedHttpsPushGoogleCloudPubsubSettings({this.splitDelimiter});
 
   final TfArg<String>? splitDelimiter;
 
@@ -3372,8 +2917,8 @@ final class ChronicleFeedDetailsHttpsPushGoogleCloudPubsubSettings {
 /// Typed helper for the `details.https_push_webhook_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsHttpsPushWebhookSettings {
-  const ChronicleFeedDetailsHttpsPushWebhookSettings({this.splitDelimiter});
+final class ChronicleFeedHttpsPushWebhookSettings {
+  const ChronicleFeedHttpsPushWebhookSettings({this.splitDelimiter});
 
   final TfArg<String>? splitDelimiter;
 
@@ -3385,66 +2930,25 @@ final class ChronicleFeedDetailsHttpsPushWebhookSettings {
 /// Typed helper for the `details.imperva_waf_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsImpervaWafSettings {
-  const ChronicleFeedDetailsImpervaWafSettings({this.authentication});
+final class ChronicleFeedImpervaWafSettings {
+  const ChronicleFeedImpervaWafSettings({this.authentication});
 
-  final ChronicleFeedDetailsImpervaWafSettingsAuthentication? authentication;
+  final ChronicleFeedCortexXdrSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'authentication': ?authentication?.encode(),
   };
 }
 
-/// Typed helper for the `details.imperva_waf_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsImpervaWafSettingsAuthentication {
-  const ChronicleFeedDetailsImpervaWafSettingsAuthentication({
-    this.headerKeyValues,
-  });
-
-  final List<
-    ChronicleFeedDetailsImpervaWafSettingsAuthenticationHeaderKeyValues
-  >?
-  headerKeyValues;
-
-  Map<String, Object?> encode() => {
-    if (headerKeyValues != null)
-      'header_key_values': [for (final e in headerKeyValues!) e.encode()],
-  };
-}
-
-/// Typed helper for the `details.imperva_waf_settings.authentication.header_key_values` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsImpervaWafSettingsAuthenticationHeaderKeyValues {
-  const ChronicleFeedDetailsImpervaWafSettingsAuthenticationHeaderKeyValues({
-    this.key,
-    this.value,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'value': ?value?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.mandiant_ioc_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsMandiantIocSettings {
-  const ChronicleFeedDetailsMandiantIocSettings({
-    this.startTime,
-    this.authentication,
-  });
+final class ChronicleFeedMandiantIocSettings {
+  const ChronicleFeedMandiantIocSettings({this.startTime, this.authentication});
 
   final TfArg<String>? startTime;
 
-  final ChronicleFeedDetailsMandiantIocSettingsAuthentication? authentication;
+  final ChronicleFeedCortexXdrSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'start_time': ?startTime?.toTfJson(),
@@ -3452,49 +2956,11 @@ final class ChronicleFeedDetailsMandiantIocSettings {
   };
 }
 
-/// Typed helper for the `details.mandiant_ioc_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsMandiantIocSettingsAuthentication {
-  const ChronicleFeedDetailsMandiantIocSettingsAuthentication({
-    this.headerKeyValues,
-  });
-
-  final List<
-    ChronicleFeedDetailsMandiantIocSettingsAuthenticationHeaderKeyValues
-  >?
-  headerKeyValues;
-
-  Map<String, Object?> encode() => {
-    if (headerKeyValues != null)
-      'header_key_values': [for (final e in headerKeyValues!) e.encode()],
-  };
-}
-
-/// Typed helper for the `details.mandiant_ioc_settings.authentication.header_key_values` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsMandiantIocSettingsAuthenticationHeaderKeyValues {
-  const ChronicleFeedDetailsMandiantIocSettingsAuthenticationHeaderKeyValues({
-    this.key,
-    this.value,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'value': ?value?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.microsoft_graph_alert_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsMicrosoftGraphAlertSettings {
-  const ChronicleFeedDetailsMicrosoftGraphAlertSettings({
+final class ChronicleFeedMicrosoftGraphAlertSettings {
+  const ChronicleFeedMicrosoftGraphAlertSettings({
     this.authEndpoint,
     this.hostname,
     this.tenantId,
@@ -3507,8 +2973,7 @@ final class ChronicleFeedDetailsMicrosoftGraphAlertSettings {
 
   final TfArg<String>? tenantId;
 
-  final ChronicleFeedDetailsMicrosoftGraphAlertSettingsAuthentication?
-  authentication;
+  final ChronicleFeedAzureAdAuditSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'auth_endpoint': ?authEndpoint?.toTfJson(),
@@ -3518,30 +2983,11 @@ final class ChronicleFeedDetailsMicrosoftGraphAlertSettings {
   };
 }
 
-/// Typed helper for the `details.microsoft_graph_alert_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsMicrosoftGraphAlertSettingsAuthentication {
-  const ChronicleFeedDetailsMicrosoftGraphAlertSettingsAuthentication({
-    this.clientId,
-    this.clientSecret,
-  });
-
-  final TfArg<String>? clientId;
-
-  final TfArg<String>? clientSecret;
-
-  Map<String, Object?> encode() => {
-    'client_id': ?clientId?.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.microsoft_security_center_alert_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsMicrosoftSecurityCenterAlertSettings {
-  const ChronicleFeedDetailsMicrosoftSecurityCenterAlertSettings({
+final class ChronicleFeedMicrosoftSecurityCenterAlertSettings {
+  const ChronicleFeedMicrosoftSecurityCenterAlertSettings({
     this.authEndpoint,
     this.hostname,
     this.subscriptionId,
@@ -3557,8 +3003,7 @@ final class ChronicleFeedDetailsMicrosoftSecurityCenterAlertSettings {
 
   final TfArg<String>? tenantId;
 
-  final ChronicleFeedDetailsMicrosoftSecurityCenterAlertSettingsAuthentication?
-  authentication;
+  final ChronicleFeedAzureAdAuditSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'auth_endpoint': ?authEndpoint?.toTfJson(),
@@ -3569,37 +3014,15 @@ final class ChronicleFeedDetailsMicrosoftSecurityCenterAlertSettings {
   };
 }
 
-/// Typed helper for the `details.microsoft_security_center_alert_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsMicrosoftSecurityCenterAlertSettingsAuthentication {
-  const ChronicleFeedDetailsMicrosoftSecurityCenterAlertSettingsAuthentication({
-    this.clientId,
-    this.clientSecret,
-  });
-
-  final TfArg<String>? clientId;
-
-  final TfArg<String>? clientSecret;
-
-  Map<String, Object?> encode() => {
-    'client_id': ?clientId?.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.mimecast_mail_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsMimecastMailSettings {
-  const ChronicleFeedDetailsMimecastMailSettings({
-    this.hostname,
-    this.authentication,
-  });
+final class ChronicleFeedMimecastMailSettings {
+  const ChronicleFeedMimecastMailSettings({this.hostname, this.authentication});
 
   final TfArg<String>? hostname;
 
-  final ChronicleFeedDetailsMimecastMailSettingsAuthentication? authentication;
+  final ChronicleFeedCortexXdrSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.toTfJson(),
@@ -3607,52 +3030,13 @@ final class ChronicleFeedDetailsMimecastMailSettings {
   };
 }
 
-/// Typed helper for the `details.mimecast_mail_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsMimecastMailSettingsAuthentication {
-  const ChronicleFeedDetailsMimecastMailSettingsAuthentication({
-    this.headerKeyValues,
-  });
-
-  final List<
-    ChronicleFeedDetailsMimecastMailSettingsAuthenticationHeaderKeyValues
-  >?
-  headerKeyValues;
-
-  Map<String, Object?> encode() => {
-    if (headerKeyValues != null)
-      'header_key_values': [for (final e in headerKeyValues!) e.encode()],
-  };
-}
-
-/// Typed helper for the `details.mimecast_mail_settings.authentication.header_key_values` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsMimecastMailSettingsAuthenticationHeaderKeyValues {
-  const ChronicleFeedDetailsMimecastMailSettingsAuthenticationHeaderKeyValues({
-    this.key,
-    this.value,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'value': ?value?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.mimecast_mail_v2_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsMimecastMailV2Settings {
-  const ChronicleFeedDetailsMimecastMailV2Settings({this.authCredentials});
+final class ChronicleFeedMimecastMailV2Settings {
+  const ChronicleFeedMimecastMailV2Settings({this.authCredentials});
 
-  final ChronicleFeedDetailsMimecastMailV2SettingsAuthCredentials?
-  authCredentials;
+  final ChronicleFeedAuthCredentials? authCredentials;
 
   Map<String, Object?> encode() => {
     'auth_credentials': ?authCredentials?.encode(),
@@ -3662,11 +3046,8 @@ final class ChronicleFeedDetailsMimecastMailV2Settings {
 /// Typed helper for the `details.mimecast_mail_v2_settings.auth_credentials` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsMimecastMailV2SettingsAuthCredentials {
-  const ChronicleFeedDetailsMimecastMailV2SettingsAuthCredentials({
-    this.clientId,
-    this.clientSecret,
-  });
+final class ChronicleFeedAuthCredentials {
+  const ChronicleFeedAuthCredentials({this.clientId, this.clientSecret});
 
   final TfArg<String>? clientId;
 
@@ -3681,8 +3062,8 @@ final class ChronicleFeedDetailsMimecastMailV2SettingsAuthCredentials {
 /// Typed helper for the `details.netskope_alert_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsNetskopeAlertSettings {
-  const ChronicleFeedDetailsNetskopeAlertSettings({
+final class ChronicleFeedNetskopeAlertSettings {
+  const ChronicleFeedNetskopeAlertSettings({
     this.contentType,
     this.feedname,
     this.hostname,
@@ -3695,7 +3076,7 @@ final class ChronicleFeedDetailsNetskopeAlertSettings {
 
   final TfArg<String>? hostname;
 
-  final ChronicleFeedDetailsNetskopeAlertSettingsAuthentication? authentication;
+  final ChronicleFeedCortexXdrSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'content_type': ?contentType?.toTfJson(),
@@ -3705,49 +3086,11 @@ final class ChronicleFeedDetailsNetskopeAlertSettings {
   };
 }
 
-/// Typed helper for the `details.netskope_alert_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsNetskopeAlertSettingsAuthentication {
-  const ChronicleFeedDetailsNetskopeAlertSettingsAuthentication({
-    this.headerKeyValues,
-  });
-
-  final List<
-    ChronicleFeedDetailsNetskopeAlertSettingsAuthenticationHeaderKeyValues
-  >?
-  headerKeyValues;
-
-  Map<String, Object?> encode() => {
-    if (headerKeyValues != null)
-      'header_key_values': [for (final e in headerKeyValues!) e.encode()],
-  };
-}
-
-/// Typed helper for the `details.netskope_alert_settings.authentication.header_key_values` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsNetskopeAlertSettingsAuthenticationHeaderKeyValues {
-  const ChronicleFeedDetailsNetskopeAlertSettingsAuthenticationHeaderKeyValues({
-    this.key,
-    this.value,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'value': ?value?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.netskope_alert_v2_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsNetskopeAlertV2Settings {
-  const ChronicleFeedDetailsNetskopeAlertV2Settings({
+final class ChronicleFeedNetskopeAlertV2Settings {
+  const ChronicleFeedNetskopeAlertV2Settings({
     this.contentCategory,
     this.contentTypes,
     this.hostname,
@@ -3760,8 +3103,7 @@ final class ChronicleFeedDetailsNetskopeAlertV2Settings {
 
   final TfArg<String>? hostname;
 
-  final ChronicleFeedDetailsNetskopeAlertV2SettingsAuthentication?
-  authentication;
+  final ChronicleFeedCortexXdrSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'content_category': ?contentCategory?.toTfJson(),
@@ -3771,49 +3113,11 @@ final class ChronicleFeedDetailsNetskopeAlertV2Settings {
   };
 }
 
-/// Typed helper for the `details.netskope_alert_v2_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsNetskopeAlertV2SettingsAuthentication {
-  const ChronicleFeedDetailsNetskopeAlertV2SettingsAuthentication({
-    this.headerKeyValues,
-  });
-
-  final List<
-    ChronicleFeedDetailsNetskopeAlertV2SettingsAuthenticationHeaderKeyValues
-  >?
-  headerKeyValues;
-
-  Map<String, Object?> encode() => {
-    if (headerKeyValues != null)
-      'header_key_values': [for (final e in headerKeyValues!) e.encode()],
-  };
-}
-
-/// Typed helper for the `details.netskope_alert_v2_settings.authentication.header_key_values` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsNetskopeAlertV2SettingsAuthenticationHeaderKeyValues {
-  const ChronicleFeedDetailsNetskopeAlertV2SettingsAuthenticationHeaderKeyValues({
-    this.key,
-    this.value,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'value': ?value?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.office365_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsOffice365Settings {
-  const ChronicleFeedDetailsOffice365Settings({
+final class ChronicleFeedOffice365Settings {
+  const ChronicleFeedOffice365Settings({
     this.authEndpoint,
     this.contentType,
     this.hostname,
@@ -3829,7 +3133,7 @@ final class ChronicleFeedDetailsOffice365Settings {
 
   final TfArg<String>? tenantId;
 
-  final ChronicleFeedDetailsOffice365SettingsAuthentication? authentication;
+  final ChronicleFeedAzureAdAuditSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'auth_endpoint': ?authEndpoint?.toTfJson(),
@@ -3840,34 +3144,15 @@ final class ChronicleFeedDetailsOffice365Settings {
   };
 }
 
-/// Typed helper for the `details.office365_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsOffice365SettingsAuthentication {
-  const ChronicleFeedDetailsOffice365SettingsAuthentication({
-    this.clientId,
-    this.clientSecret,
-  });
-
-  final TfArg<String>? clientId;
-
-  final TfArg<String>? clientSecret;
-
-  Map<String, Object?> encode() => {
-    'client_id': ?clientId?.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.okta_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsOktaSettings {
-  const ChronicleFeedDetailsOktaSettings({this.hostname, this.authentication});
+final class ChronicleFeedOktaSettings {
+  const ChronicleFeedOktaSettings({this.hostname, this.authentication});
 
   final TfArg<String>? hostname;
 
-  final ChronicleFeedDetailsOktaSettingsAuthentication? authentication;
+  final ChronicleFeedCortexXdrSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.toTfJson(),
@@ -3875,45 +3160,11 @@ final class ChronicleFeedDetailsOktaSettings {
   };
 }
 
-/// Typed helper for the `details.okta_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsOktaSettingsAuthentication {
-  const ChronicleFeedDetailsOktaSettingsAuthentication({this.headerKeyValues});
-
-  final List<ChronicleFeedDetailsOktaSettingsAuthenticationHeaderKeyValues>?
-  headerKeyValues;
-
-  Map<String, Object?> encode() => {
-    if (headerKeyValues != null)
-      'header_key_values': [for (final e in headerKeyValues!) e.encode()],
-  };
-}
-
-/// Typed helper for the `details.okta_settings.authentication.header_key_values` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsOktaSettingsAuthenticationHeaderKeyValues {
-  const ChronicleFeedDetailsOktaSettingsAuthenticationHeaderKeyValues({
-    this.key,
-    this.value,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'value': ?value?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.okta_user_context_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsOktaUserContextSettings {
-  const ChronicleFeedDetailsOktaUserContextSettings({
+final class ChronicleFeedOktaUserContextSettings {
+  const ChronicleFeedOktaUserContextSettings({
     this.hostname,
     this.managerIdReferenceField,
     this.authentication,
@@ -3923,8 +3174,7 @@ final class ChronicleFeedDetailsOktaUserContextSettings {
 
   final TfArg<String>? managerIdReferenceField;
 
-  final ChronicleFeedDetailsOktaUserContextSettingsAuthentication?
-  authentication;
+  final ChronicleFeedCortexXdrSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.toTfJson(),
@@ -3933,49 +3183,11 @@ final class ChronicleFeedDetailsOktaUserContextSettings {
   };
 }
 
-/// Typed helper for the `details.okta_user_context_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsOktaUserContextSettingsAuthentication {
-  const ChronicleFeedDetailsOktaUserContextSettingsAuthentication({
-    this.headerKeyValues,
-  });
-
-  final List<
-    ChronicleFeedDetailsOktaUserContextSettingsAuthenticationHeaderKeyValues
-  >?
-  headerKeyValues;
-
-  Map<String, Object?> encode() => {
-    if (headerKeyValues != null)
-      'header_key_values': [for (final e in headerKeyValues!) e.encode()],
-  };
-}
-
-/// Typed helper for the `details.okta_user_context_settings.authentication.header_key_values` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsOktaUserContextSettingsAuthenticationHeaderKeyValues {
-  const ChronicleFeedDetailsOktaUserContextSettingsAuthenticationHeaderKeyValues({
-    this.key,
-    this.value,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'value': ?value?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.pan_ioc_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsPanIocSettings {
-  const ChronicleFeedDetailsPanIocSettings({
+final class ChronicleFeedPanIocSettings {
+  const ChronicleFeedPanIocSettings({
     this.feed,
     this.feedId,
     this.authentication,
@@ -3985,7 +3197,7 @@ final class ChronicleFeedDetailsPanIocSettings {
 
   final TfArg<String>? feedId;
 
-  final ChronicleFeedDetailsPanIocSettingsAuthentication? authentication;
+  final ChronicleFeedCortexXdrSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'feed': ?feed?.toTfJson(),
@@ -3994,55 +3206,18 @@ final class ChronicleFeedDetailsPanIocSettings {
   };
 }
 
-/// Typed helper for the `details.pan_ioc_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsPanIocSettingsAuthentication {
-  const ChronicleFeedDetailsPanIocSettingsAuthentication({
-    this.headerKeyValues,
-  });
-
-  final List<ChronicleFeedDetailsPanIocSettingsAuthenticationHeaderKeyValues>?
-  headerKeyValues;
-
-  Map<String, Object?> encode() => {
-    if (headerKeyValues != null)
-      'header_key_values': [for (final e in headerKeyValues!) e.encode()],
-  };
-}
-
-/// Typed helper for the `details.pan_ioc_settings.authentication.header_key_values` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsPanIocSettingsAuthenticationHeaderKeyValues {
-  const ChronicleFeedDetailsPanIocSettingsAuthenticationHeaderKeyValues({
-    this.key,
-    this.value,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'value': ?value?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.pan_prisma_cloud_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsPanPrismaCloudSettings {
-  const ChronicleFeedDetailsPanPrismaCloudSettings({
+final class ChronicleFeedPanPrismaCloudSettings {
+  const ChronicleFeedPanPrismaCloudSettings({
     this.hostname,
     this.authentication,
   });
 
   final TfArg<String>? hostname;
 
-  final ChronicleFeedDetailsPanPrismaCloudSettingsAuthentication?
-  authentication;
+  final ChronicleFeedPanPrismaCloudSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.toTfJson(),
@@ -4053,8 +3228,8 @@ final class ChronicleFeedDetailsPanPrismaCloudSettings {
 /// Typed helper for the `details.pan_prisma_cloud_settings.authentication` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsPanPrismaCloudSettingsAuthentication {
-  const ChronicleFeedDetailsPanPrismaCloudSettingsAuthentication({
+final class ChronicleFeedPanPrismaCloudSettingsAuthentication {
+  const ChronicleFeedPanPrismaCloudSettingsAuthentication({
     this.password,
     this.user,
   });
@@ -4072,49 +3247,28 @@ final class ChronicleFeedDetailsPanPrismaCloudSettingsAuthentication {
 /// Typed helper for the `details.proofpoint_mail_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsProofpointMailSettings {
-  const ChronicleFeedDetailsProofpointMailSettings({this.authentication});
+final class ChronicleFeedProofpointMailSettings {
+  const ChronicleFeedProofpointMailSettings({this.authentication});
 
-  final ChronicleFeedDetailsProofpointMailSettingsAuthentication?
-  authentication;
+  final ChronicleFeedAnomaliSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'authentication': ?authentication?.encode(),
   };
 }
 
-/// Typed helper for the `details.proofpoint_mail_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsProofpointMailSettingsAuthentication {
-  const ChronicleFeedDetailsProofpointMailSettingsAuthentication({
-    this.secret,
-    this.user,
-  });
-
-  final TfArg<String>? secret;
-
-  final TfArg<String>? user;
-
-  Map<String, Object?> encode() => {
-    'secret': ?secret?.toTfJson(),
-    'user': ?user?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.proofpoint_on_demand_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsProofpointOnDemandSettings {
-  const ChronicleFeedDetailsProofpointOnDemandSettings({
+final class ChronicleFeedProofpointOnDemandSettings {
+  const ChronicleFeedProofpointOnDemandSettings({
     this.clusterId,
     this.authentication,
   });
 
   final TfArg<String>? clusterId;
 
-  final ChronicleFeedDetailsProofpointOnDemandSettingsAuthentication?
-  authentication;
+  final ChronicleFeedCortexXdrSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'cluster_id': ?clusterId?.toTfJson(),
@@ -4122,49 +3276,11 @@ final class ChronicleFeedDetailsProofpointOnDemandSettings {
   };
 }
 
-/// Typed helper for the `details.proofpoint_on_demand_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsProofpointOnDemandSettingsAuthentication {
-  const ChronicleFeedDetailsProofpointOnDemandSettingsAuthentication({
-    this.headerKeyValues,
-  });
-
-  final List<
-    ChronicleFeedDetailsProofpointOnDemandSettingsAuthenticationHeaderKeyValues
-  >?
-  headerKeyValues;
-
-  Map<String, Object?> encode() => {
-    if (headerKeyValues != null)
-      'header_key_values': [for (final e in headerKeyValues!) e.encode()],
-  };
-}
-
-/// Typed helper for the `details.proofpoint_on_demand_settings.authentication.header_key_values` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsProofpointOnDemandSettingsAuthenticationHeaderKeyValues {
-  const ChronicleFeedDetailsProofpointOnDemandSettingsAuthenticationHeaderKeyValues({
-    this.key,
-    this.value,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'value': ?value?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.pubsub_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsPubsubSettings {
-  const ChronicleFeedDetailsPubsubSettings({this.googleServiceAccountEmail});
+final class ChronicleFeedPubsubSettings {
+  const ChronicleFeedPubsubSettings({this.googleServiceAccountEmail});
 
   final TfArg<String>? googleServiceAccountEmail;
 
@@ -4176,8 +3292,8 @@ final class ChronicleFeedDetailsPubsubSettings {
 /// Typed helper for the `details.qualys_scan_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsQualysScanSettings {
-  const ChronicleFeedDetailsQualysScanSettings({
+final class ChronicleFeedQualysScanSettings {
+  const ChronicleFeedQualysScanSettings({
     this.apiType,
     this.hostname,
     this.authentication,
@@ -4187,7 +3303,7 @@ final class ChronicleFeedDetailsQualysScanSettings {
 
   final TfArg<String>? hostname;
 
-  final ChronicleFeedDetailsQualysScanSettingsAuthentication? authentication;
+  final ChronicleFeedAnomaliSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'api_type': ?apiType?.toTfJson(),
@@ -4196,37 +3312,15 @@ final class ChronicleFeedDetailsQualysScanSettings {
   };
 }
 
-/// Typed helper for the `details.qualys_scan_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsQualysScanSettingsAuthentication {
-  const ChronicleFeedDetailsQualysScanSettingsAuthentication({
-    this.secret,
-    this.user,
-  });
-
-  final TfArg<String>? secret;
-
-  final TfArg<String>? user;
-
-  Map<String, Object?> encode() => {
-    'secret': ?secret?.toTfJson(),
-    'user': ?user?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.qualys_vm_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsQualysVmSettings {
-  const ChronicleFeedDetailsQualysVmSettings({
-    this.hostname,
-    this.authentication,
-  });
+final class ChronicleFeedQualysVmSettings {
+  const ChronicleFeedQualysVmSettings({this.hostname, this.authentication});
 
   final TfArg<String>? hostname;
 
-  final ChronicleFeedDetailsQualysVmSettingsAuthentication? authentication;
+  final ChronicleFeedAnomaliSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.toTfJson(),
@@ -4234,30 +3328,11 @@ final class ChronicleFeedDetailsQualysVmSettings {
   };
 }
 
-/// Typed helper for the `details.qualys_vm_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsQualysVmSettingsAuthentication {
-  const ChronicleFeedDetailsQualysVmSettingsAuthentication({
-    this.secret,
-    this.user,
-  });
-
-  final TfArg<String>? secret;
-
-  final TfArg<String>? user;
-
-  Map<String, Object?> encode() => {
-    'secret': ?secret?.toTfJson(),
-    'user': ?user?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.rapid7_insight_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsRapid7InsightSettings {
-  const ChronicleFeedDetailsRapid7InsightSettings({
+final class ChronicleFeedRapid7InsightSettings {
+  const ChronicleFeedRapid7InsightSettings({
     this.endpoint,
     this.hostname,
     this.authentication,
@@ -4267,7 +3342,7 @@ final class ChronicleFeedDetailsRapid7InsightSettings {
 
   final TfArg<String>? hostname;
 
-  final ChronicleFeedDetailsRapid7InsightSettingsAuthentication? authentication;
+  final ChronicleFeedCortexXdrSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'endpoint': ?endpoint?.toTfJson(),
@@ -4276,137 +3351,37 @@ final class ChronicleFeedDetailsRapid7InsightSettings {
   };
 }
 
-/// Typed helper for the `details.rapid7_insight_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsRapid7InsightSettingsAuthentication {
-  const ChronicleFeedDetailsRapid7InsightSettingsAuthentication({
-    this.headerKeyValues,
-  });
-
-  final List<
-    ChronicleFeedDetailsRapid7InsightSettingsAuthenticationHeaderKeyValues
-  >?
-  headerKeyValues;
-
-  Map<String, Object?> encode() => {
-    if (headerKeyValues != null)
-      'header_key_values': [for (final e in headerKeyValues!) e.encode()],
-  };
-}
-
-/// Typed helper for the `details.rapid7_insight_settings.authentication.header_key_values` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsRapid7InsightSettingsAuthenticationHeaderKeyValues {
-  const ChronicleFeedDetailsRapid7InsightSettingsAuthenticationHeaderKeyValues({
-    this.key,
-    this.value,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'value': ?value?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.recorded_future_ioc_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsRecordedFutureIocSettings {
-  const ChronicleFeedDetailsRecordedFutureIocSettings({this.authentication});
+final class ChronicleFeedRecordedFutureIocSettings {
+  const ChronicleFeedRecordedFutureIocSettings({this.authentication});
 
-  final ChronicleFeedDetailsRecordedFutureIocSettingsAuthentication?
-  authentication;
+  final ChronicleFeedCortexXdrSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'authentication': ?authentication?.encode(),
-  };
-}
-
-/// Typed helper for the `details.recorded_future_ioc_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsRecordedFutureIocSettingsAuthentication {
-  const ChronicleFeedDetailsRecordedFutureIocSettingsAuthentication({
-    this.headerKeyValues,
-  });
-
-  final List<
-    ChronicleFeedDetailsRecordedFutureIocSettingsAuthenticationHeaderKeyValues
-  >?
-  headerKeyValues;
-
-  Map<String, Object?> encode() => {
-    if (headerKeyValues != null)
-      'header_key_values': [for (final e in headerKeyValues!) e.encode()],
-  };
-}
-
-/// Typed helper for the `details.recorded_future_ioc_settings.authentication.header_key_values` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsRecordedFutureIocSettingsAuthenticationHeaderKeyValues {
-  const ChronicleFeedDetailsRecordedFutureIocSettingsAuthenticationHeaderKeyValues({
-    this.key,
-    this.value,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'value': ?value?.toTfJson(),
   };
 }
 
 /// Typed helper for the `details.rh_isac_ioc_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsRhIsacIocSettings {
-  const ChronicleFeedDetailsRhIsacIocSettings({this.authentication});
+final class ChronicleFeedRhIsacIocSettings {
+  const ChronicleFeedRhIsacIocSettings({this.authentication});
 
-  final ChronicleFeedDetailsRhIsacIocSettingsAuthentication? authentication;
+  final ChronicleFeedCrowdstrikeAlertsSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'authentication': ?authentication?.encode(),
   };
 }
 
-/// Typed helper for the `details.rh_isac_ioc_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsRhIsacIocSettingsAuthentication {
-  const ChronicleFeedDetailsRhIsacIocSettingsAuthentication({
-    this.clientId,
-    this.clientSecret,
-    this.tokenEndpoint,
-  });
-
-  final TfArg<String>? clientId;
-
-  final TfArg<String>? clientSecret;
-
-  final TfArg<String>? tokenEndpoint;
-
-  Map<String, Object?> encode() => {
-    'client_id': ?clientId?.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-    'token_endpoint': ?tokenEndpoint?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.salesforce_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsSalesforceSettings {
-  const ChronicleFeedDetailsSalesforceSettings({
+final class ChronicleFeedSalesforceSettings {
+  const ChronicleFeedSalesforceSettings({
     this.hostname,
     this.oauthJwtCredentials,
     this.oauthPasswordGrantAuth,
@@ -4414,11 +3389,9 @@ final class ChronicleFeedDetailsSalesforceSettings {
 
   final TfArg<String>? hostname;
 
-  final ChronicleFeedDetailsSalesforceSettingsOauthJwtCredentials?
-  oauthJwtCredentials;
+  final ChronicleFeedOauthJwtCredentials? oauthJwtCredentials;
 
-  final ChronicleFeedDetailsSalesforceSettingsOauthPasswordGrantAuth?
-  oauthPasswordGrantAuth;
+  final ChronicleFeedOauthPasswordGrantAuth? oauthPasswordGrantAuth;
 
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.toTfJson(),
@@ -4430,8 +3403,8 @@ final class ChronicleFeedDetailsSalesforceSettings {
 /// Typed helper for the `details.salesforce_settings.oauth_jwt_credentials` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsSalesforceSettingsOauthJwtCredentials {
-  const ChronicleFeedDetailsSalesforceSettingsOauthJwtCredentials({
+final class ChronicleFeedOauthJwtCredentials {
+  const ChronicleFeedOauthJwtCredentials({
     this.tokenEndpoint,
     this.claims,
     this.rsCredentials,
@@ -4439,10 +3412,9 @@ final class ChronicleFeedDetailsSalesforceSettingsOauthJwtCredentials {
 
   final TfArg<String>? tokenEndpoint;
 
-  final ChronicleFeedDetailsSalesforceSettingsOauthJwtCredentialsClaims? claims;
+  final ChronicleFeedClaims? claims;
 
-  final ChronicleFeedDetailsSalesforceSettingsOauthJwtCredentialsRsCredentials?
-  rsCredentials;
+  final ChronicleFeedRsCredentials? rsCredentials;
 
   Map<String, Object?> encode() => {
     'token_endpoint': ?tokenEndpoint?.toTfJson(),
@@ -4451,47 +3423,11 @@ final class ChronicleFeedDetailsSalesforceSettingsOauthJwtCredentials {
   };
 }
 
-/// Typed helper for the `details.salesforce_settings.oauth_jwt_credentials.claims` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsSalesforceSettingsOauthJwtCredentialsClaims {
-  const ChronicleFeedDetailsSalesforceSettingsOauthJwtCredentialsClaims({
-    this.audience,
-    this.issuer,
-    this.subject,
-  });
-
-  final TfArg<String>? audience;
-
-  final TfArg<String>? issuer;
-
-  final TfArg<String>? subject;
-
-  Map<String, Object?> encode() => {
-    'audience': ?audience?.toTfJson(),
-    'issuer': ?issuer?.toTfJson(),
-    'subject': ?subject?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `details.salesforce_settings.oauth_jwt_credentials.rs_credentials` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsSalesforceSettingsOauthJwtCredentialsRsCredentials {
-  const ChronicleFeedDetailsSalesforceSettingsOauthJwtCredentialsRsCredentials({
-    this.privateKey,
-  });
-
-  final TfArg<String>? privateKey;
-
-  Map<String, Object?> encode() => {'private_key': ?privateKey?.toTfJson()};
-}
-
 /// Typed helper for the `details.salesforce_settings.oauth_password_grant_auth` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsSalesforceSettingsOauthPasswordGrantAuth {
-  const ChronicleFeedDetailsSalesforceSettingsOauthPasswordGrantAuth({
+final class ChronicleFeedOauthPasswordGrantAuth {
+  const ChronicleFeedOauthPasswordGrantAuth({
     this.clientId,
     this.clientSecret,
     this.password,
@@ -4521,8 +3457,8 @@ final class ChronicleFeedDetailsSalesforceSettingsOauthPasswordGrantAuth {
 /// Typed helper for the `details.sentinelone_alert_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsSentineloneAlertSettings {
-  const ChronicleFeedDetailsSentineloneAlertSettings({
+final class ChronicleFeedSentineloneAlertSettings {
+  const ChronicleFeedSentineloneAlertSettings({
     this.hostname,
     this.initialStartTime,
     this.isAlertApiSubscribed,
@@ -4535,8 +3471,7 @@ final class ChronicleFeedDetailsSentineloneAlertSettings {
 
   final TfArg<bool>? isAlertApiSubscribed;
 
-  final ChronicleFeedDetailsSentineloneAlertSettingsAuthentication?
-  authentication;
+  final ChronicleFeedCortexXdrSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.toTfJson(),
@@ -4546,49 +3481,11 @@ final class ChronicleFeedDetailsSentineloneAlertSettings {
   };
 }
 
-/// Typed helper for the `details.sentinelone_alert_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsSentineloneAlertSettingsAuthentication {
-  const ChronicleFeedDetailsSentineloneAlertSettingsAuthentication({
-    this.headerKeyValues,
-  });
-
-  final List<
-    ChronicleFeedDetailsSentineloneAlertSettingsAuthenticationHeaderKeyValues
-  >?
-  headerKeyValues;
-
-  Map<String, Object?> encode() => {
-    if (headerKeyValues != null)
-      'header_key_values': [for (final e in headerKeyValues!) e.encode()],
-  };
-}
-
-/// Typed helper for the `details.sentinelone_alert_settings.authentication.header_key_values` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsSentineloneAlertSettingsAuthenticationHeaderKeyValues {
-  const ChronicleFeedDetailsSentineloneAlertSettingsAuthenticationHeaderKeyValues({
-    this.key,
-    this.value,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'value': ?value?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.service_now_cmdb_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsServiceNowCmdbSettings {
-  const ChronicleFeedDetailsServiceNowCmdbSettings({
+final class ChronicleFeedServiceNowCmdbSettings {
+  const ChronicleFeedServiceNowCmdbSettings({
     this.feedname,
     this.hostname,
     this.authentication,
@@ -4598,8 +3495,7 @@ final class ChronicleFeedDetailsServiceNowCmdbSettings {
 
   final TfArg<String>? hostname;
 
-  final ChronicleFeedDetailsServiceNowCmdbSettingsAuthentication?
-  authentication;
+  final ChronicleFeedAnomaliSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'feedname': ?feedname?.toTfJson(),
@@ -4608,30 +3504,11 @@ final class ChronicleFeedDetailsServiceNowCmdbSettings {
   };
 }
 
-/// Typed helper for the `details.service_now_cmdb_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsServiceNowCmdbSettingsAuthentication {
-  const ChronicleFeedDetailsServiceNowCmdbSettingsAuthentication({
-    this.secret,
-    this.user,
-  });
-
-  final TfArg<String>? secret;
-
-  final TfArg<String>? user;
-
-  Map<String, Object?> encode() => {
-    'secret': ?secret?.toTfJson(),
-    'user': ?user?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.sftp_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsSftpSettings {
-  const ChronicleFeedDetailsSftpSettings({
+final class ChronicleFeedSftpSettings {
+  const ChronicleFeedSftpSettings({
     this.sourceDeletionOption,
     this.sourceType,
     this.uri,
@@ -4644,7 +3521,7 @@ final class ChronicleFeedDetailsSftpSettings {
 
   final TfArg<String>? uri;
 
-  final ChronicleFeedDetailsSftpSettingsAuthentication? authentication;
+  final ChronicleFeedSftpSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'source_deletion_option': ?sourceDeletionOption?.toTfJson(),
@@ -4657,8 +3534,8 @@ final class ChronicleFeedDetailsSftpSettings {
 /// Typed helper for the `details.sftp_settings.authentication` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsSftpSettingsAuthentication {
-  const ChronicleFeedDetailsSftpSettingsAuthentication({
+final class ChronicleFeedSftpSettingsAuthentication {
+  const ChronicleFeedSftpSettingsAuthentication({
     this.password,
     this.privateKey,
     this.privateKeyPassphrase,
@@ -4684,11 +3561,10 @@ final class ChronicleFeedDetailsSftpSettingsAuthentication {
 /// Typed helper for the `details.symantec_event_export_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsSymantecEventExportSettings {
-  const ChronicleFeedDetailsSymantecEventExportSettings({this.authentication});
+final class ChronicleFeedSymantecEventExportSettings {
+  const ChronicleFeedSymantecEventExportSettings({this.authentication});
 
-  final ChronicleFeedDetailsSymantecEventExportSettingsAuthentication?
-  authentication;
+  final ChronicleFeedSymantecEventExportSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'authentication': ?authentication?.encode(),
@@ -4698,8 +3574,8 @@ final class ChronicleFeedDetailsSymantecEventExportSettings {
 /// Typed helper for the `details.symantec_event_export_settings.authentication` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsSymantecEventExportSettingsAuthentication {
-  const ChronicleFeedDetailsSymantecEventExportSettingsAuthentication({
+final class ChronicleFeedSymantecEventExportSettingsAuthentication {
+  const ChronicleFeedSymantecEventExportSettingsAuthentication({
     this.clientId,
     this.clientSecret,
     this.refreshToken,
@@ -4725,15 +3601,15 @@ final class ChronicleFeedDetailsSymantecEventExportSettingsAuthentication {
 /// Typed helper for the `details.thinkst_canary_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsThinkstCanarySettings {
-  const ChronicleFeedDetailsThinkstCanarySettings({
+final class ChronicleFeedThinkstCanarySettings {
+  const ChronicleFeedThinkstCanarySettings({
     this.hostname,
     this.authentication,
   });
 
   final TfArg<String>? hostname;
 
-  final ChronicleFeedDetailsThinkstCanarySettingsAuthentication? authentication;
+  final ChronicleFeedCortexXdrSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.toTfJson(),
@@ -4741,49 +3617,11 @@ final class ChronicleFeedDetailsThinkstCanarySettings {
   };
 }
 
-/// Typed helper for the `details.thinkst_canary_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsThinkstCanarySettingsAuthentication {
-  const ChronicleFeedDetailsThinkstCanarySettingsAuthentication({
-    this.headerKeyValues,
-  });
-
-  final List<
-    ChronicleFeedDetailsThinkstCanarySettingsAuthenticationHeaderKeyValues
-  >?
-  headerKeyValues;
-
-  Map<String, Object?> encode() => {
-    if (headerKeyValues != null)
-      'header_key_values': [for (final e in headerKeyValues!) e.encode()],
-  };
-}
-
-/// Typed helper for the `details.thinkst_canary_settings.authentication.header_key_values` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsThinkstCanarySettingsAuthenticationHeaderKeyValues {
-  const ChronicleFeedDetailsThinkstCanarySettingsAuthenticationHeaderKeyValues({
-    this.key,
-    this.value,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'value': ?value?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.threat_connect_ioc_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsThreatConnectIocSettings {
-  const ChronicleFeedDetailsThreatConnectIocSettings({
+final class ChronicleFeedThreatConnectIocSettings {
+  const ChronicleFeedThreatConnectIocSettings({
     this.hostname,
     this.owners,
     this.authentication,
@@ -4793,8 +3631,7 @@ final class ChronicleFeedDetailsThreatConnectIocSettings {
 
   final TfArg<List<String>>? owners;
 
-  final ChronicleFeedDetailsThreatConnectIocSettingsAuthentication?
-  authentication;
+  final ChronicleFeedAnomaliSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.toTfJson(),
@@ -4803,30 +3640,11 @@ final class ChronicleFeedDetailsThreatConnectIocSettings {
   };
 }
 
-/// Typed helper for the `details.threat_connect_ioc_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsThreatConnectIocSettingsAuthentication {
-  const ChronicleFeedDetailsThreatConnectIocSettingsAuthentication({
-    this.secret,
-    this.user,
-  });
-
-  final TfArg<String>? secret;
-
-  final TfArg<String>? user;
-
-  Map<String, Object?> encode() => {
-    'secret': ?secret?.toTfJson(),
-    'user': ?user?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.threat_connect_ioc_v3_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsThreatConnectIocV3Settings {
-  const ChronicleFeedDetailsThreatConnectIocV3Settings({
+final class ChronicleFeedThreatConnectIocV3Settings {
+  const ChronicleFeedThreatConnectIocV3Settings({
     this.fields,
     this.hostname,
     this.owners,
@@ -4845,8 +3663,7 @@ final class ChronicleFeedDetailsThreatConnectIocV3Settings {
 
   final TfArg<String>? tqlQuery;
 
-  final ChronicleFeedDetailsThreatConnectIocV3SettingsAuthentication?
-  authentication;
+  final ChronicleFeedAnomaliSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'fields': ?fields?.toTfJson(),
@@ -4858,38 +3675,18 @@ final class ChronicleFeedDetailsThreatConnectIocV3Settings {
   };
 }
 
-/// Typed helper for the `details.threat_connect_ioc_v3_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsThreatConnectIocV3SettingsAuthentication {
-  const ChronicleFeedDetailsThreatConnectIocV3SettingsAuthentication({
-    this.secret,
-    this.user,
-  });
-
-  final TfArg<String>? secret;
-
-  final TfArg<String>? user;
-
-  Map<String, Object?> encode() => {
-    'secret': ?secret?.toTfJson(),
-    'user': ?user?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.trellix_hx_alerts_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsTrellixHxAlertsSettings {
-  const ChronicleFeedDetailsTrellixHxAlertsSettings({
+final class ChronicleFeedTrellixHxAlertsSettings {
+  const ChronicleFeedTrellixHxAlertsSettings({
     this.endpoint,
     this.authentication,
   });
 
   final TfArg<String>? endpoint;
 
-  final ChronicleFeedDetailsTrellixHxAlertsSettingsAuthentication?
-  authentication;
+  final ChronicleFeedTrellixHxAlertsSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'endpoint': ?endpoint?.toTfJson(),
@@ -4900,16 +3697,15 @@ final class ChronicleFeedDetailsTrellixHxAlertsSettings {
 /// Typed helper for the `details.trellix_hx_alerts_settings.authentication` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsTrellixHxAlertsSettingsAuthentication {
-  const ChronicleFeedDetailsTrellixHxAlertsSettingsAuthentication({
+final class ChronicleFeedTrellixHxAlertsSettingsAuthentication {
+  const ChronicleFeedTrellixHxAlertsSettingsAuthentication({
     this.msso,
     this.trellixIam,
   });
 
-  final ChronicleFeedDetailsTrellixHxAlertsSettingsAuthenticationMsso? msso;
+  final ChronicleFeedTrellixHxAlertsSettingsMsso? msso;
 
-  final ChronicleFeedDetailsTrellixHxAlertsSettingsAuthenticationTrellixIam?
-  trellixIam;
+  final ChronicleFeedTrellixHxAlertsSettingsTrellixIam? trellixIam;
 
   Map<String, Object?> encode() => {
     'msso': ?msso?.encode(),
@@ -4920,8 +3716,8 @@ final class ChronicleFeedDetailsTrellixHxAlertsSettingsAuthentication {
 /// Typed helper for the `details.trellix_hx_alerts_settings.authentication.msso` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsTrellixHxAlertsSettingsAuthenticationMsso {
-  const ChronicleFeedDetailsTrellixHxAlertsSettingsAuthenticationMsso({
+final class ChronicleFeedTrellixHxAlertsSettingsMsso {
+  const ChronicleFeedTrellixHxAlertsSettingsMsso({
     this.apiEndpoint,
     this.password,
     this.username,
@@ -4943,8 +3739,8 @@ final class ChronicleFeedDetailsTrellixHxAlertsSettingsAuthenticationMsso {
 /// Typed helper for the `details.trellix_hx_alerts_settings.authentication.trellix_iam` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsTrellixHxAlertsSettingsAuthenticationTrellixIam {
-  const ChronicleFeedDetailsTrellixHxAlertsSettingsAuthenticationTrellixIam({
+final class ChronicleFeedTrellixHxAlertsSettingsTrellixIam {
+  const ChronicleFeedTrellixHxAlertsSettingsTrellixIam({
     this.clientId,
     this.clientSecret,
     this.scope,
@@ -4966,16 +3762,15 @@ final class ChronicleFeedDetailsTrellixHxAlertsSettingsAuthenticationTrellixIam 
 /// Typed helper for the `details.trellix_hx_bulk_acqs_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsTrellixHxBulkAcqsSettings {
-  const ChronicleFeedDetailsTrellixHxBulkAcqsSettings({
+final class ChronicleFeedTrellixHxBulkAcqsSettings {
+  const ChronicleFeedTrellixHxBulkAcqsSettings({
     required this.endpoint,
     this.authentication,
   });
 
   final TfArg<String> endpoint;
 
-  final ChronicleFeedDetailsTrellixHxBulkAcqsSettingsAuthentication?
-  authentication;
+  final ChronicleFeedTrellixHxBulkAcqsSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'endpoint': endpoint.toTfJson(),
@@ -4985,17 +3780,17 @@ final class ChronicleFeedDetailsTrellixHxBulkAcqsSettings {
 
 /// Typed helper for the `details.trellix_hx_bulk_acqs_settings.authentication` block of
 /// `google_chronicle_feed` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ChronicleFeedDetailsTrellixHxBulkAcqsSettingsAuthentication {
-  const ChronicleFeedDetailsTrellixHxBulkAcqsSettingsAuthentication({
+final class ChronicleFeedTrellixHxBulkAcqsSettingsAuthentication {
+  const ChronicleFeedTrellixHxBulkAcqsSettingsAuthentication({
     this.msso,
     this.trellixIam,
   });
 
-  final ChronicleFeedDetailsTrellixHxBulkAcqsSettingsAuthenticationMsso? msso;
+  final ChronicleFeedTrellixHxBulkAcqsSettingsMsso? msso;
 
-  final ChronicleFeedDetailsTrellixHxBulkAcqsSettingsAuthenticationTrellixIam?
-  trellixIam;
+  final ChronicleFeedTrellixHxBulkAcqsSettingsTrellixIam? trellixIam;
 
   Map<String, Object?> encode() => {
     'msso': ?msso?.encode(),
@@ -5005,9 +3800,10 @@ final class ChronicleFeedDetailsTrellixHxBulkAcqsSettingsAuthentication {
 
 /// Typed helper for the `details.trellix_hx_bulk_acqs_settings.authentication.msso` block of
 /// `google_chronicle_feed` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ChronicleFeedDetailsTrellixHxBulkAcqsSettingsAuthenticationMsso {
-  const ChronicleFeedDetailsTrellixHxBulkAcqsSettingsAuthenticationMsso({
+final class ChronicleFeedTrellixHxBulkAcqsSettingsMsso {
+  const ChronicleFeedTrellixHxBulkAcqsSettingsMsso({
     required this.apiEndpoint,
     required this.password,
     required this.username,
@@ -5028,9 +3824,10 @@ final class ChronicleFeedDetailsTrellixHxBulkAcqsSettingsAuthenticationMsso {
 
 /// Typed helper for the `details.trellix_hx_bulk_acqs_settings.authentication.trellix_iam` block of
 /// `google_chronicle_feed` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ChronicleFeedDetailsTrellixHxBulkAcqsSettingsAuthenticationTrellixIam {
-  const ChronicleFeedDetailsTrellixHxBulkAcqsSettingsAuthenticationTrellixIam({
+final class ChronicleFeedTrellixHxBulkAcqsSettingsTrellixIam {
+  const ChronicleFeedTrellixHxBulkAcqsSettingsTrellixIam({
     required this.clientId,
     required this.clientSecret,
     required this.scope,
@@ -5052,16 +3849,15 @@ final class ChronicleFeedDetailsTrellixHxBulkAcqsSettingsAuthenticationTrellixIa
 /// Typed helper for the `details.trellix_hx_hosts_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsTrellixHxHostsSettings {
-  const ChronicleFeedDetailsTrellixHxHostsSettings({
+final class ChronicleFeedTrellixHxHostsSettings {
+  const ChronicleFeedTrellixHxHostsSettings({
     required this.endpoint,
     this.authentication,
   });
 
   final TfArg<String> endpoint;
 
-  final ChronicleFeedDetailsTrellixHxHostsSettingsAuthentication?
-  authentication;
+  final ChronicleFeedTrellixHxBulkAcqsSettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'endpoint': endpoint.toTfJson(),
@@ -5069,77 +3865,11 @@ final class ChronicleFeedDetailsTrellixHxHostsSettings {
   };
 }
 
-/// Typed helper for the `details.trellix_hx_hosts_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsTrellixHxHostsSettingsAuthentication {
-  const ChronicleFeedDetailsTrellixHxHostsSettingsAuthentication({
-    this.msso,
-    this.trellixIam,
-  });
-
-  final ChronicleFeedDetailsTrellixHxHostsSettingsAuthenticationMsso? msso;
-
-  final ChronicleFeedDetailsTrellixHxHostsSettingsAuthenticationTrellixIam?
-  trellixIam;
-
-  Map<String, Object?> encode() => {
-    'msso': ?msso?.encode(),
-    'trellix_iam': ?trellixIam?.encode(),
-  };
-}
-
-/// Typed helper for the `details.trellix_hx_hosts_settings.authentication.msso` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsTrellixHxHostsSettingsAuthenticationMsso {
-  const ChronicleFeedDetailsTrellixHxHostsSettingsAuthenticationMsso({
-    required this.apiEndpoint,
-    required this.password,
-    required this.username,
-  });
-
-  final TfArg<String> apiEndpoint;
-
-  final TfArg<String> password;
-
-  final TfArg<String> username;
-
-  Map<String, Object?> encode() => {
-    'api_endpoint': apiEndpoint.toTfJson(),
-    'password': password.toTfJson(),
-    'username': username.toTfJson(),
-  };
-}
-
-/// Typed helper for the `details.trellix_hx_hosts_settings.authentication.trellix_iam` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsTrellixHxHostsSettingsAuthenticationTrellixIam {
-  const ChronicleFeedDetailsTrellixHxHostsSettingsAuthenticationTrellixIam({
-    required this.clientId,
-    required this.clientSecret,
-    required this.scope,
-  });
-
-  final TfArg<String> clientId;
-
-  final TfArg<String> clientSecret;
-
-  final TfArg<String> scope;
-
-  Map<String, Object?> encode() => {
-    'client_id': clientId.toTfJson(),
-    'client_secret': clientSecret.toTfJson(),
-    'scope': scope.toTfJson(),
-  };
-}
-
 /// Typed helper for the `details.webhook_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsWebhookSettings {
-  const ChronicleFeedDetailsWebhookSettings();
+final class ChronicleFeedWebhookSettings {
+  const ChronicleFeedWebhookSettings();
 
   Map<String, Object?> encode() => {};
 }
@@ -5147,8 +3877,8 @@ final class ChronicleFeedDetailsWebhookSettings {
 /// Typed helper for the `details.workday_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsWorkdaySettings {
-  const ChronicleFeedDetailsWorkdaySettings({
+final class ChronicleFeedWorkdaySettings {
+  const ChronicleFeedWorkdaySettings({
     this.hostname,
     this.tenantId,
     this.authentication,
@@ -5158,7 +3888,7 @@ final class ChronicleFeedDetailsWorkdaySettings {
 
   final TfArg<String>? tenantId;
 
-  final ChronicleFeedDetailsWorkdaySettingsAuthentication? authentication;
+  final ChronicleFeedWorkdaySettingsAuthentication? authentication;
 
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.toTfJson(),
@@ -5170,8 +3900,8 @@ final class ChronicleFeedDetailsWorkdaySettings {
 /// Typed helper for the `details.workday_settings.authentication` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsWorkdaySettingsAuthentication {
-  const ChronicleFeedDetailsWorkdaySettingsAuthentication({
+final class ChronicleFeedWorkdaySettingsAuthentication {
+  const ChronicleFeedWorkdaySettingsAuthentication({
     this.clientId,
     this.clientSecret,
     this.refreshToken,
@@ -5205,8 +3935,8 @@ final class ChronicleFeedDetailsWorkdaySettingsAuthentication {
 /// Typed helper for the `details.workspace_activity_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsWorkspaceActivitySettings {
-  const ChronicleFeedDetailsWorkspaceActivitySettings({
+final class ChronicleFeedWorkspaceActivitySettings {
+  const ChronicleFeedWorkspaceActivitySettings({
     this.applications,
     this.workspaceCustomerId,
     this.authentication,
@@ -5216,7 +3946,7 @@ final class ChronicleFeedDetailsWorkspaceActivitySettings {
 
   final TfArg<String>? workspaceCustomerId;
 
-  final ChronicleFeedDetailsWorkspaceActivitySettingsAuthentication?
+  final ChronicleFeedGoogleCloudIdentityDeviceUsersSettingsAuthentication?
   authentication;
 
   Map<String, Object?> encode() => {
@@ -5226,400 +3956,98 @@ final class ChronicleFeedDetailsWorkspaceActivitySettings {
   };
 }
 
-/// Typed helper for the `details.workspace_activity_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsWorkspaceActivitySettingsAuthentication {
-  const ChronicleFeedDetailsWorkspaceActivitySettingsAuthentication({
-    this.tokenEndpoint,
-    this.claims,
-    this.rsCredentials,
-  });
-
-  final TfArg<String>? tokenEndpoint;
-
-  final ChronicleFeedDetailsWorkspaceActivitySettingsAuthenticationClaims?
-  claims;
-
-  final ChronicleFeedDetailsWorkspaceActivitySettingsAuthenticationRsCredentials?
-  rsCredentials;
-
-  Map<String, Object?> encode() => {
-    'token_endpoint': ?tokenEndpoint?.toTfJson(),
-    'claims': ?claims?.encode(),
-    'rs_credentials': ?rsCredentials?.encode(),
-  };
-}
-
-/// Typed helper for the `details.workspace_activity_settings.authentication.claims` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsWorkspaceActivitySettingsAuthenticationClaims {
-  const ChronicleFeedDetailsWorkspaceActivitySettingsAuthenticationClaims({
-    this.audience,
-    this.issuer,
-    this.subject,
-  });
-
-  final TfArg<String>? audience;
-
-  final TfArg<String>? issuer;
-
-  final TfArg<String>? subject;
-
-  Map<String, Object?> encode() => {
-    'audience': ?audience?.toTfJson(),
-    'issuer': ?issuer?.toTfJson(),
-    'subject': ?subject?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `details.workspace_activity_settings.authentication.rs_credentials` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsWorkspaceActivitySettingsAuthenticationRsCredentials {
-  const ChronicleFeedDetailsWorkspaceActivitySettingsAuthenticationRsCredentials({
-    this.privateKey,
-  });
-
-  final TfArg<String>? privateKey;
-
-  Map<String, Object?> encode() => {'private_key': ?privateKey?.toTfJson()};
-}
-
 /// Typed helper for the `details.workspace_alerts_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsWorkspaceAlertsSettings {
-  const ChronicleFeedDetailsWorkspaceAlertsSettings({
+final class ChronicleFeedWorkspaceAlertsSettings {
+  const ChronicleFeedWorkspaceAlertsSettings({
     this.workspaceCustomerId,
     this.authentication,
   });
 
   final TfArg<String>? workspaceCustomerId;
 
-  final ChronicleFeedDetailsWorkspaceAlertsSettingsAuthentication?
+  final ChronicleFeedGoogleCloudIdentityDeviceUsersSettingsAuthentication?
   authentication;
 
   Map<String, Object?> encode() => {
     'workspace_customer_id': ?workspaceCustomerId?.toTfJson(),
     'authentication': ?authentication?.encode(),
   };
-}
-
-/// Typed helper for the `details.workspace_alerts_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsWorkspaceAlertsSettingsAuthentication {
-  const ChronicleFeedDetailsWorkspaceAlertsSettingsAuthentication({
-    this.tokenEndpoint,
-    this.claims,
-    this.rsCredentials,
-  });
-
-  final TfArg<String>? tokenEndpoint;
-
-  final ChronicleFeedDetailsWorkspaceAlertsSettingsAuthenticationClaims? claims;
-
-  final ChronicleFeedDetailsWorkspaceAlertsSettingsAuthenticationRsCredentials?
-  rsCredentials;
-
-  Map<String, Object?> encode() => {
-    'token_endpoint': ?tokenEndpoint?.toTfJson(),
-    'claims': ?claims?.encode(),
-    'rs_credentials': ?rsCredentials?.encode(),
-  };
-}
-
-/// Typed helper for the `details.workspace_alerts_settings.authentication.claims` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsWorkspaceAlertsSettingsAuthenticationClaims {
-  const ChronicleFeedDetailsWorkspaceAlertsSettingsAuthenticationClaims({
-    this.audience,
-    this.issuer,
-    this.subject,
-  });
-
-  final TfArg<String>? audience;
-
-  final TfArg<String>? issuer;
-
-  final TfArg<String>? subject;
-
-  Map<String, Object?> encode() => {
-    'audience': ?audience?.toTfJson(),
-    'issuer': ?issuer?.toTfJson(),
-    'subject': ?subject?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `details.workspace_alerts_settings.authentication.rs_credentials` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsWorkspaceAlertsSettingsAuthenticationRsCredentials {
-  const ChronicleFeedDetailsWorkspaceAlertsSettingsAuthenticationRsCredentials({
-    this.privateKey,
-  });
-
-  final TfArg<String>? privateKey;
-
-  Map<String, Object?> encode() => {'private_key': ?privateKey?.toTfJson()};
 }
 
 /// Typed helper for the `details.workspace_chrome_os_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsWorkspaceChromeOsSettings {
-  const ChronicleFeedDetailsWorkspaceChromeOsSettings({
+final class ChronicleFeedWorkspaceChromeOsSettings {
+  const ChronicleFeedWorkspaceChromeOsSettings({
     this.workspaceCustomerId,
     this.authentication,
   });
 
   final TfArg<String>? workspaceCustomerId;
 
-  final ChronicleFeedDetailsWorkspaceChromeOsSettingsAuthentication?
+  final ChronicleFeedGoogleCloudIdentityDeviceUsersSettingsAuthentication?
   authentication;
 
   Map<String, Object?> encode() => {
     'workspace_customer_id': ?workspaceCustomerId?.toTfJson(),
     'authentication': ?authentication?.encode(),
   };
-}
-
-/// Typed helper for the `details.workspace_chrome_os_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsWorkspaceChromeOsSettingsAuthentication {
-  const ChronicleFeedDetailsWorkspaceChromeOsSettingsAuthentication({
-    this.tokenEndpoint,
-    this.claims,
-    this.rsCredentials,
-  });
-
-  final TfArg<String>? tokenEndpoint;
-
-  final ChronicleFeedDetailsWorkspaceChromeOsSettingsAuthenticationClaims?
-  claims;
-
-  final ChronicleFeedDetailsWorkspaceChromeOsSettingsAuthenticationRsCredentials?
-  rsCredentials;
-
-  Map<String, Object?> encode() => {
-    'token_endpoint': ?tokenEndpoint?.toTfJson(),
-    'claims': ?claims?.encode(),
-    'rs_credentials': ?rsCredentials?.encode(),
-  };
-}
-
-/// Typed helper for the `details.workspace_chrome_os_settings.authentication.claims` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsWorkspaceChromeOsSettingsAuthenticationClaims {
-  const ChronicleFeedDetailsWorkspaceChromeOsSettingsAuthenticationClaims({
-    this.audience,
-    this.issuer,
-    this.subject,
-  });
-
-  final TfArg<String>? audience;
-
-  final TfArg<String>? issuer;
-
-  final TfArg<String>? subject;
-
-  Map<String, Object?> encode() => {
-    'audience': ?audience?.toTfJson(),
-    'issuer': ?issuer?.toTfJson(),
-    'subject': ?subject?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `details.workspace_chrome_os_settings.authentication.rs_credentials` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsWorkspaceChromeOsSettingsAuthenticationRsCredentials {
-  const ChronicleFeedDetailsWorkspaceChromeOsSettingsAuthenticationRsCredentials({
-    this.privateKey,
-  });
-
-  final TfArg<String>? privateKey;
-
-  Map<String, Object?> encode() => {'private_key': ?privateKey?.toTfJson()};
 }
 
 /// Typed helper for the `details.workspace_groups_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsWorkspaceGroupsSettings {
-  const ChronicleFeedDetailsWorkspaceGroupsSettings({
+final class ChronicleFeedWorkspaceGroupsSettings {
+  const ChronicleFeedWorkspaceGroupsSettings({
     this.workspaceCustomerId,
     this.authentication,
   });
 
   final TfArg<String>? workspaceCustomerId;
 
-  final ChronicleFeedDetailsWorkspaceGroupsSettingsAuthentication?
+  final ChronicleFeedGoogleCloudIdentityDeviceUsersSettingsAuthentication?
   authentication;
 
   Map<String, Object?> encode() => {
     'workspace_customer_id': ?workspaceCustomerId?.toTfJson(),
     'authentication': ?authentication?.encode(),
   };
-}
-
-/// Typed helper for the `details.workspace_groups_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsWorkspaceGroupsSettingsAuthentication {
-  const ChronicleFeedDetailsWorkspaceGroupsSettingsAuthentication({
-    this.tokenEndpoint,
-    this.claims,
-    this.rsCredentials,
-  });
-
-  final TfArg<String>? tokenEndpoint;
-
-  final ChronicleFeedDetailsWorkspaceGroupsSettingsAuthenticationClaims? claims;
-
-  final ChronicleFeedDetailsWorkspaceGroupsSettingsAuthenticationRsCredentials?
-  rsCredentials;
-
-  Map<String, Object?> encode() => {
-    'token_endpoint': ?tokenEndpoint?.toTfJson(),
-    'claims': ?claims?.encode(),
-    'rs_credentials': ?rsCredentials?.encode(),
-  };
-}
-
-/// Typed helper for the `details.workspace_groups_settings.authentication.claims` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsWorkspaceGroupsSettingsAuthenticationClaims {
-  const ChronicleFeedDetailsWorkspaceGroupsSettingsAuthenticationClaims({
-    this.audience,
-    this.issuer,
-    this.subject,
-  });
-
-  final TfArg<String>? audience;
-
-  final TfArg<String>? issuer;
-
-  final TfArg<String>? subject;
-
-  Map<String, Object?> encode() => {
-    'audience': ?audience?.toTfJson(),
-    'issuer': ?issuer?.toTfJson(),
-    'subject': ?subject?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `details.workspace_groups_settings.authentication.rs_credentials` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsWorkspaceGroupsSettingsAuthenticationRsCredentials {
-  const ChronicleFeedDetailsWorkspaceGroupsSettingsAuthenticationRsCredentials({
-    this.privateKey,
-  });
-
-  final TfArg<String>? privateKey;
-
-  Map<String, Object?> encode() => {'private_key': ?privateKey?.toTfJson()};
 }
 
 /// Typed helper for the `details.workspace_mobile_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsWorkspaceMobileSettings {
-  const ChronicleFeedDetailsWorkspaceMobileSettings({
+final class ChronicleFeedWorkspaceMobileSettings {
+  const ChronicleFeedWorkspaceMobileSettings({
     this.workspaceCustomerId,
     this.authentication,
   });
 
   final TfArg<String>? workspaceCustomerId;
 
-  final ChronicleFeedDetailsWorkspaceMobileSettingsAuthentication?
+  final ChronicleFeedGoogleCloudIdentityDeviceUsersSettingsAuthentication?
   authentication;
 
   Map<String, Object?> encode() => {
     'workspace_customer_id': ?workspaceCustomerId?.toTfJson(),
     'authentication': ?authentication?.encode(),
   };
-}
-
-/// Typed helper for the `details.workspace_mobile_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsWorkspaceMobileSettingsAuthentication {
-  const ChronicleFeedDetailsWorkspaceMobileSettingsAuthentication({
-    this.tokenEndpoint,
-    this.claims,
-    this.rsCredentials,
-  });
-
-  final TfArg<String>? tokenEndpoint;
-
-  final ChronicleFeedDetailsWorkspaceMobileSettingsAuthenticationClaims? claims;
-
-  final ChronicleFeedDetailsWorkspaceMobileSettingsAuthenticationRsCredentials?
-  rsCredentials;
-
-  Map<String, Object?> encode() => {
-    'token_endpoint': ?tokenEndpoint?.toTfJson(),
-    'claims': ?claims?.encode(),
-    'rs_credentials': ?rsCredentials?.encode(),
-  };
-}
-
-/// Typed helper for the `details.workspace_mobile_settings.authentication.claims` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsWorkspaceMobileSettingsAuthenticationClaims {
-  const ChronicleFeedDetailsWorkspaceMobileSettingsAuthenticationClaims({
-    this.audience,
-    this.issuer,
-    this.subject,
-  });
-
-  final TfArg<String>? audience;
-
-  final TfArg<String>? issuer;
-
-  final TfArg<String>? subject;
-
-  Map<String, Object?> encode() => {
-    'audience': ?audience?.toTfJson(),
-    'issuer': ?issuer?.toTfJson(),
-    'subject': ?subject?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `details.workspace_mobile_settings.authentication.rs_credentials` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsWorkspaceMobileSettingsAuthenticationRsCredentials {
-  const ChronicleFeedDetailsWorkspaceMobileSettingsAuthenticationRsCredentials({
-    this.privateKey,
-  });
-
-  final TfArg<String>? privateKey;
-
-  Map<String, Object?> encode() => {'private_key': ?privateKey?.toTfJson()};
 }
 
 /// Typed helper for the `details.workspace_privileges_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsWorkspacePrivilegesSettings {
-  const ChronicleFeedDetailsWorkspacePrivilegesSettings({
+final class ChronicleFeedWorkspacePrivilegesSettings {
+  const ChronicleFeedWorkspacePrivilegesSettings({
     this.workspaceCustomerId,
     this.authentication,
   });
 
   final TfArg<String>? workspaceCustomerId;
 
-  final ChronicleFeedDetailsWorkspacePrivilegesSettingsAuthentication?
+  final ChronicleFeedGoogleCloudIdentityDeviceUsersSettingsAuthentication?
   authentication;
 
   Map<String, Object?> encode() => {
@@ -5628,72 +4056,11 @@ final class ChronicleFeedDetailsWorkspacePrivilegesSettings {
   };
 }
 
-/// Typed helper for the `details.workspace_privileges_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsWorkspacePrivilegesSettingsAuthentication {
-  const ChronicleFeedDetailsWorkspacePrivilegesSettingsAuthentication({
-    this.tokenEndpoint,
-    this.claims,
-    this.rsCredentials,
-  });
-
-  final TfArg<String>? tokenEndpoint;
-
-  final ChronicleFeedDetailsWorkspacePrivilegesSettingsAuthenticationClaims?
-  claims;
-
-  final ChronicleFeedDetailsWorkspacePrivilegesSettingsAuthenticationRsCredentials?
-  rsCredentials;
-
-  Map<String, Object?> encode() => {
-    'token_endpoint': ?tokenEndpoint?.toTfJson(),
-    'claims': ?claims?.encode(),
-    'rs_credentials': ?rsCredentials?.encode(),
-  };
-}
-
-/// Typed helper for the `details.workspace_privileges_settings.authentication.claims` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsWorkspacePrivilegesSettingsAuthenticationClaims {
-  const ChronicleFeedDetailsWorkspacePrivilegesSettingsAuthenticationClaims({
-    this.audience,
-    this.issuer,
-    this.subject,
-  });
-
-  final TfArg<String>? audience;
-
-  final TfArg<String>? issuer;
-
-  final TfArg<String>? subject;
-
-  Map<String, Object?> encode() => {
-    'audience': ?audience?.toTfJson(),
-    'issuer': ?issuer?.toTfJson(),
-    'subject': ?subject?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `details.workspace_privileges_settings.authentication.rs_credentials` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsWorkspacePrivilegesSettingsAuthenticationRsCredentials {
-  const ChronicleFeedDetailsWorkspacePrivilegesSettingsAuthenticationRsCredentials({
-    this.privateKey,
-  });
-
-  final TfArg<String>? privateKey;
-
-  Map<String, Object?> encode() => {'private_key': ?privateKey?.toTfJson()};
-}
-
 /// Typed helper for the `details.workspace_users_settings` block of
 /// `google_chronicle_feed` (derived from provider schema).
 @immutable
-final class ChronicleFeedDetailsWorkspaceUsersSettings {
-  const ChronicleFeedDetailsWorkspaceUsersSettings({
+final class ChronicleFeedWorkspaceUsersSettings {
+  const ChronicleFeedWorkspaceUsersSettings({
     this.projectionType,
     this.workspaceCustomerId,
     this.authentication,
@@ -5703,7 +4070,7 @@ final class ChronicleFeedDetailsWorkspaceUsersSettings {
 
   final TfArg<String>? workspaceCustomerId;
 
-  final ChronicleFeedDetailsWorkspaceUsersSettingsAuthentication?
+  final ChronicleFeedGoogleCloudIdentityDeviceUsersSettingsAuthentication?
   authentication;
 
   Map<String, Object?> encode() => {
@@ -5711,66 +4078,6 @@ final class ChronicleFeedDetailsWorkspaceUsersSettings {
     'workspace_customer_id': ?workspaceCustomerId?.toTfJson(),
     'authentication': ?authentication?.encode(),
   };
-}
-
-/// Typed helper for the `details.workspace_users_settings.authentication` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsWorkspaceUsersSettingsAuthentication {
-  const ChronicleFeedDetailsWorkspaceUsersSettingsAuthentication({
-    this.tokenEndpoint,
-    this.claims,
-    this.rsCredentials,
-  });
-
-  final TfArg<String>? tokenEndpoint;
-
-  final ChronicleFeedDetailsWorkspaceUsersSettingsAuthenticationClaims? claims;
-
-  final ChronicleFeedDetailsWorkspaceUsersSettingsAuthenticationRsCredentials?
-  rsCredentials;
-
-  Map<String, Object?> encode() => {
-    'token_endpoint': ?tokenEndpoint?.toTfJson(),
-    'claims': ?claims?.encode(),
-    'rs_credentials': ?rsCredentials?.encode(),
-  };
-}
-
-/// Typed helper for the `details.workspace_users_settings.authentication.claims` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsWorkspaceUsersSettingsAuthenticationClaims {
-  const ChronicleFeedDetailsWorkspaceUsersSettingsAuthenticationClaims({
-    this.audience,
-    this.issuer,
-    this.subject,
-  });
-
-  final TfArg<String>? audience;
-
-  final TfArg<String>? issuer;
-
-  final TfArg<String>? subject;
-
-  Map<String, Object?> encode() => {
-    'audience': ?audience?.toTfJson(),
-    'issuer': ?issuer?.toTfJson(),
-    'subject': ?subject?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `details.workspace_users_settings.authentication.rs_credentials` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedDetailsWorkspaceUsersSettingsAuthenticationRsCredentials {
-  const ChronicleFeedDetailsWorkspaceUsersSettingsAuthenticationRsCredentials({
-    this.privateKey,
-  });
-
-  final TfArg<String>? privateKey;
-
-  Map<String, Object?> encode() => {'private_key': ?privateKey?.toTfJson()};
 }
 
 /// Factory wrapper for `google_chronicle_feed`.

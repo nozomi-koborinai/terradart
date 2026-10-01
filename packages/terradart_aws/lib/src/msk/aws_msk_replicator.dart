@@ -23,15 +23,15 @@ final class MskReplicatorKafkaCluster {
     this.vpcConfig,
   });
 
-  final MskReplicatorKafkaClusterAmazonMskCluster? amazonMskCluster;
+  final MskReplicatorAmazonMskCluster? amazonMskCluster;
 
-  final MskReplicatorKafkaClusterApacheKafkaCluster? apacheKafkaCluster;
+  final MskReplicatorApacheKafkaCluster? apacheKafkaCluster;
 
-  final MskReplicatorKafkaClusterClientAuthentication? clientAuthentication;
+  final MskReplicatorClientAuthentication? clientAuthentication;
 
-  final MskReplicatorKafkaClusterEncryptionInTransit? encryptionInTransit;
+  final MskReplicatorEncryptionInTransit? encryptionInTransit;
 
-  final MskReplicatorKafkaClusterVpcConfig? vpcConfig;
+  final MskReplicatorVpcConfig? vpcConfig;
 
   Map<String, Object?> encode() => {
     'amazon_msk_cluster': ?amazonMskCluster?.encode(),
@@ -45,10 +45,8 @@ final class MskReplicatorKafkaCluster {
 /// Typed helper for the `kafka_cluster.amazon_msk_cluster` block of
 /// `aws_msk_replicator` (derived from provider schema).
 @immutable
-final class MskReplicatorKafkaClusterAmazonMskCluster {
-  const MskReplicatorKafkaClusterAmazonMskCluster({
-    required this.mskClusterArn,
-  });
+final class MskReplicatorAmazonMskCluster {
+  const MskReplicatorAmazonMskCluster({required this.mskClusterArn});
 
   final TfArg<String> mskClusterArn;
 
@@ -60,8 +58,8 @@ final class MskReplicatorKafkaClusterAmazonMskCluster {
 /// Typed helper for the `kafka_cluster.apache_kafka_cluster` block of
 /// `aws_msk_replicator` (derived from provider schema).
 @immutable
-final class MskReplicatorKafkaClusterApacheKafkaCluster {
-  const MskReplicatorKafkaClusterApacheKafkaCluster({
+final class MskReplicatorApacheKafkaCluster {
+  const MskReplicatorApacheKafkaCluster({
     required this.apacheKafkaClusterId,
     required this.bootstrapBrokerString,
   });
@@ -79,15 +77,12 @@ final class MskReplicatorKafkaClusterApacheKafkaCluster {
 /// Typed helper for the `kafka_cluster.client_authentication` block of
 /// `aws_msk_replicator` (derived from provider schema).
 @immutable
-final class MskReplicatorKafkaClusterClientAuthentication {
-  const MskReplicatorKafkaClusterClientAuthentication({
-    this.mtls,
-    this.saslScram,
-  });
+final class MskReplicatorClientAuthentication {
+  const MskReplicatorClientAuthentication({this.mtls, this.saslScram});
 
-  final MskReplicatorKafkaClusterClientAuthenticationMtls? mtls;
+  final MskReplicatorMtls? mtls;
 
-  final MskReplicatorKafkaClusterClientAuthenticationSaslScram? saslScram;
+  final MskReplicatorSaslScram? saslScram;
 
   Map<String, Object?> encode() => {
     'mtls': ?mtls?.encode(),
@@ -98,10 +93,8 @@ final class MskReplicatorKafkaClusterClientAuthentication {
 /// Typed helper for the `kafka_cluster.client_authentication.mtls` block of
 /// `aws_msk_replicator` (derived from provider schema).
 @immutable
-final class MskReplicatorKafkaClusterClientAuthenticationMtls {
-  const MskReplicatorKafkaClusterClientAuthenticationMtls({
-    required this.secretArn,
-  });
+final class MskReplicatorMtls {
+  const MskReplicatorMtls({required this.secretArn});
 
   final TfArg<String> secretArn;
 
@@ -111,14 +104,13 @@ final class MskReplicatorKafkaClusterClientAuthenticationMtls {
 /// Typed helper for the `kafka_cluster.client_authentication.sasl_scram` block of
 /// `aws_msk_replicator` (derived from provider schema).
 @immutable
-final class MskReplicatorKafkaClusterClientAuthenticationSaslScram {
-  const MskReplicatorKafkaClusterClientAuthenticationSaslScram({
+final class MskReplicatorSaslScram {
+  const MskReplicatorSaslScram({
     required this.mechanism,
     required this.secretArn,
   });
 
-  final TfArg<MskReplicatorKafkaClusterClientAuthenticationSaslScramMechanism>
-  mechanism;
+  final TfArg<MskReplicatorMechanism> mechanism;
 
   final TfArg<String> secretArn;
 
@@ -129,14 +121,11 @@ final class MskReplicatorKafkaClusterClientAuthenticationSaslScram {
 }
 
 /// `mechanism` — derived from the provider schema description.
-enum MskReplicatorKafkaClusterClientAuthenticationSaslScramMechanism
-    implements TerraformEnum {
+enum MskReplicatorMechanism implements TerraformEnum {
   sha256('SHA256'),
   sha512('SHA512');
 
-  const MskReplicatorKafkaClusterClientAuthenticationSaslScramMechanism(
-    this.terraformValue,
-  );
+  const MskReplicatorMechanism(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -144,10 +133,8 @@ enum MskReplicatorKafkaClusterClientAuthenticationSaslScramMechanism
 /// Typed helper for the `kafka_cluster.encryption_in_transit` block of
 /// `aws_msk_replicator` (derived from provider schema).
 @immutable
-final class MskReplicatorKafkaClusterEncryptionInTransit {
-  const MskReplicatorKafkaClusterEncryptionInTransit({
-    required this.rootCaCertificate,
-  });
+final class MskReplicatorEncryptionInTransit {
+  const MskReplicatorEncryptionInTransit({required this.rootCaCertificate});
 
   final TfArg<String> rootCaCertificate;
 
@@ -159,8 +146,8 @@ final class MskReplicatorKafkaClusterEncryptionInTransit {
 /// Typed helper for the `kafka_cluster.vpc_config` block of
 /// `aws_msk_replicator` (derived from provider schema).
 @immutable
-final class MskReplicatorKafkaClusterVpcConfig {
-  const MskReplicatorKafkaClusterVpcConfig({
+final class MskReplicatorVpcConfig {
+  const MskReplicatorVpcConfig({
     this.securityGroupsIds,
     required this.subnetIds,
   });
@@ -181,7 +168,7 @@ final class MskReplicatorKafkaClusterVpcConfig {
 final class MskReplicatorLogDelivery {
   const MskReplicatorLogDelivery({this.replicatorLogDelivery});
 
-  final MskReplicatorLogDeliveryReplicatorLogDelivery? replicatorLogDelivery;
+  final MskReplicatorReplicatorLogDelivery? replicatorLogDelivery;
 
   Map<String, Object?> encode() => {
     'replicator_log_delivery': ?replicatorLogDelivery?.encode(),
@@ -191,19 +178,18 @@ final class MskReplicatorLogDelivery {
 /// Typed helper for the `log_delivery.replicator_log_delivery` block of
 /// `aws_msk_replicator` (derived from provider schema).
 @immutable
-final class MskReplicatorLogDeliveryReplicatorLogDelivery {
-  const MskReplicatorLogDeliveryReplicatorLogDelivery({
+final class MskReplicatorReplicatorLogDelivery {
+  const MskReplicatorReplicatorLogDelivery({
     this.cloudwatchLogs,
     this.firehose,
     this.s3,
   });
 
-  final MskReplicatorLogDeliveryReplicatorLogDeliveryCloudwatchLogs?
-  cloudwatchLogs;
+  final MskReplicatorCloudwatchLogs? cloudwatchLogs;
 
-  final MskReplicatorLogDeliveryReplicatorLogDeliveryFirehose? firehose;
+  final MskReplicatorFirehose? firehose;
 
-  final MskReplicatorLogDeliveryReplicatorLogDeliveryS3? s3;
+  final MskReplicatorS3? s3;
 
   Map<String, Object?> encode() => {
     'cloudwatch_logs': ?cloudwatchLogs?.encode(),
@@ -215,11 +201,8 @@ final class MskReplicatorLogDeliveryReplicatorLogDelivery {
 /// Typed helper for the `log_delivery.replicator_log_delivery.cloudwatch_logs` block of
 /// `aws_msk_replicator` (derived from provider schema).
 @immutable
-final class MskReplicatorLogDeliveryReplicatorLogDeliveryCloudwatchLogs {
-  const MskReplicatorLogDeliveryReplicatorLogDeliveryCloudwatchLogs({
-    required this.enabled,
-    this.logGroup,
-  });
+final class MskReplicatorCloudwatchLogs {
+  const MskReplicatorCloudwatchLogs({required this.enabled, this.logGroup});
 
   final TfArg<bool> enabled;
 
@@ -234,11 +217,8 @@ final class MskReplicatorLogDeliveryReplicatorLogDeliveryCloudwatchLogs {
 /// Typed helper for the `log_delivery.replicator_log_delivery.firehose` block of
 /// `aws_msk_replicator` (derived from provider schema).
 @immutable
-final class MskReplicatorLogDeliveryReplicatorLogDeliveryFirehose {
-  const MskReplicatorLogDeliveryReplicatorLogDeliveryFirehose({
-    this.deliveryStream,
-    required this.enabled,
-  });
+final class MskReplicatorFirehose {
+  const MskReplicatorFirehose({this.deliveryStream, required this.enabled});
 
   final TfArg<String>? deliveryStream;
 
@@ -253,12 +233,8 @@ final class MskReplicatorLogDeliveryReplicatorLogDeliveryFirehose {
 /// Typed helper for the `log_delivery.replicator_log_delivery.s3` block of
 /// `aws_msk_replicator` (derived from provider schema).
 @immutable
-final class MskReplicatorLogDeliveryReplicatorLogDeliveryS3 {
-  const MskReplicatorLogDeliveryReplicatorLogDeliveryS3({
-    this.bucket,
-    required this.enabled,
-    this.prefix,
-  });
+final class MskReplicatorS3 {
+  const MskReplicatorS3({this.bucket, required this.enabled, this.prefix});
 
   final RefTo<AwsS3Bucket>? bucket;
 
@@ -285,16 +261,15 @@ final class MskReplicatorReplicationInfoList {
     required this.topicReplication,
   });
 
-  final MskReplicatorReplicationInfoListSourceKafkaCluster sourceKafkaCluster;
+  final MskReplicatorSourceKafkaCluster sourceKafkaCluster;
 
   final TfArg<String> targetCompressionType;
 
-  final MskReplicatorReplicationInfoListTargetKafkaCluster targetKafkaCluster;
+  final MskReplicatorTargetKafkaCluster targetKafkaCluster;
 
-  final List<MskReplicatorReplicationInfoListConsumerGroupReplication>
-  consumerGroupReplication;
+  final List<MskReplicatorConsumerGroupReplication> consumerGroupReplication;
 
-  final List<MskReplicatorReplicationInfoListTopicReplication> topicReplication;
+  final List<MskReplicatorTopicReplication> topicReplication;
 
   Map<String, Object?> encode() => {
     ...sourceKafkaCluster.encode(),
@@ -311,18 +286,18 @@ final class MskReplicatorReplicationInfoList {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.sourceKafkaClusterArn(...)`.
-sealed class MskReplicatorReplicationInfoListSourceKafkaCluster {
-  const MskReplicatorReplicationInfoListSourceKafkaCluster();
+sealed class MskReplicatorSourceKafkaCluster {
+  const MskReplicatorSourceKafkaCluster();
 
   /// Sets `source_kafka_cluster_arn`.
-  const factory MskReplicatorReplicationInfoListSourceKafkaCluster.sourceKafkaClusterArn(
+  const factory MskReplicatorSourceKafkaCluster.sourceKafkaClusterArn(
     TfArg<String> sourceKafkaClusterArn,
-  ) = MskReplicatorReplicationInfoListSourceKafkaClusterArn;
+  ) = MskReplicatorSourceKafkaClusterArn;
 
   /// Sets `source_kafka_cluster_id`.
-  const factory MskReplicatorReplicationInfoListSourceKafkaCluster.sourceKafkaClusterId(
+  const factory MskReplicatorSourceKafkaCluster.sourceKafkaClusterId(
     TfArg<String> sourceKafkaClusterId,
-  ) = MskReplicatorReplicationInfoListSourceKafkaClusterId;
+  ) = MskReplicatorSourceKafkaClusterId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -330,12 +305,10 @@ sealed class MskReplicatorReplicationInfoListSourceKafkaCluster {
   Map<String, Object?> encode();
 }
 
-/// The [MskReplicatorReplicationInfoListSourceKafkaCluster.sourceKafkaClusterArn] choice: sets `source_kafka_cluster_arn`.
-final class MskReplicatorReplicationInfoListSourceKafkaClusterArn
-    extends MskReplicatorReplicationInfoListSourceKafkaCluster {
-  const MskReplicatorReplicationInfoListSourceKafkaClusterArn(
-    this.sourceKafkaClusterArn,
-  );
+/// The [MskReplicatorSourceKafkaCluster.sourceKafkaClusterArn] choice: sets `source_kafka_cluster_arn`.
+final class MskReplicatorSourceKafkaClusterArn
+    extends MskReplicatorSourceKafkaCluster {
+  const MskReplicatorSourceKafkaClusterArn(this.sourceKafkaClusterArn);
 
   final TfArg<String> sourceKafkaClusterArn;
 
@@ -348,12 +321,10 @@ final class MskReplicatorReplicationInfoListSourceKafkaClusterArn
   };
 }
 
-/// The [MskReplicatorReplicationInfoListSourceKafkaCluster.sourceKafkaClusterId] choice: sets `source_kafka_cluster_id`.
-final class MskReplicatorReplicationInfoListSourceKafkaClusterId
-    extends MskReplicatorReplicationInfoListSourceKafkaCluster {
-  const MskReplicatorReplicationInfoListSourceKafkaClusterId(
-    this.sourceKafkaClusterId,
-  );
+/// The [MskReplicatorSourceKafkaCluster.sourceKafkaClusterId] choice: sets `source_kafka_cluster_id`.
+final class MskReplicatorSourceKafkaClusterId
+    extends MskReplicatorSourceKafkaCluster {
+  const MskReplicatorSourceKafkaClusterId(this.sourceKafkaClusterId);
 
   final TfArg<String> sourceKafkaClusterId;
 
@@ -370,18 +341,18 @@ final class MskReplicatorReplicationInfoListSourceKafkaClusterId
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.targetKafkaClusterArn(...)`.
-sealed class MskReplicatorReplicationInfoListTargetKafkaCluster {
-  const MskReplicatorReplicationInfoListTargetKafkaCluster();
+sealed class MskReplicatorTargetKafkaCluster {
+  const MskReplicatorTargetKafkaCluster();
 
   /// Sets `target_kafka_cluster_arn`.
-  const factory MskReplicatorReplicationInfoListTargetKafkaCluster.targetKafkaClusterArn(
+  const factory MskReplicatorTargetKafkaCluster.targetKafkaClusterArn(
     TfArg<String> targetKafkaClusterArn,
-  ) = MskReplicatorReplicationInfoListTargetKafkaClusterArn;
+  ) = MskReplicatorTargetKafkaClusterArn;
 
   /// Sets `target_kafka_cluster_id`.
-  const factory MskReplicatorReplicationInfoListTargetKafkaCluster.targetKafkaClusterId(
+  const factory MskReplicatorTargetKafkaCluster.targetKafkaClusterId(
     TfArg<String> targetKafkaClusterId,
-  ) = MskReplicatorReplicationInfoListTargetKafkaClusterId;
+  ) = MskReplicatorTargetKafkaClusterId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -389,12 +360,10 @@ sealed class MskReplicatorReplicationInfoListTargetKafkaCluster {
   Map<String, Object?> encode();
 }
 
-/// The [MskReplicatorReplicationInfoListTargetKafkaCluster.targetKafkaClusterArn] choice: sets `target_kafka_cluster_arn`.
-final class MskReplicatorReplicationInfoListTargetKafkaClusterArn
-    extends MskReplicatorReplicationInfoListTargetKafkaCluster {
-  const MskReplicatorReplicationInfoListTargetKafkaClusterArn(
-    this.targetKafkaClusterArn,
-  );
+/// The [MskReplicatorTargetKafkaCluster.targetKafkaClusterArn] choice: sets `target_kafka_cluster_arn`.
+final class MskReplicatorTargetKafkaClusterArn
+    extends MskReplicatorTargetKafkaCluster {
+  const MskReplicatorTargetKafkaClusterArn(this.targetKafkaClusterArn);
 
   final TfArg<String> targetKafkaClusterArn;
 
@@ -407,12 +376,10 @@ final class MskReplicatorReplicationInfoListTargetKafkaClusterArn
   };
 }
 
-/// The [MskReplicatorReplicationInfoListTargetKafkaCluster.targetKafkaClusterId] choice: sets `target_kafka_cluster_id`.
-final class MskReplicatorReplicationInfoListTargetKafkaClusterId
-    extends MskReplicatorReplicationInfoListTargetKafkaCluster {
-  const MskReplicatorReplicationInfoListTargetKafkaClusterId(
-    this.targetKafkaClusterId,
-  );
+/// The [MskReplicatorTargetKafkaCluster.targetKafkaClusterId] choice: sets `target_kafka_cluster_id`.
+final class MskReplicatorTargetKafkaClusterId
+    extends MskReplicatorTargetKafkaCluster {
+  const MskReplicatorTargetKafkaClusterId(this.targetKafkaClusterId);
 
   final TfArg<String> targetKafkaClusterId;
 
@@ -428,8 +395,8 @@ final class MskReplicatorReplicationInfoListTargetKafkaClusterId
 /// Typed helper for the `replication_info_list.consumer_group_replication` block of
 /// `aws_msk_replicator` (derived from provider schema).
 @immutable
-final class MskReplicatorReplicationInfoListConsumerGroupReplication {
-  const MskReplicatorReplicationInfoListConsumerGroupReplication({
+final class MskReplicatorConsumerGroupReplication {
+  const MskReplicatorConsumerGroupReplication({
     this.consumerGroupOffsetSyncMode,
     this.consumerGroupsToExclude,
     required this.consumerGroupsToReplicate,
@@ -437,9 +404,7 @@ final class MskReplicatorReplicationInfoListConsumerGroupReplication {
     this.synchroniseConsumerGroupOffsets,
   });
 
-  final TfArg<
-    MskReplicatorReplicationInfoListConsumerGroupReplicationConsumerGroupOffsetSyncMode
-  >?
+  final TfArg<MskReplicatorConsumerGroupOffsetSyncMode>?
   consumerGroupOffsetSyncMode;
 
   final TfArg<List<String>>? consumerGroupsToExclude;
@@ -462,14 +427,11 @@ final class MskReplicatorReplicationInfoListConsumerGroupReplication {
 }
 
 /// `consumer_group_offset_sync_mode` — derived from the provider schema description.
-enum MskReplicatorReplicationInfoListConsumerGroupReplicationConsumerGroupOffsetSyncMode
-    implements TerraformEnum {
+enum MskReplicatorConsumerGroupOffsetSyncMode implements TerraformEnum {
   legacy('LEGACY'),
   enhanced('ENHANCED');
 
-  const MskReplicatorReplicationInfoListConsumerGroupReplicationConsumerGroupOffsetSyncMode(
-    this.terraformValue,
-  );
+  const MskReplicatorConsumerGroupOffsetSyncMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -477,8 +439,8 @@ enum MskReplicatorReplicationInfoListConsumerGroupReplicationConsumerGroupOffset
 /// Typed helper for the `replication_info_list.topic_replication` block of
 /// `aws_msk_replicator` (derived from provider schema).
 @immutable
-final class MskReplicatorReplicationInfoListTopicReplication {
-  const MskReplicatorReplicationInfoListTopicReplication({
+final class MskReplicatorTopicReplication {
+  const MskReplicatorTopicReplication({
     this.copyAccessControlListsForTopics,
     this.copyTopicConfigurations,
     this.detectAndCopyNewTopics,
@@ -498,11 +460,9 @@ final class MskReplicatorReplicationInfoListTopicReplication {
 
   final TfArg<List<String>> topicsToReplicate;
 
-  final MskReplicatorReplicationInfoListTopicReplicationStartingPosition?
-  startingPosition;
+  final MskReplicatorStartingPosition? startingPosition;
 
-  final MskReplicatorReplicationInfoListTopicReplicationTopicNameConfiguration?
-  topicNameConfiguration;
+  final MskReplicatorTopicNameConfiguration? topicNameConfiguration;
 
   Map<String, Object?> encode() => {
     'copy_access_control_lists_for_topics': ?copyAccessControlListsForTopics
@@ -519,28 +479,20 @@ final class MskReplicatorReplicationInfoListTopicReplication {
 /// Typed helper for the `replication_info_list.topic_replication.starting_position` block of
 /// `aws_msk_replicator` (derived from provider schema).
 @immutable
-final class MskReplicatorReplicationInfoListTopicReplicationStartingPosition {
-  const MskReplicatorReplicationInfoListTopicReplicationStartingPosition({
-    this.type,
-  });
+final class MskReplicatorStartingPosition {
+  const MskReplicatorStartingPosition({this.type});
 
-  final TfArg<
-    MskReplicatorReplicationInfoListTopicReplicationStartingPositionType
-  >?
-  type;
+  final TfArg<MskReplicatorStartingPositionType>? type;
 
   Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum MskReplicatorReplicationInfoListTopicReplicationStartingPositionType
-    implements TerraformEnum {
+enum MskReplicatorStartingPositionType implements TerraformEnum {
   latest('LATEST'),
   earliest('EARLIEST');
 
-  const MskReplicatorReplicationInfoListTopicReplicationStartingPositionType(
-    this.terraformValue,
-  );
+  const MskReplicatorStartingPositionType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -548,28 +500,20 @@ enum MskReplicatorReplicationInfoListTopicReplicationStartingPositionType
 /// Typed helper for the `replication_info_list.topic_replication.topic_name_configuration` block of
 /// `aws_msk_replicator` (derived from provider schema).
 @immutable
-final class MskReplicatorReplicationInfoListTopicReplicationTopicNameConfiguration {
-  const MskReplicatorReplicationInfoListTopicReplicationTopicNameConfiguration({
-    this.type,
-  });
+final class MskReplicatorTopicNameConfiguration {
+  const MskReplicatorTopicNameConfiguration({this.type});
 
-  final TfArg<
-    MskReplicatorReplicationInfoListTopicReplicationTopicNameConfigurationType
-  >?
-  type;
+  final TfArg<MskReplicatorTopicNameConfigurationType>? type;
 
   Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum MskReplicatorReplicationInfoListTopicReplicationTopicNameConfigurationType
-    implements TerraformEnum {
+enum MskReplicatorTopicNameConfigurationType implements TerraformEnum {
   prefixedWithSourceClusterAlias('PREFIXED_WITH_SOURCE_CLUSTER_ALIAS'),
   identical('IDENTICAL');
 
-  const MskReplicatorReplicationInfoListTopicReplicationTopicNameConfigurationType(
-    this.terraformValue,
-  );
+  const MskReplicatorTopicNameConfigurationType(this.terraformValue);
   @override
   final String terraformValue;
 }

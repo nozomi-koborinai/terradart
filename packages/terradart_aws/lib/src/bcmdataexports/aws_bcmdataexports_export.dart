@@ -25,12 +25,12 @@ final class BcmdataexportsExportExport {
 
   final TfArg<String> name;
 
-  final List<BcmdataexportsExportExportDataQuery>? dataQuery;
+  final List<BcmdataexportsExportDataQuery>? dataQuery;
 
-  final List<BcmdataexportsExportExportDestinationConfigurations>?
+  final List<BcmdataexportsExportDestinationConfigurations>?
   destinationConfigurations;
 
-  final List<BcmdataexportsExportExportRefreshCadence>? refreshCadence;
+  final List<BcmdataexportsExportRefreshCadence>? refreshCadence;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -49,8 +49,8 @@ final class BcmdataexportsExportExport {
 /// Typed helper for the `export.data_query` block of
 /// `aws_bcmdataexports_export` (derived from provider schema).
 @immutable
-final class BcmdataexportsExportExportDataQuery {
-  const BcmdataexportsExportExportDataQuery({
+final class BcmdataexportsExportDataQuery {
+  const BcmdataexportsExportDataQuery({
     required this.queryStatement,
     this.tableConfigurations,
   });
@@ -68,13 +68,10 @@ final class BcmdataexportsExportExportDataQuery {
 /// Typed helper for the `export.destination_configurations` block of
 /// `aws_bcmdataexports_export` (derived from provider schema).
 @immutable
-final class BcmdataexportsExportExportDestinationConfigurations {
-  const BcmdataexportsExportExportDestinationConfigurations({
-    this.s3Destination,
-  });
+final class BcmdataexportsExportDestinationConfigurations {
+  const BcmdataexportsExportDestinationConfigurations({this.s3Destination});
 
-  final List<BcmdataexportsExportExportDestinationConfigurationsS3Destination>?
-  s3Destination;
+  final List<BcmdataexportsExportS3Destination>? s3Destination;
 
   Map<String, Object?> encode() => {
     if (s3Destination != null)
@@ -85,8 +82,8 @@ final class BcmdataexportsExportExportDestinationConfigurations {
 /// Typed helper for the `export.destination_configurations.s3_destination` block of
 /// `aws_bcmdataexports_export` (derived from provider schema).
 @immutable
-final class BcmdataexportsExportExportDestinationConfigurationsS3Destination {
-  const BcmdataexportsExportExportDestinationConfigurationsS3Destination({
+final class BcmdataexportsExportS3Destination {
+  const BcmdataexportsExportS3Destination({
     required this.s3Bucket,
     required this.s3Prefix,
     required this.s3Region,
@@ -99,9 +96,7 @@ final class BcmdataexportsExportExportDestinationConfigurationsS3Destination {
 
   final TfArg<String> s3Region;
 
-  final List<
-    BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurations
-  >?
+  final List<BcmdataexportsExportS3OutputConfigurations>?
   s3OutputConfigurations;
 
   Map<String, Object?> encode() => {
@@ -118,33 +113,21 @@ final class BcmdataexportsExportExportDestinationConfigurationsS3Destination {
 /// Typed helper for the `export.destination_configurations.s3_destination.s3_output_configurations` block of
 /// `aws_bcmdataexports_export` (derived from provider schema).
 @immutable
-final class BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurations {
-  const BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurations({
+final class BcmdataexportsExportS3OutputConfigurations {
+  const BcmdataexportsExportS3OutputConfigurations({
     required this.compression,
     required this.format,
     required this.outputType,
     required this.overwrite,
   });
 
-  final TfArg<
-    BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurationsCompression
-  >
-  compression;
+  final TfArg<BcmdataexportsExportCompression> compression;
 
-  final TfArg<
-    BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurationsFormat
-  >
-  format;
+  final TfArg<BcmdataexportsExportFormat> format;
 
-  final TfArg<
-    BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurationsOutputType
-  >
-  outputType;
+  final TfArg<BcmdataexportsExportOutputType> outputType;
 
-  final TfArg<
-    BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurationsOverwrite
-  >
-  overwrite;
+  final TfArg<BcmdataexportsExportOverwrite> overwrite;
 
   Map<String, Object?> encode() => {
     'compression': compression.toTfJson(),
@@ -155,55 +138,43 @@ final class BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3Ou
 }
 
 /// `compression` — derived from the provider schema description.
-enum BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurationsCompression
-    implements TerraformEnum {
+enum BcmdataexportsExportCompression implements TerraformEnum {
   gzip('GZIP'),
   parquet('PARQUET'),
   zip('ZIP');
 
-  const BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurationsCompression(
-    this.terraformValue,
-  );
+  const BcmdataexportsExportCompression(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `format` — derived from the provider schema description.
-enum BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurationsFormat
-    implements TerraformEnum {
+enum BcmdataexportsExportFormat implements TerraformEnum {
   textOrCsv('TEXT_OR_CSV'),
   parquet('PARQUET');
 
-  const BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurationsFormat(
-    this.terraformValue,
-  );
+  const BcmdataexportsExportFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `output_type` — derived from the provider schema description.
-enum BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurationsOutputType
-    implements TerraformEnum {
+enum BcmdataexportsExportOutputType implements TerraformEnum {
   custom('CUSTOM'),
   athena('ATHENA'),
   redshift('REDSHIFT');
 
-  const BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurationsOutputType(
-    this.terraformValue,
-  );
+  const BcmdataexportsExportOutputType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `overwrite` — derived from the provider schema description.
-enum BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurationsOverwrite
-    implements TerraformEnum {
+enum BcmdataexportsExportOverwrite implements TerraformEnum {
   createNewReport('CREATE_NEW_REPORT'),
   overwriteReport('OVERWRITE_REPORT');
 
-  const BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurationsOverwrite(
-    this.terraformValue,
-  );
+  const BcmdataexportsExportOverwrite(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -211,20 +182,19 @@ enum BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputCon
 /// Typed helper for the `export.refresh_cadence` block of
 /// `aws_bcmdataexports_export` (derived from provider schema).
 @immutable
-final class BcmdataexportsExportExportRefreshCadence {
-  const BcmdataexportsExportExportRefreshCadence({required this.frequency});
+final class BcmdataexportsExportRefreshCadence {
+  const BcmdataexportsExportRefreshCadence({required this.frequency});
 
-  final TfArg<BcmdataexportsExportExportRefreshCadenceFrequency> frequency;
+  final TfArg<BcmdataexportsExportFrequency> frequency;
 
   Map<String, Object?> encode() => {'frequency': frequency.toTfJson()};
 }
 
 /// `frequency` — derived from the provider schema description.
-enum BcmdataexportsExportExportRefreshCadenceFrequency
-    implements TerraformEnum {
+enum BcmdataexportsExportFrequency implements TerraformEnum {
   synchronous('SYNCHRONOUS');
 
-  const BcmdataexportsExportExportRefreshCadenceFrequency(this.terraformValue);
+  const BcmdataexportsExportFrequency(this.terraformValue);
   @override
   final String terraformValue;
 }

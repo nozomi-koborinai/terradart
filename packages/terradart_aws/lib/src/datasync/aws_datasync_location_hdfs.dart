@@ -183,10 +183,10 @@ final class DatasyncLocationHdfsQopConfiguration {
     this.rpcProtection,
   });
 
-  final TfArg<DatasyncLocationHdfsQopConfigurationDataTransferProtection>?
+  final TfArg<DatasyncLocationHdfsDataTransferProtection>?
   dataTransferProtection;
 
-  final TfArg<DatasyncLocationHdfsQopConfigurationRpcProtection>? rpcProtection;
+  final TfArg<DatasyncLocationHdfsRpcProtection>? rpcProtection;
 
   Map<String, Object?> encode() => {
     'data_transfer_protection': ?dataTransferProtection?.toTfJson(),
@@ -195,29 +195,25 @@ final class DatasyncLocationHdfsQopConfiguration {
 }
 
 /// `data_transfer_protection` — derived from the provider schema description.
-enum DatasyncLocationHdfsQopConfigurationDataTransferProtection
-    implements TerraformEnum {
+enum DatasyncLocationHdfsDataTransferProtection implements TerraformEnum {
   disabled('DISABLED'),
   authentication('AUTHENTICATION'),
   integrity('INTEGRITY'),
   privacy('PRIVACY');
 
-  const DatasyncLocationHdfsQopConfigurationDataTransferProtection(
-    this.terraformValue,
-  );
+  const DatasyncLocationHdfsDataTransferProtection(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `rpc_protection` — derived from the provider schema description.
-enum DatasyncLocationHdfsQopConfigurationRpcProtection
-    implements TerraformEnum {
+enum DatasyncLocationHdfsRpcProtection implements TerraformEnum {
   disabled('DISABLED'),
   authentication('AUTHENTICATION'),
   integrity('INTEGRITY'),
   privacy('PRIVACY');
 
-  const DatasyncLocationHdfsQopConfigurationRpcProtection(this.terraformValue);
+  const DatasyncLocationHdfsRpcProtection(this.terraformValue);
   @override
   final String terraformValue;
 }

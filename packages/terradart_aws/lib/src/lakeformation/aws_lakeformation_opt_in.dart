@@ -40,48 +40,48 @@ sealed class LakeformationOptInResourceData {
 
   /// Sets `catalog`.
   const factory LakeformationOptInResourceData.catalog(
-    List<LakeformationOptInResourceDataCatalog> catalog,
-  ) = LakeformationOptInResourceDataCatalogChoice;
+    List<LakeformationOptInCatalog> catalog,
+  ) = LakeformationOptInResourceDataCatalog;
 
   /// Sets `data_cells_filter`.
   const factory LakeformationOptInResourceData.dataCellsFilter(
-    List<LakeformationOptInResourceDataDataCellsFilter> dataCellsFilter,
+    List<LakeformationOptInDataCellsFilter> dataCellsFilter,
   ) = LakeformationOptInResourceDataCellsFilter;
 
   /// Sets `data_location`.
   const factory LakeformationOptInResourceData.dataLocation(
-    List<LakeformationOptInResourceDataDataLocation> dataLocation,
+    List<LakeformationOptInDataLocation> dataLocation,
   ) = LakeformationOptInResourceDataLocation;
 
   /// Sets `database`.
   const factory LakeformationOptInResourceData.database(
-    List<LakeformationOptInResourceDataDatabase> database,
-  ) = LakeformationOptInResourceDataDatabaseChoice;
+    List<LakeformationOptInDatabase> database,
+  ) = LakeformationOptInResourceDataDatabase;
 
   /// Sets `lf_tag`.
   const factory LakeformationOptInResourceData.lfTag(
-    List<LakeformationOptInResourceDataLfTag> lfTag,
-  ) = LakeformationOptInResourceDataLfTagChoice;
+    List<LakeformationOptInLfTag> lfTag,
+  ) = LakeformationOptInResourceDataLfTag;
 
   /// Sets `lf_tag_expression`.
   const factory LakeformationOptInResourceData.lfTagExpression(
-    List<LakeformationOptInResourceDataLfTagExpression> lfTagExpression,
-  ) = LakeformationOptInResourceDataLfTagExpressionChoice;
+    List<LakeformationOptInLfTagExpression> lfTagExpression,
+  ) = LakeformationOptInResourceDataLfTagExpression;
 
   /// Sets `lf_tag_policy`.
   const factory LakeformationOptInResourceData.lfTagPolicy(
-    List<LakeformationOptInResourceDataLfTagPolicy> lfTagPolicy,
-  ) = LakeformationOptInResourceDataLfTagPolicyChoice;
+    List<LakeformationOptInLfTagPolicy> lfTagPolicy,
+  ) = LakeformationOptInResourceDataLfTagPolicy;
 
   /// Sets `table`.
   const factory LakeformationOptInResourceData.table(
-    List<LakeformationOptInResourceDataTable> table,
-  ) = LakeformationOptInResourceDataTableChoice;
+    List<LakeformationOptInTable> table,
+  ) = LakeformationOptInResourceDataTable;
 
   /// Sets `table_with_columns`.
   const factory LakeformationOptInResourceData.tableWithColumns(
-    List<LakeformationOptInResourceDataTableWithColumns> tableWithColumns,
-  ) = LakeformationOptInResourceDataTableWithColumnsChoice;
+    List<LakeformationOptInTableWithColumns> tableWithColumns,
+  ) = LakeformationOptInResourceDataTableWithColumns;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -90,11 +90,11 @@ sealed class LakeformationOptInResourceData {
 }
 
 /// The [LakeformationOptInResourceData.catalog] choice: sets `catalog`.
-final class LakeformationOptInResourceDataCatalogChoice
+final class LakeformationOptInResourceDataCatalog
     extends LakeformationOptInResourceData {
-  const LakeformationOptInResourceDataCatalogChoice(this.catalog);
+  const LakeformationOptInResourceDataCatalog(this.catalog);
 
-  final List<LakeformationOptInResourceDataCatalog> catalog;
+  final List<LakeformationOptInCatalog> catalog;
 
   @override
   String get blockKey => 'catalog';
@@ -110,7 +110,7 @@ final class LakeformationOptInResourceDataCellsFilter
     extends LakeformationOptInResourceData {
   const LakeformationOptInResourceDataCellsFilter(this.dataCellsFilter);
 
-  final List<LakeformationOptInResourceDataDataCellsFilter> dataCellsFilter;
+  final List<LakeformationOptInDataCellsFilter> dataCellsFilter;
 
   @override
   String get blockKey => 'data_cells_filter';
@@ -126,7 +126,7 @@ final class LakeformationOptInResourceDataLocation
     extends LakeformationOptInResourceData {
   const LakeformationOptInResourceDataLocation(this.dataLocation);
 
-  final List<LakeformationOptInResourceDataDataLocation> dataLocation;
+  final List<LakeformationOptInDataLocation> dataLocation;
 
   @override
   String get blockKey => 'data_location';
@@ -138,11 +138,11 @@ final class LakeformationOptInResourceDataLocation
 }
 
 /// The [LakeformationOptInResourceData.database] choice: sets `database`.
-final class LakeformationOptInResourceDataDatabaseChoice
+final class LakeformationOptInResourceDataDatabase
     extends LakeformationOptInResourceData {
-  const LakeformationOptInResourceDataDatabaseChoice(this.database);
+  const LakeformationOptInResourceDataDatabase(this.database);
 
-  final List<LakeformationOptInResourceDataDatabase> database;
+  final List<LakeformationOptInDatabase> database;
 
   @override
   String get blockKey => 'database';
@@ -154,11 +154,11 @@ final class LakeformationOptInResourceDataDatabaseChoice
 }
 
 /// The [LakeformationOptInResourceData.lfTag] choice: sets `lf_tag`.
-final class LakeformationOptInResourceDataLfTagChoice
+final class LakeformationOptInResourceDataLfTag
     extends LakeformationOptInResourceData {
-  const LakeformationOptInResourceDataLfTagChoice(this.lfTag);
+  const LakeformationOptInResourceDataLfTag(this.lfTag);
 
-  final List<LakeformationOptInResourceDataLfTag> lfTag;
+  final List<LakeformationOptInLfTag> lfTag;
 
   @override
   String get blockKey => 'lf_tag';
@@ -170,13 +170,11 @@ final class LakeformationOptInResourceDataLfTagChoice
 }
 
 /// The [LakeformationOptInResourceData.lfTagExpression] choice: sets `lf_tag_expression`.
-final class LakeformationOptInResourceDataLfTagExpressionChoice
+final class LakeformationOptInResourceDataLfTagExpression
     extends LakeformationOptInResourceData {
-  const LakeformationOptInResourceDataLfTagExpressionChoice(
-    this.lfTagExpression,
-  );
+  const LakeformationOptInResourceDataLfTagExpression(this.lfTagExpression);
 
-  final List<LakeformationOptInResourceDataLfTagExpression> lfTagExpression;
+  final List<LakeformationOptInLfTagExpression> lfTagExpression;
 
   @override
   String get blockKey => 'lf_tag_expression';
@@ -188,11 +186,11 @@ final class LakeformationOptInResourceDataLfTagExpressionChoice
 }
 
 /// The [LakeformationOptInResourceData.lfTagPolicy] choice: sets `lf_tag_policy`.
-final class LakeformationOptInResourceDataLfTagPolicyChoice
+final class LakeformationOptInResourceDataLfTagPolicy
     extends LakeformationOptInResourceData {
-  const LakeformationOptInResourceDataLfTagPolicyChoice(this.lfTagPolicy);
+  const LakeformationOptInResourceDataLfTagPolicy(this.lfTagPolicy);
 
-  final List<LakeformationOptInResourceDataLfTagPolicy> lfTagPolicy;
+  final List<LakeformationOptInLfTagPolicy> lfTagPolicy;
 
   @override
   String get blockKey => 'lf_tag_policy';
@@ -204,11 +202,11 @@ final class LakeformationOptInResourceDataLfTagPolicyChoice
 }
 
 /// The [LakeformationOptInResourceData.table] choice: sets `table`.
-final class LakeformationOptInResourceDataTableChoice
+final class LakeformationOptInResourceDataTable
     extends LakeformationOptInResourceData {
-  const LakeformationOptInResourceDataTableChoice(this.table);
+  const LakeformationOptInResourceDataTable(this.table);
 
-  final List<LakeformationOptInResourceDataTable> table;
+  final List<LakeformationOptInTable> table;
 
   @override
   String get blockKey => 'table';
@@ -220,13 +218,11 @@ final class LakeformationOptInResourceDataTableChoice
 }
 
 /// The [LakeformationOptInResourceData.tableWithColumns] choice: sets `table_with_columns`.
-final class LakeformationOptInResourceDataTableWithColumnsChoice
+final class LakeformationOptInResourceDataTableWithColumns
     extends LakeformationOptInResourceData {
-  const LakeformationOptInResourceDataTableWithColumnsChoice(
-    this.tableWithColumns,
-  );
+  const LakeformationOptInResourceDataTableWithColumns(this.tableWithColumns);
 
-  final List<LakeformationOptInResourceDataTableWithColumns> tableWithColumns;
+  final List<LakeformationOptInTableWithColumns> tableWithColumns;
 
   @override
   String get blockKey => 'table_with_columns';
@@ -240,8 +236,8 @@ final class LakeformationOptInResourceDataTableWithColumnsChoice
 /// Typed helper for the `resource_data.catalog` block of
 /// `aws_lakeformation_opt_in` (derived from provider schema).
 @immutable
-final class LakeformationOptInResourceDataCatalog {
-  const LakeformationOptInResourceDataCatalog({this.id});
+final class LakeformationOptInCatalog {
+  const LakeformationOptInCatalog({this.id});
 
   final TfArg<String>? id;
 
@@ -251,8 +247,8 @@ final class LakeformationOptInResourceDataCatalog {
 /// Typed helper for the `resource_data.data_cells_filter` block of
 /// `aws_lakeformation_opt_in` (derived from provider schema).
 @immutable
-final class LakeformationOptInResourceDataDataCellsFilter {
-  const LakeformationOptInResourceDataDataCellsFilter({
+final class LakeformationOptInDataCellsFilter {
+  const LakeformationOptInDataCellsFilter({
     this.databaseName,
     this.name,
     this.tableCatalogId,
@@ -278,8 +274,8 @@ final class LakeformationOptInResourceDataDataCellsFilter {
 /// Typed helper for the `resource_data.data_location` block of
 /// `aws_lakeformation_opt_in` (derived from provider schema).
 @immutable
-final class LakeformationOptInResourceDataDataLocation {
-  const LakeformationOptInResourceDataDataLocation({
+final class LakeformationOptInDataLocation {
+  const LakeformationOptInDataLocation({
     this.catalogId,
     required this.resourceArn,
   });
@@ -297,11 +293,8 @@ final class LakeformationOptInResourceDataDataLocation {
 /// Typed helper for the `resource_data.database` block of
 /// `aws_lakeformation_opt_in` (derived from provider schema).
 @immutable
-final class LakeformationOptInResourceDataDatabase {
-  const LakeformationOptInResourceDataDatabase({
-    this.catalogId,
-    required this.name,
-  });
+final class LakeformationOptInDatabase {
+  const LakeformationOptInDatabase({this.catalogId, required this.name});
 
   final TfArg<String>? catalogId;
 
@@ -316,8 +309,8 @@ final class LakeformationOptInResourceDataDatabase {
 /// Typed helper for the `resource_data.lf_tag` block of
 /// `aws_lakeformation_opt_in` (derived from provider schema).
 @immutable
-final class LakeformationOptInResourceDataLfTag {
-  const LakeformationOptInResourceDataLfTag({
+final class LakeformationOptInLfTag {
+  const LakeformationOptInLfTag({
     this.catalogId,
     required this.key,
     required this.values,
@@ -339,11 +332,8 @@ final class LakeformationOptInResourceDataLfTag {
 /// Typed helper for the `resource_data.lf_tag_expression` block of
 /// `aws_lakeformation_opt_in` (derived from provider schema).
 @immutable
-final class LakeformationOptInResourceDataLfTagExpression {
-  const LakeformationOptInResourceDataLfTagExpression({
-    this.catalogId,
-    required this.name,
-  });
+final class LakeformationOptInLfTagExpression {
+  const LakeformationOptInLfTagExpression({this.catalogId, required this.name});
 
   final TfArg<String>? catalogId;
 
@@ -358,8 +348,8 @@ final class LakeformationOptInResourceDataLfTagExpression {
 /// Typed helper for the `resource_data.lf_tag_policy` block of
 /// `aws_lakeformation_opt_in` (derived from provider schema).
 @immutable
-final class LakeformationOptInResourceDataLfTagPolicy {
-  const LakeformationOptInResourceDataLfTagPolicy({
+final class LakeformationOptInLfTagPolicy {
+  const LakeformationOptInLfTagPolicy({
     this.catalogId,
     this.expression,
     this.expressionName,
@@ -385,8 +375,8 @@ final class LakeformationOptInResourceDataLfTagPolicy {
 /// Typed helper for the `resource_data.table` block of
 /// `aws_lakeformation_opt_in` (derived from provider schema).
 @immutable
-final class LakeformationOptInResourceDataTable {
-  const LakeformationOptInResourceDataTable({
+final class LakeformationOptInTable {
+  const LakeformationOptInTable({
     this.catalogId,
     required this.databaseName,
     this.name,
@@ -412,8 +402,8 @@ final class LakeformationOptInResourceDataTable {
 /// Typed helper for the `resource_data.table_with_columns` block of
 /// `aws_lakeformation_opt_in` (derived from provider schema).
 @immutable
-final class LakeformationOptInResourceDataTableWithColumns {
-  const LakeformationOptInResourceDataTableWithColumns({
+final class LakeformationOptInTableWithColumns {
+  const LakeformationOptInTableWithColumns({
     this.catalogId,
     this.columnNames,
     required this.databaseName,
@@ -429,8 +419,7 @@ final class LakeformationOptInResourceDataTableWithColumns {
 
   final TfArg<String> name;
 
-  final List<LakeformationOptInResourceDataTableWithColumnsColumnWildcard>?
-  columnWildcard;
+  final List<LakeformationOptInColumnWildcard>? columnWildcard;
 
   Map<String, Object?> encode() => {
     'catalog_id': ?catalogId?.toTfJson(),
@@ -445,10 +434,8 @@ final class LakeformationOptInResourceDataTableWithColumns {
 /// Typed helper for the `resource_data.table_with_columns.column_wildcard` block of
 /// `aws_lakeformation_opt_in` (derived from provider schema).
 @immutable
-final class LakeformationOptInResourceDataTableWithColumnsColumnWildcard {
-  const LakeformationOptInResourceDataTableWithColumnsColumnWildcard({
-    this.excludedColumnNames,
-  });
+final class LakeformationOptInColumnWildcard {
+  const LakeformationOptInColumnWildcard({this.excludedColumnNames});
 
   final TfArg<List<String>>? excludedColumnNames;
 

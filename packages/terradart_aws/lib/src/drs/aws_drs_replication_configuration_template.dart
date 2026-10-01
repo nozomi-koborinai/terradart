@@ -66,7 +66,7 @@ final class DrsReplicationConfigurationTemplatePitPolicy {
 
   final TfArg<num>? ruleId;
 
-  final TfArg<DrsReplicationConfigurationTemplatePitPolicyUnits> units;
+  final TfArg<DrsReplicationConfigurationTemplateUnits> units;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
@@ -78,13 +78,12 @@ final class DrsReplicationConfigurationTemplatePitPolicy {
 }
 
 /// `units` — derived from the provider schema description.
-enum DrsReplicationConfigurationTemplatePitPolicyUnits
-    implements TerraformEnum {
+enum DrsReplicationConfigurationTemplateUnits implements TerraformEnum {
   minute('MINUTE'),
   hour('HOUR'),
   day('DAY');
 
-  const DrsReplicationConfigurationTemplatePitPolicyUnits(this.terraformValue);
+  const DrsReplicationConfigurationTemplateUnits(this.terraformValue);
   @override
   final String terraformValue;
 }

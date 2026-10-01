@@ -8,17 +8,13 @@ export 'src/verifiedaccess/aws_verifiedaccess_endpoint.dart'
         AwsVerifiedaccessEndpoint,
         VerifiedaccessEndpointAttachmentType,
         VerifiedaccessEndpointCidrOptions,
-        VerifiedaccessEndpointCidrOptionsPortRange,
         VerifiedaccessEndpointCidrOptionsProtocol,
         VerifiedaccessEndpointEndpointType,
         VerifiedaccessEndpointLoadBalancerOptions,
-        VerifiedaccessEndpointLoadBalancerOptionsPortRange,
         VerifiedaccessEndpointLoadBalancerOptionsProtocol,
         VerifiedaccessEndpointNetworkInterfaceOptions,
-        VerifiedaccessEndpointNetworkInterfaceOptionsPortRange,
-        VerifiedaccessEndpointNetworkInterfaceOptionsProtocol,
+        VerifiedaccessEndpointPortRange,
         VerifiedaccessEndpointRdsOptions,
-        VerifiedaccessEndpointRdsOptionsProtocol,
         VerifiedaccessEndpointSseSpecification;
 export 'src/verifiedaccess/aws_verifiedaccess_group.dart'
     show AwsVerifiedaccessGroup, VerifiedaccessGroupSseConfiguration;
@@ -28,9 +24,9 @@ export 'src/verifiedaccess/aws_verifiedaccess_instance_logging_configuration.dar
     show
         AwsVerifiedaccessInstanceLoggingConfiguration,
         VerifiedaccessInstanceLoggingConfigurationAccessLogs,
-        VerifiedaccessInstanceLoggingConfigurationAccessLogsCloudwatchLogs,
-        VerifiedaccessInstanceLoggingConfigurationAccessLogsKinesisDataFirehose,
-        VerifiedaccessInstanceLoggingConfigurationAccessLogsS3;
+        VerifiedaccessInstanceLoggingConfigurationCloudwatchLogs,
+        VerifiedaccessInstanceLoggingConfigurationKinesisDataFirehose,
+        VerifiedaccessInstanceLoggingConfigurationS3;
 export 'src/verifiedaccess/aws_verifiedaccess_instance_trust_provider_attachment.dart'
     show AwsVerifiedaccessInstanceTrustProviderAttachment;
 export 'src/verifiedaccess/aws_verifiedaccess_trust_provider.dart'

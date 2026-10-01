@@ -19,9 +19,9 @@ final class BackupFrameworkControl {
 
   final TfArg<String> name;
 
-  final List<BackupFrameworkControlInputParameter>? inputParameter;
+  final List<BackupFrameworkInputParameter>? inputParameter;
 
-  final BackupFrameworkControlScope? scope;
+  final BackupFrameworkScope? scope;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -34,8 +34,8 @@ final class BackupFrameworkControl {
 /// Typed helper for the `control.input_parameter` block of
 /// `aws_backup_framework` (derived from provider schema).
 @immutable
-final class BackupFrameworkControlInputParameter {
-  const BackupFrameworkControlInputParameter({this.name, this.value});
+final class BackupFrameworkInputParameter {
+  const BackupFrameworkInputParameter({this.name, this.value});
 
   final TfArg<String>? name;
 
@@ -50,8 +50,8 @@ final class BackupFrameworkControlInputParameter {
 /// Typed helper for the `control.scope` block of
 /// `aws_backup_framework` (derived from provider schema).
 @immutable
-final class BackupFrameworkControlScope {
-  const BackupFrameworkControlScope({
+final class BackupFrameworkScope {
+  const BackupFrameworkScope({
     this.complianceResourceIds,
     this.complianceResourceTypes,
     this.tags,

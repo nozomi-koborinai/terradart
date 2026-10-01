@@ -26,18 +26,17 @@ final class IapSettingsAccessSettings {
 
   final TfArg<List<String>>? identitySources;
 
-  final IapSettingsAccessSettingsAllowedDomainsSettings? allowedDomainsSettings;
+  final IapSettingsAllowedDomainsSettings? allowedDomainsSettings;
 
-  final IapSettingsAccessSettingsCorsSettings? corsSettings;
+  final IapSettingsCorsSettings? corsSettings;
 
-  final IapSettingsAccessSettingsGcipSettings? gcipSettings;
+  final IapSettingsGcipSettings? gcipSettings;
 
-  final IapSettingsAccessSettingsOauthSettings? oauthSettings;
+  final IapSettingsOauthSettings? oauthSettings;
 
-  final IapSettingsAccessSettingsReauthSettings? reauthSettings;
+  final IapSettingsReauthSettings? reauthSettings;
 
-  final IapSettingsAccessSettingsWorkforceIdentitySettings?
-  workforceIdentitySettings;
+  final IapSettingsWorkforceIdentitySettings? workforceIdentitySettings;
 
   Map<String, Object?> encode() => {
     'identity_sources': ?identitySources?.toTfJson(),
@@ -53,11 +52,8 @@ final class IapSettingsAccessSettings {
 /// Typed helper for the `access_settings.allowed_domains_settings` block of
 /// `google_iap_settings` (derived from provider schema).
 @immutable
-final class IapSettingsAccessSettingsAllowedDomainsSettings {
-  const IapSettingsAccessSettingsAllowedDomainsSettings({
-    this.domains,
-    this.enable,
-  });
+final class IapSettingsAllowedDomainsSettings {
+  const IapSettingsAllowedDomainsSettings({this.domains, this.enable});
 
   final TfArg<List<String>>? domains;
 
@@ -72,8 +68,8 @@ final class IapSettingsAccessSettingsAllowedDomainsSettings {
 /// Typed helper for the `access_settings.cors_settings` block of
 /// `google_iap_settings` (derived from provider schema).
 @immutable
-final class IapSettingsAccessSettingsCorsSettings {
-  const IapSettingsAccessSettingsCorsSettings({this.allowHttpOptions});
+final class IapSettingsCorsSettings {
+  const IapSettingsCorsSettings({this.allowHttpOptions});
 
   final TfArg<bool>? allowHttpOptions;
 
@@ -85,11 +81,8 @@ final class IapSettingsAccessSettingsCorsSettings {
 /// Typed helper for the `access_settings.gcip_settings` block of
 /// `google_iap_settings` (derived from provider schema).
 @immutable
-final class IapSettingsAccessSettingsGcipSettings {
-  const IapSettingsAccessSettingsGcipSettings({
-    this.loginPageUri,
-    this.tenantIds,
-  });
+final class IapSettingsGcipSettings {
+  const IapSettingsGcipSettings({this.loginPageUri, this.tenantIds});
 
   final TfArg<String>? loginPageUri;
 
@@ -104,8 +97,8 @@ final class IapSettingsAccessSettingsGcipSettings {
 /// Typed helper for the `access_settings.oauth_settings` block of
 /// `google_iap_settings` (derived from provider schema).
 @immutable
-final class IapSettingsAccessSettingsOauthSettings {
-  const IapSettingsAccessSettingsOauthSettings({
+final class IapSettingsOauthSettings {
+  const IapSettingsOauthSettings({
     this.clientId,
     this.clientSecret,
     this.loginHint,
@@ -131,8 +124,8 @@ final class IapSettingsAccessSettingsOauthSettings {
 /// Typed helper for the `access_settings.reauth_settings` block of
 /// `google_iap_settings` (derived from provider schema).
 @immutable
-final class IapSettingsAccessSettingsReauthSettings {
-  const IapSettingsAccessSettingsReauthSettings({
+final class IapSettingsReauthSettings {
+  const IapSettingsReauthSettings({
     required this.maxAge,
     required this.method,
     required this.policyType,
@@ -140,9 +133,9 @@ final class IapSettingsAccessSettingsReauthSettings {
 
   final TfArg<String> maxAge;
 
-  final TfArg<IapSettingsAccessSettingsReauthSettingsMethod> method;
+  final TfArg<IapSettingsMethod> method;
 
-  final TfArg<IapSettingsAccessSettingsReauthSettingsPolicyType> policyType;
+  final TfArg<IapSettingsPolicyType> policyType;
 
   Map<String, Object?> encode() => {
     'max_age': maxAge.toTfJson(),
@@ -152,23 +145,22 @@ final class IapSettingsAccessSettingsReauthSettings {
 }
 
 /// `method` — derived from the provider schema description.
-enum IapSettingsAccessSettingsReauthSettingsMethod implements TerraformEnum {
+enum IapSettingsMethod implements TerraformEnum {
   login('LOGIN'),
   secureKey('SECURE_KEY'),
   enrolledSecondFactors('ENROLLED_SECOND_FACTORS');
 
-  const IapSettingsAccessSettingsReauthSettingsMethod(this.terraformValue);
+  const IapSettingsMethod(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `policy_type` — derived from the provider schema description.
-enum IapSettingsAccessSettingsReauthSettingsPolicyType
-    implements TerraformEnum {
+enum IapSettingsPolicyType implements TerraformEnum {
   minimum('MINIMUM'),
   defaultCase('DEFAULT');
 
-  const IapSettingsAccessSettingsReauthSettingsPolicyType(this.terraformValue);
+  const IapSettingsPolicyType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -176,15 +168,15 @@ enum IapSettingsAccessSettingsReauthSettingsPolicyType
 /// Typed helper for the `access_settings.workforce_identity_settings` block of
 /// `google_iap_settings` (derived from provider schema).
 @immutable
-final class IapSettingsAccessSettingsWorkforceIdentitySettings {
-  const IapSettingsAccessSettingsWorkforceIdentitySettings({
+final class IapSettingsWorkforceIdentitySettings {
+  const IapSettingsWorkforceIdentitySettings({
     this.workforcePools,
     this.oauth2,
   });
 
   final TfArg<List<String>>? workforcePools;
 
-  final IapSettingsAccessSettingsWorkforceIdentitySettingsOauth2? oauth2;
+  final IapSettingsOauth2? oauth2;
 
   Map<String, Object?> encode() => {
     'workforce_pools': ?workforcePools?.toTfJson(),
@@ -195,11 +187,8 @@ final class IapSettingsAccessSettingsWorkforceIdentitySettings {
 /// Typed helper for the `access_settings.workforce_identity_settings.oauth2` block of
 /// `google_iap_settings` (derived from provider schema).
 @immutable
-final class IapSettingsAccessSettingsWorkforceIdentitySettingsOauth2 {
-  const IapSettingsAccessSettingsWorkforceIdentitySettingsOauth2({
-    this.clientId,
-    this.clientSecret,
-  });
+final class IapSettingsOauth2 {
+  const IapSettingsOauth2({this.clientId, this.clientSecret});
 
   final TfArg<String>? clientId;
 
@@ -224,13 +213,11 @@ final class IapSettingsApplicationSettings {
 
   final TfArg<String>? cookieDomain;
 
-  final IapSettingsApplicationSettingsAccessDeniedPageSettings?
-  accessDeniedPageSettings;
+  final IapSettingsAccessDeniedPageSettings? accessDeniedPageSettings;
 
-  final IapSettingsApplicationSettingsAttributePropagationSettings?
-  attributePropagationSettings;
+  final IapSettingsAttributePropagationSettings? attributePropagationSettings;
 
-  final IapSettingsApplicationSettingsCsmSettings? csmSettings;
+  final IapSettingsCsmSettings? csmSettings;
 
   Map<String, Object?> encode() => {
     'cookie_domain': ?cookieDomain?.toTfJson(),
@@ -243,8 +230,8 @@ final class IapSettingsApplicationSettings {
 /// Typed helper for the `application_settings.access_denied_page_settings` block of
 /// `google_iap_settings` (derived from provider schema).
 @immutable
-final class IapSettingsApplicationSettingsAccessDeniedPageSettings {
-  const IapSettingsApplicationSettingsAccessDeniedPageSettings({
+final class IapSettingsAccessDeniedPageSettings {
+  const IapSettingsAccessDeniedPageSettings({
     this.accessDeniedPageUri,
     this.generateTroubleshootingUri,
     this.remediationTokenGenerationEnabled,
@@ -267,8 +254,8 @@ final class IapSettingsApplicationSettingsAccessDeniedPageSettings {
 /// Typed helper for the `application_settings.attribute_propagation_settings` block of
 /// `google_iap_settings` (derived from provider schema).
 @immutable
-final class IapSettingsApplicationSettingsAttributePropagationSettings {
-  const IapSettingsApplicationSettingsAttributePropagationSettings({
+final class IapSettingsAttributePropagationSettings {
+  const IapSettingsAttributePropagationSettings({
     this.enable,
     this.expression,
     this.outputCredentials,
@@ -278,12 +265,7 @@ final class IapSettingsApplicationSettingsAttributePropagationSettings {
 
   final TfArg<String>? expression;
 
-  final List<
-    TfArg<
-      IapSettingsApplicationSettingsAttributePropagationSettingsOutputCredentials
-    >
-  >?
-  outputCredentials;
+  final List<TfArg<IapSettingsOutputCredentials>>? outputCredentials;
 
   Map<String, Object?> encode() => {
     'enable': ?enable?.toTfJson(),
@@ -294,15 +276,12 @@ final class IapSettingsApplicationSettingsAttributePropagationSettings {
 }
 
 /// `output_credentials` — derived from the provider schema description.
-enum IapSettingsApplicationSettingsAttributePropagationSettingsOutputCredentials
-    implements TerraformEnum {
+enum IapSettingsOutputCredentials implements TerraformEnum {
   header('HEADER'),
   jwt('JWT'),
   rctoken('RCTOKEN');
 
-  const IapSettingsApplicationSettingsAttributePropagationSettingsOutputCredentials(
-    this.terraformValue,
-  );
+  const IapSettingsOutputCredentials(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -310,8 +289,8 @@ enum IapSettingsApplicationSettingsAttributePropagationSettingsOutputCredentials
 /// Typed helper for the `application_settings.csm_settings` block of
 /// `google_iap_settings` (derived from provider schema).
 @immutable
-final class IapSettingsApplicationSettingsCsmSettings {
-  const IapSettingsApplicationSettingsCsmSettings({this.rctokenAud});
+final class IapSettingsCsmSettings {
+  const IapSettingsCsmSettings({this.rctokenAud});
 
   final TfArg<String>? rctokenAud;
 

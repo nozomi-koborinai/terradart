@@ -40,7 +40,7 @@ curatedDoc: |-
   ///   networkInterface: [
   ///     ComputeInstanceTemplateNetworkInterface(
   ///       network: vpc.ref,
-  ///       accessConfig: [ComputeInstanceTemplateNetworkInterfaceAccessConfig()],
+  ///       accessConfig: [ComputeInstanceTemplateAccessConfig()],
   ///     ),
   ///   ],
   /// );

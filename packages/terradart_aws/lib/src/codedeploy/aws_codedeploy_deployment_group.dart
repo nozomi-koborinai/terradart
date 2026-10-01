@@ -72,13 +72,12 @@ final class CodedeployDeploymentGroupBlueGreenDeploymentConfig {
     this.terminateBlueInstancesOnDeploymentSuccess,
   });
 
-  final CodedeployDeploymentGroupBlueGreenDeploymentConfigDeploymentReadyOption?
-  deploymentReadyOption;
+  final CodedeployDeploymentGroupDeploymentReadyOption? deploymentReadyOption;
 
-  final CodedeployDeploymentGroupBlueGreenDeploymentConfigGreenFleetProvisioningOption?
+  final CodedeployDeploymentGroupGreenFleetProvisioningOption?
   greenFleetProvisioningOption;
 
-  final CodedeployDeploymentGroupBlueGreenDeploymentConfigTerminateBlueInstancesOnDeploymentSuccess?
+  final CodedeployDeploymentGroupTerminateBlueInstancesOnDeploymentSuccess?
   terminateBlueInstancesOnDeploymentSuccess;
 
   Map<String, Object?> encode() => {
@@ -92,16 +91,13 @@ final class CodedeployDeploymentGroupBlueGreenDeploymentConfig {
 /// Typed helper for the `blue_green_deployment_config.deployment_ready_option` block of
 /// `aws_codedeploy_deployment_group` (derived from provider schema).
 @immutable
-final class CodedeployDeploymentGroupBlueGreenDeploymentConfigDeploymentReadyOption {
-  const CodedeployDeploymentGroupBlueGreenDeploymentConfigDeploymentReadyOption({
+final class CodedeployDeploymentGroupDeploymentReadyOption {
+  const CodedeployDeploymentGroupDeploymentReadyOption({
     this.actionOnTimeout,
     this.waitTimeInMinutes,
   });
 
-  final TfArg<
-    CodedeployDeploymentGroupBlueGreenDeploymentConfigDeploymentReadyOptionActionOnTimeout
-  >?
-  actionOnTimeout;
+  final TfArg<CodedeployDeploymentGroupActionOnTimeout>? actionOnTimeout;
 
   final TfArg<num>? waitTimeInMinutes;
 
@@ -112,14 +108,11 @@ final class CodedeployDeploymentGroupBlueGreenDeploymentConfigDeploymentReadyOpt
 }
 
 /// `action_on_timeout` — derived from the provider schema description.
-enum CodedeployDeploymentGroupBlueGreenDeploymentConfigDeploymentReadyOptionActionOnTimeout
-    implements TerraformEnum {
+enum CodedeployDeploymentGroupActionOnTimeout implements TerraformEnum {
   continueDeployment('CONTINUE_DEPLOYMENT'),
   stopDeployment('STOP_DEPLOYMENT');
 
-  const CodedeployDeploymentGroupBlueGreenDeploymentConfigDeploymentReadyOptionActionOnTimeout(
-    this.terraformValue,
-  );
+  const CodedeployDeploymentGroupActionOnTimeout(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -127,26 +120,22 @@ enum CodedeployDeploymentGroupBlueGreenDeploymentConfigDeploymentReadyOptionActi
 /// Typed helper for the `blue_green_deployment_config.green_fleet_provisioning_option` block of
 /// `aws_codedeploy_deployment_group` (derived from provider schema).
 @immutable
-final class CodedeployDeploymentGroupBlueGreenDeploymentConfigGreenFleetProvisioningOption {
-  const CodedeployDeploymentGroupBlueGreenDeploymentConfigGreenFleetProvisioningOption({
-    this.action,
-  });
+final class CodedeployDeploymentGroupGreenFleetProvisioningOption {
+  const CodedeployDeploymentGroupGreenFleetProvisioningOption({this.action});
 
-  final TfArg<
-    CodedeployDeploymentGroupBlueGreenDeploymentConfigGreenFleetProvisioningOptionAction
-  >?
+  final TfArg<CodedeployDeploymentGroupGreenFleetProvisioningOptionAction>?
   action;
 
   Map<String, Object?> encode() => {'action': ?action?.toTfJson()};
 }
 
 /// `action` — derived from the provider schema description.
-enum CodedeployDeploymentGroupBlueGreenDeploymentConfigGreenFleetProvisioningOptionAction
+enum CodedeployDeploymentGroupGreenFleetProvisioningOptionAction
     implements TerraformEnum {
   discoverExisting('DISCOVER_EXISTING'),
   copyAutoScalingGroup('COPY_AUTO_SCALING_GROUP');
 
-  const CodedeployDeploymentGroupBlueGreenDeploymentConfigGreenFleetProvisioningOptionAction(
+  const CodedeployDeploymentGroupGreenFleetProvisioningOptionAction(
     this.terraformValue,
   );
   @override
@@ -156,14 +145,14 @@ enum CodedeployDeploymentGroupBlueGreenDeploymentConfigGreenFleetProvisioningOpt
 /// Typed helper for the `blue_green_deployment_config.terminate_blue_instances_on_deployment_success` block of
 /// `aws_codedeploy_deployment_group` (derived from provider schema).
 @immutable
-final class CodedeployDeploymentGroupBlueGreenDeploymentConfigTerminateBlueInstancesOnDeploymentSuccess {
-  const CodedeployDeploymentGroupBlueGreenDeploymentConfigTerminateBlueInstancesOnDeploymentSuccess({
+final class CodedeployDeploymentGroupTerminateBlueInstancesOnDeploymentSuccess {
+  const CodedeployDeploymentGroupTerminateBlueInstancesOnDeploymentSuccess({
     this.action,
     this.terminationWaitTimeInMinutes,
   });
 
   final TfArg<
-    CodedeployDeploymentGroupBlueGreenDeploymentConfigTerminateBlueInstancesOnDeploymentSuccessAction
+    CodedeployDeploymentGroupTerminateBlueInstancesOnDeploymentSuccessAction
   >?
   action;
 
@@ -177,12 +166,12 @@ final class CodedeployDeploymentGroupBlueGreenDeploymentConfigTerminateBlueInsta
 }
 
 /// `action` — derived from the provider schema description.
-enum CodedeployDeploymentGroupBlueGreenDeploymentConfigTerminateBlueInstancesOnDeploymentSuccessAction
+enum CodedeployDeploymentGroupTerminateBlueInstancesOnDeploymentSuccessAction
     implements TerraformEnum {
   terminate('TERMINATE'),
   keepAlive('KEEP_ALIVE');
 
-  const CodedeployDeploymentGroupBlueGreenDeploymentConfigTerminateBlueInstancesOnDeploymentSuccessAction(
+  const CodedeployDeploymentGroupTerminateBlueInstancesOnDeploymentSuccessAction(
     this.terraformValue,
   );
   @override
@@ -198,11 +187,9 @@ final class CodedeployDeploymentGroupDeploymentStyle {
     this.deploymentType,
   });
 
-  final TfArg<CodedeployDeploymentGroupDeploymentStyleDeploymentOption>?
-  deploymentOption;
+  final TfArg<CodedeployDeploymentGroupDeploymentOption>? deploymentOption;
 
-  final TfArg<CodedeployDeploymentGroupDeploymentStyleDeploymentType>?
-  deploymentType;
+  final TfArg<CodedeployDeploymentGroupDeploymentType>? deploymentType;
 
   Map<String, Object?> encode() => {
     'deployment_option': ?deploymentOption?.toTfJson(),
@@ -211,33 +198,28 @@ final class CodedeployDeploymentGroupDeploymentStyle {
 }
 
 /// `deployment_option` — derived from the provider schema description.
-enum CodedeployDeploymentGroupDeploymentStyleDeploymentOption
-    implements TerraformEnum {
+enum CodedeployDeploymentGroupDeploymentOption implements TerraformEnum {
   withTrafficControl('WITH_TRAFFIC_CONTROL'),
   withoutTrafficControl('WITHOUT_TRAFFIC_CONTROL');
 
-  const CodedeployDeploymentGroupDeploymentStyleDeploymentOption(
-    this.terraformValue,
-  );
+  const CodedeployDeploymentGroupDeploymentOption(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `deployment_type` — derived from the provider schema description.
-enum CodedeployDeploymentGroupDeploymentStyleDeploymentType
-    implements TerraformEnum {
+enum CodedeployDeploymentGroupDeploymentType implements TerraformEnum {
   inPlace('IN_PLACE'),
   blueGreen('BLUE_GREEN');
 
-  const CodedeployDeploymentGroupDeploymentStyleDeploymentType(
-    this.terraformValue,
-  );
+  const CodedeployDeploymentGroupDeploymentType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `ec2_tag_filter` block of
 /// `aws_codedeploy_deployment_group` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
 final class CodedeployDeploymentGroupEc2TagFilter {
   const CodedeployDeploymentGroupEc2TagFilter({
@@ -248,7 +230,7 @@ final class CodedeployDeploymentGroupEc2TagFilter {
 
   final TfArg<String>? key;
 
-  final TfArg<CodedeployDeploymentGroupEc2TagFilterType>? type;
+  final TfArg<CodedeployDeploymentGroupType>? type;
 
   final TfArg<String>? value;
 
@@ -260,12 +242,12 @@ final class CodedeployDeploymentGroupEc2TagFilter {
 }
 
 /// `type` — derived from the provider schema description.
-enum CodedeployDeploymentGroupEc2TagFilterType implements TerraformEnum {
+enum CodedeployDeploymentGroupType implements TerraformEnum {
   keyOnly('KEY_ONLY'),
   valueOnly('VALUE_ONLY'),
   keyAndValue('KEY_AND_VALUE');
 
-  const CodedeployDeploymentGroupEc2TagFilterType(this.terraformValue);
+  const CodedeployDeploymentGroupType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -276,47 +258,12 @@ enum CodedeployDeploymentGroupEc2TagFilterType implements TerraformEnum {
 final class CodedeployDeploymentGroupEc2TagSet {
   const CodedeployDeploymentGroupEc2TagSet({this.ec2TagFilter});
 
-  final List<CodedeployDeploymentGroupEc2TagSetEc2TagFilter>? ec2TagFilter;
+  final List<CodedeployDeploymentGroupEc2TagFilter>? ec2TagFilter;
 
   Map<String, Object?> encode() => {
     if (ec2TagFilter != null)
       'ec2_tag_filter': [for (final e in ec2TagFilter!) e.encode()],
   };
-}
-
-/// Typed helper for the `ec2_tag_set.ec2_tag_filter` block of
-/// `aws_codedeploy_deployment_group` (derived from provider schema).
-@immutable
-final class CodedeployDeploymentGroupEc2TagSetEc2TagFilter {
-  const CodedeployDeploymentGroupEc2TagSetEc2TagFilter({
-    this.key,
-    this.type,
-    this.value,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<CodedeployDeploymentGroupEc2TagSetEc2TagFilterType>? type;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'type': ?type?.toTfJson(),
-    'value': ?value?.toTfJson(),
-  };
-}
-
-/// `type` — derived from the provider schema description.
-enum CodedeployDeploymentGroupEc2TagSetEc2TagFilterType
-    implements TerraformEnum {
-  keyOnly('KEY_ONLY'),
-  valueOnly('VALUE_ONLY'),
-  keyAndValue('KEY_AND_VALUE');
-
-  const CodedeployDeploymentGroupEc2TagSetEc2TagFilterType(this.terraformValue);
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `ecs_service` block of
@@ -348,13 +295,11 @@ final class CodedeployDeploymentGroupLoadBalancerInfo {
     this.targetGroupPairInfo,
   });
 
-  final List<CodedeployDeploymentGroupLoadBalancerInfoElbInfo>? elbInfo;
+  final List<CodedeployDeploymentGroupElbInfo>? elbInfo;
 
-  final List<CodedeployDeploymentGroupLoadBalancerInfoTargetGroupInfo>?
-  targetGroupInfo;
+  final List<CodedeployDeploymentGroupTargetGroupInfo>? targetGroupInfo;
 
-  final CodedeployDeploymentGroupLoadBalancerInfoTargetGroupPairInfo?
-  targetGroupPairInfo;
+  final CodedeployDeploymentGroupTargetGroupPairInfo? targetGroupPairInfo;
 
   Map<String, Object?> encode() => {
     if (elbInfo != null) 'elb_info': [for (final e in elbInfo!) e.encode()],
@@ -367,8 +312,8 @@ final class CodedeployDeploymentGroupLoadBalancerInfo {
 /// Typed helper for the `load_balancer_info.elb_info` block of
 /// `aws_codedeploy_deployment_group` (derived from provider schema).
 @immutable
-final class CodedeployDeploymentGroupLoadBalancerInfoElbInfo {
-  const CodedeployDeploymentGroupLoadBalancerInfoElbInfo({this.name});
+final class CodedeployDeploymentGroupElbInfo {
+  const CodedeployDeploymentGroupElbInfo({this.name});
 
   final TfArg<String>? name;
 
@@ -378,8 +323,8 @@ final class CodedeployDeploymentGroupLoadBalancerInfoElbInfo {
 /// Typed helper for the `load_balancer_info.target_group_info` block of
 /// `aws_codedeploy_deployment_group` (derived from provider schema).
 @immutable
-final class CodedeployDeploymentGroupLoadBalancerInfoTargetGroupInfo {
-  const CodedeployDeploymentGroupLoadBalancerInfoTargetGroupInfo({this.name});
+final class CodedeployDeploymentGroupTargetGroupInfo {
+  const CodedeployDeploymentGroupTargetGroupInfo({this.name});
 
   final TfArg<String>? name;
 
@@ -389,23 +334,18 @@ final class CodedeployDeploymentGroupLoadBalancerInfoTargetGroupInfo {
 /// Typed helper for the `load_balancer_info.target_group_pair_info` block of
 /// `aws_codedeploy_deployment_group` (derived from provider schema).
 @immutable
-final class CodedeployDeploymentGroupLoadBalancerInfoTargetGroupPairInfo {
-  const CodedeployDeploymentGroupLoadBalancerInfoTargetGroupPairInfo({
+final class CodedeployDeploymentGroupTargetGroupPairInfo {
+  const CodedeployDeploymentGroupTargetGroupPairInfo({
     required this.prodTrafficRoute,
     required this.targetGroup,
     this.testTrafficRoute,
   });
 
-  final CodedeployDeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoute
-  prodTrafficRoute;
+  final CodedeployDeploymentGroupProdTrafficRoute prodTrafficRoute;
 
-  final List<
-    CodedeployDeploymentGroupLoadBalancerInfoTargetGroupPairInfoTargetGroup
-  >
-  targetGroup;
+  final List<CodedeployDeploymentGroupTargetGroup> targetGroup;
 
-  final CodedeployDeploymentGroupLoadBalancerInfoTargetGroupPairInfoTestTrafficRoute?
-  testTrafficRoute;
+  final CodedeployDeploymentGroupTestTrafficRoute? testTrafficRoute;
 
   Map<String, Object?> encode() => {
     'prod_traffic_route': prodTrafficRoute.encode(),
@@ -417,10 +357,8 @@ final class CodedeployDeploymentGroupLoadBalancerInfoTargetGroupPairInfo {
 /// Typed helper for the `load_balancer_info.target_group_pair_info.prod_traffic_route` block of
 /// `aws_codedeploy_deployment_group` (derived from provider schema).
 @immutable
-final class CodedeployDeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoute {
-  const CodedeployDeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoute({
-    required this.listenerArns,
-  });
+final class CodedeployDeploymentGroupProdTrafficRoute {
+  const CodedeployDeploymentGroupProdTrafficRoute({required this.listenerArns});
 
   final TfArg<List<String>> listenerArns;
 
@@ -430,10 +368,8 @@ final class CodedeployDeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTraf
 /// Typed helper for the `load_balancer_info.target_group_pair_info.target_group` block of
 /// `aws_codedeploy_deployment_group` (derived from provider schema).
 @immutable
-final class CodedeployDeploymentGroupLoadBalancerInfoTargetGroupPairInfoTargetGroup {
-  const CodedeployDeploymentGroupLoadBalancerInfoTargetGroupPairInfoTargetGroup({
-    required this.name,
-  });
+final class CodedeployDeploymentGroupTargetGroup {
+  const CodedeployDeploymentGroupTargetGroup({required this.name});
 
   final TfArg<String> name;
 
@@ -443,10 +379,8 @@ final class CodedeployDeploymentGroupLoadBalancerInfoTargetGroupPairInfoTargetGr
 /// Typed helper for the `load_balancer_info.target_group_pair_info.test_traffic_route` block of
 /// `aws_codedeploy_deployment_group` (derived from provider schema).
 @immutable
-final class CodedeployDeploymentGroupLoadBalancerInfoTargetGroupPairInfoTestTrafficRoute {
-  const CodedeployDeploymentGroupLoadBalancerInfoTargetGroupPairInfoTestTrafficRoute({
-    required this.listenerArns,
-  });
+final class CodedeployDeploymentGroupTestTrafficRoute {
+  const CodedeployDeploymentGroupTestTrafficRoute({required this.listenerArns});
 
   final TfArg<List<String>> listenerArns;
 
@@ -465,7 +399,7 @@ final class CodedeployDeploymentGroupOnPremisesInstanceTagFilter {
 
   final TfArg<String>? key;
 
-  final TfArg<CodedeployDeploymentGroupOnPremisesInstanceTagFilterType>? type;
+  final TfArg<CodedeployDeploymentGroupType>? type;
 
   final TfArg<String>? value;
 
@@ -474,20 +408,6 @@ final class CodedeployDeploymentGroupOnPremisesInstanceTagFilter {
     'type': ?type?.toTfJson(),
     'value': ?value?.toTfJson(),
   };
-}
-
-/// `type` — derived from the provider schema description.
-enum CodedeployDeploymentGroupOnPremisesInstanceTagFilterType
-    implements TerraformEnum {
-  keyOnly('KEY_ONLY'),
-  valueOnly('VALUE_ONLY'),
-  keyAndValue('KEY_AND_VALUE');
-
-  const CodedeployDeploymentGroupOnPremisesInstanceTagFilterType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `trigger_configuration` block of
@@ -500,8 +420,7 @@ final class CodedeployDeploymentGroupTriggerConfiguration {
     required this.triggerTargetArn,
   });
 
-  final List<TfArg<CodedeployDeploymentGroupTriggerConfigurationTriggerEvents>>
-  triggerEvents;
+  final List<TfArg<CodedeployDeploymentGroupTriggerEvents>> triggerEvents;
 
   final TfArg<String> triggerName;
 
@@ -515,8 +434,7 @@ final class CodedeployDeploymentGroupTriggerConfiguration {
 }
 
 /// `trigger_events` — derived from the provider schema description.
-enum CodedeployDeploymentGroupTriggerConfigurationTriggerEvents
-    implements TerraformEnum {
+enum CodedeployDeploymentGroupTriggerEvents implements TerraformEnum {
   deploymentstart('DeploymentStart'),
   deploymentsuccess('DeploymentSuccess'),
   deploymentfailure('DeploymentFailure'),
@@ -528,9 +446,7 @@ enum CodedeployDeploymentGroupTriggerConfigurationTriggerEvents
   instancefailure('InstanceFailure'),
   instanceready('InstanceReady');
 
-  const CodedeployDeploymentGroupTriggerConfigurationTriggerEvents(
-    this.terraformValue,
-  );
+  const CodedeployDeploymentGroupTriggerEvents(this.terraformValue);
   @override
   final String terraformValue;
 }

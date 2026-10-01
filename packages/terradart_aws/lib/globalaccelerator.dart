@@ -21,8 +21,8 @@ export 'src/globalaccelerator/aws_globalaccelerator_custom_routing_endpoint_grou
     show
         AwsGlobalacceleratorCustomRoutingEndpointGroup,
         GlobalacceleratorCustomRoutingEndpointGroupDestinationConfiguration,
-        GlobalacceleratorCustomRoutingEndpointGroupDestinationConfigurationProtocols,
-        GlobalacceleratorCustomRoutingEndpointGroupEndpointConfiguration;
+        GlobalacceleratorCustomRoutingEndpointGroupEndpointConfiguration,
+        GlobalacceleratorCustomRoutingEndpointGroupProtocols;
 export 'src/globalaccelerator/aws_globalaccelerator_custom_routing_listener.dart'
     show
         AwsGlobalacceleratorCustomRoutingListener,

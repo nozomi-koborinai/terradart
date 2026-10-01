@@ -10,8 +10,8 @@ const Set<String> _awsCleanroomsConfiguredTableSensitive = <String>{};
 /// Typed helper for the `table_reference` block of
 /// `aws_cleanrooms_configured_table` (derived from provider schema).
 @immutable
-final class CleanroomsConfiguredTableTableReference {
-  const CleanroomsConfiguredTableTableReference({
+final class CleanroomsConfiguredTableReference {
+  const CleanroomsConfiguredTableReference({
     required this.databaseName,
     required this.tableName,
   });
@@ -38,7 +38,7 @@ final class AwsCleanroomsConfiguredTable extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required CleanroomsConfiguredTableTableReference tableReference,
+    required CleanroomsConfiguredTableReference tableReference,
     super.lifecycle,
     super.dependsOn,
     super.provider,

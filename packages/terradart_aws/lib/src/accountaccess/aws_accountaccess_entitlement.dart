@@ -15,7 +15,7 @@ const Set<String> _awsAccountaccessEntitlementSensitive = <String>{};
 final class AccountaccessEntitlementEntitlement {
   const AccountaccessEntitlementEntitlement({this.principalRole});
 
-  final List<AccountaccessEntitlementEntitlementPrincipalRole>? principalRole;
+  final List<AccountaccessEntitlementPrincipalRole>? principalRole;
 
   Map<String, Object?> encode() => {
     if (principalRole != null)
@@ -26,16 +26,15 @@ final class AccountaccessEntitlementEntitlement {
 /// Typed helper for the `entitlement.principal_role` block of
 /// `aws_accountaccess_entitlement` (derived from provider schema).
 @immutable
-final class AccountaccessEntitlementEntitlementPrincipalRole {
-  const AccountaccessEntitlementEntitlementPrincipalRole({
+final class AccountaccessEntitlementPrincipalRole {
+  const AccountaccessEntitlementPrincipalRole({
     required this.roleArn,
     this.principal,
   });
 
   final RefTo<AwsIamRole> roleArn;
 
-  final List<AccountaccessEntitlementEntitlementPrincipalRolePrincipal>?
-  principal;
+  final List<AccountaccessEntitlementPrincipal>? principal;
 
   Map<String, Object?> encode() => {
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
@@ -47,15 +46,10 @@ final class AccountaccessEntitlementEntitlementPrincipalRole {
 /// Typed helper for the `entitlement.principal_role.principal` block of
 /// `aws_accountaccess_entitlement` (derived from provider schema).
 @immutable
-final class AccountaccessEntitlementEntitlementPrincipalRolePrincipal {
-  const AccountaccessEntitlementEntitlementPrincipalRolePrincipal({
-    this.identityCenter,
-  });
+final class AccountaccessEntitlementPrincipal {
+  const AccountaccessEntitlementPrincipal({this.identityCenter});
 
-  final List<
-    AccountaccessEntitlementEntitlementPrincipalRolePrincipalIdentityCenter
-  >?
-  identityCenter;
+  final List<AccountaccessEntitlementIdentityCenter>? identityCenter;
 
   Map<String, Object?> encode() => {
     if (identityCenter != null)
@@ -66,11 +60,8 @@ final class AccountaccessEntitlementEntitlementPrincipalRolePrincipal {
 /// Typed helper for the `entitlement.principal_role.principal.identity_center` block of
 /// `aws_accountaccess_entitlement` (derived from provider schema).
 @immutable
-final class AccountaccessEntitlementEntitlementPrincipalRolePrincipalIdentityCenter {
-  const AccountaccessEntitlementEntitlementPrincipalRolePrincipalIdentityCenter({
-    this.groupId,
-    this.userId,
-  });
+final class AccountaccessEntitlementIdentityCenter {
+  const AccountaccessEntitlementIdentityCenter({this.groupId, this.userId});
 
   final TfArg<String>? groupId;
 

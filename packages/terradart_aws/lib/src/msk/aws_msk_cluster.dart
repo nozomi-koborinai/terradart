@@ -46,7 +46,7 @@ final class MskClusterBrokerNodeGroupInfo {
     this.storageInfo,
   });
 
-  final TfArg<MskClusterBrokerNodeGroupInfoAzDistribution>? azDistribution;
+  final TfArg<MskClusterAzDistribution>? azDistribution;
 
   final TfArg<List<String>> clientSubnets;
 
@@ -54,9 +54,9 @@ final class MskClusterBrokerNodeGroupInfo {
 
   final TfArg<List<RefTo<AwsSecurityGroup>>> securityGroups;
 
-  final MskClusterBrokerNodeGroupInfoConnectivityInfo? connectivityInfo;
+  final MskClusterConnectivityInfo? connectivityInfo;
 
-  final MskClusterBrokerNodeGroupInfoStorageInfo? storageInfo;
+  final MskClusterStorageInfo? storageInfo;
 
   Map<String, Object?> encode() => {
     'az_distribution': ?azDistribution?.toTfJson(),
@@ -69,10 +69,10 @@ final class MskClusterBrokerNodeGroupInfo {
 }
 
 /// `az_distribution` — derived from the provider schema description.
-enum MskClusterBrokerNodeGroupInfoAzDistribution implements TerraformEnum {
+enum MskClusterAzDistribution implements TerraformEnum {
   defaultCase('DEFAULT');
 
-  const MskClusterBrokerNodeGroupInfoAzDistribution(this.terraformValue);
+  const MskClusterAzDistribution(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -80,20 +80,18 @@ enum MskClusterBrokerNodeGroupInfoAzDistribution implements TerraformEnum {
 /// Typed helper for the `broker_node_group_info.connectivity_info` block of
 /// `aws_msk_cluster` (derived from provider schema).
 @immutable
-final class MskClusterBrokerNodeGroupInfoConnectivityInfo {
-  const MskClusterBrokerNodeGroupInfoConnectivityInfo({
+final class MskClusterConnectivityInfo {
+  const MskClusterConnectivityInfo({
     this.networkType,
     this.publicAccess,
     this.vpcConnectivity,
   });
 
-  final TfArg<MskClusterBrokerNodeGroupInfoConnectivityInfoNetworkType>?
-  networkType;
+  final TfArg<MskClusterNetworkType>? networkType;
 
-  final MskClusterBrokerNodeGroupInfoConnectivityInfoPublicAccess? publicAccess;
+  final MskClusterPublicAccess? publicAccess;
 
-  final MskClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivity?
-  vpcConnectivity;
+  final MskClusterVpcConnectivity? vpcConnectivity;
 
   Map<String, Object?> encode() => {
     'network_type': ?networkType?.toTfJson(),
@@ -103,14 +101,11 @@ final class MskClusterBrokerNodeGroupInfoConnectivityInfo {
 }
 
 /// `network_type` — derived from the provider schema description.
-enum MskClusterBrokerNodeGroupInfoConnectivityInfoNetworkType
-    implements TerraformEnum {
+enum MskClusterNetworkType implements TerraformEnum {
   ipv4('IPV4'),
   dual('DUAL');
 
-  const MskClusterBrokerNodeGroupInfoConnectivityInfoNetworkType(
-    this.terraformValue,
-  );
+  const MskClusterNetworkType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -118,24 +113,20 @@ enum MskClusterBrokerNodeGroupInfoConnectivityInfoNetworkType
 /// Typed helper for the `broker_node_group_info.connectivity_info.public_access` block of
 /// `aws_msk_cluster` (derived from provider schema).
 @immutable
-final class MskClusterBrokerNodeGroupInfoConnectivityInfoPublicAccess {
-  const MskClusterBrokerNodeGroupInfoConnectivityInfoPublicAccess({this.type});
+final class MskClusterPublicAccess {
+  const MskClusterPublicAccess({this.type});
 
-  final TfArg<MskClusterBrokerNodeGroupInfoConnectivityInfoPublicAccessType>?
-  type;
+  final TfArg<MskClusterType>? type;
 
   Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum MskClusterBrokerNodeGroupInfoConnectivityInfoPublicAccessType
-    implements TerraformEnum {
+enum MskClusterType implements TerraformEnum {
   disabled('DISABLED'),
   serviceProvidedEips('SERVICE_PROVIDED_EIPS');
 
-  const MskClusterBrokerNodeGroupInfoConnectivityInfoPublicAccessType(
-    this.terraformValue,
-  );
+  const MskClusterType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -143,13 +134,10 @@ enum MskClusterBrokerNodeGroupInfoConnectivityInfoPublicAccessType
 /// Typed helper for the `broker_node_group_info.connectivity_info.vpc_connectivity` block of
 /// `aws_msk_cluster` (derived from provider schema).
 @immutable
-final class MskClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivity {
-  const MskClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivity({
-    this.clientAuthentication,
-  });
+final class MskClusterVpcConnectivity {
+  const MskClusterVpcConnectivity({this.clientAuthentication});
 
-  final MskClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthentication?
-  clientAuthentication;
+  final MskClusterVpcConnectivityClientAuthentication? clientAuthentication;
 
   Map<String, Object?> encode() => {
     'client_authentication': ?clientAuthentication?.encode(),
@@ -159,16 +147,12 @@ final class MskClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivity {
 /// Typed helper for the `broker_node_group_info.connectivity_info.vpc_connectivity.client_authentication` block of
 /// `aws_msk_cluster` (derived from provider schema).
 @immutable
-final class MskClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthentication {
-  const MskClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthentication({
-    this.tls,
-    this.sasl,
-  });
+final class MskClusterVpcConnectivityClientAuthentication {
+  const MskClusterVpcConnectivityClientAuthentication({this.tls, this.sasl});
 
   final TfArg<bool>? tls;
 
-  final MskClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationSasl?
-  sasl;
+  final MskClusterSasl? sasl;
 
   Map<String, Object?> encode() => {
     'tls': ?tls?.toTfJson(),
@@ -176,14 +160,12 @@ final class MskClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAu
   };
 }
 
-/// Typed helper for the `broker_node_group_info.connectivity_info.vpc_connectivity.client_authentication.sasl` block of
+/// Typed helper for the `client_authentication.sasl` block of
 /// `aws_msk_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class MskClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationSasl {
-  const MskClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationSasl({
-    this.iam,
-    this.scram,
-  });
+final class MskClusterSasl {
+  const MskClusterSasl({this.iam, this.scram});
 
   final TfArg<bool>? iam;
 
@@ -198,10 +180,10 @@ final class MskClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAu
 /// Typed helper for the `broker_node_group_info.storage_info` block of
 /// `aws_msk_cluster` (derived from provider schema).
 @immutable
-final class MskClusterBrokerNodeGroupInfoStorageInfo {
-  const MskClusterBrokerNodeGroupInfoStorageInfo({this.ebsStorageInfo});
+final class MskClusterStorageInfo {
+  const MskClusterStorageInfo({this.ebsStorageInfo});
 
-  final MskClusterBrokerNodeGroupInfoStorageInfoEbsStorageInfo? ebsStorageInfo;
+  final MskClusterEbsStorageInfo? ebsStorageInfo;
 
   Map<String, Object?> encode() => {
     'ebs_storage_info': ?ebsStorageInfo?.encode(),
@@ -211,16 +193,12 @@ final class MskClusterBrokerNodeGroupInfoStorageInfo {
 /// Typed helper for the `broker_node_group_info.storage_info.ebs_storage_info` block of
 /// `aws_msk_cluster` (derived from provider schema).
 @immutable
-final class MskClusterBrokerNodeGroupInfoStorageInfoEbsStorageInfo {
-  const MskClusterBrokerNodeGroupInfoStorageInfoEbsStorageInfo({
-    this.volumeSize,
-    this.provisionedThroughput,
-  });
+final class MskClusterEbsStorageInfo {
+  const MskClusterEbsStorageInfo({this.volumeSize, this.provisionedThroughput});
 
   final TfArg<num>? volumeSize;
 
-  final MskClusterBrokerNodeGroupInfoStorageInfoEbsStorageInfoProvisionedThroughput?
-  provisionedThroughput;
+  final MskClusterProvisionedThroughput? provisionedThroughput;
 
   Map<String, Object?> encode() => {
     'volume_size': ?volumeSize?.toTfJson(),
@@ -231,11 +209,8 @@ final class MskClusterBrokerNodeGroupInfoStorageInfoEbsStorageInfo {
 /// Typed helper for the `broker_node_group_info.storage_info.ebs_storage_info.provisioned_throughput` block of
 /// `aws_msk_cluster` (derived from provider schema).
 @immutable
-final class MskClusterBrokerNodeGroupInfoStorageInfoEbsStorageInfoProvisionedThroughput {
-  const MskClusterBrokerNodeGroupInfoStorageInfoEbsStorageInfoProvisionedThroughput({
-    this.enabled,
-    this.volumeThroughput,
-  });
+final class MskClusterProvisionedThroughput {
+  const MskClusterProvisionedThroughput({this.enabled, this.volumeThroughput});
 
   final TfArg<bool>? enabled;
 
@@ -259,9 +234,9 @@ final class MskClusterClientAuthentication {
 
   final TfArg<bool>? unauthenticated;
 
-  final MskClusterClientAuthenticationSasl? sasl;
+  final MskClusterSasl? sasl;
 
-  final MskClusterClientAuthenticationTls? tls;
+  final MskClusterTls? tls;
 
   Map<String, Object?> encode() => {
     'unauthenticated': ?unauthenticated?.toTfJson(),
@@ -270,27 +245,11 @@ final class MskClusterClientAuthentication {
   };
 }
 
-/// Typed helper for the `client_authentication.sasl` block of
-/// `aws_msk_cluster` (derived from provider schema).
-@immutable
-final class MskClusterClientAuthenticationSasl {
-  const MskClusterClientAuthenticationSasl({this.iam, this.scram});
-
-  final TfArg<bool>? iam;
-
-  final TfArg<bool>? scram;
-
-  Map<String, Object?> encode() => {
-    'iam': ?iam?.toTfJson(),
-    'scram': ?scram?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `client_authentication.tls` block of
 /// `aws_msk_cluster` (derived from provider schema).
 @immutable
-final class MskClusterClientAuthenticationTls {
-  const MskClusterClientAuthenticationTls({this.certificateAuthorityArns});
+final class MskClusterTls {
+  const MskClusterTls({this.certificateAuthorityArns});
 
   final TfArg<List<String>>? certificateAuthorityArns;
 
@@ -329,7 +288,7 @@ final class MskClusterEncryptionInfo {
 
   final TfArg<String>? encryptionAtRestKmsKeyArn;
 
-  final MskClusterEncryptionInfoEncryptionInTransit? encryptionInTransit;
+  final MskClusterEncryptionInTransit? encryptionInTransit;
 
   Map<String, Object?> encode() => {
     'encryption_at_rest_kms_key_arn': ?encryptionAtRestKmsKeyArn?.toTfJson(),
@@ -340,14 +299,10 @@ final class MskClusterEncryptionInfo {
 /// Typed helper for the `encryption_info.encryption_in_transit` block of
 /// `aws_msk_cluster` (derived from provider schema).
 @immutable
-final class MskClusterEncryptionInfoEncryptionInTransit {
-  const MskClusterEncryptionInfoEncryptionInTransit({
-    this.clientBroker,
-    this.inCluster,
-  });
+final class MskClusterEncryptionInTransit {
+  const MskClusterEncryptionInTransit({this.clientBroker, this.inCluster});
 
-  final TfArg<MskClusterEncryptionInfoEncryptionInTransitClientBroker>?
-  clientBroker;
+  final TfArg<MskClusterClientBroker>? clientBroker;
 
   final TfArg<bool>? inCluster;
 
@@ -358,15 +313,12 @@ final class MskClusterEncryptionInfoEncryptionInTransit {
 }
 
 /// `client_broker` — derived from the provider schema description.
-enum MskClusterEncryptionInfoEncryptionInTransitClientBroker
-    implements TerraformEnum {
+enum MskClusterClientBroker implements TerraformEnum {
   tls('TLS'),
   tlsPlaintext('TLS_PLAINTEXT'),
   plaintext('PLAINTEXT');
 
-  const MskClusterEncryptionInfoEncryptionInTransitClientBroker(
-    this.terraformValue,
-  );
+  const MskClusterClientBroker(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -377,7 +329,7 @@ enum MskClusterEncryptionInfoEncryptionInTransitClientBroker
 final class MskClusterLoggingInfo {
   const MskClusterLoggingInfo({required this.brokerLogs});
 
-  final MskClusterLoggingInfoBrokerLogs brokerLogs;
+  final MskClusterBrokerLogs brokerLogs;
 
   Map<String, Object?> encode() => {'broker_logs': brokerLogs.encode()};
 }
@@ -385,18 +337,14 @@ final class MskClusterLoggingInfo {
 /// Typed helper for the `logging_info.broker_logs` block of
 /// `aws_msk_cluster` (derived from provider schema).
 @immutable
-final class MskClusterLoggingInfoBrokerLogs {
-  const MskClusterLoggingInfoBrokerLogs({
-    this.cloudwatchLogs,
-    this.firehose,
-    this.s3,
-  });
+final class MskClusterBrokerLogs {
+  const MskClusterBrokerLogs({this.cloudwatchLogs, this.firehose, this.s3});
 
-  final MskClusterLoggingInfoBrokerLogsCloudwatchLogs? cloudwatchLogs;
+  final MskClusterCloudwatchLogs? cloudwatchLogs;
 
-  final MskClusterLoggingInfoBrokerLogsFirehose? firehose;
+  final MskClusterFirehose? firehose;
 
-  final MskClusterLoggingInfoBrokerLogsS3? s3;
+  final MskClusterS3? s3;
 
   Map<String, Object?> encode() => {
     'cloudwatch_logs': ?cloudwatchLogs?.encode(),
@@ -408,11 +356,8 @@ final class MskClusterLoggingInfoBrokerLogs {
 /// Typed helper for the `logging_info.broker_logs.cloudwatch_logs` block of
 /// `aws_msk_cluster` (derived from provider schema).
 @immutable
-final class MskClusterLoggingInfoBrokerLogsCloudwatchLogs {
-  const MskClusterLoggingInfoBrokerLogsCloudwatchLogs({
-    required this.enabled,
-    this.logGroup,
-  });
+final class MskClusterCloudwatchLogs {
+  const MskClusterCloudwatchLogs({required this.enabled, this.logGroup});
 
   final TfArg<bool> enabled;
 
@@ -427,11 +372,8 @@ final class MskClusterLoggingInfoBrokerLogsCloudwatchLogs {
 /// Typed helper for the `logging_info.broker_logs.firehose` block of
 /// `aws_msk_cluster` (derived from provider schema).
 @immutable
-final class MskClusterLoggingInfoBrokerLogsFirehose {
-  const MskClusterLoggingInfoBrokerLogsFirehose({
-    this.deliveryStream,
-    required this.enabled,
-  });
+final class MskClusterFirehose {
+  const MskClusterFirehose({this.deliveryStream, required this.enabled});
 
   final TfArg<String>? deliveryStream;
 
@@ -446,12 +388,8 @@ final class MskClusterLoggingInfoBrokerLogsFirehose {
 /// Typed helper for the `logging_info.broker_logs.s3` block of
 /// `aws_msk_cluster` (derived from provider schema).
 @immutable
-final class MskClusterLoggingInfoBrokerLogsS3 {
-  const MskClusterLoggingInfoBrokerLogsS3({
-    this.bucket,
-    required this.enabled,
-    this.prefix,
-  });
+final class MskClusterS3 {
+  const MskClusterS3({this.bucket, required this.enabled, this.prefix});
 
   final RefTo<AwsS3Bucket>? bucket;
 
@@ -472,7 +410,7 @@ final class MskClusterLoggingInfoBrokerLogsS3 {
 final class MskClusterOpenMonitoring {
   const MskClusterOpenMonitoring({required this.prometheus});
 
-  final MskClusterOpenMonitoringPrometheus prometheus;
+  final MskClusterPrometheus prometheus;
 
   Map<String, Object?> encode() => {'prometheus': prometheus.encode()};
 }
@@ -480,15 +418,12 @@ final class MskClusterOpenMonitoring {
 /// Typed helper for the `open_monitoring.prometheus` block of
 /// `aws_msk_cluster` (derived from provider schema).
 @immutable
-final class MskClusterOpenMonitoringPrometheus {
-  const MskClusterOpenMonitoringPrometheus({
-    this.jmxExporter,
-    this.nodeExporter,
-  });
+final class MskClusterPrometheus {
+  const MskClusterPrometheus({this.jmxExporter, this.nodeExporter});
 
-  final MskClusterOpenMonitoringPrometheusJmxExporter? jmxExporter;
+  final MskClusterJmxExporter? jmxExporter;
 
-  final MskClusterOpenMonitoringPrometheusNodeExporter? nodeExporter;
+  final MskClusterNodeExporter? nodeExporter;
 
   Map<String, Object?> encode() => {
     'jmx_exporter': ?jmxExporter?.encode(),
@@ -499,10 +434,8 @@ final class MskClusterOpenMonitoringPrometheus {
 /// Typed helper for the `open_monitoring.prometheus.jmx_exporter` block of
 /// `aws_msk_cluster` (derived from provider schema).
 @immutable
-final class MskClusterOpenMonitoringPrometheusJmxExporter {
-  const MskClusterOpenMonitoringPrometheusJmxExporter({
-    required this.enabledInBroker,
-  });
+final class MskClusterJmxExporter {
+  const MskClusterJmxExporter({required this.enabledInBroker});
 
   final TfArg<bool> enabledInBroker;
 
@@ -514,10 +447,8 @@ final class MskClusterOpenMonitoringPrometheusJmxExporter {
 /// Typed helper for the `open_monitoring.prometheus.node_exporter` block of
 /// `aws_msk_cluster` (derived from provider schema).
 @immutable
-final class MskClusterOpenMonitoringPrometheusNodeExporter {
-  const MskClusterOpenMonitoringPrometheusNodeExporter({
-    required this.enabledInBroker,
-  });
+final class MskClusterNodeExporter {
+  const MskClusterNodeExporter({required this.enabledInBroker});
 
   final TfArg<bool> enabledInBroker;
 
@@ -532,17 +463,17 @@ final class MskClusterOpenMonitoringPrometheusNodeExporter {
 final class MskClusterRebalancing {
   const MskClusterRebalancing({required this.status});
 
-  final TfArg<MskClusterRebalancingStatus> status;
+  final TfArg<MskClusterStatus> status;
 
   Map<String, Object?> encode() => {'status': status.toTfJson()};
 }
 
 /// `status` — derived from the provider schema description.
-enum MskClusterRebalancingStatus implements TerraformEnum {
+enum MskClusterStatus implements TerraformEnum {
   paused('PAUSED'),
   active('ACTIVE');
 
-  const MskClusterRebalancingStatus(this.terraformValue);
+  const MskClusterStatus(this.terraformValue);
   @override
   final String terraformValue;
 }

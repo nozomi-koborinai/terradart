@@ -15,7 +15,7 @@ final class FisSafetyLeverStateState {
 
   final TfArg<String> reason;
 
-  final TfArg<FisSafetyLeverStateStateStatus> status;
+  final TfArg<FisSafetyLeverStateStatus> status;
 
   Map<String, Object?> encode() => {
     'reason': reason.toTfJson(),
@@ -24,11 +24,11 @@ final class FisSafetyLeverStateState {
 }
 
 /// `status` — derived from the provider schema description.
-enum FisSafetyLeverStateStateStatus implements TerraformEnum {
+enum FisSafetyLeverStateStatus implements TerraformEnum {
   engaged('engaged'),
   disengaged('disengaged');
 
-  const FisSafetyLeverStateStateStatus(this.terraformValue);
+  const FisSafetyLeverStateStatus(this.terraformValue);
   @override
   final String terraformValue;
 }

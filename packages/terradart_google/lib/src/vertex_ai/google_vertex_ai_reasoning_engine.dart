@@ -16,7 +16,7 @@ const Set<String> _googleVertexAiReasoningEngineSensitive = <String>{};
 final class VertexAiReasoningEngineContextSpec {
   const VertexAiReasoningEngineContextSpec({this.memoryBankConfig});
 
-  final VertexAiReasoningEngineContextSpecMemoryBankConfig? memoryBankConfig;
+  final VertexAiReasoningEngineMemoryBankConfig? memoryBankConfig;
 
   Map<String, Object?> encode() => {
     'memory_bank_config': ?memoryBankConfig?.encode(),
@@ -26,8 +26,8 @@ final class VertexAiReasoningEngineContextSpec {
 /// Typed helper for the `context_spec.memory_bank_config` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineContextSpecMemoryBankConfig {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfig({
+final class VertexAiReasoningEngineMemoryBankConfig {
+  const VertexAiReasoningEngineMemoryBankConfig({
     this.disableMemoryRevisions,
     this.customizationConfigs,
     this.generationConfig,
@@ -38,23 +38,16 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfig {
 
   final TfArg<bool>? disableMemoryRevisions;
 
-  final List<
-    VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigs
-  >?
-  customizationConfigs;
+  final List<VertexAiReasoningEngineCustomizationConfigs>? customizationConfigs;
 
-  final VertexAiReasoningEngineContextSpecMemoryBankConfigGenerationConfig?
-  generationConfig;
+  final VertexAiReasoningEngineGenerationConfig? generationConfig;
 
-  final VertexAiReasoningEngineContextSpecMemoryBankConfigSimilaritySearchConfig?
-  similaritySearchConfig;
+  final VertexAiReasoningEngineSimilaritySearchConfig? similaritySearchConfig;
 
-  final List<
-    VertexAiReasoningEngineContextSpecMemoryBankConfigStructuredMemoryConfigs
-  >?
+  final List<VertexAiReasoningEngineStructuredMemoryConfigs>?
   structuredMemoryConfigs;
 
-  final VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfig? ttlConfig;
+  final VertexAiReasoningEngineTtlConfig? ttlConfig;
 
   Map<String, Object?> encode() => {
     'disable_memory_revisions': ?disableMemoryRevisions?.toTfJson(),
@@ -75,8 +68,8 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfig {
 /// Typed helper for the `context_spec.memory_bank_config.customization_configs` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigs {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigs({
+final class VertexAiReasoningEngineCustomizationConfigs {
+  const VertexAiReasoningEngineCustomizationConfigs({
     this.disableNaturalLanguageMemories,
     this.enableThirdPersonMemories,
     this.scopeKeys,
@@ -91,18 +84,12 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
 
   final TfArg<List<String>>? scopeKeys;
 
-  final VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsConsolidationConfig?
-  consolidationConfig;
+  final VertexAiReasoningEngineConsolidationConfig? consolidationConfig;
 
-  final List<
-    VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamples
-  >?
+  final List<VertexAiReasoningEngineGenerateMemoriesExamples>?
   generateMemoriesExamples;
 
-  final List<
-    VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopics
-  >?
-  memoryTopics;
+  final List<VertexAiReasoningEngineMemoryTopics>? memoryTopics;
 
   Map<String, Object?> encode() => {
     'disable_natural_language_memories': ?disableNaturalLanguageMemories
@@ -122,8 +109,8 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
 /// Typed helper for the `context_spec.memory_bank_config.customization_configs.consolidation_config` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsConsolidationConfig {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsConsolidationConfig({
+final class VertexAiReasoningEngineConsolidationConfig {
+  const VertexAiReasoningEngineConsolidationConfig({
     this.revisionsPerCandidateCount,
   });
 
@@ -137,19 +124,15 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
 /// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamples {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamples({
+final class VertexAiReasoningEngineGenerateMemoriesExamples {
+  const VertexAiReasoningEngineGenerateMemoriesExamples({
     this.conversationSource,
     this.generatedMemories,
   });
 
-  final VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSource?
-  conversationSource;
+  final VertexAiReasoningEngineConversationSource? conversationSource;
 
-  final List<
-    VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesGeneratedMemories
-  >?
-  generatedMemories;
+  final List<VertexAiReasoningEngineGeneratedMemories>? generatedMemories;
 
   Map<String, Object?> encode() => {
     'conversation_source': ?conversationSource?.encode(),
@@ -161,15 +144,10 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
 /// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.conversation_source` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSource {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSource({
-    this.events,
-  });
+final class VertexAiReasoningEngineConversationSource {
+  const VertexAiReasoningEngineConversationSource({this.events});
 
-  final List<
-    VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEvents
-  >?
-  events;
+  final List<VertexAiReasoningEngineEvents>? events;
 
   Map<String, Object?> encode() => {
     if (events != null) 'events': [for (final e in events!) e.encode()],
@@ -179,13 +157,10 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
 /// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.conversation_source.events` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEvents {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEvents({
-    required this.content,
-  });
+final class VertexAiReasoningEngineEvents {
+  const VertexAiReasoningEngineEvents({required this.content});
 
-  final VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContent
-  content;
+  final VertexAiReasoningEngineContent content;
 
   Map<String, Object?> encode() => {'content': content.encode()};
 }
@@ -193,18 +168,12 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
 /// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.conversation_source.events.content` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContent {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContent({
-    this.role,
-    required this.parts,
-  });
+final class VertexAiReasoningEngineContent {
+  const VertexAiReasoningEngineContent({this.role, required this.parts});
 
   final TfArg<String>? role;
 
-  final List<
-    VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentParts
-  >
-  parts;
+  final List<VertexAiReasoningEngineParts> parts;
 
   Map<String, Object?> encode() => {
     'role': ?role?.toTfJson(),
@@ -215,8 +184,8 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
 /// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.conversation_source.events.content.parts` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentParts {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentParts({
+final class VertexAiReasoningEngineParts {
+  const VertexAiReasoningEngineParts({
     this.text,
     this.thought,
     this.audioTranscription,
@@ -233,29 +202,21 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
 
   final TfArg<bool>? thought;
 
-  final VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsAudioTranscription?
-  audioTranscription;
+  final VertexAiReasoningEngineAudioTranscription? audioTranscription;
 
-  final VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsCodeExecutionResult?
-  codeExecutionResult;
+  final VertexAiReasoningEngineCodeExecutionResult? codeExecutionResult;
 
-  final VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsExecutableCode?
-  executableCode;
+  final VertexAiReasoningEngineExecutableCode? executableCode;
 
-  final VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsFileData?
-  fileData;
+  final VertexAiReasoningEngineFileData? fileData;
 
-  final VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsFunctionCall?
-  functionCall;
+  final VertexAiReasoningEngineFunctionCall? functionCall;
 
-  final VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsFunctionResponse?
-  functionResponse;
+  final VertexAiReasoningEngineFunctionResponse? functionResponse;
 
-  final VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsInlineData?
-  inlineData;
+  final VertexAiReasoningEngineInlineData? inlineData;
 
-  final VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsVideoMetadata?
-  videoMetadata;
+  final VertexAiReasoningEngineVideoMetadata? videoMetadata;
 
   Map<String, Object?> encode() => {
     'text': ?text?.toTfJson(),
@@ -274,8 +235,8 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
 /// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.conversation_source.events.content.parts.audio_transcription` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsAudioTranscription {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsAudioTranscription({
+final class VertexAiReasoningEngineAudioTranscription {
+  const VertexAiReasoningEngineAudioTranscription({
     this.speakerLabel,
     required this.text,
     this.words,
@@ -285,10 +246,7 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
 
   final TfArg<String> text;
 
-  final List<
-    VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsAudioTranscriptionWords
-  >?
-  words;
+  final List<VertexAiReasoningEngineWords>? words;
 
   Map<String, Object?> encode() => {
     'speaker_label': ?speakerLabel?.toTfJson(),
@@ -300,8 +258,8 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
 /// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.conversation_source.events.content.parts.audio_transcription.words` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsAudioTranscriptionWords {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsAudioTranscriptionWords({
+final class VertexAiReasoningEngineWords {
+  const VertexAiReasoningEngineWords({
     this.endOffset,
     this.startOffset,
     required this.word,
@@ -323,8 +281,8 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
 /// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.conversation_source.events.content.parts.code_execution_result` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsCodeExecutionResult {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsCodeExecutionResult({
+final class VertexAiReasoningEngineCodeExecutionResult {
+  const VertexAiReasoningEngineCodeExecutionResult({
     this.id,
     required this.outcome,
     this.output,
@@ -332,10 +290,7 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
 
   final TfArg<String>? id;
 
-  final TfArg<
-    VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsCodeExecutionResultOutcome
-  >
-  outcome;
+  final TfArg<VertexAiReasoningEngineOutcome> outcome;
 
   final TfArg<String>? output;
 
@@ -347,16 +302,13 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
 }
 
 /// `outcome` — derived from the provider schema description.
-enum VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsCodeExecutionResultOutcome
-    implements TerraformEnum {
+enum VertexAiReasoningEngineOutcome implements TerraformEnum {
   outcomeUnspecified('OUTCOME_UNSPECIFIED'),
   outcomeOk('OUTCOME_OK'),
   outcomeFailed('OUTCOME_FAILED'),
   outcomeDeadlineExceeded('OUTCOME_DEADLINE_EXCEEDED');
 
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsCodeExecutionResultOutcome(
-    this.terraformValue,
-  );
+  const VertexAiReasoningEngineOutcome(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -364,8 +316,8 @@ enum VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGener
 /// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.conversation_source.events.content.parts.executable_code` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsExecutableCode {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsExecutableCode({
+final class VertexAiReasoningEngineExecutableCode {
+  const VertexAiReasoningEngineExecutableCode({
     required this.code,
     this.id,
     required this.language,
@@ -375,10 +327,7 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
 
   final TfArg<String>? id;
 
-  final TfArg<
-    VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsExecutableCodeLanguage
-  >
-  language;
+  final TfArg<VertexAiReasoningEngineLanguage> language;
 
   Map<String, Object?> encode() => {
     'code': code.toTfJson(),
@@ -388,15 +337,12 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
 }
 
 /// `language` — derived from the provider schema description.
-enum VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsExecutableCodeLanguage
-    implements TerraformEnum {
+enum VertexAiReasoningEngineLanguage implements TerraformEnum {
   languageUnspecified('LANGUAGE_UNSPECIFIED'),
   python('PYTHON'),
   bash('BASH');
 
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsExecutableCodeLanguage(
-    this.terraformValue,
-  );
+  const VertexAiReasoningEngineLanguage(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -404,8 +350,8 @@ enum VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGener
 /// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.conversation_source.events.content.parts.file_data` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsFileData {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsFileData({
+final class VertexAiReasoningEngineFileData {
+  const VertexAiReasoningEngineFileData({
     required this.fileUri,
     required this.mimeType,
   });
@@ -423,12 +369,8 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
 /// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.conversation_source.events.content.parts.function_call` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsFunctionCall {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsFunctionCall({
-    this.args,
-    this.id,
-    this.name,
-  });
+final class VertexAiReasoningEngineFunctionCall {
+  const VertexAiReasoningEngineFunctionCall({this.args, this.id, this.name});
 
   final TfArg<String>? args;
 
@@ -446,8 +388,8 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
 /// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.conversation_source.events.content.parts.function_response` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsFunctionResponse {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsFunctionResponse({
+final class VertexAiReasoningEngineFunctionResponse {
+  const VertexAiReasoningEngineFunctionResponse({
     this.id,
     required this.name,
     this.response,
@@ -469,8 +411,8 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
 /// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.conversation_source.events.content.parts.inline_data` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsInlineData {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsInlineData({
+final class VertexAiReasoningEngineInlineData {
+  const VertexAiReasoningEngineInlineData({
     required this.data,
     required this.mimeType,
   });
@@ -488,8 +430,8 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
 /// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.conversation_source.events.content.parts.video_metadata` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsVideoMetadata {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsVideoMetadata({
+final class VertexAiReasoningEngineVideoMetadata {
+  const VertexAiReasoningEngineVideoMetadata({
     this.endOffset,
     this.startOffset,
   });
@@ -507,18 +449,15 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
 /// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.generated_memories` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesGeneratedMemories {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesGeneratedMemories({
+final class VertexAiReasoningEngineGeneratedMemories {
+  const VertexAiReasoningEngineGeneratedMemories({
     required this.fact,
     this.topics,
   });
 
   final TfArg<String> fact;
 
-  final List<
-    VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesGeneratedMemoriesTopics
-  >?
-  topics;
+  final List<VertexAiReasoningEngineTopics>? topics;
 
   Map<String, Object?> encode() => {
     'fact': fact.toTfJson(),
@@ -529,17 +468,15 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
 /// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.generated_memories.topics` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesGeneratedMemoriesTopics {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesGeneratedMemoriesTopics({
+final class VertexAiReasoningEngineTopics {
+  const VertexAiReasoningEngineTopics({
     this.customMemoryTopicLabel,
     this.managedMemoryTopic,
   });
 
   final TfArg<String>? customMemoryTopicLabel;
 
-  final TfArg<
-    VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesGeneratedMemoriesTopicsManagedMemoryTopic
-  >?
+  final TfArg<VertexAiReasoningEngineTopicsManagedMemoryTopic>?
   managedMemoryTopic;
 
   Map<String, Object?> encode() => {
@@ -549,16 +486,13 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
 }
 
 /// `managed_memory_topic` — derived from the provider schema description.
-enum VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesGeneratedMemoriesTopicsManagedMemoryTopic
-    implements TerraformEnum {
+enum VertexAiReasoningEngineTopicsManagedMemoryTopic implements TerraformEnum {
   userPersonalInfo('USER_PERSONAL_INFO'),
   userPreferences('USER_PREFERENCES'),
   keyConversationDetails('KEY_CONVERSATION_DETAILS'),
   explicitInstructions('EXPLICIT_INSTRUCTIONS');
 
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesGeneratedMemoriesTopicsManagedMemoryTopic(
-    this.terraformValue,
-  );
+  const VertexAiReasoningEngineTopicsManagedMemoryTopic(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -567,20 +501,18 @@ enum VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGener
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.managedMemoryTopic(...)`.
-sealed class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopics {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopics();
+sealed class VertexAiReasoningEngineMemoryTopics {
+  const VertexAiReasoningEngineMemoryTopics();
 
   /// Sets `managed_memory_topic`.
-  const factory VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopics.managedMemoryTopic(
-    VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopic
-    managedMemoryTopic,
-  ) = VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicChoice;
+  const factory VertexAiReasoningEngineMemoryTopics.managedMemoryTopic(
+    VertexAiReasoningEngineManagedMemoryTopic managedMemoryTopic,
+  ) = VertexAiReasoningEngineMemoryTopicsManagedMemoryTopic;
 
   /// Sets `custom_memory_topic`.
-  const factory VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopics.customMemoryTopic(
-    VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsCustomMemoryTopic
-    customMemoryTopic,
-  ) = VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsCustomMemoryTopicChoice;
+  const factory VertexAiReasoningEngineMemoryTopics.customMemoryTopic(
+    VertexAiReasoningEngineCustomMemoryTopic customMemoryTopic,
+  ) = VertexAiReasoningEngineMemoryTopicsCustomMemoryTopic;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -588,16 +520,14 @@ sealed class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConf
   Map<String, Object?> encode();
 }
 
-/// The [VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopics.managedMemoryTopic] choice: sets `managed_memory_topic`.
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicChoice
-    extends
-        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopics {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicChoice(
+/// The [VertexAiReasoningEngineMemoryTopics.managedMemoryTopic] choice: sets `managed_memory_topic`.
+final class VertexAiReasoningEngineMemoryTopicsManagedMemoryTopic
+    extends VertexAiReasoningEngineMemoryTopics {
+  const VertexAiReasoningEngineMemoryTopicsManagedMemoryTopic(
     this.managedMemoryTopic,
   );
 
-  final VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopic
-  managedMemoryTopic;
+  final VertexAiReasoningEngineManagedMemoryTopic managedMemoryTopic;
 
   @override
   String get blockKey => 'managed_memory_topic';
@@ -608,16 +538,14 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
   };
 }
 
-/// The [VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopics.customMemoryTopic] choice: sets `custom_memory_topic`.
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsCustomMemoryTopicChoice
-    extends
-        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopics {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsCustomMemoryTopicChoice(
+/// The [VertexAiReasoningEngineMemoryTopics.customMemoryTopic] choice: sets `custom_memory_topic`.
+final class VertexAiReasoningEngineMemoryTopicsCustomMemoryTopic
+    extends VertexAiReasoningEngineMemoryTopics {
+  const VertexAiReasoningEngineMemoryTopicsCustomMemoryTopic(
     this.customMemoryTopic,
   );
 
-  final VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsCustomMemoryTopic
-  customMemoryTopic;
+  final VertexAiReasoningEngineCustomMemoryTopic customMemoryTopic;
 
   @override
   String get blockKey => 'custom_memory_topic';
@@ -631,8 +559,8 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
 /// Typed helper for the `context_spec.memory_bank_config.customization_configs.memory_topics.custom_memory_topic` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsCustomMemoryTopic {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsCustomMemoryTopic({
+final class VertexAiReasoningEngineCustomMemoryTopic {
+  const VertexAiReasoningEngineCustomMemoryTopic({
     this.description,
     this.label,
   });
@@ -650,10 +578,8 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
 /// Typed helper for the `context_spec.memory_bank_config.customization_configs.memory_topics.managed_memory_topic` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopic {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopic({
-    this.managedTopicEnum,
-  });
+final class VertexAiReasoningEngineManagedMemoryTopic {
+  const VertexAiReasoningEngineManagedMemoryTopic({this.managedTopicEnum});
 
   final TfArg<String>? managedTopicEnum;
 
@@ -665,16 +591,15 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
 /// Typed helper for the `context_spec.memory_bank_config.generation_config` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigGenerationConfig {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigGenerationConfig({
+final class VertexAiReasoningEngineGenerationConfig {
+  const VertexAiReasoningEngineGenerationConfig({
     required this.model,
     this.generationTriggerConfig,
   });
 
   final TfArg<String> model;
 
-  final VertexAiReasoningEngineContextSpecMemoryBankConfigGenerationConfigGenerationTriggerConfig?
-  generationTriggerConfig;
+  final VertexAiReasoningEngineGenerationTriggerConfig? generationTriggerConfig;
 
   Map<String, Object?> encode() => {
     'model': model.toTfJson(),
@@ -685,13 +610,10 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigGenerationConfig {
 /// Typed helper for the `context_spec.memory_bank_config.generation_config.generation_trigger_config` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigGenerationConfigGenerationTriggerConfig {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigGenerationConfigGenerationTriggerConfig({
-    this.generationRule,
-  });
+final class VertexAiReasoningEngineGenerationTriggerConfig {
+  const VertexAiReasoningEngineGenerationTriggerConfig({this.generationRule});
 
-  final VertexAiReasoningEngineContextSpecMemoryBankConfigGenerationConfigGenerationTriggerConfigGenerationRule?
-  generationRule;
+  final VertexAiReasoningEngineGenerationRule? generationRule;
 
   Map<String, Object?> encode() => {
     'generation_rule': ?generationRule?.encode(),
@@ -701,8 +623,8 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigGenerationConfigGe
 /// Typed helper for the `context_spec.memory_bank_config.generation_config.generation_trigger_config.generation_rule` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigGenerationConfigGenerationTriggerConfigGenerationRule {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigGenerationConfigGenerationTriggerConfigGenerationRule({
+final class VertexAiReasoningEngineGenerationRule {
+  const VertexAiReasoningEngineGenerationRule({
     this.eventCount,
     this.fixedInterval,
     this.idleDuration,
@@ -728,8 +650,8 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigGenerationConfigGe
 /// Typed helper for the `context_spec.memory_bank_config.similarity_search_config` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigSimilaritySearchConfig {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigSimilaritySearchConfig({
+final class VertexAiReasoningEngineSimilaritySearchConfig {
+  const VertexAiReasoningEngineSimilaritySearchConfig({
     required this.embeddingModel,
   });
 
@@ -743,18 +665,15 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigSimilaritySearchCo
 /// Typed helper for the `context_spec.memory_bank_config.structured_memory_configs` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigStructuredMemoryConfigs {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigStructuredMemoryConfigs({
+final class VertexAiReasoningEngineStructuredMemoryConfigs {
+  const VertexAiReasoningEngineStructuredMemoryConfigs({
     this.scopeKeys,
     this.schemaConfigs,
   });
 
   final TfArg<List<String>>? scopeKeys;
 
-  final List<
-    VertexAiReasoningEngineContextSpecMemoryBankConfigStructuredMemoryConfigsSchemaConfigs
-  >?
-  schemaConfigs;
+  final List<VertexAiReasoningEngineSchemaConfigs>? schemaConfigs;
 
   Map<String, Object?> encode() => {
     'scope_keys': ?scopeKeys?.toTfJson(),
@@ -766,8 +685,8 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigStructuredMemoryCo
 /// Typed helper for the `context_spec.memory_bank_config.structured_memory_configs.schema_configs` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigStructuredMemoryConfigsSchemaConfigs {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigStructuredMemoryConfigsSchemaConfigs({
+final class VertexAiReasoningEngineSchemaConfigs {
+  const VertexAiReasoningEngineSchemaConfigs({
     required this.id,
     this.memorySchema,
   });
@@ -785,14 +704,13 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigStructuredMemoryCo
 /// Typed helper for the `context_spec.memory_bank_config.ttl_config` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfig {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfig({
+final class VertexAiReasoningEngineTtlConfig {
+  const VertexAiReasoningEngineTtlConfig({
     required this.policy,
     this.memoryRevisionDefaultTtl,
   });
 
-  final VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicy
-  policy;
+  final VertexAiReasoningEnginePolicy policy;
 
   final TfArg<String>? memoryRevisionDefaultTtl;
 
@@ -806,19 +724,18 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfig {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.defaultTtl(...)`.
-sealed class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicy {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicy();
+sealed class VertexAiReasoningEnginePolicy {
+  const VertexAiReasoningEnginePolicy();
 
   /// Sets `default_ttl`.
-  const factory VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicy.defaultTtl(
+  const factory VertexAiReasoningEnginePolicy.defaultTtl(
     TfArg<String> defaultTtl,
-  ) = VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicyDefaultTtl;
+  ) = VertexAiReasoningEnginePolicyDefaultTtl;
 
   /// Sets `granular_ttl_config`.
-  const factory VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicy.granularTtlConfig(
-    VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigGranularTtlConfig
-    granularTtlConfig,
-  ) = VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicyGranularTtlConfig;
+  const factory VertexAiReasoningEnginePolicy.granularTtlConfig(
+    VertexAiReasoningEngineGranularTtlConfig granularTtlConfig,
+  ) = VertexAiReasoningEnginePolicyGranularTtlConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -826,12 +743,10 @@ sealed class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicy {
   Map<String, Object?> encode();
 }
 
-/// The [VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicy.defaultTtl] choice: sets `default_ttl`.
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicyDefaultTtl
-    extends VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicy {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicyDefaultTtl(
-    this.defaultTtl,
-  );
+/// The [VertexAiReasoningEnginePolicy.defaultTtl] choice: sets `default_ttl`.
+final class VertexAiReasoningEnginePolicyDefaultTtl
+    extends VertexAiReasoningEnginePolicy {
+  const VertexAiReasoningEnginePolicyDefaultTtl(this.defaultTtl);
 
   final TfArg<String> defaultTtl;
 
@@ -842,15 +757,12 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicyDef
   Map<String, Object?> encode() => {'default_ttl': defaultTtl.toTfJson()};
 }
 
-/// The [VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicy.granularTtlConfig] choice: sets `granular_ttl_config`.
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicyGranularTtlConfig
-    extends VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicy {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicyGranularTtlConfig(
-    this.granularTtlConfig,
-  );
+/// The [VertexAiReasoningEnginePolicy.granularTtlConfig] choice: sets `granular_ttl_config`.
+final class VertexAiReasoningEnginePolicyGranularTtlConfig
+    extends VertexAiReasoningEnginePolicy {
+  const VertexAiReasoningEnginePolicyGranularTtlConfig(this.granularTtlConfig);
 
-  final VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigGranularTtlConfig
-  granularTtlConfig;
+  final VertexAiReasoningEngineGranularTtlConfig granularTtlConfig;
 
   @override
   String get blockKey => 'granular_ttl_config';
@@ -864,8 +776,8 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicyGra
 /// Typed helper for the `context_spec.memory_bank_config.ttl_config.granular_ttl_config` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigGranularTtlConfig {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigGranularTtlConfig({
+final class VertexAiReasoningEngineGranularTtlConfig {
+  const VertexAiReasoningEngineGranularTtlConfig({
     this.createTtl,
     this.generateCreatedTtl,
     this.generateUpdatedTtl,
@@ -916,17 +828,17 @@ final class VertexAiReasoningEngineSpec {
 
   final TfArg<String>? classMethods;
 
-  final TfArg<VertexAiReasoningEngineSpecIdentityType>? identityType;
+  final TfArg<VertexAiReasoningEngineIdentityType>? identityType;
 
   final RefTo<GoogleServiceAccount>? serviceAccount;
 
-  final VertexAiReasoningEngineSpecBuildSpec? buildSpec;
+  final VertexAiReasoningEngineBuildSpec? buildSpec;
 
-  final VertexAiReasoningEngineSpecDeployment? deployment;
+  final VertexAiReasoningEngineDeployment? deployment;
 
-  final VertexAiReasoningEngineSpecDeploymentSpec? deploymentSpec;
+  final VertexAiReasoningEngineDeploymentSpec? deploymentSpec;
 
-  final VertexAiReasoningEngineSpecPackageSpec? packageSpec;
+  final VertexAiReasoningEnginePackageSpec? packageSpec;
 
   Map<String, Object?> encode() => {
     'agent_framework': ?agentFramework?.toTfJson(),
@@ -945,18 +857,18 @@ final class VertexAiReasoningEngineSpec {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.containerSpec(...)`.
-sealed class VertexAiReasoningEngineSpecDeployment {
-  const VertexAiReasoningEngineSpecDeployment();
+sealed class VertexAiReasoningEngineDeployment {
+  const VertexAiReasoningEngineDeployment();
 
   /// Sets `container_spec`.
-  const factory VertexAiReasoningEngineSpecDeployment.containerSpec(
-    VertexAiReasoningEngineSpecContainerSpec containerSpec,
-  ) = VertexAiReasoningEngineSpecDeploymentContainerSpec;
+  const factory VertexAiReasoningEngineDeployment.containerSpec(
+    VertexAiReasoningEngineContainerSpec containerSpec,
+  ) = VertexAiReasoningEngineDeploymentContainerSpec;
 
   /// Sets `source_code_spec`.
-  const factory VertexAiReasoningEngineSpecDeployment.sourceCodeSpec(
-    VertexAiReasoningEngineSpecSourceCodeSpec sourceCodeSpec,
-  ) = VertexAiReasoningEngineSpecDeploymentSourceCodeSpec;
+  const factory VertexAiReasoningEngineDeployment.sourceCodeSpec(
+    VertexAiReasoningEngineSourceCodeSpec sourceCodeSpec,
+  ) = VertexAiReasoningEngineDeploymentSourceCodeSpec;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -964,12 +876,12 @@ sealed class VertexAiReasoningEngineSpecDeployment {
   Map<String, Object?> encode();
 }
 
-/// The [VertexAiReasoningEngineSpecDeployment.containerSpec] choice: sets `container_spec`.
-final class VertexAiReasoningEngineSpecDeploymentContainerSpec
-    extends VertexAiReasoningEngineSpecDeployment {
-  const VertexAiReasoningEngineSpecDeploymentContainerSpec(this.containerSpec);
+/// The [VertexAiReasoningEngineDeployment.containerSpec] choice: sets `container_spec`.
+final class VertexAiReasoningEngineDeploymentContainerSpec
+    extends VertexAiReasoningEngineDeployment {
+  const VertexAiReasoningEngineDeploymentContainerSpec(this.containerSpec);
 
-  final VertexAiReasoningEngineSpecContainerSpec containerSpec;
+  final VertexAiReasoningEngineContainerSpec containerSpec;
 
   @override
   String get blockKey => 'container_spec';
@@ -978,14 +890,12 @@ final class VertexAiReasoningEngineSpecDeploymentContainerSpec
   Map<String, Object?> encode() => {'container_spec': containerSpec.encode()};
 }
 
-/// The [VertexAiReasoningEngineSpecDeployment.sourceCodeSpec] choice: sets `source_code_spec`.
-final class VertexAiReasoningEngineSpecDeploymentSourceCodeSpec
-    extends VertexAiReasoningEngineSpecDeployment {
-  const VertexAiReasoningEngineSpecDeploymentSourceCodeSpec(
-    this.sourceCodeSpec,
-  );
+/// The [VertexAiReasoningEngineDeployment.sourceCodeSpec] choice: sets `source_code_spec`.
+final class VertexAiReasoningEngineDeploymentSourceCodeSpec
+    extends VertexAiReasoningEngineDeployment {
+  const VertexAiReasoningEngineDeploymentSourceCodeSpec(this.sourceCodeSpec);
 
-  final VertexAiReasoningEngineSpecSourceCodeSpec sourceCodeSpec;
+  final VertexAiReasoningEngineSourceCodeSpec sourceCodeSpec;
 
   @override
   String get blockKey => 'source_code_spec';
@@ -997,11 +907,11 @@ final class VertexAiReasoningEngineSpecDeploymentSourceCodeSpec
 }
 
 /// `identity_type` — derived from the provider schema description.
-enum VertexAiReasoningEngineSpecIdentityType implements TerraformEnum {
+enum VertexAiReasoningEngineIdentityType implements TerraformEnum {
   serviceAccount('SERVICE_ACCOUNT'),
   agentIdentity('AGENT_IDENTITY');
 
-  const VertexAiReasoningEngineSpecIdentityType(this.terraformValue);
+  const VertexAiReasoningEngineIdentityType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1009,8 +919,8 @@ enum VertexAiReasoningEngineSpecIdentityType implements TerraformEnum {
 /// Typed helper for the `spec.build_spec` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineSpecBuildSpec {
-  const VertexAiReasoningEngineSpecBuildSpec({
+final class VertexAiReasoningEngineBuildSpec {
+  const VertexAiReasoningEngineBuildSpec({
     this.serviceAccount,
     this.workerPool,
   });
@@ -1028,8 +938,8 @@ final class VertexAiReasoningEngineSpecBuildSpec {
 /// Typed helper for the `spec.container_spec` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineSpecContainerSpec {
-  const VertexAiReasoningEngineSpecContainerSpec({
+final class VertexAiReasoningEngineContainerSpec {
+  const VertexAiReasoningEngineContainerSpec({
     required this.imageUri,
     this.port,
   });
@@ -1047,8 +957,8 @@ final class VertexAiReasoningEngineSpecContainerSpec {
 /// Typed helper for the `spec.deployment_spec` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineSpecDeploymentSpec {
-  const VertexAiReasoningEngineSpecDeploymentSpec({
+final class VertexAiReasoningEngineDeploymentSpec {
+  const VertexAiReasoningEngineDeploymentSpec({
     this.containerConcurrency,
     this.maxInstances,
     this.minInstances,
@@ -1067,15 +977,13 @@ final class VertexAiReasoningEngineSpecDeploymentSpec {
 
   final TfArg<Map<String, String>>? resourceLimits;
 
-  final VertexAiReasoningEngineSpecDeploymentSpecAgentGatewayConfig?
-  agentGatewayConfig;
+  final VertexAiReasoningEngineAgentGatewayConfig? agentGatewayConfig;
 
-  final List<VertexAiReasoningEngineSpecDeploymentSpecEnv>? env;
+  final List<VertexAiReasoningEngineEnv>? env;
 
-  final VertexAiReasoningEngineSpecDeploymentSpecPscInterfaceConfig?
-  pscInterfaceConfig;
+  final VertexAiReasoningEnginePscInterfaceConfig? pscInterfaceConfig;
 
-  final List<VertexAiReasoningEngineSpecDeploymentSpecSecretEnv>? secretEnv;
+  final List<VertexAiReasoningEngineSecretEnv>? secretEnv;
 
   Map<String, Object?> encode() => {
     'container_concurrency': ?containerConcurrency?.toTfJson(),
@@ -1093,17 +1001,15 @@ final class VertexAiReasoningEngineSpecDeploymentSpec {
 /// Typed helper for the `spec.deployment_spec.agent_gateway_config` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineSpecDeploymentSpecAgentGatewayConfig {
-  const VertexAiReasoningEngineSpecDeploymentSpecAgentGatewayConfig({
+final class VertexAiReasoningEngineAgentGatewayConfig {
+  const VertexAiReasoningEngineAgentGatewayConfig({
     this.agentToAnywhereConfig,
     this.clientToAgentConfig,
   });
 
-  final VertexAiReasoningEngineSpecDeploymentSpecAgentGatewayConfigAgentToAnywhereConfig?
-  agentToAnywhereConfig;
+  final VertexAiReasoningEngineAgentToAnywhereConfig? agentToAnywhereConfig;
 
-  final VertexAiReasoningEngineSpecDeploymentSpecAgentGatewayConfigClientToAgentConfig?
-  clientToAgentConfig;
+  final VertexAiReasoningEngineClientToAgentConfig? clientToAgentConfig;
 
   Map<String, Object?> encode() => {
     'agent_to_anywhere_config': ?agentToAnywhereConfig?.encode(),
@@ -1114,8 +1020,8 @@ final class VertexAiReasoningEngineSpecDeploymentSpecAgentGatewayConfig {
 /// Typed helper for the `spec.deployment_spec.agent_gateway_config.agent_to_anywhere_config` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineSpecDeploymentSpecAgentGatewayConfigAgentToAnywhereConfig {
-  const VertexAiReasoningEngineSpecDeploymentSpecAgentGatewayConfigAgentToAnywhereConfig({
+final class VertexAiReasoningEngineAgentToAnywhereConfig {
+  const VertexAiReasoningEngineAgentToAnywhereConfig({
     required this.agentGateway,
   });
 
@@ -1127,8 +1033,8 @@ final class VertexAiReasoningEngineSpecDeploymentSpecAgentGatewayConfigAgentToAn
 /// Typed helper for the `spec.deployment_spec.agent_gateway_config.client_to_agent_config` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineSpecDeploymentSpecAgentGatewayConfigClientToAgentConfig {
-  const VertexAiReasoningEngineSpecDeploymentSpecAgentGatewayConfigClientToAgentConfig({
+final class VertexAiReasoningEngineClientToAgentConfig {
+  const VertexAiReasoningEngineClientToAgentConfig({
     required this.agentGateway,
   });
 
@@ -1140,11 +1046,8 @@ final class VertexAiReasoningEngineSpecDeploymentSpecAgentGatewayConfigClientToA
 /// Typed helper for the `spec.deployment_spec.env` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineSpecDeploymentSpecEnv {
-  const VertexAiReasoningEngineSpecDeploymentSpecEnv({
-    required this.name,
-    required this.value,
-  });
+final class VertexAiReasoningEngineEnv {
+  const VertexAiReasoningEngineEnv({required this.name, required this.value});
 
   final TfArg<String> name;
 
@@ -1159,18 +1062,15 @@ final class VertexAiReasoningEngineSpecDeploymentSpecEnv {
 /// Typed helper for the `spec.deployment_spec.psc_interface_config` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineSpecDeploymentSpecPscInterfaceConfig {
-  const VertexAiReasoningEngineSpecDeploymentSpecPscInterfaceConfig({
+final class VertexAiReasoningEnginePscInterfaceConfig {
+  const VertexAiReasoningEnginePscInterfaceConfig({
     this.networkAttachment,
     this.dnsPeeringConfigs,
   });
 
   final TfArg<String>? networkAttachment;
 
-  final List<
-    VertexAiReasoningEngineSpecDeploymentSpecPscInterfaceConfigDnsPeeringConfigs
-  >?
-  dnsPeeringConfigs;
+  final List<VertexAiReasoningEngineDnsPeeringConfigs>? dnsPeeringConfigs;
 
   Map<String, Object?> encode() => {
     'network_attachment': ?networkAttachment?.toTfJson(),
@@ -1182,8 +1082,8 @@ final class VertexAiReasoningEngineSpecDeploymentSpecPscInterfaceConfig {
 /// Typed helper for the `spec.deployment_spec.psc_interface_config.dns_peering_configs` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineSpecDeploymentSpecPscInterfaceConfigDnsPeeringConfigs {
-  const VertexAiReasoningEngineSpecDeploymentSpecPscInterfaceConfigDnsPeeringConfigs({
+final class VertexAiReasoningEngineDnsPeeringConfigs {
+  const VertexAiReasoningEngineDnsPeeringConfigs({
     required this.domain,
     required this.targetNetwork,
     required this.targetProject,
@@ -1205,15 +1105,15 @@ final class VertexAiReasoningEngineSpecDeploymentSpecPscInterfaceConfigDnsPeerin
 /// Typed helper for the `spec.deployment_spec.secret_env` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineSpecDeploymentSpecSecretEnv {
-  const VertexAiReasoningEngineSpecDeploymentSpecSecretEnv({
+final class VertexAiReasoningEngineSecretEnv {
+  const VertexAiReasoningEngineSecretEnv({
     required this.name,
     required this.secretRef,
   });
 
   final TfArg<String> name;
 
-  final VertexAiReasoningEngineSpecDeploymentSpecSecretEnvSecretRef secretRef;
+  final VertexAiReasoningEngineSecretRef secretRef;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -1224,11 +1124,8 @@ final class VertexAiReasoningEngineSpecDeploymentSpecSecretEnv {
 /// Typed helper for the `spec.deployment_spec.secret_env.secret_ref` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineSpecDeploymentSpecSecretEnvSecretRef {
-  const VertexAiReasoningEngineSpecDeploymentSpecSecretEnvSecretRef({
-    required this.secret,
-    this.version,
-  });
+final class VertexAiReasoningEngineSecretRef {
+  const VertexAiReasoningEngineSecretRef({required this.secret, this.version});
 
   final TfArg<String> secret;
 
@@ -1243,8 +1140,8 @@ final class VertexAiReasoningEngineSpecDeploymentSpecSecretEnvSecretRef {
 /// Typed helper for the `spec.package_spec` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineSpecPackageSpec {
-  const VertexAiReasoningEngineSpecPackageSpec({
+final class VertexAiReasoningEnginePackageSpec {
+  const VertexAiReasoningEnginePackageSpec({
     this.dependencyFilesGcsUri,
     this.pickleObjectGcsUri,
     this.pythonVersion,
@@ -1270,23 +1167,21 @@ final class VertexAiReasoningEngineSpecPackageSpec {
 /// Typed helper for the `spec.source_code_spec` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineSpecSourceCodeSpec {
-  const VertexAiReasoningEngineSpecSourceCodeSpec({
+final class VertexAiReasoningEngineSourceCodeSpec {
+  const VertexAiReasoningEngineSourceCodeSpec({
     this.agentConfigSource,
     this.developerConnectSource,
     this.runtime,
     this.inlineSource,
   });
 
-  final VertexAiReasoningEngineSpecSourceCodeSpecAgentConfigSource?
-  agentConfigSource;
+  final VertexAiReasoningEngineAgentConfigSource? agentConfigSource;
 
-  final VertexAiReasoningEngineSpecSourceCodeSpecDeveloperConnectSource?
-  developerConnectSource;
+  final VertexAiReasoningEngineDeveloperConnectSource? developerConnectSource;
 
-  final VertexAiReasoningEngineSpecSourceCodeSpecRuntime? runtime;
+  final VertexAiReasoningEngineRuntime? runtime;
 
-  final VertexAiReasoningEngineSpecSourceCodeSpecInlineSource? inlineSource;
+  final VertexAiReasoningEngineInlineSource? inlineSource;
 
   Map<String, Object?> encode() => {
     'agent_config_source': ?agentConfigSource?.encode(),
@@ -1301,18 +1196,18 @@ final class VertexAiReasoningEngineSpecSourceCodeSpec {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.imageSpec(...)`.
-sealed class VertexAiReasoningEngineSpecSourceCodeSpecRuntime {
-  const VertexAiReasoningEngineSpecSourceCodeSpecRuntime();
+sealed class VertexAiReasoningEngineRuntime {
+  const VertexAiReasoningEngineRuntime();
 
   /// Sets `image_spec`.
-  const factory VertexAiReasoningEngineSpecSourceCodeSpecRuntime.imageSpec(
-    VertexAiReasoningEngineSpecSourceCodeSpecImageSpec imageSpec,
-  ) = VertexAiReasoningEngineSpecSourceCodeSpecRuntimeImageSpec;
+  const factory VertexAiReasoningEngineRuntime.imageSpec(
+    VertexAiReasoningEngineImageSpec imageSpec,
+  ) = VertexAiReasoningEngineRuntimeImageSpec;
 
   /// Sets `python_spec`.
-  const factory VertexAiReasoningEngineSpecSourceCodeSpecRuntime.pythonSpec(
-    VertexAiReasoningEngineSpecSourceCodeSpecPythonSpec pythonSpec,
-  ) = VertexAiReasoningEngineSpecSourceCodeSpecRuntimePythonSpec;
+  const factory VertexAiReasoningEngineRuntime.pythonSpec(
+    VertexAiReasoningEnginePythonSpec pythonSpec,
+  ) = VertexAiReasoningEngineRuntimePythonSpec;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1320,14 +1215,12 @@ sealed class VertexAiReasoningEngineSpecSourceCodeSpecRuntime {
   Map<String, Object?> encode();
 }
 
-/// The [VertexAiReasoningEngineSpecSourceCodeSpecRuntime.imageSpec] choice: sets `image_spec`.
-final class VertexAiReasoningEngineSpecSourceCodeSpecRuntimeImageSpec
-    extends VertexAiReasoningEngineSpecSourceCodeSpecRuntime {
-  const VertexAiReasoningEngineSpecSourceCodeSpecRuntimeImageSpec(
-    this.imageSpec,
-  );
+/// The [VertexAiReasoningEngineRuntime.imageSpec] choice: sets `image_spec`.
+final class VertexAiReasoningEngineRuntimeImageSpec
+    extends VertexAiReasoningEngineRuntime {
+  const VertexAiReasoningEngineRuntimeImageSpec(this.imageSpec);
 
-  final VertexAiReasoningEngineSpecSourceCodeSpecImageSpec imageSpec;
+  final VertexAiReasoningEngineImageSpec imageSpec;
 
   @override
   String get blockKey => 'image_spec';
@@ -1336,14 +1229,12 @@ final class VertexAiReasoningEngineSpecSourceCodeSpecRuntimeImageSpec
   Map<String, Object?> encode() => {'image_spec': imageSpec.encode()};
 }
 
-/// The [VertexAiReasoningEngineSpecSourceCodeSpecRuntime.pythonSpec] choice: sets `python_spec`.
-final class VertexAiReasoningEngineSpecSourceCodeSpecRuntimePythonSpec
-    extends VertexAiReasoningEngineSpecSourceCodeSpecRuntime {
-  const VertexAiReasoningEngineSpecSourceCodeSpecRuntimePythonSpec(
-    this.pythonSpec,
-  );
+/// The [VertexAiReasoningEngineRuntime.pythonSpec] choice: sets `python_spec`.
+final class VertexAiReasoningEngineRuntimePythonSpec
+    extends VertexAiReasoningEngineRuntime {
+  const VertexAiReasoningEngineRuntimePythonSpec(this.pythonSpec);
 
-  final VertexAiReasoningEngineSpecSourceCodeSpecPythonSpec pythonSpec;
+  final VertexAiReasoningEnginePythonSpec pythonSpec;
 
   @override
   String get blockKey => 'python_spec';
@@ -1355,17 +1246,15 @@ final class VertexAiReasoningEngineSpecSourceCodeSpecRuntimePythonSpec
 /// Typed helper for the `spec.source_code_spec.agent_config_source` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineSpecSourceCodeSpecAgentConfigSource {
-  const VertexAiReasoningEngineSpecSourceCodeSpecAgentConfigSource({
+final class VertexAiReasoningEngineAgentConfigSource {
+  const VertexAiReasoningEngineAgentConfigSource({
     this.adkConfig,
     this.inlineSource,
   });
 
-  final VertexAiReasoningEngineSpecSourceCodeSpecAgentConfigSourceAdkConfig?
-  adkConfig;
+  final VertexAiReasoningEngineAdkConfig? adkConfig;
 
-  final VertexAiReasoningEngineSpecSourceCodeSpecAgentConfigSourceInlineSource?
-  inlineSource;
+  final VertexAiReasoningEngineAgentConfigSourceInlineSource? inlineSource;
 
   Map<String, Object?> encode() => {
     'adk_config': ?adkConfig?.encode(),
@@ -1376,10 +1265,8 @@ final class VertexAiReasoningEngineSpecSourceCodeSpecAgentConfigSource {
 /// Typed helper for the `spec.source_code_spec.agent_config_source.adk_config` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineSpecSourceCodeSpecAgentConfigSourceAdkConfig {
-  const VertexAiReasoningEngineSpecSourceCodeSpecAgentConfigSourceAdkConfig({
-    required this.jsonConfig,
-  });
+final class VertexAiReasoningEngineAdkConfig {
+  const VertexAiReasoningEngineAdkConfig({required this.jsonConfig});
 
   final TfArg<String> jsonConfig;
 
@@ -1389,8 +1276,8 @@ final class VertexAiReasoningEngineSpecSourceCodeSpecAgentConfigSourceAdkConfig 
 /// Typed helper for the `spec.source_code_spec.agent_config_source.inline_source` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineSpecSourceCodeSpecAgentConfigSourceInlineSource {
-  const VertexAiReasoningEngineSpecSourceCodeSpecAgentConfigSourceInlineSource({
+final class VertexAiReasoningEngineAgentConfigSourceInlineSource {
+  const VertexAiReasoningEngineAgentConfigSourceInlineSource({
     required this.sourceArchive,
   });
 
@@ -1402,13 +1289,10 @@ final class VertexAiReasoningEngineSpecSourceCodeSpecAgentConfigSourceInlineSour
 /// Typed helper for the `spec.source_code_spec.developer_connect_source` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineSpecSourceCodeSpecDeveloperConnectSource {
-  const VertexAiReasoningEngineSpecSourceCodeSpecDeveloperConnectSource({
-    required this.config,
-  });
+final class VertexAiReasoningEngineDeveloperConnectSource {
+  const VertexAiReasoningEngineDeveloperConnectSource({required this.config});
 
-  final VertexAiReasoningEngineSpecSourceCodeSpecDeveloperConnectSourceConfig
-  config;
+  final VertexAiReasoningEngineConfig config;
 
   Map<String, Object?> encode() => {'config': config.encode()};
 }
@@ -1416,8 +1300,8 @@ final class VertexAiReasoningEngineSpecSourceCodeSpecDeveloperConnectSource {
 /// Typed helper for the `spec.source_code_spec.developer_connect_source.config` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineSpecSourceCodeSpecDeveloperConnectSourceConfig {
-  const VertexAiReasoningEngineSpecSourceCodeSpecDeveloperConnectSourceConfig({
+final class VertexAiReasoningEngineConfig {
+  const VertexAiReasoningEngineConfig({
     required this.dir,
     required this.gitRepositoryLink,
     required this.revision,
@@ -1439,8 +1323,8 @@ final class VertexAiReasoningEngineSpecSourceCodeSpecDeveloperConnectSourceConfi
 /// Typed helper for the `spec.source_code_spec.image_spec` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineSpecSourceCodeSpecImageSpec {
-  const VertexAiReasoningEngineSpecSourceCodeSpecImageSpec({this.buildArgs});
+final class VertexAiReasoningEngineImageSpec {
+  const VertexAiReasoningEngineImageSpec({this.buildArgs});
 
   final TfArg<Map<String, String>>? buildArgs;
 
@@ -1450,10 +1334,8 @@ final class VertexAiReasoningEngineSpecSourceCodeSpecImageSpec {
 /// Typed helper for the `spec.source_code_spec.inline_source` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineSpecSourceCodeSpecInlineSource {
-  const VertexAiReasoningEngineSpecSourceCodeSpecInlineSource({
-    this.sourceArchive,
-  });
+final class VertexAiReasoningEngineInlineSource {
+  const VertexAiReasoningEngineInlineSource({this.sourceArchive});
 
   final TfArg<String>? sourceArchive;
 
@@ -1465,8 +1347,8 @@ final class VertexAiReasoningEngineSpecSourceCodeSpecInlineSource {
 /// Typed helper for the `spec.source_code_spec.python_spec` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
-final class VertexAiReasoningEngineSpecSourceCodeSpecPythonSpec {
-  const VertexAiReasoningEngineSpecSourceCodeSpecPythonSpec({
+final class VertexAiReasoningEnginePythonSpec {
+  const VertexAiReasoningEnginePythonSpec({
     this.entrypointModule,
     this.entrypointObject,
     this.requirementsFile,

@@ -14,8 +14,8 @@ export 'src/route53recoverycontrolconfig/aws_route53recoverycontrolconfig_routin
 export 'src/route53recoverycontrolconfig/aws_route53recoverycontrolconfig_safety_rule.dart'
     show
         AwsRoute53recoverycontrolconfigSafetyRule,
+        Route53recoverycontrolconfigSafetyRuleAssertedControls,
+        Route53recoverycontrolconfigSafetyRuleConfig,
         Route53recoverycontrolconfigSafetyRuleControls,
-        Route53recoverycontrolconfigSafetyRuleControlsAssertedControls,
-        Route53recoverycontrolconfigSafetyRuleControlsGatingControls,
-        Route53recoverycontrolconfigSafetyRuleRuleConfig,
-        Route53recoverycontrolconfigSafetyRuleRuleConfigType;
+        Route53recoverycontrolconfigSafetyRuleGatingControls,
+        Route53recoverycontrolconfigSafetyRuleType;

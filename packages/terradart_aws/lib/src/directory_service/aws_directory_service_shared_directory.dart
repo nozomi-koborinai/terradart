@@ -27,7 +27,7 @@ final class DirectoryServiceSharedDirectoryTarget {
 
   final TfArg<String> id;
 
-  final TfArg<DirectoryServiceSharedDirectoryTargetType>? type;
+  final TfArg<DirectoryServiceSharedDirectoryType>? type;
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
@@ -36,10 +36,10 @@ final class DirectoryServiceSharedDirectoryTarget {
 }
 
 /// `type` — derived from the provider schema description.
-enum DirectoryServiceSharedDirectoryTargetType implements TerraformEnum {
+enum DirectoryServiceSharedDirectoryType implements TerraformEnum {
   account('ACCOUNT');
 
-  const DirectoryServiceSharedDirectoryTargetType(this.terraformValue);
+  const DirectoryServiceSharedDirectoryType(this.terraformValue);
   @override
   final String terraformValue;
 }

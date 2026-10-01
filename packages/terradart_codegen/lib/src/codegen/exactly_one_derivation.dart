@@ -88,6 +88,7 @@ deriveExactlyOneSlots(
             sealedNames: o.sealedNames,
             references: (path) => refs[path.join('.')],
             typeOverrides: o.nestedDartTypeOverrides,
+            reserved: providerEnums.rootSealedNames(type, o),
           )
         : const <NestedBlockSpec>[];
     final typeNames = <SealedGroupName>[];
@@ -370,8 +371,20 @@ WrapperOverride _derive(
     // the plain concatenations: `clashes` vetted every name it resolves to.
     final sealed = sealedTypeName(prefix, slot) ?? prefix + snakeToPascal(slot);
     final variantClasses =
-        exactlyOneVariantNames(sealed, group, classesFor()) ??
-        [for (final m in group) exactlyOneVariantName(sealed, m)];
+        exactlyOneVariantNames(
+          sealed,
+          group,
+          classesFor(),
+          concept: sealedConcept(prefix, sealed),
+        ) ??
+        [
+          for (final m in group)
+            exactlyOneVariantName(
+              sealed,
+              m,
+              concept: sealedConcept(prefix, sealed),
+            ),
+        ];
     classNames
       ..add(sealed)
       ..addAll(variantClasses);

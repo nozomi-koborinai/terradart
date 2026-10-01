@@ -98,7 +98,7 @@ final class SagemakerAppResourceSpec {
     this.sagemakerImageVersionArn,
   });
 
-  final TfArg<SagemakerAppResourceSpecInstanceType>? instanceType;
+  final TfArg<SagemakerAppInstanceType>? instanceType;
 
   final TfArg<String>? lifecycleConfigArn;
 
@@ -118,7 +118,7 @@ final class SagemakerAppResourceSpec {
 }
 
 /// `instance_type` — derived from the provider schema description.
-enum SagemakerAppResourceSpecInstanceType implements TerraformEnum {
+enum SagemakerAppInstanceType implements TerraformEnum {
   system('system'),
   mlT3Micro('ml.t3.micro'),
   mlT3Small('ml.t3.small'),
@@ -296,7 +296,7 @@ enum SagemakerAppResourceSpecInstanceType implements TerraformEnum {
   mlG7e24xlarge('ml.g7e.24xlarge'),
   mlG7e48xlarge('ml.g7e.48xlarge');
 
-  const SagemakerAppResourceSpecInstanceType(this.terraformValue);
+  const SagemakerAppInstanceType(this.terraformValue);
   @override
   final String terraformValue;
 }

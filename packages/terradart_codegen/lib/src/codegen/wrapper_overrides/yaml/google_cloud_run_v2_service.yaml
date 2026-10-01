@@ -13,9 +13,9 @@ curatedDoc: |-
   ///   location: .literal('asia-northeast1'),
   ///   template: CloudRunV2ServiceTemplate(
   ///     containers: [
-  ///       CloudRunV2ServiceTemplateContainers(
+  ///       CloudRunV2ServiceContainers(
   ///         image: .literal('gcr.io/cloudrun/hello'),
-  ///         ports: CloudRunV2ServiceTemplateContainersPorts(
+  ///         ports: CloudRunV2ServicePorts(
   ///           containerPort: .literal(8080),
   ///         ),
   ///       ),
@@ -33,15 +33,15 @@ curatedDoc: |-
   ///   location: .literal('asia-northeast1'),
   ///   template: CloudRunV2ServiceTemplate(
   ///     containers: [
-  ///       CloudRunV2ServiceTemplateContainers(
+  ///       CloudRunV2ServiceContainers(
   ///         image: .literal('asia-northeast1-docker.pkg.dev/p/r/api:v1'),
   ///         env: [
-  ///           CloudRunV2ServiceTemplateContainersEnv(
+  ///           CloudRunV2ServiceEnv(
   ///             name: .literal('DATABASE_URL'),
   ///             source: .valueSource(
-  ///               CloudRunV2ServiceTemplateContainersEnvValueSource(
+  ///               CloudRunV2ServiceValueSource(
   ///                 secretKeyRef:
-  ///                     CloudRunV2ServiceTemplateContainersEnvValueSourceSecretKeyRef(
+  ///                     CloudRunV2ServiceSecretKeyRef(
   ///                       secret: .literal('db-url'),
   ///                       version: .literal('latest'),
   ///                     ),
@@ -50,7 +50,7 @@ curatedDoc: |-
   ///           ),
   ///         ],
   ///         volumeMounts: [
-  ///           CloudRunV2ServiceTemplateContainersVolumeMounts(
+  ///           CloudRunV2ServiceVolumeMounts(
   ///             name: .literal('cache'),
   ///             mountPath: .literal('/var/cache'),
   ///           ),
@@ -58,10 +58,10 @@ curatedDoc: |-
   ///       ),
   ///     ],
   ///     volumes: [
-  ///       CloudRunV2ServiceTemplateVolumes(
+  ///       CloudRunV2ServiceVolumes(
   ///         name: .literal('cache'),
   ///         source: .gcs(
-  ///           CloudRunV2ServiceTemplateVolumesGcs(bucket: .of(bucket)),
+  ///           CloudRunV2ServiceGcs(bucket: .of(bucket)),
   ///         ),
   ///       ),
   ///     ],
@@ -160,7 +160,7 @@ prelude: |
     final String terraformValue;
   }
 
-  /// Egress policy for [CloudRunV2ServiceTemplateVpcAccess.egress] (`template.vpc_access.egress`).
+  /// Egress policy for [CloudRunV2ServiceVpcAccess.egress] (`template.vpc_access.egress`).
   /// `allTraffic` routes every outbound request through the connector or
   /// network interface; `privateRangesOnly` keeps RFC1918 + Google APIs
   /// inside the VPC and bypasses it for the public internet.
@@ -198,7 +198,7 @@ prelude: |
     final String terraformValue;
   }
 
-  /// Identity a revision runs as ([CloudRunV2ServiceTemplateWorkloadIdentityConfig.identityType]).
+  /// Identity a revision runs as ([CloudRunV2ServiceWorkloadIdentityConfig.identityType]).
   enum CloudRunV2ServiceWorkloadIdentityType implements TerraformEnum {
     serviceAccount('IDENTITY_TYPE_SERVICE_ACCOUNT'),
     workloadIdentity('IDENTITY_TYPE_WORKLOAD_IDENTITY'),

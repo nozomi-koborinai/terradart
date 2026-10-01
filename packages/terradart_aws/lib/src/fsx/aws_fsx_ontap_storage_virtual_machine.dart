@@ -35,7 +35,7 @@ final class FsxOntapStorageVirtualMachineActiveDirectoryConfiguration {
 
   final TfArg<String>? netbiosName;
 
-  final FsxOntapStorageVirtualMachineActiveDirectoryConfigurationSelfManagedActiveDirectoryConfiguration?
+  final FsxOntapStorageVirtualMachineSelfManagedActiveDirectoryConfiguration?
   selfManagedActiveDirectoryConfiguration;
 
   Map<String, Object?> encode() => {
@@ -48,8 +48,8 @@ final class FsxOntapStorageVirtualMachineActiveDirectoryConfiguration {
 /// Typed helper for the `active_directory_configuration.self_managed_active_directory_configuration` block of
 /// `aws_fsx_ontap_storage_virtual_machine` (derived from provider schema).
 @immutable
-final class FsxOntapStorageVirtualMachineActiveDirectoryConfigurationSelfManagedActiveDirectoryConfiguration {
-  const FsxOntapStorageVirtualMachineActiveDirectoryConfigurationSelfManagedActiveDirectoryConfiguration({
+final class FsxOntapStorageVirtualMachineSelfManagedActiveDirectoryConfiguration {
+  const FsxOntapStorageVirtualMachineSelfManagedActiveDirectoryConfiguration({
     required this.dnsIps,
     required this.domainName,
     this.fileSystemAdministratorsGroup,

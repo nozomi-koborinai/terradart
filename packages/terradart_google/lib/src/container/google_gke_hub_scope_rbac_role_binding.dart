@@ -74,13 +74,13 @@ sealed class GkeHubScopeRbacRoleBindingRole {
 
   /// Sets `predefined_role`.
   const factory GkeHubScopeRbacRoleBindingRole.predefinedRole(
-    TfArg<GkeHubScopeRbacRoleBindingRolePredefinedRole> predefinedRole,
-  ) = GkeHubScopeRbacRoleBindingRolePredefinedRoleChoice;
+    TfArg<GkeHubScopeRbacRoleBindingPredefinedRole> predefinedRole,
+  ) = GkeHubScopeRbacRoleBindingPredefinedRoleChoice;
 
   /// Sets `custom_role`.
   const factory GkeHubScopeRbacRoleBindingRole.customRole(
     TfArg<String> customRole,
-  ) = GkeHubScopeRbacRoleBindingRoleCustomRole;
+  ) = GkeHubScopeRbacRoleBindingCustomRole;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -89,11 +89,11 @@ sealed class GkeHubScopeRbacRoleBindingRole {
 }
 
 /// The [GkeHubScopeRbacRoleBindingRole.predefinedRole] choice: sets `predefined_role`.
-final class GkeHubScopeRbacRoleBindingRolePredefinedRoleChoice
+final class GkeHubScopeRbacRoleBindingPredefinedRoleChoice
     extends GkeHubScopeRbacRoleBindingRole {
-  const GkeHubScopeRbacRoleBindingRolePredefinedRoleChoice(this.predefinedRole);
+  const GkeHubScopeRbacRoleBindingPredefinedRoleChoice(this.predefinedRole);
 
-  final TfArg<GkeHubScopeRbacRoleBindingRolePredefinedRole> predefinedRole;
+  final TfArg<GkeHubScopeRbacRoleBindingPredefinedRole> predefinedRole;
 
   @override
   String get blockKey => 'predefined_role';
@@ -105,9 +105,9 @@ final class GkeHubScopeRbacRoleBindingRolePredefinedRoleChoice
 }
 
 /// The [GkeHubScopeRbacRoleBindingRole.customRole] choice: sets `custom_role`.
-final class GkeHubScopeRbacRoleBindingRoleCustomRole
+final class GkeHubScopeRbacRoleBindingCustomRole
     extends GkeHubScopeRbacRoleBindingRole {
-  const GkeHubScopeRbacRoleBindingRoleCustomRole(this.customRole);
+  const GkeHubScopeRbacRoleBindingCustomRole(this.customRole);
 
   final TfArg<String> customRole;
 
@@ -119,13 +119,13 @@ final class GkeHubScopeRbacRoleBindingRoleCustomRole
 }
 
 /// `predefined_role` — derived from the provider schema description.
-enum GkeHubScopeRbacRoleBindingRolePredefinedRole implements TerraformEnum {
+enum GkeHubScopeRbacRoleBindingPredefinedRole implements TerraformEnum {
   unknown('UNKNOWN'),
   admin('ADMIN'),
   edit('EDIT'),
   view('VIEW');
 
-  const GkeHubScopeRbacRoleBindingRolePredefinedRole(this.terraformValue);
+  const GkeHubScopeRbacRoleBindingPredefinedRole(this.terraformValue);
   @override
   final String terraformValue;
 }

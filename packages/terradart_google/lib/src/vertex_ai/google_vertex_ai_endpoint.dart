@@ -37,8 +37,7 @@ final class VertexAiEndpointPredictRequestResponseLoggingConfig {
 
   final TfArg<num>? samplingRate;
 
-  final VertexAiEndpointPredictRequestResponseLoggingConfigBigqueryDestination?
-  bigqueryDestination;
+  final VertexAiEndpointBigqueryDestination? bigqueryDestination;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
@@ -50,10 +49,8 @@ final class VertexAiEndpointPredictRequestResponseLoggingConfig {
 /// Typed helper for the `predict_request_response_logging_config.bigquery_destination` block of
 /// `google_vertex_ai_endpoint` (derived from provider schema).
 @immutable
-final class VertexAiEndpointPredictRequestResponseLoggingConfigBigqueryDestination {
-  const VertexAiEndpointPredictRequestResponseLoggingConfigBigqueryDestination({
-    this.outputUri,
-  });
+final class VertexAiEndpointBigqueryDestination {
+  const VertexAiEndpointBigqueryDestination({this.outputUri});
 
   final TfArg<String>? outputUri;
 
@@ -74,8 +71,7 @@ final class VertexAiEndpointPrivateServiceConnectConfig {
 
   final TfArg<List<String>>? projectAllowlist;
 
-  final List<VertexAiEndpointPrivateServiceConnectConfigPscAutomationConfigs>?
-  pscAutomationConfigs;
+  final List<VertexAiEndpointPscAutomationConfigs>? pscAutomationConfigs;
 
   Map<String, Object?> encode() => {
     'enable_private_service_connect': enablePrivateServiceConnect.toTfJson(),
@@ -90,8 +86,8 @@ final class VertexAiEndpointPrivateServiceConnectConfig {
 /// Typed helper for the `private_service_connect_config.psc_automation_configs` block of
 /// `google_vertex_ai_endpoint` (derived from provider schema).
 @immutable
-final class VertexAiEndpointPrivateServiceConnectConfigPscAutomationConfigs {
-  const VertexAiEndpointPrivateServiceConnectConfigPscAutomationConfigs({
+final class VertexAiEndpointPscAutomationConfigs {
+  const VertexAiEndpointPscAutomationConfigs({
     required this.network,
     required this.projectId,
   });

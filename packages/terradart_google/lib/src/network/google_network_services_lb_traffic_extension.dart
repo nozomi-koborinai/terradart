@@ -24,8 +24,8 @@ enum NetworkServicesLbTrafficExtensionLoadBalancingScheme
 /// Typed helper for the `extension_chains` block of
 /// `google_network_services_lb_traffic_extension` (derived from provider schema).
 @immutable
-final class NetworkServicesLbTrafficExtensionExtensionChains {
-  const NetworkServicesLbTrafficExtensionExtensionChains({
+final class NetworkServicesLbTrafficExtensionChains {
+  const NetworkServicesLbTrafficExtensionChains({
     required this.name,
     required this.extensions,
     required this.matchCondition,
@@ -33,11 +33,9 @@ final class NetworkServicesLbTrafficExtensionExtensionChains {
 
   final TfArg<String> name;
 
-  final List<NetworkServicesLbTrafficExtensionExtensionChainsExtensions>
-  extensions;
+  final List<NetworkServicesLbTrafficExtensionExtensions> extensions;
 
-  final NetworkServicesLbTrafficExtensionExtensionChainsMatchCondition
-  matchCondition;
+  final NetworkServicesLbTrafficExtensionMatchCondition matchCondition;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -49,8 +47,8 @@ final class NetworkServicesLbTrafficExtensionExtensionChains {
 /// Typed helper for the `extension_chains.extensions` block of
 /// `google_network_services_lb_traffic_extension` (derived from provider schema).
 @immutable
-final class NetworkServicesLbTrafficExtensionExtensionChainsExtensions {
-  const NetworkServicesLbTrafficExtensionExtensionChainsExtensions({
+final class NetworkServicesLbTrafficExtensionExtensions {
+  const NetworkServicesLbTrafficExtensionExtensions({
     this.authority,
     this.failOpen,
     this.forwardAttributes,
@@ -96,8 +94,8 @@ final class NetworkServicesLbTrafficExtensionExtensionChainsExtensions {
 /// Typed helper for the `extension_chains.match_condition` block of
 /// `google_network_services_lb_traffic_extension` (derived from provider schema).
 @immutable
-final class NetworkServicesLbTrafficExtensionExtensionChainsMatchCondition {
-  const NetworkServicesLbTrafficExtensionExtensionChainsMatchCondition({
+final class NetworkServicesLbTrafficExtensionMatchCondition {
+  const NetworkServicesLbTrafficExtensionMatchCondition({
     required this.celExpression,
   });
 
@@ -137,8 +135,7 @@ final class GoogleNetworkServicesLbTrafficExtension extends Resource {
     required TfArg<NetworkServicesLbTrafficExtensionLoadBalancingScheme>
     loadBalancingScheme,
     required TfArg<List<String>> forwardingRules,
-    required List<NetworkServicesLbTrafficExtensionExtensionChains>
-    extensionChains,
+    required List<NetworkServicesLbTrafficExtensionChains> extensionChains,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,

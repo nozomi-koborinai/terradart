@@ -37,7 +37,7 @@ final class EmrManagedScalingPolicyComputeLimits {
 
   final TfArg<num> minimumCapacityUnits;
 
-  final TfArg<EmrManagedScalingPolicyComputeLimitsUnitType> unitType;
+  final TfArg<EmrManagedScalingPolicyUnitType> unitType;
 
   Map<String, Object?> encode() => {
     'maximum_capacity_units': maximumCapacityUnits.toTfJson(),
@@ -50,12 +50,12 @@ final class EmrManagedScalingPolicyComputeLimits {
 }
 
 /// `unit_type` — derived from the provider schema description.
-enum EmrManagedScalingPolicyComputeLimitsUnitType implements TerraformEnum {
+enum EmrManagedScalingPolicyUnitType implements TerraformEnum {
   instancefleetunits('InstanceFleetUnits'),
   instances('Instances'),
   vcpu('VCPU');
 
-  const EmrManagedScalingPolicyComputeLimitsUnitType(this.terraformValue);
+  const EmrManagedScalingPolicyUnitType(this.terraformValue);
   @override
   final String terraformValue;
 }

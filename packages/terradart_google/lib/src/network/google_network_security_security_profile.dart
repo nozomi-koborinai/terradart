@@ -199,20 +199,13 @@ final class NetworkSecuritySecurityProfileThreatPreventionProfile {
     this.threatOverrides,
   });
 
-  final List<
-    NetworkSecuritySecurityProfileThreatPreventionProfileAntivirusOverrides
-  >?
+  final List<NetworkSecuritySecurityProfileAntivirusOverrides>?
   antivirusOverrides;
 
-  final List<
-    NetworkSecuritySecurityProfileThreatPreventionProfileSeverityOverrides
-  >?
+  final List<NetworkSecuritySecurityProfileSeverityOverrides>?
   severityOverrides;
 
-  final List<
-    NetworkSecuritySecurityProfileThreatPreventionProfileThreatOverrides
-  >?
-  threatOverrides;
+  final List<NetworkSecuritySecurityProfileThreatOverrides>? threatOverrides;
 
   Map<String, Object?> encode() => {
     if (antivirusOverrides != null)
@@ -227,21 +220,15 @@ final class NetworkSecuritySecurityProfileThreatPreventionProfile {
 /// Typed helper for the `threat_prevention_profile.antivirus_overrides` block of
 /// `google_network_security_security_profile` (derived from provider schema).
 @immutable
-final class NetworkSecuritySecurityProfileThreatPreventionProfileAntivirusOverrides {
-  const NetworkSecuritySecurityProfileThreatPreventionProfileAntivirusOverrides({
+final class NetworkSecuritySecurityProfileAntivirusOverrides {
+  const NetworkSecuritySecurityProfileAntivirusOverrides({
     required this.action,
     required this.protocol,
   });
 
-  final TfArg<
-    NetworkSecuritySecurityProfileThreatPreventionProfileAntivirusOverridesAction
-  >
-  action;
+  final TfArg<NetworkSecuritySecurityProfileAction> action;
 
-  final TfArg<
-    NetworkSecuritySecurityProfileThreatPreventionProfileAntivirusOverridesProtocol
-  >
-  protocol;
+  final TfArg<NetworkSecuritySecurityProfileProtocol> protocol;
 
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
@@ -250,23 +237,19 @@ final class NetworkSecuritySecurityProfileThreatPreventionProfileAntivirusOverri
 }
 
 /// `action` — derived from the provider schema description.
-enum NetworkSecuritySecurityProfileThreatPreventionProfileAntivirusOverridesAction
-    implements TerraformEnum {
+enum NetworkSecuritySecurityProfileAction implements TerraformEnum {
   alert('ALERT'),
   allow('ALLOW'),
   defaultAction('DEFAULT_ACTION'),
   deny('DENY');
 
-  const NetworkSecuritySecurityProfileThreatPreventionProfileAntivirusOverridesAction(
-    this.terraformValue,
-  );
+  const NetworkSecuritySecurityProfileAction(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `protocol` — derived from the provider schema description.
-enum NetworkSecuritySecurityProfileThreatPreventionProfileAntivirusOverridesProtocol
-    implements TerraformEnum {
+enum NetworkSecuritySecurityProfileProtocol implements TerraformEnum {
   smtp('SMTP'),
   smb('SMB'),
   pop3('POP3'),
@@ -275,9 +258,7 @@ enum NetworkSecuritySecurityProfileThreatPreventionProfileAntivirusOverridesProt
   http('HTTP'),
   ftp('FTP');
 
-  const NetworkSecuritySecurityProfileThreatPreventionProfileAntivirusOverridesProtocol(
-    this.terraformValue,
-  );
+  const NetworkSecuritySecurityProfileProtocol(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -285,21 +266,15 @@ enum NetworkSecuritySecurityProfileThreatPreventionProfileAntivirusOverridesProt
 /// Typed helper for the `threat_prevention_profile.severity_overrides` block of
 /// `google_network_security_security_profile` (derived from provider schema).
 @immutable
-final class NetworkSecuritySecurityProfileThreatPreventionProfileSeverityOverrides {
-  const NetworkSecuritySecurityProfileThreatPreventionProfileSeverityOverrides({
+final class NetworkSecuritySecurityProfileSeverityOverrides {
+  const NetworkSecuritySecurityProfileSeverityOverrides({
     required this.action,
     required this.severity,
   });
 
-  final TfArg<
-    NetworkSecuritySecurityProfileThreatPreventionProfileSeverityOverridesAction
-  >
-  action;
+  final TfArg<NetworkSecuritySecurityProfileAction> action;
 
-  final TfArg<
-    NetworkSecuritySecurityProfileThreatPreventionProfileSeverityOverridesSeverity
-  >
-  severity;
+  final TfArg<NetworkSecuritySecurityProfileSeverity> severity;
 
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
@@ -307,33 +282,15 @@ final class NetworkSecuritySecurityProfileThreatPreventionProfileSeverityOverrid
   };
 }
 
-/// `action` — derived from the provider schema description.
-enum NetworkSecuritySecurityProfileThreatPreventionProfileSeverityOverridesAction
-    implements TerraformEnum {
-  alert('ALERT'),
-  allow('ALLOW'),
-  defaultAction('DEFAULT_ACTION'),
-  deny('DENY');
-
-  const NetworkSecuritySecurityProfileThreatPreventionProfileSeverityOverridesAction(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// `severity` — derived from the provider schema description.
-enum NetworkSecuritySecurityProfileThreatPreventionProfileSeverityOverridesSeverity
-    implements TerraformEnum {
+enum NetworkSecuritySecurityProfileSeverity implements TerraformEnum {
   critical('CRITICAL'),
   high('HIGH'),
   informational('INFORMATIONAL'),
   low('LOW'),
   medium('MEDIUM');
 
-  const NetworkSecuritySecurityProfileThreatPreventionProfileSeverityOverridesSeverity(
-    this.terraformValue,
-  );
+  const NetworkSecuritySecurityProfileSeverity(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -341,16 +298,13 @@ enum NetworkSecuritySecurityProfileThreatPreventionProfileSeverityOverridesSever
 /// Typed helper for the `threat_prevention_profile.threat_overrides` block of
 /// `google_network_security_security_profile` (derived from provider schema).
 @immutable
-final class NetworkSecuritySecurityProfileThreatPreventionProfileThreatOverrides {
-  const NetworkSecuritySecurityProfileThreatPreventionProfileThreatOverrides({
+final class NetworkSecuritySecurityProfileThreatOverrides {
+  const NetworkSecuritySecurityProfileThreatOverrides({
     required this.action,
     required this.threatId,
   });
 
-  final TfArg<
-    NetworkSecuritySecurityProfileThreatPreventionProfileThreatOverridesAction
-  >
-  action;
+  final TfArg<NetworkSecuritySecurityProfileAction> action;
 
   final TfArg<String> threatId;
 
@@ -360,29 +314,13 @@ final class NetworkSecuritySecurityProfileThreatPreventionProfileThreatOverrides
   };
 }
 
-/// `action` — derived from the provider schema description.
-enum NetworkSecuritySecurityProfileThreatPreventionProfileThreatOverridesAction
-    implements TerraformEnum {
-  alert('ALERT'),
-  allow('ALLOW'),
-  defaultAction('DEFAULT_ACTION'),
-  deny('DENY');
-
-  const NetworkSecuritySecurityProfileThreatPreventionProfileThreatOverridesAction(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `url_filtering_profile` block of
 /// `google_network_security_security_profile` (derived from provider schema).
 @immutable
 final class NetworkSecuritySecurityProfileUrlFilteringProfile {
   const NetworkSecuritySecurityProfileUrlFilteringProfile({this.urlFilters});
 
-  final List<NetworkSecuritySecurityProfileUrlFilteringProfileUrlFilters>?
-  urlFilters;
+  final List<NetworkSecuritySecurityProfileUrlFilters>? urlFilters;
 
   Map<String, Object?> encode() => {
     if (urlFilters != null)
@@ -393,17 +331,14 @@ final class NetworkSecuritySecurityProfileUrlFilteringProfile {
 /// Typed helper for the `url_filtering_profile.url_filters` block of
 /// `google_network_security_security_profile` (derived from provider schema).
 @immutable
-final class NetworkSecuritySecurityProfileUrlFilteringProfileUrlFilters {
-  const NetworkSecuritySecurityProfileUrlFilteringProfileUrlFilters({
+final class NetworkSecuritySecurityProfileUrlFilters {
+  const NetworkSecuritySecurityProfileUrlFilters({
     required this.filteringAction,
     required this.priority,
     this.urls,
   });
 
-  final TfArg<
-    NetworkSecuritySecurityProfileUrlFilteringProfileUrlFiltersFilteringAction
-  >
-  filteringAction;
+  final TfArg<NetworkSecuritySecurityProfileFilteringAction> filteringAction;
 
   final TfArg<num> priority;
 
@@ -417,14 +352,11 @@ final class NetworkSecuritySecurityProfileUrlFilteringProfileUrlFilters {
 }
 
 /// `filtering_action` — derived from the provider schema description.
-enum NetworkSecuritySecurityProfileUrlFilteringProfileUrlFiltersFilteringAction
-    implements TerraformEnum {
+enum NetworkSecuritySecurityProfileFilteringAction implements TerraformEnum {
   allow('ALLOW'),
   deny('DENY');
 
-  const NetworkSecuritySecurityProfileUrlFilteringProfileUrlFiltersFilteringAction(
-    this.terraformValue,
-  );
+  const NetworkSecuritySecurityProfileFilteringAction(this.terraformValue);
   @override
   final String terraformValue;
 }

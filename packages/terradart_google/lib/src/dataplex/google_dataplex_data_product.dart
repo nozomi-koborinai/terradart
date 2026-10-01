@@ -42,7 +42,7 @@ final class DataplexDataProductAccessGroups {
 
   final TfArg<String> id;
 
-  final DataplexDataProductAccessGroupsPrincipal principal;
+  final DataplexDataProductPrincipal principal;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -56,11 +56,8 @@ final class DataplexDataProductAccessGroups {
 /// Typed helper for the `access_groups.principal` block of
 /// `google_dataplex_data_product` (derived from provider schema).
 @immutable
-final class DataplexDataProductAccessGroupsPrincipal {
-  const DataplexDataProductAccessGroupsPrincipal({
-    this.googleGroup,
-    this.serviceAccount,
-  });
+final class DataplexDataProductPrincipal {
+  const DataplexDataProductPrincipal({this.googleGroup, this.serviceAccount});
 
   final TfArg<String>? googleGroup;
 

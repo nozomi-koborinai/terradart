@@ -18,13 +18,13 @@ sealed class DatasyncLocationFsxOntapFileSystemProtocol {
 
   /// Sets `nfs`.
   const factory DatasyncLocationFsxOntapFileSystemProtocol.nfs(
-    DatasyncLocationFsxOntapFileSystemProtocolNfs nfs,
-  ) = DatasyncLocationFsxOntapFileSystemProtocolNfsChoice;
+    DatasyncLocationFsxOntapFileSystemNfs nfs,
+  ) = DatasyncLocationFsxOntapFileSystemProtocolNfs;
 
   /// Sets `smb`.
   const factory DatasyncLocationFsxOntapFileSystemProtocol.smb(
-    DatasyncLocationFsxOntapFileSystemProtocolSmb smb,
-  ) = DatasyncLocationFsxOntapFileSystemProtocolSmbChoice;
+    DatasyncLocationFsxOntapFileSystemSmb smb,
+  ) = DatasyncLocationFsxOntapFileSystemProtocolSmb;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,11 +33,11 @@ sealed class DatasyncLocationFsxOntapFileSystemProtocol {
 }
 
 /// The [DatasyncLocationFsxOntapFileSystemProtocol.nfs] choice: sets `nfs`.
-final class DatasyncLocationFsxOntapFileSystemProtocolNfsChoice
+final class DatasyncLocationFsxOntapFileSystemProtocolNfs
     extends DatasyncLocationFsxOntapFileSystemProtocol {
-  const DatasyncLocationFsxOntapFileSystemProtocolNfsChoice(this.nfs);
+  const DatasyncLocationFsxOntapFileSystemProtocolNfs(this.nfs);
 
-  final DatasyncLocationFsxOntapFileSystemProtocolNfs nfs;
+  final DatasyncLocationFsxOntapFileSystemNfs nfs;
 
   @override
   String get blockKey => 'nfs';
@@ -47,11 +47,11 @@ final class DatasyncLocationFsxOntapFileSystemProtocolNfsChoice
 }
 
 /// The [DatasyncLocationFsxOntapFileSystemProtocol.smb] choice: sets `smb`.
-final class DatasyncLocationFsxOntapFileSystemProtocolSmbChoice
+final class DatasyncLocationFsxOntapFileSystemProtocolSmb
     extends DatasyncLocationFsxOntapFileSystemProtocol {
-  const DatasyncLocationFsxOntapFileSystemProtocolSmbChoice(this.smb);
+  const DatasyncLocationFsxOntapFileSystemProtocolSmb(this.smb);
 
-  final DatasyncLocationFsxOntapFileSystemProtocolSmb smb;
+  final DatasyncLocationFsxOntapFileSystemSmb smb;
 
   @override
   String get blockKey => 'smb';
@@ -63,12 +63,10 @@ final class DatasyncLocationFsxOntapFileSystemProtocolSmbChoice
 /// Typed helper for the `protocol.nfs` block of
 /// `aws_datasync_location_fsx_ontap_file_system` (derived from provider schema).
 @immutable
-final class DatasyncLocationFsxOntapFileSystemProtocolNfs {
-  const DatasyncLocationFsxOntapFileSystemProtocolNfs({
-    required this.mountOptions,
-  });
+final class DatasyncLocationFsxOntapFileSystemNfs {
+  const DatasyncLocationFsxOntapFileSystemNfs({required this.mountOptions});
 
-  final DatasyncLocationFsxOntapFileSystemProtocolNfsMountOptions mountOptions;
+  final DatasyncLocationFsxOntapFileSystemNfsMountOptions mountOptions;
 
   Map<String, Object?> encode() => {'mount_options': mountOptions.encode()};
 }
@@ -76,25 +74,19 @@ final class DatasyncLocationFsxOntapFileSystemProtocolNfs {
 /// Typed helper for the `protocol.nfs.mount_options` block of
 /// `aws_datasync_location_fsx_ontap_file_system` (derived from provider schema).
 @immutable
-final class DatasyncLocationFsxOntapFileSystemProtocolNfsMountOptions {
-  const DatasyncLocationFsxOntapFileSystemProtocolNfsMountOptions({
-    this.version,
-  });
+final class DatasyncLocationFsxOntapFileSystemNfsMountOptions {
+  const DatasyncLocationFsxOntapFileSystemNfsMountOptions({this.version});
 
-  final TfArg<DatasyncLocationFsxOntapFileSystemProtocolNfsMountOptionsVersion>?
-  version;
+  final TfArg<DatasyncLocationFsxOntapFileSystemNfsVersion>? version;
 
   Map<String, Object?> encode() => {'version': ?version?.toTfJson()};
 }
 
 /// `version` — derived from the provider schema description.
-enum DatasyncLocationFsxOntapFileSystemProtocolNfsMountOptionsVersion
-    implements TerraformEnum {
+enum DatasyncLocationFsxOntapFileSystemNfsVersion implements TerraformEnum {
   nfs3('NFS3');
 
-  const DatasyncLocationFsxOntapFileSystemProtocolNfsMountOptionsVersion(
-    this.terraformValue,
-  );
+  const DatasyncLocationFsxOntapFileSystemNfsVersion(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -102,8 +94,8 @@ enum DatasyncLocationFsxOntapFileSystemProtocolNfsMountOptionsVersion
 /// Typed helper for the `protocol.smb` block of
 /// `aws_datasync_location_fsx_ontap_file_system` (derived from provider schema).
 @immutable
-final class DatasyncLocationFsxOntapFileSystemProtocolSmb {
-  const DatasyncLocationFsxOntapFileSystemProtocolSmb({
+final class DatasyncLocationFsxOntapFileSystemSmb {
+  const DatasyncLocationFsxOntapFileSystemSmb({
     this.domain,
     required this.password,
     required this.user,
@@ -116,7 +108,7 @@ final class DatasyncLocationFsxOntapFileSystemProtocolSmb {
 
   final TfArg<String> user;
 
-  final DatasyncLocationFsxOntapFileSystemProtocolSmbMountOptions mountOptions;
+  final DatasyncLocationFsxOntapFileSystemSmbMountOptions mountOptions;
 
   Map<String, Object?> encode() => {
     'domain': ?domain?.toTfJson(),
@@ -129,28 +121,22 @@ final class DatasyncLocationFsxOntapFileSystemProtocolSmb {
 /// Typed helper for the `protocol.smb.mount_options` block of
 /// `aws_datasync_location_fsx_ontap_file_system` (derived from provider schema).
 @immutable
-final class DatasyncLocationFsxOntapFileSystemProtocolSmbMountOptions {
-  const DatasyncLocationFsxOntapFileSystemProtocolSmbMountOptions({
-    this.version,
-  });
+final class DatasyncLocationFsxOntapFileSystemSmbMountOptions {
+  const DatasyncLocationFsxOntapFileSystemSmbMountOptions({this.version});
 
-  final TfArg<DatasyncLocationFsxOntapFileSystemProtocolSmbMountOptionsVersion>?
-  version;
+  final TfArg<DatasyncLocationFsxOntapFileSystemSmbVersion>? version;
 
   Map<String, Object?> encode() => {'version': ?version?.toTfJson()};
 }
 
 /// `version` — derived from the provider schema description.
-enum DatasyncLocationFsxOntapFileSystemProtocolSmbMountOptionsVersion
-    implements TerraformEnum {
+enum DatasyncLocationFsxOntapFileSystemSmbVersion implements TerraformEnum {
   automatic('AUTOMATIC'),
   smb2('SMB2'),
   smb3('SMB3'),
   smb20('SMB2_0');
 
-  const DatasyncLocationFsxOntapFileSystemProtocolSmbMountOptionsVersion(
-    this.terraformValue,
-  );
+  const DatasyncLocationFsxOntapFileSystemSmbVersion(this.terraformValue);
   @override
   final String terraformValue;
 }

@@ -32,7 +32,7 @@ final class ComputePreviewFeatureStack extends Stack {
         activationStatus: .literal(.activationStateUnspecified),
         // API currently accepts only FAST_ROLLOUT (provider basic example).
         rolloutOperation: ComputePreviewFeatureRolloutOperation(
-          rolloutInput: ComputePreviewFeatureRolloutOperationRolloutInput(
+          rolloutInput: ComputePreviewFeatureRolloutInput(
             predefinedRolloutPlan: .literal('ROLLOUT_PLAN_FAST_ROLLOUT'),
           ),
         ),

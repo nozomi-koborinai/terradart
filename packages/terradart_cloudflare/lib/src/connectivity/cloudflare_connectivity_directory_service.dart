@@ -47,9 +47,9 @@ final class ConnectivityDirectoryServiceHost {
 
   final TfArg<String>? ipv6;
 
-  final ConnectivityDirectoryServiceHostNetwork? network;
+  final ConnectivityDirectoryServiceNetwork? network;
 
-  final ConnectivityDirectoryServiceHostResolverNetwork? resolverNetwork;
+  final ConnectivityDirectoryServiceResolverNetwork? resolverNetwork;
 
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.toTfJson(),
@@ -63,8 +63,8 @@ final class ConnectivityDirectoryServiceHost {
 /// Typed helper for the `host.network` block of
 /// `cloudflare_connectivity_directory_service` (derived from provider schema).
 @immutable
-final class ConnectivityDirectoryServiceHostNetwork {
-  const ConnectivityDirectoryServiceHostNetwork({required this.tunnelId});
+final class ConnectivityDirectoryServiceNetwork {
+  const ConnectivityDirectoryServiceNetwork({required this.tunnelId});
 
   final TfArg<String> tunnelId;
 
@@ -74,8 +74,8 @@ final class ConnectivityDirectoryServiceHostNetwork {
 /// Typed helper for the `host.resolver_network` block of
 /// `cloudflare_connectivity_directory_service` (derived from provider schema).
 @immutable
-final class ConnectivityDirectoryServiceHostResolverNetwork {
-  const ConnectivityDirectoryServiceHostResolverNetwork({
+final class ConnectivityDirectoryServiceResolverNetwork {
+  const ConnectivityDirectoryServiceResolverNetwork({
     this.resolverIps,
     required this.tunnelId,
   });

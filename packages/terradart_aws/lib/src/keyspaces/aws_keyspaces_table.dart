@@ -21,8 +21,7 @@ final class KeyspacesTableCapacitySpecification {
 
   final TfArg<num>? readCapacityUnits;
 
-  final TfArg<KeyspacesTableCapacitySpecificationThroughputMode>?
-  throughputMode;
+  final TfArg<KeyspacesTableThroughputMode>? throughputMode;
 
   final TfArg<num>? writeCapacityUnits;
 
@@ -34,12 +33,11 @@ final class KeyspacesTableCapacitySpecification {
 }
 
 /// `throughput_mode` — derived from the provider schema description.
-enum KeyspacesTableCapacitySpecificationThroughputMode
-    implements TerraformEnum {
+enum KeyspacesTableThroughputMode implements TerraformEnum {
   payPerRequest('PAY_PER_REQUEST'),
   provisioned('PROVISIONED');
 
-  const KeyspacesTableCapacitySpecificationThroughputMode(this.terraformValue);
+  const KeyspacesTableThroughputMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -86,7 +84,7 @@ final class KeyspacesTableEncryptionSpecification {
 
   final RefTo<AwsKmsKey>? kmsKeyIdentifier;
 
-  final TfArg<KeyspacesTableEncryptionSpecificationType>? type;
+  final TfArg<KeyspacesTableType>? type;
 
   Map<String, Object?> encode() => {
     'kms_key_identifier': ?kmsKeyIdentifier?.encodeAs('arn').toTfJson(),
@@ -95,11 +93,11 @@ final class KeyspacesTableEncryptionSpecification {
 }
 
 /// `type` — derived from the provider schema description.
-enum KeyspacesTableEncryptionSpecificationType implements TerraformEnum {
+enum KeyspacesTableType implements TerraformEnum {
   customerManagedKmsKey('CUSTOMER_MANAGED_KMS_KEY'),
   awsOwnedKmsKey('AWS_OWNED_KMS_KEY');
 
-  const KeyspacesTableEncryptionSpecificationType(this.terraformValue);
+  const KeyspacesTableType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -136,13 +134,13 @@ final class KeyspacesTableSchemaDefinition {
     this.staticColumn,
   });
 
-  final List<KeyspacesTableSchemaDefinitionClusteringKey>? clusteringKey;
+  final List<KeyspacesTableClusteringKey>? clusteringKey;
 
-  final List<KeyspacesTableSchemaDefinitionColumn> column;
+  final List<KeyspacesTableColumn> column;
 
-  final List<KeyspacesTableSchemaDefinitionPartitionKey> partitionKey;
+  final List<KeyspacesTablePartitionKey> partitionKey;
 
-  final List<KeyspacesTableSchemaDefinitionStaticColumn>? staticColumn;
+  final List<KeyspacesTableStaticColumn>? staticColumn;
 
   Map<String, Object?> encode() => {
     if (clusteringKey != null)
@@ -157,15 +155,15 @@ final class KeyspacesTableSchemaDefinition {
 /// Typed helper for the `schema_definition.clustering_key` block of
 /// `aws_keyspaces_table` (derived from provider schema).
 @immutable
-final class KeyspacesTableSchemaDefinitionClusteringKey {
-  const KeyspacesTableSchemaDefinitionClusteringKey({
+final class KeyspacesTableClusteringKey {
+  const KeyspacesTableClusteringKey({
     required this.name,
     required this.orderBy,
   });
 
   final TfArg<String> name;
 
-  final TfArg<KeyspacesTableSchemaDefinitionClusteringKeyOrderBy> orderBy;
+  final TfArg<KeyspacesTableOrderBy> orderBy;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -174,12 +172,11 @@ final class KeyspacesTableSchemaDefinitionClusteringKey {
 }
 
 /// `order_by` — derived from the provider schema description.
-enum KeyspacesTableSchemaDefinitionClusteringKeyOrderBy
-    implements TerraformEnum {
+enum KeyspacesTableOrderBy implements TerraformEnum {
   asc('ASC'),
   desc('DESC');
 
-  const KeyspacesTableSchemaDefinitionClusteringKeyOrderBy(this.terraformValue);
+  const KeyspacesTableOrderBy(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -187,11 +184,8 @@ enum KeyspacesTableSchemaDefinitionClusteringKeyOrderBy
 /// Typed helper for the `schema_definition.column` block of
 /// `aws_keyspaces_table` (derived from provider schema).
 @immutable
-final class KeyspacesTableSchemaDefinitionColumn {
-  const KeyspacesTableSchemaDefinitionColumn({
-    required this.name,
-    required this.type,
-  });
+final class KeyspacesTableColumn {
+  const KeyspacesTableColumn({required this.name, required this.type});
 
   final TfArg<String> name;
 
@@ -206,8 +200,8 @@ final class KeyspacesTableSchemaDefinitionColumn {
 /// Typed helper for the `schema_definition.partition_key` block of
 /// `aws_keyspaces_table` (derived from provider schema).
 @immutable
-final class KeyspacesTableSchemaDefinitionPartitionKey {
-  const KeyspacesTableSchemaDefinitionPartitionKey({required this.name});
+final class KeyspacesTablePartitionKey {
+  const KeyspacesTablePartitionKey({required this.name});
 
   final TfArg<String> name;
 
@@ -217,8 +211,8 @@ final class KeyspacesTableSchemaDefinitionPartitionKey {
 /// Typed helper for the `schema_definition.static_column` block of
 /// `aws_keyspaces_table` (derived from provider schema).
 @immutable
-final class KeyspacesTableSchemaDefinitionStaticColumn {
-  const KeyspacesTableSchemaDefinitionStaticColumn({required this.name});
+final class KeyspacesTableStaticColumn {
+  const KeyspacesTableStaticColumn({required this.name});
 
   final TfArg<String> name;
 
@@ -231,18 +225,9 @@ final class KeyspacesTableSchemaDefinitionStaticColumn {
 final class KeyspacesTableTtl {
   const KeyspacesTableTtl({required this.status});
 
-  final TfArg<KeyspacesTableTtlStatus> status;
+  final TfArg<KeyspacesTableClientSideTimestampsStatus> status;
 
   Map<String, Object?> encode() => {'status': status.toTfJson()};
-}
-
-/// `status` — derived from the provider schema description.
-enum KeyspacesTableTtlStatus implements TerraformEnum {
-  enabled('ENABLED');
-
-  const KeyspacesTableTtlStatus(this.terraformValue);
-  @override
-  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_keyspaces_table`.

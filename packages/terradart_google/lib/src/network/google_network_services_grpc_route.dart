@@ -13,9 +13,9 @@ const Set<String> _googleNetworkServicesGrpcRouteSensitive = <String>{};
 final class NetworkServicesGrpcRouteRules {
   const NetworkServicesGrpcRouteRules({this.action, this.matches});
 
-  final NetworkServicesGrpcRouteRulesAction? action;
+  final NetworkServicesGrpcRouteAction? action;
 
-  final List<NetworkServicesGrpcRouteRulesMatches>? matches;
+  final List<NetworkServicesGrpcRouteMatches>? matches;
 
   Map<String, Object?> encode() => {
     'action': ?action?.encode(),
@@ -26,8 +26,8 @@ final class NetworkServicesGrpcRouteRules {
 /// Typed helper for the `rules.action` block of
 /// `google_network_services_grpc_route` (derived from provider schema).
 @immutable
-final class NetworkServicesGrpcRouteRulesAction {
-  const NetworkServicesGrpcRouteRulesAction({
+final class NetworkServicesGrpcRouteAction {
+  const NetworkServicesGrpcRouteAction({
     this.timeout,
     this.destinations,
     this.faultInjectionPolicy,
@@ -36,12 +36,11 @@ final class NetworkServicesGrpcRouteRulesAction {
 
   final TfArg<String>? timeout;
 
-  final List<NetworkServicesGrpcRouteRulesActionDestinations>? destinations;
+  final List<NetworkServicesGrpcRouteDestinations>? destinations;
 
-  final NetworkServicesGrpcRouteRulesActionFaultInjectionPolicy?
-  faultInjectionPolicy;
+  final NetworkServicesGrpcRouteFaultInjectionPolicy? faultInjectionPolicy;
 
-  final NetworkServicesGrpcRouteRulesActionRetryPolicy? retryPolicy;
+  final NetworkServicesGrpcRouteRetryPolicy? retryPolicy;
 
   Map<String, Object?> encode() => {
     'timeout': ?timeout?.toTfJson(),
@@ -55,11 +54,8 @@ final class NetworkServicesGrpcRouteRulesAction {
 /// Typed helper for the `rules.action.destinations` block of
 /// `google_network_services_grpc_route` (derived from provider schema).
 @immutable
-final class NetworkServicesGrpcRouteRulesActionDestinations {
-  const NetworkServicesGrpcRouteRulesActionDestinations({
-    this.serviceName,
-    this.weight,
-  });
+final class NetworkServicesGrpcRouteDestinations {
+  const NetworkServicesGrpcRouteDestinations({this.serviceName, this.weight});
 
   final TfArg<String>? serviceName;
 
@@ -74,15 +70,12 @@ final class NetworkServicesGrpcRouteRulesActionDestinations {
 /// Typed helper for the `rules.action.fault_injection_policy` block of
 /// `google_network_services_grpc_route` (derived from provider schema).
 @immutable
-final class NetworkServicesGrpcRouteRulesActionFaultInjectionPolicy {
-  const NetworkServicesGrpcRouteRulesActionFaultInjectionPolicy({
-    this.abort,
-    this.delay,
-  });
+final class NetworkServicesGrpcRouteFaultInjectionPolicy {
+  const NetworkServicesGrpcRouteFaultInjectionPolicy({this.abort, this.delay});
 
-  final NetworkServicesGrpcRouteRulesActionFaultInjectionPolicyAbort? abort;
+  final NetworkServicesGrpcRouteAbort? abort;
 
-  final NetworkServicesGrpcRouteRulesActionFaultInjectionPolicyDelay? delay;
+  final NetworkServicesGrpcRouteDelay? delay;
 
   Map<String, Object?> encode() => {
     'abort': ?abort?.encode(),
@@ -93,11 +86,8 @@ final class NetworkServicesGrpcRouteRulesActionFaultInjectionPolicy {
 /// Typed helper for the `rules.action.fault_injection_policy.abort` block of
 /// `google_network_services_grpc_route` (derived from provider schema).
 @immutable
-final class NetworkServicesGrpcRouteRulesActionFaultInjectionPolicyAbort {
-  const NetworkServicesGrpcRouteRulesActionFaultInjectionPolicyAbort({
-    this.httpStatus,
-    this.percentage,
-  });
+final class NetworkServicesGrpcRouteAbort {
+  const NetworkServicesGrpcRouteAbort({this.httpStatus, this.percentage});
 
   final TfArg<num>? httpStatus;
 
@@ -112,11 +102,8 @@ final class NetworkServicesGrpcRouteRulesActionFaultInjectionPolicyAbort {
 /// Typed helper for the `rules.action.fault_injection_policy.delay` block of
 /// `google_network_services_grpc_route` (derived from provider schema).
 @immutable
-final class NetworkServicesGrpcRouteRulesActionFaultInjectionPolicyDelay {
-  const NetworkServicesGrpcRouteRulesActionFaultInjectionPolicyDelay({
-    this.fixedDelay,
-    this.percentage,
-  });
+final class NetworkServicesGrpcRouteDelay {
+  const NetworkServicesGrpcRouteDelay({this.fixedDelay, this.percentage});
 
   final TfArg<String>? fixedDelay;
 
@@ -131,18 +118,15 @@ final class NetworkServicesGrpcRouteRulesActionFaultInjectionPolicyDelay {
 /// Typed helper for the `rules.action.retry_policy` block of
 /// `google_network_services_grpc_route` (derived from provider schema).
 @immutable
-final class NetworkServicesGrpcRouteRulesActionRetryPolicy {
-  const NetworkServicesGrpcRouteRulesActionRetryPolicy({
+final class NetworkServicesGrpcRouteRetryPolicy {
+  const NetworkServicesGrpcRouteRetryPolicy({
     this.numRetries,
     this.retryConditions,
   });
 
   final TfArg<num>? numRetries;
 
-  final List<
-    TfArg<NetworkServicesGrpcRouteRulesActionRetryPolicyRetryConditions>
-  >?
-  retryConditions;
+  final List<TfArg<NetworkServicesGrpcRouteRetryConditions>>? retryConditions;
 
   Map<String, Object?> encode() => {
     'num_retries': ?numRetries?.toTfJson(),
@@ -152,8 +136,7 @@ final class NetworkServicesGrpcRouteRulesActionRetryPolicy {
 }
 
 /// `retry_conditions` — derived from the provider schema description.
-enum NetworkServicesGrpcRouteRulesActionRetryPolicyRetryConditions
-    implements TerraformEnum {
+enum NetworkServicesGrpcRouteRetryConditions implements TerraformEnum {
   connectFailure('connect-failure'),
   refusedStream('refused-stream'),
   cancelled('cancelled'),
@@ -161,9 +144,7 @@ enum NetworkServicesGrpcRouteRulesActionRetryPolicyRetryConditions
   resourceExhausted('resource-exhausted'),
   unavailable('unavailable');
 
-  const NetworkServicesGrpcRouteRulesActionRetryPolicyRetryConditions(
-    this.terraformValue,
-  );
+  const NetworkServicesGrpcRouteRetryConditions(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -171,12 +152,12 @@ enum NetworkServicesGrpcRouteRulesActionRetryPolicyRetryConditions
 /// Typed helper for the `rules.matches` block of
 /// `google_network_services_grpc_route` (derived from provider schema).
 @immutable
-final class NetworkServicesGrpcRouteRulesMatches {
-  const NetworkServicesGrpcRouteRulesMatches({this.headers, this.method});
+final class NetworkServicesGrpcRouteMatches {
+  const NetworkServicesGrpcRouteMatches({this.headers, this.method});
 
-  final List<NetworkServicesGrpcRouteRulesMatchesHeaders>? headers;
+  final List<NetworkServicesGrpcRouteHeaders>? headers;
 
-  final NetworkServicesGrpcRouteRulesMatchesMethod? method;
+  final NetworkServicesGrpcRouteMethod? method;
 
   Map<String, Object?> encode() => {
     if (headers != null) 'headers': [for (final e in headers!) e.encode()],
@@ -187,8 +168,8 @@ final class NetworkServicesGrpcRouteRulesMatches {
 /// Typed helper for the `rules.matches.headers` block of
 /// `google_network_services_grpc_route` (derived from provider schema).
 @immutable
-final class NetworkServicesGrpcRouteRulesMatchesHeaders {
-  const NetworkServicesGrpcRouteRulesMatchesHeaders({
+final class NetworkServicesGrpcRouteHeaders {
+  const NetworkServicesGrpcRouteHeaders({
     required this.key,
     this.type,
     required this.value,
@@ -196,7 +177,7 @@ final class NetworkServicesGrpcRouteRulesMatchesHeaders {
 
   final TfArg<String> key;
 
-  final TfArg<NetworkServicesGrpcRouteRulesMatchesHeadersType>? type;
+  final TfArg<NetworkServicesGrpcRouteType>? type;
 
   final TfArg<String> value;
 
@@ -208,12 +189,12 @@ final class NetworkServicesGrpcRouteRulesMatchesHeaders {
 }
 
 /// `type` — derived from the provider schema description.
-enum NetworkServicesGrpcRouteRulesMatchesHeadersType implements TerraformEnum {
+enum NetworkServicesGrpcRouteType implements TerraformEnum {
   typeUnspecified('TYPE_UNSPECIFIED'),
   exact('EXACT'),
   regularExpression('REGULAR_EXPRESSION');
 
-  const NetworkServicesGrpcRouteRulesMatchesHeadersType(this.terraformValue);
+  const NetworkServicesGrpcRouteType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -221,8 +202,8 @@ enum NetworkServicesGrpcRouteRulesMatchesHeadersType implements TerraformEnum {
 /// Typed helper for the `rules.matches.method` block of
 /// `google_network_services_grpc_route` (derived from provider schema).
 @immutable
-final class NetworkServicesGrpcRouteRulesMatchesMethod {
-  const NetworkServicesGrpcRouteRulesMatchesMethod({
+final class NetworkServicesGrpcRouteMethod {
+  const NetworkServicesGrpcRouteMethod({
     this.caseSensitive,
     required this.grpcMethod,
     required this.grpcService,

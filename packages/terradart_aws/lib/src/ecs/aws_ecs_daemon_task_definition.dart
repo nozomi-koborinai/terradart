@@ -77,40 +77,33 @@ final class EcsDaemonTaskDefinitionContainerDefinition {
 
   final TfArg<String>? workingDirectory;
 
-  final List<EcsDaemonTaskDefinitionContainerDefinitionDependsOn>? dependsOn;
+  final List<EcsDaemonTaskDefinitionDependsOn>? dependsOn;
 
-  final List<EcsDaemonTaskDefinitionContainerDefinitionEnvironment>?
-  environment;
+  final List<EcsDaemonTaskDefinitionEnvironment>? environment;
 
-  final List<EcsDaemonTaskDefinitionContainerDefinitionEnvironmentFile>?
-  environmentFile;
+  final List<EcsDaemonTaskDefinitionEnvironmentFile>? environmentFile;
 
-  final List<EcsDaemonTaskDefinitionContainerDefinitionFirelensConfiguration>?
+  final List<EcsDaemonTaskDefinitionFirelensConfiguration>?
   firelensConfiguration;
 
-  final List<EcsDaemonTaskDefinitionContainerDefinitionHealthCheck>?
-  healthCheck;
+  final List<EcsDaemonTaskDefinitionHealthCheck>? healthCheck;
 
-  final List<EcsDaemonTaskDefinitionContainerDefinitionLinuxParameters>?
-  linuxParameters;
+  final List<EcsDaemonTaskDefinitionLinuxParameters>? linuxParameters;
 
-  final List<EcsDaemonTaskDefinitionContainerDefinitionLogConfiguration>?
-  logConfiguration;
+  final List<EcsDaemonTaskDefinitionLogConfiguration>? logConfiguration;
 
-  final List<EcsDaemonTaskDefinitionContainerDefinitionMountPoint>? mountPoint;
+  final List<EcsDaemonTaskDefinitionMountPoint>? mountPoint;
 
-  final List<EcsDaemonTaskDefinitionContainerDefinitionRepositoryCredentials>?
+  final List<EcsDaemonTaskDefinitionRepositoryCredentials>?
   repositoryCredentials;
 
-  final List<EcsDaemonTaskDefinitionContainerDefinitionRestartPolicy>?
-  restartPolicy;
+  final List<EcsDaemonTaskDefinitionRestartPolicy>? restartPolicy;
 
-  final List<EcsDaemonTaskDefinitionContainerDefinitionSecret>? secret;
+  final List<EcsDaemonTaskDefinitionSecret>? secret;
 
-  final List<EcsDaemonTaskDefinitionContainerDefinitionSystemControl>?
-  systemControl;
+  final List<EcsDaemonTaskDefinitionSystemControl>? systemControl;
 
-  final List<EcsDaemonTaskDefinitionContainerDefinitionUlimit>? ulimit;
+  final List<EcsDaemonTaskDefinitionUlimit>? ulimit;
 
   Map<String, Object?> encode() => {
     'command': ?command?.toTfJson(),
@@ -163,14 +156,13 @@ final class EcsDaemonTaskDefinitionContainerDefinition {
 /// Typed helper for the `container_definition.depends_on` block of
 /// `aws_ecs_daemon_task_definition` (derived from provider schema).
 @immutable
-final class EcsDaemonTaskDefinitionContainerDefinitionDependsOn {
-  const EcsDaemonTaskDefinitionContainerDefinitionDependsOn({
+final class EcsDaemonTaskDefinitionDependsOn {
+  const EcsDaemonTaskDefinitionDependsOn({
     required this.condition,
     required this.containerName,
   });
 
-  final TfArg<EcsDaemonTaskDefinitionContainerDefinitionDependsOnCondition>
-  condition;
+  final TfArg<EcsDaemonTaskDefinitionCondition> condition;
 
   final TfArg<String> containerName;
 
@@ -181,16 +173,13 @@ final class EcsDaemonTaskDefinitionContainerDefinitionDependsOn {
 }
 
 /// `condition` — derived from the provider schema description.
-enum EcsDaemonTaskDefinitionContainerDefinitionDependsOnCondition
-    implements TerraformEnum {
+enum EcsDaemonTaskDefinitionCondition implements TerraformEnum {
   start('START'),
   complete('COMPLETE'),
   success('SUCCESS'),
   healthy('HEALTHY');
 
-  const EcsDaemonTaskDefinitionContainerDefinitionDependsOnCondition(
-    this.terraformValue,
-  );
+  const EcsDaemonTaskDefinitionCondition(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -198,11 +187,8 @@ enum EcsDaemonTaskDefinitionContainerDefinitionDependsOnCondition
 /// Typed helper for the `container_definition.environment` block of
 /// `aws_ecs_daemon_task_definition` (derived from provider schema).
 @immutable
-final class EcsDaemonTaskDefinitionContainerDefinitionEnvironment {
-  const EcsDaemonTaskDefinitionContainerDefinitionEnvironment({
-    this.name,
-    this.value,
-  });
+final class EcsDaemonTaskDefinitionEnvironment {
+  const EcsDaemonTaskDefinitionEnvironment({this.name, this.value});
 
   final TfArg<String>? name;
 
@@ -217,14 +203,13 @@ final class EcsDaemonTaskDefinitionContainerDefinitionEnvironment {
 /// Typed helper for the `container_definition.environment_file` block of
 /// `aws_ecs_daemon_task_definition` (derived from provider schema).
 @immutable
-final class EcsDaemonTaskDefinitionContainerDefinitionEnvironmentFile {
-  const EcsDaemonTaskDefinitionContainerDefinitionEnvironmentFile({
+final class EcsDaemonTaskDefinitionEnvironmentFile {
+  const EcsDaemonTaskDefinitionEnvironmentFile({
     required this.type,
     required this.value,
   });
 
-  final TfArg<EcsDaemonTaskDefinitionContainerDefinitionEnvironmentFileType>
-  type;
+  final TfArg<EcsDaemonTaskDefinitionEnvironmentFileType> type;
 
   final TfArg<String> value;
 
@@ -235,13 +220,10 @@ final class EcsDaemonTaskDefinitionContainerDefinitionEnvironmentFile {
 }
 
 /// `type` — derived from the provider schema description.
-enum EcsDaemonTaskDefinitionContainerDefinitionEnvironmentFileType
-    implements TerraformEnum {
+enum EcsDaemonTaskDefinitionEnvironmentFileType implements TerraformEnum {
   s3('s3');
 
-  const EcsDaemonTaskDefinitionContainerDefinitionEnvironmentFileType(
-    this.terraformValue,
-  );
+  const EcsDaemonTaskDefinitionEnvironmentFileType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -249,18 +231,15 @@ enum EcsDaemonTaskDefinitionContainerDefinitionEnvironmentFileType
 /// Typed helper for the `container_definition.firelens_configuration` block of
 /// `aws_ecs_daemon_task_definition` (derived from provider schema).
 @immutable
-final class EcsDaemonTaskDefinitionContainerDefinitionFirelensConfiguration {
-  const EcsDaemonTaskDefinitionContainerDefinitionFirelensConfiguration({
+final class EcsDaemonTaskDefinitionFirelensConfiguration {
+  const EcsDaemonTaskDefinitionFirelensConfiguration({
     this.options,
     required this.type,
   });
 
   final TfArg<Map<String, String>>? options;
 
-  final TfArg<
-    EcsDaemonTaskDefinitionContainerDefinitionFirelensConfigurationType
-  >
-  type;
+  final TfArg<EcsDaemonTaskDefinitionFirelensConfigurationType> type;
 
   Map<String, Object?> encode() => {
     'options': ?options?.toTfJson(),
@@ -269,14 +248,11 @@ final class EcsDaemonTaskDefinitionContainerDefinitionFirelensConfiguration {
 }
 
 /// `type` — derived from the provider schema description.
-enum EcsDaemonTaskDefinitionContainerDefinitionFirelensConfigurationType
-    implements TerraformEnum {
+enum EcsDaemonTaskDefinitionFirelensConfigurationType implements TerraformEnum {
   fluentd('fluentd'),
   fluentbit('fluentbit');
 
-  const EcsDaemonTaskDefinitionContainerDefinitionFirelensConfigurationType(
-    this.terraformValue,
-  );
+  const EcsDaemonTaskDefinitionFirelensConfigurationType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -284,8 +260,8 @@ enum EcsDaemonTaskDefinitionContainerDefinitionFirelensConfigurationType
 /// Typed helper for the `container_definition.health_check` block of
 /// `aws_ecs_daemon_task_definition` (derived from provider schema).
 @immutable
-final class EcsDaemonTaskDefinitionContainerDefinitionHealthCheck {
-  const EcsDaemonTaskDefinitionContainerDefinitionHealthCheck({
+final class EcsDaemonTaskDefinitionHealthCheck {
+  const EcsDaemonTaskDefinitionHealthCheck({
     required this.command,
     this.interval,
     this.retries,
@@ -315,8 +291,8 @@ final class EcsDaemonTaskDefinitionContainerDefinitionHealthCheck {
 /// Typed helper for the `container_definition.linux_parameters` block of
 /// `aws_ecs_daemon_task_definition` (derived from provider schema).
 @immutable
-final class EcsDaemonTaskDefinitionContainerDefinitionLinuxParameters {
-  const EcsDaemonTaskDefinitionContainerDefinitionLinuxParameters({
+final class EcsDaemonTaskDefinitionLinuxParameters {
+  const EcsDaemonTaskDefinitionLinuxParameters({
     this.initProcessEnabled,
     this.capabilities,
     this.device,
@@ -325,16 +301,11 @@ final class EcsDaemonTaskDefinitionContainerDefinitionLinuxParameters {
 
   final TfArg<bool>? initProcessEnabled;
 
-  final List<
-    EcsDaemonTaskDefinitionContainerDefinitionLinuxParametersCapabilities
-  >?
-  capabilities;
+  final List<EcsDaemonTaskDefinitionCapabilities>? capabilities;
 
-  final List<EcsDaemonTaskDefinitionContainerDefinitionLinuxParametersDevice>?
-  device;
+  final List<EcsDaemonTaskDefinitionDevice>? device;
 
-  final List<EcsDaemonTaskDefinitionContainerDefinitionLinuxParametersTmpfs>?
-  tmpfs;
+  final List<EcsDaemonTaskDefinitionTmpfs>? tmpfs;
 
   Map<String, Object?> encode() => {
     'init_process_enabled': ?initProcessEnabled?.toTfJson(),
@@ -348,11 +319,8 @@ final class EcsDaemonTaskDefinitionContainerDefinitionLinuxParameters {
 /// Typed helper for the `container_definition.linux_parameters.capabilities` block of
 /// `aws_ecs_daemon_task_definition` (derived from provider schema).
 @immutable
-final class EcsDaemonTaskDefinitionContainerDefinitionLinuxParametersCapabilities {
-  const EcsDaemonTaskDefinitionContainerDefinitionLinuxParametersCapabilities({
-    this.add,
-    this.drop,
-  });
+final class EcsDaemonTaskDefinitionCapabilities {
+  const EcsDaemonTaskDefinitionCapabilities({this.add, this.drop});
 
   final TfArg<List<String>>? add;
 
@@ -367,8 +335,8 @@ final class EcsDaemonTaskDefinitionContainerDefinitionLinuxParametersCapabilitie
 /// Typed helper for the `container_definition.linux_parameters.device` block of
 /// `aws_ecs_daemon_task_definition` (derived from provider schema).
 @immutable
-final class EcsDaemonTaskDefinitionContainerDefinitionLinuxParametersDevice {
-  const EcsDaemonTaskDefinitionContainerDefinitionLinuxParametersDevice({
+final class EcsDaemonTaskDefinitionDevice {
+  const EcsDaemonTaskDefinitionDevice({
     this.containerPath,
     required this.hostPath,
     this.permissions,
@@ -378,12 +346,7 @@ final class EcsDaemonTaskDefinitionContainerDefinitionLinuxParametersDevice {
 
   final TfArg<String> hostPath;
 
-  final List<
-    TfArg<
-      EcsDaemonTaskDefinitionContainerDefinitionLinuxParametersDevicePermissions
-    >
-  >?
-  permissions;
+  final List<TfArg<EcsDaemonTaskDefinitionPermissions>>? permissions;
 
   Map<String, Object?> encode() => {
     'container_path': ?containerPath?.toTfJson(),
@@ -394,15 +357,12 @@ final class EcsDaemonTaskDefinitionContainerDefinitionLinuxParametersDevice {
 }
 
 /// `permissions` — derived from the provider schema description.
-enum EcsDaemonTaskDefinitionContainerDefinitionLinuxParametersDevicePermissions
-    implements TerraformEnum {
+enum EcsDaemonTaskDefinitionPermissions implements TerraformEnum {
   read('read'),
   write('write'),
   mknod('mknod');
 
-  const EcsDaemonTaskDefinitionContainerDefinitionLinuxParametersDevicePermissions(
-    this.terraformValue,
-  );
+  const EcsDaemonTaskDefinitionPermissions(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -410,8 +370,8 @@ enum EcsDaemonTaskDefinitionContainerDefinitionLinuxParametersDevicePermissions
 /// Typed helper for the `container_definition.linux_parameters.tmpfs` block of
 /// `aws_ecs_daemon_task_definition` (derived from provider schema).
 @immutable
-final class EcsDaemonTaskDefinitionContainerDefinitionLinuxParametersTmpfs {
-  const EcsDaemonTaskDefinitionContainerDefinitionLinuxParametersTmpfs({
+final class EcsDaemonTaskDefinitionTmpfs {
+  const EcsDaemonTaskDefinitionTmpfs({
     required this.containerPath,
     this.mountOptions,
     required this.size,
@@ -433,24 +393,18 @@ final class EcsDaemonTaskDefinitionContainerDefinitionLinuxParametersTmpfs {
 /// Typed helper for the `container_definition.log_configuration` block of
 /// `aws_ecs_daemon_task_definition` (derived from provider schema).
 @immutable
-final class EcsDaemonTaskDefinitionContainerDefinitionLogConfiguration {
-  const EcsDaemonTaskDefinitionContainerDefinitionLogConfiguration({
+final class EcsDaemonTaskDefinitionLogConfiguration {
+  const EcsDaemonTaskDefinitionLogConfiguration({
     required this.logDriver,
     this.options,
     this.secretOption,
   });
 
-  final TfArg<
-    EcsDaemonTaskDefinitionContainerDefinitionLogConfigurationLogDriver
-  >
-  logDriver;
+  final TfArg<EcsDaemonTaskDefinitionLogDriver> logDriver;
 
   final TfArg<Map<String, String>>? options;
 
-  final List<
-    EcsDaemonTaskDefinitionContainerDefinitionLogConfigurationSecretOption
-  >?
-  secretOption;
+  final List<EcsDaemonTaskDefinitionSecretOption>? secretOption;
 
   Map<String, Object?> encode() => {
     'log_driver': logDriver.toTfJson(),
@@ -461,8 +415,7 @@ final class EcsDaemonTaskDefinitionContainerDefinitionLogConfiguration {
 }
 
 /// `log_driver` — derived from the provider schema description.
-enum EcsDaemonTaskDefinitionContainerDefinitionLogConfigurationLogDriver
-    implements TerraformEnum {
+enum EcsDaemonTaskDefinitionLogDriver implements TerraformEnum {
   jsonFile('json-file'),
   syslog('syslog'),
   journald('journald'),
@@ -472,9 +425,7 @@ enum EcsDaemonTaskDefinitionContainerDefinitionLogConfigurationLogDriver
   splunk('splunk'),
   awsfirelens('awsfirelens');
 
-  const EcsDaemonTaskDefinitionContainerDefinitionLogConfigurationLogDriver(
-    this.terraformValue,
-  );
+  const EcsDaemonTaskDefinitionLogDriver(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -482,8 +433,8 @@ enum EcsDaemonTaskDefinitionContainerDefinitionLogConfigurationLogDriver
 /// Typed helper for the `container_definition.log_configuration.secret_option` block of
 /// `aws_ecs_daemon_task_definition` (derived from provider schema).
 @immutable
-final class EcsDaemonTaskDefinitionContainerDefinitionLogConfigurationSecretOption {
-  const EcsDaemonTaskDefinitionContainerDefinitionLogConfigurationSecretOption({
+final class EcsDaemonTaskDefinitionSecretOption {
+  const EcsDaemonTaskDefinitionSecretOption({
     required this.name,
     required this.valueFrom,
   });
@@ -501,8 +452,8 @@ final class EcsDaemonTaskDefinitionContainerDefinitionLogConfigurationSecretOpti
 /// Typed helper for the `container_definition.mount_point` block of
 /// `aws_ecs_daemon_task_definition` (derived from provider schema).
 @immutable
-final class EcsDaemonTaskDefinitionContainerDefinitionMountPoint {
-  const EcsDaemonTaskDefinitionContainerDefinitionMountPoint({
+final class EcsDaemonTaskDefinitionMountPoint {
+  const EcsDaemonTaskDefinitionMountPoint({
     this.containerPath,
     this.readOnly,
     this.sourceVolume,
@@ -524,8 +475,8 @@ final class EcsDaemonTaskDefinitionContainerDefinitionMountPoint {
 /// Typed helper for the `container_definition.repository_credentials` block of
 /// `aws_ecs_daemon_task_definition` (derived from provider schema).
 @immutable
-final class EcsDaemonTaskDefinitionContainerDefinitionRepositoryCredentials {
-  const EcsDaemonTaskDefinitionContainerDefinitionRepositoryCredentials({
+final class EcsDaemonTaskDefinitionRepositoryCredentials {
+  const EcsDaemonTaskDefinitionRepositoryCredentials({
     required this.credentialsParameter,
   });
 
@@ -539,8 +490,8 @@ final class EcsDaemonTaskDefinitionContainerDefinitionRepositoryCredentials {
 /// Typed helper for the `container_definition.restart_policy` block of
 /// `aws_ecs_daemon_task_definition` (derived from provider schema).
 @immutable
-final class EcsDaemonTaskDefinitionContainerDefinitionRestartPolicy {
-  const EcsDaemonTaskDefinitionContainerDefinitionRestartPolicy({
+final class EcsDaemonTaskDefinitionRestartPolicy {
+  const EcsDaemonTaskDefinitionRestartPolicy({
     required this.enabled,
     this.ignoredExitCodes,
     this.restartAttemptPeriod,
@@ -562,8 +513,8 @@ final class EcsDaemonTaskDefinitionContainerDefinitionRestartPolicy {
 /// Typed helper for the `container_definition.secret` block of
 /// `aws_ecs_daemon_task_definition` (derived from provider schema).
 @immutable
-final class EcsDaemonTaskDefinitionContainerDefinitionSecret {
-  const EcsDaemonTaskDefinitionContainerDefinitionSecret({
+final class EcsDaemonTaskDefinitionSecret {
+  const EcsDaemonTaskDefinitionSecret({
     required this.name,
     required this.valueFrom,
   });
@@ -581,11 +532,8 @@ final class EcsDaemonTaskDefinitionContainerDefinitionSecret {
 /// Typed helper for the `container_definition.system_control` block of
 /// `aws_ecs_daemon_task_definition` (derived from provider schema).
 @immutable
-final class EcsDaemonTaskDefinitionContainerDefinitionSystemControl {
-  const EcsDaemonTaskDefinitionContainerDefinitionSystemControl({
-    this.namespace,
-    this.value,
-  });
+final class EcsDaemonTaskDefinitionSystemControl {
+  const EcsDaemonTaskDefinitionSystemControl({this.namespace, this.value});
 
   final TfArg<String>? namespace;
 
@@ -600,8 +548,8 @@ final class EcsDaemonTaskDefinitionContainerDefinitionSystemControl {
 /// Typed helper for the `container_definition.ulimit` block of
 /// `aws_ecs_daemon_task_definition` (derived from provider schema).
 @immutable
-final class EcsDaemonTaskDefinitionContainerDefinitionUlimit {
-  const EcsDaemonTaskDefinitionContainerDefinitionUlimit({
+final class EcsDaemonTaskDefinitionUlimit {
+  const EcsDaemonTaskDefinitionUlimit({
     required this.hardLimit,
     required this.name,
     required this.softLimit,
@@ -609,7 +557,7 @@ final class EcsDaemonTaskDefinitionContainerDefinitionUlimit {
 
   final TfArg<num> hardLimit;
 
-  final TfArg<EcsDaemonTaskDefinitionContainerDefinitionUlimitName> name;
+  final TfArg<EcsDaemonTaskDefinitionName> name;
 
   final TfArg<num> softLimit;
 
@@ -621,8 +569,7 @@ final class EcsDaemonTaskDefinitionContainerDefinitionUlimit {
 }
 
 /// `name` — derived from the provider schema description.
-enum EcsDaemonTaskDefinitionContainerDefinitionUlimitName
-    implements TerraformEnum {
+enum EcsDaemonTaskDefinitionName implements TerraformEnum {
   core('core'),
   cpu('cpu'),
   data('data'),
@@ -639,9 +586,7 @@ enum EcsDaemonTaskDefinitionContainerDefinitionUlimitName
   sigpending('sigpending'),
   stack('stack');
 
-  const EcsDaemonTaskDefinitionContainerDefinitionUlimitName(
-    this.terraformValue,
-  );
+  const EcsDaemonTaskDefinitionName(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -654,7 +599,7 @@ final class EcsDaemonTaskDefinitionVolume {
 
   final TfArg<String> name;
 
-  final List<EcsDaemonTaskDefinitionVolumeHost>? host;
+  final List<EcsDaemonTaskDefinitionHost>? host;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -665,8 +610,8 @@ final class EcsDaemonTaskDefinitionVolume {
 /// Typed helper for the `volume.host` block of
 /// `aws_ecs_daemon_task_definition` (derived from provider schema).
 @immutable
-final class EcsDaemonTaskDefinitionVolumeHost {
-  const EcsDaemonTaskDefinitionVolumeHost({this.sourcePath});
+final class EcsDaemonTaskDefinitionHost {
+  const EcsDaemonTaskDefinitionHost({this.sourcePath});
 
   final TfArg<String>? sourcePath;
 

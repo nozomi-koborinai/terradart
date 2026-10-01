@@ -18,9 +18,9 @@ final class S3BucketLoggingTargetGrant {
     required this.grantee,
   });
 
-  final TfArg<S3BucketLoggingTargetGrantPermission> permission;
+  final TfArg<S3BucketLoggingPermission> permission;
 
-  final S3BucketLoggingTargetGrantGrantee grantee;
+  final S3BucketLoggingGrantee grantee;
 
   Map<String, Object?> encode() => {
     'permission': permission.toTfJson(),
@@ -29,12 +29,12 @@ final class S3BucketLoggingTargetGrant {
 }
 
 /// `permission` — derived from the provider schema description.
-enum S3BucketLoggingTargetGrantPermission implements TerraformEnum {
+enum S3BucketLoggingPermission implements TerraformEnum {
   fullControl('FULL_CONTROL'),
   read('READ'),
   write('WRITE');
 
-  const S3BucketLoggingTargetGrantPermission(this.terraformValue);
+  const S3BucketLoggingPermission(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -42,8 +42,8 @@ enum S3BucketLoggingTargetGrantPermission implements TerraformEnum {
 /// Typed helper for the `target_grant.grantee` block of
 /// `aws_s3_bucket_logging` (derived from provider schema).
 @immutable
-final class S3BucketLoggingTargetGrantGrantee {
-  const S3BucketLoggingTargetGrantGrantee({
+final class S3BucketLoggingGrantee {
+  const S3BucketLoggingGrantee({
     this.emailAddress,
     this.id,
     required this.type,
@@ -54,7 +54,7 @@ final class S3BucketLoggingTargetGrantGrantee {
 
   final TfArg<String>? id;
 
-  final TfArg<S3BucketLoggingTargetGrantGranteeType> type;
+  final TfArg<S3BucketLoggingType> type;
 
   final TfArg<String>? uri;
 
@@ -67,12 +67,12 @@ final class S3BucketLoggingTargetGrantGrantee {
 }
 
 /// `type` — derived from the provider schema description.
-enum S3BucketLoggingTargetGrantGranteeType implements TerraformEnum {
+enum S3BucketLoggingType implements TerraformEnum {
   canonicaluser('CanonicalUser'),
   amazoncustomerbyemail('AmazonCustomerByEmail'),
   group('Group');
 
-  const S3BucketLoggingTargetGrantGranteeType(this.terraformValue);
+  const S3BucketLoggingType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -86,13 +86,13 @@ sealed class S3BucketLoggingTargetObjectKeyFormat {
 
   /// Sets `partitioned_prefix`.
   const factory S3BucketLoggingTargetObjectKeyFormat.partitionedPrefix(
-    S3BucketLoggingTargetObjectKeyFormatPartitionedPrefix partitionedPrefix,
-  ) = S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixChoice;
+    S3BucketLoggingPartitionedPrefix partitionedPrefix,
+  ) = S3BucketLoggingTargetObjectKeyFormatPartitionedPrefix;
 
   /// Sets `simple_prefix`.
   const factory S3BucketLoggingTargetObjectKeyFormat.simplePrefix(
-    S3BucketLoggingTargetObjectKeyFormatSimplePrefix simplePrefix,
-  ) = S3BucketLoggingTargetObjectKeyFormatSimplePrefixChoice;
+    S3BucketLoggingSimplePrefix simplePrefix,
+  ) = S3BucketLoggingTargetObjectKeyFormatSimplePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -101,13 +101,13 @@ sealed class S3BucketLoggingTargetObjectKeyFormat {
 }
 
 /// The [S3BucketLoggingTargetObjectKeyFormat.partitionedPrefix] choice: sets `partitioned_prefix`.
-final class S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixChoice
+final class S3BucketLoggingTargetObjectKeyFormatPartitionedPrefix
     extends S3BucketLoggingTargetObjectKeyFormat {
-  const S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixChoice(
+  const S3BucketLoggingTargetObjectKeyFormatPartitionedPrefix(
     this.partitionedPrefix,
   );
 
-  final S3BucketLoggingTargetObjectKeyFormatPartitionedPrefix partitionedPrefix;
+  final S3BucketLoggingPartitionedPrefix partitionedPrefix;
 
   @override
   String get blockKey => 'partitioned_prefix';
@@ -119,13 +119,11 @@ final class S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixChoice
 }
 
 /// The [S3BucketLoggingTargetObjectKeyFormat.simplePrefix] choice: sets `simple_prefix`.
-final class S3BucketLoggingTargetObjectKeyFormatSimplePrefixChoice
+final class S3BucketLoggingTargetObjectKeyFormatSimplePrefix
     extends S3BucketLoggingTargetObjectKeyFormat {
-  const S3BucketLoggingTargetObjectKeyFormatSimplePrefixChoice(
-    this.simplePrefix,
-  );
+  const S3BucketLoggingTargetObjectKeyFormatSimplePrefix(this.simplePrefix);
 
-  final S3BucketLoggingTargetObjectKeyFormatSimplePrefix simplePrefix;
+  final S3BucketLoggingSimplePrefix simplePrefix;
 
   @override
   String get blockKey => 'simple_prefix';
@@ -137,15 +135,10 @@ final class S3BucketLoggingTargetObjectKeyFormatSimplePrefixChoice
 /// Typed helper for the `target_object_key_format.partitioned_prefix` block of
 /// `aws_s3_bucket_logging` (derived from provider schema).
 @immutable
-final class S3BucketLoggingTargetObjectKeyFormatPartitionedPrefix {
-  const S3BucketLoggingTargetObjectKeyFormatPartitionedPrefix({
-    required this.partitionDateSource,
-  });
+final class S3BucketLoggingPartitionedPrefix {
+  const S3BucketLoggingPartitionedPrefix({required this.partitionDateSource});
 
-  final TfArg<
-    S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixPartitionDateSource
-  >
-  partitionDateSource;
+  final TfArg<S3BucketLoggingPartitionDateSource> partitionDateSource;
 
   Map<String, Object?> encode() => {
     'partition_date_source': partitionDateSource.toTfJson(),
@@ -153,14 +146,11 @@ final class S3BucketLoggingTargetObjectKeyFormatPartitionedPrefix {
 }
 
 /// `partition_date_source` — derived from the provider schema description.
-enum S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixPartitionDateSource
-    implements TerraformEnum {
+enum S3BucketLoggingPartitionDateSource implements TerraformEnum {
   eventtime('EventTime'),
   deliverytime('DeliveryTime');
 
-  const S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixPartitionDateSource(
-    this.terraformValue,
-  );
+  const S3BucketLoggingPartitionDateSource(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -168,8 +158,8 @@ enum S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixPartitionDateSource
 /// Typed helper for the `target_object_key_format.simple_prefix` block of
 /// `aws_s3_bucket_logging` (derived from provider schema).
 @immutable
-final class S3BucketLoggingTargetObjectKeyFormatSimplePrefix {
-  const S3BucketLoggingTargetObjectKeyFormatSimplePrefix();
+final class S3BucketLoggingSimplePrefix {
+  const S3BucketLoggingSimplePrefix();
 
   Map<String, Object?> encode() => {};
 }

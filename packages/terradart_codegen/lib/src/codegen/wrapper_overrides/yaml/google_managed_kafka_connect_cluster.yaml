@@ -32,9 +32,9 @@ curatedDoc: |-
   ///     memoryBytes: TfArg.literal('3221225472'),
   ///   ),
   ///   gcpConfig: ManagedKafkaConnectClusterGcpConfig(
-  ///     accessConfig: ManagedKafkaConnectClusterGcpConfigAccessConfig(
+  ///     accessConfig: ManagedKafkaConnectClusterAccessConfig(
   ///       networkConfigs: [
-  ///         ManagedKafkaConnectClusterGcpConfigAccessConfigNetworkConfigs(
+  ///         ManagedKafkaConnectClusterNetworkConfigs(
   ///           primarySubnet: TfArg.ref(subnet.id),
   ///         ),
   ///       ],

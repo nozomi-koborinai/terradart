@@ -35,7 +35,7 @@ curatedDoc: |-
   ///     CesExampleMessages(
   ///       role: TfArg.literal('user'),
   ///       chunks: [
-  ///         CesExampleMessagesChunks(
+  ///         CesExampleChunks(
   ///           text: TfArg.literal('Hello'),
   ///         ),
   ///       ],

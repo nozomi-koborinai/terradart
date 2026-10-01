@@ -23,16 +23,12 @@ final class EcsCapacityProviderAutoScalingGroupProvider {
 
   final TfArg<String> autoScalingGroupArn;
 
-  final TfArg<EcsCapacityProviderAutoScalingGroupProviderManagedDraining>?
-  managedDraining;
+  final TfArg<EcsCapacityProviderManagedDraining>? managedDraining;
 
-  final TfArg<
-    EcsCapacityProviderAutoScalingGroupProviderManagedTerminationProtection
-  >?
+  final TfArg<EcsCapacityProviderManagedTerminationProtection>?
   managedTerminationProtection;
 
-  final EcsCapacityProviderAutoScalingGroupProviderManagedScaling?
-  managedScaling;
+  final EcsCapacityProviderManagedScaling? managedScaling;
 
   Map<String, Object?> encode() => {
     'auto_scaling_group_arn': autoScalingGroupArn.toTfJson(),
@@ -43,27 +39,21 @@ final class EcsCapacityProviderAutoScalingGroupProvider {
 }
 
 /// `managed_draining` — derived from the provider schema description.
-enum EcsCapacityProviderAutoScalingGroupProviderManagedDraining
-    implements TerraformEnum {
+enum EcsCapacityProviderManagedDraining implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const EcsCapacityProviderAutoScalingGroupProviderManagedDraining(
-    this.terraformValue,
-  );
+  const EcsCapacityProviderManagedDraining(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `managed_termination_protection` — derived from the provider schema description.
-enum EcsCapacityProviderAutoScalingGroupProviderManagedTerminationProtection
-    implements TerraformEnum {
+enum EcsCapacityProviderManagedTerminationProtection implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const EcsCapacityProviderAutoScalingGroupProviderManagedTerminationProtection(
-    this.terraformValue,
-  );
+  const EcsCapacityProviderManagedTerminationProtection(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -71,8 +61,8 @@ enum EcsCapacityProviderAutoScalingGroupProviderManagedTerminationProtection
 /// Typed helper for the `auto_scaling_group_provider.managed_scaling` block of
 /// `aws_ecs_capacity_provider` (derived from provider schema).
 @immutable
-final class EcsCapacityProviderAutoScalingGroupProviderManagedScaling {
-  const EcsCapacityProviderAutoScalingGroupProviderManagedScaling({
+final class EcsCapacityProviderManagedScaling {
+  const EcsCapacityProviderManagedScaling({
     this.instanceWarmupPeriod,
     this.maximumScalingStepSize,
     this.minimumScalingStepSize,
@@ -86,8 +76,7 @@ final class EcsCapacityProviderAutoScalingGroupProviderManagedScaling {
 
   final TfArg<num>? minimumScalingStepSize;
 
-  final TfArg<EcsCapacityProviderAutoScalingGroupProviderManagedScalingStatus>?
-  status;
+  final TfArg<EcsCapacityProviderStatus>? status;
 
   final TfArg<num>? targetCapacity;
 
@@ -101,14 +90,11 @@ final class EcsCapacityProviderAutoScalingGroupProviderManagedScaling {
 }
 
 /// `status` — derived from the provider schema description.
-enum EcsCapacityProviderAutoScalingGroupProviderManagedScalingStatus
-    implements TerraformEnum {
+enum EcsCapacityProviderStatus implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const EcsCapacityProviderAutoScalingGroupProviderManagedScalingStatus(
-    this.terraformValue,
-  );
+  const EcsCapacityProviderStatus(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -127,17 +113,14 @@ final class EcsCapacityProviderManagedInstancesProvider {
 
   final TfArg<String> infrastructureRoleArn;
 
-  final TfArg<EcsCapacityProviderManagedInstancesProviderPropagateTags>?
-  propagateTags;
+  final TfArg<EcsCapacityProviderPropagateTags>? propagateTags;
 
-  final EcsCapacityProviderManagedInstancesProviderAutoRepairConfiguration?
-  autoRepairConfiguration;
+  final EcsCapacityProviderAutoRepairConfiguration? autoRepairConfiguration;
 
-  final EcsCapacityProviderManagedInstancesProviderInfrastructureOptimization?
+  final EcsCapacityProviderInfrastructureOptimization?
   infrastructureOptimization;
 
-  final EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplate
-  instanceLaunchTemplate;
+  final EcsCapacityProviderInstanceLaunchTemplate instanceLaunchTemplate;
 
   Map<String, Object?> encode() => {
     'infrastructure_role_arn': infrastructureRoleArn.toTfJson(),
@@ -149,14 +132,11 @@ final class EcsCapacityProviderManagedInstancesProvider {
 }
 
 /// `propagate_tags` — derived from the provider schema description.
-enum EcsCapacityProviderManagedInstancesProviderPropagateTags
-    implements TerraformEnum {
+enum EcsCapacityProviderPropagateTags implements TerraformEnum {
   capacityProvider('CAPACITY_PROVIDER'),
   none('NONE');
 
-  const EcsCapacityProviderManagedInstancesProviderPropagateTags(
-    this.terraformValue,
-  );
+  const EcsCapacityProviderPropagateTags(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -164,15 +144,10 @@ enum EcsCapacityProviderManagedInstancesProviderPropagateTags
 /// Typed helper for the `managed_instances_provider.auto_repair_configuration` block of
 /// `aws_ecs_capacity_provider` (derived from provider schema).
 @immutable
-final class EcsCapacityProviderManagedInstancesProviderAutoRepairConfiguration {
-  const EcsCapacityProviderManagedInstancesProviderAutoRepairConfiguration({
-    this.actionsStatus,
-  });
+final class EcsCapacityProviderAutoRepairConfiguration {
+  const EcsCapacityProviderAutoRepairConfiguration({this.actionsStatus});
 
-  final TfArg<
-    EcsCapacityProviderManagedInstancesProviderAutoRepairConfigurationActionsStatus
-  >?
-  actionsStatus;
+  final TfArg<EcsCapacityProviderActionsStatus>? actionsStatus;
 
   Map<String, Object?> encode() => {
     'actions_status': ?actionsStatus?.toTfJson(),
@@ -180,14 +155,11 @@ final class EcsCapacityProviderManagedInstancesProviderAutoRepairConfiguration {
 }
 
 /// `actions_status` — derived from the provider schema description.
-enum EcsCapacityProviderManagedInstancesProviderAutoRepairConfigurationActionsStatus
-    implements TerraformEnum {
+enum EcsCapacityProviderActionsStatus implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const EcsCapacityProviderManagedInstancesProviderAutoRepairConfigurationActionsStatus(
-    this.terraformValue,
-  );
+  const EcsCapacityProviderActionsStatus(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -195,10 +167,8 @@ enum EcsCapacityProviderManagedInstancesProviderAutoRepairConfigurationActionsSt
 /// Typed helper for the `managed_instances_provider.infrastructure_optimization` block of
 /// `aws_ecs_capacity_provider` (derived from provider schema).
 @immutable
-final class EcsCapacityProviderManagedInstancesProviderInfrastructureOptimization {
-  const EcsCapacityProviderManagedInstancesProviderInfrastructureOptimization({
-    this.scaleInAfter,
-  });
+final class EcsCapacityProviderInfrastructureOptimization {
+  const EcsCapacityProviderInfrastructureOptimization({this.scaleInAfter});
 
   final TfArg<num>? scaleInAfter;
 
@@ -210,8 +180,8 @@ final class EcsCapacityProviderManagedInstancesProviderInfrastructureOptimizatio
 /// Typed helper for the `managed_instances_provider.instance_launch_template` block of
 /// `aws_ecs_capacity_provider` (derived from provider schema).
 @immutable
-final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplate {
-  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplate({
+final class EcsCapacityProviderInstanceLaunchTemplate {
+  const EcsCapacityProviderInstanceLaunchTemplate({
     this.capacityOptionType,
     required this.ec2InstanceProfileArn,
     this.monitoring,
@@ -222,32 +192,21 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplate {
     this.storageConfiguration,
   });
 
-  final TfArg<
-    EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateCapacityOptionType
-  >?
-  capacityOptionType;
+  final TfArg<EcsCapacityProviderCapacityOptionType>? capacityOptionType;
 
   final TfArg<String> ec2InstanceProfileArn;
 
-  final TfArg<
-    EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateMonitoring
-  >?
-  monitoring;
+  final TfArg<EcsCapacityProviderMonitoring>? monitoring;
 
-  final EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateCapacityReservations?
-  capacityReservations;
+  final EcsCapacityProviderCapacityReservations? capacityReservations;
 
-  final EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirements?
-  instanceRequirements;
+  final EcsCapacityProviderInstanceRequirements? instanceRequirements;
 
-  final EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateLocalStorageConfiguration?
-  localStorageConfiguration;
+  final EcsCapacityProviderLocalStorageConfiguration? localStorageConfiguration;
 
-  final EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateNetworkConfiguration
-  networkConfiguration;
+  final EcsCapacityProviderNetworkConfiguration networkConfiguration;
 
-  final EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateStorageConfiguration?
-  storageConfiguration;
+  final EcsCapacityProviderStorageConfiguration? storageConfiguration;
 
   Map<String, Object?> encode() => {
     'capacity_option_type': ?capacityOptionType?.toTfJson(),
@@ -262,28 +221,22 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplate {
 }
 
 /// `capacity_option_type` — derived from the provider schema description.
-enum EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateCapacityOptionType
-    implements TerraformEnum {
+enum EcsCapacityProviderCapacityOptionType implements TerraformEnum {
   onDemand('ON_DEMAND'),
   spot('SPOT'),
   reserved('RESERVED');
 
-  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateCapacityOptionType(
-    this.terraformValue,
-  );
+  const EcsCapacityProviderCapacityOptionType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `monitoring` — derived from the provider schema description.
-enum EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateMonitoring
-    implements TerraformEnum {
+enum EcsCapacityProviderMonitoring implements TerraformEnum {
   basic('BASIC'),
   detailed('DETAILED');
 
-  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateMonitoring(
-    this.terraformValue,
-  );
+  const EcsCapacityProviderMonitoring(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -291,18 +244,15 @@ enum EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateMonitoring
 /// Typed helper for the `managed_instances_provider.instance_launch_template.capacity_reservations` block of
 /// `aws_ecs_capacity_provider` (derived from provider schema).
 @immutable
-final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateCapacityReservations {
-  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateCapacityReservations({
+final class EcsCapacityProviderCapacityReservations {
+  const EcsCapacityProviderCapacityReservations({
     this.reservationGroupArn,
     this.reservationPreference,
   });
 
   final TfArg<String>? reservationGroupArn;
 
-  final TfArg<
-    EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateCapacityReservationsReservationPreference
-  >?
-  reservationPreference;
+  final TfArg<EcsCapacityProviderReservationPreference>? reservationPreference;
 
   Map<String, Object?> encode() => {
     'reservation_group_arn': ?reservationGroupArn?.toTfJson(),
@@ -311,15 +261,12 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateCap
 }
 
 /// `reservation_preference` — derived from the provider schema description.
-enum EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateCapacityReservationsReservationPreference
-    implements TerraformEnum {
+enum EcsCapacityProviderReservationPreference implements TerraformEnum {
   reservationsOnly('RESERVATIONS_ONLY'),
   reservationsFirst('RESERVATIONS_FIRST'),
   reservationsExcluded('RESERVATIONS_EXCLUDED');
 
-  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateCapacityReservationsReservationPreference(
-    this.terraformValue,
-  );
+  const EcsCapacityProviderReservationPreference(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -327,8 +274,8 @@ enum EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateCapacityRe
 /// Typed helper for the `managed_instances_provider.instance_launch_template.instance_requirements` block of
 /// `aws_ecs_capacity_provider` (derived from provider schema).
 @immutable
-final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirements {
-  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirements({
+final class EcsCapacityProviderInstanceRequirements {
+  const EcsCapacityProviderInstanceRequirements({
     this.acceleratorManufacturers,
     this.acceleratorNames,
     this.acceleratorTypes,
@@ -355,66 +302,29 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateIns
     required this.vcpuCount,
   });
 
-  final List<
-    TfArg<
-      EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsAcceleratorManufacturers
-    >
-  >?
+  final List<TfArg<EcsCapacityProviderAcceleratorManufacturers>>?
   acceleratorManufacturers;
 
-  final List<
-    TfArg<
-      EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsAcceleratorNames
-    >
-  >?
-  acceleratorNames;
+  final List<TfArg<EcsCapacityProviderAcceleratorNames>>? acceleratorNames;
 
-  final List<
-    TfArg<
-      EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsAcceleratorTypes
-    >
-  >?
-  acceleratorTypes;
+  final List<TfArg<EcsCapacityProviderAcceleratorTypes>>? acceleratorTypes;
 
   final TfArg<List<String>>? allowedInstanceTypes;
 
-  final TfArg<
-    EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsBareMetal
-  >?
-  bareMetal;
+  final TfArg<EcsCapacityProviderBareMetal>? bareMetal;
 
-  final TfArg<
-    EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsBurstablePerformance
-  >?
-  burstablePerformance;
+  final TfArg<EcsCapacityProviderBurstablePerformance>? burstablePerformance;
 
-  final List<
-    TfArg<
-      EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsCpuManufacturers
-    >
-  >?
-  cpuManufacturers;
+  final List<TfArg<EcsCapacityProviderCpuManufacturers>>? cpuManufacturers;
 
   final TfArg<List<String>>? excludedInstanceTypes;
 
-  final List<
-    TfArg<
-      EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsInstanceGenerations
-    >
-  >?
+  final List<TfArg<EcsCapacityProviderInstanceGenerations>>?
   instanceGenerations;
 
-  final TfArg<
-    EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsLocalStorage
-  >?
-  localStorage;
+  final TfArg<EcsCapacityProviderLocalStorage>? localStorage;
 
-  final List<
-    TfArg<
-      EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsLocalStorageTypes
-    >
-  >?
-  localStorageTypes;
+  final List<TfArg<EcsCapacityProviderLocalStorageTypes>>? localStorageTypes;
 
   final TfArg<num>? maxSpotPriceAsPercentageOfOptimalOnDemandPrice;
 
@@ -424,32 +334,23 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateIns
 
   final TfArg<num>? spotMaxPricePercentageOverLowestPrice;
 
-  final EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsAcceleratorCount?
-  acceleratorCount;
+  final EcsCapacityProviderAcceleratorCount? acceleratorCount;
 
-  final EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsAcceleratorTotalMemoryMib?
-  acceleratorTotalMemoryMib;
+  final EcsCapacityProviderAcceleratorTotalMemoryMib? acceleratorTotalMemoryMib;
 
-  final EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsBaselineEbsBandwidthMbps?
-  baselineEbsBandwidthMbps;
+  final EcsCapacityProviderBaselineEbsBandwidthMbps? baselineEbsBandwidthMbps;
 
-  final EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsMemoryGibPerVcpu?
-  memoryGibPerVcpu;
+  final EcsCapacityProviderMemoryGibPerVcpu? memoryGibPerVcpu;
 
-  final EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsMemoryMib
-  memoryMib;
+  final EcsCapacityProviderMemoryMib memoryMib;
 
-  final EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsNetworkBandwidthGbps?
-  networkBandwidthGbps;
+  final EcsCapacityProviderNetworkBandwidthGbps? networkBandwidthGbps;
 
-  final EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsNetworkInterfaceCount?
-  networkInterfaceCount;
+  final EcsCapacityProviderNetworkInterfaceCount? networkInterfaceCount;
 
-  final EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsTotalLocalStorageGb?
-  totalLocalStorageGb;
+  final EcsCapacityProviderTotalLocalStorageGb? totalLocalStorageGb;
 
-  final EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsVcpuCount
-  vcpuCount;
+  final EcsCapacityProviderVcpuCount vcpuCount;
 
   Map<String, Object?> encode() => {
     if (acceleratorManufacturers != null)
@@ -493,24 +394,20 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateIns
 }
 
 /// `accelerator_manufacturers` — derived from the provider schema description.
-enum EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsAcceleratorManufacturers
-    implements TerraformEnum {
+enum EcsCapacityProviderAcceleratorManufacturers implements TerraformEnum {
   amazonWebServices('amazon-web-services'),
   amd('amd'),
   nvidia('nvidia'),
   xilinx('xilinx'),
   habana('habana');
 
-  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsAcceleratorManufacturers(
-    this.terraformValue,
-  );
+  const EcsCapacityProviderAcceleratorManufacturers(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `accelerator_names` — derived from the provider schema description.
-enum EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsAcceleratorNames
-    implements TerraformEnum {
+enum EcsCapacityProviderAcceleratorNames implements TerraformEnum {
   a100('a100'),
   inferentia('inferentia'),
   k520('k520'),
@@ -524,105 +421,82 @@ enum EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRe
   h100('h100'),
   t4g('t4g');
 
-  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsAcceleratorNames(
-    this.terraformValue,
-  );
+  const EcsCapacityProviderAcceleratorNames(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `accelerator_types` — derived from the provider schema description.
-enum EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsAcceleratorTypes
-    implements TerraformEnum {
+enum EcsCapacityProviderAcceleratorTypes implements TerraformEnum {
   gpu('gpu'),
   fpga('fpga'),
   inference('inference');
 
-  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsAcceleratorTypes(
-    this.terraformValue,
-  );
+  const EcsCapacityProviderAcceleratorTypes(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `bare_metal` — derived from the provider schema description.
-enum EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsBareMetal
-    implements TerraformEnum {
+enum EcsCapacityProviderBareMetal implements TerraformEnum {
   included('included'),
   required('required'),
   excluded('excluded');
 
-  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsBareMetal(
-    this.terraformValue,
-  );
+  const EcsCapacityProviderBareMetal(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `burstable_performance` — derived from the provider schema description.
-enum EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsBurstablePerformance
-    implements TerraformEnum {
+enum EcsCapacityProviderBurstablePerformance implements TerraformEnum {
   included('included'),
   required('required'),
   excluded('excluded');
 
-  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsBurstablePerformance(
-    this.terraformValue,
-  );
+  const EcsCapacityProviderBurstablePerformance(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `cpu_manufacturers` — derived from the provider schema description.
-enum EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsCpuManufacturers
-    implements TerraformEnum {
+enum EcsCapacityProviderCpuManufacturers implements TerraformEnum {
   intel('intel'),
   amd('amd'),
   amazonWebServices('amazon-web-services');
 
-  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsCpuManufacturers(
-    this.terraformValue,
-  );
+  const EcsCapacityProviderCpuManufacturers(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `instance_generations` — derived from the provider schema description.
-enum EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsInstanceGenerations
-    implements TerraformEnum {
+enum EcsCapacityProviderInstanceGenerations implements TerraformEnum {
   current('current'),
   previous('previous');
 
-  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsInstanceGenerations(
-    this.terraformValue,
-  );
+  const EcsCapacityProviderInstanceGenerations(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `local_storage` — derived from the provider schema description.
-enum EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsLocalStorage
-    implements TerraformEnum {
+enum EcsCapacityProviderLocalStorage implements TerraformEnum {
   included('included'),
   required('required'),
   excluded('excluded');
 
-  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsLocalStorage(
-    this.terraformValue,
-  );
+  const EcsCapacityProviderLocalStorage(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `local_storage_types` — derived from the provider schema description.
-enum EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsLocalStorageTypes
-    implements TerraformEnum {
+enum EcsCapacityProviderLocalStorageTypes implements TerraformEnum {
   hdd('hdd'),
   ssd('ssd');
 
-  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsLocalStorageTypes(
-    this.terraformValue,
-  );
+  const EcsCapacityProviderLocalStorageTypes(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -630,11 +504,8 @@ enum EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRe
 /// Typed helper for the `managed_instances_provider.instance_launch_template.instance_requirements.accelerator_count` block of
 /// `aws_ecs_capacity_provider` (derived from provider schema).
 @immutable
-final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsAcceleratorCount {
-  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsAcceleratorCount({
-    this.max,
-    this.min,
-  });
+final class EcsCapacityProviderAcceleratorCount {
+  const EcsCapacityProviderAcceleratorCount({this.max, this.min});
 
   final TfArg<num>? max;
 
@@ -649,11 +520,8 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateIns
 /// Typed helper for the `managed_instances_provider.instance_launch_template.instance_requirements.accelerator_total_memory_mib` block of
 /// `aws_ecs_capacity_provider` (derived from provider schema).
 @immutable
-final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsAcceleratorTotalMemoryMib {
-  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsAcceleratorTotalMemoryMib({
-    this.max,
-    this.min,
-  });
+final class EcsCapacityProviderAcceleratorTotalMemoryMib {
+  const EcsCapacityProviderAcceleratorTotalMemoryMib({this.max, this.min});
 
   final TfArg<num>? max;
 
@@ -668,11 +536,8 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateIns
 /// Typed helper for the `managed_instances_provider.instance_launch_template.instance_requirements.baseline_ebs_bandwidth_mbps` block of
 /// `aws_ecs_capacity_provider` (derived from provider schema).
 @immutable
-final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsBaselineEbsBandwidthMbps {
-  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsBaselineEbsBandwidthMbps({
-    this.max,
-    this.min,
-  });
+final class EcsCapacityProviderBaselineEbsBandwidthMbps {
+  const EcsCapacityProviderBaselineEbsBandwidthMbps({this.max, this.min});
 
   final TfArg<num>? max;
 
@@ -687,11 +552,8 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateIns
 /// Typed helper for the `managed_instances_provider.instance_launch_template.instance_requirements.memory_gib_per_vcpu` block of
 /// `aws_ecs_capacity_provider` (derived from provider schema).
 @immutable
-final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsMemoryGibPerVcpu {
-  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsMemoryGibPerVcpu({
-    this.max,
-    this.min,
-  });
+final class EcsCapacityProviderMemoryGibPerVcpu {
+  const EcsCapacityProviderMemoryGibPerVcpu({this.max, this.min});
 
   final TfArg<num>? max;
 
@@ -706,11 +568,8 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateIns
 /// Typed helper for the `managed_instances_provider.instance_launch_template.instance_requirements.memory_mib` block of
 /// `aws_ecs_capacity_provider` (derived from provider schema).
 @immutable
-final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsMemoryMib {
-  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsMemoryMib({
-    this.max,
-    required this.min,
-  });
+final class EcsCapacityProviderMemoryMib {
+  const EcsCapacityProviderMemoryMib({this.max, required this.min});
 
   final TfArg<num>? max;
 
@@ -725,11 +584,8 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateIns
 /// Typed helper for the `managed_instances_provider.instance_launch_template.instance_requirements.network_bandwidth_gbps` block of
 /// `aws_ecs_capacity_provider` (derived from provider schema).
 @immutable
-final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsNetworkBandwidthGbps {
-  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsNetworkBandwidthGbps({
-    this.max,
-    this.min,
-  });
+final class EcsCapacityProviderNetworkBandwidthGbps {
+  const EcsCapacityProviderNetworkBandwidthGbps({this.max, this.min});
 
   final TfArg<num>? max;
 
@@ -744,11 +600,8 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateIns
 /// Typed helper for the `managed_instances_provider.instance_launch_template.instance_requirements.network_interface_count` block of
 /// `aws_ecs_capacity_provider` (derived from provider schema).
 @immutable
-final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsNetworkInterfaceCount {
-  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsNetworkInterfaceCount({
-    this.max,
-    this.min,
-  });
+final class EcsCapacityProviderNetworkInterfaceCount {
+  const EcsCapacityProviderNetworkInterfaceCount({this.max, this.min});
 
   final TfArg<num>? max;
 
@@ -763,11 +616,8 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateIns
 /// Typed helper for the `managed_instances_provider.instance_launch_template.instance_requirements.total_local_storage_gb` block of
 /// `aws_ecs_capacity_provider` (derived from provider schema).
 @immutable
-final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsTotalLocalStorageGb {
-  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsTotalLocalStorageGb({
-    this.max,
-    this.min,
-  });
+final class EcsCapacityProviderTotalLocalStorageGb {
+  const EcsCapacityProviderTotalLocalStorageGb({this.max, this.min});
 
   final TfArg<num>? max;
 
@@ -782,11 +632,8 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateIns
 /// Typed helper for the `managed_instances_provider.instance_launch_template.instance_requirements.vcpu_count` block of
 /// `aws_ecs_capacity_provider` (derived from provider schema).
 @immutable
-final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsVcpuCount {
-  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsVcpuCount({
-    this.max,
-    required this.min,
-  });
+final class EcsCapacityProviderVcpuCount {
+  const EcsCapacityProviderVcpuCount({this.max, required this.min});
 
   final TfArg<num>? max;
 
@@ -801,10 +648,8 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateIns
 /// Typed helper for the `managed_instances_provider.instance_launch_template.local_storage_configuration` block of
 /// `aws_ecs_capacity_provider` (derived from provider schema).
 @immutable
-final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateLocalStorageConfiguration {
-  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateLocalStorageConfiguration({
-    this.useLocalStorage,
-  });
+final class EcsCapacityProviderLocalStorageConfiguration {
+  const EcsCapacityProviderLocalStorageConfiguration({this.useLocalStorage});
 
   final TfArg<bool>? useLocalStorage;
 
@@ -816,8 +661,8 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateLoc
 /// Typed helper for the `managed_instances_provider.instance_launch_template.network_configuration` block of
 /// `aws_ecs_capacity_provider` (derived from provider schema).
 @immutable
-final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateNetworkConfiguration {
-  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateNetworkConfiguration({
+final class EcsCapacityProviderNetworkConfiguration {
+  const EcsCapacityProviderNetworkConfiguration({
     this.securityGroups,
     required this.subnets,
   });
@@ -835,10 +680,8 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateNet
 /// Typed helper for the `managed_instances_provider.instance_launch_template.storage_configuration` block of
 /// `aws_ecs_capacity_provider` (derived from provider schema).
 @immutable
-final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateStorageConfiguration {
-  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateStorageConfiguration({
-    required this.storageSizeGib,
-  });
+final class EcsCapacityProviderStorageConfiguration {
+  const EcsCapacityProviderStorageConfiguration({required this.storageSizeGib});
 
   final TfArg<num> storageSizeGib;
 

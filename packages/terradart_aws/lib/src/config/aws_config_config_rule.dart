@@ -26,17 +26,17 @@ enum ConfigConfigRuleMaximumExecutionFrequency implements TerraformEnum {
 final class ConfigConfigRuleEvaluationMode {
   const ConfigConfigRuleEvaluationMode({this.mode});
 
-  final TfArg<ConfigConfigRuleEvaluationModeMode>? mode;
+  final TfArg<ConfigConfigRuleMode>? mode;
 
   Map<String, Object?> encode() => {'mode': ?mode?.toTfJson()};
 }
 
 /// `mode` — derived from the provider schema description.
-enum ConfigConfigRuleEvaluationModeMode implements TerraformEnum {
+enum ConfigConfigRuleMode implements TerraformEnum {
   detective('DETECTIVE'),
   proactive('PROACTIVE');
 
-  const ConfigConfigRuleEvaluationModeMode(this.terraformValue);
+  const ConfigConfigRuleMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -79,13 +79,13 @@ final class ConfigConfigRuleSource {
     this.sourceDetail,
   });
 
-  final TfArg<ConfigConfigRuleSourceOwner> owner;
+  final TfArg<ConfigConfigRuleOwner> owner;
 
   final TfArg<String>? sourceIdentifier;
 
-  final ConfigConfigRuleSourceCustomPolicyDetails? customPolicyDetails;
+  final ConfigConfigRuleCustomPolicyDetails? customPolicyDetails;
 
-  final List<ConfigConfigRuleSourceSourceDetail>? sourceDetail;
+  final List<ConfigConfigRuleSourceDetail>? sourceDetail;
 
   Map<String, Object?> encode() => {
     'owner': owner.toTfJson(),
@@ -97,12 +97,12 @@ final class ConfigConfigRuleSource {
 }
 
 /// `owner` — derived from the provider schema description.
-enum ConfigConfigRuleSourceOwner implements TerraformEnum {
+enum ConfigConfigRuleOwner implements TerraformEnum {
   customLambda('CUSTOM_LAMBDA'),
   aws('AWS'),
   customPolicy('CUSTOM_POLICY');
 
-  const ConfigConfigRuleSourceOwner(this.terraformValue);
+  const ConfigConfigRuleOwner(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -110,8 +110,8 @@ enum ConfigConfigRuleSourceOwner implements TerraformEnum {
 /// Typed helper for the `source.custom_policy_details` block of
 /// `aws_config_config_rule` (derived from provider schema).
 @immutable
-final class ConfigConfigRuleSourceCustomPolicyDetails {
-  const ConfigConfigRuleSourceCustomPolicyDetails({
+final class ConfigConfigRuleCustomPolicyDetails {
+  const ConfigConfigRuleCustomPolicyDetails({
     this.enableDebugLogDelivery,
     required this.policyRuntime,
     required this.policyText,
@@ -133,19 +133,19 @@ final class ConfigConfigRuleSourceCustomPolicyDetails {
 /// Typed helper for the `source.source_detail` block of
 /// `aws_config_config_rule` (derived from provider schema).
 @immutable
-final class ConfigConfigRuleSourceSourceDetail {
-  const ConfigConfigRuleSourceSourceDetail({
+final class ConfigConfigRuleSourceDetail {
+  const ConfigConfigRuleSourceDetail({
     this.eventSource,
     this.maximumExecutionFrequency,
     this.messageType,
   });
 
-  final TfArg<ConfigConfigRuleSourceSourceDetailEventSource>? eventSource;
+  final TfArg<ConfigConfigRuleEventSource>? eventSource;
 
-  final TfArg<ConfigConfigRuleSourceSourceDetailMaximumExecutionFrequency>?
+  final TfArg<ConfigConfigRuleSourceDetailMaximumExecutionFrequency>?
   maximumExecutionFrequency;
 
-  final TfArg<ConfigConfigRuleSourceSourceDetailMessageType>? messageType;
+  final TfArg<ConfigConfigRuleMessageType>? messageType;
 
   Map<String, Object?> encode() => {
     'event_source': ?eventSource?.toTfJson(),
@@ -155,16 +155,16 @@ final class ConfigConfigRuleSourceSourceDetail {
 }
 
 /// `event_source` — derived from the provider schema description.
-enum ConfigConfigRuleSourceSourceDetailEventSource implements TerraformEnum {
+enum ConfigConfigRuleEventSource implements TerraformEnum {
   awsConfig('aws.config');
 
-  const ConfigConfigRuleSourceSourceDetailEventSource(this.terraformValue);
+  const ConfigConfigRuleEventSource(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `maximum_execution_frequency` — derived from the provider schema description.
-enum ConfigConfigRuleSourceSourceDetailMaximumExecutionFrequency
+enum ConfigConfigRuleSourceDetailMaximumExecutionFrequency
     implements TerraformEnum {
   oneHour('One_Hour'),
   threeHours('Three_Hours'),
@@ -172,7 +172,7 @@ enum ConfigConfigRuleSourceSourceDetailMaximumExecutionFrequency
   twelveHours('Twelve_Hours'),
   twentyfourHours('TwentyFour_Hours');
 
-  const ConfigConfigRuleSourceSourceDetailMaximumExecutionFrequency(
+  const ConfigConfigRuleSourceDetailMaximumExecutionFrequency(
     this.terraformValue,
   );
   @override
@@ -180,7 +180,7 @@ enum ConfigConfigRuleSourceSourceDetailMaximumExecutionFrequency
 }
 
 /// `message_type` — derived from the provider schema description.
-enum ConfigConfigRuleSourceSourceDetailMessageType implements TerraformEnum {
+enum ConfigConfigRuleMessageType implements TerraformEnum {
   configurationitemchangenotification('ConfigurationItemChangeNotification'),
   configurationsnapshotdeliverycompleted(
     'ConfigurationSnapshotDeliveryCompleted',
@@ -190,7 +190,7 @@ enum ConfigConfigRuleSourceSourceDetailMessageType implements TerraformEnum {
     'OversizedConfigurationItemChangeNotification',
   );
 
-  const ConfigConfigRuleSourceSourceDetailMessageType(this.terraformValue);
+  const ConfigConfigRuleMessageType(this.terraformValue);
   @override
   final String terraformValue;
 }

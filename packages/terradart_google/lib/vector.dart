@@ -7,23 +7,23 @@ library;
 export 'src/vector/google_vector_search_collection.dart'
     show
         GoogleVectorSearchCollection,
+        VectorSearchCollectionDenseVector,
         VectorSearchCollectionEncryptionSpec,
+        VectorSearchCollectionSparseVector,
         VectorSearchCollectionVectorSchema,
-        VectorSearchCollectionVectorSchemaDenseVector,
-        VectorSearchCollectionVectorSchemaDenseVectorVertexEmbeddingConfig,
-        VectorSearchCollectionVectorSchemaSparseVector;
+        VectorSearchCollectionVertexEmbeddingConfig;
 export 'src/vector/google_vector_search_data_object.dart'
     show
         GoogleVectorSearchDataObject,
-        VectorSearchDataObjectVectors,
-        VectorSearchDataObjectVectorsDense,
-        VectorSearchDataObjectVectorsSparse;
+        VectorSearchDataObjectDense,
+        VectorSearchDataObjectSparse,
+        VectorSearchDataObjectVectors;
 export 'src/vector/google_vector_search_index.dart'
     show
         GoogleVectorSearchIndex,
+        VectorSearchIndexAutoscalingSpec,
         VectorSearchIndexDedicatedInfrastructure,
-        VectorSearchIndexDedicatedInfrastructureAutoscalingSpec,
-        VectorSearchIndexDedicatedInfrastructureMode,
         VectorSearchIndexDenseScann,
-        VectorSearchIndexDenseScannFeatureNormType,
-        VectorSearchIndexDistanceMetric;
+        VectorSearchIndexDistanceMetric,
+        VectorSearchIndexFeatureNormType,
+        VectorSearchIndexMode;

@@ -114,13 +114,13 @@ final class ComputeImageSourceRawDisk extends ComputeImageSource {
 final class ComputeImageGuestOsFeatures {
   const ComputeImageGuestOsFeatures({required this.type});
 
-  final TfArg<ComputeImageGuestOsFeaturesType> type;
+  final TfArg<ComputeImageType> type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum ComputeImageGuestOsFeaturesType implements TerraformEnum {
+enum ComputeImageType implements TerraformEnum {
   multiIpSubnet('MULTI_IP_SUBNET'),
   secureBoot('SECURE_BOOT'),
   sevCapable('SEV_CAPABLE'),
@@ -136,7 +136,7 @@ enum ComputeImageGuestOsFeaturesType implements TerraformEnum {
   sevLiveMigratableV2('SEV_LIVE_MIGRATABLE_V2'),
   snpSvsmCapable('SNP_SVSM_CAPABLE');
 
-  const ComputeImageGuestOsFeaturesType(this.terraformValue);
+  const ComputeImageType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -144,8 +144,8 @@ enum ComputeImageGuestOsFeaturesType implements TerraformEnum {
 /// Typed helper for the `image_encryption_key` block of
 /// `google_compute_image` (derived from provider schema).
 @immutable
-final class ComputeImageImageEncryptionKey {
-  const ComputeImageImageEncryptionKey({
+final class ComputeImageEncryptionKey {
+  const ComputeImageEncryptionKey({
     this.kmsKeySelfLink,
     this.kmsKeyServiceAccount,
     this.rawKey,
@@ -215,13 +215,13 @@ final class ComputeImageShieldedInstanceInitialState {
     this.pk,
   });
 
-  final List<ComputeImageShieldedInstanceInitialStateDbs>? dbs;
+  final List<ComputeImageDbs>? dbs;
 
-  final List<ComputeImageShieldedInstanceInitialStateDbxs>? dbxs;
+  final List<ComputeImageDbxs>? dbxs;
 
-  final List<ComputeImageShieldedInstanceInitialStateKeks>? keks;
+  final List<ComputeImageKeks>? keks;
 
-  final ComputeImageShieldedInstanceInitialStatePk? pk;
+  final ComputeImagePk? pk;
 
   Map<String, Object?> encode() => {
     if (dbs != null) 'dbs': [for (final e in dbs!) e.encode()],
@@ -234,11 +234,8 @@ final class ComputeImageShieldedInstanceInitialState {
 /// Typed helper for the `shielded_instance_initial_state.dbs` block of
 /// `google_compute_image` (derived from provider schema).
 @immutable
-final class ComputeImageShieldedInstanceInitialStateDbs {
-  const ComputeImageShieldedInstanceInitialStateDbs({
-    required this.content,
-    this.fileType,
-  });
+final class ComputeImageDbs {
+  const ComputeImageDbs({required this.content, this.fileType});
 
   final TfArg<String> content;
 
@@ -253,11 +250,8 @@ final class ComputeImageShieldedInstanceInitialStateDbs {
 /// Typed helper for the `shielded_instance_initial_state.dbxs` block of
 /// `google_compute_image` (derived from provider schema).
 @immutable
-final class ComputeImageShieldedInstanceInitialStateDbxs {
-  const ComputeImageShieldedInstanceInitialStateDbxs({
-    required this.content,
-    this.fileType,
-  });
+final class ComputeImageDbxs {
+  const ComputeImageDbxs({required this.content, this.fileType});
 
   final TfArg<String> content;
 
@@ -272,11 +266,8 @@ final class ComputeImageShieldedInstanceInitialStateDbxs {
 /// Typed helper for the `shielded_instance_initial_state.keks` block of
 /// `google_compute_image` (derived from provider schema).
 @immutable
-final class ComputeImageShieldedInstanceInitialStateKeks {
-  const ComputeImageShieldedInstanceInitialStateKeks({
-    required this.content,
-    this.fileType,
-  });
+final class ComputeImageKeks {
+  const ComputeImageKeks({required this.content, this.fileType});
 
   final TfArg<String> content;
 
@@ -291,11 +282,8 @@ final class ComputeImageShieldedInstanceInitialStateKeks {
 /// Typed helper for the `shielded_instance_initial_state.pk` block of
 /// `google_compute_image` (derived from provider schema).
 @immutable
-final class ComputeImageShieldedInstanceInitialStatePk {
-  const ComputeImageShieldedInstanceInitialStatePk({
-    required this.content,
-    this.fileType,
-  });
+final class ComputeImagePk {
+  const ComputeImagePk({required this.content, this.fileType});
 
   final TfArg<String> content;
 
@@ -432,7 +420,7 @@ final class GoogleComputeImage extends Resource {
     ComputeImageParams? params,
     ComputeImageShieldedInstanceInitialState? shieldedInstanceInitialState,
     TfArg<String>? project,
-    ComputeImageImageEncryptionKey? imageEncryptionKey,
+    ComputeImageEncryptionKey? imageEncryptionKey,
     ComputeImageSourceDiskEncryptionKey? sourceDiskEncryptionKey,
     ComputeImageSourceImageEncryptionKey? sourceImageEncryptionKey,
     ComputeImageSourceSnapshotEncryptionKey? sourceSnapshotEncryptionKey,

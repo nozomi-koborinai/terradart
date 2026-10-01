@@ -28,7 +28,7 @@ final class SaasRuntimeReleaseInputVariableDefaults {
     required this.variable,
   });
 
-  final TfArg<SaasRuntimeReleaseInputVariableDefaultsType>? type;
+  final TfArg<SaasRuntimeReleaseType>? type;
 
   final TfArg<String>? value;
 
@@ -42,13 +42,13 @@ final class SaasRuntimeReleaseInputVariableDefaults {
 }
 
 /// `type` — derived from the provider schema description.
-enum SaasRuntimeReleaseInputVariableDefaultsType implements TerraformEnum {
+enum SaasRuntimeReleaseType implements TerraformEnum {
   typeUnspecified('TYPE_UNSPECIFIED'),
   string('STRING'),
   int('INT'),
   bool('BOOL');
 
-  const SaasRuntimeReleaseInputVariableDefaultsType(this.terraformValue);
+  const SaasRuntimeReleaseType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -56,8 +56,8 @@ enum SaasRuntimeReleaseInputVariableDefaultsType implements TerraformEnum {
 /// Typed helper for the `release_requirements` block of
 /// `google_saas_runtime_release` (derived from provider schema).
 @immutable
-final class SaasRuntimeReleaseReleaseRequirements {
-  const SaasRuntimeReleaseReleaseRequirements({this.upgradeableFromReleases});
+final class SaasRuntimeReleaseRequirements {
+  const SaasRuntimeReleaseRequirements({this.upgradeableFromReleases});
 
   final TfArg<List<String>>? upgradeableFromReleases;
 
@@ -85,7 +85,7 @@ final class GoogleSaasRuntimeRelease extends Resource {
     required TfArg<String> unitKind,
     SaasRuntimeReleaseBlueprint? blueprint,
     List<SaasRuntimeReleaseInputVariableDefaults>? inputVariableDefaults,
-    SaasRuntimeReleaseReleaseRequirements? releaseRequirements,
+    SaasRuntimeReleaseRequirements? releaseRequirements,
     super.lifecycle,
     super.dependsOn,
     String? provider,

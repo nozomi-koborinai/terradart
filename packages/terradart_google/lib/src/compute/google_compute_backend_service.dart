@@ -359,13 +359,12 @@ final class ComputeBackendServiceCdnPolicy {
 
   final TfArg<num>? signedUrlCacheMaxAgeSec;
 
-  final List<ComputeBackendServiceCdnPolicyBypassCacheOnRequestHeaders>?
+  final List<ComputeBackendServiceBypassCacheOnRequestHeaders>?
   bypassCacheOnRequestHeaders;
 
-  final ComputeBackendServiceCdnPolicyCacheKeyPolicy? cacheKeyPolicy;
+  final ComputeBackendServiceCacheKeyPolicy? cacheKeyPolicy;
 
-  final List<ComputeBackendServiceCdnPolicyNegativeCachingPolicy>?
-  negativeCachingPolicy;
+  final List<ComputeBackendServiceNegativeCachingPolicy>? negativeCachingPolicy;
 
   Map<String, Object?> encode() => {
     'cache_mode': ?cacheMode?.toTfJson(),
@@ -391,8 +390,8 @@ final class ComputeBackendServiceCdnPolicy {
 /// Typed helper for the `cdn_policy.bypass_cache_on_request_headers` block of
 /// `google_compute_backend_service` (derived from provider schema).
 @immutable
-final class ComputeBackendServiceCdnPolicyBypassCacheOnRequestHeaders {
-  const ComputeBackendServiceCdnPolicyBypassCacheOnRequestHeaders({
+final class ComputeBackendServiceBypassCacheOnRequestHeaders {
+  const ComputeBackendServiceBypassCacheOnRequestHeaders({
     required this.headerName,
   });
 
@@ -404,8 +403,8 @@ final class ComputeBackendServiceCdnPolicyBypassCacheOnRequestHeaders {
 /// Typed helper for the `cdn_policy.cache_key_policy` block of
 /// `google_compute_backend_service` (derived from provider schema).
 @immutable
-final class ComputeBackendServiceCdnPolicyCacheKeyPolicy {
-  const ComputeBackendServiceCdnPolicyCacheKeyPolicy({
+final class ComputeBackendServiceCacheKeyPolicy {
+  const ComputeBackendServiceCacheKeyPolicy({
     this.includeHost,
     this.includeHttpHeaders,
     this.includeNamedCookies,
@@ -443,11 +442,8 @@ final class ComputeBackendServiceCdnPolicyCacheKeyPolicy {
 /// Typed helper for the `cdn_policy.negative_caching_policy` block of
 /// `google_compute_backend_service` (derived from provider schema).
 @immutable
-final class ComputeBackendServiceCdnPolicyNegativeCachingPolicy {
-  const ComputeBackendServiceCdnPolicyNegativeCachingPolicy({
-    this.code,
-    this.ttl,
-  });
+final class ComputeBackendServiceNegativeCachingPolicy {
+  const ComputeBackendServiceNegativeCachingPolicy({this.code, this.ttl});
 
   final TfArg<num>? code;
 
@@ -504,7 +500,7 @@ final class ComputeBackendServiceConsistentHash {
 
   final TfArg<num>? minimumRingSize;
 
-  final ComputeBackendServiceConsistentHashHttpCookie? httpCookie;
+  final ComputeBackendServiceHttpCookie? httpCookie;
 
   Map<String, Object?> encode() => {
     'http_header_name': ?httpHeaderName?.toTfJson(),
@@ -516,18 +512,14 @@ final class ComputeBackendServiceConsistentHash {
 /// Typed helper for the `consistent_hash.http_cookie` block of
 /// `google_compute_backend_service` (derived from provider schema).
 @immutable
-final class ComputeBackendServiceConsistentHashHttpCookie {
-  const ComputeBackendServiceConsistentHashHttpCookie({
-    this.name,
-    this.path,
-    this.ttl,
-  });
+final class ComputeBackendServiceHttpCookie {
+  const ComputeBackendServiceHttpCookie({this.name, this.path, this.ttl});
 
   final TfArg<String>? name;
 
   final TfArg<String>? path;
 
-  final ComputeBackendServiceConsistentHashHttpCookieTtl? ttl;
+  final ComputeBackendServiceTtl? ttl;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
@@ -536,14 +528,12 @@ final class ComputeBackendServiceConsistentHashHttpCookie {
   };
 }
 
-/// Typed helper for the `consistent_hash.http_cookie.ttl` block of
+/// Typed helper for the `strong_session_affinity_cookie.ttl` block of
 /// `google_compute_backend_service` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeBackendServiceConsistentHashHttpCookieTtl {
-  const ComputeBackendServiceConsistentHashHttpCookieTtl({
-    this.nanos,
-    required this.seconds,
-  });
+final class ComputeBackendServiceTtl {
+  const ComputeBackendServiceTtl({this.nanos, required this.seconds});
 
   final TfArg<num>? nanos;
 
@@ -588,11 +578,11 @@ final class ComputeBackendServiceIap {
 
   final TfArg<bool> enabled;
 
-  final ComputeBackendServiceIapOauth2ClientId? oauth2ClientId;
+  final ComputeBackendServiceOauth2ClientId? oauth2ClientId;
 
   final TfArg<String>? oauth2ClientIdWoVersion;
 
-  final ComputeBackendServiceIapOauth2ClientSecret? oauth2ClientSecret;
+  final ComputeBackendServiceOauth2ClientSecret? oauth2ClientSecret;
 
   final TfArg<String>? oauth2ClientSecretWoVersion;
 
@@ -610,18 +600,18 @@ final class ComputeBackendServiceIap {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.oauth2ClientId(...)`.
-sealed class ComputeBackendServiceIapOauth2ClientId {
-  const ComputeBackendServiceIapOauth2ClientId();
+sealed class ComputeBackendServiceOauth2ClientId {
+  const ComputeBackendServiceOauth2ClientId();
 
   /// Sets `oauth2_client_id`.
-  const factory ComputeBackendServiceIapOauth2ClientId.oauth2ClientId(
+  const factory ComputeBackendServiceOauth2ClientId.oauth2ClientId(
     TfArg<String> oauth2ClientId,
-  ) = ComputeBackendServiceIapOauth2ClientIdChoice;
+  ) = ComputeBackendServiceOauth2ClientIdChoice;
 
   /// Sets `oauth2_client_id_wo`.
-  const factory ComputeBackendServiceIapOauth2ClientId.oauth2ClientIdWo(
+  const factory ComputeBackendServiceOauth2ClientId.oauth2ClientIdWo(
     TfArg<String> oauth2ClientIdWo,
-  ) = ComputeBackendServiceIapOauth2ClientIdWo;
+  ) = ComputeBackendServiceOauth2ClientIdWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -629,10 +619,10 @@ sealed class ComputeBackendServiceIapOauth2ClientId {
   Map<String, Object?> encode();
 }
 
-/// The [ComputeBackendServiceIapOauth2ClientId.oauth2ClientId] choice: sets `oauth2_client_id`.
-final class ComputeBackendServiceIapOauth2ClientIdChoice
-    extends ComputeBackendServiceIapOauth2ClientId {
-  const ComputeBackendServiceIapOauth2ClientIdChoice(this.oauth2ClientId);
+/// The [ComputeBackendServiceOauth2ClientId.oauth2ClientId] choice: sets `oauth2_client_id`.
+final class ComputeBackendServiceOauth2ClientIdChoice
+    extends ComputeBackendServiceOauth2ClientId {
+  const ComputeBackendServiceOauth2ClientIdChoice(this.oauth2ClientId);
 
   final TfArg<String> oauth2ClientId;
 
@@ -645,10 +635,10 @@ final class ComputeBackendServiceIapOauth2ClientIdChoice
   };
 }
 
-/// The [ComputeBackendServiceIapOauth2ClientId.oauth2ClientIdWo] choice: sets `oauth2_client_id_wo`.
-final class ComputeBackendServiceIapOauth2ClientIdWo
-    extends ComputeBackendServiceIapOauth2ClientId {
-  const ComputeBackendServiceIapOauth2ClientIdWo(this.oauth2ClientIdWo);
+/// The [ComputeBackendServiceOauth2ClientId.oauth2ClientIdWo] choice: sets `oauth2_client_id_wo`.
+final class ComputeBackendServiceOauth2ClientIdWo
+    extends ComputeBackendServiceOauth2ClientId {
+  const ComputeBackendServiceOauth2ClientIdWo(this.oauth2ClientIdWo);
 
   final TfArg<String> oauth2ClientIdWo;
 
@@ -666,18 +656,18 @@ final class ComputeBackendServiceIapOauth2ClientIdWo
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.oauth2ClientSecret(...)`.
-sealed class ComputeBackendServiceIapOauth2ClientSecret {
-  const ComputeBackendServiceIapOauth2ClientSecret();
+sealed class ComputeBackendServiceOauth2ClientSecret {
+  const ComputeBackendServiceOauth2ClientSecret();
 
   /// Sets `oauth2_client_secret`.
-  const factory ComputeBackendServiceIapOauth2ClientSecret.oauth2ClientSecret(
+  const factory ComputeBackendServiceOauth2ClientSecret.oauth2ClientSecret(
     TfArg<String> oauth2ClientSecret,
-  ) = ComputeBackendServiceIapOauth2ClientSecretChoice;
+  ) = ComputeBackendServiceOauth2ClientSecretChoice;
 
   /// Sets `oauth2_client_secret_wo`.
-  const factory ComputeBackendServiceIapOauth2ClientSecret.oauth2ClientSecretWo(
+  const factory ComputeBackendServiceOauth2ClientSecret.oauth2ClientSecretWo(
     TfArg<String> oauth2ClientSecretWo,
-  ) = ComputeBackendServiceIapOauth2ClientSecretWo;
+  ) = ComputeBackendServiceOauth2ClientSecretWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -685,12 +675,10 @@ sealed class ComputeBackendServiceIapOauth2ClientSecret {
   Map<String, Object?> encode();
 }
 
-/// The [ComputeBackendServiceIapOauth2ClientSecret.oauth2ClientSecret] choice: sets `oauth2_client_secret`.
-final class ComputeBackendServiceIapOauth2ClientSecretChoice
-    extends ComputeBackendServiceIapOauth2ClientSecret {
-  const ComputeBackendServiceIapOauth2ClientSecretChoice(
-    this.oauth2ClientSecret,
-  );
+/// The [ComputeBackendServiceOauth2ClientSecret.oauth2ClientSecret] choice: sets `oauth2_client_secret`.
+final class ComputeBackendServiceOauth2ClientSecretChoice
+    extends ComputeBackendServiceOauth2ClientSecret {
+  const ComputeBackendServiceOauth2ClientSecretChoice(this.oauth2ClientSecret);
 
   final TfArg<String> oauth2ClientSecret;
 
@@ -703,10 +691,10 @@ final class ComputeBackendServiceIapOauth2ClientSecretChoice
   };
 }
 
-/// The [ComputeBackendServiceIapOauth2ClientSecret.oauth2ClientSecretWo] choice: sets `oauth2_client_secret_wo`.
-final class ComputeBackendServiceIapOauth2ClientSecretWo
-    extends ComputeBackendServiceIapOauth2ClientSecret {
-  const ComputeBackendServiceIapOauth2ClientSecretWo(this.oauth2ClientSecretWo);
+/// The [ComputeBackendServiceOauth2ClientSecret.oauth2ClientSecretWo] choice: sets `oauth2_client_secret_wo`.
+final class ComputeBackendServiceOauth2ClientSecretWo
+    extends ComputeBackendServiceOauth2ClientSecret {
+  const ComputeBackendServiceOauth2ClientSecretWo(this.oauth2ClientSecretWo);
 
   final TfArg<String> oauth2ClientSecretWo;
 
@@ -728,13 +716,13 @@ sealed class ComputeBackendServiceLocalityLbPolicies {
 
   /// Sets `policy`.
   const factory ComputeBackendServiceLocalityLbPolicies.policy(
-    ComputeBackendServiceLocalityLbPoliciesPolicy policy,
-  ) = ComputeBackendServiceLocalityLbPoliciesPolicyChoice;
+    ComputeBackendServicePolicy policy,
+  ) = ComputeBackendServiceLocalityLbPoliciesPolicy;
 
   /// Sets `custom_policy`.
   const factory ComputeBackendServiceLocalityLbPolicies.customPolicy(
-    ComputeBackendServiceLocalityLbPoliciesCustomPolicy customPolicy,
-  ) = ComputeBackendServiceLocalityLbPoliciesCustomPolicyChoice;
+    ComputeBackendServiceCustomPolicy customPolicy,
+  ) = ComputeBackendServiceLocalityLbPoliciesCustomPolicy;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -743,11 +731,11 @@ sealed class ComputeBackendServiceLocalityLbPolicies {
 }
 
 /// The [ComputeBackendServiceLocalityLbPolicies.policy] choice: sets `policy`.
-final class ComputeBackendServiceLocalityLbPoliciesPolicyChoice
+final class ComputeBackendServiceLocalityLbPoliciesPolicy
     extends ComputeBackendServiceLocalityLbPolicies {
-  const ComputeBackendServiceLocalityLbPoliciesPolicyChoice(this.policy);
+  const ComputeBackendServiceLocalityLbPoliciesPolicy(this.policy);
 
-  final ComputeBackendServiceLocalityLbPoliciesPolicy policy;
+  final ComputeBackendServicePolicy policy;
 
   @override
   String get blockKey => 'policy';
@@ -757,13 +745,11 @@ final class ComputeBackendServiceLocalityLbPoliciesPolicyChoice
 }
 
 /// The [ComputeBackendServiceLocalityLbPolicies.customPolicy] choice: sets `custom_policy`.
-final class ComputeBackendServiceLocalityLbPoliciesCustomPolicyChoice
+final class ComputeBackendServiceLocalityLbPoliciesCustomPolicy
     extends ComputeBackendServiceLocalityLbPolicies {
-  const ComputeBackendServiceLocalityLbPoliciesCustomPolicyChoice(
-    this.customPolicy,
-  );
+  const ComputeBackendServiceLocalityLbPoliciesCustomPolicy(this.customPolicy);
 
-  final ComputeBackendServiceLocalityLbPoliciesCustomPolicy customPolicy;
+  final ComputeBackendServiceCustomPolicy customPolicy;
 
   @override
   String get blockKey => 'custom_policy';
@@ -775,11 +761,8 @@ final class ComputeBackendServiceLocalityLbPoliciesCustomPolicyChoice
 /// Typed helper for the `locality_lb_policies.custom_policy` block of
 /// `google_compute_backend_service` (derived from provider schema).
 @immutable
-final class ComputeBackendServiceLocalityLbPoliciesCustomPolicy {
-  const ComputeBackendServiceLocalityLbPoliciesCustomPolicy({
-    this.data,
-    required this.name,
-  });
+final class ComputeBackendServiceCustomPolicy {
+  const ComputeBackendServiceCustomPolicy({this.data, required this.name});
 
   final TfArg<String>? data;
 
@@ -794,8 +777,8 @@ final class ComputeBackendServiceLocalityLbPoliciesCustomPolicy {
 /// Typed helper for the `locality_lb_policies.policy` block of
 /// `google_compute_backend_service` (derived from provider schema).
 @immutable
-final class ComputeBackendServiceLocalityLbPoliciesPolicy {
-  const ComputeBackendServiceLocalityLbPoliciesPolicy({required this.name});
+final class ComputeBackendServicePolicy {
+  const ComputeBackendServicePolicy({required this.name});
 
   final TfArg<LocalityLbPolicy> name;
 
@@ -823,9 +806,9 @@ final class ComputeBackendServiceLogConfig {
 
   final TfArg<num>? sampleRate;
 
-  final List<ComputeBackendServiceLogConfigRequestHeaders>? requestHeaders;
+  final List<ComputeBackendServiceRequestHeaders>? requestHeaders;
 
-  final List<ComputeBackendServiceLogConfigResponseHeaders>? responseHeaders;
+  final List<ComputeBackendServiceResponseHeaders>? responseHeaders;
 
   Map<String, Object?> encode() => {
     'enable': ?enable?.toTfJson(),
@@ -842,10 +825,8 @@ final class ComputeBackendServiceLogConfig {
 /// Typed helper for the `log_config.request_headers` block of
 /// `google_compute_backend_service` (derived from provider schema).
 @immutable
-final class ComputeBackendServiceLogConfigRequestHeaders {
-  const ComputeBackendServiceLogConfigRequestHeaders({
-    required this.headerName,
-  });
+final class ComputeBackendServiceRequestHeaders {
+  const ComputeBackendServiceRequestHeaders({required this.headerName});
 
   final TfArg<String> headerName;
 
@@ -855,10 +836,8 @@ final class ComputeBackendServiceLogConfigRequestHeaders {
 /// Typed helper for the `log_config.response_headers` block of
 /// `google_compute_backend_service` (derived from provider schema).
 @immutable
-final class ComputeBackendServiceLogConfigResponseHeaders {
-  const ComputeBackendServiceLogConfigResponseHeaders({
-    required this.headerName,
-  });
+final class ComputeBackendServiceResponseHeaders {
+  const ComputeBackendServiceResponseHeaders({required this.headerName});
 
   final TfArg<String> headerName;
 
@@ -920,9 +899,9 @@ final class ComputeBackendServiceOutlierDetection {
 
   final TfArg<num>? successRateStdevFactor;
 
-  final ComputeBackendServiceOutlierDetectionBaseEjectionTime? baseEjectionTime;
+  final ComputeBackendServiceBaseEjectionTime? baseEjectionTime;
 
-  final ComputeBackendServiceOutlierDetectionInterval? interval;
+  final ComputeBackendServiceInterval? interval;
 
   Map<String, Object?> encode() => {
     'consecutive_errors': ?consecutiveErrors?.toTfJson(),
@@ -943,8 +922,8 @@ final class ComputeBackendServiceOutlierDetection {
 /// Typed helper for the `outlier_detection.base_ejection_time` block of
 /// `google_compute_backend_service` (derived from provider schema).
 @immutable
-final class ComputeBackendServiceOutlierDetectionBaseEjectionTime {
-  const ComputeBackendServiceOutlierDetectionBaseEjectionTime({
+final class ComputeBackendServiceBaseEjectionTime {
+  const ComputeBackendServiceBaseEjectionTime({
     this.nanos,
     required this.seconds,
   });
@@ -962,11 +941,8 @@ final class ComputeBackendServiceOutlierDetectionBaseEjectionTime {
 /// Typed helper for the `outlier_detection.interval` block of
 /// `google_compute_backend_service` (derived from provider schema).
 @immutable
-final class ComputeBackendServiceOutlierDetectionInterval {
-  const ComputeBackendServiceOutlierDetectionInterval({
-    this.nanos,
-    required this.seconds,
-  });
+final class ComputeBackendServiceInterval {
+  const ComputeBackendServiceInterval({this.nanos, required this.seconds});
 
   final TfArg<num>? nanos;
 
@@ -1005,8 +981,7 @@ final class ComputeBackendServiceSecuritySettings {
 
   final TfArg<List<String>>? subjectAltNames;
 
-  final ComputeBackendServiceSecuritySettingsAwsV4Authentication?
-  awsV4Authentication;
+  final ComputeBackendServiceAwsV4Authentication? awsV4Authentication;
 
   Map<String, Object?> encode() => {
     'client_tls_policy': ?clientTlsPolicy?.toTfJson(),
@@ -1018,8 +993,8 @@ final class ComputeBackendServiceSecuritySettings {
 /// Typed helper for the `security_settings.aws_v4_authentication` block of
 /// `google_compute_backend_service` (derived from provider schema).
 @immutable
-final class ComputeBackendServiceSecuritySettingsAwsV4Authentication {
-  const ComputeBackendServiceSecuritySettingsAwsV4Authentication({
+final class ComputeBackendServiceAwsV4Authentication {
+  const ComputeBackendServiceAwsV4Authentication({
     this.accessKey,
     this.accessKeyId,
     this.accessKeyVersion,
@@ -1056,31 +1031,12 @@ final class ComputeBackendServiceStrongSessionAffinityCookie {
 
   final TfArg<String>? path;
 
-  final ComputeBackendServiceStrongSessionAffinityCookieTtl? ttl;
+  final ComputeBackendServiceTtl? ttl;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'path': ?path?.toTfJson(),
     'ttl': ?ttl?.encode(),
-  };
-}
-
-/// Typed helper for the `strong_session_affinity_cookie.ttl` block of
-/// `google_compute_backend_service` (derived from provider schema).
-@immutable
-final class ComputeBackendServiceStrongSessionAffinityCookieTtl {
-  const ComputeBackendServiceStrongSessionAffinityCookieTtl({
-    this.nanos,
-    required this.seconds,
-  });
-
-  final TfArg<num>? nanos;
-
-  final TfArg<num> seconds;
-
-  Map<String, Object?> encode() => {
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': seconds.toTfJson(),
   };
 }
 
@@ -1098,7 +1054,7 @@ final class ComputeBackendServiceTlsSettings {
 
   final TfArg<String>? sni;
 
-  final List<ComputeBackendServiceTlsSettingsSubjectAltNames>? subjectAltNames;
+  final List<ComputeBackendServiceSubjectAltNames>? subjectAltNames;
 
   Map<String, Object?> encode() => {
     'authentication_config': ?authenticationConfig?.toTfJson(),
@@ -1111,8 +1067,8 @@ final class ComputeBackendServiceTlsSettings {
 /// Typed helper for the `tls_settings.subject_alt_names` block of
 /// `google_compute_backend_service` (derived from provider schema).
 @immutable
-final class ComputeBackendServiceTlsSettingsSubjectAltNames {
-  const ComputeBackendServiceTlsSettingsSubjectAltNames({
+final class ComputeBackendServiceSubjectAltNames {
+  const ComputeBackendServiceSubjectAltNames({
     this.dnsName,
     this.uniformResourceIdentifier,
   });

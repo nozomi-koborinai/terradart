@@ -18,7 +18,7 @@ final class VertexAiFeatureGroupBigQuery {
 
   final TfArg<List<String>>? entityIdColumns;
 
-  final VertexAiFeatureGroupBigQueryBigQuerySource bigQuerySource;
+  final VertexAiFeatureGroupBigQuerySource bigQuerySource;
 
   Map<String, Object?> encode() => {
     'entity_id_columns': ?entityIdColumns?.toTfJson(),
@@ -29,8 +29,8 @@ final class VertexAiFeatureGroupBigQuery {
 /// Typed helper for the `big_query.big_query_source` block of
 /// `google_vertex_ai_feature_group` (derived from provider schema).
 @immutable
-final class VertexAiFeatureGroupBigQueryBigQuerySource {
-  const VertexAiFeatureGroupBigQueryBigQuerySource({required this.inputUri});
+final class VertexAiFeatureGroupBigQuerySource {
+  const VertexAiFeatureGroupBigQuerySource({required this.inputUri});
 
   final TfArg<String> inputUri;
 

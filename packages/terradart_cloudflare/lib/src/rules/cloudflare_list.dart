@@ -27,7 +27,7 @@ enum ListKind implements TerraformEnum {
 final class ListItems {
   const ListItems({this.value, this.comment});
 
-  final ListItemsValue? value;
+  final ListValue? value;
 
   final TfArg<String>? comment;
 
@@ -42,22 +42,20 @@ final class ListItems {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.asn(...)`.
-sealed class ListItemsValue {
-  const ListItemsValue();
+sealed class ListValue {
+  const ListValue();
 
   /// Sets `asn`.
-  const factory ListItemsValue.asn(TfArg<num> asn) = ListItemsValueAsn;
+  const factory ListValue.asn(TfArg<num> asn) = ListValueAsn;
 
   /// Sets `ip`.
-  const factory ListItemsValue.ip(TfArg<String> ip) = ListItemsValueIp;
+  const factory ListValue.ip(TfArg<String> ip) = ListValueIp;
 
   /// Sets `hostname`.
-  const factory ListItemsValue.hostname(ListItemsHostname hostname) =
-      ListItemsValueHostname;
+  const factory ListValue.hostname(ListHostname hostname) = ListValueHostname;
 
   /// Sets `redirect`.
-  const factory ListItemsValue.redirect(ListItemsRedirect redirect) =
-      ListItemsValueRedirect;
+  const factory ListValue.redirect(ListRedirect redirect) = ListValueRedirect;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -65,9 +63,9 @@ sealed class ListItemsValue {
   Map<String, Object?> encode();
 }
 
-/// The [ListItemsValue.asn] choice: sets `asn`.
-final class ListItemsValueAsn extends ListItemsValue {
-  const ListItemsValueAsn(this.asn);
+/// The [ListValue.asn] choice: sets `asn`.
+final class ListValueAsn extends ListValue {
+  const ListValueAsn(this.asn);
 
   final TfArg<num> asn;
 
@@ -78,9 +76,9 @@ final class ListItemsValueAsn extends ListItemsValue {
   Map<String, Object?> encode() => {'asn': asn.toTfJson()};
 }
 
-/// The [ListItemsValue.ip] choice: sets `ip`.
-final class ListItemsValueIp extends ListItemsValue {
-  const ListItemsValueIp(this.ip);
+/// The [ListValue.ip] choice: sets `ip`.
+final class ListValueIp extends ListValue {
+  const ListValueIp(this.ip);
 
   final TfArg<String> ip;
 
@@ -91,11 +89,11 @@ final class ListItemsValueIp extends ListItemsValue {
   Map<String, Object?> encode() => {'ip': ip.toTfJson()};
 }
 
-/// The [ListItemsValue.hostname] choice: sets `hostname`.
-final class ListItemsValueHostname extends ListItemsValue {
-  const ListItemsValueHostname(this.hostname);
+/// The [ListValue.hostname] choice: sets `hostname`.
+final class ListValueHostname extends ListValue {
+  const ListValueHostname(this.hostname);
 
-  final ListItemsHostname hostname;
+  final ListHostname hostname;
 
   @override
   String get blockKey => 'hostname';
@@ -104,11 +102,11 @@ final class ListItemsValueHostname extends ListItemsValue {
   Map<String, Object?> encode() => {'hostname': hostname.encode()};
 }
 
-/// The [ListItemsValue.redirect] choice: sets `redirect`.
-final class ListItemsValueRedirect extends ListItemsValue {
-  const ListItemsValueRedirect(this.redirect);
+/// The [ListValue.redirect] choice: sets `redirect`.
+final class ListValueRedirect extends ListValue {
+  const ListValueRedirect(this.redirect);
 
-  final ListItemsRedirect redirect;
+  final ListRedirect redirect;
 
   @override
   String get blockKey => 'redirect';
@@ -120,11 +118,8 @@ final class ListItemsValueRedirect extends ListItemsValue {
 /// Typed helper for the `items.hostname` block of
 /// `cloudflare_list` (derived from provider schema).
 @immutable
-final class ListItemsHostname {
-  const ListItemsHostname({
-    this.excludeExactHostname,
-    required this.urlHostname,
-  });
+final class ListHostname {
+  const ListHostname({this.excludeExactHostname, required this.urlHostname});
 
   final TfArg<bool>? excludeExactHostname;
 
@@ -139,8 +134,8 @@ final class ListItemsHostname {
 /// Typed helper for the `items.redirect` block of
 /// `cloudflare_list` (derived from provider schema).
 @immutable
-final class ListItemsRedirect {
-  const ListItemsRedirect({
+final class ListRedirect {
+  const ListRedirect({
     this.includeSubdomains,
     this.preservePathSuffix,
     this.preserveQueryString,

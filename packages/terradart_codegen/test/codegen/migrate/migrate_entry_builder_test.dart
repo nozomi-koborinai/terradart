@@ -495,7 +495,7 @@ class Holder {
         expect(template.kind, MigrateSlotKind.helper);
         expect(template.tfName, 'template');
         final volume = b.helpers.singleWhere(
-          (h) => h.className == 'CloudRunV2ServiceTemplateVolumes',
+          (h) => h.className == 'CloudRunV2ServiceVolumes',
         );
         expect(volume.reason, isNull);
         final source = volume.slots.singleWhere((s) => s.dartName == 'source');

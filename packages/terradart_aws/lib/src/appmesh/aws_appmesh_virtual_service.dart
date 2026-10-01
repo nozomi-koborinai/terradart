@@ -13,7 +13,7 @@ const Set<String> _awsAppmeshVirtualServiceSensitive = <String>{};
 final class AppmeshVirtualServiceSpec {
   const AppmeshVirtualServiceSpec({this.provider});
 
-  final AppmeshVirtualServiceSpecProvider? provider;
+  final AppmeshVirtualServiceProvider? provider;
 
   Map<String, Object?> encode() => {'provider': ?provider?.encode()};
 }
@@ -23,18 +23,18 @@ final class AppmeshVirtualServiceSpec {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.virtualNode(...)`.
-sealed class AppmeshVirtualServiceSpecProvider {
-  const AppmeshVirtualServiceSpecProvider();
+sealed class AppmeshVirtualServiceProvider {
+  const AppmeshVirtualServiceProvider();
 
   /// Sets `virtual_node`.
-  const factory AppmeshVirtualServiceSpecProvider.virtualNode(
-    AppmeshVirtualServiceSpecProviderVirtualNode virtualNode,
-  ) = AppmeshVirtualServiceSpecProviderVirtualNodeChoice;
+  const factory AppmeshVirtualServiceProvider.virtualNode(
+    AppmeshVirtualServiceVirtualNode virtualNode,
+  ) = AppmeshVirtualServiceProviderVirtualNode;
 
   /// Sets `virtual_router`.
-  const factory AppmeshVirtualServiceSpecProvider.virtualRouter(
-    AppmeshVirtualServiceSpecProviderVirtualRouter virtualRouter,
-  ) = AppmeshVirtualServiceSpecProviderVirtualRouterChoice;
+  const factory AppmeshVirtualServiceProvider.virtualRouter(
+    AppmeshVirtualServiceVirtualRouter virtualRouter,
+  ) = AppmeshVirtualServiceProviderVirtualRouter;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -42,12 +42,12 @@ sealed class AppmeshVirtualServiceSpecProvider {
   Map<String, Object?> encode();
 }
 
-/// The [AppmeshVirtualServiceSpecProvider.virtualNode] choice: sets `virtual_node`.
-final class AppmeshVirtualServiceSpecProviderVirtualNodeChoice
-    extends AppmeshVirtualServiceSpecProvider {
-  const AppmeshVirtualServiceSpecProviderVirtualNodeChoice(this.virtualNode);
+/// The [AppmeshVirtualServiceProvider.virtualNode] choice: sets `virtual_node`.
+final class AppmeshVirtualServiceProviderVirtualNode
+    extends AppmeshVirtualServiceProvider {
+  const AppmeshVirtualServiceProviderVirtualNode(this.virtualNode);
 
-  final AppmeshVirtualServiceSpecProviderVirtualNode virtualNode;
+  final AppmeshVirtualServiceVirtualNode virtualNode;
 
   @override
   String get blockKey => 'virtual_node';
@@ -56,14 +56,12 @@ final class AppmeshVirtualServiceSpecProviderVirtualNodeChoice
   Map<String, Object?> encode() => {'virtual_node': virtualNode.encode()};
 }
 
-/// The [AppmeshVirtualServiceSpecProvider.virtualRouter] choice: sets `virtual_router`.
-final class AppmeshVirtualServiceSpecProviderVirtualRouterChoice
-    extends AppmeshVirtualServiceSpecProvider {
-  const AppmeshVirtualServiceSpecProviderVirtualRouterChoice(
-    this.virtualRouter,
-  );
+/// The [AppmeshVirtualServiceProvider.virtualRouter] choice: sets `virtual_router`.
+final class AppmeshVirtualServiceProviderVirtualRouter
+    extends AppmeshVirtualServiceProvider {
+  const AppmeshVirtualServiceProviderVirtualRouter(this.virtualRouter);
 
-  final AppmeshVirtualServiceSpecProviderVirtualRouter virtualRouter;
+  final AppmeshVirtualServiceVirtualRouter virtualRouter;
 
   @override
   String get blockKey => 'virtual_router';
@@ -75,10 +73,8 @@ final class AppmeshVirtualServiceSpecProviderVirtualRouterChoice
 /// Typed helper for the `spec.provider.virtual_node` block of
 /// `aws_appmesh_virtual_service` (derived from provider schema).
 @immutable
-final class AppmeshVirtualServiceSpecProviderVirtualNode {
-  const AppmeshVirtualServiceSpecProviderVirtualNode({
-    required this.virtualNodeName,
-  });
+final class AppmeshVirtualServiceVirtualNode {
+  const AppmeshVirtualServiceVirtualNode({required this.virtualNodeName});
 
   final TfArg<String> virtualNodeName;
 
@@ -90,10 +86,8 @@ final class AppmeshVirtualServiceSpecProviderVirtualNode {
 /// Typed helper for the `spec.provider.virtual_router` block of
 /// `aws_appmesh_virtual_service` (derived from provider schema).
 @immutable
-final class AppmeshVirtualServiceSpecProviderVirtualRouter {
-  const AppmeshVirtualServiceSpecProviderVirtualRouter({
-    required this.virtualRouterName,
-  });
+final class AppmeshVirtualServiceVirtualRouter {
+  const AppmeshVirtualServiceVirtualRouter({required this.virtualRouterName});
 
   final TfArg<String> virtualRouterName;
 

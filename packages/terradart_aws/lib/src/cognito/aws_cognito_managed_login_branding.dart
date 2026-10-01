@@ -88,11 +88,11 @@ final class CognitoManagedLoginBrandingAsset {
 
   final TfArg<String>? bytes;
 
-  final TfArg<CognitoManagedLoginBrandingAssetCategory> category;
+  final TfArg<CognitoManagedLoginBrandingCategory> category;
 
-  final TfArg<CognitoManagedLoginBrandingAssetColorMode> colorMode;
+  final TfArg<CognitoManagedLoginBrandingColorMode> colorMode;
 
-  final TfArg<CognitoManagedLoginBrandingAssetExtension> extension;
+  final TfArg<CognitoManagedLoginBrandingExtension> extension;
 
   final TfArg<String>? resourceId;
 
@@ -106,7 +106,7 @@ final class CognitoManagedLoginBrandingAsset {
 }
 
 /// `category` — derived from the provider schema description.
-enum CognitoManagedLoginBrandingAssetCategory implements TerraformEnum {
+enum CognitoManagedLoginBrandingCategory implements TerraformEnum {
   faviconIco('FAVICON_ICO'),
   faviconSvg('FAVICON_SVG'),
   emailGraphic('EMAIL_GRAPHIC'),
@@ -123,31 +123,31 @@ enum CognitoManagedLoginBrandingAssetCategory implements TerraformEnum {
   formLogo('FORM_LOGO'),
   idpButtonIcon('IDP_BUTTON_ICON');
 
-  const CognitoManagedLoginBrandingAssetCategory(this.terraformValue);
+  const CognitoManagedLoginBrandingCategory(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `color_mode` — derived from the provider schema description.
-enum CognitoManagedLoginBrandingAssetColorMode implements TerraformEnum {
+enum CognitoManagedLoginBrandingColorMode implements TerraformEnum {
   light('LIGHT'),
   dark('DARK'),
   dynamic('DYNAMIC');
 
-  const CognitoManagedLoginBrandingAssetColorMode(this.terraformValue);
+  const CognitoManagedLoginBrandingColorMode(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `extension` — derived from the provider schema description.
-enum CognitoManagedLoginBrandingAssetExtension implements TerraformEnum {
+enum CognitoManagedLoginBrandingExtension implements TerraformEnum {
   ico('ICO'),
   jpeg('JPEG'),
   png('PNG'),
   svg('SVG'),
   webp('WEBP');
 
-  const CognitoManagedLoginBrandingAssetExtension(this.terraformValue);
+  const CognitoManagedLoginBrandingExtension(this.terraformValue);
   @override
   final String terraformValue;
 }

@@ -16,10 +16,9 @@ final class SagemakerEndpointDeploymentConfig {
     required this.updatePolicy,
   });
 
-  final SagemakerEndpointDeploymentConfigAutoRollbackConfiguration?
-  autoRollbackConfiguration;
+  final SagemakerEndpointAutoRollbackConfiguration? autoRollbackConfiguration;
 
-  final SagemakerEndpointDeploymentConfigUpdatePolicy updatePolicy;
+  final SagemakerEndpointUpdatePolicy updatePolicy;
 
   Map<String, Object?> encode() => {
     'auto_rollback_configuration': ?autoRollbackConfiguration?.encode(),
@@ -31,19 +30,18 @@ final class SagemakerEndpointDeploymentConfig {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.blueGreenUpdatePolicy(...)`.
-sealed class SagemakerEndpointDeploymentConfigUpdatePolicy {
-  const SagemakerEndpointDeploymentConfigUpdatePolicy();
+sealed class SagemakerEndpointUpdatePolicy {
+  const SagemakerEndpointUpdatePolicy();
 
   /// Sets `blue_green_update_policy`.
-  const factory SagemakerEndpointDeploymentConfigUpdatePolicy.blueGreenUpdatePolicy(
-    SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicy
-    blueGreenUpdatePolicy,
-  ) = SagemakerEndpointDeploymentConfigUpdatePolicyBlueGreenUpdatePolicy;
+  const factory SagemakerEndpointUpdatePolicy.blueGreenUpdatePolicy(
+    SagemakerEndpointBlueGreenUpdatePolicy blueGreenUpdatePolicy,
+  ) = SagemakerEndpointBlueGreenUpdatePolicyChoice;
 
   /// Sets `rolling_update_policy`.
-  const factory SagemakerEndpointDeploymentConfigUpdatePolicy.rollingUpdatePolicy(
-    SagemakerEndpointDeploymentConfigRollingUpdatePolicy rollingUpdatePolicy,
-  ) = SagemakerEndpointDeploymentConfigUpdatePolicyRollingUpdatePolicy;
+  const factory SagemakerEndpointUpdatePolicy.rollingUpdatePolicy(
+    SagemakerEndpointRollingUpdatePolicy rollingUpdatePolicy,
+  ) = SagemakerEndpointRollingUpdatePolicyChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -51,15 +49,14 @@ sealed class SagemakerEndpointDeploymentConfigUpdatePolicy {
   Map<String, Object?> encode();
 }
 
-/// The [SagemakerEndpointDeploymentConfigUpdatePolicy.blueGreenUpdatePolicy] choice: sets `blue_green_update_policy`.
-final class SagemakerEndpointDeploymentConfigUpdatePolicyBlueGreenUpdatePolicy
-    extends SagemakerEndpointDeploymentConfigUpdatePolicy {
-  const SagemakerEndpointDeploymentConfigUpdatePolicyBlueGreenUpdatePolicy(
+/// The [SagemakerEndpointUpdatePolicy.blueGreenUpdatePolicy] choice: sets `blue_green_update_policy`.
+final class SagemakerEndpointBlueGreenUpdatePolicyChoice
+    extends SagemakerEndpointUpdatePolicy {
+  const SagemakerEndpointBlueGreenUpdatePolicyChoice(
     this.blueGreenUpdatePolicy,
   );
 
-  final SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicy
-  blueGreenUpdatePolicy;
+  final SagemakerEndpointBlueGreenUpdatePolicy blueGreenUpdatePolicy;
 
   @override
   String get blockKey => 'blue_green_update_policy';
@@ -70,15 +67,12 @@ final class SagemakerEndpointDeploymentConfigUpdatePolicyBlueGreenUpdatePolicy
   };
 }
 
-/// The [SagemakerEndpointDeploymentConfigUpdatePolicy.rollingUpdatePolicy] choice: sets `rolling_update_policy`.
-final class SagemakerEndpointDeploymentConfigUpdatePolicyRollingUpdatePolicy
-    extends SagemakerEndpointDeploymentConfigUpdatePolicy {
-  const SagemakerEndpointDeploymentConfigUpdatePolicyRollingUpdatePolicy(
-    this.rollingUpdatePolicy,
-  );
+/// The [SagemakerEndpointUpdatePolicy.rollingUpdatePolicy] choice: sets `rolling_update_policy`.
+final class SagemakerEndpointRollingUpdatePolicyChoice
+    extends SagemakerEndpointUpdatePolicy {
+  const SagemakerEndpointRollingUpdatePolicyChoice(this.rollingUpdatePolicy);
 
-  final SagemakerEndpointDeploymentConfigRollingUpdatePolicy
-  rollingUpdatePolicy;
+  final SagemakerEndpointRollingUpdatePolicy rollingUpdatePolicy;
 
   @override
   String get blockKey => 'rolling_update_policy';
@@ -92,13 +86,10 @@ final class SagemakerEndpointDeploymentConfigUpdatePolicyRollingUpdatePolicy
 /// Typed helper for the `deployment_config.auto_rollback_configuration` block of
 /// `aws_sagemaker_endpoint` (derived from provider schema).
 @immutable
-final class SagemakerEndpointDeploymentConfigAutoRollbackConfiguration {
-  const SagemakerEndpointDeploymentConfigAutoRollbackConfiguration({
-    this.alarms,
-  });
+final class SagemakerEndpointAutoRollbackConfiguration {
+  const SagemakerEndpointAutoRollbackConfiguration({this.alarms});
 
-  final List<SagemakerEndpointDeploymentConfigAutoRollbackConfigurationAlarms>?
-  alarms;
+  final List<SagemakerEndpointAlarms>? alarms;
 
   Map<String, Object?> encode() => {
     if (alarms != null) 'alarms': [for (final e in alarms!) e.encode()],
@@ -108,10 +99,8 @@ final class SagemakerEndpointDeploymentConfigAutoRollbackConfiguration {
 /// Typed helper for the `deployment_config.auto_rollback_configuration.alarms` block of
 /// `aws_sagemaker_endpoint` (derived from provider schema).
 @immutable
-final class SagemakerEndpointDeploymentConfigAutoRollbackConfigurationAlarms {
-  const SagemakerEndpointDeploymentConfigAutoRollbackConfigurationAlarms({
-    required this.alarmName,
-  });
+final class SagemakerEndpointAlarms {
+  const SagemakerEndpointAlarms({required this.alarmName});
 
   final TfArg<String> alarmName;
 
@@ -121,8 +110,8 @@ final class SagemakerEndpointDeploymentConfigAutoRollbackConfigurationAlarms {
 /// Typed helper for the `deployment_config.blue_green_update_policy` block of
 /// `aws_sagemaker_endpoint` (derived from provider schema).
 @immutable
-final class SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicy {
-  const SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicy({
+final class SagemakerEndpointBlueGreenUpdatePolicy {
+  const SagemakerEndpointBlueGreenUpdatePolicy({
     this.maximumExecutionTimeoutInSeconds,
     this.terminationWaitInSeconds,
     required this.trafficRoutingConfiguration,
@@ -132,7 +121,7 @@ final class SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicy {
 
   final TfArg<num>? terminationWaitInSeconds;
 
-  final SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfiguration
+  final SagemakerEndpointTrafficRoutingConfiguration
   trafficRoutingConfiguration;
 
   Map<String, Object?> encode() => {
@@ -146,26 +135,21 @@ final class SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicy {
 /// Typed helper for the `deployment_config.blue_green_update_policy.traffic_routing_configuration` block of
 /// `aws_sagemaker_endpoint` (derived from provider schema).
 @immutable
-final class SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfiguration {
-  const SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfiguration({
+final class SagemakerEndpointTrafficRoutingConfiguration {
+  const SagemakerEndpointTrafficRoutingConfiguration({
     required this.type,
     required this.waitIntervalInSeconds,
     this.canarySize,
     this.linearStepSize,
   });
 
-  final TfArg<
-    SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfigurationType
-  >
-  type;
+  final TfArg<SagemakerEndpointTrafficRoutingConfigurationType> type;
 
   final TfArg<num> waitIntervalInSeconds;
 
-  final SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfigurationCanarySize?
-  canarySize;
+  final SagemakerEndpointCanarySize? canarySize;
 
-  final SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfigurationLinearStepSize?
-  linearStepSize;
+  final SagemakerEndpointLinearStepSize? linearStepSize;
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
@@ -176,15 +160,12 @@ final class SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRouting
 }
 
 /// `type` — derived from the provider schema description.
-enum SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfigurationType
-    implements TerraformEnum {
+enum SagemakerEndpointTrafficRoutingConfigurationType implements TerraformEnum {
   allAtOnce('ALL_AT_ONCE'),
   canary('CANARY'),
   linear('LINEAR');
 
-  const SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfigurationType(
-    this.terraformValue,
-  );
+  const SagemakerEndpointTrafficRoutingConfigurationType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -192,16 +173,10 @@ enum SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfigu
 /// Typed helper for the `deployment_config.blue_green_update_policy.traffic_routing_configuration.canary_size` block of
 /// `aws_sagemaker_endpoint` (derived from provider schema).
 @immutable
-final class SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfigurationCanarySize {
-  const SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfigurationCanarySize({
-    required this.type,
-    required this.value,
-  });
+final class SagemakerEndpointCanarySize {
+  const SagemakerEndpointCanarySize({required this.type, required this.value});
 
-  final TfArg<
-    SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfigurationCanarySizeType
-  >
-  type;
+  final TfArg<SagemakerEndpointMaximumBatchSizeType> type;
 
   final TfArg<num> value;
 
@@ -212,14 +187,11 @@ final class SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRouting
 }
 
 /// `type` — derived from the provider schema description.
-enum SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfigurationCanarySizeType
-    implements TerraformEnum {
+enum SagemakerEndpointMaximumBatchSizeType implements TerraformEnum {
   instanceCount('INSTANCE_COUNT'),
   capacityPercent('CAPACITY_PERCENT');
 
-  const SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfigurationCanarySizeType(
-    this.terraformValue,
-  );
+  const SagemakerEndpointMaximumBatchSizeType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -227,16 +199,13 @@ enum SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfigu
 /// Typed helper for the `deployment_config.blue_green_update_policy.traffic_routing_configuration.linear_step_size` block of
 /// `aws_sagemaker_endpoint` (derived from provider schema).
 @immutable
-final class SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfigurationLinearStepSize {
-  const SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfigurationLinearStepSize({
+final class SagemakerEndpointLinearStepSize {
+  const SagemakerEndpointLinearStepSize({
     required this.type,
     required this.value,
   });
 
-  final TfArg<
-    SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfigurationLinearStepSizeType
-  >
-  type;
+  final TfArg<SagemakerEndpointMaximumBatchSizeType> type;
 
   final TfArg<num> value;
 
@@ -246,24 +215,11 @@ final class SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRouting
   };
 }
 
-/// `type` — derived from the provider schema description.
-enum SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfigurationLinearStepSizeType
-    implements TerraformEnum {
-  instanceCount('INSTANCE_COUNT'),
-  capacityPercent('CAPACITY_PERCENT');
-
-  const SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfigurationLinearStepSizeType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `deployment_config.rolling_update_policy` block of
 /// `aws_sagemaker_endpoint` (derived from provider schema).
 @immutable
-final class SagemakerEndpointDeploymentConfigRollingUpdatePolicy {
-  const SagemakerEndpointDeploymentConfigRollingUpdatePolicy({
+final class SagemakerEndpointRollingUpdatePolicy {
+  const SagemakerEndpointRollingUpdatePolicy({
     this.maximumExecutionTimeoutInSeconds,
     required this.waitIntervalInSeconds,
     required this.maximumBatchSize,
@@ -274,11 +230,9 @@ final class SagemakerEndpointDeploymentConfigRollingUpdatePolicy {
 
   final TfArg<num> waitIntervalInSeconds;
 
-  final SagemakerEndpointDeploymentConfigRollingUpdatePolicyMaximumBatchSize
-  maximumBatchSize;
+  final SagemakerEndpointMaximumBatchSize maximumBatchSize;
 
-  final SagemakerEndpointDeploymentConfigRollingUpdatePolicyRollbackMaximumBatchSize?
-  rollbackMaximumBatchSize;
+  final SagemakerEndpointRollbackMaximumBatchSize? rollbackMaximumBatchSize;
 
   Map<String, Object?> encode() => {
     'maximum_execution_timeout_in_seconds': ?maximumExecutionTimeoutInSeconds
@@ -292,16 +246,13 @@ final class SagemakerEndpointDeploymentConfigRollingUpdatePolicy {
 /// Typed helper for the `deployment_config.rolling_update_policy.maximum_batch_size` block of
 /// `aws_sagemaker_endpoint` (derived from provider schema).
 @immutable
-final class SagemakerEndpointDeploymentConfigRollingUpdatePolicyMaximumBatchSize {
-  const SagemakerEndpointDeploymentConfigRollingUpdatePolicyMaximumBatchSize({
+final class SagemakerEndpointMaximumBatchSize {
+  const SagemakerEndpointMaximumBatchSize({
     required this.type,
     required this.value,
   });
 
-  final TfArg<
-    SagemakerEndpointDeploymentConfigRollingUpdatePolicyMaximumBatchSizeType
-  >
-  type;
+  final TfArg<SagemakerEndpointMaximumBatchSizeType> type;
 
   final TfArg<num> value;
 
@@ -309,34 +260,18 @@ final class SagemakerEndpointDeploymentConfigRollingUpdatePolicyMaximumBatchSize
     'type': type.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `type` — derived from the provider schema description.
-enum SagemakerEndpointDeploymentConfigRollingUpdatePolicyMaximumBatchSizeType
-    implements TerraformEnum {
-  instanceCount('INSTANCE_COUNT'),
-  capacityPercent('CAPACITY_PERCENT');
-
-  const SagemakerEndpointDeploymentConfigRollingUpdatePolicyMaximumBatchSizeType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `deployment_config.rolling_update_policy.rollback_maximum_batch_size` block of
 /// `aws_sagemaker_endpoint` (derived from provider schema).
 @immutable
-final class SagemakerEndpointDeploymentConfigRollingUpdatePolicyRollbackMaximumBatchSize {
-  const SagemakerEndpointDeploymentConfigRollingUpdatePolicyRollbackMaximumBatchSize({
+final class SagemakerEndpointRollbackMaximumBatchSize {
+  const SagemakerEndpointRollbackMaximumBatchSize({
     required this.type,
     required this.value,
   });
 
-  final TfArg<
-    SagemakerEndpointDeploymentConfigRollingUpdatePolicyRollbackMaximumBatchSizeType
-  >
-  type;
+  final TfArg<SagemakerEndpointMaximumBatchSizeType> type;
 
   final TfArg<num> value;
 
@@ -344,19 +279,6 @@ final class SagemakerEndpointDeploymentConfigRollingUpdatePolicyRollbackMaximumB
     'type': type.toTfJson(),
     'value': value.toTfJson(),
   };
-}
-
-/// `type` — derived from the provider schema description.
-enum SagemakerEndpointDeploymentConfigRollingUpdatePolicyRollbackMaximumBatchSizeType
-    implements TerraformEnum {
-  instanceCount('INSTANCE_COUNT'),
-  capacityPercent('CAPACITY_PERCENT');
-
-  const SagemakerEndpointDeploymentConfigRollingUpdatePolicyRollbackMaximumBatchSizeType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_sagemaker_endpoint`.

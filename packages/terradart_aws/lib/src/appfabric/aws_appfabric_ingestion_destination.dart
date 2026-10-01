@@ -12,11 +12,10 @@ const Set<String> _awsAppfabricIngestionDestinationSensitive = <String>{};
 /// Typed helper for the `destination_configuration` block of
 /// `aws_appfabric_ingestion_destination` (derived from provider schema).
 @immutable
-final class AppfabricIngestionDestinationDestinationConfiguration {
-  const AppfabricIngestionDestinationDestinationConfiguration({this.auditLog});
+final class AppfabricIngestionDestinationConfiguration {
+  const AppfabricIngestionDestinationConfiguration({this.auditLog});
 
-  final List<AppfabricIngestionDestinationDestinationConfigurationAuditLog>?
-  auditLog;
+  final List<AppfabricIngestionDestinationConfigurationAuditLog>? auditLog;
 
   Map<String, Object?> encode() => {
     if (auditLog != null) 'audit_log': [for (final e in auditLog!) e.encode()],
@@ -26,15 +25,10 @@ final class AppfabricIngestionDestinationDestinationConfiguration {
 /// Typed helper for the `destination_configuration.audit_log` block of
 /// `aws_appfabric_ingestion_destination` (derived from provider schema).
 @immutable
-final class AppfabricIngestionDestinationDestinationConfigurationAuditLog {
-  const AppfabricIngestionDestinationDestinationConfigurationAuditLog({
-    this.destination,
-  });
+final class AppfabricIngestionDestinationConfigurationAuditLog {
+  const AppfabricIngestionDestinationConfigurationAuditLog({this.destination});
 
-  final List<
-    AppfabricIngestionDestinationDestinationConfigurationAuditLogDestination
-  >?
-  destination;
+  final List<AppfabricIngestionDestinationDestination>? destination;
 
   Map<String, Object?> encode() => {
     if (destination != null)
@@ -45,21 +39,15 @@ final class AppfabricIngestionDestinationDestinationConfigurationAuditLog {
 /// Typed helper for the `destination_configuration.audit_log.destination` block of
 /// `aws_appfabric_ingestion_destination` (derived from provider schema).
 @immutable
-final class AppfabricIngestionDestinationDestinationConfigurationAuditLogDestination {
-  const AppfabricIngestionDestinationDestinationConfigurationAuditLogDestination({
+final class AppfabricIngestionDestinationDestination {
+  const AppfabricIngestionDestinationDestination({
     this.firehoseStream,
     this.s3Bucket,
   });
 
-  final List<
-    AppfabricIngestionDestinationDestinationConfigurationAuditLogDestinationFirehoseStream
-  >?
-  firehoseStream;
+  final List<AppfabricIngestionDestinationFirehoseStream>? firehoseStream;
 
-  final List<
-    AppfabricIngestionDestinationDestinationConfigurationAuditLogDestinationS3Bucket
-  >?
-  s3Bucket;
+  final List<AppfabricIngestionDestinationS3Bucket>? s3Bucket;
 
   Map<String, Object?> encode() => {
     if (firehoseStream != null)
@@ -71,10 +59,8 @@ final class AppfabricIngestionDestinationDestinationConfigurationAuditLogDestina
 /// Typed helper for the `destination_configuration.audit_log.destination.firehose_stream` block of
 /// `aws_appfabric_ingestion_destination` (derived from provider schema).
 @immutable
-final class AppfabricIngestionDestinationDestinationConfigurationAuditLogDestinationFirehoseStream {
-  const AppfabricIngestionDestinationDestinationConfigurationAuditLogDestinationFirehoseStream({
-    required this.streamName,
-  });
+final class AppfabricIngestionDestinationFirehoseStream {
+  const AppfabricIngestionDestinationFirehoseStream({required this.streamName});
 
   final TfArg<String> streamName;
 
@@ -84,8 +70,8 @@ final class AppfabricIngestionDestinationDestinationConfigurationAuditLogDestina
 /// Typed helper for the `destination_configuration.audit_log.destination.s3_bucket` block of
 /// `aws_appfabric_ingestion_destination` (derived from provider schema).
 @immutable
-final class AppfabricIngestionDestinationDestinationConfigurationAuditLogDestinationS3Bucket {
-  const AppfabricIngestionDestinationDestinationConfigurationAuditLogDestinationS3Bucket({
+final class AppfabricIngestionDestinationS3Bucket {
+  const AppfabricIngestionDestinationS3Bucket({
     required this.bucketName,
     this.prefix,
   });
@@ -123,15 +109,9 @@ final class AppfabricIngestionDestinationProcessingConfigurationAuditLog {
     required this.schema,
   });
 
-  final TfArg<
-    AppfabricIngestionDestinationProcessingConfigurationAuditLogFormat
-  >
-  format;
+  final TfArg<AppfabricIngestionDestinationFormat> format;
 
-  final TfArg<
-    AppfabricIngestionDestinationProcessingConfigurationAuditLogSchema
-  >
-  schema;
+  final TfArg<AppfabricIngestionDestinationSchema> schema;
 
   Map<String, Object?> encode() => {
     'format': format.toTfJson(),
@@ -140,27 +120,21 @@ final class AppfabricIngestionDestinationProcessingConfigurationAuditLog {
 }
 
 /// `format` — derived from the provider schema description.
-enum AppfabricIngestionDestinationProcessingConfigurationAuditLogFormat
-    implements TerraformEnum {
+enum AppfabricIngestionDestinationFormat implements TerraformEnum {
   json('json'),
   parquet('parquet');
 
-  const AppfabricIngestionDestinationProcessingConfigurationAuditLogFormat(
-    this.terraformValue,
-  );
+  const AppfabricIngestionDestinationFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `schema` — derived from the provider schema description.
-enum AppfabricIngestionDestinationProcessingConfigurationAuditLogSchema
-    implements TerraformEnum {
+enum AppfabricIngestionDestinationSchema implements TerraformEnum {
   ocsf('ocsf'),
   raw('raw');
 
-  const AppfabricIngestionDestinationProcessingConfigurationAuditLogSchema(
-    this.terraformValue,
-  );
+  const AppfabricIngestionDestinationSchema(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -175,8 +149,7 @@ final class AwsAppfabricIngestionDestination extends Resource {
     required TfArg<String> ingestionArn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    List<AppfabricIngestionDestinationDestinationConfiguration>?
-    destinationConfiguration,
+    List<AppfabricIngestionDestinationConfiguration>? destinationConfiguration,
     List<AppfabricIngestionDestinationProcessingConfiguration>?
     processingConfiguration,
     super.lifecycle,

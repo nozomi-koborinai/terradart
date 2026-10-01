@@ -15,9 +15,9 @@ const Set<String> _cloudflareWorkersKvNamespaceSensitive = <String>{};
 final class DataWorkersKvNamespaceFilter {
   const DataWorkersKvNamespaceFilter({this.direction, this.order});
 
-  final TfArg<DataWorkersKvNamespaceFilterDirection>? direction;
+  final TfArg<DataWorkersKvNamespaceDirection>? direction;
 
-  final TfArg<DataWorkersKvNamespaceFilterOrder>? order;
+  final TfArg<DataWorkersKvNamespaceOrder>? order;
 
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
@@ -26,21 +26,21 @@ final class DataWorkersKvNamespaceFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataWorkersKvNamespaceFilterDirection implements TerraformEnum {
+enum DataWorkersKvNamespaceDirection implements TerraformEnum {
   asc('asc'),
   desc('desc');
 
-  const DataWorkersKvNamespaceFilterDirection(this.terraformValue);
+  const DataWorkersKvNamespaceDirection(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `order` — derived from the provider schema description.
-enum DataWorkersKvNamespaceFilterOrder implements TerraformEnum {
+enum DataWorkersKvNamespaceOrder implements TerraformEnum {
   id('id'),
   title('title');
 
-  const DataWorkersKvNamespaceFilterOrder(this.terraformValue);
+  const DataWorkersKvNamespaceOrder(this.terraformValue);
   @override
   final String terraformValue;
 }

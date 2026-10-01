@@ -16,11 +16,10 @@ final class GlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettings {
     required this.encryptionAtRest,
   });
 
-  final GlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsConnectionPasswordEncryption
+  final GlueDataCatalogEncryptionSettingsConnectionPasswordEncryption
   connectionPasswordEncryption;
 
-  final GlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsEncryptionAtRest
-  encryptionAtRest;
+  final GlueDataCatalogEncryptionSettingsEncryptionAtRest encryptionAtRest;
 
   Map<String, Object?> encode() => {
     'connection_password_encryption': connectionPasswordEncryption.encode(),
@@ -31,8 +30,8 @@ final class GlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettings {
 /// Typed helper for the `data_catalog_encryption_settings.connection_password_encryption` block of
 /// `aws_glue_data_catalog_encryption_settings` (derived from provider schema).
 @immutable
-final class GlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsConnectionPasswordEncryption {
-  const GlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsConnectionPasswordEncryption({
+final class GlueDataCatalogEncryptionSettingsConnectionPasswordEncryption {
+  const GlueDataCatalogEncryptionSettingsConnectionPasswordEncryption({
     this.awsKmsKeyId,
     required this.returnConnectionPasswordEncrypted,
   });
@@ -51,16 +50,14 @@ final class GlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsConnec
 /// Typed helper for the `data_catalog_encryption_settings.encryption_at_rest` block of
 /// `aws_glue_data_catalog_encryption_settings` (derived from provider schema).
 @immutable
-final class GlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsEncryptionAtRest {
-  const GlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsEncryptionAtRest({
+final class GlueDataCatalogEncryptionSettingsEncryptionAtRest {
+  const GlueDataCatalogEncryptionSettingsEncryptionAtRest({
     required this.catalogEncryptionMode,
     this.catalogEncryptionServiceRole,
     this.sseAwsKmsKeyId,
   });
 
-  final TfArg<
-    GlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsEncryptionAtRestCatalogEncryptionMode
-  >
+  final TfArg<GlueDataCatalogEncryptionSettingsCatalogEncryptionMode>
   catalogEncryptionMode;
 
   final TfArg<String>? catalogEncryptionServiceRole;
@@ -76,13 +73,13 @@ final class GlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsEncryp
 }
 
 /// `catalog_encryption_mode` — derived from the provider schema description.
-enum GlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsEncryptionAtRestCatalogEncryptionMode
+enum GlueDataCatalogEncryptionSettingsCatalogEncryptionMode
     implements TerraformEnum {
   disabled('DISABLED'),
   sseKms('SSE-KMS'),
   sseKmsWithServiceRole('SSE-KMS-WITH-SERVICE-ROLE');
 
-  const GlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsEncryptionAtRestCatalogEncryptionMode(
+  const GlueDataCatalogEncryptionSettingsCatalogEncryptionMode(
     this.terraformValue,
   );
   @override

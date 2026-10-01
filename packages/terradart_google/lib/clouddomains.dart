@@ -6,17 +6,15 @@ library;
 
 export 'src/clouddomains/google_clouddomains_registration.dart'
     show
+        ClouddomainsRegistrationAdminContact,
         ClouddomainsRegistrationContactSettings,
-        ClouddomainsRegistrationContactSettingsAdminContact,
-        ClouddomainsRegistrationContactSettingsAdminContactPostalAddress,
-        ClouddomainsRegistrationContactSettingsRegistrantContact,
-        ClouddomainsRegistrationContactSettingsRegistrantContactPostalAddress,
-        ClouddomainsRegistrationContactSettingsTechnicalContact,
-        ClouddomainsRegistrationContactSettingsTechnicalContactPostalAddress,
+        ClouddomainsRegistrationCustomDns,
         ClouddomainsRegistrationDnsSettings,
-        ClouddomainsRegistrationDnsSettingsCustomDns,
-        ClouddomainsRegistrationDnsSettingsCustomDnsDsRecords,
-        ClouddomainsRegistrationDnsSettingsGlueRecords,
+        ClouddomainsRegistrationDsRecords,
+        ClouddomainsRegistrationGlueRecords,
         ClouddomainsRegistrationManagementSettings,
+        ClouddomainsRegistrationPostalAddress,
+        ClouddomainsRegistrationRegistrantContact,
+        ClouddomainsRegistrationTechnicalContact,
         ClouddomainsRegistrationYearlyPrice,
         GoogleClouddomainsRegistration;

@@ -32,10 +32,10 @@ final class OracleDatabaseExascaleDbStorageVaultProperties {
 
   final TfArg<num>? additionalFlashCachePercent;
 
-  final OracleDatabaseExascaleDbStorageVaultPropertiesExascaleDbStorageDetails
+  final OracleDatabaseExascaleDbStorageVaultExascaleDbStorageDetails
   exascaleDbStorageDetails;
 
-  final OracleDatabaseExascaleDbStorageVaultPropertiesTimeZone? timeZone;
+  final OracleDatabaseExascaleDbStorageVaultTimeZone? timeZone;
 
   Map<String, Object?> encode() => {
     'additional_flash_cache_percent': ?additionalFlashCachePercent?.toTfJson(),
@@ -47,8 +47,8 @@ final class OracleDatabaseExascaleDbStorageVaultProperties {
 /// Typed helper for the `properties.exascale_db_storage_details` block of
 /// `google_oracle_database_exascale_db_storage_vault` (derived from provider schema).
 @immutable
-final class OracleDatabaseExascaleDbStorageVaultPropertiesExascaleDbStorageDetails {
-  const OracleDatabaseExascaleDbStorageVaultPropertiesExascaleDbStorageDetails({
+final class OracleDatabaseExascaleDbStorageVaultExascaleDbStorageDetails {
+  const OracleDatabaseExascaleDbStorageVaultExascaleDbStorageDetails({
     required this.totalSizeGbs,
   });
 
@@ -60,11 +60,8 @@ final class OracleDatabaseExascaleDbStorageVaultPropertiesExascaleDbStorageDetai
 /// Typed helper for the `properties.time_zone` block of
 /// `google_oracle_database_exascale_db_storage_vault` (derived from provider schema).
 @immutable
-final class OracleDatabaseExascaleDbStorageVaultPropertiesTimeZone {
-  const OracleDatabaseExascaleDbStorageVaultPropertiesTimeZone({
-    this.id,
-    this.version,
-  });
+final class OracleDatabaseExascaleDbStorageVaultTimeZone {
+  const OracleDatabaseExascaleDbStorageVaultTimeZone({this.id, this.version});
 
   final TfArg<String>? id;
 

@@ -18,7 +18,7 @@ final class IamPrincipalAccessBoundaryPolicyDetails {
 
   final TfArg<String>? enforcementVersion;
 
-  final List<IamPrincipalAccessBoundaryPolicyDetailsRules> rules;
+  final List<IamPrincipalAccessBoundaryPolicyRules> rules;
 
   Map<String, Object?> encode() => {
     'enforcement_version': ?enforcementVersion?.toTfJson(),
@@ -29,8 +29,8 @@ final class IamPrincipalAccessBoundaryPolicyDetails {
 /// Typed helper for the `details.rules` block of
 /// `google_iam_principal_access_boundary_policy` (derived from provider schema).
 @immutable
-final class IamPrincipalAccessBoundaryPolicyDetailsRules {
-  const IamPrincipalAccessBoundaryPolicyDetailsRules({
+final class IamPrincipalAccessBoundaryPolicyRules {
+  const IamPrincipalAccessBoundaryPolicyRules({
     this.description,
     required this.effect,
     required this.resources,

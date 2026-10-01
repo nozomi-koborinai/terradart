@@ -24,8 +24,8 @@ enum OpensearchPackagePackageType implements TerraformEnum {
 /// Typed helper for the `package_source` block of
 /// `aws_opensearch_package` (derived from provider schema).
 @immutable
-final class OpensearchPackagePackageSource {
-  const OpensearchPackagePackageSource({
+final class OpensearchPackageSource {
+  const OpensearchPackageSource({
     required this.s3BucketName,
     required this.s3Key,
   });
@@ -51,7 +51,7 @@ final class AwsOpensearchPackage extends Resource {
     required TfArg<String> packageName,
     required TfArg<OpensearchPackagePackageType> packageType,
     TfArg<String>? region,
-    required OpensearchPackagePackageSource packageSource,
+    required OpensearchPackageSource packageSource,
     super.lifecycle,
     super.dependsOn,
     super.provider,

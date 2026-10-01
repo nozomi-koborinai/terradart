@@ -43,8 +43,7 @@ enum FsxOpenzfsVolumeVolumeType implements TerraformEnum {
 final class FsxOpenzfsVolumeNfsExports {
   const FsxOpenzfsVolumeNfsExports({required this.clientConfigurations});
 
-  final List<FsxOpenzfsVolumeNfsExportsClientConfigurations>
-  clientConfigurations;
+  final List<FsxOpenzfsVolumeClientConfigurations> clientConfigurations;
 
   Map<String, Object?> encode() => {
     'client_configurations': [for (final e in clientConfigurations) e.encode()],
@@ -54,8 +53,8 @@ final class FsxOpenzfsVolumeNfsExports {
 /// Typed helper for the `nfs_exports.client_configurations` block of
 /// `aws_fsx_openzfs_volume` (derived from provider schema).
 @immutable
-final class FsxOpenzfsVolumeNfsExportsClientConfigurations {
-  const FsxOpenzfsVolumeNfsExportsClientConfigurations({
+final class FsxOpenzfsVolumeClientConfigurations {
+  const FsxOpenzfsVolumeClientConfigurations({
     required this.clients,
     required this.options,
   });
@@ -79,7 +78,7 @@ final class FsxOpenzfsVolumeOriginSnapshot {
     required this.snapshotArn,
   });
 
-  final TfArg<FsxOpenzfsVolumeOriginSnapshotCopyStrategy> copyStrategy;
+  final TfArg<FsxOpenzfsVolumeCopyStrategy> copyStrategy;
 
   final TfArg<String> snapshotArn;
 
@@ -90,12 +89,12 @@ final class FsxOpenzfsVolumeOriginSnapshot {
 }
 
 /// `copy_strategy` — derived from the provider schema description.
-enum FsxOpenzfsVolumeOriginSnapshotCopyStrategy implements TerraformEnum {
+enum FsxOpenzfsVolumeCopyStrategy implements TerraformEnum {
   clone('CLONE'),
   fullCopy('FULL_COPY'),
   incrementalCopy('INCREMENTAL_COPY');
 
-  const FsxOpenzfsVolumeOriginSnapshotCopyStrategy(this.terraformValue);
+  const FsxOpenzfsVolumeCopyStrategy(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -114,7 +113,7 @@ final class FsxOpenzfsVolumeUserAndGroupQuotas {
 
   final TfArg<num> storageCapacityQuotaGib;
 
-  final TfArg<FsxOpenzfsVolumeUserAndGroupQuotasType> type;
+  final TfArg<FsxOpenzfsVolumeType> type;
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
@@ -124,11 +123,11 @@ final class FsxOpenzfsVolumeUserAndGroupQuotas {
 }
 
 /// `type` — derived from the provider schema description.
-enum FsxOpenzfsVolumeUserAndGroupQuotasType implements TerraformEnum {
+enum FsxOpenzfsVolumeType implements TerraformEnum {
   user('USER'),
   group('GROUP');
 
-  const FsxOpenzfsVolumeUserAndGroupQuotasType(this.terraformValue);
+  const FsxOpenzfsVolumeType(this.terraformValue);
   @override
   final String terraformValue;
 }

@@ -10,13 +10,13 @@ export 'src/cleanrooms/aws_cleanrooms_collaboration.dart'
         CleanroomsCollaborationDataEncryptionMetadata,
         CleanroomsCollaborationMember;
 export 'src/cleanrooms/aws_cleanrooms_configured_table.dart'
-    show AwsCleanroomsConfiguredTable, CleanroomsConfiguredTableTableReference;
+    show AwsCleanroomsConfiguredTable, CleanroomsConfiguredTableReference;
 export 'src/cleanrooms/aws_cleanrooms_membership.dart'
     show
         AwsCleanroomsMembership,
         CleanroomsMembershipDefaultResultConfiguration,
-        CleanroomsMembershipDefaultResultConfigurationOutputConfiguration,
-        CleanroomsMembershipDefaultResultConfigurationOutputConfigurationS3,
+        CleanroomsMembershipOutputConfiguration,
         CleanroomsMembershipPaymentConfiguration,
-        CleanroomsMembershipPaymentConfigurationQueryCompute,
-        CleanroomsMembershipQueryLogStatus;
+        CleanroomsMembershipQueryCompute,
+        CleanroomsMembershipQueryLogStatus,
+        CleanroomsMembershipS3;

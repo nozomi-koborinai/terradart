@@ -22,7 +22,7 @@ sealed class DataprocGdcSparkApplicationWorkload {
 
   /// Sets `spark_application_config`.
   const factory DataprocGdcSparkApplicationWorkload.sparkApplicationConfig(
-    DataprocGdcSparkApplicationSparkApplicationConfig sparkApplicationConfig,
+    DataprocGdcSparkApplicationConfig sparkApplicationConfig,
   ) = DataprocGdcSparkApplicationWorkloadSparkApplicationConfig;
 
   /// Sets `spark_sql_application_config`.
@@ -79,8 +79,7 @@ final class DataprocGdcSparkApplicationWorkloadSparkApplicationConfig
     this.sparkApplicationConfig,
   );
 
-  final DataprocGdcSparkApplicationSparkApplicationConfig
-  sparkApplicationConfig;
+  final DataprocGdcSparkApplicationConfig sparkApplicationConfig;
 
   @override
   String get blockKey => 'spark_application_config';
@@ -186,8 +185,8 @@ final class DataprocGdcSparkApplicationPysparkApplicationConfig {
 /// Typed helper for the `spark_application_config` block of
 /// `google_dataproc_gdc_spark_application` (derived from provider schema).
 @immutable
-final class DataprocGdcSparkApplicationSparkApplicationConfig {
-  const DataprocGdcSparkApplicationSparkApplicationConfig({
+final class DataprocGdcSparkApplicationConfig {
+  const DataprocGdcSparkApplicationConfig({
     this.archiveUris,
     this.args,
     this.fileUris,
@@ -262,8 +261,7 @@ final class DataprocGdcSparkApplicationSparkSqlApplicationConfig {
 
   final TfArg<Map<String, String>>? scriptVariables;
 
-  final DataprocGdcSparkApplicationSparkSqlApplicationConfigQueryList?
-  queryList;
+  final DataprocGdcSparkApplicationQueryList? queryList;
 
   Map<String, Object?> encode() => {
     'jar_file_uris': ?jarFileUris?.toTfJson(),
@@ -276,10 +274,8 @@ final class DataprocGdcSparkApplicationSparkSqlApplicationConfig {
 /// Typed helper for the `spark_sql_application_config.query_list` block of
 /// `google_dataproc_gdc_spark_application` (derived from provider schema).
 @immutable
-final class DataprocGdcSparkApplicationSparkSqlApplicationConfigQueryList {
-  const DataprocGdcSparkApplicationSparkSqlApplicationConfigQueryList({
-    required this.queries,
-  });
+final class DataprocGdcSparkApplicationQueryList {
+  const DataprocGdcSparkApplicationQueryList({required this.queries});
 
   final TfArg<List<String>> queries;
 

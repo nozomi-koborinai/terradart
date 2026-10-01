@@ -14,7 +14,7 @@ const Set<String> _awsDatasyncLocationFsxOpenzfsFileSystemSensitive =
 final class DatasyncLocationFsxOpenzfsFileSystemProtocol {
   const DatasyncLocationFsxOpenzfsFileSystemProtocol({required this.nfs});
 
-  final DatasyncLocationFsxOpenzfsFileSystemProtocolNfs nfs;
+  final DatasyncLocationFsxOpenzfsFileSystemNfs nfs;
 
   Map<String, Object?> encode() => {'nfs': nfs.encode()};
 }
@@ -22,13 +22,10 @@ final class DatasyncLocationFsxOpenzfsFileSystemProtocol {
 /// Typed helper for the `protocol.nfs` block of
 /// `aws_datasync_location_fsx_openzfs_file_system` (derived from provider schema).
 @immutable
-final class DatasyncLocationFsxOpenzfsFileSystemProtocolNfs {
-  const DatasyncLocationFsxOpenzfsFileSystemProtocolNfs({
-    required this.mountOptions,
-  });
+final class DatasyncLocationFsxOpenzfsFileSystemNfs {
+  const DatasyncLocationFsxOpenzfsFileSystemNfs({required this.mountOptions});
 
-  final DatasyncLocationFsxOpenzfsFileSystemProtocolNfsMountOptions
-  mountOptions;
+  final DatasyncLocationFsxOpenzfsFileSystemMountOptions mountOptions;
 
   Map<String, Object?> encode() => {'mount_options': mountOptions.encode()};
 }
@@ -36,30 +33,22 @@ final class DatasyncLocationFsxOpenzfsFileSystemProtocolNfs {
 /// Typed helper for the `protocol.nfs.mount_options` block of
 /// `aws_datasync_location_fsx_openzfs_file_system` (derived from provider schema).
 @immutable
-final class DatasyncLocationFsxOpenzfsFileSystemProtocolNfsMountOptions {
-  const DatasyncLocationFsxOpenzfsFileSystemProtocolNfsMountOptions({
-    this.version,
-  });
+final class DatasyncLocationFsxOpenzfsFileSystemMountOptions {
+  const DatasyncLocationFsxOpenzfsFileSystemMountOptions({this.version});
 
-  final TfArg<
-    DatasyncLocationFsxOpenzfsFileSystemProtocolNfsMountOptionsVersion
-  >?
-  version;
+  final TfArg<DatasyncLocationFsxOpenzfsFileSystemVersion>? version;
 
   Map<String, Object?> encode() => {'version': ?version?.toTfJson()};
 }
 
 /// `version` — derived from the provider schema description.
-enum DatasyncLocationFsxOpenzfsFileSystemProtocolNfsMountOptionsVersion
-    implements TerraformEnum {
+enum DatasyncLocationFsxOpenzfsFileSystemVersion implements TerraformEnum {
   automatic('AUTOMATIC'),
   nfs3('NFS3'),
   nfs40('NFS4_0'),
   nfs41('NFS4_1');
 
-  const DatasyncLocationFsxOpenzfsFileSystemProtocolNfsMountOptionsVersion(
-    this.terraformValue,
-  );
+  const DatasyncLocationFsxOpenzfsFileSystemVersion(this.terraformValue);
   @override
   final String terraformValue;
 }

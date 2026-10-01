@@ -25,11 +25,11 @@ export 'src/neptune/aws_neptune_cluster_instance.dart'
 export 'src/neptune/aws_neptune_cluster_parameter_group.dart'
     show
         AwsNeptuneClusterParameterGroup,
+        NeptuneClusterParameterGroupApplyMethod,
         NeptuneClusterParameterGroupName,
         NeptuneClusterParameterGroupNameChoice,
         NeptuneClusterParameterGroupNamePrefix,
-        NeptuneClusterParameterGroupParameter,
-        NeptuneClusterParameterGroupParameterApplyMethod;
+        NeptuneClusterParameterGroupParameter;
 export 'src/neptune/aws_neptune_cluster_snapshot.dart'
     show AwsNeptuneClusterSnapshot;
 export 'src/neptune/aws_neptune_event_subscription.dart'
@@ -48,11 +48,11 @@ export 'src/neptune/aws_neptune_global_cluster.dart'
 export 'src/neptune/aws_neptune_parameter_group.dart'
     show
         AwsNeptuneParameterGroup,
+        NeptuneParameterGroupApplyMethod,
         NeptuneParameterGroupName,
         NeptuneParameterGroupNameChoice,
         NeptuneParameterGroupNamePrefix,
-        NeptuneParameterGroupParameter,
-        NeptuneParameterGroupParameterApplyMethod;
+        NeptuneParameterGroupParameter;
 export 'src/neptune/aws_neptune_subnet_group.dart'
     show
         AwsNeptuneSubnetGroup,

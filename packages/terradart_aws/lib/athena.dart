@@ -10,32 +10,32 @@ export 'src/athena/aws_athena_data_catalog.dart'
 export 'src/athena/aws_athena_database.dart'
     show
         AthenaDatabaseAclConfiguration,
-        AthenaDatabaseAclConfigurationS3AclOption,
         AthenaDatabaseEncryptionConfiguration,
-        AthenaDatabaseEncryptionConfigurationEncryptionOption,
+        AthenaDatabaseEncryptionOption,
+        AthenaDatabaseS3AclOption,
         AwsAthenaDatabase;
 export 'src/athena/aws_athena_named_query.dart' show AwsAthenaNamedQuery;
 export 'src/athena/aws_athena_prepared_statement.dart'
     show AwsAthenaPreparedStatement;
 export 'src/athena/aws_athena_workgroup.dart'
     show
+        AthenaWorkgroupAclConfiguration,
+        AthenaWorkgroupAuthenticationType,
+        AthenaWorkgroupCloudWatchLoggingConfiguration,
         AthenaWorkgroupConfiguration,
-        AthenaWorkgroupConfigurationCustomerContentEncryptionConfiguration,
-        AthenaWorkgroupConfigurationEngineVersion,
-        AthenaWorkgroupConfigurationIdentityCenterConfiguration,
-        AthenaWorkgroupConfigurationManagedQueryResultsConfiguration,
-        AthenaWorkgroupConfigurationManagedQueryResultsConfigurationEncryptionConfiguration,
-        AthenaWorkgroupConfigurationMonitoringConfiguration,
-        AthenaWorkgroupConfigurationMonitoringConfigurationCloudWatchLoggingConfiguration,
-        AthenaWorkgroupConfigurationMonitoringConfigurationCloudWatchLoggingConfigurationLogType,
-        AthenaWorkgroupConfigurationMonitoringConfigurationManagedLoggingConfiguration,
-        AthenaWorkgroupConfigurationMonitoringConfigurationS3LoggingConfiguration,
-        AthenaWorkgroupConfigurationQueryResultsS3AccessGrantsConfiguration,
-        AthenaWorkgroupConfigurationQueryResultsS3AccessGrantsConfigurationAuthenticationType,
-        AthenaWorkgroupConfigurationResultConfiguration,
-        AthenaWorkgroupConfigurationResultConfigurationAclConfiguration,
-        AthenaWorkgroupConfigurationResultConfigurationAclConfigurationS3AclOption,
-        AthenaWorkgroupConfigurationResultConfigurationEncryptionConfiguration,
-        AthenaWorkgroupConfigurationResultConfigurationEncryptionConfigurationEncryptionOption,
+        AthenaWorkgroupCustomerContentEncryptionConfiguration,
+        AthenaWorkgroupEncryptionOption,
+        AthenaWorkgroupEngineVersion,
+        AthenaWorkgroupIdentityCenterConfiguration,
+        AthenaWorkgroupLogType,
+        AthenaWorkgroupManagedLoggingConfiguration,
+        AthenaWorkgroupManagedQueryResultsConfiguration,
+        AthenaWorkgroupManagedQueryResultsConfigurationEncryptionConfiguration,
+        AthenaWorkgroupMonitoringConfiguration,
+        AthenaWorkgroupQueryResultsS3AccessGrantsConfiguration,
+        AthenaWorkgroupResultConfiguration,
+        AthenaWorkgroupResultConfigurationEncryptionConfiguration,
+        AthenaWorkgroupS3AclOption,
+        AthenaWorkgroupS3LoggingConfiguration,
         AthenaWorkgroupState,
         AwsAthenaWorkgroup;

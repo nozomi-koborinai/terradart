@@ -29,7 +29,7 @@ enum AccessRuleMode implements TerraformEnum {
 final class AccessRuleConfiguration {
   const AccessRuleConfiguration({this.target, this.value});
 
-  final TfArg<AccessRuleConfigurationTarget>? target;
+  final TfArg<AccessRuleTarget>? target;
 
   final TfArg<String>? value;
 
@@ -40,14 +40,14 @@ final class AccessRuleConfiguration {
 }
 
 /// `target` — derived from the provider schema description.
-enum AccessRuleConfigurationTarget implements TerraformEnum {
+enum AccessRuleTarget implements TerraformEnum {
   ip('ip'),
   ip6('ip6'),
   ipRange('ip_range'),
   asn('asn'),
   country('country');
 
-  const AccessRuleConfigurationTarget(this.terraformValue);
+  const AccessRuleTarget(this.terraformValue);
   @override
   final String terraformValue;
 }

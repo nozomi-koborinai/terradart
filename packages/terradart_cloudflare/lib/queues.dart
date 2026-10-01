@@ -8,8 +8,8 @@ export 'src/queues/cloudflare_queue.dart'
 export 'src/queues/cloudflare_queue_consumer.dart'
     show
         CloudflareQueueConsumer,
+        QueueConsumerEmail,
+        QueueConsumerPagerduty,
         QueueConsumerSettings,
-        QueueConsumerSettingsEmail,
-        QueueConsumerSettingsPagerduty,
-        QueueConsumerSettingsWebhooks,
-        QueueConsumerType;
+        QueueConsumerType,
+        QueueConsumerWebhooks;

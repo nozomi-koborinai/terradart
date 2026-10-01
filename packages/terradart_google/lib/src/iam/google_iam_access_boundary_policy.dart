@@ -18,7 +18,7 @@ final class IamAccessBoundaryPolicyRules {
 
   final TfArg<String>? description;
 
-  final IamAccessBoundaryPolicyRulesAccessBoundaryRule? accessBoundaryRule;
+  final IamAccessBoundaryPolicyAccessBoundaryRule? accessBoundaryRule;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -29,8 +29,8 @@ final class IamAccessBoundaryPolicyRules {
 /// Typed helper for the `rules.access_boundary_rule` block of
 /// `google_iam_access_boundary_policy` (derived from provider schema).
 @immutable
-final class IamAccessBoundaryPolicyRulesAccessBoundaryRule {
-  const IamAccessBoundaryPolicyRulesAccessBoundaryRule({
+final class IamAccessBoundaryPolicyAccessBoundaryRule {
+  const IamAccessBoundaryPolicyAccessBoundaryRule({
     this.availablePermissions,
     this.availableResource,
     this.availabilityCondition,
@@ -40,8 +40,7 @@ final class IamAccessBoundaryPolicyRulesAccessBoundaryRule {
 
   final TfArg<String>? availableResource;
 
-  final IamAccessBoundaryPolicyRulesAccessBoundaryRuleAvailabilityCondition?
-  availabilityCondition;
+  final IamAccessBoundaryPolicyAvailabilityCondition? availabilityCondition;
 
   Map<String, Object?> encode() => {
     'available_permissions': ?availablePermissions?.toTfJson(),
@@ -53,8 +52,8 @@ final class IamAccessBoundaryPolicyRulesAccessBoundaryRule {
 /// Typed helper for the `rules.access_boundary_rule.availability_condition` block of
 /// `google_iam_access_boundary_policy` (derived from provider schema).
 @immutable
-final class IamAccessBoundaryPolicyRulesAccessBoundaryRuleAvailabilityCondition {
-  const IamAccessBoundaryPolicyRulesAccessBoundaryRuleAvailabilityCondition({
+final class IamAccessBoundaryPolicyAvailabilityCondition {
+  const IamAccessBoundaryPolicyAvailabilityCondition({
     this.description,
     required this.expression,
     this.location,

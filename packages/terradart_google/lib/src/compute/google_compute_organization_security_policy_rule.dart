@@ -16,9 +16,7 @@ final class ComputeOrganizationSecurityPolicyRuleHeaderAction {
     this.requestHeadersToAdds,
   });
 
-  final List<
-    ComputeOrganizationSecurityPolicyRuleHeaderActionRequestHeadersToAdds
-  >?
+  final List<ComputeOrganizationSecurityPolicyRuleRequestHeadersToAdds>?
   requestHeadersToAdds;
 
   Map<String, Object?> encode() => {
@@ -32,8 +30,8 @@ final class ComputeOrganizationSecurityPolicyRuleHeaderAction {
 /// Typed helper for the `header_action.request_headers_to_adds` block of
 /// `google_compute_organization_security_policy_rule` (derived from provider schema).
 @immutable
-final class ComputeOrganizationSecurityPolicyRuleHeaderActionRequestHeadersToAdds {
-  const ComputeOrganizationSecurityPolicyRuleHeaderActionRequestHeadersToAdds({
+final class ComputeOrganizationSecurityPolicyRuleRequestHeadersToAdds {
+  const ComputeOrganizationSecurityPolicyRuleRequestHeadersToAdds({
     this.headerName,
     this.headerValue,
   });
@@ -63,9 +61,9 @@ final class ComputeOrganizationSecurityPolicyRuleMatch {
 
   final TfArg<String>? versionedExpr;
 
-  final ComputeOrganizationSecurityPolicyRuleMatchConfig? config;
+  final ComputeOrganizationSecurityPolicyRuleConfig? config;
 
-  final ComputeOrganizationSecurityPolicyRuleMatchExpr? expr;
+  final ComputeOrganizationSecurityPolicyRuleExpr? expr;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -78,8 +76,8 @@ final class ComputeOrganizationSecurityPolicyRuleMatch {
 /// Typed helper for the `match.config` block of
 /// `google_compute_organization_security_policy_rule` (derived from provider schema).
 @immutable
-final class ComputeOrganizationSecurityPolicyRuleMatchConfig {
-  const ComputeOrganizationSecurityPolicyRuleMatchConfig({this.srcIpRanges});
+final class ComputeOrganizationSecurityPolicyRuleConfig {
+  const ComputeOrganizationSecurityPolicyRuleConfig({this.srcIpRanges});
 
   final TfArg<List<String>>? srcIpRanges;
 
@@ -89,10 +87,8 @@ final class ComputeOrganizationSecurityPolicyRuleMatchConfig {
 /// Typed helper for the `match.expr` block of
 /// `google_compute_organization_security_policy_rule` (derived from provider schema).
 @immutable
-final class ComputeOrganizationSecurityPolicyRuleMatchExpr {
-  const ComputeOrganizationSecurityPolicyRuleMatchExpr({
-    required this.expression,
-  });
+final class ComputeOrganizationSecurityPolicyRuleExpr {
+  const ComputeOrganizationSecurityPolicyRuleExpr({required this.expression});
 
   final TfArg<String> expression;
 
@@ -107,10 +103,7 @@ final class ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfig {
     this.exclusion,
   });
 
-  final List<
-    ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfigExclusion
-  >?
-  exclusion;
+  final List<ComputeOrganizationSecurityPolicyRuleExclusion>? exclusion;
 
   Map<String, Object?> encode() => {
     if (exclusion != null)
@@ -121,8 +114,8 @@ final class ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfig {
 /// Typed helper for the `preconfigured_waf_config.exclusion` block of
 /// `google_compute_organization_security_policy_rule` (derived from provider schema).
 @immutable
-final class ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfigExclusion {
-  const ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfigExclusion({
+final class ComputeOrganizationSecurityPolicyRuleExclusion {
+  const ComputeOrganizationSecurityPolicyRuleExclusion({
     this.targetRuleIds,
     required this.targetRuleSet,
     this.requestCookie,
@@ -135,25 +128,14 @@ final class ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfigExclusion
 
   final TfArg<String> targetRuleSet;
 
-  final List<
-    ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfigExclusionRequestCookie
-  >?
-  requestCookie;
+  final List<ComputeOrganizationSecurityPolicyRuleRequestCookie>? requestCookie;
 
-  final List<
-    ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfigExclusionRequestHeader
-  >?
-  requestHeader;
+  final List<ComputeOrganizationSecurityPolicyRuleRequestHeader>? requestHeader;
 
-  final List<
-    ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfigExclusionRequestQueryParam
-  >?
+  final List<ComputeOrganizationSecurityPolicyRuleRequestQueryParam>?
   requestQueryParam;
 
-  final List<
-    ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfigExclusionRequestUri
-  >?
-  requestUri;
+  final List<ComputeOrganizationSecurityPolicyRuleRequestUri>? requestUri;
 
   Map<String, Object?> encode() => {
     'target_rule_ids': ?targetRuleIds?.toTfJson(),
@@ -172,8 +154,8 @@ final class ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfigExclusion
 /// Typed helper for the `preconfigured_waf_config.exclusion.request_cookie` block of
 /// `google_compute_organization_security_policy_rule` (derived from provider schema).
 @immutable
-final class ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfigExclusionRequestCookie {
-  const ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfigExclusionRequestCookie({
+final class ComputeOrganizationSecurityPolicyRuleRequestCookie {
+  const ComputeOrganizationSecurityPolicyRuleRequestCookie({
     required this.operator,
     this.value,
   });
@@ -191,8 +173,8 @@ final class ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfigExclusion
 /// Typed helper for the `preconfigured_waf_config.exclusion.request_header` block of
 /// `google_compute_organization_security_policy_rule` (derived from provider schema).
 @immutable
-final class ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfigExclusionRequestHeader {
-  const ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfigExclusionRequestHeader({
+final class ComputeOrganizationSecurityPolicyRuleRequestHeader {
+  const ComputeOrganizationSecurityPolicyRuleRequestHeader({
     required this.operator,
     this.value,
   });
@@ -210,8 +192,8 @@ final class ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfigExclusion
 /// Typed helper for the `preconfigured_waf_config.exclusion.request_query_param` block of
 /// `google_compute_organization_security_policy_rule` (derived from provider schema).
 @immutable
-final class ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfigExclusionRequestQueryParam {
-  const ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfigExclusionRequestQueryParam({
+final class ComputeOrganizationSecurityPolicyRuleRequestQueryParam {
+  const ComputeOrganizationSecurityPolicyRuleRequestQueryParam({
     required this.operator,
     this.value,
   });
@@ -229,8 +211,8 @@ final class ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfigExclusion
 /// Typed helper for the `preconfigured_waf_config.exclusion.request_uri` block of
 /// `google_compute_organization_security_policy_rule` (derived from provider schema).
 @immutable
-final class ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfigExclusionRequestUri {
-  const ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfigExclusionRequestUri({
+final class ComputeOrganizationSecurityPolicyRuleRequestUri {
+  const ComputeOrganizationSecurityPolicyRuleRequestUri({
     required this.operator,
     this.value,
   });

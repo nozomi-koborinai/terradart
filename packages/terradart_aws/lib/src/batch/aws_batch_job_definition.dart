@@ -39,22 +39,22 @@ sealed class BatchJobDefinitionProperties {
   /// Sets `container_properties`.
   const factory BatchJobDefinitionProperties.containerProperties(
     TfArg<String> containerProperties,
-  ) = BatchJobDefinitionPropertiesContainerProperties;
+  ) = BatchJobDefinitionContainerProperties;
 
   /// Sets `ecs_properties`.
   const factory BatchJobDefinitionProperties.ecsProperties(
     TfArg<String> ecsProperties,
-  ) = BatchJobDefinitionPropertiesEcsProperties;
+  ) = BatchJobDefinitionEcsProperties;
 
   /// Sets `eks_properties`.
   const factory BatchJobDefinitionProperties.eksProperties(
     BatchJobDefinitionEksProperties eksProperties,
-  ) = BatchJobDefinitionPropertiesEksProperties;
+  ) = BatchJobDefinitionEksPropertiesChoice;
 
   /// Sets `node_properties`.
   const factory BatchJobDefinitionProperties.nodeProperties(
     TfArg<String> nodeProperties,
-  ) = BatchJobDefinitionPropertiesNodeProperties;
+  ) = BatchJobDefinitionNodeProperties;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -67,11 +67,9 @@ sealed class BatchJobDefinitionProperties {
 }
 
 /// The [BatchJobDefinitionProperties.containerProperties] choice: sets `container_properties`.
-final class BatchJobDefinitionPropertiesContainerProperties
+final class BatchJobDefinitionContainerProperties
     extends BatchJobDefinitionProperties {
-  const BatchJobDefinitionPropertiesContainerProperties(
-    this.containerProperties,
-  );
+  const BatchJobDefinitionContainerProperties(this.containerProperties);
 
   final TfArg<String> containerProperties;
 
@@ -90,9 +88,9 @@ final class BatchJobDefinitionPropertiesContainerProperties
 }
 
 /// The [BatchJobDefinitionProperties.ecsProperties] choice: sets `ecs_properties`.
-final class BatchJobDefinitionPropertiesEcsProperties
+final class BatchJobDefinitionEcsProperties
     extends BatchJobDefinitionProperties {
-  const BatchJobDefinitionPropertiesEcsProperties(this.ecsProperties);
+  const BatchJobDefinitionEcsProperties(this.ecsProperties);
 
   final TfArg<String> ecsProperties;
 
@@ -107,9 +105,9 @@ final class BatchJobDefinitionPropertiesEcsProperties
 }
 
 /// The [BatchJobDefinitionProperties.eksProperties] choice: sets `eks_properties`.
-final class BatchJobDefinitionPropertiesEksProperties
+final class BatchJobDefinitionEksPropertiesChoice
     extends BatchJobDefinitionProperties {
-  const BatchJobDefinitionPropertiesEksProperties(this.eksProperties);
+  const BatchJobDefinitionEksPropertiesChoice(this.eksProperties);
 
   final BatchJobDefinitionEksProperties eksProperties;
 
@@ -126,9 +124,9 @@ final class BatchJobDefinitionPropertiesEksProperties
 }
 
 /// The [BatchJobDefinitionProperties.nodeProperties] choice: sets `node_properties`.
-final class BatchJobDefinitionPropertiesNodeProperties
+final class BatchJobDefinitionNodeProperties
     extends BatchJobDefinitionProperties {
-  const BatchJobDefinitionPropertiesNodeProperties(this.nodeProperties);
+  const BatchJobDefinitionNodeProperties(this.nodeProperties);
 
   final TfArg<String> nodeProperties;
 
@@ -150,7 +148,7 @@ final class BatchJobDefinitionPropertiesNodeProperties
 final class BatchJobDefinitionEksProperties {
   const BatchJobDefinitionEksProperties({required this.podProperties});
 
-  final BatchJobDefinitionEksPropertiesPodProperties podProperties;
+  final BatchJobDefinitionPodProperties podProperties;
 
   Map<String, Object?> encode() => {'pod_properties': podProperties.encode()};
 }
@@ -158,8 +156,8 @@ final class BatchJobDefinitionEksProperties {
 /// Typed helper for the `eks_properties.pod_properties` block of
 /// `aws_batch_job_definition` (derived from provider schema).
 @immutable
-final class BatchJobDefinitionEksPropertiesPodProperties {
-  const BatchJobDefinitionEksPropertiesPodProperties({
+final class BatchJobDefinitionPodProperties {
+  const BatchJobDefinitionPodProperties({
     this.dnsPolicy,
     this.hostNetwork,
     this.serviceAccountName,
@@ -171,7 +169,7 @@ final class BatchJobDefinitionEksPropertiesPodProperties {
     this.volumes,
   });
 
-  final TfArg<BatchJobDefinitionEksPropertiesPodPropertiesDnsPolicy>? dnsPolicy;
+  final TfArg<BatchJobDefinitionDnsPolicy>? dnsPolicy;
 
   final TfArg<bool>? hostNetwork;
 
@@ -179,17 +177,15 @@ final class BatchJobDefinitionEksPropertiesPodProperties {
 
   final TfArg<bool>? shareProcessNamespace;
 
-  final List<BatchJobDefinitionEksPropertiesPodPropertiesContainers> containers;
+  final List<BatchJobDefinitionContainers> containers;
 
-  final List<BatchJobDefinitionEksPropertiesPodPropertiesImagePullSecret>?
-  imagePullSecret;
+  final List<BatchJobDefinitionImagePullSecret>? imagePullSecret;
 
-  final List<BatchJobDefinitionEksPropertiesPodPropertiesInitContainers>?
-  initContainers;
+  final List<BatchJobDefinitionInitContainers>? initContainers;
 
-  final BatchJobDefinitionEksPropertiesPodPropertiesMetadata? metadata;
+  final BatchJobDefinitionMetadata? metadata;
 
-  final List<BatchJobDefinitionEksPropertiesPodPropertiesVolumes>? volumes;
+  final List<BatchJobDefinitionVolumes>? volumes;
 
   Map<String, Object?> encode() => {
     'dns_policy': ?dnsPolicy?.toTfJson(),
@@ -207,15 +203,12 @@ final class BatchJobDefinitionEksPropertiesPodProperties {
 }
 
 /// `dns_policy` — derived from the provider schema description.
-enum BatchJobDefinitionEksPropertiesPodPropertiesDnsPolicy
-    implements TerraformEnum {
+enum BatchJobDefinitionDnsPolicy implements TerraformEnum {
   defaultCase('Default'),
   clusterfirst('ClusterFirst'),
   clusterfirstwithhostnet('ClusterFirstWithHostNet');
 
-  const BatchJobDefinitionEksPropertiesPodPropertiesDnsPolicy(
-    this.terraformValue,
-  );
+  const BatchJobDefinitionDnsPolicy(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -223,8 +216,8 @@ enum BatchJobDefinitionEksPropertiesPodPropertiesDnsPolicy
 /// Typed helper for the `eks_properties.pod_properties.containers` block of
 /// `aws_batch_job_definition` (derived from provider schema).
 @immutable
-final class BatchJobDefinitionEksPropertiesPodPropertiesContainers {
-  const BatchJobDefinitionEksPropertiesPodPropertiesContainers({
+final class BatchJobDefinitionContainers {
+  const BatchJobDefinitionContainers({
     this.args,
     this.command,
     required this.image,
@@ -242,25 +235,17 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesContainers {
 
   final TfArg<String> image;
 
-  final TfArg<
-    BatchJobDefinitionEksPropertiesPodPropertiesContainersImagePullPolicy
-  >?
-  imagePullPolicy;
+  final TfArg<BatchJobDefinitionImagePullPolicy>? imagePullPolicy;
 
   final TfArg<String>? name;
 
-  final List<BatchJobDefinitionEksPropertiesPodPropertiesContainersEnv>? env;
+  final List<BatchJobDefinitionEnv>? env;
 
-  final BatchJobDefinitionEksPropertiesPodPropertiesContainersResources?
-  resources;
+  final BatchJobDefinitionResources? resources;
 
-  final BatchJobDefinitionEksPropertiesPodPropertiesContainersSecurityContext?
-  securityContext;
+  final BatchJobDefinitionSecurityContext? securityContext;
 
-  final List<
-    BatchJobDefinitionEksPropertiesPodPropertiesContainersVolumeMounts
-  >?
-  volumeMounts;
+  final List<BatchJobDefinitionVolumeMounts>? volumeMounts;
 
   Map<String, Object?> encode() => {
     'args': ?args?.toTfJson(),
@@ -277,27 +262,22 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesContainers {
 }
 
 /// `image_pull_policy` — derived from the provider schema description.
-enum BatchJobDefinitionEksPropertiesPodPropertiesContainersImagePullPolicy
-    implements TerraformEnum {
+enum BatchJobDefinitionImagePullPolicy implements TerraformEnum {
   always('Always'),
   ifnotpresent('IfNotPresent'),
   never('Never');
 
-  const BatchJobDefinitionEksPropertiesPodPropertiesContainersImagePullPolicy(
-    this.terraformValue,
-  );
+  const BatchJobDefinitionImagePullPolicy(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `eks_properties.pod_properties.containers.env` block of
 /// `aws_batch_job_definition` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BatchJobDefinitionEksPropertiesPodPropertiesContainersEnv {
-  const BatchJobDefinitionEksPropertiesPodPropertiesContainersEnv({
-    required this.name,
-    required this.value,
-  });
+final class BatchJobDefinitionEnv {
+  const BatchJobDefinitionEnv({required this.name, required this.value});
 
   final TfArg<String> name;
 
@@ -311,12 +291,10 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesContainersEnv {
 
 /// Typed helper for the `eks_properties.pod_properties.containers.resources` block of
 /// `aws_batch_job_definition` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BatchJobDefinitionEksPropertiesPodPropertiesContainersResources {
-  const BatchJobDefinitionEksPropertiesPodPropertiesContainersResources({
-    this.limits,
-    this.requests,
-  });
+final class BatchJobDefinitionResources {
+  const BatchJobDefinitionResources({this.limits, this.requests});
 
   final TfArg<Map<String, String>>? limits;
 
@@ -330,9 +308,10 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesContainersResources {
 
 /// Typed helper for the `eks_properties.pod_properties.containers.security_context` block of
 /// `aws_batch_job_definition` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BatchJobDefinitionEksPropertiesPodPropertiesContainersSecurityContext {
-  const BatchJobDefinitionEksPropertiesPodPropertiesContainersSecurityContext({
+final class BatchJobDefinitionSecurityContext {
+  const BatchJobDefinitionSecurityContext({
     this.allowPrivilegeEscalation,
     this.privileged,
     this.readOnlyRootFileSystem,
@@ -365,9 +344,10 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesContainersSecurityContex
 
 /// Typed helper for the `eks_properties.pod_properties.containers.volume_mounts` block of
 /// `aws_batch_job_definition` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BatchJobDefinitionEksPropertiesPodPropertiesContainersVolumeMounts {
-  const BatchJobDefinitionEksPropertiesPodPropertiesContainersVolumeMounts({
+final class BatchJobDefinitionVolumeMounts {
+  const BatchJobDefinitionVolumeMounts({
     required this.mountPath,
     required this.name,
     this.readOnly,
@@ -389,10 +369,8 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesContainersVolumeMounts {
 /// Typed helper for the `eks_properties.pod_properties.image_pull_secret` block of
 /// `aws_batch_job_definition` (derived from provider schema).
 @immutable
-final class BatchJobDefinitionEksPropertiesPodPropertiesImagePullSecret {
-  const BatchJobDefinitionEksPropertiesPodPropertiesImagePullSecret({
-    required this.name,
-  });
+final class BatchJobDefinitionImagePullSecret {
+  const BatchJobDefinitionImagePullSecret({required this.name});
 
   final TfArg<String> name;
 
@@ -402,8 +380,8 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesImagePullSecret {
 /// Typed helper for the `eks_properties.pod_properties.init_containers` block of
 /// `aws_batch_job_definition` (derived from provider schema).
 @immutable
-final class BatchJobDefinitionEksPropertiesPodPropertiesInitContainers {
-  const BatchJobDefinitionEksPropertiesPodPropertiesInitContainers({
+final class BatchJobDefinitionInitContainers {
+  const BatchJobDefinitionInitContainers({
     this.args,
     this.command,
     required this.image,
@@ -421,26 +399,17 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesInitContainers {
 
   final TfArg<String> image;
 
-  final TfArg<
-    BatchJobDefinitionEksPropertiesPodPropertiesInitContainersImagePullPolicy
-  >?
-  imagePullPolicy;
+  final TfArg<BatchJobDefinitionImagePullPolicy>? imagePullPolicy;
 
   final TfArg<String>? name;
 
-  final List<BatchJobDefinitionEksPropertiesPodPropertiesInitContainersEnv>?
-  env;
+  final List<BatchJobDefinitionEnv>? env;
 
-  final BatchJobDefinitionEksPropertiesPodPropertiesInitContainersResources?
-  resources;
+  final BatchJobDefinitionResources? resources;
 
-  final BatchJobDefinitionEksPropertiesPodPropertiesInitContainersSecurityContext?
-  securityContext;
+  final BatchJobDefinitionSecurityContext? securityContext;
 
-  final List<
-    BatchJobDefinitionEksPropertiesPodPropertiesInitContainersVolumeMounts
-  >?
-  volumeMounts;
+  final List<BatchJobDefinitionVolumeMounts>? volumeMounts;
 
   Map<String, Object?> encode() => {
     'args': ?args?.toTfJson(),
@@ -456,121 +425,11 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesInitContainers {
   };
 }
 
-/// `image_pull_policy` — derived from the provider schema description.
-enum BatchJobDefinitionEksPropertiesPodPropertiesInitContainersImagePullPolicy
-    implements TerraformEnum {
-  always('Always'),
-  ifnotpresent('IfNotPresent'),
-  never('Never');
-
-  const BatchJobDefinitionEksPropertiesPodPropertiesInitContainersImagePullPolicy(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `eks_properties.pod_properties.init_containers.env` block of
-/// `aws_batch_job_definition` (derived from provider schema).
-@immutable
-final class BatchJobDefinitionEksPropertiesPodPropertiesInitContainersEnv {
-  const BatchJobDefinitionEksPropertiesPodPropertiesInitContainersEnv({
-    required this.name,
-    required this.value,
-  });
-
-  final TfArg<String> name;
-
-  final TfArg<String> value;
-
-  Map<String, Object?> encode() => {
-    'name': name.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
-
-/// Typed helper for the `eks_properties.pod_properties.init_containers.resources` block of
-/// `aws_batch_job_definition` (derived from provider schema).
-@immutable
-final class BatchJobDefinitionEksPropertiesPodPropertiesInitContainersResources {
-  const BatchJobDefinitionEksPropertiesPodPropertiesInitContainersResources({
-    this.limits,
-    this.requests,
-  });
-
-  final TfArg<Map<String, String>>? limits;
-
-  final TfArg<Map<String, String>>? requests;
-
-  Map<String, Object?> encode() => {
-    'limits': ?limits?.toTfJson(),
-    'requests': ?requests?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `eks_properties.pod_properties.init_containers.security_context` block of
-/// `aws_batch_job_definition` (derived from provider schema).
-@immutable
-final class BatchJobDefinitionEksPropertiesPodPropertiesInitContainersSecurityContext {
-  const BatchJobDefinitionEksPropertiesPodPropertiesInitContainersSecurityContext({
-    this.allowPrivilegeEscalation,
-    this.privileged,
-    this.readOnlyRootFileSystem,
-    this.runAsGroup,
-    this.runAsNonRoot,
-    this.runAsUser,
-  });
-
-  final TfArg<bool>? allowPrivilegeEscalation;
-
-  final TfArg<bool>? privileged;
-
-  final TfArg<bool>? readOnlyRootFileSystem;
-
-  final TfArg<num>? runAsGroup;
-
-  final TfArg<bool>? runAsNonRoot;
-
-  final TfArg<num>? runAsUser;
-
-  Map<String, Object?> encode() => {
-    'allow_privilege_escalation': ?allowPrivilegeEscalation?.toTfJson(),
-    'privileged': ?privileged?.toTfJson(),
-    'read_only_root_file_system': ?readOnlyRootFileSystem?.toTfJson(),
-    'run_as_group': ?runAsGroup?.toTfJson(),
-    'run_as_non_root': ?runAsNonRoot?.toTfJson(),
-    'run_as_user': ?runAsUser?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `eks_properties.pod_properties.init_containers.volume_mounts` block of
-/// `aws_batch_job_definition` (derived from provider schema).
-@immutable
-final class BatchJobDefinitionEksPropertiesPodPropertiesInitContainersVolumeMounts {
-  const BatchJobDefinitionEksPropertiesPodPropertiesInitContainersVolumeMounts({
-    required this.mountPath,
-    required this.name,
-    this.readOnly,
-  });
-
-  final TfArg<String> mountPath;
-
-  final TfArg<String> name;
-
-  final TfArg<bool>? readOnly;
-
-  Map<String, Object?> encode() => {
-    'mount_path': mountPath.toTfJson(),
-    'name': name.toTfJson(),
-    'read_only': ?readOnly?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `eks_properties.pod_properties.metadata` block of
 /// `aws_batch_job_definition` (derived from provider schema).
 @immutable
-final class BatchJobDefinitionEksPropertiesPodPropertiesMetadata {
-  const BatchJobDefinitionEksPropertiesPodPropertiesMetadata({this.labels});
+final class BatchJobDefinitionMetadata {
+  const BatchJobDefinitionMetadata({this.labels});
 
   final TfArg<Map<String, String>>? labels;
 
@@ -580,8 +439,8 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesMetadata {
 /// Typed helper for the `eks_properties.pod_properties.volumes` block of
 /// `aws_batch_job_definition` (derived from provider schema).
 @immutable
-final class BatchJobDefinitionEksPropertiesPodPropertiesVolumes {
-  const BatchJobDefinitionEksPropertiesPodPropertiesVolumes({
+final class BatchJobDefinitionVolumes {
+  const BatchJobDefinitionVolumes({
     this.name,
     this.emptyDir,
     this.hostPath,
@@ -590,11 +449,11 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesVolumes {
 
   final TfArg<String>? name;
 
-  final BatchJobDefinitionEksPropertiesPodPropertiesVolumesEmptyDir? emptyDir;
+  final BatchJobDefinitionEmptyDir? emptyDir;
 
-  final BatchJobDefinitionEksPropertiesPodPropertiesVolumesHostPath? hostPath;
+  final BatchJobDefinitionHostPath? hostPath;
 
-  final BatchJobDefinitionEksPropertiesPodPropertiesVolumesSecret? secret;
+  final BatchJobDefinitionSecret? secret;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
@@ -607,16 +466,10 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesVolumes {
 /// Typed helper for the `eks_properties.pod_properties.volumes.empty_dir` block of
 /// `aws_batch_job_definition` (derived from provider schema).
 @immutable
-final class BatchJobDefinitionEksPropertiesPodPropertiesVolumesEmptyDir {
-  const BatchJobDefinitionEksPropertiesPodPropertiesVolumesEmptyDir({
-    this.medium,
-    required this.sizeLimit,
-  });
+final class BatchJobDefinitionEmptyDir {
+  const BatchJobDefinitionEmptyDir({this.medium, required this.sizeLimit});
 
-  final TfArg<
-    BatchJobDefinitionEksPropertiesPodPropertiesVolumesEmptyDirMedium
-  >?
-  medium;
+  final TfArg<BatchJobDefinitionMedium>? medium;
 
   final TfArg<String> sizeLimit;
 
@@ -627,14 +480,11 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesVolumesEmptyDir {
 }
 
 /// `medium` — derived from the provider schema description.
-enum BatchJobDefinitionEksPropertiesPodPropertiesVolumesEmptyDirMedium
-    implements TerraformEnum {
+enum BatchJobDefinitionMedium implements TerraformEnum {
   empty(''),
   memory('Memory');
 
-  const BatchJobDefinitionEksPropertiesPodPropertiesVolumesEmptyDirMedium(
-    this.terraformValue,
-  );
+  const BatchJobDefinitionMedium(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -642,10 +492,8 @@ enum BatchJobDefinitionEksPropertiesPodPropertiesVolumesEmptyDirMedium
 /// Typed helper for the `eks_properties.pod_properties.volumes.host_path` block of
 /// `aws_batch_job_definition` (derived from provider schema).
 @immutable
-final class BatchJobDefinitionEksPropertiesPodPropertiesVolumesHostPath {
-  const BatchJobDefinitionEksPropertiesPodPropertiesVolumesHostPath({
-    required this.path,
-  });
+final class BatchJobDefinitionHostPath {
+  const BatchJobDefinitionHostPath({required this.path});
 
   final TfArg<String> path;
 
@@ -655,11 +503,8 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesVolumesHostPath {
 /// Typed helper for the `eks_properties.pod_properties.volumes.secret` block of
 /// `aws_batch_job_definition` (derived from provider schema).
 @immutable
-final class BatchJobDefinitionEksPropertiesPodPropertiesVolumesSecret {
-  const BatchJobDefinitionEksPropertiesPodPropertiesVolumesSecret({
-    this.optional,
-    required this.secretName,
-  });
+final class BatchJobDefinitionSecret {
+  const BatchJobDefinitionSecret({this.optional, required this.secretName});
 
   final TfArg<bool>? optional;
 
@@ -679,7 +524,7 @@ final class BatchJobDefinitionRetryStrategy {
 
   final TfArg<num>? attempts;
 
-  final List<BatchJobDefinitionRetryStrategyEvaluateOnExit>? evaluateOnExit;
+  final List<BatchJobDefinitionEvaluateOnExit>? evaluateOnExit;
 
   Map<String, Object?> encode() => {
     'attempts': ?attempts?.toTfJson(),
@@ -691,15 +536,15 @@ final class BatchJobDefinitionRetryStrategy {
 /// Typed helper for the `retry_strategy.evaluate_on_exit` block of
 /// `aws_batch_job_definition` (derived from provider schema).
 @immutable
-final class BatchJobDefinitionRetryStrategyEvaluateOnExit {
-  const BatchJobDefinitionRetryStrategyEvaluateOnExit({
+final class BatchJobDefinitionEvaluateOnExit {
+  const BatchJobDefinitionEvaluateOnExit({
     required this.action,
     this.onExitCode,
     this.onReason,
     this.onStatusReason,
   });
 
-  final TfArg<BatchJobDefinitionRetryStrategyEvaluateOnExitAction> action;
+  final TfArg<BatchJobDefinitionAction> action;
 
   final TfArg<String>? onExitCode;
 
@@ -716,14 +561,11 @@ final class BatchJobDefinitionRetryStrategyEvaluateOnExit {
 }
 
 /// `action` — derived from the provider schema description.
-enum BatchJobDefinitionRetryStrategyEvaluateOnExitAction
-    implements TerraformEnum {
+enum BatchJobDefinitionAction implements TerraformEnum {
   retry('RETRY'),
   exit('EXIT');
 
-  const BatchJobDefinitionRetryStrategyEvaluateOnExitAction(
-    this.terraformValue,
-  );
+  const BatchJobDefinitionAction(this.terraformValue);
   @override
   final String terraformValue;
 }

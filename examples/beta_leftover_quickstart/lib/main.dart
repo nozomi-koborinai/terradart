@@ -68,7 +68,7 @@ final class BetaLeftoverStack extends Stack {
         api: .literal('terradart-leftover'),
         spec: .openapiDocuments([
           ApiGatewayApiConfigOpenapiDocuments(
-            document: ApiGatewayApiConfigOpenapiDocumentsDocument(
+            document: ApiGatewayApiConfigDocument(
               contents: .literal('b3BlbmFwaTogIjMuMC4wIg=='),
               path: .literal('openapi.yaml'),
             ),
@@ -297,7 +297,7 @@ final class BetaLeftoverStack extends Stack {
         match: ComputeNetworkFirewallPolicyPacketMirroringRuleMatch(
           srcIpRanges: .literal(['0.0.0.0/0']),
           layer4Configs: [
-            ComputeNetworkFirewallPolicyPacketMirroringRuleMatchLayer4Configs(
+            ComputeNetworkFirewallPolicyPacketMirroringRuleLayer4Configs(
               ipProtocol: .literal('tcp'),
             ),
           ],
@@ -372,7 +372,7 @@ final class BetaLeftoverStack extends Stack {
         match: ComputeRegionNetworkPolicyTrafficClassificationRuleMatch(
           srcIpRanges: .literal(['0.0.0.0/0']),
           layer4Configs: [
-            ComputeRegionNetworkPolicyTrafficClassificationRuleMatchLayer4Configs(
+            ComputeRegionNetworkPolicyTrafficClassificationRuleLayer4Configs(
               ipProtocol: .literal('tcp'),
             ),
           ],
@@ -526,7 +526,7 @@ final class BetaLeftoverStack extends Stack {
       GoogleCloudIdentityPolicy(
         localName: 'cloud_identity_policy',
         customer: .literal('terradart-leftover'),
-        policyQuery: CloudIdentityPolicyPolicyQuery(
+        policyQuery: CloudIdentityPolicyQuery(
           orgUnit: .literal('terradart-leftover'),
         ),
         setting: CloudIdentityPolicySetting(

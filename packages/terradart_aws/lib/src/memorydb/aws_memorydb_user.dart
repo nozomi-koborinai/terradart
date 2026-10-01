@@ -17,7 +17,7 @@ final class MemorydbUserAuthenticationMode {
 
   final TfArg<List<String>>? passwords;
 
-  final TfArg<MemorydbUserAuthenticationModeType> type;
+  final TfArg<MemorydbUserType> type;
 
   Map<String, Object?> encode() => {
     'passwords': ?passwords?.toTfJson(),
@@ -26,11 +26,11 @@ final class MemorydbUserAuthenticationMode {
 }
 
 /// `type` — derived from the provider schema description.
-enum MemorydbUserAuthenticationModeType implements TerraformEnum {
+enum MemorydbUserType implements TerraformEnum {
   password('password'),
   iam('iam');
 
-  const MemorydbUserAuthenticationModeType(this.terraformValue);
+  const MemorydbUserType(this.terraformValue);
   @override
   final String terraformValue;
 }

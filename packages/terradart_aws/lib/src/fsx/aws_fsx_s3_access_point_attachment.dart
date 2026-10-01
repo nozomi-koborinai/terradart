@@ -30,8 +30,7 @@ final class FsxS3AccessPointAttachmentOpenzfsConfiguration {
 
   final TfArg<String> volumeId;
 
-  final List<FsxS3AccessPointAttachmentOpenzfsConfigurationFileSystemIdentity>?
-  fileSystemIdentity;
+  final List<FsxS3AccessPointAttachmentFileSystemIdentity>? fileSystemIdentity;
 
   Map<String, Object?> encode() => {
     'volume_id': volumeId.toTfJson(),
@@ -43,21 +42,15 @@ final class FsxS3AccessPointAttachmentOpenzfsConfiguration {
 /// Typed helper for the `openzfs_configuration.file_system_identity` block of
 /// `aws_fsx_s3_access_point_attachment` (derived from provider schema).
 @immutable
-final class FsxS3AccessPointAttachmentOpenzfsConfigurationFileSystemIdentity {
-  const FsxS3AccessPointAttachmentOpenzfsConfigurationFileSystemIdentity({
+final class FsxS3AccessPointAttachmentFileSystemIdentity {
+  const FsxS3AccessPointAttachmentFileSystemIdentity({
     required this.type,
     this.posixUser,
   });
 
-  final TfArg<
-    FsxS3AccessPointAttachmentOpenzfsConfigurationFileSystemIdentityType
-  >
-  type;
+  final TfArg<FsxS3AccessPointAttachmentFileSystemIdentityType> type;
 
-  final List<
-    FsxS3AccessPointAttachmentOpenzfsConfigurationFileSystemIdentityPosixUser
-  >?
-  posixUser;
+  final List<FsxS3AccessPointAttachmentPosixUser>? posixUser;
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
@@ -67,13 +60,10 @@ final class FsxS3AccessPointAttachmentOpenzfsConfigurationFileSystemIdentity {
 }
 
 /// `type` — derived from the provider schema description.
-enum FsxS3AccessPointAttachmentOpenzfsConfigurationFileSystemIdentityType
-    implements TerraformEnum {
+enum FsxS3AccessPointAttachmentFileSystemIdentityType implements TerraformEnum {
   posix('POSIX');
 
-  const FsxS3AccessPointAttachmentOpenzfsConfigurationFileSystemIdentityType(
-    this.terraformValue,
-  );
+  const FsxS3AccessPointAttachmentFileSystemIdentityType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -81,8 +71,8 @@ enum FsxS3AccessPointAttachmentOpenzfsConfigurationFileSystemIdentityType
 /// Typed helper for the `openzfs_configuration.file_system_identity.posix_user` block of
 /// `aws_fsx_s3_access_point_attachment` (derived from provider schema).
 @immutable
-final class FsxS3AccessPointAttachmentOpenzfsConfigurationFileSystemIdentityPosixUser {
-  const FsxS3AccessPointAttachmentOpenzfsConfigurationFileSystemIdentityPosixUser({
+final class FsxS3AccessPointAttachmentPosixUser {
+  const FsxS3AccessPointAttachmentPosixUser({
     required this.gid,
     this.secondaryGids,
     required this.uid,
@@ -112,8 +102,7 @@ final class FsxS3AccessPointAttachmentS3AccessPoint {
 
   final TfArg<String>? policy;
 
-  final List<FsxS3AccessPointAttachmentS3AccessPointVpcConfiguration>?
-  vpcConfiguration;
+  final List<FsxS3AccessPointAttachmentVpcConfiguration>? vpcConfiguration;
 
   Map<String, Object?> encode() => {
     'policy': ?policy?.toTfJson(),
@@ -125,8 +114,8 @@ final class FsxS3AccessPointAttachmentS3AccessPoint {
 /// Typed helper for the `s3_access_point.vpc_configuration` block of
 /// `aws_fsx_s3_access_point_attachment` (derived from provider schema).
 @immutable
-final class FsxS3AccessPointAttachmentS3AccessPointVpcConfiguration {
-  const FsxS3AccessPointAttachmentS3AccessPointVpcConfiguration({this.vpcId});
+final class FsxS3AccessPointAttachmentVpcConfiguration {
+  const FsxS3AccessPointAttachmentVpcConfiguration({this.vpcId});
 
   final RefTo<AwsVpc>? vpcId;
 

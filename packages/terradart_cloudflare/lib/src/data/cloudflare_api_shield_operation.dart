@@ -22,7 +22,7 @@ final class DataApiShieldOperationFilter {
     this.order,
   });
 
-  final TfArg<DataApiShieldOperationFilterDirection>? direction;
+  final TfArg<DataApiShieldOperationDirection>? direction;
 
   final TfArg<String>? endpoint;
 
@@ -32,7 +32,7 @@ final class DataApiShieldOperationFilter {
 
   final TfArg<List<String>>? method;
 
-  final TfArg<DataApiShieldOperationFilterOrder>? order;
+  final TfArg<DataApiShieldOperationOrder>? order;
 
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
@@ -45,23 +45,23 @@ final class DataApiShieldOperationFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataApiShieldOperationFilterDirection implements TerraformEnum {
+enum DataApiShieldOperationDirection implements TerraformEnum {
   asc('asc'),
   desc('desc');
 
-  const DataApiShieldOperationFilterDirection(this.terraformValue);
+  const DataApiShieldOperationDirection(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `order` — derived from the provider schema description.
-enum DataApiShieldOperationFilterOrder implements TerraformEnum {
+enum DataApiShieldOperationOrder implements TerraformEnum {
   method('method'),
   host('host'),
   endpoint('endpoint'),
   thresholdsKey('thresholds.\$key');
 
-  const DataApiShieldOperationFilterOrder(this.terraformValue);
+  const DataApiShieldOperationOrder(this.terraformValue);
   @override
   final String terraformValue;
 }

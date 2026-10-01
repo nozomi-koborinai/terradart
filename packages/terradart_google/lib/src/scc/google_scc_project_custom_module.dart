@@ -34,13 +34,13 @@ final class SccProjectCustomModuleCustomConfig {
 
   final TfArg<String> recommendation;
 
-  final TfArg<SccProjectCustomModuleCustomConfigSeverity> severity;
+  final TfArg<SccProjectCustomModuleSeverity> severity;
 
-  final SccProjectCustomModuleCustomConfigCustomOutput? customOutput;
+  final SccProjectCustomModuleCustomOutput? customOutput;
 
-  final SccProjectCustomModuleCustomConfigPredicate predicate;
+  final SccProjectCustomModulePredicate predicate;
 
-  final SccProjectCustomModuleCustomConfigResourceSelector resourceSelector;
+  final SccProjectCustomModuleResourceSelector resourceSelector;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -53,13 +53,13 @@ final class SccProjectCustomModuleCustomConfig {
 }
 
 /// `severity` — derived from the provider schema description.
-enum SccProjectCustomModuleCustomConfigSeverity implements TerraformEnum {
+enum SccProjectCustomModuleSeverity implements TerraformEnum {
   critical('CRITICAL'),
   high('HIGH'),
   medium('MEDIUM'),
   low('LOW');
 
-  const SccProjectCustomModuleCustomConfigSeverity(this.terraformValue);
+  const SccProjectCustomModuleSeverity(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -67,11 +67,10 @@ enum SccProjectCustomModuleCustomConfigSeverity implements TerraformEnum {
 /// Typed helper for the `custom_config.custom_output` block of
 /// `google_scc_project_custom_module` (derived from provider schema).
 @immutable
-final class SccProjectCustomModuleCustomConfigCustomOutput {
-  const SccProjectCustomModuleCustomConfigCustomOutput({this.properties});
+final class SccProjectCustomModuleCustomOutput {
+  const SccProjectCustomModuleCustomOutput({this.properties});
 
-  final List<SccProjectCustomModuleCustomConfigCustomOutputProperties>?
-  properties;
+  final List<SccProjectCustomModuleProperties>? properties;
 
   Map<String, Object?> encode() => {
     if (properties != null)
@@ -82,16 +81,12 @@ final class SccProjectCustomModuleCustomConfigCustomOutput {
 /// Typed helper for the `custom_config.custom_output.properties` block of
 /// `google_scc_project_custom_module` (derived from provider schema).
 @immutable
-final class SccProjectCustomModuleCustomConfigCustomOutputProperties {
-  const SccProjectCustomModuleCustomConfigCustomOutputProperties({
-    this.name,
-    this.valueExpression,
-  });
+final class SccProjectCustomModuleProperties {
+  const SccProjectCustomModuleProperties({this.name, this.valueExpression});
 
   final TfArg<String>? name;
 
-  final SccProjectCustomModuleCustomConfigCustomOutputPropertiesValueExpression?
-  valueExpression;
+  final SccProjectCustomModuleValueExpression? valueExpression;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
@@ -102,8 +97,8 @@ final class SccProjectCustomModuleCustomConfigCustomOutputProperties {
 /// Typed helper for the `custom_config.custom_output.properties.value_expression` block of
 /// `google_scc_project_custom_module` (derived from provider schema).
 @immutable
-final class SccProjectCustomModuleCustomConfigCustomOutputPropertiesValueExpression {
-  const SccProjectCustomModuleCustomConfigCustomOutputPropertiesValueExpression({
+final class SccProjectCustomModuleValueExpression {
+  const SccProjectCustomModuleValueExpression({
     this.description,
     required this.expression,
     this.location,
@@ -129,8 +124,8 @@ final class SccProjectCustomModuleCustomConfigCustomOutputPropertiesValueExpress
 /// Typed helper for the `custom_config.predicate` block of
 /// `google_scc_project_custom_module` (derived from provider schema).
 @immutable
-final class SccProjectCustomModuleCustomConfigPredicate {
-  const SccProjectCustomModuleCustomConfigPredicate({
+final class SccProjectCustomModulePredicate {
+  const SccProjectCustomModulePredicate({
     this.description,
     required this.expression,
     this.location,
@@ -156,10 +151,8 @@ final class SccProjectCustomModuleCustomConfigPredicate {
 /// Typed helper for the `custom_config.resource_selector` block of
 /// `google_scc_project_custom_module` (derived from provider schema).
 @immutable
-final class SccProjectCustomModuleCustomConfigResourceSelector {
-  const SccProjectCustomModuleCustomConfigResourceSelector({
-    required this.resourceTypes,
-  });
+final class SccProjectCustomModuleResourceSelector {
+  const SccProjectCustomModuleResourceSelector({required this.resourceTypes});
 
   final TfArg<List<String>> resourceTypes;
 

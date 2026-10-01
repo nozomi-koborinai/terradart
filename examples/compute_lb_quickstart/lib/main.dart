@@ -130,7 +130,7 @@ final class ComputeLbStack extends Stack {
         machineType: .literal('e2-small'),
         zone: .literal(zone),
         bootDisk: ComputeInstanceBootDisk(
-          initializeParams: ComputeInstanceBootDiskInitializeParams(
+          initializeParams: ComputeInstanceInitializeParams(
             image: .literal('debian-cloud/debian-12'),
           ),
         ),
@@ -257,23 +257,21 @@ final class ComputeLbStack extends Stack {
       pool: .ref(cmCaPool.id),
       location: .literal(region),
       config: PrivatecaCertificateAuthorityConfig(
-        subjectConfig: PrivatecaCertificateAuthorityConfigSubjectConfig(
-          subject: PrivatecaCertificateAuthorityConfigSubjectConfigSubject(
+        subjectConfig: PrivatecaCertificateAuthoritySubjectConfig(
+          subject: PrivatecaCertificateAuthoritySubject(
             commonName: .literal('app.example.com'),
           ),
         ),
-        x509Config: PrivatecaCertificateAuthorityConfigX509Config(
-          caOptions: PrivatecaCertificateAuthorityConfigX509ConfigCaOptions(
+        x509Config: PrivatecaCertificateAuthorityX509Config(
+          caOptions: PrivatecaCertificateAuthorityCaOptions(
             isCa: .literal(true),
           ),
-          keyUsage: PrivatecaCertificateAuthorityConfigX509ConfigKeyUsage(
-            baseKeyUsage:
-                PrivatecaCertificateAuthorityConfigX509ConfigKeyUsageBaseKeyUsage(
-                  certSign: .literal(true),
-                  crlSign: .literal(true),
-                ),
-            extendedKeyUsage:
-                PrivatecaCertificateAuthorityConfigX509ConfigKeyUsageExtendedKeyUsage(),
+          keyUsage: PrivatecaCertificateAuthorityKeyUsage(
+            baseKeyUsage: PrivatecaCertificateAuthorityBaseKeyUsage(
+              certSign: .literal(true),
+              crlSign: .literal(true),
+            ),
+            extendedKeyUsage: PrivatecaCertificateAuthorityExtendedKeyUsage(),
           ),
         ),
       ),

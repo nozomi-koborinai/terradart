@@ -10,6 +10,6 @@ export 'src/ivs/aws_ivs_recording_configuration.dart'
     show
         AwsIvsRecordingConfiguration,
         IvsRecordingConfigurationDestinationConfiguration,
-        IvsRecordingConfigurationDestinationConfigurationS3,
-        IvsRecordingConfigurationThumbnailConfiguration,
-        IvsRecordingConfigurationThumbnailConfigurationRecordingMode;
+        IvsRecordingConfigurationRecordingMode,
+        IvsRecordingConfigurationS3,
+        IvsRecordingConfigurationThumbnailConfiguration;

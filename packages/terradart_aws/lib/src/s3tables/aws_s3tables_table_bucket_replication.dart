@@ -15,7 +15,7 @@ const Set<String> _awsS3tablesTableBucketReplicationSensitive = <String>{};
 final class S3tablesTableBucketReplicationRule {
   const S3tablesTableBucketReplicationRule({this.destination});
 
-  final List<S3tablesTableBucketReplicationRuleDestination>? destination;
+  final List<S3tablesTableBucketReplicationDestination>? destination;
 
   Map<String, Object?> encode() => {
     if (destination != null)
@@ -26,8 +26,8 @@ final class S3tablesTableBucketReplicationRule {
 /// Typed helper for the `rule.destination` block of
 /// `aws_s3tables_table_bucket_replication` (derived from provider schema).
 @immutable
-final class S3tablesTableBucketReplicationRuleDestination {
-  const S3tablesTableBucketReplicationRuleDestination({
+final class S3tablesTableBucketReplicationDestination {
+  const S3tablesTableBucketReplicationDestination({
     required this.destinationTableBucketArn,
   });
 

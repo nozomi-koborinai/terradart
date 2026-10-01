@@ -13,17 +13,17 @@ const Set<String> _awsNetworkmanagerConnectAttachmentSensitive = <String>{};
 final class NetworkmanagerConnectAttachmentOptions {
   const NetworkmanagerConnectAttachmentOptions({this.protocol});
 
-  final TfArg<NetworkmanagerConnectAttachmentOptionsProtocol>? protocol;
+  final TfArg<NetworkmanagerConnectAttachmentProtocol>? protocol;
 
   Map<String, Object?> encode() => {'protocol': ?protocol?.toTfJson()};
 }
 
 /// `protocol` — derived from the provider schema description.
-enum NetworkmanagerConnectAttachmentOptionsProtocol implements TerraformEnum {
+enum NetworkmanagerConnectAttachmentProtocol implements TerraformEnum {
   gre('GRE'),
   noEncap('NO_ENCAP');
 
-  const NetworkmanagerConnectAttachmentOptionsProtocol(this.terraformValue);
+  const NetworkmanagerConnectAttachmentProtocol(this.terraformValue);
   @override
   final String terraformValue;
 }

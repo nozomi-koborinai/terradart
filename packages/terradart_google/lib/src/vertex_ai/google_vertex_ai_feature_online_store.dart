@@ -110,7 +110,7 @@ final class VertexAiFeatureOnlineStoreDedicatedServingEndpoint {
     this.privateServiceConnectConfig,
   });
 
-  final VertexAiFeatureOnlineStoreDedicatedServingEndpointPrivateServiceConnectConfig?
+  final VertexAiFeatureOnlineStorePrivateServiceConnectConfig?
   privateServiceConnectConfig;
 
   Map<String, Object?> encode() => {
@@ -121,8 +121,8 @@ final class VertexAiFeatureOnlineStoreDedicatedServingEndpoint {
 /// Typed helper for the `dedicated_serving_endpoint.private_service_connect_config` block of
 /// `google_vertex_ai_feature_online_store` (derived from provider schema).
 @immutable
-final class VertexAiFeatureOnlineStoreDedicatedServingEndpointPrivateServiceConnectConfig {
-  const VertexAiFeatureOnlineStoreDedicatedServingEndpointPrivateServiceConnectConfig({
+final class VertexAiFeatureOnlineStorePrivateServiceConnectConfig {
+  const VertexAiFeatureOnlineStorePrivateServiceConnectConfig({
     required this.enablePrivateServiceConnect,
     this.projectAllowlist,
   });

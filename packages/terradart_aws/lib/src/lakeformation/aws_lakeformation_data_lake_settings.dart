@@ -16,12 +16,7 @@ final class LakeformationDataLakeSettingsCreateDatabaseDefaultPermissions {
     this.principal,
   });
 
-  final List<
-    TfArg<
-      LakeformationDataLakeSettingsCreateDatabaseDefaultPermissionsPermissions
-    >
-  >?
-  permissions;
+  final List<TfArg<LakeformationDataLakeSettingsPermissions>>? permissions;
 
   final TfArg<String>? principal;
 
@@ -33,8 +28,7 @@ final class LakeformationDataLakeSettingsCreateDatabaseDefaultPermissions {
 }
 
 /// `permissions` — derived from the provider schema description.
-enum LakeformationDataLakeSettingsCreateDatabaseDefaultPermissionsPermissions
-    implements TerraformEnum {
+enum LakeformationDataLakeSettingsPermissions implements TerraformEnum {
   all('ALL'),
   select('SELECT'),
   alter('ALTER'),
@@ -52,9 +46,7 @@ enum LakeformationDataLakeSettingsCreateDatabaseDefaultPermissionsPermissions
   createCatalog('CREATE_CATALOG'),
   superUser('SUPER_USER');
 
-  const LakeformationDataLakeSettingsCreateDatabaseDefaultPermissionsPermissions(
-    this.terraformValue,
-  );
+  const LakeformationDataLakeSettingsPermissions(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -68,10 +60,7 @@ final class LakeformationDataLakeSettingsCreateTableDefaultPermissions {
     this.principal,
   });
 
-  final List<
-    TfArg<LakeformationDataLakeSettingsCreateTableDefaultPermissionsPermissions>
-  >?
-  permissions;
+  final List<TfArg<LakeformationDataLakeSettingsPermissions>>? permissions;
 
   final TfArg<String>? principal;
 
@@ -80,33 +69,6 @@ final class LakeformationDataLakeSettingsCreateTableDefaultPermissions {
       'permissions': [for (final e in permissions!) e.toTfJson()],
     'principal': ?principal?.toTfJson(),
   };
-}
-
-/// `permissions` — derived from the provider schema description.
-enum LakeformationDataLakeSettingsCreateTableDefaultPermissionsPermissions
-    implements TerraformEnum {
-  all('ALL'),
-  select('SELECT'),
-  alter('ALTER'),
-  drop('DROP'),
-  delete('DELETE'),
-  insert('INSERT'),
-  describe('DESCRIBE'),
-  createDatabase('CREATE_DATABASE'),
-  createTable('CREATE_TABLE'),
-  dataLocationAccess('DATA_LOCATION_ACCESS'),
-  createLfTag('CREATE_LF_TAG'),
-  associate('ASSOCIATE'),
-  grantWithLfTagExpression('GRANT_WITH_LF_TAG_EXPRESSION'),
-  createLfTagExpression('CREATE_LF_TAG_EXPRESSION'),
-  createCatalog('CREATE_CATALOG'),
-  superUser('SUPER_USER');
-
-  const LakeformationDataLakeSettingsCreateTableDefaultPermissionsPermissions(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_lakeformation_data_lake_settings`.

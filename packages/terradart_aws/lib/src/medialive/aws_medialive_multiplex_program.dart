@@ -10,8 +10,8 @@ const Set<String> _awsMedialiveMultiplexProgramSensitive = <String>{};
 /// Typed helper for the `multiplex_program_settings` block of
 /// `aws_medialive_multiplex_program` (derived from provider schema).
 @immutable
-final class MedialiveMultiplexProgramMultiplexProgramSettings {
-  const MedialiveMultiplexProgramMultiplexProgramSettings({
+final class MedialiveMultiplexProgramSettings {
+  const MedialiveMultiplexProgramSettings({
     required this.preferredChannelPipeline,
     required this.programNumber,
     this.serviceDescriptor,
@@ -22,13 +22,9 @@ final class MedialiveMultiplexProgramMultiplexProgramSettings {
 
   final TfArg<num> programNumber;
 
-  final List<
-    MedialiveMultiplexProgramMultiplexProgramSettingsServiceDescriptor
-  >?
-  serviceDescriptor;
+  final List<MedialiveMultiplexProgramServiceDescriptor>? serviceDescriptor;
 
-  final List<MedialiveMultiplexProgramMultiplexProgramSettingsVideoSettings>?
-  videoSettings;
+  final List<MedialiveMultiplexProgramVideoSettings>? videoSettings;
 
   Map<String, Object?> encode() => {
     'preferred_channel_pipeline': preferredChannelPipeline.toTfJson(),
@@ -43,8 +39,8 @@ final class MedialiveMultiplexProgramMultiplexProgramSettings {
 /// Typed helper for the `multiplex_program_settings.service_descriptor` block of
 /// `aws_medialive_multiplex_program` (derived from provider schema).
 @immutable
-final class MedialiveMultiplexProgramMultiplexProgramSettingsServiceDescriptor {
-  const MedialiveMultiplexProgramMultiplexProgramSettingsServiceDescriptor({
+final class MedialiveMultiplexProgramServiceDescriptor {
+  const MedialiveMultiplexProgramServiceDescriptor({
     required this.providerName,
     required this.serviceName,
   });
@@ -62,18 +58,15 @@ final class MedialiveMultiplexProgramMultiplexProgramSettingsServiceDescriptor {
 /// Typed helper for the `multiplex_program_settings.video_settings` block of
 /// `aws_medialive_multiplex_program` (derived from provider schema).
 @immutable
-final class MedialiveMultiplexProgramMultiplexProgramSettingsVideoSettings {
-  const MedialiveMultiplexProgramMultiplexProgramSettingsVideoSettings({
+final class MedialiveMultiplexProgramVideoSettings {
+  const MedialiveMultiplexProgramVideoSettings({
     this.constantBitrate,
     this.statmuxSettings,
   });
 
   final TfArg<num>? constantBitrate;
 
-  final List<
-    MedialiveMultiplexProgramMultiplexProgramSettingsVideoSettingsStatmuxSettings
-  >?
-  statmuxSettings;
+  final List<MedialiveMultiplexProgramStatmuxSettings>? statmuxSettings;
 
   Map<String, Object?> encode() => {
     'constant_bitrate': ?constantBitrate?.toTfJson(),
@@ -85,8 +78,8 @@ final class MedialiveMultiplexProgramMultiplexProgramSettingsVideoSettings {
 /// Typed helper for the `multiplex_program_settings.video_settings.statmux_settings` block of
 /// `aws_medialive_multiplex_program` (derived from provider schema).
 @immutable
-final class MedialiveMultiplexProgramMultiplexProgramSettingsVideoSettingsStatmuxSettings {
-  const MedialiveMultiplexProgramMultiplexProgramSettingsVideoSettingsStatmuxSettings({
+final class MedialiveMultiplexProgramStatmuxSettings {
+  const MedialiveMultiplexProgramStatmuxSettings({
     this.maximumBitrate,
     this.minimumBitrate,
     this.priority,
@@ -114,8 +107,7 @@ final class AwsMedialiveMultiplexProgram extends Resource {
     required TfArg<String> multiplexId,
     required TfArg<String> programName,
     TfArg<String>? region,
-    List<MedialiveMultiplexProgramMultiplexProgramSettings>?
-    multiplexProgramSettings,
+    List<MedialiveMultiplexProgramSettings>? multiplexProgramSettings,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -20,13 +20,13 @@ sealed class EvidentlyProjectDataDelivery {
 
   /// Sets `cloudwatch_logs`.
   const factory EvidentlyProjectDataDelivery.cloudwatchLogs(
-    EvidentlyProjectDataDeliveryCloudwatchLogs cloudwatchLogs,
-  ) = EvidentlyProjectDataDeliveryCloudwatchLogsChoice;
+    EvidentlyProjectCloudwatchLogs cloudwatchLogs,
+  ) = EvidentlyProjectDataDeliveryCloudwatchLogs;
 
   /// Sets `s3_destination`.
   const factory EvidentlyProjectDataDelivery.s3Destination(
-    EvidentlyProjectDataDeliveryS3Destination s3Destination,
-  ) = EvidentlyProjectDataDeliveryS3DestinationChoice;
+    EvidentlyProjectS3Destination s3Destination,
+  ) = EvidentlyProjectDataDeliveryS3Destination;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -35,11 +35,11 @@ sealed class EvidentlyProjectDataDelivery {
 }
 
 /// The [EvidentlyProjectDataDelivery.cloudwatchLogs] choice: sets `cloudwatch_logs`.
-final class EvidentlyProjectDataDeliveryCloudwatchLogsChoice
+final class EvidentlyProjectDataDeliveryCloudwatchLogs
     extends EvidentlyProjectDataDelivery {
-  const EvidentlyProjectDataDeliveryCloudwatchLogsChoice(this.cloudwatchLogs);
+  const EvidentlyProjectDataDeliveryCloudwatchLogs(this.cloudwatchLogs);
 
-  final EvidentlyProjectDataDeliveryCloudwatchLogs cloudwatchLogs;
+  final EvidentlyProjectCloudwatchLogs cloudwatchLogs;
 
   @override
   String get blockKey => 'cloudwatch_logs';
@@ -49,11 +49,11 @@ final class EvidentlyProjectDataDeliveryCloudwatchLogsChoice
 }
 
 /// The [EvidentlyProjectDataDelivery.s3Destination] choice: sets `s3_destination`.
-final class EvidentlyProjectDataDeliveryS3DestinationChoice
+final class EvidentlyProjectDataDeliveryS3Destination
     extends EvidentlyProjectDataDelivery {
-  const EvidentlyProjectDataDeliveryS3DestinationChoice(this.s3Destination);
+  const EvidentlyProjectDataDeliveryS3Destination(this.s3Destination);
 
-  final EvidentlyProjectDataDeliveryS3Destination s3Destination;
+  final EvidentlyProjectS3Destination s3Destination;
 
   @override
   String get blockKey => 's3_destination';
@@ -65,8 +65,8 @@ final class EvidentlyProjectDataDeliveryS3DestinationChoice
 /// Typed helper for the `data_delivery.cloudwatch_logs` block of
 /// `aws_evidently_project` (derived from provider schema).
 @immutable
-final class EvidentlyProjectDataDeliveryCloudwatchLogs {
-  const EvidentlyProjectDataDeliveryCloudwatchLogs({this.logGroup});
+final class EvidentlyProjectCloudwatchLogs {
+  const EvidentlyProjectCloudwatchLogs({this.logGroup});
 
   final RefTo<AwsCloudwatchLogGroup>? logGroup;
 
@@ -78,8 +78,8 @@ final class EvidentlyProjectDataDeliveryCloudwatchLogs {
 /// Typed helper for the `data_delivery.s3_destination` block of
 /// `aws_evidently_project` (derived from provider schema).
 @immutable
-final class EvidentlyProjectDataDeliveryS3Destination {
-  const EvidentlyProjectDataDeliveryS3Destination({this.bucket, this.prefix});
+final class EvidentlyProjectS3Destination {
+  const EvidentlyProjectS3Destination({this.bucket, this.prefix});
 
   final RefTo<AwsS3Bucket>? bucket;
 

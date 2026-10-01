@@ -68,8 +68,8 @@ final class VpcIpamPoolCidrRangeNetmaskLength extends VpcIpamPoolCidrRange {
 /// Typed helper for the `cidr_authorization_context` block of
 /// `aws_vpc_ipam_pool_cidr` (derived from provider schema).
 @immutable
-final class VpcIpamPoolCidrCidrAuthorizationContext {
-  const VpcIpamPoolCidrCidrAuthorizationContext({this.message, this.signature});
+final class VpcIpamPoolCidrAuthorizationContext {
+  const VpcIpamPoolCidrAuthorizationContext({this.message, this.signature});
 
   final TfArg<String>? message;
 
@@ -90,7 +90,7 @@ final class AwsVpcIpamPoolCidr extends Resource {
     VpcIpamPoolCidrRange? range,
     required TfArg<String> ipamPoolId,
     TfArg<String>? region,
-    VpcIpamPoolCidrCidrAuthorizationContext? cidrAuthorizationContext,
+    VpcIpamPoolCidrAuthorizationContext? cidrAuthorizationContext,
     super.lifecycle,
     super.dependsOn,
     super.provider,

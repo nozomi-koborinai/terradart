@@ -6,33 +6,33 @@ library;
 export 'src/mskconnect/aws_mskconnect_connector.dart'
     show
         AwsMskconnectConnector,
+        MskconnectConnectorApacheKafkaCluster,
+        MskconnectConnectorAuthenticationType,
+        MskconnectConnectorAutoscaling,
         MskconnectConnectorCapacity,
         MskconnectConnectorCapacityAutoscaling,
-        MskconnectConnectorCapacityAutoscalingChoice,
-        MskconnectConnectorCapacityAutoscalingScaleInPolicy,
-        MskconnectConnectorCapacityAutoscalingScaleOutPolicy,
-        MskconnectConnectorCapacityProvisionedCapacity,
-        MskconnectConnectorCapacityProvisionedCapacityChoice,
+        MskconnectConnectorCloudwatchLogs,
+        MskconnectConnectorCustomPlugin,
+        MskconnectConnectorEncryptionType,
+        MskconnectConnectorFirehose,
         MskconnectConnectorKafkaCluster,
-        MskconnectConnectorKafkaClusterApacheKafkaCluster,
-        MskconnectConnectorKafkaClusterApacheKafkaClusterVpc,
         MskconnectConnectorKafkaClusterClientAuthentication,
-        MskconnectConnectorKafkaClusterClientAuthenticationAuthenticationType,
         MskconnectConnectorKafkaClusterEncryptionInTransit,
-        MskconnectConnectorKafkaClusterEncryptionInTransitEncryptionType,
         MskconnectConnectorLogDelivery,
-        MskconnectConnectorLogDeliveryWorkerLogDelivery,
-        MskconnectConnectorLogDeliveryWorkerLogDeliveryCloudwatchLogs,
-        MskconnectConnectorLogDeliveryWorkerLogDeliveryFirehose,
-        MskconnectConnectorLogDeliveryWorkerLogDeliveryS3,
         MskconnectConnectorPlugin,
-        MskconnectConnectorPluginCustomPlugin,
-        MskconnectConnectorWorkerConfiguration;
+        MskconnectConnectorProvisionedCapacity,
+        MskconnectConnectorProvisionedCapacityChoice,
+        MskconnectConnectorS3,
+        MskconnectConnectorScaleInPolicy,
+        MskconnectConnectorScaleOutPolicy,
+        MskconnectConnectorVpc,
+        MskconnectConnectorWorkerConfiguration,
+        MskconnectConnectorWorkerLogDelivery;
 export 'src/mskconnect/aws_mskconnect_custom_plugin.dart'
     show
         AwsMskconnectCustomPlugin,
         MskconnectCustomPluginContentType,
         MskconnectCustomPluginLocation,
-        MskconnectCustomPluginLocationS3;
+        MskconnectCustomPluginS3;
 export 'src/mskconnect/aws_mskconnect_worker_configuration.dart'
     show AwsMskconnectWorkerConfiguration;

@@ -18,7 +18,7 @@ final class DatapipelinePipelineDefinitionParameterObject {
 
   final TfArg<String> id;
 
-  final List<DatapipelinePipelineDefinitionParameterObjectAttribute>? attribute;
+  final List<DatapipelinePipelineDefinitionAttribute>? attribute;
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
@@ -30,8 +30,8 @@ final class DatapipelinePipelineDefinitionParameterObject {
 /// Typed helper for the `parameter_object.attribute` block of
 /// `aws_datapipeline_pipeline_definition` (derived from provider schema).
 @immutable
-final class DatapipelinePipelineDefinitionParameterObjectAttribute {
-  const DatapipelinePipelineDefinitionParameterObjectAttribute({
+final class DatapipelinePipelineDefinitionAttribute {
+  const DatapipelinePipelineDefinitionAttribute({
     required this.key,
     required this.stringValue,
   });
@@ -79,7 +79,7 @@ final class DatapipelinePipelineDefinitionPipelineObject {
 
   final TfArg<String> name;
 
-  final List<DatapipelinePipelineDefinitionPipelineObjectField>? field;
+  final List<DatapipelinePipelineDefinitionField>? field;
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
@@ -91,8 +91,8 @@ final class DatapipelinePipelineDefinitionPipelineObject {
 /// Typed helper for the `pipeline_object.field` block of
 /// `aws_datapipeline_pipeline_definition` (derived from provider schema).
 @immutable
-final class DatapipelinePipelineDefinitionPipelineObjectField {
-  const DatapipelinePipelineDefinitionPipelineObjectField({
+final class DatapipelinePipelineDefinitionField {
+  const DatapipelinePipelineDefinitionField({
     required this.key,
     this.refValue,
     this.stringValue,

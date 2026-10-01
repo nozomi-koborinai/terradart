@@ -54,12 +54,11 @@ final class AppsyncFunctionSyncConfig {
     this.lambdaConflictHandlerConfig,
   });
 
-  final TfArg<AppsyncFunctionSyncConfigConflictDetection>? conflictDetection;
+  final TfArg<AppsyncFunctionConflictDetection>? conflictDetection;
 
-  final TfArg<AppsyncFunctionSyncConfigConflictHandler>? conflictHandler;
+  final TfArg<AppsyncFunctionConflictHandler>? conflictHandler;
 
-  final AppsyncFunctionSyncConfigLambdaConflictHandlerConfig?
-  lambdaConflictHandlerConfig;
+  final AppsyncFunctionLambdaConflictHandlerConfig? lambdaConflictHandlerConfig;
 
   Map<String, Object?> encode() => {
     'conflict_detection': ?conflictDetection?.toTfJson(),
@@ -69,23 +68,23 @@ final class AppsyncFunctionSyncConfig {
 }
 
 /// `conflict_detection` — derived from the provider schema description.
-enum AppsyncFunctionSyncConfigConflictDetection implements TerraformEnum {
+enum AppsyncFunctionConflictDetection implements TerraformEnum {
   version('VERSION'),
   none('NONE');
 
-  const AppsyncFunctionSyncConfigConflictDetection(this.terraformValue);
+  const AppsyncFunctionConflictDetection(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `conflict_handler` — derived from the provider schema description.
-enum AppsyncFunctionSyncConfigConflictHandler implements TerraformEnum {
+enum AppsyncFunctionConflictHandler implements TerraformEnum {
   optimisticConcurrency('OPTIMISTIC_CONCURRENCY'),
   lambda('LAMBDA'),
   automerge('AUTOMERGE'),
   none('NONE');
 
-  const AppsyncFunctionSyncConfigConflictHandler(this.terraformValue);
+  const AppsyncFunctionConflictHandler(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -93,8 +92,8 @@ enum AppsyncFunctionSyncConfigConflictHandler implements TerraformEnum {
 /// Typed helper for the `sync_config.lambda_conflict_handler_config` block of
 /// `aws_appsync_function` (derived from provider schema).
 @immutable
-final class AppsyncFunctionSyncConfigLambdaConflictHandlerConfig {
-  const AppsyncFunctionSyncConfigLambdaConflictHandlerConfig({
+final class AppsyncFunctionLambdaConflictHandlerConfig {
+  const AppsyncFunctionLambdaConflictHandlerConfig({
     this.lambdaConflictHandlerArn,
   });
 

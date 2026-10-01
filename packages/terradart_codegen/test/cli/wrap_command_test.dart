@@ -895,7 +895,7 @@ paramOrder:
         // use elsewhere in this campaign.
         expect(
           formatted,
-          contains('enum AppEngineDomainMappingSslSettingsSslManagementType'),
+          contains('enum AppEngineDomainMappingSslManagementType'),
         );
         expect(formatted, contains('implements TerraformEnum {'));
 
@@ -939,7 +939,7 @@ paramOrder:
           entry.nestedTypes,
           containsAll([
             'AppEngineDomainMappingSslSettings',
-            'AppEngineDomainMappingSslSettingsSslManagementType',
+            'AppEngineDomainMappingSslManagementType',
           ]),
         );
 
@@ -963,7 +963,7 @@ paramOrder:
         );
         expect(
           barrelFiles['app'],
-          contains('AppEngineDomainMappingSslSettingsSslManagementType'),
+          contains('AppEngineDomainMappingSslManagementType'),
         );
       } finally {
         await tmpOverrideDir.delete(recursive: true);
@@ -1412,7 +1412,7 @@ paramOrder: [name, mode, kind, regions, grants, settings]
         final src = emitted();
         expect(src, contains('TfArg<XThingMode>? mode'));
         expect(src, contains('TfArg<XThingKind>? kind'));
-        expect(src, contains('TfArg<XThingSettingsLevel>? level'));
+        expect(src, contains('TfArg<XThingLevel>? level'));
         expect(src, contains("fast('fast')"));
         expect(src, contains("k1('k1')"));
         expect(src, contains("high('high')"));
@@ -1777,7 +1777,7 @@ deriveExactlyOne: true
       final src = emitted();
       expect(src, contains('TfArg<ThingMode>? mode'));
       expect(src, contains("fast('FAST')"));
-      expect(src, contains('TfArg<ThingRuleAction>? action'));
+      expect(src, contains('TfArg<ThingAction>? action'));
       expect(src, contains('sealed class ThingUriOrPath'));
       expect(src, contains('required ThingUriOrPath uriOrPath'));
       expect(src, isNot(contains('TfArg<String>? uri,')));

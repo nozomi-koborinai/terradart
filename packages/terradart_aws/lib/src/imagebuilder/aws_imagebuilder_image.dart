@@ -19,7 +19,7 @@ sealed class ImagebuilderImageRecipeArn {
   /// Sets `container_recipe_arn`.
   const factory ImagebuilderImageRecipeArn.containerRecipeArn(
     TfArg<String> containerRecipeArn,
-  ) = ImagebuilderImageRecipeArnContainerRecipeArn;
+  ) = ImagebuilderImageContainerRecipeArn;
 
   /// Sets `image_recipe_arn`.
   const factory ImagebuilderImageRecipeArn.imageRecipeArn(
@@ -37,9 +37,9 @@ sealed class ImagebuilderImageRecipeArn {
 }
 
 /// The [ImagebuilderImageRecipeArn.containerRecipeArn] choice: sets `container_recipe_arn`.
-final class ImagebuilderImageRecipeArnContainerRecipeArn
+final class ImagebuilderImageContainerRecipeArn
     extends ImagebuilderImageRecipeArn {
-  const ImagebuilderImageRecipeArnContainerRecipeArn(this.containerRecipeArn);
+  const ImagebuilderImageContainerRecipeArn(this.containerRecipeArn);
 
   final TfArg<String> containerRecipeArn;
 
@@ -81,16 +81,15 @@ final class ImagebuilderImageRecipeArnChoice
 /// Typed helper for the `image_scanning_configuration` block of
 /// `aws_imagebuilder_image` (derived from provider schema).
 @immutable
-final class ImagebuilderImageImageScanningConfiguration {
-  const ImagebuilderImageImageScanningConfiguration({
+final class ImagebuilderImageScanningConfiguration {
+  const ImagebuilderImageScanningConfiguration({
     this.imageScanningEnabled,
     this.ecrConfiguration,
   });
 
   final TfArg<bool>? imageScanningEnabled;
 
-  final ImagebuilderImageImageScanningConfigurationEcrConfiguration?
-  ecrConfiguration;
+  final ImagebuilderImageEcrConfiguration? ecrConfiguration;
 
   Map<String, Object?> encode() => {
     'image_scanning_enabled': ?imageScanningEnabled?.toTfJson(),
@@ -101,8 +100,8 @@ final class ImagebuilderImageImageScanningConfiguration {
 /// Typed helper for the `image_scanning_configuration.ecr_configuration` block of
 /// `aws_imagebuilder_image` (derived from provider schema).
 @immutable
-final class ImagebuilderImageImageScanningConfigurationEcrConfiguration {
-  const ImagebuilderImageImageScanningConfigurationEcrConfiguration({
+final class ImagebuilderImageEcrConfiguration {
+  const ImagebuilderImageEcrConfiguration({
     this.containerTags,
     this.repositoryName,
   });
@@ -120,8 +119,8 @@ final class ImagebuilderImageImageScanningConfigurationEcrConfiguration {
 /// Typed helper for the `image_tests_configuration` block of
 /// `aws_imagebuilder_image` (derived from provider schema).
 @immutable
-final class ImagebuilderImageImageTestsConfiguration {
-  const ImagebuilderImageImageTestsConfiguration({
+final class ImagebuilderImageTestsConfiguration {
+  const ImagebuilderImageTestsConfiguration({
     this.imageTestsEnabled,
     this.timeoutMinutes,
   });
@@ -160,13 +159,13 @@ final class ImagebuilderImageWorkflow {
     this.parameter,
   });
 
-  final TfArg<ImagebuilderImageWorkflowOnFailure>? onFailure;
+  final TfArg<ImagebuilderImageOnFailure>? onFailure;
 
   final TfArg<String>? parallelGroup;
 
   final TfArg<String> workflowArn;
 
-  final List<ImagebuilderImageWorkflowParameter>? parameter;
+  final List<ImagebuilderImageParameter>? parameter;
 
   Map<String, Object?> encode() => {
     'on_failure': ?onFailure?.toTfJson(),
@@ -178,11 +177,11 @@ final class ImagebuilderImageWorkflow {
 }
 
 /// `on_failure` — derived from the provider schema description.
-enum ImagebuilderImageWorkflowOnFailure implements TerraformEnum {
+enum ImagebuilderImageOnFailure implements TerraformEnum {
   continueCase('CONTINUE'),
   abort('ABORT');
 
-  const ImagebuilderImageWorkflowOnFailure(this.terraformValue);
+  const ImagebuilderImageOnFailure(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -190,11 +189,8 @@ enum ImagebuilderImageWorkflowOnFailure implements TerraformEnum {
 /// Typed helper for the `workflow.parameter` block of
 /// `aws_imagebuilder_image` (derived from provider schema).
 @immutable
-final class ImagebuilderImageWorkflowParameter {
-  const ImagebuilderImageWorkflowParameter({
-    required this.name,
-    required this.value,
-  });
+final class ImagebuilderImageParameter {
+  const ImagebuilderImageParameter({required this.name, required this.value});
 
   final TfArg<String> name;
 
@@ -219,8 +215,8 @@ final class AwsImagebuilderImage extends Resource {
     required TfArg<String> infrastructureConfigurationArn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    ImagebuilderImageImageScanningConfiguration? imageScanningConfiguration,
-    ImagebuilderImageImageTestsConfiguration? imageTestsConfiguration,
+    ImagebuilderImageScanningConfiguration? imageScanningConfiguration,
+    ImagebuilderImageTestsConfiguration? imageTestsConfiguration,
     ImagebuilderImageLoggingConfiguration? loggingConfiguration,
     List<ImagebuilderImageWorkflow>? workflow,
     super.lifecycle,

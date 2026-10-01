@@ -212,11 +212,11 @@ final class LaunchConfigurationMetadataOptions {
     this.httpTokens,
   });
 
-  final TfArg<LaunchConfigurationMetadataOptionsHttpEndpoint>? httpEndpoint;
+  final TfArg<LaunchConfigurationHttpEndpoint>? httpEndpoint;
 
   final TfArg<num>? httpPutResponseHopLimit;
 
-  final TfArg<LaunchConfigurationMetadataOptionsHttpTokens>? httpTokens;
+  final TfArg<LaunchConfigurationHttpTokens>? httpTokens;
 
   Map<String, Object?> encode() => {
     'http_endpoint': ?httpEndpoint?.toTfJson(),
@@ -226,21 +226,21 @@ final class LaunchConfigurationMetadataOptions {
 }
 
 /// `http_endpoint` — derived from the provider schema description.
-enum LaunchConfigurationMetadataOptionsHttpEndpoint implements TerraformEnum {
+enum LaunchConfigurationHttpEndpoint implements TerraformEnum {
   enabled('enabled'),
   disabled('disabled');
 
-  const LaunchConfigurationMetadataOptionsHttpEndpoint(this.terraformValue);
+  const LaunchConfigurationHttpEndpoint(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `http_tokens` — derived from the provider schema description.
-enum LaunchConfigurationMetadataOptionsHttpTokens implements TerraformEnum {
+enum LaunchConfigurationHttpTokens implements TerraformEnum {
   optional('optional'),
   required('required');
 
-  const LaunchConfigurationMetadataOptionsHttpTokens(this.terraformValue);
+  const LaunchConfigurationHttpTokens(this.terraformValue);
   @override
   final String terraformValue;
 }

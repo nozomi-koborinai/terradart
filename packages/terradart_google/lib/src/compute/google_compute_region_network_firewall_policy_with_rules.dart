@@ -48,8 +48,7 @@ final class ComputeRegionNetworkFirewallPolicyWithRulesRule {
 
   final TfArg<String>? description;
 
-  final TfArg<ComputeRegionNetworkFirewallPolicyWithRulesRuleDirection>?
-  direction;
+  final TfArg<ComputeRegionNetworkFirewallPolicyWithRulesDirection>? direction;
 
   final TfArg<bool>? disabled;
 
@@ -65,14 +64,14 @@ final class ComputeRegionNetworkFirewallPolicyWithRulesRule {
 
   final TfArg<List<String>>? targetServiceAccounts;
 
-  final TfArg<ComputeRegionNetworkFirewallPolicyWithRulesRuleTargetType>?
+  final TfArg<ComputeRegionNetworkFirewallPolicyWithRulesTargetType>?
   targetType;
 
   final TfArg<bool>? tlsInspect;
 
-  final ComputeRegionNetworkFirewallPolicyWithRulesRuleMatch match;
+  final ComputeRegionNetworkFirewallPolicyWithRulesMatch match;
 
-  final List<ComputeRegionNetworkFirewallPolicyWithRulesRuleTargetSecureTag>?
+  final List<ComputeRegionNetworkFirewallPolicyWithRulesTargetSecureTag>?
   targetSecureTag;
 
   Map<String, Object?> encode() => {
@@ -95,12 +94,12 @@ final class ComputeRegionNetworkFirewallPolicyWithRulesRule {
 }
 
 /// `direction` — derived from the provider schema description.
-enum ComputeRegionNetworkFirewallPolicyWithRulesRuleDirection
+enum ComputeRegionNetworkFirewallPolicyWithRulesDirection
     implements TerraformEnum {
   ingress('INGRESS'),
   egress('EGRESS');
 
-  const ComputeRegionNetworkFirewallPolicyWithRulesRuleDirection(
+  const ComputeRegionNetworkFirewallPolicyWithRulesDirection(
     this.terraformValue,
   );
   @override
@@ -108,12 +107,12 @@ enum ComputeRegionNetworkFirewallPolicyWithRulesRuleDirection
 }
 
 /// `target_type` — derived from the provider schema description.
-enum ComputeRegionNetworkFirewallPolicyWithRulesRuleTargetType
+enum ComputeRegionNetworkFirewallPolicyWithRulesTargetType
     implements TerraformEnum {
   instances('INSTANCES'),
   internalManagedLb('INTERNAL_MANAGED_LB');
 
-  const ComputeRegionNetworkFirewallPolicyWithRulesRuleTargetType(
+  const ComputeRegionNetworkFirewallPolicyWithRulesTargetType(
     this.terraformValue,
   );
   @override
@@ -123,8 +122,8 @@ enum ComputeRegionNetworkFirewallPolicyWithRulesRuleTargetType
 /// Typed helper for the `rule.match` block of
 /// `google_compute_region_network_firewall_policy_with_rules` (derived from provider schema).
 @immutable
-final class ComputeRegionNetworkFirewallPolicyWithRulesRuleMatch {
-  const ComputeRegionNetworkFirewallPolicyWithRulesRuleMatch({
+final class ComputeRegionNetworkFirewallPolicyWithRulesMatch {
+  const ComputeRegionNetworkFirewallPolicyWithRulesMatch({
     this.destAddressGroups,
     this.destFqdns,
     this.destIpRanges,
@@ -159,10 +158,10 @@ final class ComputeRegionNetworkFirewallPolicyWithRulesRuleMatch {
 
   final TfArg<List<String>>? srcThreatIntelligences;
 
-  final List<ComputeRegionNetworkFirewallPolicyWithRulesRuleMatchLayer4Config>
+  final List<ComputeRegionNetworkFirewallPolicyWithRulesLayer4Config>
   layer4Config;
 
-  final List<ComputeRegionNetworkFirewallPolicyWithRulesRuleMatchSrcSecureTag>?
+  final List<ComputeRegionNetworkFirewallPolicyWithRulesSrcSecureTag>?
   srcSecureTag;
 
   Map<String, Object?> encode() => {
@@ -185,8 +184,8 @@ final class ComputeRegionNetworkFirewallPolicyWithRulesRuleMatch {
 /// Typed helper for the `rule.match.layer4_config` block of
 /// `google_compute_region_network_firewall_policy_with_rules` (derived from provider schema).
 @immutable
-final class ComputeRegionNetworkFirewallPolicyWithRulesRuleMatchLayer4Config {
-  const ComputeRegionNetworkFirewallPolicyWithRulesRuleMatchLayer4Config({
+final class ComputeRegionNetworkFirewallPolicyWithRulesLayer4Config {
+  const ComputeRegionNetworkFirewallPolicyWithRulesLayer4Config({
     required this.ipProtocol,
     this.ports,
   });
@@ -204,10 +203,8 @@ final class ComputeRegionNetworkFirewallPolicyWithRulesRuleMatchLayer4Config {
 /// Typed helper for the `rule.match.src_secure_tag` block of
 /// `google_compute_region_network_firewall_policy_with_rules` (derived from provider schema).
 @immutable
-final class ComputeRegionNetworkFirewallPolicyWithRulesRuleMatchSrcSecureTag {
-  const ComputeRegionNetworkFirewallPolicyWithRulesRuleMatchSrcSecureTag({
-    this.name,
-  });
+final class ComputeRegionNetworkFirewallPolicyWithRulesSrcSecureTag {
+  const ComputeRegionNetworkFirewallPolicyWithRulesSrcSecureTag({this.name});
 
   final TfArg<String>? name;
 
@@ -217,10 +214,8 @@ final class ComputeRegionNetworkFirewallPolicyWithRulesRuleMatchSrcSecureTag {
 /// Typed helper for the `rule.target_secure_tag` block of
 /// `google_compute_region_network_firewall_policy_with_rules` (derived from provider schema).
 @immutable
-final class ComputeRegionNetworkFirewallPolicyWithRulesRuleTargetSecureTag {
-  const ComputeRegionNetworkFirewallPolicyWithRulesRuleTargetSecureTag({
-    this.name,
-  });
+final class ComputeRegionNetworkFirewallPolicyWithRulesTargetSecureTag {
+  const ComputeRegionNetworkFirewallPolicyWithRulesTargetSecureTag({this.name});
 
   final TfArg<String>? name;
 

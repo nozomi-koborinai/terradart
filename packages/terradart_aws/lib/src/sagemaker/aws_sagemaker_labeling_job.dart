@@ -50,13 +50,13 @@ final class SagemakerLabelingJobHumanTaskConfig {
 
   final TfArg<String> workteamArn;
 
-  final List<SagemakerLabelingJobHumanTaskConfigAnnotationConsolidationConfig>?
+  final List<SagemakerLabelingJobAnnotationConsolidationConfig>?
   annotationConsolidationConfig;
 
-  final List<SagemakerLabelingJobHumanTaskConfigPublicWorkforceTaskPrice>?
+  final List<SagemakerLabelingJobPublicWorkforceTaskPrice>?
   publicWorkforceTaskPrice;
 
-  final List<SagemakerLabelingJobHumanTaskConfigUiConfig>? uiConfig;
+  final List<SagemakerLabelingJobUiConfig>? uiConfig;
 
   Map<String, Object?> encode() => {
     'max_concurrent_task_count': ?maxConcurrentTaskCount?.toTfJson(),
@@ -85,8 +85,8 @@ final class SagemakerLabelingJobHumanTaskConfig {
 /// Typed helper for the `human_task_config.annotation_consolidation_config` block of
 /// `aws_sagemaker_labeling_job` (derived from provider schema).
 @immutable
-final class SagemakerLabelingJobHumanTaskConfigAnnotationConsolidationConfig {
-  const SagemakerLabelingJobHumanTaskConfigAnnotationConsolidationConfig({
+final class SagemakerLabelingJobAnnotationConsolidationConfig {
+  const SagemakerLabelingJobAnnotationConsolidationConfig({
     required this.annotationConsolidationLambdaArn,
   });
 
@@ -101,15 +101,10 @@ final class SagemakerLabelingJobHumanTaskConfigAnnotationConsolidationConfig {
 /// Typed helper for the `human_task_config.public_workforce_task_price` block of
 /// `aws_sagemaker_labeling_job` (derived from provider schema).
 @immutable
-final class SagemakerLabelingJobHumanTaskConfigPublicWorkforceTaskPrice {
-  const SagemakerLabelingJobHumanTaskConfigPublicWorkforceTaskPrice({
-    this.amountInUsd,
-  });
+final class SagemakerLabelingJobPublicWorkforceTaskPrice {
+  const SagemakerLabelingJobPublicWorkforceTaskPrice({this.amountInUsd});
 
-  final List<
-    SagemakerLabelingJobHumanTaskConfigPublicWorkforceTaskPriceAmountInUsd
-  >?
-  amountInUsd;
+  final List<SagemakerLabelingJobAmountInUsd>? amountInUsd;
 
   Map<String, Object?> encode() => {
     if (amountInUsd != null)
@@ -120,8 +115,8 @@ final class SagemakerLabelingJobHumanTaskConfigPublicWorkforceTaskPrice {
 /// Typed helper for the `human_task_config.public_workforce_task_price.amount_in_usd` block of
 /// `aws_sagemaker_labeling_job` (derived from provider schema).
 @immutable
-final class SagemakerLabelingJobHumanTaskConfigPublicWorkforceTaskPriceAmountInUsd {
-  const SagemakerLabelingJobHumanTaskConfigPublicWorkforceTaskPriceAmountInUsd({
+final class SagemakerLabelingJobAmountInUsd {
+  const SagemakerLabelingJobAmountInUsd({
     this.cents,
     this.dollars,
     this.tenthFractionsOfACent,
@@ -143,8 +138,8 @@ final class SagemakerLabelingJobHumanTaskConfigPublicWorkforceTaskPriceAmountInU
 /// Typed helper for the `human_task_config.ui_config` block of
 /// `aws_sagemaker_labeling_job` (derived from provider schema).
 @immutable
-final class SagemakerLabelingJobHumanTaskConfigUiConfig {
-  const SagemakerLabelingJobHumanTaskConfigUiConfig({
+final class SagemakerLabelingJobUiConfig {
+  const SagemakerLabelingJobUiConfig({
     this.humanTaskUiArn,
     this.uiTemplateS3Uri,
   });
@@ -165,9 +160,9 @@ final class SagemakerLabelingJobHumanTaskConfigUiConfig {
 final class SagemakerLabelingJobInputConfig {
   const SagemakerLabelingJobInputConfig({this.dataAttributes, this.dataSource});
 
-  final List<SagemakerLabelingJobInputConfigDataAttributes>? dataAttributes;
+  final List<SagemakerLabelingJobDataAttributes>? dataAttributes;
 
-  final List<SagemakerLabelingJobInputConfigDataSource>? dataSource;
+  final List<SagemakerLabelingJobDataSource>? dataSource;
 
   Map<String, Object?> encode() => {
     if (dataAttributes != null)
@@ -180,15 +175,10 @@ final class SagemakerLabelingJobInputConfig {
 /// Typed helper for the `input_config.data_attributes` block of
 /// `aws_sagemaker_labeling_job` (derived from provider schema).
 @immutable
-final class SagemakerLabelingJobInputConfigDataAttributes {
-  const SagemakerLabelingJobInputConfigDataAttributes({
-    this.contentClassifiers,
-  });
+final class SagemakerLabelingJobDataAttributes {
+  const SagemakerLabelingJobDataAttributes({this.contentClassifiers});
 
-  final List<
-    TfArg<SagemakerLabelingJobInputConfigDataAttributesContentClassifiers>
-  >?
-  contentClassifiers;
+  final List<TfArg<SagemakerLabelingJobContentClassifiers>>? contentClassifiers;
 
   Map<String, Object?> encode() => {
     if (contentClassifiers != null)
@@ -199,16 +189,13 @@ final class SagemakerLabelingJobInputConfigDataAttributes {
 }
 
 /// `content_classifiers` — derived from the provider schema description.
-enum SagemakerLabelingJobInputConfigDataAttributesContentClassifiers
-    implements TerraformEnum {
+enum SagemakerLabelingJobContentClassifiers implements TerraformEnum {
   freeofpersonallyidentifiableinformation(
     'FreeOfPersonallyIdentifiableInformation',
   ),
   freeofadultcontent('FreeOfAdultContent');
 
-  const SagemakerLabelingJobInputConfigDataAttributesContentClassifiers(
-    this.terraformValue,
-  );
+  const SagemakerLabelingJobContentClassifiers(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -216,17 +203,12 @@ enum SagemakerLabelingJobInputConfigDataAttributesContentClassifiers
 /// Typed helper for the `input_config.data_source` block of
 /// `aws_sagemaker_labeling_job` (derived from provider schema).
 @immutable
-final class SagemakerLabelingJobInputConfigDataSource {
-  const SagemakerLabelingJobInputConfigDataSource({
-    this.s3DataSource,
-    this.snsDataSource,
-  });
+final class SagemakerLabelingJobDataSource {
+  const SagemakerLabelingJobDataSource({this.s3DataSource, this.snsDataSource});
 
-  final List<SagemakerLabelingJobInputConfigDataSourceS3DataSource>?
-  s3DataSource;
+  final List<SagemakerLabelingJobS3DataSource>? s3DataSource;
 
-  final List<SagemakerLabelingJobInputConfigDataSourceSnsDataSource>?
-  snsDataSource;
+  final List<SagemakerLabelingJobSnsDataSource>? snsDataSource;
 
   Map<String, Object?> encode() => {
     if (s3DataSource != null)
@@ -239,10 +221,8 @@ final class SagemakerLabelingJobInputConfigDataSource {
 /// Typed helper for the `input_config.data_source.s3_data_source` block of
 /// `aws_sagemaker_labeling_job` (derived from provider schema).
 @immutable
-final class SagemakerLabelingJobInputConfigDataSourceS3DataSource {
-  const SagemakerLabelingJobInputConfigDataSourceS3DataSource({
-    required this.manifestS3Uri,
-  });
+final class SagemakerLabelingJobS3DataSource {
+  const SagemakerLabelingJobS3DataSource({required this.manifestS3Uri});
 
   final TfArg<String> manifestS3Uri;
 
@@ -254,10 +234,8 @@ final class SagemakerLabelingJobInputConfigDataSourceS3DataSource {
 /// Typed helper for the `input_config.data_source.sns_data_source` block of
 /// `aws_sagemaker_labeling_job` (derived from provider schema).
 @immutable
-final class SagemakerLabelingJobInputConfigDataSourceSnsDataSource {
-  const SagemakerLabelingJobInputConfigDataSourceSnsDataSource({
-    required this.snsTopicArn,
-  });
+final class SagemakerLabelingJobSnsDataSource {
+  const SagemakerLabelingJobSnsDataSource({required this.snsTopicArn});
 
   final RefTo<AwsSnsTopic> snsTopicArn;
 
@@ -269,8 +247,8 @@ final class SagemakerLabelingJobInputConfigDataSourceSnsDataSource {
 /// Typed helper for the `labeling_job_algorithms_config` block of
 /// `aws_sagemaker_labeling_job` (derived from provider schema).
 @immutable
-final class SagemakerLabelingJobLabelingJobAlgorithmsConfig {
-  const SagemakerLabelingJobLabelingJobAlgorithmsConfig({
+final class SagemakerLabelingJobAlgorithmsConfig {
+  const SagemakerLabelingJobAlgorithmsConfig({
     this.initialActiveLearningModelArn,
     required this.labelingJobAlgorithmSpecificationArn,
     this.labelingJobResourceConfig,
@@ -280,10 +258,7 @@ final class SagemakerLabelingJobLabelingJobAlgorithmsConfig {
 
   final TfArg<String> labelingJobAlgorithmSpecificationArn;
 
-  final List<
-    SagemakerLabelingJobLabelingJobAlgorithmsConfigLabelingJobResourceConfig
-  >?
-  labelingJobResourceConfig;
+  final List<SagemakerLabelingJobResourceConfig>? labelingJobResourceConfig;
 
   Map<String, Object?> encode() => {
     'initial_active_learning_model_arn': ?initialActiveLearningModelArn
@@ -300,18 +275,15 @@ final class SagemakerLabelingJobLabelingJobAlgorithmsConfig {
 /// Typed helper for the `labeling_job_algorithms_config.labeling_job_resource_config` block of
 /// `aws_sagemaker_labeling_job` (derived from provider schema).
 @immutable
-final class SagemakerLabelingJobLabelingJobAlgorithmsConfigLabelingJobResourceConfig {
-  const SagemakerLabelingJobLabelingJobAlgorithmsConfigLabelingJobResourceConfig({
+final class SagemakerLabelingJobResourceConfig {
+  const SagemakerLabelingJobResourceConfig({
     this.volumeKmsKeyId,
     this.vpcConfig,
   });
 
   final TfArg<String>? volumeKmsKeyId;
 
-  final List<
-    SagemakerLabelingJobLabelingJobAlgorithmsConfigLabelingJobResourceConfigVpcConfig
-  >?
-  vpcConfig;
+  final List<SagemakerLabelingJobVpcConfig>? vpcConfig;
 
   Map<String, Object?> encode() => {
     'volume_kms_key_id': ?volumeKmsKeyId?.toTfJson(),
@@ -323,8 +295,8 @@ final class SagemakerLabelingJobLabelingJobAlgorithmsConfigLabelingJobResourceCo
 /// Typed helper for the `labeling_job_algorithms_config.labeling_job_resource_config.vpc_config` block of
 /// `aws_sagemaker_labeling_job` (derived from provider schema).
 @immutable
-final class SagemakerLabelingJobLabelingJobAlgorithmsConfigLabelingJobResourceConfigVpcConfig {
-  const SagemakerLabelingJobLabelingJobAlgorithmsConfigLabelingJobResourceConfigVpcConfig({
+final class SagemakerLabelingJobVpcConfig {
+  const SagemakerLabelingJobVpcConfig({
     required this.securityGroupIds,
     required this.subnets,
   });
@@ -377,8 +349,7 @@ final class AwsSagemakerLabelingJob extends Resource {
     TfArg<Map<String, String>>? tags,
     List<SagemakerLabelingJobHumanTaskConfig>? humanTaskConfig,
     List<SagemakerLabelingJobInputConfig>? inputConfig,
-    List<SagemakerLabelingJobLabelingJobAlgorithmsConfig>?
-    labelingJobAlgorithmsConfig,
+    List<SagemakerLabelingJobAlgorithmsConfig>? labelingJobAlgorithmsConfig,
     List<SagemakerLabelingJobOutputConfig>? outputConfig,
     super.lifecycle,
     super.dependsOn,

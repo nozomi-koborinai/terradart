@@ -21,8 +21,7 @@ final class CloudSecurityComplianceFrameworkCloudControlDetails {
 
   final TfArg<String> name;
 
-  final List<CloudSecurityComplianceFrameworkCloudControlDetailsParameters>?
-  parameters;
+  final List<CloudSecurityComplianceFrameworkParameters>? parameters;
 
   Map<String, Object?> encode() => {
     'major_revision_id': majorRevisionId.toTfJson(),
@@ -35,16 +34,15 @@ final class CloudSecurityComplianceFrameworkCloudControlDetails {
 /// Typed helper for the `cloud_control_details.parameters` block of
 /// `google_cloud_security_compliance_framework` (derived from provider schema).
 @immutable
-final class CloudSecurityComplianceFrameworkCloudControlDetailsParameters {
-  const CloudSecurityComplianceFrameworkCloudControlDetailsParameters({
+final class CloudSecurityComplianceFrameworkParameters {
+  const CloudSecurityComplianceFrameworkParameters({
     required this.name,
     required this.parameterValue,
   });
 
   final TfArg<String> name;
 
-  final CloudSecurityComplianceFrameworkCloudControlDetailsParametersParameterValue
-  parameterValue;
+  final CloudSecurityComplianceFrameworkParameterValue parameterValue;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -55,8 +53,8 @@ final class CloudSecurityComplianceFrameworkCloudControlDetailsParameters {
 /// Typed helper for the `cloud_control_details.parameters.parameter_value` block of
 /// `google_cloud_security_compliance_framework` (derived from provider schema).
 @immutable
-final class CloudSecurityComplianceFrameworkCloudControlDetailsParametersParameterValue {
-  const CloudSecurityComplianceFrameworkCloudControlDetailsParametersParameterValue({
+final class CloudSecurityComplianceFrameworkParameterValue {
+  const CloudSecurityComplianceFrameworkParameterValue({
     this.boolValue,
     this.numberValue,
     this.stringValue,
@@ -70,11 +68,9 @@ final class CloudSecurityComplianceFrameworkCloudControlDetailsParametersParamet
 
   final TfArg<String>? stringValue;
 
-  final CloudSecurityComplianceFrameworkCloudControlDetailsParametersParameterValueOneofValue?
-  oneofValue;
+  final CloudSecurityComplianceFrameworkOneofValue? oneofValue;
 
-  final CloudSecurityComplianceFrameworkCloudControlDetailsParametersParameterValueStringListValue?
-  stringListValue;
+  final CloudSecurityComplianceFrameworkStringListValue? stringListValue;
 
   Map<String, Object?> encode() => {
     'bool_value': ?boolValue?.toTfJson(),
@@ -88,15 +84,15 @@ final class CloudSecurityComplianceFrameworkCloudControlDetailsParametersParamet
 /// Typed helper for the `cloud_control_details.parameters.parameter_value.oneof_value` block of
 /// `google_cloud_security_compliance_framework` (derived from provider schema).
 @immutable
-final class CloudSecurityComplianceFrameworkCloudControlDetailsParametersParameterValueOneofValue {
-  const CloudSecurityComplianceFrameworkCloudControlDetailsParametersParameterValueOneofValue({
+final class CloudSecurityComplianceFrameworkOneofValue {
+  const CloudSecurityComplianceFrameworkOneofValue({
     this.name,
     this.parameterValue,
   });
 
   final TfArg<String>? name;
 
-  final CloudSecurityComplianceFrameworkCloudControlDetailsParametersParameterValueOneofValueParameterValue?
+  final CloudSecurityComplianceFrameworkOneofValueParameterValue?
   parameterValue;
 
   Map<String, Object?> encode() => {
@@ -108,8 +104,8 @@ final class CloudSecurityComplianceFrameworkCloudControlDetailsParametersParamet
 /// Typed helper for the `cloud_control_details.parameters.parameter_value.oneof_value.parameter_value` block of
 /// `google_cloud_security_compliance_framework` (derived from provider schema).
 @immutable
-final class CloudSecurityComplianceFrameworkCloudControlDetailsParametersParameterValueOneofValueParameterValue {
-  const CloudSecurityComplianceFrameworkCloudControlDetailsParametersParameterValueOneofValueParameterValue({
+final class CloudSecurityComplianceFrameworkOneofValueParameterValue {
+  const CloudSecurityComplianceFrameworkOneofValueParameterValue({
     this.boolValue,
     this.numberValue,
     this.stringValue,
@@ -122,8 +118,7 @@ final class CloudSecurityComplianceFrameworkCloudControlDetailsParametersParamet
 
   final TfArg<String>? stringValue;
 
-  final CloudSecurityComplianceFrameworkCloudControlDetailsParametersParameterValueOneofValueParameterValueStringListValue?
-  stringListValue;
+  final CloudSecurityComplianceFrameworkStringListValue? stringListValue;
 
   Map<String, Object?> encode() => {
     'bool_value': ?boolValue?.toTfJson(),
@@ -133,26 +128,12 @@ final class CloudSecurityComplianceFrameworkCloudControlDetailsParametersParamet
   };
 }
 
-/// Typed helper for the `cloud_control_details.parameters.parameter_value.oneof_value.parameter_value.string_list_value` block of
-/// `google_cloud_security_compliance_framework` (derived from provider schema).
-@immutable
-final class CloudSecurityComplianceFrameworkCloudControlDetailsParametersParameterValueOneofValueParameterValueStringListValue {
-  const CloudSecurityComplianceFrameworkCloudControlDetailsParametersParameterValueOneofValueParameterValueStringListValue({
-    required this.values,
-  });
-
-  final TfArg<List<String>> values;
-
-  Map<String, Object?> encode() => {'values': values.toTfJson()};
-}
-
 /// Typed helper for the `cloud_control_details.parameters.parameter_value.string_list_value` block of
 /// `google_cloud_security_compliance_framework` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CloudSecurityComplianceFrameworkCloudControlDetailsParametersParameterValueStringListValue {
-  const CloudSecurityComplianceFrameworkCloudControlDetailsParametersParameterValueStringListValue({
-    required this.values,
-  });
+final class CloudSecurityComplianceFrameworkStringListValue {
+  const CloudSecurityComplianceFrameworkStringListValue({required this.values});
 
   final TfArg<List<String>> values;
 

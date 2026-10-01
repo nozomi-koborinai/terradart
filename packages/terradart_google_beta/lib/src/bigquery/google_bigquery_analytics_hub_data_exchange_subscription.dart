@@ -42,7 +42,7 @@ final class BigqueryAnalyticsHubDataExchangeSubscriptionDestinationDataset {
 
   final TfArg<String> location;
 
-  final BigqueryAnalyticsHubDataExchangeSubscriptionDestinationDatasetDatasetReference
+  final BigqueryAnalyticsHubDataExchangeSubscriptionDatasetReference
   datasetReference;
 
   Map<String, Object?> encode() => {
@@ -57,8 +57,8 @@ final class BigqueryAnalyticsHubDataExchangeSubscriptionDestinationDataset {
 /// Typed helper for the `destination_dataset.dataset_reference` block of
 /// `google_bigquery_analytics_hub_data_exchange_subscription` (derived from provider schema).
 @immutable
-final class BigqueryAnalyticsHubDataExchangeSubscriptionDestinationDatasetDatasetReference {
-  const BigqueryAnalyticsHubDataExchangeSubscriptionDestinationDatasetDatasetReference({
+final class BigqueryAnalyticsHubDataExchangeSubscriptionDatasetReference {
+  const BigqueryAnalyticsHubDataExchangeSubscriptionDatasetReference({
     required this.datasetId,
     required this.projectId,
   });

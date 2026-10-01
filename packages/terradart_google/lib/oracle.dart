@@ -7,106 +7,103 @@ library;
 export 'src/oracle/google_oracle_database_autonomous_database.dart'
     show
         GoogleOracleDatabaseAutonomousDatabase,
+        OracleDatabaseAutonomousDatabaseCustomerContacts,
         OracleDatabaseAutonomousDatabaseDbWorkload,
         OracleDatabaseAutonomousDatabaseDeletionPolicy,
         OracleDatabaseAutonomousDatabaseLicenseType,
         OracleDatabaseAutonomousDatabaseProperties,
-        OracleDatabaseAutonomousDatabasePropertiesCustomerContacts,
         OracleDatabaseAutonomousDatabaseSourceConfig;
 export 'src/oracle/google_oracle_database_cloud_exadata_infrastructure.dart'
     show
         GoogleOracleDatabaseCloudExadataInfrastructure,
+        OracleDatabaseCloudExadataInfrastructureCustomerContacts,
         OracleDatabaseCloudExadataInfrastructureDeletionPolicy,
-        OracleDatabaseCloudExadataInfrastructureProperties,
-        OracleDatabaseCloudExadataInfrastructurePropertiesCustomerContacts,
-        OracleDatabaseCloudExadataInfrastructurePropertiesMaintenanceWindow;
+        OracleDatabaseCloudExadataInfrastructureMaintenanceWindow,
+        OracleDatabaseCloudExadataInfrastructureProperties;
 export 'src/oracle/google_oracle_database_cloud_exadata_infrastructure_exascale_config.dart'
     show GoogleOracleDatabaseCloudExadataInfrastructureExascaleConfig;
 export 'src/oracle/google_oracle_database_cloud_vm_cluster.dart'
     show
         GoogleOracleDatabaseCloudVmCluster,
         OracleDatabaseCloudVmClusterDeletionPolicy,
+        OracleDatabaseCloudVmClusterDiagnosticsDataCollectionOptions,
         OracleDatabaseCloudVmClusterProperties,
-        OracleDatabaseCloudVmClusterPropertiesDiagnosticsDataCollectionOptions,
-        OracleDatabaseCloudVmClusterPropertiesTimeZone;
+        OracleDatabaseCloudVmClusterTimeZone;
 export 'src/oracle/google_oracle_database_db_system.dart'
     show
         GoogleOracleDatabaseDbSystem,
+        OracleDatabaseDbSystemBackupDestinationDetails,
+        OracleDatabaseDbSystemDataCollectionOptions,
+        OracleDatabaseDbSystemDatabase,
         OracleDatabaseDbSystemDatabaseEdition,
+        OracleDatabaseDbSystemDatabaseProperties,
+        OracleDatabaseDbSystemDbBackupConfig,
+        OracleDatabaseDbSystemDbHome,
         OracleDatabaseDbSystemDeletionPolicy,
         OracleDatabaseDbSystemLicenseModel,
+        OracleDatabaseDbSystemOptions,
         OracleDatabaseDbSystemProperties,
-        OracleDatabaseDbSystemPropertiesDataCollectionOptions,
-        OracleDatabaseDbSystemPropertiesDbHome,
-        OracleDatabaseDbSystemPropertiesDbHomeDatabase,
-        OracleDatabaseDbSystemPropertiesDbHomeDatabaseProperties,
-        OracleDatabaseDbSystemPropertiesDbHomeDatabasePropertiesDbBackupConfig,
-        OracleDatabaseDbSystemPropertiesDbHomeDatabasePropertiesDbBackupConfigBackupDestinationDetails,
-        OracleDatabaseDbSystemPropertiesDbSystemOptions,
-        OracleDatabaseDbSystemPropertiesTimeZone;
+        OracleDatabaseDbSystemTimeZone;
 export 'src/oracle/google_oracle_database_exadb_vm_cluster.dart'
     show
         GoogleOracleDatabaseExadbVmCluster,
+        OracleDatabaseExadbVmClusterDataCollectionOptions,
         OracleDatabaseExadbVmClusterDeletionPolicy,
         OracleDatabaseExadbVmClusterProperties,
-        OracleDatabaseExadbVmClusterPropertiesDataCollectionOptions,
-        OracleDatabaseExadbVmClusterPropertiesTimeZone,
-        OracleDatabaseExadbVmClusterPropertiesVmFileSystemStorage;
+        OracleDatabaseExadbVmClusterTimeZone,
+        OracleDatabaseExadbVmClusterVmFileSystemStorage;
 export 'src/oracle/google_oracle_database_exascale_db_storage_vault.dart'
     show
         GoogleOracleDatabaseExascaleDbStorageVault,
         OracleDatabaseExascaleDbStorageVaultDeletionPolicy,
+        OracleDatabaseExascaleDbStorageVaultExascaleDbStorageDetails,
         OracleDatabaseExascaleDbStorageVaultProperties,
-        OracleDatabaseExascaleDbStorageVaultPropertiesExascaleDbStorageDetails,
-        OracleDatabaseExascaleDbStorageVaultPropertiesTimeZone;
+        OracleDatabaseExascaleDbStorageVaultTimeZone;
 export 'src/oracle/google_oracle_database_goldengate_connection.dart'
     show
         GoogleOracleDatabaseGoldengateConnection,
+        OracleDatabaseGoldengateConnectionAdditionalAttributes,
+        OracleDatabaseGoldengateConnectionAmazonKinesisConnectionProperties,
+        OracleDatabaseGoldengateConnectionAmazonRedshiftConnectionProperties,
+        OracleDatabaseGoldengateConnectionAmazonS3ConnectionProperties,
+        OracleDatabaseGoldengateConnectionAmazonS3IcebergStorage,
+        OracleDatabaseGoldengateConnectionAzureDataLakeStorageConnectionProperties,
+        OracleDatabaseGoldengateConnectionAzureDataLakeStorageIcebergStorage,
+        OracleDatabaseGoldengateConnectionAzureSynapseAnalyticsConnectionProperties,
+        OracleDatabaseGoldengateConnectionBootstrapServers,
+        OracleDatabaseGoldengateConnectionCatalog,
+        OracleDatabaseGoldengateConnectionDatabricksConnectionProperties,
+        OracleDatabaseGoldengateConnectionDb2ConnectionProperties,
         OracleDatabaseGoldengateConnectionDeletionPolicy,
+        OracleDatabaseGoldengateConnectionElasticsearchConnectionProperties,
+        OracleDatabaseGoldengateConnectionGenericConnectionProperties,
+        OracleDatabaseGoldengateConnectionGlueIcebergCatalog,
+        OracleDatabaseGoldengateConnectionGoldengateConnectionProperties,
+        OracleDatabaseGoldengateConnectionGoogleBigQueryConnectionProperties,
+        OracleDatabaseGoldengateConnectionGoogleCloudStorageConnectionProperties,
+        OracleDatabaseGoldengateConnectionGoogleCloudStorageIcebergStorage,
+        OracleDatabaseGoldengateConnectionGooglePubsubConnectionProperties,
+        OracleDatabaseGoldengateConnectionHdfsConnectionProperties,
+        OracleDatabaseGoldengateConnectionIcebergConnectionProperties,
+        OracleDatabaseGoldengateConnectionJavaMessageServiceConnectionProperties,
+        OracleDatabaseGoldengateConnectionKafkaConnectionProperties,
+        OracleDatabaseGoldengateConnectionKafkaSchemaRegistryConnectionProperties,
+        OracleDatabaseGoldengateConnectionMicrosoftFabricConnectionProperties,
+        OracleDatabaseGoldengateConnectionMicrosoftSqlserverConnectionProperties,
+        OracleDatabaseGoldengateConnectionMongodbConnectionProperties,
+        OracleDatabaseGoldengateConnectionMysqlConnectionProperties,
+        OracleDatabaseGoldengateConnectionNessieIcebergCatalog,
+        OracleDatabaseGoldengateConnectionOciObjectStorageConnectionProperties,
+        OracleDatabaseGoldengateConnectionOracleAiDataPlatformConnectionProperties,
+        OracleDatabaseGoldengateConnectionOracleConnectionProperties,
+        OracleDatabaseGoldengateConnectionOracleNosqlConnectionProperties,
+        OracleDatabaseGoldengateConnectionPolarisIcebergCatalog,
+        OracleDatabaseGoldengateConnectionPostgresqlConnectionProperties,
         OracleDatabaseGoldengateConnectionProperties,
-        OracleDatabaseGoldengateConnectionPropertiesAmazonKinesisConnectionProperties,
-        OracleDatabaseGoldengateConnectionPropertiesAmazonRedshiftConnectionProperties,
-        OracleDatabaseGoldengateConnectionPropertiesAmazonS3ConnectionProperties,
-        OracleDatabaseGoldengateConnectionPropertiesAzureDataLakeStorageConnectionProperties,
-        OracleDatabaseGoldengateConnectionPropertiesAzureSynapseAnalyticsConnectionProperties,
-        OracleDatabaseGoldengateConnectionPropertiesDatabricksConnectionProperties,
-        OracleDatabaseGoldengateConnectionPropertiesDb2ConnectionProperties,
-        OracleDatabaseGoldengateConnectionPropertiesDb2ConnectionPropertiesAdditionalAttributes,
-        OracleDatabaseGoldengateConnectionPropertiesElasticsearchConnectionProperties,
-        OracleDatabaseGoldengateConnectionPropertiesGenericConnectionProperties,
-        OracleDatabaseGoldengateConnectionPropertiesGoldengateConnectionProperties,
-        OracleDatabaseGoldengateConnectionPropertiesGoogleBigQueryConnectionProperties,
-        OracleDatabaseGoldengateConnectionPropertiesGoogleCloudStorageConnectionProperties,
-        OracleDatabaseGoldengateConnectionPropertiesGooglePubsubConnectionProperties,
-        OracleDatabaseGoldengateConnectionPropertiesHdfsConnectionProperties,
-        OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionProperties,
-        OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesCatalog,
-        OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesCatalogGlueIcebergCatalog,
-        OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesCatalogNessieIcebergCatalog,
-        OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesCatalogPolarisIcebergCatalog,
-        OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesCatalogRestIcebergCatalog,
-        OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesStorage,
-        OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesStorageAmazonS3IcebergStorage,
-        OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesStorageAzureDataLakeStorageIcebergStorage,
-        OracleDatabaseGoldengateConnectionPropertiesIcebergConnectionPropertiesStorageGoogleCloudStorageIcebergStorage,
-        OracleDatabaseGoldengateConnectionPropertiesJavaMessageServiceConnectionProperties,
-        OracleDatabaseGoldengateConnectionPropertiesKafkaConnectionProperties,
-        OracleDatabaseGoldengateConnectionPropertiesKafkaConnectionPropertiesBootstrapServers,
-        OracleDatabaseGoldengateConnectionPropertiesKafkaSchemaRegistryConnectionProperties,
-        OracleDatabaseGoldengateConnectionPropertiesMicrosoftFabricConnectionProperties,
-        OracleDatabaseGoldengateConnectionPropertiesMicrosoftSqlserverConnectionProperties,
-        OracleDatabaseGoldengateConnectionPropertiesMicrosoftSqlserverConnectionPropertiesAdditionalAttributes,
-        OracleDatabaseGoldengateConnectionPropertiesMongodbConnectionProperties,
-        OracleDatabaseGoldengateConnectionPropertiesMysqlConnectionProperties,
-        OracleDatabaseGoldengateConnectionPropertiesMysqlConnectionPropertiesAdditionalAttributes,
-        OracleDatabaseGoldengateConnectionPropertiesOciObjectStorageConnectionProperties,
-        OracleDatabaseGoldengateConnectionPropertiesOracleAiDataPlatformConnectionProperties,
-        OracleDatabaseGoldengateConnectionPropertiesOracleConnectionProperties,
-        OracleDatabaseGoldengateConnectionPropertiesOracleNosqlConnectionProperties,
-        OracleDatabaseGoldengateConnectionPropertiesPostgresqlConnectionProperties,
-        OracleDatabaseGoldengateConnectionPropertiesPostgresqlConnectionPropertiesAdditionalAttributes,
-        OracleDatabaseGoldengateConnectionPropertiesRedisConnectionProperties,
-        OracleDatabaseGoldengateConnectionPropertiesSnowflakeConnectionProperties;
+        OracleDatabaseGoldengateConnectionRedisConnectionProperties,
+        OracleDatabaseGoldengateConnectionRestIcebergCatalog,
+        OracleDatabaseGoldengateConnectionSnowflakeConnectionProperties,
+        OracleDatabaseGoldengateConnectionStorage;
 export 'src/oracle/google_oracle_database_goldengate_connection_assignment.dart'
     show
         GoogleOracleDatabaseGoldengateConnectionAssignment,
@@ -116,10 +113,10 @@ export 'src/oracle/google_oracle_database_goldengate_deployment.dart'
     show
         GoogleOracleDatabaseGoldengateDeployment,
         OracleDatabaseGoldengateDeploymentDeletionPolicy,
-        OracleDatabaseGoldengateDeploymentProperties,
-        OracleDatabaseGoldengateDeploymentPropertiesMaintenanceConfig,
-        OracleDatabaseGoldengateDeploymentPropertiesMaintenanceWindow,
-        OracleDatabaseGoldengateDeploymentPropertiesOggData;
+        OracleDatabaseGoldengateDeploymentMaintenanceConfig,
+        OracleDatabaseGoldengateDeploymentMaintenanceWindow,
+        OracleDatabaseGoldengateDeploymentOggData,
+        OracleDatabaseGoldengateDeploymentProperties;
 export 'src/oracle/google_oracle_database_odb_network.dart'
     show GoogleOracleDatabaseOdbNetwork, OracleDatabaseOdbNetworkDeletionPolicy;
 export 'src/oracle/google_oracle_database_odb_subnet.dart'

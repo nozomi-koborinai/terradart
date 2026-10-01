@@ -23,7 +23,7 @@ final class MagicTransitCf1SiteBody {
 
   final TfArg<String> name;
 
-  final MagicTransitCf1SiteBodyLocation? location;
+  final MagicTransitCf1SiteLocation? location;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -32,27 +32,9 @@ final class MagicTransitCf1SiteBody {
   };
 }
 
-/// Typed helper for the `body.location` block of
-/// `cloudflare_magic_transit_cf1_site` (derived from provider schema).
-@immutable
-final class MagicTransitCf1SiteBodyLocation {
-  const MagicTransitCf1SiteBodyLocation({this.lat, this.long, this.name});
-
-  final TfArg<num>? lat;
-
-  final TfArg<num>? long;
-
-  final TfArg<String>? name;
-
-  Map<String, Object?> encode() => {
-    'lat': ?lat?.toTfJson(),
-    'long': ?long?.toTfJson(),
-    'name': ?name?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `location` block of
 /// `cloudflare_magic_transit_cf1_site` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
 final class MagicTransitCf1SiteLocation {
   const MagicTransitCf1SiteLocation({this.lat, this.long, this.name});

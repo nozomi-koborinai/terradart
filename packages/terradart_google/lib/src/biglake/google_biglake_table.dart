@@ -21,7 +21,7 @@ final class BiglakeTableHiveOptions {
 
   final TfArg<String>? tableType;
 
-  final BiglakeTableHiveOptionsStorageDescriptor? storageDescriptor;
+  final BiglakeTableStorageDescriptor? storageDescriptor;
 
   Map<String, Object?> encode() => {
     'parameters': ?parameters?.toTfJson(),
@@ -33,8 +33,8 @@ final class BiglakeTableHiveOptions {
 /// Typed helper for the `hive_options.storage_descriptor` block of
 /// `google_biglake_table` (derived from provider schema).
 @immutable
-final class BiglakeTableHiveOptionsStorageDescriptor {
-  const BiglakeTableHiveOptionsStorageDescriptor({
+final class BiglakeTableStorageDescriptor {
+  const BiglakeTableStorageDescriptor({
     this.inputFormat,
     this.locationUri,
     this.outputFormat,
@@ -47,7 +47,7 @@ final class BiglakeTableHiveOptionsStorageDescriptor {
 
   final TfArg<String>? outputFormat;
 
-  final BiglakeTableHiveOptionsStorageDescriptorSerdeInfo? serdeInfo;
+  final BiglakeTableSerdeInfo? serdeInfo;
 
   Map<String, Object?> encode() => {
     'input_format': ?inputFormat?.toTfJson(),
@@ -60,10 +60,8 @@ final class BiglakeTableHiveOptionsStorageDescriptor {
 /// Typed helper for the `hive_options.storage_descriptor.serde_info` block of
 /// `google_biglake_table` (derived from provider schema).
 @immutable
-final class BiglakeTableHiveOptionsStorageDescriptorSerdeInfo {
-  const BiglakeTableHiveOptionsStorageDescriptorSerdeInfo({
-    this.serializationLib,
-  });
+final class BiglakeTableSerdeInfo {
+  const BiglakeTableSerdeInfo({this.serializationLib});
 
   final TfArg<String>? serializationLib;
 

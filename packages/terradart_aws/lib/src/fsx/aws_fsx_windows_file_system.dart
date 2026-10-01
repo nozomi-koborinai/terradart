@@ -62,7 +62,7 @@ sealed class FsxWindowsFileSystemActiveDirectory {
   /// Sets `self_managed_active_directory`.
   const factory FsxWindowsFileSystemActiveDirectory.selfManagedActiveDirectory(
     FsxWindowsFileSystemSelfManagedActiveDirectory selfManagedActiveDirectory,
-  ) = FsxWindowsFileSystemActiveDirectorySelfManagedActiveDirectory;
+  ) = FsxWindowsFileSystemSelfManagedActiveDirectoryChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -96,9 +96,9 @@ final class FsxWindowsFileSystemActiveDirectoryId
 }
 
 /// The [FsxWindowsFileSystemActiveDirectory.selfManagedActiveDirectory] choice: sets `self_managed_active_directory`.
-final class FsxWindowsFileSystemActiveDirectorySelfManagedActiveDirectory
+final class FsxWindowsFileSystemSelfManagedActiveDirectoryChoice
     extends FsxWindowsFileSystemActiveDirectory {
-  const FsxWindowsFileSystemActiveDirectorySelfManagedActiveDirectory(
+  const FsxWindowsFileSystemSelfManagedActiveDirectoryChoice(
     this.selfManagedActiveDirectory,
   );
 
@@ -133,12 +133,10 @@ final class FsxWindowsFileSystemAuditLogConfiguration {
 
   final TfArg<String>? auditLogDestination;
 
-  final TfArg<FsxWindowsFileSystemAuditLogConfigurationFileAccessAuditLogLevel>?
+  final TfArg<FsxWindowsFileSystemFileAccessAuditLogLevel>?
   fileAccessAuditLogLevel;
 
-  final TfArg<
-    FsxWindowsFileSystemAuditLogConfigurationFileShareAccessAuditLogLevel
-  >?
+  final TfArg<FsxWindowsFileSystemFileShareAccessAuditLogLevel>?
   fileShareAccessAuditLogLevel;
 
   Map<String, Object?> encode() => {
@@ -150,31 +148,25 @@ final class FsxWindowsFileSystemAuditLogConfiguration {
 }
 
 /// `file_access_audit_log_level` — derived from the provider schema description.
-enum FsxWindowsFileSystemAuditLogConfigurationFileAccessAuditLogLevel
-    implements TerraformEnum {
+enum FsxWindowsFileSystemFileAccessAuditLogLevel implements TerraformEnum {
   disabled('DISABLED'),
   successOnly('SUCCESS_ONLY'),
   failureOnly('FAILURE_ONLY'),
   successAndFailure('SUCCESS_AND_FAILURE');
 
-  const FsxWindowsFileSystemAuditLogConfigurationFileAccessAuditLogLevel(
-    this.terraformValue,
-  );
+  const FsxWindowsFileSystemFileAccessAuditLogLevel(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `file_share_access_audit_log_level` — derived from the provider schema description.
-enum FsxWindowsFileSystemAuditLogConfigurationFileShareAccessAuditLogLevel
-    implements TerraformEnum {
+enum FsxWindowsFileSystemFileShareAccessAuditLogLevel implements TerraformEnum {
   disabled('DISABLED'),
   successOnly('SUCCESS_ONLY'),
   failureOnly('FAILURE_ONLY'),
   successAndFailure('SUCCESS_AND_FAILURE');
 
-  const FsxWindowsFileSystemAuditLogConfigurationFileShareAccessAuditLogLevel(
-    this.terraformValue,
-  );
+  const FsxWindowsFileSystemFileShareAccessAuditLogLevel(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -187,7 +179,7 @@ final class FsxWindowsFileSystemDiskIopsConfiguration {
 
   final TfArg<num>? iops;
 
-  final TfArg<FsxWindowsFileSystemDiskIopsConfigurationMode>? mode;
+  final TfArg<FsxWindowsFileSystemMode>? mode;
 
   Map<String, Object?> encode() => {
     'iops': ?iops?.toTfJson(),
@@ -196,11 +188,11 @@ final class FsxWindowsFileSystemDiskIopsConfiguration {
 }
 
 /// `mode` — derived from the provider schema description.
-enum FsxWindowsFileSystemDiskIopsConfigurationMode implements TerraformEnum {
+enum FsxWindowsFileSystemMode implements TerraformEnum {
   automatic('AUTOMATIC'),
   userProvisioned('USER_PROVISIONED');
 
-  const FsxWindowsFileSystemDiskIopsConfigurationMode(this.terraformValue);
+  const FsxWindowsFileSystemMode(this.terraformValue);
   @override
   final String terraformValue;
 }

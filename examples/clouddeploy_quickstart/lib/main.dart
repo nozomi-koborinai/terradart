@@ -78,7 +78,7 @@ final class DeployStack extends Stack {
         description: .literal('App delivery pipeline'),
         serialPipeline: ClouddeployDeliveryPipelineSerialPipeline(
           stages: [
-            ClouddeployDeliveryPipelineSerialPipelineStages(
+            ClouddeployDeliveryPipelineStages(
               targetId: .literal('terradart-run-target'),
               profiles: .literal([]),
             ),
@@ -185,14 +185,12 @@ final class DeployStack extends Stack {
         suspended: .literal(true),
         selector: ClouddeployAutomationSelector(
           targets: [
-            ClouddeployAutomationSelectorTargets(
-              id: .literal('terradart-run-target'),
-            ),
+            ClouddeployAutomationTargets(id: .literal('terradart-run-target')),
           ],
         ),
         rules: [
           .promoteReleaseRule(
-            ClouddeployAutomationRulesPromoteReleaseRule(
+            ClouddeployAutomationPromoteReleaseRule(
               id: .literal('promote-release'),
             ),
           ),
@@ -215,14 +213,14 @@ final class DeployStack extends Stack {
         location: .literal('us-central1'),
         selectors: [
           ClouddeployDeployPolicySelectors(
-            deliveryPipeline: ClouddeployDeployPolicySelectorsDeliveryPipeline(
+            deliveryPipeline: ClouddeployDeployPolicyDeliveryPipeline(
               id: .literal('terradart-pipeline'),
             ),
           ),
         ],
         rules: [
           ClouddeployDeployPolicyRules(
-            rolloutRestriction: ClouddeployDeployPolicyRulesRolloutRestriction(
+            rolloutRestriction: ClouddeployDeployPolicyRolloutRestriction(
               id: .literal('no-automation'),
               invokers: [.literal(.deployAutomation)],
             ),

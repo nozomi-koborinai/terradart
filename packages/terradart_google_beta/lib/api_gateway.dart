@@ -6,14 +6,14 @@ library;
 export 'src/api_gateway/google_api_gateway_api.dart' show GoogleApiGatewayApi;
 export 'src/api_gateway/google_api_gateway_api_config.dart'
     show
+        ApiGatewayApiConfigBackendConfig,
+        ApiGatewayApiConfigDocument,
+        ApiGatewayApiConfigFileDescriptorSet,
         ApiGatewayApiConfigGatewayConfig,
-        ApiGatewayApiConfigGatewayConfigBackendConfig,
         ApiGatewayApiConfigGrpcServices,
-        ApiGatewayApiConfigGrpcServicesFileDescriptorSet,
-        ApiGatewayApiConfigGrpcServicesSource,
         ApiGatewayApiConfigManagedServiceConfigs,
         ApiGatewayApiConfigOpenapiDocuments,
-        ApiGatewayApiConfigOpenapiDocumentsDocument,
+        ApiGatewayApiConfigSource,
         ApiGatewayApiConfigSpec,
         ApiGatewayApiConfigSpecGrpcServices,
         ApiGatewayApiConfigSpecOpenapiDocuments,

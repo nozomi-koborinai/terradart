@@ -37,7 +37,7 @@ final class CloudIdentityGroupMembershipRoles {
 
   final TfArg<CloudIdentityGroupMembershipRolesName> name;
 
-  final CloudIdentityGroupMembershipRolesExpiryDetail? expiryDetail;
+  final CloudIdentityGroupMembershipExpiryDetail? expiryDetail;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -59,10 +59,8 @@ enum CloudIdentityGroupMembershipRolesName implements TerraformEnum {
 /// Typed helper for the `roles.expiry_detail` block of
 /// `google_cloud_identity_group_membership` (derived from provider schema).
 @immutable
-final class CloudIdentityGroupMembershipRolesExpiryDetail {
-  const CloudIdentityGroupMembershipRolesExpiryDetail({
-    required this.expireTime,
-  });
+final class CloudIdentityGroupMembershipExpiryDetail {
+  const CloudIdentityGroupMembershipExpiryDetail({required this.expireTime});
 
   final TfArg<String> expireTime;
 

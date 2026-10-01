@@ -21,11 +21,11 @@ export 'src/api_gateway/aws_api_gateway_domain_name.dart'
     show
         ApiGatewayDomainNameEndpointAccessMode,
         ApiGatewayDomainNameEndpointConfiguration,
-        ApiGatewayDomainNameEndpointConfigurationIpAddressType,
-        ApiGatewayDomainNameEndpointConfigurationTypes,
+        ApiGatewayDomainNameIpAddressType,
         ApiGatewayDomainNameMutualTlsAuthentication,
         ApiGatewayDomainNameRoutingMode,
         ApiGatewayDomainNameSecurityPolicy,
+        ApiGatewayDomainNameTypes,
         AwsApiGatewayDomainName;
 export 'src/api_gateway/aws_api_gateway_domain_name_access_association.dart'
     show
@@ -48,9 +48,9 @@ export 'src/api_gateway/aws_api_gateway_method_response.dart'
     show AwsApiGatewayMethodResponse;
 export 'src/api_gateway/aws_api_gateway_method_settings.dart'
     show
+        ApiGatewayMethodSettingsLoggingLevel,
         ApiGatewayMethodSettingsSettings,
-        ApiGatewayMethodSettingsSettingsLoggingLevel,
-        ApiGatewayMethodSettingsSettingsUnauthorizedCacheControlHeaderStrategy,
+        ApiGatewayMethodSettingsUnauthorizedCacheControlHeaderStrategy,
         AwsApiGatewayMethodSettings;
 export 'src/api_gateway/aws_api_gateway_model.dart' show AwsApiGatewayModel;
 export 'src/api_gateway/aws_api_gateway_request_validator.dart'
@@ -62,10 +62,10 @@ export 'src/api_gateway/aws_api_gateway_rest_api.dart'
         ApiGatewayRestApiApiKeySource,
         ApiGatewayRestApiEndpointAccessMode,
         ApiGatewayRestApiEndpointConfiguration,
-        ApiGatewayRestApiEndpointConfigurationIpAddressType,
-        ApiGatewayRestApiEndpointConfigurationTypes,
+        ApiGatewayRestApiIpAddressType,
         ApiGatewayRestApiPutRestApiMode,
         ApiGatewayRestApiSecurityPolicy,
+        ApiGatewayRestApiTypes,
         AwsApiGatewayRestApi;
 export 'src/api_gateway/aws_api_gateway_rest_api_policy.dart'
     show AwsApiGatewayRestApiPolicy;
@@ -80,9 +80,9 @@ export 'src/api_gateway/aws_api_gateway_stage.dart'
 export 'src/api_gateway/aws_api_gateway_usage_plan.dart'
     show
         ApiGatewayUsagePlanApiStages,
-        ApiGatewayUsagePlanApiStagesThrottle,
+        ApiGatewayUsagePlanPeriod,
         ApiGatewayUsagePlanQuotaSettings,
-        ApiGatewayUsagePlanQuotaSettingsPeriod,
+        ApiGatewayUsagePlanThrottle,
         ApiGatewayUsagePlanThrottleSettings,
         AwsApiGatewayUsagePlan;
 export 'src/api_gateway/aws_api_gateway_usage_plan_key.dart'

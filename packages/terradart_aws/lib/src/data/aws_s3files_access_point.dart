@@ -23,8 +23,7 @@ final class DataS3filesAccessPointPosixUser {
 final class DataS3filesAccessPointRootDirectory {
   const DataS3filesAccessPointRootDirectory({this.creationPermissions});
 
-  final List<DataS3filesAccessPointRootDirectoryCreationPermissions>?
-  creationPermissions;
+  final List<DataS3filesAccessPointCreationPermissions>? creationPermissions;
 
   Map<String, Object?> encode() => {
     if (creationPermissions != null)
@@ -37,8 +36,8 @@ final class DataS3filesAccessPointRootDirectory {
 /// Typed helper for the `root_directory.creation_permissions` block of
 /// `aws_s3files_access_point` (derived from provider schema).
 @immutable
-final class DataS3filesAccessPointRootDirectoryCreationPermissions {
-  const DataS3filesAccessPointRootDirectoryCreationPermissions();
+final class DataS3filesAccessPointCreationPermissions {
+  const DataS3filesAccessPointCreationPermissions();
 
   Map<String, Object?> encode() => {};
 }

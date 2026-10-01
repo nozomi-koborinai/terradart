@@ -22,11 +22,11 @@ final class AiGatewayDynamicRoutingElements {
 
   final TfArg<String> id;
 
-  final TfArg<AiGatewayDynamicRoutingElementsType> type;
+  final TfArg<AiGatewayDynamicRoutingType> type;
 
-  final AiGatewayDynamicRoutingElementsOutputs outputs;
+  final AiGatewayDynamicRoutingOutputs outputs;
 
-  final AiGatewayDynamicRoutingElementsProperties? properties;
+  final AiGatewayDynamicRoutingProperties? properties;
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
@@ -37,7 +37,7 @@ final class AiGatewayDynamicRoutingElements {
 }
 
 /// `type` — derived from the provider schema description.
-enum AiGatewayDynamicRoutingElementsType implements TerraformEnum {
+enum AiGatewayDynamicRoutingType implements TerraformEnum {
   start('start'),
   conditional('conditional'),
   percentage('percentage'),
@@ -45,7 +45,7 @@ enum AiGatewayDynamicRoutingElementsType implements TerraformEnum {
   model('model'),
   end('end');
 
-  const AiGatewayDynamicRoutingElementsType(this.terraformValue);
+  const AiGatewayDynamicRoutingType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -53,8 +53,8 @@ enum AiGatewayDynamicRoutingElementsType implements TerraformEnum {
 /// Typed helper for the `elements.outputs` block of
 /// `cloudflare_ai_gateway_dynamic_routing` (derived from provider schema).
 @immutable
-final class AiGatewayDynamicRoutingElementsOutputs {
-  const AiGatewayDynamicRoutingElementsOutputs({
+final class AiGatewayDynamicRoutingOutputs {
+  const AiGatewayDynamicRoutingOutputs({
     this.elementId,
     this.fallback,
     this.falseCase,
@@ -65,15 +65,15 @@ final class AiGatewayDynamicRoutingElementsOutputs {
 
   final TfArg<String>? elementId;
 
-  final AiGatewayDynamicRoutingElementsOutputsFallback? fallback;
+  final AiGatewayDynamicRoutingFallback? fallback;
 
-  final AiGatewayDynamicRoutingElementsOutputsFalse? falseCase;
+  final AiGatewayDynamicRoutingFalse? falseCase;
 
-  final AiGatewayDynamicRoutingElementsOutputsNext? next;
+  final AiGatewayDynamicRoutingNext? next;
 
-  final AiGatewayDynamicRoutingElementsOutputsSuccess? success;
+  final AiGatewayDynamicRoutingOutputsSuccess? success;
 
-  final AiGatewayDynamicRoutingElementsOutputsTrue? trueCase;
+  final AiGatewayDynamicRoutingTrue? trueCase;
 
   Map<String, Object?> encode() => {
     'element_id': ?elementId?.toTfJson(),
@@ -88,10 +88,8 @@ final class AiGatewayDynamicRoutingElementsOutputs {
 /// Typed helper for the `elements.outputs.fallback` block of
 /// `cloudflare_ai_gateway_dynamic_routing` (derived from provider schema).
 @immutable
-final class AiGatewayDynamicRoutingElementsOutputsFallback {
-  const AiGatewayDynamicRoutingElementsOutputsFallback({
-    required this.elementId,
-  });
+final class AiGatewayDynamicRoutingFallback {
+  const AiGatewayDynamicRoutingFallback({required this.elementId});
 
   final TfArg<String> elementId;
 
@@ -101,8 +99,8 @@ final class AiGatewayDynamicRoutingElementsOutputsFallback {
 /// Typed helper for the `elements.outputs.false` block of
 /// `cloudflare_ai_gateway_dynamic_routing` (derived from provider schema).
 @immutable
-final class AiGatewayDynamicRoutingElementsOutputsFalse {
-  const AiGatewayDynamicRoutingElementsOutputsFalse({required this.elementId});
+final class AiGatewayDynamicRoutingFalse {
+  const AiGatewayDynamicRoutingFalse({required this.elementId});
 
   final TfArg<String> elementId;
 
@@ -112,8 +110,8 @@ final class AiGatewayDynamicRoutingElementsOutputsFalse {
 /// Typed helper for the `elements.outputs.next` block of
 /// `cloudflare_ai_gateway_dynamic_routing` (derived from provider schema).
 @immutable
-final class AiGatewayDynamicRoutingElementsOutputsNext {
-  const AiGatewayDynamicRoutingElementsOutputsNext({required this.elementId});
+final class AiGatewayDynamicRoutingNext {
+  const AiGatewayDynamicRoutingNext({required this.elementId});
 
   final TfArg<String> elementId;
 
@@ -123,10 +121,8 @@ final class AiGatewayDynamicRoutingElementsOutputsNext {
 /// Typed helper for the `elements.outputs.success` block of
 /// `cloudflare_ai_gateway_dynamic_routing` (derived from provider schema).
 @immutable
-final class AiGatewayDynamicRoutingElementsOutputsSuccess {
-  const AiGatewayDynamicRoutingElementsOutputsSuccess({
-    required this.elementId,
-  });
+final class AiGatewayDynamicRoutingOutputsSuccess {
+  const AiGatewayDynamicRoutingOutputsSuccess({required this.elementId});
 
   final TfArg<String> elementId;
 
@@ -136,8 +132,8 @@ final class AiGatewayDynamicRoutingElementsOutputsSuccess {
 /// Typed helper for the `elements.outputs.true` block of
 /// `cloudflare_ai_gateway_dynamic_routing` (derived from provider schema).
 @immutable
-final class AiGatewayDynamicRoutingElementsOutputsTrue {
-  const AiGatewayDynamicRoutingElementsOutputsTrue({required this.elementId});
+final class AiGatewayDynamicRoutingTrue {
+  const AiGatewayDynamicRoutingTrue({required this.elementId});
 
   final TfArg<String> elementId;
 
@@ -147,8 +143,8 @@ final class AiGatewayDynamicRoutingElementsOutputsTrue {
 /// Typed helper for the `elements.properties` block of
 /// `cloudflare_ai_gateway_dynamic_routing` (derived from provider schema).
 @immutable
-final class AiGatewayDynamicRoutingElementsProperties {
-  const AiGatewayDynamicRoutingElementsProperties({
+final class AiGatewayDynamicRoutingProperties {
+  const AiGatewayDynamicRoutingProperties({
     this.aiGatewayDynamicRoutingProvider,
     this.conditions,
     this.key,
@@ -168,7 +164,7 @@ final class AiGatewayDynamicRoutingElementsProperties {
 
   final TfArg<num>? limit;
 
-  final TfArg<AiGatewayDynamicRoutingElementsPropertiesLimitType>? limitType;
+  final TfArg<AiGatewayDynamicRoutingLimitType>? limitType;
 
   final TfArg<String>? model;
 
@@ -193,12 +189,11 @@ final class AiGatewayDynamicRoutingElementsProperties {
 }
 
 /// `limit_type` — derived from the provider schema description.
-enum AiGatewayDynamicRoutingElementsPropertiesLimitType
-    implements TerraformEnum {
+enum AiGatewayDynamicRoutingLimitType implements TerraformEnum {
   count('count'),
   cost('cost');
 
-  const AiGatewayDynamicRoutingElementsPropertiesLimitType(this.terraformValue);
+  const AiGatewayDynamicRoutingLimitType(this.terraformValue);
   @override
   final String terraformValue;
 }

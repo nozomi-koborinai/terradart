@@ -15,9 +15,9 @@ const Set<String> _cloudflareSpectrumApplicationSensitive = <String>{};
 final class DataSpectrumApplicationFilter {
   const DataSpectrumApplicationFilter({this.direction, this.order});
 
-  final TfArg<DataSpectrumApplicationFilterDirection>? direction;
+  final TfArg<DataSpectrumApplicationDirection>? direction;
 
-  final TfArg<DataSpectrumApplicationFilterOrder>? order;
+  final TfArg<DataSpectrumApplicationOrder>? order;
 
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
@@ -26,24 +26,24 @@ final class DataSpectrumApplicationFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataSpectrumApplicationFilterDirection implements TerraformEnum {
+enum DataSpectrumApplicationDirection implements TerraformEnum {
   asc('asc'),
   desc('desc');
 
-  const DataSpectrumApplicationFilterDirection(this.terraformValue);
+  const DataSpectrumApplicationDirection(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `order` — derived from the provider schema description.
-enum DataSpectrumApplicationFilterOrder implements TerraformEnum {
+enum DataSpectrumApplicationOrder implements TerraformEnum {
   protocol('protocol'),
   appId('app_id'),
   createdOn('created_on'),
   modifiedOn('modified_on'),
   dns('dns');
 
-  const DataSpectrumApplicationFilterOrder(this.terraformValue);
+  const DataSpectrumApplicationOrder(this.terraformValue);
   @override
   final String terraformValue;
 }

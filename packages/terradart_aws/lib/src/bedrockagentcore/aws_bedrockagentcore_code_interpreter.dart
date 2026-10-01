@@ -17,7 +17,7 @@ const Set<String> _awsBedrockagentcoreCodeInterpreterSensitive = <String>{};
 final class BedrockagentcoreCodeInterpreterCertificate {
   const BedrockagentcoreCodeInterpreterCertificate({this.location});
 
-  final List<BedrockagentcoreCodeInterpreterCertificateLocation>? location;
+  final List<BedrockagentcoreCodeInterpreterLocation>? location;
 
   Map<String, Object?> encode() => {
     if (location != null) 'location': [for (final e in location!) e.encode()],
@@ -27,13 +27,10 @@ final class BedrockagentcoreCodeInterpreterCertificate {
 /// Typed helper for the `certificate.location` block of
 /// `aws_bedrockagentcore_code_interpreter` (derived from provider schema).
 @immutable
-final class BedrockagentcoreCodeInterpreterCertificateLocation {
-  const BedrockagentcoreCodeInterpreterCertificateLocation({
-    this.secretsManager,
-  });
+final class BedrockagentcoreCodeInterpreterLocation {
+  const BedrockagentcoreCodeInterpreterLocation({this.secretsManager});
 
-  final List<BedrockagentcoreCodeInterpreterCertificateLocationSecretsManager>?
-  secretsManager;
+  final List<BedrockagentcoreCodeInterpreterSecretsManager>? secretsManager;
 
   Map<String, Object?> encode() => {
     if (secretsManager != null)
@@ -44,8 +41,8 @@ final class BedrockagentcoreCodeInterpreterCertificateLocation {
 /// Typed helper for the `certificate.location.secrets_manager` block of
 /// `aws_bedrockagentcore_code_interpreter` (derived from provider schema).
 @immutable
-final class BedrockagentcoreCodeInterpreterCertificateLocationSecretsManager {
-  const BedrockagentcoreCodeInterpreterCertificateLocationSecretsManager({
+final class BedrockagentcoreCodeInterpreterSecretsManager {
+  const BedrockagentcoreCodeInterpreterSecretsManager({
     required this.secretArn,
   });
 
@@ -63,11 +60,9 @@ final class BedrockagentcoreCodeInterpreterNetworkConfiguration {
     this.vpcConfig,
   });
 
-  final TfArg<BedrockagentcoreCodeInterpreterNetworkConfigurationNetworkMode>
-  networkMode;
+  final TfArg<BedrockagentcoreCodeInterpreterNetworkMode> networkMode;
 
-  final List<BedrockagentcoreCodeInterpreterNetworkConfigurationVpcConfig>?
-  vpcConfig;
+  final List<BedrockagentcoreCodeInterpreterVpcConfig>? vpcConfig;
 
   Map<String, Object?> encode() => {
     'network_mode': networkMode.toTfJson(),
@@ -77,15 +72,12 @@ final class BedrockagentcoreCodeInterpreterNetworkConfiguration {
 }
 
 /// `network_mode` — derived from the provider schema description.
-enum BedrockagentcoreCodeInterpreterNetworkConfigurationNetworkMode
-    implements TerraformEnum {
+enum BedrockagentcoreCodeInterpreterNetworkMode implements TerraformEnum {
   public('PUBLIC'),
   sandbox('SANDBOX'),
   vpc('VPC');
 
-  const BedrockagentcoreCodeInterpreterNetworkConfigurationNetworkMode(
-    this.terraformValue,
-  );
+  const BedrockagentcoreCodeInterpreterNetworkMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -93,8 +85,8 @@ enum BedrockagentcoreCodeInterpreterNetworkConfigurationNetworkMode
 /// Typed helper for the `network_configuration.vpc_config` block of
 /// `aws_bedrockagentcore_code_interpreter` (derived from provider schema).
 @immutable
-final class BedrockagentcoreCodeInterpreterNetworkConfigurationVpcConfig {
-  const BedrockagentcoreCodeInterpreterNetworkConfigurationVpcConfig({
+final class BedrockagentcoreCodeInterpreterVpcConfig {
+  const BedrockagentcoreCodeInterpreterVpcConfig({
     required this.securityGroups,
     required this.subnets,
   });

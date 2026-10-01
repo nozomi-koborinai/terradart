@@ -36,9 +36,9 @@ final class FlagshipFlagRules {
 
   final TfArg<String> serveVariation;
 
-  final List<FlagshipFlagRulesConditions> conditions;
+  final List<FlagshipFlagConditions> conditions;
 
-  final FlagshipFlagRulesRollout? rollout;
+  final FlagshipFlagRollout? rollout;
 
   Map<String, Object?> encode() => {
     'priority': priority.toTfJson(),
@@ -51,8 +51,8 @@ final class FlagshipFlagRules {
 /// Typed helper for the `rules.conditions` block of
 /// `cloudflare_flagship_flag` (derived from provider schema).
 @immutable
-final class FlagshipFlagRulesConditions {
-  const FlagshipFlagRulesConditions({
+final class FlagshipFlagConditions {
+  const FlagshipFlagConditions({
     this.attribute,
     this.logicalOperator,
     this.operator,
@@ -62,13 +62,13 @@ final class FlagshipFlagRulesConditions {
 
   final TfArg<String>? attribute;
 
-  final TfArg<FlagshipFlagRulesConditionsLogicalOperator>? logicalOperator;
+  final TfArg<FlagshipFlagLogicalOperator>? logicalOperator;
 
-  final TfArg<FlagshipFlagRulesConditionsOperator>? operator;
+  final TfArg<FlagshipFlagOperator>? operator;
 
   final TfArg<String>? value;
 
-  final List<FlagshipFlagRulesConditionsClauses>? clauses;
+  final List<FlagshipFlagClauses>? clauses;
 
   Map<String, Object?> encode() => {
     'attribute': ?attribute?.toTfJson(),
@@ -80,17 +80,17 @@ final class FlagshipFlagRulesConditions {
 }
 
 /// `logical_operator` — derived from the provider schema description.
-enum FlagshipFlagRulesConditionsLogicalOperator implements TerraformEnum {
+enum FlagshipFlagLogicalOperator implements TerraformEnum {
   and('AND'),
   or('OR');
 
-  const FlagshipFlagRulesConditionsLogicalOperator(this.terraformValue);
+  const FlagshipFlagLogicalOperator(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `operator` — derived from the provider schema description.
-enum FlagshipFlagRulesConditionsOperator implements TerraformEnum {
+enum FlagshipFlagOperator implements TerraformEnum {
   equals('equals'),
   notEquals('not_equals'),
   greaterThan('greater_than'),
@@ -103,7 +103,7 @@ enum FlagshipFlagRulesConditionsOperator implements TerraformEnum {
   inCase('in'),
   notIn('not_in');
 
-  const FlagshipFlagRulesConditionsOperator(this.terraformValue);
+  const FlagshipFlagOperator(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -111,8 +111,8 @@ enum FlagshipFlagRulesConditionsOperator implements TerraformEnum {
 /// Typed helper for the `rules.conditions.clauses` block of
 /// `cloudflare_flagship_flag` (derived from provider schema).
 @immutable
-final class FlagshipFlagRulesConditionsClauses {
-  const FlagshipFlagRulesConditionsClauses({
+final class FlagshipFlagClauses {
+  const FlagshipFlagClauses({
     this.attribute,
     this.logicalOperator,
     this.operator,
@@ -122,14 +122,13 @@ final class FlagshipFlagRulesConditionsClauses {
 
   final TfArg<String>? attribute;
 
-  final TfArg<FlagshipFlagRulesConditionsClausesLogicalOperator>?
-  logicalOperator;
+  final TfArg<FlagshipFlagLogicalOperator>? logicalOperator;
 
-  final TfArg<FlagshipFlagRulesConditionsClausesOperator>? operator;
+  final TfArg<FlagshipFlagOperator>? operator;
 
   final TfArg<String>? value;
 
-  final List<FlagshipFlagRulesConditionsClausesClauses>? clauses;
+  final List<FlagshipFlagClausesClauses>? clauses;
 
   Map<String, Object?> encode() => {
     'attribute': ?attribute?.toTfJson(),
@@ -138,43 +137,13 @@ final class FlagshipFlagRulesConditionsClauses {
     'value': ?value?.toTfJson(),
     if (clauses != null) 'clauses': [for (final e in clauses!) e.encode()],
   };
-}
-
-/// `logical_operator` — derived from the provider schema description.
-enum FlagshipFlagRulesConditionsClausesLogicalOperator
-    implements TerraformEnum {
-  and('AND'),
-  or('OR');
-
-  const FlagshipFlagRulesConditionsClausesLogicalOperator(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
-/// `operator` — derived from the provider schema description.
-enum FlagshipFlagRulesConditionsClausesOperator implements TerraformEnum {
-  equals('equals'),
-  notEquals('not_equals'),
-  greaterThan('greater_than'),
-  lessThan('less_than'),
-  greaterThanOrEquals('greater_than_or_equals'),
-  lessThanOrEquals('less_than_or_equals'),
-  contains('contains'),
-  startsWith('starts_with'),
-  endsWith('ends_with'),
-  inCase('in'),
-  notIn('not_in');
-
-  const FlagshipFlagRulesConditionsClausesOperator(this.terraformValue);
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `rules.conditions.clauses.clauses` block of
 /// `cloudflare_flagship_flag` (derived from provider schema).
 @immutable
-final class FlagshipFlagRulesConditionsClausesClauses {
-  const FlagshipFlagRulesConditionsClausesClauses({
+final class FlagshipFlagClausesClauses {
+  const FlagshipFlagClausesClauses({
     this.attribute,
     this.logicalOperator,
     this.operator,
@@ -184,14 +153,13 @@ final class FlagshipFlagRulesConditionsClausesClauses {
 
   final TfArg<String>? attribute;
 
-  final TfArg<FlagshipFlagRulesConditionsClausesClausesLogicalOperator>?
-  logicalOperator;
+  final TfArg<FlagshipFlagLogicalOperator>? logicalOperator;
 
-  final TfArg<FlagshipFlagRulesConditionsClausesClausesOperator>? operator;
+  final TfArg<FlagshipFlagOperator>? operator;
 
   final TfArg<String>? value;
 
-  final List<FlagshipFlagRulesConditionsClausesClausesClauses>? clauses;
+  final List<FlagshipFlagConditionsClauses>? clauses;
 
   Map<String, Object?> encode() => {
     'attribute': ?attribute?.toTfJson(),
@@ -200,46 +168,13 @@ final class FlagshipFlagRulesConditionsClausesClauses {
     'value': ?value?.toTfJson(),
     if (clauses != null) 'clauses': [for (final e in clauses!) e.encode()],
   };
-}
-
-/// `logical_operator` — derived from the provider schema description.
-enum FlagshipFlagRulesConditionsClausesClausesLogicalOperator
-    implements TerraformEnum {
-  and('AND'),
-  or('OR');
-
-  const FlagshipFlagRulesConditionsClausesClausesLogicalOperator(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `operator` — derived from the provider schema description.
-enum FlagshipFlagRulesConditionsClausesClausesOperator
-    implements TerraformEnum {
-  equals('equals'),
-  notEquals('not_equals'),
-  greaterThan('greater_than'),
-  lessThan('less_than'),
-  greaterThanOrEquals('greater_than_or_equals'),
-  lessThanOrEquals('less_than_or_equals'),
-  contains('contains'),
-  startsWith('starts_with'),
-  endsWith('ends_with'),
-  inCase('in'),
-  notIn('not_in');
-
-  const FlagshipFlagRulesConditionsClausesClausesOperator(this.terraformValue);
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `rules.conditions.clauses.clauses.clauses` block of
 /// `cloudflare_flagship_flag` (derived from provider schema).
 @immutable
-final class FlagshipFlagRulesConditionsClausesClausesClauses {
-  const FlagshipFlagRulesConditionsClausesClausesClauses({
+final class FlagshipFlagConditionsClauses {
+  const FlagshipFlagConditionsClauses({
     this.attribute,
     this.logicalOperator,
     this.operator,
@@ -249,15 +184,13 @@ final class FlagshipFlagRulesConditionsClausesClausesClauses {
 
   final TfArg<String>? attribute;
 
-  final TfArg<FlagshipFlagRulesConditionsClausesClausesClausesLogicalOperator>?
-  logicalOperator;
+  final TfArg<FlagshipFlagLogicalOperator>? logicalOperator;
 
-  final TfArg<FlagshipFlagRulesConditionsClausesClausesClausesOperator>?
-  operator;
+  final TfArg<FlagshipFlagOperator>? operator;
 
   final TfArg<String>? value;
 
-  final List<FlagshipFlagRulesConditionsClausesClausesClausesClauses>? clauses;
+  final List<FlagshipFlagRulesClauses>? clauses;
 
   Map<String, Object?> encode() => {
     'attribute': ?attribute?.toTfJson(),
@@ -266,48 +199,13 @@ final class FlagshipFlagRulesConditionsClausesClausesClauses {
     'value': ?value?.toTfJson(),
     if (clauses != null) 'clauses': [for (final e in clauses!) e.encode()],
   };
-}
-
-/// `logical_operator` — derived from the provider schema description.
-enum FlagshipFlagRulesConditionsClausesClausesClausesLogicalOperator
-    implements TerraformEnum {
-  and('AND'),
-  or('OR');
-
-  const FlagshipFlagRulesConditionsClausesClausesClausesLogicalOperator(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `operator` — derived from the provider schema description.
-enum FlagshipFlagRulesConditionsClausesClausesClausesOperator
-    implements TerraformEnum {
-  equals('equals'),
-  notEquals('not_equals'),
-  greaterThan('greater_than'),
-  lessThan('less_than'),
-  greaterThanOrEquals('greater_than_or_equals'),
-  lessThanOrEquals('less_than_or_equals'),
-  contains('contains'),
-  startsWith('starts_with'),
-  endsWith('ends_with'),
-  inCase('in'),
-  notIn('not_in');
-
-  const FlagshipFlagRulesConditionsClausesClausesClausesOperator(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `rules.conditions.clauses.clauses.clauses.clauses` block of
 /// `cloudflare_flagship_flag` (derived from provider schema).
 @immutable
-final class FlagshipFlagRulesConditionsClausesClausesClausesClauses {
-  const FlagshipFlagRulesConditionsClausesClausesClausesClauses({
+final class FlagshipFlagRulesClauses {
+  const FlagshipFlagRulesClauses({
     this.attribute,
     this.logicalOperator,
     this.operator,
@@ -317,18 +215,13 @@ final class FlagshipFlagRulesConditionsClausesClausesClausesClauses {
 
   final TfArg<String>? attribute;
 
-  final TfArg<
-    FlagshipFlagRulesConditionsClausesClausesClausesClausesLogicalOperator
-  >?
-  logicalOperator;
+  final TfArg<FlagshipFlagLogicalOperator>? logicalOperator;
 
-  final TfArg<FlagshipFlagRulesConditionsClausesClausesClausesClausesOperator>?
-  operator;
+  final TfArg<FlagshipFlagOperator>? operator;
 
   final TfArg<String>? value;
 
-  final List<FlagshipFlagRulesConditionsClausesClausesClausesClausesClauses>?
-  clauses;
+  final List<FlagshipFlagClausesClausesClauses>? clauses;
 
   Map<String, Object?> encode() => {
     'attribute': ?attribute?.toTfJson(),
@@ -339,46 +232,11 @@ final class FlagshipFlagRulesConditionsClausesClausesClausesClauses {
   };
 }
 
-/// `logical_operator` — derived from the provider schema description.
-enum FlagshipFlagRulesConditionsClausesClausesClausesClausesLogicalOperator
-    implements TerraformEnum {
-  and('AND'),
-  or('OR');
-
-  const FlagshipFlagRulesConditionsClausesClausesClausesClausesLogicalOperator(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `operator` — derived from the provider schema description.
-enum FlagshipFlagRulesConditionsClausesClausesClausesClausesOperator
-    implements TerraformEnum {
-  equals('equals'),
-  notEquals('not_equals'),
-  greaterThan('greater_than'),
-  lessThan('less_than'),
-  greaterThanOrEquals('greater_than_or_equals'),
-  lessThanOrEquals('less_than_or_equals'),
-  contains('contains'),
-  startsWith('starts_with'),
-  endsWith('ends_with'),
-  inCase('in'),
-  notIn('not_in');
-
-  const FlagshipFlagRulesConditionsClausesClausesClausesClausesOperator(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `rules.conditions.clauses.clauses.clauses.clauses.clauses` block of
 /// `cloudflare_flagship_flag` (derived from provider schema).
 @immutable
-final class FlagshipFlagRulesConditionsClausesClausesClausesClausesClauses {
-  const FlagshipFlagRulesConditionsClausesClausesClausesClausesClauses({
+final class FlagshipFlagClausesClausesClauses {
+  const FlagshipFlagClausesClausesClauses({
     this.attribute,
     this.clauses,
     this.logicalOperator,
@@ -390,15 +248,9 @@ final class FlagshipFlagRulesConditionsClausesClausesClausesClausesClauses {
 
   final TfArg<List<String>>? clauses;
 
-  final TfArg<
-    FlagshipFlagRulesConditionsClausesClausesClausesClausesClausesLogicalOperator
-  >?
-  logicalOperator;
+  final TfArg<FlagshipFlagLogicalOperator>? logicalOperator;
 
-  final TfArg<
-    FlagshipFlagRulesConditionsClausesClausesClausesClausesClausesOperator
-  >?
-  operator;
+  final TfArg<FlagshipFlagOperator>? operator;
 
   final TfArg<String>? value;
 
@@ -411,46 +263,11 @@ final class FlagshipFlagRulesConditionsClausesClausesClausesClausesClauses {
   };
 }
 
-/// `logical_operator` — derived from the provider schema description.
-enum FlagshipFlagRulesConditionsClausesClausesClausesClausesClausesLogicalOperator
-    implements TerraformEnum {
-  and('AND'),
-  or('OR');
-
-  const FlagshipFlagRulesConditionsClausesClausesClausesClausesClausesLogicalOperator(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `operator` — derived from the provider schema description.
-enum FlagshipFlagRulesConditionsClausesClausesClausesClausesClausesOperator
-    implements TerraformEnum {
-  equals('equals'),
-  notEquals('not_equals'),
-  greaterThan('greater_than'),
-  lessThan('less_than'),
-  greaterThanOrEquals('greater_than_or_equals'),
-  lessThanOrEquals('less_than_or_equals'),
-  contains('contains'),
-  startsWith('starts_with'),
-  endsWith('ends_with'),
-  inCase('in'),
-  notIn('not_in');
-
-  const FlagshipFlagRulesConditionsClausesClausesClausesClausesClausesOperator(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `rules.rollout` block of
 /// `cloudflare_flagship_flag` (derived from provider schema).
 @immutable
-final class FlagshipFlagRulesRollout {
-  const FlagshipFlagRulesRollout({this.attribute, required this.percentage});
+final class FlagshipFlagRollout {
+  const FlagshipFlagRollout({this.attribute, required this.percentage});
 
   final TfArg<String>? attribute;
 

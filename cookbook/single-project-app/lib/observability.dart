@@ -30,9 +30,7 @@ GooglePubsubSubscription buildOrderSubscription({
   delivery: .pushConfig(
     PubsubSubscriptionPushConfig(
       pushEndpoint: .ref(coffeeService.uri),
-      oidcToken: PubsubSubscriptionPushConfigOidcToken(
-        serviceAccountEmail: .of(runSa),
-      ),
+      oidcToken: PubsubSubscriptionOidcToken(serviceAccountEmail: .of(runSa)),
     ),
   ),
 );
@@ -77,7 +75,7 @@ GoogleMonitoringAlertPolicy buildDownAlert(
   conditions: [
     MonitoringAlertPolicyConditions(
       displayName: .literal('uptime check failing'),
-      conditionThreshold: MonitoringAlertPolicyConditionsConditionThreshold(
+      conditionThreshold: MonitoringAlertPolicyConditionThreshold(
         filter: .literal(
           'metric.type="monitoring.googleapis.com/uptime_check/check_passed" AND resource.type="uptime_url" AND metric.labels.check_id="\${google_monitoring_uptime_check_config.coffee_uptime.uptime_check_id}"',
         ),
@@ -85,7 +83,7 @@ GoogleMonitoringAlertPolicy buildDownAlert(
         thresholdValue: .literal(1),
         duration: .literal('60s'),
         aggregations: [
-          MonitoringAlertPolicyConditionsConditionThresholdAggregations(
+          MonitoringAlertPolicyAggregations(
             alignmentPeriod: .literal('60s'),
             perSeriesAligner: .literal(.alignNextOlder),
           ),

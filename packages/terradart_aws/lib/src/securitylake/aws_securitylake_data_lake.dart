@@ -24,10 +24,10 @@ final class SecuritylakeDataLakeConfiguration {
 
   final TfArg<String> region;
 
-  final List<SecuritylakeDataLakeConfigurationLifecycleConfiguration>?
+  final List<SecuritylakeDataLakeLifecycleConfiguration>?
   lifecycleConfiguration;
 
-  final List<SecuritylakeDataLakeConfigurationReplicationConfiguration>?
+  final List<SecuritylakeDataLakeReplicationConfiguration>?
   replicationConfiguration;
 
   Map<String, Object?> encode() => {
@@ -47,17 +47,15 @@ final class SecuritylakeDataLakeConfiguration {
 /// Typed helper for the `configuration.lifecycle_configuration` block of
 /// `aws_securitylake_data_lake` (derived from provider schema).
 @immutable
-final class SecuritylakeDataLakeConfigurationLifecycleConfiguration {
-  const SecuritylakeDataLakeConfigurationLifecycleConfiguration({
+final class SecuritylakeDataLakeLifecycleConfiguration {
+  const SecuritylakeDataLakeLifecycleConfiguration({
     this.expiration,
     this.transition,
   });
 
-  final List<SecuritylakeDataLakeConfigurationLifecycleConfigurationExpiration>?
-  expiration;
+  final List<SecuritylakeDataLakeExpiration>? expiration;
 
-  final List<SecuritylakeDataLakeConfigurationLifecycleConfigurationTransition>?
-  transition;
+  final List<SecuritylakeDataLakeTransition>? transition;
 
   Map<String, Object?> encode() => {
     if (expiration != null)
@@ -70,10 +68,8 @@ final class SecuritylakeDataLakeConfigurationLifecycleConfiguration {
 /// Typed helper for the `configuration.lifecycle_configuration.expiration` block of
 /// `aws_securitylake_data_lake` (derived from provider schema).
 @immutable
-final class SecuritylakeDataLakeConfigurationLifecycleConfigurationExpiration {
-  const SecuritylakeDataLakeConfigurationLifecycleConfigurationExpiration({
-    this.days,
-  });
+final class SecuritylakeDataLakeExpiration {
+  const SecuritylakeDataLakeExpiration({this.days});
 
   final TfArg<num>? days;
 
@@ -83,11 +79,8 @@ final class SecuritylakeDataLakeConfigurationLifecycleConfigurationExpiration {
 /// Typed helper for the `configuration.lifecycle_configuration.transition` block of
 /// `aws_securitylake_data_lake` (derived from provider schema).
 @immutable
-final class SecuritylakeDataLakeConfigurationLifecycleConfigurationTransition {
-  const SecuritylakeDataLakeConfigurationLifecycleConfigurationTransition({
-    this.days,
-    this.storageClass,
-  });
+final class SecuritylakeDataLakeTransition {
+  const SecuritylakeDataLakeTransition({this.days, this.storageClass});
 
   final TfArg<num>? days;
 
@@ -102,8 +95,8 @@ final class SecuritylakeDataLakeConfigurationLifecycleConfigurationTransition {
 /// Typed helper for the `configuration.replication_configuration` block of
 /// `aws_securitylake_data_lake` (derived from provider schema).
 @immutable
-final class SecuritylakeDataLakeConfigurationReplicationConfiguration {
-  const SecuritylakeDataLakeConfigurationReplicationConfiguration({
+final class SecuritylakeDataLakeReplicationConfiguration {
+  const SecuritylakeDataLakeReplicationConfiguration({
     this.regions,
     this.roleArn,
   });

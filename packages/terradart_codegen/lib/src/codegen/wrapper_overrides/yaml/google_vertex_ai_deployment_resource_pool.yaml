@@ -34,7 +34,7 @@ curatedDoc: |-
   ///   region: TfArg.literal('us-central1'),
   ///   dedicatedResources: VertexAiDeploymentResourcePoolDedicatedResources(
   ///     minReplicaCount: TfArg.literal(1),
-  ///     machineSpec: VertexAiDeploymentResourcePoolDedicatedResourcesMachineSpec(
+  ///     machineSpec: VertexAiDeploymentResourcePoolMachineSpec(
   ///       machineType: TfArg.literal('n1-standard-2'),
   ///     ),
   ///   ),

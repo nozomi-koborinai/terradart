@@ -53,13 +53,12 @@ final class CloudAssetOrganizationFeedCondition {
 /// Typed helper for the `feed_output_config` block of
 /// `google_cloud_asset_organization_feed` (derived from provider schema).
 @immutable
-final class CloudAssetOrganizationFeedFeedOutputConfig {
-  const CloudAssetOrganizationFeedFeedOutputConfig({
+final class CloudAssetOrganizationFeedOutputConfig {
+  const CloudAssetOrganizationFeedOutputConfig({
     required this.pubsubDestination,
   });
 
-  final CloudAssetOrganizationFeedFeedOutputConfigPubsubDestination
-  pubsubDestination;
+  final CloudAssetOrganizationFeedPubsubDestination pubsubDestination;
 
   Map<String, Object?> encode() => {
     'pubsub_destination': pubsubDestination.encode(),
@@ -69,10 +68,8 @@ final class CloudAssetOrganizationFeedFeedOutputConfig {
 /// Typed helper for the `feed_output_config.pubsub_destination` block of
 /// `google_cloud_asset_organization_feed` (derived from provider schema).
 @immutable
-final class CloudAssetOrganizationFeedFeedOutputConfigPubsubDestination {
-  const CloudAssetOrganizationFeedFeedOutputConfigPubsubDestination({
-    required this.topic,
-  });
+final class CloudAssetOrganizationFeedPubsubDestination {
+  const CloudAssetOrganizationFeedPubsubDestination({required this.topic});
 
   final RefTo<GooglePubsubTopic> topic;
 
@@ -102,7 +99,7 @@ final class GoogleCloudAssetOrganizationFeed extends Resource {
     required TfArg<String> feedId,
     required TfArg<String> orgId,
     CloudAssetOrganizationFeedCondition? condition,
-    required CloudAssetOrganizationFeedFeedOutputConfig feedOutputConfig,
+    required CloudAssetOrganizationFeedOutputConfig feedOutputConfig,
     super.lifecycle,
     super.dependsOn,
     super.provider,

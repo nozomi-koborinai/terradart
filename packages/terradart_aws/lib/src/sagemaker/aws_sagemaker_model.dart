@@ -43,14 +43,14 @@ final class SagemakerModelContainer {
 
   final TfArg<String>? modelPackageName;
 
-  final List<SagemakerModelContainerAdditionalModelDataSource>?
+  final List<SagemakerModelAdditionalModelDataSource>?
   additionalModelDataSource;
 
-  final SagemakerModelContainerImageConfig? imageConfig;
+  final SagemakerModelImageConfig? imageConfig;
 
-  final SagemakerModelContainerModelDataSource? modelDataSource;
+  final SagemakerModelDataSource? modelDataSource;
 
-  final SagemakerModelContainerMultiModelConfig? multiModelConfig;
+  final SagemakerModelMultiModelConfig? multiModelConfig;
 
   Map<String, Object?> encode() => {
     'container_hostname': ?containerHostname?.toTfJson(),
@@ -82,17 +82,17 @@ enum SagemakerModelContainerMode implements TerraformEnum {
 
 /// Typed helper for the `container.additional_model_data_source` block of
 /// `aws_sagemaker_model` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class SagemakerModelContainerAdditionalModelDataSource {
-  const SagemakerModelContainerAdditionalModelDataSource({
+final class SagemakerModelAdditionalModelDataSource {
+  const SagemakerModelAdditionalModelDataSource({
     required this.channelName,
     required this.s3DataSource,
   });
 
   final TfArg<String> channelName;
 
-  final List<SagemakerModelContainerAdditionalModelDataSourceS3DataSource>
-  s3DataSource;
+  final List<SagemakerModelS3DataSource> s3DataSource;
 
   Map<String, Object?> encode() => {
     'channel_name': channelName.toTfJson(),
@@ -102,29 +102,23 @@ final class SagemakerModelContainerAdditionalModelDataSource {
 
 /// Typed helper for the `container.additional_model_data_source.s3_data_source` block of
 /// `aws_sagemaker_model` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class SagemakerModelContainerAdditionalModelDataSourceS3DataSource {
-  const SagemakerModelContainerAdditionalModelDataSourceS3DataSource({
+final class SagemakerModelS3DataSource {
+  const SagemakerModelS3DataSource({
     required this.compressionType,
     required this.s3DataType,
     required this.s3Uri,
     this.modelAccessConfig,
   });
 
-  final TfArg<
-    SagemakerModelContainerAdditionalModelDataSourceS3DataSourceCompressionType
-  >
-  compressionType;
+  final TfArg<SagemakerModelCompressionType> compressionType;
 
-  final TfArg<
-    SagemakerModelContainerAdditionalModelDataSourceS3DataSourceS3DataType
-  >
-  s3DataType;
+  final TfArg<SagemakerModelS3DataType> s3DataType;
 
   final TfArg<String> s3Uri;
 
-  final SagemakerModelContainerAdditionalModelDataSourceS3DataSourceModelAccessConfig?
-  modelAccessConfig;
+  final SagemakerModelAccessConfig? modelAccessConfig;
 
   Map<String, Object?> encode() => {
     'compression_type': compressionType.toTfJson(),
@@ -135,38 +129,31 @@ final class SagemakerModelContainerAdditionalModelDataSourceS3DataSource {
 }
 
 /// `compression_type` — derived from the provider schema description.
-enum SagemakerModelContainerAdditionalModelDataSourceS3DataSourceCompressionType
-    implements TerraformEnum {
+enum SagemakerModelCompressionType implements TerraformEnum {
   none('None'),
   gzip('Gzip');
 
-  const SagemakerModelContainerAdditionalModelDataSourceS3DataSourceCompressionType(
-    this.terraformValue,
-  );
+  const SagemakerModelCompressionType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `s3_data_type` — derived from the provider schema description.
-enum SagemakerModelContainerAdditionalModelDataSourceS3DataSourceS3DataType
-    implements TerraformEnum {
+enum SagemakerModelS3DataType implements TerraformEnum {
   s3prefix('S3Prefix'),
   s3object('S3Object');
 
-  const SagemakerModelContainerAdditionalModelDataSourceS3DataSourceS3DataType(
-    this.terraformValue,
-  );
+  const SagemakerModelS3DataType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `container.additional_model_data_source.s3_data_source.model_access_config` block of
 /// `aws_sagemaker_model` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class SagemakerModelContainerAdditionalModelDataSourceS3DataSourceModelAccessConfig {
-  const SagemakerModelContainerAdditionalModelDataSourceS3DataSourceModelAccessConfig({
-    required this.acceptEula,
-  });
+final class SagemakerModelAccessConfig {
+  const SagemakerModelAccessConfig({required this.acceptEula});
 
   final TfArg<bool> acceptEula;
 
@@ -175,18 +162,17 @@ final class SagemakerModelContainerAdditionalModelDataSourceS3DataSourceModelAcc
 
 /// Typed helper for the `container.image_config` block of
 /// `aws_sagemaker_model` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class SagemakerModelContainerImageConfig {
-  const SagemakerModelContainerImageConfig({
+final class SagemakerModelImageConfig {
+  const SagemakerModelImageConfig({
     required this.repositoryAccessMode,
     this.repositoryAuthConfig,
   });
 
-  final TfArg<SagemakerModelContainerImageConfigRepositoryAccessMode>
-  repositoryAccessMode;
+  final TfArg<SagemakerModelRepositoryAccessMode> repositoryAccessMode;
 
-  final SagemakerModelContainerImageConfigRepositoryAuthConfig?
-  repositoryAuthConfig;
+  final SagemakerModelRepositoryAuthConfig? repositoryAuthConfig;
 
   Map<String, Object?> encode() => {
     'repository_access_mode': repositoryAccessMode.toTfJson(),
@@ -195,23 +181,21 @@ final class SagemakerModelContainerImageConfig {
 }
 
 /// `repository_access_mode` — derived from the provider schema description.
-enum SagemakerModelContainerImageConfigRepositoryAccessMode
-    implements TerraformEnum {
+enum SagemakerModelRepositoryAccessMode implements TerraformEnum {
   platform('Platform'),
   vpc('Vpc');
 
-  const SagemakerModelContainerImageConfigRepositoryAccessMode(
-    this.terraformValue,
-  );
+  const SagemakerModelRepositoryAccessMode(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `container.image_config.repository_auth_config` block of
 /// `aws_sagemaker_model` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class SagemakerModelContainerImageConfigRepositoryAuthConfig {
-  const SagemakerModelContainerImageConfigRepositoryAuthConfig({
+final class SagemakerModelRepositoryAuthConfig {
+  const SagemakerModelRepositoryAuthConfig({
     required this.repositoryCredentialsProviderArn,
   });
 
@@ -225,94 +209,26 @@ final class SagemakerModelContainerImageConfigRepositoryAuthConfig {
 
 /// Typed helper for the `container.model_data_source` block of
 /// `aws_sagemaker_model` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class SagemakerModelContainerModelDataSource {
-  const SagemakerModelContainerModelDataSource({required this.s3DataSource});
+final class SagemakerModelDataSource {
+  const SagemakerModelDataSource({required this.s3DataSource});
 
-  final List<SagemakerModelContainerModelDataSourceS3DataSource> s3DataSource;
+  final List<SagemakerModelS3DataSource> s3DataSource;
 
   Map<String, Object?> encode() => {
     's3_data_source': [for (final e in s3DataSource) e.encode()],
   };
 }
 
-/// Typed helper for the `container.model_data_source.s3_data_source` block of
-/// `aws_sagemaker_model` (derived from provider schema).
-@immutable
-final class SagemakerModelContainerModelDataSourceS3DataSource {
-  const SagemakerModelContainerModelDataSourceS3DataSource({
-    required this.compressionType,
-    required this.s3DataType,
-    required this.s3Uri,
-    this.modelAccessConfig,
-  });
-
-  final TfArg<SagemakerModelContainerModelDataSourceS3DataSourceCompressionType>
-  compressionType;
-
-  final TfArg<SagemakerModelContainerModelDataSourceS3DataSourceS3DataType>
-  s3DataType;
-
-  final TfArg<String> s3Uri;
-
-  final SagemakerModelContainerModelDataSourceS3DataSourceModelAccessConfig?
-  modelAccessConfig;
-
-  Map<String, Object?> encode() => {
-    'compression_type': compressionType.toTfJson(),
-    's3_data_type': s3DataType.toTfJson(),
-    's3_uri': s3Uri.toTfJson(),
-    'model_access_config': ?modelAccessConfig?.encode(),
-  };
-}
-
-/// `compression_type` — derived from the provider schema description.
-enum SagemakerModelContainerModelDataSourceS3DataSourceCompressionType
-    implements TerraformEnum {
-  none('None'),
-  gzip('Gzip');
-
-  const SagemakerModelContainerModelDataSourceS3DataSourceCompressionType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `s3_data_type` — derived from the provider schema description.
-enum SagemakerModelContainerModelDataSourceS3DataSourceS3DataType
-    implements TerraformEnum {
-  s3prefix('S3Prefix'),
-  s3object('S3Object');
-
-  const SagemakerModelContainerModelDataSourceS3DataSourceS3DataType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `container.model_data_source.s3_data_source.model_access_config` block of
-/// `aws_sagemaker_model` (derived from provider schema).
-@immutable
-final class SagemakerModelContainerModelDataSourceS3DataSourceModelAccessConfig {
-  const SagemakerModelContainerModelDataSourceS3DataSourceModelAccessConfig({
-    required this.acceptEula,
-  });
-
-  final TfArg<bool> acceptEula;
-
-  Map<String, Object?> encode() => {'accept_eula': acceptEula.toTfJson()};
-}
-
 /// Typed helper for the `container.multi_model_config` block of
 /// `aws_sagemaker_model` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class SagemakerModelContainerMultiModelConfig {
-  const SagemakerModelContainerMultiModelConfig({this.modelCacheSetting});
+final class SagemakerModelMultiModelConfig {
+  const SagemakerModelMultiModelConfig({this.modelCacheSetting});
 
-  final TfArg<SagemakerModelContainerMultiModelConfigModelCacheSetting>?
-  modelCacheSetting;
+  final TfArg<SagemakerModelCacheSetting>? modelCacheSetting;
 
   Map<String, Object?> encode() => {
     'model_cache_setting': ?modelCacheSetting?.toTfJson(),
@@ -320,14 +236,11 @@ final class SagemakerModelContainerMultiModelConfig {
 }
 
 /// `model_cache_setting` — derived from the provider schema description.
-enum SagemakerModelContainerMultiModelConfigModelCacheSetting
-    implements TerraformEnum {
+enum SagemakerModelCacheSetting implements TerraformEnum {
   enabled('Enabled'),
   disabled('Disabled');
 
-  const SagemakerModelContainerMultiModelConfigModelCacheSetting(
-    this.terraformValue,
-  );
+  const SagemakerModelCacheSetting(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -379,20 +292,20 @@ final class SagemakerModelPrimaryContainer {
 
   final TfArg<String>? inferenceSpecificationName;
 
-  final TfArg<SagemakerModelPrimaryContainerMode>? mode;
+  final TfArg<SagemakerModelContainerMode>? mode;
 
   final TfArg<String>? modelDataUrl;
 
   final TfArg<String>? modelPackageName;
 
-  final List<SagemakerModelPrimaryContainerAdditionalModelDataSource>?
+  final List<SagemakerModelAdditionalModelDataSource>?
   additionalModelDataSource;
 
-  final SagemakerModelPrimaryContainerImageConfig? imageConfig;
+  final SagemakerModelImageConfig? imageConfig;
 
-  final SagemakerModelPrimaryContainerModelDataSource? modelDataSource;
+  final SagemakerModelDataSource? modelDataSource;
 
-  final SagemakerModelPrimaryContainerMultiModelConfig? multiModelConfig;
+  final SagemakerModelMultiModelConfig? multiModelConfig;
 
   Map<String, Object?> encode() => {
     'container_hostname': ?containerHostname?.toTfJson(),
@@ -410,279 +323,6 @@ final class SagemakerModelPrimaryContainer {
     'model_data_source': ?modelDataSource?.encode(),
     'multi_model_config': ?multiModelConfig?.encode(),
   };
-}
-
-/// `mode` — derived from the provider schema description.
-enum SagemakerModelPrimaryContainerMode implements TerraformEnum {
-  singlemodel('SingleModel'),
-  multimodel('MultiModel');
-
-  const SagemakerModelPrimaryContainerMode(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `primary_container.additional_model_data_source` block of
-/// `aws_sagemaker_model` (derived from provider schema).
-@immutable
-final class SagemakerModelPrimaryContainerAdditionalModelDataSource {
-  const SagemakerModelPrimaryContainerAdditionalModelDataSource({
-    required this.channelName,
-    required this.s3DataSource,
-  });
-
-  final TfArg<String> channelName;
-
-  final List<
-    SagemakerModelPrimaryContainerAdditionalModelDataSourceS3DataSource
-  >
-  s3DataSource;
-
-  Map<String, Object?> encode() => {
-    'channel_name': channelName.toTfJson(),
-    's3_data_source': [for (final e in s3DataSource) e.encode()],
-  };
-}
-
-/// Typed helper for the `primary_container.additional_model_data_source.s3_data_source` block of
-/// `aws_sagemaker_model` (derived from provider schema).
-@immutable
-final class SagemakerModelPrimaryContainerAdditionalModelDataSourceS3DataSource {
-  const SagemakerModelPrimaryContainerAdditionalModelDataSourceS3DataSource({
-    required this.compressionType,
-    required this.s3DataType,
-    required this.s3Uri,
-    this.modelAccessConfig,
-  });
-
-  final TfArg<
-    SagemakerModelPrimaryContainerAdditionalModelDataSourceS3DataSourceCompressionType
-  >
-  compressionType;
-
-  final TfArg<
-    SagemakerModelPrimaryContainerAdditionalModelDataSourceS3DataSourceS3DataType
-  >
-  s3DataType;
-
-  final TfArg<String> s3Uri;
-
-  final SagemakerModelPrimaryContainerAdditionalModelDataSourceS3DataSourceModelAccessConfig?
-  modelAccessConfig;
-
-  Map<String, Object?> encode() => {
-    'compression_type': compressionType.toTfJson(),
-    's3_data_type': s3DataType.toTfJson(),
-    's3_uri': s3Uri.toTfJson(),
-    'model_access_config': ?modelAccessConfig?.encode(),
-  };
-}
-
-/// `compression_type` — derived from the provider schema description.
-enum SagemakerModelPrimaryContainerAdditionalModelDataSourceS3DataSourceCompressionType
-    implements TerraformEnum {
-  none('None'),
-  gzip('Gzip');
-
-  const SagemakerModelPrimaryContainerAdditionalModelDataSourceS3DataSourceCompressionType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `s3_data_type` — derived from the provider schema description.
-enum SagemakerModelPrimaryContainerAdditionalModelDataSourceS3DataSourceS3DataType
-    implements TerraformEnum {
-  s3prefix('S3Prefix'),
-  s3object('S3Object');
-
-  const SagemakerModelPrimaryContainerAdditionalModelDataSourceS3DataSourceS3DataType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `primary_container.additional_model_data_source.s3_data_source.model_access_config` block of
-/// `aws_sagemaker_model` (derived from provider schema).
-@immutable
-final class SagemakerModelPrimaryContainerAdditionalModelDataSourceS3DataSourceModelAccessConfig {
-  const SagemakerModelPrimaryContainerAdditionalModelDataSourceS3DataSourceModelAccessConfig({
-    required this.acceptEula,
-  });
-
-  final TfArg<bool> acceptEula;
-
-  Map<String, Object?> encode() => {'accept_eula': acceptEula.toTfJson()};
-}
-
-/// Typed helper for the `primary_container.image_config` block of
-/// `aws_sagemaker_model` (derived from provider schema).
-@immutable
-final class SagemakerModelPrimaryContainerImageConfig {
-  const SagemakerModelPrimaryContainerImageConfig({
-    required this.repositoryAccessMode,
-    this.repositoryAuthConfig,
-  });
-
-  final TfArg<SagemakerModelPrimaryContainerImageConfigRepositoryAccessMode>
-  repositoryAccessMode;
-
-  final SagemakerModelPrimaryContainerImageConfigRepositoryAuthConfig?
-  repositoryAuthConfig;
-
-  Map<String, Object?> encode() => {
-    'repository_access_mode': repositoryAccessMode.toTfJson(),
-    'repository_auth_config': ?repositoryAuthConfig?.encode(),
-  };
-}
-
-/// `repository_access_mode` — derived from the provider schema description.
-enum SagemakerModelPrimaryContainerImageConfigRepositoryAccessMode
-    implements TerraformEnum {
-  platform('Platform'),
-  vpc('Vpc');
-
-  const SagemakerModelPrimaryContainerImageConfigRepositoryAccessMode(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `primary_container.image_config.repository_auth_config` block of
-/// `aws_sagemaker_model` (derived from provider schema).
-@immutable
-final class SagemakerModelPrimaryContainerImageConfigRepositoryAuthConfig {
-  const SagemakerModelPrimaryContainerImageConfigRepositoryAuthConfig({
-    required this.repositoryCredentialsProviderArn,
-  });
-
-  final TfArg<String> repositoryCredentialsProviderArn;
-
-  Map<String, Object?> encode() => {
-    'repository_credentials_provider_arn': repositoryCredentialsProviderArn
-        .toTfJson(),
-  };
-}
-
-/// Typed helper for the `primary_container.model_data_source` block of
-/// `aws_sagemaker_model` (derived from provider schema).
-@immutable
-final class SagemakerModelPrimaryContainerModelDataSource {
-  const SagemakerModelPrimaryContainerModelDataSource({
-    required this.s3DataSource,
-  });
-
-  final List<SagemakerModelPrimaryContainerModelDataSourceS3DataSource>
-  s3DataSource;
-
-  Map<String, Object?> encode() => {
-    's3_data_source': [for (final e in s3DataSource) e.encode()],
-  };
-}
-
-/// Typed helper for the `primary_container.model_data_source.s3_data_source` block of
-/// `aws_sagemaker_model` (derived from provider schema).
-@immutable
-final class SagemakerModelPrimaryContainerModelDataSourceS3DataSource {
-  const SagemakerModelPrimaryContainerModelDataSourceS3DataSource({
-    required this.compressionType,
-    required this.s3DataType,
-    required this.s3Uri,
-    this.modelAccessConfig,
-  });
-
-  final TfArg<
-    SagemakerModelPrimaryContainerModelDataSourceS3DataSourceCompressionType
-  >
-  compressionType;
-
-  final TfArg<
-    SagemakerModelPrimaryContainerModelDataSourceS3DataSourceS3DataType
-  >
-  s3DataType;
-
-  final TfArg<String> s3Uri;
-
-  final SagemakerModelPrimaryContainerModelDataSourceS3DataSourceModelAccessConfig?
-  modelAccessConfig;
-
-  Map<String, Object?> encode() => {
-    'compression_type': compressionType.toTfJson(),
-    's3_data_type': s3DataType.toTfJson(),
-    's3_uri': s3Uri.toTfJson(),
-    'model_access_config': ?modelAccessConfig?.encode(),
-  };
-}
-
-/// `compression_type` — derived from the provider schema description.
-enum SagemakerModelPrimaryContainerModelDataSourceS3DataSourceCompressionType
-    implements TerraformEnum {
-  none('None'),
-  gzip('Gzip');
-
-  const SagemakerModelPrimaryContainerModelDataSourceS3DataSourceCompressionType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `s3_data_type` — derived from the provider schema description.
-enum SagemakerModelPrimaryContainerModelDataSourceS3DataSourceS3DataType
-    implements TerraformEnum {
-  s3prefix('S3Prefix'),
-  s3object('S3Object');
-
-  const SagemakerModelPrimaryContainerModelDataSourceS3DataSourceS3DataType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `primary_container.model_data_source.s3_data_source.model_access_config` block of
-/// `aws_sagemaker_model` (derived from provider schema).
-@immutable
-final class SagemakerModelPrimaryContainerModelDataSourceS3DataSourceModelAccessConfig {
-  const SagemakerModelPrimaryContainerModelDataSourceS3DataSourceModelAccessConfig({
-    required this.acceptEula,
-  });
-
-  final TfArg<bool> acceptEula;
-
-  Map<String, Object?> encode() => {'accept_eula': acceptEula.toTfJson()};
-}
-
-/// Typed helper for the `primary_container.multi_model_config` block of
-/// `aws_sagemaker_model` (derived from provider schema).
-@immutable
-final class SagemakerModelPrimaryContainerMultiModelConfig {
-  const SagemakerModelPrimaryContainerMultiModelConfig({
-    this.modelCacheSetting,
-  });
-
-  final TfArg<SagemakerModelPrimaryContainerMultiModelConfigModelCacheSetting>?
-  modelCacheSetting;
-
-  Map<String, Object?> encode() => {
-    'model_cache_setting': ?modelCacheSetting?.toTfJson(),
-  };
-}
-
-/// `model_cache_setting` — derived from the provider schema description.
-enum SagemakerModelPrimaryContainerMultiModelConfigModelCacheSetting
-    implements TerraformEnum {
-  enabled('Enabled'),
-  disabled('Disabled');
-
-  const SagemakerModelPrimaryContainerMultiModelConfigModelCacheSetting(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `vpc_config` block of

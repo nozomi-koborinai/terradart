@@ -35,11 +35,11 @@ final class DataIamPolicyDocumentStatement {
 
   final TfArg<String>? sid;
 
-  final List<DataIamPolicyDocumentStatementCondition>? condition;
+  final List<DataIamPolicyDocumentCondition>? condition;
 
-  final List<DataIamPolicyDocumentStatementNotPrincipals>? notPrincipals;
+  final List<DataIamPolicyDocumentNotPrincipals>? notPrincipals;
 
-  final List<DataIamPolicyDocumentStatementPrincipals>? principals;
+  final List<DataIamPolicyDocumentPrincipals>? principals;
 
   Map<String, Object?> encode() => {
     'actions': ?actions?.toTfJson(),
@@ -60,8 +60,8 @@ final class DataIamPolicyDocumentStatement {
 /// Typed helper for the `statement.condition` block of
 /// `aws_iam_policy_document` (derived from provider schema).
 @immutable
-final class DataIamPolicyDocumentStatementCondition {
-  const DataIamPolicyDocumentStatementCondition({
+final class DataIamPolicyDocumentCondition {
+  const DataIamPolicyDocumentCondition({
     required this.test,
     required this.values,
     required this.variable,
@@ -83,8 +83,8 @@ final class DataIamPolicyDocumentStatementCondition {
 /// Typed helper for the `statement.not_principals` block of
 /// `aws_iam_policy_document` (derived from provider schema).
 @immutable
-final class DataIamPolicyDocumentStatementNotPrincipals {
-  const DataIamPolicyDocumentStatementNotPrincipals({
+final class DataIamPolicyDocumentNotPrincipals {
+  const DataIamPolicyDocumentNotPrincipals({
     required this.identifiers,
     required this.type,
   });
@@ -102,8 +102,8 @@ final class DataIamPolicyDocumentStatementNotPrincipals {
 /// Typed helper for the `statement.principals` block of
 /// `aws_iam_policy_document` (derived from provider schema).
 @immutable
-final class DataIamPolicyDocumentStatementPrincipals {
-  const DataIamPolicyDocumentStatementPrincipals({
+final class DataIamPolicyDocumentPrincipals {
+  const DataIamPolicyDocumentPrincipals({
     required this.identifiers,
     required this.type,
   });

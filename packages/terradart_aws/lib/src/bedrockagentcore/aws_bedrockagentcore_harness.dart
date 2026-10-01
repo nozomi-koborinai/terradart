@@ -26,8 +26,7 @@ final class BedrockagentcoreHarnessAuthorizerConfiguration {
     this.customJwtAuthorizer,
   });
 
-  final List<BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizer>?
-  customJwtAuthorizer;
+  final List<BedrockagentcoreHarnessCustomJwtAuthorizer>? customJwtAuthorizer;
 
   Map<String, Object?> encode() => {
     if (customJwtAuthorizer != null)
@@ -40,8 +39,8 @@ final class BedrockagentcoreHarnessAuthorizerConfiguration {
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizer {
-  const BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizer({
+final class BedrockagentcoreHarnessCustomJwtAuthorizer {
+  const BedrockagentcoreHarnessCustomJwtAuthorizer({
     this.allowedAudience,
     this.allowedClients,
     this.allowedScopes,
@@ -60,24 +59,14 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizer {
 
   final TfArg<String> discoveryUrl;
 
-  final List<
-    BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerAllowedWorkloadConfiguration
-  >?
+  final List<BedrockagentcoreHarnessAllowedWorkloadConfiguration>?
   allowedWorkloadConfiguration;
 
-  final List<
-    BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCustomClaim
-  >?
-  customClaim;
+  final List<BedrockagentcoreHarnessCustomClaim>? customClaim;
 
-  final List<
-    BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpoint
-  >?
-  privateEndpoint;
+  final List<BedrockagentcoreHarnessPrivateEndpoint>? privateEndpoint;
 
-  final List<
-    BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverrides
-  >?
+  final List<BedrockagentcoreHarnessPrivateEndpointOverrides>?
   privateEndpointOverrides;
 
   Map<String, Object?> encode() => {
@@ -103,18 +92,15 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizer {
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.allowed_workload_configuration` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerAllowedWorkloadConfiguration {
-  const BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerAllowedWorkloadConfiguration({
+final class BedrockagentcoreHarnessAllowedWorkloadConfiguration {
+  const BedrockagentcoreHarnessAllowedWorkloadConfiguration({
     this.workloadIdentities,
     this.hostingEnvironment,
   });
 
   final TfArg<List<String>>? workloadIdentities;
 
-  final List<
-    BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerAllowedWorkloadConfigurationHostingEnvironment
-  >?
-  hostingEnvironment;
+  final List<BedrockagentcoreHarnessHostingEnvironment>? hostingEnvironment;
 
   Map<String, Object?> encode() => {
     'workload_identities': ?workloadIdentities?.toTfJson(),
@@ -126,10 +112,8 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerAll
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.allowed_workload_configuration.hosting_environment` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerAllowedWorkloadConfigurationHostingEnvironment {
-  const BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerAllowedWorkloadConfigurationHostingEnvironment({
-    required this.arn,
-  });
+final class BedrockagentcoreHarnessHostingEnvironment {
+  const BedrockagentcoreHarnessHostingEnvironment({required this.arn});
 
   final TfArg<String> arn;
 
@@ -139,8 +123,8 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerAll
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.custom_claim` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCustomClaim {
-  const BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCustomClaim({
+final class BedrockagentcoreHarnessCustomClaim {
+  const BedrockagentcoreHarnessCustomClaim({
     required this.inboundTokenClaimName,
     required this.inboundTokenClaimValueType,
     this.authorizingClaimMatchValue,
@@ -148,14 +132,10 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCus
 
   final TfArg<String> inboundTokenClaimName;
 
-  final TfArg<
-    BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCustomClaimInboundTokenClaimValueType
-  >
+  final TfArg<BedrockagentcoreHarnessInboundTokenClaimValueType>
   inboundTokenClaimValueType;
 
-  final List<
-    BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValue
-  >?
+  final List<BedrockagentcoreHarnessAuthorizingClaimMatchValue>?
   authorizingClaimMatchValue;
 
   Map<String, Object?> encode() => {
@@ -169,14 +149,12 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCus
 }
 
 /// `inbound_token_claim_value_type` — derived from the provider schema description.
-enum BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCustomClaimInboundTokenClaimValueType
+enum BedrockagentcoreHarnessInboundTokenClaimValueType
     implements TerraformEnum {
   string('STRING'),
   stringArray('STRING_ARRAY');
 
-  const BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCustomClaimInboundTokenClaimValueType(
-    this.terraformValue,
-  );
+  const BedrockagentcoreHarnessInboundTokenClaimValueType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -184,21 +162,15 @@ enum BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCustomClai
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.custom_claim.authorizing_claim_match_value` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValue {
-  const BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValue({
+final class BedrockagentcoreHarnessAuthorizingClaimMatchValue {
+  const BedrockagentcoreHarnessAuthorizingClaimMatchValue({
     required this.claimMatchOperator,
     this.claimMatchValue,
   });
 
-  final TfArg<
-    BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchOperator
-  >
-  claimMatchOperator;
+  final TfArg<BedrockagentcoreHarnessClaimMatchOperator> claimMatchOperator;
 
-  final List<
-    BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchValue
-  >?
-  claimMatchValue;
+  final List<BedrockagentcoreHarnessClaimMatchValue>? claimMatchValue;
 
   Map<String, Object?> encode() => {
     'claim_match_operator': claimMatchOperator.toTfJson(),
@@ -208,15 +180,12 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCus
 }
 
 /// `claim_match_operator` — derived from the provider schema description.
-enum BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchOperator
-    implements TerraformEnum {
+enum BedrockagentcoreHarnessClaimMatchOperator implements TerraformEnum {
   equals('EQUALS'),
   contains('CONTAINS'),
   containsAny('CONTAINS_ANY');
 
-  const BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchOperator(
-    this.terraformValue,
-  );
+  const BedrockagentcoreHarnessClaimMatchOperator(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -224,8 +193,8 @@ enum BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCustomClai
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.custom_claim.authorizing_claim_match_value.claim_match_value` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchValue {
-  const BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchValue({
+final class BedrockagentcoreHarnessClaimMatchValue {
+  const BedrockagentcoreHarnessClaimMatchValue({
     this.matchValueString,
     this.matchValueStringList,
   });
@@ -242,21 +211,17 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCus
 
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.private_endpoint` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpoint {
-  const BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpoint({
+final class BedrockagentcoreHarnessPrivateEndpoint {
+  const BedrockagentcoreHarnessPrivateEndpoint({
     this.managedVpcResource,
     this.selfManagedLatticeResource,
   });
 
-  final List<
-    BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResource
-  >?
-  managedVpcResource;
+  final List<BedrockagentcoreHarnessManagedVpcResource>? managedVpcResource;
 
-  final List<
-    BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointSelfManagedLatticeResource
-  >?
+  final List<BedrockagentcoreHarnessSelfManagedLatticeResource>?
   selfManagedLatticeResource;
 
   Map<String, Object?> encode() => {
@@ -271,9 +236,10 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPri
 
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.private_endpoint.managed_vpc_resource` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResource {
-  const BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResource({
+final class BedrockagentcoreHarnessManagedVpcResource {
+  const BedrockagentcoreHarnessManagedVpcResource({
     required this.endpointIpAddressType,
     this.routingDomain,
     this.securityGroupIds,
@@ -282,9 +248,7 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPri
     required this.vpcIdentifier,
   });
 
-  final TfArg<
-    BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResourceEndpointIpAddressType
-  >
+  final TfArg<BedrockagentcoreHarnessEndpointIpAddressType>
   endpointIpAddressType;
 
   final TfArg<String>? routingDomain;
@@ -308,23 +272,21 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPri
 }
 
 /// `endpoint_ip_address_type` — derived from the provider schema description.
-enum BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResourceEndpointIpAddressType
-    implements TerraformEnum {
+enum BedrockagentcoreHarnessEndpointIpAddressType implements TerraformEnum {
   ipv4('IPV4'),
   ipv6('IPV6');
 
-  const BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResourceEndpointIpAddressType(
-    this.terraformValue,
-  );
+  const BedrockagentcoreHarnessEndpointIpAddressType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.private_endpoint.self_managed_lattice_resource` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointSelfManagedLatticeResource {
-  const BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointSelfManagedLatticeResource({
+final class BedrockagentcoreHarnessSelfManagedLatticeResource {
+  const BedrockagentcoreHarnessSelfManagedLatticeResource({
     this.resourceConfigurationIdentifier,
   });
 
@@ -339,119 +301,20 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPri
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.private_endpoint_overrides` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverrides {
-  const BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverrides({
+final class BedrockagentcoreHarnessPrivateEndpointOverrides {
+  const BedrockagentcoreHarnessPrivateEndpointOverrides({
     required this.domain,
     this.privateEndpoint,
   });
 
   final TfArg<String> domain;
 
-  final List<
-    BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpoint
-  >?
-  privateEndpoint;
+  final List<BedrockagentcoreHarnessPrivateEndpoint>? privateEndpoint;
 
   Map<String, Object?> encode() => {
     'domain': domain.toTfJson(),
     if (privateEndpoint != null)
       'private_endpoint': [for (final e in privateEndpoint!) e.encode()],
-  };
-}
-
-/// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.private_endpoint_overrides.private_endpoint` block of
-/// `aws_bedrockagentcore_harness` (derived from provider schema).
-@immutable
-final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpoint {
-  const BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpoint({
-    this.managedVpcResource,
-    this.selfManagedLatticeResource,
-  });
-
-  final List<
-    BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResource
-  >?
-  managedVpcResource;
-
-  final List<
-    BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointSelfManagedLatticeResource
-  >?
-  selfManagedLatticeResource;
-
-  Map<String, Object?> encode() => {
-    if (managedVpcResource != null)
-      'managed_vpc_resource': [for (final e in managedVpcResource!) e.encode()],
-    if (selfManagedLatticeResource != null)
-      'self_managed_lattice_resource': [
-        for (final e in selfManagedLatticeResource!) e.encode(),
-      ],
-  };
-}
-
-/// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.private_endpoint_overrides.private_endpoint.managed_vpc_resource` block of
-/// `aws_bedrockagentcore_harness` (derived from provider schema).
-@immutable
-final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResource {
-  const BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResource({
-    required this.endpointIpAddressType,
-    this.routingDomain,
-    this.securityGroupIds,
-    required this.subnetIds,
-    this.tags,
-    required this.vpcIdentifier,
-  });
-
-  final TfArg<
-    BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResourceEndpointIpAddressType
-  >
-  endpointIpAddressType;
-
-  final TfArg<String>? routingDomain;
-
-  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
-
-  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
-
-  final TfArg<Map<String, String>>? tags;
-
-  final TfArg<String> vpcIdentifier;
-
-  Map<String, Object?> encode() => {
-    'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
-    'routing_domain': ?routingDomain?.toTfJson(),
-    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
-    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
-    'tags': ?tags?.toTfJson(),
-    'vpc_identifier': vpcIdentifier.toTfJson(),
-  };
-}
-
-/// `endpoint_ip_address_type` — derived from the provider schema description.
-enum BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResourceEndpointIpAddressType
-    implements TerraformEnum {
-  ipv4('IPV4'),
-  ipv6('IPV6');
-
-  const BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResourceEndpointIpAddressType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.private_endpoint_overrides.private_endpoint.self_managed_lattice_resource` block of
-/// `aws_bedrockagentcore_harness` (derived from provider schema).
-@immutable
-final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointSelfManagedLatticeResource {
-  const BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointSelfManagedLatticeResource({
-    this.resourceConfigurationIdentifier,
-  });
-
-  final TfArg<String>? resourceConfigurationIdentifier;
-
-  Map<String, Object?> encode() => {
-    'resource_configuration_identifier': ?resourceConfigurationIdentifier
-        ?.toTfJson(),
   };
 }
 
@@ -461,7 +324,7 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPri
 final class BedrockagentcoreHarnessEnvironment {
   const BedrockagentcoreHarnessEnvironment({this.agentcoreRuntimeEnvironment});
 
-  final List<BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironment>?
+  final List<BedrockagentcoreHarnessAgentcoreRuntimeEnvironment>?
   agentcoreRuntimeEnvironment;
 
   Map<String, Object?> encode() => {
@@ -475,8 +338,8 @@ final class BedrockagentcoreHarnessEnvironment {
 /// Typed helper for the `environment.agentcore_runtime_environment` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironment {
-  const BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironment({
+final class BedrockagentcoreHarnessAgentcoreRuntimeEnvironment {
+  const BedrockagentcoreHarnessAgentcoreRuntimeEnvironment({
     this.lifecycleConfiguration,
     this.filesystemConfiguration,
     this.networkConfiguration,
@@ -484,15 +347,10 @@ final class BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironment {
 
   final TfArg<List<Object?>>? lifecycleConfiguration;
 
-  final List<
-    BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentFilesystemConfiguration
-  >?
+  final List<BedrockagentcoreHarnessFilesystemConfiguration>?
   filesystemConfiguration;
 
-  final List<
-    BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentNetworkConfiguration
-  >?
-  networkConfiguration;
+  final List<BedrockagentcoreHarnessNetworkConfiguration>? networkConfiguration;
 
   Map<String, Object?> encode() => {
     'lifecycle_configuration': ?lifecycleConfiguration?.toTfJson(),
@@ -510,27 +368,18 @@ final class BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironment {
 /// Typed helper for the `environment.agentcore_runtime_environment.filesystem_configuration` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentFilesystemConfiguration {
-  const BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentFilesystemConfiguration({
+final class BedrockagentcoreHarnessFilesystemConfiguration {
+  const BedrockagentcoreHarnessFilesystemConfiguration({
     this.efsAccessPoint,
     this.s3FilesAccessPoint,
     this.sessionStorage,
   });
 
-  final List<
-    BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentFilesystemConfigurationEfsAccessPoint
-  >?
-  efsAccessPoint;
+  final List<BedrockagentcoreHarnessEfsAccessPoint>? efsAccessPoint;
 
-  final List<
-    BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentFilesystemConfigurationS3FilesAccessPoint
-  >?
-  s3FilesAccessPoint;
+  final List<BedrockagentcoreHarnessS3FilesAccessPoint>? s3FilesAccessPoint;
 
-  final List<
-    BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentFilesystemConfigurationSessionStorage
-  >?
-  sessionStorage;
+  final List<BedrockagentcoreHarnessSessionStorage>? sessionStorage;
 
   Map<String, Object?> encode() => {
     if (efsAccessPoint != null)
@@ -547,8 +396,8 @@ final class BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentFilesys
 /// Typed helper for the `environment.agentcore_runtime_environment.filesystem_configuration.efs_access_point` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentFilesystemConfigurationEfsAccessPoint {
-  const BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentFilesystemConfigurationEfsAccessPoint({
+final class BedrockagentcoreHarnessEfsAccessPoint {
+  const BedrockagentcoreHarnessEfsAccessPoint({
     required this.accessPointArn,
     required this.mountPath,
   });
@@ -566,8 +415,8 @@ final class BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentFilesys
 /// Typed helper for the `environment.agentcore_runtime_environment.filesystem_configuration.s3_files_access_point` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentFilesystemConfigurationS3FilesAccessPoint {
-  const BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentFilesystemConfigurationS3FilesAccessPoint({
+final class BedrockagentcoreHarnessS3FilesAccessPoint {
+  const BedrockagentcoreHarnessS3FilesAccessPoint({
     required this.accessPointArn,
     required this.mountPath,
   });
@@ -585,10 +434,8 @@ final class BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentFilesys
 /// Typed helper for the `environment.agentcore_runtime_environment.filesystem_configuration.session_storage` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentFilesystemConfigurationSessionStorage {
-  const BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentFilesystemConfigurationSessionStorage({
-    required this.mountPath,
-  });
+final class BedrockagentcoreHarnessSessionStorage {
+  const BedrockagentcoreHarnessSessionStorage({required this.mountPath});
 
   final TfArg<String> mountPath;
 
@@ -598,21 +445,15 @@ final class BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentFilesys
 /// Typed helper for the `environment.agentcore_runtime_environment.network_configuration` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentNetworkConfiguration {
-  const BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentNetworkConfiguration({
+final class BedrockagentcoreHarnessNetworkConfiguration {
+  const BedrockagentcoreHarnessNetworkConfiguration({
     required this.networkMode,
     this.networkModeConfig,
   });
 
-  final TfArg<
-    BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentNetworkConfigurationNetworkMode
-  >
-  networkMode;
+  final TfArg<BedrockagentcoreHarnessNetworkMode> networkMode;
 
-  final List<
-    BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentNetworkConfigurationNetworkModeConfig
-  >?
-  networkModeConfig;
+  final List<BedrockagentcoreHarnessNetworkModeConfig>? networkModeConfig;
 
   Map<String, Object?> encode() => {
     'network_mode': networkMode.toTfJson(),
@@ -622,14 +463,11 @@ final class BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentNetwork
 }
 
 /// `network_mode` — derived from the provider schema description.
-enum BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentNetworkConfigurationNetworkMode
-    implements TerraformEnum {
+enum BedrockagentcoreHarnessNetworkMode implements TerraformEnum {
   public('PUBLIC'),
   vpc('VPC');
 
-  const BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentNetworkConfigurationNetworkMode(
-    this.terraformValue,
-  );
+  const BedrockagentcoreHarnessNetworkMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -637,8 +475,8 @@ enum BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentNetworkConfigu
 /// Typed helper for the `environment.agentcore_runtime_environment.network_configuration.network_mode_config` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentNetworkConfigurationNetworkModeConfig {
-  const BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentNetworkConfigurationNetworkModeConfig({
+final class BedrockagentcoreHarnessNetworkModeConfig {
+  const BedrockagentcoreHarnessNetworkModeConfig({
     required this.securityGroups,
     required this.subnets,
   });
@@ -661,7 +499,7 @@ final class BedrockagentcoreHarnessEnvironmentArtifact {
     this.containerConfiguration,
   });
 
-  final List<BedrockagentcoreHarnessEnvironmentArtifactContainerConfiguration>?
+  final List<BedrockagentcoreHarnessContainerConfiguration>?
   containerConfiguration;
 
   Map<String, Object?> encode() => {
@@ -675,8 +513,8 @@ final class BedrockagentcoreHarnessEnvironmentArtifact {
 /// Typed helper for the `environment_artifact.container_configuration` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessEnvironmentArtifactContainerConfiguration {
-  const BedrockagentcoreHarnessEnvironmentArtifactContainerConfiguration({
+final class BedrockagentcoreHarnessContainerConfiguration {
+  const BedrockagentcoreHarnessContainerConfiguration({
     required this.containerUri,
   });
 
@@ -695,12 +533,12 @@ final class BedrockagentcoreHarnessMemory {
     this.managedMemoryConfiguration,
   });
 
-  final List<BedrockagentcoreHarnessMemoryAgentcoreMemoryConfiguration>?
+  final List<BedrockagentcoreHarnessAgentcoreMemoryConfiguration>?
   agentcoreMemoryConfiguration;
 
-  final List<BedrockagentcoreHarnessMemoryDisabled>? disabled;
+  final List<BedrockagentcoreHarnessDisabled>? disabled;
 
-  final List<BedrockagentcoreHarnessMemoryManagedMemoryConfiguration>?
+  final List<BedrockagentcoreHarnessManagedMemoryConfiguration>?
   managedMemoryConfiguration;
 
   Map<String, Object?> encode() => {
@@ -719,8 +557,8 @@ final class BedrockagentcoreHarnessMemory {
 /// Typed helper for the `memory.agentcore_memory_configuration` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessMemoryAgentcoreMemoryConfiguration {
-  const BedrockagentcoreHarnessMemoryAgentcoreMemoryConfiguration({
+final class BedrockagentcoreHarnessAgentcoreMemoryConfiguration {
+  const BedrockagentcoreHarnessAgentcoreMemoryConfiguration({
     this.actorId,
     required this.arn,
     this.messagesCount,
@@ -733,10 +571,7 @@ final class BedrockagentcoreHarnessMemoryAgentcoreMemoryConfiguration {
 
   final TfArg<num>? messagesCount;
 
-  final List<
-    BedrockagentcoreHarnessMemoryAgentcoreMemoryConfigurationRetrievalConfig
-  >?
-  retrievalConfig;
+  final List<BedrockagentcoreHarnessRetrievalConfig>? retrievalConfig;
 
   Map<String, Object?> encode() => {
     'actor_id': ?actorId?.toTfJson(),
@@ -750,8 +585,8 @@ final class BedrockagentcoreHarnessMemoryAgentcoreMemoryConfiguration {
 /// Typed helper for the `memory.agentcore_memory_configuration.retrieval_config` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessMemoryAgentcoreMemoryConfigurationRetrievalConfig {
-  const BedrockagentcoreHarnessMemoryAgentcoreMemoryConfigurationRetrievalConfig({
+final class BedrockagentcoreHarnessRetrievalConfig {
+  const BedrockagentcoreHarnessRetrievalConfig({
     required this.mapBlockKey,
     this.relevanceScore,
     this.strategyId,
@@ -777,8 +612,8 @@ final class BedrockagentcoreHarnessMemoryAgentcoreMemoryConfigurationRetrievalCo
 /// Typed helper for the `memory.disabled` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessMemoryDisabled {
-  const BedrockagentcoreHarnessMemoryDisabled();
+final class BedrockagentcoreHarnessDisabled {
+  const BedrockagentcoreHarnessDisabled();
 
   Map<String, Object?> encode() => {};
 }
@@ -786,8 +621,8 @@ final class BedrockagentcoreHarnessMemoryDisabled {
 /// Typed helper for the `memory.managed_memory_configuration` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessMemoryManagedMemoryConfiguration {
-  const BedrockagentcoreHarnessMemoryManagedMemoryConfiguration({
+final class BedrockagentcoreHarnessManagedMemoryConfiguration {
+  const BedrockagentcoreHarnessManagedMemoryConfiguration({
     this.encryptionKeyArn,
     this.eventExpiryDuration,
     this.strategies,
@@ -797,10 +632,7 @@ final class BedrockagentcoreHarnessMemoryManagedMemoryConfiguration {
 
   final TfArg<num>? eventExpiryDuration;
 
-  final List<
-    TfArg<BedrockagentcoreHarnessMemoryManagedMemoryConfigurationStrategies>
-  >?
-  strategies;
+  final List<TfArg<BedrockagentcoreHarnessStrategies>>? strategies;
 
   Map<String, Object?> encode() => {
     'encryption_key_arn': ?encryptionKeyArn?.encodeAs('arn').toTfJson(),
@@ -811,16 +643,13 @@ final class BedrockagentcoreHarnessMemoryManagedMemoryConfiguration {
 }
 
 /// `strategies` — derived from the provider schema description.
-enum BedrockagentcoreHarnessMemoryManagedMemoryConfigurationStrategies
-    implements TerraformEnum {
+enum BedrockagentcoreHarnessStrategies implements TerraformEnum {
   semantic('SEMANTIC'),
   summarization('SUMMARIZATION'),
   userPreference('USER_PREFERENCE'),
   episodic('EPISODIC');
 
-  const BedrockagentcoreHarnessMemoryManagedMemoryConfigurationStrategies(
-    this.terraformValue,
-  );
+  const BedrockagentcoreHarnessStrategies(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -836,15 +665,13 @@ final class BedrockagentcoreHarnessModel {
     this.openaiModelConfig,
   });
 
-  final List<BedrockagentcoreHarnessModelBedrockModelConfig>?
-  bedrockModelConfig;
+  final List<BedrockagentcoreHarnessBedrockModelConfig>? bedrockModelConfig;
 
-  final List<BedrockagentcoreHarnessModelGeminiModelConfig>? geminiModelConfig;
+  final List<BedrockagentcoreHarnessGeminiModelConfig>? geminiModelConfig;
 
-  final List<BedrockagentcoreHarnessModelLitellmModelConfig>?
-  litellmModelConfig;
+  final List<BedrockagentcoreHarnessLitellmModelConfig>? litellmModelConfig;
 
-  final List<BedrockagentcoreHarnessModelOpenaiModelConfig>? openaiModelConfig;
+  final List<BedrockagentcoreHarnessOpenaiModelConfig>? openaiModelConfig;
 
   Map<String, Object?> encode() => {
     if (bedrockModelConfig != null)
@@ -861,8 +688,8 @@ final class BedrockagentcoreHarnessModel {
 /// Typed helper for the `model.bedrock_model_config` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessModelBedrockModelConfig {
-  const BedrockagentcoreHarnessModelBedrockModelConfig({
+final class BedrockagentcoreHarnessBedrockModelConfig {
+  const BedrockagentcoreHarnessBedrockModelConfig({
     this.additionalParams,
     this.apiFormat,
     this.maxTokens,
@@ -873,8 +700,7 @@ final class BedrockagentcoreHarnessModelBedrockModelConfig {
 
   final TfArg<String>? additionalParams;
 
-  final TfArg<BedrockagentcoreHarnessModelBedrockModelConfigApiFormat>?
-  apiFormat;
+  final TfArg<BedrockagentcoreHarnessBedrockModelConfigApiFormat>? apiFormat;
 
   final TfArg<num>? maxTokens;
 
@@ -895,15 +721,13 @@ final class BedrockagentcoreHarnessModelBedrockModelConfig {
 }
 
 /// `api_format` — derived from the provider schema description.
-enum BedrockagentcoreHarnessModelBedrockModelConfigApiFormat
+enum BedrockagentcoreHarnessBedrockModelConfigApiFormat
     implements TerraformEnum {
   converseStream('converse_stream'),
   responses('responses'),
   chatCompletions('chat_completions');
 
-  const BedrockagentcoreHarnessModelBedrockModelConfigApiFormat(
-    this.terraformValue,
-  );
+  const BedrockagentcoreHarnessBedrockModelConfigApiFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -911,8 +735,8 @@ enum BedrockagentcoreHarnessModelBedrockModelConfigApiFormat
 /// Typed helper for the `model.gemini_model_config` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessModelGeminiModelConfig {
-  const BedrockagentcoreHarnessModelGeminiModelConfig({
+final class BedrockagentcoreHarnessGeminiModelConfig {
+  const BedrockagentcoreHarnessGeminiModelConfig({
     this.additionalParams,
     required this.apiKeyArn,
     this.maxTokens,
@@ -950,8 +774,8 @@ final class BedrockagentcoreHarnessModelGeminiModelConfig {
 /// Typed helper for the `model.litellm_model_config` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessModelLitellmModelConfig {
-  const BedrockagentcoreHarnessModelLitellmModelConfig({
+final class BedrockagentcoreHarnessLitellmModelConfig {
+  const BedrockagentcoreHarnessLitellmModelConfig({
     this.additionalParams,
     this.apiBase,
     this.apiKeyArn,
@@ -989,8 +813,8 @@ final class BedrockagentcoreHarnessModelLitellmModelConfig {
 /// Typed helper for the `model.openai_model_config` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessModelOpenaiModelConfig {
-  const BedrockagentcoreHarnessModelOpenaiModelConfig({
+final class BedrockagentcoreHarnessOpenaiModelConfig {
+  const BedrockagentcoreHarnessOpenaiModelConfig({
     this.additionalParams,
     this.apiFormat,
     required this.apiKeyArn,
@@ -1002,8 +826,7 @@ final class BedrockagentcoreHarnessModelOpenaiModelConfig {
 
   final TfArg<String>? additionalParams;
 
-  final TfArg<BedrockagentcoreHarnessModelOpenaiModelConfigApiFormat>?
-  apiFormat;
+  final TfArg<BedrockagentcoreHarnessOpenaiModelConfigApiFormat>? apiFormat;
 
   final TfArg<String> apiKeyArn;
 
@@ -1027,14 +850,12 @@ final class BedrockagentcoreHarnessModelOpenaiModelConfig {
 }
 
 /// `api_format` — derived from the provider schema description.
-enum BedrockagentcoreHarnessModelOpenaiModelConfigApiFormat
+enum BedrockagentcoreHarnessOpenaiModelConfigApiFormat
     implements TerraformEnum {
   chatCompletions('chat_completions'),
   responses('responses');
 
-  const BedrockagentcoreHarnessModelOpenaiModelConfigApiFormat(
-    this.terraformValue,
-  );
+  const BedrockagentcoreHarnessOpenaiModelConfigApiFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1052,11 +873,11 @@ final class BedrockagentcoreHarnessSkill {
 
   final TfArg<String>? path;
 
-  final List<BedrockagentcoreHarnessSkillAwsSkills>? awsSkills;
+  final List<BedrockagentcoreHarnessAwsSkills>? awsSkills;
 
-  final List<BedrockagentcoreHarnessSkillGit>? git;
+  final List<BedrockagentcoreHarnessGit>? git;
 
-  final List<BedrockagentcoreHarnessSkillS3>? s3;
+  final List<BedrockagentcoreHarnessS3>? s3;
 
   Map<String, Object?> encode() => {
     'path': ?path?.toTfJson(),
@@ -1070,8 +891,8 @@ final class BedrockagentcoreHarnessSkill {
 /// Typed helper for the `skill.aws_skills` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessSkillAwsSkills {
-  const BedrockagentcoreHarnessSkillAwsSkills({this.paths});
+final class BedrockagentcoreHarnessAwsSkills {
+  const BedrockagentcoreHarnessAwsSkills({this.paths});
 
   final TfArg<List<String>>? paths;
 
@@ -1081,18 +902,14 @@ final class BedrockagentcoreHarnessSkillAwsSkills {
 /// Typed helper for the `skill.git` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessSkillGit {
-  const BedrockagentcoreHarnessSkillGit({
-    this.path,
-    required this.url,
-    this.auth,
-  });
+final class BedrockagentcoreHarnessGit {
+  const BedrockagentcoreHarnessGit({this.path, required this.url, this.auth});
 
   final TfArg<String>? path;
 
   final TfArg<String> url;
 
-  final List<BedrockagentcoreHarnessSkillGitAuth>? auth;
+  final List<BedrockagentcoreHarnessAuth>? auth;
 
   Map<String, Object?> encode() => {
     'path': ?path?.toTfJson(),
@@ -1104,8 +921,8 @@ final class BedrockagentcoreHarnessSkillGit {
 /// Typed helper for the `skill.git.auth` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessSkillGitAuth {
-  const BedrockagentcoreHarnessSkillGitAuth({
+final class BedrockagentcoreHarnessAuth {
+  const BedrockagentcoreHarnessAuth({
     required this.credentialArn,
     this.username,
   });
@@ -1123,8 +940,8 @@ final class BedrockagentcoreHarnessSkillGitAuth {
 /// Typed helper for the `skill.s3` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessSkillS3 {
-  const BedrockagentcoreHarnessSkillS3({required this.uri});
+final class BedrockagentcoreHarnessS3 {
+  const BedrockagentcoreHarnessS3({required this.uri});
 
   final TfArg<String> uri;
 
@@ -1154,9 +971,9 @@ final class BedrockagentcoreHarnessTool {
 
   final TfArg<String>? name;
 
-  final TfArg<BedrockagentcoreHarnessToolType> type;
+  final TfArg<BedrockagentcoreHarnessType> type;
 
-  final List<BedrockagentcoreHarnessToolConfig>? config;
+  final List<BedrockagentcoreHarnessConfig>? config;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
@@ -1166,14 +983,14 @@ final class BedrockagentcoreHarnessTool {
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockagentcoreHarnessToolType implements TerraformEnum {
+enum BedrockagentcoreHarnessType implements TerraformEnum {
   remoteMcp('remote_mcp'),
   agentcoreBrowser('agentcore_browser'),
   agentcoreGateway('agentcore_gateway'),
   inlineFunction('inline_function'),
   agentcoreCodeInterpreter('agentcore_code_interpreter');
 
-  const BedrockagentcoreHarnessToolType(this.terraformValue);
+  const BedrockagentcoreHarnessType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1181,8 +998,8 @@ enum BedrockagentcoreHarnessToolType implements TerraformEnum {
 /// Typed helper for the `tool.config` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessToolConfig {
-  const BedrockagentcoreHarnessToolConfig({
+final class BedrockagentcoreHarnessConfig {
+  const BedrockagentcoreHarnessConfig({
     this.agentcoreBrowser,
     this.agentcoreCodeInterpreter,
     this.agentcoreGateway,
@@ -1190,18 +1007,16 @@ final class BedrockagentcoreHarnessToolConfig {
     this.remoteMcp,
   });
 
-  final List<BedrockagentcoreHarnessToolConfigAgentcoreBrowser>?
-  agentcoreBrowser;
+  final List<BedrockagentcoreHarnessAgentcoreBrowser>? agentcoreBrowser;
 
-  final List<BedrockagentcoreHarnessToolConfigAgentcoreCodeInterpreter>?
+  final List<BedrockagentcoreHarnessAgentcoreCodeInterpreter>?
   agentcoreCodeInterpreter;
 
-  final List<BedrockagentcoreHarnessToolConfigAgentcoreGateway>?
-  agentcoreGateway;
+  final List<BedrockagentcoreHarnessAgentcoreGateway>? agentcoreGateway;
 
-  final List<BedrockagentcoreHarnessToolConfigInlineFunction>? inlineFunction;
+  final List<BedrockagentcoreHarnessInlineFunction>? inlineFunction;
 
-  final List<BedrockagentcoreHarnessToolConfigRemoteMcp>? remoteMcp;
+  final List<BedrockagentcoreHarnessRemoteMcp>? remoteMcp;
 
   Map<String, Object?> encode() => {
     if (agentcoreBrowser != null)
@@ -1222,8 +1037,8 @@ final class BedrockagentcoreHarnessToolConfig {
 /// Typed helper for the `tool.config.agentcore_browser` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessToolConfigAgentcoreBrowser {
-  const BedrockagentcoreHarnessToolConfigAgentcoreBrowser({this.browserArn});
+final class BedrockagentcoreHarnessAgentcoreBrowser {
+  const BedrockagentcoreHarnessAgentcoreBrowser({this.browserArn});
 
   final TfArg<String>? browserArn;
 
@@ -1233,8 +1048,8 @@ final class BedrockagentcoreHarnessToolConfigAgentcoreBrowser {
 /// Typed helper for the `tool.config.agentcore_code_interpreter` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessToolConfigAgentcoreCodeInterpreter {
-  const BedrockagentcoreHarnessToolConfigAgentcoreCodeInterpreter({
+final class BedrockagentcoreHarnessAgentcoreCodeInterpreter {
+  const BedrockagentcoreHarnessAgentcoreCodeInterpreter({
     this.codeInterpreterArn,
   });
 
@@ -1248,16 +1063,15 @@ final class BedrockagentcoreHarnessToolConfigAgentcoreCodeInterpreter {
 /// Typed helper for the `tool.config.agentcore_gateway` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessToolConfigAgentcoreGateway {
-  const BedrockagentcoreHarnessToolConfigAgentcoreGateway({
+final class BedrockagentcoreHarnessAgentcoreGateway {
+  const BedrockagentcoreHarnessAgentcoreGateway({
     required this.gatewayArn,
     this.outboundAuth,
   });
 
   final TfArg<String> gatewayArn;
 
-  final List<BedrockagentcoreHarnessToolConfigAgentcoreGatewayOutboundAuth>?
-  outboundAuth;
+  final List<BedrockagentcoreHarnessOutboundAuth>? outboundAuth;
 
   Map<String, Object?> encode() => {
     'gateway_arn': gatewayArn.toTfJson(),
@@ -1269,8 +1083,8 @@ final class BedrockagentcoreHarnessToolConfigAgentcoreGateway {
 /// Typed helper for the `tool.config.agentcore_gateway.outbound_auth` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessToolConfigAgentcoreGatewayOutboundAuth {
-  const BedrockagentcoreHarnessToolConfigAgentcoreGatewayOutboundAuth({
+final class BedrockagentcoreHarnessOutboundAuth {
+  const BedrockagentcoreHarnessOutboundAuth({
     this.awsIam,
     this.none,
     this.oauth,
@@ -1280,10 +1094,7 @@ final class BedrockagentcoreHarnessToolConfigAgentcoreGatewayOutboundAuth {
 
   final TfArg<bool>? none;
 
-  final List<
-    BedrockagentcoreHarnessToolConfigAgentcoreGatewayOutboundAuthOauth
-  >?
-  oauth;
+  final List<BedrockagentcoreHarnessOauth>? oauth;
 
   Map<String, Object?> encode() => {
     'aws_iam': ?awsIam?.toTfJson(),
@@ -1295,8 +1106,8 @@ final class BedrockagentcoreHarnessToolConfigAgentcoreGatewayOutboundAuth {
 /// Typed helper for the `tool.config.agentcore_gateway.outbound_auth.oauth` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessToolConfigAgentcoreGatewayOutboundAuthOauth {
-  const BedrockagentcoreHarnessToolConfigAgentcoreGatewayOutboundAuthOauth({
+final class BedrockagentcoreHarnessOauth {
+  const BedrockagentcoreHarnessOauth({
     this.customParameters,
     this.defaultReturnUrl,
     this.grantType,
@@ -1308,10 +1119,7 @@ final class BedrockagentcoreHarnessToolConfigAgentcoreGatewayOutboundAuthOauth {
 
   final TfArg<String>? defaultReturnUrl;
 
-  final TfArg<
-    BedrockagentcoreHarnessToolConfigAgentcoreGatewayOutboundAuthOauthGrantType
-  >?
-  grantType;
+  final TfArg<BedrockagentcoreHarnessGrantType>? grantType;
 
   final TfArg<String> providerArn;
 
@@ -1327,15 +1135,12 @@ final class BedrockagentcoreHarnessToolConfigAgentcoreGatewayOutboundAuthOauth {
 }
 
 /// `grant_type` — derived from the provider schema description.
-enum BedrockagentcoreHarnessToolConfigAgentcoreGatewayOutboundAuthOauthGrantType
-    implements TerraformEnum {
+enum BedrockagentcoreHarnessGrantType implements TerraformEnum {
   clientCredentials('CLIENT_CREDENTIALS'),
   authorizationCode('AUTHORIZATION_CODE'),
   tokenExchange('TOKEN_EXCHANGE');
 
-  const BedrockagentcoreHarnessToolConfigAgentcoreGatewayOutboundAuthOauthGrantType(
-    this.terraformValue,
-  );
+  const BedrockagentcoreHarnessGrantType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1343,8 +1148,8 @@ enum BedrockagentcoreHarnessToolConfigAgentcoreGatewayOutboundAuthOauthGrantType
 /// Typed helper for the `tool.config.inline_function` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessToolConfigInlineFunction {
-  const BedrockagentcoreHarnessToolConfigInlineFunction({
+final class BedrockagentcoreHarnessInlineFunction {
+  const BedrockagentcoreHarnessInlineFunction({
     required this.description,
     required this.inputSchema,
   });
@@ -1362,11 +1167,8 @@ final class BedrockagentcoreHarnessToolConfigInlineFunction {
 /// Typed helper for the `tool.config.remote_mcp` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
-final class BedrockagentcoreHarnessToolConfigRemoteMcp {
-  const BedrockagentcoreHarnessToolConfigRemoteMcp({
-    this.headers,
-    required this.url,
-  });
+final class BedrockagentcoreHarnessRemoteMcp {
+  const BedrockagentcoreHarnessRemoteMcp({this.headers, required this.url});
 
   final TfArg<Map<String, String>>? headers;
 

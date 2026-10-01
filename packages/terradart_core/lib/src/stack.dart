@@ -258,11 +258,11 @@ abstract base class Stack {
   /// final service = add(GoogleCloudRunV2Service(
   ///   // ...
   ///   template: CloudRunV2ServiceTemplate(containers: [
-  ///     CloudRunV2ServiceTemplateContainers(
+  ///     CloudRunV2ServiceContainers(
   ///       image: .literal(image),
   ///       env: [
   ///         for (final MapEntry(:key, :value) in outputEnvironment().entries)
-  ///           CloudRunV2ServiceTemplateContainersEnv(
+  ///           CloudRunV2ServiceEnv(
   ///             name: .literal(key),
   ///             source: .value(value),
   ///           ),

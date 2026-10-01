@@ -16,14 +16,10 @@ final class VerifiedpermissionsIdentitySourceConfiguration {
     this.openIdConnectConfiguration,
   });
 
-  final List<
-    VerifiedpermissionsIdentitySourceConfigurationCognitoUserPoolConfiguration
-  >?
+  final List<VerifiedpermissionsIdentitySourceCognitoUserPoolConfiguration>?
   cognitoUserPoolConfiguration;
 
-  final List<
-    VerifiedpermissionsIdentitySourceConfigurationOpenIdConnectConfiguration
-  >?
+  final List<VerifiedpermissionsIdentitySourceOpenIdConnectConfiguration>?
   openIdConnectConfiguration;
 
   Map<String, Object?> encode() => {
@@ -41,8 +37,8 @@ final class VerifiedpermissionsIdentitySourceConfiguration {
 /// Typed helper for the `configuration.cognito_user_pool_configuration` block of
 /// `aws_verifiedpermissions_identity_source` (derived from provider schema).
 @immutable
-final class VerifiedpermissionsIdentitySourceConfigurationCognitoUserPoolConfiguration {
-  const VerifiedpermissionsIdentitySourceConfigurationCognitoUserPoolConfiguration({
+final class VerifiedpermissionsIdentitySourceCognitoUserPoolConfiguration {
+  const VerifiedpermissionsIdentitySourceCognitoUserPoolConfiguration({
     this.clientIds,
     required this.userPoolArn,
     this.groupConfiguration,
@@ -53,7 +49,7 @@ final class VerifiedpermissionsIdentitySourceConfigurationCognitoUserPoolConfigu
   final TfArg<String> userPoolArn;
 
   final List<
-    VerifiedpermissionsIdentitySourceConfigurationCognitoUserPoolConfigurationGroupConfiguration
+    VerifiedpermissionsIdentitySourceCognitoUserPoolConfigurationGroupConfiguration
   >?
   groupConfiguration;
 
@@ -68,8 +64,8 @@ final class VerifiedpermissionsIdentitySourceConfigurationCognitoUserPoolConfigu
 /// Typed helper for the `configuration.cognito_user_pool_configuration.group_configuration` block of
 /// `aws_verifiedpermissions_identity_source` (derived from provider schema).
 @immutable
-final class VerifiedpermissionsIdentitySourceConfigurationCognitoUserPoolConfigurationGroupConfiguration {
-  const VerifiedpermissionsIdentitySourceConfigurationCognitoUserPoolConfigurationGroupConfiguration({
+final class VerifiedpermissionsIdentitySourceCognitoUserPoolConfigurationGroupConfiguration {
+  const VerifiedpermissionsIdentitySourceCognitoUserPoolConfigurationGroupConfiguration({
     required this.groupEntityType,
   });
 
@@ -83,8 +79,8 @@ final class VerifiedpermissionsIdentitySourceConfigurationCognitoUserPoolConfigu
 /// Typed helper for the `configuration.open_id_connect_configuration` block of
 /// `aws_verifiedpermissions_identity_source` (derived from provider schema).
 @immutable
-final class VerifiedpermissionsIdentitySourceConfigurationOpenIdConnectConfiguration {
-  const VerifiedpermissionsIdentitySourceConfigurationOpenIdConnectConfiguration({
+final class VerifiedpermissionsIdentitySourceOpenIdConnectConfiguration {
+  const VerifiedpermissionsIdentitySourceOpenIdConnectConfiguration({
     this.entityIdPrefix,
     required this.issuer,
     this.groupConfiguration,
@@ -96,14 +92,11 @@ final class VerifiedpermissionsIdentitySourceConfigurationOpenIdConnectConfigura
   final TfArg<String> issuer;
 
   final List<
-    VerifiedpermissionsIdentitySourceConfigurationOpenIdConnectConfigurationGroupConfiguration
+    VerifiedpermissionsIdentitySourceOpenIdConnectConfigurationGroupConfiguration
   >?
   groupConfiguration;
 
-  final List<
-    VerifiedpermissionsIdentitySourceConfigurationOpenIdConnectConfigurationTokenSelection
-  >?
-  tokenSelection;
+  final List<VerifiedpermissionsIdentitySourceTokenSelection>? tokenSelection;
 
   Map<String, Object?> encode() => {
     'entity_id_prefix': ?entityIdPrefix?.toTfJson(),
@@ -118,8 +111,8 @@ final class VerifiedpermissionsIdentitySourceConfigurationOpenIdConnectConfigura
 /// Typed helper for the `configuration.open_id_connect_configuration.group_configuration` block of
 /// `aws_verifiedpermissions_identity_source` (derived from provider schema).
 @immutable
-final class VerifiedpermissionsIdentitySourceConfigurationOpenIdConnectConfigurationGroupConfiguration {
-  const VerifiedpermissionsIdentitySourceConfigurationOpenIdConnectConfigurationGroupConfiguration({
+final class VerifiedpermissionsIdentitySourceOpenIdConnectConfigurationGroupConfiguration {
+  const VerifiedpermissionsIdentitySourceOpenIdConnectConfigurationGroupConfiguration({
     required this.groupClaim,
     required this.groupEntityType,
   });
@@ -137,20 +130,15 @@ final class VerifiedpermissionsIdentitySourceConfigurationOpenIdConnectConfigura
 /// Typed helper for the `configuration.open_id_connect_configuration.token_selection` block of
 /// `aws_verifiedpermissions_identity_source` (derived from provider schema).
 @immutable
-final class VerifiedpermissionsIdentitySourceConfigurationOpenIdConnectConfigurationTokenSelection {
-  const VerifiedpermissionsIdentitySourceConfigurationOpenIdConnectConfigurationTokenSelection({
+final class VerifiedpermissionsIdentitySourceTokenSelection {
+  const VerifiedpermissionsIdentitySourceTokenSelection({
     this.accessTokenOnly,
     this.identityTokenOnly,
   });
 
-  final List<
-    VerifiedpermissionsIdentitySourceConfigurationOpenIdConnectConfigurationTokenSelectionAccessTokenOnly
-  >?
-  accessTokenOnly;
+  final List<VerifiedpermissionsIdentitySourceAccessTokenOnly>? accessTokenOnly;
 
-  final List<
-    VerifiedpermissionsIdentitySourceConfigurationOpenIdConnectConfigurationTokenSelectionIdentityTokenOnly
-  >?
+  final List<VerifiedpermissionsIdentitySourceIdentityTokenOnly>?
   identityTokenOnly;
 
   Map<String, Object?> encode() => {
@@ -164,8 +152,8 @@ final class VerifiedpermissionsIdentitySourceConfigurationOpenIdConnectConfigura
 /// Typed helper for the `configuration.open_id_connect_configuration.token_selection.access_token_only` block of
 /// `aws_verifiedpermissions_identity_source` (derived from provider schema).
 @immutable
-final class VerifiedpermissionsIdentitySourceConfigurationOpenIdConnectConfigurationTokenSelectionAccessTokenOnly {
-  const VerifiedpermissionsIdentitySourceConfigurationOpenIdConnectConfigurationTokenSelectionAccessTokenOnly({
+final class VerifiedpermissionsIdentitySourceAccessTokenOnly {
+  const VerifiedpermissionsIdentitySourceAccessTokenOnly({
     this.audiences,
     this.principalIdClaim,
   });
@@ -183,8 +171,8 @@ final class VerifiedpermissionsIdentitySourceConfigurationOpenIdConnectConfigura
 /// Typed helper for the `configuration.open_id_connect_configuration.token_selection.identity_token_only` block of
 /// `aws_verifiedpermissions_identity_source` (derived from provider schema).
 @immutable
-final class VerifiedpermissionsIdentitySourceConfigurationOpenIdConnectConfigurationTokenSelectionIdentityTokenOnly {
-  const VerifiedpermissionsIdentitySourceConfigurationOpenIdConnectConfigurationTokenSelectionIdentityTokenOnly({
+final class VerifiedpermissionsIdentitySourceIdentityTokenOnly {
+  const VerifiedpermissionsIdentitySourceIdentityTokenOnly({
     this.clientIds,
     this.principalIdClaim,
   });

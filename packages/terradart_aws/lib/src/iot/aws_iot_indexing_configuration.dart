@@ -17,20 +17,12 @@ final class IotIndexingConfigurationThingGroupIndexingConfiguration {
     this.managedField,
   });
 
-  final TfArg<
-    IotIndexingConfigurationThingGroupIndexingConfigurationThingGroupIndexingMode
-  >
+  final TfArg<IotIndexingConfigurationThingGroupIndexingMode>
   thingGroupIndexingMode;
 
-  final List<
-    IotIndexingConfigurationThingGroupIndexingConfigurationCustomField
-  >?
-  customField;
+  final List<IotIndexingConfigurationCustomField>? customField;
 
-  final List<
-    IotIndexingConfigurationThingGroupIndexingConfigurationManagedField
-  >?
-  managedField;
+  final List<IotIndexingConfigurationManagedField>? managedField;
 
   Map<String, Object?> encode() => {
     'thing_group_indexing_mode': thingGroupIndexingMode.toTfJson(),
@@ -42,33 +34,25 @@ final class IotIndexingConfigurationThingGroupIndexingConfiguration {
 }
 
 /// `thing_group_indexing_mode` — derived from the provider schema description.
-enum IotIndexingConfigurationThingGroupIndexingConfigurationThingGroupIndexingMode
-    implements TerraformEnum {
+enum IotIndexingConfigurationThingGroupIndexingMode implements TerraformEnum {
   off('OFF'),
   on('ON');
 
-  const IotIndexingConfigurationThingGroupIndexingConfigurationThingGroupIndexingMode(
-    this.terraformValue,
-  );
+  const IotIndexingConfigurationThingGroupIndexingMode(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `thing_group_indexing_configuration.custom_field` block of
 /// `aws_iot_indexing_configuration` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class IotIndexingConfigurationThingGroupIndexingConfigurationCustomField {
-  const IotIndexingConfigurationThingGroupIndexingConfigurationCustomField({
-    this.name,
-    this.type,
-  });
+final class IotIndexingConfigurationCustomField {
+  const IotIndexingConfigurationCustomField({this.name, this.type});
 
   final TfArg<String>? name;
 
-  final TfArg<
-    IotIndexingConfigurationThingGroupIndexingConfigurationCustomFieldType
-  >?
-  type;
+  final TfArg<IotIndexingConfigurationType>? type;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
@@ -77,53 +61,31 @@ final class IotIndexingConfigurationThingGroupIndexingConfigurationCustomField {
 }
 
 /// `type` — derived from the provider schema description.
-enum IotIndexingConfigurationThingGroupIndexingConfigurationCustomFieldType
-    implements TerraformEnum {
+enum IotIndexingConfigurationType implements TerraformEnum {
   number('Number'),
   string('String'),
   boolean('Boolean');
 
-  const IotIndexingConfigurationThingGroupIndexingConfigurationCustomFieldType(
-    this.terraformValue,
-  );
+  const IotIndexingConfigurationType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `thing_group_indexing_configuration.managed_field` block of
 /// `aws_iot_indexing_configuration` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class IotIndexingConfigurationThingGroupIndexingConfigurationManagedField {
-  const IotIndexingConfigurationThingGroupIndexingConfigurationManagedField({
-    this.name,
-    this.type,
-  });
+final class IotIndexingConfigurationManagedField {
+  const IotIndexingConfigurationManagedField({this.name, this.type});
 
   final TfArg<String>? name;
 
-  final TfArg<
-    IotIndexingConfigurationThingGroupIndexingConfigurationManagedFieldType
-  >?
-  type;
+  final TfArg<IotIndexingConfigurationType>? type;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'type': ?type?.toTfJson(),
   };
-}
-
-/// `type` — derived from the provider schema description.
-enum IotIndexingConfigurationThingGroupIndexingConfigurationManagedFieldType
-    implements TerraformEnum {
-  number('Number'),
-  string('String'),
-  boolean('Boolean');
-
-  const IotIndexingConfigurationThingGroupIndexingConfigurationManagedFieldType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `thing_indexing_configuration` block of
@@ -140,33 +102,22 @@ final class IotIndexingConfigurationThingIndexingConfiguration {
     this.managedField,
   });
 
-  final TfArg<
-    IotIndexingConfigurationThingIndexingConfigurationDeviceDefenderIndexingMode
-  >?
+  final TfArg<IotIndexingConfigurationDeviceDefenderIndexingMode>?
   deviceDefenderIndexingMode;
 
-  final TfArg<
-    IotIndexingConfigurationThingIndexingConfigurationNamedShadowIndexingMode
-  >?
+  final TfArg<IotIndexingConfigurationNamedShadowIndexingMode>?
   namedShadowIndexingMode;
 
-  final TfArg<
-    IotIndexingConfigurationThingIndexingConfigurationThingConnectivityIndexingMode
-  >?
+  final TfArg<IotIndexingConfigurationThingConnectivityIndexingMode>?
   thingConnectivityIndexingMode;
 
-  final TfArg<
-    IotIndexingConfigurationThingIndexingConfigurationThingIndexingMode
-  >
-  thingIndexingMode;
+  final TfArg<IotIndexingConfigurationThingIndexingMode> thingIndexingMode;
 
-  final List<IotIndexingConfigurationThingIndexingConfigurationCustomField>?
-  customField;
+  final List<IotIndexingConfigurationCustomField>? customField;
 
-  final IotIndexingConfigurationThingIndexingConfigurationFilter? filter;
+  final IotIndexingConfigurationFilter? filter;
 
-  final List<IotIndexingConfigurationThingIndexingConfigurationManagedField>?
-  managedField;
+  final List<IotIndexingConfigurationManagedField>? managedField;
 
   Map<String, Object?> encode() => {
     'device_defender_indexing_mode': ?deviceDefenderIndexingMode?.toTfJson(),
@@ -183,38 +134,33 @@ final class IotIndexingConfigurationThingIndexingConfiguration {
 }
 
 /// `device_defender_indexing_mode` — derived from the provider schema description.
-enum IotIndexingConfigurationThingIndexingConfigurationDeviceDefenderIndexingMode
+enum IotIndexingConfigurationDeviceDefenderIndexingMode
     implements TerraformEnum {
   off('OFF'),
   violations('VIOLATIONS');
 
-  const IotIndexingConfigurationThingIndexingConfigurationDeviceDefenderIndexingMode(
-    this.terraformValue,
-  );
+  const IotIndexingConfigurationDeviceDefenderIndexingMode(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `named_shadow_indexing_mode` — derived from the provider schema description.
-enum IotIndexingConfigurationThingIndexingConfigurationNamedShadowIndexingMode
-    implements TerraformEnum {
+enum IotIndexingConfigurationNamedShadowIndexingMode implements TerraformEnum {
   off('OFF'),
   on('ON');
 
-  const IotIndexingConfigurationThingIndexingConfigurationNamedShadowIndexingMode(
-    this.terraformValue,
-  );
+  const IotIndexingConfigurationNamedShadowIndexingMode(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `thing_connectivity_indexing_mode` — derived from the provider schema description.
-enum IotIndexingConfigurationThingIndexingConfigurationThingConnectivityIndexingMode
+enum IotIndexingConfigurationThingConnectivityIndexingMode
     implements TerraformEnum {
   off('OFF'),
   status('STATUS');
 
-  const IotIndexingConfigurationThingIndexingConfigurationThingConnectivityIndexingMode(
+  const IotIndexingConfigurationThingConnectivityIndexingMode(
     this.terraformValue,
   );
   @override
@@ -222,51 +168,12 @@ enum IotIndexingConfigurationThingIndexingConfigurationThingConnectivityIndexing
 }
 
 /// `thing_indexing_mode` — derived from the provider schema description.
-enum IotIndexingConfigurationThingIndexingConfigurationThingIndexingMode
-    implements TerraformEnum {
+enum IotIndexingConfigurationThingIndexingMode implements TerraformEnum {
   off('OFF'),
   registry('REGISTRY'),
   registryAndShadow('REGISTRY_AND_SHADOW');
 
-  const IotIndexingConfigurationThingIndexingConfigurationThingIndexingMode(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `thing_indexing_configuration.custom_field` block of
-/// `aws_iot_indexing_configuration` (derived from provider schema).
-@immutable
-final class IotIndexingConfigurationThingIndexingConfigurationCustomField {
-  const IotIndexingConfigurationThingIndexingConfigurationCustomField({
-    this.name,
-    this.type,
-  });
-
-  final TfArg<String>? name;
-
-  final TfArg<
-    IotIndexingConfigurationThingIndexingConfigurationCustomFieldType
-  >?
-  type;
-
-  Map<String, Object?> encode() => {
-    'name': ?name?.toTfJson(),
-    'type': ?type?.toTfJson(),
-  };
-}
-
-/// `type` — derived from the provider schema description.
-enum IotIndexingConfigurationThingIndexingConfigurationCustomFieldType
-    implements TerraformEnum {
-  number('Number'),
-  string('String'),
-  boolean('Boolean');
-
-  const IotIndexingConfigurationThingIndexingConfigurationCustomFieldType(
-    this.terraformValue,
-  );
+  const IotIndexingConfigurationThingIndexingMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -274,52 +181,14 @@ enum IotIndexingConfigurationThingIndexingConfigurationCustomFieldType
 /// Typed helper for the `thing_indexing_configuration.filter` block of
 /// `aws_iot_indexing_configuration` (derived from provider schema).
 @immutable
-final class IotIndexingConfigurationThingIndexingConfigurationFilter {
-  const IotIndexingConfigurationThingIndexingConfigurationFilter({
-    this.namedShadowNames,
-  });
+final class IotIndexingConfigurationFilter {
+  const IotIndexingConfigurationFilter({this.namedShadowNames});
 
   final TfArg<List<String>>? namedShadowNames;
 
   Map<String, Object?> encode() => {
     'named_shadow_names': ?namedShadowNames?.toTfJson(),
   };
-}
-
-/// Typed helper for the `thing_indexing_configuration.managed_field` block of
-/// `aws_iot_indexing_configuration` (derived from provider schema).
-@immutable
-final class IotIndexingConfigurationThingIndexingConfigurationManagedField {
-  const IotIndexingConfigurationThingIndexingConfigurationManagedField({
-    this.name,
-    this.type,
-  });
-
-  final TfArg<String>? name;
-
-  final TfArg<
-    IotIndexingConfigurationThingIndexingConfigurationManagedFieldType
-  >?
-  type;
-
-  Map<String, Object?> encode() => {
-    'name': ?name?.toTfJson(),
-    'type': ?type?.toTfJson(),
-  };
-}
-
-/// `type` — derived from the provider schema description.
-enum IotIndexingConfigurationThingIndexingConfigurationManagedFieldType
-    implements TerraformEnum {
-  number('Number'),
-  string('String'),
-  boolean('Boolean');
-
-  const IotIndexingConfigurationThingIndexingConfigurationManagedFieldType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_iot_indexing_configuration`.

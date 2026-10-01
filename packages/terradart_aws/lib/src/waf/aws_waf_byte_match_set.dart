@@ -24,7 +24,7 @@ final class WafByteMatchSetByteMatchTuples {
 
   final TfArg<String> textTransformation;
 
-  final WafByteMatchSetByteMatchTuplesFieldToMatch fieldToMatch;
+  final WafByteMatchSetFieldToMatch fieldToMatch;
 
   Map<String, Object?> encode() => {
     'positional_constraint': positionalConstraint.toTfJson(),
@@ -37,15 +37,12 @@ final class WafByteMatchSetByteMatchTuples {
 /// Typed helper for the `byte_match_tuples.field_to_match` block of
 /// `aws_waf_byte_match_set` (derived from provider schema).
 @immutable
-final class WafByteMatchSetByteMatchTuplesFieldToMatch {
-  const WafByteMatchSetByteMatchTuplesFieldToMatch({
-    this.data,
-    required this.type,
-  });
+final class WafByteMatchSetFieldToMatch {
+  const WafByteMatchSetFieldToMatch({this.data, required this.type});
 
   final TfArg<String>? data;
 
-  final TfArg<WafByteMatchSetByteMatchTuplesFieldToMatchType> type;
+  final TfArg<WafByteMatchSetType> type;
 
   Map<String, Object?> encode() => {
     'data': ?data?.toTfJson(),
@@ -54,7 +51,7 @@ final class WafByteMatchSetByteMatchTuplesFieldToMatch {
 }
 
 /// `type` — derived from the provider schema description.
-enum WafByteMatchSetByteMatchTuplesFieldToMatchType implements TerraformEnum {
+enum WafByteMatchSetType implements TerraformEnum {
   uri('URI'),
   queryString('QUERY_STRING'),
   header('HEADER'),
@@ -63,7 +60,7 @@ enum WafByteMatchSetByteMatchTuplesFieldToMatchType implements TerraformEnum {
   singleQueryArg('SINGLE_QUERY_ARG'),
   allQueryArgs('ALL_QUERY_ARGS');
 
-  const WafByteMatchSetByteMatchTuplesFieldToMatchType(this.terraformValue);
+  const WafByteMatchSetType(this.terraformValue);
   @override
   final String terraformValue;
 }

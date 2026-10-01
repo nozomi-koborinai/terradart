@@ -36,8 +36,7 @@ final class ComputeZoneVmExtensionPolicyExtensionPolicies {
 final class ComputeZoneVmExtensionPolicyInstanceSelectors {
   const ComputeZoneVmExtensionPolicyInstanceSelectors({this.labelSelector});
 
-  final ComputeZoneVmExtensionPolicyInstanceSelectorsLabelSelector?
-  labelSelector;
+  final ComputeZoneVmExtensionPolicyLabelSelector? labelSelector;
 
   Map<String, Object?> encode() => {'label_selector': ?labelSelector?.encode()};
 }
@@ -45,10 +44,8 @@ final class ComputeZoneVmExtensionPolicyInstanceSelectors {
 /// Typed helper for the `instance_selectors.label_selector` block of
 /// `google_compute_zone_vm_extension_policy` (derived from provider schema).
 @immutable
-final class ComputeZoneVmExtensionPolicyInstanceSelectorsLabelSelector {
-  const ComputeZoneVmExtensionPolicyInstanceSelectorsLabelSelector({
-    this.inclusionLabels,
-  });
+final class ComputeZoneVmExtensionPolicyLabelSelector {
+  const ComputeZoneVmExtensionPolicyLabelSelector({this.inclusionLabels});
 
   final TfArg<Map<String, String>>? inclusionLabels;
 

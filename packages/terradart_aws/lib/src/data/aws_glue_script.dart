@@ -47,7 +47,7 @@ final class DataGlueScriptDagNode {
 
   final TfArg<String> nodeType;
 
-  final List<DataGlueScriptDagNodeArgs> args;
+  final List<DataGlueScriptArgs> args;
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
@@ -60,8 +60,8 @@ final class DataGlueScriptDagNode {
 /// Typed helper for the `dag_node.args` block of
 /// `aws_glue_script` (derived from provider schema).
 @immutable
-final class DataGlueScriptDagNodeArgs {
-  const DataGlueScriptDagNodeArgs({
+final class DataGlueScriptArgs {
+  const DataGlueScriptArgs({
     required this.name,
     this.param,
     required this.value,

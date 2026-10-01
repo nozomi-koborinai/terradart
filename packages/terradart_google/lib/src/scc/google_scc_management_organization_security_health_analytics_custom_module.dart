@@ -40,17 +40,17 @@ final class SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomCo
   final TfArg<String> recommendation;
 
   final TfArg<
-    SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfigSeverity
+    SccManagementOrganizationSecurityHealthAnalyticsCustomModuleSeverity
   >
   severity;
 
-  final SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfigCustomOutput?
+  final SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomOutput?
   customOutput;
 
-  final SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfigPredicate
+  final SccManagementOrganizationSecurityHealthAnalyticsCustomModulePredicate
   predicate;
 
-  final SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfigResourceSelector
+  final SccManagementOrganizationSecurityHealthAnalyticsCustomModuleResourceSelector
   resourceSelector;
 
   Map<String, Object?> encode() => {
@@ -64,14 +64,14 @@ final class SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomCo
 }
 
 /// `severity` — derived from the provider schema description.
-enum SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfigSeverity
+enum SccManagementOrganizationSecurityHealthAnalyticsCustomModuleSeverity
     implements TerraformEnum {
   critical('CRITICAL'),
   high('HIGH'),
   medium('MEDIUM'),
   low('LOW');
 
-  const SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfigSeverity(
+  const SccManagementOrganizationSecurityHealthAnalyticsCustomModuleSeverity(
     this.terraformValue,
   );
   @override
@@ -81,13 +81,13 @@ enum SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfigSev
 /// Typed helper for the `custom_config.custom_output` block of
 /// `google_scc_management_organization_security_health_analytics_custom_module` (derived from provider schema).
 @immutable
-final class SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfigCustomOutput {
-  const SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfigCustomOutput({
+final class SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomOutput {
+  const SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomOutput({
     this.properties,
   });
 
   final List<
-    SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfigCustomOutputProperties
+    SccManagementOrganizationSecurityHealthAnalyticsCustomModuleProperties
   >?
   properties;
 
@@ -100,15 +100,15 @@ final class SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomCo
 /// Typed helper for the `custom_config.custom_output.properties` block of
 /// `google_scc_management_organization_security_health_analytics_custom_module` (derived from provider schema).
 @immutable
-final class SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfigCustomOutputProperties {
-  const SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfigCustomOutputProperties({
+final class SccManagementOrganizationSecurityHealthAnalyticsCustomModuleProperties {
+  const SccManagementOrganizationSecurityHealthAnalyticsCustomModuleProperties({
     this.name,
     this.valueExpression,
   });
 
   final TfArg<String>? name;
 
-  final SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfigCustomOutputPropertiesValueExpression?
+  final SccManagementOrganizationSecurityHealthAnalyticsCustomModuleValueExpression?
   valueExpression;
 
   Map<String, Object?> encode() => {
@@ -120,8 +120,8 @@ final class SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomCo
 /// Typed helper for the `custom_config.custom_output.properties.value_expression` block of
 /// `google_scc_management_organization_security_health_analytics_custom_module` (derived from provider schema).
 @immutable
-final class SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfigCustomOutputPropertiesValueExpression {
-  const SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfigCustomOutputPropertiesValueExpression({
+final class SccManagementOrganizationSecurityHealthAnalyticsCustomModuleValueExpression {
+  const SccManagementOrganizationSecurityHealthAnalyticsCustomModuleValueExpression({
     this.description,
     required this.expression,
     this.location,
@@ -147,8 +147,8 @@ final class SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomCo
 /// Typed helper for the `custom_config.predicate` block of
 /// `google_scc_management_organization_security_health_analytics_custom_module` (derived from provider schema).
 @immutable
-final class SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfigPredicate {
-  const SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfigPredicate({
+final class SccManagementOrganizationSecurityHealthAnalyticsCustomModulePredicate {
+  const SccManagementOrganizationSecurityHealthAnalyticsCustomModulePredicate({
     this.description,
     required this.expression,
     this.location,
@@ -174,8 +174,8 @@ final class SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomCo
 /// Typed helper for the `custom_config.resource_selector` block of
 /// `google_scc_management_organization_security_health_analytics_custom_module` (derived from provider schema).
 @immutable
-final class SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfigResourceSelector {
-  const SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfigResourceSelector({
+final class SccManagementOrganizationSecurityHealthAnalyticsCustomModuleResourceSelector {
+  const SccManagementOrganizationSecurityHealthAnalyticsCustomModuleResourceSelector({
     required this.resourceTypes,
   });
 

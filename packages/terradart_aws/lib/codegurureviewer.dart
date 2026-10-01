@@ -6,10 +6,10 @@ library;
 export 'src/codegurureviewer/aws_codegurureviewer_repository_association.dart'
     show
         AwsCodegurureviewerRepositoryAssociation,
+        CodegurureviewerRepositoryAssociationBitbucket,
+        CodegurureviewerRepositoryAssociationCodecommit,
+        CodegurureviewerRepositoryAssociationEncryptionOption,
+        CodegurureviewerRepositoryAssociationGithubEnterpriseServer,
         CodegurureviewerRepositoryAssociationKmsKeyDetails,
-        CodegurureviewerRepositoryAssociationKmsKeyDetailsEncryptionOption,
         CodegurureviewerRepositoryAssociationRepository,
-        CodegurureviewerRepositoryAssociationRepositoryBitbucket,
-        CodegurureviewerRepositoryAssociationRepositoryCodecommit,
-        CodegurureviewerRepositoryAssociationRepositoryGithubEnterpriseServer,
-        CodegurureviewerRepositoryAssociationRepositoryS3Bucket;
+        CodegurureviewerRepositoryAssociationS3Bucket;

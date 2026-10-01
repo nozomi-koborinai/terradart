@@ -15,7 +15,7 @@ final class ChronicleParserLowCode {
 
   final TfArg<String>? log;
 
-  final ChronicleParserLowCodeFieldExtractors? fieldExtractors;
+  final ChronicleParserFieldExtractors? fieldExtractors;
 
   Map<String, Object?> encode() => {
     'log': ?log?.toTfJson(),
@@ -26,8 +26,8 @@ final class ChronicleParserLowCode {
 /// Typed helper for the `low_code.field_extractors` block of
 /// `google_chronicle_parser` (derived from provider schema).
 @immutable
-final class ChronicleParserLowCodeFieldExtractors {
-  const ChronicleParserLowCodeFieldExtractors({
+final class ChronicleParserFieldExtractors {
+  const ChronicleParserFieldExtractors({
     this.appendRepeatedFields,
     this.logFormat,
     this.extractors,
@@ -38,9 +38,9 @@ final class ChronicleParserLowCodeFieldExtractors {
 
   final TfArg<String>? logFormat;
 
-  final List<ChronicleParserLowCodeFieldExtractorsExtractors>? extractors;
+  final List<ChronicleParserExtractors>? extractors;
 
-  final ChronicleParserLowCodeFieldExtractorsPreprocessConfig? preprocessConfig;
+  final ChronicleParserPreprocessConfig? preprocessConfig;
 
   Map<String, Object?> encode() => {
     'append_repeated_fields': ?appendRepeatedFields?.toTfJson(),
@@ -54,8 +54,8 @@ final class ChronicleParserLowCodeFieldExtractors {
 /// Typed helper for the `low_code.field_extractors.extractors` block of
 /// `google_chronicle_parser` (derived from provider schema).
 @immutable
-final class ChronicleParserLowCodeFieldExtractorsExtractors {
-  const ChronicleParserLowCodeFieldExtractorsExtractors({
+final class ChronicleParserExtractors {
+  const ChronicleParserExtractors({
     this.destinationPath,
     this.fieldPath,
     this.preconditionOp,
@@ -89,11 +89,8 @@ final class ChronicleParserLowCodeFieldExtractorsExtractors {
 /// Typed helper for the `low_code.field_extractors.preprocess_config` block of
 /// `google_chronicle_parser` (derived from provider schema).
 @immutable
-final class ChronicleParserLowCodeFieldExtractorsPreprocessConfig {
-  const ChronicleParserLowCodeFieldExtractorsPreprocessConfig({
-    this.grokRegex,
-    this.target,
-  });
+final class ChronicleParserPreprocessConfig {
+  const ChronicleParserPreprocessConfig({this.grokRegex, this.target});
 
   final TfArg<String>? grokRegex;
 

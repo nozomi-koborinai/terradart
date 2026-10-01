@@ -84,7 +84,7 @@ final class ApiGatewayApiConfigSpecGrpcServices
 final class ApiGatewayApiConfigGatewayConfig {
   const ApiGatewayApiConfigGatewayConfig({required this.backendConfig});
 
-  final ApiGatewayApiConfigGatewayConfigBackendConfig backendConfig;
+  final ApiGatewayApiConfigBackendConfig backendConfig;
 
   Map<String, Object?> encode() => {'backend_config': backendConfig.encode()};
 }
@@ -92,10 +92,8 @@ final class ApiGatewayApiConfigGatewayConfig {
 /// Typed helper for the `gateway_config.backend_config` block of
 /// `google_api_gateway_api_config` (derived from provider schema).
 @immutable
-final class ApiGatewayApiConfigGatewayConfigBackendConfig {
-  const ApiGatewayApiConfigGatewayConfigBackendConfig({
-    required this.googleServiceAccount,
-  });
+final class ApiGatewayApiConfigBackendConfig {
+  const ApiGatewayApiConfigBackendConfig({required this.googleServiceAccount});
 
   final TfArg<String> googleServiceAccount;
 
@@ -113,9 +111,9 @@ final class ApiGatewayApiConfigGrpcServices {
     this.source,
   });
 
-  final ApiGatewayApiConfigGrpcServicesFileDescriptorSet fileDescriptorSet;
+  final ApiGatewayApiConfigFileDescriptorSet fileDescriptorSet;
 
-  final List<ApiGatewayApiConfigGrpcServicesSource>? source;
+  final List<ApiGatewayApiConfigSource>? source;
 
   Map<String, Object?> encode() => {
     'file_descriptor_set': fileDescriptorSet.encode(),
@@ -126,8 +124,8 @@ final class ApiGatewayApiConfigGrpcServices {
 /// Typed helper for the `grpc_services.file_descriptor_set` block of
 /// `google_api_gateway_api_config` (derived from provider schema).
 @immutable
-final class ApiGatewayApiConfigGrpcServicesFileDescriptorSet {
-  const ApiGatewayApiConfigGrpcServicesFileDescriptorSet({
+final class ApiGatewayApiConfigFileDescriptorSet {
+  const ApiGatewayApiConfigFileDescriptorSet({
     required this.contents,
     required this.path,
   });
@@ -145,11 +143,8 @@ final class ApiGatewayApiConfigGrpcServicesFileDescriptorSet {
 /// Typed helper for the `grpc_services.source` block of
 /// `google_api_gateway_api_config` (derived from provider schema).
 @immutable
-final class ApiGatewayApiConfigGrpcServicesSource {
-  const ApiGatewayApiConfigGrpcServicesSource({
-    required this.contents,
-    required this.path,
-  });
+final class ApiGatewayApiConfigSource {
+  const ApiGatewayApiConfigSource({required this.contents, required this.path});
 
   final TfArg<String> contents;
 
@@ -186,7 +181,7 @@ final class ApiGatewayApiConfigManagedServiceConfigs {
 final class ApiGatewayApiConfigOpenapiDocuments {
   const ApiGatewayApiConfigOpenapiDocuments({required this.document});
 
-  final ApiGatewayApiConfigOpenapiDocumentsDocument document;
+  final ApiGatewayApiConfigDocument document;
 
   Map<String, Object?> encode() => {'document': document.encode()};
 }
@@ -194,8 +189,8 @@ final class ApiGatewayApiConfigOpenapiDocuments {
 /// Typed helper for the `openapi_documents.document` block of
 /// `google_api_gateway_api_config` (derived from provider schema).
 @immutable
-final class ApiGatewayApiConfigOpenapiDocumentsDocument {
-  const ApiGatewayApiConfigOpenapiDocumentsDocument({
+final class ApiGatewayApiConfigDocument {
+  const ApiGatewayApiConfigDocument({
     required this.contents,
     required this.path,
   });

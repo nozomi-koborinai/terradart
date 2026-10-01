@@ -15,7 +15,7 @@ final class CesEvaluationGolden {
 
   final TfArg<List<String>>? evaluationExpectations;
 
-  final List<CesEvaluationGoldenTurns> turns;
+  final List<CesEvaluationTurns> turns;
 
   Map<String, Object?> encode() => {
     'evaluation_expectations': ?evaluationExpectations?.toTfJson(),
@@ -26,10 +26,10 @@ final class CesEvaluationGolden {
 /// Typed helper for the `golden.turns` block of
 /// `google_ces_evaluation` (derived from provider schema).
 @immutable
-final class CesEvaluationGoldenTurns {
-  const CesEvaluationGoldenTurns({required this.steps});
+final class CesEvaluationTurns {
+  const CesEvaluationTurns({required this.steps});
 
-  final List<CesEvaluationGoldenTurnsSteps> steps;
+  final List<CesEvaluationSteps> steps;
 
   Map<String, Object?> encode() => {
     'steps': [for (final e in steps) e.encode()],
@@ -39,18 +39,18 @@ final class CesEvaluationGoldenTurns {
 /// Typed helper for the `golden.turns.steps` block of
 /// `google_ces_evaluation` (derived from provider schema).
 @immutable
-final class CesEvaluationGoldenTurnsSteps {
-  const CesEvaluationGoldenTurnsSteps({
+final class CesEvaluationSteps {
+  const CesEvaluationSteps({
     this.agentTransfer,
     this.expectation,
     this.userInput,
   });
 
-  final CesEvaluationGoldenTurnsStepsAgentTransfer? agentTransfer;
+  final CesEvaluationAgentTransfer? agentTransfer;
 
-  final CesEvaluationGoldenTurnsStepsExpectation? expectation;
+  final CesEvaluationExpectation? expectation;
 
-  final CesEvaluationGoldenTurnsStepsUserInput? userInput;
+  final CesEvaluationUserInput? userInput;
 
   Map<String, Object?> encode() => {
     'agent_transfer': ?agentTransfer?.encode(),
@@ -61,9 +61,10 @@ final class CesEvaluationGoldenTurnsSteps {
 
 /// Typed helper for the `golden.turns.steps.agent_transfer` block of
 /// `google_ces_evaluation` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CesEvaluationGoldenTurnsStepsAgentTransfer {
-  const CesEvaluationGoldenTurnsStepsAgentTransfer({required this.targetAgent});
+final class CesEvaluationAgentTransfer {
+  const CesEvaluationAgentTransfer({required this.targetAgent});
 
   final TfArg<String> targetAgent;
 
@@ -73,8 +74,8 @@ final class CesEvaluationGoldenTurnsStepsAgentTransfer {
 /// Typed helper for the `golden.turns.steps.expectation` block of
 /// `google_ces_evaluation` (derived from provider schema).
 @immutable
-final class CesEvaluationGoldenTurnsStepsExpectation {
-  const CesEvaluationGoldenTurnsStepsExpectation({
+final class CesEvaluationExpectation {
+  const CesEvaluationExpectation({
     this.note,
     this.agentResponse,
     this.agentTransfer,
@@ -86,19 +87,17 @@ final class CesEvaluationGoldenTurnsStepsExpectation {
 
   final TfArg<String>? note;
 
-  final CesEvaluationGoldenTurnsStepsExpectationAgentResponse? agentResponse;
+  final CesEvaluationAgentResponse? agentResponse;
 
-  final CesEvaluationGoldenTurnsStepsExpectationAgentTransfer? agentTransfer;
+  final CesEvaluationExpectationAgentTransfer? agentTransfer;
 
-  final CesEvaluationGoldenTurnsStepsExpectationMockToolResponse?
-  mockToolResponse;
+  final CesEvaluationExpectationMockToolResponse? mockToolResponse;
 
-  final CesEvaluationGoldenTurnsStepsExpectationToolCall? toolCall;
+  final CesEvaluationToolCall? toolCall;
 
-  final CesEvaluationGoldenTurnsStepsExpectationToolResponse? toolResponse;
+  final CesEvaluationToolResponse? toolResponse;
 
-  final CesEvaluationGoldenTurnsStepsExpectationUpdatedVariables?
-  updatedVariables;
+  final CesEvaluationUpdatedVariables? updatedVariables;
 
   Map<String, Object?> encode() => {
     'note': ?note?.toTfJson(),
@@ -111,19 +110,16 @@ final class CesEvaluationGoldenTurnsStepsExpectation {
   };
 }
 
-/// Typed helper for the `golden.turns.steps.expectation.agent_response` block of
+/// Typed helper for the `scenario.scenario_expectations.agent_response` block of
 /// `google_ces_evaluation` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CesEvaluationGoldenTurnsStepsExpectationAgentResponse {
-  const CesEvaluationGoldenTurnsStepsExpectationAgentResponse({
-    this.role,
-    this.chunks,
-  });
+final class CesEvaluationAgentResponse {
+  const CesEvaluationAgentResponse({this.role, this.chunks});
 
   final TfArg<String>? role;
 
-  final List<CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunks>?
-  chunks;
+  final List<CesEvaluationChunks>? chunks;
 
   Map<String, Object?> encode() => {
     'role': ?role?.toTfJson(),
@@ -131,11 +127,12 @@ final class CesEvaluationGoldenTurnsStepsExpectationAgentResponse {
   };
 }
 
-/// Typed helper for the `golden.turns.steps.expectation.agent_response.chunks` block of
+/// Typed helper for the `scenario.scenario_expectations.agent_response.chunks` block of
 /// `google_ces_evaluation` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunks {
-  const CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunks({
+final class CesEvaluationChunks {
+  const CesEvaluationChunks({
     this.text,
     this.updatedVariables,
     this.agentTransfer,
@@ -149,18 +146,15 @@ final class CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunks {
 
   final TfArg<Map<String, String>>? updatedVariables;
 
-  final CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksAgentTransfer?
-  agentTransfer;
+  final CesEvaluationAgentTransfer? agentTransfer;
 
-  final CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksBlob? blob;
+  final CesEvaluationBlob? blob;
 
-  final CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksImage? image;
+  final CesEvaluationImage? image;
 
-  final CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksToolCall?
-  toolCall;
+  final CesEvaluationToolCall? toolCall;
 
-  final CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksToolResponse?
-  toolResponse;
+  final CesEvaluationToolResponse? toolResponse;
 
   Map<String, Object?> encode() => {
     'text': ?text?.toTfJson(),
@@ -173,27 +167,12 @@ final class CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunks {
   };
 }
 
-/// Typed helper for the `golden.turns.steps.expectation.agent_response.chunks.agent_transfer` block of
+/// Typed helper for the `golden.turns.steps.user_input.blob` block of
 /// `google_ces_evaluation` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksAgentTransfer {
-  const CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksAgentTransfer({
-    required this.targetAgent,
-  });
-
-  final TfArg<String> targetAgent;
-
-  Map<String, Object?> encode() => {'target_agent': targetAgent.toTfJson()};
-}
-
-/// Typed helper for the `golden.turns.steps.expectation.agent_response.chunks.blob` block of
-/// `google_ces_evaluation` (derived from provider schema).
-@immutable
-final class CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksBlob {
-  const CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksBlob({
-    required this.data,
-    required this.mimeType,
-  });
+final class CesEvaluationBlob {
+  const CesEvaluationBlob({required this.data, required this.mimeType});
 
   final TfArg<String> data;
 
@@ -205,14 +184,12 @@ final class CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksBlob {
   };
 }
 
-/// Typed helper for the `golden.turns.steps.expectation.agent_response.chunks.image` block of
+/// Typed helper for the `golden.turns.steps.user_input.image` block of
 /// `google_ces_evaluation` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksImage {
-  const CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksImage({
-    required this.data,
-    required this.mimeType,
-  });
+final class CesEvaluationImage {
+  const CesEvaluationImage({required this.data, required this.mimeType});
 
   final TfArg<String> data;
 
@@ -224,11 +201,12 @@ final class CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksImage {
   };
 }
 
-/// Typed helper for the `golden.turns.steps.expectation.agent_response.chunks.tool_call` block of
+/// Typed helper for the `golden.turns.steps.expectation.tool_call` block of
 /// `google_ces_evaluation` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksToolCall {
-  const CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksToolCall({
+final class CesEvaluationToolCall {
+  const CesEvaluationToolCall({
     this.args,
     this.id,
     this.tool,
@@ -241,8 +219,7 @@ final class CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksToolCall 
 
   final TfArg<String>? tool;
 
-  final CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksToolCallToolsetTool?
-  toolsetTool;
+  final CesEvaluationMockToolResponseToolsetTool? toolsetTool;
 
   Map<String, Object?> encode() => {
     'args': ?args?.toTfJson(),
@@ -252,11 +229,12 @@ final class CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksToolCall 
   };
 }
 
-/// Typed helper for the `golden.turns.steps.expectation.agent_response.chunks.tool_call.toolset_tool` block of
+/// Typed helper for the `golden.turns.steps.expectation.mock_tool_response.toolset_tool` block of
 /// `google_ces_evaluation` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksToolCallToolsetTool {
-  const CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksToolCallToolsetTool({
+final class CesEvaluationMockToolResponseToolsetTool {
+  const CesEvaluationMockToolResponseToolsetTool({
     this.toolId,
     required this.toolset,
   });
@@ -271,11 +249,12 @@ final class CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksToolCallT
   };
 }
 
-/// Typed helper for the `golden.turns.steps.expectation.agent_response.chunks.tool_response` block of
+/// Typed helper for the `golden.turns.steps.expectation.tool_response` block of
 /// `google_ces_evaluation` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksToolResponse {
-  const CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksToolResponse({
+final class CesEvaluationToolResponse {
+  const CesEvaluationToolResponse({
     this.id,
     this.response,
     this.tool,
@@ -288,8 +267,7 @@ final class CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksToolRespo
 
   final TfArg<String>? tool;
 
-  final CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksToolResponseToolsetTool?
-  toolsetTool;
+  final CesEvaluationMockToolResponseToolsetTool? toolsetTool;
 
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
@@ -299,30 +277,11 @@ final class CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksToolRespo
   };
 }
 
-/// Typed helper for the `golden.turns.steps.expectation.agent_response.chunks.tool_response.toolset_tool` block of
-/// `google_ces_evaluation` (derived from provider schema).
-@immutable
-final class CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksToolResponseToolsetTool {
-  const CesEvaluationGoldenTurnsStepsExpectationAgentResponseChunksToolResponseToolsetTool({
-    this.toolId,
-    required this.toolset,
-  });
-
-  final TfArg<String>? toolId;
-
-  final TfArg<String> toolset;
-
-  Map<String, Object?> encode() => {
-    'tool_id': ?toolId?.toTfJson(),
-    'toolset': toolset.toTfJson(),
-  };
-}
-
 /// Typed helper for the `golden.turns.steps.expectation.agent_transfer` block of
 /// `google_ces_evaluation` (derived from provider schema).
 @immutable
-final class CesEvaluationGoldenTurnsStepsExpectationAgentTransfer {
-  const CesEvaluationGoldenTurnsStepsExpectationAgentTransfer({
+final class CesEvaluationExpectationAgentTransfer {
+  const CesEvaluationExpectationAgentTransfer({
     this.displayName,
     this.targetAgent,
   });
@@ -340,8 +299,8 @@ final class CesEvaluationGoldenTurnsStepsExpectationAgentTransfer {
 /// Typed helper for the `golden.turns.steps.expectation.mock_tool_response` block of
 /// `google_ces_evaluation` (derived from provider schema).
 @immutable
-final class CesEvaluationGoldenTurnsStepsExpectationMockToolResponse {
-  const CesEvaluationGoldenTurnsStepsExpectationMockToolResponse({
+final class CesEvaluationExpectationMockToolResponse {
+  const CesEvaluationExpectationMockToolResponse({
     this.id,
     this.response,
     this.tool,
@@ -354,135 +313,21 @@ final class CesEvaluationGoldenTurnsStepsExpectationMockToolResponse {
 
   final TfArg<String>? tool;
 
-  final CesEvaluationGoldenTurnsStepsExpectationMockToolResponseToolsetTool?
-  toolsetTool;
+  final CesEvaluationMockToolResponseToolsetTool? toolsetTool;
 
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'response': ?response?.toTfJson(),
     'tool': ?tool?.toTfJson(),
     'toolset_tool': ?toolsetTool?.encode(),
-  };
-}
-
-/// Typed helper for the `golden.turns.steps.expectation.mock_tool_response.toolset_tool` block of
-/// `google_ces_evaluation` (derived from provider schema).
-@immutable
-final class CesEvaluationGoldenTurnsStepsExpectationMockToolResponseToolsetTool {
-  const CesEvaluationGoldenTurnsStepsExpectationMockToolResponseToolsetTool({
-    this.toolId,
-    required this.toolset,
-  });
-
-  final TfArg<String>? toolId;
-
-  final TfArg<String> toolset;
-
-  Map<String, Object?> encode() => {
-    'tool_id': ?toolId?.toTfJson(),
-    'toolset': toolset.toTfJson(),
-  };
-}
-
-/// Typed helper for the `golden.turns.steps.expectation.tool_call` block of
-/// `google_ces_evaluation` (derived from provider schema).
-@immutable
-final class CesEvaluationGoldenTurnsStepsExpectationToolCall {
-  const CesEvaluationGoldenTurnsStepsExpectationToolCall({
-    this.args,
-    this.id,
-    this.tool,
-    this.toolsetTool,
-  });
-
-  final TfArg<Map<String, String>>? args;
-
-  final TfArg<String>? id;
-
-  final TfArg<String>? tool;
-
-  final CesEvaluationGoldenTurnsStepsExpectationToolCallToolsetTool?
-  toolsetTool;
-
-  Map<String, Object?> encode() => {
-    'args': ?args?.toTfJson(),
-    'id': ?id?.toTfJson(),
-    'tool': ?tool?.toTfJson(),
-    'toolset_tool': ?toolsetTool?.encode(),
-  };
-}
-
-/// Typed helper for the `golden.turns.steps.expectation.tool_call.toolset_tool` block of
-/// `google_ces_evaluation` (derived from provider schema).
-@immutable
-final class CesEvaluationGoldenTurnsStepsExpectationToolCallToolsetTool {
-  const CesEvaluationGoldenTurnsStepsExpectationToolCallToolsetTool({
-    this.toolId,
-    required this.toolset,
-  });
-
-  final TfArg<String>? toolId;
-
-  final TfArg<String> toolset;
-
-  Map<String, Object?> encode() => {
-    'tool_id': ?toolId?.toTfJson(),
-    'toolset': toolset.toTfJson(),
-  };
-}
-
-/// Typed helper for the `golden.turns.steps.expectation.tool_response` block of
-/// `google_ces_evaluation` (derived from provider schema).
-@immutable
-final class CesEvaluationGoldenTurnsStepsExpectationToolResponse {
-  const CesEvaluationGoldenTurnsStepsExpectationToolResponse({
-    this.id,
-    this.response,
-    this.tool,
-    this.toolsetTool,
-  });
-
-  final TfArg<String>? id;
-
-  final TfArg<Map<String, String>>? response;
-
-  final TfArg<String>? tool;
-
-  final CesEvaluationGoldenTurnsStepsExpectationToolResponseToolsetTool?
-  toolsetTool;
-
-  Map<String, Object?> encode() => {
-    'id': ?id?.toTfJson(),
-    'response': ?response?.toTfJson(),
-    'tool': ?tool?.toTfJson(),
-    'toolset_tool': ?toolsetTool?.encode(),
-  };
-}
-
-/// Typed helper for the `golden.turns.steps.expectation.tool_response.toolset_tool` block of
-/// `google_ces_evaluation` (derived from provider schema).
-@immutable
-final class CesEvaluationGoldenTurnsStepsExpectationToolResponseToolsetTool {
-  const CesEvaluationGoldenTurnsStepsExpectationToolResponseToolsetTool({
-    this.toolId,
-    required this.toolset,
-  });
-
-  final TfArg<String>? toolId;
-
-  final TfArg<String> toolset;
-
-  Map<String, Object?> encode() => {
-    'tool_id': ?toolId?.toTfJson(),
-    'toolset': toolset.toTfJson(),
   };
 }
 
 /// Typed helper for the `golden.turns.steps.expectation.updated_variables` block of
 /// `google_ces_evaluation` (derived from provider schema).
 @immutable
-final class CesEvaluationGoldenTurnsStepsExpectationUpdatedVariables {
-  const CesEvaluationGoldenTurnsStepsExpectationUpdatedVariables({this.notes});
+final class CesEvaluationUpdatedVariables {
+  const CesEvaluationUpdatedVariables({this.notes});
 
   final TfArg<String>? notes;
 
@@ -492,8 +337,8 @@ final class CesEvaluationGoldenTurnsStepsExpectationUpdatedVariables {
 /// Typed helper for the `golden.turns.steps.user_input` block of
 /// `google_ces_evaluation` (derived from provider schema).
 @immutable
-final class CesEvaluationGoldenTurnsStepsUserInput {
-  const CesEvaluationGoldenTurnsStepsUserInput({
+final class CesEvaluationUserInput {
+  const CesEvaluationUserInput({
     this.audio,
     this.dtmf,
     this.text,
@@ -515,13 +360,13 @@ final class CesEvaluationGoldenTurnsStepsUserInput {
 
   final TfArg<bool>? willContinue;
 
-  final CesEvaluationGoldenTurnsStepsUserInputBlob? blob;
+  final CesEvaluationBlob? blob;
 
-  final CesEvaluationGoldenTurnsStepsUserInputEvent? event;
+  final CesEvaluationEvent? event;
 
-  final CesEvaluationGoldenTurnsStepsUserInputImage? image;
+  final CesEvaluationImage? image;
 
-  final CesEvaluationGoldenTurnsStepsUserInputToolResponses? toolResponses;
+  final CesEvaluationToolResponses? toolResponses;
 
   Map<String, Object?> encode() => {
     'audio': ?audio?.toTfJson(),
@@ -536,65 +381,24 @@ final class CesEvaluationGoldenTurnsStepsUserInput {
   };
 }
 
-/// Typed helper for the `golden.turns.steps.user_input.blob` block of
-/// `google_ces_evaluation` (derived from provider schema).
-@immutable
-final class CesEvaluationGoldenTurnsStepsUserInputBlob {
-  const CesEvaluationGoldenTurnsStepsUserInputBlob({
-    required this.data,
-    required this.mimeType,
-  });
-
-  final TfArg<String> data;
-
-  final TfArg<String> mimeType;
-
-  Map<String, Object?> encode() => {
-    'data': data.toTfJson(),
-    'mime_type': mimeType.toTfJson(),
-  };
-}
-
 /// Typed helper for the `golden.turns.steps.user_input.event` block of
 /// `google_ces_evaluation` (derived from provider schema).
 @immutable
-final class CesEvaluationGoldenTurnsStepsUserInputEvent {
-  const CesEvaluationGoldenTurnsStepsUserInputEvent({required this.event});
+final class CesEvaluationEvent {
+  const CesEvaluationEvent({required this.event});
 
   final TfArg<String> event;
 
   Map<String, Object?> encode() => {'event': event.toTfJson()};
 }
 
-/// Typed helper for the `golden.turns.steps.user_input.image` block of
-/// `google_ces_evaluation` (derived from provider schema).
-@immutable
-final class CesEvaluationGoldenTurnsStepsUserInputImage {
-  const CesEvaluationGoldenTurnsStepsUserInputImage({
-    required this.data,
-    required this.mimeType,
-  });
-
-  final TfArg<String> data;
-
-  final TfArg<String> mimeType;
-
-  Map<String, Object?> encode() => {
-    'data': data.toTfJson(),
-    'mime_type': mimeType.toTfJson(),
-  };
-}
-
 /// Typed helper for the `golden.turns.steps.user_input.tool_responses` block of
 /// `google_ces_evaluation` (derived from provider schema).
 @immutable
-final class CesEvaluationGoldenTurnsStepsUserInputToolResponses {
-  const CesEvaluationGoldenTurnsStepsUserInputToolResponses({
-    this.toolResponses,
-  });
+final class CesEvaluationToolResponses {
+  const CesEvaluationToolResponses({this.toolResponses});
 
-  final List<CesEvaluationGoldenTurnsStepsUserInputToolResponsesToolResponses>?
-  toolResponses;
+  final List<CesEvaluationToolResponsesToolResponses>? toolResponses;
 
   Map<String, Object?> encode() => {
     if (toolResponses != null)
@@ -605,8 +409,8 @@ final class CesEvaluationGoldenTurnsStepsUserInputToolResponses {
 /// Typed helper for the `golden.turns.steps.user_input.tool_responses.tool_responses` block of
 /// `google_ces_evaluation` (derived from provider schema).
 @immutable
-final class CesEvaluationGoldenTurnsStepsUserInputToolResponsesToolResponses {
-  const CesEvaluationGoldenTurnsStepsUserInputToolResponsesToolResponses({
+final class CesEvaluationToolResponsesToolResponses {
+  const CesEvaluationToolResponsesToolResponses({
     this.id,
     required this.response,
     this.tool,
@@ -619,33 +423,13 @@ final class CesEvaluationGoldenTurnsStepsUserInputToolResponsesToolResponses {
 
   final TfArg<String>? tool;
 
-  final CesEvaluationGoldenTurnsStepsUserInputToolResponsesToolResponsesToolsetTool?
-  toolsetTool;
+  final CesEvaluationMockToolResponseToolsetTool? toolsetTool;
 
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'response': response.toTfJson(),
     'tool': ?tool?.toTfJson(),
     'toolset_tool': ?toolsetTool?.encode(),
-  };
-}
-
-/// Typed helper for the `golden.turns.steps.user_input.tool_responses.tool_responses.toolset_tool` block of
-/// `google_ces_evaluation` (derived from provider schema).
-@immutable
-final class CesEvaluationGoldenTurnsStepsUserInputToolResponsesToolResponsesToolsetTool {
-  const CesEvaluationGoldenTurnsStepsUserInputToolResponsesToolResponsesToolsetTool({
-    this.toolId,
-    required this.toolset,
-  });
-
-  final TfArg<String>? toolId;
-
-  final TfArg<String> toolset;
-
-  Map<String, Object?> encode() => {
-    'tool_id': ?toolId?.toTfJson(),
-    'toolset': toolset.toTfJson(),
   };
 }
 
@@ -679,9 +463,9 @@ final class CesEvaluationScenario {
 
   final TfArg<Map<String, String>>? variableOverrides;
 
-  final List<CesEvaluationScenarioScenarioExpectations> scenarioExpectations;
+  final List<CesEvaluationScenarioExpectations> scenarioExpectations;
 
-  final List<CesEvaluationScenarioUserFacts>? userFacts;
+  final List<CesEvaluationUserFacts>? userFacts;
 
   Map<String, Object?> encode() => {
     'evaluation_expectations': ?evaluationExpectations?.toTfJson(),
@@ -700,16 +484,15 @@ final class CesEvaluationScenario {
 /// Typed helper for the `scenario.scenario_expectations` block of
 /// `google_ces_evaluation` (derived from provider schema).
 @immutable
-final class CesEvaluationScenarioScenarioExpectations {
-  const CesEvaluationScenarioScenarioExpectations({
+final class CesEvaluationScenarioExpectations {
+  const CesEvaluationScenarioExpectations({
     this.agentResponse,
     this.toolExpectation,
   });
 
-  final CesEvaluationScenarioScenarioExpectationsAgentResponse? agentResponse;
+  final CesEvaluationAgentResponse? agentResponse;
 
-  final CesEvaluationScenarioScenarioExpectationsToolExpectation?
-  toolExpectation;
+  final CesEvaluationToolExpectation? toolExpectation;
 
   Map<String, Object?> encode() => {
     'agent_response': ?agentResponse?.encode(),
@@ -717,228 +500,18 @@ final class CesEvaluationScenarioScenarioExpectations {
   };
 }
 
-/// Typed helper for the `scenario.scenario_expectations.agent_response` block of
-/// `google_ces_evaluation` (derived from provider schema).
-@immutable
-final class CesEvaluationScenarioScenarioExpectationsAgentResponse {
-  const CesEvaluationScenarioScenarioExpectationsAgentResponse({
-    this.role,
-    this.chunks,
-  });
-
-  final TfArg<String>? role;
-
-  final List<CesEvaluationScenarioScenarioExpectationsAgentResponseChunks>?
-  chunks;
-
-  Map<String, Object?> encode() => {
-    'role': ?role?.toTfJson(),
-    if (chunks != null) 'chunks': [for (final e in chunks!) e.encode()],
-  };
-}
-
-/// Typed helper for the `scenario.scenario_expectations.agent_response.chunks` block of
-/// `google_ces_evaluation` (derived from provider schema).
-@immutable
-final class CesEvaluationScenarioScenarioExpectationsAgentResponseChunks {
-  const CesEvaluationScenarioScenarioExpectationsAgentResponseChunks({
-    this.text,
-    this.updatedVariables,
-    this.agentTransfer,
-    this.blob,
-    this.image,
-    this.toolCall,
-    this.toolResponse,
-  });
-
-  final TfArg<String>? text;
-
-  final TfArg<Map<String, String>>? updatedVariables;
-
-  final CesEvaluationScenarioScenarioExpectationsAgentResponseChunksAgentTransfer?
-  agentTransfer;
-
-  final CesEvaluationScenarioScenarioExpectationsAgentResponseChunksBlob? blob;
-
-  final CesEvaluationScenarioScenarioExpectationsAgentResponseChunksImage?
-  image;
-
-  final CesEvaluationScenarioScenarioExpectationsAgentResponseChunksToolCall?
-  toolCall;
-
-  final CesEvaluationScenarioScenarioExpectationsAgentResponseChunksToolResponse?
-  toolResponse;
-
-  Map<String, Object?> encode() => {
-    'text': ?text?.toTfJson(),
-    'updated_variables': ?updatedVariables?.toTfJson(),
-    'agent_transfer': ?agentTransfer?.encode(),
-    'blob': ?blob?.encode(),
-    'image': ?image?.encode(),
-    'tool_call': ?toolCall?.encode(),
-    'tool_response': ?toolResponse?.encode(),
-  };
-}
-
-/// Typed helper for the `scenario.scenario_expectations.agent_response.chunks.agent_transfer` block of
-/// `google_ces_evaluation` (derived from provider schema).
-@immutable
-final class CesEvaluationScenarioScenarioExpectationsAgentResponseChunksAgentTransfer {
-  const CesEvaluationScenarioScenarioExpectationsAgentResponseChunksAgentTransfer({
-    required this.targetAgent,
-  });
-
-  final TfArg<String> targetAgent;
-
-  Map<String, Object?> encode() => {'target_agent': targetAgent.toTfJson()};
-}
-
-/// Typed helper for the `scenario.scenario_expectations.agent_response.chunks.blob` block of
-/// `google_ces_evaluation` (derived from provider schema).
-@immutable
-final class CesEvaluationScenarioScenarioExpectationsAgentResponseChunksBlob {
-  const CesEvaluationScenarioScenarioExpectationsAgentResponseChunksBlob({
-    required this.data,
-    required this.mimeType,
-  });
-
-  final TfArg<String> data;
-
-  final TfArg<String> mimeType;
-
-  Map<String, Object?> encode() => {
-    'data': data.toTfJson(),
-    'mime_type': mimeType.toTfJson(),
-  };
-}
-
-/// Typed helper for the `scenario.scenario_expectations.agent_response.chunks.image` block of
-/// `google_ces_evaluation` (derived from provider schema).
-@immutable
-final class CesEvaluationScenarioScenarioExpectationsAgentResponseChunksImage {
-  const CesEvaluationScenarioScenarioExpectationsAgentResponseChunksImage({
-    required this.data,
-    required this.mimeType,
-  });
-
-  final TfArg<String> data;
-
-  final TfArg<String> mimeType;
-
-  Map<String, Object?> encode() => {
-    'data': data.toTfJson(),
-    'mime_type': mimeType.toTfJson(),
-  };
-}
-
-/// Typed helper for the `scenario.scenario_expectations.agent_response.chunks.tool_call` block of
-/// `google_ces_evaluation` (derived from provider schema).
-@immutable
-final class CesEvaluationScenarioScenarioExpectationsAgentResponseChunksToolCall {
-  const CesEvaluationScenarioScenarioExpectationsAgentResponseChunksToolCall({
-    this.args,
-    this.id,
-    this.tool,
-    this.toolsetTool,
-  });
-
-  final TfArg<Map<String, String>>? args;
-
-  final TfArg<String>? id;
-
-  final TfArg<String>? tool;
-
-  final CesEvaluationScenarioScenarioExpectationsAgentResponseChunksToolCallToolsetTool?
-  toolsetTool;
-
-  Map<String, Object?> encode() => {
-    'args': ?args?.toTfJson(),
-    'id': ?id?.toTfJson(),
-    'tool': ?tool?.toTfJson(),
-    'toolset_tool': ?toolsetTool?.encode(),
-  };
-}
-
-/// Typed helper for the `scenario.scenario_expectations.agent_response.chunks.tool_call.toolset_tool` block of
-/// `google_ces_evaluation` (derived from provider schema).
-@immutable
-final class CesEvaluationScenarioScenarioExpectationsAgentResponseChunksToolCallToolsetTool {
-  const CesEvaluationScenarioScenarioExpectationsAgentResponseChunksToolCallToolsetTool({
-    this.toolId,
-    required this.toolset,
-  });
-
-  final TfArg<String>? toolId;
-
-  final TfArg<String> toolset;
-
-  Map<String, Object?> encode() => {
-    'tool_id': ?toolId?.toTfJson(),
-    'toolset': toolset.toTfJson(),
-  };
-}
-
-/// Typed helper for the `scenario.scenario_expectations.agent_response.chunks.tool_response` block of
-/// `google_ces_evaluation` (derived from provider schema).
-@immutable
-final class CesEvaluationScenarioScenarioExpectationsAgentResponseChunksToolResponse {
-  const CesEvaluationScenarioScenarioExpectationsAgentResponseChunksToolResponse({
-    this.id,
-    this.response,
-    this.tool,
-    this.toolsetTool,
-  });
-
-  final TfArg<String>? id;
-
-  final TfArg<Map<String, String>>? response;
-
-  final TfArg<String>? tool;
-
-  final CesEvaluationScenarioScenarioExpectationsAgentResponseChunksToolResponseToolsetTool?
-  toolsetTool;
-
-  Map<String, Object?> encode() => {
-    'id': ?id?.toTfJson(),
-    'response': ?response?.toTfJson(),
-    'tool': ?tool?.toTfJson(),
-    'toolset_tool': ?toolsetTool?.encode(),
-  };
-}
-
-/// Typed helper for the `scenario.scenario_expectations.agent_response.chunks.tool_response.toolset_tool` block of
-/// `google_ces_evaluation` (derived from provider schema).
-@immutable
-final class CesEvaluationScenarioScenarioExpectationsAgentResponseChunksToolResponseToolsetTool {
-  const CesEvaluationScenarioScenarioExpectationsAgentResponseChunksToolResponseToolsetTool({
-    this.toolId,
-    required this.toolset,
-  });
-
-  final TfArg<String>? toolId;
-
-  final TfArg<String> toolset;
-
-  Map<String, Object?> encode() => {
-    'tool_id': ?toolId?.toTfJson(),
-    'toolset': toolset.toTfJson(),
-  };
-}
-
 /// Typed helper for the `scenario.scenario_expectations.tool_expectation` block of
 /// `google_ces_evaluation` (derived from provider schema).
 @immutable
-final class CesEvaluationScenarioScenarioExpectationsToolExpectation {
-  const CesEvaluationScenarioScenarioExpectationsToolExpectation({
+final class CesEvaluationToolExpectation {
+  const CesEvaluationToolExpectation({
     this.expectedToolCall,
     this.mockToolResponse,
   });
 
-  final CesEvaluationScenarioScenarioExpectationsToolExpectationExpectedToolCall?
-  expectedToolCall;
+  final CesEvaluationExpectedToolCall? expectedToolCall;
 
-  final CesEvaluationScenarioScenarioExpectationsToolExpectationMockToolResponse?
-  mockToolResponse;
+  final CesEvaluationMockToolResponse? mockToolResponse;
 
   Map<String, Object?> encode() => {
     'expected_tool_call': ?expectedToolCall?.encode(),
@@ -949,8 +522,8 @@ final class CesEvaluationScenarioScenarioExpectationsToolExpectation {
 /// Typed helper for the `scenario.scenario_expectations.tool_expectation.expected_tool_call` block of
 /// `google_ces_evaluation` (derived from provider schema).
 @immutable
-final class CesEvaluationScenarioScenarioExpectationsToolExpectationExpectedToolCall {
-  const CesEvaluationScenarioScenarioExpectationsToolExpectationExpectedToolCall({
+final class CesEvaluationExpectedToolCall {
+  const CesEvaluationExpectedToolCall({
     this.args,
     this.id,
     this.tool,
@@ -963,8 +536,7 @@ final class CesEvaluationScenarioScenarioExpectationsToolExpectationExpectedTool
 
   final TfArg<String>? tool;
 
-  final CesEvaluationScenarioScenarioExpectationsToolExpectationExpectedToolCallToolsetTool?
-  toolsetTool;
+  final CesEvaluationToolsetTool? toolsetTool;
 
   Map<String, Object?> encode() => {
     'args': ?args?.toTfJson(),
@@ -976,12 +548,10 @@ final class CesEvaluationScenarioScenarioExpectationsToolExpectationExpectedTool
 
 /// Typed helper for the `scenario.scenario_expectations.tool_expectation.expected_tool_call.toolset_tool` block of
 /// `google_ces_evaluation` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CesEvaluationScenarioScenarioExpectationsToolExpectationExpectedToolCallToolsetTool {
-  const CesEvaluationScenarioScenarioExpectationsToolExpectationExpectedToolCallToolsetTool({
-    this.toolId,
-    this.toolset,
-  });
+final class CesEvaluationToolsetTool {
+  const CesEvaluationToolsetTool({this.toolId, this.toolset});
 
   final TfArg<String>? toolId;
 
@@ -996,8 +566,8 @@ final class CesEvaluationScenarioScenarioExpectationsToolExpectationExpectedTool
 /// Typed helper for the `scenario.scenario_expectations.tool_expectation.mock_tool_response` block of
 /// `google_ces_evaluation` (derived from provider schema).
 @immutable
-final class CesEvaluationScenarioScenarioExpectationsToolExpectationMockToolResponse {
-  const CesEvaluationScenarioScenarioExpectationsToolExpectationMockToolResponse({
+final class CesEvaluationMockToolResponse {
+  const CesEvaluationMockToolResponse({
     this.id,
     this.response,
     this.tool,
@@ -1010,8 +580,7 @@ final class CesEvaluationScenarioScenarioExpectationsToolExpectationMockToolResp
 
   final TfArg<String>? tool;
 
-  final CesEvaluationScenarioScenarioExpectationsToolExpectationMockToolResponseToolsetTool?
-  toolsetTool;
+  final CesEvaluationToolsetTool? toolsetTool;
 
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
@@ -1021,33 +590,11 @@ final class CesEvaluationScenarioScenarioExpectationsToolExpectationMockToolResp
   };
 }
 
-/// Typed helper for the `scenario.scenario_expectations.tool_expectation.mock_tool_response.toolset_tool` block of
-/// `google_ces_evaluation` (derived from provider schema).
-@immutable
-final class CesEvaluationScenarioScenarioExpectationsToolExpectationMockToolResponseToolsetTool {
-  const CesEvaluationScenarioScenarioExpectationsToolExpectationMockToolResponseToolsetTool({
-    this.toolId,
-    this.toolset,
-  });
-
-  final TfArg<String>? toolId;
-
-  final TfArg<String>? toolset;
-
-  Map<String, Object?> encode() => {
-    'tool_id': ?toolId?.toTfJson(),
-    'toolset': ?toolset?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `scenario.user_facts` block of
 /// `google_ces_evaluation` (derived from provider schema).
 @immutable
-final class CesEvaluationScenarioUserFacts {
-  const CesEvaluationScenarioUserFacts({
-    required this.name,
-    required this.value,
-  });
+final class CesEvaluationUserFacts {
+  const CesEvaluationUserFacts({required this.name, required this.value});
 
   final TfArg<String> name;
 

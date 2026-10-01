@@ -41,17 +41,13 @@ final class HypercomputeclusterClusterComputeResourcesConfig {
     this.newSpotInstances,
   });
 
-  final HypercomputeclusterClusterComputeResourcesConfigNewFlexStartInstances?
-  newFlexStartInstances;
+  final HypercomputeclusterClusterNewFlexStartInstances? newFlexStartInstances;
 
-  final HypercomputeclusterClusterComputeResourcesConfigNewOnDemandInstances?
-  newOnDemandInstances;
+  final HypercomputeclusterClusterNewOnDemandInstances? newOnDemandInstances;
 
-  final HypercomputeclusterClusterComputeResourcesConfigNewReservedInstances?
-  newReservedInstances;
+  final HypercomputeclusterClusterNewReservedInstances? newReservedInstances;
 
-  final HypercomputeclusterClusterComputeResourcesConfigNewSpotInstances?
-  newSpotInstances;
+  final HypercomputeclusterClusterNewSpotInstances? newSpotInstances;
 
   Map<String, Object?> encode() => {
     'new_flex_start_instances': ?newFlexStartInstances?.encode(),
@@ -64,8 +60,8 @@ final class HypercomputeclusterClusterComputeResourcesConfig {
 /// Typed helper for the `compute_resources.config.new_flex_start_instances` block of
 /// `google_hypercomputecluster_cluster` (derived from provider schema).
 @immutable
-final class HypercomputeclusterClusterComputeResourcesConfigNewFlexStartInstances {
-  const HypercomputeclusterClusterComputeResourcesConfigNewFlexStartInstances({
+final class HypercomputeclusterClusterNewFlexStartInstances {
+  const HypercomputeclusterClusterNewFlexStartInstances({
     required this.machineType,
     required this.maxDuration,
     required this.zone,
@@ -87,8 +83,8 @@ final class HypercomputeclusterClusterComputeResourcesConfigNewFlexStartInstance
 /// Typed helper for the `compute_resources.config.new_on_demand_instances` block of
 /// `google_hypercomputecluster_cluster` (derived from provider schema).
 @immutable
-final class HypercomputeclusterClusterComputeResourcesConfigNewOnDemandInstances {
-  const HypercomputeclusterClusterComputeResourcesConfigNewOnDemandInstances({
+final class HypercomputeclusterClusterNewOnDemandInstances {
+  const HypercomputeclusterClusterNewOnDemandInstances({
     required this.machineType,
     required this.zone,
   });
@@ -106,10 +102,8 @@ final class HypercomputeclusterClusterComputeResourcesConfigNewOnDemandInstances
 /// Typed helper for the `compute_resources.config.new_reserved_instances` block of
 /// `google_hypercomputecluster_cluster` (derived from provider schema).
 @immutable
-final class HypercomputeclusterClusterComputeResourcesConfigNewReservedInstances {
-  const HypercomputeclusterClusterComputeResourcesConfigNewReservedInstances({
-    this.reservation,
-  });
+final class HypercomputeclusterClusterNewReservedInstances {
+  const HypercomputeclusterClusterNewReservedInstances({this.reservation});
 
   final TfArg<String>? reservation;
 
@@ -119,8 +113,8 @@ final class HypercomputeclusterClusterComputeResourcesConfigNewReservedInstances
 /// Typed helper for the `compute_resources.config.new_spot_instances` block of
 /// `google_hypercomputecluster_cluster` (derived from provider schema).
 @immutable
-final class HypercomputeclusterClusterComputeResourcesConfigNewSpotInstances {
-  const HypercomputeclusterClusterComputeResourcesConfigNewSpotInstances({
+final class HypercomputeclusterClusterNewSpotInstances {
+  const HypercomputeclusterClusterNewSpotInstances({
     required this.machineType,
     this.terminationAction,
     required this.zone,
@@ -167,10 +161,9 @@ final class HypercomputeclusterClusterNetworkResourcesConfig {
     this.newNetwork,
   });
 
-  final HypercomputeclusterClusterNetworkResourcesConfigExistingNetwork?
-  existingNetwork;
+  final HypercomputeclusterClusterExistingNetwork? existingNetwork;
 
-  final HypercomputeclusterClusterNetworkResourcesConfigNewNetwork? newNetwork;
+  final HypercomputeclusterClusterNewNetwork? newNetwork;
 
   Map<String, Object?> encode() => {
     'existing_network': ?existingNetwork?.encode(),
@@ -181,8 +174,8 @@ final class HypercomputeclusterClusterNetworkResourcesConfig {
 /// Typed helper for the `network_resources.config.existing_network` block of
 /// `google_hypercomputecluster_cluster` (derived from provider schema).
 @immutable
-final class HypercomputeclusterClusterNetworkResourcesConfigExistingNetwork {
-  const HypercomputeclusterClusterNetworkResourcesConfigExistingNetwork({
+final class HypercomputeclusterClusterExistingNetwork {
+  const HypercomputeclusterClusterExistingNetwork({
     required this.network,
     required this.subnetwork,
   });
@@ -200,8 +193,8 @@ final class HypercomputeclusterClusterNetworkResourcesConfigExistingNetwork {
 /// Typed helper for the `network_resources.config.new_network` block of
 /// `google_hypercomputecluster_cluster` (derived from provider schema).
 @immutable
-final class HypercomputeclusterClusterNetworkResourcesConfigNewNetwork {
-  const HypercomputeclusterClusterNetworkResourcesConfigNewNetwork({
+final class HypercomputeclusterClusterNewNetwork {
+  const HypercomputeclusterClusterNewNetwork({
     this.description,
     required this.network,
   });
@@ -222,7 +215,7 @@ final class HypercomputeclusterClusterNetworkResourcesConfigNewNetwork {
 final class HypercomputeclusterClusterOrchestrator {
   const HypercomputeclusterClusterOrchestrator({this.slurm});
 
-  final HypercomputeclusterClusterOrchestratorSlurm? slurm;
+  final HypercomputeclusterClusterSlurm? slurm;
 
   Map<String, Object?> encode() => {'slurm': ?slurm?.encode()};
 }
@@ -230,8 +223,8 @@ final class HypercomputeclusterClusterOrchestrator {
 /// Typed helper for the `orchestrator.slurm` block of
 /// `google_hypercomputecluster_cluster` (derived from provider schema).
 @immutable
-final class HypercomputeclusterClusterOrchestratorSlurm {
-  const HypercomputeclusterClusterOrchestratorSlurm({
+final class HypercomputeclusterClusterSlurm {
+  const HypercomputeclusterClusterSlurm({
     this.defaultPartition,
     this.epilogBashScripts,
     this.prologBashScripts,
@@ -246,11 +239,11 @@ final class HypercomputeclusterClusterOrchestratorSlurm {
 
   final TfArg<List<String>>? prologBashScripts;
 
-  final HypercomputeclusterClusterOrchestratorSlurmLoginNodes loginNodes;
+  final HypercomputeclusterClusterLoginNodes loginNodes;
 
-  final List<HypercomputeclusterClusterOrchestratorSlurmNodeSets> nodeSets;
+  final List<HypercomputeclusterClusterNodeSets> nodeSets;
 
-  final List<HypercomputeclusterClusterOrchestratorSlurmPartitions> partitions;
+  final List<HypercomputeclusterClusterPartitions> partitions;
 
   Map<String, Object?> encode() => {
     'default_partition': ?defaultPartition?.toTfJson(),
@@ -265,8 +258,8 @@ final class HypercomputeclusterClusterOrchestratorSlurm {
 /// Typed helper for the `orchestrator.slurm.login_nodes` block of
 /// `google_hypercomputecluster_cluster` (derived from provider schema).
 @immutable
-final class HypercomputeclusterClusterOrchestratorSlurmLoginNodes {
-  const HypercomputeclusterClusterOrchestratorSlurmLoginNodes({
+final class HypercomputeclusterClusterLoginNodes {
+  const HypercomputeclusterClusterLoginNodes({
     required this.count,
     this.enableOsLogin,
     this.enablePublicIps,
@@ -292,12 +285,9 @@ final class HypercomputeclusterClusterOrchestratorSlurmLoginNodes {
 
   final TfArg<String> zone;
 
-  final HypercomputeclusterClusterOrchestratorSlurmLoginNodesBootDisk? bootDisk;
+  final HypercomputeclusterClusterBootDisk? bootDisk;
 
-  final List<
-    HypercomputeclusterClusterOrchestratorSlurmLoginNodesStorageConfigs
-  >?
-  storageConfigs;
+  final List<HypercomputeclusterClusterStorageConfigs>? storageConfigs;
 
   Map<String, Object?> encode() => {
     'count': count.toTfJson(),
@@ -315,9 +305,10 @@ final class HypercomputeclusterClusterOrchestratorSlurmLoginNodes {
 
 /// Typed helper for the `orchestrator.slurm.login_nodes.boot_disk` block of
 /// `google_hypercomputecluster_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class HypercomputeclusterClusterOrchestratorSlurmLoginNodesBootDisk {
-  const HypercomputeclusterClusterOrchestratorSlurmLoginNodesBootDisk({
+final class HypercomputeclusterClusterBootDisk {
+  const HypercomputeclusterClusterBootDisk({
     required this.sizeGb,
     required this.type,
   });
@@ -334,9 +325,10 @@ final class HypercomputeclusterClusterOrchestratorSlurmLoginNodesBootDisk {
 
 /// Typed helper for the `orchestrator.slurm.login_nodes.storage_configs` block of
 /// `google_hypercomputecluster_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class HypercomputeclusterClusterOrchestratorSlurmLoginNodesStorageConfigs {
-  const HypercomputeclusterClusterOrchestratorSlurmLoginNodesStorageConfigs({
+final class HypercomputeclusterClusterStorageConfigs {
+  const HypercomputeclusterClusterStorageConfigs({
     required this.id,
     required this.localMount,
   });
@@ -354,8 +346,8 @@ final class HypercomputeclusterClusterOrchestratorSlurmLoginNodesStorageConfigs 
 /// Typed helper for the `orchestrator.slurm.node_sets` block of
 /// `google_hypercomputecluster_cluster` (derived from provider schema).
 @immutable
-final class HypercomputeclusterClusterOrchestratorSlurmNodeSets {
-  const HypercomputeclusterClusterOrchestratorSlurmNodeSets({
+final class HypercomputeclusterClusterNodeSets {
+  const HypercomputeclusterClusterNodeSets({
     this.computeId,
     required this.id,
     this.maxDynamicNodeCount,
@@ -372,11 +364,9 @@ final class HypercomputeclusterClusterOrchestratorSlurmNodeSets {
 
   final TfArg<String>? staticNodeCount;
 
-  final HypercomputeclusterClusterOrchestratorSlurmNodeSetsComputeInstance?
-  computeInstance;
+  final HypercomputeclusterClusterComputeInstance? computeInstance;
 
-  final List<HypercomputeclusterClusterOrchestratorSlurmNodeSetsStorageConfigs>?
-  storageConfigs;
+  final List<HypercomputeclusterClusterStorageConfigs>? storageConfigs;
 
   Map<String, Object?> encode() => {
     'compute_id': ?computeId?.toTfJson(),
@@ -392,8 +382,8 @@ final class HypercomputeclusterClusterOrchestratorSlurmNodeSets {
 /// Typed helper for the `orchestrator.slurm.node_sets.compute_instance` block of
 /// `google_hypercomputecluster_cluster` (derived from provider schema).
 @immutable
-final class HypercomputeclusterClusterOrchestratorSlurmNodeSetsComputeInstance {
-  const HypercomputeclusterClusterOrchestratorSlurmNodeSetsComputeInstance({
+final class HypercomputeclusterClusterComputeInstance {
+  const HypercomputeclusterClusterComputeInstance({
     this.labels,
     this.startupScript,
     this.bootDisk,
@@ -403,8 +393,7 @@ final class HypercomputeclusterClusterOrchestratorSlurmNodeSetsComputeInstance {
 
   final TfArg<String>? startupScript;
 
-  final HypercomputeclusterClusterOrchestratorSlurmNodeSetsComputeInstanceBootDisk?
-  bootDisk;
+  final HypercomputeclusterClusterBootDisk? bootDisk;
 
   Map<String, Object?> encode() => {
     'labels': ?labels?.toTfJson(),
@@ -413,49 +402,11 @@ final class HypercomputeclusterClusterOrchestratorSlurmNodeSetsComputeInstance {
   };
 }
 
-/// Typed helper for the `orchestrator.slurm.node_sets.compute_instance.boot_disk` block of
-/// `google_hypercomputecluster_cluster` (derived from provider schema).
-@immutable
-final class HypercomputeclusterClusterOrchestratorSlurmNodeSetsComputeInstanceBootDisk {
-  const HypercomputeclusterClusterOrchestratorSlurmNodeSetsComputeInstanceBootDisk({
-    required this.sizeGb,
-    required this.type,
-  });
-
-  final TfArg<String> sizeGb;
-
-  final TfArg<String> type;
-
-  Map<String, Object?> encode() => {
-    'size_gb': sizeGb.toTfJson(),
-    'type': type.toTfJson(),
-  };
-}
-
-/// Typed helper for the `orchestrator.slurm.node_sets.storage_configs` block of
-/// `google_hypercomputecluster_cluster` (derived from provider schema).
-@immutable
-final class HypercomputeclusterClusterOrchestratorSlurmNodeSetsStorageConfigs {
-  const HypercomputeclusterClusterOrchestratorSlurmNodeSetsStorageConfigs({
-    required this.id,
-    required this.localMount,
-  });
-
-  final TfArg<String> id;
-
-  final TfArg<String> localMount;
-
-  Map<String, Object?> encode() => {
-    'id': id.toTfJson(),
-    'local_mount': localMount.toTfJson(),
-  };
-}
-
 /// Typed helper for the `orchestrator.slurm.partitions` block of
 /// `google_hypercomputecluster_cluster` (derived from provider schema).
 @immutable
-final class HypercomputeclusterClusterOrchestratorSlurmPartitions {
-  const HypercomputeclusterClusterOrchestratorSlurmPartitions({
+final class HypercomputeclusterClusterPartitions {
+  const HypercomputeclusterClusterPartitions({
     required this.id,
     required this.nodeSetIds,
   });
@@ -502,21 +453,17 @@ final class HypercomputeclusterClusterStorageResourcesConfig {
     this.newLustre,
   });
 
-  final HypercomputeclusterClusterStorageResourcesConfigExistingBucket?
-  existingBucket;
+  final HypercomputeclusterClusterExistingBucket? existingBucket;
 
-  final HypercomputeclusterClusterStorageResourcesConfigExistingFilestore?
-  existingFilestore;
+  final HypercomputeclusterClusterExistingFilestore? existingFilestore;
 
-  final HypercomputeclusterClusterStorageResourcesConfigExistingLustre?
-  existingLustre;
+  final HypercomputeclusterClusterExistingLustre? existingLustre;
 
-  final HypercomputeclusterClusterStorageResourcesConfigNewBucket? newBucket;
+  final HypercomputeclusterClusterNewBucket? newBucket;
 
-  final HypercomputeclusterClusterStorageResourcesConfigNewFilestore?
-  newFilestore;
+  final HypercomputeclusterClusterNewFilestore? newFilestore;
 
-  final HypercomputeclusterClusterStorageResourcesConfigNewLustre? newLustre;
+  final HypercomputeclusterClusterNewLustre? newLustre;
 
   Map<String, Object?> encode() => {
     'existing_bucket': ?existingBucket?.encode(),
@@ -531,10 +478,8 @@ final class HypercomputeclusterClusterStorageResourcesConfig {
 /// Typed helper for the `storage_resources.config.existing_bucket` block of
 /// `google_hypercomputecluster_cluster` (derived from provider schema).
 @immutable
-final class HypercomputeclusterClusterStorageResourcesConfigExistingBucket {
-  const HypercomputeclusterClusterStorageResourcesConfigExistingBucket({
-    required this.bucket,
-  });
+final class HypercomputeclusterClusterExistingBucket {
+  const HypercomputeclusterClusterExistingBucket({required this.bucket});
 
   final RefTo<GoogleStorageBucket> bucket;
 
@@ -546,10 +491,8 @@ final class HypercomputeclusterClusterStorageResourcesConfigExistingBucket {
 /// Typed helper for the `storage_resources.config.existing_filestore` block of
 /// `google_hypercomputecluster_cluster` (derived from provider schema).
 @immutable
-final class HypercomputeclusterClusterStorageResourcesConfigExistingFilestore {
-  const HypercomputeclusterClusterStorageResourcesConfigExistingFilestore({
-    required this.filestore,
-  });
+final class HypercomputeclusterClusterExistingFilestore {
+  const HypercomputeclusterClusterExistingFilestore({required this.filestore});
 
   final TfArg<String> filestore;
 
@@ -559,10 +502,8 @@ final class HypercomputeclusterClusterStorageResourcesConfigExistingFilestore {
 /// Typed helper for the `storage_resources.config.existing_lustre` block of
 /// `google_hypercomputecluster_cluster` (derived from provider schema).
 @immutable
-final class HypercomputeclusterClusterStorageResourcesConfigExistingLustre {
-  const HypercomputeclusterClusterStorageResourcesConfigExistingLustre({
-    required this.lustre,
-  });
+final class HypercomputeclusterClusterExistingLustre {
+  const HypercomputeclusterClusterExistingLustre({required this.lustre});
 
   final TfArg<String> lustre;
 
@@ -572,8 +513,8 @@ final class HypercomputeclusterClusterStorageResourcesConfigExistingLustre {
 /// Typed helper for the `storage_resources.config.new_bucket` block of
 /// `google_hypercomputecluster_cluster` (derived from provider schema).
 @immutable
-final class HypercomputeclusterClusterStorageResourcesConfigNewBucket {
-  const HypercomputeclusterClusterStorageResourcesConfigNewBucket({
+final class HypercomputeclusterClusterNewBucket {
+  const HypercomputeclusterClusterNewBucket({
     required this.bucket,
     this.storageClass,
     this.autoclass,
@@ -584,11 +525,9 @@ final class HypercomputeclusterClusterStorageResourcesConfigNewBucket {
 
   final TfArg<String>? storageClass;
 
-  final HypercomputeclusterClusterStorageResourcesConfigNewBucketAutoclass?
-  autoclass;
+  final HypercomputeclusterClusterAutoclass? autoclass;
 
-  final HypercomputeclusterClusterStorageResourcesConfigNewBucketHierarchicalNamespace?
-  hierarchicalNamespace;
+  final HypercomputeclusterClusterHierarchicalNamespace? hierarchicalNamespace;
 
   Map<String, Object?> encode() => {
     'bucket': bucket.toTfJson(),
@@ -601,8 +540,8 @@ final class HypercomputeclusterClusterStorageResourcesConfigNewBucket {
 /// Typed helper for the `storage_resources.config.new_bucket.autoclass` block of
 /// `google_hypercomputecluster_cluster` (derived from provider schema).
 @immutable
-final class HypercomputeclusterClusterStorageResourcesConfigNewBucketAutoclass {
-  const HypercomputeclusterClusterStorageResourcesConfigNewBucketAutoclass({
+final class HypercomputeclusterClusterAutoclass {
+  const HypercomputeclusterClusterAutoclass({
     required this.enabled,
     this.terminalStorageClass,
   });
@@ -620,10 +559,8 @@ final class HypercomputeclusterClusterStorageResourcesConfigNewBucketAutoclass {
 /// Typed helper for the `storage_resources.config.new_bucket.hierarchical_namespace` block of
 /// `google_hypercomputecluster_cluster` (derived from provider schema).
 @immutable
-final class HypercomputeclusterClusterStorageResourcesConfigNewBucketHierarchicalNamespace {
-  const HypercomputeclusterClusterStorageResourcesConfigNewBucketHierarchicalNamespace({
-    this.enabled,
-  });
+final class HypercomputeclusterClusterHierarchicalNamespace {
+  const HypercomputeclusterClusterHierarchicalNamespace({this.enabled});
 
   final TfArg<bool>? enabled;
 
@@ -633,8 +570,8 @@ final class HypercomputeclusterClusterStorageResourcesConfigNewBucketHierarchica
 /// Typed helper for the `storage_resources.config.new_filestore` block of
 /// `google_hypercomputecluster_cluster` (derived from provider schema).
 @immutable
-final class HypercomputeclusterClusterStorageResourcesConfigNewFilestore {
-  const HypercomputeclusterClusterStorageResourcesConfigNewFilestore({
+final class HypercomputeclusterClusterNewFilestore {
+  const HypercomputeclusterClusterNewFilestore({
     this.description,
     required this.filestore,
     this.protocol,
@@ -646,18 +583,11 @@ final class HypercomputeclusterClusterStorageResourcesConfigNewFilestore {
 
   final TfArg<String> filestore;
 
-  final TfArg<
-    HypercomputeclusterClusterStorageResourcesConfigNewFilestoreProtocol
-  >?
-  protocol;
+  final TfArg<HypercomputeclusterClusterProtocol>? protocol;
 
-  final TfArg<HypercomputeclusterClusterStorageResourcesConfigNewFilestoreTier>
-  tier;
+  final TfArg<HypercomputeclusterClusterTier> tier;
 
-  final List<
-    HypercomputeclusterClusterStorageResourcesConfigNewFilestoreFileShares
-  >
-  fileShares;
+  final List<HypercomputeclusterClusterFileShares> fileShares;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -669,29 +599,23 @@ final class HypercomputeclusterClusterStorageResourcesConfigNewFilestore {
 }
 
 /// `protocol` — derived from the provider schema description.
-enum HypercomputeclusterClusterStorageResourcesConfigNewFilestoreProtocol
-    implements TerraformEnum {
+enum HypercomputeclusterClusterProtocol implements TerraformEnum {
   protocolUnspecified('PROTOCOL_UNSPECIFIED'),
   nfsv3('NFSV3'),
   nfsv41('NFSV41');
 
-  const HypercomputeclusterClusterStorageResourcesConfigNewFilestoreProtocol(
-    this.terraformValue,
-  );
+  const HypercomputeclusterClusterProtocol(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `tier` — derived from the provider schema description.
-enum HypercomputeclusterClusterStorageResourcesConfigNewFilestoreTier
-    implements TerraformEnum {
+enum HypercomputeclusterClusterTier implements TerraformEnum {
   tierUnspecified('TIER_UNSPECIFIED'),
   zonal('ZONAL'),
   regional('REGIONAL');
 
-  const HypercomputeclusterClusterStorageResourcesConfigNewFilestoreTier(
-    this.terraformValue,
-  );
+  const HypercomputeclusterClusterTier(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -699,8 +623,8 @@ enum HypercomputeclusterClusterStorageResourcesConfigNewFilestoreTier
 /// Typed helper for the `storage_resources.config.new_filestore.file_shares` block of
 /// `google_hypercomputecluster_cluster` (derived from provider schema).
 @immutable
-final class HypercomputeclusterClusterStorageResourcesConfigNewFilestoreFileShares {
-  const HypercomputeclusterClusterStorageResourcesConfigNewFilestoreFileShares({
+final class HypercomputeclusterClusterFileShares {
+  const HypercomputeclusterClusterFileShares({
     required this.capacityGb,
     required this.fileShare,
   });
@@ -718,8 +642,8 @@ final class HypercomputeclusterClusterStorageResourcesConfigNewFilestoreFileShar
 /// Typed helper for the `storage_resources.config.new_lustre` block of
 /// `google_hypercomputecluster_cluster` (derived from provider schema).
 @immutable
-final class HypercomputeclusterClusterStorageResourcesConfigNewLustre {
-  const HypercomputeclusterClusterStorageResourcesConfigNewLustre({
+final class HypercomputeclusterClusterNewLustre {
+  const HypercomputeclusterClusterNewLustre({
     required this.capacityGb,
     this.description,
     required this.filesystem,

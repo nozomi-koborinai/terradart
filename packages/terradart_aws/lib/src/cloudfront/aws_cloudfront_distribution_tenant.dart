@@ -17,13 +17,11 @@ final class CloudfrontDistributionTenantCustomizations {
     this.webAcl,
   });
 
-  final List<CloudfrontDistributionTenantCustomizationsCertificate>?
-  certificate;
+  final List<CloudfrontDistributionTenantCertificate>? certificate;
 
-  final List<CloudfrontDistributionTenantCustomizationsGeoRestriction>?
-  geoRestriction;
+  final List<CloudfrontDistributionTenantGeoRestriction>? geoRestriction;
 
-  final List<CloudfrontDistributionTenantCustomizationsWebAcl>? webAcl;
+  final List<CloudfrontDistributionTenantWebAcl>? webAcl;
 
   Map<String, Object?> encode() => {
     if (certificate != null)
@@ -37,8 +35,8 @@ final class CloudfrontDistributionTenantCustomizations {
 /// Typed helper for the `customizations.certificate` block of
 /// `aws_cloudfront_distribution_tenant` (derived from provider schema).
 @immutable
-final class CloudfrontDistributionTenantCustomizationsCertificate {
-  const CloudfrontDistributionTenantCustomizationsCertificate({this.arn});
+final class CloudfrontDistributionTenantCertificate {
+  const CloudfrontDistributionTenantCertificate({this.arn});
 
   final TfArg<String>? arn;
 
@@ -48,18 +46,15 @@ final class CloudfrontDistributionTenantCustomizationsCertificate {
 /// Typed helper for the `customizations.geo_restriction` block of
 /// `aws_cloudfront_distribution_tenant` (derived from provider schema).
 @immutable
-final class CloudfrontDistributionTenantCustomizationsGeoRestriction {
-  const CloudfrontDistributionTenantCustomizationsGeoRestriction({
+final class CloudfrontDistributionTenantGeoRestriction {
+  const CloudfrontDistributionTenantGeoRestriction({
     this.locations,
     this.restrictionType,
   });
 
   final TfArg<List<String>>? locations;
 
-  final TfArg<
-    CloudfrontDistributionTenantCustomizationsGeoRestrictionRestrictionType
-  >?
-  restrictionType;
+  final TfArg<CloudfrontDistributionTenantRestrictionType>? restrictionType;
 
   Map<String, Object?> encode() => {
     'locations': ?locations?.toTfJson(),
@@ -68,15 +63,12 @@ final class CloudfrontDistributionTenantCustomizationsGeoRestriction {
 }
 
 /// `restriction_type` — derived from the provider schema description.
-enum CloudfrontDistributionTenantCustomizationsGeoRestrictionRestrictionType
-    implements TerraformEnum {
+enum CloudfrontDistributionTenantRestrictionType implements TerraformEnum {
   blacklist('blacklist'),
   whitelist('whitelist'),
   none('none');
 
-  const CloudfrontDistributionTenantCustomizationsGeoRestrictionRestrictionType(
-    this.terraformValue,
-  );
+  const CloudfrontDistributionTenantRestrictionType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -84,13 +76,10 @@ enum CloudfrontDistributionTenantCustomizationsGeoRestrictionRestrictionType
 /// Typed helper for the `customizations.web_acl` block of
 /// `aws_cloudfront_distribution_tenant` (derived from provider schema).
 @immutable
-final class CloudfrontDistributionTenantCustomizationsWebAcl {
-  const CloudfrontDistributionTenantCustomizationsWebAcl({
-    this.action,
-    this.arn,
-  });
+final class CloudfrontDistributionTenantWebAcl {
+  const CloudfrontDistributionTenantWebAcl({this.action, this.arn});
 
-  final TfArg<CloudfrontDistributionTenantCustomizationsWebAclAction>? action;
+  final TfArg<CloudfrontDistributionTenantAction>? action;
 
   final TfArg<String>? arn;
 
@@ -101,14 +90,11 @@ final class CloudfrontDistributionTenantCustomizationsWebAcl {
 }
 
 /// `action` — derived from the provider schema description.
-enum CloudfrontDistributionTenantCustomizationsWebAclAction
-    implements TerraformEnum {
+enum CloudfrontDistributionTenantAction implements TerraformEnum {
   overrideCase('override'),
   disable('disable');
 
-  const CloudfrontDistributionTenantCustomizationsWebAclAction(
-    this.terraformValue,
-  );
+  const CloudfrontDistributionTenantAction(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -135,15 +121,13 @@ final class CloudfrontDistributionTenantManagedCertificateRequest {
   });
 
   final TfArg<
-    CloudfrontDistributionTenantManagedCertificateRequestCertificateTransparencyLoggingPreference
+    CloudfrontDistributionTenantCertificateTransparencyLoggingPreference
   >?
   certificateTransparencyLoggingPreference;
 
   final TfArg<String>? primaryDomainName;
 
-  final TfArg<
-    CloudfrontDistributionTenantManagedCertificateRequestValidationTokenHost
-  >?
+  final TfArg<CloudfrontDistributionTenantValidationTokenHost>?
   validationTokenHost;
 
   Map<String, Object?> encode() => {
@@ -155,12 +139,12 @@ final class CloudfrontDistributionTenantManagedCertificateRequest {
 }
 
 /// `certificate_transparency_logging_preference` — derived from the provider schema description.
-enum CloudfrontDistributionTenantManagedCertificateRequestCertificateTransparencyLoggingPreference
+enum CloudfrontDistributionTenantCertificateTransparencyLoggingPreference
     implements TerraformEnum {
   enabled('enabled'),
   disabled('disabled');
 
-  const CloudfrontDistributionTenantManagedCertificateRequestCertificateTransparencyLoggingPreference(
+  const CloudfrontDistributionTenantCertificateTransparencyLoggingPreference(
     this.terraformValue,
   );
   @override
@@ -168,14 +152,11 @@ enum CloudfrontDistributionTenantManagedCertificateRequestCertificateTransparenc
 }
 
 /// `validation_token_host` — derived from the provider schema description.
-enum CloudfrontDistributionTenantManagedCertificateRequestValidationTokenHost
-    implements TerraformEnum {
+enum CloudfrontDistributionTenantValidationTokenHost implements TerraformEnum {
   cloudfront('cloudfront'),
   selfHosted('self-hosted');
 
-  const CloudfrontDistributionTenantManagedCertificateRequestValidationTokenHost(
-    this.terraformValue,
-  );
+  const CloudfrontDistributionTenantValidationTokenHost(this.terraformValue);
   @override
   final String terraformValue;
 }

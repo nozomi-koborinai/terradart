@@ -45,8 +45,7 @@ final class ComputeFirewallPolicyRuleMatch {
 
   final TfArg<List<String>>? destIpRanges;
 
-  final TfArg<ComputeFirewallPolicyRuleMatchDestNetworkContext>?
-  destNetworkContext;
+  final TfArg<ComputeFirewallPolicyRuleDestNetworkContext>? destNetworkContext;
 
   final TfArg<List<String>>? destRegionCodes;
 
@@ -58,8 +57,7 @@ final class ComputeFirewallPolicyRuleMatch {
 
   final TfArg<List<String>>? srcIpRanges;
 
-  final TfArg<ComputeFirewallPolicyRuleMatchSrcNetworkContext>?
-  srcNetworkContext;
+  final TfArg<ComputeFirewallPolicyRuleSrcNetworkContext>? srcNetworkContext;
 
   final TfArg<List<String>>? srcNetworks;
 
@@ -67,9 +65,9 @@ final class ComputeFirewallPolicyRuleMatch {
 
   final TfArg<List<String>>? srcThreatIntelligences;
 
-  final List<ComputeFirewallPolicyRuleMatchLayer4Configs> layer4Configs;
+  final List<ComputeFirewallPolicyRuleLayer4Configs> layer4Configs;
 
-  final List<ComputeFirewallPolicyRuleMatchSrcSecureTags>? srcSecureTags;
+  final List<ComputeFirewallPolicyRuleSrcSecureTags>? srcSecureTags;
 
   Map<String, Object?> encode() => {
     'dest_address_groups': ?destAddressGroups?.toTfJson(),
@@ -92,27 +90,27 @@ final class ComputeFirewallPolicyRuleMatch {
 }
 
 /// `dest_network_context` — derived from the provider schema description.
-enum ComputeFirewallPolicyRuleMatchDestNetworkContext implements TerraformEnum {
+enum ComputeFirewallPolicyRuleDestNetworkContext implements TerraformEnum {
   unspecified('UNSPECIFIED'),
   internet('INTERNET'),
   intraVpc('INTRA_VPC'),
   nonInternet('NON_INTERNET'),
   vpcNetworks('VPC_NETWORKS');
 
-  const ComputeFirewallPolicyRuleMatchDestNetworkContext(this.terraformValue);
+  const ComputeFirewallPolicyRuleDestNetworkContext(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `src_network_context` — derived from the provider schema description.
-enum ComputeFirewallPolicyRuleMatchSrcNetworkContext implements TerraformEnum {
+enum ComputeFirewallPolicyRuleSrcNetworkContext implements TerraformEnum {
   unspecified('UNSPECIFIED'),
   internet('INTERNET'),
   intraVpc('INTRA_VPC'),
   nonInternet('NON_INTERNET'),
   vpcNetworks('VPC_NETWORKS');
 
-  const ComputeFirewallPolicyRuleMatchSrcNetworkContext(this.terraformValue);
+  const ComputeFirewallPolicyRuleSrcNetworkContext(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -120,8 +118,8 @@ enum ComputeFirewallPolicyRuleMatchSrcNetworkContext implements TerraformEnum {
 /// Typed helper for the `match.layer4_configs` block of
 /// `google_compute_firewall_policy_rule` (derived from provider schema).
 @immutable
-final class ComputeFirewallPolicyRuleMatchLayer4Configs {
-  const ComputeFirewallPolicyRuleMatchLayer4Configs({
+final class ComputeFirewallPolicyRuleLayer4Configs {
+  const ComputeFirewallPolicyRuleLayer4Configs({
     required this.ipProtocol,
     this.ports,
   });
@@ -139,8 +137,8 @@ final class ComputeFirewallPolicyRuleMatchLayer4Configs {
 /// Typed helper for the `match.src_secure_tags` block of
 /// `google_compute_firewall_policy_rule` (derived from provider schema).
 @immutable
-final class ComputeFirewallPolicyRuleMatchSrcSecureTags {
-  const ComputeFirewallPolicyRuleMatchSrcSecureTags({this.name});
+final class ComputeFirewallPolicyRuleSrcSecureTags {
+  const ComputeFirewallPolicyRuleSrcSecureTags({this.name});
 
   final TfArg<String>? name;
 

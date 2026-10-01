@@ -32,18 +32,13 @@ final class DataLineageStack extends Stack {
         location: .literal('global'),
         ingestion: DataLineageConfigIngestion(
           rule: [
-            DataLineageConfigIngestionRule(
-              integrationSelector:
-                  DataLineageConfigIngestionRuleIntegrationSelector(
-                    integration: .literal(
-                      DataLineageConfigIngestionRuleIntegrationSelectorIntegration
-                          .dataproc,
-                    ),
-                  ),
-              lineageEnablement:
-                  DataLineageConfigIngestionRuleLineageEnablement(
-                    enabled: .literal(true),
-                  ),
+            DataLineageConfigRule(
+              integrationSelector: DataLineageConfigIntegrationSelector(
+                integration: .literal(DataLineageConfigIntegration.dataproc),
+              ),
+              lineageEnablement: DataLineageConfigLineageEnablement(
+                enabled: .literal(true),
+              ),
             ),
           ],
         ),

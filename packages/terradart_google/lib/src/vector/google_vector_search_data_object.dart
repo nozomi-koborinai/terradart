@@ -19,9 +19,9 @@ final class VectorSearchDataObjectVectors {
 
   final TfArg<String> fieldName;
 
-  final VectorSearchDataObjectVectorsDense? dense;
+  final VectorSearchDataObjectDense? dense;
 
-  final VectorSearchDataObjectVectorsSparse? sparse;
+  final VectorSearchDataObjectSparse? sparse;
 
   Map<String, Object?> encode() => {
     'field_name': fieldName.toTfJson(),
@@ -33,8 +33,8 @@ final class VectorSearchDataObjectVectors {
 /// Typed helper for the `vectors.dense` block of
 /// `google_vector_search_data_object` (derived from provider schema).
 @immutable
-final class VectorSearchDataObjectVectorsDense {
-  const VectorSearchDataObjectVectorsDense({required this.values});
+final class VectorSearchDataObjectDense {
+  const VectorSearchDataObjectDense({required this.values});
 
   final TfArg<List<num>> values;
 
@@ -44,8 +44,8 @@ final class VectorSearchDataObjectVectorsDense {
 /// Typed helper for the `vectors.sparse` block of
 /// `google_vector_search_data_object` (derived from provider schema).
 @immutable
-final class VectorSearchDataObjectVectorsSparse {
-  const VectorSearchDataObjectVectorsSparse({
+final class VectorSearchDataObjectSparse {
+  const VectorSearchDataObjectSparse({
     required this.indices,
     required this.values,
   });

@@ -6,10 +6,10 @@ library;
 export 'src/spectrum/cloudflare_spectrum_application.dart'
     show
         CloudflareSpectrumApplication,
+        SpectrumApplicationConnectivity,
         SpectrumApplicationDns,
         SpectrumApplicationDnsType,
         SpectrumApplicationEdgeIps,
-        SpectrumApplicationEdgeIpsConnectivity,
         SpectrumApplicationEdgeIpsType,
         SpectrumApplicationOriginDns,
         SpectrumApplicationOriginDnsType,

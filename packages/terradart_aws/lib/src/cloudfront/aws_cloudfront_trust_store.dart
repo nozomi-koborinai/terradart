@@ -17,9 +17,7 @@ final class CloudfrontTrustStoreCaCertificatesBundleSource {
     this.caCertificatesBundleS3Location,
   });
 
-  final List<
-    CloudfrontTrustStoreCaCertificatesBundleSourceCaCertificatesBundleS3Location
-  >?
+  final List<CloudfrontTrustStoreCaCertificatesBundleS3Location>?
   caCertificatesBundleS3Location;
 
   Map<String, Object?> encode() => {
@@ -33,8 +31,8 @@ final class CloudfrontTrustStoreCaCertificatesBundleSource {
 /// Typed helper for the `ca_certificates_bundle_source.ca_certificates_bundle_s3_location` block of
 /// `aws_cloudfront_trust_store` (derived from provider schema).
 @immutable
-final class CloudfrontTrustStoreCaCertificatesBundleSourceCaCertificatesBundleS3Location {
-  const CloudfrontTrustStoreCaCertificatesBundleSourceCaCertificatesBundleS3Location({
+final class CloudfrontTrustStoreCaCertificatesBundleS3Location {
+  const CloudfrontTrustStoreCaCertificatesBundleS3Location({
     required this.bucket,
     required this.key,
     required this.region,

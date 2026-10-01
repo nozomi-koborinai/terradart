@@ -8,7 +8,7 @@ export 'src/s3control/aws_s3control_access_grant.dart'
         AwsS3controlAccessGrant,
         S3controlAccessGrantAccessGrantsLocationConfiguration,
         S3controlAccessGrantGrantee,
-        S3controlAccessGrantGranteeGranteeType,
+        S3controlAccessGrantGranteeType,
         S3controlAccessGrantPermission,
         S3controlAccessGrantS3PrefixType;
 export 'src/s3control/aws_s3control_access_grants_instance.dart'
@@ -23,23 +23,23 @@ export 'src/s3control/aws_s3control_bucket.dart' show AwsS3controlBucket;
 export 'src/s3control/aws_s3control_bucket_lifecycle_configuration.dart'
     show
         AwsS3controlBucketLifecycleConfiguration,
-        S3controlBucketLifecycleConfigurationRule,
-        S3controlBucketLifecycleConfigurationRuleAbortIncompleteMultipartUpload,
-        S3controlBucketLifecycleConfigurationRuleExpiration,
-        S3controlBucketLifecycleConfigurationRuleFilter;
+        S3controlBucketLifecycleConfigurationAbortIncompleteMultipartUpload,
+        S3controlBucketLifecycleConfigurationExpiration,
+        S3controlBucketLifecycleConfigurationFilter,
+        S3controlBucketLifecycleConfigurationRule;
 export 'src/s3control/aws_s3control_bucket_policy.dart'
     show AwsS3controlBucketPolicy;
 export 'src/s3control/aws_s3control_directory_bucket_access_point_scope.dart'
     show
         AwsS3controlDirectoryBucketAccessPointScope,
-        S3controlDirectoryBucketAccessPointScopeScope,
-        S3controlDirectoryBucketAccessPointScopeScopePermissions;
+        S3controlDirectoryBucketAccessPointScopePermissions,
+        S3controlDirectoryBucketAccessPointScopeScope;
 export 'src/s3control/aws_s3control_multi_region_access_point.dart'
     show
         AwsS3controlMultiRegionAccessPoint,
         S3controlMultiRegionAccessPointDetails,
-        S3controlMultiRegionAccessPointDetailsPublicAccessBlock,
-        S3controlMultiRegionAccessPointDetailsRegion;
+        S3controlMultiRegionAccessPointDetailsRegion,
+        S3controlMultiRegionAccessPointPublicAccessBlock;
 export 'src/s3control/aws_s3control_multi_region_access_point_policy.dart'
     show
         AwsS3controlMultiRegionAccessPointPolicy,
@@ -51,52 +51,36 @@ export 'src/s3control/aws_s3control_multi_region_access_point_routes.dart'
 export 'src/s3control/aws_s3control_object_lambda_access_point.dart'
     show
         AwsS3controlObjectLambdaAccessPoint,
+        S3controlObjectLambdaAccessPointActions,
+        S3controlObjectLambdaAccessPointAllowedFeatures,
+        S3controlObjectLambdaAccessPointAwsLambda,
         S3controlObjectLambdaAccessPointConfiguration,
-        S3controlObjectLambdaAccessPointConfigurationAllowedFeatures,
-        S3controlObjectLambdaAccessPointConfigurationTransformationConfiguration,
-        S3controlObjectLambdaAccessPointConfigurationTransformationConfigurationActions,
-        S3controlObjectLambdaAccessPointConfigurationTransformationConfigurationContentTransformation,
-        S3controlObjectLambdaAccessPointConfigurationTransformationConfigurationContentTransformationAwsLambda;
+        S3controlObjectLambdaAccessPointContentTransformation,
+        S3controlObjectLambdaAccessPointTransformationConfiguration;
 export 'src/s3control/aws_s3control_object_lambda_access_point_policy.dart'
     show AwsS3controlObjectLambdaAccessPointPolicy;
 export 'src/s3control/aws_s3control_storage_lens_configuration.dart'
     show
         AwsS3controlStorageLensConfiguration,
+        S3controlStorageLensConfigurationAccountLevel,
+        S3controlStorageLensConfigurationActivityMetrics,
+        S3controlStorageLensConfigurationAdvancedCostOptimizationMetrics,
+        S3controlStorageLensConfigurationAdvancedDataProtectionMetrics,
+        S3controlStorageLensConfigurationAdvancedPerformanceMetrics,
+        S3controlStorageLensConfigurationAwsOrg,
+        S3controlStorageLensConfigurationBucketLevel,
+        S3controlStorageLensConfigurationCloudWatchMetrics,
+        S3controlStorageLensConfigurationDataExport,
+        S3controlStorageLensConfigurationDetailedStatusCodeMetrics,
+        S3controlStorageLensConfigurationEncryption,
+        S3controlStorageLensConfigurationExclude,
+        S3controlStorageLensConfigurationExpandedPrefixesDataExport,
+        S3controlStorageLensConfigurationInclude,
+        S3controlStorageLensConfigurationPrefixLevel,
+        S3controlStorageLensConfigurationS3BucketDestination,
+        S3controlStorageLensConfigurationSelectionCriteria,
+        S3controlStorageLensConfigurationSseKms,
+        S3controlStorageLensConfigurationSseS3,
         S3controlStorageLensConfigurationStorageLensConfiguration,
-        S3controlStorageLensConfigurationStorageLensConfigurationAccountLevel,
-        S3controlStorageLensConfigurationStorageLensConfigurationAccountLevelActivityMetrics,
-        S3controlStorageLensConfigurationStorageLensConfigurationAccountLevelAdvancedCostOptimizationMetrics,
-        S3controlStorageLensConfigurationStorageLensConfigurationAccountLevelAdvancedDataProtectionMetrics,
-        S3controlStorageLensConfigurationStorageLensConfigurationAccountLevelAdvancedPerformanceMetrics,
-        S3controlStorageLensConfigurationStorageLensConfigurationAccountLevelBucketLevel,
-        S3controlStorageLensConfigurationStorageLensConfigurationAccountLevelBucketLevelActivityMetrics,
-        S3controlStorageLensConfigurationStorageLensConfigurationAccountLevelBucketLevelAdvancedCostOptimizationMetrics,
-        S3controlStorageLensConfigurationStorageLensConfigurationAccountLevelBucketLevelAdvancedDataProtectionMetrics,
-        S3controlStorageLensConfigurationStorageLensConfigurationAccountLevelBucketLevelAdvancedPerformanceMetrics,
-        S3controlStorageLensConfigurationStorageLensConfigurationAccountLevelBucketLevelDetailedStatusCodeMetrics,
-        S3controlStorageLensConfigurationStorageLensConfigurationAccountLevelBucketLevelPrefixLevel,
-        S3controlStorageLensConfigurationStorageLensConfigurationAccountLevelBucketLevelPrefixLevelStorageMetrics,
-        S3controlStorageLensConfigurationStorageLensConfigurationAccountLevelBucketLevelPrefixLevelStorageMetricsSelectionCriteria,
-        S3controlStorageLensConfigurationStorageLensConfigurationAccountLevelDetailedStatusCodeMetrics,
-        S3controlStorageLensConfigurationStorageLensConfigurationAwsOrg,
-        S3controlStorageLensConfigurationStorageLensConfigurationDataExport,
-        S3controlStorageLensConfigurationStorageLensConfigurationDataExportCloudWatchMetrics,
-        S3controlStorageLensConfigurationStorageLensConfigurationDataExportS3BucketDestination,
-        S3controlStorageLensConfigurationStorageLensConfigurationDataExportS3BucketDestinationEncryption,
-        S3controlStorageLensConfigurationStorageLensConfigurationDataExportS3BucketDestinationEncryptionSseKms,
-        S3controlStorageLensConfigurationStorageLensConfigurationDataExportS3BucketDestinationEncryptionSseS3,
-        S3controlStorageLensConfigurationStorageLensConfigurationDataExportStorageLensTableDestination,
-        S3controlStorageLensConfigurationStorageLensConfigurationDataExportStorageLensTableDestinationEncryption,
-        S3controlStorageLensConfigurationStorageLensConfigurationDataExportStorageLensTableDestinationEncryptionSseKms,
-        S3controlStorageLensConfigurationStorageLensConfigurationDataExportStorageLensTableDestinationEncryptionSseS3,
-        S3controlStorageLensConfigurationStorageLensConfigurationExclude,
-        S3controlStorageLensConfigurationStorageLensConfigurationExpandedPrefixesDataExport,
-        S3controlStorageLensConfigurationStorageLensConfigurationExpandedPrefixesDataExportS3BucketDestination,
-        S3controlStorageLensConfigurationStorageLensConfigurationExpandedPrefixesDataExportS3BucketDestinationEncryption,
-        S3controlStorageLensConfigurationStorageLensConfigurationExpandedPrefixesDataExportS3BucketDestinationEncryptionSseKms,
-        S3controlStorageLensConfigurationStorageLensConfigurationExpandedPrefixesDataExportS3BucketDestinationEncryptionSseS3,
-        S3controlStorageLensConfigurationStorageLensConfigurationExpandedPrefixesDataExportStorageLensTableDestination,
-        S3controlStorageLensConfigurationStorageLensConfigurationExpandedPrefixesDataExportStorageLensTableDestinationEncryption,
-        S3controlStorageLensConfigurationStorageLensConfigurationExpandedPrefixesDataExportStorageLensTableDestinationEncryptionSseKms,
-        S3controlStorageLensConfigurationStorageLensConfigurationExpandedPrefixesDataExportStorageLensTableDestinationEncryptionSseS3,
-        S3controlStorageLensConfigurationStorageLensConfigurationInclude;
+        S3controlStorageLensConfigurationStorageLensTableDestination,
+        S3controlStorageLensConfigurationStorageMetrics;

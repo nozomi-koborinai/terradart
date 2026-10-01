@@ -134,10 +134,9 @@ final class EcsTaskDefinitionRuntimePlatform {
     this.operatingSystemFamily,
   });
 
-  final TfArg<EcsTaskDefinitionRuntimePlatformCpuArchitecture>? cpuArchitecture;
+  final TfArg<EcsTaskDefinitionCpuArchitecture>? cpuArchitecture;
 
-  final TfArg<EcsTaskDefinitionRuntimePlatformOperatingSystemFamily>?
-  operatingSystemFamily;
+  final TfArg<EcsTaskDefinitionOperatingSystemFamily>? operatingSystemFamily;
 
   Map<String, Object?> encode() => {
     'cpu_architecture': ?cpuArchitecture?.toTfJson(),
@@ -146,18 +145,17 @@ final class EcsTaskDefinitionRuntimePlatform {
 }
 
 /// `cpu_architecture` — derived from the provider schema description.
-enum EcsTaskDefinitionRuntimePlatformCpuArchitecture implements TerraformEnum {
+enum EcsTaskDefinitionCpuArchitecture implements TerraformEnum {
   x8664('X86_64'),
   arm64('ARM64');
 
-  const EcsTaskDefinitionRuntimePlatformCpuArchitecture(this.terraformValue);
+  const EcsTaskDefinitionCpuArchitecture(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `operating_system_family` — derived from the provider schema description.
-enum EcsTaskDefinitionRuntimePlatformOperatingSystemFamily
-    implements TerraformEnum {
+enum EcsTaskDefinitionOperatingSystemFamily implements TerraformEnum {
   windowsServer2019Full('WINDOWS_SERVER_2019_FULL'),
   windowsServer2019Core('WINDOWS_SERVER_2019_CORE'),
   windowsServer2016Full('WINDOWS_SERVER_2016_FULL'),
@@ -169,9 +167,7 @@ enum EcsTaskDefinitionRuntimePlatformOperatingSystemFamily
   windowsServer20h2Core('WINDOWS_SERVER_20H2_CORE'),
   linux('LINUX');
 
-  const EcsTaskDefinitionRuntimePlatformOperatingSystemFamily(
-    this.terraformValue,
-  );
+  const EcsTaskDefinitionOperatingSystemFamily(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -196,16 +192,14 @@ final class EcsTaskDefinitionVolume {
 
   final TfArg<String> name;
 
-  final EcsTaskDefinitionVolumeDockerVolumeConfiguration?
-  dockerVolumeConfiguration;
+  final EcsTaskDefinitionDockerVolumeConfiguration? dockerVolumeConfiguration;
 
-  final EcsTaskDefinitionVolumeEfsVolumeConfiguration? efsVolumeConfiguration;
+  final EcsTaskDefinitionEfsVolumeConfiguration? efsVolumeConfiguration;
 
-  final EcsTaskDefinitionVolumeFsxWindowsFileServerVolumeConfiguration?
+  final EcsTaskDefinitionFsxWindowsFileServerVolumeConfiguration?
   fsxWindowsFileServerVolumeConfiguration;
 
-  final EcsTaskDefinitionVolumeS3filesVolumeConfiguration?
-  s3filesVolumeConfiguration;
+  final EcsTaskDefinitionS3filesVolumeConfiguration? s3filesVolumeConfiguration;
 
   Map<String, Object?> encode() => {
     'configure_at_launch': ?configureAtLaunch?.toTfJson(),
@@ -222,8 +216,8 @@ final class EcsTaskDefinitionVolume {
 /// Typed helper for the `volume.docker_volume_configuration` block of
 /// `aws_ecs_task_definition` (derived from provider schema).
 @immutable
-final class EcsTaskDefinitionVolumeDockerVolumeConfiguration {
-  const EcsTaskDefinitionVolumeDockerVolumeConfiguration({
+final class EcsTaskDefinitionDockerVolumeConfiguration {
+  const EcsTaskDefinitionDockerVolumeConfiguration({
     this.autoprovision,
     this.driver,
     this.driverOpts,
@@ -239,7 +233,7 @@ final class EcsTaskDefinitionVolumeDockerVolumeConfiguration {
 
   final TfArg<Map<String, String>>? labels;
 
-  final TfArg<EcsTaskDefinitionVolumeDockerVolumeConfigurationScope>? scope;
+  final TfArg<EcsTaskDefinitionScope>? scope;
 
   Map<String, Object?> encode() => {
     'autoprovision': ?autoprovision?.toTfJson(),
@@ -251,14 +245,11 @@ final class EcsTaskDefinitionVolumeDockerVolumeConfiguration {
 }
 
 /// `scope` — derived from the provider schema description.
-enum EcsTaskDefinitionVolumeDockerVolumeConfigurationScope
-    implements TerraformEnum {
+enum EcsTaskDefinitionScope implements TerraformEnum {
   task('task'),
   shared('shared');
 
-  const EcsTaskDefinitionVolumeDockerVolumeConfigurationScope(
-    this.terraformValue,
-  );
+  const EcsTaskDefinitionScope(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -266,8 +257,8 @@ enum EcsTaskDefinitionVolumeDockerVolumeConfigurationScope
 /// Typed helper for the `volume.efs_volume_configuration` block of
 /// `aws_ecs_task_definition` (derived from provider schema).
 @immutable
-final class EcsTaskDefinitionVolumeEfsVolumeConfiguration {
-  const EcsTaskDefinitionVolumeEfsVolumeConfiguration({
+final class EcsTaskDefinitionEfsVolumeConfiguration {
+  const EcsTaskDefinitionEfsVolumeConfiguration({
     required this.fileSystemId,
     this.rootDirectory,
     this.transitEncryption,
@@ -279,12 +270,11 @@ final class EcsTaskDefinitionVolumeEfsVolumeConfiguration {
 
   final TfArg<String>? rootDirectory;
 
-  final TfArg<EcsTaskDefinitionVolumeEfsVolumeConfigurationTransitEncryption>?
-  transitEncryption;
+  final TfArg<EcsTaskDefinitionTransitEncryption>? transitEncryption;
 
   final TfArg<num>? transitEncryptionPort;
 
-  final EcsTaskDefinitionVolumeEfsVolumeConfigurationAuthorizationConfig?
+  final EcsTaskDefinitionEfsVolumeConfigurationAuthorizationConfig?
   authorizationConfig;
 
   Map<String, Object?> encode() => {
@@ -297,14 +287,11 @@ final class EcsTaskDefinitionVolumeEfsVolumeConfiguration {
 }
 
 /// `transit_encryption` — derived from the provider schema description.
-enum EcsTaskDefinitionVolumeEfsVolumeConfigurationTransitEncryption
-    implements TerraformEnum {
+enum EcsTaskDefinitionTransitEncryption implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const EcsTaskDefinitionVolumeEfsVolumeConfigurationTransitEncryption(
-    this.terraformValue,
-  );
+  const EcsTaskDefinitionTransitEncryption(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -312,18 +299,15 @@ enum EcsTaskDefinitionVolumeEfsVolumeConfigurationTransitEncryption
 /// Typed helper for the `volume.efs_volume_configuration.authorization_config` block of
 /// `aws_ecs_task_definition` (derived from provider schema).
 @immutable
-final class EcsTaskDefinitionVolumeEfsVolumeConfigurationAuthorizationConfig {
-  const EcsTaskDefinitionVolumeEfsVolumeConfigurationAuthorizationConfig({
+final class EcsTaskDefinitionEfsVolumeConfigurationAuthorizationConfig {
+  const EcsTaskDefinitionEfsVolumeConfigurationAuthorizationConfig({
     this.accessPointId,
     this.iam,
   });
 
   final TfArg<String>? accessPointId;
 
-  final TfArg<
-    EcsTaskDefinitionVolumeEfsVolumeConfigurationAuthorizationConfigIam
-  >?
-  iam;
+  final TfArg<EcsTaskDefinitionIam>? iam;
 
   Map<String, Object?> encode() => {
     'access_point_id': ?accessPointId?.toTfJson(),
@@ -332,14 +316,11 @@ final class EcsTaskDefinitionVolumeEfsVolumeConfigurationAuthorizationConfig {
 }
 
 /// `iam` — derived from the provider schema description.
-enum EcsTaskDefinitionVolumeEfsVolumeConfigurationAuthorizationConfigIam
-    implements TerraformEnum {
+enum EcsTaskDefinitionIam implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const EcsTaskDefinitionVolumeEfsVolumeConfigurationAuthorizationConfigIam(
-    this.terraformValue,
-  );
+  const EcsTaskDefinitionIam(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -347,8 +328,8 @@ enum EcsTaskDefinitionVolumeEfsVolumeConfigurationAuthorizationConfigIam
 /// Typed helper for the `volume.fsx_windows_file_server_volume_configuration` block of
 /// `aws_ecs_task_definition` (derived from provider schema).
 @immutable
-final class EcsTaskDefinitionVolumeFsxWindowsFileServerVolumeConfiguration {
-  const EcsTaskDefinitionVolumeFsxWindowsFileServerVolumeConfiguration({
+final class EcsTaskDefinitionFsxWindowsFileServerVolumeConfiguration {
+  const EcsTaskDefinitionFsxWindowsFileServerVolumeConfiguration({
     required this.fileSystemId,
     required this.rootDirectory,
     required this.authorizationConfig,
@@ -358,7 +339,7 @@ final class EcsTaskDefinitionVolumeFsxWindowsFileServerVolumeConfiguration {
 
   final TfArg<String> rootDirectory;
 
-  final EcsTaskDefinitionVolumeFsxWindowsFileServerVolumeConfigurationAuthorizationConfig
+  final EcsTaskDefinitionFsxWindowsFileServerVolumeConfigurationAuthorizationConfig
   authorizationConfig;
 
   Map<String, Object?> encode() => {
@@ -371,8 +352,8 @@ final class EcsTaskDefinitionVolumeFsxWindowsFileServerVolumeConfiguration {
 /// Typed helper for the `volume.fsx_windows_file_server_volume_configuration.authorization_config` block of
 /// `aws_ecs_task_definition` (derived from provider schema).
 @immutable
-final class EcsTaskDefinitionVolumeFsxWindowsFileServerVolumeConfigurationAuthorizationConfig {
-  const EcsTaskDefinitionVolumeFsxWindowsFileServerVolumeConfigurationAuthorizationConfig({
+final class EcsTaskDefinitionFsxWindowsFileServerVolumeConfigurationAuthorizationConfig {
+  const EcsTaskDefinitionFsxWindowsFileServerVolumeConfigurationAuthorizationConfig({
     required this.credentialsParameter,
     required this.domain,
   });
@@ -390,8 +371,8 @@ final class EcsTaskDefinitionVolumeFsxWindowsFileServerVolumeConfigurationAuthor
 /// Typed helper for the `volume.s3files_volume_configuration` block of
 /// `aws_ecs_task_definition` (derived from provider schema).
 @immutable
-final class EcsTaskDefinitionVolumeS3filesVolumeConfiguration {
-  const EcsTaskDefinitionVolumeS3filesVolumeConfiguration({
+final class EcsTaskDefinitionS3filesVolumeConfiguration {
+  const EcsTaskDefinitionS3filesVolumeConfiguration({
     this.accessPointArn,
     required this.fileSystemArn,
     this.rootDirectory,

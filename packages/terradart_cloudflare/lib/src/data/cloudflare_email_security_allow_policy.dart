@@ -25,7 +25,7 @@ final class DataEmailSecurityAllowPolicyFilter {
     this.verifySender,
   });
 
-  final TfArg<DataEmailSecurityAllowPolicyFilterDirection>? direction;
+  final TfArg<DataEmailSecurityAllowPolicyDirection>? direction;
 
   final TfArg<bool>? isAcceptableSender;
 
@@ -33,7 +33,7 @@ final class DataEmailSecurityAllowPolicyFilter {
 
   final TfArg<bool>? isTrustedSender;
 
-  final TfArg<DataEmailSecurityAllowPolicyFilterOrder>? order;
+  final TfArg<DataEmailSecurityAllowPolicyOrder>? order;
 
   final TfArg<String>? pattern;
 
@@ -57,21 +57,21 @@ final class DataEmailSecurityAllowPolicyFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataEmailSecurityAllowPolicyFilterDirection implements TerraformEnum {
+enum DataEmailSecurityAllowPolicyDirection implements TerraformEnum {
   asc('asc'),
   desc('desc');
 
-  const DataEmailSecurityAllowPolicyFilterDirection(this.terraformValue);
+  const DataEmailSecurityAllowPolicyDirection(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `order` — derived from the provider schema description.
-enum DataEmailSecurityAllowPolicyFilterOrder implements TerraformEnum {
+enum DataEmailSecurityAllowPolicyOrder implements TerraformEnum {
   pattern('pattern'),
   createdAt('created_at');
 
-  const DataEmailSecurityAllowPolicyFilterOrder(this.terraformValue);
+  const DataEmailSecurityAllowPolicyOrder(this.terraformValue);
   @override
   final String terraformValue;
 }

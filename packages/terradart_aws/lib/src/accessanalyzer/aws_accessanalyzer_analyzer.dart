@@ -31,13 +31,13 @@ sealed class AccessanalyzerAnalyzerConfiguration {
 
   /// Sets `internal_access`.
   const factory AccessanalyzerAnalyzerConfiguration.internalAccess(
-    AccessanalyzerAnalyzerConfigurationInternalAccess internalAccess,
-  ) = AccessanalyzerAnalyzerConfigurationInternalAccessChoice;
+    AccessanalyzerAnalyzerInternalAccess internalAccess,
+  ) = AccessanalyzerAnalyzerConfigurationInternalAccess;
 
   /// Sets `unused_access`.
   const factory AccessanalyzerAnalyzerConfiguration.unusedAccess(
-    AccessanalyzerAnalyzerConfigurationUnusedAccess unusedAccess,
-  ) = AccessanalyzerAnalyzerConfigurationUnusedAccessChoice;
+    AccessanalyzerAnalyzerUnusedAccess unusedAccess,
+  ) = AccessanalyzerAnalyzerConfigurationUnusedAccess;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -46,13 +46,11 @@ sealed class AccessanalyzerAnalyzerConfiguration {
 }
 
 /// The [AccessanalyzerAnalyzerConfiguration.internalAccess] choice: sets `internal_access`.
-final class AccessanalyzerAnalyzerConfigurationInternalAccessChoice
+final class AccessanalyzerAnalyzerConfigurationInternalAccess
     extends AccessanalyzerAnalyzerConfiguration {
-  const AccessanalyzerAnalyzerConfigurationInternalAccessChoice(
-    this.internalAccess,
-  );
+  const AccessanalyzerAnalyzerConfigurationInternalAccess(this.internalAccess);
 
-  final AccessanalyzerAnalyzerConfigurationInternalAccess internalAccess;
+  final AccessanalyzerAnalyzerInternalAccess internalAccess;
 
   @override
   String get blockKey => 'internal_access';
@@ -62,13 +60,11 @@ final class AccessanalyzerAnalyzerConfigurationInternalAccessChoice
 }
 
 /// The [AccessanalyzerAnalyzerConfiguration.unusedAccess] choice: sets `unused_access`.
-final class AccessanalyzerAnalyzerConfigurationUnusedAccessChoice
+final class AccessanalyzerAnalyzerConfigurationUnusedAccess
     extends AccessanalyzerAnalyzerConfiguration {
-  const AccessanalyzerAnalyzerConfigurationUnusedAccessChoice(
-    this.unusedAccess,
-  );
+  const AccessanalyzerAnalyzerConfigurationUnusedAccess(this.unusedAccess);
 
-  final AccessanalyzerAnalyzerConfigurationUnusedAccess unusedAccess;
+  final AccessanalyzerAnalyzerUnusedAccess unusedAccess;
 
   @override
   String get blockKey => 'unused_access';
@@ -80,11 +76,10 @@ final class AccessanalyzerAnalyzerConfigurationUnusedAccessChoice
 /// Typed helper for the `configuration.internal_access` block of
 /// `aws_accessanalyzer_analyzer` (derived from provider schema).
 @immutable
-final class AccessanalyzerAnalyzerConfigurationInternalAccess {
-  const AccessanalyzerAnalyzerConfigurationInternalAccess({this.analysisRule});
+final class AccessanalyzerAnalyzerInternalAccess {
+  const AccessanalyzerAnalyzerInternalAccess({this.analysisRule});
 
-  final AccessanalyzerAnalyzerConfigurationInternalAccessAnalysisRule?
-  analysisRule;
+  final AccessanalyzerAnalyzerInternalAccessAnalysisRule? analysisRule;
 
   Map<String, Object?> encode() => {'analysis_rule': ?analysisRule?.encode()};
 }
@@ -92,15 +87,10 @@ final class AccessanalyzerAnalyzerConfigurationInternalAccess {
 /// Typed helper for the `configuration.internal_access.analysis_rule` block of
 /// `aws_accessanalyzer_analyzer` (derived from provider schema).
 @immutable
-final class AccessanalyzerAnalyzerConfigurationInternalAccessAnalysisRule {
-  const AccessanalyzerAnalyzerConfigurationInternalAccessAnalysisRule({
-    this.inclusion,
-  });
+final class AccessanalyzerAnalyzerInternalAccessAnalysisRule {
+  const AccessanalyzerAnalyzerInternalAccessAnalysisRule({this.inclusion});
 
-  final List<
-    AccessanalyzerAnalyzerConfigurationInternalAccessAnalysisRuleInclusion
-  >?
-  inclusion;
+  final List<AccessanalyzerAnalyzerInclusion>? inclusion;
 
   Map<String, Object?> encode() => {
     if (inclusion != null)
@@ -111,8 +101,8 @@ final class AccessanalyzerAnalyzerConfigurationInternalAccessAnalysisRule {
 /// Typed helper for the `configuration.internal_access.analysis_rule.inclusion` block of
 /// `aws_accessanalyzer_analyzer` (derived from provider schema).
 @immutable
-final class AccessanalyzerAnalyzerConfigurationInternalAccessAnalysisRuleInclusion {
-  const AccessanalyzerAnalyzerConfigurationInternalAccessAnalysisRuleInclusion({
+final class AccessanalyzerAnalyzerInclusion {
+  const AccessanalyzerAnalyzerInclusion({
     this.accountIds,
     this.resourceArns,
     this.resourceTypes,
@@ -122,12 +112,7 @@ final class AccessanalyzerAnalyzerConfigurationInternalAccessAnalysisRuleInclusi
 
   final TfArg<List<String>>? resourceArns;
 
-  final List<
-    TfArg<
-      AccessanalyzerAnalyzerConfigurationInternalAccessAnalysisRuleInclusionResourceTypes
-    >
-  >?
-  resourceTypes;
+  final List<TfArg<AccessanalyzerAnalyzerResourceTypes>>? resourceTypes;
 
   Map<String, Object?> encode() => {
     'account_ids': ?accountIds?.toTfJson(),
@@ -138,8 +123,7 @@ final class AccessanalyzerAnalyzerConfigurationInternalAccessAnalysisRuleInclusi
 }
 
 /// `resource_types` — derived from the provider schema description.
-enum AccessanalyzerAnalyzerConfigurationInternalAccessAnalysisRuleInclusionResourceTypes
-    implements TerraformEnum {
+enum AccessanalyzerAnalyzerResourceTypes implements TerraformEnum {
   awsS3Bucket('AWS::S3::Bucket'),
   awsIamRole('AWS::IAM::Role'),
   awsSqsQueue('AWS::SQS::Queue'),
@@ -158,9 +142,7 @@ enum AccessanalyzerAnalyzerConfigurationInternalAccessAnalysisRuleInclusionResou
   awsDynamodbStream('AWS::DynamoDB::Stream'),
   awsIamUser('AWS::IAM::User');
 
-  const AccessanalyzerAnalyzerConfigurationInternalAccessAnalysisRuleInclusionResourceTypes(
-    this.terraformValue,
-  );
+  const AccessanalyzerAnalyzerResourceTypes(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -168,16 +150,15 @@ enum AccessanalyzerAnalyzerConfigurationInternalAccessAnalysisRuleInclusionResou
 /// Typed helper for the `configuration.unused_access` block of
 /// `aws_accessanalyzer_analyzer` (derived from provider schema).
 @immutable
-final class AccessanalyzerAnalyzerConfigurationUnusedAccess {
-  const AccessanalyzerAnalyzerConfigurationUnusedAccess({
+final class AccessanalyzerAnalyzerUnusedAccess {
+  const AccessanalyzerAnalyzerUnusedAccess({
     this.unusedAccessAge,
     this.analysisRule,
   });
 
   final TfArg<num>? unusedAccessAge;
 
-  final AccessanalyzerAnalyzerConfigurationUnusedAccessAnalysisRule?
-  analysisRule;
+  final AccessanalyzerAnalyzerUnusedAccessAnalysisRule? analysisRule;
 
   Map<String, Object?> encode() => {
     'unused_access_age': ?unusedAccessAge?.toTfJson(),
@@ -188,15 +169,10 @@ final class AccessanalyzerAnalyzerConfigurationUnusedAccess {
 /// Typed helper for the `configuration.unused_access.analysis_rule` block of
 /// `aws_accessanalyzer_analyzer` (derived from provider schema).
 @immutable
-final class AccessanalyzerAnalyzerConfigurationUnusedAccessAnalysisRule {
-  const AccessanalyzerAnalyzerConfigurationUnusedAccessAnalysisRule({
-    this.exclusion,
-  });
+final class AccessanalyzerAnalyzerUnusedAccessAnalysisRule {
+  const AccessanalyzerAnalyzerUnusedAccessAnalysisRule({this.exclusion});
 
-  final List<
-    AccessanalyzerAnalyzerConfigurationUnusedAccessAnalysisRuleExclusion
-  >?
-  exclusion;
+  final List<AccessanalyzerAnalyzerExclusion>? exclusion;
 
   Map<String, Object?> encode() => {
     if (exclusion != null)
@@ -207,11 +183,8 @@ final class AccessanalyzerAnalyzerConfigurationUnusedAccessAnalysisRule {
 /// Typed helper for the `configuration.unused_access.analysis_rule.exclusion` block of
 /// `aws_accessanalyzer_analyzer` (derived from provider schema).
 @immutable
-final class AccessanalyzerAnalyzerConfigurationUnusedAccessAnalysisRuleExclusion {
-  const AccessanalyzerAnalyzerConfigurationUnusedAccessAnalysisRuleExclusion({
-    this.accountIds,
-    this.resourceTags,
-  });
+final class AccessanalyzerAnalyzerExclusion {
+  const AccessanalyzerAnalyzerExclusion({this.accountIds, this.resourceTags});
 
   final TfArg<List<String>>? accountIds;
 

@@ -87,7 +87,7 @@ final class SignerSigningProfileSignatureValidityPeriod {
     required this.value,
   });
 
-  final TfArg<SignerSigningProfileSignatureValidityPeriodType> type;
+  final TfArg<SignerSigningProfileType> type;
 
   final TfArg<num> value;
 
@@ -98,12 +98,12 @@ final class SignerSigningProfileSignatureValidityPeriod {
 }
 
 /// `type` — derived from the provider schema description.
-enum SignerSigningProfileSignatureValidityPeriodType implements TerraformEnum {
+enum SignerSigningProfileType implements TerraformEnum {
   days('DAYS'),
   months('MONTHS'),
   years('YEARS');
 
-  const SignerSigningProfileSignatureValidityPeriodType(this.terraformValue);
+  const SignerSigningProfileType(this.terraformValue);
   @override
   final String terraformValue;
 }

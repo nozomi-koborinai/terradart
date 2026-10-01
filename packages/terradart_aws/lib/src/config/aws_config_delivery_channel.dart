@@ -18,8 +18,7 @@ final class ConfigDeliveryChannelSnapshotDeliveryProperties {
     this.deliveryFrequency,
   });
 
-  final TfArg<ConfigDeliveryChannelSnapshotDeliveryPropertiesDeliveryFrequency>?
-  deliveryFrequency;
+  final TfArg<ConfigDeliveryChannelDeliveryFrequency>? deliveryFrequency;
 
   Map<String, Object?> encode() => {
     'delivery_frequency': ?deliveryFrequency?.toTfJson(),
@@ -27,17 +26,14 @@ final class ConfigDeliveryChannelSnapshotDeliveryProperties {
 }
 
 /// `delivery_frequency` — derived from the provider schema description.
-enum ConfigDeliveryChannelSnapshotDeliveryPropertiesDeliveryFrequency
-    implements TerraformEnum {
+enum ConfigDeliveryChannelDeliveryFrequency implements TerraformEnum {
   oneHour('One_Hour'),
   threeHours('Three_Hours'),
   sixHours('Six_Hours'),
   twelveHours('Twelve_Hours'),
   twentyfourHours('TwentyFour_Hours');
 
-  const ConfigDeliveryChannelSnapshotDeliveryPropertiesDeliveryFrequency(
-    this.terraformValue,
-  );
+  const ConfigDeliveryChannelDeliveryFrequency(this.terraformValue);
   @override
   final String terraformValue;
 }

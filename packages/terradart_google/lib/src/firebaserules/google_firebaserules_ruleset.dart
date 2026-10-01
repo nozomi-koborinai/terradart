@@ -13,9 +13,9 @@ const Set<String> _googleFirebaserulesRulesetSensitive = <String>{};
 final class FirebaserulesRulesetSource {
   const FirebaserulesRulesetSource({this.language, required this.files});
 
-  final TfArg<FirebaserulesRulesetSourceLanguage>? language;
+  final TfArg<FirebaserulesRulesetLanguage>? language;
 
-  final List<FirebaserulesRulesetSourceFiles> files;
+  final List<FirebaserulesRulesetFiles> files;
 
   Map<String, Object?> encode() => {
     'language': ?language?.toTfJson(),
@@ -24,12 +24,12 @@ final class FirebaserulesRulesetSource {
 }
 
 /// `language` — derived from the provider schema description.
-enum FirebaserulesRulesetSourceLanguage implements TerraformEnum {
+enum FirebaserulesRulesetLanguage implements TerraformEnum {
   languageUnspecified('LANGUAGE_UNSPECIFIED'),
   firebaseRules('FIREBASE_RULES'),
   eventFlowTriggers('EVENT_FLOW_TRIGGERS');
 
-  const FirebaserulesRulesetSourceLanguage(this.terraformValue);
+  const FirebaserulesRulesetLanguage(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -37,8 +37,8 @@ enum FirebaserulesRulesetSourceLanguage implements TerraformEnum {
 /// Typed helper for the `source.files` block of
 /// `google_firebaserules_ruleset` (derived from provider schema).
 @immutable
-final class FirebaserulesRulesetSourceFiles {
-  const FirebaserulesRulesetSourceFiles({
+final class FirebaserulesRulesetFiles {
+  const FirebaserulesRulesetFiles({
     required this.content,
     this.fingerprint,
     required this.name,
@@ -78,7 +78,7 @@ final class FirebaserulesRulesetSourceFiles {
 ///   localName: 'deny_all',
 ///   source: FirebaserulesRulesetSource(
 ///     files: [
-///       FirebaserulesRulesetSourceFiles(
+///       FirebaserulesRulesetFiles(
 ///         name: TfArg.literal('firestore.rules'),
 ///         content: TfArg.literal(
 ///           'service cloud.firestore {'

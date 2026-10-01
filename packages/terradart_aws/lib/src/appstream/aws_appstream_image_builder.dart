@@ -77,7 +77,7 @@ final class AppstreamImageBuilderAccessEndpoint {
     this.vpceId,
   });
 
-  final TfArg<AppstreamImageBuilderAccessEndpointEndpointType> endpointType;
+  final TfArg<AppstreamImageBuilderEndpointType> endpointType;
 
   final TfArg<String>? vpceId;
 
@@ -88,10 +88,10 @@ final class AppstreamImageBuilderAccessEndpoint {
 }
 
 /// `endpoint_type` — derived from the provider schema description.
-enum AppstreamImageBuilderAccessEndpointEndpointType implements TerraformEnum {
+enum AppstreamImageBuilderEndpointType implements TerraformEnum {
   streaming('STREAMING');
 
-  const AppstreamImageBuilderAccessEndpointEndpointType(this.terraformValue);
+  const AppstreamImageBuilderEndpointType(this.terraformValue);
   @override
   final String terraformValue;
 }

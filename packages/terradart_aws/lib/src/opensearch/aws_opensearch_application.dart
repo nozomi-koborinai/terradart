@@ -15,7 +15,7 @@ const Set<String> _awsOpensearchApplicationSensitive = <String>{};
 final class OpensearchApplicationAppConfig {
   const OpensearchApplicationAppConfig({this.key, this.value});
 
-  final TfArg<OpensearchApplicationAppConfigKey>? key;
+  final TfArg<OpensearchApplicationKey>? key;
 
   final TfArg<String>? value;
 
@@ -26,7 +26,7 @@ final class OpensearchApplicationAppConfig {
 }
 
 /// `key` — derived from the provider schema description.
-enum OpensearchApplicationAppConfigKey implements TerraformEnum {
+enum OpensearchApplicationKey implements TerraformEnum {
   opensearchdashboardsDashboardadminUsers(
     'opensearchDashboards.dashboardAdmin.users',
   ),
@@ -34,7 +34,7 @@ enum OpensearchApplicationAppConfigKey implements TerraformEnum {
     'opensearchDashboards.dashboardAdmin.groups',
   );
 
-  const OpensearchApplicationAppConfigKey(this.terraformValue);
+  const OpensearchApplicationKey(this.terraformValue);
   @override
   final String terraformValue;
 }

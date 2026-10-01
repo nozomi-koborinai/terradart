@@ -25,8 +25,7 @@ final class NetworkServicesEndpointPolicyEndpointMatcher {
     required this.metadataLabelMatcher,
   });
 
-  final NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcher
-  metadataLabelMatcher;
+  final NetworkServicesEndpointPolicyMetadataLabelMatcher metadataLabelMatcher;
 
   Map<String, Object?> encode() => {
     'metadata_label_matcher': metadataLabelMatcher.encode(),
@@ -36,21 +35,16 @@ final class NetworkServicesEndpointPolicyEndpointMatcher {
 /// Typed helper for the `endpoint_matcher.metadata_label_matcher` block of
 /// `google_network_services_endpoint_policy` (derived from provider schema).
 @immutable
-final class NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcher {
-  const NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcher({
+final class NetworkServicesEndpointPolicyMetadataLabelMatcher {
+  const NetworkServicesEndpointPolicyMetadataLabelMatcher({
     required this.metadataLabelMatchCriteria,
     this.metadataLabels,
   });
 
-  final TfArg<
-    NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcherMetadataLabelMatchCriteria
-  >
+  final TfArg<NetworkServicesEndpointPolicyMetadataLabelMatchCriteria>
   metadataLabelMatchCriteria;
 
-  final List<
-    NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcherMetadataLabels
-  >?
-  metadataLabels;
+  final List<NetworkServicesEndpointPolicyMetadataLabels>? metadataLabels;
 
   Map<String, Object?> encode() => {
     'metadata_label_match_criteria': metadataLabelMatchCriteria.toTfJson(),
@@ -60,12 +54,12 @@ final class NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcher {
 }
 
 /// `metadata_label_match_criteria` — derived from the provider schema description.
-enum NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcherMetadataLabelMatchCriteria
+enum NetworkServicesEndpointPolicyMetadataLabelMatchCriteria
     implements TerraformEnum {
   matchAny('MATCH_ANY'),
   matchAll('MATCH_ALL');
 
-  const NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcherMetadataLabelMatchCriteria(
+  const NetworkServicesEndpointPolicyMetadataLabelMatchCriteria(
     this.terraformValue,
   );
   @override
@@ -75,8 +69,8 @@ enum NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcherMetadataLab
 /// Typed helper for the `endpoint_matcher.metadata_label_matcher.metadata_labels` block of
 /// `google_network_services_endpoint_policy` (derived from provider schema).
 @immutable
-final class NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcherMetadataLabels {
-  const NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcherMetadataLabels({
+final class NetworkServicesEndpointPolicyMetadataLabels {
+  const NetworkServicesEndpointPolicyMetadataLabels({
     required this.labelName,
     required this.labelValue,
   });

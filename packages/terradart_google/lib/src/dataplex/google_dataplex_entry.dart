@@ -15,7 +15,7 @@ final class DataplexEntryAspects {
 
   final TfArg<String> aspectKey;
 
-  final DataplexEntryAspectsAspect aspect;
+  final DataplexEntryAspect aspect;
 
   Map<String, Object?> encode() => {
     'aspect_key': aspectKey.toTfJson(),
@@ -26,8 +26,8 @@ final class DataplexEntryAspects {
 /// Typed helper for the `aspects.aspect` block of
 /// `google_dataplex_entry` (derived from provider schema).
 @immutable
-final class DataplexEntryAspectsAspect {
-  const DataplexEntryAspectsAspect({required this.data});
+final class DataplexEntryAspect {
+  const DataplexEntryAspect({required this.data});
 
   final TfArg<String> data;
 
@@ -37,8 +37,8 @@ final class DataplexEntryAspectsAspect {
 /// Typed helper for the `entry_source` block of
 /// `google_dataplex_entry` (derived from provider schema).
 @immutable
-final class DataplexEntryEntrySource {
-  const DataplexEntryEntrySource({
+final class DataplexEntrySource {
+  const DataplexEntrySource({
     this.createTime,
     this.description,
     this.displayName,
@@ -66,7 +66,7 @@ final class DataplexEntryEntrySource {
 
   final TfArg<String>? updateTime;
 
-  final List<DataplexEntryEntrySourceAncestors>? ancestors;
+  final List<DataplexEntryAncestors>? ancestors;
 
   Map<String, Object?> encode() => {
     'create_time': ?createTime?.toTfJson(),
@@ -85,8 +85,8 @@ final class DataplexEntryEntrySource {
 /// Typed helper for the `entry_source.ancestors` block of
 /// `google_dataplex_entry` (derived from provider schema).
 @immutable
-final class DataplexEntryEntrySourceAncestors {
-  const DataplexEntryEntrySourceAncestors({this.name, this.type});
+final class DataplexEntryAncestors {
+  const DataplexEntryAncestors({this.name, this.type});
 
   final TfArg<String>? name;
 
@@ -123,7 +123,7 @@ final class GoogleDataplexEntry extends Resource {
     TfArg<String>? location,
     TfArg<String>? fullyQualifiedName,
     TfArg<String>? parentEntry,
-    DataplexEntryEntrySource? entrySource,
+    DataplexEntrySource? entrySource,
     List<DataplexEntryAspects>? aspects,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,

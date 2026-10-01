@@ -5,20 +5,17 @@ library;
 
 export 'src/appsync/aws_appsync_api.dart'
     show
+        AppsyncApiAuthProvider,
+        AppsyncApiAuthType,
+        AppsyncApiCognitoConfig,
+        AppsyncApiConnectionAuthMode,
+        AppsyncApiDefaultPublishAuthMode,
+        AppsyncApiDefaultSubscribeAuthMode,
         AppsyncApiEventConfig,
-        AppsyncApiEventConfigAuthProvider,
-        AppsyncApiEventConfigAuthProviderAuthType,
-        AppsyncApiEventConfigAuthProviderCognitoConfig,
-        AppsyncApiEventConfigAuthProviderLambdaAuthorizerConfig,
-        AppsyncApiEventConfigAuthProviderOpenidConnectConfig,
-        AppsyncApiEventConfigConnectionAuthMode,
-        AppsyncApiEventConfigConnectionAuthModeAuthType,
-        AppsyncApiEventConfigDefaultPublishAuthMode,
-        AppsyncApiEventConfigDefaultPublishAuthModeAuthType,
-        AppsyncApiEventConfigDefaultSubscribeAuthMode,
-        AppsyncApiEventConfigDefaultSubscribeAuthModeAuthType,
-        AppsyncApiEventConfigLogConfig,
-        AppsyncApiEventConfigLogConfigLogLevel,
+        AppsyncApiLambdaAuthorizerConfig,
+        AppsyncApiLogConfig,
+        AppsyncApiLogLevel,
+        AppsyncApiOpenidConnectConfig,
         AwsAppsyncApi;
 export 'src/appsync/aws_appsync_api_cache.dart'
     show
@@ -28,37 +25,32 @@ export 'src/appsync/aws_appsync_api_cache.dart'
 export 'src/appsync/aws_appsync_api_key.dart' show AwsAppsyncApiKey;
 export 'src/appsync/aws_appsync_channel_namespace.dart'
     show
+        AppsyncChannelNamespaceAuthType,
+        AppsyncChannelNamespaceBehavior,
         AppsyncChannelNamespaceHandlerConfigs,
-        AppsyncChannelNamespaceHandlerConfigsOnPublish,
-        AppsyncChannelNamespaceHandlerConfigsOnPublishBehavior,
-        AppsyncChannelNamespaceHandlerConfigsOnPublishIntegration,
-        AppsyncChannelNamespaceHandlerConfigsOnPublishIntegrationLambdaConfig,
-        AppsyncChannelNamespaceHandlerConfigsOnPublishIntegrationLambdaConfigInvokeType,
-        AppsyncChannelNamespaceHandlerConfigsOnSubscribe,
-        AppsyncChannelNamespaceHandlerConfigsOnSubscribeBehavior,
-        AppsyncChannelNamespaceHandlerConfigsOnSubscribeIntegration,
-        AppsyncChannelNamespaceHandlerConfigsOnSubscribeIntegrationLambdaConfig,
-        AppsyncChannelNamespaceHandlerConfigsOnSubscribeIntegrationLambdaConfigInvokeType,
+        AppsyncChannelNamespaceIntegration,
+        AppsyncChannelNamespaceInvokeType,
+        AppsyncChannelNamespaceLambdaConfig,
+        AppsyncChannelNamespaceOnPublish,
+        AppsyncChannelNamespaceOnSubscribe,
         AppsyncChannelNamespacePublishAuthMode,
-        AppsyncChannelNamespacePublishAuthModeAuthType,
         AppsyncChannelNamespaceSubscribeAuthMode,
-        AppsyncChannelNamespaceSubscribeAuthModeAuthType,
         AwsAppsyncChannelNamespace;
 export 'src/appsync/aws_appsync_datasource.dart'
     show
+        AppsyncDatasourceAuthorizationConfig,
+        AppsyncDatasourceAuthorizationType,
+        AppsyncDatasourceAwsIamConfig,
+        AppsyncDatasourceDeltaSyncConfig,
         AppsyncDatasourceDynamodbConfig,
-        AppsyncDatasourceDynamodbConfigDeltaSyncConfig,
         AppsyncDatasourceElasticsearchConfig,
         AppsyncDatasourceEventBridgeConfig,
         AppsyncDatasourceHttpConfig,
-        AppsyncDatasourceHttpConfigAuthorizationConfig,
-        AppsyncDatasourceHttpConfigAuthorizationConfigAuthorizationType,
-        AppsyncDatasourceHttpConfigAuthorizationConfigAwsIamConfig,
+        AppsyncDatasourceHttpEndpointConfig,
         AppsyncDatasourceLambdaConfig,
         AppsyncDatasourceOpensearchserviceConfig,
         AppsyncDatasourceRelationalDatabaseConfig,
-        AppsyncDatasourceRelationalDatabaseConfigHttpEndpointConfig,
-        AppsyncDatasourceRelationalDatabaseConfigSourceType,
+        AppsyncDatasourceSourceType,
         AppsyncDatasourceType,
         AwsAppsyncDatasource;
 export 'src/appsync/aws_appsync_domain_name.dart' show AwsAppsyncDomainName;
@@ -66,34 +58,32 @@ export 'src/appsync/aws_appsync_domain_name_api_association.dart'
     show AwsAppsyncDomainNameApiAssociation;
 export 'src/appsync/aws_appsync_function.dart'
     show
+        AppsyncFunctionConflictDetection,
+        AppsyncFunctionConflictHandler,
         AppsyncFunctionFunctionVersion,
+        AppsyncFunctionLambdaConflictHandlerConfig,
         AppsyncFunctionRuntime,
         AppsyncFunctionRuntimeName,
         AppsyncFunctionSyncConfig,
-        AppsyncFunctionSyncConfigConflictDetection,
-        AppsyncFunctionSyncConfigConflictHandler,
-        AppsyncFunctionSyncConfigLambdaConflictHandlerConfig,
         AwsAppsyncFunction;
 export 'src/appsync/aws_appsync_graphql_api.dart'
     show
         AppsyncGraphqlApiAdditionalAuthenticationProvider,
         AppsyncGraphqlApiAdditionalAuthenticationProviderAuthenticationType,
-        AppsyncGraphqlApiAdditionalAuthenticationProviderLambdaAuthorizerConfig,
-        AppsyncGraphqlApiAdditionalAuthenticationProviderOpenidConnectConfig,
         AppsyncGraphqlApiAdditionalAuthenticationProviderUserPoolConfig,
         AppsyncGraphqlApiApiType,
         AppsyncGraphqlApiAuthenticationType,
+        AppsyncGraphqlApiDataSourceLevelMetricsBehavior,
+        AppsyncGraphqlApiDefaultAction,
         AppsyncGraphqlApiEnhancedMetricsConfig,
-        AppsyncGraphqlApiEnhancedMetricsConfigDataSourceLevelMetricsBehavior,
-        AppsyncGraphqlApiEnhancedMetricsConfigOperationLevelMetricsConfig,
-        AppsyncGraphqlApiEnhancedMetricsConfigResolverLevelMetricsBehavior,
+        AppsyncGraphqlApiFieldLogLevel,
         AppsyncGraphqlApiIntrospectionConfig,
         AppsyncGraphqlApiLambdaAuthorizerConfig,
         AppsyncGraphqlApiLogConfig,
-        AppsyncGraphqlApiLogConfigFieldLogLevel,
         AppsyncGraphqlApiOpenidConnectConfig,
+        AppsyncGraphqlApiOperationLevelMetricsConfig,
+        AppsyncGraphqlApiResolverLevelMetricsBehavior,
         AppsyncGraphqlApiUserPoolConfig,
-        AppsyncGraphqlApiUserPoolConfigDefaultAction,
         AppsyncGraphqlApiVisibility,
         AwsAppsyncGraphqlApi;
 export 'src/appsync/aws_appsync_resolver.dart'
@@ -102,14 +92,14 @@ export 'src/appsync/aws_appsync_resolver.dart'
         AppsyncResolverBackendDataSource,
         AppsyncResolverBackendPipelineConfig,
         AppsyncResolverCachingConfig,
+        AppsyncResolverConflictDetection,
+        AppsyncResolverConflictHandler,
         AppsyncResolverKind,
+        AppsyncResolverLambdaConflictHandlerConfig,
+        AppsyncResolverName,
         AppsyncResolverPipelineConfig,
         AppsyncResolverRuntime,
-        AppsyncResolverRuntimeName,
         AppsyncResolverSyncConfig,
-        AppsyncResolverSyncConfigConflictDetection,
-        AppsyncResolverSyncConfigConflictHandler,
-        AppsyncResolverSyncConfigLambdaConflictHandlerConfig,
         AwsAppsyncResolver;
 export 'src/appsync/aws_appsync_source_api_association.dart'
     show

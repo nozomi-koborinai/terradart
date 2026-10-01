@@ -15,7 +15,7 @@ const Set<String> _awsS3BucketOwnershipControlsSensitive = <String>{};
 final class S3BucketOwnershipControlsRule {
   const S3BucketOwnershipControlsRule({required this.objectOwnership});
 
-  final TfArg<S3BucketOwnershipControlsRuleObjectOwnership> objectOwnership;
+  final TfArg<S3BucketOwnershipControlsObjectOwnership> objectOwnership;
 
   Map<String, Object?> encode() => {
     'object_ownership': objectOwnership.toTfJson(),
@@ -23,12 +23,12 @@ final class S3BucketOwnershipControlsRule {
 }
 
 /// `object_ownership` — derived from the provider schema description.
-enum S3BucketOwnershipControlsRuleObjectOwnership implements TerraformEnum {
+enum S3BucketOwnershipControlsObjectOwnership implements TerraformEnum {
   bucketownerpreferred('BucketOwnerPreferred'),
   objectwriter('ObjectWriter'),
   bucketownerenforced('BucketOwnerEnforced');
 
-  const S3BucketOwnershipControlsRuleObjectOwnership(this.terraformValue);
+  const S3BucketOwnershipControlsObjectOwnership(this.terraformValue);
   @override
   final String terraformValue;
 }

@@ -20,13 +20,13 @@ final class ZeroTrustDnsLocationEndpoints {
     required this.ipv6,
   });
 
-  final ZeroTrustDnsLocationEndpointsDoh doh;
+  final ZeroTrustDnsLocationDoh doh;
 
-  final ZeroTrustDnsLocationEndpointsDot dot;
+  final ZeroTrustDnsLocationDot dot;
 
-  final ZeroTrustDnsLocationEndpointsIpv4 ipv4;
+  final ZeroTrustDnsLocationIpv4 ipv4;
 
-  final ZeroTrustDnsLocationEndpointsIpv6 ipv6;
+  final ZeroTrustDnsLocationIpv6 ipv6;
 
   Map<String, Object?> encode() => {
     'doh': doh.encode(),
@@ -39,8 +39,8 @@ final class ZeroTrustDnsLocationEndpoints {
 /// Typed helper for the `endpoints.doh` block of
 /// `cloudflare_zero_trust_dns_location` (derived from provider schema).
 @immutable
-final class ZeroTrustDnsLocationEndpointsDoh {
-  const ZeroTrustDnsLocationEndpointsDoh({
+final class ZeroTrustDnsLocationDoh {
+  const ZeroTrustDnsLocationDoh({
     this.enabled,
     this.requireToken,
     this.networks,
@@ -50,7 +50,7 @@ final class ZeroTrustDnsLocationEndpointsDoh {
 
   final TfArg<bool>? requireToken;
 
-  final List<ZeroTrustDnsLocationEndpointsDohNetworks>? networks;
+  final List<ZeroTrustDnsLocationNetworks>? networks;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
@@ -59,11 +59,12 @@ final class ZeroTrustDnsLocationEndpointsDoh {
   };
 }
 
-/// Typed helper for the `endpoints.doh.networks` block of
+/// Typed helper for the `networks` block of
 /// `cloudflare_zero_trust_dns_location` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustDnsLocationEndpointsDohNetworks {
-  const ZeroTrustDnsLocationEndpointsDohNetworks({required this.network});
+final class ZeroTrustDnsLocationNetworks {
+  const ZeroTrustDnsLocationNetworks({required this.network});
 
   final TfArg<String> network;
 
@@ -73,12 +74,12 @@ final class ZeroTrustDnsLocationEndpointsDohNetworks {
 /// Typed helper for the `endpoints.dot` block of
 /// `cloudflare_zero_trust_dns_location` (derived from provider schema).
 @immutable
-final class ZeroTrustDnsLocationEndpointsDot {
-  const ZeroTrustDnsLocationEndpointsDot({this.enabled, this.networks});
+final class ZeroTrustDnsLocationDot {
+  const ZeroTrustDnsLocationDot({this.enabled, this.networks});
 
   final TfArg<bool>? enabled;
 
-  final List<ZeroTrustDnsLocationEndpointsDotNetworks>? networks;
+  final List<ZeroTrustDnsLocationNetworks>? networks;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
@@ -86,22 +87,11 @@ final class ZeroTrustDnsLocationEndpointsDot {
   };
 }
 
-/// Typed helper for the `endpoints.dot.networks` block of
-/// `cloudflare_zero_trust_dns_location` (derived from provider schema).
-@immutable
-final class ZeroTrustDnsLocationEndpointsDotNetworks {
-  const ZeroTrustDnsLocationEndpointsDotNetworks({required this.network});
-
-  final TfArg<String> network;
-
-  Map<String, Object?> encode() => {'network': network.toTfJson()};
-}
-
 /// Typed helper for the `endpoints.ipv4` block of
 /// `cloudflare_zero_trust_dns_location` (derived from provider schema).
 @immutable
-final class ZeroTrustDnsLocationEndpointsIpv4 {
-  const ZeroTrustDnsLocationEndpointsIpv4({this.enabled});
+final class ZeroTrustDnsLocationIpv4 {
+  const ZeroTrustDnsLocationIpv4({this.enabled});
 
   final TfArg<bool>? enabled;
 
@@ -111,28 +101,17 @@ final class ZeroTrustDnsLocationEndpointsIpv4 {
 /// Typed helper for the `endpoints.ipv6` block of
 /// `cloudflare_zero_trust_dns_location` (derived from provider schema).
 @immutable
-final class ZeroTrustDnsLocationEndpointsIpv6 {
-  const ZeroTrustDnsLocationEndpointsIpv6({this.enabled, this.networks});
+final class ZeroTrustDnsLocationIpv6 {
+  const ZeroTrustDnsLocationIpv6({this.enabled, this.networks});
 
   final TfArg<bool>? enabled;
 
-  final List<ZeroTrustDnsLocationEndpointsIpv6Networks>? networks;
+  final List<ZeroTrustDnsLocationNetworks>? networks;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     if (networks != null) 'networks': [for (final e in networks!) e.encode()],
   };
-}
-
-/// Typed helper for the `endpoints.ipv6.networks` block of
-/// `cloudflare_zero_trust_dns_location` (derived from provider schema).
-@immutable
-final class ZeroTrustDnsLocationEndpointsIpv6Networks {
-  const ZeroTrustDnsLocationEndpointsIpv6Networks({required this.network});
-
-  final TfArg<String> network;
-
-  Map<String, Object?> encode() => {'network': network.toTfJson()};
 }
 
 /// Typed helper for the `max_ttl` block of
@@ -141,7 +120,7 @@ final class ZeroTrustDnsLocationEndpointsIpv6Networks {
 final class ZeroTrustDnsLocationMaxTtl {
   const ZeroTrustDnsLocationMaxTtl({required this.mode, this.ttlSecs});
 
-  final TfArg<ZeroTrustDnsLocationMaxTtlMode> mode;
+  final TfArg<ZeroTrustDnsLocationMode> mode;
 
   final TfArg<num>? ttlSecs;
 
@@ -152,25 +131,14 @@ final class ZeroTrustDnsLocationMaxTtl {
 }
 
 /// `mode` — derived from the provider schema description.
-enum ZeroTrustDnsLocationMaxTtlMode implements TerraformEnum {
+enum ZeroTrustDnsLocationMode implements TerraformEnum {
   inherit('inherit'),
   overrideCase('override'),
   disabled('disabled');
 
-  const ZeroTrustDnsLocationMaxTtlMode(this.terraformValue);
+  const ZeroTrustDnsLocationMode(this.terraformValue);
   @override
   final String terraformValue;
-}
-
-/// Typed helper for the `networks` block of
-/// `cloudflare_zero_trust_dns_location` (derived from provider schema).
-@immutable
-final class ZeroTrustDnsLocationNetworks {
-  const ZeroTrustDnsLocationNetworks({required this.network});
-
-  final TfArg<String> network;
-
-  Map<String, Object?> encode() => {'network': network.toTfJson()};
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_dns_location`.

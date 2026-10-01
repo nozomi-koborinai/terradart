@@ -66,7 +66,7 @@ final class OracleGoldengateStack extends Stack {
       odbNetwork: .ref(odbNetwork.nameRef),
       properties: OracleDatabaseGoldengateDeploymentProperties(
         deploymentType: .literal('DATA_REPLICATION'),
-        oggData: OracleDatabaseGoldengateDeploymentPropertiesOggData(
+        oggData: OracleDatabaseGoldengateDeploymentOggData(
           adminUsername: .literal('admin'),
           deployment: .literal('terradart-ogg'),
           adminPassword: .literal('placeholder-password'),
@@ -85,7 +85,7 @@ final class OracleGoldengateStack extends Stack {
         connectionType: .literal('GENERIC'),
         displayName: .literal('TerraDart generic connection'),
         genericConnectionProperties:
-            OracleDatabaseGoldengateConnectionPropertiesGenericConnectionProperties(
+            OracleDatabaseGoldengateConnectionGenericConnectionProperties(
               host: .literal('db.example.com'),
               technologyType: .literal('GENERIC'),
             ),

@@ -294,9 +294,9 @@ final class DocdbClusterRestoreToPointInTime {
     required this.sourceClusterIdentifier,
   });
 
-  final DocdbClusterRestoreToPointInTimeTarget? target;
+  final DocdbClusterTarget? target;
 
-  final TfArg<DocdbClusterRestoreToPointInTimeRestoreType>? restoreType;
+  final TfArg<DocdbClusterRestoreType>? restoreType;
 
   final TfArg<String> sourceClusterIdentifier;
 
@@ -312,18 +312,17 @@ final class DocdbClusterRestoreToPointInTime {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.restoreToTime(...)`.
-sealed class DocdbClusterRestoreToPointInTimeTarget {
-  const DocdbClusterRestoreToPointInTimeTarget();
+sealed class DocdbClusterTarget {
+  const DocdbClusterTarget();
 
   /// Sets `restore_to_time`.
-  const factory DocdbClusterRestoreToPointInTimeTarget.restoreToTime(
-    TfArg<String> restoreToTime,
-  ) = DocdbClusterRestoreToPointInTimeTargetRestoreToTime;
+  const factory DocdbClusterTarget.restoreToTime(TfArg<String> restoreToTime) =
+      DocdbClusterTargetRestoreToTime;
 
   /// Sets `use_latest_restorable_time`.
-  const factory DocdbClusterRestoreToPointInTimeTarget.useLatestRestorableTime(
+  const factory DocdbClusterTarget.useLatestRestorableTime(
     TfArg<bool> useLatestRestorableTime,
-  ) = DocdbClusterRestoreToPointInTimeTargetUseLatestRestorableTime;
+  ) = DocdbClusterTargetUseLatestRestorableTime;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -331,10 +330,9 @@ sealed class DocdbClusterRestoreToPointInTimeTarget {
   Map<String, Object?> encode();
 }
 
-/// The [DocdbClusterRestoreToPointInTimeTarget.restoreToTime] choice: sets `restore_to_time`.
-final class DocdbClusterRestoreToPointInTimeTargetRestoreToTime
-    extends DocdbClusterRestoreToPointInTimeTarget {
-  const DocdbClusterRestoreToPointInTimeTargetRestoreToTime(this.restoreToTime);
+/// The [DocdbClusterTarget.restoreToTime] choice: sets `restore_to_time`.
+final class DocdbClusterTargetRestoreToTime extends DocdbClusterTarget {
+  const DocdbClusterTargetRestoreToTime(this.restoreToTime);
 
   final TfArg<String> restoreToTime;
 
@@ -347,12 +345,10 @@ final class DocdbClusterRestoreToPointInTimeTargetRestoreToTime
   };
 }
 
-/// The [DocdbClusterRestoreToPointInTimeTarget.useLatestRestorableTime] choice: sets `use_latest_restorable_time`.
-final class DocdbClusterRestoreToPointInTimeTargetUseLatestRestorableTime
-    extends DocdbClusterRestoreToPointInTimeTarget {
-  const DocdbClusterRestoreToPointInTimeTargetUseLatestRestorableTime(
-    this.useLatestRestorableTime,
-  );
+/// The [DocdbClusterTarget.useLatestRestorableTime] choice: sets `use_latest_restorable_time`.
+final class DocdbClusterTargetUseLatestRestorableTime
+    extends DocdbClusterTarget {
+  const DocdbClusterTargetUseLatestRestorableTime(this.useLatestRestorableTime);
 
   final TfArg<bool> useLatestRestorableTime;
 
@@ -366,11 +362,11 @@ final class DocdbClusterRestoreToPointInTimeTargetUseLatestRestorableTime
 }
 
 /// `restore_type` — derived from the provider schema description.
-enum DocdbClusterRestoreToPointInTimeRestoreType implements TerraformEnum {
+enum DocdbClusterRestoreType implements TerraformEnum {
   copyOnWrite('copy-on-write'),
   fullCopy('full-copy');
 
-  const DocdbClusterRestoreToPointInTimeRestoreType(this.terraformValue);
+  const DocdbClusterRestoreType(this.terraformValue);
   @override
   final String terraformValue;
 }

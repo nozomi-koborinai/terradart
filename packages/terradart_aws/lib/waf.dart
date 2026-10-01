@@ -7,55 +7,49 @@ export 'src/waf/aws_waf_byte_match_set.dart'
     show
         AwsWafByteMatchSet,
         WafByteMatchSetByteMatchTuples,
-        WafByteMatchSetByteMatchTuplesFieldToMatch,
-        WafByteMatchSetByteMatchTuplesFieldToMatchType;
+        WafByteMatchSetFieldToMatch,
+        WafByteMatchSetType;
 export 'src/waf/aws_waf_geo_match_set.dart'
     show AwsWafGeoMatchSet, WafGeoMatchSetGeoMatchConstraint;
 export 'src/waf/aws_waf_ipset.dart'
-    show AwsWafIpset, WafIpsetIpSetDescriptors, WafIpsetIpSetDescriptorsType;
+    show AwsWafIpset, WafIpsetIpSetDescriptors, WafIpsetType;
 export 'src/waf/aws_waf_rate_based_rule.dart'
-    show
-        AwsWafRateBasedRule,
-        WafRateBasedRulePredicates,
-        WafRateBasedRulePredicatesType;
+    show AwsWafRateBasedRule, WafRateBasedRulePredicates, WafRateBasedRuleType;
 export 'src/waf/aws_waf_regex_match_set.dart'
     show
         AwsWafRegexMatchSet,
-        WafRegexMatchSetRegexMatchTuple,
-        WafRegexMatchSetRegexMatchTupleFieldToMatch;
+        WafRegexMatchSetFieldToMatch,
+        WafRegexMatchSetRegexMatchTuple;
 export 'src/waf/aws_waf_regex_pattern_set.dart' show AwsWafRegexPatternSet;
 export 'src/waf/aws_waf_rule.dart'
-    show AwsWafRule, WafRulePredicates, WafRulePredicatesType;
+    show AwsWafRule, WafRulePredicates, WafRuleType;
 export 'src/waf/aws_waf_rule_group.dart'
-    show
-        AwsWafRuleGroup,
-        WafRuleGroupActivatedRule,
-        WafRuleGroupActivatedRuleAction;
+    show AwsWafRuleGroup, WafRuleGroupAction, WafRuleGroupActivatedRule;
 export 'src/waf/aws_waf_size_constraint_set.dart'
     show
         AwsWafSizeConstraintSet,
-        WafSizeConstraintSetSizeConstraints,
-        WafSizeConstraintSetSizeConstraintsFieldToMatch;
+        WafSizeConstraintSetFieldToMatch,
+        WafSizeConstraintSetSizeConstraints;
 export 'src/waf/aws_waf_sql_injection_match_set.dart'
     show
         AwsWafSqlInjectionMatchSet,
-        WafSqlInjectionMatchSetSqlInjectionMatchTuples,
-        WafSqlInjectionMatchSetSqlInjectionMatchTuplesFieldToMatch;
+        WafSqlInjectionMatchSetFieldToMatch,
+        WafSqlInjectionMatchSetSqlInjectionMatchTuples;
 export 'src/waf/aws_waf_web_acl.dart'
     show
         AwsWafWebAcl,
+        WafWebAclAction,
         WafWebAclDefaultAction,
+        WafWebAclFieldToMatch,
         WafWebAclLoggingConfiguration,
-        WafWebAclLoggingConfigurationRedactedFields,
-        WafWebAclLoggingConfigurationRedactedFieldsFieldToMatch,
+        WafWebAclOverrideAction,
+        WafWebAclRedactedFields,
         WafWebAclRules,
-        WafWebAclRulesAction,
-        WafWebAclRulesOverrideAction,
-        WafWebAclRulesType;
+        WafWebAclType;
 export 'src/waf/aws_waf_xss_match_set.dart'
     show
         AwsWafXssMatchSet,
-        WafXssMatchSetXssMatchTuples,
-        WafXssMatchSetXssMatchTuplesFieldToMatch,
-        WafXssMatchSetXssMatchTuplesFieldToMatchType,
-        WafXssMatchSetXssMatchTuplesTextTransformation;
+        WafXssMatchSetFieldToMatch,
+        WafXssMatchSetTextTransformation,
+        WafXssMatchSetType,
+        WafXssMatchSetXssMatchTuples;

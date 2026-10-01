@@ -31,12 +31,12 @@ final class EcsExpressGatewayServicePrimaryContainer {
 
   final TfArg<String> image;
 
-  final List<EcsExpressGatewayServicePrimaryContainerEnvironment>? environment;
+  final List<EcsExpressGatewayServiceEnvironment>? environment;
 
-  final List<EcsExpressGatewayServicePrimaryContainerRepositoryCredentials>?
+  final List<EcsExpressGatewayServiceRepositoryCredentials>?
   repositoryCredentials;
 
-  final List<EcsExpressGatewayServicePrimaryContainerSecret>? secret;
+  final List<EcsExpressGatewayServiceSecret>? secret;
 
   Map<String, Object?> encode() => {
     'aws_logs_configuration': ?awsLogsConfiguration?.toTfJson(),
@@ -56,8 +56,8 @@ final class EcsExpressGatewayServicePrimaryContainer {
 /// Typed helper for the `primary_container.environment` block of
 /// `aws_ecs_express_gateway_service` (derived from provider schema).
 @immutable
-final class EcsExpressGatewayServicePrimaryContainerEnvironment {
-  const EcsExpressGatewayServicePrimaryContainerEnvironment({
+final class EcsExpressGatewayServiceEnvironment {
+  const EcsExpressGatewayServiceEnvironment({
     required this.name,
     required this.value,
   });
@@ -75,8 +75,8 @@ final class EcsExpressGatewayServicePrimaryContainerEnvironment {
 /// Typed helper for the `primary_container.repository_credentials` block of
 /// `aws_ecs_express_gateway_service` (derived from provider schema).
 @immutable
-final class EcsExpressGatewayServicePrimaryContainerRepositoryCredentials {
-  const EcsExpressGatewayServicePrimaryContainerRepositoryCredentials({
+final class EcsExpressGatewayServiceRepositoryCredentials {
+  const EcsExpressGatewayServiceRepositoryCredentials({
     required this.credentialsParameter,
   });
 
@@ -90,8 +90,8 @@ final class EcsExpressGatewayServicePrimaryContainerRepositoryCredentials {
 /// Typed helper for the `primary_container.secret` block of
 /// `aws_ecs_express_gateway_service` (derived from provider schema).
 @immutable
-final class EcsExpressGatewayServicePrimaryContainerSecret {
-  const EcsExpressGatewayServicePrimaryContainerSecret({
+final class EcsExpressGatewayServiceSecret {
+  const EcsExpressGatewayServiceSecret({
     required this.name,
     required this.valueFrom,
   });

@@ -83,11 +83,11 @@ final class StorageInsightsReportConfigFrequencyOptions {
     required this.startDate,
   });
 
-  final TfArg<StorageInsightsReportConfigFrequencyOptionsFrequency> frequency;
+  final TfArg<StorageInsightsReportConfigFrequency> frequency;
 
-  final StorageInsightsReportConfigFrequencyOptionsEndDate endDate;
+  final StorageInsightsReportConfigEndDate endDate;
 
-  final StorageInsightsReportConfigFrequencyOptionsStartDate startDate;
+  final StorageInsightsReportConfigStartDate startDate;
 
   Map<String, Object?> encode() => {
     'frequency': frequency.toTfJson(),
@@ -97,14 +97,11 @@ final class StorageInsightsReportConfigFrequencyOptions {
 }
 
 /// `frequency` — derived from the provider schema description.
-enum StorageInsightsReportConfigFrequencyOptionsFrequency
-    implements TerraformEnum {
+enum StorageInsightsReportConfigFrequency implements TerraformEnum {
   daily('DAILY'),
   weekly('WEEKLY');
 
-  const StorageInsightsReportConfigFrequencyOptionsFrequency(
-    this.terraformValue,
-  );
+  const StorageInsightsReportConfigFrequency(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -112,8 +109,8 @@ enum StorageInsightsReportConfigFrequencyOptionsFrequency
 /// Typed helper for the `frequency_options.end_date` block of
 /// `google_storage_insights_report_config` (derived from provider schema).
 @immutable
-final class StorageInsightsReportConfigFrequencyOptionsEndDate {
-  const StorageInsightsReportConfigFrequencyOptionsEndDate({
+final class StorageInsightsReportConfigEndDate {
+  const StorageInsightsReportConfigEndDate({
     required this.day,
     required this.month,
     required this.year,
@@ -135,8 +132,8 @@ final class StorageInsightsReportConfigFrequencyOptionsEndDate {
 /// Typed helper for the `frequency_options.start_date` block of
 /// `google_storage_insights_report_config` (derived from provider schema).
 @immutable
-final class StorageInsightsReportConfigFrequencyOptionsStartDate {
-  const StorageInsightsReportConfigFrequencyOptionsStartDate({
+final class StorageInsightsReportConfigStartDate {
+  const StorageInsightsReportConfigStartDate({
     required this.day,
     required this.month,
     required this.year,
@@ -167,11 +164,10 @@ final class StorageInsightsReportConfigObjectMetadataReportOptions {
 
   final TfArg<List<String>> metadataFields;
 
-  final StorageInsightsReportConfigObjectMetadataReportOptionsStorageDestinationOptions
+  final StorageInsightsReportConfigStorageDestinationOptions
   storageDestinationOptions;
 
-  final StorageInsightsReportConfigObjectMetadataReportOptionsStorageFilters?
-  storageFilters;
+  final StorageInsightsReportConfigStorageFilters? storageFilters;
 
   Map<String, Object?> encode() => {
     'metadata_fields': metadataFields.toTfJson(),
@@ -183,8 +179,8 @@ final class StorageInsightsReportConfigObjectMetadataReportOptions {
 /// Typed helper for the `object_metadata_report_options.storage_destination_options` block of
 /// `google_storage_insights_report_config` (derived from provider schema).
 @immutable
-final class StorageInsightsReportConfigObjectMetadataReportOptionsStorageDestinationOptions {
-  const StorageInsightsReportConfigObjectMetadataReportOptionsStorageDestinationOptions({
+final class StorageInsightsReportConfigStorageDestinationOptions {
+  const StorageInsightsReportConfigStorageDestinationOptions({
     required this.bucket,
     this.destinationPath,
   });
@@ -202,10 +198,8 @@ final class StorageInsightsReportConfigObjectMetadataReportOptionsStorageDestina
 /// Typed helper for the `object_metadata_report_options.storage_filters` block of
 /// `google_storage_insights_report_config` (derived from provider schema).
 @immutable
-final class StorageInsightsReportConfigObjectMetadataReportOptionsStorageFilters {
-  const StorageInsightsReportConfigObjectMetadataReportOptionsStorageFilters({
-    this.bucket,
-  });
+final class StorageInsightsReportConfigStorageFilters {
+  const StorageInsightsReportConfigStorageFilters({this.bucket});
 
   final RefTo<GoogleStorageBucket>? bucket;
 
@@ -239,14 +233,14 @@ final class StorageInsightsReportConfigObjectMetadataReportOptionsStorageFilters
 ///   format: const StorageInsightsReportConfigCsvFormat(),
 ///   frequencyOptions: StorageInsightsReportConfigFrequencyOptions(
 ///     frequency: TfArg.literal(
-///       StorageInsightsReportConfigFrequencyOptionsFrequency.weekly,
+///       StorageInsightsReportConfigFrequency.weekly,
 ///     ),
-///     startDate: StorageInsightsReportConfigFrequencyOptionsStartDate(
+///     startDate: StorageInsightsReportConfigStartDate(
 ///       year: TfArg.literal(2099),
 ///       month: TfArg.literal(1),
 ///       day: TfArg.literal(1),
 ///     ),
-///     endDate: StorageInsightsReportConfigFrequencyOptionsEndDate(
+///     endDate: StorageInsightsReportConfigEndDate(
 ///       year: TfArg.literal(2099),
 ///       month: TfArg.literal(12),
 ///       day: TfArg.literal(31),
@@ -256,11 +250,11 @@ final class StorageInsightsReportConfigObjectMetadataReportOptionsStorageFilters
 ///       StorageInsightsReportConfigObjectMetadataReportOptions(
 ///     metadataFields: TfArg.literal(['name', 'size']),
 ///     storageDestinationOptions:
-///         StorageInsightsReportConfigObjectMetadataReportOptionsStorageDestinationOptions(
+///         StorageInsightsReportConfigStorageDestinationOptions(
 ///       bucket: reports.ref,
 ///     ),
 ///     storageFilters:
-///         StorageInsightsReportConfigObjectMetadataReportOptionsStorageFilters(
+///         StorageInsightsReportConfigStorageFilters(
 ///       bucket: source.ref,
 ///     ),
 ///   ),

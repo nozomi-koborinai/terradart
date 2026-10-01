@@ -18,7 +18,7 @@ final class AppEngineServiceSplitTrafficSplit {
 
   final TfArg<Map<String, String>> allocations;
 
-  final TfArg<AppEngineServiceSplitTrafficSplitShardBy>? shardBy;
+  final TfArg<AppEngineServiceSplitTrafficShardBy>? shardBy;
 
   Map<String, Object?> encode() => {
     'allocations': allocations.toTfJson(),
@@ -27,13 +27,13 @@ final class AppEngineServiceSplitTrafficSplit {
 }
 
 /// `shard_by` — derived from the provider schema description.
-enum AppEngineServiceSplitTrafficSplitShardBy implements TerraformEnum {
+enum AppEngineServiceSplitTrafficShardBy implements TerraformEnum {
   unspecified('UNSPECIFIED'),
   cookie('COOKIE'),
   ip('IP'),
   random('RANDOM');
 
-  const AppEngineServiceSplitTrafficSplitShardBy(this.terraformValue);
+  const AppEngineServiceSplitTrafficShardBy(this.terraformValue);
   @override
   final String terraformValue;
 }

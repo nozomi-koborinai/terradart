@@ -49,8 +49,7 @@ final class Resiliencehubv2ServicePermissionModel {
 
   final TfArg<String> invokerRoleName;
 
-  final List<Resiliencehubv2ServicePermissionModelCrossAccountRole>?
-  crossAccountRole;
+  final List<Resiliencehubv2ServiceCrossAccountRole>? crossAccountRole;
 
   Map<String, Object?> encode() => {
     'invoker_role_name': invokerRoleName.toTfJson(),
@@ -62,8 +61,8 @@ final class Resiliencehubv2ServicePermissionModel {
 /// Typed helper for the `permission_model.cross_account_role` block of
 /// `aws_resiliencehubv2_service` (derived from provider schema).
 @immutable
-final class Resiliencehubv2ServicePermissionModelCrossAccountRole {
-  const Resiliencehubv2ServicePermissionModelCrossAccountRole({
+final class Resiliencehubv2ServiceCrossAccountRole {
+  const Resiliencehubv2ServiceCrossAccountRole({
     required this.crossAccountRoleArn,
     this.externalId,
   });

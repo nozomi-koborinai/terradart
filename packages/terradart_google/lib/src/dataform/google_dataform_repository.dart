@@ -20,7 +20,7 @@ final class DataformRepositoryGitRemoteSettings {
     required this.url,
   });
 
-  final DataformRepositoryGitRemoteSettingsAuthentication authentication;
+  final DataformRepositoryAuthentication authentication;
 
   final TfArg<String> defaultBranch;
 
@@ -37,24 +37,23 @@ final class DataformRepositoryGitRemoteSettings {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.authenticationTokenSecretVersion(...)`.
-sealed class DataformRepositoryGitRemoteSettingsAuthentication {
-  const DataformRepositoryGitRemoteSettingsAuthentication();
+sealed class DataformRepositoryAuthentication {
+  const DataformRepositoryAuthentication();
 
   /// Sets `authentication_token_secret_version`.
-  const factory DataformRepositoryGitRemoteSettingsAuthentication.authenticationTokenSecretVersion(
+  const factory DataformRepositoryAuthentication.authenticationTokenSecretVersion(
     TfArg<String> authenticationTokenSecretVersion,
-  ) = DataformRepositoryGitRemoteSettingsAuthenticationTokenSecretVersion;
+  ) = DataformRepositoryAuthenticationTokenSecretVersion;
 
   /// Sets `ssh_authentication_config`.
-  const factory DataformRepositoryGitRemoteSettingsAuthentication.sshAuthenticationConfig(
-    DataformRepositoryGitRemoteSettingsSshAuthenticationConfig
-    sshAuthenticationConfig,
-  ) = DataformRepositoryGitRemoteSettingsAuthenticationSshAuthenticationConfig;
+  const factory DataformRepositoryAuthentication.sshAuthenticationConfig(
+    DataformRepositorySshAuthenticationConfig sshAuthenticationConfig,
+  ) = DataformRepositoryAuthenticationSshAuthenticationConfig;
 
   /// Sets `git_repository_link`.
-  const factory DataformRepositoryGitRemoteSettingsAuthentication.gitRepositoryLink(
+  const factory DataformRepositoryAuthentication.gitRepositoryLink(
     TfArg<String> gitRepositoryLink,
-  ) = DataformRepositoryGitRemoteSettingsAuthenticationGitRepositoryLink;
+  ) = DataformRepositoryAuthenticationGitRepositoryLink;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -62,10 +61,10 @@ sealed class DataformRepositoryGitRemoteSettingsAuthentication {
   Map<String, Object?> encode();
 }
 
-/// The [DataformRepositoryGitRemoteSettingsAuthentication.authenticationTokenSecretVersion] choice: sets `authentication_token_secret_version`.
-final class DataformRepositoryGitRemoteSettingsAuthenticationTokenSecretVersion
-    extends DataformRepositoryGitRemoteSettingsAuthentication {
-  const DataformRepositoryGitRemoteSettingsAuthenticationTokenSecretVersion(
+/// The [DataformRepositoryAuthentication.authenticationTokenSecretVersion] choice: sets `authentication_token_secret_version`.
+final class DataformRepositoryAuthenticationTokenSecretVersion
+    extends DataformRepositoryAuthentication {
+  const DataformRepositoryAuthenticationTokenSecretVersion(
     this.authenticationTokenSecretVersion,
   );
 
@@ -81,15 +80,14 @@ final class DataformRepositoryGitRemoteSettingsAuthenticationTokenSecretVersion
   };
 }
 
-/// The [DataformRepositoryGitRemoteSettingsAuthentication.sshAuthenticationConfig] choice: sets `ssh_authentication_config`.
-final class DataformRepositoryGitRemoteSettingsAuthenticationSshAuthenticationConfig
-    extends DataformRepositoryGitRemoteSettingsAuthentication {
-  const DataformRepositoryGitRemoteSettingsAuthenticationSshAuthenticationConfig(
+/// The [DataformRepositoryAuthentication.sshAuthenticationConfig] choice: sets `ssh_authentication_config`.
+final class DataformRepositoryAuthenticationSshAuthenticationConfig
+    extends DataformRepositoryAuthentication {
+  const DataformRepositoryAuthenticationSshAuthenticationConfig(
     this.sshAuthenticationConfig,
   );
 
-  final DataformRepositoryGitRemoteSettingsSshAuthenticationConfig
-  sshAuthenticationConfig;
+  final DataformRepositorySshAuthenticationConfig sshAuthenticationConfig;
 
   @override
   String get blockKey => 'ssh_authentication_config';
@@ -100,10 +98,10 @@ final class DataformRepositoryGitRemoteSettingsAuthenticationSshAuthenticationCo
   };
 }
 
-/// The [DataformRepositoryGitRemoteSettingsAuthentication.gitRepositoryLink] choice: sets `git_repository_link`.
-final class DataformRepositoryGitRemoteSettingsAuthenticationGitRepositoryLink
-    extends DataformRepositoryGitRemoteSettingsAuthentication {
-  const DataformRepositoryGitRemoteSettingsAuthenticationGitRepositoryLink(
+/// The [DataformRepositoryAuthentication.gitRepositoryLink] choice: sets `git_repository_link`.
+final class DataformRepositoryAuthenticationGitRepositoryLink
+    extends DataformRepositoryAuthentication {
+  const DataformRepositoryAuthenticationGitRepositoryLink(
     this.gitRepositoryLink,
   );
 
@@ -121,8 +119,8 @@ final class DataformRepositoryGitRemoteSettingsAuthenticationGitRepositoryLink
 /// Typed helper for the `git_remote_settings.ssh_authentication_config` block of
 /// `google_dataform_repository` (derived from provider schema).
 @immutable
-final class DataformRepositoryGitRemoteSettingsSshAuthenticationConfig {
-  const DataformRepositoryGitRemoteSettingsSshAuthenticationConfig({
+final class DataformRepositorySshAuthenticationConfig {
+  const DataformRepositorySshAuthenticationConfig({
     required this.hostPublicKey,
     required this.userPrivateKeySecretVersion,
   });

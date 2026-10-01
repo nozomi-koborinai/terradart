@@ -128,35 +128,33 @@ final class ZeroTrustGatewayPolicyRuleSettings {
 
   final TfArg<Map<String, dynamic>>? setHeaders;
 
-  final ZeroTrustGatewayPolicyRuleSettingsAuditSsh? auditSsh;
+  final ZeroTrustGatewayPolicyAuditSsh? auditSsh;
 
-  final ZeroTrustGatewayPolicyRuleSettingsBisoAdminControls? bisoAdminControls;
+  final ZeroTrustGatewayPolicyBisoAdminControls? bisoAdminControls;
 
-  final ZeroTrustGatewayPolicyRuleSettingsBlockPage? blockPage;
+  final ZeroTrustGatewayPolicyBlockPage? blockPage;
 
-  final ZeroTrustGatewayPolicyRuleSettingsCheckSession? checkSession;
+  final ZeroTrustGatewayPolicyCheckSession? checkSession;
 
-  final ZeroTrustGatewayPolicyRuleSettingsDnsResolvers? dnsResolvers;
+  final ZeroTrustGatewayPolicyDnsResolvers? dnsResolvers;
 
-  final ZeroTrustGatewayPolicyRuleSettingsEgress? egress;
+  final ZeroTrustGatewayPolicyEgress? egress;
 
-  final ZeroTrustGatewayPolicyRuleSettingsForensicCopy? forensicCopy;
+  final ZeroTrustGatewayPolicyForensicCopy? forensicCopy;
 
-  final ZeroTrustGatewayPolicyRuleSettingsL4override? l4override;
+  final ZeroTrustGatewayPolicyL4override? l4override;
 
-  final ZeroTrustGatewayPolicyRuleSettingsNotificationSettings?
-  notificationSettings;
+  final ZeroTrustGatewayPolicyNotificationSettings? notificationSettings;
 
-  final ZeroTrustGatewayPolicyRuleSettingsPayloadLog? payloadLog;
+  final ZeroTrustGatewayPolicyPayloadLog? payloadLog;
 
-  final ZeroTrustGatewayPolicyRuleSettingsQuarantine? quarantine;
+  final ZeroTrustGatewayPolicyQuarantine? quarantine;
 
-  final ZeroTrustGatewayPolicyRuleSettingsRedirect? redirect;
+  final ZeroTrustGatewayPolicyRedirect? redirect;
 
-  final ZeroTrustGatewayPolicyRuleSettingsResolveDnsInternally?
-  resolveDnsInternally;
+  final ZeroTrustGatewayPolicyResolveDnsInternally? resolveDnsInternally;
 
-  final ZeroTrustGatewayPolicyRuleSettingsUntrustedCert? untrustedCert;
+  final ZeroTrustGatewayPolicyUntrustedCert? untrustedCert;
 
   Map<String, Object?> encode() => {
     'add_headers': ?addHeaders?.toTfJson(),
@@ -194,8 +192,8 @@ final class ZeroTrustGatewayPolicyRuleSettings {
 /// Typed helper for the `rule_settings.audit_ssh` block of
 /// `cloudflare_zero_trust_gateway_policy` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewayPolicyRuleSettingsAuditSsh {
-  const ZeroTrustGatewayPolicyRuleSettingsAuditSsh({this.commandLogging});
+final class ZeroTrustGatewayPolicyAuditSsh {
+  const ZeroTrustGatewayPolicyAuditSsh({this.commandLogging});
 
   final TfArg<bool>? commandLogging;
 
@@ -207,8 +205,8 @@ final class ZeroTrustGatewayPolicyRuleSettingsAuditSsh {
 /// Typed helper for the `rule_settings.biso_admin_controls` block of
 /// `cloudflare_zero_trust_gateway_policy` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewayPolicyRuleSettingsBisoAdminControls {
-  const ZeroTrustGatewayPolicyRuleSettingsBisoAdminControls({
+final class ZeroTrustGatewayPolicyBisoAdminControls {
+  const ZeroTrustGatewayPolicyBisoAdminControls({
     this.copy,
     this.dcp,
     this.dd,
@@ -224,7 +222,7 @@ final class ZeroTrustGatewayPolicyRuleSettingsBisoAdminControls {
     this.wmId,
   });
 
-  final TfArg<ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsCopy>? copy;
+  final TfArg<ZeroTrustGatewayPolicyCopy>? copy;
 
   final TfArg<bool>? dcp;
 
@@ -232,26 +230,21 @@ final class ZeroTrustGatewayPolicyRuleSettingsBisoAdminControls {
 
   final TfArg<bool>? dk;
 
-  final TfArg<ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsDownload>?
-  download;
+  final TfArg<ZeroTrustGatewayPolicyDownload>? download;
 
   final TfArg<bool>? dp;
 
   final TfArg<bool>? du;
 
-  final TfArg<ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsKeyboard>?
-  keyboard;
+  final TfArg<ZeroTrustGatewayPolicyKeyboard>? keyboard;
 
-  final TfArg<ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsPaste>? paste;
+  final TfArg<ZeroTrustGatewayPolicyPaste>? paste;
 
-  final TfArg<ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsPrinting>?
-  printing;
+  final TfArg<ZeroTrustGatewayPolicyPrinting>? printing;
 
-  final TfArg<ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsUpload>?
-  upload;
+  final TfArg<ZeroTrustGatewayPolicyUpload>? upload;
 
-  final TfArg<ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsVersion>?
-  version;
+  final TfArg<ZeroTrustGatewayPolicyBisoAdminControlsVersion>? version;
 
   final TfArg<String>? wmId;
 
@@ -273,95 +266,74 @@ final class ZeroTrustGatewayPolicyRuleSettingsBisoAdminControls {
 }
 
 /// `copy` — derived from the provider schema description.
-enum ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsCopy
-    implements TerraformEnum {
+enum ZeroTrustGatewayPolicyCopy implements TerraformEnum {
   enabled('enabled'),
   disabled('disabled'),
   remoteOnly('remote_only');
 
-  const ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsCopy(
-    this.terraformValue,
-  );
+  const ZeroTrustGatewayPolicyCopy(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `download` — derived from the provider schema description.
-enum ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsDownload
-    implements TerraformEnum {
+enum ZeroTrustGatewayPolicyDownload implements TerraformEnum {
   enabled('enabled'),
   disabled('disabled'),
   remoteOnly('remote_only');
 
-  const ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsDownload(
-    this.terraformValue,
-  );
+  const ZeroTrustGatewayPolicyDownload(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `keyboard` — derived from the provider schema description.
-enum ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsKeyboard
-    implements TerraformEnum {
+enum ZeroTrustGatewayPolicyKeyboard implements TerraformEnum {
   enabled('enabled'),
   disabled('disabled');
 
-  const ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsKeyboard(
-    this.terraformValue,
-  );
+  const ZeroTrustGatewayPolicyKeyboard(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `paste` — derived from the provider schema description.
-enum ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsPaste
-    implements TerraformEnum {
+enum ZeroTrustGatewayPolicyPaste implements TerraformEnum {
   enabled('enabled'),
   disabled('disabled'),
   remoteOnly('remote_only');
 
-  const ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsPaste(
-    this.terraformValue,
-  );
+  const ZeroTrustGatewayPolicyPaste(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `printing` — derived from the provider schema description.
-enum ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsPrinting
-    implements TerraformEnum {
+enum ZeroTrustGatewayPolicyPrinting implements TerraformEnum {
   enabled('enabled'),
   disabled('disabled');
 
-  const ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsPrinting(
-    this.terraformValue,
-  );
+  const ZeroTrustGatewayPolicyPrinting(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `upload` — derived from the provider schema description.
-enum ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsUpload
-    implements TerraformEnum {
+enum ZeroTrustGatewayPolicyUpload implements TerraformEnum {
   enabled('enabled'),
   disabled('disabled');
 
-  const ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsUpload(
-    this.terraformValue,
-  );
+  const ZeroTrustGatewayPolicyUpload(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `version` — derived from the provider schema description.
-enum ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsVersion
-    implements TerraformEnum {
+enum ZeroTrustGatewayPolicyBisoAdminControlsVersion implements TerraformEnum {
   v1('v1'),
   v2('v2');
 
-  const ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsVersion(
-    this.terraformValue,
-  );
+  const ZeroTrustGatewayPolicyBisoAdminControlsVersion(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -369,8 +341,8 @@ enum ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsVersion
 /// Typed helper for the `rule_settings.block_page` block of
 /// `cloudflare_zero_trust_gateway_policy` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewayPolicyRuleSettingsBlockPage {
-  const ZeroTrustGatewayPolicyRuleSettingsBlockPage({
+final class ZeroTrustGatewayPolicyBlockPage {
+  const ZeroTrustGatewayPolicyBlockPage({
     this.includeContext,
     required this.targetUri,
   });
@@ -388,11 +360,8 @@ final class ZeroTrustGatewayPolicyRuleSettingsBlockPage {
 /// Typed helper for the `rule_settings.check_session` block of
 /// `cloudflare_zero_trust_gateway_policy` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewayPolicyRuleSettingsCheckSession {
-  const ZeroTrustGatewayPolicyRuleSettingsCheckSession({
-    this.duration,
-    this.enforce,
-  });
+final class ZeroTrustGatewayPolicyCheckSession {
+  const ZeroTrustGatewayPolicyCheckSession({this.duration, this.enforce});
 
   final TfArg<String>? duration;
 
@@ -407,12 +376,12 @@ final class ZeroTrustGatewayPolicyRuleSettingsCheckSession {
 /// Typed helper for the `rule_settings.dns_resolvers` block of
 /// `cloudflare_zero_trust_gateway_policy` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewayPolicyRuleSettingsDnsResolvers {
-  const ZeroTrustGatewayPolicyRuleSettingsDnsResolvers({this.ipv4, this.ipv6});
+final class ZeroTrustGatewayPolicyDnsResolvers {
+  const ZeroTrustGatewayPolicyDnsResolvers({this.ipv4, this.ipv6});
 
-  final List<ZeroTrustGatewayPolicyRuleSettingsDnsResolversIpv4>? ipv4;
+  final List<ZeroTrustGatewayPolicyIpv4>? ipv4;
 
-  final List<ZeroTrustGatewayPolicyRuleSettingsDnsResolversIpv6>? ipv6;
+  final List<ZeroTrustGatewayPolicyIpv6>? ipv6;
 
   Map<String, Object?> encode() => {
     if (ipv4 != null) 'ipv4': [for (final e in ipv4!) e.encode()],
@@ -423,8 +392,8 @@ final class ZeroTrustGatewayPolicyRuleSettingsDnsResolvers {
 /// Typed helper for the `rule_settings.dns_resolvers.ipv4` block of
 /// `cloudflare_zero_trust_gateway_policy` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewayPolicyRuleSettingsDnsResolversIpv4 {
-  const ZeroTrustGatewayPolicyRuleSettingsDnsResolversIpv4({
+final class ZeroTrustGatewayPolicyIpv4 {
+  const ZeroTrustGatewayPolicyIpv4({
     required this.ip,
     this.port,
     this.routeThroughPrivateNetwork,
@@ -450,8 +419,8 @@ final class ZeroTrustGatewayPolicyRuleSettingsDnsResolversIpv4 {
 /// Typed helper for the `rule_settings.dns_resolvers.ipv6` block of
 /// `cloudflare_zero_trust_gateway_policy` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewayPolicyRuleSettingsDnsResolversIpv6 {
-  const ZeroTrustGatewayPolicyRuleSettingsDnsResolversIpv6({
+final class ZeroTrustGatewayPolicyIpv6 {
+  const ZeroTrustGatewayPolicyIpv6({
     required this.ip,
     this.port,
     this.routeThroughPrivateNetwork,
@@ -477,12 +446,8 @@ final class ZeroTrustGatewayPolicyRuleSettingsDnsResolversIpv6 {
 /// Typed helper for the `rule_settings.egress` block of
 /// `cloudflare_zero_trust_gateway_policy` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewayPolicyRuleSettingsEgress {
-  const ZeroTrustGatewayPolicyRuleSettingsEgress({
-    this.ipv4,
-    this.ipv4Fallback,
-    this.ipv6,
-  });
+final class ZeroTrustGatewayPolicyEgress {
+  const ZeroTrustGatewayPolicyEgress({this.ipv4, this.ipv4Fallback, this.ipv6});
 
   final TfArg<String>? ipv4;
 
@@ -500,8 +465,8 @@ final class ZeroTrustGatewayPolicyRuleSettingsEgress {
 /// Typed helper for the `rule_settings.forensic_copy` block of
 /// `cloudflare_zero_trust_gateway_policy` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewayPolicyRuleSettingsForensicCopy {
-  const ZeroTrustGatewayPolicyRuleSettingsForensicCopy({this.enabled});
+final class ZeroTrustGatewayPolicyForensicCopy {
+  const ZeroTrustGatewayPolicyForensicCopy({this.enabled});
 
   final TfArg<bool>? enabled;
 
@@ -511,8 +476,8 @@ final class ZeroTrustGatewayPolicyRuleSettingsForensicCopy {
 /// Typed helper for the `rule_settings.l4override` block of
 /// `cloudflare_zero_trust_gateway_policy` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewayPolicyRuleSettingsL4override {
-  const ZeroTrustGatewayPolicyRuleSettingsL4override({this.ip, this.port});
+final class ZeroTrustGatewayPolicyL4override {
+  const ZeroTrustGatewayPolicyL4override({this.ip, this.port});
 
   final TfArg<String>? ip;
 
@@ -527,8 +492,8 @@ final class ZeroTrustGatewayPolicyRuleSettingsL4override {
 /// Typed helper for the `rule_settings.notification_settings` block of
 /// `cloudflare_zero_trust_gateway_policy` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewayPolicyRuleSettingsNotificationSettings {
-  const ZeroTrustGatewayPolicyRuleSettingsNotificationSettings({
+final class ZeroTrustGatewayPolicyNotificationSettings {
+  const ZeroTrustGatewayPolicyNotificationSettings({
     this.enabled,
     this.includeContext,
     this.msg,
@@ -554,8 +519,8 @@ final class ZeroTrustGatewayPolicyRuleSettingsNotificationSettings {
 /// Typed helper for the `rule_settings.payload_log` block of
 /// `cloudflare_zero_trust_gateway_policy` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewayPolicyRuleSettingsPayloadLog {
-  const ZeroTrustGatewayPolicyRuleSettingsPayloadLog({this.enabled});
+final class ZeroTrustGatewayPolicyPayloadLog {
+  const ZeroTrustGatewayPolicyPayloadLog({this.enabled});
 
   final TfArg<bool>? enabled;
 
@@ -565,11 +530,10 @@ final class ZeroTrustGatewayPolicyRuleSettingsPayloadLog {
 /// Typed helper for the `rule_settings.quarantine` block of
 /// `cloudflare_zero_trust_gateway_policy` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewayPolicyRuleSettingsQuarantine {
-  const ZeroTrustGatewayPolicyRuleSettingsQuarantine({this.fileTypes});
+final class ZeroTrustGatewayPolicyQuarantine {
+  const ZeroTrustGatewayPolicyQuarantine({this.fileTypes});
 
-  final List<TfArg<ZeroTrustGatewayPolicyRuleSettingsQuarantineFileTypes>>?
-  fileTypes;
+  final List<TfArg<ZeroTrustGatewayPolicyFileTypes>>? fileTypes;
 
   Map<String, Object?> encode() => {
     if (fileTypes != null)
@@ -578,8 +542,7 @@ final class ZeroTrustGatewayPolicyRuleSettingsQuarantine {
 }
 
 /// `file_types` — derived from the provider schema description.
-enum ZeroTrustGatewayPolicyRuleSettingsQuarantineFileTypes
-    implements TerraformEnum {
+enum ZeroTrustGatewayPolicyFileTypes implements TerraformEnum {
   exe('exe'),
   pdf('pdf'),
   doc('doc'),
@@ -594,9 +557,7 @@ enum ZeroTrustGatewayPolicyRuleSettingsQuarantineFileTypes
   zip('zip'),
   rar('rar');
 
-  const ZeroTrustGatewayPolicyRuleSettingsQuarantineFileTypes(
-    this.terraformValue,
-  );
+  const ZeroTrustGatewayPolicyFileTypes(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -604,8 +565,8 @@ enum ZeroTrustGatewayPolicyRuleSettingsQuarantineFileTypes
 /// Typed helper for the `rule_settings.redirect` block of
 /// `cloudflare_zero_trust_gateway_policy` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewayPolicyRuleSettingsRedirect {
-  const ZeroTrustGatewayPolicyRuleSettingsRedirect({
+final class ZeroTrustGatewayPolicyRedirect {
+  const ZeroTrustGatewayPolicyRedirect({
     this.includeContext,
     this.preservePathAndQuery,
     required this.targetUri,
@@ -627,14 +588,13 @@ final class ZeroTrustGatewayPolicyRuleSettingsRedirect {
 /// Typed helper for the `rule_settings.resolve_dns_internally` block of
 /// `cloudflare_zero_trust_gateway_policy` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewayPolicyRuleSettingsResolveDnsInternally {
-  const ZeroTrustGatewayPolicyRuleSettingsResolveDnsInternally({
+final class ZeroTrustGatewayPolicyResolveDnsInternally {
+  const ZeroTrustGatewayPolicyResolveDnsInternally({
     this.fallback,
     this.viewId,
   });
 
-  final TfArg<ZeroTrustGatewayPolicyRuleSettingsResolveDnsInternallyFallback>?
-  fallback;
+  final TfArg<ZeroTrustGatewayPolicyFallback>? fallback;
 
   final TfArg<String>? viewId;
 
@@ -645,14 +605,11 @@ final class ZeroTrustGatewayPolicyRuleSettingsResolveDnsInternally {
 }
 
 /// `fallback` — derived from the provider schema description.
-enum ZeroTrustGatewayPolicyRuleSettingsResolveDnsInternallyFallback
-    implements TerraformEnum {
+enum ZeroTrustGatewayPolicyFallback implements TerraformEnum {
   none('none'),
   publicDns('public_dns');
 
-  const ZeroTrustGatewayPolicyRuleSettingsResolveDnsInternallyFallback(
-    this.terraformValue,
-  );
+  const ZeroTrustGatewayPolicyFallback(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -660,24 +617,21 @@ enum ZeroTrustGatewayPolicyRuleSettingsResolveDnsInternallyFallback
 /// Typed helper for the `rule_settings.untrusted_cert` block of
 /// `cloudflare_zero_trust_gateway_policy` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewayPolicyRuleSettingsUntrustedCert {
-  const ZeroTrustGatewayPolicyRuleSettingsUntrustedCert({this.action});
+final class ZeroTrustGatewayPolicyUntrustedCert {
+  const ZeroTrustGatewayPolicyUntrustedCert({this.action});
 
-  final TfArg<ZeroTrustGatewayPolicyRuleSettingsUntrustedCertAction>? action;
+  final TfArg<ZeroTrustGatewayPolicyUntrustedCertAction>? action;
 
   Map<String, Object?> encode() => {'action': ?action?.toTfJson()};
 }
 
 /// `action` — derived from the provider schema description.
-enum ZeroTrustGatewayPolicyRuleSettingsUntrustedCertAction
-    implements TerraformEnum {
+enum ZeroTrustGatewayPolicyUntrustedCertAction implements TerraformEnum {
   passThrough('pass_through'),
   block('block'),
   error('error');
 
-  const ZeroTrustGatewayPolicyRuleSettingsUntrustedCertAction(
-    this.terraformValue,
-  );
+  const ZeroTrustGatewayPolicyUntrustedCertAction(this.terraformValue);
   @override
   final String terraformValue;
 }

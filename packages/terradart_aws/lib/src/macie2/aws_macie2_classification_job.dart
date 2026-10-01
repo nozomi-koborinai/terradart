@@ -95,9 +95,9 @@ final class Macie2ClassificationJobNamePrefix
 final class Macie2ClassificationJobS3JobDefinition {
   const Macie2ClassificationJobS3JobDefinition({this.bucket, this.scoping});
 
-  final Macie2ClassificationJobS3JobDefinitionBucket? bucket;
+  final Macie2ClassificationJobBucket? bucket;
 
-  final Macie2ClassificationJobS3JobDefinitionScoping? scoping;
+  final Macie2ClassificationJobScoping? scoping;
 
   Map<String, Object?> encode() => {
     ...?bucket?.encode(),
@@ -110,19 +110,18 @@ final class Macie2ClassificationJobS3JobDefinition {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.bucketCriteria(...)`.
-sealed class Macie2ClassificationJobS3JobDefinitionBucket {
-  const Macie2ClassificationJobS3JobDefinitionBucket();
+sealed class Macie2ClassificationJobBucket {
+  const Macie2ClassificationJobBucket();
 
   /// Sets `bucket_criteria`.
-  const factory Macie2ClassificationJobS3JobDefinitionBucket.bucketCriteria(
-    Macie2ClassificationJobS3JobDefinitionBucketCriteria bucketCriteria,
-  ) = Macie2ClassificationJobS3JobDefinitionBucketCriteriaChoice;
+  const factory Macie2ClassificationJobBucket.bucketCriteria(
+    Macie2ClassificationJobBucketCriteria bucketCriteria,
+  ) = Macie2ClassificationJobBucketCriteriaChoice;
 
   /// Sets `bucket_definitions`.
-  const factory Macie2ClassificationJobS3JobDefinitionBucket.bucketDefinitions(
-    List<Macie2ClassificationJobS3JobDefinitionBucketDefinitions>
-    bucketDefinitions,
-  ) = Macie2ClassificationJobS3JobDefinitionBucketDefinitionsChoice;
+  const factory Macie2ClassificationJobBucket.bucketDefinitions(
+    List<Macie2ClassificationJobBucketDefinitions> bucketDefinitions,
+  ) = Macie2ClassificationJobBucketDefinitionsChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -130,14 +129,12 @@ sealed class Macie2ClassificationJobS3JobDefinitionBucket {
   Map<String, Object?> encode();
 }
 
-/// The [Macie2ClassificationJobS3JobDefinitionBucket.bucketCriteria] choice: sets `bucket_criteria`.
-final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaChoice
-    extends Macie2ClassificationJobS3JobDefinitionBucket {
-  const Macie2ClassificationJobS3JobDefinitionBucketCriteriaChoice(
-    this.bucketCriteria,
-  );
+/// The [Macie2ClassificationJobBucket.bucketCriteria] choice: sets `bucket_criteria`.
+final class Macie2ClassificationJobBucketCriteriaChoice
+    extends Macie2ClassificationJobBucket {
+  const Macie2ClassificationJobBucketCriteriaChoice(this.bucketCriteria);
 
-  final Macie2ClassificationJobS3JobDefinitionBucketCriteria bucketCriteria;
+  final Macie2ClassificationJobBucketCriteria bucketCriteria;
 
   @override
   String get blockKey => 'bucket_criteria';
@@ -146,15 +143,12 @@ final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaChoice
   Map<String, Object?> encode() => {'bucket_criteria': bucketCriteria.encode()};
 }
 
-/// The [Macie2ClassificationJobS3JobDefinitionBucket.bucketDefinitions] choice: sets `bucket_definitions`.
-final class Macie2ClassificationJobS3JobDefinitionBucketDefinitionsChoice
-    extends Macie2ClassificationJobS3JobDefinitionBucket {
-  const Macie2ClassificationJobS3JobDefinitionBucketDefinitionsChoice(
-    this.bucketDefinitions,
-  );
+/// The [Macie2ClassificationJobBucket.bucketDefinitions] choice: sets `bucket_definitions`.
+final class Macie2ClassificationJobBucketDefinitionsChoice
+    extends Macie2ClassificationJobBucket {
+  const Macie2ClassificationJobBucketDefinitionsChoice(this.bucketDefinitions);
 
-  final List<Macie2ClassificationJobS3JobDefinitionBucketDefinitions>
-  bucketDefinitions;
+  final List<Macie2ClassificationJobBucketDefinitions> bucketDefinitions;
 
   @override
   String get blockKey => 'bucket_definitions';
@@ -168,15 +162,12 @@ final class Macie2ClassificationJobS3JobDefinitionBucketDefinitionsChoice
 /// Typed helper for the `s3_job_definition.bucket_criteria` block of
 /// `aws_macie2_classification_job` (derived from provider schema).
 @immutable
-final class Macie2ClassificationJobS3JobDefinitionBucketCriteria {
-  const Macie2ClassificationJobS3JobDefinitionBucketCriteria({
-    this.excludes,
-    this.includes,
-  });
+final class Macie2ClassificationJobBucketCriteria {
+  const Macie2ClassificationJobBucketCriteria({this.excludes, this.includes});
 
-  final Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludes? excludes;
+  final Macie2ClassificationJobBucketCriteriaExcludes? excludes;
 
-  final Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludes? includes;
+  final Macie2ClassificationJobBucketCriteriaIncludes? includes;
 
   Map<String, Object?> encode() => {
     'excludes': ?excludes?.encode(),
@@ -187,13 +178,10 @@ final class Macie2ClassificationJobS3JobDefinitionBucketCriteria {
 /// Typed helper for the `s3_job_definition.bucket_criteria.excludes` block of
 /// `aws_macie2_classification_job` (derived from provider schema).
 @immutable
-final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludes {
-  const Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludes({
-    this.and,
-  });
+final class Macie2ClassificationJobBucketCriteriaExcludes {
+  const Macie2ClassificationJobBucketCriteriaExcludes({this.and});
 
-  final List<Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAnd>?
-  and;
+  final List<Macie2ClassificationJobBucketCriteriaAnd>? and;
 
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
@@ -202,18 +190,17 @@ final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludes {
 
 /// Typed helper for the `s3_job_definition.bucket_criteria.excludes.and` block of
 /// `aws_macie2_classification_job` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAnd {
-  const Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAnd({
+final class Macie2ClassificationJobBucketCriteriaAnd {
+  const Macie2ClassificationJobBucketCriteriaAnd({
     this.simpleCriterion,
     this.tagCriterion,
   });
 
-  final Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndSimpleCriterion?
-  simpleCriterion;
+  final Macie2ClassificationJobSimpleCriterion? simpleCriterion;
 
-  final Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndTagCriterion?
-  tagCriterion;
+  final Macie2ClassificationJobTagCriterion? tagCriterion;
 
   Map<String, Object?> encode() => {
     'simple_criterion': ?simpleCriterion?.encode(),
@@ -223,18 +210,16 @@ final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAnd {
 
 /// Typed helper for the `s3_job_definition.bucket_criteria.excludes.and.simple_criterion` block of
 /// `aws_macie2_classification_job` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndSimpleCriterion {
-  const Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndSimpleCriterion({
+final class Macie2ClassificationJobSimpleCriterion {
+  const Macie2ClassificationJobSimpleCriterion({
     this.comparator,
     this.key,
     this.values,
   });
 
-  final TfArg<
-    Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndSimpleCriterionComparator
-  >?
-  comparator;
+  final TfArg<Macie2ClassificationJobComparator>? comparator;
 
   final TfArg<String>? key;
 
@@ -248,8 +233,7 @@ final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndSimpl
 }
 
 /// `comparator` — derived from the provider schema description.
-enum Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndSimpleCriterionComparator
-    implements TerraformEnum {
+enum Macie2ClassificationJobComparator implements TerraformEnum {
   eq('EQ'),
   gt('GT'),
   gte('GTE'),
@@ -259,31 +243,21 @@ enum Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndSimpleCriter
   contains('CONTAINS'),
   startsWith('STARTS_WITH');
 
-  const Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndSimpleCriterionComparator(
-    this.terraformValue,
-  );
+  const Macie2ClassificationJobComparator(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `s3_job_definition.bucket_criteria.excludes.and.tag_criterion` block of
 /// `aws_macie2_classification_job` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndTagCriterion {
-  const Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndTagCriterion({
-    this.comparator,
-    this.tagValues,
-  });
+final class Macie2ClassificationJobTagCriterion {
+  const Macie2ClassificationJobTagCriterion({this.comparator, this.tagValues});
 
-  final TfArg<
-    Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndTagCriterionComparator
-  >?
-  comparator;
+  final TfArg<Macie2ClassificationJobComparator>? comparator;
 
-  final List<
-    Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndTagCriterionTagValues
-  >?
-  tagValues;
+  final List<Macie2ClassificationJobTagValues>? tagValues;
 
   Map<String, Object?> encode() => {
     'comparator': ?comparator?.toTfJson(),
@@ -292,33 +266,12 @@ final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndTagCr
   };
 }
 
-/// `comparator` — derived from the provider schema description.
-enum Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndTagCriterionComparator
-    implements TerraformEnum {
-  eq('EQ'),
-  gt('GT'),
-  gte('GTE'),
-  lt('LT'),
-  lte('LTE'),
-  ne('NE'),
-  contains('CONTAINS'),
-  startsWith('STARTS_WITH');
-
-  const Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndTagCriterionComparator(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `s3_job_definition.bucket_criteria.excludes.and.tag_criterion.tag_values` block of
 /// `aws_macie2_classification_job` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndTagCriterionTagValues {
-  const Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndTagCriterionTagValues({
-    this.key,
-    this.value,
-  });
+final class Macie2ClassificationJobTagValues {
+  const Macie2ClassificationJobTagValues({this.key, this.value});
 
   final TfArg<String>? key;
 
@@ -333,154 +286,21 @@ final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndTagCr
 /// Typed helper for the `s3_job_definition.bucket_criteria.includes` block of
 /// `aws_macie2_classification_job` (derived from provider schema).
 @immutable
-final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludes {
-  const Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludes({
-    this.and,
-  });
+final class Macie2ClassificationJobBucketCriteriaIncludes {
+  const Macie2ClassificationJobBucketCriteriaIncludes({this.and});
 
-  final List<Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAnd>?
-  and;
+  final List<Macie2ClassificationJobBucketCriteriaAnd>? and;
 
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
   };
 }
 
-/// Typed helper for the `s3_job_definition.bucket_criteria.includes.and` block of
-/// `aws_macie2_classification_job` (derived from provider schema).
-@immutable
-final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAnd {
-  const Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAnd({
-    this.simpleCriterion,
-    this.tagCriterion,
-  });
-
-  final Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAndSimpleCriterion?
-  simpleCriterion;
-
-  final Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAndTagCriterion?
-  tagCriterion;
-
-  Map<String, Object?> encode() => {
-    'simple_criterion': ?simpleCriterion?.encode(),
-    'tag_criterion': ?tagCriterion?.encode(),
-  };
-}
-
-/// Typed helper for the `s3_job_definition.bucket_criteria.includes.and.simple_criterion` block of
-/// `aws_macie2_classification_job` (derived from provider schema).
-@immutable
-final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAndSimpleCriterion {
-  const Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAndSimpleCriterion({
-    this.comparator,
-    this.key,
-    this.values,
-  });
-
-  final TfArg<
-    Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAndSimpleCriterionComparator
-  >?
-  comparator;
-
-  final TfArg<String>? key;
-
-  final TfArg<List<String>>? values;
-
-  Map<String, Object?> encode() => {
-    'comparator': ?comparator?.toTfJson(),
-    'key': ?key?.toTfJson(),
-    'values': ?values?.toTfJson(),
-  };
-}
-
-/// `comparator` — derived from the provider schema description.
-enum Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAndSimpleCriterionComparator
-    implements TerraformEnum {
-  eq('EQ'),
-  gt('GT'),
-  gte('GTE'),
-  lt('LT'),
-  lte('LTE'),
-  ne('NE'),
-  contains('CONTAINS'),
-  startsWith('STARTS_WITH');
-
-  const Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAndSimpleCriterionComparator(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `s3_job_definition.bucket_criteria.includes.and.tag_criterion` block of
-/// `aws_macie2_classification_job` (derived from provider schema).
-@immutable
-final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAndTagCriterion {
-  const Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAndTagCriterion({
-    this.comparator,
-    this.tagValues,
-  });
-
-  final TfArg<
-    Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAndTagCriterionComparator
-  >?
-  comparator;
-
-  final List<
-    Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAndTagCriterionTagValues
-  >?
-  tagValues;
-
-  Map<String, Object?> encode() => {
-    'comparator': ?comparator?.toTfJson(),
-    if (tagValues != null)
-      'tag_values': [for (final e in tagValues!) e.encode()],
-  };
-}
-
-/// `comparator` — derived from the provider schema description.
-enum Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAndTagCriterionComparator
-    implements TerraformEnum {
-  eq('EQ'),
-  gt('GT'),
-  gte('GTE'),
-  lt('LT'),
-  lte('LTE'),
-  ne('NE'),
-  contains('CONTAINS'),
-  startsWith('STARTS_WITH');
-
-  const Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAndTagCriterionComparator(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `s3_job_definition.bucket_criteria.includes.and.tag_criterion.tag_values` block of
-/// `aws_macie2_classification_job` (derived from provider schema).
-@immutable
-final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAndTagCriterionTagValues {
-  const Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAndTagCriterionTagValues({
-    this.key,
-    this.value,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'value': ?value?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `s3_job_definition.bucket_definitions` block of
 /// `aws_macie2_classification_job` (derived from provider schema).
 @immutable
-final class Macie2ClassificationJobS3JobDefinitionBucketDefinitions {
-  const Macie2ClassificationJobS3JobDefinitionBucketDefinitions({
+final class Macie2ClassificationJobBucketDefinitions {
+  const Macie2ClassificationJobBucketDefinitions({
     required this.accountId,
     required this.buckets,
   });
@@ -498,15 +318,12 @@ final class Macie2ClassificationJobS3JobDefinitionBucketDefinitions {
 /// Typed helper for the `s3_job_definition.scoping` block of
 /// `aws_macie2_classification_job` (derived from provider schema).
 @immutable
-final class Macie2ClassificationJobS3JobDefinitionScoping {
-  const Macie2ClassificationJobS3JobDefinitionScoping({
-    this.excludes,
-    this.includes,
-  });
+final class Macie2ClassificationJobScoping {
+  const Macie2ClassificationJobScoping({this.excludes, this.includes});
 
-  final Macie2ClassificationJobS3JobDefinitionScopingExcludes? excludes;
+  final Macie2ClassificationJobScopingExcludes? excludes;
 
-  final Macie2ClassificationJobS3JobDefinitionScopingIncludes? includes;
+  final Macie2ClassificationJobScopingIncludes? includes;
 
   Map<String, Object?> encode() => {
     'excludes': ?excludes?.encode(),
@@ -517,10 +334,10 @@ final class Macie2ClassificationJobS3JobDefinitionScoping {
 /// Typed helper for the `s3_job_definition.scoping.excludes` block of
 /// `aws_macie2_classification_job` (derived from provider schema).
 @immutable
-final class Macie2ClassificationJobS3JobDefinitionScopingExcludes {
-  const Macie2ClassificationJobS3JobDefinitionScopingExcludes({this.and});
+final class Macie2ClassificationJobScopingExcludes {
+  const Macie2ClassificationJobScopingExcludes({this.and});
 
-  final List<Macie2ClassificationJobS3JobDefinitionScopingExcludesAnd>? and;
+  final List<Macie2ClassificationJobScopingAnd>? and;
 
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
@@ -530,17 +347,15 @@ final class Macie2ClassificationJobS3JobDefinitionScopingExcludes {
 /// Typed helper for the `s3_job_definition.scoping.excludes.and` block of
 /// `aws_macie2_classification_job` (derived from provider schema).
 @immutable
-final class Macie2ClassificationJobS3JobDefinitionScopingExcludesAnd {
-  const Macie2ClassificationJobS3JobDefinitionScopingExcludesAnd({
+final class Macie2ClassificationJobScopingAnd {
+  const Macie2ClassificationJobScopingAnd({
     this.simpleScopeTerm,
     this.tagScopeTerm,
   });
 
-  final Macie2ClassificationJobS3JobDefinitionScopingExcludesAndSimpleScopeTerm?
-  simpleScopeTerm;
+  final Macie2ClassificationJobExcludesSimpleScopeTerm? simpleScopeTerm;
 
-  final Macie2ClassificationJobS3JobDefinitionScopingExcludesAndTagScopeTerm?
-  tagScopeTerm;
+  final Macie2ClassificationJobExcludesTagScopeTerm? tagScopeTerm;
 
   Map<String, Object?> encode() => {
     'simple_scope_term': ?simpleScopeTerm?.encode(),
@@ -551,22 +366,16 @@ final class Macie2ClassificationJobS3JobDefinitionScopingExcludesAnd {
 /// Typed helper for the `s3_job_definition.scoping.excludes.and.simple_scope_term` block of
 /// `aws_macie2_classification_job` (derived from provider schema).
 @immutable
-final class Macie2ClassificationJobS3JobDefinitionScopingExcludesAndSimpleScopeTerm {
-  const Macie2ClassificationJobS3JobDefinitionScopingExcludesAndSimpleScopeTerm({
+final class Macie2ClassificationJobExcludesSimpleScopeTerm {
+  const Macie2ClassificationJobExcludesSimpleScopeTerm({
     this.comparator,
     this.key,
     this.values,
   });
 
-  final TfArg<
-    Macie2ClassificationJobS3JobDefinitionScopingExcludesAndSimpleScopeTermComparator
-  >?
-  comparator;
+  final TfArg<Macie2ClassificationJobComparator>? comparator;
 
-  final TfArg<
-    Macie2ClassificationJobS3JobDefinitionScopingExcludesAndSimpleScopeTermKey
-  >?
-  key;
+  final TfArg<Macie2ClassificationJobSimpleScopeTermKey>? key;
 
   final TfArg<List<String>>? values;
 
@@ -577,36 +386,14 @@ final class Macie2ClassificationJobS3JobDefinitionScopingExcludesAndSimpleScopeT
   };
 }
 
-/// `comparator` — derived from the provider schema description.
-enum Macie2ClassificationJobS3JobDefinitionScopingExcludesAndSimpleScopeTermComparator
-    implements TerraformEnum {
-  eq('EQ'),
-  gt('GT'),
-  gte('GTE'),
-  lt('LT'),
-  lte('LTE'),
-  ne('NE'),
-  contains('CONTAINS'),
-  startsWith('STARTS_WITH');
-
-  const Macie2ClassificationJobS3JobDefinitionScopingExcludesAndSimpleScopeTermComparator(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// `key` — derived from the provider schema description.
-enum Macie2ClassificationJobS3JobDefinitionScopingExcludesAndSimpleScopeTermKey
-    implements TerraformEnum {
+enum Macie2ClassificationJobSimpleScopeTermKey implements TerraformEnum {
   objectExtension('OBJECT_EXTENSION'),
   objectLastModifiedDate('OBJECT_LAST_MODIFIED_DATE'),
   objectSize('OBJECT_SIZE'),
   objectKey('OBJECT_KEY');
 
-  const Macie2ClassificationJobS3JobDefinitionScopingExcludesAndSimpleScopeTermKey(
-    this.terraformValue,
-  );
+  const Macie2ClassificationJobSimpleScopeTermKey(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -614,33 +401,21 @@ enum Macie2ClassificationJobS3JobDefinitionScopingExcludesAndSimpleScopeTermKey
 /// Typed helper for the `s3_job_definition.scoping.excludes.and.tag_scope_term` block of
 /// `aws_macie2_classification_job` (derived from provider schema).
 @immutable
-final class Macie2ClassificationJobS3JobDefinitionScopingExcludesAndTagScopeTerm {
-  const Macie2ClassificationJobS3JobDefinitionScopingExcludesAndTagScopeTerm({
+final class Macie2ClassificationJobExcludesTagScopeTerm {
+  const Macie2ClassificationJobExcludesTagScopeTerm({
     this.comparator,
     this.key,
     this.target,
     this.tagValues,
   });
 
-  final TfArg<
-    Macie2ClassificationJobS3JobDefinitionScopingExcludesAndTagScopeTermComparator
-  >?
-  comparator;
+  final TfArg<Macie2ClassificationJobComparator>? comparator;
 
-  final TfArg<
-    Macie2ClassificationJobS3JobDefinitionScopingExcludesAndTagScopeTermKey
-  >?
-  key;
+  final TfArg<Macie2ClassificationJobTagScopeTermKey>? key;
 
-  final TfArg<
-    Macie2ClassificationJobS3JobDefinitionScopingExcludesAndTagScopeTermTarget
-  >?
-  target;
+  final TfArg<Macie2ClassificationJobTarget>? target;
 
-  final List<
-    Macie2ClassificationJobS3JobDefinitionScopingExcludesAndTagScopeTermTagValues
-  >?
-  tagValues;
+  final List<Macie2ClassificationJobTagValues>? tagValues;
 
   Map<String, Object?> encode() => {
     'comparator': ?comparator?.toTfJson(),
@@ -651,75 +426,31 @@ final class Macie2ClassificationJobS3JobDefinitionScopingExcludesAndTagScopeTerm
   };
 }
 
-/// `comparator` — derived from the provider schema description.
-enum Macie2ClassificationJobS3JobDefinitionScopingExcludesAndTagScopeTermComparator
-    implements TerraformEnum {
-  eq('EQ'),
-  gt('GT'),
-  gte('GTE'),
-  lt('LT'),
-  lte('LTE'),
-  ne('NE'),
-  contains('CONTAINS'),
-  startsWith('STARTS_WITH');
-
-  const Macie2ClassificationJobS3JobDefinitionScopingExcludesAndTagScopeTermComparator(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// `key` — derived from the provider schema description.
-enum Macie2ClassificationJobS3JobDefinitionScopingExcludesAndTagScopeTermKey
-    implements TerraformEnum {
+enum Macie2ClassificationJobTagScopeTermKey implements TerraformEnum {
   tag('TAG');
 
-  const Macie2ClassificationJobS3JobDefinitionScopingExcludesAndTagScopeTermKey(
-    this.terraformValue,
-  );
+  const Macie2ClassificationJobTagScopeTermKey(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `target` — derived from the provider schema description.
-enum Macie2ClassificationJobS3JobDefinitionScopingExcludesAndTagScopeTermTarget
-    implements TerraformEnum {
+enum Macie2ClassificationJobTarget implements TerraformEnum {
   s3Object('S3_OBJECT');
 
-  const Macie2ClassificationJobS3JobDefinitionScopingExcludesAndTagScopeTermTarget(
-    this.terraformValue,
-  );
+  const Macie2ClassificationJobTarget(this.terraformValue);
   @override
   final String terraformValue;
-}
-
-/// Typed helper for the `s3_job_definition.scoping.excludes.and.tag_scope_term.tag_values` block of
-/// `aws_macie2_classification_job` (derived from provider schema).
-@immutable
-final class Macie2ClassificationJobS3JobDefinitionScopingExcludesAndTagScopeTermTagValues {
-  const Macie2ClassificationJobS3JobDefinitionScopingExcludesAndTagScopeTermTagValues({
-    this.key,
-    this.value,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'value': ?value?.toTfJson(),
-  };
 }
 
 /// Typed helper for the `s3_job_definition.scoping.includes` block of
 /// `aws_macie2_classification_job` (derived from provider schema).
 @immutable
-final class Macie2ClassificationJobS3JobDefinitionScopingIncludes {
-  const Macie2ClassificationJobS3JobDefinitionScopingIncludes({this.and});
+final class Macie2ClassificationJobScopingIncludes {
+  const Macie2ClassificationJobScopingIncludes({this.and});
 
-  final List<Macie2ClassificationJobS3JobDefinitionScopingIncludesAnd>? and;
+  final List<Macie2ClassificationJobIncludesAnd>? and;
 
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
@@ -729,17 +460,15 @@ final class Macie2ClassificationJobS3JobDefinitionScopingIncludes {
 /// Typed helper for the `s3_job_definition.scoping.includes.and` block of
 /// `aws_macie2_classification_job` (derived from provider schema).
 @immutable
-final class Macie2ClassificationJobS3JobDefinitionScopingIncludesAnd {
-  const Macie2ClassificationJobS3JobDefinitionScopingIncludesAnd({
+final class Macie2ClassificationJobIncludesAnd {
+  const Macie2ClassificationJobIncludesAnd({
     this.simpleScopeTerm,
     this.tagScopeTerm,
   });
 
-  final Macie2ClassificationJobS3JobDefinitionScopingIncludesAndSimpleScopeTerm?
-  simpleScopeTerm;
+  final Macie2ClassificationJobIncludesSimpleScopeTerm? simpleScopeTerm;
 
-  final Macie2ClassificationJobS3JobDefinitionScopingIncludesAndTagScopeTerm?
-  tagScopeTerm;
+  final Macie2ClassificationJobIncludesTagScopeTerm? tagScopeTerm;
 
   Map<String, Object?> encode() => {
     'simple_scope_term': ?simpleScopeTerm?.encode(),
@@ -750,8 +479,8 @@ final class Macie2ClassificationJobS3JobDefinitionScopingIncludesAnd {
 /// Typed helper for the `s3_job_definition.scoping.includes.and.simple_scope_term` block of
 /// `aws_macie2_classification_job` (derived from provider schema).
 @immutable
-final class Macie2ClassificationJobS3JobDefinitionScopingIncludesAndSimpleScopeTerm {
-  const Macie2ClassificationJobS3JobDefinitionScopingIncludesAndSimpleScopeTerm({
+final class Macie2ClassificationJobIncludesSimpleScopeTerm {
+  const Macie2ClassificationJobIncludesSimpleScopeTerm({
     this.comparator,
     this.key,
     this.values,
@@ -773,8 +502,8 @@ final class Macie2ClassificationJobS3JobDefinitionScopingIncludesAndSimpleScopeT
 /// Typed helper for the `s3_job_definition.scoping.includes.and.tag_scope_term` block of
 /// `aws_macie2_classification_job` (derived from provider schema).
 @immutable
-final class Macie2ClassificationJobS3JobDefinitionScopingIncludesAndTagScopeTerm {
-  const Macie2ClassificationJobS3JobDefinitionScopingIncludesAndTagScopeTerm({
+final class Macie2ClassificationJobIncludesTagScopeTerm {
+  const Macie2ClassificationJobIncludesTagScopeTerm({
     this.comparator,
     this.key,
     this.target,
@@ -783,20 +512,11 @@ final class Macie2ClassificationJobS3JobDefinitionScopingIncludesAndTagScopeTerm
 
   final TfArg<String>? comparator;
 
-  final TfArg<
-    Macie2ClassificationJobS3JobDefinitionScopingIncludesAndTagScopeTermKey
-  >?
-  key;
+  final TfArg<Macie2ClassificationJobTagScopeTermKey>? key;
 
-  final TfArg<
-    Macie2ClassificationJobS3JobDefinitionScopingIncludesAndTagScopeTermTarget
-  >?
-  target;
+  final TfArg<Macie2ClassificationJobTarget>? target;
 
-  final List<
-    Macie2ClassificationJobS3JobDefinitionScopingIncludesAndTagScopeTermTagValues
-  >?
-  tagValues;
+  final List<Macie2ClassificationJobTagValues>? tagValues;
 
   Map<String, Object?> encode() => {
     'comparator': ?comparator?.toTfJson(),
@@ -804,49 +524,6 @@ final class Macie2ClassificationJobS3JobDefinitionScopingIncludesAndTagScopeTerm
     'target': ?target?.toTfJson(),
     if (tagValues != null)
       'tag_values': [for (final e in tagValues!) e.encode()],
-  };
-}
-
-/// `key` — derived from the provider schema description.
-enum Macie2ClassificationJobS3JobDefinitionScopingIncludesAndTagScopeTermKey
-    implements TerraformEnum {
-  tag('TAG');
-
-  const Macie2ClassificationJobS3JobDefinitionScopingIncludesAndTagScopeTermKey(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `target` — derived from the provider schema description.
-enum Macie2ClassificationJobS3JobDefinitionScopingIncludesAndTagScopeTermTarget
-    implements TerraformEnum {
-  s3Object('S3_OBJECT');
-
-  const Macie2ClassificationJobS3JobDefinitionScopingIncludesAndTagScopeTermTarget(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `s3_job_definition.scoping.includes.and.tag_scope_term.tag_values` block of
-/// `aws_macie2_classification_job` (derived from provider schema).
-@immutable
-final class Macie2ClassificationJobS3JobDefinitionScopingIncludesAndTagScopeTermTagValues {
-  const Macie2ClassificationJobS3JobDefinitionScopingIncludesAndTagScopeTermTagValues({
-    this.key,
-    this.value,
-  });
-
-  final TfArg<String>? key;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'key': ?key?.toTfJson(),
-    'value': ?value?.toTfJson(),
   };
 }
 

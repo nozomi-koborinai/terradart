@@ -20,19 +20,18 @@ enum ImagebuilderLifecyclePolicyResourceType implements TerraformEnum {
 /// Typed helper for the `policy_detail` block of
 /// `aws_imagebuilder_lifecycle_policy` (derived from provider schema).
 @immutable
-final class ImagebuilderLifecyclePolicyPolicyDetail {
-  const ImagebuilderLifecyclePolicyPolicyDetail({
+final class ImagebuilderLifecyclePolicyDetail {
+  const ImagebuilderLifecyclePolicyDetail({
     this.action,
     this.exclusionRules,
     this.filter,
   });
 
-  final List<ImagebuilderLifecyclePolicyPolicyDetailAction>? action;
+  final List<ImagebuilderLifecyclePolicyAction>? action;
 
-  final List<ImagebuilderLifecyclePolicyPolicyDetailExclusionRules>?
-  exclusionRules;
+  final List<ImagebuilderLifecyclePolicyExclusionRules>? exclusionRules;
 
-  final List<ImagebuilderLifecyclePolicyPolicyDetailFilter>? filter;
+  final List<ImagebuilderLifecyclePolicyFilter>? filter;
 
   Map<String, Object?> encode() => {
     if (action != null) 'action': [for (final e in action!) e.encode()],
@@ -45,16 +44,15 @@ final class ImagebuilderLifecyclePolicyPolicyDetail {
 /// Typed helper for the `policy_detail.action` block of
 /// `aws_imagebuilder_lifecycle_policy` (derived from provider schema).
 @immutable
-final class ImagebuilderLifecyclePolicyPolicyDetailAction {
-  const ImagebuilderLifecyclePolicyPolicyDetailAction({
+final class ImagebuilderLifecyclePolicyAction {
+  const ImagebuilderLifecyclePolicyAction({
     required this.type,
     this.includeResources,
   });
 
-  final TfArg<ImagebuilderLifecyclePolicyPolicyDetailActionType> type;
+  final TfArg<ImagebuilderLifecyclePolicyActionType> type;
 
-  final List<ImagebuilderLifecyclePolicyPolicyDetailActionIncludeResources>?
-  includeResources;
+  final List<ImagebuilderLifecyclePolicyIncludeResources>? includeResources;
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
@@ -64,13 +62,12 @@ final class ImagebuilderLifecyclePolicyPolicyDetailAction {
 }
 
 /// `type` — derived from the provider schema description.
-enum ImagebuilderLifecyclePolicyPolicyDetailActionType
-    implements TerraformEnum {
+enum ImagebuilderLifecyclePolicyActionType implements TerraformEnum {
   delete('DELETE'),
   deprecate('DEPRECATE'),
   disable('DISABLE');
 
-  const ImagebuilderLifecyclePolicyPolicyDetailActionType(this.terraformValue);
+  const ImagebuilderLifecyclePolicyActionType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -78,8 +75,8 @@ enum ImagebuilderLifecyclePolicyPolicyDetailActionType
 /// Typed helper for the `policy_detail.action.include_resources` block of
 /// `aws_imagebuilder_lifecycle_policy` (derived from provider schema).
 @immutable
-final class ImagebuilderLifecyclePolicyPolicyDetailActionIncludeResources {
-  const ImagebuilderLifecyclePolicyPolicyDetailActionIncludeResources({
+final class ImagebuilderLifecyclePolicyIncludeResources {
+  const ImagebuilderLifecyclePolicyIncludeResources({
     this.amis,
     this.containers,
     this.snapshots,
@@ -101,15 +98,12 @@ final class ImagebuilderLifecyclePolicyPolicyDetailActionIncludeResources {
 /// Typed helper for the `policy_detail.exclusion_rules` block of
 /// `aws_imagebuilder_lifecycle_policy` (derived from provider schema).
 @immutable
-final class ImagebuilderLifecyclePolicyPolicyDetailExclusionRules {
-  const ImagebuilderLifecyclePolicyPolicyDetailExclusionRules({
-    this.tagMap,
-    this.amis,
-  });
+final class ImagebuilderLifecyclePolicyExclusionRules {
+  const ImagebuilderLifecyclePolicyExclusionRules({this.tagMap, this.amis});
 
   final TfArg<Map<String, String>>? tagMap;
 
-  final List<ImagebuilderLifecyclePolicyPolicyDetailExclusionRulesAmis>? amis;
+  final List<ImagebuilderLifecyclePolicyAmis>? amis;
 
   Map<String, Object?> encode() => {
     'tag_map': ?tagMap?.toTfJson(),
@@ -120,8 +114,8 @@ final class ImagebuilderLifecyclePolicyPolicyDetailExclusionRules {
 /// Typed helper for the `policy_detail.exclusion_rules.amis` block of
 /// `aws_imagebuilder_lifecycle_policy` (derived from provider schema).
 @immutable
-final class ImagebuilderLifecyclePolicyPolicyDetailExclusionRulesAmis {
-  const ImagebuilderLifecyclePolicyPolicyDetailExclusionRulesAmis({
+final class ImagebuilderLifecyclePolicyAmis {
+  const ImagebuilderLifecyclePolicyAmis({
     this.isPublic,
     this.regions,
     this.sharedAccounts,
@@ -137,10 +131,7 @@ final class ImagebuilderLifecyclePolicyPolicyDetailExclusionRulesAmis {
 
   final TfArg<Map<String, String>>? tagMap;
 
-  final List<
-    ImagebuilderLifecyclePolicyPolicyDetailExclusionRulesAmisLastLaunched
-  >?
-  lastLaunched;
+  final List<ImagebuilderLifecyclePolicyLastLaunched>? lastLaunched;
 
   Map<String, Object?> encode() => {
     'is_public': ?isPublic?.toTfJson(),
@@ -155,16 +146,13 @@ final class ImagebuilderLifecyclePolicyPolicyDetailExclusionRulesAmis {
 /// Typed helper for the `policy_detail.exclusion_rules.amis.last_launched` block of
 /// `aws_imagebuilder_lifecycle_policy` (derived from provider schema).
 @immutable
-final class ImagebuilderLifecyclePolicyPolicyDetailExclusionRulesAmisLastLaunched {
-  const ImagebuilderLifecyclePolicyPolicyDetailExclusionRulesAmisLastLaunched({
+final class ImagebuilderLifecyclePolicyLastLaunched {
+  const ImagebuilderLifecyclePolicyLastLaunched({
     required this.unit,
     required this.value,
   });
 
-  final TfArg<
-    ImagebuilderLifecyclePolicyPolicyDetailExclusionRulesAmisLastLaunchedUnit
-  >
-  unit;
+  final TfArg<ImagebuilderLifecyclePolicyUnit> unit;
 
   final TfArg<num> value;
 
@@ -175,16 +163,13 @@ final class ImagebuilderLifecyclePolicyPolicyDetailExclusionRulesAmisLastLaunche
 }
 
 /// `unit` — derived from the provider schema description.
-enum ImagebuilderLifecyclePolicyPolicyDetailExclusionRulesAmisLastLaunchedUnit
-    implements TerraformEnum {
+enum ImagebuilderLifecyclePolicyUnit implements TerraformEnum {
   days('DAYS'),
   weeks('WEEKS'),
   months('MONTHS'),
   years('YEARS');
 
-  const ImagebuilderLifecyclePolicyPolicyDetailExclusionRulesAmisLastLaunchedUnit(
-    this.terraformValue,
-  );
+  const ImagebuilderLifecyclePolicyUnit(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -192,8 +177,8 @@ enum ImagebuilderLifecyclePolicyPolicyDetailExclusionRulesAmisLastLaunchedUnit
 /// Typed helper for the `policy_detail.filter` block of
 /// `aws_imagebuilder_lifecycle_policy` (derived from provider schema).
 @immutable
-final class ImagebuilderLifecyclePolicyPolicyDetailFilter {
-  const ImagebuilderLifecyclePolicyPolicyDetailFilter({
+final class ImagebuilderLifecyclePolicyFilter {
+  const ImagebuilderLifecyclePolicyFilter({
     this.retainAtLeast,
     required this.type,
     this.unit,
@@ -202,9 +187,9 @@ final class ImagebuilderLifecyclePolicyPolicyDetailFilter {
 
   final TfArg<num>? retainAtLeast;
 
-  final TfArg<ImagebuilderLifecyclePolicyPolicyDetailFilterType> type;
+  final TfArg<ImagebuilderLifecyclePolicyFilterType> type;
 
-  final TfArg<ImagebuilderLifecyclePolicyPolicyDetailFilterUnit>? unit;
+  final TfArg<ImagebuilderLifecyclePolicyUnit>? unit;
 
   final TfArg<num> value;
 
@@ -217,25 +202,11 @@ final class ImagebuilderLifecyclePolicyPolicyDetailFilter {
 }
 
 /// `type` — derived from the provider schema description.
-enum ImagebuilderLifecyclePolicyPolicyDetailFilterType
-    implements TerraformEnum {
+enum ImagebuilderLifecyclePolicyFilterType implements TerraformEnum {
   age('AGE'),
   count('COUNT');
 
-  const ImagebuilderLifecyclePolicyPolicyDetailFilterType(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
-/// `unit` — derived from the provider schema description.
-enum ImagebuilderLifecyclePolicyPolicyDetailFilterUnit
-    implements TerraformEnum {
-  days('DAYS'),
-  weeks('WEEKS'),
-  months('MONTHS'),
-  years('YEARS');
-
-  const ImagebuilderLifecyclePolicyPolicyDetailFilterUnit(this.terraformValue);
+  const ImagebuilderLifecyclePolicyFilterType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -251,7 +222,7 @@ final class ImagebuilderLifecyclePolicyResourceSelection {
 
   final TfArg<Map<String, String>>? tagMap;
 
-  final List<ImagebuilderLifecyclePolicyResourceSelectionRecipe>? recipe;
+  final List<ImagebuilderLifecyclePolicyRecipe>? recipe;
 
   Map<String, Object?> encode() => {
     'tag_map': ?tagMap?.toTfJson(),
@@ -262,8 +233,8 @@ final class ImagebuilderLifecyclePolicyResourceSelection {
 /// Typed helper for the `resource_selection.recipe` block of
 /// `aws_imagebuilder_lifecycle_policy` (derived from provider schema).
 @immutable
-final class ImagebuilderLifecyclePolicyResourceSelectionRecipe {
-  const ImagebuilderLifecyclePolicyResourceSelectionRecipe({
+final class ImagebuilderLifecyclePolicyRecipe {
+  const ImagebuilderLifecyclePolicyRecipe({
     required this.name,
     required this.semanticVersion,
   });
@@ -291,7 +262,7 @@ final class AwsImagebuilderLifecyclePolicy extends Resource {
     required TfArg<ImagebuilderLifecyclePolicyResourceType> resourceType,
     TfArg<String>? status,
     TfArg<Map<String, String>>? tags,
-    List<ImagebuilderLifecyclePolicyPolicyDetail>? policyDetail,
+    List<ImagebuilderLifecyclePolicyDetail>? policyDetail,
     List<ImagebuilderLifecyclePolicyResourceSelection>? resourceSelection,
     super.lifecycle,
     super.dependsOn,

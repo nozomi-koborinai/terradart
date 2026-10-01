@@ -15,8 +15,7 @@ const Set<String> _googleDataLossPreventionContentPolicySensitive = <String>{};
 final class DataLossPreventionContentPolicyDefaultAction {
   const DataLossPreventionContentPolicyDefaultAction({this.returnVerdict});
 
-  final TfArg<DataLossPreventionContentPolicyDefaultActionReturnVerdict>?
-  returnVerdict;
+  final TfArg<DataLossPreventionContentPolicyReturnVerdict>? returnVerdict;
 
   Map<String, Object?> encode() => {
     'return_verdict': ?returnVerdict?.toTfJson(),
@@ -24,14 +23,11 @@ final class DataLossPreventionContentPolicyDefaultAction {
 }
 
 /// `return_verdict` — derived from the provider schema description.
-enum DataLossPreventionContentPolicyDefaultActionReturnVerdict
-    implements TerraformEnum {
+enum DataLossPreventionContentPolicyReturnVerdict implements TerraformEnum {
   allow('ALLOW'),
   block('BLOCK');
 
-  const DataLossPreventionContentPolicyDefaultActionReturnVerdict(
-    this.terraformValue,
-  );
+  const DataLossPreventionContentPolicyReturnVerdict(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -44,27 +40,11 @@ final class DataLossPreventionContentPolicyFailedToScanSupportedFileType {
     this.returnVerdict,
   });
 
-  final TfArg<
-    DataLossPreventionContentPolicyFailedToScanSupportedFileTypeReturnVerdict
-  >?
-  returnVerdict;
+  final TfArg<DataLossPreventionContentPolicyReturnVerdict>? returnVerdict;
 
   Map<String, Object?> encode() => {
     'return_verdict': ?returnVerdict?.toTfJson(),
   };
-}
-
-/// `return_verdict` — derived from the provider schema description.
-enum DataLossPreventionContentPolicyFailedToScanSupportedFileTypeReturnVerdict
-    implements TerraformEnum {
-  allow('ALLOW'),
-  block('BLOCK');
-
-  const DataLossPreventionContentPolicyFailedToScanSupportedFileTypeReturnVerdict(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `input_too_large` block of
@@ -73,25 +53,11 @@ enum DataLossPreventionContentPolicyFailedToScanSupportedFileTypeReturnVerdict
 final class DataLossPreventionContentPolicyInputTooLarge {
   const DataLossPreventionContentPolicyInputTooLarge({this.returnVerdict});
 
-  final TfArg<DataLossPreventionContentPolicyInputTooLargeReturnVerdict>?
-  returnVerdict;
+  final TfArg<DataLossPreventionContentPolicyReturnVerdict>? returnVerdict;
 
   Map<String, Object?> encode() => {
     'return_verdict': ?returnVerdict?.toTfJson(),
   };
-}
-
-/// `return_verdict` — derived from the provider schema description.
-enum DataLossPreventionContentPolicyInputTooLargeReturnVerdict
-    implements TerraformEnum {
-  allow('ALLOW'),
-  block('BLOCK');
-
-  const DataLossPreventionContentPolicyInputTooLargeReturnVerdict(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `inspect_config` block of
@@ -110,29 +76,25 @@ final class DataLossPreventionContentPolicyInspectConfig {
     this.ruleSet,
   });
 
-  final List<TfArg<DataLossPreventionContentPolicyInspectConfigContentOptions>>?
+  final List<TfArg<DataLossPreventionContentPolicyContentOptions>>?
   contentOptions;
 
   final TfArg<bool>? excludeInfoTypes;
 
   final TfArg<bool>? includeQuote;
 
-  final TfArg<DataLossPreventionContentPolicyInspectConfigMinLikelihood>?
-  minLikelihood;
+  final TfArg<DataLossPreventionContentPolicyMinLikelihood>? minLikelihood;
 
-  final List<DataLossPreventionContentPolicyInspectConfigCustomInfoTypes>?
-  customInfoTypes;
+  final List<DataLossPreventionContentPolicyCustomInfoTypes>? customInfoTypes;
 
-  final List<DataLossPreventionContentPolicyInspectConfigInfoTypes>? infoTypes;
+  final List<DataLossPreventionContentPolicyInfoTypes>? infoTypes;
 
-  final DataLossPreventionContentPolicyInspectConfigLimits? limits;
+  final DataLossPreventionContentPolicyLimits? limits;
 
-  final List<
-    DataLossPreventionContentPolicyInspectConfigMinLikelihoodPerInfoType
-  >?
+  final List<DataLossPreventionContentPolicyMinLikelihoodPerInfoType>?
   minLikelihoodPerInfoType;
 
-  final List<DataLossPreventionContentPolicyInspectConfigRuleSet>? ruleSet;
+  final List<DataLossPreventionContentPolicyRuleSet>? ruleSet;
 
   Map<String, Object?> encode() => {
     if (contentOptions != null)
@@ -154,30 +116,24 @@ final class DataLossPreventionContentPolicyInspectConfig {
 }
 
 /// `content_options` — derived from the provider schema description.
-enum DataLossPreventionContentPolicyInspectConfigContentOptions
-    implements TerraformEnum {
+enum DataLossPreventionContentPolicyContentOptions implements TerraformEnum {
   contentText('CONTENT_TEXT'),
   contentImage('CONTENT_IMAGE');
 
-  const DataLossPreventionContentPolicyInspectConfigContentOptions(
-    this.terraformValue,
-  );
+  const DataLossPreventionContentPolicyContentOptions(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `min_likelihood` — derived from the provider schema description.
-enum DataLossPreventionContentPolicyInspectConfigMinLikelihood
-    implements TerraformEnum {
+enum DataLossPreventionContentPolicyMinLikelihood implements TerraformEnum {
   veryUnlikely('VERY_UNLIKELY'),
   unlikely('UNLIKELY'),
   possible('POSSIBLE'),
   likely('LIKELY'),
   veryLikely('VERY_LIKELY');
 
-  const DataLossPreventionContentPolicyInspectConfigMinLikelihood(
-    this.terraformValue,
-  );
+  const DataLossPreventionContentPolicyMinLikelihood(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -185,8 +141,8 @@ enum DataLossPreventionContentPolicyInspectConfigMinLikelihood
 /// Typed helper for the `inspect_config.custom_info_types` block of
 /// `google_data_loss_prevention_content_policy` (derived from provider schema).
 @immutable
-final class DataLossPreventionContentPolicyInspectConfigCustomInfoTypes {
-  const DataLossPreventionContentPolicyInspectConfigCustomInfoTypes({
+final class DataLossPreventionContentPolicyCustomInfoTypes {
+  const DataLossPreventionContentPolicyCustomInfoTypes({
     this.exclusionType,
     this.likelihood,
     this.dictionary,
@@ -199,27 +155,19 @@ final class DataLossPreventionContentPolicyInspectConfigCustomInfoTypes {
 
   final TfArg<String>? exclusionType;
 
-  final TfArg<
-    DataLossPreventionContentPolicyInspectConfigCustomInfoTypesLikelihood
-  >?
-  likelihood;
+  final TfArg<DataLossPreventionContentPolicyLikelihood>? likelihood;
 
-  final DataLossPreventionContentPolicyInspectConfigCustomInfoTypesDictionary?
-  dictionary;
+  final DataLossPreventionContentPolicyDictionary? dictionary;
 
-  final DataLossPreventionContentPolicyInspectConfigCustomInfoTypesInfoType
-  infoType;
+  final DataLossPreventionContentPolicyCustomInfoTypesInfoType infoType;
 
-  final DataLossPreventionContentPolicyInspectConfigCustomInfoTypesRegex? regex;
+  final DataLossPreventionContentPolicyRegex? regex;
 
-  final DataLossPreventionContentPolicyInspectConfigCustomInfoTypesSensitivityScore?
-  sensitivityScore;
+  final DataLossPreventionContentPolicySensitivityScore? sensitivityScore;
 
-  final DataLossPreventionContentPolicyInspectConfigCustomInfoTypesStoredType?
-  storedType;
+  final DataLossPreventionContentPolicyStoredType? storedType;
 
-  final DataLossPreventionContentPolicyInspectConfigCustomInfoTypesSurrogateType?
-  surrogateType;
+  final DataLossPreventionContentPolicySurrogateType? surrogateType;
 
   Map<String, Object?> encode() => {
     'exclusion_type': ?exclusionType?.toTfJson(),
@@ -234,35 +182,31 @@ final class DataLossPreventionContentPolicyInspectConfigCustomInfoTypes {
 }
 
 /// `likelihood` — derived from the provider schema description.
-enum DataLossPreventionContentPolicyInspectConfigCustomInfoTypesLikelihood
-    implements TerraformEnum {
+enum DataLossPreventionContentPolicyLikelihood implements TerraformEnum {
   veryUnlikely('VERY_UNLIKELY'),
   unlikely('UNLIKELY'),
   possible('POSSIBLE'),
   likely('LIKELY'),
   veryLikely('VERY_LIKELY');
 
-  const DataLossPreventionContentPolicyInspectConfigCustomInfoTypesLikelihood(
-    this.terraformValue,
-  );
+  const DataLossPreventionContentPolicyLikelihood(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `inspect_config.custom_info_types.dictionary` block of
 /// `google_data_loss_prevention_content_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionContentPolicyInspectConfigCustomInfoTypesDictionary {
-  const DataLossPreventionContentPolicyInspectConfigCustomInfoTypesDictionary({
+final class DataLossPreventionContentPolicyDictionary {
+  const DataLossPreventionContentPolicyDictionary({
     this.cloudStoragePath,
     this.wordList,
   });
 
-  final DataLossPreventionContentPolicyInspectConfigCustomInfoTypesDictionaryCloudStoragePath?
-  cloudStoragePath;
+  final DataLossPreventionContentPolicyCloudStoragePath? cloudStoragePath;
 
-  final DataLossPreventionContentPolicyInspectConfigCustomInfoTypesDictionaryWordList?
-  wordList;
+  final DataLossPreventionContentPolicyWordList? wordList;
 
   Map<String, Object?> encode() => {
     'cloud_storage_path': ?cloudStoragePath?.encode(),
@@ -272,11 +216,10 @@ final class DataLossPreventionContentPolicyInspectConfigCustomInfoTypesDictionar
 
 /// Typed helper for the `inspect_config.custom_info_types.dictionary.cloud_storage_path` block of
 /// `google_data_loss_prevention_content_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionContentPolicyInspectConfigCustomInfoTypesDictionaryCloudStoragePath {
-  const DataLossPreventionContentPolicyInspectConfigCustomInfoTypesDictionaryCloudStoragePath({
-    required this.path,
-  });
+final class DataLossPreventionContentPolicyCloudStoragePath {
+  const DataLossPreventionContentPolicyCloudStoragePath({required this.path});
 
   final TfArg<String> path;
 
@@ -285,11 +228,10 @@ final class DataLossPreventionContentPolicyInspectConfigCustomInfoTypesDictionar
 
 /// Typed helper for the `inspect_config.custom_info_types.dictionary.word_list` block of
 /// `google_data_loss_prevention_content_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionContentPolicyInspectConfigCustomInfoTypesDictionaryWordList {
-  const DataLossPreventionContentPolicyInspectConfigCustomInfoTypesDictionaryWordList({
-    required this.words,
-  });
+final class DataLossPreventionContentPolicyWordList {
+  const DataLossPreventionContentPolicyWordList({required this.words});
 
   final TfArg<List<String>> words;
 
@@ -298,9 +240,10 @@ final class DataLossPreventionContentPolicyInspectConfigCustomInfoTypesDictionar
 
 /// Typed helper for the `inspect_config.custom_info_types.info_type` block of
 /// `google_data_loss_prevention_content_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionContentPolicyInspectConfigCustomInfoTypesInfoType {
-  const DataLossPreventionContentPolicyInspectConfigCustomInfoTypesInfoType({
+final class DataLossPreventionContentPolicyCustomInfoTypesInfoType {
+  const DataLossPreventionContentPolicyCustomInfoTypesInfoType({
     required this.name,
     this.version,
     this.sensitivityScore,
@@ -310,8 +253,7 @@ final class DataLossPreventionContentPolicyInspectConfigCustomInfoTypesInfoType 
 
   final TfArg<String>? version;
 
-  final DataLossPreventionContentPolicyInspectConfigCustomInfoTypesInfoTypeSensitivityScore?
-  sensitivityScore;
+  final DataLossPreventionContentPolicySensitivityScore? sensitivityScore;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -320,41 +262,35 @@ final class DataLossPreventionContentPolicyInspectConfigCustomInfoTypesInfoType 
   };
 }
 
-/// Typed helper for the `inspect_config.custom_info_types.info_type.sensitivity_score` block of
+/// Typed helper for the `inspect_config.custom_info_types.sensitivity_score` block of
 /// `google_data_loss_prevention_content_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionContentPolicyInspectConfigCustomInfoTypesInfoTypeSensitivityScore {
-  const DataLossPreventionContentPolicyInspectConfigCustomInfoTypesInfoTypeSensitivityScore({
-    required this.score,
-  });
+final class DataLossPreventionContentPolicySensitivityScore {
+  const DataLossPreventionContentPolicySensitivityScore({required this.score});
 
-  final TfArg<
-    DataLossPreventionContentPolicyInspectConfigCustomInfoTypesInfoTypeSensitivityScoreScore
-  >
-  score;
+  final TfArg<DataLossPreventionContentPolicyScore> score;
 
   Map<String, Object?> encode() => {'score': score.toTfJson()};
 }
 
 /// `score` — derived from the provider schema description.
-enum DataLossPreventionContentPolicyInspectConfigCustomInfoTypesInfoTypeSensitivityScoreScore
-    implements TerraformEnum {
+enum DataLossPreventionContentPolicyScore implements TerraformEnum {
   sensitivityLow('SENSITIVITY_LOW'),
   sensitivityModerate('SENSITIVITY_MODERATE'),
   sensitivityHigh('SENSITIVITY_HIGH');
 
-  const DataLossPreventionContentPolicyInspectConfigCustomInfoTypesInfoTypeSensitivityScoreScore(
-    this.terraformValue,
-  );
+  const DataLossPreventionContentPolicyScore(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `inspect_config.custom_info_types.regex` block of
 /// `google_data_loss_prevention_content_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionContentPolicyInspectConfigCustomInfoTypesRegex {
-  const DataLossPreventionContentPolicyInspectConfigCustomInfoTypesRegex({
+final class DataLossPreventionContentPolicyRegex {
+  const DataLossPreventionContentPolicyRegex({
     this.groupIndexes,
     required this.pattern,
   });
@@ -369,43 +305,11 @@ final class DataLossPreventionContentPolicyInspectConfigCustomInfoTypesRegex {
   };
 }
 
-/// Typed helper for the `inspect_config.custom_info_types.sensitivity_score` block of
-/// `google_data_loss_prevention_content_policy` (derived from provider schema).
-@immutable
-final class DataLossPreventionContentPolicyInspectConfigCustomInfoTypesSensitivityScore {
-  const DataLossPreventionContentPolicyInspectConfigCustomInfoTypesSensitivityScore({
-    required this.score,
-  });
-
-  final TfArg<
-    DataLossPreventionContentPolicyInspectConfigCustomInfoTypesSensitivityScoreScore
-  >
-  score;
-
-  Map<String, Object?> encode() => {'score': score.toTfJson()};
-}
-
-/// `score` — derived from the provider schema description.
-enum DataLossPreventionContentPolicyInspectConfigCustomInfoTypesSensitivityScoreScore
-    implements TerraformEnum {
-  sensitivityLow('SENSITIVITY_LOW'),
-  sensitivityModerate('SENSITIVITY_MODERATE'),
-  sensitivityHigh('SENSITIVITY_HIGH');
-
-  const DataLossPreventionContentPolicyInspectConfigCustomInfoTypesSensitivityScoreScore(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `inspect_config.custom_info_types.stored_type` block of
 /// `google_data_loss_prevention_content_policy` (derived from provider schema).
 @immutable
-final class DataLossPreventionContentPolicyInspectConfigCustomInfoTypesStoredType {
-  const DataLossPreventionContentPolicyInspectConfigCustomInfoTypesStoredType({
-    required this.name,
-  });
+final class DataLossPreventionContentPolicyStoredType {
+  const DataLossPreventionContentPolicyStoredType({required this.name});
 
   final TfArg<String> name;
 
@@ -415,17 +319,18 @@ final class DataLossPreventionContentPolicyInspectConfigCustomInfoTypesStoredTyp
 /// Typed helper for the `inspect_config.custom_info_types.surrogate_type` block of
 /// `google_data_loss_prevention_content_policy` (derived from provider schema).
 @immutable
-final class DataLossPreventionContentPolicyInspectConfigCustomInfoTypesSurrogateType {
-  const DataLossPreventionContentPolicyInspectConfigCustomInfoTypesSurrogateType();
+final class DataLossPreventionContentPolicySurrogateType {
+  const DataLossPreventionContentPolicySurrogateType();
 
   Map<String, Object?> encode() => {};
 }
 
 /// Typed helper for the `inspect_config.info_types` block of
 /// `google_data_loss_prevention_content_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionContentPolicyInspectConfigInfoTypes {
-  const DataLossPreventionContentPolicyInspectConfigInfoTypes({
+final class DataLossPreventionContentPolicyInfoTypes {
+  const DataLossPreventionContentPolicyInfoTypes({
     required this.name,
     this.version,
     this.sensitivityScore,
@@ -435,8 +340,7 @@ final class DataLossPreventionContentPolicyInspectConfigInfoTypes {
 
   final TfArg<String>? version;
 
-  final DataLossPreventionContentPolicyInspectConfigInfoTypesSensitivityScore?
-  sensitivityScore;
+  final DataLossPreventionContentPolicySensitivityScore? sensitivityScore;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -445,41 +349,11 @@ final class DataLossPreventionContentPolicyInspectConfigInfoTypes {
   };
 }
 
-/// Typed helper for the `inspect_config.info_types.sensitivity_score` block of
-/// `google_data_loss_prevention_content_policy` (derived from provider schema).
-@immutable
-final class DataLossPreventionContentPolicyInspectConfigInfoTypesSensitivityScore {
-  const DataLossPreventionContentPolicyInspectConfigInfoTypesSensitivityScore({
-    required this.score,
-  });
-
-  final TfArg<
-    DataLossPreventionContentPolicyInspectConfigInfoTypesSensitivityScoreScore
-  >
-  score;
-
-  Map<String, Object?> encode() => {'score': score.toTfJson()};
-}
-
-/// `score` — derived from the provider schema description.
-enum DataLossPreventionContentPolicyInspectConfigInfoTypesSensitivityScoreScore
-    implements TerraformEnum {
-  sensitivityLow('SENSITIVITY_LOW'),
-  sensitivityModerate('SENSITIVITY_MODERATE'),
-  sensitivityHigh('SENSITIVITY_HIGH');
-
-  const DataLossPreventionContentPolicyInspectConfigInfoTypesSensitivityScoreScore(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `inspect_config.limits` block of
 /// `google_data_loss_prevention_content_policy` (derived from provider schema).
 @immutable
-final class DataLossPreventionContentPolicyInspectConfigLimits {
-  const DataLossPreventionContentPolicyInspectConfigLimits({
+final class DataLossPreventionContentPolicyLimits {
+  const DataLossPreventionContentPolicyLimits({
     required this.maxFindingsPerItem,
     required this.maxFindingsPerRequest,
     this.maxFindingsPerInfoType,
@@ -489,9 +363,7 @@ final class DataLossPreventionContentPolicyInspectConfigLimits {
 
   final TfArg<num> maxFindingsPerRequest;
 
-  final List<
-    DataLossPreventionContentPolicyInspectConfigLimitsMaxFindingsPerInfoType
-  >?
+  final List<DataLossPreventionContentPolicyMaxFindingsPerInfoType>?
   maxFindingsPerInfoType;
 
   Map<String, Object?> encode() => {
@@ -507,16 +379,15 @@ final class DataLossPreventionContentPolicyInspectConfigLimits {
 /// Typed helper for the `inspect_config.limits.max_findings_per_info_type` block of
 /// `google_data_loss_prevention_content_policy` (derived from provider schema).
 @immutable
-final class DataLossPreventionContentPolicyInspectConfigLimitsMaxFindingsPerInfoType {
-  const DataLossPreventionContentPolicyInspectConfigLimitsMaxFindingsPerInfoType({
+final class DataLossPreventionContentPolicyMaxFindingsPerInfoType {
+  const DataLossPreventionContentPolicyMaxFindingsPerInfoType({
     required this.maxFindings,
     this.infoType,
   });
 
   final TfArg<num> maxFindings;
 
-  final DataLossPreventionContentPolicyInspectConfigLimitsMaxFindingsPerInfoTypeInfoType?
-  infoType;
+  final DataLossPreventionContentPolicyCustomInfoTypesInfoType? infoType;
 
   Map<String, Object?> encode() => {
     'max_findings': maxFindings.toTfJson(),
@@ -524,75 +395,18 @@ final class DataLossPreventionContentPolicyInspectConfigLimitsMaxFindingsPerInfo
   };
 }
 
-/// Typed helper for the `inspect_config.limits.max_findings_per_info_type.info_type` block of
-/// `google_data_loss_prevention_content_policy` (derived from provider schema).
-@immutable
-final class DataLossPreventionContentPolicyInspectConfigLimitsMaxFindingsPerInfoTypeInfoType {
-  const DataLossPreventionContentPolicyInspectConfigLimitsMaxFindingsPerInfoTypeInfoType({
-    required this.name,
-    this.version,
-    this.sensitivityScore,
-  });
-
-  final TfArg<String> name;
-
-  final TfArg<String>? version;
-
-  final DataLossPreventionContentPolicyInspectConfigLimitsMaxFindingsPerInfoTypeInfoTypeSensitivityScore?
-  sensitivityScore;
-
-  Map<String, Object?> encode() => {
-    'name': name.toTfJson(),
-    'version': ?version?.toTfJson(),
-    'sensitivity_score': ?sensitivityScore?.encode(),
-  };
-}
-
-/// Typed helper for the `inspect_config.limits.max_findings_per_info_type.info_type.sensitivity_score` block of
-/// `google_data_loss_prevention_content_policy` (derived from provider schema).
-@immutable
-final class DataLossPreventionContentPolicyInspectConfigLimitsMaxFindingsPerInfoTypeInfoTypeSensitivityScore {
-  const DataLossPreventionContentPolicyInspectConfigLimitsMaxFindingsPerInfoTypeInfoTypeSensitivityScore({
-    required this.score,
-  });
-
-  final TfArg<
-    DataLossPreventionContentPolicyInspectConfigLimitsMaxFindingsPerInfoTypeInfoTypeSensitivityScoreScore
-  >
-  score;
-
-  Map<String, Object?> encode() => {'score': score.toTfJson()};
-}
-
-/// `score` — derived from the provider schema description.
-enum DataLossPreventionContentPolicyInspectConfigLimitsMaxFindingsPerInfoTypeInfoTypeSensitivityScoreScore
-    implements TerraformEnum {
-  sensitivityLow('SENSITIVITY_LOW'),
-  sensitivityModerate('SENSITIVITY_MODERATE'),
-  sensitivityHigh('SENSITIVITY_HIGH');
-
-  const DataLossPreventionContentPolicyInspectConfigLimitsMaxFindingsPerInfoTypeInfoTypeSensitivityScoreScore(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `inspect_config.min_likelihood_per_info_type` block of
 /// `google_data_loss_prevention_content_policy` (derived from provider schema).
 @immutable
-final class DataLossPreventionContentPolicyInspectConfigMinLikelihoodPerInfoType {
-  const DataLossPreventionContentPolicyInspectConfigMinLikelihoodPerInfoType({
+final class DataLossPreventionContentPolicyMinLikelihoodPerInfoType {
+  const DataLossPreventionContentPolicyMinLikelihoodPerInfoType({
     required this.minLikelihood,
     this.infoType,
   });
 
-  final TfArg<
-    DataLossPreventionContentPolicyInspectConfigMinLikelihoodPerInfoTypeMinLikelihood
-  >
-  minLikelihood;
+  final TfArg<DataLossPreventionContentPolicyMinLikelihood> minLikelihood;
 
-  final DataLossPreventionContentPolicyInspectConfigMinLikelihoodPerInfoTypeInfoType?
+  final DataLossPreventionContentPolicyMinLikelihoodPerInfoTypeInfoType?
   infoType;
 
   Map<String, Object?> encode() => {
@@ -601,27 +415,11 @@ final class DataLossPreventionContentPolicyInspectConfigMinLikelihoodPerInfoType
   };
 }
 
-/// `min_likelihood` — derived from the provider schema description.
-enum DataLossPreventionContentPolicyInspectConfigMinLikelihoodPerInfoTypeMinLikelihood
-    implements TerraformEnum {
-  veryUnlikely('VERY_UNLIKELY'),
-  unlikely('UNLIKELY'),
-  possible('POSSIBLE'),
-  likely('LIKELY'),
-  veryLikely('VERY_LIKELY');
-
-  const DataLossPreventionContentPolicyInspectConfigMinLikelihoodPerInfoTypeMinLikelihood(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `inspect_config.min_likelihood_per_info_type.info_type` block of
 /// `google_data_loss_prevention_content_policy` (derived from provider schema).
 @immutable
-final class DataLossPreventionContentPolicyInspectConfigMinLikelihoodPerInfoTypeInfoType {
-  const DataLossPreventionContentPolicyInspectConfigMinLikelihoodPerInfoTypeInfoType({
+final class DataLossPreventionContentPolicyMinLikelihoodPerInfoTypeInfoType {
+  const DataLossPreventionContentPolicyMinLikelihoodPerInfoTypeInfoType({
     required this.name,
     this.version,
   });
@@ -639,16 +437,15 @@ final class DataLossPreventionContentPolicyInspectConfigMinLikelihoodPerInfoType
 /// Typed helper for the `inspect_config.rule_set` block of
 /// `google_data_loss_prevention_content_policy` (derived from provider schema).
 @immutable
-final class DataLossPreventionContentPolicyInspectConfigRuleSet {
-  const DataLossPreventionContentPolicyInspectConfigRuleSet({
+final class DataLossPreventionContentPolicyRuleSet {
+  const DataLossPreventionContentPolicyRuleSet({
     required this.infoTypes,
     required this.rules,
   });
 
-  final List<DataLossPreventionContentPolicyInspectConfigRuleSetInfoTypes>
-  infoTypes;
+  final List<DataLossPreventionContentPolicyInfoTypes> infoTypes;
 
-  final List<DataLossPreventionContentPolicyInspectConfigRuleSetRules> rules;
+  final List<DataLossPreventionContentPolicyRuleSetRules> rules;
 
   Map<String, Object?> encode() => {
     'info_types': [for (final e in infoTypes) e.encode()],
@@ -656,74 +453,18 @@ final class DataLossPreventionContentPolicyInspectConfigRuleSet {
   };
 }
 
-/// Typed helper for the `inspect_config.rule_set.info_types` block of
-/// `google_data_loss_prevention_content_policy` (derived from provider schema).
-@immutable
-final class DataLossPreventionContentPolicyInspectConfigRuleSetInfoTypes {
-  const DataLossPreventionContentPolicyInspectConfigRuleSetInfoTypes({
-    required this.name,
-    this.version,
-    this.sensitivityScore,
-  });
-
-  final TfArg<String> name;
-
-  final TfArg<String>? version;
-
-  final DataLossPreventionContentPolicyInspectConfigRuleSetInfoTypesSensitivityScore?
-  sensitivityScore;
-
-  Map<String, Object?> encode() => {
-    'name': name.toTfJson(),
-    'version': ?version?.toTfJson(),
-    'sensitivity_score': ?sensitivityScore?.encode(),
-  };
-}
-
-/// Typed helper for the `inspect_config.rule_set.info_types.sensitivity_score` block of
-/// `google_data_loss_prevention_content_policy` (derived from provider schema).
-@immutable
-final class DataLossPreventionContentPolicyInspectConfigRuleSetInfoTypesSensitivityScore {
-  const DataLossPreventionContentPolicyInspectConfigRuleSetInfoTypesSensitivityScore({
-    required this.score,
-  });
-
-  final TfArg<
-    DataLossPreventionContentPolicyInspectConfigRuleSetInfoTypesSensitivityScoreScore
-  >
-  score;
-
-  Map<String, Object?> encode() => {'score': score.toTfJson()};
-}
-
-/// `score` — derived from the provider schema description.
-enum DataLossPreventionContentPolicyInspectConfigRuleSetInfoTypesSensitivityScoreScore
-    implements TerraformEnum {
-  sensitivityLow('SENSITIVITY_LOW'),
-  sensitivityModerate('SENSITIVITY_MODERATE'),
-  sensitivityHigh('SENSITIVITY_HIGH');
-
-  const DataLossPreventionContentPolicyInspectConfigRuleSetInfoTypesSensitivityScoreScore(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `inspect_config.rule_set.rules` block of
 /// `google_data_loss_prevention_content_policy` (derived from provider schema).
 @immutable
-final class DataLossPreventionContentPolicyInspectConfigRuleSetRules {
-  const DataLossPreventionContentPolicyInspectConfigRuleSetRules({
+final class DataLossPreventionContentPolicyRuleSetRules {
+  const DataLossPreventionContentPolicyRuleSetRules({
     this.exclusionRule,
     this.hotwordRule,
   });
 
-  final DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRule?
-  exclusionRule;
+  final DataLossPreventionContentPolicyExclusionRule? exclusionRule;
 
-  final DataLossPreventionContentPolicyInspectConfigRuleSetRulesHotwordRule?
-  hotwordRule;
+  final DataLossPreventionContentPolicyHotwordRule? hotwordRule;
 
   Map<String, Object?> encode() => {
     'exclusion_rule': ?exclusionRule?.encode(),
@@ -734,8 +475,8 @@ final class DataLossPreventionContentPolicyInspectConfigRuleSetRules {
 /// Typed helper for the `inspect_config.rule_set.rules.exclusion_rule` block of
 /// `google_data_loss_prevention_content_policy` (derived from provider schema).
 @immutable
-final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRule {
-  const DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRule({
+final class DataLossPreventionContentPolicyExclusionRule {
+  const DataLossPreventionContentPolicyExclusionRule({
     required this.matchingType,
     this.dictionary,
     this.excludeByHotword,
@@ -743,22 +484,15 @@ final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRul
     this.regex,
   });
 
-  final TfArg<
-    DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleMatchingType
-  >
-  matchingType;
+  final TfArg<DataLossPreventionContentPolicyMatchingType> matchingType;
 
-  final DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleDictionary?
-  dictionary;
+  final DataLossPreventionContentPolicyDictionary? dictionary;
 
-  final DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleExcludeByHotword?
-  excludeByHotword;
+  final DataLossPreventionContentPolicyExcludeByHotword? excludeByHotword;
 
-  final DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleExcludeInfoTypes?
-  excludeInfoTypes;
+  final DataLossPreventionContentPolicyExcludeInfoTypes? excludeInfoTypes;
 
-  final DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleRegex?
-  regex;
+  final DataLossPreventionContentPolicyRegex? regex;
 
   Map<String, Object?> encode() => {
     'matching_type': matchingType.toTfJson(),
@@ -770,80 +504,28 @@ final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRul
 }
 
 /// `matching_type` — derived from the provider schema description.
-enum DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleMatchingType
-    implements TerraformEnum {
+enum DataLossPreventionContentPolicyMatchingType implements TerraformEnum {
   matchingTypeFullMatch('MATCHING_TYPE_FULL_MATCH'),
   matchingTypePartialMatch('MATCHING_TYPE_PARTIAL_MATCH'),
   matchingTypeInverseMatch('MATCHING_TYPE_INVERSE_MATCH');
 
-  const DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleMatchingType(
-    this.terraformValue,
-  );
+  const DataLossPreventionContentPolicyMatchingType(this.terraformValue);
   @override
   final String terraformValue;
-}
-
-/// Typed helper for the `inspect_config.rule_set.rules.exclusion_rule.dictionary` block of
-/// `google_data_loss_prevention_content_policy` (derived from provider schema).
-@immutable
-final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleDictionary {
-  const DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleDictionary({
-    this.cloudStoragePath,
-    this.wordList,
-  });
-
-  final DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleDictionaryCloudStoragePath?
-  cloudStoragePath;
-
-  final DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleDictionaryWordList?
-  wordList;
-
-  Map<String, Object?> encode() => {
-    'cloud_storage_path': ?cloudStoragePath?.encode(),
-    'word_list': ?wordList?.encode(),
-  };
-}
-
-/// Typed helper for the `inspect_config.rule_set.rules.exclusion_rule.dictionary.cloud_storage_path` block of
-/// `google_data_loss_prevention_content_policy` (derived from provider schema).
-@immutable
-final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleDictionaryCloudStoragePath {
-  const DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleDictionaryCloudStoragePath({
-    required this.path,
-  });
-
-  final TfArg<String> path;
-
-  Map<String, Object?> encode() => {'path': path.toTfJson()};
-}
-
-/// Typed helper for the `inspect_config.rule_set.rules.exclusion_rule.dictionary.word_list` block of
-/// `google_data_loss_prevention_content_policy` (derived from provider schema).
-@immutable
-final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleDictionaryWordList {
-  const DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleDictionaryWordList({
-    required this.words,
-  });
-
-  final TfArg<List<String>> words;
-
-  Map<String, Object?> encode() => {'words': words.toTfJson()};
 }
 
 /// Typed helper for the `inspect_config.rule_set.rules.exclusion_rule.exclude_by_hotword` block of
 /// `google_data_loss_prevention_content_policy` (derived from provider schema).
 @immutable
-final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleExcludeByHotword {
-  const DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleExcludeByHotword({
+final class DataLossPreventionContentPolicyExcludeByHotword {
+  const DataLossPreventionContentPolicyExcludeByHotword({
     required this.hotwordRegex,
     required this.proximity,
   });
 
-  final DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleExcludeByHotwordHotwordRegex
-  hotwordRegex;
+  final DataLossPreventionContentPolicyHotwordRegex hotwordRegex;
 
-  final DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleExcludeByHotwordProximity
-  proximity;
+  final DataLossPreventionContentPolicyProximity proximity;
 
   Map<String, Object?> encode() => {
     'hotword_regex': hotwordRegex.encode(),
@@ -851,11 +533,12 @@ final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRul
   };
 }
 
-/// Typed helper for the `inspect_config.rule_set.rules.exclusion_rule.exclude_by_hotword.hotword_regex` block of
+/// Typed helper for the `inspect_config.rule_set.rules.hotword_rule.hotword_regex` block of
 /// `google_data_loss_prevention_content_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleExcludeByHotwordHotwordRegex {
-  const DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleExcludeByHotwordHotwordRegex({
+final class DataLossPreventionContentPolicyHotwordRegex {
+  const DataLossPreventionContentPolicyHotwordRegex({
     this.groupIndexes,
     required this.pattern,
   });
@@ -870,11 +553,12 @@ final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRul
   };
 }
 
-/// Typed helper for the `inspect_config.rule_set.rules.exclusion_rule.exclude_by_hotword.proximity` block of
+/// Typed helper for the `inspect_config.rule_set.rules.hotword_rule.proximity` block of
 /// `google_data_loss_prevention_content_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleExcludeByHotwordProximity {
-  const DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleExcludeByHotwordProximity({
+final class DataLossPreventionContentPolicyProximity {
+  const DataLossPreventionContentPolicyProximity({
     this.windowAfter,
     this.windowBefore,
   });
@@ -892,112 +576,34 @@ final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRul
 /// Typed helper for the `inspect_config.rule_set.rules.exclusion_rule.exclude_info_types` block of
 /// `google_data_loss_prevention_content_policy` (derived from provider schema).
 @immutable
-final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleExcludeInfoTypes {
-  const DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleExcludeInfoTypes({
+final class DataLossPreventionContentPolicyExcludeInfoTypes {
+  const DataLossPreventionContentPolicyExcludeInfoTypes({
     required this.infoTypes,
   });
 
-  final List<
-    DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleExcludeInfoTypesInfoTypes
-  >
-  infoTypes;
+  final List<DataLossPreventionContentPolicyInfoTypes> infoTypes;
 
   Map<String, Object?> encode() => {
     'info_types': [for (final e in infoTypes) e.encode()],
   };
 }
 
-/// Typed helper for the `inspect_config.rule_set.rules.exclusion_rule.exclude_info_types.info_types` block of
-/// `google_data_loss_prevention_content_policy` (derived from provider schema).
-@immutable
-final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleExcludeInfoTypesInfoTypes {
-  const DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleExcludeInfoTypesInfoTypes({
-    required this.name,
-    this.version,
-    this.sensitivityScore,
-  });
-
-  final TfArg<String> name;
-
-  final TfArg<String>? version;
-
-  final DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleExcludeInfoTypesInfoTypesSensitivityScore?
-  sensitivityScore;
-
-  Map<String, Object?> encode() => {
-    'name': name.toTfJson(),
-    'version': ?version?.toTfJson(),
-    'sensitivity_score': ?sensitivityScore?.encode(),
-  };
-}
-
-/// Typed helper for the `inspect_config.rule_set.rules.exclusion_rule.exclude_info_types.info_types.sensitivity_score` block of
-/// `google_data_loss_prevention_content_policy` (derived from provider schema).
-@immutable
-final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleExcludeInfoTypesInfoTypesSensitivityScore {
-  const DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleExcludeInfoTypesInfoTypesSensitivityScore({
-    required this.score,
-  });
-
-  final TfArg<
-    DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleExcludeInfoTypesInfoTypesSensitivityScoreScore
-  >
-  score;
-
-  Map<String, Object?> encode() => {'score': score.toTfJson()};
-}
-
-/// `score` — derived from the provider schema description.
-enum DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleExcludeInfoTypesInfoTypesSensitivityScoreScore
-    implements TerraformEnum {
-  sensitivityLow('SENSITIVITY_LOW'),
-  sensitivityModerate('SENSITIVITY_MODERATE'),
-  sensitivityHigh('SENSITIVITY_HIGH');
-
-  const DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleExcludeInfoTypesInfoTypesSensitivityScoreScore(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `inspect_config.rule_set.rules.exclusion_rule.regex` block of
-/// `google_data_loss_prevention_content_policy` (derived from provider schema).
-@immutable
-final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleRegex {
-  const DataLossPreventionContentPolicyInspectConfigRuleSetRulesExclusionRuleRegex({
-    this.groupIndexes,
-    required this.pattern,
-  });
-
-  final TfArg<List<num>>? groupIndexes;
-
-  final TfArg<String> pattern;
-
-  Map<String, Object?> encode() => {
-    'group_indexes': ?groupIndexes?.toTfJson(),
-    'pattern': pattern.toTfJson(),
-  };
-}
-
 /// Typed helper for the `inspect_config.rule_set.rules.hotword_rule` block of
 /// `google_data_loss_prevention_content_policy` (derived from provider schema).
 @immutable
-final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesHotwordRule {
-  const DataLossPreventionContentPolicyInspectConfigRuleSetRulesHotwordRule({
+final class DataLossPreventionContentPolicyHotwordRule {
+  const DataLossPreventionContentPolicyHotwordRule({
     required this.hotwordRegex,
     required this.likelihoodAdjustment,
     required this.proximity,
   });
 
-  final DataLossPreventionContentPolicyInspectConfigRuleSetRulesHotwordRuleHotwordRegex
-  hotwordRegex;
+  final DataLossPreventionContentPolicyHotwordRegex hotwordRegex;
 
-  final DataLossPreventionContentPolicyInspectConfigRuleSetRulesHotwordRuleLikelihoodAdjustment
+  final DataLossPreventionContentPolicyLikelihoodAdjustment
   likelihoodAdjustment;
 
-  final DataLossPreventionContentPolicyInspectConfigRuleSetRulesHotwordRuleProximity
-  proximity;
+  final DataLossPreventionContentPolicyProximity proximity;
 
   Map<String, Object?> encode() => {
     'hotword_regex': hotwordRegex.encode(),
@@ -1006,38 +612,16 @@ final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesHotwordRule 
   };
 }
 
-/// Typed helper for the `inspect_config.rule_set.rules.hotword_rule.hotword_regex` block of
-/// `google_data_loss_prevention_content_policy` (derived from provider schema).
-@immutable
-final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesHotwordRuleHotwordRegex {
-  const DataLossPreventionContentPolicyInspectConfigRuleSetRulesHotwordRuleHotwordRegex({
-    this.groupIndexes,
-    required this.pattern,
-  });
-
-  final TfArg<List<num>>? groupIndexes;
-
-  final TfArg<String> pattern;
-
-  Map<String, Object?> encode() => {
-    'group_indexes': ?groupIndexes?.toTfJson(),
-    'pattern': pattern.toTfJson(),
-  };
-}
-
 /// Typed helper for the `inspect_config.rule_set.rules.hotword_rule.likelihood_adjustment` block of
 /// `google_data_loss_prevention_content_policy` (derived from provider schema).
 @immutable
-final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesHotwordRuleLikelihoodAdjustment {
-  const DataLossPreventionContentPolicyInspectConfigRuleSetRulesHotwordRuleLikelihoodAdjustment({
+final class DataLossPreventionContentPolicyLikelihoodAdjustment {
+  const DataLossPreventionContentPolicyLikelihoodAdjustment({
     this.fixedLikelihood,
     this.relativeLikelihood,
   });
 
-  final TfArg<
-    DataLossPreventionContentPolicyInspectConfigRuleSetRulesHotwordRuleLikelihoodAdjustmentFixedLikelihood
-  >?
-  fixedLikelihood;
+  final TfArg<DataLossPreventionContentPolicyFixedLikelihood>? fixedLikelihood;
 
   final TfArg<num>? relativeLikelihood;
 
@@ -1048,38 +632,16 @@ final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesHotwordRuleL
 }
 
 /// `fixed_likelihood` — derived from the provider schema description.
-enum DataLossPreventionContentPolicyInspectConfigRuleSetRulesHotwordRuleLikelihoodAdjustmentFixedLikelihood
-    implements TerraformEnum {
+enum DataLossPreventionContentPolicyFixedLikelihood implements TerraformEnum {
   veryUnlikely('VERY_UNLIKELY'),
   unlikely('UNLIKELY'),
   possible('POSSIBLE'),
   likely('LIKELY'),
   veryLikely('VERY_LIKELY');
 
-  const DataLossPreventionContentPolicyInspectConfigRuleSetRulesHotwordRuleLikelihoodAdjustmentFixedLikelihood(
-    this.terraformValue,
-  );
+  const DataLossPreventionContentPolicyFixedLikelihood(this.terraformValue);
   @override
   final String terraformValue;
-}
-
-/// Typed helper for the `inspect_config.rule_set.rules.hotword_rule.proximity` block of
-/// `google_data_loss_prevention_content_policy` (derived from provider schema).
-@immutable
-final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesHotwordRuleProximity {
-  const DataLossPreventionContentPolicyInspectConfigRuleSetRulesHotwordRuleProximity({
-    this.windowAfter,
-    this.windowBefore,
-  });
-
-  final TfArg<num>? windowAfter;
-
-  final TfArg<num>? windowBefore;
-
-  Map<String, Object?> encode() => {
-    'window_after': ?windowAfter?.toTfJson(),
-    'window_before': ?windowBefore?.toTfJson(),
-  };
 }
 
 /// Typed helper for the `logging_configs` block of
@@ -1088,8 +650,7 @@ final class DataLossPreventionContentPolicyInspectConfigRuleSetRulesHotwordRuleP
 final class DataLossPreventionContentPolicyLoggingConfigs {
   const DataLossPreventionContentPolicyLoggingConfigs({this.logToBigQuery});
 
-  final DataLossPreventionContentPolicyLoggingConfigsLogToBigQuery?
-  logToBigQuery;
+  final DataLossPreventionContentPolicyLogToBigQuery? logToBigQuery;
 
   Map<String, Object?> encode() => {
     'log_to_big_query': ?logToBigQuery?.encode(),
@@ -1099,8 +660,8 @@ final class DataLossPreventionContentPolicyLoggingConfigs {
 /// Typed helper for the `logging_configs.log_to_big_query` block of
 /// `google_data_loss_prevention_content_policy` (derived from provider schema).
 @immutable
-final class DataLossPreventionContentPolicyLoggingConfigsLogToBigQuery {
-  const DataLossPreventionContentPolicyLoggingConfigsLogToBigQuery({
+final class DataLossPreventionContentPolicyLogToBigQuery {
+  const DataLossPreventionContentPolicyLogToBigQuery({
     required this.datasetId,
     required this.projectId,
     required this.tableId,
@@ -1128,9 +689,9 @@ final class DataLossPreventionContentPolicyRules {
     this.conditions,
   });
 
-  final DataLossPreventionContentPolicyRulesAction action;
+  final DataLossPreventionContentPolicyAction action;
 
-  final List<DataLossPreventionContentPolicyRulesConditions>? conditions;
+  final List<DataLossPreventionContentPolicyConditions>? conditions;
 
   Map<String, Object?> encode() => {
     'action': action.encode(),
@@ -1142,40 +703,23 @@ final class DataLossPreventionContentPolicyRules {
 /// Typed helper for the `rules.action` block of
 /// `google_data_loss_prevention_content_policy` (derived from provider schema).
 @immutable
-final class DataLossPreventionContentPolicyRulesAction {
-  const DataLossPreventionContentPolicyRulesAction({this.returnVerdict});
+final class DataLossPreventionContentPolicyAction {
+  const DataLossPreventionContentPolicyAction({this.returnVerdict});
 
-  final TfArg<DataLossPreventionContentPolicyRulesActionReturnVerdict>?
-  returnVerdict;
+  final TfArg<DataLossPreventionContentPolicyReturnVerdict>? returnVerdict;
 
   Map<String, Object?> encode() => {
     'return_verdict': ?returnVerdict?.toTfJson(),
   };
 }
 
-/// `return_verdict` — derived from the provider schema description.
-enum DataLossPreventionContentPolicyRulesActionReturnVerdict
-    implements TerraformEnum {
-  allow('ALLOW'),
-  block('BLOCK');
-
-  const DataLossPreventionContentPolicyRulesActionReturnVerdict(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `rules.conditions` block of
 /// `google_data_loss_prevention_content_policy` (derived from provider schema).
 @immutable
-final class DataLossPreventionContentPolicyRulesConditions {
-  const DataLossPreventionContentPolicyRulesConditions({
-    this.infoTypeCondition,
-  });
+final class DataLossPreventionContentPolicyConditions {
+  const DataLossPreventionContentPolicyConditions({this.infoTypeCondition});
 
-  final DataLossPreventionContentPolicyRulesConditionsInfoTypeCondition?
-  infoTypeCondition;
+  final DataLossPreventionContentPolicyInfoTypeCondition? infoTypeCondition;
 
   Map<String, Object?> encode() => {
     'info_type_condition': ?infoTypeCondition?.encode(),
@@ -1185,8 +729,8 @@ final class DataLossPreventionContentPolicyRulesConditions {
 /// Typed helper for the `rules.conditions.info_type_condition` block of
 /// `google_data_loss_prevention_content_policy` (derived from provider schema).
 @immutable
-final class DataLossPreventionContentPolicyRulesConditionsInfoTypeCondition {
-  const DataLossPreventionContentPolicyRulesConditionsInfoTypeCondition({
+final class DataLossPreventionContentPolicyInfoTypeCondition {
+  const DataLossPreventionContentPolicyInfoTypeCondition({
     this.minCount,
     this.anyInfoType,
     this.infoTypes,
@@ -1194,11 +738,9 @@ final class DataLossPreventionContentPolicyRulesConditionsInfoTypeCondition {
 
   final TfArg<num>? minCount;
 
-  final DataLossPreventionContentPolicyRulesConditionsInfoTypeConditionAnyInfoType?
-  anyInfoType;
+  final DataLossPreventionContentPolicyAnyInfoType? anyInfoType;
 
-  final DataLossPreventionContentPolicyRulesConditionsInfoTypeConditionInfoTypes?
-  infoTypes;
+  final DataLossPreventionContentPolicyInfoTypeConditionInfoTypes? infoTypes;
 
   Map<String, Object?> encode() => {
     'min_count': ?minCount?.toTfJson(),
@@ -1210,8 +752,8 @@ final class DataLossPreventionContentPolicyRulesConditionsInfoTypeCondition {
 /// Typed helper for the `rules.conditions.info_type_condition.any_info_type` block of
 /// `google_data_loss_prevention_content_policy` (derived from provider schema).
 @immutable
-final class DataLossPreventionContentPolicyRulesConditionsInfoTypeConditionAnyInfoType {
-  const DataLossPreventionContentPolicyRulesConditionsInfoTypeConditionAnyInfoType();
+final class DataLossPreventionContentPolicyAnyInfoType {
+  const DataLossPreventionContentPolicyAnyInfoType();
 
   Map<String, Object?> encode() => {};
 }
@@ -1219,8 +761,8 @@ final class DataLossPreventionContentPolicyRulesConditionsInfoTypeConditionAnyIn
 /// Typed helper for the `rules.conditions.info_type_condition.info_types` block of
 /// `google_data_loss_prevention_content_policy` (derived from provider schema).
 @immutable
-final class DataLossPreventionContentPolicyRulesConditionsInfoTypeConditionInfoTypes {
-  const DataLossPreventionContentPolicyRulesConditionsInfoTypeConditionInfoTypes({
+final class DataLossPreventionContentPolicyInfoTypeConditionInfoTypes {
+  const DataLossPreventionContentPolicyInfoTypeConditionInfoTypes({
     required this.infoTypeNames,
   });
 
@@ -1239,25 +781,11 @@ final class DataLossPreventionContentPolicyUnsupportedFileType {
     this.returnVerdict,
   });
 
-  final TfArg<DataLossPreventionContentPolicyUnsupportedFileTypeReturnVerdict>?
-  returnVerdict;
+  final TfArg<DataLossPreventionContentPolicyReturnVerdict>? returnVerdict;
 
   Map<String, Object?> encode() => {
     'return_verdict': ?returnVerdict?.toTfJson(),
   };
-}
-
-/// `return_verdict` — derived from the provider schema description.
-enum DataLossPreventionContentPolicyUnsupportedFileTypeReturnVerdict
-    implements TerraformEnum {
-  allow('ALLOW'),
-  block('BLOCK');
-
-  const DataLossPreventionContentPolicyUnsupportedFileTypeReturnVerdict(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Factory wrapper for `google_data_loss_prevention_content_policy`.

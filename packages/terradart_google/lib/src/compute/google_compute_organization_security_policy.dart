@@ -20,23 +20,16 @@ final class ComputeOrganizationSecurityPolicyAdvancedOptionsConfig {
     this.jsonCustomConfig,
   });
 
-  final TfArg<
-    ComputeOrganizationSecurityPolicyAdvancedOptionsConfigJsonParsing
-  >?
-  jsonParsing;
+  final TfArg<ComputeOrganizationSecurityPolicyJsonParsing>? jsonParsing;
 
-  final TfArg<ComputeOrganizationSecurityPolicyAdvancedOptionsConfigLogLevel>?
-  logLevel;
+  final TfArg<ComputeOrganizationSecurityPolicyLogLevel>? logLevel;
 
-  final TfArg<
-    ComputeOrganizationSecurityPolicyAdvancedOptionsConfigRequestBodyInspectionSize
-  >?
+  final TfArg<ComputeOrganizationSecurityPolicyRequestBodyInspectionSize>?
   requestBodyInspectionSize;
 
   final TfArg<List<String>>? userIpRequestHeaders;
 
-  final ComputeOrganizationSecurityPolicyAdvancedOptionsConfigJsonCustomConfig?
-  jsonCustomConfig;
+  final ComputeOrganizationSecurityPolicyJsonCustomConfig? jsonCustomConfig;
 
   Map<String, Object?> encode() => {
     'json_parsing': ?jsonParsing?.toTfJson(),
@@ -48,34 +41,28 @@ final class ComputeOrganizationSecurityPolicyAdvancedOptionsConfig {
 }
 
 /// `json_parsing` — derived from the provider schema description.
-enum ComputeOrganizationSecurityPolicyAdvancedOptionsConfigJsonParsing
-    implements TerraformEnum {
+enum ComputeOrganizationSecurityPolicyJsonParsing implements TerraformEnum {
   disabled('DISABLED'),
   standard('STANDARD'),
   standardWithGraphql('STANDARD_WITH_GRAPHQL');
 
-  const ComputeOrganizationSecurityPolicyAdvancedOptionsConfigJsonParsing(
-    this.terraformValue,
-  );
+  const ComputeOrganizationSecurityPolicyJsonParsing(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `log_level` — derived from the provider schema description.
-enum ComputeOrganizationSecurityPolicyAdvancedOptionsConfigLogLevel
-    implements TerraformEnum {
+enum ComputeOrganizationSecurityPolicyLogLevel implements TerraformEnum {
   normal('NORMAL'),
   verbose('VERBOSE');
 
-  const ComputeOrganizationSecurityPolicyAdvancedOptionsConfigLogLevel(
-    this.terraformValue,
-  );
+  const ComputeOrganizationSecurityPolicyLogLevel(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `request_body_inspection_size` — derived from the provider schema description.
-enum ComputeOrganizationSecurityPolicyAdvancedOptionsConfigRequestBodyInspectionSize
+enum ComputeOrganizationSecurityPolicyRequestBodyInspectionSize
     implements TerraformEnum {
   v8kb('8KB'),
   v16kb('16KB'),
@@ -83,7 +70,7 @@ enum ComputeOrganizationSecurityPolicyAdvancedOptionsConfigRequestBodyInspection
   v48kb('48KB'),
   v64kb('64KB');
 
-  const ComputeOrganizationSecurityPolicyAdvancedOptionsConfigRequestBodyInspectionSize(
+  const ComputeOrganizationSecurityPolicyRequestBodyInspectionSize(
     this.terraformValue,
   );
   @override
@@ -93,8 +80,8 @@ enum ComputeOrganizationSecurityPolicyAdvancedOptionsConfigRequestBodyInspection
 /// Typed helper for the `advanced_options_config.json_custom_config` block of
 /// `google_compute_organization_security_policy` (derived from provider schema).
 @immutable
-final class ComputeOrganizationSecurityPolicyAdvancedOptionsConfigJsonCustomConfig {
-  const ComputeOrganizationSecurityPolicyAdvancedOptionsConfigJsonCustomConfig({
+final class ComputeOrganizationSecurityPolicyJsonCustomConfig {
+  const ComputeOrganizationSecurityPolicyJsonCustomConfig({
     required this.contentTypes,
   });
 

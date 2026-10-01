@@ -13,8 +13,7 @@ const Set<String> _awsAccountaccessApplicationSensitive = <String>{};
 final class AccountaccessApplicationIdentitySource {
   const AccountaccessApplicationIdentitySource({this.identityCenter});
 
-  final List<AccountaccessApplicationIdentitySourceIdentityCenter>?
-  identityCenter;
+  final List<AccountaccessApplicationIdentityCenter>? identityCenter;
 
   Map<String, Object?> encode() => {
     if (identityCenter != null)
@@ -25,10 +24,8 @@ final class AccountaccessApplicationIdentitySource {
 /// Typed helper for the `identity_source.identity_center` block of
 /// `aws_accountaccess_application` (derived from provider schema).
 @immutable
-final class AccountaccessApplicationIdentitySourceIdentityCenter {
-  const AccountaccessApplicationIdentitySourceIdentityCenter({
-    required this.instanceArn,
-  });
+final class AccountaccessApplicationIdentityCenter {
+  const AccountaccessApplicationIdentityCenter({required this.instanceArn});
 
   final TfArg<String> instanceArn;
 

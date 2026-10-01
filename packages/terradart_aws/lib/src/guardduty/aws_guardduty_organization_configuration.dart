@@ -31,12 +31,11 @@ final class GuarddutyOrganizationConfigurationDatasources {
     this.s3Logs,
   });
 
-  final GuarddutyOrganizationConfigurationDatasourcesKubernetes? kubernetes;
+  final GuarddutyOrganizationConfigurationKubernetes? kubernetes;
 
-  final GuarddutyOrganizationConfigurationDatasourcesMalwareProtection?
-  malwareProtection;
+  final GuarddutyOrganizationConfigurationMalwareProtection? malwareProtection;
 
-  final GuarddutyOrganizationConfigurationDatasourcesS3Logs? s3Logs;
+  final GuarddutyOrganizationConfigurationS3Logs? s3Logs;
 
   Map<String, Object?> encode() => {
     'kubernetes': ?kubernetes?.encode(),
@@ -48,13 +47,10 @@ final class GuarddutyOrganizationConfigurationDatasources {
 /// Typed helper for the `datasources.kubernetes` block of
 /// `aws_guardduty_organization_configuration` (derived from provider schema).
 @immutable
-final class GuarddutyOrganizationConfigurationDatasourcesKubernetes {
-  const GuarddutyOrganizationConfigurationDatasourcesKubernetes({
-    required this.auditLogs,
-  });
+final class GuarddutyOrganizationConfigurationKubernetes {
+  const GuarddutyOrganizationConfigurationKubernetes({required this.auditLogs});
 
-  final GuarddutyOrganizationConfigurationDatasourcesKubernetesAuditLogs
-  auditLogs;
+  final GuarddutyOrganizationConfigurationAuditLogs auditLogs;
 
   Map<String, Object?> encode() => {'audit_logs': auditLogs.encode()};
 }
@@ -62,10 +58,8 @@ final class GuarddutyOrganizationConfigurationDatasourcesKubernetes {
 /// Typed helper for the `datasources.kubernetes.audit_logs` block of
 /// `aws_guardduty_organization_configuration` (derived from provider schema).
 @immutable
-final class GuarddutyOrganizationConfigurationDatasourcesKubernetesAuditLogs {
-  const GuarddutyOrganizationConfigurationDatasourcesKubernetesAuditLogs({
-    required this.enable,
-  });
+final class GuarddutyOrganizationConfigurationAuditLogs {
+  const GuarddutyOrganizationConfigurationAuditLogs({required this.enable});
 
   final TfArg<bool> enable;
 
@@ -75,12 +69,12 @@ final class GuarddutyOrganizationConfigurationDatasourcesKubernetesAuditLogs {
 /// Typed helper for the `datasources.malware_protection` block of
 /// `aws_guardduty_organization_configuration` (derived from provider schema).
 @immutable
-final class GuarddutyOrganizationConfigurationDatasourcesMalwareProtection {
-  const GuarddutyOrganizationConfigurationDatasourcesMalwareProtection({
+final class GuarddutyOrganizationConfigurationMalwareProtection {
+  const GuarddutyOrganizationConfigurationMalwareProtection({
     required this.scanEc2InstanceWithFindings,
   });
 
-  final GuarddutyOrganizationConfigurationDatasourcesMalwareProtectionScanEc2InstanceWithFindings
+  final GuarddutyOrganizationConfigurationScanEc2InstanceWithFindings
   scanEc2InstanceWithFindings;
 
   Map<String, Object?> encode() => {
@@ -91,13 +85,12 @@ final class GuarddutyOrganizationConfigurationDatasourcesMalwareProtection {
 /// Typed helper for the `datasources.malware_protection.scan_ec2_instance_with_findings` block of
 /// `aws_guardduty_organization_configuration` (derived from provider schema).
 @immutable
-final class GuarddutyOrganizationConfigurationDatasourcesMalwareProtectionScanEc2InstanceWithFindings {
-  const GuarddutyOrganizationConfigurationDatasourcesMalwareProtectionScanEc2InstanceWithFindings({
+final class GuarddutyOrganizationConfigurationScanEc2InstanceWithFindings {
+  const GuarddutyOrganizationConfigurationScanEc2InstanceWithFindings({
     required this.ebsVolumes,
   });
 
-  final GuarddutyOrganizationConfigurationDatasourcesMalwareProtectionScanEc2InstanceWithFindingsEbsVolumes
-  ebsVolumes;
+  final GuarddutyOrganizationConfigurationEbsVolumes ebsVolumes;
 
   Map<String, Object?> encode() => {'ebs_volumes': ebsVolumes.encode()};
 }
@@ -105,8 +98,8 @@ final class GuarddutyOrganizationConfigurationDatasourcesMalwareProtectionScanEc
 /// Typed helper for the `datasources.malware_protection.scan_ec2_instance_with_findings.ebs_volumes` block of
 /// `aws_guardduty_organization_configuration` (derived from provider schema).
 @immutable
-final class GuarddutyOrganizationConfigurationDatasourcesMalwareProtectionScanEc2InstanceWithFindingsEbsVolumes {
-  const GuarddutyOrganizationConfigurationDatasourcesMalwareProtectionScanEc2InstanceWithFindingsEbsVolumes({
+final class GuarddutyOrganizationConfigurationEbsVolumes {
+  const GuarddutyOrganizationConfigurationEbsVolumes({
     required this.autoEnable,
   });
 
@@ -118,10 +111,8 @@ final class GuarddutyOrganizationConfigurationDatasourcesMalwareProtectionScanEc
 /// Typed helper for the `datasources.s3_logs` block of
 /// `aws_guardduty_organization_configuration` (derived from provider schema).
 @immutable
-final class GuarddutyOrganizationConfigurationDatasourcesS3Logs {
-  const GuarddutyOrganizationConfigurationDatasourcesS3Logs({
-    required this.autoEnable,
-  });
+final class GuarddutyOrganizationConfigurationS3Logs {
+  const GuarddutyOrganizationConfigurationS3Logs({required this.autoEnable});
 
   final TfArg<bool> autoEnable;
 

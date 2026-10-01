@@ -76,15 +76,9 @@ final class WorkspaceswebUserSettingsCookieSynchronizationConfiguration {
     this.blocklist,
   });
 
-  final List<
-    WorkspaceswebUserSettingsCookieSynchronizationConfigurationAllowlist
-  >?
-  allowlist;
+  final List<WorkspaceswebUserSettingsAllowlist>? allowlist;
 
-  final List<
-    WorkspaceswebUserSettingsCookieSynchronizationConfigurationBlocklist
-  >?
-  blocklist;
+  final List<WorkspaceswebUserSettingsBlocklist>? blocklist;
 
   Map<String, Object?> encode() => {
     if (allowlist != null)
@@ -97,8 +91,8 @@ final class WorkspaceswebUserSettingsCookieSynchronizationConfiguration {
 /// Typed helper for the `cookie_synchronization_configuration.allowlist` block of
 /// `aws_workspacesweb_user_settings` (derived from provider schema).
 @immutable
-final class WorkspaceswebUserSettingsCookieSynchronizationConfigurationAllowlist {
-  const WorkspaceswebUserSettingsCookieSynchronizationConfigurationAllowlist({
+final class WorkspaceswebUserSettingsAllowlist {
+  const WorkspaceswebUserSettingsAllowlist({
     required this.domain,
     this.name,
     this.path,
@@ -120,8 +114,8 @@ final class WorkspaceswebUserSettingsCookieSynchronizationConfigurationAllowlist
 /// Typed helper for the `cookie_synchronization_configuration.blocklist` block of
 /// `aws_workspacesweb_user_settings` (derived from provider schema).
 @immutable
-final class WorkspaceswebUserSettingsCookieSynchronizationConfigurationBlocklist {
-  const WorkspaceswebUserSettingsCookieSynchronizationConfigurationBlocklist({
+final class WorkspaceswebUserSettingsBlocklist {
+  const WorkspaceswebUserSettingsBlocklist({
     required this.domain,
     this.name,
     this.path,
@@ -151,21 +145,15 @@ final class WorkspaceswebUserSettingsToolbarConfiguration {
     this.visualMode,
   });
 
-  final List<
-    TfArg<WorkspaceswebUserSettingsToolbarConfigurationHiddenToolbarItems>
-  >?
+  final List<TfArg<WorkspaceswebUserSettingsHiddenToolbarItems>>?
   hiddenToolbarItems;
 
-  final TfArg<
-    WorkspaceswebUserSettingsToolbarConfigurationMaxDisplayResolution
-  >?
+  final TfArg<WorkspaceswebUserSettingsMaxDisplayResolution>?
   maxDisplayResolution;
 
-  final TfArg<WorkspaceswebUserSettingsToolbarConfigurationToolbarType>?
-  toolbarType;
+  final TfArg<WorkspaceswebUserSettingsToolbarType>? toolbarType;
 
-  final TfArg<WorkspaceswebUserSettingsToolbarConfigurationVisualMode>?
-  visualMode;
+  final TfArg<WorkspaceswebUserSettingsVisualMode>? visualMode;
 
   Map<String, Object?> encode() => {
     if (hiddenToolbarItems != null)
@@ -179,24 +167,20 @@ final class WorkspaceswebUserSettingsToolbarConfiguration {
 }
 
 /// `hidden_toolbar_items` — derived from the provider schema description.
-enum WorkspaceswebUserSettingsToolbarConfigurationHiddenToolbarItems
-    implements TerraformEnum {
+enum WorkspaceswebUserSettingsHiddenToolbarItems implements TerraformEnum {
   windows('Windows'),
   dualmonitor('DualMonitor'),
   fullscreen('FullScreen'),
   webcam('Webcam'),
   microphone('Microphone');
 
-  const WorkspaceswebUserSettingsToolbarConfigurationHiddenToolbarItems(
-    this.terraformValue,
-  );
+  const WorkspaceswebUserSettingsHiddenToolbarItems(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `max_display_resolution` — derived from the provider schema description.
-enum WorkspaceswebUserSettingsToolbarConfigurationMaxDisplayResolution
-    implements TerraformEnum {
+enum WorkspaceswebUserSettingsMaxDisplayResolution implements TerraformEnum {
   size4096x2160('size4096X2160'),
   size3840x2160('size3840X2160'),
   size3440x1440('size3440X1440'),
@@ -206,35 +190,27 @@ enum WorkspaceswebUserSettingsToolbarConfigurationMaxDisplayResolution
   size1024x768('size1024X768'),
   size800x600('size800X600');
 
-  const WorkspaceswebUserSettingsToolbarConfigurationMaxDisplayResolution(
-    this.terraformValue,
-  );
+  const WorkspaceswebUserSettingsMaxDisplayResolution(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `toolbar_type` — derived from the provider schema description.
-enum WorkspaceswebUserSettingsToolbarConfigurationToolbarType
-    implements TerraformEnum {
+enum WorkspaceswebUserSettingsToolbarType implements TerraformEnum {
   floating('Floating'),
   docked('Docked');
 
-  const WorkspaceswebUserSettingsToolbarConfigurationToolbarType(
-    this.terraformValue,
-  );
+  const WorkspaceswebUserSettingsToolbarType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `visual_mode` — derived from the provider schema description.
-enum WorkspaceswebUserSettingsToolbarConfigurationVisualMode
-    implements TerraformEnum {
+enum WorkspaceswebUserSettingsVisualMode implements TerraformEnum {
   dark('Dark'),
   light('Light');
 
-  const WorkspaceswebUserSettingsToolbarConfigurationVisualMode(
-    this.terraformValue,
-  );
+  const WorkspaceswebUserSettingsVisualMode(this.terraformValue);
   @override
   final String terraformValue;
 }

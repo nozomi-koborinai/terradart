@@ -28,8 +28,7 @@ final class AppEngineDomainMappingSslSettings {
 
   final TfArg<String>? certificateId;
 
-  final TfArg<AppEngineDomainMappingSslSettingsSslManagementType>
-  sslManagementType;
+  final TfArg<AppEngineDomainMappingSslManagementType> sslManagementType;
 
   Map<String, Object?> encode() => {
     'certificate_id': ?certificateId?.toTfJson(),
@@ -38,12 +37,11 @@ final class AppEngineDomainMappingSslSettings {
 }
 
 /// `ssl_management_type` — derived from the provider schema description.
-enum AppEngineDomainMappingSslSettingsSslManagementType
-    implements TerraformEnum {
+enum AppEngineDomainMappingSslManagementType implements TerraformEnum {
   automatic('AUTOMATIC'),
   manual('MANUAL');
 
-  const AppEngineDomainMappingSslSettingsSslManagementType(this.terraformValue);
+  const AppEngineDomainMappingSslManagementType(this.terraformValue);
   @override
   final String terraformValue;
 }

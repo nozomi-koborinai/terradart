@@ -38,16 +38,15 @@ final class MigrationCenterPreferenceSetVirtualMachinePreferences {
 
   final TfArg<String>? targetProduct;
 
-  final MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferences?
+  final MigrationCenterPreferenceSetComputeEnginePreferences?
   computeEnginePreferences;
 
-  final MigrationCenterPreferenceSetVirtualMachinePreferencesRegionPreferences?
-  regionPreferences;
+  final MigrationCenterPreferenceSetRegionPreferences? regionPreferences;
 
-  final MigrationCenterPreferenceSetVirtualMachinePreferencesSoleTenancyPreferences?
+  final MigrationCenterPreferenceSetSoleTenancyPreferences?
   soleTenancyPreferences;
 
-  final MigrationCenterPreferenceSetVirtualMachinePreferencesVmwareEnginePreferences?
+  final MigrationCenterPreferenceSetVmwareEnginePreferences?
   vmwareEnginePreferences;
 
   Map<String, Object?> encode() => {
@@ -64,8 +63,8 @@ final class MigrationCenterPreferenceSetVirtualMachinePreferences {
 /// Typed helper for the `virtual_machine_preferences.compute_engine_preferences` block of
 /// `google_migration_center_preference_set` (derived from provider schema).
 @immutable
-final class MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferences {
-  const MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferences({
+final class MigrationCenterPreferenceSetComputeEnginePreferences {
+  const MigrationCenterPreferenceSetComputeEnginePreferences({
     this.licenseType,
     this.persistentDiskType,
     this.machinePreferences,
@@ -73,13 +72,10 @@ final class MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePr
 
   final TfArg<String>? licenseType;
 
-  final TfArg<
-    MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferencesPersistentDiskType
-  >?
+  final TfArg<MigrationCenterPreferenceSetPersistentDiskType>?
   persistentDiskType;
 
-  final MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferencesMachinePreferences?
-  machinePreferences;
+  final MigrationCenterPreferenceSetMachinePreferences? machinePreferences;
 
   Map<String, Object?> encode() => {
     'license_type': ?licenseType?.toTfJson(),
@@ -89,15 +85,12 @@ final class MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePr
 }
 
 /// `persistent_disk_type` — derived from the provider schema description.
-enum MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferencesPersistentDiskType
-    implements TerraformEnum {
+enum MigrationCenterPreferenceSetPersistentDiskType implements TerraformEnum {
   persistentDiskTypeStandard('PERSISTENT_DISK_TYPE_STANDARD'),
   persistentDiskTypeBalanced('PERSISTENT_DISK_TYPE_BALANCED'),
   persistentDiskTypeSsd('PERSISTENT_DISK_TYPE_SSD');
 
-  const MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferencesPersistentDiskType(
-    this.terraformValue,
-  );
+  const MigrationCenterPreferenceSetPersistentDiskType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -105,14 +98,12 @@ enum MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferenc
 /// Typed helper for the `virtual_machine_preferences.compute_engine_preferences.machine_preferences` block of
 /// `google_migration_center_preference_set` (derived from provider schema).
 @immutable
-final class MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferencesMachinePreferences {
-  const MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferencesMachinePreferences({
+final class MigrationCenterPreferenceSetMachinePreferences {
+  const MigrationCenterPreferenceSetMachinePreferences({
     this.allowedMachineSeries,
   });
 
-  final List<
-    MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferencesMachinePreferencesAllowedMachineSeries
-  >?
+  final List<MigrationCenterPreferenceSetAllowedMachineSeries>?
   allowedMachineSeries;
 
   Map<String, Object?> encode() => {
@@ -126,10 +117,8 @@ final class MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePr
 /// Typed helper for the `virtual_machine_preferences.compute_engine_preferences.machine_preferences.allowed_machine_series` block of
 /// `google_migration_center_preference_set` (derived from provider schema).
 @immutable
-final class MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferencesMachinePreferencesAllowedMachineSeries {
-  const MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferencesMachinePreferencesAllowedMachineSeries({
-    this.code,
-  });
+final class MigrationCenterPreferenceSetAllowedMachineSeries {
+  const MigrationCenterPreferenceSetAllowedMachineSeries({this.code});
 
   final TfArg<String>? code;
 
@@ -139,10 +128,8 @@ final class MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePr
 /// Typed helper for the `virtual_machine_preferences.region_preferences` block of
 /// `google_migration_center_preference_set` (derived from provider schema).
 @immutable
-final class MigrationCenterPreferenceSetVirtualMachinePreferencesRegionPreferences {
-  const MigrationCenterPreferenceSetVirtualMachinePreferencesRegionPreferences({
-    this.preferredRegions,
-  });
+final class MigrationCenterPreferenceSetRegionPreferences {
+  const MigrationCenterPreferenceSetRegionPreferences({this.preferredRegions});
 
   final TfArg<List<String>>? preferredRegions;
 
@@ -154,8 +141,8 @@ final class MigrationCenterPreferenceSetVirtualMachinePreferencesRegionPreferenc
 /// Typed helper for the `virtual_machine_preferences.sole_tenancy_preferences` block of
 /// `google_migration_center_preference_set` (derived from provider schema).
 @immutable
-final class MigrationCenterPreferenceSetVirtualMachinePreferencesSoleTenancyPreferences {
-  const MigrationCenterPreferenceSetVirtualMachinePreferencesSoleTenancyPreferences({
+final class MigrationCenterPreferenceSetSoleTenancyPreferences {
+  const MigrationCenterPreferenceSetSoleTenancyPreferences({
     this.commitmentPlan,
     this.cpuOvercommitRatio,
     this.hostMaintenancePolicy,
@@ -168,10 +155,7 @@ final class MigrationCenterPreferenceSetVirtualMachinePreferencesSoleTenancyPref
 
   final TfArg<String>? hostMaintenancePolicy;
 
-  final List<
-    MigrationCenterPreferenceSetVirtualMachinePreferencesSoleTenancyPreferencesNodeTypes
-  >?
-  nodeTypes;
+  final List<MigrationCenterPreferenceSetNodeTypes>? nodeTypes;
 
   Map<String, Object?> encode() => {
     'commitment_plan': ?commitmentPlan?.toTfJson(),
@@ -185,10 +169,8 @@ final class MigrationCenterPreferenceSetVirtualMachinePreferencesSoleTenancyPref
 /// Typed helper for the `virtual_machine_preferences.sole_tenancy_preferences.node_types` block of
 /// `google_migration_center_preference_set` (derived from provider schema).
 @immutable
-final class MigrationCenterPreferenceSetVirtualMachinePreferencesSoleTenancyPreferencesNodeTypes {
-  const MigrationCenterPreferenceSetVirtualMachinePreferencesSoleTenancyPreferencesNodeTypes({
-    this.nodeName,
-  });
+final class MigrationCenterPreferenceSetNodeTypes {
+  const MigrationCenterPreferenceSetNodeTypes({this.nodeName});
 
   final TfArg<String>? nodeName;
 
@@ -198,8 +180,8 @@ final class MigrationCenterPreferenceSetVirtualMachinePreferencesSoleTenancyPref
 /// Typed helper for the `virtual_machine_preferences.vmware_engine_preferences` block of
 /// `google_migration_center_preference_set` (derived from provider schema).
 @immutable
-final class MigrationCenterPreferenceSetVirtualMachinePreferencesVmwareEnginePreferences {
-  const MigrationCenterPreferenceSetVirtualMachinePreferencesVmwareEnginePreferences({
+final class MigrationCenterPreferenceSetVmwareEnginePreferences {
+  const MigrationCenterPreferenceSetVmwareEnginePreferences({
     this.commitmentPlan,
     this.cpuOvercommitRatio,
     this.memoryOvercommitRatio,

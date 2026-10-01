@@ -20,9 +20,7 @@ final class CodegurureviewerRepositoryAssociationKmsKeyDetails {
     this.kmsKeyId,
   });
 
-  final TfArg<
-    CodegurureviewerRepositoryAssociationKmsKeyDetailsEncryptionOption
-  >?
+  final TfArg<CodegurureviewerRepositoryAssociationEncryptionOption>?
   encryptionOption;
 
   final RefTo<AwsKmsKey>? kmsKeyId;
@@ -34,12 +32,12 @@ final class CodegurureviewerRepositoryAssociationKmsKeyDetails {
 }
 
 /// `encryption_option` — derived from the provider schema description.
-enum CodegurureviewerRepositoryAssociationKmsKeyDetailsEncryptionOption
+enum CodegurureviewerRepositoryAssociationEncryptionOption
     implements TerraformEnum {
   awsOwnedCmk('AWS_OWNED_CMK'),
   customerManagedCmk('CUSTOMER_MANAGED_CMK');
 
-  const CodegurureviewerRepositoryAssociationKmsKeyDetailsEncryptionOption(
+  const CodegurureviewerRepositoryAssociationEncryptionOption(
     this.terraformValue,
   );
   @override
@@ -57,14 +55,14 @@ final class CodegurureviewerRepositoryAssociationRepository {
     this.s3Bucket,
   });
 
-  final CodegurureviewerRepositoryAssociationRepositoryBitbucket? bitbucket;
+  final CodegurureviewerRepositoryAssociationBitbucket? bitbucket;
 
-  final CodegurureviewerRepositoryAssociationRepositoryCodecommit? codecommit;
+  final CodegurureviewerRepositoryAssociationCodecommit? codecommit;
 
-  final CodegurureviewerRepositoryAssociationRepositoryGithubEnterpriseServer?
+  final CodegurureviewerRepositoryAssociationGithubEnterpriseServer?
   githubEnterpriseServer;
 
-  final CodegurureviewerRepositoryAssociationRepositoryS3Bucket? s3Bucket;
+  final CodegurureviewerRepositoryAssociationS3Bucket? s3Bucket;
 
   Map<String, Object?> encode() => {
     'bitbucket': ?bitbucket?.encode(),
@@ -77,8 +75,8 @@ final class CodegurureviewerRepositoryAssociationRepository {
 /// Typed helper for the `repository.bitbucket` block of
 /// `aws_codegurureviewer_repository_association` (derived from provider schema).
 @immutable
-final class CodegurureviewerRepositoryAssociationRepositoryBitbucket {
-  const CodegurureviewerRepositoryAssociationRepositoryBitbucket({
+final class CodegurureviewerRepositoryAssociationBitbucket {
+  const CodegurureviewerRepositoryAssociationBitbucket({
     required this.connectionArn,
     required this.name,
     required this.owner,
@@ -100,10 +98,8 @@ final class CodegurureviewerRepositoryAssociationRepositoryBitbucket {
 /// Typed helper for the `repository.codecommit` block of
 /// `aws_codegurureviewer_repository_association` (derived from provider schema).
 @immutable
-final class CodegurureviewerRepositoryAssociationRepositoryCodecommit {
-  const CodegurureviewerRepositoryAssociationRepositoryCodecommit({
-    required this.name,
-  });
+final class CodegurureviewerRepositoryAssociationCodecommit {
+  const CodegurureviewerRepositoryAssociationCodecommit({required this.name});
 
   final TfArg<String> name;
 
@@ -113,8 +109,8 @@ final class CodegurureviewerRepositoryAssociationRepositoryCodecommit {
 /// Typed helper for the `repository.github_enterprise_server` block of
 /// `aws_codegurureviewer_repository_association` (derived from provider schema).
 @immutable
-final class CodegurureviewerRepositoryAssociationRepositoryGithubEnterpriseServer {
-  const CodegurureviewerRepositoryAssociationRepositoryGithubEnterpriseServer({
+final class CodegurureviewerRepositoryAssociationGithubEnterpriseServer {
+  const CodegurureviewerRepositoryAssociationGithubEnterpriseServer({
     required this.connectionArn,
     required this.name,
     required this.owner,
@@ -136,8 +132,8 @@ final class CodegurureviewerRepositoryAssociationRepositoryGithubEnterpriseServe
 /// Typed helper for the `repository.s3_bucket` block of
 /// `aws_codegurureviewer_repository_association` (derived from provider schema).
 @immutable
-final class CodegurureviewerRepositoryAssociationRepositoryS3Bucket {
-  const CodegurureviewerRepositoryAssociationRepositoryS3Bucket({
+final class CodegurureviewerRepositoryAssociationS3Bucket {
+  const CodegurureviewerRepositoryAssociationS3Bucket({
     required this.bucketName,
     required this.name,
   });

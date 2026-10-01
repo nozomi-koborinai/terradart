@@ -36,7 +36,7 @@ final class StreamLiveInputRecording {
 
   final TfArg<bool>? hideLiveViewerCount;
 
-  final TfArg<StreamLiveInputRecordingMode>? mode;
+  final TfArg<StreamLiveInputMode>? mode;
 
   final TfArg<bool>? requireSignedUrls;
 
@@ -52,11 +52,11 @@ final class StreamLiveInputRecording {
 }
 
 /// `mode` — derived from the provider schema description.
-enum StreamLiveInputRecordingMode implements TerraformEnum {
+enum StreamLiveInputMode implements TerraformEnum {
   off('off'),
   automatic('automatic');
 
-  const StreamLiveInputRecordingMode(this.terraformValue);
+  const StreamLiveInputMode(this.terraformValue);
   @override
   final String terraformValue;
 }

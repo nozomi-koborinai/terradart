@@ -15,18 +15,15 @@ const Set<String> _awsBedrockagentcoreAgentRuntimeSensitive = <String>{};
 /// Typed helper for the `agent_runtime_artifact` block of
 /// `aws_bedrockagentcore_agent_runtime` (derived from provider schema).
 @immutable
-final class BedrockagentcoreAgentRuntimeAgentRuntimeArtifact {
-  const BedrockagentcoreAgentRuntimeAgentRuntimeArtifact({
+final class BedrockagentcoreAgentRuntimeArtifact {
+  const BedrockagentcoreAgentRuntimeArtifact({
     this.codeConfiguration,
     this.containerConfiguration,
   });
 
-  final List<BedrockagentcoreAgentRuntimeAgentRuntimeArtifactCodeConfiguration>?
-  codeConfiguration;
+  final List<BedrockagentcoreAgentRuntimeCodeConfiguration>? codeConfiguration;
 
-  final List<
-    BedrockagentcoreAgentRuntimeAgentRuntimeArtifactContainerConfiguration
-  >?
+  final List<BedrockagentcoreAgentRuntimeContainerConfiguration>?
   containerConfiguration;
 
   Map<String, Object?> encode() => {
@@ -42,8 +39,8 @@ final class BedrockagentcoreAgentRuntimeAgentRuntimeArtifact {
 /// Typed helper for the `agent_runtime_artifact.code_configuration` block of
 /// `aws_bedrockagentcore_agent_runtime` (derived from provider schema).
 @immutable
-final class BedrockagentcoreAgentRuntimeAgentRuntimeArtifactCodeConfiguration {
-  const BedrockagentcoreAgentRuntimeAgentRuntimeArtifactCodeConfiguration({
+final class BedrockagentcoreAgentRuntimeCodeConfiguration {
+  const BedrockagentcoreAgentRuntimeCodeConfiguration({
     required this.entryPoint,
     required this.runtime,
     this.code,
@@ -51,15 +48,9 @@ final class BedrockagentcoreAgentRuntimeAgentRuntimeArtifactCodeConfiguration {
 
   final TfArg<List<String>> entryPoint;
 
-  final TfArg<
-    BedrockagentcoreAgentRuntimeAgentRuntimeArtifactCodeConfigurationRuntime
-  >
-  runtime;
+  final TfArg<BedrockagentcoreAgentRuntimeRuntime> runtime;
 
-  final List<
-    BedrockagentcoreAgentRuntimeAgentRuntimeArtifactCodeConfigurationCode
-  >?
-  code;
+  final List<BedrockagentcoreAgentRuntimeCode>? code;
 
   Map<String, Object?> encode() => {
     'entry_point': entryPoint.toTfJson(),
@@ -69,8 +60,7 @@ final class BedrockagentcoreAgentRuntimeAgentRuntimeArtifactCodeConfiguration {
 }
 
 /// `runtime` — derived from the provider schema description.
-enum BedrockagentcoreAgentRuntimeAgentRuntimeArtifactCodeConfigurationRuntime
-    implements TerraformEnum {
+enum BedrockagentcoreAgentRuntimeRuntime implements TerraformEnum {
   python310('PYTHON_3_10'),
   python311('PYTHON_3_11'),
   python312('PYTHON_3_12'),
@@ -78,9 +68,7 @@ enum BedrockagentcoreAgentRuntimeAgentRuntimeArtifactCodeConfigurationRuntime
   python314('PYTHON_3_14'),
   node22('NODE_22');
 
-  const BedrockagentcoreAgentRuntimeAgentRuntimeArtifactCodeConfigurationRuntime(
-    this.terraformValue,
-  );
+  const BedrockagentcoreAgentRuntimeRuntime(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -88,15 +76,10 @@ enum BedrockagentcoreAgentRuntimeAgentRuntimeArtifactCodeConfigurationRuntime
 /// Typed helper for the `agent_runtime_artifact.code_configuration.code` block of
 /// `aws_bedrockagentcore_agent_runtime` (derived from provider schema).
 @immutable
-final class BedrockagentcoreAgentRuntimeAgentRuntimeArtifactCodeConfigurationCode {
-  const BedrockagentcoreAgentRuntimeAgentRuntimeArtifactCodeConfigurationCode({
-    this.s3,
-  });
+final class BedrockagentcoreAgentRuntimeCode {
+  const BedrockagentcoreAgentRuntimeCode({this.s3});
 
-  final List<
-    BedrockagentcoreAgentRuntimeAgentRuntimeArtifactCodeConfigurationCodeS3
-  >?
-  s3;
+  final List<BedrockagentcoreAgentRuntimeS3>? s3;
 
   Map<String, Object?> encode() => {
     if (s3 != null) 's3': [for (final e in s3!) e.encode()],
@@ -106,8 +89,8 @@ final class BedrockagentcoreAgentRuntimeAgentRuntimeArtifactCodeConfigurationCod
 /// Typed helper for the `agent_runtime_artifact.code_configuration.code.s3` block of
 /// `aws_bedrockagentcore_agent_runtime` (derived from provider schema).
 @immutable
-final class BedrockagentcoreAgentRuntimeAgentRuntimeArtifactCodeConfigurationCodeS3 {
-  const BedrockagentcoreAgentRuntimeAgentRuntimeArtifactCodeConfigurationCodeS3({
+final class BedrockagentcoreAgentRuntimeS3 {
+  const BedrockagentcoreAgentRuntimeS3({
     required this.bucket,
     required this.prefix,
     this.versionId,
@@ -129,8 +112,8 @@ final class BedrockagentcoreAgentRuntimeAgentRuntimeArtifactCodeConfigurationCod
 /// Typed helper for the `agent_runtime_artifact.container_configuration` block of
 /// `aws_bedrockagentcore_agent_runtime` (derived from provider schema).
 @immutable
-final class BedrockagentcoreAgentRuntimeAgentRuntimeArtifactContainerConfiguration {
-  const BedrockagentcoreAgentRuntimeAgentRuntimeArtifactContainerConfiguration({
+final class BedrockagentcoreAgentRuntimeContainerConfiguration {
+  const BedrockagentcoreAgentRuntimeContainerConfiguration({
     required this.containerUri,
   });
 
@@ -147,9 +130,7 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfiguration {
     this.customJwtAuthorizer,
   });
 
-  final List<
-    BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizer
-  >?
+  final List<BedrockagentcoreAgentRuntimeCustomJwtAuthorizer>?
   customJwtAuthorizer;
 
   Map<String, Object?> encode() => {
@@ -163,8 +144,8 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfiguration {
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer` block of
 /// `aws_bedrockagentcore_agent_runtime` (derived from provider schema).
 @immutable
-final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizer {
-  const BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizer({
+final class BedrockagentcoreAgentRuntimeCustomJwtAuthorizer {
+  const BedrockagentcoreAgentRuntimeCustomJwtAuthorizer({
     this.allowedAudience,
     this.allowedClients,
     this.allowedScopes,
@@ -183,24 +164,14 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
 
   final TfArg<String> discoveryUrl;
 
-  final List<
-    BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerAllowedWorkloadConfiguration
-  >?
+  final List<BedrockagentcoreAgentRuntimeAllowedWorkloadConfiguration>?
   allowedWorkloadConfiguration;
 
-  final List<
-    BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerCustomClaim
-  >?
-  customClaim;
+  final List<BedrockagentcoreAgentRuntimeCustomClaim>? customClaim;
 
-  final List<
-    BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpoint
-  >?
-  privateEndpoint;
+  final List<BedrockagentcoreAgentRuntimePrivateEndpoint>? privateEndpoint;
 
-  final List<
-    BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverrides
-  >?
+  final List<BedrockagentcoreAgentRuntimePrivateEndpointOverrides>?
   privateEndpointOverrides;
 
   Map<String, Object?> encode() => {
@@ -226,17 +197,15 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.allowed_workload_configuration` block of
 /// `aws_bedrockagentcore_agent_runtime` (derived from provider schema).
 @immutable
-final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerAllowedWorkloadConfiguration {
-  const BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerAllowedWorkloadConfiguration({
+final class BedrockagentcoreAgentRuntimeAllowedWorkloadConfiguration {
+  const BedrockagentcoreAgentRuntimeAllowedWorkloadConfiguration({
     this.workloadIdentities,
     this.hostingEnvironment,
   });
 
   final TfArg<List<String>>? workloadIdentities;
 
-  final List<
-    BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerAllowedWorkloadConfigurationHostingEnvironment
-  >?
+  final List<BedrockagentcoreAgentRuntimeHostingEnvironment>?
   hostingEnvironment;
 
   Map<String, Object?> encode() => {
@@ -249,10 +218,8 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.allowed_workload_configuration.hosting_environment` block of
 /// `aws_bedrockagentcore_agent_runtime` (derived from provider schema).
 @immutable
-final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerAllowedWorkloadConfigurationHostingEnvironment {
-  const BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerAllowedWorkloadConfigurationHostingEnvironment({
-    required this.arn,
-  });
+final class BedrockagentcoreAgentRuntimeHostingEnvironment {
+  const BedrockagentcoreAgentRuntimeHostingEnvironment({required this.arn});
 
   final TfArg<String> arn;
 
@@ -262,8 +229,8 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.custom_claim` block of
 /// `aws_bedrockagentcore_agent_runtime` (derived from provider schema).
 @immutable
-final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerCustomClaim {
-  const BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerCustomClaim({
+final class BedrockagentcoreAgentRuntimeCustomClaim {
+  const BedrockagentcoreAgentRuntimeCustomClaim({
     required this.inboundTokenClaimName,
     required this.inboundTokenClaimValueType,
     this.authorizingClaimMatchValue,
@@ -271,14 +238,10 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
 
   final TfArg<String> inboundTokenClaimName;
 
-  final TfArg<
-    BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerCustomClaimInboundTokenClaimValueType
-  >
+  final TfArg<BedrockagentcoreAgentRuntimeInboundTokenClaimValueType>
   inboundTokenClaimValueType;
 
-  final List<
-    BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValue
-  >?
+  final List<BedrockagentcoreAgentRuntimeAuthorizingClaimMatchValue>?
   authorizingClaimMatchValue;
 
   Map<String, Object?> encode() => {
@@ -292,12 +255,12 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
 }
 
 /// `inbound_token_claim_value_type` — derived from the provider schema description.
-enum BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerCustomClaimInboundTokenClaimValueType
+enum BedrockagentcoreAgentRuntimeInboundTokenClaimValueType
     implements TerraformEnum {
   string('STRING'),
   stringArray('STRING_ARRAY');
 
-  const BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerCustomClaimInboundTokenClaimValueType(
+  const BedrockagentcoreAgentRuntimeInboundTokenClaimValueType(
     this.terraformValue,
   );
   @override
@@ -307,21 +270,16 @@ enum BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerCusto
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.custom_claim.authorizing_claim_match_value` block of
 /// `aws_bedrockagentcore_agent_runtime` (derived from provider schema).
 @immutable
-final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValue {
-  const BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValue({
+final class BedrockagentcoreAgentRuntimeAuthorizingClaimMatchValue {
+  const BedrockagentcoreAgentRuntimeAuthorizingClaimMatchValue({
     required this.claimMatchOperator,
     this.claimMatchValue,
   });
 
-  final TfArg<
-    BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchOperator
-  >
+  final TfArg<BedrockagentcoreAgentRuntimeClaimMatchOperator>
   claimMatchOperator;
 
-  final List<
-    BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchValue
-  >?
-  claimMatchValue;
+  final List<BedrockagentcoreAgentRuntimeClaimMatchValue>? claimMatchValue;
 
   Map<String, Object?> encode() => {
     'claim_match_operator': claimMatchOperator.toTfJson(),
@@ -331,15 +289,12 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
 }
 
 /// `claim_match_operator` — derived from the provider schema description.
-enum BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchOperator
-    implements TerraformEnum {
+enum BedrockagentcoreAgentRuntimeClaimMatchOperator implements TerraformEnum {
   equals('EQUALS'),
   contains('CONTAINS'),
   containsAny('CONTAINS_ANY');
 
-  const BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchOperator(
-    this.terraformValue,
-  );
+  const BedrockagentcoreAgentRuntimeClaimMatchOperator(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -347,8 +302,8 @@ enum BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerCusto
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.custom_claim.authorizing_claim_match_value.claim_match_value` block of
 /// `aws_bedrockagentcore_agent_runtime` (derived from provider schema).
 @immutable
-final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchValue {
-  const BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchValue({
+final class BedrockagentcoreAgentRuntimeClaimMatchValue {
+  const BedrockagentcoreAgentRuntimeClaimMatchValue({
     this.matchValueString,
     this.matchValueStringList,
   });
@@ -365,21 +320,18 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
 
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.private_endpoint` block of
 /// `aws_bedrockagentcore_agent_runtime` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpoint {
-  const BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpoint({
+final class BedrockagentcoreAgentRuntimePrivateEndpoint {
+  const BedrockagentcoreAgentRuntimePrivateEndpoint({
     this.managedVpcResource,
     this.selfManagedLatticeResource,
   });
 
-  final List<
-    BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResource
-  >?
+  final List<BedrockagentcoreAgentRuntimeManagedVpcResource>?
   managedVpcResource;
 
-  final List<
-    BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointSelfManagedLatticeResource
-  >?
+  final List<BedrockagentcoreAgentRuntimeSelfManagedLatticeResource>?
   selfManagedLatticeResource;
 
   Map<String, Object?> encode() => {
@@ -394,9 +346,10 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
 
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.private_endpoint.managed_vpc_resource` block of
 /// `aws_bedrockagentcore_agent_runtime` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResource {
-  const BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResource({
+final class BedrockagentcoreAgentRuntimeManagedVpcResource {
+  const BedrockagentcoreAgentRuntimeManagedVpcResource({
     required this.endpointIpAddressType,
     this.routingDomain,
     this.securityGroupIds,
@@ -405,9 +358,7 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
     required this.vpcIdentifier,
   });
 
-  final TfArg<
-    BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResourceEndpointIpAddressType
-  >
+  final TfArg<BedrockagentcoreAgentRuntimeEndpointIpAddressType>
   endpointIpAddressType;
 
   final TfArg<String>? routingDomain;
@@ -431,23 +382,22 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
 }
 
 /// `endpoint_ip_address_type` — derived from the provider schema description.
-enum BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResourceEndpointIpAddressType
+enum BedrockagentcoreAgentRuntimeEndpointIpAddressType
     implements TerraformEnum {
   ipv4('IPV4'),
   ipv6('IPV6');
 
-  const BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResourceEndpointIpAddressType(
-    this.terraformValue,
-  );
+  const BedrockagentcoreAgentRuntimeEndpointIpAddressType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.private_endpoint.self_managed_lattice_resource` block of
 /// `aws_bedrockagentcore_agent_runtime` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointSelfManagedLatticeResource {
-  const BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointSelfManagedLatticeResource({
+final class BedrockagentcoreAgentRuntimeSelfManagedLatticeResource {
+  const BedrockagentcoreAgentRuntimeSelfManagedLatticeResource({
     this.resourceConfigurationIdentifier,
   });
 
@@ -462,119 +412,20 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.private_endpoint_overrides` block of
 /// `aws_bedrockagentcore_agent_runtime` (derived from provider schema).
 @immutable
-final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverrides {
-  const BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverrides({
+final class BedrockagentcoreAgentRuntimePrivateEndpointOverrides {
+  const BedrockagentcoreAgentRuntimePrivateEndpointOverrides({
     required this.domain,
     this.privateEndpoint,
   });
 
   final TfArg<String> domain;
 
-  final List<
-    BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpoint
-  >?
-  privateEndpoint;
+  final List<BedrockagentcoreAgentRuntimePrivateEndpoint>? privateEndpoint;
 
   Map<String, Object?> encode() => {
     'domain': domain.toTfJson(),
     if (privateEndpoint != null)
       'private_endpoint': [for (final e in privateEndpoint!) e.encode()],
-  };
-}
-
-/// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.private_endpoint_overrides.private_endpoint` block of
-/// `aws_bedrockagentcore_agent_runtime` (derived from provider schema).
-@immutable
-final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpoint {
-  const BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpoint({
-    this.managedVpcResource,
-    this.selfManagedLatticeResource,
-  });
-
-  final List<
-    BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResource
-  >?
-  managedVpcResource;
-
-  final List<
-    BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointSelfManagedLatticeResource
-  >?
-  selfManagedLatticeResource;
-
-  Map<String, Object?> encode() => {
-    if (managedVpcResource != null)
-      'managed_vpc_resource': [for (final e in managedVpcResource!) e.encode()],
-    if (selfManagedLatticeResource != null)
-      'self_managed_lattice_resource': [
-        for (final e in selfManagedLatticeResource!) e.encode(),
-      ],
-  };
-}
-
-/// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.private_endpoint_overrides.private_endpoint.managed_vpc_resource` block of
-/// `aws_bedrockagentcore_agent_runtime` (derived from provider schema).
-@immutable
-final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResource {
-  const BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResource({
-    required this.endpointIpAddressType,
-    this.routingDomain,
-    this.securityGroupIds,
-    required this.subnetIds,
-    this.tags,
-    required this.vpcIdentifier,
-  });
-
-  final TfArg<
-    BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResourceEndpointIpAddressType
-  >
-  endpointIpAddressType;
-
-  final TfArg<String>? routingDomain;
-
-  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
-
-  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
-
-  final TfArg<Map<String, String>>? tags;
-
-  final TfArg<String> vpcIdentifier;
-
-  Map<String, Object?> encode() => {
-    'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
-    'routing_domain': ?routingDomain?.toTfJson(),
-    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
-    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
-    'tags': ?tags?.toTfJson(),
-    'vpc_identifier': vpcIdentifier.toTfJson(),
-  };
-}
-
-/// `endpoint_ip_address_type` — derived from the provider schema description.
-enum BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResourceEndpointIpAddressType
-    implements TerraformEnum {
-  ipv4('IPV4'),
-  ipv6('IPV6');
-
-  const BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResourceEndpointIpAddressType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.private_endpoint_overrides.private_endpoint.self_managed_lattice_resource` block of
-/// `aws_bedrockagentcore_agent_runtime` (derived from provider schema).
-@immutable
-final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointSelfManagedLatticeResource {
-  const BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointSelfManagedLatticeResource({
-    this.resourceConfigurationIdentifier,
-  });
-
-  final TfArg<String>? resourceConfigurationIdentifier;
-
-  Map<String, Object?> encode() => {
-    'resource_configuration_identifier': ?resourceConfigurationIdentifier
-        ?.toTfJson(),
   };
 }
 
@@ -588,16 +439,12 @@ final class BedrockagentcoreAgentRuntimeFilesystemConfiguration {
     this.sessionStorage,
   });
 
-  final List<BedrockagentcoreAgentRuntimeFilesystemConfigurationEfsAccessPoint>?
-  efsAccessPoint;
+  final List<BedrockagentcoreAgentRuntimeEfsAccessPoint>? efsAccessPoint;
 
-  final List<
-    BedrockagentcoreAgentRuntimeFilesystemConfigurationS3FilesAccessPoint
-  >?
+  final List<BedrockagentcoreAgentRuntimeS3FilesAccessPoint>?
   s3FilesAccessPoint;
 
-  final List<BedrockagentcoreAgentRuntimeFilesystemConfigurationSessionStorage>?
-  sessionStorage;
+  final List<BedrockagentcoreAgentRuntimeSessionStorage>? sessionStorage;
 
   Map<String, Object?> encode() => {
     if (efsAccessPoint != null)
@@ -614,8 +461,8 @@ final class BedrockagentcoreAgentRuntimeFilesystemConfiguration {
 /// Typed helper for the `filesystem_configuration.efs_access_point` block of
 /// `aws_bedrockagentcore_agent_runtime` (derived from provider schema).
 @immutable
-final class BedrockagentcoreAgentRuntimeFilesystemConfigurationEfsAccessPoint {
-  const BedrockagentcoreAgentRuntimeFilesystemConfigurationEfsAccessPoint({
+final class BedrockagentcoreAgentRuntimeEfsAccessPoint {
+  const BedrockagentcoreAgentRuntimeEfsAccessPoint({
     required this.accessPointArn,
     required this.mountPath,
   });
@@ -633,8 +480,8 @@ final class BedrockagentcoreAgentRuntimeFilesystemConfigurationEfsAccessPoint {
 /// Typed helper for the `filesystem_configuration.s3_files_access_point` block of
 /// `aws_bedrockagentcore_agent_runtime` (derived from provider schema).
 @immutable
-final class BedrockagentcoreAgentRuntimeFilesystemConfigurationS3FilesAccessPoint {
-  const BedrockagentcoreAgentRuntimeFilesystemConfigurationS3FilesAccessPoint({
+final class BedrockagentcoreAgentRuntimeS3FilesAccessPoint {
+  const BedrockagentcoreAgentRuntimeS3FilesAccessPoint({
     required this.accessPointArn,
     required this.mountPath,
   });
@@ -652,10 +499,8 @@ final class BedrockagentcoreAgentRuntimeFilesystemConfigurationS3FilesAccessPoin
 /// Typed helper for the `filesystem_configuration.session_storage` block of
 /// `aws_bedrockagentcore_agent_runtime` (derived from provider schema).
 @immutable
-final class BedrockagentcoreAgentRuntimeFilesystemConfigurationSessionStorage {
-  const BedrockagentcoreAgentRuntimeFilesystemConfigurationSessionStorage({
-    required this.mountPath,
-  });
+final class BedrockagentcoreAgentRuntimeSessionStorage {
+  const BedrockagentcoreAgentRuntimeSessionStorage({required this.mountPath});
 
   final TfArg<String> mountPath;
 
@@ -671,11 +516,9 @@ final class BedrockagentcoreAgentRuntimeNetworkConfiguration {
     this.networkModeConfig,
   });
 
-  final TfArg<BedrockagentcoreAgentRuntimeNetworkConfigurationNetworkMode>
-  networkMode;
+  final TfArg<BedrockagentcoreAgentRuntimeNetworkMode> networkMode;
 
-  final List<BedrockagentcoreAgentRuntimeNetworkConfigurationNetworkModeConfig>?
-  networkModeConfig;
+  final List<BedrockagentcoreAgentRuntimeNetworkModeConfig>? networkModeConfig;
 
   Map<String, Object?> encode() => {
     'network_mode': networkMode.toTfJson(),
@@ -685,14 +528,11 @@ final class BedrockagentcoreAgentRuntimeNetworkConfiguration {
 }
 
 /// `network_mode` — derived from the provider schema description.
-enum BedrockagentcoreAgentRuntimeNetworkConfigurationNetworkMode
-    implements TerraformEnum {
+enum BedrockagentcoreAgentRuntimeNetworkMode implements TerraformEnum {
   public('PUBLIC'),
   vpc('VPC');
 
-  const BedrockagentcoreAgentRuntimeNetworkConfigurationNetworkMode(
-    this.terraformValue,
-  );
+  const BedrockagentcoreAgentRuntimeNetworkMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -700,8 +540,8 @@ enum BedrockagentcoreAgentRuntimeNetworkConfigurationNetworkMode
 /// Typed helper for the `network_configuration.network_mode_config` block of
 /// `aws_bedrockagentcore_agent_runtime` (derived from provider schema).
 @immutable
-final class BedrockagentcoreAgentRuntimeNetworkConfigurationNetworkModeConfig {
-  const BedrockagentcoreAgentRuntimeNetworkConfigurationNetworkModeConfig({
+final class BedrockagentcoreAgentRuntimeNetworkModeConfig {
+  const BedrockagentcoreAgentRuntimeNetworkModeConfig({
     required this.securityGroups,
     required this.subnets,
   });
@@ -724,8 +564,7 @@ final class BedrockagentcoreAgentRuntimeProtocolConfiguration {
     this.serverProtocol,
   });
 
-  final TfArg<BedrockagentcoreAgentRuntimeProtocolConfigurationServerProtocol>?
-  serverProtocol;
+  final TfArg<BedrockagentcoreAgentRuntimeServerProtocol>? serverProtocol;
 
   Map<String, Object?> encode() => {
     'server_protocol': ?serverProtocol?.toTfJson(),
@@ -733,16 +572,13 @@ final class BedrockagentcoreAgentRuntimeProtocolConfiguration {
 }
 
 /// `server_protocol` — derived from the provider schema description.
-enum BedrockagentcoreAgentRuntimeProtocolConfigurationServerProtocol
-    implements TerraformEnum {
+enum BedrockagentcoreAgentRuntimeServerProtocol implements TerraformEnum {
   mcp('MCP'),
   http('HTTP'),
   a2a('A2A'),
   agui('AGUI');
 
-  const BedrockagentcoreAgentRuntimeProtocolConfigurationServerProtocol(
-    this.terraformValue,
-  );
+  const BedrockagentcoreAgentRuntimeServerProtocol(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -775,8 +611,7 @@ final class AwsBedrockagentcoreAgentRuntime extends Resource {
     TfArg<String>? region,
     required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
-    List<BedrockagentcoreAgentRuntimeAgentRuntimeArtifact>?
-    agentRuntimeArtifact,
+    List<BedrockagentcoreAgentRuntimeArtifact>? agentRuntimeArtifact,
     List<BedrockagentcoreAgentRuntimeAuthorizerConfiguration>?
     authorizerConfiguration,
     List<BedrockagentcoreAgentRuntimeFilesystemConfiguration>?

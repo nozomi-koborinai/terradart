@@ -11,8 +11,8 @@ export 'src/secure/google_secure_source_manager_hook.dart'
 export 'src/secure/google_secure_source_manager_instance.dart'
     show
         GoogleSecureSourceManagerInstance,
+        SecureSourceManagerInstanceCustomHostConfig,
         SecureSourceManagerInstancePrivateConfig,
-        SecureSourceManagerInstancePrivateConfigCustomHostConfig,
         SecureSourceManagerInstanceState,
         SecureSourceManagerInstanceStateNote,
         SecureSourceManagerInstanceWorkforceIdentityFederationConfig;
@@ -31,7 +31,7 @@ export 'src/secure/google_secure_source_manager_repository.dart'
         GoogleSecureSourceManagerRepository,
         SecureSourceManagerRepositoryInitialConfig,
         SecureSourceManagerRepositoryScanConfig,
-        SecureSourceManagerRepositoryScanConfigSecretScanConfig;
+        SecureSourceManagerRepositorySecretScanConfig;
 export 'src/secure/google_secure_source_manager_repository_iam_binding.dart'
     show
         GoogleSecureSourceManagerRepositoryIamBinding,

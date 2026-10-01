@@ -93,9 +93,9 @@ final class AccountMemberPolicies {
 
   final TfArg<AccountMemberPoliciesAccess> access;
 
-  final List<AccountMemberPoliciesPermissionGroups> permissionGroups;
+  final List<AccountMemberPermissionGroups> permissionGroups;
 
-  final List<AccountMemberPoliciesResourceGroups> resourceGroups;
+  final List<AccountMemberResourceGroups> resourceGroups;
 
   Map<String, Object?> encode() => {
     'access': access.toTfJson(),
@@ -117,8 +117,8 @@ enum AccountMemberPoliciesAccess implements TerraformEnum {
 /// Typed helper for the `policies.permission_groups` block of
 /// `cloudflare_account_member` (derived from provider schema).
 @immutable
-final class AccountMemberPoliciesPermissionGroups {
-  const AccountMemberPoliciesPermissionGroups({required this.id});
+final class AccountMemberPermissionGroups {
+  const AccountMemberPermissionGroups({required this.id});
 
   final TfArg<String> id;
 
@@ -128,8 +128,8 @@ final class AccountMemberPoliciesPermissionGroups {
 /// Typed helper for the `policies.resource_groups` block of
 /// `cloudflare_account_member` (derived from provider schema).
 @immutable
-final class AccountMemberPoliciesResourceGroups {
-  const AccountMemberPoliciesResourceGroups({required this.id});
+final class AccountMemberResourceGroups {
+  const AccountMemberResourceGroups({required this.id});
 
   final TfArg<String> id;
 

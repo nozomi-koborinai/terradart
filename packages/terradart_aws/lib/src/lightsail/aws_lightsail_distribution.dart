@@ -51,14 +51,11 @@ final class LightsailDistributionCacheBehaviorSettings {
 
   final TfArg<num>? minimumTtl;
 
-  final LightsailDistributionCacheBehaviorSettingsForwardedCookies?
-  forwardedCookies;
+  final LightsailDistributionForwardedCookies? forwardedCookies;
 
-  final LightsailDistributionCacheBehaviorSettingsForwardedHeaders?
-  forwardedHeaders;
+  final LightsailDistributionForwardedHeaders? forwardedHeaders;
 
-  final LightsailDistributionCacheBehaviorSettingsForwardedQueryStrings?
-  forwardedQueryStrings;
+  final LightsailDistributionForwardedQueryStrings? forwardedQueryStrings;
 
   Map<String, Object?> encode() => {
     'allowed_http_methods': ?allowedHttpMethods?.toTfJson(),
@@ -75,8 +72,8 @@ final class LightsailDistributionCacheBehaviorSettings {
 /// Typed helper for the `cache_behavior_settings.forwarded_cookies` block of
 /// `aws_lightsail_distribution` (derived from provider schema).
 @immutable
-final class LightsailDistributionCacheBehaviorSettingsForwardedCookies {
-  const LightsailDistributionCacheBehaviorSettingsForwardedCookies({
+final class LightsailDistributionForwardedCookies {
+  const LightsailDistributionForwardedCookies({
     this.cookiesAllowList,
     this.option,
   });
@@ -94,16 +91,15 @@ final class LightsailDistributionCacheBehaviorSettingsForwardedCookies {
 /// Typed helper for the `cache_behavior_settings.forwarded_headers` block of
 /// `aws_lightsail_distribution` (derived from provider schema).
 @immutable
-final class LightsailDistributionCacheBehaviorSettingsForwardedHeaders {
-  const LightsailDistributionCacheBehaviorSettingsForwardedHeaders({
+final class LightsailDistributionForwardedHeaders {
+  const LightsailDistributionForwardedHeaders({
     this.headersAllowList,
     this.option,
   });
 
   final TfArg<List<String>>? headersAllowList;
 
-  final TfArg<LightsailDistributionCacheBehaviorSettingsForwardedHeadersOption>?
-  option;
+  final TfArg<LightsailDistributionOption>? option;
 
   Map<String, Object?> encode() => {
     'headers_allow_list': ?headersAllowList?.toTfJson(),
@@ -112,15 +108,12 @@ final class LightsailDistributionCacheBehaviorSettingsForwardedHeaders {
 }
 
 /// `option` — derived from the provider schema description.
-enum LightsailDistributionCacheBehaviorSettingsForwardedHeadersOption
-    implements TerraformEnum {
+enum LightsailDistributionOption implements TerraformEnum {
   defaultCase('default'),
   allowList('allow-list'),
   all('all');
 
-  const LightsailDistributionCacheBehaviorSettingsForwardedHeadersOption(
-    this.terraformValue,
-  );
+  const LightsailDistributionOption(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -128,8 +121,8 @@ enum LightsailDistributionCacheBehaviorSettingsForwardedHeadersOption
 /// Typed helper for the `cache_behavior_settings.forwarded_query_strings` block of
 /// `aws_lightsail_distribution` (derived from provider schema).
 @immutable
-final class LightsailDistributionCacheBehaviorSettingsForwardedQueryStrings {
-  const LightsailDistributionCacheBehaviorSettingsForwardedQueryStrings({
+final class LightsailDistributionForwardedQueryStrings {
+  const LightsailDistributionForwardedQueryStrings({
     this.option,
     this.queryStringsAllowedList,
   });

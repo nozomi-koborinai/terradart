@@ -22,9 +22,9 @@ final class DataEcrLifecyclePolicyDocumentRule {
 
   final TfArg<num> priority;
 
-  final List<DataEcrLifecyclePolicyDocumentRuleAction>? action;
+  final List<DataEcrLifecyclePolicyDocumentAction>? action;
 
-  final List<DataEcrLifecyclePolicyDocumentRuleSelection>? selection;
+  final List<DataEcrLifecyclePolicyDocumentSelection>? selection;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -38,8 +38,8 @@ final class DataEcrLifecyclePolicyDocumentRule {
 /// Typed helper for the `rule.action` block of
 /// `aws_ecr_lifecycle_policy_document` (derived from provider schema).
 @immutable
-final class DataEcrLifecyclePolicyDocumentRuleAction {
-  const DataEcrLifecyclePolicyDocumentRuleAction({
+final class DataEcrLifecyclePolicyDocumentAction {
+  const DataEcrLifecyclePolicyDocumentAction({
     this.targetStorageClass,
     required this.type,
   });
@@ -57,8 +57,8 @@ final class DataEcrLifecyclePolicyDocumentRuleAction {
 /// Typed helper for the `rule.selection` block of
 /// `aws_ecr_lifecycle_policy_document` (derived from provider schema).
 @immutable
-final class DataEcrLifecyclePolicyDocumentRuleSelection {
-  const DataEcrLifecyclePolicyDocumentRuleSelection({
+final class DataEcrLifecyclePolicyDocumentSelection {
+  const DataEcrLifecyclePolicyDocumentSelection({
     required this.countNumber,
     required this.countType,
     this.countUnit,

@@ -35,14 +35,13 @@ final class AiSearchNamespacePublicEndpointParams {
 
   final TfArg<List<String>>? instancesAllowed;
 
-  final AiSearchNamespacePublicEndpointParamsChatCompletionsEndpoint?
-  chatCompletionsEndpoint;
+  final AiSearchNamespaceChatCompletionsEndpoint? chatCompletionsEndpoint;
 
-  final AiSearchNamespacePublicEndpointParamsMcp? mcp;
+  final AiSearchNamespaceMcp? mcp;
 
-  final AiSearchNamespacePublicEndpointParamsRateLimit? rateLimit;
+  final AiSearchNamespaceRateLimit? rateLimit;
 
-  final AiSearchNamespacePublicEndpointParamsSearchEndpoint? searchEndpoint;
+  final AiSearchNamespaceSearchEndpoint? searchEndpoint;
 
   Map<String, Object?> encode() => {
     'authorized_hosts': ?authorizedHosts?.toTfJson(),
@@ -60,10 +59,8 @@ final class AiSearchNamespacePublicEndpointParams {
 /// Typed helper for the `public_endpoint_params.chat_completions_endpoint` block of
 /// `cloudflare_ai_search_namespace` (derived from provider schema).
 @immutable
-final class AiSearchNamespacePublicEndpointParamsChatCompletionsEndpoint {
-  const AiSearchNamespacePublicEndpointParamsChatCompletionsEndpoint({
-    this.disabled,
-  });
+final class AiSearchNamespaceChatCompletionsEndpoint {
+  const AiSearchNamespaceChatCompletionsEndpoint({this.disabled});
 
   final TfArg<bool>? disabled;
 
@@ -73,11 +70,8 @@ final class AiSearchNamespacePublicEndpointParamsChatCompletionsEndpoint {
 /// Typed helper for the `public_endpoint_params.mcp` block of
 /// `cloudflare_ai_search_namespace` (derived from provider schema).
 @immutable
-final class AiSearchNamespacePublicEndpointParamsMcp {
-  const AiSearchNamespacePublicEndpointParamsMcp({
-    this.description,
-    this.disabled,
-  });
+final class AiSearchNamespaceMcp {
+  const AiSearchNamespaceMcp({this.description, this.disabled});
 
   final TfArg<String>? description;
 
@@ -92,8 +86,8 @@ final class AiSearchNamespacePublicEndpointParamsMcp {
 /// Typed helper for the `public_endpoint_params.rate_limit` block of
 /// `cloudflare_ai_search_namespace` (derived from provider schema).
 @immutable
-final class AiSearchNamespacePublicEndpointParamsRateLimit {
-  const AiSearchNamespacePublicEndpointParamsRateLimit({
+final class AiSearchNamespaceRateLimit {
+  const AiSearchNamespaceRateLimit({
     this.periodMs,
     this.requests,
     this.technique,
@@ -103,8 +97,7 @@ final class AiSearchNamespacePublicEndpointParamsRateLimit {
 
   final TfArg<num>? requests;
 
-  final TfArg<AiSearchNamespacePublicEndpointParamsRateLimitTechnique>?
-  technique;
+  final TfArg<AiSearchNamespaceTechnique>? technique;
 
   Map<String, Object?> encode() => {
     'period_ms': ?periodMs?.toTfJson(),
@@ -114,14 +107,11 @@ final class AiSearchNamespacePublicEndpointParamsRateLimit {
 }
 
 /// `technique` — derived from the provider schema description.
-enum AiSearchNamespacePublicEndpointParamsRateLimitTechnique
-    implements TerraformEnum {
+enum AiSearchNamespaceTechnique implements TerraformEnum {
   fixed('fixed'),
   sliding('sliding');
 
-  const AiSearchNamespacePublicEndpointParamsRateLimitTechnique(
-    this.terraformValue,
-  );
+  const AiSearchNamespaceTechnique(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -129,8 +119,8 @@ enum AiSearchNamespacePublicEndpointParamsRateLimitTechnique
 /// Typed helper for the `public_endpoint_params.search_endpoint` block of
 /// `cloudflare_ai_search_namespace` (derived from provider schema).
 @immutable
-final class AiSearchNamespacePublicEndpointParamsSearchEndpoint {
-  const AiSearchNamespacePublicEndpointParamsSearchEndpoint({this.disabled});
+final class AiSearchNamespaceSearchEndpoint {
+  const AiSearchNamespaceSearchEndpoint({this.disabled});
 
   final TfArg<bool>? disabled;
 

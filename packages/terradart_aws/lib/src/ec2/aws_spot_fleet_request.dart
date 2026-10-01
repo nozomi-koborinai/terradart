@@ -199,8 +199,7 @@ final class SpotFleetRequestLaunchSpecification {
 
   final TfArg<String>? placementGroup;
 
-  final TfArg<SpotFleetRequestLaunchSpecificationPlacementTenancy>?
-  placementTenancy;
+  final TfArg<SpotFleetRequestPlacementTenancy>? placementTenancy;
 
   final TfArg<String>? spotPrice;
 
@@ -214,13 +213,11 @@ final class SpotFleetRequestLaunchSpecification {
 
   final TfArg<String>? weightedCapacity;
 
-  final List<SpotFleetRequestLaunchSpecificationEbsBlockDevice>? ebsBlockDevice;
+  final List<SpotFleetRequestEbsBlockDevice>? ebsBlockDevice;
 
-  final List<SpotFleetRequestLaunchSpecificationEphemeralBlockDevice>?
-  ephemeralBlockDevice;
+  final List<SpotFleetRequestEphemeralBlockDevice>? ephemeralBlockDevice;
 
-  final List<SpotFleetRequestLaunchSpecificationRootBlockDevice>?
-  rootBlockDevice;
+  final List<SpotFleetRequestRootBlockDevice>? rootBlockDevice;
 
   Map<String, Object?> encode() => {
     'ami': ami.toTfJson(),
@@ -252,15 +249,12 @@ final class SpotFleetRequestLaunchSpecification {
 }
 
 /// `placement_tenancy` — derived from the provider schema description.
-enum SpotFleetRequestLaunchSpecificationPlacementTenancy
-    implements TerraformEnum {
+enum SpotFleetRequestPlacementTenancy implements TerraformEnum {
   defaultCase('default'),
   dedicated('dedicated'),
   host('host');
 
-  const SpotFleetRequestLaunchSpecificationPlacementTenancy(
-    this.terraformValue,
-  );
+  const SpotFleetRequestPlacementTenancy(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -268,8 +262,8 @@ enum SpotFleetRequestLaunchSpecificationPlacementTenancy
 /// Typed helper for the `launch_specification.ebs_block_device` block of
 /// `aws_spot_fleet_request` (derived from provider schema).
 @immutable
-final class SpotFleetRequestLaunchSpecificationEbsBlockDevice {
-  const SpotFleetRequestLaunchSpecificationEbsBlockDevice({
+final class SpotFleetRequestEbsBlockDevice {
+  const SpotFleetRequestEbsBlockDevice({
     this.deleteOnTermination,
     required this.deviceName,
     this.encrypted,
@@ -297,8 +291,7 @@ final class SpotFleetRequestLaunchSpecificationEbsBlockDevice {
 
   final TfArg<num>? volumeSize;
 
-  final TfArg<SpotFleetRequestLaunchSpecificationEbsBlockDeviceVolumeType>?
-  volumeType;
+  final TfArg<SpotFleetRequestVolumeType>? volumeType;
 
   Map<String, Object?> encode() => {
     'delete_on_termination': ?deleteOnTermination?.toTfJson(),
@@ -314,8 +307,7 @@ final class SpotFleetRequestLaunchSpecificationEbsBlockDevice {
 }
 
 /// `volume_type` — derived from the provider schema description.
-enum SpotFleetRequestLaunchSpecificationEbsBlockDeviceVolumeType
-    implements TerraformEnum {
+enum SpotFleetRequestVolumeType implements TerraformEnum {
   standard('standard'),
   io1('io1'),
   io2('io2'),
@@ -324,9 +316,7 @@ enum SpotFleetRequestLaunchSpecificationEbsBlockDeviceVolumeType
   st1('st1'),
   gp3('gp3');
 
-  const SpotFleetRequestLaunchSpecificationEbsBlockDeviceVolumeType(
-    this.terraformValue,
-  );
+  const SpotFleetRequestVolumeType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -334,8 +324,8 @@ enum SpotFleetRequestLaunchSpecificationEbsBlockDeviceVolumeType
 /// Typed helper for the `launch_specification.ephemeral_block_device` block of
 /// `aws_spot_fleet_request` (derived from provider schema).
 @immutable
-final class SpotFleetRequestLaunchSpecificationEphemeralBlockDevice {
-  const SpotFleetRequestLaunchSpecificationEphemeralBlockDevice({
+final class SpotFleetRequestEphemeralBlockDevice {
+  const SpotFleetRequestEphemeralBlockDevice({
     required this.deviceName,
     required this.virtualName,
   });
@@ -353,8 +343,8 @@ final class SpotFleetRequestLaunchSpecificationEphemeralBlockDevice {
 /// Typed helper for the `launch_specification.root_block_device` block of
 /// `aws_spot_fleet_request` (derived from provider schema).
 @immutable
-final class SpotFleetRequestLaunchSpecificationRootBlockDevice {
-  const SpotFleetRequestLaunchSpecificationRootBlockDevice({
+final class SpotFleetRequestRootBlockDevice {
+  const SpotFleetRequestRootBlockDevice({
     this.deleteOnTermination,
     this.encrypted,
     this.iops,
@@ -376,8 +366,7 @@ final class SpotFleetRequestLaunchSpecificationRootBlockDevice {
 
   final TfArg<num>? volumeSize;
 
-  final TfArg<SpotFleetRequestLaunchSpecificationRootBlockDeviceVolumeType>?
-  volumeType;
+  final TfArg<SpotFleetRequestVolumeType>? volumeType;
 
   Map<String, Object?> encode() => {
     'delete_on_termination': ?deleteOnTermination?.toTfJson(),
@@ -390,24 +379,6 @@ final class SpotFleetRequestLaunchSpecificationRootBlockDevice {
   };
 }
 
-/// `volume_type` — derived from the provider schema description.
-enum SpotFleetRequestLaunchSpecificationRootBlockDeviceVolumeType
-    implements TerraformEnum {
-  standard('standard'),
-  io1('io1'),
-  io2('io2'),
-  gp2('gp2'),
-  sc1('sc1'),
-  st1('st1'),
-  gp3('gp3');
-
-  const SpotFleetRequestLaunchSpecificationRootBlockDeviceVolumeType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `launch_template_config` block of
 /// `aws_spot_fleet_request` (derived from provider schema).
 @immutable
@@ -417,10 +388,9 @@ final class SpotFleetRequestLaunchTemplateConfig {
     this.overrides,
   });
 
-  final SpotFleetRequestLaunchTemplateConfigLaunchTemplateSpecification
-  launchTemplateSpecification;
+  final SpotFleetRequestLaunchTemplateSpecification launchTemplateSpecification;
 
-  final List<SpotFleetRequestLaunchTemplateConfigOverrides>? overrides;
+  final List<SpotFleetRequestOverrides>? overrides;
 
   Map<String, Object?> encode() => {
     'launch_template_specification': launchTemplateSpecification.encode(),
@@ -432,8 +402,8 @@ final class SpotFleetRequestLaunchTemplateConfig {
 /// Typed helper for the `launch_template_config.launch_template_specification` block of
 /// `aws_spot_fleet_request` (derived from provider schema).
 @immutable
-final class SpotFleetRequestLaunchTemplateConfigLaunchTemplateSpecification {
-  const SpotFleetRequestLaunchTemplateConfigLaunchTemplateSpecification({
+final class SpotFleetRequestLaunchTemplateSpecification {
+  const SpotFleetRequestLaunchTemplateSpecification({
     this.id,
     this.name,
     this.version,
@@ -455,8 +425,8 @@ final class SpotFleetRequestLaunchTemplateConfigLaunchTemplateSpecification {
 /// Typed helper for the `launch_template_config.overrides` block of
 /// `aws_spot_fleet_request` (derived from provider schema).
 @immutable
-final class SpotFleetRequestLaunchTemplateConfigOverrides {
-  const SpotFleetRequestLaunchTemplateConfigOverrides({
+final class SpotFleetRequestOverrides {
+  const SpotFleetRequestOverrides({
     this.availabilityZone,
     this.instanceType,
     this.priority,
@@ -478,8 +448,7 @@ final class SpotFleetRequestLaunchTemplateConfigOverrides {
 
   final TfArg<num>? weightedCapacity;
 
-  final SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirements?
-  instanceRequirements;
+  final SpotFleetRequestInstanceRequirements? instanceRequirements;
 
   Map<String, Object?> encode() => {
     'availability_zone': ?availabilityZone?.toTfJson(),
@@ -495,8 +464,8 @@ final class SpotFleetRequestLaunchTemplateConfigOverrides {
 /// Typed helper for the `launch_template_config.overrides.instance_requirements` block of
 /// `aws_spot_fleet_request` (derived from provider schema).
 @immutable
-final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirements {
-  const SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirements({
+final class SpotFleetRequestInstanceRequirements {
+  const SpotFleetRequestInstanceRequirements({
     this.acceleratorManufacturers,
     this.acceleratorNames,
     this.acceleratorTypes,
@@ -522,66 +491,28 @@ final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirements {
     this.vcpuCount,
   });
 
-  final List<
-    TfArg<
-      SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAcceleratorManufacturers
-    >
-  >?
+  final List<TfArg<SpotFleetRequestAcceleratorManufacturers>>?
   acceleratorManufacturers;
 
-  final List<
-    TfArg<
-      SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAcceleratorNames
-    >
-  >?
-  acceleratorNames;
+  final List<TfArg<SpotFleetRequestAcceleratorNames>>? acceleratorNames;
 
-  final List<
-    TfArg<
-      SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAcceleratorTypes
-    >
-  >?
-  acceleratorTypes;
+  final List<TfArg<SpotFleetRequestAcceleratorTypes>>? acceleratorTypes;
 
   final TfArg<List<String>>? allowedInstanceTypes;
 
-  final TfArg<
-    SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsBareMetal
-  >?
-  bareMetal;
+  final TfArg<SpotFleetRequestBareMetal>? bareMetal;
 
-  final TfArg<
-    SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsBurstablePerformance
-  >?
-  burstablePerformance;
+  final TfArg<SpotFleetRequestBurstablePerformance>? burstablePerformance;
 
-  final List<
-    TfArg<
-      SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsCpuManufacturers
-    >
-  >?
-  cpuManufacturers;
+  final List<TfArg<SpotFleetRequestCpuManufacturers>>? cpuManufacturers;
 
   final TfArg<List<String>>? excludedInstanceTypes;
 
-  final List<
-    TfArg<
-      SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsInstanceGenerations
-    >
-  >?
-  instanceGenerations;
+  final List<TfArg<SpotFleetRequestInstanceGenerations>>? instanceGenerations;
 
-  final TfArg<
-    SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsLocalStorage
-  >?
-  localStorage;
+  final TfArg<SpotFleetRequestLocalStorage>? localStorage;
 
-  final List<
-    TfArg<
-      SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsLocalStorageTypes
-    >
-  >?
-  localStorageTypes;
+  final List<TfArg<SpotFleetRequestLocalStorageTypes>>? localStorageTypes;
 
   final TfArg<num>? onDemandMaxPricePercentageOverLowestPrice;
 
@@ -589,32 +520,23 @@ final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirements {
 
   final TfArg<num>? spotMaxPricePercentageOverLowestPrice;
 
-  final SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAcceleratorCount?
-  acceleratorCount;
+  final SpotFleetRequestAcceleratorCount? acceleratorCount;
 
-  final SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAcceleratorTotalMemoryMib?
-  acceleratorTotalMemoryMib;
+  final SpotFleetRequestAcceleratorTotalMemoryMib? acceleratorTotalMemoryMib;
 
-  final SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsBaselineEbsBandwidthMbps?
-  baselineEbsBandwidthMbps;
+  final SpotFleetRequestBaselineEbsBandwidthMbps? baselineEbsBandwidthMbps;
 
-  final SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsMemoryGibPerVcpu?
-  memoryGibPerVcpu;
+  final SpotFleetRequestMemoryGibPerVcpu? memoryGibPerVcpu;
 
-  final SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsMemoryMib?
-  memoryMib;
+  final SpotFleetRequestMemoryMib? memoryMib;
 
-  final SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsNetworkBandwidthGbps?
-  networkBandwidthGbps;
+  final SpotFleetRequestNetworkBandwidthGbps? networkBandwidthGbps;
 
-  final SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsNetworkInterfaceCount?
-  networkInterfaceCount;
+  final SpotFleetRequestNetworkInterfaceCount? networkInterfaceCount;
 
-  final SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsTotalLocalStorageGb?
-  totalLocalStorageGb;
+  final SpotFleetRequestTotalLocalStorageGb? totalLocalStorageGb;
 
-  final SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsVcpuCount?
-  vcpuCount;
+  final SpotFleetRequestVcpuCount? vcpuCount;
 
   Map<String, Object?> encode() => {
     if (acceleratorManufacturers != null)
@@ -656,24 +578,20 @@ final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirements {
 }
 
 /// `accelerator_manufacturers` — derived from the provider schema description.
-enum SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAcceleratorManufacturers
-    implements TerraformEnum {
+enum SpotFleetRequestAcceleratorManufacturers implements TerraformEnum {
   amazonWebServices('amazon-web-services'),
   amd('amd'),
   nvidia('nvidia'),
   xilinx('xilinx'),
   habana('habana');
 
-  const SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAcceleratorManufacturers(
-    this.terraformValue,
-  );
+  const SpotFleetRequestAcceleratorManufacturers(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `accelerator_names` — derived from the provider schema description.
-enum SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAcceleratorNames
-    implements TerraformEnum {
+enum SpotFleetRequestAcceleratorNames implements TerraformEnum {
   a100('a100'),
   inferentia('inferentia'),
   k520('k520'),
@@ -694,107 +612,84 @@ enum SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAccelerato
   trainium2('trainium2'),
   u30('u30');
 
-  const SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAcceleratorNames(
-    this.terraformValue,
-  );
+  const SpotFleetRequestAcceleratorNames(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `accelerator_types` — derived from the provider schema description.
-enum SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAcceleratorTypes
-    implements TerraformEnum {
+enum SpotFleetRequestAcceleratorTypes implements TerraformEnum {
   gpu('gpu'),
   fpga('fpga'),
   inference('inference'),
   media('media');
 
-  const SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAcceleratorTypes(
-    this.terraformValue,
-  );
+  const SpotFleetRequestAcceleratorTypes(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `bare_metal` — derived from the provider schema description.
-enum SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsBareMetal
-    implements TerraformEnum {
+enum SpotFleetRequestBareMetal implements TerraformEnum {
   included('included'),
   required('required'),
   excluded('excluded');
 
-  const SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsBareMetal(
-    this.terraformValue,
-  );
+  const SpotFleetRequestBareMetal(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `burstable_performance` — derived from the provider schema description.
-enum SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsBurstablePerformance
-    implements TerraformEnum {
+enum SpotFleetRequestBurstablePerformance implements TerraformEnum {
   included('included'),
   required('required'),
   excluded('excluded');
 
-  const SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsBurstablePerformance(
-    this.terraformValue,
-  );
+  const SpotFleetRequestBurstablePerformance(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `cpu_manufacturers` — derived from the provider schema description.
-enum SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsCpuManufacturers
-    implements TerraformEnum {
+enum SpotFleetRequestCpuManufacturers implements TerraformEnum {
   intel('intel'),
   amd('amd'),
   amazonWebServices('amazon-web-services'),
   apple('apple');
 
-  const SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsCpuManufacturers(
-    this.terraformValue,
-  );
+  const SpotFleetRequestCpuManufacturers(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `instance_generations` — derived from the provider schema description.
-enum SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsInstanceGenerations
-    implements TerraformEnum {
+enum SpotFleetRequestInstanceGenerations implements TerraformEnum {
   current('current'),
   previous('previous');
 
-  const SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsInstanceGenerations(
-    this.terraformValue,
-  );
+  const SpotFleetRequestInstanceGenerations(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `local_storage` — derived from the provider schema description.
-enum SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsLocalStorage
-    implements TerraformEnum {
+enum SpotFleetRequestLocalStorage implements TerraformEnum {
   included('included'),
   required('required'),
   excluded('excluded');
 
-  const SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsLocalStorage(
-    this.terraformValue,
-  );
+  const SpotFleetRequestLocalStorage(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `local_storage_types` — derived from the provider schema description.
-enum SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsLocalStorageTypes
-    implements TerraformEnum {
+enum SpotFleetRequestLocalStorageTypes implements TerraformEnum {
   hdd('hdd'),
   ssd('ssd');
 
-  const SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsLocalStorageTypes(
-    this.terraformValue,
-  );
+  const SpotFleetRequestLocalStorageTypes(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -802,11 +697,8 @@ enum SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsLocalStora
 /// Typed helper for the `launch_template_config.overrides.instance_requirements.accelerator_count` block of
 /// `aws_spot_fleet_request` (derived from provider schema).
 @immutable
-final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAcceleratorCount {
-  const SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAcceleratorCount({
-    this.max,
-    this.min,
-  });
+final class SpotFleetRequestAcceleratorCount {
+  const SpotFleetRequestAcceleratorCount({this.max, this.min});
 
   final TfArg<num>? max;
 
@@ -821,11 +713,8 @@ final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAcc
 /// Typed helper for the `launch_template_config.overrides.instance_requirements.accelerator_total_memory_mib` block of
 /// `aws_spot_fleet_request` (derived from provider schema).
 @immutable
-final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAcceleratorTotalMemoryMib {
-  const SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAcceleratorTotalMemoryMib({
-    this.max,
-    this.min,
-  });
+final class SpotFleetRequestAcceleratorTotalMemoryMib {
+  const SpotFleetRequestAcceleratorTotalMemoryMib({this.max, this.min});
 
   final TfArg<num>? max;
 
@@ -840,11 +729,8 @@ final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAcc
 /// Typed helper for the `launch_template_config.overrides.instance_requirements.baseline_ebs_bandwidth_mbps` block of
 /// `aws_spot_fleet_request` (derived from provider schema).
 @immutable
-final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsBaselineEbsBandwidthMbps {
-  const SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsBaselineEbsBandwidthMbps({
-    this.max,
-    this.min,
-  });
+final class SpotFleetRequestBaselineEbsBandwidthMbps {
+  const SpotFleetRequestBaselineEbsBandwidthMbps({this.max, this.min});
 
   final TfArg<num>? max;
 
@@ -859,11 +745,8 @@ final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsBas
 /// Typed helper for the `launch_template_config.overrides.instance_requirements.memory_gib_per_vcpu` block of
 /// `aws_spot_fleet_request` (derived from provider schema).
 @immutable
-final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsMemoryGibPerVcpu {
-  const SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsMemoryGibPerVcpu({
-    this.max,
-    this.min,
-  });
+final class SpotFleetRequestMemoryGibPerVcpu {
+  const SpotFleetRequestMemoryGibPerVcpu({this.max, this.min});
 
   final TfArg<num>? max;
 
@@ -878,11 +761,8 @@ final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsMem
 /// Typed helper for the `launch_template_config.overrides.instance_requirements.memory_mib` block of
 /// `aws_spot_fleet_request` (derived from provider schema).
 @immutable
-final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsMemoryMib {
-  const SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsMemoryMib({
-    this.max,
-    this.min,
-  });
+final class SpotFleetRequestMemoryMib {
+  const SpotFleetRequestMemoryMib({this.max, this.min});
 
   final TfArg<num>? max;
 
@@ -897,11 +777,8 @@ final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsMem
 /// Typed helper for the `launch_template_config.overrides.instance_requirements.network_bandwidth_gbps` block of
 /// `aws_spot_fleet_request` (derived from provider schema).
 @immutable
-final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsNetworkBandwidthGbps {
-  const SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsNetworkBandwidthGbps({
-    this.max,
-    this.min,
-  });
+final class SpotFleetRequestNetworkBandwidthGbps {
+  const SpotFleetRequestNetworkBandwidthGbps({this.max, this.min});
 
   final TfArg<num>? max;
 
@@ -916,11 +793,8 @@ final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsNet
 /// Typed helper for the `launch_template_config.overrides.instance_requirements.network_interface_count` block of
 /// `aws_spot_fleet_request` (derived from provider schema).
 @immutable
-final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsNetworkInterfaceCount {
-  const SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsNetworkInterfaceCount({
-    this.max,
-    this.min,
-  });
+final class SpotFleetRequestNetworkInterfaceCount {
+  const SpotFleetRequestNetworkInterfaceCount({this.max, this.min});
 
   final TfArg<num>? max;
 
@@ -935,11 +809,8 @@ final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsNet
 /// Typed helper for the `launch_template_config.overrides.instance_requirements.total_local_storage_gb` block of
 /// `aws_spot_fleet_request` (derived from provider schema).
 @immutable
-final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsTotalLocalStorageGb {
-  const SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsTotalLocalStorageGb({
-    this.max,
-    this.min,
-  });
+final class SpotFleetRequestTotalLocalStorageGb {
+  const SpotFleetRequestTotalLocalStorageGb({this.max, this.min});
 
   final TfArg<num>? max;
 
@@ -954,11 +825,8 @@ final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsTot
 /// Typed helper for the `launch_template_config.overrides.instance_requirements.vcpu_count` block of
 /// `aws_spot_fleet_request` (derived from provider schema).
 @immutable
-final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsVcpuCount {
-  const SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsVcpuCount({
-    this.max,
-    this.min,
-  });
+final class SpotFleetRequestVcpuCount {
+  const SpotFleetRequestVcpuCount({this.max, this.min});
 
   final TfArg<num>? max;
 
@@ -976,8 +844,7 @@ final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsVcp
 final class SpotFleetRequestSpotMaintenanceStrategies {
   const SpotFleetRequestSpotMaintenanceStrategies({this.capacityRebalance});
 
-  final SpotFleetRequestSpotMaintenanceStrategiesCapacityRebalance?
-  capacityRebalance;
+  final SpotFleetRequestCapacityRebalance? capacityRebalance;
 
   Map<String, Object?> encode() => {
     'capacity_rebalance': ?capacityRebalance?.encode(),
@@ -987,15 +854,10 @@ final class SpotFleetRequestSpotMaintenanceStrategies {
 /// Typed helper for the `spot_maintenance_strategies.capacity_rebalance` block of
 /// `aws_spot_fleet_request` (derived from provider schema).
 @immutable
-final class SpotFleetRequestSpotMaintenanceStrategiesCapacityRebalance {
-  const SpotFleetRequestSpotMaintenanceStrategiesCapacityRebalance({
-    this.replacementStrategy,
-  });
+final class SpotFleetRequestCapacityRebalance {
+  const SpotFleetRequestCapacityRebalance({this.replacementStrategy});
 
-  final TfArg<
-    SpotFleetRequestSpotMaintenanceStrategiesCapacityRebalanceReplacementStrategy
-  >?
-  replacementStrategy;
+  final TfArg<SpotFleetRequestReplacementStrategy>? replacementStrategy;
 
   Map<String, Object?> encode() => {
     'replacement_strategy': ?replacementStrategy?.toTfJson(),
@@ -1003,14 +865,11 @@ final class SpotFleetRequestSpotMaintenanceStrategiesCapacityRebalance {
 }
 
 /// `replacement_strategy` — derived from the provider schema description.
-enum SpotFleetRequestSpotMaintenanceStrategiesCapacityRebalanceReplacementStrategy
-    implements TerraformEnum {
+enum SpotFleetRequestReplacementStrategy implements TerraformEnum {
   launch('launch'),
   launchBeforeTerminate('launch-before-terminate');
 
-  const SpotFleetRequestSpotMaintenanceStrategiesCapacityRebalanceReplacementStrategy(
-    this.terraformValue,
-  );
+  const SpotFleetRequestReplacementStrategy(this.terraformValue);
   @override
   final String terraformValue;
 }

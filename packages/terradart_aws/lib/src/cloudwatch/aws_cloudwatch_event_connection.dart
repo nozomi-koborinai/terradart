@@ -40,12 +40,11 @@ final class CloudwatchEventConnectionAuthParameters {
     this.invocationHttpParameters,
   });
 
-  final CloudwatchEventConnectionAuthParametersAuth auth;
+  final CloudwatchEventConnectionAuth auth;
 
-  final CloudwatchEventConnectionAuthParametersConnectivityParameters?
-  connectivityParameters;
+  final CloudwatchEventConnectionConnectivityParameters? connectivityParameters;
 
-  final CloudwatchEventConnectionAuthParametersInvocationHttpParameters?
+  final CloudwatchEventConnectionInvocationHttpParameters?
   invocationHttpParameters;
 
   Map<String, Object?> encode() => {
@@ -59,23 +58,23 @@ final class CloudwatchEventConnectionAuthParameters {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.apiKey(...)`.
-sealed class CloudwatchEventConnectionAuthParametersAuth {
-  const CloudwatchEventConnectionAuthParametersAuth();
+sealed class CloudwatchEventConnectionAuth {
+  const CloudwatchEventConnectionAuth();
 
   /// Sets `api_key`.
-  const factory CloudwatchEventConnectionAuthParametersAuth.apiKey(
-    CloudwatchEventConnectionAuthParametersApiKey apiKey,
-  ) = CloudwatchEventConnectionAuthParametersAuthApiKey;
+  const factory CloudwatchEventConnectionAuth.apiKey(
+    CloudwatchEventConnectionApiKey apiKey,
+  ) = CloudwatchEventConnectionAuthApiKey;
 
   /// Sets `basic`.
-  const factory CloudwatchEventConnectionAuthParametersAuth.basic(
-    CloudwatchEventConnectionAuthParametersBasic basic,
-  ) = CloudwatchEventConnectionAuthParametersAuthBasic;
+  const factory CloudwatchEventConnectionAuth.basic(
+    CloudwatchEventConnectionBasic basic,
+  ) = CloudwatchEventConnectionAuthBasic;
 
   /// Sets `oauth`.
-  const factory CloudwatchEventConnectionAuthParametersAuth.oauth(
-    CloudwatchEventConnectionAuthParametersOauth oauth,
-  ) = CloudwatchEventConnectionAuthParametersAuthOauth;
+  const factory CloudwatchEventConnectionAuth.oauth(
+    CloudwatchEventConnectionOauth oauth,
+  ) = CloudwatchEventConnectionAuthOauth;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -83,12 +82,12 @@ sealed class CloudwatchEventConnectionAuthParametersAuth {
   Map<String, Object?> encode();
 }
 
-/// The [CloudwatchEventConnectionAuthParametersAuth.apiKey] choice: sets `api_key`.
-final class CloudwatchEventConnectionAuthParametersAuthApiKey
-    extends CloudwatchEventConnectionAuthParametersAuth {
-  const CloudwatchEventConnectionAuthParametersAuthApiKey(this.apiKey);
+/// The [CloudwatchEventConnectionAuth.apiKey] choice: sets `api_key`.
+final class CloudwatchEventConnectionAuthApiKey
+    extends CloudwatchEventConnectionAuth {
+  const CloudwatchEventConnectionAuthApiKey(this.apiKey);
 
-  final CloudwatchEventConnectionAuthParametersApiKey apiKey;
+  final CloudwatchEventConnectionApiKey apiKey;
 
   @override
   String get blockKey => 'api_key';
@@ -97,12 +96,12 @@ final class CloudwatchEventConnectionAuthParametersAuthApiKey
   Map<String, Object?> encode() => {'api_key': apiKey.encode()};
 }
 
-/// The [CloudwatchEventConnectionAuthParametersAuth.basic] choice: sets `basic`.
-final class CloudwatchEventConnectionAuthParametersAuthBasic
-    extends CloudwatchEventConnectionAuthParametersAuth {
-  const CloudwatchEventConnectionAuthParametersAuthBasic(this.basic);
+/// The [CloudwatchEventConnectionAuth.basic] choice: sets `basic`.
+final class CloudwatchEventConnectionAuthBasic
+    extends CloudwatchEventConnectionAuth {
+  const CloudwatchEventConnectionAuthBasic(this.basic);
 
-  final CloudwatchEventConnectionAuthParametersBasic basic;
+  final CloudwatchEventConnectionBasic basic;
 
   @override
   String get blockKey => 'basic';
@@ -111,12 +110,12 @@ final class CloudwatchEventConnectionAuthParametersAuthBasic
   Map<String, Object?> encode() => {'basic': basic.encode()};
 }
 
-/// The [CloudwatchEventConnectionAuthParametersAuth.oauth] choice: sets `oauth`.
-final class CloudwatchEventConnectionAuthParametersAuthOauth
-    extends CloudwatchEventConnectionAuthParametersAuth {
-  const CloudwatchEventConnectionAuthParametersAuthOauth(this.oauth);
+/// The [CloudwatchEventConnectionAuth.oauth] choice: sets `oauth`.
+final class CloudwatchEventConnectionAuthOauth
+    extends CloudwatchEventConnectionAuth {
+  const CloudwatchEventConnectionAuthOauth(this.oauth);
 
-  final CloudwatchEventConnectionAuthParametersOauth oauth;
+  final CloudwatchEventConnectionOauth oauth;
 
   @override
   String get blockKey => 'oauth';
@@ -128,8 +127,8 @@ final class CloudwatchEventConnectionAuthParametersAuthOauth
 /// Typed helper for the `auth_parameters.api_key` block of
 /// `aws_cloudwatch_event_connection` (derived from provider schema).
 @immutable
-final class CloudwatchEventConnectionAuthParametersApiKey {
-  const CloudwatchEventConnectionAuthParametersApiKey({
+final class CloudwatchEventConnectionApiKey {
+  const CloudwatchEventConnectionApiKey({
     required this.key,
     required this.value,
   });
@@ -147,8 +146,8 @@ final class CloudwatchEventConnectionAuthParametersApiKey {
 /// Typed helper for the `auth_parameters.basic` block of
 /// `aws_cloudwatch_event_connection` (derived from provider schema).
 @immutable
-final class CloudwatchEventConnectionAuthParametersBasic {
-  const CloudwatchEventConnectionAuthParametersBasic({
+final class CloudwatchEventConnectionBasic {
+  const CloudwatchEventConnectionBasic({
     required this.password,
     required this.username,
   });
@@ -166,24 +165,24 @@ final class CloudwatchEventConnectionAuthParametersBasic {
 /// Typed helper for the `auth_parameters.connectivity_parameters` block of
 /// `aws_cloudwatch_event_connection` (derived from provider schema).
 @immutable
-final class CloudwatchEventConnectionAuthParametersConnectivityParameters {
-  const CloudwatchEventConnectionAuthParametersConnectivityParameters({
+final class CloudwatchEventConnectionConnectivityParameters {
+  const CloudwatchEventConnectionConnectivityParameters({
     required this.resourceParameters,
   });
 
-  final CloudwatchEventConnectionAuthParametersConnectivityParametersResourceParameters
-  resourceParameters;
+  final CloudwatchEventConnectionResourceParameters resourceParameters;
 
   Map<String, Object?> encode() => {
     'resource_parameters': resourceParameters.encode(),
   };
 }
 
-/// Typed helper for the `auth_parameters.connectivity_parameters.resource_parameters` block of
+/// Typed helper for the `invocation_connectivity_parameters.resource_parameters` block of
 /// `aws_cloudwatch_event_connection` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CloudwatchEventConnectionAuthParametersConnectivityParametersResourceParameters {
-  const CloudwatchEventConnectionAuthParametersConnectivityParametersResourceParameters({
+final class CloudwatchEventConnectionResourceParameters {
+  const CloudwatchEventConnectionResourceParameters({
     required this.resourceConfigurationArn,
   });
 
@@ -197,27 +196,18 @@ final class CloudwatchEventConnectionAuthParametersConnectivityParametersResourc
 /// Typed helper for the `auth_parameters.invocation_http_parameters` block of
 /// `aws_cloudwatch_event_connection` (derived from provider schema).
 @immutable
-final class CloudwatchEventConnectionAuthParametersInvocationHttpParameters {
-  const CloudwatchEventConnectionAuthParametersInvocationHttpParameters({
+final class CloudwatchEventConnectionInvocationHttpParameters {
+  const CloudwatchEventConnectionInvocationHttpParameters({
     this.body,
     this.header,
     this.queryString,
   });
 
-  final List<
-    CloudwatchEventConnectionAuthParametersInvocationHttpParametersBody
-  >?
-  body;
+  final List<CloudwatchEventConnectionBody>? body;
 
-  final List<
-    CloudwatchEventConnectionAuthParametersInvocationHttpParametersHeader
-  >?
-  header;
+  final List<CloudwatchEventConnectionHeader>? header;
 
-  final List<
-    CloudwatchEventConnectionAuthParametersInvocationHttpParametersQueryString
-  >?
-  queryString;
+  final List<CloudwatchEventConnectionQueryString>? queryString;
 
   Map<String, Object?> encode() => {
     if (body != null) 'body': [for (final e in body!) e.encode()],
@@ -229,9 +219,10 @@ final class CloudwatchEventConnectionAuthParametersInvocationHttpParameters {
 
 /// Typed helper for the `auth_parameters.invocation_http_parameters.body` block of
 /// `aws_cloudwatch_event_connection` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CloudwatchEventConnectionAuthParametersInvocationHttpParametersBody {
-  const CloudwatchEventConnectionAuthParametersInvocationHttpParametersBody({
+final class CloudwatchEventConnectionBody {
+  const CloudwatchEventConnectionBody({
     this.isValueSecret,
     this.key,
     this.value,
@@ -252,9 +243,10 @@ final class CloudwatchEventConnectionAuthParametersInvocationHttpParametersBody 
 
 /// Typed helper for the `auth_parameters.invocation_http_parameters.header` block of
 /// `aws_cloudwatch_event_connection` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CloudwatchEventConnectionAuthParametersInvocationHttpParametersHeader {
-  const CloudwatchEventConnectionAuthParametersInvocationHttpParametersHeader({
+final class CloudwatchEventConnectionHeader {
+  const CloudwatchEventConnectionHeader({
     this.isValueSecret,
     this.key,
     this.value,
@@ -275,9 +267,10 @@ final class CloudwatchEventConnectionAuthParametersInvocationHttpParametersHeade
 
 /// Typed helper for the `auth_parameters.invocation_http_parameters.query_string` block of
 /// `aws_cloudwatch_event_connection` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CloudwatchEventConnectionAuthParametersInvocationHttpParametersQueryString {
-  const CloudwatchEventConnectionAuthParametersInvocationHttpParametersQueryString({
+final class CloudwatchEventConnectionQueryString {
+  const CloudwatchEventConnectionQueryString({
     this.isValueSecret,
     this.key,
     this.value,
@@ -299,8 +292,8 @@ final class CloudwatchEventConnectionAuthParametersInvocationHttpParametersQuery
 /// Typed helper for the `auth_parameters.oauth` block of
 /// `aws_cloudwatch_event_connection` (derived from provider schema).
 @immutable
-final class CloudwatchEventConnectionAuthParametersOauth {
-  const CloudwatchEventConnectionAuthParametersOauth({
+final class CloudwatchEventConnectionOauth {
+  const CloudwatchEventConnectionOauth({
     required this.authorizationEndpoint,
     required this.httpMethod,
     this.clientParameters,
@@ -309,14 +302,11 @@ final class CloudwatchEventConnectionAuthParametersOauth {
 
   final TfArg<String> authorizationEndpoint;
 
-  final TfArg<CloudwatchEventConnectionAuthParametersOauthHttpMethod>
-  httpMethod;
+  final TfArg<CloudwatchEventConnectionHttpMethod> httpMethod;
 
-  final CloudwatchEventConnectionAuthParametersOauthClientParameters?
-  clientParameters;
+  final CloudwatchEventConnectionClientParameters? clientParameters;
 
-  final CloudwatchEventConnectionAuthParametersOauthOauthHttpParameters
-  oauthHttpParameters;
+  final CloudwatchEventConnectionOauthHttpParameters oauthHttpParameters;
 
   Map<String, Object?> encode() => {
     'authorization_endpoint': authorizationEndpoint.toTfJson(),
@@ -327,15 +317,12 @@ final class CloudwatchEventConnectionAuthParametersOauth {
 }
 
 /// `http_method` — derived from the provider schema description.
-enum CloudwatchEventConnectionAuthParametersOauthHttpMethod
-    implements TerraformEnum {
+enum CloudwatchEventConnectionHttpMethod implements TerraformEnum {
   get('GET'),
   post('POST'),
   put('PUT');
 
-  const CloudwatchEventConnectionAuthParametersOauthHttpMethod(
-    this.terraformValue,
-  );
+  const CloudwatchEventConnectionHttpMethod(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -343,8 +330,8 @@ enum CloudwatchEventConnectionAuthParametersOauthHttpMethod
 /// Typed helper for the `auth_parameters.oauth.client_parameters` block of
 /// `aws_cloudwatch_event_connection` (derived from provider schema).
 @immutable
-final class CloudwatchEventConnectionAuthParametersOauthClientParameters {
-  const CloudwatchEventConnectionAuthParametersOauthClientParameters({
+final class CloudwatchEventConnectionClientParameters {
+  const CloudwatchEventConnectionClientParameters({
     required this.clientId,
     required this.clientSecret,
   });
@@ -362,102 +349,24 @@ final class CloudwatchEventConnectionAuthParametersOauthClientParameters {
 /// Typed helper for the `auth_parameters.oauth.oauth_http_parameters` block of
 /// `aws_cloudwatch_event_connection` (derived from provider schema).
 @immutable
-final class CloudwatchEventConnectionAuthParametersOauthOauthHttpParameters {
-  const CloudwatchEventConnectionAuthParametersOauthOauthHttpParameters({
+final class CloudwatchEventConnectionOauthHttpParameters {
+  const CloudwatchEventConnectionOauthHttpParameters({
     this.body,
     this.header,
     this.queryString,
   });
 
-  final List<
-    CloudwatchEventConnectionAuthParametersOauthOauthHttpParametersBody
-  >?
-  body;
+  final List<CloudwatchEventConnectionBody>? body;
 
-  final List<
-    CloudwatchEventConnectionAuthParametersOauthOauthHttpParametersHeader
-  >?
-  header;
+  final List<CloudwatchEventConnectionHeader>? header;
 
-  final List<
-    CloudwatchEventConnectionAuthParametersOauthOauthHttpParametersQueryString
-  >?
-  queryString;
+  final List<CloudwatchEventConnectionQueryString>? queryString;
 
   Map<String, Object?> encode() => {
     if (body != null) 'body': [for (final e in body!) e.encode()],
     if (header != null) 'header': [for (final e in header!) e.encode()],
     if (queryString != null)
       'query_string': [for (final e in queryString!) e.encode()],
-  };
-}
-
-/// Typed helper for the `auth_parameters.oauth.oauth_http_parameters.body` block of
-/// `aws_cloudwatch_event_connection` (derived from provider schema).
-@immutable
-final class CloudwatchEventConnectionAuthParametersOauthOauthHttpParametersBody {
-  const CloudwatchEventConnectionAuthParametersOauthOauthHttpParametersBody({
-    this.isValueSecret,
-    this.key,
-    this.value,
-  });
-
-  final TfArg<bool>? isValueSecret;
-
-  final TfArg<String>? key;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'is_value_secret': ?isValueSecret?.toTfJson(),
-    'key': ?key?.toTfJson(),
-    'value': ?value?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `auth_parameters.oauth.oauth_http_parameters.header` block of
-/// `aws_cloudwatch_event_connection` (derived from provider schema).
-@immutable
-final class CloudwatchEventConnectionAuthParametersOauthOauthHttpParametersHeader {
-  const CloudwatchEventConnectionAuthParametersOauthOauthHttpParametersHeader({
-    this.isValueSecret,
-    this.key,
-    this.value,
-  });
-
-  final TfArg<bool>? isValueSecret;
-
-  final TfArg<String>? key;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'is_value_secret': ?isValueSecret?.toTfJson(),
-    'key': ?key?.toTfJson(),
-    'value': ?value?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `auth_parameters.oauth.oauth_http_parameters.query_string` block of
-/// `aws_cloudwatch_event_connection` (derived from provider schema).
-@immutable
-final class CloudwatchEventConnectionAuthParametersOauthOauthHttpParametersQueryString {
-  const CloudwatchEventConnectionAuthParametersOauthOauthHttpParametersQueryString({
-    this.isValueSecret,
-    this.key,
-    this.value,
-  });
-
-  final TfArg<bool>? isValueSecret;
-
-  final TfArg<String>? key;
-
-  final TfArg<String>? value;
-
-  Map<String, Object?> encode() => {
-    'is_value_secret': ?isValueSecret?.toTfJson(),
-    'key': ?key?.toTfJson(),
-    'value': ?value?.toTfJson(),
   };
 }
 
@@ -469,26 +378,10 @@ final class CloudwatchEventConnectionInvocationConnectivityParameters {
     required this.resourceParameters,
   });
 
-  final CloudwatchEventConnectionInvocationConnectivityParametersResourceParameters
-  resourceParameters;
+  final CloudwatchEventConnectionResourceParameters resourceParameters;
 
   Map<String, Object?> encode() => {
     'resource_parameters': resourceParameters.encode(),
-  };
-}
-
-/// Typed helper for the `invocation_connectivity_parameters.resource_parameters` block of
-/// `aws_cloudwatch_event_connection` (derived from provider schema).
-@immutable
-final class CloudwatchEventConnectionInvocationConnectivityParametersResourceParameters {
-  const CloudwatchEventConnectionInvocationConnectivityParametersResourceParameters({
-    required this.resourceConfigurationArn,
-  });
-
-  final TfArg<String> resourceConfigurationArn;
-
-  Map<String, Object?> encode() => {
-    'resource_configuration_arn': resourceConfigurationArn.toTfJson(),
   };
 }
 

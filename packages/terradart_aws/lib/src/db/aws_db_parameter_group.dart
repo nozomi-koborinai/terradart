@@ -75,7 +75,7 @@ final class DbParameterGroupParameter {
     required this.value,
   });
 
-  final TfArg<DbParameterGroupParameterApplyMethod>? applyMethod;
+  final TfArg<DbParameterGroupApplyMethod>? applyMethod;
 
   final TfArg<String> name;
 
@@ -89,11 +89,11 @@ final class DbParameterGroupParameter {
 }
 
 /// `apply_method` — derived from the provider schema description.
-enum DbParameterGroupParameterApplyMethod implements TerraformEnum {
+enum DbParameterGroupApplyMethod implements TerraformEnum {
   immediate('immediate'),
   pendingReboot('pending-reboot');
 
-  const DbParameterGroupParameterApplyMethod(this.terraformValue);
+  const DbParameterGroupApplyMethod(this.terraformValue);
   @override
   final String terraformValue;
 }

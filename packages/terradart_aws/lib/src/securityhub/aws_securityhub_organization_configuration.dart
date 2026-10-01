@@ -29,10 +29,7 @@ final class SecurityhubOrganizationConfigurationOrganizationConfiguration {
     required this.configurationType,
   });
 
-  final TfArg<
-    SecurityhubOrganizationConfigurationOrganizationConfigurationConfigurationType
-  >
-  configurationType;
+  final TfArg<SecurityhubOrganizationConfigurationType> configurationType;
 
   Map<String, Object?> encode() => {
     'configuration_type': configurationType.toTfJson(),
@@ -40,14 +37,11 @@ final class SecurityhubOrganizationConfigurationOrganizationConfiguration {
 }
 
 /// `configuration_type` — derived from the provider schema description.
-enum SecurityhubOrganizationConfigurationOrganizationConfigurationConfigurationType
-    implements TerraformEnum {
+enum SecurityhubOrganizationConfigurationType implements TerraformEnum {
   central('CENTRAL'),
   local('LOCAL');
 
-  const SecurityhubOrganizationConfigurationOrganizationConfigurationConfigurationType(
-    this.terraformValue,
-  );
+  const SecurityhubOrganizationConfigurationType(this.terraformValue);
   @override
   final String terraformValue;
 }

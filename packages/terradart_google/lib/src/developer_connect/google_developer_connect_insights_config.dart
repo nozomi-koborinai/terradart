@@ -19,10 +19,10 @@ final class DeveloperConnectInsightsConfigArtifactConfigs {
 
   final TfArg<String>? uri;
 
-  final DeveloperConnectInsightsConfigArtifactConfigsGoogleArtifactAnalysis?
+  final DeveloperConnectInsightsConfigGoogleArtifactAnalysis?
   googleArtifactAnalysis;
 
-  final DeveloperConnectInsightsConfigArtifactConfigsGoogleArtifactRegistry?
+  final DeveloperConnectInsightsConfigGoogleArtifactRegistry?
   googleArtifactRegistry;
 
   Map<String, Object?> encode() => {
@@ -35,8 +35,8 @@ final class DeveloperConnectInsightsConfigArtifactConfigs {
 /// Typed helper for the `artifact_configs.google_artifact_analysis` block of
 /// `google_developer_connect_insights_config` (derived from provider schema).
 @immutable
-final class DeveloperConnectInsightsConfigArtifactConfigsGoogleArtifactAnalysis {
-  const DeveloperConnectInsightsConfigArtifactConfigsGoogleArtifactAnalysis({
+final class DeveloperConnectInsightsConfigGoogleArtifactAnalysis {
+  const DeveloperConnectInsightsConfigGoogleArtifactAnalysis({
     required this.projectId,
   });
 
@@ -48,8 +48,8 @@ final class DeveloperConnectInsightsConfigArtifactConfigsGoogleArtifactAnalysis 
 /// Typed helper for the `artifact_configs.google_artifact_registry` block of
 /// `google_developer_connect_insights_config` (derived from provider schema).
 @immutable
-final class DeveloperConnectInsightsConfigArtifactConfigsGoogleArtifactRegistry {
-  const DeveloperConnectInsightsConfigArtifactConfigsGoogleArtifactRegistry({
+final class DeveloperConnectInsightsConfigGoogleArtifactRegistry {
+  const DeveloperConnectInsightsConfigGoogleArtifactRegistry({
     required this.artifactRegistryPackage,
     required this.projectId,
   });

@@ -26,8 +26,7 @@ final class IotProvisioningTemplatePreProvisioningHook {
     required this.targetArn,
   });
 
-  final TfArg<IotProvisioningTemplatePreProvisioningHookPayloadVersion>?
-  payloadVersion;
+  final TfArg<IotProvisioningTemplatePayloadVersion>? payloadVersion;
 
   final TfArg<String> targetArn;
 
@@ -38,13 +37,10 @@ final class IotProvisioningTemplatePreProvisioningHook {
 }
 
 /// `payload_version` — derived from the provider schema description.
-enum IotProvisioningTemplatePreProvisioningHookPayloadVersion
-    implements TerraformEnum {
+enum IotProvisioningTemplatePayloadVersion implements TerraformEnum {
   v2020x04x01('2020-04-01');
 
-  const IotProvisioningTemplatePreProvisioningHookPayloadVersion(
-    this.terraformValue,
-  );
+  const IotProvisioningTemplatePayloadVersion(this.terraformValue);
   @override
   final String terraformValue;
 }

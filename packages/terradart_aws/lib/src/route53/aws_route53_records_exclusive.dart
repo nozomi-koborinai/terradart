@@ -29,7 +29,7 @@ final class Route53RecordsExclusiveResourceRecordSet {
     this.resourceRecords,
   });
 
-  final TfArg<Route53RecordsExclusiveResourceRecordSetFailover>? failover;
+  final TfArg<Route53RecordsExclusiveFailover>? failover;
 
   final TfArg<String>? healthCheckId;
 
@@ -37,7 +37,7 @@ final class Route53RecordsExclusiveResourceRecordSet {
 
   final TfArg<String> name;
 
-  final TfArg<Route53RecordsExclusiveResourceRecordSetRegion>? region;
+  final TfArg<Route53RecordsExclusiveRegion>? region;
 
   final TfArg<String>? setIdentifier;
 
@@ -45,22 +45,19 @@ final class Route53RecordsExclusiveResourceRecordSet {
 
   final TfArg<num>? ttl;
 
-  final TfArg<Route53RecordsExclusiveResourceRecordSetType>? type;
+  final TfArg<Route53RecordsExclusiveType>? type;
 
   final TfArg<num>? weight;
 
-  final List<Route53RecordsExclusiveResourceRecordSetAliasTarget>? aliasTarget;
+  final List<Route53RecordsExclusiveAliasTarget>? aliasTarget;
 
-  final List<Route53RecordsExclusiveResourceRecordSetCidrRoutingConfig>?
-  cidrRoutingConfig;
+  final List<Route53RecordsExclusiveCidrRoutingConfig>? cidrRoutingConfig;
 
-  final List<Route53RecordsExclusiveResourceRecordSetGeolocation>? geolocation;
+  final List<Route53RecordsExclusiveGeolocation>? geolocation;
 
-  final List<Route53RecordsExclusiveResourceRecordSetGeoproximityLocation>?
-  geoproximityLocation;
+  final List<Route53RecordsExclusiveGeoproximityLocation>? geoproximityLocation;
 
-  final List<Route53RecordsExclusiveResourceRecordSetResourceRecords>?
-  resourceRecords;
+  final List<Route53RecordsExclusiveResourceRecords>? resourceRecords;
 
   Map<String, Object?> encode() => {
     'failover': ?failover?.toTfJson(),
@@ -89,17 +86,17 @@ final class Route53RecordsExclusiveResourceRecordSet {
 }
 
 /// `failover` — derived from the provider schema description.
-enum Route53RecordsExclusiveResourceRecordSetFailover implements TerraformEnum {
+enum Route53RecordsExclusiveFailover implements TerraformEnum {
   primary('PRIMARY'),
   secondary('SECONDARY');
 
-  const Route53RecordsExclusiveResourceRecordSetFailover(this.terraformValue);
+  const Route53RecordsExclusiveFailover(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `region` — derived from the provider schema description.
-enum Route53RecordsExclusiveResourceRecordSetRegion implements TerraformEnum {
+enum Route53RecordsExclusiveRegion implements TerraformEnum {
   usEast1('us-east-1'),
   usEast2('us-east-2'),
   usWest1('us-west-1'),
@@ -140,13 +137,13 @@ enum Route53RecordsExclusiveResourceRecordSetRegion implements TerraformEnum {
   apSoutheast6('ap-southeast-6'),
   euscDeEast1('eusc-de-east-1');
 
-  const Route53RecordsExclusiveResourceRecordSetRegion(this.terraformValue);
+  const Route53RecordsExclusiveRegion(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `type` — derived from the provider schema description.
-enum Route53RecordsExclusiveResourceRecordSetType implements TerraformEnum {
+enum Route53RecordsExclusiveType implements TerraformEnum {
   soa('SOA'),
   a('A'),
   txt('TXT'),
@@ -165,7 +162,7 @@ enum Route53RecordsExclusiveResourceRecordSetType implements TerraformEnum {
   svcb('SVCB'),
   https('HTTPS');
 
-  const Route53RecordsExclusiveResourceRecordSetType(this.terraformValue);
+  const Route53RecordsExclusiveType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -173,8 +170,8 @@ enum Route53RecordsExclusiveResourceRecordSetType implements TerraformEnum {
 /// Typed helper for the `resource_record_set.alias_target` block of
 /// `aws_route53_records_exclusive` (derived from provider schema).
 @immutable
-final class Route53RecordsExclusiveResourceRecordSetAliasTarget {
-  const Route53RecordsExclusiveResourceRecordSetAliasTarget({
+final class Route53RecordsExclusiveAliasTarget {
+  const Route53RecordsExclusiveAliasTarget({
     required this.dnsName,
     required this.evaluateTargetHealth,
     required this.hostedZoneId,
@@ -196,8 +193,8 @@ final class Route53RecordsExclusiveResourceRecordSetAliasTarget {
 /// Typed helper for the `resource_record_set.cidr_routing_config` block of
 /// `aws_route53_records_exclusive` (derived from provider schema).
 @immutable
-final class Route53RecordsExclusiveResourceRecordSetCidrRoutingConfig {
-  const Route53RecordsExclusiveResourceRecordSetCidrRoutingConfig({
+final class Route53RecordsExclusiveCidrRoutingConfig {
+  const Route53RecordsExclusiveCidrRoutingConfig({
     required this.collectionId,
     required this.locationName,
   });
@@ -215,8 +212,8 @@ final class Route53RecordsExclusiveResourceRecordSetCidrRoutingConfig {
 /// Typed helper for the `resource_record_set.geolocation` block of
 /// `aws_route53_records_exclusive` (derived from provider schema).
 @immutable
-final class Route53RecordsExclusiveResourceRecordSetGeolocation {
-  const Route53RecordsExclusiveResourceRecordSetGeolocation({
+final class Route53RecordsExclusiveGeolocation {
+  const Route53RecordsExclusiveGeolocation({
     this.continentCode,
     this.countryCode,
     this.subdivisionCode,
@@ -238,8 +235,8 @@ final class Route53RecordsExclusiveResourceRecordSetGeolocation {
 /// Typed helper for the `resource_record_set.geoproximity_location` block of
 /// `aws_route53_records_exclusive` (derived from provider schema).
 @immutable
-final class Route53RecordsExclusiveResourceRecordSetGeoproximityLocation {
-  const Route53RecordsExclusiveResourceRecordSetGeoproximityLocation({
+final class Route53RecordsExclusiveGeoproximityLocation {
+  const Route53RecordsExclusiveGeoproximityLocation({
     this.awsRegion,
     this.bias,
     this.localZoneGroup,
@@ -252,10 +249,7 @@ final class Route53RecordsExclusiveResourceRecordSetGeoproximityLocation {
 
   final TfArg<String>? localZoneGroup;
 
-  final List<
-    Route53RecordsExclusiveResourceRecordSetGeoproximityLocationCoordinates
-  >?
-  coordinates;
+  final List<Route53RecordsExclusiveCoordinates>? coordinates;
 
   Map<String, Object?> encode() => {
     'aws_region': ?awsRegion?.toTfJson(),
@@ -269,8 +263,8 @@ final class Route53RecordsExclusiveResourceRecordSetGeoproximityLocation {
 /// Typed helper for the `resource_record_set.geoproximity_location.coordinates` block of
 /// `aws_route53_records_exclusive` (derived from provider schema).
 @immutable
-final class Route53RecordsExclusiveResourceRecordSetGeoproximityLocationCoordinates {
-  const Route53RecordsExclusiveResourceRecordSetGeoproximityLocationCoordinates({
+final class Route53RecordsExclusiveCoordinates {
+  const Route53RecordsExclusiveCoordinates({
     required this.latitude,
     required this.longitude,
   });
@@ -288,10 +282,8 @@ final class Route53RecordsExclusiveResourceRecordSetGeoproximityLocationCoordina
 /// Typed helper for the `resource_record_set.resource_records` block of
 /// `aws_route53_records_exclusive` (derived from provider schema).
 @immutable
-final class Route53RecordsExclusiveResourceRecordSetResourceRecords {
-  const Route53RecordsExclusiveResourceRecordSetResourceRecords({
-    required this.value,
-  });
+final class Route53RecordsExclusiveResourceRecords {
+  const Route53RecordsExclusiveResourceRecords({required this.value});
 
   final TfArg<String> value;
 

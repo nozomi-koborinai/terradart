@@ -28,7 +28,7 @@ enum UserAgentBlockingRuleMode implements TerraformEnum {
 final class UserAgentBlockingRuleConfiguration {
   const UserAgentBlockingRuleConfiguration({this.target, this.value});
 
-  final TfArg<UserAgentBlockingRuleConfigurationTarget>? target;
+  final TfArg<UserAgentBlockingRuleTarget>? target;
 
   final TfArg<String>? value;
 
@@ -39,10 +39,10 @@ final class UserAgentBlockingRuleConfiguration {
 }
 
 /// `target` — derived from the provider schema description.
-enum UserAgentBlockingRuleConfigurationTarget implements TerraformEnum {
+enum UserAgentBlockingRuleTarget implements TerraformEnum {
   ua('ua');
 
-  const UserAgentBlockingRuleConfigurationTarget(this.terraformValue);
+  const UserAgentBlockingRuleTarget(this.terraformValue);
   @override
   final String terraformValue;
 }

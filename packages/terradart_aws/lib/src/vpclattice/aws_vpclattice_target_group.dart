@@ -33,20 +33,20 @@ final class VpclatticeTargetGroupConfig {
     this.healthCheck,
   });
 
-  final TfArg<VpclatticeTargetGroupConfigIpAddressType>? ipAddressType;
+  final TfArg<VpclatticeTargetGroupIpAddressType>? ipAddressType;
 
-  final TfArg<VpclatticeTargetGroupConfigLambdaEventStructureVersion>?
+  final TfArg<VpclatticeTargetGroupLambdaEventStructureVersion>?
   lambdaEventStructureVersion;
 
   final TfArg<num>? port;
 
-  final TfArg<VpclatticeTargetGroupConfigProtocol>? protocol;
+  final TfArg<VpclatticeTargetGroupProtocol>? protocol;
 
-  final TfArg<VpclatticeTargetGroupConfigProtocolVersion>? protocolVersion;
+  final TfArg<VpclatticeTargetGroupProtocolVersion>? protocolVersion;
 
   final TfArg<String>? vpcIdentifier;
 
-  final VpclatticeTargetGroupConfigHealthCheck? healthCheck;
+  final VpclatticeTargetGroupHealthCheck? healthCheck;
 
   Map<String, Object?> encode() => {
     'ip_address_type': ?ipAddressType?.toTfJson(),
@@ -60,46 +60,43 @@ final class VpclatticeTargetGroupConfig {
 }
 
 /// `ip_address_type` — derived from the provider schema description.
-enum VpclatticeTargetGroupConfigIpAddressType implements TerraformEnum {
+enum VpclatticeTargetGroupIpAddressType implements TerraformEnum {
   ipv4('IPV4'),
   ipv6('IPV6');
 
-  const VpclatticeTargetGroupConfigIpAddressType(this.terraformValue);
+  const VpclatticeTargetGroupIpAddressType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `lambda_event_structure_version` — derived from the provider schema description.
-enum VpclatticeTargetGroupConfigLambdaEventStructureVersion
-    implements TerraformEnum {
+enum VpclatticeTargetGroupLambdaEventStructureVersion implements TerraformEnum {
   v1('V1'),
   v2('V2');
 
-  const VpclatticeTargetGroupConfigLambdaEventStructureVersion(
-    this.terraformValue,
-  );
+  const VpclatticeTargetGroupLambdaEventStructureVersion(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `protocol` — derived from the provider schema description.
-enum VpclatticeTargetGroupConfigProtocol implements TerraformEnum {
+enum VpclatticeTargetGroupProtocol implements TerraformEnum {
   http('HTTP'),
   https('HTTPS'),
   tcp('TCP');
 
-  const VpclatticeTargetGroupConfigProtocol(this.terraformValue);
+  const VpclatticeTargetGroupProtocol(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `protocol_version` — derived from the provider schema description.
-enum VpclatticeTargetGroupConfigProtocolVersion implements TerraformEnum {
+enum VpclatticeTargetGroupProtocolVersion implements TerraformEnum {
   http1('HTTP1'),
   http2('HTTP2'),
   grpc('GRPC');
 
-  const VpclatticeTargetGroupConfigProtocolVersion(this.terraformValue);
+  const VpclatticeTargetGroupProtocolVersion(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -107,8 +104,8 @@ enum VpclatticeTargetGroupConfigProtocolVersion implements TerraformEnum {
 /// Typed helper for the `config.health_check` block of
 /// `aws_vpclattice_target_group` (derived from provider schema).
 @immutable
-final class VpclatticeTargetGroupConfigHealthCheck {
-  const VpclatticeTargetGroupConfigHealthCheck({
+final class VpclatticeTargetGroupHealthCheck {
+  const VpclatticeTargetGroupHealthCheck({
     this.enabled,
     this.healthCheckIntervalSeconds,
     this.healthCheckTimeoutSeconds,
@@ -133,14 +130,13 @@ final class VpclatticeTargetGroupConfigHealthCheck {
 
   final TfArg<num>? port;
 
-  final TfArg<VpclatticeTargetGroupConfigHealthCheckProtocol>? protocol;
+  final TfArg<VpclatticeTargetGroupProtocol>? protocol;
 
-  final TfArg<VpclatticeTargetGroupConfigHealthCheckProtocolVersion>?
-  protocolVersion;
+  final TfArg<VpclatticeTargetGroupHealthCheckProtocolVersion>? protocolVersion;
 
   final TfArg<num>? unhealthyThresholdCount;
 
-  final VpclatticeTargetGroupConfigHealthCheckMatcher? matcher;
+  final VpclatticeTargetGroupMatcher? matcher;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
@@ -156,26 +152,12 @@ final class VpclatticeTargetGroupConfigHealthCheck {
   };
 }
 
-/// `protocol` — derived from the provider schema description.
-enum VpclatticeTargetGroupConfigHealthCheckProtocol implements TerraformEnum {
-  http('HTTP'),
-  https('HTTPS'),
-  tcp('TCP');
-
-  const VpclatticeTargetGroupConfigHealthCheckProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
 /// `protocol_version` — derived from the provider schema description.
-enum VpclatticeTargetGroupConfigHealthCheckProtocolVersion
-    implements TerraformEnum {
+enum VpclatticeTargetGroupHealthCheckProtocolVersion implements TerraformEnum {
   http1('HTTP1'),
   http2('HTTP2');
 
-  const VpclatticeTargetGroupConfigHealthCheckProtocolVersion(
-    this.terraformValue,
-  );
+  const VpclatticeTargetGroupHealthCheckProtocolVersion(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -183,8 +165,8 @@ enum VpclatticeTargetGroupConfigHealthCheckProtocolVersion
 /// Typed helper for the `config.health_check.matcher` block of
 /// `aws_vpclattice_target_group` (derived from provider schema).
 @immutable
-final class VpclatticeTargetGroupConfigHealthCheckMatcher {
-  const VpclatticeTargetGroupConfigHealthCheckMatcher({this.value});
+final class VpclatticeTargetGroupMatcher {
+  const VpclatticeTargetGroupMatcher({this.value});
 
   final TfArg<String>? value;
 

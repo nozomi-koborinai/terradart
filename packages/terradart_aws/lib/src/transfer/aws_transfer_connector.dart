@@ -22,23 +22,21 @@ final class TransferConnectorAs2Config {
     required this.signingAlgorithm,
   });
 
-  final TfArg<TransferConnectorAs2ConfigCompression> compression;
+  final TfArg<TransferConnectorCompression> compression;
 
-  final TfArg<TransferConnectorAs2ConfigEncryptionAlgorithm>
-  encryptionAlgorithm;
+  final TfArg<TransferConnectorEncryptionAlgorithm> encryptionAlgorithm;
 
   final TfArg<String> localProfileId;
 
-  final TfArg<TransferConnectorAs2ConfigMdnResponse> mdnResponse;
+  final TfArg<TransferConnectorMdnResponse> mdnResponse;
 
-  final TfArg<TransferConnectorAs2ConfigMdnSigningAlgorithm>?
-  mdnSigningAlgorithm;
+  final TfArg<TransferConnectorMdnSigningAlgorithm>? mdnSigningAlgorithm;
 
   final TfArg<String>? messageSubject;
 
   final TfArg<String> partnerProfileId;
 
-  final TfArg<TransferConnectorAs2ConfigSigningAlgorithm> signingAlgorithm;
+  final TfArg<TransferConnectorSigningAlgorithm> signingAlgorithm;
 
   Map<String, Object?> encode() => {
     'compression': compression.toTfJson(),
@@ -53,41 +51,41 @@ final class TransferConnectorAs2Config {
 }
 
 /// `compression` — derived from the provider schema description.
-enum TransferConnectorAs2ConfigCompression implements TerraformEnum {
+enum TransferConnectorCompression implements TerraformEnum {
   zlib('ZLIB'),
   disabled('DISABLED');
 
-  const TransferConnectorAs2ConfigCompression(this.terraformValue);
+  const TransferConnectorCompression(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `encryption_algorithm` — derived from the provider schema description.
-enum TransferConnectorAs2ConfigEncryptionAlgorithm implements TerraformEnum {
+enum TransferConnectorEncryptionAlgorithm implements TerraformEnum {
   aes128Cbc('AES128_CBC'),
   aes192Cbc('AES192_CBC'),
   aes256Cbc('AES256_CBC'),
   desEde3Cbc('DES_EDE3_CBC'),
   none('NONE');
 
-  const TransferConnectorAs2ConfigEncryptionAlgorithm(this.terraformValue);
+  const TransferConnectorEncryptionAlgorithm(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `mdn_response` — derived from the provider schema description.
-enum TransferConnectorAs2ConfigMdnResponse implements TerraformEnum {
+enum TransferConnectorMdnResponse implements TerraformEnum {
   sync('SYNC'),
   none('NONE'),
   async('ASYNC');
 
-  const TransferConnectorAs2ConfigMdnResponse(this.terraformValue);
+  const TransferConnectorMdnResponse(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `mdn_signing_algorithm` — derived from the provider schema description.
-enum TransferConnectorAs2ConfigMdnSigningAlgorithm implements TerraformEnum {
+enum TransferConnectorMdnSigningAlgorithm implements TerraformEnum {
   sha256('SHA256'),
   sha384('SHA384'),
   sha512('SHA512'),
@@ -95,20 +93,20 @@ enum TransferConnectorAs2ConfigMdnSigningAlgorithm implements TerraformEnum {
   none('NONE'),
   defaultCase('DEFAULT');
 
-  const TransferConnectorAs2ConfigMdnSigningAlgorithm(this.terraformValue);
+  const TransferConnectorMdnSigningAlgorithm(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `signing_algorithm` — derived from the provider schema description.
-enum TransferConnectorAs2ConfigSigningAlgorithm implements TerraformEnum {
+enum TransferConnectorSigningAlgorithm implements TerraformEnum {
   sha256('SHA256'),
   sha384('SHA384'),
   sha512('SHA512'),
   sha1('SHA1'),
   none('NONE');
 
-  const TransferConnectorAs2ConfigSigningAlgorithm(this.terraformValue);
+  const TransferConnectorSigningAlgorithm(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -119,7 +117,7 @@ enum TransferConnectorAs2ConfigSigningAlgorithm implements TerraformEnum {
 final class TransferConnectorEgressConfig {
   const TransferConnectorEgressConfig({this.vpcLattice});
 
-  final TransferConnectorEgressConfigVpcLattice? vpcLattice;
+  final TransferConnectorVpcLattice? vpcLattice;
 
   Map<String, Object?> encode() => {'vpc_lattice': ?vpcLattice?.encode()};
 }
@@ -127,8 +125,8 @@ final class TransferConnectorEgressConfig {
 /// Typed helper for the `egress_config.vpc_lattice` block of
 /// `aws_transfer_connector` (derived from provider schema).
 @immutable
-final class TransferConnectorEgressConfigVpcLattice {
-  const TransferConnectorEgressConfigVpcLattice({
+final class TransferConnectorVpcLattice {
+  const TransferConnectorVpcLattice({
     this.portNumber,
     required this.resourceConfigurationArn,
   });

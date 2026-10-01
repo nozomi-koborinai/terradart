@@ -37,15 +37,14 @@ final class R2BucketLifecycleRules {
 
   final TfArg<String> id;
 
-  final R2BucketLifecycleRulesAbortMultipartUploadsTransition?
+  final R2BucketLifecycleAbortMultipartUploadsTransition?
   abortMultipartUploadsTransition;
 
-  final R2BucketLifecycleRulesConditions conditions;
+  final R2BucketLifecycleConditions conditions;
 
-  final R2BucketLifecycleRulesDeleteObjectsTransition? deleteObjectsTransition;
+  final R2BucketLifecycleDeleteObjectsTransition? deleteObjectsTransition;
 
-  final List<R2BucketLifecycleRulesStorageClassTransitions>?
-  storageClassTransitions;
+  final List<R2BucketLifecycleStorageClassTransitions>? storageClassTransitions;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
@@ -64,11 +63,10 @@ final class R2BucketLifecycleRules {
 /// Typed helper for the `rules.abort_multipart_uploads_transition` block of
 /// `cloudflare_r2_bucket_lifecycle` (derived from provider schema).
 @immutable
-final class R2BucketLifecycleRulesAbortMultipartUploadsTransition {
-  const R2BucketLifecycleRulesAbortMultipartUploadsTransition({this.condition});
+final class R2BucketLifecycleAbortMultipartUploadsTransition {
+  const R2BucketLifecycleAbortMultipartUploadsTransition({this.condition});
 
-  final R2BucketLifecycleRulesAbortMultipartUploadsTransitionCondition?
-  condition;
+  final R2BucketLifecycleAbortMultipartUploadsTransitionCondition? condition;
 
   Map<String, Object?> encode() => {'condition': ?condition?.encode()};
 }
@@ -76,18 +74,15 @@ final class R2BucketLifecycleRulesAbortMultipartUploadsTransition {
 /// Typed helper for the `rules.abort_multipart_uploads_transition.condition` block of
 /// `cloudflare_r2_bucket_lifecycle` (derived from provider schema).
 @immutable
-final class R2BucketLifecycleRulesAbortMultipartUploadsTransitionCondition {
-  const R2BucketLifecycleRulesAbortMultipartUploadsTransitionCondition({
+final class R2BucketLifecycleAbortMultipartUploadsTransitionCondition {
+  const R2BucketLifecycleAbortMultipartUploadsTransitionCondition({
     required this.maxAge,
     required this.type,
   });
 
   final TfArg<num> maxAge;
 
-  final TfArg<
-    R2BucketLifecycleRulesAbortMultipartUploadsTransitionConditionType
-  >
-  type;
+  final TfArg<R2BucketLifecycleAbortMultipartUploadsTransitionType> type;
 
   Map<String, Object?> encode() => {
     'max_age': maxAge.toTfJson(),
@@ -96,11 +91,11 @@ final class R2BucketLifecycleRulesAbortMultipartUploadsTransitionCondition {
 }
 
 /// `type` — derived from the provider schema description.
-enum R2BucketLifecycleRulesAbortMultipartUploadsTransitionConditionType
+enum R2BucketLifecycleAbortMultipartUploadsTransitionType
     implements TerraformEnum {
   age('Age');
 
-  const R2BucketLifecycleRulesAbortMultipartUploadsTransitionConditionType(
+  const R2BucketLifecycleAbortMultipartUploadsTransitionType(
     this.terraformValue,
   );
   @override
@@ -110,8 +105,8 @@ enum R2BucketLifecycleRulesAbortMultipartUploadsTransitionConditionType
 /// Typed helper for the `rules.conditions` block of
 /// `cloudflare_r2_bucket_lifecycle` (derived from provider schema).
 @immutable
-final class R2BucketLifecycleRulesConditions {
-  const R2BucketLifecycleRulesConditions({required this.prefix});
+final class R2BucketLifecycleConditions {
+  const R2BucketLifecycleConditions({required this.prefix});
 
   final TfArg<String> prefix;
 
@@ -121,19 +116,20 @@ final class R2BucketLifecycleRulesConditions {
 /// Typed helper for the `rules.delete_objects_transition` block of
 /// `cloudflare_r2_bucket_lifecycle` (derived from provider schema).
 @immutable
-final class R2BucketLifecycleRulesDeleteObjectsTransition {
-  const R2BucketLifecycleRulesDeleteObjectsTransition({this.condition});
+final class R2BucketLifecycleDeleteObjectsTransition {
+  const R2BucketLifecycleDeleteObjectsTransition({this.condition});
 
-  final R2BucketLifecycleRulesDeleteObjectsTransitionCondition? condition;
+  final R2BucketLifecycleDeleteObjectsTransitionCondition? condition;
 
   Map<String, Object?> encode() => {'condition': ?condition?.encode()};
 }
 
 /// Typed helper for the `rules.delete_objects_transition.condition` block of
 /// `cloudflare_r2_bucket_lifecycle` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class R2BucketLifecycleRulesDeleteObjectsTransitionCondition {
-  const R2BucketLifecycleRulesDeleteObjectsTransitionCondition({
+final class R2BucketLifecycleDeleteObjectsTransitionCondition {
+  const R2BucketLifecycleDeleteObjectsTransitionCondition({
     this.date,
     this.maxAge,
     required this.type,
@@ -143,7 +139,7 @@ final class R2BucketLifecycleRulesDeleteObjectsTransitionCondition {
 
   final TfArg<num>? maxAge;
 
-  final TfArg<R2BucketLifecycleRulesDeleteObjectsTransitionConditionType> type;
+  final TfArg<R2BucketLifecycleDeleteObjectsTransitionType> type;
 
   Map<String, Object?> encode() => {
     'date': ?date?.toTfJson(),
@@ -153,14 +149,11 @@ final class R2BucketLifecycleRulesDeleteObjectsTransitionCondition {
 }
 
 /// `type` — derived from the provider schema description.
-enum R2BucketLifecycleRulesDeleteObjectsTransitionConditionType
-    implements TerraformEnum {
+enum R2BucketLifecycleDeleteObjectsTransitionType implements TerraformEnum {
   age('Age'),
   date('Date');
 
-  const R2BucketLifecycleRulesDeleteObjectsTransitionConditionType(
-    this.terraformValue,
-  );
+  const R2BucketLifecycleDeleteObjectsTransitionType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -168,16 +161,15 @@ enum R2BucketLifecycleRulesDeleteObjectsTransitionConditionType
 /// Typed helper for the `rules.storage_class_transitions` block of
 /// `cloudflare_r2_bucket_lifecycle` (derived from provider schema).
 @immutable
-final class R2BucketLifecycleRulesStorageClassTransitions {
-  const R2BucketLifecycleRulesStorageClassTransitions({
+final class R2BucketLifecycleStorageClassTransitions {
+  const R2BucketLifecycleStorageClassTransitions({
     required this.storageClass,
     required this.condition,
   });
 
-  final TfArg<R2BucketLifecycleRulesStorageClassTransitionsStorageClass>
-  storageClass;
+  final TfArg<R2BucketLifecycleStorageClass> storageClass;
 
-  final R2BucketLifecycleRulesStorageClassTransitionsCondition condition;
+  final R2BucketLifecycleDeleteObjectsTransitionCondition condition;
 
   Map<String, Object?> encode() => {
     'storage_class': storageClass.toTfJson(),
@@ -186,49 +178,10 @@ final class R2BucketLifecycleRulesStorageClassTransitions {
 }
 
 /// `storage_class` — derived from the provider schema description.
-enum R2BucketLifecycleRulesStorageClassTransitionsStorageClass
-    implements TerraformEnum {
+enum R2BucketLifecycleStorageClass implements TerraformEnum {
   infrequentaccess('InfrequentAccess');
 
-  const R2BucketLifecycleRulesStorageClassTransitionsStorageClass(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `rules.storage_class_transitions.condition` block of
-/// `cloudflare_r2_bucket_lifecycle` (derived from provider schema).
-@immutable
-final class R2BucketLifecycleRulesStorageClassTransitionsCondition {
-  const R2BucketLifecycleRulesStorageClassTransitionsCondition({
-    this.date,
-    this.maxAge,
-    required this.type,
-  });
-
-  final TfArg<String>? date;
-
-  final TfArg<num>? maxAge;
-
-  final TfArg<R2BucketLifecycleRulesStorageClassTransitionsConditionType> type;
-
-  Map<String, Object?> encode() => {
-    'date': ?date?.toTfJson(),
-    'max_age': ?maxAge?.toTfJson(),
-    'type': type.toTfJson(),
-  };
-}
-
-/// `type` — derived from the provider schema description.
-enum R2BucketLifecycleRulesStorageClassTransitionsConditionType
-    implements TerraformEnum {
-  age('Age'),
-  date('Date');
-
-  const R2BucketLifecycleRulesStorageClassTransitionsConditionType(
-    this.terraformValue,
-  );
+  const R2BucketLifecycleStorageClass(this.terraformValue);
   @override
   final String terraformValue;
 }

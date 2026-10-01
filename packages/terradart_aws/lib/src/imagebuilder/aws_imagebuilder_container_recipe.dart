@@ -112,7 +112,7 @@ final class ImagebuilderContainerRecipeComponent {
 
   final TfArg<String> componentArn;
 
-  final List<ImagebuilderContainerRecipeComponentParameter>? parameter;
+  final List<ImagebuilderContainerRecipeParameter>? parameter;
 
   Map<String, Object?> encode() => {
     'component_arn': componentArn.toTfJson(),
@@ -124,8 +124,8 @@ final class ImagebuilderContainerRecipeComponent {
 /// Typed helper for the `component.parameter` block of
 /// `aws_imagebuilder_container_recipe` (derived from provider schema).
 @immutable
-final class ImagebuilderContainerRecipeComponentParameter {
-  const ImagebuilderContainerRecipeComponentParameter({
+final class ImagebuilderContainerRecipeParameter {
+  const ImagebuilderContainerRecipeParameter({
     required this.name,
     required this.value,
   });
@@ -151,10 +151,7 @@ final class ImagebuilderContainerRecipeInstanceConfiguration {
 
   final TfArg<String>? image;
 
-  final List<
-    ImagebuilderContainerRecipeInstanceConfigurationBlockDeviceMapping
-  >?
-  blockDeviceMapping;
+  final List<ImagebuilderContainerRecipeBlockDeviceMapping>? blockDeviceMapping;
 
   Map<String, Object?> encode() => {
     'image': ?image?.toTfJson(),
@@ -166,8 +163,8 @@ final class ImagebuilderContainerRecipeInstanceConfiguration {
 /// Typed helper for the `instance_configuration.block_device_mapping` block of
 /// `aws_imagebuilder_container_recipe` (derived from provider schema).
 @immutable
-final class ImagebuilderContainerRecipeInstanceConfigurationBlockDeviceMapping {
-  const ImagebuilderContainerRecipeInstanceConfigurationBlockDeviceMapping({
+final class ImagebuilderContainerRecipeBlockDeviceMapping {
+  const ImagebuilderContainerRecipeBlockDeviceMapping({
     this.deviceName,
     this.noDevice,
     this.virtualName,
@@ -180,8 +177,7 @@ final class ImagebuilderContainerRecipeInstanceConfigurationBlockDeviceMapping {
 
   final TfArg<String>? virtualName;
 
-  final ImagebuilderContainerRecipeInstanceConfigurationBlockDeviceMappingEbs?
-  ebs;
+  final ImagebuilderContainerRecipeEbs? ebs;
 
   Map<String, Object?> encode() => {
     'device_name': ?deviceName?.toTfJson(),
@@ -194,8 +190,8 @@ final class ImagebuilderContainerRecipeInstanceConfigurationBlockDeviceMapping {
 /// Typed helper for the `instance_configuration.block_device_mapping.ebs` block of
 /// `aws_imagebuilder_container_recipe` (derived from provider schema).
 @immutable
-final class ImagebuilderContainerRecipeInstanceConfigurationBlockDeviceMappingEbs {
-  const ImagebuilderContainerRecipeInstanceConfigurationBlockDeviceMappingEbs({
+final class ImagebuilderContainerRecipeEbs {
+  const ImagebuilderContainerRecipeEbs({
     this.deleteOnTermination,
     this.encrypted,
     this.iops,
@@ -220,10 +216,7 @@ final class ImagebuilderContainerRecipeInstanceConfigurationBlockDeviceMappingEb
 
   final TfArg<num>? volumeSize;
 
-  final TfArg<
-    ImagebuilderContainerRecipeInstanceConfigurationBlockDeviceMappingEbsVolumeType
-  >?
-  volumeType;
+  final TfArg<ImagebuilderContainerRecipeVolumeType>? volumeType;
 
   Map<String, Object?> encode() => {
     'delete_on_termination': ?deleteOnTermination?.toTfJson(),
@@ -238,8 +231,7 @@ final class ImagebuilderContainerRecipeInstanceConfigurationBlockDeviceMappingEb
 }
 
 /// `volume_type` — derived from the provider schema description.
-enum ImagebuilderContainerRecipeInstanceConfigurationBlockDeviceMappingEbsVolumeType
-    implements TerraformEnum {
+enum ImagebuilderContainerRecipeVolumeType implements TerraformEnum {
   standard('standard'),
   io1('io1'),
   io2('io2'),
@@ -248,9 +240,7 @@ enum ImagebuilderContainerRecipeInstanceConfigurationBlockDeviceMappingEbsVolume
   sc1('sc1'),
   st1('st1');
 
-  const ImagebuilderContainerRecipeInstanceConfigurationBlockDeviceMappingEbsVolumeType(
-    this.terraformValue,
-  );
+  const ImagebuilderContainerRecipeVolumeType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -266,7 +256,7 @@ final class ImagebuilderContainerRecipeTargetRepository {
 
   final TfArg<String> repositoryName;
 
-  final TfArg<ImagebuilderContainerRecipeTargetRepositoryService> service;
+  final TfArg<ImagebuilderContainerRecipeService> service;
 
   Map<String, Object?> encode() => {
     'repository_name': repositoryName.toTfJson(),
@@ -275,11 +265,10 @@ final class ImagebuilderContainerRecipeTargetRepository {
 }
 
 /// `service` — derived from the provider schema description.
-enum ImagebuilderContainerRecipeTargetRepositoryService
-    implements TerraformEnum {
+enum ImagebuilderContainerRecipeService implements TerraformEnum {
   ecr('ECR');
 
-  const ImagebuilderContainerRecipeTargetRepositoryService(this.terraformValue);
+  const ImagebuilderContainerRecipeService(this.terraformValue);
   @override
   final String terraformValue;
 }

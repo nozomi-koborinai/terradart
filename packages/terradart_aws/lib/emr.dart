@@ -16,48 +16,42 @@ export 'src/emr/aws_emr_cluster.dart'
         EmrClusterConfigurationsChoice,
         EmrClusterConfigurationsJson,
         EmrClusterCoreInstanceFleet,
-        EmrClusterCoreInstanceFleetInstanceTypeConfigs,
-        EmrClusterCoreInstanceFleetInstanceTypeConfigsEbsConfig,
-        EmrClusterCoreInstanceFleetLaunchSpecifications,
-        EmrClusterCoreInstanceFleetLaunchSpecificationsOnDemandSpecification,
-        EmrClusterCoreInstanceFleetLaunchSpecificationsSpotSpecification,
         EmrClusterCoreInstanceGroup,
-        EmrClusterCoreInstanceGroupEbsConfig,
+        EmrClusterEbsConfig,
         EmrClusterEc2Attributes,
-        EmrClusterEc2AttributesSubnet,
-        EmrClusterEc2AttributesSubnetId,
-        EmrClusterEc2AttributesSubnetIds,
+        EmrClusterInstanceTypeConfigs,
+        EmrClusterInstanceTypeConfigsEbsConfig,
         EmrClusterKerberosAttributes,
+        EmrClusterLaunchSpecifications,
         EmrClusterListStepsStates,
         EmrClusterMasterInstanceFleet,
-        EmrClusterMasterInstanceFleetInstanceTypeConfigs,
-        EmrClusterMasterInstanceFleetInstanceTypeConfigsEbsConfig,
-        EmrClusterMasterInstanceFleetLaunchSpecifications,
-        EmrClusterMasterInstanceFleetLaunchSpecificationsOnDemandSpecification,
-        EmrClusterMasterInstanceFleetLaunchSpecificationsSpotSpecification,
         EmrClusterMasterInstanceGroup,
-        EmrClusterMasterInstanceGroupEbsConfig,
-        EmrClusterScaleDownBehavior;
+        EmrClusterOnDemandSpecification,
+        EmrClusterScaleDownBehavior,
+        EmrClusterSpotSpecification,
+        EmrClusterSubnet,
+        EmrClusterSubnetId,
+        EmrClusterSubnetIds;
 export 'src/emr/aws_emr_instance_fleet.dart'
     show
         AwsEmrInstanceFleet,
+        EmrInstanceFleetConfigurations,
+        EmrInstanceFleetEbsConfig,
         EmrInstanceFleetInstanceTypeConfigs,
-        EmrInstanceFleetInstanceTypeConfigsConfigurations,
-        EmrInstanceFleetInstanceTypeConfigsEbsConfig,
         EmrInstanceFleetLaunchSpecifications,
-        EmrInstanceFleetLaunchSpecificationsOnDemandSpecification,
-        EmrInstanceFleetLaunchSpecificationsOnDemandSpecificationAllocationStrategy,
-        EmrInstanceFleetLaunchSpecificationsSpotSpecification,
-        EmrInstanceFleetLaunchSpecificationsSpotSpecificationAllocationStrategy,
-        EmrInstanceFleetLaunchSpecificationsSpotSpecificationTimeoutAction;
+        EmrInstanceFleetOnDemandSpecification,
+        EmrInstanceFleetOnDemandSpecificationAllocationStrategy,
+        EmrInstanceFleetSpotSpecification,
+        EmrInstanceFleetSpotSpecificationAllocationStrategy,
+        EmrInstanceFleetTimeoutAction;
 export 'src/emr/aws_emr_instance_group.dart'
     show AwsEmrInstanceGroup, EmrInstanceGroupEbsConfig;
 export 'src/emr/aws_emr_managed_scaling_policy.dart'
     show
         AwsEmrManagedScalingPolicy,
         EmrManagedScalingPolicyComputeLimits,
-        EmrManagedScalingPolicyComputeLimitsUnitType,
-        EmrManagedScalingPolicyScalingStrategy;
+        EmrManagedScalingPolicyScalingStrategy,
+        EmrManagedScalingPolicyUnitType;
 export 'src/emr/aws_emr_security_configuration.dart'
     show
         AwsEmrSecurityConfiguration,

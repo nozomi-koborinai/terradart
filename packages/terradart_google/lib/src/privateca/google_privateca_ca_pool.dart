@@ -45,13 +45,13 @@ final class PrivatecaCaPoolIssuancePolicy {
 
   final TfArg<String>? maximumLifetime;
 
-  final PrivatecaCaPoolIssuancePolicyAllowedIssuanceModes? allowedIssuanceModes;
+  final PrivatecaCaPoolAllowedIssuanceModes? allowedIssuanceModes;
 
-  final List<PrivatecaCaPoolIssuancePolicyAllowedKeyTypes>? allowedKeyTypes;
+  final List<PrivatecaCaPoolAllowedKeyTypes>? allowedKeyTypes;
 
-  final PrivatecaCaPoolIssuancePolicyBaselineValues? baselineValues;
+  final PrivatecaCaPoolBaselineValues? baselineValues;
 
-  final PrivatecaCaPoolIssuancePolicyIdentityConstraints? identityConstraints;
+  final PrivatecaCaPoolIdentityConstraints? identityConstraints;
 
   Map<String, Object?> encode() => {
     'backdate_duration': ?backdateDuration?.toTfJson(),
@@ -67,8 +67,8 @@ final class PrivatecaCaPoolIssuancePolicy {
 /// Typed helper for the `issuance_policy.allowed_issuance_modes` block of
 /// `google_privateca_ca_pool` (derived from provider schema).
 @immutable
-final class PrivatecaCaPoolIssuancePolicyAllowedIssuanceModes {
-  const PrivatecaCaPoolIssuancePolicyAllowedIssuanceModes({
+final class PrivatecaCaPoolAllowedIssuanceModes {
+  const PrivatecaCaPoolAllowedIssuanceModes({
     required this.allowConfigBasedIssuance,
     required this.allowCsrBasedIssuance,
   });
@@ -86,16 +86,12 @@ final class PrivatecaCaPoolIssuancePolicyAllowedIssuanceModes {
 /// Typed helper for the `issuance_policy.allowed_key_types` block of
 /// `google_privateca_ca_pool` (derived from provider schema).
 @immutable
-final class PrivatecaCaPoolIssuancePolicyAllowedKeyTypes {
-  const PrivatecaCaPoolIssuancePolicyAllowedKeyTypes({
-    this.ellipticCurve,
-    this.rsa,
-  });
+final class PrivatecaCaPoolAllowedKeyTypes {
+  const PrivatecaCaPoolAllowedKeyTypes({this.ellipticCurve, this.rsa});
 
-  final PrivatecaCaPoolIssuancePolicyAllowedKeyTypesEllipticCurve?
-  ellipticCurve;
+  final PrivatecaCaPoolEllipticCurve? ellipticCurve;
 
-  final PrivatecaCaPoolIssuancePolicyAllowedKeyTypesRsa? rsa;
+  final PrivatecaCaPoolRsa? rsa;
 
   Map<String, Object?> encode() => {
     'elliptic_curve': ?ellipticCurve?.encode(),
@@ -106,15 +102,10 @@ final class PrivatecaCaPoolIssuancePolicyAllowedKeyTypes {
 /// Typed helper for the `issuance_policy.allowed_key_types.elliptic_curve` block of
 /// `google_privateca_ca_pool` (derived from provider schema).
 @immutable
-final class PrivatecaCaPoolIssuancePolicyAllowedKeyTypesEllipticCurve {
-  const PrivatecaCaPoolIssuancePolicyAllowedKeyTypesEllipticCurve({
-    required this.signatureAlgorithm,
-  });
+final class PrivatecaCaPoolEllipticCurve {
+  const PrivatecaCaPoolEllipticCurve({required this.signatureAlgorithm});
 
-  final TfArg<
-    PrivatecaCaPoolIssuancePolicyAllowedKeyTypesEllipticCurveSignatureAlgorithm
-  >
-  signatureAlgorithm;
+  final TfArg<PrivatecaCaPoolSignatureAlgorithm> signatureAlgorithm;
 
   Map<String, Object?> encode() => {
     'signature_algorithm': signatureAlgorithm.toTfJson(),
@@ -122,15 +113,12 @@ final class PrivatecaCaPoolIssuancePolicyAllowedKeyTypesEllipticCurve {
 }
 
 /// `signature_algorithm` — derived from the provider schema description.
-enum PrivatecaCaPoolIssuancePolicyAllowedKeyTypesEllipticCurveSignatureAlgorithm
-    implements TerraformEnum {
+enum PrivatecaCaPoolSignatureAlgorithm implements TerraformEnum {
   ecdsaP256('ECDSA_P256'),
   ecdsaP384('ECDSA_P384'),
   eddsa25519('EDDSA_25519');
 
-  const PrivatecaCaPoolIssuancePolicyAllowedKeyTypesEllipticCurveSignatureAlgorithm(
-    this.terraformValue,
-  );
+  const PrivatecaCaPoolSignatureAlgorithm(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -138,11 +126,8 @@ enum PrivatecaCaPoolIssuancePolicyAllowedKeyTypesEllipticCurveSignatureAlgorithm
 /// Typed helper for the `issuance_policy.allowed_key_types.rsa` block of
 /// `google_privateca_ca_pool` (derived from provider schema).
 @immutable
-final class PrivatecaCaPoolIssuancePolicyAllowedKeyTypesRsa {
-  const PrivatecaCaPoolIssuancePolicyAllowedKeyTypesRsa({
-    this.maxModulusSize,
-    this.minModulusSize,
-  });
+final class PrivatecaCaPoolRsa {
+  const PrivatecaCaPoolRsa({this.maxModulusSize, this.minModulusSize});
 
   final TfArg<String>? maxModulusSize;
 
@@ -157,8 +142,8 @@ final class PrivatecaCaPoolIssuancePolicyAllowedKeyTypesRsa {
 /// Typed helper for the `issuance_policy.baseline_values` block of
 /// `google_privateca_ca_pool` (derived from provider schema).
 @immutable
-final class PrivatecaCaPoolIssuancePolicyBaselineValues {
-  const PrivatecaCaPoolIssuancePolicyBaselineValues({
+final class PrivatecaCaPoolBaselineValues {
+  const PrivatecaCaPoolBaselineValues({
     this.aiaOcspServers,
     this.additionalExtensions,
     required this.caOptions,
@@ -169,17 +154,15 @@ final class PrivatecaCaPoolIssuancePolicyBaselineValues {
 
   final TfArg<List<String>>? aiaOcspServers;
 
-  final List<PrivatecaCaPoolIssuancePolicyBaselineValuesAdditionalExtensions>?
-  additionalExtensions;
+  final List<PrivatecaCaPoolAdditionalExtensions>? additionalExtensions;
 
-  final PrivatecaCaPoolIssuancePolicyBaselineValuesCaOptions caOptions;
+  final PrivatecaCaPoolCaOptions caOptions;
 
-  final PrivatecaCaPoolIssuancePolicyBaselineValuesKeyUsage keyUsage;
+  final PrivatecaCaPoolKeyUsage keyUsage;
 
-  final PrivatecaCaPoolIssuancePolicyBaselineValuesNameConstraints?
-  nameConstraints;
+  final PrivatecaCaPoolNameConstraints? nameConstraints;
 
-  final List<PrivatecaCaPoolIssuancePolicyBaselineValuesPolicyIds>? policyIds;
+  final List<PrivatecaCaPoolPolicyIds>? policyIds;
 
   Map<String, Object?> encode() => {
     'aia_ocsp_servers': ?aiaOcspServers?.toTfJson(),
@@ -198,8 +181,8 @@ final class PrivatecaCaPoolIssuancePolicyBaselineValues {
 /// Typed helper for the `issuance_policy.baseline_values.additional_extensions` block of
 /// `google_privateca_ca_pool` (derived from provider schema).
 @immutable
-final class PrivatecaCaPoolIssuancePolicyBaselineValuesAdditionalExtensions {
-  const PrivatecaCaPoolIssuancePolicyBaselineValuesAdditionalExtensions({
+final class PrivatecaCaPoolAdditionalExtensions {
+  const PrivatecaCaPoolAdditionalExtensions({
     required this.critical,
     required this.value,
     required this.objectId,
@@ -209,8 +192,7 @@ final class PrivatecaCaPoolIssuancePolicyBaselineValuesAdditionalExtensions {
 
   final TfArg<String> value;
 
-  final PrivatecaCaPoolIssuancePolicyBaselineValuesAdditionalExtensionsObjectId
-  objectId;
+  final PrivatecaCaPoolObjectId objectId;
 
   Map<String, Object?> encode() => {
     'critical': critical.toTfJson(),
@@ -222,10 +204,8 @@ final class PrivatecaCaPoolIssuancePolicyBaselineValuesAdditionalExtensions {
 /// Typed helper for the `issuance_policy.baseline_values.additional_extensions.object_id` block of
 /// `google_privateca_ca_pool` (derived from provider schema).
 @immutable
-final class PrivatecaCaPoolIssuancePolicyBaselineValuesAdditionalExtensionsObjectId {
-  const PrivatecaCaPoolIssuancePolicyBaselineValuesAdditionalExtensionsObjectId({
-    required this.objectIdPath,
-  });
+final class PrivatecaCaPoolObjectId {
+  const PrivatecaCaPoolObjectId({required this.objectIdPath});
 
   final TfArg<List<num>> objectIdPath;
 
@@ -235,8 +215,8 @@ final class PrivatecaCaPoolIssuancePolicyBaselineValuesAdditionalExtensionsObjec
 /// Typed helper for the `issuance_policy.baseline_values.ca_options` block of
 /// `google_privateca_ca_pool` (derived from provider schema).
 @immutable
-final class PrivatecaCaPoolIssuancePolicyBaselineValuesCaOptions {
-  const PrivatecaCaPoolIssuancePolicyBaselineValuesCaOptions({
+final class PrivatecaCaPoolCaOptions {
+  const PrivatecaCaPoolCaOptions({
     this.isCa,
     this.maxIssuerPathLength,
     this.nonCa,
@@ -262,23 +242,18 @@ final class PrivatecaCaPoolIssuancePolicyBaselineValuesCaOptions {
 /// Typed helper for the `issuance_policy.baseline_values.key_usage` block of
 /// `google_privateca_ca_pool` (derived from provider schema).
 @immutable
-final class PrivatecaCaPoolIssuancePolicyBaselineValuesKeyUsage {
-  const PrivatecaCaPoolIssuancePolicyBaselineValuesKeyUsage({
+final class PrivatecaCaPoolKeyUsage {
+  const PrivatecaCaPoolKeyUsage({
     required this.baseKeyUsage,
     required this.extendedKeyUsage,
     this.unknownExtendedKeyUsages,
   });
 
-  final PrivatecaCaPoolIssuancePolicyBaselineValuesKeyUsageBaseKeyUsage
-  baseKeyUsage;
+  final PrivatecaCaPoolBaseKeyUsage baseKeyUsage;
 
-  final PrivatecaCaPoolIssuancePolicyBaselineValuesKeyUsageExtendedKeyUsage
-  extendedKeyUsage;
+  final PrivatecaCaPoolExtendedKeyUsage extendedKeyUsage;
 
-  final List<
-    PrivatecaCaPoolIssuancePolicyBaselineValuesKeyUsageUnknownExtendedKeyUsages
-  >?
-  unknownExtendedKeyUsages;
+  final List<PrivatecaCaPoolUnknownExtendedKeyUsages>? unknownExtendedKeyUsages;
 
   Map<String, Object?> encode() => {
     'base_key_usage': baseKeyUsage.encode(),
@@ -293,8 +268,8 @@ final class PrivatecaCaPoolIssuancePolicyBaselineValuesKeyUsage {
 /// Typed helper for the `issuance_policy.baseline_values.key_usage.base_key_usage` block of
 /// `google_privateca_ca_pool` (derived from provider schema).
 @immutable
-final class PrivatecaCaPoolIssuancePolicyBaselineValuesKeyUsageBaseKeyUsage {
-  const PrivatecaCaPoolIssuancePolicyBaselineValuesKeyUsageBaseKeyUsage({
+final class PrivatecaCaPoolBaseKeyUsage {
+  const PrivatecaCaPoolBaseKeyUsage({
     this.certSign,
     this.contentCommitment,
     this.crlSign,
@@ -340,8 +315,8 @@ final class PrivatecaCaPoolIssuancePolicyBaselineValuesKeyUsageBaseKeyUsage {
 /// Typed helper for the `issuance_policy.baseline_values.key_usage.extended_key_usage` block of
 /// `google_privateca_ca_pool` (derived from provider schema).
 @immutable
-final class PrivatecaCaPoolIssuancePolicyBaselineValuesKeyUsageExtendedKeyUsage {
-  const PrivatecaCaPoolIssuancePolicyBaselineValuesKeyUsageExtendedKeyUsage({
+final class PrivatecaCaPoolExtendedKeyUsage {
+  const PrivatecaCaPoolExtendedKeyUsage({
     this.clientAuth,
     this.codeSigning,
     this.emailProtection,
@@ -375,10 +350,8 @@ final class PrivatecaCaPoolIssuancePolicyBaselineValuesKeyUsageExtendedKeyUsage 
 /// Typed helper for the `issuance_policy.baseline_values.key_usage.unknown_extended_key_usages` block of
 /// `google_privateca_ca_pool` (derived from provider schema).
 @immutable
-final class PrivatecaCaPoolIssuancePolicyBaselineValuesKeyUsageUnknownExtendedKeyUsages {
-  const PrivatecaCaPoolIssuancePolicyBaselineValuesKeyUsageUnknownExtendedKeyUsages({
-    required this.objectIdPath,
-  });
+final class PrivatecaCaPoolUnknownExtendedKeyUsages {
+  const PrivatecaCaPoolUnknownExtendedKeyUsages({required this.objectIdPath});
 
   final TfArg<List<num>> objectIdPath;
 
@@ -388,8 +361,8 @@ final class PrivatecaCaPoolIssuancePolicyBaselineValuesKeyUsageUnknownExtendedKe
 /// Typed helper for the `issuance_policy.baseline_values.name_constraints` block of
 /// `google_privateca_ca_pool` (derived from provider schema).
 @immutable
-final class PrivatecaCaPoolIssuancePolicyBaselineValuesNameConstraints {
-  const PrivatecaCaPoolIssuancePolicyBaselineValuesNameConstraints({
+final class PrivatecaCaPoolNameConstraints {
+  const PrivatecaCaPoolNameConstraints({
     required this.critical,
     this.excludedDnsNames,
     this.excludedEmailAddresses,
@@ -435,10 +408,8 @@ final class PrivatecaCaPoolIssuancePolicyBaselineValuesNameConstraints {
 /// Typed helper for the `issuance_policy.baseline_values.policy_ids` block of
 /// `google_privateca_ca_pool` (derived from provider schema).
 @immutable
-final class PrivatecaCaPoolIssuancePolicyBaselineValuesPolicyIds {
-  const PrivatecaCaPoolIssuancePolicyBaselineValuesPolicyIds({
-    required this.objectIdPath,
-  });
+final class PrivatecaCaPoolPolicyIds {
+  const PrivatecaCaPoolPolicyIds({required this.objectIdPath});
 
   final TfArg<List<num>> objectIdPath;
 
@@ -448,8 +419,8 @@ final class PrivatecaCaPoolIssuancePolicyBaselineValuesPolicyIds {
 /// Typed helper for the `issuance_policy.identity_constraints` block of
 /// `google_privateca_ca_pool` (derived from provider schema).
 @immutable
-final class PrivatecaCaPoolIssuancePolicyIdentityConstraints {
-  const PrivatecaCaPoolIssuancePolicyIdentityConstraints({
+final class PrivatecaCaPoolIdentityConstraints {
+  const PrivatecaCaPoolIdentityConstraints({
     required this.allowSubjectAltNamesPassthrough,
     required this.allowSubjectPassthrough,
     this.celExpression,
@@ -459,8 +430,7 @@ final class PrivatecaCaPoolIssuancePolicyIdentityConstraints {
 
   final TfArg<bool> allowSubjectPassthrough;
 
-  final PrivatecaCaPoolIssuancePolicyIdentityConstraintsCelExpression?
-  celExpression;
+  final PrivatecaCaPoolCelExpression? celExpression;
 
   Map<String, Object?> encode() => {
     'allow_subject_alt_names_passthrough': allowSubjectAltNamesPassthrough
@@ -473,8 +443,8 @@ final class PrivatecaCaPoolIssuancePolicyIdentityConstraints {
 /// Typed helper for the `issuance_policy.identity_constraints.cel_expression` block of
 /// `google_privateca_ca_pool` (derived from provider schema).
 @immutable
-final class PrivatecaCaPoolIssuancePolicyIdentityConstraintsCelExpression {
-  const PrivatecaCaPoolIssuancePolicyIdentityConstraintsCelExpression({
+final class PrivatecaCaPoolCelExpression {
+  const PrivatecaCaPoolCelExpression({
     this.description,
     required this.expression,
     this.location,
@@ -507,7 +477,7 @@ final class PrivatecaCaPoolPublishingOptions {
     required this.publishCrl,
   });
 
-  final TfArg<PrivatecaCaPoolPublishingOptionsEncodingFormat>? encodingFormat;
+  final TfArg<PrivatecaCaPoolEncodingFormat>? encodingFormat;
 
   final TfArg<bool> publishCaCert;
 
@@ -521,11 +491,11 @@ final class PrivatecaCaPoolPublishingOptions {
 }
 
 /// `encoding_format` — derived from the provider schema description.
-enum PrivatecaCaPoolPublishingOptionsEncodingFormat implements TerraformEnum {
+enum PrivatecaCaPoolEncodingFormat implements TerraformEnum {
   pem('PEM'),
   der('DER');
 
-  const PrivatecaCaPoolPublishingOptionsEncodingFormat(this.terraformValue);
+  const PrivatecaCaPoolEncodingFormat(this.terraformValue);
   @override
   final String terraformValue;
 }

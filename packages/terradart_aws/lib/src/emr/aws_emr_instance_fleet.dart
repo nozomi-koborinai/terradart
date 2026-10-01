@@ -28,9 +28,9 @@ final class EmrInstanceFleetInstanceTypeConfigs {
 
   final TfArg<num>? weightedCapacity;
 
-  final List<EmrInstanceFleetInstanceTypeConfigsConfigurations>? configurations;
+  final List<EmrInstanceFleetConfigurations>? configurations;
 
-  final List<EmrInstanceFleetInstanceTypeConfigsEbsConfig>? ebsConfig;
+  final List<EmrInstanceFleetEbsConfig>? ebsConfig;
 
   Map<String, Object?> encode() => {
     'bid_price': ?bidPrice?.toTfJson(),
@@ -48,11 +48,8 @@ final class EmrInstanceFleetInstanceTypeConfigs {
 /// Typed helper for the `instance_type_configs.configurations` block of
 /// `aws_emr_instance_fleet` (derived from provider schema).
 @immutable
-final class EmrInstanceFleetInstanceTypeConfigsConfigurations {
-  const EmrInstanceFleetInstanceTypeConfigsConfigurations({
-    this.classification,
-    this.properties,
-  });
+final class EmrInstanceFleetConfigurations {
+  const EmrInstanceFleetConfigurations({this.classification, this.properties});
 
   final TfArg<String>? classification;
 
@@ -67,8 +64,8 @@ final class EmrInstanceFleetInstanceTypeConfigsConfigurations {
 /// Typed helper for the `instance_type_configs.ebs_config` block of
 /// `aws_emr_instance_fleet` (derived from provider schema).
 @immutable
-final class EmrInstanceFleetInstanceTypeConfigsEbsConfig {
-  const EmrInstanceFleetInstanceTypeConfigsEbsConfig({
+final class EmrInstanceFleetEbsConfig {
+  const EmrInstanceFleetEbsConfig({
     this.iops,
     required this.size,
     required this.type,
@@ -100,11 +97,9 @@ final class EmrInstanceFleetLaunchSpecifications {
     this.spotSpecification,
   });
 
-  final List<EmrInstanceFleetLaunchSpecificationsOnDemandSpecification>?
-  onDemandSpecification;
+  final List<EmrInstanceFleetOnDemandSpecification>? onDemandSpecification;
 
-  final List<EmrInstanceFleetLaunchSpecificationsSpotSpecification>?
-  spotSpecification;
+  final List<EmrInstanceFleetSpotSpecification>? spotSpecification;
 
   Map<String, Object?> encode() => {
     if (onDemandSpecification != null)
@@ -119,14 +114,12 @@ final class EmrInstanceFleetLaunchSpecifications {
 /// Typed helper for the `launch_specifications.on_demand_specification` block of
 /// `aws_emr_instance_fleet` (derived from provider schema).
 @immutable
-final class EmrInstanceFleetLaunchSpecificationsOnDemandSpecification {
-  const EmrInstanceFleetLaunchSpecificationsOnDemandSpecification({
+final class EmrInstanceFleetOnDemandSpecification {
+  const EmrInstanceFleetOnDemandSpecification({
     required this.allocationStrategy,
   });
 
-  final TfArg<
-    EmrInstanceFleetLaunchSpecificationsOnDemandSpecificationAllocationStrategy
-  >
+  final TfArg<EmrInstanceFleetOnDemandSpecificationAllocationStrategy>
   allocationStrategy;
 
   Map<String, Object?> encode() => {
@@ -135,12 +128,12 @@ final class EmrInstanceFleetLaunchSpecificationsOnDemandSpecification {
 }
 
 /// `allocation_strategy` — derived from the provider schema description.
-enum EmrInstanceFleetLaunchSpecificationsOnDemandSpecificationAllocationStrategy
+enum EmrInstanceFleetOnDemandSpecificationAllocationStrategy
     implements TerraformEnum {
   lowestPrice('lowest-price'),
   prioritized('prioritized');
 
-  const EmrInstanceFleetLaunchSpecificationsOnDemandSpecificationAllocationStrategy(
+  const EmrInstanceFleetOnDemandSpecificationAllocationStrategy(
     this.terraformValue,
   );
   @override
@@ -150,25 +143,20 @@ enum EmrInstanceFleetLaunchSpecificationsOnDemandSpecificationAllocationStrategy
 /// Typed helper for the `launch_specifications.spot_specification` block of
 /// `aws_emr_instance_fleet` (derived from provider schema).
 @immutable
-final class EmrInstanceFleetLaunchSpecificationsSpotSpecification {
-  const EmrInstanceFleetLaunchSpecificationsSpotSpecification({
+final class EmrInstanceFleetSpotSpecification {
+  const EmrInstanceFleetSpotSpecification({
     required this.allocationStrategy,
     this.blockDurationMinutes,
     required this.timeoutAction,
     required this.timeoutDurationMinutes,
   });
 
-  final TfArg<
-    EmrInstanceFleetLaunchSpecificationsSpotSpecificationAllocationStrategy
-  >
+  final TfArg<EmrInstanceFleetSpotSpecificationAllocationStrategy>
   allocationStrategy;
 
   final TfArg<num>? blockDurationMinutes;
 
-  final TfArg<
-    EmrInstanceFleetLaunchSpecificationsSpotSpecificationTimeoutAction
-  >
-  timeoutAction;
+  final TfArg<EmrInstanceFleetTimeoutAction> timeoutAction;
 
   final TfArg<num> timeoutDurationMinutes;
 
@@ -181,7 +169,7 @@ final class EmrInstanceFleetLaunchSpecificationsSpotSpecification {
 }
 
 /// `allocation_strategy` — derived from the provider schema description.
-enum EmrInstanceFleetLaunchSpecificationsSpotSpecificationAllocationStrategy
+enum EmrInstanceFleetSpotSpecificationAllocationStrategy
     implements TerraformEnum {
   capacityOptimized('capacity-optimized'),
   priceCapacityOptimized('price-capacity-optimized'),
@@ -189,7 +177,7 @@ enum EmrInstanceFleetLaunchSpecificationsSpotSpecificationAllocationStrategy
   diversified('diversified'),
   capacityOptimizedPrioritized('capacity-optimized-prioritized');
 
-  const EmrInstanceFleetLaunchSpecificationsSpotSpecificationAllocationStrategy(
+  const EmrInstanceFleetSpotSpecificationAllocationStrategy(
     this.terraformValue,
   );
   @override
@@ -197,14 +185,11 @@ enum EmrInstanceFleetLaunchSpecificationsSpotSpecificationAllocationStrategy
 }
 
 /// `timeout_action` — derived from the provider schema description.
-enum EmrInstanceFleetLaunchSpecificationsSpotSpecificationTimeoutAction
-    implements TerraformEnum {
+enum EmrInstanceFleetTimeoutAction implements TerraformEnum {
   switchToOnDemand('SWITCH_TO_ON_DEMAND'),
   terminateCluster('TERMINATE_CLUSTER');
 
-  const EmrInstanceFleetLaunchSpecificationsSpotSpecificationTimeoutAction(
-    this.terraformValue,
-  );
+  const EmrInstanceFleetTimeoutAction(this.terraformValue);
   @override
   final String terraformValue;
 }

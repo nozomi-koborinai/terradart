@@ -15,7 +15,7 @@ const Set<String> _cloudflareZeroTrustDlpSettingsSensitive = <String>{};
 final class ZeroTrustDlpSettingsPayloadLogging {
   const ZeroTrustDlpSettingsPayloadLogging({this.maskingLevel, this.publicKey});
 
-  final TfArg<ZeroTrustDlpSettingsPayloadLoggingMaskingLevel>? maskingLevel;
+  final TfArg<ZeroTrustDlpSettingsMaskingLevel>? maskingLevel;
 
   final TfArg<String>? publicKey;
 
@@ -26,13 +26,13 @@ final class ZeroTrustDlpSettingsPayloadLogging {
 }
 
 /// `masking_level` — derived from the provider schema description.
-enum ZeroTrustDlpSettingsPayloadLoggingMaskingLevel implements TerraformEnum {
+enum ZeroTrustDlpSettingsMaskingLevel implements TerraformEnum {
   full('full'),
   partial('partial'),
   clear('clear'),
   defaultCase('default');
 
-  const ZeroTrustDlpSettingsPayloadLoggingMaskingLevel(this.terraformValue);
+  const ZeroTrustDlpSettingsMaskingLevel(this.terraformValue);
   @override
   final String terraformValue;
 }

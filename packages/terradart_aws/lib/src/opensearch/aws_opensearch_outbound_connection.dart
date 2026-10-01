@@ -20,13 +20,10 @@ enum OpensearchOutboundConnectionConnectionMode implements TerraformEnum {
 /// Typed helper for the `connection_properties` block of
 /// `aws_opensearch_outbound_connection` (derived from provider schema).
 @immutable
-final class OpensearchOutboundConnectionConnectionProperties {
-  const OpensearchOutboundConnectionConnectionProperties({
-    this.crossClusterSearch,
-  });
+final class OpensearchOutboundConnectionProperties {
+  const OpensearchOutboundConnectionProperties({this.crossClusterSearch});
 
-  final OpensearchOutboundConnectionConnectionPropertiesCrossClusterSearch?
-  crossClusterSearch;
+  final OpensearchOutboundConnectionCrossClusterSearch? crossClusterSearch;
 
   Map<String, Object?> encode() => {
     'cross_cluster_search': ?crossClusterSearch?.encode(),
@@ -36,10 +33,8 @@ final class OpensearchOutboundConnectionConnectionProperties {
 /// Typed helper for the `connection_properties.cross_cluster_search` block of
 /// `aws_opensearch_outbound_connection` (derived from provider schema).
 @immutable
-final class OpensearchOutboundConnectionConnectionPropertiesCrossClusterSearch {
-  const OpensearchOutboundConnectionConnectionPropertiesCrossClusterSearch({
-    this.skipUnavailable,
-  });
+final class OpensearchOutboundConnectionCrossClusterSearch {
+  const OpensearchOutboundConnectionCrossClusterSearch({this.skipUnavailable});
 
   final TfArg<String>? skipUnavailable;
 
@@ -104,7 +99,7 @@ final class AwsOpensearchOutboundConnection extends Resource {
     required TfArg<String> connectionAlias,
     TfArg<OpensearchOutboundConnectionConnectionMode>? connectionMode,
     TfArg<String>? region,
-    OpensearchOutboundConnectionConnectionProperties? connectionProperties,
+    OpensearchOutboundConnectionProperties? connectionProperties,
     required OpensearchOutboundConnectionLocalDomainInfo localDomainInfo,
     required OpensearchOutboundConnectionRemoteDomainInfo remoteDomainInfo,
     super.lifecycle,

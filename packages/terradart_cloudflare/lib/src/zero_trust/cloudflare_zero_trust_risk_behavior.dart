@@ -20,7 +20,7 @@ final class ZeroTrustRiskBehaviorBehaviors {
 
   final TfArg<bool> enabled;
 
-  final TfArg<ZeroTrustRiskBehaviorBehaviorsRiskLevel> riskLevel;
+  final TfArg<ZeroTrustRiskBehaviorRiskLevel> riskLevel;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
@@ -29,12 +29,12 @@ final class ZeroTrustRiskBehaviorBehaviors {
 }
 
 /// `risk_level` — derived from the provider schema description.
-enum ZeroTrustRiskBehaviorBehaviorsRiskLevel implements TerraformEnum {
+enum ZeroTrustRiskBehaviorRiskLevel implements TerraformEnum {
   low('low'),
   medium('medium'),
   high('high');
 
-  const ZeroTrustRiskBehaviorBehaviorsRiskLevel(this.terraformValue);
+  const ZeroTrustRiskBehaviorRiskLevel(this.terraformValue);
   @override
   final String terraformValue;
 }

@@ -119,7 +119,7 @@ final class ZeroTrustAccessIdentityProviderConfig {
 
   final TfArg<bool>? pkceEnabled;
 
-  final TfArg<ZeroTrustAccessIdentityProviderConfigPrompt>? prompt;
+  final TfArg<ZeroTrustAccessIdentityProviderPrompt>? prompt;
 
   final TfArg<bool>? restrictToAccountMembers;
 
@@ -135,8 +135,7 @@ final class ZeroTrustAccessIdentityProviderConfig {
 
   final TfArg<bool>? useLoginHint;
 
-  final List<ZeroTrustAccessIdentityProviderConfigHeaderAttributes>?
-  headerAttributes;
+  final List<ZeroTrustAccessIdentityProviderHeaderAttributes>? headerAttributes;
 
   Map<String, Object?> encode() => {
     'apps_domain': ?appsDomain?.toTfJson(),
@@ -176,13 +175,13 @@ final class ZeroTrustAccessIdentityProviderConfig {
 }
 
 /// `prompt` — derived from the provider schema description.
-enum ZeroTrustAccessIdentityProviderConfigPrompt implements TerraformEnum {
+enum ZeroTrustAccessIdentityProviderPrompt implements TerraformEnum {
   login('login'),
   selectAccount('select_account'),
   none('none'),
   consent('consent');
 
-  const ZeroTrustAccessIdentityProviderConfigPrompt(this.terraformValue);
+  const ZeroTrustAccessIdentityProviderPrompt(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -190,8 +189,8 @@ enum ZeroTrustAccessIdentityProviderConfigPrompt implements TerraformEnum {
 /// Typed helper for the `config.header_attributes` block of
 /// `cloudflare_zero_trust_access_identity_provider` (derived from provider schema).
 @immutable
-final class ZeroTrustAccessIdentityProviderConfigHeaderAttributes {
-  const ZeroTrustAccessIdentityProviderConfigHeaderAttributes({
+final class ZeroTrustAccessIdentityProviderHeaderAttributes {
+  const ZeroTrustAccessIdentityProviderHeaderAttributes({
     this.attributeName,
     this.headerName,
   });
@@ -219,7 +218,7 @@ final class ZeroTrustAccessIdentityProviderScimConfig {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<ZeroTrustAccessIdentityProviderScimConfigIdentityUpdateBehavior>?
+  final TfArg<ZeroTrustAccessIdentityProviderIdentityUpdateBehavior>?
   identityUpdateBehavior;
 
   final TfArg<bool>? seatDeprovision;
@@ -235,13 +234,13 @@ final class ZeroTrustAccessIdentityProviderScimConfig {
 }
 
 /// `identity_update_behavior` — derived from the provider schema description.
-enum ZeroTrustAccessIdentityProviderScimConfigIdentityUpdateBehavior
+enum ZeroTrustAccessIdentityProviderIdentityUpdateBehavior
     implements TerraformEnum {
   automatic('automatic'),
   reauth('reauth'),
   noAction('no_action');
 
-  const ZeroTrustAccessIdentityProviderScimConfigIdentityUpdateBehavior(
+  const ZeroTrustAccessIdentityProviderIdentityUpdateBehavior(
     this.terraformValue,
   );
   @override

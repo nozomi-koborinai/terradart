@@ -65,13 +65,13 @@ final class DbProxyAuth {
     this.username,
   });
 
-  final TfArg<DbProxyAuthAuthScheme>? authScheme;
+  final TfArg<DbProxyAuthScheme>? authScheme;
 
-  final TfArg<DbProxyAuthClientPasswordAuthType>? clientPasswordAuthType;
+  final TfArg<DbProxyClientPasswordAuthType>? clientPasswordAuthType;
 
   final TfArg<String>? description;
 
-  final TfArg<DbProxyAuthIamAuth>? iamAuth;
+  final TfArg<DbProxyIamAuth>? iamAuth;
 
   final TfArg<String>? secretArn;
 
@@ -88,34 +88,34 @@ final class DbProxyAuth {
 }
 
 /// `auth_scheme` — derived from the provider schema description.
-enum DbProxyAuthAuthScheme implements TerraformEnum {
+enum DbProxyAuthScheme implements TerraformEnum {
   secrets('SECRETS');
 
-  const DbProxyAuthAuthScheme(this.terraformValue);
+  const DbProxyAuthScheme(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `client_password_auth_type` — derived from the provider schema description.
-enum DbProxyAuthClientPasswordAuthType implements TerraformEnum {
+enum DbProxyClientPasswordAuthType implements TerraformEnum {
   mysqlNativePassword('MYSQL_NATIVE_PASSWORD'),
   mysqlCachingSha2Password('MYSQL_CACHING_SHA2_PASSWORD'),
   postgresScramSha256('POSTGRES_SCRAM_SHA_256'),
   postgresMd5('POSTGRES_MD5'),
   sqlServerAuthentication('SQL_SERVER_AUTHENTICATION');
 
-  const DbProxyAuthClientPasswordAuthType(this.terraformValue);
+  const DbProxyClientPasswordAuthType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `iam_auth` — derived from the provider schema description.
-enum DbProxyAuthIamAuth implements TerraformEnum {
+enum DbProxyIamAuth implements TerraformEnum {
   disabled('DISABLED'),
   required('REQUIRED'),
   enabled('ENABLED');
 
-  const DbProxyAuthIamAuth(this.terraformValue);
+  const DbProxyIamAuth(this.terraformValue);
   @override
   final String terraformValue;
 }

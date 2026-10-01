@@ -108,14 +108,10 @@ final class BedrockagentAgentActionGroupDefinitionParentActionGroupSignature
 /// Typed helper for the `action_group_executor` block of
 /// `aws_bedrockagent_agent_action_group` (derived from provider schema).
 @immutable
-final class BedrockagentAgentActionGroupActionGroupExecutor {
-  const BedrockagentAgentActionGroupActionGroupExecutor({
-    this.customControl,
-    this.lambda,
-  });
+final class BedrockagentAgentActionGroupExecutor {
+  const BedrockagentAgentActionGroupExecutor({this.customControl, this.lambda});
 
-  final TfArg<BedrockagentAgentActionGroupActionGroupExecutorCustomControl>?
-  customControl;
+  final TfArg<BedrockagentAgentActionGroupCustomControl>? customControl;
 
   final TfArg<String>? lambda;
 
@@ -126,13 +122,10 @@ final class BedrockagentAgentActionGroupActionGroupExecutor {
 }
 
 /// `custom_control` — derived from the provider schema description.
-enum BedrockagentAgentActionGroupActionGroupExecutorCustomControl
-    implements TerraformEnum {
+enum BedrockagentAgentActionGroupCustomControl implements TerraformEnum {
   returnControl('RETURN_CONTROL');
 
-  const BedrockagentAgentActionGroupActionGroupExecutorCustomControl(
-    this.terraformValue,
-  );
+  const BedrockagentAgentActionGroupCustomControl(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -152,8 +145,8 @@ sealed class BedrockagentAgentActionGroupApiSchema {
 
   /// Sets `s3`.
   const factory BedrockagentAgentActionGroupApiSchema.s3(
-    List<BedrockagentAgentActionGroupApiSchemaS3> s3,
-  ) = BedrockagentAgentActionGroupApiSchemaS3Choice;
+    List<BedrockagentAgentActionGroupS3> s3,
+  ) = BedrockagentAgentActionGroupApiSchemaS3;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -176,11 +169,11 @@ final class BedrockagentAgentActionGroupApiSchemaPayload
 }
 
 /// The [BedrockagentAgentActionGroupApiSchema.s3] choice: sets `s3`.
-final class BedrockagentAgentActionGroupApiSchemaS3Choice
+final class BedrockagentAgentActionGroupApiSchemaS3
     extends BedrockagentAgentActionGroupApiSchema {
-  const BedrockagentAgentActionGroupApiSchemaS3Choice(this.s3);
+  const BedrockagentAgentActionGroupApiSchemaS3(this.s3);
 
-  final List<BedrockagentAgentActionGroupApiSchemaS3> s3;
+  final List<BedrockagentAgentActionGroupS3> s3;
 
   @override
   String get blockKey => 's3';
@@ -194,11 +187,8 @@ final class BedrockagentAgentActionGroupApiSchemaS3Choice
 /// Typed helper for the `api_schema.s3` block of
 /// `aws_bedrockagent_agent_action_group` (derived from provider schema).
 @immutable
-final class BedrockagentAgentActionGroupApiSchemaS3 {
-  const BedrockagentAgentActionGroupApiSchemaS3({
-    this.s3BucketName,
-    this.s3ObjectKey,
-  });
+final class BedrockagentAgentActionGroupS3 {
+  const BedrockagentAgentActionGroupS3({this.s3BucketName, this.s3ObjectKey});
 
   final RefTo<AwsS3Bucket>? s3BucketName;
 
@@ -216,8 +206,7 @@ final class BedrockagentAgentActionGroupApiSchemaS3 {
 final class BedrockagentAgentActionGroupFunctionSchema {
   const BedrockagentAgentActionGroupFunctionSchema({this.memberFunctions});
 
-  final List<BedrockagentAgentActionGroupFunctionSchemaMemberFunctions>?
-  memberFunctions;
+  final List<BedrockagentAgentActionGroupMemberFunctions>? memberFunctions;
 
   Map<String, Object?> encode() => {
     if (memberFunctions != null)
@@ -228,15 +217,10 @@ final class BedrockagentAgentActionGroupFunctionSchema {
 /// Typed helper for the `function_schema.member_functions` block of
 /// `aws_bedrockagent_agent_action_group` (derived from provider schema).
 @immutable
-final class BedrockagentAgentActionGroupFunctionSchemaMemberFunctions {
-  const BedrockagentAgentActionGroupFunctionSchemaMemberFunctions({
-    this.functions,
-  });
+final class BedrockagentAgentActionGroupMemberFunctions {
+  const BedrockagentAgentActionGroupMemberFunctions({this.functions});
 
-  final List<
-    BedrockagentAgentActionGroupFunctionSchemaMemberFunctionsFunctions
-  >?
-  functions;
+  final List<BedrockagentAgentActionGroupFunctions>? functions;
 
   Map<String, Object?> encode() => {
     if (functions != null)
@@ -247,8 +231,8 @@ final class BedrockagentAgentActionGroupFunctionSchemaMemberFunctions {
 /// Typed helper for the `function_schema.member_functions.functions` block of
 /// `aws_bedrockagent_agent_action_group` (derived from provider schema).
 @immutable
-final class BedrockagentAgentActionGroupFunctionSchemaMemberFunctionsFunctions {
-  const BedrockagentAgentActionGroupFunctionSchemaMemberFunctionsFunctions({
+final class BedrockagentAgentActionGroupFunctions {
+  const BedrockagentAgentActionGroupFunctions({
     this.description,
     required this.name,
     this.parameters,
@@ -258,10 +242,7 @@ final class BedrockagentAgentActionGroupFunctionSchemaMemberFunctionsFunctions {
 
   final TfArg<String> name;
 
-  final List<
-    BedrockagentAgentActionGroupFunctionSchemaMemberFunctionsFunctionsParameters
-  >?
-  parameters;
+  final List<BedrockagentAgentActionGroupParameters>? parameters;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -274,8 +255,8 @@ final class BedrockagentAgentActionGroupFunctionSchemaMemberFunctionsFunctions {
 /// Typed helper for the `function_schema.member_functions.functions.parameters` block of
 /// `aws_bedrockagent_agent_action_group` (derived from provider schema).
 @immutable
-final class BedrockagentAgentActionGroupFunctionSchemaMemberFunctionsFunctionsParameters {
-  const BedrockagentAgentActionGroupFunctionSchemaMemberFunctionsFunctionsParameters({
+final class BedrockagentAgentActionGroupParameters {
+  const BedrockagentAgentActionGroupParameters({
     this.description,
     required this.mapBlockKey,
     this.required,
@@ -288,10 +269,7 @@ final class BedrockagentAgentActionGroupFunctionSchemaMemberFunctionsFunctionsPa
 
   final TfArg<bool>? required;
 
-  final TfArg<
-    BedrockagentAgentActionGroupFunctionSchemaMemberFunctionsFunctionsParametersType
-  >
-  type;
+  final TfArg<BedrockagentAgentActionGroupType> type;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -302,17 +280,14 @@ final class BedrockagentAgentActionGroupFunctionSchemaMemberFunctionsFunctionsPa
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockagentAgentActionGroupFunctionSchemaMemberFunctionsFunctionsParametersType
-    implements TerraformEnum {
+enum BedrockagentAgentActionGroupType implements TerraformEnum {
   string('string'),
   number('number'),
   integer('integer'),
   boolean('boolean'),
   array('array');
 
-  const BedrockagentAgentActionGroupFunctionSchemaMemberFunctionsFunctionsParametersType(
-    this.terraformValue,
-  );
+  const BedrockagentAgentActionGroupType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -331,7 +306,7 @@ final class AwsBedrockagentAgentActionGroup extends Resource {
     TfArg<bool>? prepareAgent,
     TfArg<String>? region,
     TfArg<bool>? skipResourceInUseCheck,
-    List<BedrockagentAgentActionGroupActionGroupExecutor>? actionGroupExecutor,
+    List<BedrockagentAgentActionGroupExecutor>? actionGroupExecutor,
     List<BedrockagentAgentActionGroupApiSchema>? apiSchema,
     List<BedrockagentAgentActionGroupFunctionSchema>? functionSchema,
     super.lifecycle,

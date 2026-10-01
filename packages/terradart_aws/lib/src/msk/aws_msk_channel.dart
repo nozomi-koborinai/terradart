@@ -21,12 +21,12 @@ sealed class MskChannelDestination {
   /// Sets `iceberg_destination`.
   const factory MskChannelDestination.icebergDestination(
     List<MskChannelIcebergDestination> icebergDestination,
-  ) = MskChannelDestinationIcebergDestination;
+  ) = MskChannelIcebergDestinationChoice;
 
   /// Sets `s3_destination`.
   const factory MskChannelDestination.s3Destination(
     List<MskChannelS3Destination> s3Destination,
-  ) = MskChannelDestinationS3Destination;
+  ) = MskChannelS3DestinationChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -39,9 +39,8 @@ sealed class MskChannelDestination {
 }
 
 /// The [MskChannelDestination.icebergDestination] choice: sets `iceberg_destination`.
-final class MskChannelDestinationIcebergDestination
-    extends MskChannelDestination {
-  const MskChannelDestinationIcebergDestination(this.icebergDestination);
+final class MskChannelIcebergDestinationChoice extends MskChannelDestination {
+  const MskChannelIcebergDestinationChoice(this.icebergDestination);
 
   final List<MskChannelIcebergDestination> icebergDestination;
 
@@ -62,8 +61,8 @@ final class MskChannelDestinationIcebergDestination
 }
 
 /// The [MskChannelDestination.s3Destination] choice: sets `s3_destination`.
-final class MskChannelDestinationS3Destination extends MskChannelDestination {
-  const MskChannelDestinationS3Destination(this.s3Destination);
+final class MskChannelS3DestinationChoice extends MskChannelDestination {
+  const MskChannelS3DestinationChoice(this.s3Destination);
 
   final List<MskChannelS3Destination> s3Destination;
 
@@ -114,21 +113,21 @@ final class MskChannelIcebergDestination {
 
   final TfArg<bool> appendOnly;
 
-  final TfArg<MskChannelIcebergDestinationCompressionType>? compressionType;
+  final TfArg<MskChannelCompressionType>? compressionType;
 
   final TfArg<num>? dataFreshnessInSeconds;
 
   final TfArg<String> serviceExecutionRoleArn;
 
-  final List<MskChannelIcebergDestinationCatalog>? catalog;
+  final List<MskChannelCatalog>? catalog;
 
-  final List<MskChannelIcebergDestinationDeadLetterQueueS3>? deadLetterQueueS3;
+  final List<MskChannelDeadLetterQueueS3>? deadLetterQueueS3;
 
-  final List<MskChannelIcebergDestinationDestinationTable>? destinationTable;
+  final List<MskChannelDestinationTable>? destinationTable;
 
-  final List<MskChannelIcebergDestinationSchemaEvolution>? schemaEvolution;
+  final List<MskChannelSchemaEvolution>? schemaEvolution;
 
-  final List<MskChannelIcebergDestinationTableCreation>? tableCreation;
+  final List<MskChannelTableCreation>? tableCreation;
 
   Map<String, Object?> encode() => {
     'append_only': appendOnly.toTfJson(),
@@ -148,11 +147,11 @@ final class MskChannelIcebergDestination {
 }
 
 /// `compression_type` — derived from the provider schema description.
-enum MskChannelIcebergDestinationCompressionType implements TerraformEnum {
+enum MskChannelCompressionType implements TerraformEnum {
   zstd('ZSTD'),
   snappy('SNAPPY');
 
-  const MskChannelIcebergDestinationCompressionType(this.terraformValue);
+  const MskChannelCompressionType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -160,11 +159,8 @@ enum MskChannelIcebergDestinationCompressionType implements TerraformEnum {
 /// Typed helper for the `iceberg_destination.catalog` block of
 /// `aws_msk_channel` (derived from provider schema).
 @immutable
-final class MskChannelIcebergDestinationCatalog {
-  const MskChannelIcebergDestinationCatalog({
-    this.catalogArn,
-    this.warehouseLocation,
-  });
+final class MskChannelCatalog {
+  const MskChannelCatalog({this.catalogArn, this.warehouseLocation});
 
   final TfArg<String>? catalogArn;
 
@@ -178,9 +174,10 @@ final class MskChannelIcebergDestinationCatalog {
 
 /// Typed helper for the `iceberg_destination.dead_letter_queue_s3` block of
 /// `aws_msk_channel` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class MskChannelIcebergDestinationDeadLetterQueueS3 {
-  const MskChannelIcebergDestinationDeadLetterQueueS3({
+final class MskChannelDeadLetterQueueS3 {
+  const MskChannelDeadLetterQueueS3({
     required this.bucketArn,
     this.errorOutputPrefix,
     this.expectedBucketOwner,
@@ -202,8 +199,8 @@ final class MskChannelIcebergDestinationDeadLetterQueueS3 {
 /// Typed helper for the `iceberg_destination.destination_table` block of
 /// `aws_msk_channel` (derived from provider schema).
 @immutable
-final class MskChannelIcebergDestinationDestinationTable {
-  const MskChannelIcebergDestinationDestinationTable({
+final class MskChannelDestinationTable {
+  const MskChannelDestinationTable({
     this.destinationDatabaseName,
     this.destinationTableName,
     this.partitionSpec,
@@ -213,8 +210,7 @@ final class MskChannelIcebergDestinationDestinationTable {
 
   final TfArg<String>? destinationTableName;
 
-  final List<MskChannelIcebergDestinationDestinationTablePartitionSpec>?
-  partitionSpec;
+  final List<MskChannelPartitionSpec>? partitionSpec;
 
   Map<String, Object?> encode() => {
     'destination_database_name': ?destinationDatabaseName?.toTfJson(),
@@ -227,19 +223,12 @@ final class MskChannelIcebergDestinationDestinationTable {
 /// Typed helper for the `iceberg_destination.destination_table.partition_spec` block of
 /// `aws_msk_channel` (derived from provider schema).
 @immutable
-final class MskChannelIcebergDestinationDestinationTablePartitionSpec {
-  const MskChannelIcebergDestinationDestinationTablePartitionSpec({
-    required this.partitionStrategy,
-    this.source,
-  });
+final class MskChannelPartitionSpec {
+  const MskChannelPartitionSpec({required this.partitionStrategy, this.source});
 
-  final TfArg<
-    MskChannelIcebergDestinationDestinationTablePartitionSpecPartitionStrategy
-  >
-  partitionStrategy;
+  final TfArg<MskChannelPartitionStrategy> partitionStrategy;
 
-  final List<MskChannelIcebergDestinationDestinationTablePartitionSpecSource>?
-  source;
+  final List<MskChannelSource>? source;
 
   Map<String, Object?> encode() => {
     'partition_strategy': partitionStrategy.toTfJson(),
@@ -248,13 +237,10 @@ final class MskChannelIcebergDestinationDestinationTablePartitionSpec {
 }
 
 /// `partition_strategy` — derived from the provider schema description.
-enum MskChannelIcebergDestinationDestinationTablePartitionSpecPartitionStrategy
-    implements TerraformEnum {
+enum MskChannelPartitionStrategy implements TerraformEnum {
   timeHour('TIME_HOUR');
 
-  const MskChannelIcebergDestinationDestinationTablePartitionSpecPartitionStrategy(
-    this.terraformValue,
-  );
+  const MskChannelPartitionStrategy(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -262,10 +248,8 @@ enum MskChannelIcebergDestinationDestinationTablePartitionSpecPartitionStrategy
 /// Typed helper for the `iceberg_destination.destination_table.partition_spec.source` block of
 /// `aws_msk_channel` (derived from provider schema).
 @immutable
-final class MskChannelIcebergDestinationDestinationTablePartitionSpecSource {
-  const MskChannelIcebergDestinationDestinationTablePartitionSpecSource({
-    this.sourceName,
-  });
+final class MskChannelSource {
+  const MskChannelSource({this.sourceName});
 
   final TfArg<String>? sourceName;
 
@@ -275,10 +259,8 @@ final class MskChannelIcebergDestinationDestinationTablePartitionSpecSource {
 /// Typed helper for the `iceberg_destination.schema_evolution` block of
 /// `aws_msk_channel` (derived from provider schema).
 @immutable
-final class MskChannelIcebergDestinationSchemaEvolution {
-  const MskChannelIcebergDestinationSchemaEvolution({
-    this.enableSchemaEvolution,
-  });
+final class MskChannelSchemaEvolution {
+  const MskChannelSchemaEvolution({this.enableSchemaEvolution});
 
   final TfArg<bool>? enableSchemaEvolution;
 
@@ -290,8 +272,8 @@ final class MskChannelIcebergDestinationSchemaEvolution {
 /// Typed helper for the `iceberg_destination.table_creation` block of
 /// `aws_msk_channel` (derived from provider schema).
 @immutable
-final class MskChannelIcebergDestinationTableCreation {
-  const MskChannelIcebergDestinationTableCreation({this.enableTableCreation});
+final class MskChannelTableCreation {
+  const MskChannelTableCreation({this.enableTableCreation});
 
   final TfArg<bool>? enableTableCreation;
 
@@ -306,11 +288,11 @@ final class MskChannelIcebergDestinationTableCreation {
 final class MskChannelLoggingInfo {
   const MskChannelLoggingInfo({this.cloudwatchLogs, this.firehose, this.s3});
 
-  final List<MskChannelLoggingInfoCloudwatchLogs>? cloudwatchLogs;
+  final List<MskChannelCloudwatchLogs>? cloudwatchLogs;
 
-  final List<MskChannelLoggingInfoFirehose>? firehose;
+  final List<MskChannelFirehose>? firehose;
 
-  final List<MskChannelLoggingInfoS3>? s3;
+  final List<MskChannelS3>? s3;
 
   Map<String, Object?> encode() => {
     if (cloudwatchLogs != null)
@@ -323,11 +305,8 @@ final class MskChannelLoggingInfo {
 /// Typed helper for the `logging_info.cloudwatch_logs` block of
 /// `aws_msk_channel` (derived from provider schema).
 @immutable
-final class MskChannelLoggingInfoCloudwatchLogs {
-  const MskChannelLoggingInfoCloudwatchLogs({
-    required this.enabled,
-    this.logGroup,
-  });
+final class MskChannelCloudwatchLogs {
+  const MskChannelCloudwatchLogs({required this.enabled, this.logGroup});
 
   final TfArg<bool> enabled;
 
@@ -342,11 +321,8 @@ final class MskChannelLoggingInfoCloudwatchLogs {
 /// Typed helper for the `logging_info.firehose` block of
 /// `aws_msk_channel` (derived from provider schema).
 @immutable
-final class MskChannelLoggingInfoFirehose {
-  const MskChannelLoggingInfoFirehose({
-    this.deliveryStream,
-    required this.enabled,
-  });
+final class MskChannelFirehose {
+  const MskChannelFirehose({this.deliveryStream, required this.enabled});
 
   final TfArg<String>? deliveryStream;
 
@@ -361,12 +337,8 @@ final class MskChannelLoggingInfoFirehose {
 /// Typed helper for the `logging_info.s3` block of
 /// `aws_msk_channel` (derived from provider schema).
 @immutable
-final class MskChannelLoggingInfoS3 {
-  const MskChannelLoggingInfoS3({
-    this.bucket,
-    required this.enabled,
-    this.prefix,
-  });
+final class MskChannelS3 {
+  const MskChannelS3({this.bucket, required this.enabled, this.prefix});
 
   final RefTo<AwsS3Bucket>? bucket;
 
@@ -396,9 +368,9 @@ final class MskChannelS3Destination {
 
   final TfArg<String> serviceExecutionRoleArn;
 
-  final List<MskChannelS3DestinationDeadLetterQueueS3>? deadLetterQueueS3;
+  final List<MskChannelDeadLetterQueueS3>? deadLetterQueueS3;
 
-  final List<MskChannelS3DestinationStorage>? storage;
+  final List<MskChannelStorage>? storage;
 
   Map<String, Object?> encode() => {
     'data_freshness_in_seconds': ?dataFreshnessInSeconds?.toTfJson(),
@@ -409,34 +381,11 @@ final class MskChannelS3Destination {
   };
 }
 
-/// Typed helper for the `s3_destination.dead_letter_queue_s3` block of
-/// `aws_msk_channel` (derived from provider schema).
-@immutable
-final class MskChannelS3DestinationDeadLetterQueueS3 {
-  const MskChannelS3DestinationDeadLetterQueueS3({
-    required this.bucketArn,
-    this.errorOutputPrefix,
-    this.expectedBucketOwner,
-  });
-
-  final RefTo<AwsS3Bucket> bucketArn;
-
-  final TfArg<String>? errorOutputPrefix;
-
-  final TfArg<String>? expectedBucketOwner;
-
-  Map<String, Object?> encode() => {
-    'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
-    'error_output_prefix': ?errorOutputPrefix?.toTfJson(),
-    'expected_bucket_owner': ?expectedBucketOwner?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `s3_destination.storage` block of
 /// `aws_msk_channel` (derived from provider schema).
 @immutable
-final class MskChannelS3DestinationStorage {
-  const MskChannelS3DestinationStorage({
+final class MskChannelStorage {
+  const MskChannelStorage({
     required this.bucketArn,
     required this.compressionType,
     this.expectedBucketOwner,
@@ -447,7 +396,7 @@ final class MskChannelS3DestinationStorage {
 
   final RefTo<AwsS3Bucket> bucketArn;
 
-  final TfArg<MskChannelS3DestinationStorageCompressionType> compressionType;
+  final TfArg<MskChannelStorageCompressionType> compressionType;
 
   final TfArg<String>? expectedBucketOwner;
 
@@ -455,7 +404,7 @@ final class MskChannelS3DestinationStorage {
 
   final TfArg<String>? outputPrefix;
 
-  final TfArg<MskChannelS3DestinationStorageStorageClass> storageClass;
+  final TfArg<MskChannelStorageClass> storageClass;
 
   Map<String, Object?> encode() => {
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
@@ -468,23 +417,23 @@ final class MskChannelS3DestinationStorage {
 }
 
 /// `compression_type` — derived from the provider schema description.
-enum MskChannelS3DestinationStorageCompressionType implements TerraformEnum {
+enum MskChannelStorageCompressionType implements TerraformEnum {
   none('NONE'),
   gzip('GZIP'),
   zstd('ZSTD');
 
-  const MskChannelS3DestinationStorageCompressionType(this.terraformValue);
+  const MskChannelStorageCompressionType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `storage_class` — derived from the provider schema description.
-enum MskChannelS3DestinationStorageStorageClass implements TerraformEnum {
+enum MskChannelStorageClass implements TerraformEnum {
   standard('STANDARD'),
   intelligentTiering('INTELLIGENT_TIERING'),
   glacierIr('GLACIER_IR');
 
-  const MskChannelS3DestinationStorageStorageClass(this.terraformValue);
+  const MskChannelStorageClass(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -501,9 +450,9 @@ final class MskChannelTopicConfiguration {
 
   final TfArg<String> topicArn;
 
-  final List<MskChannelTopicConfigurationRecordConverter>? recordConverter;
+  final List<MskChannelRecordConverter>? recordConverter;
 
-  final List<MskChannelTopicConfigurationRecordSchema>? recordSchema;
+  final List<MskChannelRecordSchema>? recordSchema;
 
   Map<String, Object?> encode() => {
     'topic_arn': topicArn.toTfJson(),
@@ -517,13 +466,10 @@ final class MskChannelTopicConfiguration {
 /// Typed helper for the `topic_configuration.record_converter` block of
 /// `aws_msk_channel` (derived from provider schema).
 @immutable
-final class MskChannelTopicConfigurationRecordConverter {
-  const MskChannelTopicConfigurationRecordConverter({
-    required this.valueConverter,
-  });
+final class MskChannelRecordConverter {
+  const MskChannelRecordConverter({required this.valueConverter});
 
-  final TfArg<MskChannelTopicConfigurationRecordConverterValueConverter>
-  valueConverter;
+  final TfArg<MskChannelValueConverter> valueConverter;
 
   Map<String, Object?> encode() => {
     'value_converter': valueConverter.toTfJson(),
@@ -531,16 +477,13 @@ final class MskChannelTopicConfigurationRecordConverter {
 }
 
 /// `value_converter` — derived from the provider schema description.
-enum MskChannelTopicConfigurationRecordConverterValueConverter
-    implements TerraformEnum {
+enum MskChannelValueConverter implements TerraformEnum {
   byteArray('BYTE_ARRAY'),
   json('JSON'),
   jsonSchemaGsr('JSON_SCHEMA_GSR'),
   string('STRING');
 
-  const MskChannelTopicConfigurationRecordConverterValueConverter(
-    this.terraformValue,
-  );
+  const MskChannelValueConverter(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -548,8 +491,8 @@ enum MskChannelTopicConfigurationRecordConverterValueConverter
 /// Typed helper for the `topic_configuration.record_schema` block of
 /// `aws_msk_channel` (derived from provider schema).
 @immutable
-final class MskChannelTopicConfigurationRecordSchema {
-  const MskChannelTopicConfigurationRecordSchema({required this.gsrArn});
+final class MskChannelRecordSchema {
+  const MskChannelRecordSchema({required this.gsrArn});
 
   final TfArg<String> gsrArn;
 

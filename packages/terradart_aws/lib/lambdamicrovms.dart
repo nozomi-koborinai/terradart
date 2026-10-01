@@ -7,13 +7,13 @@ export 'src/lambdamicrovms/aws_lambdamicrovms_image.dart'
     show
         AwsLambdamicrovmsImage,
         LambdamicrovmsImageAdditionalOsCapabilities,
+        LambdamicrovmsImageArchitecture,
         LambdamicrovmsImageCodeArtifact,
-        LambdamicrovmsImageCpuConfiguration,
-        LambdamicrovmsImageCpuConfigurationArchitecture;
+        LambdamicrovmsImageCpuConfiguration;
 export 'src/lambdamicrovms/aws_lambdamicrovms_microvm.dart'
     show
         AwsLambdamicrovmsMicrovm,
+        LambdamicrovmsMicrovmCloudwatch,
+        LambdamicrovmsMicrovmDisabled,
         LambdamicrovmsMicrovmIdlePolicy,
-        LambdamicrovmsMicrovmLogging,
-        LambdamicrovmsMicrovmLoggingCloudwatch,
-        LambdamicrovmsMicrovmLoggingDisabled;
+        LambdamicrovmsMicrovmLogging;

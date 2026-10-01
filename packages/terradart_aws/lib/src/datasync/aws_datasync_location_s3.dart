@@ -28,8 +28,8 @@ enum DatasyncLocationS3S3StorageClass implements TerraformEnum {
 /// Typed helper for the `s3_config` block of
 /// `aws_datasync_location_s3` (derived from provider schema).
 @immutable
-final class DatasyncLocationS3S3Config {
-  const DatasyncLocationS3S3Config({required this.bucketAccessRoleArn});
+final class DatasyncLocationS3Config {
+  const DatasyncLocationS3Config({required this.bucketAccessRoleArn});
 
   final TfArg<String> bucketAccessRoleArn;
 
@@ -50,7 +50,7 @@ final class AwsDatasyncLocationS3 extends Resource {
     TfArg<DatasyncLocationS3S3StorageClass>? s3StorageClass,
     required TfArg<String> subdirectory,
     TfArg<Map<String, String>>? tags,
-    required DatasyncLocationS3S3Config s3Config,
+    required DatasyncLocationS3Config s3Config,
     super.lifecycle,
     super.dependsOn,
     super.provider,

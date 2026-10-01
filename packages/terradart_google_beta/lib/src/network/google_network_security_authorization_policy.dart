@@ -27,9 +27,9 @@ final class NetworkSecurityAuthorizationPolicyRules {
     this.sources,
   });
 
-  final List<NetworkSecurityAuthorizationPolicyRulesDestinations>? destinations;
+  final List<NetworkSecurityAuthorizationPolicyDestinations>? destinations;
 
-  final List<NetworkSecurityAuthorizationPolicyRulesSources>? sources;
+  final List<NetworkSecurityAuthorizationPolicySources>? sources;
 
   Map<String, Object?> encode() => {
     if (destinations != null)
@@ -41,8 +41,8 @@ final class NetworkSecurityAuthorizationPolicyRules {
 /// Typed helper for the `rules.destinations` block of
 /// `google_network_security_authorization_policy` (derived from provider schema).
 @immutable
-final class NetworkSecurityAuthorizationPolicyRulesDestinations {
-  const NetworkSecurityAuthorizationPolicyRulesDestinations({
+final class NetworkSecurityAuthorizationPolicyDestinations {
+  const NetworkSecurityAuthorizationPolicyDestinations({
     required this.hosts,
     required this.methods,
     required this.ports,
@@ -55,8 +55,7 @@ final class NetworkSecurityAuthorizationPolicyRulesDestinations {
 
   final TfArg<List<num>> ports;
 
-  final NetworkSecurityAuthorizationPolicyRulesDestinationsHttpHeaderMatch?
-  httpHeaderMatch;
+  final NetworkSecurityAuthorizationPolicyHttpHeaderMatch? httpHeaderMatch;
 
   Map<String, Object?> encode() => {
     'hosts': hosts.toTfJson(),
@@ -69,8 +68,8 @@ final class NetworkSecurityAuthorizationPolicyRulesDestinations {
 /// Typed helper for the `rules.destinations.http_header_match` block of
 /// `google_network_security_authorization_policy` (derived from provider schema).
 @immutable
-final class NetworkSecurityAuthorizationPolicyRulesDestinationsHttpHeaderMatch {
-  const NetworkSecurityAuthorizationPolicyRulesDestinationsHttpHeaderMatch({
+final class NetworkSecurityAuthorizationPolicyHttpHeaderMatch {
+  const NetworkSecurityAuthorizationPolicyHttpHeaderMatch({
     required this.headerName,
     required this.regexMatch,
   });
@@ -88,8 +87,8 @@ final class NetworkSecurityAuthorizationPolicyRulesDestinationsHttpHeaderMatch {
 /// Typed helper for the `rules.sources` block of
 /// `google_network_security_authorization_policy` (derived from provider schema).
 @immutable
-final class NetworkSecurityAuthorizationPolicyRulesSources {
-  const NetworkSecurityAuthorizationPolicyRulesSources({
+final class NetworkSecurityAuthorizationPolicySources {
+  const NetworkSecurityAuthorizationPolicySources({
     this.ipBlocks,
     this.principals,
   });

@@ -21,13 +21,13 @@ curatedDoc: |-
   ///     runtime: .literal('python311'),
   ///     entryPoint: .literal('hello'),
   ///     source: .storageSource(
-  ///       Cloudfunctions2FunctionBuildConfigSourceStorageSource(
+  ///       Cloudfunctions2FunctionStorageSource(
   ///         bucket: .of(bucket),
   ///         object: .literal('hello-http.zip'),
   ///       ),
   ///     ),
   ///     updatePolicy: .automaticUpdatePolicy(
-  ///       Cloudfunctions2FunctionBuildConfigAutomaticUpdatePolicy(),
+  ///       Cloudfunctions2FunctionAutomaticUpdatePolicy(),
   ///     ),
   ///   ),
   ///   serviceConfig: Cloudfunctions2FunctionServiceConfig(
@@ -48,13 +48,13 @@ curatedDoc: |-
   ///     runtime: .literal('python311'),
   ///     entryPoint: .literal('handle'),
   ///     source: .storageSource(
-  ///       Cloudfunctions2FunctionBuildConfigSourceStorageSource(
+  ///       Cloudfunctions2FunctionStorageSource(
   ///         bucket: .of(bucket),
   ///         object: .literal('order-handler.zip'),
   ///       ),
   ///     ),
   ///     updatePolicy: .automaticUpdatePolicy(
-  ///       Cloudfunctions2FunctionBuildConfigAutomaticUpdatePolicy(),
+  ///       Cloudfunctions2FunctionAutomaticUpdatePolicy(),
   ///     ),
   ///   ),
   ///   eventTrigger: Cloudfunctions2FunctionEventTrigger(

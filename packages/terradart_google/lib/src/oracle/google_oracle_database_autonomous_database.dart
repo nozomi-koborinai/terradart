@@ -112,7 +112,7 @@ final class OracleDatabaseAutonomousDatabaseProperties {
 
   final TfArg<String>? vaultId;
 
-  final List<OracleDatabaseAutonomousDatabasePropertiesCustomerContacts>?
+  final List<OracleDatabaseAutonomousDatabaseCustomerContacts>?
   customerContacts;
 
   Map<String, Object?> encode() => {
@@ -144,10 +144,8 @@ final class OracleDatabaseAutonomousDatabaseProperties {
 /// Typed helper for the `properties.customer_contacts` block of
 /// `google_oracle_database_autonomous_database` (derived from provider schema).
 @immutable
-final class OracleDatabaseAutonomousDatabasePropertiesCustomerContacts {
-  const OracleDatabaseAutonomousDatabasePropertiesCustomerContacts({
-    required this.email,
-  });
+final class OracleDatabaseAutonomousDatabaseCustomerContacts {
+  const OracleDatabaseAutonomousDatabaseCustomerContacts({required this.email});
 
   final TfArg<String> email;
 

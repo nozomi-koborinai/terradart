@@ -24,8 +24,7 @@ final class ChronicleDataAccessScopeAllowedDataAccessLabels {
 
   final TfArg<String>? logType;
 
-  final ChronicleDataAccessScopeAllowedDataAccessLabelsIngestionLabel?
-  ingestionLabel;
+  final ChronicleDataAccessScopeIngestionLabel? ingestionLabel;
 
   Map<String, Object?> encode() => {
     'asset_namespace': ?assetNamespace?.toTfJson(),
@@ -37,9 +36,10 @@ final class ChronicleDataAccessScopeAllowedDataAccessLabels {
 
 /// Typed helper for the `allowed_data_access_labels.ingestion_label` block of
 /// `google_chronicle_data_access_scope` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ChronicleDataAccessScopeAllowedDataAccessLabelsIngestionLabel {
-  const ChronicleDataAccessScopeAllowedDataAccessLabelsIngestionLabel({
+final class ChronicleDataAccessScopeIngestionLabel {
+  const ChronicleDataAccessScopeIngestionLabel({
     required this.ingestionLabelKey,
     this.ingestionLabelValue,
   });
@@ -71,33 +71,13 @@ final class ChronicleDataAccessScopeDeniedDataAccessLabels {
 
   final TfArg<String>? logType;
 
-  final ChronicleDataAccessScopeDeniedDataAccessLabelsIngestionLabel?
-  ingestionLabel;
+  final ChronicleDataAccessScopeIngestionLabel? ingestionLabel;
 
   Map<String, Object?> encode() => {
     'asset_namespace': ?assetNamespace?.toTfJson(),
     'data_access_label': ?dataAccessLabel?.toTfJson(),
     'log_type': ?logType?.toTfJson(),
     'ingestion_label': ?ingestionLabel?.encode(),
-  };
-}
-
-/// Typed helper for the `denied_data_access_labels.ingestion_label` block of
-/// `google_chronicle_data_access_scope` (derived from provider schema).
-@immutable
-final class ChronicleDataAccessScopeDeniedDataAccessLabelsIngestionLabel {
-  const ChronicleDataAccessScopeDeniedDataAccessLabelsIngestionLabel({
-    required this.ingestionLabelKey,
-    this.ingestionLabelValue,
-  });
-
-  final TfArg<String> ingestionLabelKey;
-
-  final TfArg<String>? ingestionLabelValue;
-
-  Map<String, Object?> encode() => {
-    'ingestion_label_key': ingestionLabelKey.toTfJson(),
-    'ingestion_label_value': ?ingestionLabelValue?.toTfJson(),
   };
 }
 

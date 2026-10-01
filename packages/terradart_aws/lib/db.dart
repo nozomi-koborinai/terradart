@@ -22,17 +22,17 @@ export 'src/db/aws_db_instance.dart'
         DbInstanceIdentifier,
         DbInstanceIdentifierChoice,
         DbInstanceIdentifierPrefix,
+        DbInstanceManageMasterUserPassword,
         DbInstanceNetworkType,
         DbInstancePassword,
         DbInstancePasswordChoice,
-        DbInstancePasswordManageMasterUserPassword,
         DbInstancePasswordWo,
         DbInstanceReplicaMode,
         DbInstanceRestoreToPointInTime,
-        DbInstanceRestoreToPointInTimeTarget,
-        DbInstanceRestoreToPointInTimeTargetRestoreTime,
-        DbInstanceRestoreToPointInTimeTargetUseLatestRestorableTime,
-        DbInstanceS3Import;
+        DbInstanceS3Import,
+        DbInstanceTarget,
+        DbInstanceTargetRestoreTime,
+        DbInstanceTargetUseLatestRestorableTime;
 export 'src/db/aws_db_instance_automated_backups_replication.dart'
     show AwsDbInstanceAutomatedBackupsReplication;
 export 'src/db/aws_db_instance_role_association.dart'
@@ -44,31 +44,31 @@ export 'src/db/aws_db_option_group.dart'
         DbOptionGroupNameChoice,
         DbOptionGroupNamePrefix,
         DbOptionGroupOption,
-        DbOptionGroupOptionOptionSettings;
+        DbOptionGroupOptionSettings;
 export 'src/db/aws_db_parameter_group.dart'
     show
         AwsDbParameterGroup,
+        DbParameterGroupApplyMethod,
         DbParameterGroupName,
         DbParameterGroupNameChoice,
         DbParameterGroupNamePrefix,
-        DbParameterGroupParameter,
-        DbParameterGroupParameterApplyMethod;
+        DbParameterGroupParameter;
 export 'src/db/aws_db_proxy.dart'
     show
         AwsDbProxy,
         DbProxyAuth,
-        DbProxyAuthAuthScheme,
-        DbProxyAuthClientPasswordAuthType,
-        DbProxyAuthIamAuth,
+        DbProxyAuthScheme,
+        DbProxyClientPasswordAuthType,
         DbProxyDefaultAuthScheme,
         DbProxyEndpointNetworkType,
         DbProxyEngineFamily,
+        DbProxyIamAuth,
         DbProxyTargetConnectionNetworkType;
 export 'src/db/aws_db_proxy_default_target_group.dart'
     show
         AwsDbProxyDefaultTargetGroup,
         DbProxyDefaultTargetGroupConnectionPoolConfig,
-        DbProxyDefaultTargetGroupConnectionPoolConfigSessionPinningFilters;
+        DbProxyDefaultTargetGroupSessionPinningFilters;
 export 'src/db/aws_db_proxy_endpoint.dart'
     show AwsDbProxyEndpoint, DbProxyEndpointTargetRole;
 export 'src/db/aws_db_proxy_target.dart'

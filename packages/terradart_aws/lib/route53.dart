@@ -25,39 +25,39 @@ export 'src/route53/aws_route53_record.dart'
         AwsRoute53Record,
         Route53RecordAlias,
         Route53RecordCidrRoutingPolicy,
+        Route53RecordCidrRoutingPolicyChoice,
+        Route53RecordCoordinates,
         Route53RecordFailoverRoutingPolicy,
+        Route53RecordFailoverRoutingPolicyChoice,
         Route53RecordFailoverRoutingPolicyType,
         Route53RecordGeolocationRoutingPolicy,
+        Route53RecordGeolocationRoutingPolicyChoice,
         Route53RecordGeoproximityRoutingPolicy,
-        Route53RecordGeoproximityRoutingPolicyCoordinates,
+        Route53RecordGeoproximityRoutingPolicyChoice,
         Route53RecordLatencyRoutingPolicy,
-        Route53RecordLatencyRoutingPolicyRegion,
+        Route53RecordLatencyRoutingPolicyChoice,
+        Route53RecordMultivalueAnswerRoutingPolicy,
+        Route53RecordRegion,
         Route53RecordRoutingPolicy,
-        Route53RecordRoutingPolicyCidrRoutingPolicy,
-        Route53RecordRoutingPolicyFailoverRoutingPolicy,
-        Route53RecordRoutingPolicyGeolocationRoutingPolicy,
-        Route53RecordRoutingPolicyGeoproximityRoutingPolicy,
-        Route53RecordRoutingPolicyLatencyRoutingPolicy,
-        Route53RecordRoutingPolicyMultivalueAnswerRoutingPolicy,
-        Route53RecordRoutingPolicyWeightedRoutingPolicy,
         Route53RecordTarget,
         Route53RecordTargetAlias,
         Route53RecordTargetRecords,
         Route53RecordType,
-        Route53RecordWeightedRoutingPolicy;
+        Route53RecordWeightedRoutingPolicy,
+        Route53RecordWeightedRoutingPolicyChoice;
 export 'src/route53/aws_route53_records_exclusive.dart'
     show
         AwsRoute53RecordsExclusive,
+        Route53RecordsExclusiveAliasTarget,
+        Route53RecordsExclusiveCidrRoutingConfig,
+        Route53RecordsExclusiveCoordinates,
+        Route53RecordsExclusiveFailover,
+        Route53RecordsExclusiveGeolocation,
+        Route53RecordsExclusiveGeoproximityLocation,
+        Route53RecordsExclusiveRegion,
         Route53RecordsExclusiveResourceRecordSet,
-        Route53RecordsExclusiveResourceRecordSetAliasTarget,
-        Route53RecordsExclusiveResourceRecordSetCidrRoutingConfig,
-        Route53RecordsExclusiveResourceRecordSetFailover,
-        Route53RecordsExclusiveResourceRecordSetGeolocation,
-        Route53RecordsExclusiveResourceRecordSetGeoproximityLocation,
-        Route53RecordsExclusiveResourceRecordSetGeoproximityLocationCoordinates,
-        Route53RecordsExclusiveResourceRecordSetRegion,
-        Route53RecordsExclusiveResourceRecordSetResourceRecords,
-        Route53RecordsExclusiveResourceRecordSetType;
+        Route53RecordsExclusiveResourceRecords,
+        Route53RecordsExclusiveType;
 export 'src/route53/aws_route53_resolver_config.dart'
     show AwsRoute53ResolverConfig, Route53ResolverConfigAutodefinedReverseFlag;
 export 'src/route53/aws_route53_resolver_dnssec_config.dart'
@@ -97,9 +97,9 @@ export 'src/route53/aws_route53_resolver_query_log_config_association.dart'
 export 'src/route53/aws_route53_resolver_rule.dart'
     show
         AwsRoute53ResolverRule,
+        Route53ResolverRuleProtocol,
         Route53ResolverRuleRuleType,
-        Route53ResolverRuleTargetIp,
-        Route53ResolverRuleTargetIpProtocol;
+        Route53ResolverRuleTargetIp;
 export 'src/route53/aws_route53_resolver_rule_association.dart'
     show AwsRoute53ResolverRuleAssociation;
 export 'src/route53/aws_route53_traffic_policy.dart'

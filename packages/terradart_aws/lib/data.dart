@@ -11,9 +11,9 @@ export 'src/data/aws_accountaccess_application.dart'
 export 'src/data/aws_accountaccess_entitlements.dart'
     show
         DataAccountaccessEntitlementsFilter,
-        DataAccountaccessEntitlementsFilterPrincipalRole,
-        DataAccountaccessEntitlementsFilterPrincipalRolePrincipal,
-        DataAccountaccessEntitlementsFilterPrincipalRolePrincipalIdentityCenter,
+        DataAccountaccessEntitlementsIdentityCenter,
+        DataAccountaccessEntitlementsPrincipal,
+        DataAccountaccessEntitlementsPrincipalRole,
         DataAwsAccountaccessEntitlements;
 export 'src/data/aws_acm_certificate.dart' show DataAwsAcmCertificate;
 export 'src/data/aws_acmpca_certificate.dart' show DataAwsAcmpcaCertificate;
@@ -115,7 +115,7 @@ export 'src/data/aws_bedrockagent_agent_versions.dart'
     show
         DataAwsBedrockagentAgentVersions,
         DataBedrockagentAgentVersionsAgentVersionSummaries,
-        DataBedrockagentAgentVersionsAgentVersionSummariesGuardrailConfiguration;
+        DataBedrockagentAgentVersionsGuardrailConfiguration;
 export 'src/data/aws_billing_service_account.dart'
     show DataAwsBillingServiceAccount;
 export 'src/data/aws_billing_views.dart' show DataAwsBillingViews;
@@ -126,22 +126,13 @@ export 'src/data/aws_ce_cost_category.dart' show DataAwsCeCostCategory;
 export 'src/data/aws_ce_tags.dart'
     show
         DataAwsCeTags,
+        DataCeTagsAnd,
+        DataCeTagsCostCategory,
+        DataCeTagsDimension,
         DataCeTagsFilter,
-        DataCeTagsFilterAnd,
-        DataCeTagsFilterAndCostCategory,
-        DataCeTagsFilterAndDimension,
-        DataCeTagsFilterAndTags,
-        DataCeTagsFilterCostCategory,
-        DataCeTagsFilterDimension,
-        DataCeTagsFilterNot,
-        DataCeTagsFilterNotCostCategory,
-        DataCeTagsFilterNotDimension,
-        DataCeTagsFilterNotTags,
-        DataCeTagsFilterOr,
-        DataCeTagsFilterOrCostCategory,
-        DataCeTagsFilterOrDimension,
-        DataCeTagsFilterOrTags,
         DataCeTagsFilterTags,
+        DataCeTagsNot,
+        DataCeTagsOr,
         DataCeTagsSortBy,
         DataCeTagsTimePeriod;
 export 'src/data/aws_chatbot_slack_workspace.dart'
@@ -190,17 +181,17 @@ export 'src/data/aws_cloudwatch_event_source.dart'
 export 'src/data/aws_cloudwatch_log_data_protection_policy_document.dart'
     show
         DataAwsCloudwatchLogDataProtectionPolicyDocument,
+        DataCloudwatchLogDataProtectionPolicyDocumentAudit,
+        DataCloudwatchLogDataProtectionPolicyDocumentCloudwatchLogs,
         DataCloudwatchLogDataProtectionPolicyDocumentConfiguration,
-        DataCloudwatchLogDataProtectionPolicyDocumentConfigurationCustomDataIdentifier,
-        DataCloudwatchLogDataProtectionPolicyDocumentStatement,
-        DataCloudwatchLogDataProtectionPolicyDocumentStatementOperation,
-        DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationAudit,
-        DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationAuditFindingsDestination,
-        DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationAuditFindingsDestinationCloudwatchLogs,
-        DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationAuditFindingsDestinationFirehose,
-        DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationAuditFindingsDestinationS3,
-        DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationDeidentify,
-        DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationDeidentifyMaskConfig;
+        DataCloudwatchLogDataProtectionPolicyDocumentCustomDataIdentifier,
+        DataCloudwatchLogDataProtectionPolicyDocumentDeidentify,
+        DataCloudwatchLogDataProtectionPolicyDocumentFindingsDestination,
+        DataCloudwatchLogDataProtectionPolicyDocumentFirehose,
+        DataCloudwatchLogDataProtectionPolicyDocumentMaskConfig,
+        DataCloudwatchLogDataProtectionPolicyDocumentOperation,
+        DataCloudwatchLogDataProtectionPolicyDocumentS3,
+        DataCloudwatchLogDataProtectionPolicyDocumentStatement;
 export 'src/data/aws_cloudwatch_log_group.dart' show DataAwsCloudwatchLogGroup;
 export 'src/data/aws_cloudwatch_log_groups.dart'
     show DataAwsCloudwatchLogGroups;
@@ -464,9 +455,9 @@ export 'src/data/aws_ecr_images.dart' show DataAwsEcrImages;
 export 'src/data/aws_ecr_lifecycle_policy_document.dart'
     show
         DataAwsEcrLifecyclePolicyDocument,
+        DataEcrLifecyclePolicyDocumentAction,
         DataEcrLifecyclePolicyDocumentRule,
-        DataEcrLifecyclePolicyDocumentRuleAction,
-        DataEcrLifecyclePolicyDocumentRuleSelection;
+        DataEcrLifecyclePolicyDocumentSelection;
 export 'src/data/aws_ecr_pull_through_cache_rule.dart'
     show DataAwsEcrPullThroughCacheRule;
 export 'src/data/aws_ecr_repositories.dart' show DataAwsEcrRepositories;
@@ -487,13 +478,13 @@ export 'src/data/aws_ecs_task_execution.dart'
     show
         DataAwsEcsTaskExecution,
         DataEcsTaskExecutionCapacityProviderStrategy,
+        DataEcsTaskExecutionContainerOverrides,
+        DataEcsTaskExecutionEnvironment,
         DataEcsTaskExecutionNetworkConfiguration,
         DataEcsTaskExecutionOverrides,
-        DataEcsTaskExecutionOverridesContainerOverrides,
-        DataEcsTaskExecutionOverridesContainerOverridesEnvironment,
-        DataEcsTaskExecutionOverridesContainerOverridesResourceRequirements,
         DataEcsTaskExecutionPlacementConstraints,
-        DataEcsTaskExecutionPlacementStrategy;
+        DataEcsTaskExecutionPlacementStrategy,
+        DataEcsTaskExecutionResourceRequirements;
 export 'src/data/aws_efs_access_point.dart' show DataAwsEfsAccessPoint;
 export 'src/data/aws_efs_access_points.dart' show DataAwsEfsAccessPoints;
 export 'src/data/aws_efs_file_system.dart' show DataAwsEfsFileSystem;
@@ -569,9 +560,9 @@ export 'src/data/aws_glue_registry.dart' show DataAwsGlueRegistry;
 export 'src/data/aws_glue_script.dart'
     show
         DataAwsGlueScript,
+        DataGlueScriptArgs,
         DataGlueScriptDagEdge,
-        DataGlueScriptDagNode,
-        DataGlueScriptDagNodeArgs;
+        DataGlueScriptDagNode;
 export 'src/data/aws_grafana_workspace.dart' show DataAwsGrafanaWorkspace;
 export 'src/data/aws_guardduty_detector.dart' show DataAwsGuarddutyDetector;
 export 'src/data/aws_guardduty_finding_ids.dart'
@@ -590,10 +581,10 @@ export 'src/data/aws_iam_policy.dart' show DataAwsIamPolicy;
 export 'src/data/aws_iam_policy_document.dart'
     show
         DataAwsIamPolicyDocument,
-        DataIamPolicyDocumentStatement,
-        DataIamPolicyDocumentStatementCondition,
-        DataIamPolicyDocumentStatementNotPrincipals,
-        DataIamPolicyDocumentStatementPrincipals;
+        DataIamPolicyDocumentCondition,
+        DataIamPolicyDocumentNotPrincipals,
+        DataIamPolicyDocumentPrincipals,
+        DataIamPolicyDocumentStatement;
 export 'src/data/aws_iam_principal_policy_simulation.dart'
     show
         DataAwsIamPrincipalPolicySimulation,
@@ -614,8 +605,8 @@ export 'src/data/aws_identitystore_group.dart'
     show
         DataAwsIdentitystoreGroup,
         DataIdentitystoreGroupAlternateIdentifier,
-        DataIdentitystoreGroupAlternateIdentifierExternalId,
-        DataIdentitystoreGroupAlternateIdentifierUniqueAttribute;
+        DataIdentitystoreGroupExternalId,
+        DataIdentitystoreGroupUniqueAttribute;
 export 'src/data/aws_identitystore_group_memberships.dart'
     show DataAwsIdentitystoreGroupMemberships;
 export 'src/data/aws_identitystore_groups.dart' show DataAwsIdentitystoreGroups;
@@ -623,8 +614,8 @@ export 'src/data/aws_identitystore_user.dart'
     show
         DataAwsIdentitystoreUser,
         DataIdentitystoreUserAlternateIdentifier,
-        DataIdentitystoreUserAlternateIdentifierExternalId,
-        DataIdentitystoreUserAlternateIdentifierUniqueAttribute;
+        DataIdentitystoreUserExternalId,
+        DataIdentitystoreUserUniqueAttribute;
 export 'src/data/aws_identitystore_users.dart' show DataAwsIdentitystoreUsers;
 export 'src/data/aws_imagebuilder_component.dart'
     show DataAwsImagebuilderComponent;
@@ -699,9 +690,9 @@ export 'src/data/aws_lakeformation_permissions.dart'
         DataLakeformationPermissionsDataCellsFilter,
         DataLakeformationPermissionsDataLocation,
         DataLakeformationPermissionsDatabase,
+        DataLakeformationPermissionsExpression,
         DataLakeformationPermissionsLfTag,
         DataLakeformationPermissionsLfTagPolicy,
-        DataLakeformationPermissionsLfTagPolicyExpression,
         DataLakeformationPermissionsTable,
         DataLakeformationPermissionsTableWithColumns;
 export 'src/data/aws_lakeformation_resource.dart'
@@ -724,28 +715,27 @@ export 'src/data/aws_lb_listener_rule.dart'
     show
         DataAwsLbListenerRule,
         DataLbListenerRuleAction,
-        DataLbListenerRuleActionAuthenticateCognito,
-        DataLbListenerRuleActionAuthenticateOidc,
-        DataLbListenerRuleActionFixedResponse,
-        DataLbListenerRuleActionForward,
-        DataLbListenerRuleActionForwardStickiness,
-        DataLbListenerRuleActionForwardTargetGroup,
-        DataLbListenerRuleActionJwtValidation,
-        DataLbListenerRuleActionJwtValidationAdditionalClaim,
-        DataLbListenerRuleActionRedirect,
+        DataLbListenerRuleAdditionalClaim,
+        DataLbListenerRuleAuthenticateCognito,
+        DataLbListenerRuleAuthenticateOidc,
         DataLbListenerRuleCondition,
-        DataLbListenerRuleConditionHostHeader,
-        DataLbListenerRuleConditionHttpHeader,
-        DataLbListenerRuleConditionHttpRequestMethod,
-        DataLbListenerRuleConditionPathPattern,
-        DataLbListenerRuleConditionQueryString,
-        DataLbListenerRuleConditionQueryStringValues,
-        DataLbListenerRuleConditionSourceIp,
+        DataLbListenerRuleFixedResponse,
+        DataLbListenerRuleForward,
+        DataLbListenerRuleHostHeader,
+        DataLbListenerRuleHostHeaderRewriteConfig,
+        DataLbListenerRuleHttpHeader,
+        DataLbListenerRuleHttpRequestMethod,
+        DataLbListenerRuleJwtValidation,
+        DataLbListenerRulePathPattern,
+        DataLbListenerRuleQueryString,
+        DataLbListenerRuleRedirect,
+        DataLbListenerRuleRewrite,
+        DataLbListenerRuleSourceIp,
+        DataLbListenerRuleStickiness,
+        DataLbListenerRuleTargetGroup,
         DataLbListenerRuleTransform,
-        DataLbListenerRuleTransformHostHeaderRewriteConfig,
-        DataLbListenerRuleTransformHostHeaderRewriteConfigRewrite,
-        DataLbListenerRuleTransformUrlRewriteConfig,
-        DataLbListenerRuleTransformUrlRewriteConfigRewrite;
+        DataLbListenerRuleUrlRewriteConfig,
+        DataLbListenerRuleValues;
 export 'src/data/aws_lb_target_group.dart' show DataAwsLbTargetGroup;
 export 'src/data/aws_lb_trust_store.dart' show DataAwsLbTrustStore;
 export 'src/data/aws_lbs.dart' show DataAwsLbs;
@@ -836,19 +826,19 @@ export 'src/data/aws_networkmanager_core_network_policy_document.dart'
         DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingPolicyRulesAction,
         DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingPolicyRulesConditions,
         DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfiguration,
-        DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationEdgeLocations,
+        DataNetworkmanagerCoreNetworkPolicyDocumentEdgeLocationAssociation,
+        DataNetworkmanagerCoreNetworkPolicyDocumentEdgeLocations,
+        DataNetworkmanagerCoreNetworkPolicyDocumentMatchConditions,
         DataNetworkmanagerCoreNetworkPolicyDocumentNetworkFunctionGroups,
         DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPolicies,
-        DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPoliciesRoutingPolicyRules,
-        DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPoliciesRoutingPolicyRulesRuleDefinition,
-        DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPoliciesRoutingPolicyRulesRuleDefinitionAction,
-        DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPoliciesRoutingPolicyRulesRuleDefinitionMatchConditions,
+        DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPolicyRules,
+        DataNetworkmanagerCoreNetworkPolicyDocumentRuleDefinition,
+        DataNetworkmanagerCoreNetworkPolicyDocumentRuleDefinitionAction,
         DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActions,
-        DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsEdgeLocationAssociation,
-        DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsVia,
-        DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsViaWithEdgeOverride,
-        DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsWhenSentTo,
-        DataNetworkmanagerCoreNetworkPolicyDocumentSegments;
+        DataNetworkmanagerCoreNetworkPolicyDocumentSegments,
+        DataNetworkmanagerCoreNetworkPolicyDocumentVia,
+        DataNetworkmanagerCoreNetworkPolicyDocumentWhenSentTo,
+        DataNetworkmanagerCoreNetworkPolicyDocumentWithEdgeOverride;
 export 'src/data/aws_networkmanager_device.dart'
     show DataAwsNetworkmanagerDevice;
 export 'src/data/aws_networkmanager_devices.dart'
@@ -1043,13 +1033,13 @@ export 'src/data/aws_route53_traffic_policy_document.dart'
     show
         DataAwsRoute53TrafficPolicyDocument,
         DataRoute53TrafficPolicyDocumentEndpoint,
+        DataRoute53TrafficPolicyDocumentGeoProximityLocation,
+        DataRoute53TrafficPolicyDocumentItems,
+        DataRoute53TrafficPolicyDocumentLocation,
+        DataRoute53TrafficPolicyDocumentPrimary,
+        DataRoute53TrafficPolicyDocumentRegion,
         DataRoute53TrafficPolicyDocumentRule,
-        DataRoute53TrafficPolicyDocumentRuleGeoProximityLocation,
-        DataRoute53TrafficPolicyDocumentRuleItems,
-        DataRoute53TrafficPolicyDocumentRuleLocation,
-        DataRoute53TrafficPolicyDocumentRulePrimary,
-        DataRoute53TrafficPolicyDocumentRuleRegion,
-        DataRoute53TrafficPolicyDocumentRuleSecondary;
+        DataRoute53TrafficPolicyDocumentSecondary;
 export 'src/data/aws_route53_zone.dart' show DataAwsRoute53Zone;
 export 'src/data/aws_route53_zones.dart' show DataAwsRoute53Zones;
 export 'src/data/aws_route53profiles_profile.dart'
@@ -1086,9 +1076,9 @@ export 'src/data/aws_s3control_multi_region_access_points.dart'
 export 'src/data/aws_s3files_access_point.dart'
     show
         DataAwsS3filesAccessPoint,
+        DataS3filesAccessPointCreationPermissions,
         DataS3filesAccessPointPosixUser,
-        DataS3filesAccessPointRootDirectory,
-        DataS3filesAccessPointRootDirectoryCreationPermissions;
+        DataS3filesAccessPointRootDirectory;
 export 'src/data/aws_s3files_file_system.dart' show DataAwsS3filesFileSystem;
 export 'src/data/aws_s3files_file_systems.dart'
     show DataAwsS3filesFileSystems, DataS3filesFileSystemsFileSystems;

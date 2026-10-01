@@ -53,10 +53,10 @@ final class CloudAssetFolderFeedCondition {
 /// Typed helper for the `feed_output_config` block of
 /// `google_cloud_asset_folder_feed` (derived from provider schema).
 @immutable
-final class CloudAssetFolderFeedFeedOutputConfig {
-  const CloudAssetFolderFeedFeedOutputConfig({required this.pubsubDestination});
+final class CloudAssetFolderFeedOutputConfig {
+  const CloudAssetFolderFeedOutputConfig({required this.pubsubDestination});
 
-  final CloudAssetFolderFeedFeedOutputConfigPubsubDestination pubsubDestination;
+  final CloudAssetFolderFeedPubsubDestination pubsubDestination;
 
   Map<String, Object?> encode() => {
     'pubsub_destination': pubsubDestination.encode(),
@@ -66,10 +66,8 @@ final class CloudAssetFolderFeedFeedOutputConfig {
 /// Typed helper for the `feed_output_config.pubsub_destination` block of
 /// `google_cloud_asset_folder_feed` (derived from provider schema).
 @immutable
-final class CloudAssetFolderFeedFeedOutputConfigPubsubDestination {
-  const CloudAssetFolderFeedFeedOutputConfigPubsubDestination({
-    required this.topic,
-  });
+final class CloudAssetFolderFeedPubsubDestination {
+  const CloudAssetFolderFeedPubsubDestination({required this.topic});
 
   final RefTo<GooglePubsubTopic> topic;
 
@@ -99,7 +97,7 @@ final class GoogleCloudAssetFolderFeed extends Resource {
     required TfArg<String> feedId,
     required TfArg<String> folder,
     CloudAssetFolderFeedCondition? condition,
-    required CloudAssetFolderFeedFeedOutputConfig feedOutputConfig,
+    required CloudAssetFolderFeedOutputConfig feedOutputConfig,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -32,8 +32,8 @@ enum DlmLifecyclePolicyState implements TerraformEnum {
 /// Typed helper for the `policy_details` block of
 /// `aws_dlm_lifecycle_policy` (derived from provider schema).
 @immutable
-final class DlmLifecyclePolicyPolicyDetails {
-  const DlmLifecyclePolicyPolicyDetails({
+final class DlmLifecyclePolicyDetails {
+  const DlmLifecyclePolicyDetails({
     this.copyTags,
     this.createInterval,
     this.extendDeletion,
@@ -57,31 +57,29 @@ final class DlmLifecyclePolicyPolicyDetails {
 
   final TfArg<bool>? extendDeletion;
 
-  final TfArg<DlmLifecyclePolicyPolicyDetailsPolicyLanguage>? policyLanguage;
+  final TfArg<DlmLifecyclePolicyLanguage>? policyLanguage;
 
-  final TfArg<DlmLifecyclePolicyPolicyDetailsPolicyType>? policyType;
+  final TfArg<DlmLifecyclePolicyType>? policyType;
 
-  final List<TfArg<DlmLifecyclePolicyPolicyDetailsResourceLocations>>?
-  resourceLocations;
+  final List<TfArg<DlmLifecyclePolicyResourceLocations>>? resourceLocations;
 
-  final TfArg<DlmLifecyclePolicyPolicyDetailsResourceType>? resourceType;
+  final TfArg<DlmLifecyclePolicyResourceType>? resourceType;
 
-  final List<TfArg<DlmLifecyclePolicyPolicyDetailsResourceTypes>>?
-  resourceTypes;
+  final List<TfArg<DlmLifecyclePolicyResourceTypes>>? resourceTypes;
 
   final TfArg<num>? retainInterval;
 
   final TfArg<Map<String, String>>? targetTags;
 
-  final DlmLifecyclePolicyPolicyDetailsAction? action;
+  final DlmLifecyclePolicyAction? action;
 
-  final DlmLifecyclePolicyPolicyDetailsEventSource? eventSource;
+  final DlmLifecyclePolicyEventSource? eventSource;
 
-  final DlmLifecyclePolicyPolicyDetailsExclusions? exclusions;
+  final DlmLifecyclePolicyExclusions? exclusions;
 
-  final DlmLifecyclePolicyPolicyDetailsParameters? parameters;
+  final DlmLifecyclePolicyParameters? parameters;
 
-  final List<DlmLifecyclePolicyPolicyDetailsSchedule>? schedule;
+  final List<DlmLifecyclePolicySchedule>? schedule;
 
   Map<String, Object?> encode() => {
     'copy_tags': ?copyTags?.toTfJson(),
@@ -105,53 +103,53 @@ final class DlmLifecyclePolicyPolicyDetails {
 }
 
 /// `policy_language` — derived from the provider schema description.
-enum DlmLifecyclePolicyPolicyDetailsPolicyLanguage implements TerraformEnum {
+enum DlmLifecyclePolicyLanguage implements TerraformEnum {
   simplified('SIMPLIFIED'),
   standard('STANDARD');
 
-  const DlmLifecyclePolicyPolicyDetailsPolicyLanguage(this.terraformValue);
+  const DlmLifecyclePolicyLanguage(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `policy_type` — derived from the provider schema description.
-enum DlmLifecyclePolicyPolicyDetailsPolicyType implements TerraformEnum {
+enum DlmLifecyclePolicyType implements TerraformEnum {
   ebsSnapshotManagement('EBS_SNAPSHOT_MANAGEMENT'),
   imageManagement('IMAGE_MANAGEMENT'),
   eventBasedPolicy('EVENT_BASED_POLICY');
 
-  const DlmLifecyclePolicyPolicyDetailsPolicyType(this.terraformValue);
+  const DlmLifecyclePolicyType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `resource_locations` — derived from the provider schema description.
-enum DlmLifecyclePolicyPolicyDetailsResourceLocations implements TerraformEnum {
+enum DlmLifecyclePolicyResourceLocations implements TerraformEnum {
   cloud('CLOUD'),
   outpost('OUTPOST'),
   localZone('LOCAL_ZONE');
 
-  const DlmLifecyclePolicyPolicyDetailsResourceLocations(this.terraformValue);
+  const DlmLifecyclePolicyResourceLocations(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `resource_type` — derived from the provider schema description.
-enum DlmLifecyclePolicyPolicyDetailsResourceType implements TerraformEnum {
+enum DlmLifecyclePolicyResourceType implements TerraformEnum {
   volume('VOLUME'),
   instance('INSTANCE');
 
-  const DlmLifecyclePolicyPolicyDetailsResourceType(this.terraformValue);
+  const DlmLifecyclePolicyResourceType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `resource_types` — derived from the provider schema description.
-enum DlmLifecyclePolicyPolicyDetailsResourceTypes implements TerraformEnum {
+enum DlmLifecyclePolicyResourceTypes implements TerraformEnum {
   volume('VOLUME'),
   instance('INSTANCE');
 
-  const DlmLifecyclePolicyPolicyDetailsResourceTypes(this.terraformValue);
+  const DlmLifecyclePolicyResourceTypes(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -159,16 +157,15 @@ enum DlmLifecyclePolicyPolicyDetailsResourceTypes implements TerraformEnum {
 /// Typed helper for the `policy_details.action` block of
 /// `aws_dlm_lifecycle_policy` (derived from provider schema).
 @immutable
-final class DlmLifecyclePolicyPolicyDetailsAction {
-  const DlmLifecyclePolicyPolicyDetailsAction({
+final class DlmLifecyclePolicyAction {
+  const DlmLifecyclePolicyAction({
     required this.name,
     required this.crossRegionCopy,
   });
 
   final TfArg<String> name;
 
-  final List<DlmLifecyclePolicyPolicyDetailsActionCrossRegionCopy>
-  crossRegionCopy;
+  final List<DlmLifecyclePolicyCrossRegionCopy> crossRegionCopy;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -179,8 +176,8 @@ final class DlmLifecyclePolicyPolicyDetailsAction {
 /// Typed helper for the `policy_details.action.cross_region_copy` block of
 /// `aws_dlm_lifecycle_policy` (derived from provider schema).
 @immutable
-final class DlmLifecyclePolicyPolicyDetailsActionCrossRegionCopy {
-  const DlmLifecyclePolicyPolicyDetailsActionCrossRegionCopy({
+final class DlmLifecyclePolicyCrossRegionCopy {
+  const DlmLifecyclePolicyCrossRegionCopy({
     required this.target,
     required this.encryptionConfiguration,
     this.retainRule,
@@ -188,11 +185,9 @@ final class DlmLifecyclePolicyPolicyDetailsActionCrossRegionCopy {
 
   final TfArg<String> target;
 
-  final DlmLifecyclePolicyPolicyDetailsActionCrossRegionCopyEncryptionConfiguration
-  encryptionConfiguration;
+  final DlmLifecyclePolicyEncryptionConfiguration encryptionConfiguration;
 
-  final DlmLifecyclePolicyPolicyDetailsActionCrossRegionCopyRetainRule?
-  retainRule;
+  final DlmLifecyclePolicyCrossRegionCopyRetainRule? retainRule;
 
   Map<String, Object?> encode() => {
     'target': target.toTfJson(),
@@ -204,8 +199,8 @@ final class DlmLifecyclePolicyPolicyDetailsActionCrossRegionCopy {
 /// Typed helper for the `policy_details.action.cross_region_copy.encryption_configuration` block of
 /// `aws_dlm_lifecycle_policy` (derived from provider schema).
 @immutable
-final class DlmLifecyclePolicyPolicyDetailsActionCrossRegionCopyEncryptionConfiguration {
-  const DlmLifecyclePolicyPolicyDetailsActionCrossRegionCopyEncryptionConfiguration({
+final class DlmLifecyclePolicyEncryptionConfiguration {
+  const DlmLifecyclePolicyEncryptionConfiguration({
     this.cmkArn,
     this.encrypted,
   });
@@ -222,19 +217,17 @@ final class DlmLifecyclePolicyPolicyDetailsActionCrossRegionCopyEncryptionConfig
 
 /// Typed helper for the `policy_details.action.cross_region_copy.retain_rule` block of
 /// `aws_dlm_lifecycle_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DlmLifecyclePolicyPolicyDetailsActionCrossRegionCopyRetainRule {
-  const DlmLifecyclePolicyPolicyDetailsActionCrossRegionCopyRetainRule({
+final class DlmLifecyclePolicyCrossRegionCopyRetainRule {
+  const DlmLifecyclePolicyCrossRegionCopyRetainRule({
     required this.interval,
     required this.intervalUnit,
   });
 
   final TfArg<num> interval;
 
-  final TfArg<
-    DlmLifecyclePolicyPolicyDetailsActionCrossRegionCopyRetainRuleIntervalUnit
-  >
-  intervalUnit;
+  final TfArg<DlmLifecyclePolicyDeprecateRuleIntervalUnit> intervalUnit;
 
   Map<String, Object?> encode() => {
     'interval': interval.toTfJson(),
@@ -243,16 +236,13 @@ final class DlmLifecyclePolicyPolicyDetailsActionCrossRegionCopyRetainRule {
 }
 
 /// `interval_unit` — derived from the provider schema description.
-enum DlmLifecyclePolicyPolicyDetailsActionCrossRegionCopyRetainRuleIntervalUnit
-    implements TerraformEnum {
+enum DlmLifecyclePolicyDeprecateRuleIntervalUnit implements TerraformEnum {
   days('DAYS'),
   weeks('WEEKS'),
   months('MONTHS'),
   years('YEARS');
 
-  const DlmLifecyclePolicyPolicyDetailsActionCrossRegionCopyRetainRuleIntervalUnit(
-    this.terraformValue,
-  );
+  const DlmLifecyclePolicyDeprecateRuleIntervalUnit(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -260,15 +250,15 @@ enum DlmLifecyclePolicyPolicyDetailsActionCrossRegionCopyRetainRuleIntervalUnit
 /// Typed helper for the `policy_details.event_source` block of
 /// `aws_dlm_lifecycle_policy` (derived from provider schema).
 @immutable
-final class DlmLifecyclePolicyPolicyDetailsEventSource {
-  const DlmLifecyclePolicyPolicyDetailsEventSource({
+final class DlmLifecyclePolicyEventSource {
+  const DlmLifecyclePolicyEventSource({
     required this.type,
     required this.parameters,
   });
 
-  final TfArg<DlmLifecyclePolicyPolicyDetailsEventSourceType> type;
+  final TfArg<DlmLifecyclePolicyEventSourceType> type;
 
-  final DlmLifecyclePolicyPolicyDetailsEventSourceParameters parameters;
+  final DlmLifecyclePolicyEventSourceParameters parameters;
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
@@ -277,10 +267,10 @@ final class DlmLifecyclePolicyPolicyDetailsEventSource {
 }
 
 /// `type` — derived from the provider schema description.
-enum DlmLifecyclePolicyPolicyDetailsEventSourceType implements TerraformEnum {
+enum DlmLifecyclePolicyEventSourceType implements TerraformEnum {
   managedCwe('MANAGED_CWE');
 
-  const DlmLifecyclePolicyPolicyDetailsEventSourceType(this.terraformValue);
+  const DlmLifecyclePolicyEventSourceType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -288,8 +278,8 @@ enum DlmLifecyclePolicyPolicyDetailsEventSourceType implements TerraformEnum {
 /// Typed helper for the `policy_details.event_source.parameters` block of
 /// `aws_dlm_lifecycle_policy` (derived from provider schema).
 @immutable
-final class DlmLifecyclePolicyPolicyDetailsEventSourceParameters {
-  const DlmLifecyclePolicyPolicyDetailsEventSourceParameters({
+final class DlmLifecyclePolicyEventSourceParameters {
+  const DlmLifecyclePolicyEventSourceParameters({
     required this.descriptionRegex,
     required this.eventType,
     required this.snapshotOwner,
@@ -297,8 +287,7 @@ final class DlmLifecyclePolicyPolicyDetailsEventSourceParameters {
 
   final TfArg<String> descriptionRegex;
 
-  final TfArg<DlmLifecyclePolicyPolicyDetailsEventSourceParametersEventType>
-  eventType;
+  final TfArg<DlmLifecyclePolicyEventType> eventType;
 
   final TfArg<List<String>> snapshotOwner;
 
@@ -310,13 +299,10 @@ final class DlmLifecyclePolicyPolicyDetailsEventSourceParameters {
 }
 
 /// `event_type` — derived from the provider schema description.
-enum DlmLifecyclePolicyPolicyDetailsEventSourceParametersEventType
-    implements TerraformEnum {
+enum DlmLifecyclePolicyEventType implements TerraformEnum {
   sharesnapshot('shareSnapshot');
 
-  const DlmLifecyclePolicyPolicyDetailsEventSourceParametersEventType(
-    this.terraformValue,
-  );
+  const DlmLifecyclePolicyEventType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -324,8 +310,8 @@ enum DlmLifecyclePolicyPolicyDetailsEventSourceParametersEventType
 /// Typed helper for the `policy_details.exclusions` block of
 /// `aws_dlm_lifecycle_policy` (derived from provider schema).
 @immutable
-final class DlmLifecyclePolicyPolicyDetailsExclusions {
-  const DlmLifecyclePolicyPolicyDetailsExclusions({
+final class DlmLifecyclePolicyExclusions {
+  const DlmLifecyclePolicyExclusions({
     this.excludeBootVolumes,
     this.excludeTags,
     this.excludeVolumeTypes,
@@ -347,8 +333,8 @@ final class DlmLifecyclePolicyPolicyDetailsExclusions {
 /// Typed helper for the `policy_details.parameters` block of
 /// `aws_dlm_lifecycle_policy` (derived from provider schema).
 @immutable
-final class DlmLifecyclePolicyPolicyDetailsParameters {
-  const DlmLifecyclePolicyPolicyDetailsParameters({
+final class DlmLifecyclePolicyParameters {
+  const DlmLifecyclePolicyParameters({
     this.excludeBootVolume,
     this.excludeDataVolumeTags,
     this.noReboot,
@@ -370,8 +356,8 @@ final class DlmLifecyclePolicyPolicyDetailsParameters {
 /// Typed helper for the `policy_details.schedule` block of
 /// `aws_dlm_lifecycle_policy` (derived from provider schema).
 @immutable
-final class DlmLifecyclePolicyPolicyDetailsSchedule {
-  const DlmLifecyclePolicyPolicyDetailsSchedule({
+final class DlmLifecyclePolicySchedule {
+  const DlmLifecyclePolicySchedule({
     this.copyTags,
     required this.name,
     this.tagsToAdd,
@@ -393,20 +379,19 @@ final class DlmLifecyclePolicyPolicyDetailsSchedule {
 
   final TfArg<Map<String, String>>? variableTags;
 
-  final DlmLifecyclePolicyPolicyDetailsScheduleArchiveRule? archiveRule;
+  final DlmLifecyclePolicyArchiveRule? archiveRule;
 
-  final DlmLifecyclePolicyPolicyDetailsScheduleCreateRule createRule;
+  final DlmLifecyclePolicyCreateRule createRule;
 
-  final List<DlmLifecyclePolicyPolicyDetailsScheduleCrossRegionCopyRule>?
-  crossRegionCopyRule;
+  final List<DlmLifecyclePolicyCrossRegionCopyRule>? crossRegionCopyRule;
 
-  final DlmLifecyclePolicyPolicyDetailsScheduleDeprecateRule? deprecateRule;
+  final DlmLifecyclePolicyDeprecateRule? deprecateRule;
 
-  final DlmLifecyclePolicyPolicyDetailsScheduleFastRestoreRule? fastRestoreRule;
+  final DlmLifecyclePolicyFastRestoreRule? fastRestoreRule;
 
-  final DlmLifecyclePolicyPolicyDetailsScheduleRetainRule retainRule;
+  final DlmLifecyclePolicyRetainRule retainRule;
 
-  final DlmLifecyclePolicyPolicyDetailsScheduleShareRule? shareRule;
+  final DlmLifecyclePolicyShareRule? shareRule;
 
   Map<String, Object?> encode() => {
     'copy_tags': ?copyTags?.toTfJson(),
@@ -429,13 +414,10 @@ final class DlmLifecyclePolicyPolicyDetailsSchedule {
 /// Typed helper for the `policy_details.schedule.archive_rule` block of
 /// `aws_dlm_lifecycle_policy` (derived from provider schema).
 @immutable
-final class DlmLifecyclePolicyPolicyDetailsScheduleArchiveRule {
-  const DlmLifecyclePolicyPolicyDetailsScheduleArchiveRule({
-    required this.archiveRetainRule,
-  });
+final class DlmLifecyclePolicyArchiveRule {
+  const DlmLifecyclePolicyArchiveRule({required this.archiveRetainRule});
 
-  final DlmLifecyclePolicyPolicyDetailsScheduleArchiveRuleArchiveRetainRule
-  archiveRetainRule;
+  final DlmLifecyclePolicyArchiveRetainRule archiveRetainRule;
 
   Map<String, Object?> encode() => {
     'archive_retain_rule': archiveRetainRule.encode(),
@@ -445,13 +427,12 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleArchiveRule {
 /// Typed helper for the `policy_details.schedule.archive_rule.archive_retain_rule` block of
 /// `aws_dlm_lifecycle_policy` (derived from provider schema).
 @immutable
-final class DlmLifecyclePolicyPolicyDetailsScheduleArchiveRuleArchiveRetainRule {
-  const DlmLifecyclePolicyPolicyDetailsScheduleArchiveRuleArchiveRetainRule({
+final class DlmLifecyclePolicyArchiveRetainRule {
+  const DlmLifecyclePolicyArchiveRetainRule({
     required this.retentionArchiveTier,
   });
 
-  final DlmLifecyclePolicyPolicyDetailsScheduleArchiveRuleArchiveRetainRuleRetentionArchiveTier
-  retentionArchiveTier;
+  final DlmLifecyclePolicyRetentionArchiveTier retentionArchiveTier;
 
   Map<String, Object?> encode() => {
     'retention_archive_tier': retentionArchiveTier.encode(),
@@ -461,8 +442,8 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleArchiveRuleArchiveRetainRule 
 /// Typed helper for the `policy_details.schedule.archive_rule.archive_retain_rule.retention_archive_tier` block of
 /// `aws_dlm_lifecycle_policy` (derived from provider schema).
 @immutable
-final class DlmLifecyclePolicyPolicyDetailsScheduleArchiveRuleArchiveRetainRuleRetentionArchiveTier {
-  const DlmLifecyclePolicyPolicyDetailsScheduleArchiveRuleArchiveRetainRuleRetentionArchiveTier({
+final class DlmLifecyclePolicyRetentionArchiveTier {
+  const DlmLifecyclePolicyRetentionArchiveTier({
     this.count,
     this.interval,
     this.intervalUnit,
@@ -472,10 +453,7 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleArchiveRuleArchiveRetainRuleR
 
   final TfArg<num>? interval;
 
-  final TfArg<
-    DlmLifecyclePolicyPolicyDetailsScheduleArchiveRuleArchiveRetainRuleRetentionArchiveTierIntervalUnit
-  >?
-  intervalUnit;
+  final TfArg<DlmLifecyclePolicyDeprecateRuleIntervalUnit>? intervalUnit;
 
   Map<String, Object?> encode() => {
     'count': ?count?.toTfJson(),
@@ -484,26 +462,11 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleArchiveRuleArchiveRetainRuleR
   };
 }
 
-/// `interval_unit` — derived from the provider schema description.
-enum DlmLifecyclePolicyPolicyDetailsScheduleArchiveRuleArchiveRetainRuleRetentionArchiveTierIntervalUnit
-    implements TerraformEnum {
-  days('DAYS'),
-  weeks('WEEKS'),
-  months('MONTHS'),
-  years('YEARS');
-
-  const DlmLifecyclePolicyPolicyDetailsScheduleArchiveRuleArchiveRetainRuleRetentionArchiveTierIntervalUnit(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `policy_details.schedule.create_rule` block of
 /// `aws_dlm_lifecycle_policy` (derived from provider schema).
 @immutable
-final class DlmLifecyclePolicyPolicyDetailsScheduleCreateRule {
-  const DlmLifecyclePolicyPolicyDetailsScheduleCreateRule({
+final class DlmLifecyclePolicyCreateRule {
+  const DlmLifecyclePolicyCreateRule({
     this.cronExpression,
     this.interval,
     this.intervalUnit,
@@ -516,15 +479,13 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleCreateRule {
 
   final TfArg<num>? interval;
 
-  final TfArg<DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleIntervalUnit>?
-  intervalUnit;
+  final TfArg<DlmLifecyclePolicyCreateRuleIntervalUnit>? intervalUnit;
 
-  final TfArg<DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleLocation>?
-  location;
+  final TfArg<DlmLifecyclePolicyLocation>? location;
 
   final TfArg<List<String>>? times;
 
-  final DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleScripts? scripts;
+  final DlmLifecyclePolicyScripts? scripts;
 
   Map<String, Object?> encode() => {
     'cron_expression': ?cronExpression?.toTfJson(),
@@ -537,27 +498,21 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleCreateRule {
 }
 
 /// `interval_unit` — derived from the provider schema description.
-enum DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleIntervalUnit
-    implements TerraformEnum {
+enum DlmLifecyclePolicyCreateRuleIntervalUnit implements TerraformEnum {
   hours('HOURS');
 
-  const DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleIntervalUnit(
-    this.terraformValue,
-  );
+  const DlmLifecyclePolicyCreateRuleIntervalUnit(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `location` — derived from the provider schema description.
-enum DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleLocation
-    implements TerraformEnum {
+enum DlmLifecyclePolicyLocation implements TerraformEnum {
   cloud('CLOUD'),
   outpostLocal('OUTPOST_LOCAL'),
   localZone('LOCAL_ZONE');
 
-  const DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleLocation(
-    this.terraformValue,
-  );
+  const DlmLifecyclePolicyLocation(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -565,8 +520,8 @@ enum DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleLocation
 /// Typed helper for the `policy_details.schedule.create_rule.scripts` block of
 /// `aws_dlm_lifecycle_policy` (derived from provider schema).
 @immutable
-final class DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleScripts {
-  const DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleScripts({
+final class DlmLifecyclePolicyScripts {
+  const DlmLifecyclePolicyScripts({
     this.executeOperationOnScriptFailure,
     required this.executionHandler,
     this.executionHandlerService,
@@ -579,19 +534,14 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleScripts {
 
   final TfArg<String> executionHandler;
 
-  final TfArg<
-    DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleScriptsExecutionHandlerService
-  >?
+  final TfArg<DlmLifecyclePolicyExecutionHandlerService>?
   executionHandlerService;
 
   final TfArg<num>? executionTimeout;
 
   final TfArg<num>? maximumRetryCount;
 
-  final List<
-    TfArg<DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleScriptsStages>
-  >?
-  stages;
+  final List<TfArg<DlmLifecyclePolicyStages>>? stages;
 
   Map<String, Object?> encode() => {
     'execute_operation_on_script_failure': ?executeOperationOnScriptFailure
@@ -605,26 +555,20 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleScripts {
 }
 
 /// `execution_handler_service` — derived from the provider schema description.
-enum DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleScriptsExecutionHandlerService
-    implements TerraformEnum {
+enum DlmLifecyclePolicyExecutionHandlerService implements TerraformEnum {
   awsSystemsManager('AWS_SYSTEMS_MANAGER');
 
-  const DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleScriptsExecutionHandlerService(
-    this.terraformValue,
-  );
+  const DlmLifecyclePolicyExecutionHandlerService(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `stages` — derived from the provider schema description.
-enum DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleScriptsStages
-    implements TerraformEnum {
+enum DlmLifecyclePolicyStages implements TerraformEnum {
   pre('PRE'),
   post('POST');
 
-  const DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleScriptsStages(
-    this.terraformValue,
-  );
+  const DlmLifecyclePolicyStages(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -632,8 +576,8 @@ enum DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleScriptsStages
 /// Typed helper for the `policy_details.schedule.cross_region_copy_rule` block of
 /// `aws_dlm_lifecycle_policy` (derived from provider schema).
 @immutable
-final class DlmLifecyclePolicyPolicyDetailsScheduleCrossRegionCopyRule {
-  const DlmLifecyclePolicyPolicyDetailsScheduleCrossRegionCopyRule({
+final class DlmLifecyclePolicyCrossRegionCopyRule {
+  const DlmLifecyclePolicyCrossRegionCopyRule({
     this.cmkArn,
     this.copyTags,
     required this.encrypted,
@@ -653,11 +597,9 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleCrossRegionCopyRule {
 
   final TfArg<String>? targetRegion;
 
-  final DlmLifecyclePolicyPolicyDetailsScheduleCrossRegionCopyRuleDeprecateRule?
-  deprecateRule;
+  final DlmLifecyclePolicyCrossRegionCopyRuleDeprecateRule? deprecateRule;
 
-  final DlmLifecyclePolicyPolicyDetailsScheduleCrossRegionCopyRuleRetainRule?
-  retainRule;
+  final DlmLifecyclePolicyCrossRegionCopyRetainRule? retainRule;
 
   Map<String, Object?> encode() => {
     'cmk_arn': ?cmkArn?.toTfJson(),
@@ -673,82 +615,27 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleCrossRegionCopyRule {
 /// Typed helper for the `policy_details.schedule.cross_region_copy_rule.deprecate_rule` block of
 /// `aws_dlm_lifecycle_policy` (derived from provider schema).
 @immutable
-final class DlmLifecyclePolicyPolicyDetailsScheduleCrossRegionCopyRuleDeprecateRule {
-  const DlmLifecyclePolicyPolicyDetailsScheduleCrossRegionCopyRuleDeprecateRule({
+final class DlmLifecyclePolicyCrossRegionCopyRuleDeprecateRule {
+  const DlmLifecyclePolicyCrossRegionCopyRuleDeprecateRule({
     required this.interval,
     required this.intervalUnit,
   });
 
   final TfArg<num> interval;
 
-  final TfArg<
-    DlmLifecyclePolicyPolicyDetailsScheduleCrossRegionCopyRuleDeprecateRuleIntervalUnit
-  >
-  intervalUnit;
+  final TfArg<DlmLifecyclePolicyDeprecateRuleIntervalUnit> intervalUnit;
 
   Map<String, Object?> encode() => {
     'interval': interval.toTfJson(),
     'interval_unit': intervalUnit.toTfJson(),
   };
-}
-
-/// `interval_unit` — derived from the provider schema description.
-enum DlmLifecyclePolicyPolicyDetailsScheduleCrossRegionCopyRuleDeprecateRuleIntervalUnit
-    implements TerraformEnum {
-  days('DAYS'),
-  weeks('WEEKS'),
-  months('MONTHS'),
-  years('YEARS');
-
-  const DlmLifecyclePolicyPolicyDetailsScheduleCrossRegionCopyRuleDeprecateRuleIntervalUnit(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `policy_details.schedule.cross_region_copy_rule.retain_rule` block of
-/// `aws_dlm_lifecycle_policy` (derived from provider schema).
-@immutable
-final class DlmLifecyclePolicyPolicyDetailsScheduleCrossRegionCopyRuleRetainRule {
-  const DlmLifecyclePolicyPolicyDetailsScheduleCrossRegionCopyRuleRetainRule({
-    required this.interval,
-    required this.intervalUnit,
-  });
-
-  final TfArg<num> interval;
-
-  final TfArg<
-    DlmLifecyclePolicyPolicyDetailsScheduleCrossRegionCopyRuleRetainRuleIntervalUnit
-  >
-  intervalUnit;
-
-  Map<String, Object?> encode() => {
-    'interval': interval.toTfJson(),
-    'interval_unit': intervalUnit.toTfJson(),
-  };
-}
-
-/// `interval_unit` — derived from the provider schema description.
-enum DlmLifecyclePolicyPolicyDetailsScheduleCrossRegionCopyRuleRetainRuleIntervalUnit
-    implements TerraformEnum {
-  days('DAYS'),
-  weeks('WEEKS'),
-  months('MONTHS'),
-  years('YEARS');
-
-  const DlmLifecyclePolicyPolicyDetailsScheduleCrossRegionCopyRuleRetainRuleIntervalUnit(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `policy_details.schedule.deprecate_rule` block of
 /// `aws_dlm_lifecycle_policy` (derived from provider schema).
 @immutable
-final class DlmLifecyclePolicyPolicyDetailsScheduleDeprecateRule {
-  const DlmLifecyclePolicyPolicyDetailsScheduleDeprecateRule({
+final class DlmLifecyclePolicyDeprecateRule {
+  const DlmLifecyclePolicyDeprecateRule({
     this.count,
     this.interval,
     this.intervalUnit,
@@ -758,8 +645,7 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleDeprecateRule {
 
   final TfArg<num>? interval;
 
-  final TfArg<DlmLifecyclePolicyPolicyDetailsScheduleDeprecateRuleIntervalUnit>?
-  intervalUnit;
+  final TfArg<DlmLifecyclePolicyDeprecateRuleIntervalUnit>? intervalUnit;
 
   Map<String, Object?> encode() => {
     'count': ?count?.toTfJson(),
@@ -768,26 +654,11 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleDeprecateRule {
   };
 }
 
-/// `interval_unit` — derived from the provider schema description.
-enum DlmLifecyclePolicyPolicyDetailsScheduleDeprecateRuleIntervalUnit
-    implements TerraformEnum {
-  days('DAYS'),
-  weeks('WEEKS'),
-  months('MONTHS'),
-  years('YEARS');
-
-  const DlmLifecyclePolicyPolicyDetailsScheduleDeprecateRuleIntervalUnit(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `policy_details.schedule.fast_restore_rule` block of
 /// `aws_dlm_lifecycle_policy` (derived from provider schema).
 @immutable
-final class DlmLifecyclePolicyPolicyDetailsScheduleFastRestoreRule {
-  const DlmLifecyclePolicyPolicyDetailsScheduleFastRestoreRule({
+final class DlmLifecyclePolicyFastRestoreRule {
+  const DlmLifecyclePolicyFastRestoreRule({
     required this.availabilityZones,
     this.count,
     this.interval,
@@ -800,10 +671,7 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleFastRestoreRule {
 
   final TfArg<num>? interval;
 
-  final TfArg<
-    DlmLifecyclePolicyPolicyDetailsScheduleFastRestoreRuleIntervalUnit
-  >?
-  intervalUnit;
+  final TfArg<DlmLifecyclePolicyDeprecateRuleIntervalUnit>? intervalUnit;
 
   Map<String, Object?> encode() => {
     'availability_zones': availabilityZones.toTfJson(),
@@ -813,26 +681,11 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleFastRestoreRule {
   };
 }
 
-/// `interval_unit` — derived from the provider schema description.
-enum DlmLifecyclePolicyPolicyDetailsScheduleFastRestoreRuleIntervalUnit
-    implements TerraformEnum {
-  days('DAYS'),
-  weeks('WEEKS'),
-  months('MONTHS'),
-  years('YEARS');
-
-  const DlmLifecyclePolicyPolicyDetailsScheduleFastRestoreRuleIntervalUnit(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `policy_details.schedule.retain_rule` block of
 /// `aws_dlm_lifecycle_policy` (derived from provider schema).
 @immutable
-final class DlmLifecyclePolicyPolicyDetailsScheduleRetainRule {
-  const DlmLifecyclePolicyPolicyDetailsScheduleRetainRule({
+final class DlmLifecyclePolicyRetainRule {
+  const DlmLifecyclePolicyRetainRule({
     this.count,
     this.interval,
     this.intervalUnit,
@@ -842,8 +695,7 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleRetainRule {
 
   final TfArg<num>? interval;
 
-  final TfArg<DlmLifecyclePolicyPolicyDetailsScheduleRetainRuleIntervalUnit>?
-  intervalUnit;
+  final TfArg<DlmLifecyclePolicyDeprecateRuleIntervalUnit>? intervalUnit;
 
   Map<String, Object?> encode() => {
     'count': ?count?.toTfJson(),
@@ -852,26 +704,11 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleRetainRule {
   };
 }
 
-/// `interval_unit` — derived from the provider schema description.
-enum DlmLifecyclePolicyPolicyDetailsScheduleRetainRuleIntervalUnit
-    implements TerraformEnum {
-  days('DAYS'),
-  weeks('WEEKS'),
-  months('MONTHS'),
-  years('YEARS');
-
-  const DlmLifecyclePolicyPolicyDetailsScheduleRetainRuleIntervalUnit(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `policy_details.schedule.share_rule` block of
 /// `aws_dlm_lifecycle_policy` (derived from provider schema).
 @immutable
-final class DlmLifecyclePolicyPolicyDetailsScheduleShareRule {
-  const DlmLifecyclePolicyPolicyDetailsScheduleShareRule({
+final class DlmLifecyclePolicyShareRule {
+  const DlmLifecyclePolicyShareRule({
     required this.targetAccounts,
     this.unshareInterval,
     this.unshareIntervalUnit,
@@ -881,10 +718,7 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleShareRule {
 
   final TfArg<num>? unshareInterval;
 
-  final TfArg<
-    DlmLifecyclePolicyPolicyDetailsScheduleShareRuleUnshareIntervalUnit
-  >?
-  unshareIntervalUnit;
+  final TfArg<DlmLifecyclePolicyUnshareIntervalUnit>? unshareIntervalUnit;
 
   Map<String, Object?> encode() => {
     'target_accounts': targetAccounts.toTfJson(),
@@ -894,16 +728,13 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleShareRule {
 }
 
 /// `unshare_interval_unit` — derived from the provider schema description.
-enum DlmLifecyclePolicyPolicyDetailsScheduleShareRuleUnshareIntervalUnit
-    implements TerraformEnum {
+enum DlmLifecyclePolicyUnshareIntervalUnit implements TerraformEnum {
   days('DAYS'),
   weeks('WEEKS'),
   months('MONTHS'),
   years('YEARS');
 
-  const DlmLifecyclePolicyPolicyDetailsScheduleShareRuleUnshareIntervalUnit(
-    this.terraformValue,
-  );
+  const DlmLifecyclePolicyUnshareIntervalUnit(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -920,7 +751,7 @@ final class AwsDlmLifecyclePolicy extends Resource {
     TfArg<String>? region,
     TfArg<DlmLifecyclePolicyState>? state,
     TfArg<Map<String, String>>? tags,
-    required DlmLifecyclePolicyPolicyDetails policyDetails,
+    required DlmLifecyclePolicyDetails policyDetails,
     super.lifecycle,
     super.dependsOn,
     super.provider,

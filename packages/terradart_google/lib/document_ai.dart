@@ -12,27 +12,18 @@ export 'src/document_ai/google_document_ai_schema.dart'
     show GoogleDocumentAiSchema;
 export 'src/document_ai/google_document_ai_warehouse_document_schema.dart'
     show
+        DocumentAiWarehouseDocumentSchemaDateTimeTypeOptions,
+        DocumentAiWarehouseDocumentSchemaEnumTypeOptions,
+        DocumentAiWarehouseDocumentSchemaFloatTypeOptions,
+        DocumentAiWarehouseDocumentSchemaIntegerTypeOptions,
+        DocumentAiWarehouseDocumentSchemaMapTypeOptions,
         DocumentAiWarehouseDocumentSchemaPropertyDefinitions,
-        DocumentAiWarehouseDocumentSchemaPropertyDefinitionsDateTimeTypeOptions,
-        DocumentAiWarehouseDocumentSchemaPropertyDefinitionsEnumTypeOptions,
-        DocumentAiWarehouseDocumentSchemaPropertyDefinitionsFloatTypeOptions,
-        DocumentAiWarehouseDocumentSchemaPropertyDefinitionsIntegerTypeOptions,
-        DocumentAiWarehouseDocumentSchemaPropertyDefinitionsMapTypeOptions,
-        DocumentAiWarehouseDocumentSchemaPropertyDefinitionsPropertyTypeOptions,
-        DocumentAiWarehouseDocumentSchemaPropertyDefinitionsPropertyTypeOptionsPropertyDefinitions,
-        DocumentAiWarehouseDocumentSchemaPropertyDefinitionsPropertyTypeOptionsPropertyDefinitionsDateTimeTypeOptions,
-        DocumentAiWarehouseDocumentSchemaPropertyDefinitionsPropertyTypeOptionsPropertyDefinitionsEnumTypeOptions,
-        DocumentAiWarehouseDocumentSchemaPropertyDefinitionsPropertyTypeOptionsPropertyDefinitionsFloatTypeOptions,
-        DocumentAiWarehouseDocumentSchemaPropertyDefinitionsPropertyTypeOptionsPropertyDefinitionsIntegerTypeOptions,
-        DocumentAiWarehouseDocumentSchemaPropertyDefinitionsPropertyTypeOptionsPropertyDefinitionsMapTypeOptions,
-        DocumentAiWarehouseDocumentSchemaPropertyDefinitionsPropertyTypeOptionsPropertyDefinitionsRetrievalImportance,
-        DocumentAiWarehouseDocumentSchemaPropertyDefinitionsPropertyTypeOptionsPropertyDefinitionsSchemaSources,
-        DocumentAiWarehouseDocumentSchemaPropertyDefinitionsPropertyTypeOptionsPropertyDefinitionsTextTypeOptions,
-        DocumentAiWarehouseDocumentSchemaPropertyDefinitionsPropertyTypeOptionsPropertyDefinitionsTimestampTypeOptions,
-        DocumentAiWarehouseDocumentSchemaPropertyDefinitionsRetrievalImportance,
-        DocumentAiWarehouseDocumentSchemaPropertyDefinitionsSchemaSources,
-        DocumentAiWarehouseDocumentSchemaPropertyDefinitionsTextTypeOptions,
-        DocumentAiWarehouseDocumentSchemaPropertyDefinitionsTimestampTypeOptions,
+        DocumentAiWarehouseDocumentSchemaPropertyTypeOptions,
+        DocumentAiWarehouseDocumentSchemaPropertyTypeOptionsPropertyDefinitions,
+        DocumentAiWarehouseDocumentSchemaRetrievalImportance,
+        DocumentAiWarehouseDocumentSchemaSources,
+        DocumentAiWarehouseDocumentSchemaTextTypeOptions,
+        DocumentAiWarehouseDocumentSchemaTimestampTypeOptions,
         GoogleDocumentAiWarehouseDocumentSchema;
 export 'src/document_ai/google_document_ai_warehouse_location.dart'
     show

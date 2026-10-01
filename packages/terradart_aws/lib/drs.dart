@@ -10,4 +10,4 @@ export 'src/drs/aws_drs_replication_configuration_template.dart'
         DrsReplicationConfigurationTemplateDefaultLargeStagingDiskType,
         DrsReplicationConfigurationTemplateEbsEncryption,
         DrsReplicationConfigurationTemplatePitPolicy,
-        DrsReplicationConfigurationTemplatePitPolicyUnits;
+        DrsReplicationConfigurationTemplateUnits;

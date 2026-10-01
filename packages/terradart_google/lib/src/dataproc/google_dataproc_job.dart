@@ -36,7 +36,7 @@ final class DataprocJobHadoopConfig {
 
   final TfArg<Map<String, String>>? properties;
 
-  final DataprocJobHadoopConfigLoggingConfig? loggingConfig;
+  final DataprocJobLoggingConfig? loggingConfig;
 
   Map<String, Object?> encode() => {
     'archive_uris': ?archiveUris?.toTfJson(),
@@ -52,9 +52,10 @@ final class DataprocJobHadoopConfig {
 
 /// Typed helper for the `hadoop_config.logging_config` block of
 /// `google_dataproc_job` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class DataprocJobHadoopConfigLoggingConfig {
-  const DataprocJobHadoopConfigLoggingConfig({required this.driverLogLevels});
+final class DataprocJobLoggingConfig {
+  const DataprocJobLoggingConfig({required this.driverLogLevels});
 
   final TfArg<Map<String, String>> driverLogLevels;
 
@@ -124,7 +125,7 @@ final class DataprocJobPigConfig {
 
   final TfArg<Map<String, String>>? scriptVariables;
 
-  final DataprocJobPigConfigLoggingConfig? loggingConfig;
+  final DataprocJobLoggingConfig? loggingConfig;
 
   Map<String, Object?> encode() => {
     'continue_on_failure': ?continueOnFailure?.toTfJson(),
@@ -134,19 +135,6 @@ final class DataprocJobPigConfig {
     'query_list': ?queryList?.toTfJson(),
     'script_variables': ?scriptVariables?.toTfJson(),
     'logging_config': ?loggingConfig?.encode(),
-  };
-}
-
-/// Typed helper for the `pig_config.logging_config` block of
-/// `google_dataproc_job` (derived from provider schema).
-@immutable
-final class DataprocJobPigConfigLoggingConfig {
-  const DataprocJobPigConfigLoggingConfig({required this.driverLogLevels});
-
-  final TfArg<Map<String, String>> driverLogLevels;
-
-  Map<String, Object?> encode() => {
-    'driver_log_levels': driverLogLevels.toTfJson(),
   };
 }
 
@@ -187,7 +175,7 @@ final class DataprocJobPrestoConfig {
 
   final TfArg<List<String>>? queryList;
 
-  final DataprocJobPrestoConfigLoggingConfig? loggingConfig;
+  final DataprocJobLoggingConfig? loggingConfig;
 
   Map<String, Object?> encode() => {
     'client_tags': ?clientTags?.toTfJson(),
@@ -197,19 +185,6 @@ final class DataprocJobPrestoConfig {
     'query_file_uri': ?queryFileUri?.toTfJson(),
     'query_list': ?queryList?.toTfJson(),
     'logging_config': ?loggingConfig?.encode(),
-  };
-}
-
-/// Typed helper for the `presto_config.logging_config` block of
-/// `google_dataproc_job` (derived from provider schema).
-@immutable
-final class DataprocJobPrestoConfigLoggingConfig {
-  const DataprocJobPrestoConfigLoggingConfig({required this.driverLogLevels});
-
-  final TfArg<Map<String, String>> driverLogLevels;
-
-  Map<String, Object?> encode() => {
-    'driver_log_levels': driverLogLevels.toTfJson(),
   };
 }
 
@@ -242,7 +217,7 @@ final class DataprocJobPysparkConfig {
 
   final TfArg<List<String>>? pythonFileUris;
 
-  final DataprocJobPysparkConfigLoggingConfig? loggingConfig;
+  final DataprocJobLoggingConfig? loggingConfig;
 
   Map<String, Object?> encode() => {
     'archive_uris': ?archiveUris?.toTfJson(),
@@ -253,19 +228,6 @@ final class DataprocJobPysparkConfig {
     'properties': ?properties?.toTfJson(),
     'python_file_uris': ?pythonFileUris?.toTfJson(),
     'logging_config': ?loggingConfig?.encode(),
-  };
-}
-
-/// Typed helper for the `pyspark_config.logging_config` block of
-/// `google_dataproc_job` (derived from provider schema).
-@immutable
-final class DataprocJobPysparkConfigLoggingConfig {
-  const DataprocJobPysparkConfigLoggingConfig({required this.driverLogLevels});
-
-  final TfArg<Map<String, String>> driverLogLevels;
-
-  Map<String, Object?> encode() => {
-    'driver_log_levels': driverLogLevels.toTfJson(),
   };
 }
 
@@ -328,7 +290,7 @@ final class DataprocJobSparkConfig {
 
   final TfArg<Map<String, String>>? properties;
 
-  final DataprocJobSparkConfigLoggingConfig? loggingConfig;
+  final DataprocJobLoggingConfig? loggingConfig;
 
   Map<String, Object?> encode() => {
     'archive_uris': ?archiveUris?.toTfJson(),
@@ -339,19 +301,6 @@ final class DataprocJobSparkConfig {
     'main_jar_file_uri': ?mainJarFileUri?.toTfJson(),
     'properties': ?properties?.toTfJson(),
     'logging_config': ?loggingConfig?.encode(),
-  };
-}
-
-/// Typed helper for the `spark_config.logging_config` block of
-/// `google_dataproc_job` (derived from provider schema).
-@immutable
-final class DataprocJobSparkConfigLoggingConfig {
-  const DataprocJobSparkConfigLoggingConfig({required this.driverLogLevels});
-
-  final TfArg<Map<String, String>> driverLogLevels;
-
-  Map<String, Object?> encode() => {
-    'driver_log_levels': driverLogLevels.toTfJson(),
   };
 }
 
@@ -378,7 +327,7 @@ final class DataprocJobSparksqlConfig {
 
   final TfArg<Map<String, String>>? scriptVariables;
 
-  final DataprocJobSparksqlConfigLoggingConfig? loggingConfig;
+  final DataprocJobLoggingConfig? loggingConfig;
 
   Map<String, Object?> encode() => {
     'jar_file_uris': ?jarFileUris?.toTfJson(),
@@ -387,19 +336,6 @@ final class DataprocJobSparksqlConfig {
     'query_list': ?queryList?.toTfJson(),
     'script_variables': ?scriptVariables?.toTfJson(),
     'logging_config': ?loggingConfig?.encode(),
-  };
-}
-
-/// Typed helper for the `sparksql_config.logging_config` block of
-/// `google_dataproc_job` (derived from provider schema).
-@immutable
-final class DataprocJobSparksqlConfigLoggingConfig {
-  const DataprocJobSparksqlConfigLoggingConfig({required this.driverLogLevels});
-
-  final TfArg<Map<String, String>> driverLogLevels;
-
-  Map<String, Object?> encode() => {
-    'driver_log_levels': driverLogLevels.toTfJson(),
   };
 }
 

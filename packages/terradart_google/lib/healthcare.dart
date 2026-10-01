@@ -41,15 +41,15 @@ export 'src/healthcare/google_healthcare_dicom_store_iam_policy.dart'
 export 'src/healthcare/google_healthcare_fhir_store.dart'
     show
         GoogleHealthcareFhirStore,
+        HealthcareFhirStoreBigqueryDestination,
         HealthcareFhirStoreComplexDataTypeReferenceParsing,
+        HealthcareFhirStoreLastUpdatedPartitionConfig,
         HealthcareFhirStoreNotificationConfig,
         HealthcareFhirStoreNotificationConfigs,
+        HealthcareFhirStoreSchemaConfig,
+        HealthcareFhirStoreSchemaType,
         HealthcareFhirStoreStreamConfigs,
-        HealthcareFhirStoreStreamConfigsBigqueryDestination,
-        HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfig,
-        HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfigLastUpdatedPartitionConfig,
-        HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfigLastUpdatedPartitionConfigType,
-        HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfigSchemaType,
+        HealthcareFhirStoreType,
         HealthcareFhirStoreValidationConfig,
         HealthcareFhirStoreVersion;
 export 'src/healthcare/google_healthcare_fhir_store_iam_binding.dart'
@@ -83,19 +83,18 @@ export 'src/healthcare/google_healthcare_pipeline_job.dart'
     show
         GoogleHealthcarePipelineJob,
         HealthcarePipelineJobBackfillPipelineJob,
+        HealthcarePipelineJobDestination,
+        HealthcarePipelineJobFhirStoreDestination,
+        HealthcarePipelineJobFhirStreamingSource,
+        HealthcarePipelineJobMappingConfig,
         HealthcarePipelineJobMappingPipelineJob,
-        HealthcarePipelineJobMappingPipelineJobDestination,
-        HealthcarePipelineJobMappingPipelineJobDestinationFhirStoreDestination,
-        HealthcarePipelineJobMappingPipelineJobDestinationReconciliationDestination,
-        HealthcarePipelineJobMappingPipelineJobFhirStreamingSource,
-        HealthcarePipelineJobMappingPipelineJobMappingConfig,
-        HealthcarePipelineJobMappingPipelineJobMappingConfigWhistleConfigSource,
+        HealthcarePipelineJobMergeConfig,
+        HealthcarePipelineJobReconciliationDestination,
         HealthcarePipelineJobReconciliationPipelineJob,
-        HealthcarePipelineJobReconciliationPipelineJobMergeConfig,
-        HealthcarePipelineJobReconciliationPipelineJobMergeConfigWhistleConfigSource,
         HealthcarePipelineJobTask,
         HealthcarePipelineJobTaskBackfillPipelineJob,
         HealthcarePipelineJobTaskMappingPipelineJob,
-        HealthcarePipelineJobTaskReconciliationPipelineJob;
+        HealthcarePipelineJobTaskReconciliationPipelineJob,
+        HealthcarePipelineJobWhistleConfigSource;
 export 'src/healthcare/google_healthcare_workspace.dart'
     show GoogleHealthcareWorkspace, HealthcareWorkspaceSettings;

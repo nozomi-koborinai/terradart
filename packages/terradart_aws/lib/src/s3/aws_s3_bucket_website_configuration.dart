@@ -42,8 +42,7 @@ final class S3BucketWebsiteConfigurationRedirectAllRequestsTo {
 
   final TfArg<String> hostName;
 
-  final TfArg<S3BucketWebsiteConfigurationRedirectAllRequestsToProtocol>?
-  protocol;
+  final TfArg<S3BucketWebsiteConfigurationProtocol>? protocol;
 
   Map<String, Object?> encode() => {
     'host_name': hostName.toTfJson(),
@@ -52,14 +51,11 @@ final class S3BucketWebsiteConfigurationRedirectAllRequestsTo {
 }
 
 /// `protocol` — derived from the provider schema description.
-enum S3BucketWebsiteConfigurationRedirectAllRequestsToProtocol
-    implements TerraformEnum {
+enum S3BucketWebsiteConfigurationProtocol implements TerraformEnum {
   http('http'),
   https('https');
 
-  const S3BucketWebsiteConfigurationRedirectAllRequestsToProtocol(
-    this.terraformValue,
-  );
+  const S3BucketWebsiteConfigurationProtocol(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -73,9 +69,9 @@ final class S3BucketWebsiteConfigurationRoutingRule {
     required this.redirect,
   });
 
-  final S3BucketWebsiteConfigurationRoutingRuleCondition? condition;
+  final S3BucketWebsiteConfigurationCondition? condition;
 
-  final S3BucketWebsiteConfigurationRoutingRuleRedirect redirect;
+  final S3BucketWebsiteConfigurationRedirect redirect;
 
   Map<String, Object?> encode() => {
     'condition': ?condition?.encode(),
@@ -86,8 +82,8 @@ final class S3BucketWebsiteConfigurationRoutingRule {
 /// Typed helper for the `routing_rule.condition` block of
 /// `aws_s3_bucket_website_configuration` (derived from provider schema).
 @immutable
-final class S3BucketWebsiteConfigurationRoutingRuleCondition {
-  const S3BucketWebsiteConfigurationRoutingRuleCondition({
+final class S3BucketWebsiteConfigurationCondition {
+  const S3BucketWebsiteConfigurationCondition({
     this.httpErrorCodeReturnedEquals,
     this.keyPrefixEquals,
   });
@@ -105,8 +101,8 @@ final class S3BucketWebsiteConfigurationRoutingRuleCondition {
 /// Typed helper for the `routing_rule.redirect` block of
 /// `aws_s3_bucket_website_configuration` (derived from provider schema).
 @immutable
-final class S3BucketWebsiteConfigurationRoutingRuleRedirect {
-  const S3BucketWebsiteConfigurationRoutingRuleRedirect({
+final class S3BucketWebsiteConfigurationRedirect {
+  const S3BucketWebsiteConfigurationRedirect({
     this.hostName,
     this.httpRedirectCode,
     this.protocol,
@@ -118,8 +114,7 @@ final class S3BucketWebsiteConfigurationRoutingRuleRedirect {
 
   final TfArg<String>? httpRedirectCode;
 
-  final TfArg<S3BucketWebsiteConfigurationRoutingRuleRedirectProtocol>?
-  protocol;
+  final TfArg<S3BucketWebsiteConfigurationProtocol>? protocol;
 
   final TfArg<String>? replaceKeyPrefixWith;
 
@@ -132,19 +127,6 @@ final class S3BucketWebsiteConfigurationRoutingRuleRedirect {
     'replace_key_prefix_with': ?replaceKeyPrefixWith?.toTfJson(),
     'replace_key_with': ?replaceKeyWith?.toTfJson(),
   };
-}
-
-/// `protocol` — derived from the provider schema description.
-enum S3BucketWebsiteConfigurationRoutingRuleRedirectProtocol
-    implements TerraformEnum {
-  http('http'),
-  https('https');
-
-  const S3BucketWebsiteConfigurationRoutingRuleRedirectProtocol(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_s3_bucket_website_configuration`.

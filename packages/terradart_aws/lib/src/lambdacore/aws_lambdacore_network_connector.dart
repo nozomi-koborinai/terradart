@@ -16,7 +16,7 @@ const Set<String> _awsLambdacoreNetworkConnectorSensitive = <String>{};
 final class LambdacoreNetworkConnectorConfiguration {
   const LambdacoreNetworkConnectorConfiguration({this.vpcEgressConfiguration});
 
-  final List<LambdacoreNetworkConnectorConfigurationVpcEgressConfiguration>?
+  final List<LambdacoreNetworkConnectorVpcEgressConfiguration>?
   vpcEgressConfiguration;
 
   Map<String, Object?> encode() => {
@@ -30,25 +30,18 @@ final class LambdacoreNetworkConnectorConfiguration {
 /// Typed helper for the `configuration.vpc_egress_configuration` block of
 /// `aws_lambdacore_network_connector` (derived from provider schema).
 @immutable
-final class LambdacoreNetworkConnectorConfigurationVpcEgressConfiguration {
-  const LambdacoreNetworkConnectorConfigurationVpcEgressConfiguration({
+final class LambdacoreNetworkConnectorVpcEgressConfiguration {
+  const LambdacoreNetworkConnectorVpcEgressConfiguration({
     required this.associatedComputeResourceTypes,
     this.networkProtocol,
     required this.securityGroupIds,
     required this.subnetIds,
   });
 
-  final List<
-    TfArg<
-      LambdacoreNetworkConnectorConfigurationVpcEgressConfigurationAssociatedComputeResourceTypes
-    >
-  >
+  final List<TfArg<LambdacoreNetworkConnectorAssociatedComputeResourceTypes>>
   associatedComputeResourceTypes;
 
-  final TfArg<
-    LambdacoreNetworkConnectorConfigurationVpcEgressConfigurationNetworkProtocol
-  >?
-  networkProtocol;
+  final TfArg<LambdacoreNetworkConnectorNetworkProtocol>? networkProtocol;
 
   final TfArg<List<RefTo<AwsSecurityGroup>>> securityGroupIds;
 
@@ -65,11 +58,11 @@ final class LambdacoreNetworkConnectorConfigurationVpcEgressConfiguration {
 }
 
 /// `associated_compute_resource_types` — derived from the provider schema description.
-enum LambdacoreNetworkConnectorConfigurationVpcEgressConfigurationAssociatedComputeResourceTypes
+enum LambdacoreNetworkConnectorAssociatedComputeResourceTypes
     implements TerraformEnum {
   microvm('MicroVm');
 
-  const LambdacoreNetworkConnectorConfigurationVpcEgressConfigurationAssociatedComputeResourceTypes(
+  const LambdacoreNetworkConnectorAssociatedComputeResourceTypes(
     this.terraformValue,
   );
   @override
@@ -77,14 +70,11 @@ enum LambdacoreNetworkConnectorConfigurationVpcEgressConfigurationAssociatedComp
 }
 
 /// `network_protocol` — derived from the provider schema description.
-enum LambdacoreNetworkConnectorConfigurationVpcEgressConfigurationNetworkProtocol
-    implements TerraformEnum {
+enum LambdacoreNetworkConnectorNetworkProtocol implements TerraformEnum {
   ipv4('IPv4'),
   dualstack('DualStack');
 
-  const LambdacoreNetworkConnectorConfigurationVpcEgressConfigurationNetworkProtocol(
-    this.terraformValue,
-  );
+  const LambdacoreNetworkConnectorNetworkProtocol(this.terraformValue);
   @override
   final String terraformValue;
 }

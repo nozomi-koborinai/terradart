@@ -244,7 +244,7 @@ final class S3ObjectIntegrityKmsKeyId extends S3ObjectIntegrity {
 final class S3ObjectOverrideProvider {
   const S3ObjectOverrideProvider({this.defaultTags});
 
-  final S3ObjectOverrideProviderDefaultTags? defaultTags;
+  final S3ObjectDefaultTags? defaultTags;
 
   Map<String, Object?> encode() => {'default_tags': ?defaultTags?.encode()};
 }
@@ -252,8 +252,8 @@ final class S3ObjectOverrideProvider {
 /// Typed helper for the `override_provider.default_tags` block of
 /// `aws_s3_object` (derived from provider schema).
 @immutable
-final class S3ObjectOverrideProviderDefaultTags {
-  const S3ObjectOverrideProviderDefaultTags({this.tags});
+final class S3ObjectDefaultTags {
+  const S3ObjectDefaultTags({this.tags});
 
   final TfArg<Map<String, String>>? tags;
 

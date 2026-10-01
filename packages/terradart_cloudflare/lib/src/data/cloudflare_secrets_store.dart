@@ -15,9 +15,9 @@ const Set<String> _cloudflareSecretsStoreSensitive = <String>{};
 final class DataSecretsStoreFilter {
   const DataSecretsStoreFilter({this.direction, this.order});
 
-  final TfArg<DataSecretsStoreFilterDirection>? direction;
+  final TfArg<DataSecretsStoreDirection>? direction;
 
-  final TfArg<DataSecretsStoreFilterOrder>? order;
+  final TfArg<DataSecretsStoreOrder>? order;
 
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
@@ -26,22 +26,22 @@ final class DataSecretsStoreFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataSecretsStoreFilterDirection implements TerraformEnum {
+enum DataSecretsStoreDirection implements TerraformEnum {
   asc('asc'),
   desc('desc');
 
-  const DataSecretsStoreFilterDirection(this.terraformValue);
+  const DataSecretsStoreDirection(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `order` — derived from the provider schema description.
-enum DataSecretsStoreFilterOrder implements TerraformEnum {
+enum DataSecretsStoreOrder implements TerraformEnum {
   name('name'),
   created('created'),
   modified('modified');
 
-  const DataSecretsStoreFilterOrder(this.terraformValue);
+  const DataSecretsStoreOrder(this.terraformValue);
   @override
   final String terraformValue;
 }

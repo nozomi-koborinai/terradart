@@ -140,7 +140,7 @@ final class SesEventDestinationCloudwatchDestination {
 
   final TfArg<String> dimensionName;
 
-  final TfArg<SesEventDestinationCloudwatchDestinationValueSource> valueSource;
+  final TfArg<SesEventDestinationValueSource> valueSource;
 
   Map<String, Object?> encode() => {
     'default_value': defaultValue.toTfJson(),
@@ -150,15 +150,12 @@ final class SesEventDestinationCloudwatchDestination {
 }
 
 /// `value_source` — derived from the provider schema description.
-enum SesEventDestinationCloudwatchDestinationValueSource
-    implements TerraformEnum {
+enum SesEventDestinationValueSource implements TerraformEnum {
   messagetag('messageTag'),
   emailheader('emailHeader'),
   linktag('linkTag');
 
-  const SesEventDestinationCloudwatchDestinationValueSource(
-    this.terraformValue,
-  );
+  const SesEventDestinationValueSource(this.terraformValue);
   @override
   final String terraformValue;
 }

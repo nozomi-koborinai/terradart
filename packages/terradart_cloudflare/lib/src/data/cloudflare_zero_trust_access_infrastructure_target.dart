@@ -40,8 +40,7 @@ final class DataZeroTrustAccessInfrastructureTargetFilter {
 
   final TfArg<String>? createdBefore;
 
-  final TfArg<DataZeroTrustAccessInfrastructureTargetFilterDirection>?
-  direction;
+  final TfArg<DataZeroTrustAccessInfrastructureTargetDirection>? direction;
 
   final TfArg<String>? hostname;
 
@@ -67,7 +66,7 @@ final class DataZeroTrustAccessInfrastructureTargetFilter {
 
   final TfArg<String>? modifiedBefore;
 
-  final TfArg<DataZeroTrustAccessInfrastructureTargetFilterOrder>? order;
+  final TfArg<DataZeroTrustAccessInfrastructureTargetOrder>? order;
 
   final TfArg<List<String>>? tag;
 
@@ -99,25 +98,21 @@ final class DataZeroTrustAccessInfrastructureTargetFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataZeroTrustAccessInfrastructureTargetFilterDirection
-    implements TerraformEnum {
+enum DataZeroTrustAccessInfrastructureTargetDirection implements TerraformEnum {
   asc('asc'),
   desc('desc');
 
-  const DataZeroTrustAccessInfrastructureTargetFilterDirection(
-    this.terraformValue,
-  );
+  const DataZeroTrustAccessInfrastructureTargetDirection(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `order` — derived from the provider schema description.
-enum DataZeroTrustAccessInfrastructureTargetFilterOrder
-    implements TerraformEnum {
+enum DataZeroTrustAccessInfrastructureTargetOrder implements TerraformEnum {
   hostname('hostname'),
   createdAt('created_at');
 
-  const DataZeroTrustAccessInfrastructureTargetFilterOrder(this.terraformValue);
+  const DataZeroTrustAccessInfrastructureTargetOrder(this.terraformValue);
   @override
   final String terraformValue;
 }

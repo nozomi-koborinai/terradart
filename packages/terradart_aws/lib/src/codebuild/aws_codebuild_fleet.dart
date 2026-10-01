@@ -77,7 +77,7 @@ final class CodebuildFleetComputeConfiguration {
 
   final TfArg<String>? instanceType;
 
-  final TfArg<CodebuildFleetComputeConfigurationMachineType>? machineType;
+  final TfArg<CodebuildFleetMachineType>? machineType;
 
   final TfArg<num>? memory;
 
@@ -93,11 +93,11 @@ final class CodebuildFleetComputeConfiguration {
 }
 
 /// `machine_type` — derived from the provider schema description.
-enum CodebuildFleetComputeConfigurationMachineType implements TerraformEnum {
+enum CodebuildFleetMachineType implements TerraformEnum {
   general('GENERAL'),
   nvme('NVME');
 
-  const CodebuildFleetComputeConfigurationMachineType(this.terraformValue);
+  const CodebuildFleetMachineType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -114,9 +114,9 @@ final class CodebuildFleetScalingConfiguration {
 
   final TfArg<num>? maxCapacity;
 
-  final TfArg<CodebuildFleetScalingConfigurationScalingType>? scalingType;
+  final TfArg<CodebuildFleetScalingType>? scalingType;
 
-  final List<CodebuildFleetScalingConfigurationTargetTrackingScalingConfigs>?
+  final List<CodebuildFleetTargetTrackingScalingConfigs>?
   targetTrackingScalingConfigs;
 
   Map<String, Object?> encode() => {
@@ -130,10 +130,10 @@ final class CodebuildFleetScalingConfiguration {
 }
 
 /// `scaling_type` — derived from the provider schema description.
-enum CodebuildFleetScalingConfigurationScalingType implements TerraformEnum {
+enum CodebuildFleetScalingType implements TerraformEnum {
   targetTrackingScaling('TARGET_TRACKING_SCALING');
 
-  const CodebuildFleetScalingConfigurationScalingType(this.terraformValue);
+  const CodebuildFleetScalingType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -141,16 +141,13 @@ enum CodebuildFleetScalingConfigurationScalingType implements TerraformEnum {
 /// Typed helper for the `scaling_configuration.target_tracking_scaling_configs` block of
 /// `aws_codebuild_fleet` (derived from provider schema).
 @immutable
-final class CodebuildFleetScalingConfigurationTargetTrackingScalingConfigs {
-  const CodebuildFleetScalingConfigurationTargetTrackingScalingConfigs({
+final class CodebuildFleetTargetTrackingScalingConfigs {
+  const CodebuildFleetTargetTrackingScalingConfigs({
     this.metricType,
     this.targetValue,
   });
 
-  final TfArg<
-    CodebuildFleetScalingConfigurationTargetTrackingScalingConfigsMetricType
-  >?
-  metricType;
+  final TfArg<CodebuildFleetMetricType>? metricType;
 
   final TfArg<num>? targetValue;
 
@@ -161,13 +158,10 @@ final class CodebuildFleetScalingConfigurationTargetTrackingScalingConfigs {
 }
 
 /// `metric_type` — derived from the provider schema description.
-enum CodebuildFleetScalingConfigurationTargetTrackingScalingConfigsMetricType
-    implements TerraformEnum {
+enum CodebuildFleetMetricType implements TerraformEnum {
   fleetUtilizationRate('FLEET_UTILIZATION_RATE');
 
-  const CodebuildFleetScalingConfigurationTargetTrackingScalingConfigsMetricType(
-    this.terraformValue,
-  );
+  const CodebuildFleetMetricType(this.terraformValue);
   @override
   final String terraformValue;
 }

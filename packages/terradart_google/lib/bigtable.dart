@@ -9,13 +9,13 @@ export 'src/bigtable/google_bigtable_app_profile.dart'
         BigtableAppProfileDataBoostIsolationReadOnly,
         BigtableAppProfileIsolation,
         BigtableAppProfileIsolationDataBoostIsolationReadOnly,
-        BigtableAppProfileIsolationStandardIsolation,
+        BigtableAppProfilePriority,
         BigtableAppProfileRouting,
         BigtableAppProfileRoutingMultiClusterRoutingUseAny,
-        BigtableAppProfileRoutingSingleClusterRouting,
         BigtableAppProfileSingleClusterRouting,
+        BigtableAppProfileSingleClusterRoutingChoice,
         BigtableAppProfileStandardIsolation,
-        BigtableAppProfileStandardIsolationPriority,
+        BigtableAppProfileStandardIsolationChoice,
         GoogleBigtableAppProfile;
 export 'src/bigtable/google_bigtable_authorized_view.dart'
     show BigtableAuthorizedViewSubsetView, GoogleBigtableAuthorizedView;
@@ -28,8 +28,8 @@ export 'src/bigtable/google_bigtable_gc_policy.dart'
 export 'src/bigtable/google_bigtable_instance.dart'
     show
         BigtableClusterStorageType,
+        BigtableInstanceAutoscalingConfig,
         BigtableInstanceCluster,
-        BigtableInstanceClusterAutoscalingConfig,
         BigtableInstanceEdition,
         BigtableInstanceType,
         GoogleBigtableInstance;

@@ -18,7 +18,7 @@ final class ApigeeSecurityProfileV2ProfileAssessmentConfigs {
 
   final TfArg<String> assessment;
 
-  final TfArg<ApigeeSecurityProfileV2ProfileAssessmentConfigsWeight> weight;
+  final TfArg<ApigeeSecurityProfileV2Weight> weight;
 
   Map<String, Object?> encode() => {
     'assessment': assessment.toTfJson(),
@@ -27,15 +27,12 @@ final class ApigeeSecurityProfileV2ProfileAssessmentConfigs {
 }
 
 /// `weight` — derived from the provider schema description.
-enum ApigeeSecurityProfileV2ProfileAssessmentConfigsWeight
-    implements TerraformEnum {
+enum ApigeeSecurityProfileV2Weight implements TerraformEnum {
   minor('MINOR'),
   moderate('MODERATE'),
   major('MAJOR');
 
-  const ApigeeSecurityProfileV2ProfileAssessmentConfigsWeight(
-    this.terraformValue,
-  );
+  const ApigeeSecurityProfileV2Weight(this.terraformValue);
   @override
   final String terraformValue;
 }

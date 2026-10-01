@@ -60,7 +60,7 @@ final class CognitoUserPoolClientAnalyticsConfiguration {
     this.userDataShared,
   });
 
-  final CognitoUserPoolClientAnalyticsConfigurationApplication application;
+  final CognitoUserPoolClientApplication application;
 
   final TfArg<String>? externalId;
 
@@ -80,18 +80,18 @@ final class CognitoUserPoolClientAnalyticsConfiguration {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.applicationArn(...)`.
-sealed class CognitoUserPoolClientAnalyticsConfigurationApplication {
-  const CognitoUserPoolClientAnalyticsConfigurationApplication();
+sealed class CognitoUserPoolClientApplication {
+  const CognitoUserPoolClientApplication();
 
   /// Sets `application_arn`.
-  const factory CognitoUserPoolClientAnalyticsConfigurationApplication.applicationArn(
+  const factory CognitoUserPoolClientApplication.applicationArn(
     TfArg<String> applicationArn,
-  ) = CognitoUserPoolClientAnalyticsConfigurationApplicationArn;
+  ) = CognitoUserPoolClientApplicationArn;
 
   /// Sets `application_id`.
-  const factory CognitoUserPoolClientAnalyticsConfigurationApplication.applicationId(
+  const factory CognitoUserPoolClientApplication.applicationId(
     TfArg<String> applicationId,
-  ) = CognitoUserPoolClientAnalyticsConfigurationApplicationId;
+  ) = CognitoUserPoolClientApplicationId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -99,12 +99,10 @@ sealed class CognitoUserPoolClientAnalyticsConfigurationApplication {
   Map<String, Object?> encode();
 }
 
-/// The [CognitoUserPoolClientAnalyticsConfigurationApplication.applicationArn] choice: sets `application_arn`.
-final class CognitoUserPoolClientAnalyticsConfigurationApplicationArn
-    extends CognitoUserPoolClientAnalyticsConfigurationApplication {
-  const CognitoUserPoolClientAnalyticsConfigurationApplicationArn(
-    this.applicationArn,
-  );
+/// The [CognitoUserPoolClientApplication.applicationArn] choice: sets `application_arn`.
+final class CognitoUserPoolClientApplicationArn
+    extends CognitoUserPoolClientApplication {
+  const CognitoUserPoolClientApplicationArn(this.applicationArn);
 
   final TfArg<String> applicationArn;
 
@@ -117,12 +115,10 @@ final class CognitoUserPoolClientAnalyticsConfigurationApplicationArn
   };
 }
 
-/// The [CognitoUserPoolClientAnalyticsConfigurationApplication.applicationId] choice: sets `application_id`.
-final class CognitoUserPoolClientAnalyticsConfigurationApplicationId
-    extends CognitoUserPoolClientAnalyticsConfigurationApplication {
-  const CognitoUserPoolClientAnalyticsConfigurationApplicationId(
-    this.applicationId,
-  );
+/// The [CognitoUserPoolClientApplication.applicationId] choice: sets `application_id`.
+final class CognitoUserPoolClientApplicationId
+    extends CognitoUserPoolClientApplication {
+  const CognitoUserPoolClientApplicationId(this.applicationId);
 
   final TfArg<String> applicationId;
 
@@ -142,7 +138,7 @@ final class CognitoUserPoolClientRefreshTokenRotation {
     this.retryGracePeriodSeconds,
   });
 
-  final TfArg<CognitoUserPoolClientRefreshTokenRotationFeature> feature;
+  final TfArg<CognitoUserPoolClientFeature> feature;
 
   final TfArg<num>? retryGracePeriodSeconds;
 
@@ -153,11 +149,11 @@ final class CognitoUserPoolClientRefreshTokenRotation {
 }
 
 /// `feature` — derived from the provider schema description.
-enum CognitoUserPoolClientRefreshTokenRotationFeature implements TerraformEnum {
+enum CognitoUserPoolClientFeature implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const CognitoUserPoolClientRefreshTokenRotationFeature(this.terraformValue);
+  const CognitoUserPoolClientFeature(this.terraformValue);
   @override
   final String terraformValue;
 }

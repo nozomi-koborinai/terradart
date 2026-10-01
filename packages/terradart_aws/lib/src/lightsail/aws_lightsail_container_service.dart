@@ -15,8 +15,7 @@ final class LightsailContainerServicePrivateRegistryAccess {
     this.ecrImagePullerRole,
   });
 
-  final LightsailContainerServicePrivateRegistryAccessEcrImagePullerRole?
-  ecrImagePullerRole;
+  final LightsailContainerServiceEcrImagePullerRole? ecrImagePullerRole;
 
   Map<String, Object?> encode() => {
     'ecr_image_puller_role': ?ecrImagePullerRole?.encode(),
@@ -26,10 +25,8 @@ final class LightsailContainerServicePrivateRegistryAccess {
 /// Typed helper for the `private_registry_access.ecr_image_puller_role` block of
 /// `aws_lightsail_container_service` (derived from provider schema).
 @immutable
-final class LightsailContainerServicePrivateRegistryAccessEcrImagePullerRole {
-  const LightsailContainerServicePrivateRegistryAccessEcrImagePullerRole({
-    this.isActive,
-  });
+final class LightsailContainerServiceEcrImagePullerRole {
+  const LightsailContainerServiceEcrImagePullerRole({this.isActive});
 
   final TfArg<bool>? isActive;
 
@@ -42,7 +39,7 @@ final class LightsailContainerServicePrivateRegistryAccessEcrImagePullerRole {
 final class LightsailContainerServicePublicDomainNames {
   const LightsailContainerServicePublicDomainNames({required this.certificate});
 
-  final List<LightsailContainerServicePublicDomainNamesCertificate> certificate;
+  final List<LightsailContainerServiceCertificate> certificate;
 
   Map<String, Object?> encode() => {
     'certificate': [for (final e in certificate) e.encode()],
@@ -52,8 +49,8 @@ final class LightsailContainerServicePublicDomainNames {
 /// Typed helper for the `public_domain_names.certificate` block of
 /// `aws_lightsail_container_service` (derived from provider schema).
 @immutable
-final class LightsailContainerServicePublicDomainNamesCertificate {
-  const LightsailContainerServicePublicDomainNamesCertificate({
+final class LightsailContainerServiceCertificate {
+  const LightsailContainerServiceCertificate({
     required this.certificateName,
     required this.domainNames,
   });

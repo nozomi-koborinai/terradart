@@ -65,13 +65,13 @@ final class BiglakeHiveTableStorageDescriptor {
 
   final TfArg<bool>? storedAsSubDirs;
 
-  final List<BiglakeHiveTableStorageDescriptorColumns> columns;
+  final List<BiglakeHiveTableColumns> columns;
 
-  final BiglakeHiveTableStorageDescriptorSerdeInfo? serdeInfo;
+  final BiglakeHiveTableSerdeInfo? serdeInfo;
 
-  final BiglakeHiveTableStorageDescriptorSkewedInfo? skewedInfo;
+  final BiglakeHiveTableSkewedInfo? skewedInfo;
 
-  final List<BiglakeHiveTableStorageDescriptorSortCols>? sortCols;
+  final List<BiglakeHiveTableSortCols>? sortCols;
 
   Map<String, Object?> encode() => {
     'bucket_cols': ?bucketCols?.toTfJson(),
@@ -92,8 +92,8 @@ final class BiglakeHiveTableStorageDescriptor {
 /// Typed helper for the `storage_descriptor.columns` block of
 /// `google_biglake_hive_table` (derived from provider schema).
 @immutable
-final class BiglakeHiveTableStorageDescriptorColumns {
-  const BiglakeHiveTableStorageDescriptorColumns({
+final class BiglakeHiveTableColumns {
+  const BiglakeHiveTableColumns({
     this.comment,
     required this.name,
     required this.type,
@@ -115,8 +115,8 @@ final class BiglakeHiveTableStorageDescriptorColumns {
 /// Typed helper for the `storage_descriptor.serde_info` block of
 /// `google_biglake_hive_table` (derived from provider schema).
 @immutable
-final class BiglakeHiveTableStorageDescriptorSerdeInfo {
-  const BiglakeHiveTableStorageDescriptorSerdeInfo({
+final class BiglakeHiveTableSerdeInfo {
+  const BiglakeHiveTableSerdeInfo({
     this.description,
     this.deserializerClass,
     required this.name,
@@ -134,7 +134,7 @@ final class BiglakeHiveTableStorageDescriptorSerdeInfo {
 
   final TfArg<Map<String, String>>? parameters;
 
-  final TfArg<BiglakeHiveTableStorageDescriptorSerdeInfoSerdeType>? serdeType;
+  final TfArg<BiglakeHiveTableSerdeType>? serdeType;
 
   final TfArg<String> serializationLib;
 
@@ -152,15 +152,12 @@ final class BiglakeHiveTableStorageDescriptorSerdeInfo {
 }
 
 /// `serde_type` — derived from the provider schema description.
-enum BiglakeHiveTableStorageDescriptorSerdeInfoSerdeType
-    implements TerraformEnum {
+enum BiglakeHiveTableSerdeType implements TerraformEnum {
   serdeTypeUnspecified('SERDE_TYPE_UNSPECIFIED'),
   hive('HIVE'),
   schemaRegistry('SCHEMA_REGISTRY');
 
-  const BiglakeHiveTableStorageDescriptorSerdeInfoSerdeType(
-    this.terraformValue,
-  );
+  const BiglakeHiveTableSerdeType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -168,8 +165,8 @@ enum BiglakeHiveTableStorageDescriptorSerdeInfoSerdeType
 /// Typed helper for the `storage_descriptor.skewed_info` block of
 /// `google_biglake_hive_table` (derived from provider schema).
 @immutable
-final class BiglakeHiveTableStorageDescriptorSkewedInfo {
-  const BiglakeHiveTableStorageDescriptorSkewedInfo({
+final class BiglakeHiveTableSkewedInfo {
+  const BiglakeHiveTableSkewedInfo({
     required this.skewedColNames,
     required this.skewedColValues,
     required this.skewedKeyValuesLocations,
@@ -177,13 +174,9 @@ final class BiglakeHiveTableStorageDescriptorSkewedInfo {
 
   final TfArg<List<String>> skewedColNames;
 
-  final List<BiglakeHiveTableStorageDescriptorSkewedInfoSkewedColValues>
-  skewedColValues;
+  final List<BiglakeHiveTableSkewedColValues> skewedColValues;
 
-  final List<
-    BiglakeHiveTableStorageDescriptorSkewedInfoSkewedKeyValuesLocations
-  >
-  skewedKeyValuesLocations;
+  final List<BiglakeHiveTableSkewedKeyValuesLocations> skewedKeyValuesLocations;
 
   Map<String, Object?> encode() => {
     'skewed_col_names': skewedColNames.toTfJson(),
@@ -197,10 +190,8 @@ final class BiglakeHiveTableStorageDescriptorSkewedInfo {
 /// Typed helper for the `storage_descriptor.skewed_info.skewed_col_values` block of
 /// `google_biglake_hive_table` (derived from provider schema).
 @immutable
-final class BiglakeHiveTableStorageDescriptorSkewedInfoSkewedColValues {
-  const BiglakeHiveTableStorageDescriptorSkewedInfoSkewedColValues({
-    required this.values,
-  });
+final class BiglakeHiveTableSkewedColValues {
+  const BiglakeHiveTableSkewedColValues({required this.values});
 
   final TfArg<List<String>> values;
 
@@ -210,8 +201,8 @@ final class BiglakeHiveTableStorageDescriptorSkewedInfoSkewedColValues {
 /// Typed helper for the `storage_descriptor.skewed_info.skewed_key_values_locations` block of
 /// `google_biglake_hive_table` (derived from provider schema).
 @immutable
-final class BiglakeHiveTableStorageDescriptorSkewedInfoSkewedKeyValuesLocations {
-  const BiglakeHiveTableStorageDescriptorSkewedInfoSkewedKeyValuesLocations({
+final class BiglakeHiveTableSkewedKeyValuesLocations {
+  const BiglakeHiveTableSkewedKeyValuesLocations({
     required this.location,
     required this.values,
   });
@@ -229,11 +220,8 @@ final class BiglakeHiveTableStorageDescriptorSkewedInfoSkewedKeyValuesLocations 
 /// Typed helper for the `storage_descriptor.sort_cols` block of
 /// `google_biglake_hive_table` (derived from provider schema).
 @immutable
-final class BiglakeHiveTableStorageDescriptorSortCols {
-  const BiglakeHiveTableStorageDescriptorSortCols({
-    required this.col,
-    required this.order,
-  });
+final class BiglakeHiveTableSortCols {
+  const BiglakeHiveTableSortCols({required this.col, required this.order});
 
   final TfArg<String> col;
 

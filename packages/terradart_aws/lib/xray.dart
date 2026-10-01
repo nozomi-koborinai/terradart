@@ -10,8 +10,8 @@ export 'src/xray/aws_xray_group.dart'
 export 'src/xray/aws_xray_indexing_rule.dart'
     show
         AwsXrayIndexingRule,
-        XrayIndexingRuleRule,
-        XrayIndexingRuleRuleProbabilistic;
+        XrayIndexingRuleProbabilistic,
+        XrayIndexingRuleRule;
 export 'src/xray/aws_xray_resource_policy.dart' show AwsXrayResourcePolicy;
 export 'src/xray/aws_xray_sampling_rule.dart' show AwsXraySamplingRule;
 export 'src/xray/aws_xray_trace_segment_destination.dart'

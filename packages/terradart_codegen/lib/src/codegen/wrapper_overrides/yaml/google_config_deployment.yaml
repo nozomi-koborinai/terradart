@@ -24,7 +24,7 @@ curatedDoc: |-
   ///   ),
   ///   terraformBlueprint: ConfigDeploymentTerraformBlueprint(
   ///     source: .gitSource(
-  ///       ConfigDeploymentTerraformBlueprintGitSource(
+  ///       ConfigDeploymentGitSource(
   ///         repo: .literal(
   ///           'https://github.com/terraform-google-modules/terraform-google-network',
   ///         ),
@@ -33,7 +33,7 @@ curatedDoc: |-
   ///       ),
   ///     ),
   ///     inputValues: [
-  ///       ConfigDeploymentTerraformBlueprintInputValues(
+  ///       ConfigDeploymentInputValues(
   ///         variableName: .literal('project_id'),
   ///         inputValue: .literal('"my-project"'),
   ///       ),

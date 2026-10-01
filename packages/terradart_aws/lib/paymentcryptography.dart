@@ -6,11 +6,11 @@ library;
 export 'src/paymentcryptography/aws_paymentcryptography_key.dart'
     show
         AwsPaymentcryptographyKey,
-        PaymentcryptographyKeyKeyAttributes,
-        PaymentcryptographyKeyKeyAttributesKeyAlgorithm,
-        PaymentcryptographyKeyKeyAttributesKeyClass,
-        PaymentcryptographyKeyKeyAttributesKeyModesOfUse,
-        PaymentcryptographyKeyKeyAttributesKeyUsage,
-        PaymentcryptographyKeyKeyCheckValueAlgorithm;
+        PaymentcryptographyKeyAlgorithm,
+        PaymentcryptographyKeyAttributes,
+        PaymentcryptographyKeyClass,
+        PaymentcryptographyKeyKeyCheckValueAlgorithm,
+        PaymentcryptographyKeyModesOfUse,
+        PaymentcryptographyKeyUsage;
 export 'src/paymentcryptography/aws_paymentcryptography_key_alias.dart'
     show AwsPaymentcryptographyKeyAlias;

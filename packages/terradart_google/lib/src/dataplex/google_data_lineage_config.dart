@@ -13,7 +13,7 @@ const Set<String> _googleDataLineageConfigSensitive = <String>{};
 final class DataLineageConfigIngestion {
   const DataLineageConfigIngestion({required this.rule});
 
-  final List<DataLineageConfigIngestionRule> rule;
+  final List<DataLineageConfigRule> rule;
 
   Map<String, Object?> encode() => {
     'rule': [for (final e in rule) e.encode()],
@@ -23,15 +23,15 @@ final class DataLineageConfigIngestion {
 /// Typed helper for the `ingestion.rule` block of
 /// `google_data_lineage_config` (derived from provider schema).
 @immutable
-final class DataLineageConfigIngestionRule {
-  const DataLineageConfigIngestionRule({
+final class DataLineageConfigRule {
+  const DataLineageConfigRule({
     required this.integrationSelector,
     required this.lineageEnablement,
   });
 
-  final DataLineageConfigIngestionRuleIntegrationSelector integrationSelector;
+  final DataLineageConfigIntegrationSelector integrationSelector;
 
-  final DataLineageConfigIngestionRuleLineageEnablement lineageEnablement;
+  final DataLineageConfigLineageEnablement lineageEnablement;
 
   Map<String, Object?> encode() => {
     'integration_selector': integrationSelector.encode(),
@@ -42,26 +42,20 @@ final class DataLineageConfigIngestionRule {
 /// Typed helper for the `ingestion.rule.integration_selector` block of
 /// `google_data_lineage_config` (derived from provider schema).
 @immutable
-final class DataLineageConfigIngestionRuleIntegrationSelector {
-  const DataLineageConfigIngestionRuleIntegrationSelector({
-    required this.integration,
-  });
+final class DataLineageConfigIntegrationSelector {
+  const DataLineageConfigIntegrationSelector({required this.integration});
 
-  final TfArg<DataLineageConfigIngestionRuleIntegrationSelectorIntegration>
-  integration;
+  final TfArg<DataLineageConfigIntegration> integration;
 
   Map<String, Object?> encode() => {'integration': integration.toTfJson()};
 }
 
 /// `integration` — derived from the provider schema description.
-enum DataLineageConfigIngestionRuleIntegrationSelectorIntegration
-    implements TerraformEnum {
+enum DataLineageConfigIntegration implements TerraformEnum {
   dataproc('DATAPROC'),
   lookerCore('LOOKER_CORE');
 
-  const DataLineageConfigIngestionRuleIntegrationSelectorIntegration(
-    this.terraformValue,
-  );
+  const DataLineageConfigIntegration(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -69,10 +63,8 @@ enum DataLineageConfigIngestionRuleIntegrationSelectorIntegration
 /// Typed helper for the `ingestion.rule.lineage_enablement` block of
 /// `google_data_lineage_config` (derived from provider schema).
 @immutable
-final class DataLineageConfigIngestionRuleLineageEnablement {
-  const DataLineageConfigIngestionRuleLineageEnablement({
-    required this.enabled,
-  });
+final class DataLineageConfigLineageEnablement {
+  const DataLineageConfigLineageEnablement({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -104,13 +96,13 @@ final class DataLineageConfigIngestionRuleLineageEnablement {
 ///   location: TfArg.literal('global'),
 ///   ingestion: DataLineageConfigIngestion(
 ///     rule: [
-///       DataLineageConfigIngestionRule(
-///         integrationSelector: DataLineageConfigIngestionRuleIntegrationSelector(
+///       DataLineageConfigRule(
+///         integrationSelector: DataLineageConfigIntegrationSelector(
 ///           integration: TfArg.literal(
-///             DataLineageConfigIngestionRuleIntegrationSelectorIntegration.dataproc,
+///             DataLineageConfigIntegration.dataproc,
 ///           ),
 ///         ),
-///         lineageEnablement: DataLineageConfigIngestionRuleLineageEnablement(
+///         lineageEnablement: DataLineageConfigLineageEnablement(
 ///           enabled: TfArg.literal(true),
 ///         ),
 ///       ),

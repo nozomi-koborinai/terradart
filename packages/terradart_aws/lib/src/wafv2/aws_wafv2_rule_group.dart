@@ -178,13 +178,13 @@ final class Wafv2RuleGroupRule {
 
   final TfArg<num> priority;
 
-  final Wafv2RuleGroupRuleAction action;
+  final Wafv2RuleGroupAction action;
 
-  final Wafv2RuleGroupRuleCaptchaConfig? captchaConfig;
+  final Wafv2RuleGroupCaptchaConfig? captchaConfig;
 
-  final List<Wafv2RuleGroupRuleRuleLabel>? ruleLabel;
+  final List<Wafv2RuleGroupRuleLabel>? ruleLabel;
 
-  final Wafv2RuleGroupRuleStatement statement;
+  final Wafv2RuleGroupStatement statement;
 
   final Wafv2RuleGroupVisibilityConfig visibilityConfig;
 
@@ -203,8 +203,8 @@ final class Wafv2RuleGroupRule {
 /// Typed helper for the `rule.action` block of
 /// `aws_wafv2_rule_group` (derived from provider schema).
 @immutable
-final class Wafv2RuleGroupRuleAction {
-  const Wafv2RuleGroupRuleAction({
+final class Wafv2RuleGroupAction {
+  const Wafv2RuleGroupAction({
     this.allow,
     this.block,
     this.captcha,
@@ -212,15 +212,15 @@ final class Wafv2RuleGroupRuleAction {
     this.count,
   });
 
-  final Wafv2RuleGroupRuleActionAllow? allow;
+  final Wafv2RuleGroupAllow? allow;
 
-  final Wafv2RuleGroupRuleActionBlock? block;
+  final Wafv2RuleGroupBlock? block;
 
-  final Wafv2RuleGroupRuleActionAllow? captcha;
+  final Wafv2RuleGroupAllow? captcha;
 
-  final Wafv2RuleGroupRuleActionAllow? challenge;
+  final Wafv2RuleGroupAllow? challenge;
 
-  final Wafv2RuleGroupRuleActionAllow? count;
+  final Wafv2RuleGroupAllow? count;
 
   Map<String, Object?> encode() => {
     'allow': ?allow?.encode(),
@@ -235,11 +235,10 @@ final class Wafv2RuleGroupRuleAction {
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleActionAllow {
-  const Wafv2RuleGroupRuleActionAllow({this.customRequestHandling});
+final class Wafv2RuleGroupAllow {
+  const Wafv2RuleGroupAllow({this.customRequestHandling});
 
-  final Wafv2RuleGroupRuleActionAllowCustomRequestHandling?
-  customRequestHandling;
+  final Wafv2RuleGroupCustomRequestHandling? customRequestHandling;
 
   Map<String, Object?> encode() => {
     'custom_request_handling': ?customRequestHandling?.encode(),
@@ -250,13 +249,10 @@ final class Wafv2RuleGroupRuleActionAllow {
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleActionAllowCustomRequestHandling {
-  const Wafv2RuleGroupRuleActionAllowCustomRequestHandling({
-    required this.insertHeader,
-  });
+final class Wafv2RuleGroupCustomRequestHandling {
+  const Wafv2RuleGroupCustomRequestHandling({required this.insertHeader});
 
-  final List<Wafv2RuleGroupRuleActionAllowCustomRequestHandlingInsertHeader>
-  insertHeader;
+  final List<Wafv2RuleGroupInsertHeader> insertHeader;
 
   Map<String, Object?> encode() => {
     'insert_header': [for (final e in insertHeader) e.encode()],
@@ -267,11 +263,8 @@ final class Wafv2RuleGroupRuleActionAllowCustomRequestHandling {
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleActionAllowCustomRequestHandlingInsertHeader {
-  const Wafv2RuleGroupRuleActionAllowCustomRequestHandlingInsertHeader({
-    required this.name,
-    required this.value,
-  });
+final class Wafv2RuleGroupInsertHeader {
+  const Wafv2RuleGroupInsertHeader({required this.name, required this.value});
 
   final TfArg<String> name;
 
@@ -286,10 +279,10 @@ final class Wafv2RuleGroupRuleActionAllowCustomRequestHandlingInsertHeader {
 /// Typed helper for the `rule.action.block` block of
 /// `aws_wafv2_rule_group` (derived from provider schema).
 @immutable
-final class Wafv2RuleGroupRuleActionBlock {
-  const Wafv2RuleGroupRuleActionBlock({this.customResponse});
+final class Wafv2RuleGroupBlock {
+  const Wafv2RuleGroupBlock({this.customResponse});
 
-  final Wafv2RuleGroupRuleActionBlockCustomResponse? customResponse;
+  final Wafv2RuleGroupCustomResponse? customResponse;
 
   Map<String, Object?> encode() => {
     'custom_response': ?customResponse?.encode(),
@@ -299,8 +292,8 @@ final class Wafv2RuleGroupRuleActionBlock {
 /// Typed helper for the `rule.action.block.custom_response` block of
 /// `aws_wafv2_rule_group` (derived from provider schema).
 @immutable
-final class Wafv2RuleGroupRuleActionBlockCustomResponse {
-  const Wafv2RuleGroupRuleActionBlockCustomResponse({
+final class Wafv2RuleGroupCustomResponse {
+  const Wafv2RuleGroupCustomResponse({
     this.customResponseBodyKey,
     required this.responseCode,
     this.responseHeader,
@@ -310,8 +303,7 @@ final class Wafv2RuleGroupRuleActionBlockCustomResponse {
 
   final TfArg<num> responseCode;
 
-  final List<Wafv2RuleGroupRuleActionAllowCustomRequestHandlingInsertHeader>?
-  responseHeader;
+  final List<Wafv2RuleGroupInsertHeader>? responseHeader;
 
   Map<String, Object?> encode() => {
     'custom_response_body_key': ?customResponseBodyKey?.toTfJson(),
@@ -324,11 +316,10 @@ final class Wafv2RuleGroupRuleActionBlockCustomResponse {
 /// Typed helper for the `rule.captcha_config` block of
 /// `aws_wafv2_rule_group` (derived from provider schema).
 @immutable
-final class Wafv2RuleGroupRuleCaptchaConfig {
-  const Wafv2RuleGroupRuleCaptchaConfig({this.immunityTimeProperty});
+final class Wafv2RuleGroupCaptchaConfig {
+  const Wafv2RuleGroupCaptchaConfig({this.immunityTimeProperty});
 
-  final Wafv2RuleGroupRuleCaptchaConfigImmunityTimeProperty?
-  immunityTimeProperty;
+  final Wafv2RuleGroupImmunityTimeProperty? immunityTimeProperty;
 
   Map<String, Object?> encode() => {
     'immunity_time_property': ?immunityTimeProperty?.encode(),
@@ -338,10 +329,8 @@ final class Wafv2RuleGroupRuleCaptchaConfig {
 /// Typed helper for the `rule.captcha_config.immunity_time_property` block of
 /// `aws_wafv2_rule_group` (derived from provider schema).
 @immutable
-final class Wafv2RuleGroupRuleCaptchaConfigImmunityTimeProperty {
-  const Wafv2RuleGroupRuleCaptchaConfigImmunityTimeProperty({
-    this.immunityTime,
-  });
+final class Wafv2RuleGroupImmunityTimeProperty {
+  const Wafv2RuleGroupImmunityTimeProperty({this.immunityTime});
 
   final TfArg<num>? immunityTime;
 
@@ -352,8 +341,8 @@ final class Wafv2RuleGroupRuleCaptchaConfigImmunityTimeProperty {
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleRuleLabel {
-  const Wafv2RuleGroupRuleRuleLabel({required this.name});
+final class Wafv2RuleGroupRuleLabel {
+  const Wafv2RuleGroupRuleLabel({required this.name});
 
   final TfArg<String> name;
 
@@ -363,8 +352,8 @@ final class Wafv2RuleGroupRuleRuleLabel {
 /// Typed helper for the `rule.statement` block of
 /// `aws_wafv2_rule_group` (derived from provider schema).
 @immutable
-final class Wafv2RuleGroupRuleStatement {
-  const Wafv2RuleGroupRuleStatement({
+final class Wafv2RuleGroupStatement {
+  const Wafv2RuleGroupStatement({
     this.andStatement,
     this.asnMatchStatement,
     this.byteMatchStatement,
@@ -381,36 +370,34 @@ final class Wafv2RuleGroupRuleStatement {
     this.xssMatchStatement,
   });
 
-  final Wafv2RuleGroupRuleStatementAndStatement? andStatement;
+  final Wafv2RuleGroupAndStatement? andStatement;
 
-  final Wafv2RuleGroupRuleStatementAsnMatchStatement? asnMatchStatement;
+  final Wafv2RuleGroupAsnMatchStatement? asnMatchStatement;
 
-  final Wafv2RuleGroupRuleStatementByteMatchStatement? byteMatchStatement;
+  final Wafv2RuleGroupByteMatchStatement? byteMatchStatement;
 
-  final Wafv2RuleGroupRuleStatementGeoMatchStatement? geoMatchStatement;
+  final Wafv2RuleGroupGeoMatchStatement? geoMatchStatement;
 
-  final Wafv2RuleGroupRuleStatementIpSetReferenceStatement?
-  ipSetReferenceStatement;
+  final Wafv2RuleGroupIpSetReferenceStatement? ipSetReferenceStatement;
 
-  final Wafv2RuleGroupRuleStatementLabelMatchStatement? labelMatchStatement;
+  final Wafv2RuleGroupLabelMatchStatement? labelMatchStatement;
 
-  final Wafv2RuleGroupRuleStatementAndStatement? notStatement;
+  final Wafv2RuleGroupAndStatement? notStatement;
 
-  final Wafv2RuleGroupRuleStatementAndStatement? orStatement;
+  final Wafv2RuleGroupAndStatement? orStatement;
 
-  final Wafv2RuleGroupRuleStatementRateBasedStatement? rateBasedStatement;
+  final Wafv2RuleGroupRateBasedStatement? rateBasedStatement;
 
-  final Wafv2RuleGroupRuleStatementRegexMatchStatement? regexMatchStatement;
+  final Wafv2RuleGroupRegexMatchStatement? regexMatchStatement;
 
-  final Wafv2RuleGroupRuleStatementRegexPatternSetReferenceStatement?
+  final Wafv2RuleGroupRegexPatternSetReferenceStatement?
   regexPatternSetReferenceStatement;
 
-  final Wafv2RuleGroupRuleStatementSizeConstraintStatement?
-  sizeConstraintStatement;
+  final Wafv2RuleGroupSizeConstraintStatement? sizeConstraintStatement;
 
-  final Wafv2RuleGroupRuleStatementSqliMatchStatement? sqliMatchStatement;
+  final Wafv2RuleGroupSqliMatchStatement? sqliMatchStatement;
 
-  final Wafv2RuleGroupRuleStatementXssMatchStatement? xssMatchStatement;
+  final Wafv2RuleGroupXssMatchStatement? xssMatchStatement;
 
   Map<String, Object?> encode() => {
     'and_statement': ?andStatement?.encode(),
@@ -435,10 +422,10 @@ final class Wafv2RuleGroupRuleStatement {
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleStatementAndStatement {
-  const Wafv2RuleGroupRuleStatementAndStatement({required this.statement});
+final class Wafv2RuleGroupAndStatement {
+  const Wafv2RuleGroupAndStatement({required this.statement});
 
-  final List<Wafv2RuleGroupRuleStatementAndStatementStatement> statement;
+  final List<Wafv2RuleGroupAndStatementStatement> statement;
 
   Map<String, Object?> encode() => {
     'statement': [for (final e in statement) e.encode()],
@@ -449,8 +436,8 @@ final class Wafv2RuleGroupRuleStatementAndStatement {
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleStatementAndStatementStatement {
-  const Wafv2RuleGroupRuleStatementAndStatementStatement({
+final class Wafv2RuleGroupAndStatementStatement {
+  const Wafv2RuleGroupAndStatementStatement({
     this.andStatement,
     this.asnMatchStatement,
     this.byteMatchStatement,
@@ -466,37 +453,32 @@ final class Wafv2RuleGroupRuleStatementAndStatementStatement {
     this.xssMatchStatement,
   });
 
-  final Wafv2RuleGroupRuleStatementAndStatementStatementAndStatement?
-  andStatement;
+  final Wafv2RuleGroupStatementAndStatement? andStatement;
 
-  final Wafv2RuleGroupRuleStatementAsnMatchStatement? asnMatchStatement;
+  final Wafv2RuleGroupAsnMatchStatement? asnMatchStatement;
 
-  final Wafv2RuleGroupRuleStatementByteMatchStatement? byteMatchStatement;
+  final Wafv2RuleGroupByteMatchStatement? byteMatchStatement;
 
-  final Wafv2RuleGroupRuleStatementGeoMatchStatement? geoMatchStatement;
+  final Wafv2RuleGroupGeoMatchStatement? geoMatchStatement;
 
-  final Wafv2RuleGroupRuleStatementIpSetReferenceStatement?
-  ipSetReferenceStatement;
+  final Wafv2RuleGroupIpSetReferenceStatement? ipSetReferenceStatement;
 
-  final Wafv2RuleGroupRuleStatementLabelMatchStatement? labelMatchStatement;
+  final Wafv2RuleGroupLabelMatchStatement? labelMatchStatement;
 
-  final Wafv2RuleGroupRuleStatementAndStatementStatementAndStatement?
-  notStatement;
+  final Wafv2RuleGroupStatementAndStatement? notStatement;
 
-  final Wafv2RuleGroupRuleStatementAndStatementStatementAndStatement?
-  orStatement;
+  final Wafv2RuleGroupStatementAndStatement? orStatement;
 
-  final Wafv2RuleGroupRuleStatementRegexMatchStatement? regexMatchStatement;
+  final Wafv2RuleGroupRegexMatchStatement? regexMatchStatement;
 
-  final Wafv2RuleGroupRuleStatementRegexPatternSetReferenceStatement?
+  final Wafv2RuleGroupRegexPatternSetReferenceStatement?
   regexPatternSetReferenceStatement;
 
-  final Wafv2RuleGroupRuleStatementSizeConstraintStatement?
-  sizeConstraintStatement;
+  final Wafv2RuleGroupSizeConstraintStatement? sizeConstraintStatement;
 
-  final Wafv2RuleGroupRuleStatementSqliMatchStatement? sqliMatchStatement;
+  final Wafv2RuleGroupSqliMatchStatement? sqliMatchStatement;
 
-  final Wafv2RuleGroupRuleStatementXssMatchStatement? xssMatchStatement;
+  final Wafv2RuleGroupXssMatchStatement? xssMatchStatement;
 
   Map<String, Object?> encode() => {
     'and_statement': ?andStatement?.encode(),
@@ -520,15 +502,10 @@ final class Wafv2RuleGroupRuleStatementAndStatementStatement {
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleStatementAndStatementStatementAndStatement {
-  const Wafv2RuleGroupRuleStatementAndStatementStatementAndStatement({
-    required this.statement,
-  });
+final class Wafv2RuleGroupStatementAndStatement {
+  const Wafv2RuleGroupStatementAndStatement({required this.statement});
 
-  final List<
-    Wafv2RuleGroupRuleStatementAndStatementStatementAndStatementStatement
-  >
-  statement;
+  final List<Wafv2RuleGroupStatementStatement> statement;
 
   Map<String, Object?> encode() => {
     'statement': [for (final e in statement) e.encode()],
@@ -539,8 +516,8 @@ final class Wafv2RuleGroupRuleStatementAndStatementStatementAndStatement {
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleStatementAndStatementStatementAndStatementStatement {
-  const Wafv2RuleGroupRuleStatementAndStatementStatementAndStatementStatement({
+final class Wafv2RuleGroupStatementStatement {
+  const Wafv2RuleGroupStatementStatement({
     this.andStatement,
     this.asnMatchStatement,
     this.byteMatchStatement,
@@ -556,37 +533,32 @@ final class Wafv2RuleGroupRuleStatementAndStatementStatementAndStatementStatemen
     this.xssMatchStatement,
   });
 
-  final Wafv2RuleGroupRuleStatementAndStatementStatementAndStatementStatementAndStatement?
-  andStatement;
+  final Wafv2RuleGroupAndStatementAndStatement? andStatement;
 
-  final Wafv2RuleGroupRuleStatementAsnMatchStatement? asnMatchStatement;
+  final Wafv2RuleGroupAsnMatchStatement? asnMatchStatement;
 
-  final Wafv2RuleGroupRuleStatementByteMatchStatement? byteMatchStatement;
+  final Wafv2RuleGroupByteMatchStatement? byteMatchStatement;
 
-  final Wafv2RuleGroupRuleStatementGeoMatchStatement? geoMatchStatement;
+  final Wafv2RuleGroupGeoMatchStatement? geoMatchStatement;
 
-  final Wafv2RuleGroupRuleStatementIpSetReferenceStatement?
-  ipSetReferenceStatement;
+  final Wafv2RuleGroupIpSetReferenceStatement? ipSetReferenceStatement;
 
-  final Wafv2RuleGroupRuleStatementLabelMatchStatement? labelMatchStatement;
+  final Wafv2RuleGroupLabelMatchStatement? labelMatchStatement;
 
-  final Wafv2RuleGroupRuleStatementAndStatementStatementAndStatementStatementAndStatement?
-  notStatement;
+  final Wafv2RuleGroupAndStatementAndStatement? notStatement;
 
-  final Wafv2RuleGroupRuleStatementAndStatementStatementAndStatementStatementAndStatement?
-  orStatement;
+  final Wafv2RuleGroupAndStatementAndStatement? orStatement;
 
-  final Wafv2RuleGroupRuleStatementRegexMatchStatement? regexMatchStatement;
+  final Wafv2RuleGroupRegexMatchStatement? regexMatchStatement;
 
-  final Wafv2RuleGroupRuleStatementRegexPatternSetReferenceStatement?
+  final Wafv2RuleGroupRegexPatternSetReferenceStatement?
   regexPatternSetReferenceStatement;
 
-  final Wafv2RuleGroupRuleStatementSizeConstraintStatement?
-  sizeConstraintStatement;
+  final Wafv2RuleGroupSizeConstraintStatement? sizeConstraintStatement;
 
-  final Wafv2RuleGroupRuleStatementSqliMatchStatement? sqliMatchStatement;
+  final Wafv2RuleGroupSqliMatchStatement? sqliMatchStatement;
 
-  final Wafv2RuleGroupRuleStatementXssMatchStatement? xssMatchStatement;
+  final Wafv2RuleGroupXssMatchStatement? xssMatchStatement;
 
   Map<String, Object?> encode() => {
     'and_statement': ?andStatement?.encode(),
@@ -610,15 +582,10 @@ final class Wafv2RuleGroupRuleStatementAndStatementStatementAndStatementStatemen
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleStatementAndStatementStatementAndStatementStatementAndStatement {
-  const Wafv2RuleGroupRuleStatementAndStatementStatementAndStatementStatementAndStatement({
-    required this.statement,
-  });
+final class Wafv2RuleGroupAndStatementAndStatement {
+  const Wafv2RuleGroupAndStatementAndStatement({required this.statement});
 
-  final List<
-    Wafv2RuleGroupRuleStatementAndStatementStatementAndStatementStatementAndStatementStatement
-  >
-  statement;
+  final List<Wafv2RuleGroupRuleStatement> statement;
 
   Map<String, Object?> encode() => {
     'statement': [for (final e in statement) e.encode()],
@@ -629,8 +596,8 @@ final class Wafv2RuleGroupRuleStatementAndStatementStatementAndStatementStatemen
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleStatementAndStatementStatementAndStatementStatementAndStatementStatement {
-  const Wafv2RuleGroupRuleStatementAndStatementStatementAndStatementStatementAndStatementStatement({
+final class Wafv2RuleGroupRuleStatement {
+  const Wafv2RuleGroupRuleStatement({
     this.asnMatchStatement,
     this.byteMatchStatement,
     this.geoMatchStatement,
@@ -643,28 +610,26 @@ final class Wafv2RuleGroupRuleStatementAndStatementStatementAndStatementStatemen
     this.xssMatchStatement,
   });
 
-  final Wafv2RuleGroupRuleStatementAsnMatchStatement? asnMatchStatement;
+  final Wafv2RuleGroupAsnMatchStatement? asnMatchStatement;
 
-  final Wafv2RuleGroupRuleStatementByteMatchStatement? byteMatchStatement;
+  final Wafv2RuleGroupByteMatchStatement? byteMatchStatement;
 
-  final Wafv2RuleGroupRuleStatementGeoMatchStatement? geoMatchStatement;
+  final Wafv2RuleGroupGeoMatchStatement? geoMatchStatement;
 
-  final Wafv2RuleGroupRuleStatementIpSetReferenceStatement?
-  ipSetReferenceStatement;
+  final Wafv2RuleGroupIpSetReferenceStatement? ipSetReferenceStatement;
 
-  final Wafv2RuleGroupRuleStatementLabelMatchStatement? labelMatchStatement;
+  final Wafv2RuleGroupLabelMatchStatement? labelMatchStatement;
 
-  final Wafv2RuleGroupRuleStatementRegexMatchStatement? regexMatchStatement;
+  final Wafv2RuleGroupRegexMatchStatement? regexMatchStatement;
 
-  final Wafv2RuleGroupRuleStatementRegexPatternSetReferenceStatement?
+  final Wafv2RuleGroupRegexPatternSetReferenceStatement?
   regexPatternSetReferenceStatement;
 
-  final Wafv2RuleGroupRuleStatementSizeConstraintStatement?
-  sizeConstraintStatement;
+  final Wafv2RuleGroupSizeConstraintStatement? sizeConstraintStatement;
 
-  final Wafv2RuleGroupRuleStatementSqliMatchStatement? sqliMatchStatement;
+  final Wafv2RuleGroupSqliMatchStatement? sqliMatchStatement;
 
-  final Wafv2RuleGroupRuleStatementXssMatchStatement? xssMatchStatement;
+  final Wafv2RuleGroupXssMatchStatement? xssMatchStatement;
 
   Map<String, Object?> encode() => {
     'asn_match_statement': ?asnMatchStatement?.encode(),
@@ -685,16 +650,15 @@ final class Wafv2RuleGroupRuleStatementAndStatementStatementAndStatementStatemen
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleStatementAsnMatchStatement {
-  const Wafv2RuleGroupRuleStatementAsnMatchStatement({
+final class Wafv2RuleGroupAsnMatchStatement {
+  const Wafv2RuleGroupAsnMatchStatement({
     required this.asnList,
     this.forwardedIpConfig,
   });
 
   final TfArg<List<num>> asnList;
 
-  final Wafv2RuleGroupRuleStatementAsnMatchStatementForwardedIpConfig?
-  forwardedIpConfig;
+  final Wafv2RuleGroupForwardedIpConfig? forwardedIpConfig;
 
   Map<String, Object?> encode() => {
     'asn_list': asnList.toTfJson(),
@@ -706,8 +670,8 @@ final class Wafv2RuleGroupRuleStatementAsnMatchStatement {
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleStatementAsnMatchStatementForwardedIpConfig {
-  const Wafv2RuleGroupRuleStatementAsnMatchStatementForwardedIpConfig({
+final class Wafv2RuleGroupForwardedIpConfig {
+  const Wafv2RuleGroupForwardedIpConfig({
     required this.fallbackBehavior,
     required this.headerName,
   });
@@ -726,8 +690,8 @@ final class Wafv2RuleGroupRuleStatementAsnMatchStatementForwardedIpConfig {
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleStatementByteMatchStatement {
-  const Wafv2RuleGroupRuleStatementByteMatchStatement({
+final class Wafv2RuleGroupByteMatchStatement {
+  const Wafv2RuleGroupByteMatchStatement({
     required this.positionalConstraint,
     required this.searchString,
     this.fieldToMatch,
@@ -739,17 +703,12 @@ final class Wafv2RuleGroupRuleStatementByteMatchStatement {
 
   final TfArg<String> searchString;
 
-  final Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatch? fieldToMatch;
+  final Wafv2RuleGroupFieldToMatch? fieldToMatch;
 
-  final List<
-    Wafv2RuleGroupRuleStatementByteMatchStatementPreParseTextTransformation
-  >?
+  final List<Wafv2RuleGroupPreParseTextTransformation>?
   preParseTextTransformation;
 
-  final List<
-    Wafv2RuleGroupRuleStatementByteMatchStatementPreParseTextTransformation
-  >
-  textTransformation;
+  final List<Wafv2RuleGroupPreParseTextTransformation> textTransformation;
 
   Map<String, Object?> encode() => {
     'positional_constraint': positionalConstraint.toTfJson(),
@@ -767,8 +726,8 @@ final class Wafv2RuleGroupRuleStatementByteMatchStatement {
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatch {
-  const Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatch({
+final class Wafv2RuleGroupFieldToMatch {
+  const Wafv2RuleGroupFieldToMatch({
     this.allQueryArguments,
     this.body,
     this.cookies,
@@ -785,46 +744,33 @@ final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatch {
     this.uriPath,
   });
 
-  final Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchAllQueryArguments?
-  allQueryArguments;
+  final Wafv2RuleGroupAllQueryArguments? allQueryArguments;
 
-  final Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchBody? body;
+  final Wafv2RuleGroupBody? body;
 
-  final Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchCookies?
-  cookies;
+  final Wafv2RuleGroupCookies? cookies;
 
-  final List<
-    Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchHeaderOrder
-  >?
-  headerOrder;
+  final List<Wafv2RuleGroupHeaderOrder>? headerOrder;
 
-  final List<Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchHeaders>?
-  headers;
+  final List<Wafv2RuleGroupHeaders>? headers;
 
-  final Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchJa3Fingerprint?
-  ja3Fingerprint;
+  final Wafv2RuleGroupJa3Fingerprint? ja3Fingerprint;
 
-  final Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchJa3Fingerprint?
-  ja4Fingerprint;
+  final Wafv2RuleGroupJa3Fingerprint? ja4Fingerprint;
 
-  final Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchJsonBody?
-  jsonBody;
+  final Wafv2RuleGroupJsonBody? jsonBody;
 
-  final Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchAllQueryArguments?
-  method;
+  final Wafv2RuleGroupAllQueryArguments? method;
 
-  final Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchAllQueryArguments?
-  queryString;
+  final Wafv2RuleGroupAllQueryArguments? queryString;
 
-  final Wafv2RuleGroupRuleRuleLabel? singleHeader;
+  final Wafv2RuleGroupRuleLabel? singleHeader;
 
-  final Wafv2RuleGroupRuleRuleLabel? singleQueryArgument;
+  final Wafv2RuleGroupRuleLabel? singleQueryArgument;
 
-  final Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchUriFragment?
-  uriFragment;
+  final Wafv2RuleGroupUriFragment? uriFragment;
 
-  final Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchAllQueryArguments?
-  uriPath;
+  final Wafv2RuleGroupAllQueryArguments? uriPath;
 
   Map<String, Object?> encode() => {
     'all_query_arguments': ?allQueryArguments?.encode(),
@@ -849,8 +795,8 @@ final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatch {
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchAllQueryArguments {
-  const Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchAllQueryArguments();
+final class Wafv2RuleGroupAllQueryArguments {
+  const Wafv2RuleGroupAllQueryArguments();
 
   Map<String, Object?> encode() => {};
 }
@@ -859,10 +805,8 @@ final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchAllQueryArg
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchBody {
-  const Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchBody({
-    this.oversizeHandling,
-  });
+final class Wafv2RuleGroupBody {
+  const Wafv2RuleGroupBody({this.oversizeHandling});
 
   final TfArg<String>? oversizeHandling;
 
@@ -875,8 +819,8 @@ final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchBody {
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchCookies {
-  const Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchCookies({
+final class Wafv2RuleGroupCookies {
+  const Wafv2RuleGroupCookies({
     required this.matchScope,
     required this.oversizeHandling,
     required this.matchPattern,
@@ -886,10 +830,7 @@ final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchCookies {
 
   final TfArg<String> oversizeHandling;
 
-  final List<
-    Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchCookiesMatchPattern
-  >
-  matchPattern;
+  final List<Wafv2RuleGroupCookiesMatchPattern> matchPattern;
 
   Map<String, Object?> encode() => {
     'match_scope': matchScope.toTfJson(),
@@ -902,8 +843,8 @@ final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchCookies {
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchCookiesMatchPattern {
-  const Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchCookiesMatchPattern({
+final class Wafv2RuleGroupCookiesMatchPattern {
+  const Wafv2RuleGroupCookiesMatchPattern({
     this.excludedCookies,
     this.includedCookies,
     this.all,
@@ -913,8 +854,7 @@ final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchCookiesMatc
 
   final TfArg<List<String>>? includedCookies;
 
-  final Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchAllQueryArguments?
-  all;
+  final Wafv2RuleGroupAllQueryArguments? all;
 
   Map<String, Object?> encode() => {
     'excluded_cookies': ?excludedCookies?.toTfJson(),
@@ -927,10 +867,8 @@ final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchCookiesMatc
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchHeaderOrder {
-  const Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchHeaderOrder({
-    required this.oversizeHandling,
-  });
+final class Wafv2RuleGroupHeaderOrder {
+  const Wafv2RuleGroupHeaderOrder({required this.oversizeHandling});
 
   final TfArg<String> oversizeHandling;
 
@@ -943,8 +881,8 @@ final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchHeaderOrder
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchHeaders {
-  const Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchHeaders({
+final class Wafv2RuleGroupHeaders {
+  const Wafv2RuleGroupHeaders({
     required this.matchScope,
     required this.oversizeHandling,
     required this.matchPattern,
@@ -954,8 +892,7 @@ final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchHeaders {
 
   final TfArg<String> oversizeHandling;
 
-  final Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchHeadersMatchPattern
-  matchPattern;
+  final Wafv2RuleGroupHeadersMatchPattern matchPattern;
 
   Map<String, Object?> encode() => {
     'match_scope': matchScope.toTfJson(),
@@ -968,8 +905,8 @@ final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchHeaders {
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchHeadersMatchPattern {
-  const Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchHeadersMatchPattern({
+final class Wafv2RuleGroupHeadersMatchPattern {
+  const Wafv2RuleGroupHeadersMatchPattern({
     this.excludedHeaders,
     this.includedHeaders,
     this.all,
@@ -979,8 +916,7 @@ final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchHeadersMatc
 
   final TfArg<List<String>>? includedHeaders;
 
-  final Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchAllQueryArguments?
-  all;
+  final Wafv2RuleGroupAllQueryArguments? all;
 
   Map<String, Object?> encode() => {
     'excluded_headers': ?excludedHeaders?.toTfJson(),
@@ -993,10 +929,8 @@ final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchHeadersMatc
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchJa3Fingerprint {
-  const Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchJa3Fingerprint({
-    required this.fallbackBehavior,
-  });
+final class Wafv2RuleGroupJa3Fingerprint {
+  const Wafv2RuleGroupJa3Fingerprint({required this.fallbackBehavior});
 
   final TfArg<String> fallbackBehavior;
 
@@ -1009,8 +943,8 @@ final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchJa3Fingerpr
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchJsonBody {
-  const Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchJsonBody({
+final class Wafv2RuleGroupJsonBody {
+  const Wafv2RuleGroupJsonBody({
     this.invalidFallbackBehavior,
     required this.matchScope,
     this.oversizeHandling,
@@ -1023,8 +957,7 @@ final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchJsonBody {
 
   final TfArg<String>? oversizeHandling;
 
-  final Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchJsonBodyMatchPattern
-  matchPattern;
+  final Wafv2RuleGroupJsonBodyMatchPattern matchPattern;
 
   Map<String, Object?> encode() => {
     'invalid_fallback_behavior': ?invalidFallbackBehavior?.toTfJson(),
@@ -1038,16 +971,12 @@ final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchJsonBody {
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchJsonBodyMatchPattern {
-  const Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchJsonBodyMatchPattern({
-    this.includedPaths,
-    this.all,
-  });
+final class Wafv2RuleGroupJsonBodyMatchPattern {
+  const Wafv2RuleGroupJsonBodyMatchPattern({this.includedPaths, this.all});
 
   final TfArg<List<String>>? includedPaths;
 
-  final Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchAllQueryArguments?
-  all;
+  final Wafv2RuleGroupAllQueryArguments? all;
 
   Map<String, Object?> encode() => {
     'included_paths': ?includedPaths?.toTfJson(),
@@ -1059,10 +988,8 @@ final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchJsonBodyMat
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchUriFragment {
-  const Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchUriFragment({
-    this.fallbackBehavior,
-  });
+final class Wafv2RuleGroupUriFragment {
+  const Wafv2RuleGroupUriFragment({this.fallbackBehavior});
 
   final TfArg<String>? fallbackBehavior;
 
@@ -1075,8 +1002,8 @@ final class Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchUriFragment
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleStatementByteMatchStatementPreParseTextTransformation {
-  const Wafv2RuleGroupRuleStatementByteMatchStatementPreParseTextTransformation({
+final class Wafv2RuleGroupPreParseTextTransformation {
+  const Wafv2RuleGroupPreParseTextTransformation({
     required this.priority,
     required this.type,
   });
@@ -1095,16 +1022,15 @@ final class Wafv2RuleGroupRuleStatementByteMatchStatementPreParseTextTransformat
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleStatementGeoMatchStatement {
-  const Wafv2RuleGroupRuleStatementGeoMatchStatement({
+final class Wafv2RuleGroupGeoMatchStatement {
+  const Wafv2RuleGroupGeoMatchStatement({
     required this.countryCodes,
     this.forwardedIpConfig,
   });
 
   final TfArg<List<String>> countryCodes;
 
-  final Wafv2RuleGroupRuleStatementAsnMatchStatementForwardedIpConfig?
-  forwardedIpConfig;
+  final Wafv2RuleGroupForwardedIpConfig? forwardedIpConfig;
 
   Map<String, Object?> encode() => {
     'country_codes': countryCodes.toTfJson(),
@@ -1116,16 +1042,15 @@ final class Wafv2RuleGroupRuleStatementGeoMatchStatement {
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleStatementIpSetReferenceStatement {
-  const Wafv2RuleGroupRuleStatementIpSetReferenceStatement({
+final class Wafv2RuleGroupIpSetReferenceStatement {
+  const Wafv2RuleGroupIpSetReferenceStatement({
     required this.arn,
     this.ipSetForwardedIpConfig,
   });
 
   final TfArg<String> arn;
 
-  final Wafv2RuleGroupRuleStatementIpSetReferenceStatementIpSetForwardedIpConfig?
-  ipSetForwardedIpConfig;
+  final Wafv2RuleGroupIpSetForwardedIpConfig? ipSetForwardedIpConfig;
 
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
@@ -1137,8 +1062,8 @@ final class Wafv2RuleGroupRuleStatementIpSetReferenceStatement {
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleStatementIpSetReferenceStatementIpSetForwardedIpConfig {
-  const Wafv2RuleGroupRuleStatementIpSetReferenceStatementIpSetForwardedIpConfig({
+final class Wafv2RuleGroupIpSetForwardedIpConfig {
+  const Wafv2RuleGroupIpSetForwardedIpConfig({
     required this.fallbackBehavior,
     required this.headerName,
     required this.position,
@@ -1161,8 +1086,8 @@ final class Wafv2RuleGroupRuleStatementIpSetReferenceStatementIpSetForwardedIpCo
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleStatementLabelMatchStatement {
-  const Wafv2RuleGroupRuleStatementLabelMatchStatement({
+final class Wafv2RuleGroupLabelMatchStatement {
+  const Wafv2RuleGroupLabelMatchStatement({
     required this.key,
     required this.scope,
   });
@@ -1181,8 +1106,8 @@ final class Wafv2RuleGroupRuleStatementLabelMatchStatement {
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleStatementRegexMatchStatement {
-  const Wafv2RuleGroupRuleStatementRegexMatchStatement({
+final class Wafv2RuleGroupRegexMatchStatement {
+  const Wafv2RuleGroupRegexMatchStatement({
     required this.regexString,
     this.fieldToMatch,
     this.preParseTextTransformation,
@@ -1191,17 +1116,12 @@ final class Wafv2RuleGroupRuleStatementRegexMatchStatement {
 
   final TfArg<String> regexString;
 
-  final Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatch? fieldToMatch;
+  final Wafv2RuleGroupFieldToMatch? fieldToMatch;
 
-  final List<
-    Wafv2RuleGroupRuleStatementByteMatchStatementPreParseTextTransformation
-  >?
+  final List<Wafv2RuleGroupPreParseTextTransformation>?
   preParseTextTransformation;
 
-  final List<
-    Wafv2RuleGroupRuleStatementByteMatchStatementPreParseTextTransformation
-  >
-  textTransformation;
+  final List<Wafv2RuleGroupPreParseTextTransformation> textTransformation;
 
   Map<String, Object?> encode() => {
     'regex_string': regexString.toTfJson(),
@@ -1218,8 +1138,8 @@ final class Wafv2RuleGroupRuleStatementRegexMatchStatement {
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleStatementRegexPatternSetReferenceStatement {
-  const Wafv2RuleGroupRuleStatementRegexPatternSetReferenceStatement({
+final class Wafv2RuleGroupRegexPatternSetReferenceStatement {
+  const Wafv2RuleGroupRegexPatternSetReferenceStatement({
     required this.arn,
     this.fieldToMatch,
     this.preParseTextTransformation,
@@ -1228,17 +1148,12 @@ final class Wafv2RuleGroupRuleStatementRegexPatternSetReferenceStatement {
 
   final TfArg<String> arn;
 
-  final Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatch? fieldToMatch;
+  final Wafv2RuleGroupFieldToMatch? fieldToMatch;
 
-  final List<
-    Wafv2RuleGroupRuleStatementByteMatchStatementPreParseTextTransformation
-  >?
+  final List<Wafv2RuleGroupPreParseTextTransformation>?
   preParseTextTransformation;
 
-  final List<
-    Wafv2RuleGroupRuleStatementByteMatchStatementPreParseTextTransformation
-  >
-  textTransformation;
+  final List<Wafv2RuleGroupPreParseTextTransformation> textTransformation;
 
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
@@ -1255,8 +1170,8 @@ final class Wafv2RuleGroupRuleStatementRegexPatternSetReferenceStatement {
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleStatementSizeConstraintStatement {
-  const Wafv2RuleGroupRuleStatementSizeConstraintStatement({
+final class Wafv2RuleGroupSizeConstraintStatement {
+  const Wafv2RuleGroupSizeConstraintStatement({
     required this.comparisonOperator,
     required this.size,
     this.fieldToMatch,
@@ -1268,17 +1183,12 @@ final class Wafv2RuleGroupRuleStatementSizeConstraintStatement {
 
   final TfArg<num> size;
 
-  final Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatch? fieldToMatch;
+  final Wafv2RuleGroupFieldToMatch? fieldToMatch;
 
-  final List<
-    Wafv2RuleGroupRuleStatementByteMatchStatementPreParseTextTransformation
-  >?
+  final List<Wafv2RuleGroupPreParseTextTransformation>?
   preParseTextTransformation;
 
-  final List<
-    Wafv2RuleGroupRuleStatementByteMatchStatementPreParseTextTransformation
-  >
-  textTransformation;
+  final List<Wafv2RuleGroupPreParseTextTransformation> textTransformation;
 
   Map<String, Object?> encode() => {
     'comparison_operator': comparisonOperator.toTfJson(),
@@ -1296,8 +1206,8 @@ final class Wafv2RuleGroupRuleStatementSizeConstraintStatement {
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleStatementSqliMatchStatement {
-  const Wafv2RuleGroupRuleStatementSqliMatchStatement({
+final class Wafv2RuleGroupSqliMatchStatement {
+  const Wafv2RuleGroupSqliMatchStatement({
     this.sensitivityLevel,
     this.fieldToMatch,
     this.preParseTextTransformation,
@@ -1306,17 +1216,12 @@ final class Wafv2RuleGroupRuleStatementSqliMatchStatement {
 
   final TfArg<String>? sensitivityLevel;
 
-  final Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatch? fieldToMatch;
+  final Wafv2RuleGroupFieldToMatch? fieldToMatch;
 
-  final List<
-    Wafv2RuleGroupRuleStatementByteMatchStatementPreParseTextTransformation
-  >?
+  final List<Wafv2RuleGroupPreParseTextTransformation>?
   preParseTextTransformation;
 
-  final List<
-    Wafv2RuleGroupRuleStatementByteMatchStatementPreParseTextTransformation
-  >
-  textTransformation;
+  final List<Wafv2RuleGroupPreParseTextTransformation> textTransformation;
 
   Map<String, Object?> encode() => {
     'sensitivity_level': ?sensitivityLevel?.toTfJson(),
@@ -1333,24 +1238,19 @@ final class Wafv2RuleGroupRuleStatementSqliMatchStatement {
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleStatementXssMatchStatement {
-  const Wafv2RuleGroupRuleStatementXssMatchStatement({
+final class Wafv2RuleGroupXssMatchStatement {
+  const Wafv2RuleGroupXssMatchStatement({
     this.fieldToMatch,
     this.preParseTextTransformation,
     required this.textTransformation,
   });
 
-  final Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatch? fieldToMatch;
+  final Wafv2RuleGroupFieldToMatch? fieldToMatch;
 
-  final List<
-    Wafv2RuleGroupRuleStatementByteMatchStatementPreParseTextTransformation
-  >?
+  final List<Wafv2RuleGroupPreParseTextTransformation>?
   preParseTextTransformation;
 
-  final List<
-    Wafv2RuleGroupRuleStatementByteMatchStatementPreParseTextTransformation
-  >
-  textTransformation;
+  final List<Wafv2RuleGroupPreParseTextTransformation> textTransformation;
 
   Map<String, Object?> encode() => {
     'field_to_match': ?fieldToMatch?.encode(),
@@ -1365,8 +1265,8 @@ final class Wafv2RuleGroupRuleStatementXssMatchStatement {
 /// Typed helper for the `rule.statement.rate_based_statement` block of
 /// `aws_wafv2_rule_group` (derived from provider schema).
 @immutable
-final class Wafv2RuleGroupRuleStatementRateBasedStatement {
-  const Wafv2RuleGroupRuleStatementRateBasedStatement({
+final class Wafv2RuleGroupRateBasedStatement {
+  const Wafv2RuleGroupRateBasedStatement({
     this.aggregateKeyType,
     this.evaluationWindowSec,
     required this.limit,
@@ -1375,19 +1275,17 @@ final class Wafv2RuleGroupRuleStatementRateBasedStatement {
     this.scopeDownStatement,
   });
 
-  final TfArg<Wafv2RuleGroupRuleStatementRateBasedStatementAggregateKeyType>?
-  aggregateKeyType;
+  final TfArg<Wafv2RuleGroupAggregateKeyType>? aggregateKeyType;
 
   final TfArg<num>? evaluationWindowSec;
 
   final TfArg<num> limit;
 
-  final List<Wafv2RuleGroupRuleStatementRateBasedStatementCustomKey>? customKey;
+  final List<Wafv2RuleGroupCustomKey>? customKey;
 
-  final Wafv2RuleGroupRuleStatementAsnMatchStatementForwardedIpConfig?
-  forwardedIpConfig;
+  final Wafv2RuleGroupForwardedIpConfig? forwardedIpConfig;
 
-  final Wafv2RuleGroupRuleStatementAndStatementStatement? scopeDownStatement;
+  final Wafv2RuleGroupAndStatementStatement? scopeDownStatement;
 
   Map<String, Object?> encode() => {
     'aggregate_key_type': ?aggregateKeyType?.toTfJson(),
@@ -1401,16 +1299,13 @@ final class Wafv2RuleGroupRuleStatementRateBasedStatement {
 }
 
 /// `aggregate_key_type` — derived from the provider schema description.
-enum Wafv2RuleGroupRuleStatementRateBasedStatementAggregateKeyType
-    implements TerraformEnum {
+enum Wafv2RuleGroupAggregateKeyType implements TerraformEnum {
   ip('IP'),
   forwardedIp('FORWARDED_IP'),
   customKeys('CUSTOM_KEYS'),
   constant('CONSTANT');
 
-  const Wafv2RuleGroupRuleStatementRateBasedStatementAggregateKeyType(
-    this.terraformValue,
-  );
+  const Wafv2RuleGroupAggregateKeyType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1418,8 +1313,8 @@ enum Wafv2RuleGroupRuleStatementRateBasedStatementAggregateKeyType
 /// Typed helper for the `rule.statement.rate_based_statement.custom_key` block of
 /// `aws_wafv2_rule_group` (derived from provider schema).
 @immutable
-final class Wafv2RuleGroupRuleStatementRateBasedStatementCustomKey {
-  const Wafv2RuleGroupRuleStatementRateBasedStatementCustomKey({
+final class Wafv2RuleGroupCustomKey {
+  const Wafv2RuleGroupCustomKey({
     this.asn,
     this.cookie,
     this.forwardedIp,
@@ -1434,39 +1329,29 @@ final class Wafv2RuleGroupRuleStatementRateBasedStatementCustomKey {
     this.uriPath,
   });
 
-  final Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchAllQueryArguments?
-  asn;
+  final Wafv2RuleGroupAllQueryArguments? asn;
 
-  final Wafv2RuleGroupRuleStatementRateBasedStatementCustomKeyCookie? cookie;
+  final Wafv2RuleGroupCookie? cookie;
 
-  final Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchAllQueryArguments?
-  forwardedIp;
+  final Wafv2RuleGroupAllQueryArguments? forwardedIp;
 
-  final Wafv2RuleGroupRuleStatementRateBasedStatementCustomKeyCookie? header;
+  final Wafv2RuleGroupCookie? header;
 
-  final Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchAllQueryArguments?
-  httpMethod;
+  final Wafv2RuleGroupAllQueryArguments? httpMethod;
 
-  final Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchAllQueryArguments?
-  ip;
+  final Wafv2RuleGroupAllQueryArguments? ip;
 
-  final Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchJa3Fingerprint?
-  ja3Fingerprint;
+  final Wafv2RuleGroupJa3Fingerprint? ja3Fingerprint;
 
-  final Wafv2RuleGroupRuleStatementByteMatchStatementFieldToMatchJa3Fingerprint?
-  ja4Fingerprint;
+  final Wafv2RuleGroupJa3Fingerprint? ja4Fingerprint;
 
-  final Wafv2RuleGroupRuleStatementRateBasedStatementCustomKeyLabelNamespace?
-  labelNamespace;
+  final Wafv2RuleGroupLabelNamespace? labelNamespace;
 
-  final Wafv2RuleGroupRuleStatementRateBasedStatementCustomKeyCookie?
-  queryArgument;
+  final Wafv2RuleGroupCookie? queryArgument;
 
-  final Wafv2RuleGroupRuleStatementRateBasedStatementCustomKeyQueryString?
-  queryString;
+  final Wafv2RuleGroupQueryString? queryString;
 
-  final Wafv2RuleGroupRuleStatementRateBasedStatementCustomKeyQueryString?
-  uriPath;
+  final Wafv2RuleGroupQueryString? uriPath;
 
   Map<String, Object?> encode() => {
     'asn': ?asn?.encode(),
@@ -1488,18 +1373,15 @@ final class Wafv2RuleGroupRuleStatementRateBasedStatementCustomKey {
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleStatementRateBasedStatementCustomKeyCookie {
-  const Wafv2RuleGroupRuleStatementRateBasedStatementCustomKeyCookie({
+final class Wafv2RuleGroupCookie {
+  const Wafv2RuleGroupCookie({
     required this.name,
     required this.textTransformation,
   });
 
   final TfArg<String> name;
 
-  final List<
-    Wafv2RuleGroupRuleStatementByteMatchStatementPreParseTextTransformation
-  >
-  textTransformation;
+  final List<Wafv2RuleGroupPreParseTextTransformation> textTransformation;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -1510,10 +1392,8 @@ final class Wafv2RuleGroupRuleStatementRateBasedStatementCustomKeyCookie {
 /// Typed helper for the `rule.statement.rate_based_statement.custom_key.label_namespace` block of
 /// `aws_wafv2_rule_group` (derived from provider schema).
 @immutable
-final class Wafv2RuleGroupRuleStatementRateBasedStatementCustomKeyLabelNamespace {
-  const Wafv2RuleGroupRuleStatementRateBasedStatementCustomKeyLabelNamespace({
-    required this.namespace,
-  });
+final class Wafv2RuleGroupLabelNamespace {
+  const Wafv2RuleGroupLabelNamespace({required this.namespace});
 
   final TfArg<String> namespace;
 
@@ -1524,15 +1404,10 @@ final class Wafv2RuleGroupRuleStatementRateBasedStatementCustomKeyLabelNamespace
 /// `aws_wafv2_rule_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2RuleGroupRuleStatementRateBasedStatementCustomKeyQueryString {
-  const Wafv2RuleGroupRuleStatementRateBasedStatementCustomKeyQueryString({
-    required this.textTransformation,
-  });
+final class Wafv2RuleGroupQueryString {
+  const Wafv2RuleGroupQueryString({required this.textTransformation});
 
-  final List<
-    Wafv2RuleGroupRuleStatementByteMatchStatementPreParseTextTransformation
-  >
-  textTransformation;
+  final List<Wafv2RuleGroupPreParseTextTransformation> textTransformation;
 
   Map<String, Object?> encode() => {
     'text_transformation': [for (final e in textTransformation) e.encode()],

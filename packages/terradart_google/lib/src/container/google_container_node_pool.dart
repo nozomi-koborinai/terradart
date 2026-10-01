@@ -48,7 +48,7 @@ final class ContainerNodePoolAutoscaling {
 final class ContainerNodePoolMaintenancePolicy {
   const ContainerNodePoolMaintenancePolicy({this.exclusionUntilEndOfSupport});
 
-  final List<ContainerNodePoolMaintenancePolicyExclusionUntilEndOfSupport>?
+  final List<ContainerNodePoolExclusionUntilEndOfSupport>?
   exclusionUntilEndOfSupport;
 
   Map<String, Object?> encode() => {
@@ -62,10 +62,8 @@ final class ContainerNodePoolMaintenancePolicy {
 /// Typed helper for the `maintenance_policy.exclusion_until_end_of_support` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolMaintenancePolicyExclusionUntilEndOfSupport {
-  const ContainerNodePoolMaintenancePolicyExclusionUntilEndOfSupport({
-    this.enabled,
-  });
+final class ContainerNodePoolExclusionUntilEndOfSupport {
+  const ContainerNodePoolExclusionUntilEndOfSupport({this.enabled});
 
   final TfArg<bool>? enabled;
 
@@ -117,17 +115,15 @@ final class ContainerNodePoolNetworkConfig {
 
   final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
-  final List<ContainerNodePoolNetworkConfigAdditionalNodeNetworkConfigs>?
+  final List<ContainerNodePoolAdditionalNodeNetworkConfigs>?
   additionalNodeNetworkConfigs;
 
-  final List<ContainerNodePoolNetworkConfigAdditionalPodNetworkConfigs>?
+  final List<ContainerNodePoolAdditionalPodNetworkConfigs>?
   additionalPodNetworkConfigs;
 
-  final ContainerNodePoolNetworkConfigNetworkPerformanceConfig?
-  networkPerformanceConfig;
+  final ContainerNodePoolNetworkPerformanceConfig? networkPerformanceConfig;
 
-  final ContainerNodePoolNetworkConfigPodCidrOverprovisionConfig?
-  podCidrOverprovisionConfig;
+  final ContainerNodePoolPodCidrOverprovisionConfig? podCidrOverprovisionConfig;
 
   Map<String, Object?> encode() => {
     'accelerator_network_profile': ?acceleratorNetworkProfile?.toTfJson(),
@@ -152,8 +148,8 @@ final class ContainerNodePoolNetworkConfig {
 /// Typed helper for the `network_config.additional_node_network_configs` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNetworkConfigAdditionalNodeNetworkConfigs {
-  const ContainerNodePoolNetworkConfigAdditionalNodeNetworkConfigs({
+final class ContainerNodePoolAdditionalNodeNetworkConfigs {
+  const ContainerNodePoolAdditionalNodeNetworkConfigs({
     this.network,
     this.subnetwork,
   });
@@ -171,8 +167,8 @@ final class ContainerNodePoolNetworkConfigAdditionalNodeNetworkConfigs {
 /// Typed helper for the `network_config.additional_pod_network_configs` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNetworkConfigAdditionalPodNetworkConfigs {
-  const ContainerNodePoolNetworkConfigAdditionalPodNetworkConfigs({
+final class ContainerNodePoolAdditionalPodNetworkConfigs {
+  const ContainerNodePoolAdditionalPodNetworkConfigs({
     this.maxPodsPerNode,
     this.secondaryPodRange,
     this.subnetwork,
@@ -194,8 +190,8 @@ final class ContainerNodePoolNetworkConfigAdditionalPodNetworkConfigs {
 /// Typed helper for the `network_config.network_performance_config` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNetworkConfigNetworkPerformanceConfig {
-  const ContainerNodePoolNetworkConfigNetworkPerformanceConfig({
+final class ContainerNodePoolNetworkPerformanceConfig {
+  const ContainerNodePoolNetworkPerformanceConfig({
     required this.totalEgressBandwidthTier,
   });
 
@@ -209,10 +205,8 @@ final class ContainerNodePoolNetworkConfigNetworkPerformanceConfig {
 /// Typed helper for the `network_config.pod_cidr_overprovision_config` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNetworkConfigPodCidrOverprovisionConfig {
-  const ContainerNodePoolNetworkConfigPodCidrOverprovisionConfig({
-    required this.disabled,
-  });
+final class ContainerNodePoolPodCidrOverprovisionConfig {
+  const ContainerNodePoolPodCidrOverprovisionConfig({required this.disabled});
 
   final TfArg<bool> disabled;
 
@@ -320,54 +314,50 @@ final class ContainerNodePoolNodeConfig {
 
   final TfArg<List<String>>? tags;
 
-  final ContainerNodePoolNodeConfigAdvancedMachineFeatures?
-  advancedMachineFeatures;
+  final ContainerNodePoolAdvancedMachineFeatures? advancedMachineFeatures;
 
-  final ContainerNodePoolNodeConfigBootDisk? bootDisk;
+  final ContainerNodePoolBootDisk? bootDisk;
 
-  final ContainerNodePoolNodeConfigConfidentialNodes? confidentialNodes;
+  final ContainerNodePoolConfidentialNodes? confidentialNodes;
 
-  final ContainerNodePoolNodeConfigContainerdConfig? containerdConfig;
+  final ContainerNodePoolContainerdConfig? containerdConfig;
 
-  final ContainerNodePoolNodeConfigEphemeralStorageLocalSsdConfig?
+  final ContainerNodePoolEphemeralStorageLocalSsdConfig?
   ephemeralStorageLocalSsdConfig;
 
-  final ContainerNodePoolNodeConfigFastSocket? fastSocket;
+  final ContainerNodePoolFastSocket? fastSocket;
 
-  final ContainerNodePoolNodeConfigGcfsConfig? gcfsConfig;
+  final ContainerNodePoolGcfsConfig? gcfsConfig;
 
-  final List<ContainerNodePoolNodeConfigGuestAccelerator>? guestAccelerator;
+  final List<ContainerNodePoolGuestAccelerator>? guestAccelerator;
 
-  final ContainerNodePoolNodeConfigGvnic? gvnic;
+  final ContainerNodePoolGvnic? gvnic;
 
-  final ContainerNodePoolNodeConfigKubeletConfig? kubeletConfig;
+  final ContainerNodePoolKubeletConfig? kubeletConfig;
 
-  final ContainerNodePoolNodeConfigLinuxNodeConfig? linuxNodeConfig;
+  final ContainerNodePoolLinuxNodeConfig? linuxNodeConfig;
 
-  final ContainerNodePoolNodeConfigLocalNvmeSsdBlockConfig?
-  localNvmeSsdBlockConfig;
+  final ContainerNodePoolLocalNvmeSsdBlockConfig? localNvmeSsdBlockConfig;
 
-  final List<ContainerNodePoolNodeConfigNodeImageConfig>? nodeImageConfig;
+  final List<ContainerNodePoolNodeImageConfig>? nodeImageConfig;
 
-  final ContainerNodePoolNodeConfigReservationAffinity? reservationAffinity;
+  final ContainerNodePoolReservationAffinity? reservationAffinity;
 
-  final ContainerNodePoolNodeConfigSandboxConfig? sandboxConfig;
+  final ContainerNodePoolSandboxConfig? sandboxConfig;
 
-  final List<ContainerNodePoolNodeConfigSecondaryBootDisks>? secondaryBootDisks;
+  final List<ContainerNodePoolSecondaryBootDisks>? secondaryBootDisks;
 
-  final ContainerNodePoolNodeConfigShieldedInstanceConfig?
-  shieldedInstanceConfig;
+  final ContainerNodePoolShieldedInstanceConfig? shieldedInstanceConfig;
 
-  final ContainerNodePoolNodeConfigSoleTenantConfig? soleTenantConfig;
+  final ContainerNodePoolSoleTenantConfig? soleTenantConfig;
 
-  final List<ContainerNodePoolNodeConfigTaint>? taint;
+  final List<ContainerNodePoolTaint>? taint;
 
-  final ContainerNodePoolNodeConfigTaintConfig? taintConfig;
+  final ContainerNodePoolTaintConfig? taintConfig;
 
-  final ContainerNodePoolNodeConfigWindowsNodeConfig? windowsNodeConfig;
+  final ContainerNodePoolWindowsNodeConfig? windowsNodeConfig;
 
-  final ContainerNodePoolNodeConfigWorkloadMetadataConfig?
-  workloadMetadataConfig;
+  final ContainerNodePoolWorkloadMetadataConfig? workloadMetadataConfig;
 
   Map<String, Object?> encode() => {
     'boot_disk_kms_key': ?bootDiskKmsKey?.toTfJson(),
@@ -426,8 +416,8 @@ final class ContainerNodePoolNodeConfig {
 /// Typed helper for the `node_config.advanced_machine_features` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigAdvancedMachineFeatures {
-  const ContainerNodePoolNodeConfigAdvancedMachineFeatures({
+final class ContainerNodePoolAdvancedMachineFeatures {
+  const ContainerNodePoolAdvancedMachineFeatures({
     this.enableNestedVirtualization,
     this.performanceMonitoringUnit,
     required this.threadsPerCore,
@@ -449,8 +439,8 @@ final class ContainerNodePoolNodeConfigAdvancedMachineFeatures {
 /// Typed helper for the `node_config.boot_disk` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigBootDisk {
-  const ContainerNodePoolNodeConfigBootDisk({
+final class ContainerNodePoolBootDisk {
+  const ContainerNodePoolBootDisk({
     this.diskType,
     this.provisionedIops,
     this.provisionedThroughput,
@@ -476,8 +466,8 @@ final class ContainerNodePoolNodeConfigBootDisk {
 /// Typed helper for the `node_config.confidential_nodes` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigConfidentialNodes {
-  const ContainerNodePoolNodeConfigConfidentialNodes({
+final class ContainerNodePoolConfidentialNodes {
+  const ContainerNodePoolConfidentialNodes({
     this.confidentialInstanceType,
     required this.enabled,
   });
@@ -495,21 +485,19 @@ final class ContainerNodePoolNodeConfigConfidentialNodes {
 /// Typed helper for the `node_config.containerd_config` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigContainerdConfig {
-  const ContainerNodePoolNodeConfigContainerdConfig({
+final class ContainerNodePoolContainerdConfig {
+  const ContainerNodePoolContainerdConfig({
     this.privateRegistryAccessConfig,
     this.registryHosts,
     this.writableCgroups,
   });
 
-  final ContainerNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfig?
+  final ContainerNodePoolPrivateRegistryAccessConfig?
   privateRegistryAccessConfig;
 
-  final List<ContainerNodePoolNodeConfigContainerdConfigRegistryHosts>?
-  registryHosts;
+  final List<ContainerNodePoolRegistryHosts>? registryHosts;
 
-  final ContainerNodePoolNodeConfigContainerdConfigWritableCgroups?
-  writableCgroups;
+  final ContainerNodePoolWritableCgroups? writableCgroups;
 
   Map<String, Object?> encode() => {
     'private_registry_access_config': ?privateRegistryAccessConfig?.encode(),
@@ -522,17 +510,15 @@ final class ContainerNodePoolNodeConfigContainerdConfig {
 /// Typed helper for the `node_config.containerd_config.private_registry_access_config` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfig {
-  const ContainerNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfig({
+final class ContainerNodePoolPrivateRegistryAccessConfig {
+  const ContainerNodePoolPrivateRegistryAccessConfig({
     required this.enabled,
     this.certificateAuthorityDomainConfig,
   });
 
   final TfArg<bool> enabled;
 
-  final List<
-    ContainerNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfig
-  >?
+  final List<ContainerNodePoolCertificateAuthorityDomainConfig>?
   certificateAuthorityDomainConfig;
 
   Map<String, Object?> encode() => {
@@ -547,15 +533,15 @@ final class ContainerNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConf
 /// Typed helper for the `node_config.containerd_config.private_registry_access_config.certificate_authority_domain_config` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfig {
-  const ContainerNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfig({
+final class ContainerNodePoolCertificateAuthorityDomainConfig {
+  const ContainerNodePoolCertificateAuthorityDomainConfig({
     required this.fqdns,
     required this.gcpSecretManagerCertificateConfig,
   });
 
   final TfArg<List<String>> fqdns;
 
-  final ContainerNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfigGcpSecretManagerCertificateConfig
+  final ContainerNodePoolGcpSecretManagerCertificateConfig
   gcpSecretManagerCertificateConfig;
 
   Map<String, Object?> encode() => {
@@ -568,8 +554,8 @@ final class ContainerNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConf
 /// Typed helper for the `node_config.containerd_config.private_registry_access_config.certificate_authority_domain_config.gcp_secret_manager_certificate_config` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfigGcpSecretManagerCertificateConfig {
-  const ContainerNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfigGcpSecretManagerCertificateConfig({
+final class ContainerNodePoolGcpSecretManagerCertificateConfig {
+  const ContainerNodePoolGcpSecretManagerCertificateConfig({
     required this.secretUri,
   });
 
@@ -581,16 +567,12 @@ final class ContainerNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConf
 /// Typed helper for the `node_config.containerd_config.registry_hosts` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigContainerdConfigRegistryHosts {
-  const ContainerNodePoolNodeConfigContainerdConfigRegistryHosts({
-    required this.server,
-    this.hosts,
-  });
+final class ContainerNodePoolRegistryHosts {
+  const ContainerNodePoolRegistryHosts({required this.server, this.hosts});
 
   final TfArg<String> server;
 
-  final List<ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHosts>?
-  hosts;
+  final List<ContainerNodePoolHosts>? hosts;
 
   Map<String, Object?> encode() => {
     'server': server.toTfJson(),
@@ -601,8 +583,8 @@ final class ContainerNodePoolNodeConfigContainerdConfigRegistryHosts {
 /// Typed helper for the `node_config.containerd_config.registry_hosts.hosts` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHosts {
-  const ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHosts({
+final class ContainerNodePoolHosts {
+  const ContainerNodePoolHosts({
     this.capabilities,
     this.dialTimeout,
     required this.host,
@@ -620,18 +602,11 @@ final class ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHosts {
 
   final TfArg<bool>? overridePath;
 
-  final List<ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsCa>?
-  ca;
+  final List<ContainerNodePoolCa>? ca;
 
-  final List<
-    ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsClient
-  >?
-  client;
+  final List<ContainerNodePoolClient>? client;
 
-  final List<
-    ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsHeader
-  >?
-  header;
+  final List<ContainerNodePoolHeader>? header;
 
   Map<String, Object?> encode() => {
     'capabilities': ?capabilities?.toTfJson(),
@@ -647,10 +622,8 @@ final class ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHosts {
 /// Typed helper for the `node_config.containerd_config.registry_hosts.hosts.ca` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsCa {
-  const ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsCa({
-    this.gcpSecretManagerSecretUri,
-  });
+final class ContainerNodePoolCa {
+  const ContainerNodePoolCa({this.gcpSecretManagerSecretUri});
 
   final TfArg<String>? gcpSecretManagerSecretUri;
 
@@ -662,17 +635,12 @@ final class ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsCa {
 /// Typed helper for the `node_config.containerd_config.registry_hosts.hosts.client` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsClient {
-  const ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsClient({
-    required this.cert,
-    this.key,
-  });
+final class ContainerNodePoolClient {
+  const ContainerNodePoolClient({required this.cert, this.key});
 
-  final ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsClientCert
-  cert;
+  final ContainerNodePoolCert cert;
 
-  final ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsClientKey?
-  key;
+  final ContainerNodePoolKey? key;
 
   Map<String, Object?> encode() => {
     'cert': cert.encode(),
@@ -683,10 +651,8 @@ final class ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsClient 
 /// Typed helper for the `node_config.containerd_config.registry_hosts.hosts.client.cert` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsClientCert {
-  const ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsClientCert({
-    this.gcpSecretManagerSecretUri,
-  });
+final class ContainerNodePoolCert {
+  const ContainerNodePoolCert({this.gcpSecretManagerSecretUri});
 
   final TfArg<String>? gcpSecretManagerSecretUri;
 
@@ -698,10 +664,8 @@ final class ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsClientC
 /// Typed helper for the `node_config.containerd_config.registry_hosts.hosts.client.key` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsClientKey {
-  const ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsClientKey({
-    this.gcpSecretManagerSecretUri,
-  });
+final class ContainerNodePoolKey {
+  const ContainerNodePoolKey({this.gcpSecretManagerSecretUri});
 
   final TfArg<String>? gcpSecretManagerSecretUri;
 
@@ -713,11 +677,8 @@ final class ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsClientK
 /// Typed helper for the `node_config.containerd_config.registry_hosts.hosts.header` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsHeader {
-  const ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsHeader({
-    required this.key,
-    required this.value,
-  });
+final class ContainerNodePoolHeader {
+  const ContainerNodePoolHeader({required this.key, required this.value});
 
   final TfArg<String> key;
 
@@ -732,10 +693,8 @@ final class ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsHeader 
 /// Typed helper for the `node_config.containerd_config.writable_cgroups` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigContainerdConfigWritableCgroups {
-  const ContainerNodePoolNodeConfigContainerdConfigWritableCgroups({
-    required this.enabled,
-  });
+final class ContainerNodePoolWritableCgroups {
+  const ContainerNodePoolWritableCgroups({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -745,8 +704,8 @@ final class ContainerNodePoolNodeConfigContainerdConfigWritableCgroups {
 /// Typed helper for the `node_config.ephemeral_storage_local_ssd_config` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigEphemeralStorageLocalSsdConfig {
-  const ContainerNodePoolNodeConfigEphemeralStorageLocalSsdConfig({
+final class ContainerNodePoolEphemeralStorageLocalSsdConfig {
+  const ContainerNodePoolEphemeralStorageLocalSsdConfig({
     this.dataCacheCount,
     required this.localSsdCount,
   });
@@ -764,8 +723,8 @@ final class ContainerNodePoolNodeConfigEphemeralStorageLocalSsdConfig {
 /// Typed helper for the `node_config.fast_socket` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigFastSocket {
-  const ContainerNodePoolNodeConfigFastSocket({required this.enabled});
+final class ContainerNodePoolFastSocket {
+  const ContainerNodePoolFastSocket({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -775,8 +734,8 @@ final class ContainerNodePoolNodeConfigFastSocket {
 /// Typed helper for the `node_config.gcfs_config` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigGcfsConfig {
-  const ContainerNodePoolNodeConfigGcfsConfig({required this.enabled});
+final class ContainerNodePoolGcfsConfig {
+  const ContainerNodePoolGcfsConfig({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -786,8 +745,8 @@ final class ContainerNodePoolNodeConfigGcfsConfig {
 /// Typed helper for the `node_config.guest_accelerator` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigGuestAccelerator {
-  const ContainerNodePoolNodeConfigGuestAccelerator({
+final class ContainerNodePoolGuestAccelerator {
+  const ContainerNodePoolGuestAccelerator({
     required this.count,
     this.gpuPartitionSize,
     required this.type,
@@ -801,11 +760,10 @@ final class ContainerNodePoolNodeConfigGuestAccelerator {
 
   final TfArg<String> type;
 
-  final ContainerNodePoolNodeConfigGuestAcceleratorGpuDriverInstallationConfig?
+  final ContainerNodePoolGpuDriverInstallationConfig?
   gpuDriverInstallationConfig;
 
-  final ContainerNodePoolNodeConfigGuestAcceleratorGpuSharingConfig?
-  gpuSharingConfig;
+  final ContainerNodePoolGpuSharingConfig? gpuSharingConfig;
 
   Map<String, Object?> encode() => {
     'count': count.toTfJson(),
@@ -819,8 +777,8 @@ final class ContainerNodePoolNodeConfigGuestAccelerator {
 /// Typed helper for the `node_config.guest_accelerator.gpu_driver_installation_config` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigGuestAcceleratorGpuDriverInstallationConfig {
-  const ContainerNodePoolNodeConfigGuestAcceleratorGpuDriverInstallationConfig({
+final class ContainerNodePoolGpuDriverInstallationConfig {
+  const ContainerNodePoolGpuDriverInstallationConfig({
     required this.gpuDriverVersion,
   });
 
@@ -834,8 +792,8 @@ final class ContainerNodePoolNodeConfigGuestAcceleratorGpuDriverInstallationConf
 /// Typed helper for the `node_config.guest_accelerator.gpu_sharing_config` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigGuestAcceleratorGpuSharingConfig {
-  const ContainerNodePoolNodeConfigGuestAcceleratorGpuSharingConfig({
+final class ContainerNodePoolGpuSharingConfig {
+  const ContainerNodePoolGpuSharingConfig({
     required this.gpuSharingStrategy,
     required this.maxSharedClientsPerGpu,
   });
@@ -853,8 +811,8 @@ final class ContainerNodePoolNodeConfigGuestAcceleratorGpuSharingConfig {
 /// Typed helper for the `node_config.gvnic` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigGvnic {
-  const ContainerNodePoolNodeConfigGvnic({required this.enabled});
+final class ContainerNodePoolGvnic {
+  const ContainerNodePoolGvnic({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -864,8 +822,8 @@ final class ContainerNodePoolNodeConfigGvnic {
 /// Typed helper for the `node_config.kubelet_config` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigKubeletConfig {
-  const ContainerNodePoolNodeConfigKubeletConfig({
+final class ContainerNodePoolKubeletConfig {
+  const ContainerNodePoolKubeletConfig({
     this.allowedUnsafeSysctls,
     this.containerLogMaxFiles,
     this.containerLogMaxSize,
@@ -925,21 +883,17 @@ final class ContainerNodePoolNodeConfigKubeletConfig {
 
   final TfArg<bool>? singleProcessOomKill;
 
-  final ContainerNodePoolNodeConfigKubeletConfigCrashLoopBackOff?
-  crashLoopBackOff;
+  final ContainerNodePoolCrashLoopBackOff? crashLoopBackOff;
 
-  final ContainerNodePoolNodeConfigKubeletConfigEvictionMinimumReclaim?
-  evictionMinimumReclaim;
+  final ContainerNodePoolEvictionMinimumReclaim? evictionMinimumReclaim;
 
-  final ContainerNodePoolNodeConfigKubeletConfigEvictionSoft? evictionSoft;
+  final ContainerNodePoolEvictionSoft? evictionSoft;
 
-  final ContainerNodePoolNodeConfigKubeletConfigEvictionSoftGracePeriod?
-  evictionSoftGracePeriod;
+  final ContainerNodePoolEvictionSoftGracePeriod? evictionSoftGracePeriod;
 
-  final ContainerNodePoolNodeConfigKubeletConfigMemoryManager? memoryManager;
+  final ContainerNodePoolMemoryManager? memoryManager;
 
-  final ContainerNodePoolNodeConfigKubeletConfigTopologyManager?
-  topologyManager;
+  final ContainerNodePoolTopologyManager? topologyManager;
 
   Map<String, Object?> encode() => {
     'allowed_unsafe_sysctls': ?allowedUnsafeSysctls?.toTfJson(),
@@ -974,10 +928,8 @@ final class ContainerNodePoolNodeConfigKubeletConfig {
 /// Typed helper for the `node_config.kubelet_config.crash_loop_back_off` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigKubeletConfigCrashLoopBackOff {
-  const ContainerNodePoolNodeConfigKubeletConfigCrashLoopBackOff({
-    this.maxContainerRestartPeriod,
-  });
+final class ContainerNodePoolCrashLoopBackOff {
+  const ContainerNodePoolCrashLoopBackOff({this.maxContainerRestartPeriod});
 
   final TfArg<String>? maxContainerRestartPeriod;
 
@@ -989,8 +941,8 @@ final class ContainerNodePoolNodeConfigKubeletConfigCrashLoopBackOff {
 /// Typed helper for the `node_config.kubelet_config.eviction_minimum_reclaim` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigKubeletConfigEvictionMinimumReclaim {
-  const ContainerNodePoolNodeConfigKubeletConfigEvictionMinimumReclaim({
+final class ContainerNodePoolEvictionMinimumReclaim {
+  const ContainerNodePoolEvictionMinimumReclaim({
     this.imagefsAvailable,
     this.imagefsInodesFree,
     this.memoryAvailable,
@@ -1024,8 +976,8 @@ final class ContainerNodePoolNodeConfigKubeletConfigEvictionMinimumReclaim {
 /// Typed helper for the `node_config.kubelet_config.eviction_soft` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigKubeletConfigEvictionSoft {
-  const ContainerNodePoolNodeConfigKubeletConfigEvictionSoft({
+final class ContainerNodePoolEvictionSoft {
+  const ContainerNodePoolEvictionSoft({
     this.imagefsAvailable,
     this.imagefsInodesFree,
     this.memoryAvailable,
@@ -1059,8 +1011,8 @@ final class ContainerNodePoolNodeConfigKubeletConfigEvictionSoft {
 /// Typed helper for the `node_config.kubelet_config.eviction_soft_grace_period` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigKubeletConfigEvictionSoftGracePeriod {
-  const ContainerNodePoolNodeConfigKubeletConfigEvictionSoftGracePeriod({
+final class ContainerNodePoolEvictionSoftGracePeriod {
+  const ContainerNodePoolEvictionSoftGracePeriod({
     this.imagefsAvailable,
     this.imagefsInodesFree,
     this.memoryAvailable,
@@ -1094,8 +1046,8 @@ final class ContainerNodePoolNodeConfigKubeletConfigEvictionSoftGracePeriod {
 /// Typed helper for the `node_config.kubelet_config.memory_manager` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigKubeletConfigMemoryManager {
-  const ContainerNodePoolNodeConfigKubeletConfigMemoryManager({this.policy});
+final class ContainerNodePoolMemoryManager {
+  const ContainerNodePoolMemoryManager({this.policy});
 
   final TfArg<String>? policy;
 
@@ -1105,11 +1057,8 @@ final class ContainerNodePoolNodeConfigKubeletConfigMemoryManager {
 /// Typed helper for the `node_config.kubelet_config.topology_manager` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigKubeletConfigTopologyManager {
-  const ContainerNodePoolNodeConfigKubeletConfigTopologyManager({
-    this.policy,
-    this.scope,
-  });
+final class ContainerNodePoolTopologyManager {
+  const ContainerNodePoolTopologyManager({this.policy, this.scope});
 
   final TfArg<String>? policy;
 
@@ -1124,8 +1073,8 @@ final class ContainerNodePoolNodeConfigKubeletConfigTopologyManager {
 /// Typed helper for the `node_config.linux_node_config` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigLinuxNodeConfig {
-  const ContainerNodePoolNodeConfigLinuxNodeConfig({
+final class ContainerNodePoolLinuxNodeConfig {
+  const ContainerNodePoolLinuxNodeConfig({
     this.cgroupMode,
     this.sysctls,
     this.transparentHugepageDefrag,
@@ -1145,19 +1094,15 @@ final class ContainerNodePoolNodeConfigLinuxNodeConfig {
 
   final TfArg<String>? transparentHugepageEnabled;
 
-  final ContainerNodePoolNodeConfigLinuxNodeConfigAccurateTimeConfig?
-  accurateTimeConfig;
+  final ContainerNodePoolAccurateTimeConfig? accurateTimeConfig;
 
-  final ContainerNodePoolNodeConfigLinuxNodeConfigCustomNodeInit?
-  customNodeInit;
+  final ContainerNodePoolCustomNodeInit? customNodeInit;
 
-  final ContainerNodePoolNodeConfigLinuxNodeConfigHugepagesConfig?
-  hugepagesConfig;
+  final ContainerNodePoolHugepagesConfig? hugepagesConfig;
 
-  final ContainerNodePoolNodeConfigLinuxNodeConfigNodeKernelModuleLoading?
-  nodeKernelModuleLoading;
+  final ContainerNodePoolNodeKernelModuleLoading? nodeKernelModuleLoading;
 
-  final ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfig? swapConfig;
+  final ContainerNodePoolSwapConfig? swapConfig;
 
   Map<String, Object?> encode() => {
     'cgroup_mode': ?cgroupMode?.toTfJson(),
@@ -1175,10 +1120,8 @@ final class ContainerNodePoolNodeConfigLinuxNodeConfig {
 /// Typed helper for the `node_config.linux_node_config.accurate_time_config` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigLinuxNodeConfigAccurateTimeConfig {
-  const ContainerNodePoolNodeConfigLinuxNodeConfigAccurateTimeConfig({
-    this.enablePtpKvmTimeSync,
-  });
+final class ContainerNodePoolAccurateTimeConfig {
+  const ContainerNodePoolAccurateTimeConfig({this.enablePtpKvmTimeSync});
 
   final TfArg<bool>? enablePtpKvmTimeSync;
 
@@ -1190,13 +1133,10 @@ final class ContainerNodePoolNodeConfigLinuxNodeConfigAccurateTimeConfig {
 /// Typed helper for the `node_config.linux_node_config.custom_node_init` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigLinuxNodeConfigCustomNodeInit {
-  const ContainerNodePoolNodeConfigLinuxNodeConfigCustomNodeInit({
-    this.initScript,
-  });
+final class ContainerNodePoolCustomNodeInit {
+  const ContainerNodePoolCustomNodeInit({this.initScript});
 
-  final ContainerNodePoolNodeConfigLinuxNodeConfigCustomNodeInitInitScript?
-  initScript;
+  final ContainerNodePoolInitScript? initScript;
 
   Map<String, Object?> encode() => {'init_script': ?initScript?.encode()};
 }
@@ -1204,8 +1144,8 @@ final class ContainerNodePoolNodeConfigLinuxNodeConfigCustomNodeInit {
 /// Typed helper for the `node_config.linux_node_config.custom_node_init.init_script` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigLinuxNodeConfigCustomNodeInitInitScript {
-  const ContainerNodePoolNodeConfigLinuxNodeConfigCustomNodeInitInitScript({
+final class ContainerNodePoolInitScript {
+  const ContainerNodePoolInitScript({
     this.gcpSecretManagerSecretUri,
     this.gcsGeneration,
     this.gcsUri,
@@ -1227,8 +1167,8 @@ final class ContainerNodePoolNodeConfigLinuxNodeConfigCustomNodeInitInitScript {
 /// Typed helper for the `node_config.linux_node_config.hugepages_config` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigLinuxNodeConfigHugepagesConfig {
-  const ContainerNodePoolNodeConfigLinuxNodeConfigHugepagesConfig({
+final class ContainerNodePoolHugepagesConfig {
+  const ContainerNodePoolHugepagesConfig({
     this.hugepageSize1g,
     this.hugepageSize2m,
   });
@@ -1246,10 +1186,8 @@ final class ContainerNodePoolNodeConfigLinuxNodeConfigHugepagesConfig {
 /// Typed helper for the `node_config.linux_node_config.node_kernel_module_loading` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigLinuxNodeConfigNodeKernelModuleLoading {
-  const ContainerNodePoolNodeConfigLinuxNodeConfigNodeKernelModuleLoading({
-    this.policy,
-  });
+final class ContainerNodePoolNodeKernelModuleLoading {
+  const ContainerNodePoolNodeKernelModuleLoading({this.policy});
 
   final TfArg<String>? policy;
 
@@ -1259,8 +1197,8 @@ final class ContainerNodePoolNodeConfigLinuxNodeConfigNodeKernelModuleLoading {
 /// Typed helper for the `node_config.linux_node_config.swap_config` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfig {
-  const ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfig({
+final class ContainerNodePoolSwapConfig {
+  const ContainerNodePoolSwapConfig({
     this.enabled,
     this.bootDiskProfile,
     this.dedicatedLocalSsdProfile,
@@ -1270,17 +1208,13 @@ final class ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfig {
 
   final TfArg<bool>? enabled;
 
-  final ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfigBootDiskProfile?
-  bootDiskProfile;
+  final ContainerNodePoolBootDiskProfile? bootDiskProfile;
 
-  final ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfigDedicatedLocalSsdProfile?
-  dedicatedLocalSsdProfile;
+  final ContainerNodePoolDedicatedLocalSsdProfile? dedicatedLocalSsdProfile;
 
-  final ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfigEncryptionConfig?
-  encryptionConfig;
+  final ContainerNodePoolEncryptionConfig? encryptionConfig;
 
-  final ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfigEphemeralLocalSsdProfile?
-  ephemeralLocalSsdProfile;
+  final ContainerNodePoolEphemeralLocalSsdProfile? ephemeralLocalSsdProfile;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
@@ -1294,8 +1228,8 @@ final class ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfig {
 /// Typed helper for the `node_config.linux_node_config.swap_config.boot_disk_profile` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfigBootDiskProfile {
-  const ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfigBootDiskProfile({
+final class ContainerNodePoolBootDiskProfile {
+  const ContainerNodePoolBootDiskProfile({
     this.swapSizeGib,
     this.swapSizePercent,
   });
@@ -1313,10 +1247,8 @@ final class ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfigBootDiskProfile 
 /// Typed helper for the `node_config.linux_node_config.swap_config.dedicated_local_ssd_profile` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfigDedicatedLocalSsdProfile {
-  const ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfigDedicatedLocalSsdProfile({
-    this.diskCount,
-  });
+final class ContainerNodePoolDedicatedLocalSsdProfile {
+  const ContainerNodePoolDedicatedLocalSsdProfile({this.diskCount});
 
   final TfArg<num>? diskCount;
 
@@ -1326,10 +1258,8 @@ final class ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfigDedicatedLocalSs
 /// Typed helper for the `node_config.linux_node_config.swap_config.encryption_config` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfigEncryptionConfig {
-  const ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfigEncryptionConfig({
-    this.disabled,
-  });
+final class ContainerNodePoolEncryptionConfig {
+  const ContainerNodePoolEncryptionConfig({this.disabled});
 
   final TfArg<bool>? disabled;
 
@@ -1339,8 +1269,8 @@ final class ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfigEncryptionConfig
 /// Typed helper for the `node_config.linux_node_config.swap_config.ephemeral_local_ssd_profile` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfigEphemeralLocalSsdProfile {
-  const ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfigEphemeralLocalSsdProfile({
+final class ContainerNodePoolEphemeralLocalSsdProfile {
+  const ContainerNodePoolEphemeralLocalSsdProfile({
     this.swapSizeGib,
     this.swapSizePercent,
   });
@@ -1358,10 +1288,8 @@ final class ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfigEphemeralLocalSs
 /// Typed helper for the `node_config.local_nvme_ssd_block_config` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigLocalNvmeSsdBlockConfig {
-  const ContainerNodePoolNodeConfigLocalNvmeSsdBlockConfig({
-    required this.localSsdCount,
-  });
+final class ContainerNodePoolLocalNvmeSsdBlockConfig {
+  const ContainerNodePoolLocalNvmeSsdBlockConfig({required this.localSsdCount});
 
   final TfArg<num> localSsdCount;
 
@@ -1373,11 +1301,8 @@ final class ContainerNodePoolNodeConfigLocalNvmeSsdBlockConfig {
 /// Typed helper for the `node_config.node_image_config` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigNodeImageConfig {
-  const ContainerNodePoolNodeConfigNodeImageConfig({
-    this.image,
-    this.imageProject,
-  });
+final class ContainerNodePoolNodeImageConfig {
+  const ContainerNodePoolNodeImageConfig({this.image, this.imageProject});
 
   final TfArg<String>? image;
 
@@ -1392,8 +1317,8 @@ final class ContainerNodePoolNodeConfigNodeImageConfig {
 /// Typed helper for the `node_config.reservation_affinity` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigReservationAffinity {
-  const ContainerNodePoolNodeConfigReservationAffinity({
+final class ContainerNodePoolReservationAffinity {
+  const ContainerNodePoolReservationAffinity({
     required this.consumeReservationType,
     this.key,
     this.values,
@@ -1415,8 +1340,8 @@ final class ContainerNodePoolNodeConfigReservationAffinity {
 /// Typed helper for the `node_config.sandbox_config` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigSandboxConfig {
-  const ContainerNodePoolNodeConfigSandboxConfig({required this.type});
+final class ContainerNodePoolSandboxConfig {
+  const ContainerNodePoolSandboxConfig({required this.type});
 
   final TfArg<String> type;
 
@@ -1426,8 +1351,8 @@ final class ContainerNodePoolNodeConfigSandboxConfig {
 /// Typed helper for the `node_config.secondary_boot_disks` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigSecondaryBootDisks {
-  const ContainerNodePoolNodeConfigSecondaryBootDisks({
+final class ContainerNodePoolSecondaryBootDisks {
+  const ContainerNodePoolSecondaryBootDisks({
     required this.diskImage,
     this.mode,
   });
@@ -1445,8 +1370,8 @@ final class ContainerNodePoolNodeConfigSecondaryBootDisks {
 /// Typed helper for the `node_config.shielded_instance_config` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigShieldedInstanceConfig {
-  const ContainerNodePoolNodeConfigShieldedInstanceConfig({
+final class ContainerNodePoolShieldedInstanceConfig {
+  const ContainerNodePoolShieldedInstanceConfig({
     this.enableIntegrityMonitoring,
     this.enableSecureBoot,
   });
@@ -1464,16 +1389,15 @@ final class ContainerNodePoolNodeConfigShieldedInstanceConfig {
 /// Typed helper for the `node_config.sole_tenant_config` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigSoleTenantConfig {
-  const ContainerNodePoolNodeConfigSoleTenantConfig({
+final class ContainerNodePoolSoleTenantConfig {
+  const ContainerNodePoolSoleTenantConfig({
     this.minNodeCpus,
     required this.nodeAffinity,
   });
 
   final TfArg<num>? minNodeCpus;
 
-  final List<ContainerNodePoolNodeConfigSoleTenantConfigNodeAffinity>
-  nodeAffinity;
+  final List<ContainerNodePoolNodeAffinity> nodeAffinity;
 
   Map<String, Object?> encode() => {
     'min_node_cpus': ?minNodeCpus?.toTfJson(),
@@ -1484,8 +1408,8 @@ final class ContainerNodePoolNodeConfigSoleTenantConfig {
 /// Typed helper for the `node_config.sole_tenant_config.node_affinity` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigSoleTenantConfigNodeAffinity {
-  const ContainerNodePoolNodeConfigSoleTenantConfigNodeAffinity({
+final class ContainerNodePoolNodeAffinity {
+  const ContainerNodePoolNodeAffinity({
     required this.key,
     required this.operator,
     required this.values,
@@ -1507,8 +1431,8 @@ final class ContainerNodePoolNodeConfigSoleTenantConfigNodeAffinity {
 /// Typed helper for the `node_config.taint` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigTaint {
-  const ContainerNodePoolNodeConfigTaint({
+final class ContainerNodePoolTaint {
+  const ContainerNodePoolTaint({
     required this.effect,
     required this.key,
     required this.value,
@@ -1530,10 +1454,8 @@ final class ContainerNodePoolNodeConfigTaint {
 /// Typed helper for the `node_config.taint_config` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigTaintConfig {
-  const ContainerNodePoolNodeConfigTaintConfig({
-    required this.architectureTaintBehavior,
-  });
+final class ContainerNodePoolTaintConfig {
+  const ContainerNodePoolTaintConfig({required this.architectureTaintBehavior});
 
   final TfArg<String> architectureTaintBehavior;
 
@@ -1545,8 +1467,8 @@ final class ContainerNodePoolNodeConfigTaintConfig {
 /// Typed helper for the `node_config.windows_node_config` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigWindowsNodeConfig {
-  const ContainerNodePoolNodeConfigWindowsNodeConfig({this.osversion});
+final class ContainerNodePoolWindowsNodeConfig {
+  const ContainerNodePoolWindowsNodeConfig({this.osversion});
 
   final TfArg<String>? osversion;
 
@@ -1556,8 +1478,8 @@ final class ContainerNodePoolNodeConfigWindowsNodeConfig {
 /// Typed helper for the `node_config.workload_metadata_config` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolNodeConfigWorkloadMetadataConfig {
-  const ContainerNodePoolNodeConfigWorkloadMetadataConfig({required this.mode});
+final class ContainerNodePoolWorkloadMetadataConfig {
+  const ContainerNodePoolWorkloadMetadataConfig({required this.mode});
 
   final TfArg<String> mode;
 
@@ -1639,7 +1561,7 @@ final class ContainerNodePoolUpgradeSettings {
 
   final TfArg<String>? strategy;
 
-  final ContainerNodePoolUpgradeSettingsBlueGreenSettings? blueGreenSettings;
+  final ContainerNodePoolBlueGreenSettings? blueGreenSettings;
 
   Map<String, Object?> encode() => {
     'max_surge': ?maxSurge?.toTfJson(),
@@ -1652,16 +1574,15 @@ final class ContainerNodePoolUpgradeSettings {
 /// Typed helper for the `upgrade_settings.blue_green_settings` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolUpgradeSettingsBlueGreenSettings {
-  const ContainerNodePoolUpgradeSettingsBlueGreenSettings({
+final class ContainerNodePoolBlueGreenSettings {
+  const ContainerNodePoolBlueGreenSettings({
     this.nodePoolSoakDuration,
     required this.standardRolloutPolicy,
   });
 
   final TfArg<String>? nodePoolSoakDuration;
 
-  final ContainerNodePoolUpgradeSettingsBlueGreenSettingsStandardRolloutPolicy
-  standardRolloutPolicy;
+  final ContainerNodePoolStandardRolloutPolicy standardRolloutPolicy;
 
   Map<String, Object?> encode() => {
     'node_pool_soak_duration': ?nodePoolSoakDuration?.toTfJson(),
@@ -1672,8 +1593,8 @@ final class ContainerNodePoolUpgradeSettingsBlueGreenSettings {
 /// Typed helper for the `upgrade_settings.blue_green_settings.standard_rollout_policy` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable
-final class ContainerNodePoolUpgradeSettingsBlueGreenSettingsStandardRolloutPolicy {
-  const ContainerNodePoolUpgradeSettingsBlueGreenSettingsStandardRolloutPolicy({
+final class ContainerNodePoolStandardRolloutPolicy {
+  const ContainerNodePoolStandardRolloutPolicy({
     this.batchNodeCount,
     this.batchPercentage,
     this.batchSoakDuration,

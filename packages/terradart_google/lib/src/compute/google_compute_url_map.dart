@@ -145,6 +145,7 @@ final class ComputeUrlMapDefaultActionDefaultRouteAction
 
 /// Typed helper for the `default_custom_error_response_policy` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
 final class ComputeUrlMapDefaultCustomErrorResponsePolicy {
   const ComputeUrlMapDefaultCustomErrorResponsePolicy({
@@ -154,8 +155,7 @@ final class ComputeUrlMapDefaultCustomErrorResponsePolicy {
 
   final TfArg<String>? errorService;
 
-  final List<ComputeUrlMapDefaultCustomErrorResponsePolicyErrorResponseRule>?
-  errorResponseRule;
+  final List<ComputeUrlMapErrorResponseRule>? errorResponseRule;
 
   Map<String, Object?> encode() => {
     'error_service': ?errorService?.toTfJson(),
@@ -166,9 +166,10 @@ final class ComputeUrlMapDefaultCustomErrorResponsePolicy {
 
 /// Typed helper for the `default_custom_error_response_policy.error_response_rule` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeUrlMapDefaultCustomErrorResponsePolicyErrorResponseRule {
-  const ComputeUrlMapDefaultCustomErrorResponsePolicyErrorResponseRule({
+final class ComputeUrlMapErrorResponseRule {
+  const ComputeUrlMapErrorResponseRule({
     this.matchResponseCodes,
     this.overrideResponseCode,
     this.path,
@@ -203,25 +204,23 @@ final class ComputeUrlMapDefaultRouteAction {
     this.weightedBackendServices,
   });
 
-  final ComputeUrlMapDefaultRouteActionCachePolicy? cachePolicy;
+  final ComputeUrlMapCachePolicy? cachePolicy;
 
-  final ComputeUrlMapDefaultRouteActionCorsPolicy? corsPolicy;
+  final ComputeUrlMapCorsPolicy? corsPolicy;
 
-  final ComputeUrlMapDefaultRouteActionFaultInjectionPolicy?
-  faultInjectionPolicy;
+  final ComputeUrlMapFaultInjectionPolicy? faultInjectionPolicy;
 
-  final ComputeUrlMapDefaultRouteActionMaxStreamDuration? maxStreamDuration;
+  final ComputeUrlMapMaxStreamDuration? maxStreamDuration;
 
-  final ComputeUrlMapDefaultRouteActionRequestMirrorPolicy? requestMirrorPolicy;
+  final ComputeUrlMapRequestMirrorPolicy? requestMirrorPolicy;
 
-  final ComputeUrlMapDefaultRouteActionRetryPolicy? retryPolicy;
+  final ComputeUrlMapRetryPolicy? retryPolicy;
 
-  final ComputeUrlMapDefaultRouteActionTimeout? timeout;
+  final ComputeUrlMapTimeout? timeout;
 
-  final ComputeUrlMapDefaultRouteActionUrlRewrite? urlRewrite;
+  final ComputeUrlMapUrlRewrite? urlRewrite;
 
-  final List<ComputeUrlMapDefaultRouteActionWeightedBackendServices>?
-  weightedBackendServices;
+  final List<ComputeUrlMapWeightedBackendServices>? weightedBackendServices;
 
   Map<String, Object?> encode() => {
     'cache_policy': ?cachePolicy?.encode(),
@@ -242,8 +241,8 @@ final class ComputeUrlMapDefaultRouteAction {
 /// Typed helper for the `default_route_action.cache_policy` block of
 /// `google_compute_url_map` (derived from provider schema).
 @immutable
-final class ComputeUrlMapDefaultRouteActionCachePolicy {
-  const ComputeUrlMapDefaultRouteActionCachePolicy({
+final class ComputeUrlMapCachePolicy {
+  const ComputeUrlMapCachePolicy({
     this.cacheBypassRequestHeaderNames,
     this.cacheMode,
     this.negativeCaching,
@@ -264,20 +263,17 @@ final class ComputeUrlMapDefaultRouteActionCachePolicy {
 
   final TfArg<bool>? requestCoalescing;
 
-  final ComputeUrlMapDefaultRouteActionCachePolicyCacheKeyPolicy?
-  cacheKeyPolicy;
+  final ComputeUrlMapCacheKeyPolicy? cacheKeyPolicy;
 
-  final ComputeUrlMapDefaultRouteActionCachePolicyClientTtl? clientTtl;
+  final ComputeUrlMapClientTtl? clientTtl;
 
-  final ComputeUrlMapDefaultRouteActionCachePolicyDefaultTtl? defaultTtl;
+  final ComputeUrlMapDefaultTtl? defaultTtl;
 
-  final ComputeUrlMapDefaultRouteActionCachePolicyMaxTtl? maxTtl;
+  final ComputeUrlMapMaxTtl? maxTtl;
 
-  final List<ComputeUrlMapDefaultRouteActionCachePolicyNegativeCachingPolicy>?
-  negativeCachingPolicy;
+  final List<ComputeUrlMapNegativeCachingPolicy>? negativeCachingPolicy;
 
-  final ComputeUrlMapDefaultRouteActionCachePolicyServeWhileStale?
-  serveWhileStale;
+  final ComputeUrlMapServeWhileStale? serveWhileStale;
 
   Map<String, Object?> encode() => {
     'cache_bypass_request_header_names': ?cacheBypassRequestHeaderNames
@@ -300,8 +296,8 @@ final class ComputeUrlMapDefaultRouteActionCachePolicy {
 /// Typed helper for the `default_route_action.cache_policy.cache_key_policy` block of
 /// `google_compute_url_map` (derived from provider schema).
 @immutable
-final class ComputeUrlMapDefaultRouteActionCachePolicyCacheKeyPolicy {
-  const ComputeUrlMapDefaultRouteActionCachePolicyCacheKeyPolicy({
+final class ComputeUrlMapCacheKeyPolicy {
+  const ComputeUrlMapCacheKeyPolicy({
     this.queryParameters,
     this.includeHost,
     this.includeProtocol,
@@ -310,8 +306,7 @@ final class ComputeUrlMapDefaultRouteActionCachePolicyCacheKeyPolicy {
     this.includedHeaderNames,
   });
 
-  final ComputeUrlMapDefaultRouteActionCachePolicyCacheKeyPolicyQueryParameters?
-  queryParameters;
+  final ComputeUrlMapQueryParameters? queryParameters;
 
   final TfArg<bool>? includeHost;
 
@@ -338,18 +333,18 @@ final class ComputeUrlMapDefaultRouteActionCachePolicyCacheKeyPolicy {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.includedQueryParameters(...)`.
-sealed class ComputeUrlMapDefaultRouteActionCachePolicyCacheKeyPolicyQueryParameters {
-  const ComputeUrlMapDefaultRouteActionCachePolicyCacheKeyPolicyQueryParameters();
+sealed class ComputeUrlMapQueryParameters {
+  const ComputeUrlMapQueryParameters();
 
   /// Sets `included_query_parameters`.
-  const factory ComputeUrlMapDefaultRouteActionCachePolicyCacheKeyPolicyQueryParameters.includedQueryParameters(
+  const factory ComputeUrlMapQueryParameters.includedQueryParameters(
     TfArg<List<String>> includedQueryParameters,
-  ) = ComputeUrlMapDefaultRouteActionCachePolicyCacheKeyPolicyQueryParametersIncludedQueryParameters;
+  ) = ComputeUrlMapIncludedQueryParameters;
 
   /// Sets `excluded_query_parameters`.
-  const factory ComputeUrlMapDefaultRouteActionCachePolicyCacheKeyPolicyQueryParameters.excludedQueryParameters(
+  const factory ComputeUrlMapQueryParameters.excludedQueryParameters(
     TfArg<List<String>> excludedQueryParameters,
-  ) = ComputeUrlMapDefaultRouteActionCachePolicyCacheKeyPolicyQueryParametersExcludedQueryParameters;
+  ) = ComputeUrlMapExcludedQueryParameters;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -357,13 +352,10 @@ sealed class ComputeUrlMapDefaultRouteActionCachePolicyCacheKeyPolicyQueryParame
   Map<String, Object?> encode();
 }
 
-/// The [ComputeUrlMapDefaultRouteActionCachePolicyCacheKeyPolicyQueryParameters.includedQueryParameters] choice: sets `included_query_parameters`.
-final class ComputeUrlMapDefaultRouteActionCachePolicyCacheKeyPolicyQueryParametersIncludedQueryParameters
-    extends
-        ComputeUrlMapDefaultRouteActionCachePolicyCacheKeyPolicyQueryParameters {
-  const ComputeUrlMapDefaultRouteActionCachePolicyCacheKeyPolicyQueryParametersIncludedQueryParameters(
-    this.includedQueryParameters,
-  );
+/// The [ComputeUrlMapQueryParameters.includedQueryParameters] choice: sets `included_query_parameters`.
+final class ComputeUrlMapIncludedQueryParameters
+    extends ComputeUrlMapQueryParameters {
+  const ComputeUrlMapIncludedQueryParameters(this.includedQueryParameters);
 
   final TfArg<List<String>> includedQueryParameters;
 
@@ -376,13 +368,10 @@ final class ComputeUrlMapDefaultRouteActionCachePolicyCacheKeyPolicyQueryParamet
   };
 }
 
-/// The [ComputeUrlMapDefaultRouteActionCachePolicyCacheKeyPolicyQueryParameters.excludedQueryParameters] choice: sets `excluded_query_parameters`.
-final class ComputeUrlMapDefaultRouteActionCachePolicyCacheKeyPolicyQueryParametersExcludedQueryParameters
-    extends
-        ComputeUrlMapDefaultRouteActionCachePolicyCacheKeyPolicyQueryParameters {
-  const ComputeUrlMapDefaultRouteActionCachePolicyCacheKeyPolicyQueryParametersExcludedQueryParameters(
-    this.excludedQueryParameters,
-  );
+/// The [ComputeUrlMapQueryParameters.excludedQueryParameters] choice: sets `excluded_query_parameters`.
+final class ComputeUrlMapExcludedQueryParameters
+    extends ComputeUrlMapQueryParameters {
+  const ComputeUrlMapExcludedQueryParameters(this.excludedQueryParameters);
 
   final TfArg<List<String>> excludedQueryParameters;
 
@@ -397,12 +386,10 @@ final class ComputeUrlMapDefaultRouteActionCachePolicyCacheKeyPolicyQueryParamet
 
 /// Typed helper for the `default_route_action.cache_policy.client_ttl` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeUrlMapDefaultRouteActionCachePolicyClientTtl {
-  const ComputeUrlMapDefaultRouteActionCachePolicyClientTtl({
-    this.nanos,
-    required this.seconds,
-  });
+final class ComputeUrlMapClientTtl {
+  const ComputeUrlMapClientTtl({this.nanos, required this.seconds});
 
   final TfArg<num>? nanos;
 
@@ -416,12 +403,10 @@ final class ComputeUrlMapDefaultRouteActionCachePolicyClientTtl {
 
 /// Typed helper for the `default_route_action.cache_policy.default_ttl` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeUrlMapDefaultRouteActionCachePolicyDefaultTtl {
-  const ComputeUrlMapDefaultRouteActionCachePolicyDefaultTtl({
-    this.nanos,
-    required this.seconds,
-  });
+final class ComputeUrlMapDefaultTtl {
+  const ComputeUrlMapDefaultTtl({this.nanos, required this.seconds});
 
   final TfArg<num>? nanos;
 
@@ -435,12 +420,10 @@ final class ComputeUrlMapDefaultRouteActionCachePolicyDefaultTtl {
 
 /// Typed helper for the `default_route_action.cache_policy.max_ttl` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeUrlMapDefaultRouteActionCachePolicyMaxTtl {
-  const ComputeUrlMapDefaultRouteActionCachePolicyMaxTtl({
-    this.nanos,
-    required this.seconds,
-  });
+final class ComputeUrlMapMaxTtl {
+  const ComputeUrlMapMaxTtl({this.nanos, required this.seconds});
 
   final TfArg<num>? nanos;
 
@@ -454,16 +437,14 @@ final class ComputeUrlMapDefaultRouteActionCachePolicyMaxTtl {
 
 /// Typed helper for the `default_route_action.cache_policy.negative_caching_policy` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeUrlMapDefaultRouteActionCachePolicyNegativeCachingPolicy {
-  const ComputeUrlMapDefaultRouteActionCachePolicyNegativeCachingPolicy({
-    this.code,
-    this.ttl,
-  });
+final class ComputeUrlMapNegativeCachingPolicy {
+  const ComputeUrlMapNegativeCachingPolicy({this.code, this.ttl});
 
   final TfArg<num>? code;
 
-  final ComputeUrlMapDefaultRouteActionCachePolicyNegativeCachingPolicyTtl? ttl;
+  final ComputeUrlMapTtl? ttl;
 
   Map<String, Object?> encode() => {
     'code': ?code?.toTfJson(),
@@ -473,12 +454,10 @@ final class ComputeUrlMapDefaultRouteActionCachePolicyNegativeCachingPolicy {
 
 /// Typed helper for the `default_route_action.cache_policy.negative_caching_policy.ttl` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeUrlMapDefaultRouteActionCachePolicyNegativeCachingPolicyTtl {
-  const ComputeUrlMapDefaultRouteActionCachePolicyNegativeCachingPolicyTtl({
-    this.nanos,
-    required this.seconds,
-  });
+final class ComputeUrlMapTtl {
+  const ComputeUrlMapTtl({this.nanos, required this.seconds});
 
   final TfArg<num>? nanos;
 
@@ -492,12 +471,10 @@ final class ComputeUrlMapDefaultRouteActionCachePolicyNegativeCachingPolicyTtl {
 
 /// Typed helper for the `default_route_action.cache_policy.serve_while_stale` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeUrlMapDefaultRouteActionCachePolicyServeWhileStale {
-  const ComputeUrlMapDefaultRouteActionCachePolicyServeWhileStale({
-    this.nanos,
-    required this.seconds,
-  });
+final class ComputeUrlMapServeWhileStale {
+  const ComputeUrlMapServeWhileStale({this.nanos, required this.seconds});
 
   final TfArg<num>? nanos;
 
@@ -511,9 +488,10 @@ final class ComputeUrlMapDefaultRouteActionCachePolicyServeWhileStale {
 
 /// Typed helper for the `default_route_action.cors_policy` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeUrlMapDefaultRouteActionCorsPolicy {
-  const ComputeUrlMapDefaultRouteActionCorsPolicy({
+final class ComputeUrlMapCorsPolicy {
+  const ComputeUrlMapCorsPolicy({
     this.allowCredentials,
     this.allowHeaders,
     this.allowMethods,
@@ -554,16 +532,14 @@ final class ComputeUrlMapDefaultRouteActionCorsPolicy {
 
 /// Typed helper for the `default_route_action.fault_injection_policy` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeUrlMapDefaultRouteActionFaultInjectionPolicy {
-  const ComputeUrlMapDefaultRouteActionFaultInjectionPolicy({
-    this.abort,
-    this.delay,
-  });
+final class ComputeUrlMapFaultInjectionPolicy {
+  const ComputeUrlMapFaultInjectionPolicy({this.abort, this.delay});
 
-  final ComputeUrlMapDefaultRouteActionFaultInjectionPolicyAbort? abort;
+  final ComputeUrlMapAbort? abort;
 
-  final ComputeUrlMapDefaultRouteActionFaultInjectionPolicyDelay? delay;
+  final ComputeUrlMapDelay? delay;
 
   Map<String, Object?> encode() => {
     'abort': ?abort?.encode(),
@@ -573,12 +549,10 @@ final class ComputeUrlMapDefaultRouteActionFaultInjectionPolicy {
 
 /// Typed helper for the `default_route_action.fault_injection_policy.abort` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeUrlMapDefaultRouteActionFaultInjectionPolicyAbort {
-  const ComputeUrlMapDefaultRouteActionFaultInjectionPolicyAbort({
-    this.httpStatus,
-    this.percentage,
-  });
+final class ComputeUrlMapAbort {
+  const ComputeUrlMapAbort({this.httpStatus, this.percentage});
 
   final TfArg<num>? httpStatus;
 
@@ -592,17 +566,14 @@ final class ComputeUrlMapDefaultRouteActionFaultInjectionPolicyAbort {
 
 /// Typed helper for the `default_route_action.fault_injection_policy.delay` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeUrlMapDefaultRouteActionFaultInjectionPolicyDelay {
-  const ComputeUrlMapDefaultRouteActionFaultInjectionPolicyDelay({
-    this.percentage,
-    this.fixedDelay,
-  });
+final class ComputeUrlMapDelay {
+  const ComputeUrlMapDelay({this.percentage, this.fixedDelay});
 
   final TfArg<num>? percentage;
 
-  final ComputeUrlMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelay?
-  fixedDelay;
+  final ComputeUrlMapFixedDelay? fixedDelay;
 
   Map<String, Object?> encode() => {
     'percentage': ?percentage?.toTfJson(),
@@ -612,12 +583,10 @@ final class ComputeUrlMapDefaultRouteActionFaultInjectionPolicyDelay {
 
 /// Typed helper for the `default_route_action.fault_injection_policy.delay.fixed_delay` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeUrlMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelay {
-  const ComputeUrlMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelay({
-    this.nanos,
-    this.seconds,
-  });
+final class ComputeUrlMapFixedDelay {
+  const ComputeUrlMapFixedDelay({this.nanos, this.seconds});
 
   final TfArg<num>? nanos;
 
@@ -631,12 +600,10 @@ final class ComputeUrlMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelay {
 
 /// Typed helper for the `default_route_action.max_stream_duration` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeUrlMapDefaultRouteActionMaxStreamDuration {
-  const ComputeUrlMapDefaultRouteActionMaxStreamDuration({
-    this.nanos,
-    required this.seconds,
-  });
+final class ComputeUrlMapMaxStreamDuration {
+  const ComputeUrlMapMaxStreamDuration({this.nanos, required this.seconds});
 
   final TfArg<num>? nanos;
 
@@ -650,11 +617,10 @@ final class ComputeUrlMapDefaultRouteActionMaxStreamDuration {
 
 /// Typed helper for the `default_route_action.request_mirror_policy` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeUrlMapDefaultRouteActionRequestMirrorPolicy {
-  const ComputeUrlMapDefaultRouteActionRequestMirrorPolicy({
-    required this.backendService,
-  });
+final class ComputeUrlMapRequestMirrorPolicy {
+  const ComputeUrlMapRequestMirrorPolicy({required this.backendService});
 
   final TfArg<String> backendService;
 
@@ -665,9 +631,10 @@ final class ComputeUrlMapDefaultRouteActionRequestMirrorPolicy {
 
 /// Typed helper for the `default_route_action.retry_policy` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeUrlMapDefaultRouteActionRetryPolicy {
-  const ComputeUrlMapDefaultRouteActionRetryPolicy({
+final class ComputeUrlMapRetryPolicy {
+  const ComputeUrlMapRetryPolicy({
     this.numRetries,
     this.retryConditions,
     this.perTryTimeout,
@@ -677,7 +644,7 @@ final class ComputeUrlMapDefaultRouteActionRetryPolicy {
 
   final TfArg<List<String>>? retryConditions;
 
-  final ComputeUrlMapDefaultRouteActionRetryPolicyPerTryTimeout? perTryTimeout;
+  final ComputeUrlMapPerTryTimeout? perTryTimeout;
 
   Map<String, Object?> encode() => {
     'num_retries': ?numRetries?.toTfJson(),
@@ -688,12 +655,10 @@ final class ComputeUrlMapDefaultRouteActionRetryPolicy {
 
 /// Typed helper for the `default_route_action.retry_policy.per_try_timeout` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeUrlMapDefaultRouteActionRetryPolicyPerTryTimeout {
-  const ComputeUrlMapDefaultRouteActionRetryPolicyPerTryTimeout({
-    this.nanos,
-    this.seconds,
-  });
+final class ComputeUrlMapPerTryTimeout {
+  const ComputeUrlMapPerTryTimeout({this.nanos, this.seconds});
 
   final TfArg<num>? nanos;
 
@@ -707,9 +672,10 @@ final class ComputeUrlMapDefaultRouteActionRetryPolicyPerTryTimeout {
 
 /// Typed helper for the `default_route_action.timeout` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeUrlMapDefaultRouteActionTimeout {
-  const ComputeUrlMapDefaultRouteActionTimeout({this.nanos, this.seconds});
+final class ComputeUrlMapTimeout {
+  const ComputeUrlMapTimeout({this.nanos, this.seconds});
 
   final TfArg<num>? nanos;
 
@@ -723,12 +689,10 @@ final class ComputeUrlMapDefaultRouteActionTimeout {
 
 /// Typed helper for the `default_route_action.url_rewrite` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeUrlMapDefaultRouteActionUrlRewrite {
-  const ComputeUrlMapDefaultRouteActionUrlRewrite({
-    this.hostRewrite,
-    this.pathPrefixRewrite,
-  });
+final class ComputeUrlMapUrlRewrite {
+  const ComputeUrlMapUrlRewrite({this.hostRewrite, this.pathPrefixRewrite});
 
   final TfArg<String>? hostRewrite;
 
@@ -742,9 +706,10 @@ final class ComputeUrlMapDefaultRouteActionUrlRewrite {
 
 /// Typed helper for the `default_route_action.weighted_backend_services` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeUrlMapDefaultRouteActionWeightedBackendServices {
-  const ComputeUrlMapDefaultRouteActionWeightedBackendServices({
+final class ComputeUrlMapWeightedBackendServices {
+  const ComputeUrlMapWeightedBackendServices({
     this.backendService,
     this.weight,
     this.headerAction,
@@ -754,8 +719,7 @@ final class ComputeUrlMapDefaultRouteActionWeightedBackendServices {
 
   final TfArg<num>? weight;
 
-  final ComputeUrlMapDefaultRouteActionWeightedBackendServicesHeaderAction?
-  headerAction;
+  final ComputeUrlMapWeightedBackendServicesHeaderAction? headerAction;
 
   Map<String, Object?> encode() => {
     'backend_service': ?backendService?.toTfJson(),
@@ -766,9 +730,10 @@ final class ComputeUrlMapDefaultRouteActionWeightedBackendServices {
 
 /// Typed helper for the `default_route_action.weighted_backend_services.header_action` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeUrlMapDefaultRouteActionWeightedBackendServicesHeaderAction {
-  const ComputeUrlMapDefaultRouteActionWeightedBackendServicesHeaderAction({
+final class ComputeUrlMapWeightedBackendServicesHeaderAction {
+  const ComputeUrlMapWeightedBackendServicesHeaderAction({
     this.requestHeadersToRemove,
     this.responseHeadersToRemove,
     this.requestHeadersToAdd,
@@ -779,14 +744,9 @@ final class ComputeUrlMapDefaultRouteActionWeightedBackendServicesHeaderAction {
 
   final TfArg<List<String>>? responseHeadersToRemove;
 
-  final List<
-    ComputeUrlMapDefaultRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd
-  >?
-  requestHeadersToAdd;
+  final List<ComputeUrlMapHeaderActionRequestHeadersToAdd>? requestHeadersToAdd;
 
-  final List<
-    ComputeUrlMapDefaultRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd
-  >?
+  final List<ComputeUrlMapHeaderActionResponseHeadersToAdd>?
   responseHeadersToAdd;
 
   Map<String, Object?> encode() => {
@@ -805,9 +765,10 @@ final class ComputeUrlMapDefaultRouteActionWeightedBackendServicesHeaderAction {
 
 /// Typed helper for the `default_route_action.weighted_backend_services.header_action.request_headers_to_add` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeUrlMapDefaultRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd {
-  const ComputeUrlMapDefaultRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd({
+final class ComputeUrlMapHeaderActionRequestHeadersToAdd {
+  const ComputeUrlMapHeaderActionRequestHeadersToAdd({
     this.headerName,
     this.headerValue,
     this.replace,
@@ -828,9 +789,10 @@ final class ComputeUrlMapDefaultRouteActionWeightedBackendServicesHeaderActionRe
 
 /// Typed helper for the `default_route_action.weighted_backend_services.header_action.response_headers_to_add` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeUrlMapDefaultRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd {
-  const ComputeUrlMapDefaultRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd({
+final class ComputeUrlMapHeaderActionResponseHeadersToAdd {
+  const ComputeUrlMapHeaderActionResponseHeadersToAdd({
     this.headerName,
     this.headerValue,
     this.replace,
@@ -851,6 +813,7 @@ final class ComputeUrlMapDefaultRouteActionWeightedBackendServicesHeaderActionRe
 
 /// Typed helper for the `default_url_redirect` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
 final class ComputeUrlMapDefaultUrlRedirect {
   const ComputeUrlMapDefaultUrlRedirect({
@@ -886,6 +849,7 @@ final class ComputeUrlMapDefaultUrlRedirect {
 
 /// Typed helper for the `header_action` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
 final class ComputeUrlMapHeaderAction {
   const ComputeUrlMapHeaderAction({
@@ -899,10 +863,9 @@ final class ComputeUrlMapHeaderAction {
 
   final TfArg<List<String>>? responseHeadersToRemove;
 
-  final List<ComputeUrlMapHeaderActionRequestHeadersToAdd>? requestHeadersToAdd;
+  final List<ComputeUrlMapRequestHeadersToAdd>? requestHeadersToAdd;
 
-  final List<ComputeUrlMapHeaderActionResponseHeadersToAdd>?
-  responseHeadersToAdd;
+  final List<ComputeUrlMapResponseHeadersToAdd>? responseHeadersToAdd;
 
   Map<String, Object?> encode() => {
     'request_headers_to_remove': ?requestHeadersToRemove?.toTfJson(),
@@ -920,9 +883,10 @@ final class ComputeUrlMapHeaderAction {
 
 /// Typed helper for the `header_action.request_headers_to_add` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeUrlMapHeaderActionRequestHeadersToAdd {
-  const ComputeUrlMapHeaderActionRequestHeadersToAdd({
+final class ComputeUrlMapRequestHeadersToAdd {
+  const ComputeUrlMapRequestHeadersToAdd({
     required this.headerName,
     required this.headerValue,
     required this.replace,
@@ -943,9 +907,10 @@ final class ComputeUrlMapHeaderActionRequestHeadersToAdd {
 
 /// Typed helper for the `header_action.response_headers_to_add` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeUrlMapHeaderActionResponseHeadersToAdd {
-  const ComputeUrlMapHeaderActionResponseHeadersToAdd({
+final class ComputeUrlMapResponseHeadersToAdd {
+  const ComputeUrlMapResponseHeadersToAdd({
     required this.headerName,
     required this.headerValue,
     required this.replace,
@@ -1009,18 +974,18 @@ final class ComputeUrlMapPathMatcher {
 
   final TfArg<String> name;
 
-  final ComputeUrlMapPathMatcherDefaultCustomErrorResponsePolicy?
+  final ComputeUrlMapDefaultCustomErrorResponsePolicy?
   defaultCustomErrorResponsePolicy;
 
   final ComputeUrlMapPathMatcherDefaultRouteAction? defaultRouteAction;
 
-  final ComputeUrlMapPathMatcherDefaultUrlRedirect? defaultUrlRedirect;
+  final ComputeUrlMapDefaultUrlRedirect? defaultUrlRedirect;
 
-  final ComputeUrlMapPathMatcherHeaderAction? headerAction;
+  final ComputeUrlMapHeaderAction? headerAction;
 
-  final List<ComputeUrlMapPathMatcherPathRule>? pathRule;
+  final List<ComputeUrlMapPathRule>? pathRule;
 
-  final List<ComputeUrlMapPathMatcherRouteRules>? routeRules;
+  final List<ComputeUrlMapRouteRules>? routeRules;
 
   Map<String, Object?> encode() => {
     'default_service': ?defaultService?.toTfJson(),
@@ -1034,52 +999,6 @@ final class ComputeUrlMapPathMatcher {
     if (pathRule != null) 'path_rule': [for (final e in pathRule!) e.encode()],
     if (routeRules != null)
       'route_rules': [for (final e in routeRules!) e.encode()],
-  };
-}
-
-/// Typed helper for the `path_matcher.default_custom_error_response_policy` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherDefaultCustomErrorResponsePolicy {
-  const ComputeUrlMapPathMatcherDefaultCustomErrorResponsePolicy({
-    this.errorService,
-    this.errorResponseRule,
-  });
-
-  final TfArg<String>? errorService;
-
-  final List<
-    ComputeUrlMapPathMatcherDefaultCustomErrorResponsePolicyErrorResponseRule
-  >?
-  errorResponseRule;
-
-  Map<String, Object?> encode() => {
-    'error_service': ?errorService?.toTfJson(),
-    if (errorResponseRule != null)
-      'error_response_rule': [for (final e in errorResponseRule!) e.encode()],
-  };
-}
-
-/// Typed helper for the `path_matcher.default_custom_error_response_policy.error_response_rule` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherDefaultCustomErrorResponsePolicyErrorResponseRule {
-  const ComputeUrlMapPathMatcherDefaultCustomErrorResponsePolicyErrorResponseRule({
-    this.matchResponseCodes,
-    this.overrideResponseCode,
-    this.path,
-  });
-
-  final TfArg<List<String>>? matchResponseCodes;
-
-  final TfArg<num>? overrideResponseCode;
-
-  final TfArg<String>? path;
-
-  Map<String, Object?> encode() => {
-    'match_response_codes': ?matchResponseCodes?.toTfJson(),
-    'override_response_code': ?overrideResponseCode?.toTfJson(),
-    'path': ?path?.toTfJson(),
   };
 }
 
@@ -1099,27 +1018,23 @@ final class ComputeUrlMapPathMatcherDefaultRouteAction {
     this.weightedBackendServices,
   });
 
-  final ComputeUrlMapPathMatcherDefaultRouteActionCachePolicy? cachePolicy;
+  final ComputeUrlMapDefaultRouteActionCachePolicy? cachePolicy;
 
-  final ComputeUrlMapPathMatcherDefaultRouteActionCorsPolicy? corsPolicy;
+  final ComputeUrlMapCorsPolicy? corsPolicy;
 
-  final ComputeUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicy?
-  faultInjectionPolicy;
+  final ComputeUrlMapFaultInjectionPolicy? faultInjectionPolicy;
 
-  final ComputeUrlMapPathMatcherDefaultRouteActionMaxStreamDuration?
-  maxStreamDuration;
+  final ComputeUrlMapMaxStreamDuration? maxStreamDuration;
 
-  final ComputeUrlMapPathMatcherDefaultRouteActionRequestMirrorPolicy?
-  requestMirrorPolicy;
+  final ComputeUrlMapRequestMirrorPolicy? requestMirrorPolicy;
 
-  final ComputeUrlMapPathMatcherDefaultRouteActionRetryPolicy? retryPolicy;
+  final ComputeUrlMapRetryPolicy? retryPolicy;
 
-  final ComputeUrlMapPathMatcherDefaultRouteActionTimeout? timeout;
+  final ComputeUrlMapTimeout? timeout;
 
-  final ComputeUrlMapPathMatcherDefaultRouteActionUrlRewrite? urlRewrite;
+  final ComputeUrlMapUrlRewrite? urlRewrite;
 
-  final List<ComputeUrlMapPathMatcherDefaultRouteActionWeightedBackendServices>?
-  weightedBackendServices;
+  final List<ComputeUrlMapWeightedBackendServices>? weightedBackendServices;
 
   Map<String, Object?> encode() => {
     'cache_policy': ?cachePolicy?.encode(),
@@ -1139,9 +1054,10 @@ final class ComputeUrlMapPathMatcherDefaultRouteAction {
 
 /// Typed helper for the `path_matcher.default_route_action.cache_policy` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeUrlMapPathMatcherDefaultRouteActionCachePolicy {
-  const ComputeUrlMapPathMatcherDefaultRouteActionCachePolicy({
+final class ComputeUrlMapDefaultRouteActionCachePolicy {
+  const ComputeUrlMapDefaultRouteActionCachePolicy({
     this.cacheBypassRequestHeaderNames,
     this.cacheMode,
     this.negativeCaching,
@@ -1162,24 +1078,17 @@ final class ComputeUrlMapPathMatcherDefaultRouteActionCachePolicy {
 
   final TfArg<bool>? requestCoalescing;
 
-  final ComputeUrlMapPathMatcherDefaultRouteActionCachePolicyCacheKeyPolicy?
-  cacheKeyPolicy;
+  final ComputeUrlMapCachePolicyCacheKeyPolicy? cacheKeyPolicy;
 
-  final ComputeUrlMapPathMatcherDefaultRouteActionCachePolicyClientTtl?
-  clientTtl;
+  final ComputeUrlMapClientTtl? clientTtl;
 
-  final ComputeUrlMapPathMatcherDefaultRouteActionCachePolicyDefaultTtl?
-  defaultTtl;
+  final ComputeUrlMapDefaultTtl? defaultTtl;
 
-  final ComputeUrlMapPathMatcherDefaultRouteActionCachePolicyMaxTtl? maxTtl;
+  final ComputeUrlMapMaxTtl? maxTtl;
 
-  final List<
-    ComputeUrlMapPathMatcherDefaultRouteActionCachePolicyNegativeCachingPolicy
-  >?
-  negativeCachingPolicy;
+  final List<ComputeUrlMapNegativeCachingPolicy>? negativeCachingPolicy;
 
-  final ComputeUrlMapPathMatcherDefaultRouteActionCachePolicyServeWhileStale?
-  serveWhileStale;
+  final ComputeUrlMapServeWhileStale? serveWhileStale;
 
   Map<String, Object?> encode() => {
     'cache_bypass_request_header_names': ?cacheBypassRequestHeaderNames
@@ -1201,9 +1110,10 @@ final class ComputeUrlMapPathMatcherDefaultRouteActionCachePolicy {
 
 /// Typed helper for the `path_matcher.default_route_action.cache_policy.cache_key_policy` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeUrlMapPathMatcherDefaultRouteActionCachePolicyCacheKeyPolicy {
-  const ComputeUrlMapPathMatcherDefaultRouteActionCachePolicyCacheKeyPolicy({
+final class ComputeUrlMapCachePolicyCacheKeyPolicy {
+  const ComputeUrlMapCachePolicyCacheKeyPolicy({
     this.excludedQueryParameters,
     this.includeHost,
     this.includeProtocol,
@@ -1238,588 +1148,11 @@ final class ComputeUrlMapPathMatcherDefaultRouteActionCachePolicyCacheKeyPolicy 
   };
 }
 
-/// Typed helper for the `path_matcher.default_route_action.cache_policy.client_ttl` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherDefaultRouteActionCachePolicyClientTtl {
-  const ComputeUrlMapPathMatcherDefaultRouteActionCachePolicyClientTtl({
-    this.nanos,
-    required this.seconds,
-  });
-
-  final TfArg<num>? nanos;
-
-  final TfArg<String> seconds;
-
-  Map<String, Object?> encode() => {
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': seconds.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.default_route_action.cache_policy.default_ttl` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherDefaultRouteActionCachePolicyDefaultTtl {
-  const ComputeUrlMapPathMatcherDefaultRouteActionCachePolicyDefaultTtl({
-    this.nanos,
-    required this.seconds,
-  });
-
-  final TfArg<num>? nanos;
-
-  final TfArg<String> seconds;
-
-  Map<String, Object?> encode() => {
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': seconds.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.default_route_action.cache_policy.max_ttl` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherDefaultRouteActionCachePolicyMaxTtl {
-  const ComputeUrlMapPathMatcherDefaultRouteActionCachePolicyMaxTtl({
-    this.nanos,
-    required this.seconds,
-  });
-
-  final TfArg<num>? nanos;
-
-  final TfArg<String> seconds;
-
-  Map<String, Object?> encode() => {
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': seconds.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.default_route_action.cache_policy.negative_caching_policy` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherDefaultRouteActionCachePolicyNegativeCachingPolicy {
-  const ComputeUrlMapPathMatcherDefaultRouteActionCachePolicyNegativeCachingPolicy({
-    this.code,
-    this.ttl,
-  });
-
-  final TfArg<num>? code;
-
-  final ComputeUrlMapPathMatcherDefaultRouteActionCachePolicyNegativeCachingPolicyTtl?
-  ttl;
-
-  Map<String, Object?> encode() => {
-    'code': ?code?.toTfJson(),
-    'ttl': ?ttl?.encode(),
-  };
-}
-
-/// Typed helper for the `path_matcher.default_route_action.cache_policy.negative_caching_policy.ttl` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherDefaultRouteActionCachePolicyNegativeCachingPolicyTtl {
-  const ComputeUrlMapPathMatcherDefaultRouteActionCachePolicyNegativeCachingPolicyTtl({
-    this.nanos,
-    required this.seconds,
-  });
-
-  final TfArg<num>? nanos;
-
-  final TfArg<String> seconds;
-
-  Map<String, Object?> encode() => {
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': seconds.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.default_route_action.cache_policy.serve_while_stale` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherDefaultRouteActionCachePolicyServeWhileStale {
-  const ComputeUrlMapPathMatcherDefaultRouteActionCachePolicyServeWhileStale({
-    this.nanos,
-    required this.seconds,
-  });
-
-  final TfArg<num>? nanos;
-
-  final TfArg<String> seconds;
-
-  Map<String, Object?> encode() => {
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': seconds.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.default_route_action.cors_policy` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherDefaultRouteActionCorsPolicy {
-  const ComputeUrlMapPathMatcherDefaultRouteActionCorsPolicy({
-    this.allowCredentials,
-    this.allowHeaders,
-    this.allowMethods,
-    this.allowOriginRegexes,
-    this.allowOrigins,
-    this.disabled,
-    this.exposeHeaders,
-    this.maxAge,
-  });
-
-  final TfArg<bool>? allowCredentials;
-
-  final TfArg<List<String>>? allowHeaders;
-
-  final TfArg<List<String>>? allowMethods;
-
-  final TfArg<List<String>>? allowOriginRegexes;
-
-  final TfArg<List<String>>? allowOrigins;
-
-  final TfArg<bool>? disabled;
-
-  final TfArg<List<String>>? exposeHeaders;
-
-  final TfArg<num>? maxAge;
-
-  Map<String, Object?> encode() => {
-    'allow_credentials': ?allowCredentials?.toTfJson(),
-    'allow_headers': ?allowHeaders?.toTfJson(),
-    'allow_methods': ?allowMethods?.toTfJson(),
-    'allow_origin_regexes': ?allowOriginRegexes?.toTfJson(),
-    'allow_origins': ?allowOrigins?.toTfJson(),
-    'disabled': ?disabled?.toTfJson(),
-    'expose_headers': ?exposeHeaders?.toTfJson(),
-    'max_age': ?maxAge?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.default_route_action.fault_injection_policy` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicy {
-  const ComputeUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicy({
-    this.abort,
-    this.delay,
-  });
-
-  final ComputeUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbort?
-  abort;
-
-  final ComputeUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelay?
-  delay;
-
-  Map<String, Object?> encode() => {
-    'abort': ?abort?.encode(),
-    'delay': ?delay?.encode(),
-  };
-}
-
-/// Typed helper for the `path_matcher.default_route_action.fault_injection_policy.abort` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbort {
-  const ComputeUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbort({
-    this.httpStatus,
-    this.percentage,
-  });
-
-  final TfArg<num>? httpStatus;
-
-  final TfArg<num>? percentage;
-
-  Map<String, Object?> encode() => {
-    'http_status': ?httpStatus?.toTfJson(),
-    'percentage': ?percentage?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.default_route_action.fault_injection_policy.delay` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelay {
-  const ComputeUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelay({
-    this.percentage,
-    this.fixedDelay,
-  });
-
-  final TfArg<num>? percentage;
-
-  final ComputeUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelay?
-  fixedDelay;
-
-  Map<String, Object?> encode() => {
-    'percentage': ?percentage?.toTfJson(),
-    'fixed_delay': ?fixedDelay?.encode(),
-  };
-}
-
-/// Typed helper for the `path_matcher.default_route_action.fault_injection_policy.delay.fixed_delay` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelay {
-  const ComputeUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelay({
-    this.nanos,
-    this.seconds,
-  });
-
-  final TfArg<num>? nanos;
-
-  final TfArg<String>? seconds;
-
-  Map<String, Object?> encode() => {
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': ?seconds?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.default_route_action.max_stream_duration` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherDefaultRouteActionMaxStreamDuration {
-  const ComputeUrlMapPathMatcherDefaultRouteActionMaxStreamDuration({
-    this.nanos,
-    required this.seconds,
-  });
-
-  final TfArg<num>? nanos;
-
-  final TfArg<String> seconds;
-
-  Map<String, Object?> encode() => {
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': seconds.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.default_route_action.request_mirror_policy` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherDefaultRouteActionRequestMirrorPolicy {
-  const ComputeUrlMapPathMatcherDefaultRouteActionRequestMirrorPolicy({
-    required this.backendService,
-  });
-
-  final TfArg<String> backendService;
-
-  Map<String, Object?> encode() => {
-    'backend_service': backendService.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.default_route_action.retry_policy` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherDefaultRouteActionRetryPolicy {
-  const ComputeUrlMapPathMatcherDefaultRouteActionRetryPolicy({
-    this.numRetries,
-    this.retryConditions,
-    this.perTryTimeout,
-  });
-
-  final TfArg<num>? numRetries;
-
-  final TfArg<List<String>>? retryConditions;
-
-  final ComputeUrlMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeout?
-  perTryTimeout;
-
-  Map<String, Object?> encode() => {
-    'num_retries': ?numRetries?.toTfJson(),
-    'retry_conditions': ?retryConditions?.toTfJson(),
-    'per_try_timeout': ?perTryTimeout?.encode(),
-  };
-}
-
-/// Typed helper for the `path_matcher.default_route_action.retry_policy.per_try_timeout` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeout {
-  const ComputeUrlMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeout({
-    this.nanos,
-    this.seconds,
-  });
-
-  final TfArg<num>? nanos;
-
-  final TfArg<String>? seconds;
-
-  Map<String, Object?> encode() => {
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': ?seconds?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.default_route_action.timeout` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherDefaultRouteActionTimeout {
-  const ComputeUrlMapPathMatcherDefaultRouteActionTimeout({
-    this.nanos,
-    this.seconds,
-  });
-
-  final TfArg<num>? nanos;
-
-  final TfArg<String>? seconds;
-
-  Map<String, Object?> encode() => {
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': ?seconds?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.default_route_action.url_rewrite` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherDefaultRouteActionUrlRewrite {
-  const ComputeUrlMapPathMatcherDefaultRouteActionUrlRewrite({
-    this.hostRewrite,
-    this.pathPrefixRewrite,
-  });
-
-  final TfArg<String>? hostRewrite;
-
-  final TfArg<String>? pathPrefixRewrite;
-
-  Map<String, Object?> encode() => {
-    'host_rewrite': ?hostRewrite?.toTfJson(),
-    'path_prefix_rewrite': ?pathPrefixRewrite?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.default_route_action.weighted_backend_services` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherDefaultRouteActionWeightedBackendServices {
-  const ComputeUrlMapPathMatcherDefaultRouteActionWeightedBackendServices({
-    this.backendService,
-    this.weight,
-    this.headerAction,
-  });
-
-  final TfArg<String>? backendService;
-
-  final TfArg<num>? weight;
-
-  final ComputeUrlMapPathMatcherDefaultRouteActionWeightedBackendServicesHeaderAction?
-  headerAction;
-
-  Map<String, Object?> encode() => {
-    'backend_service': ?backendService?.toTfJson(),
-    'weight': ?weight?.toTfJson(),
-    'header_action': ?headerAction?.encode(),
-  };
-}
-
-/// Typed helper for the `path_matcher.default_route_action.weighted_backend_services.header_action` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherDefaultRouteActionWeightedBackendServicesHeaderAction {
-  const ComputeUrlMapPathMatcherDefaultRouteActionWeightedBackendServicesHeaderAction({
-    this.requestHeadersToRemove,
-    this.responseHeadersToRemove,
-    this.requestHeadersToAdd,
-    this.responseHeadersToAdd,
-  });
-
-  final TfArg<List<String>>? requestHeadersToRemove;
-
-  final TfArg<List<String>>? responseHeadersToRemove;
-
-  final List<
-    ComputeUrlMapPathMatcherDefaultRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd
-  >?
-  requestHeadersToAdd;
-
-  final List<
-    ComputeUrlMapPathMatcherDefaultRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd
-  >?
-  responseHeadersToAdd;
-
-  Map<String, Object?> encode() => {
-    'request_headers_to_remove': ?requestHeadersToRemove?.toTfJson(),
-    'response_headers_to_remove': ?responseHeadersToRemove?.toTfJson(),
-    if (requestHeadersToAdd != null)
-      'request_headers_to_add': [
-        for (final e in requestHeadersToAdd!) e.encode(),
-      ],
-    if (responseHeadersToAdd != null)
-      'response_headers_to_add': [
-        for (final e in responseHeadersToAdd!) e.encode(),
-      ],
-  };
-}
-
-/// Typed helper for the `path_matcher.default_route_action.weighted_backend_services.header_action.request_headers_to_add` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherDefaultRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd {
-  const ComputeUrlMapPathMatcherDefaultRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd({
-    this.headerName,
-    this.headerValue,
-    this.replace,
-  });
-
-  final TfArg<String>? headerName;
-
-  final TfArg<String>? headerValue;
-
-  final TfArg<bool>? replace;
-
-  Map<String, Object?> encode() => {
-    'header_name': ?headerName?.toTfJson(),
-    'header_value': ?headerValue?.toTfJson(),
-    'replace': ?replace?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.default_route_action.weighted_backend_services.header_action.response_headers_to_add` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherDefaultRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd {
-  const ComputeUrlMapPathMatcherDefaultRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd({
-    this.headerName,
-    this.headerValue,
-    this.replace,
-  });
-
-  final TfArg<String>? headerName;
-
-  final TfArg<String>? headerValue;
-
-  final TfArg<bool>? replace;
-
-  Map<String, Object?> encode() => {
-    'header_name': ?headerName?.toTfJson(),
-    'header_value': ?headerValue?.toTfJson(),
-    'replace': ?replace?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.default_url_redirect` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherDefaultUrlRedirect {
-  const ComputeUrlMapPathMatcherDefaultUrlRedirect({
-    this.hostRedirect,
-    this.httpsRedirect,
-    this.pathRedirect,
-    this.prefixRedirect,
-    this.redirectResponseCode,
-    required this.stripQuery,
-  });
-
-  final TfArg<String>? hostRedirect;
-
-  final TfArg<bool>? httpsRedirect;
-
-  final TfArg<String>? pathRedirect;
-
-  final TfArg<String>? prefixRedirect;
-
-  final TfArg<UrlMapRedirectResponseCode>? redirectResponseCode;
-
-  final TfArg<bool> stripQuery;
-
-  Map<String, Object?> encode() => {
-    'host_redirect': ?hostRedirect?.toTfJson(),
-    'https_redirect': ?httpsRedirect?.toTfJson(),
-    'path_redirect': ?pathRedirect?.toTfJson(),
-    'prefix_redirect': ?prefixRedirect?.toTfJson(),
-    'redirect_response_code': ?redirectResponseCode?.toTfJson(),
-    'strip_query': stripQuery.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.header_action` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherHeaderAction {
-  const ComputeUrlMapPathMatcherHeaderAction({
-    this.requestHeadersToRemove,
-    this.responseHeadersToRemove,
-    this.requestHeadersToAdd,
-    this.responseHeadersToAdd,
-  });
-
-  final TfArg<List<String>>? requestHeadersToRemove;
-
-  final TfArg<List<String>>? responseHeadersToRemove;
-
-  final List<ComputeUrlMapPathMatcherHeaderActionRequestHeadersToAdd>?
-  requestHeadersToAdd;
-
-  final List<ComputeUrlMapPathMatcherHeaderActionResponseHeadersToAdd>?
-  responseHeadersToAdd;
-
-  Map<String, Object?> encode() => {
-    'request_headers_to_remove': ?requestHeadersToRemove?.toTfJson(),
-    'response_headers_to_remove': ?responseHeadersToRemove?.toTfJson(),
-    if (requestHeadersToAdd != null)
-      'request_headers_to_add': [
-        for (final e in requestHeadersToAdd!) e.encode(),
-      ],
-    if (responseHeadersToAdd != null)
-      'response_headers_to_add': [
-        for (final e in responseHeadersToAdd!) e.encode(),
-      ],
-  };
-}
-
-/// Typed helper for the `path_matcher.header_action.request_headers_to_add` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherHeaderActionRequestHeadersToAdd {
-  const ComputeUrlMapPathMatcherHeaderActionRequestHeadersToAdd({
-    required this.headerName,
-    required this.headerValue,
-    required this.replace,
-  });
-
-  final TfArg<String> headerName;
-
-  final TfArg<String> headerValue;
-
-  final TfArg<bool> replace;
-
-  Map<String, Object?> encode() => {
-    'header_name': headerName.toTfJson(),
-    'header_value': headerValue.toTfJson(),
-    'replace': replace.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.header_action.response_headers_to_add` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherHeaderActionResponseHeadersToAdd {
-  const ComputeUrlMapPathMatcherHeaderActionResponseHeadersToAdd({
-    required this.headerName,
-    required this.headerValue,
-    required this.replace,
-  });
-
-  final TfArg<String> headerName;
-
-  final TfArg<String> headerValue;
-
-  final TfArg<bool> replace;
-
-  Map<String, Object?> encode() => {
-    'header_name': headerName.toTfJson(),
-    'header_value': headerValue.toTfJson(),
-    'replace': replace.toTfJson(),
-  };
-}
-
 /// Typed helper for the `path_matcher.path_rule` block of
 /// `google_compute_url_map` (derived from provider schema).
 @immutable
-final class ComputeUrlMapPathMatcherPathRule {
-  const ComputeUrlMapPathMatcherPathRule({
+final class ComputeUrlMapPathRule {
+  const ComputeUrlMapPathRule({
     required this.paths,
     this.service,
     this.customErrorResponsePolicy,
@@ -1831,12 +1164,11 @@ final class ComputeUrlMapPathMatcherPathRule {
 
   final TfArg<String>? service;
 
-  final ComputeUrlMapPathMatcherPathRuleCustomErrorResponsePolicy?
-  customErrorResponsePolicy;
+  final ComputeUrlMapCustomErrorResponsePolicy? customErrorResponsePolicy;
 
-  final ComputeUrlMapPathMatcherPathRuleRouteAction? routeAction;
+  final ComputeUrlMapPathRuleRouteAction? routeAction;
 
-  final ComputeUrlMapPathMatcherPathRuleUrlRedirect? urlRedirect;
+  final ComputeUrlMapPathRuleUrlRedirect? urlRedirect;
 
   Map<String, Object?> encode() => {
     'paths': paths.toTfJson(),
@@ -1849,19 +1181,17 @@ final class ComputeUrlMapPathMatcherPathRule {
 
 /// Typed helper for the `path_matcher.path_rule.custom_error_response_policy` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeUrlMapPathMatcherPathRuleCustomErrorResponsePolicy {
-  const ComputeUrlMapPathMatcherPathRuleCustomErrorResponsePolicy({
+final class ComputeUrlMapCustomErrorResponsePolicy {
+  const ComputeUrlMapCustomErrorResponsePolicy({
     this.errorService,
     this.errorResponseRule,
   });
 
   final TfArg<String>? errorService;
 
-  final List<
-    ComputeUrlMapPathMatcherPathRuleCustomErrorResponsePolicyErrorResponseRule
-  >?
-  errorResponseRule;
+  final List<ComputeUrlMapErrorResponseRule>? errorResponseRule;
 
   Map<String, Object?> encode() => {
     'error_service': ?errorService?.toTfJson(),
@@ -1870,34 +1200,11 @@ final class ComputeUrlMapPathMatcherPathRuleCustomErrorResponsePolicy {
   };
 }
 
-/// Typed helper for the `path_matcher.path_rule.custom_error_response_policy.error_response_rule` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherPathRuleCustomErrorResponsePolicyErrorResponseRule {
-  const ComputeUrlMapPathMatcherPathRuleCustomErrorResponsePolicyErrorResponseRule({
-    this.matchResponseCodes,
-    this.overrideResponseCode,
-    this.path,
-  });
-
-  final TfArg<List<String>>? matchResponseCodes;
-
-  final TfArg<num>? overrideResponseCode;
-
-  final TfArg<String>? path;
-
-  Map<String, Object?> encode() => {
-    'match_response_codes': ?matchResponseCodes?.toTfJson(),
-    'override_response_code': ?overrideResponseCode?.toTfJson(),
-    'path': ?path?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `path_matcher.path_rule.route_action` block of
 /// `google_compute_url_map` (derived from provider schema).
 @immutable
-final class ComputeUrlMapPathMatcherPathRuleRouteAction {
-  const ComputeUrlMapPathMatcherPathRuleRouteAction({
+final class ComputeUrlMapPathRuleRouteAction {
+  const ComputeUrlMapPathRuleRouteAction({
     this.cachePolicy,
     this.corsPolicy,
     this.faultInjectionPolicy,
@@ -1909,28 +1216,23 @@ final class ComputeUrlMapPathMatcherPathRuleRouteAction {
     this.weightedBackendServices,
   });
 
-  final ComputeUrlMapPathMatcherPathRuleRouteActionCachePolicy? cachePolicy;
+  final ComputeUrlMapDefaultRouteActionCachePolicy? cachePolicy;
 
-  final ComputeUrlMapPathMatcherPathRuleRouteActionCorsPolicy? corsPolicy;
+  final ComputeUrlMapRouteActionCorsPolicy? corsPolicy;
 
-  final ComputeUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicy?
-  faultInjectionPolicy;
+  final ComputeUrlMapPathRuleFaultInjectionPolicy? faultInjectionPolicy;
 
-  final ComputeUrlMapPathMatcherPathRuleRouteActionMaxStreamDuration?
-  maxStreamDuration;
+  final ComputeUrlMapMaxStreamDuration? maxStreamDuration;
 
-  final ComputeUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicy?
-  requestMirrorPolicy;
+  final ComputeUrlMapRequestMirrorPolicy? requestMirrorPolicy;
 
-  final ComputeUrlMapPathMatcherPathRuleRouteActionRetryPolicy? retryPolicy;
+  final ComputeUrlMapPathRuleRetryPolicy? retryPolicy;
 
-  final ComputeUrlMapPathMatcherPathRuleRouteActionTimeout? timeout;
+  final ComputeUrlMapRouteActionTimeout? timeout;
 
-  final ComputeUrlMapPathMatcherPathRuleRouteActionUrlRewrite? urlRewrite;
+  final ComputeUrlMapUrlRewrite? urlRewrite;
 
-  final List<
-    ComputeUrlMapPathMatcherPathRuleRouteActionWeightedBackendServices
-  >?
+  final List<ComputeUrlMapRouteActionWeightedBackendServices>?
   weightedBackendServices;
 
   Map<String, Object?> encode() => {
@@ -1949,227 +1251,11 @@ final class ComputeUrlMapPathMatcherPathRuleRouteAction {
   };
 }
 
-/// Typed helper for the `path_matcher.path_rule.route_action.cache_policy` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherPathRuleRouteActionCachePolicy {
-  const ComputeUrlMapPathMatcherPathRuleRouteActionCachePolicy({
-    this.cacheBypassRequestHeaderNames,
-    this.cacheMode,
-    this.negativeCaching,
-    this.requestCoalescing,
-    this.cacheKeyPolicy,
-    this.clientTtl,
-    this.defaultTtl,
-    this.maxTtl,
-    this.negativeCachingPolicy,
-    this.serveWhileStale,
-  });
-
-  final TfArg<List<String>>? cacheBypassRequestHeaderNames;
-
-  final TfArg<UrlMapCacheMode>? cacheMode;
-
-  final TfArg<bool>? negativeCaching;
-
-  final TfArg<bool>? requestCoalescing;
-
-  final ComputeUrlMapPathMatcherPathRuleRouteActionCachePolicyCacheKeyPolicy?
-  cacheKeyPolicy;
-
-  final ComputeUrlMapPathMatcherPathRuleRouteActionCachePolicyClientTtl?
-  clientTtl;
-
-  final ComputeUrlMapPathMatcherPathRuleRouteActionCachePolicyDefaultTtl?
-  defaultTtl;
-
-  final ComputeUrlMapPathMatcherPathRuleRouteActionCachePolicyMaxTtl? maxTtl;
-
-  final List<
-    ComputeUrlMapPathMatcherPathRuleRouteActionCachePolicyNegativeCachingPolicy
-  >?
-  negativeCachingPolicy;
-
-  final ComputeUrlMapPathMatcherPathRuleRouteActionCachePolicyServeWhileStale?
-  serveWhileStale;
-
-  Map<String, Object?> encode() => {
-    'cache_bypass_request_header_names': ?cacheBypassRequestHeaderNames
-        ?.toTfJson(),
-    'cache_mode': ?cacheMode?.toTfJson(),
-    'negative_caching': ?negativeCaching?.toTfJson(),
-    'request_coalescing': ?requestCoalescing?.toTfJson(),
-    'cache_key_policy': ?cacheKeyPolicy?.encode(),
-    'client_ttl': ?clientTtl?.encode(),
-    'default_ttl': ?defaultTtl?.encode(),
-    'max_ttl': ?maxTtl?.encode(),
-    if (negativeCachingPolicy != null)
-      'negative_caching_policy': [
-        for (final e in negativeCachingPolicy!) e.encode(),
-      ],
-    'serve_while_stale': ?serveWhileStale?.encode(),
-  };
-}
-
-/// Typed helper for the `path_matcher.path_rule.route_action.cache_policy.cache_key_policy` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherPathRuleRouteActionCachePolicyCacheKeyPolicy {
-  const ComputeUrlMapPathMatcherPathRuleRouteActionCachePolicyCacheKeyPolicy({
-    this.excludedQueryParameters,
-    this.includeHost,
-    this.includeProtocol,
-    this.includeQueryString,
-    this.includedCookieNames,
-    this.includedHeaderNames,
-    this.includedQueryParameters,
-  });
-
-  final TfArg<List<String>>? excludedQueryParameters;
-
-  final TfArg<bool>? includeHost;
-
-  final TfArg<bool>? includeProtocol;
-
-  final TfArg<bool>? includeQueryString;
-
-  final TfArg<List<String>>? includedCookieNames;
-
-  final TfArg<List<String>>? includedHeaderNames;
-
-  final TfArg<List<String>>? includedQueryParameters;
-
-  Map<String, Object?> encode() => {
-    'excluded_query_parameters': ?excludedQueryParameters?.toTfJson(),
-    'include_host': ?includeHost?.toTfJson(),
-    'include_protocol': ?includeProtocol?.toTfJson(),
-    'include_query_string': ?includeQueryString?.toTfJson(),
-    'included_cookie_names': ?includedCookieNames?.toTfJson(),
-    'included_header_names': ?includedHeaderNames?.toTfJson(),
-    'included_query_parameters': ?includedQueryParameters?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.path_rule.route_action.cache_policy.client_ttl` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherPathRuleRouteActionCachePolicyClientTtl {
-  const ComputeUrlMapPathMatcherPathRuleRouteActionCachePolicyClientTtl({
-    this.nanos,
-    required this.seconds,
-  });
-
-  final TfArg<num>? nanos;
-
-  final TfArg<String> seconds;
-
-  Map<String, Object?> encode() => {
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': seconds.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.path_rule.route_action.cache_policy.default_ttl` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherPathRuleRouteActionCachePolicyDefaultTtl {
-  const ComputeUrlMapPathMatcherPathRuleRouteActionCachePolicyDefaultTtl({
-    this.nanos,
-    required this.seconds,
-  });
-
-  final TfArg<num>? nanos;
-
-  final TfArg<String> seconds;
-
-  Map<String, Object?> encode() => {
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': seconds.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.path_rule.route_action.cache_policy.max_ttl` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherPathRuleRouteActionCachePolicyMaxTtl {
-  const ComputeUrlMapPathMatcherPathRuleRouteActionCachePolicyMaxTtl({
-    this.nanos,
-    required this.seconds,
-  });
-
-  final TfArg<num>? nanos;
-
-  final TfArg<String> seconds;
-
-  Map<String, Object?> encode() => {
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': seconds.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.path_rule.route_action.cache_policy.negative_caching_policy` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherPathRuleRouteActionCachePolicyNegativeCachingPolicy {
-  const ComputeUrlMapPathMatcherPathRuleRouteActionCachePolicyNegativeCachingPolicy({
-    this.code,
-    this.ttl,
-  });
-
-  final TfArg<num>? code;
-
-  final ComputeUrlMapPathMatcherPathRuleRouteActionCachePolicyNegativeCachingPolicyTtl?
-  ttl;
-
-  Map<String, Object?> encode() => {
-    'code': ?code?.toTfJson(),
-    'ttl': ?ttl?.encode(),
-  };
-}
-
-/// Typed helper for the `path_matcher.path_rule.route_action.cache_policy.negative_caching_policy.ttl` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherPathRuleRouteActionCachePolicyNegativeCachingPolicyTtl {
-  const ComputeUrlMapPathMatcherPathRuleRouteActionCachePolicyNegativeCachingPolicyTtl({
-    this.nanos,
-    required this.seconds,
-  });
-
-  final TfArg<num>? nanos;
-
-  final TfArg<String> seconds;
-
-  Map<String, Object?> encode() => {
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': seconds.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.path_rule.route_action.cache_policy.serve_while_stale` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherPathRuleRouteActionCachePolicyServeWhileStale {
-  const ComputeUrlMapPathMatcherPathRuleRouteActionCachePolicyServeWhileStale({
-    this.nanos,
-    required this.seconds,
-  });
-
-  final TfArg<num>? nanos;
-
-  final TfArg<String> seconds;
-
-  Map<String, Object?> encode() => {
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': seconds.toTfJson(),
-  };
-}
-
 /// Typed helper for the `path_matcher.path_rule.route_action.cors_policy` block of
 /// `google_compute_url_map` (derived from provider schema).
 @immutable
-final class ComputeUrlMapPathMatcherPathRuleRouteActionCorsPolicy {
-  const ComputeUrlMapPathMatcherPathRuleRouteActionCorsPolicy({
+final class ComputeUrlMapRouteActionCorsPolicy {
+  const ComputeUrlMapRouteActionCorsPolicy({
     this.allowCredentials,
     this.allowHeaders,
     this.allowMethods,
@@ -2211,17 +1297,12 @@ final class ComputeUrlMapPathMatcherPathRuleRouteActionCorsPolicy {
 /// Typed helper for the `path_matcher.path_rule.route_action.fault_injection_policy` block of
 /// `google_compute_url_map` (derived from provider schema).
 @immutable
-final class ComputeUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicy {
-  const ComputeUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicy({
-    this.abort,
-    this.delay,
-  });
+final class ComputeUrlMapPathRuleFaultInjectionPolicy {
+  const ComputeUrlMapPathRuleFaultInjectionPolicy({this.abort, this.delay});
 
-  final ComputeUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbort?
-  abort;
+  final ComputeUrlMapFaultInjectionPolicyAbort? abort;
 
-  final ComputeUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelay?
-  delay;
+  final ComputeUrlMapPathRuleDelay? delay;
 
   Map<String, Object?> encode() => {
     'abort': ?abort?.encode(),
@@ -2232,8 +1313,8 @@ final class ComputeUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicy {
 /// Typed helper for the `path_matcher.path_rule.route_action.fault_injection_policy.abort` block of
 /// `google_compute_url_map` (derived from provider schema).
 @immutable
-final class ComputeUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbort {
-  const ComputeUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbort({
+final class ComputeUrlMapFaultInjectionPolicyAbort {
+  const ComputeUrlMapFaultInjectionPolicyAbort({
     required this.httpStatus,
     required this.percentage,
   });
@@ -2251,16 +1332,15 @@ final class ComputeUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbort
 /// Typed helper for the `path_matcher.path_rule.route_action.fault_injection_policy.delay` block of
 /// `google_compute_url_map` (derived from provider schema).
 @immutable
-final class ComputeUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelay {
-  const ComputeUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelay({
+final class ComputeUrlMapPathRuleDelay {
+  const ComputeUrlMapPathRuleDelay({
     required this.percentage,
     required this.fixedDelay,
   });
 
   final TfArg<num> percentage;
 
-  final ComputeUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelay
-  fixedDelay;
+  final ComputeUrlMapDelayFixedDelay fixedDelay;
 
   Map<String, Object?> encode() => {
     'percentage': percentage.toTfJson(),
@@ -2270,12 +1350,10 @@ final class ComputeUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelay
 
 /// Typed helper for the `path_matcher.path_rule.route_action.fault_injection_policy.delay.fixed_delay` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelay {
-  const ComputeUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelay({
-    this.nanos,
-    required this.seconds,
-  });
+final class ComputeUrlMapDelayFixedDelay {
+  const ComputeUrlMapDelayFixedDelay({this.nanos, required this.seconds});
 
   final TfArg<num>? nanos;
 
@@ -2284,48 +1362,14 @@ final class ComputeUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelay
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.path_rule.route_action.max_stream_duration` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherPathRuleRouteActionMaxStreamDuration {
-  const ComputeUrlMapPathMatcherPathRuleRouteActionMaxStreamDuration({
-    this.nanos,
-    required this.seconds,
-  });
-
-  final TfArg<num>? nanos;
-
-  final TfArg<String> seconds;
-
-  Map<String, Object?> encode() => {
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': seconds.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.path_rule.route_action.request_mirror_policy` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicy {
-  const ComputeUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicy({
-    required this.backendService,
-  });
-
-  final TfArg<String> backendService;
-
-  Map<String, Object?> encode() => {
-    'backend_service': backendService.toTfJson(),
   };
 }
 
 /// Typed helper for the `path_matcher.path_rule.route_action.retry_policy` block of
 /// `google_compute_url_map` (derived from provider schema).
 @immutable
-final class ComputeUrlMapPathMatcherPathRuleRouteActionRetryPolicy {
-  const ComputeUrlMapPathMatcherPathRuleRouteActionRetryPolicy({
+final class ComputeUrlMapPathRuleRetryPolicy {
+  const ComputeUrlMapPathRuleRetryPolicy({
     this.numRetries,
     this.retryConditions,
     this.perTryTimeout,
@@ -2335,8 +1379,7 @@ final class ComputeUrlMapPathMatcherPathRuleRouteActionRetryPolicy {
 
   final TfArg<List<String>>? retryConditions;
 
-  final ComputeUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeout?
-  perTryTimeout;
+  final ComputeUrlMapRetryPolicyPerTryTimeout? perTryTimeout;
 
   Map<String, Object?> encode() => {
     'num_retries': ?numRetries?.toTfJson(),
@@ -2347,9 +1390,10 @@ final class ComputeUrlMapPathMatcherPathRuleRouteActionRetryPolicy {
 
 /// Typed helper for the `path_matcher.path_rule.route_action.retry_policy.per_try_timeout` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeout {
-  const ComputeUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeout({
+final class ComputeUrlMapRetryPolicyPerTryTimeout {
+  const ComputeUrlMapRetryPolicyPerTryTimeout({
     this.nanos,
     required this.seconds,
   });
@@ -2366,12 +1410,10 @@ final class ComputeUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeout 
 
 /// Typed helper for the `path_matcher.path_rule.route_action.timeout` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeUrlMapPathMatcherPathRuleRouteActionTimeout {
-  const ComputeUrlMapPathMatcherPathRuleRouteActionTimeout({
-    this.nanos,
-    required this.seconds,
-  });
+final class ComputeUrlMapRouteActionTimeout {
+  const ComputeUrlMapRouteActionTimeout({this.nanos, required this.seconds});
 
   final TfArg<num>? nanos;
 
@@ -2383,30 +1425,12 @@ final class ComputeUrlMapPathMatcherPathRuleRouteActionTimeout {
   };
 }
 
-/// Typed helper for the `path_matcher.path_rule.route_action.url_rewrite` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherPathRuleRouteActionUrlRewrite {
-  const ComputeUrlMapPathMatcherPathRuleRouteActionUrlRewrite({
-    this.hostRewrite,
-    this.pathPrefixRewrite,
-  });
-
-  final TfArg<String>? hostRewrite;
-
-  final TfArg<String>? pathPrefixRewrite;
-
-  Map<String, Object?> encode() => {
-    'host_rewrite': ?hostRewrite?.toTfJson(),
-    'path_prefix_rewrite': ?pathPrefixRewrite?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `path_matcher.path_rule.route_action.weighted_backend_services` block of
 /// `google_compute_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class ComputeUrlMapPathMatcherPathRuleRouteActionWeightedBackendServices {
-  const ComputeUrlMapPathMatcherPathRuleRouteActionWeightedBackendServices({
+final class ComputeUrlMapRouteActionWeightedBackendServices {
+  const ComputeUrlMapRouteActionWeightedBackendServices({
     required this.backendService,
     required this.weight,
     this.headerAction,
@@ -2416,8 +1440,7 @@ final class ComputeUrlMapPathMatcherPathRuleRouteActionWeightedBackendServices {
 
   final TfArg<num> weight;
 
-  final ComputeUrlMapPathMatcherPathRuleRouteActionWeightedBackendServicesHeaderAction?
-  headerAction;
+  final ComputeUrlMapHeaderAction? headerAction;
 
   Map<String, Object?> encode() => {
     'backend_service': backendService.toTfJson(),
@@ -2426,96 +1449,11 @@ final class ComputeUrlMapPathMatcherPathRuleRouteActionWeightedBackendServices {
   };
 }
 
-/// Typed helper for the `path_matcher.path_rule.route_action.weighted_backend_services.header_action` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherPathRuleRouteActionWeightedBackendServicesHeaderAction {
-  const ComputeUrlMapPathMatcherPathRuleRouteActionWeightedBackendServicesHeaderAction({
-    this.requestHeadersToRemove,
-    this.responseHeadersToRemove,
-    this.requestHeadersToAdd,
-    this.responseHeadersToAdd,
-  });
-
-  final TfArg<List<String>>? requestHeadersToRemove;
-
-  final TfArg<List<String>>? responseHeadersToRemove;
-
-  final List<
-    ComputeUrlMapPathMatcherPathRuleRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd
-  >?
-  requestHeadersToAdd;
-
-  final List<
-    ComputeUrlMapPathMatcherPathRuleRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd
-  >?
-  responseHeadersToAdd;
-
-  Map<String, Object?> encode() => {
-    'request_headers_to_remove': ?requestHeadersToRemove?.toTfJson(),
-    'response_headers_to_remove': ?responseHeadersToRemove?.toTfJson(),
-    if (requestHeadersToAdd != null)
-      'request_headers_to_add': [
-        for (final e in requestHeadersToAdd!) e.encode(),
-      ],
-    if (responseHeadersToAdd != null)
-      'response_headers_to_add': [
-        for (final e in responseHeadersToAdd!) e.encode(),
-      ],
-  };
-}
-
-/// Typed helper for the `path_matcher.path_rule.route_action.weighted_backend_services.header_action.request_headers_to_add` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherPathRuleRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd {
-  const ComputeUrlMapPathMatcherPathRuleRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd({
-    required this.headerName,
-    required this.headerValue,
-    required this.replace,
-  });
-
-  final TfArg<String> headerName;
-
-  final TfArg<String> headerValue;
-
-  final TfArg<bool> replace;
-
-  Map<String, Object?> encode() => {
-    'header_name': headerName.toTfJson(),
-    'header_value': headerValue.toTfJson(),
-    'replace': replace.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.path_rule.route_action.weighted_backend_services.header_action.response_headers_to_add` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherPathRuleRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd {
-  const ComputeUrlMapPathMatcherPathRuleRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd({
-    required this.headerName,
-    required this.headerValue,
-    required this.replace,
-  });
-
-  final TfArg<String> headerName;
-
-  final TfArg<String> headerValue;
-
-  final TfArg<bool> replace;
-
-  Map<String, Object?> encode() => {
-    'header_name': headerName.toTfJson(),
-    'header_value': headerValue.toTfJson(),
-    'replace': replace.toTfJson(),
-  };
-}
-
 /// Typed helper for the `path_matcher.path_rule.url_redirect` block of
 /// `google_compute_url_map` (derived from provider schema).
 @immutable
-final class ComputeUrlMapPathMatcherPathRuleUrlRedirect {
-  const ComputeUrlMapPathMatcherPathRuleUrlRedirect({
+final class ComputeUrlMapPathRuleUrlRedirect {
+  const ComputeUrlMapPathRuleUrlRedirect({
     this.hostRedirect,
     this.httpsRedirect,
     this.pathRedirect,
@@ -2549,8 +1487,8 @@ final class ComputeUrlMapPathMatcherPathRuleUrlRedirect {
 /// Typed helper for the `path_matcher.route_rules` block of
 /// `google_compute_url_map` (derived from provider schema).
 @immutable
-final class ComputeUrlMapPathMatcherRouteRules {
-  const ComputeUrlMapPathMatcherRouteRules({
+final class ComputeUrlMapRouteRules {
+  const ComputeUrlMapRouteRules({
     required this.priority,
     this.service,
     this.customErrorResponsePolicy,
@@ -2564,16 +1502,15 @@ final class ComputeUrlMapPathMatcherRouteRules {
 
   final TfArg<String>? service;
 
-  final ComputeUrlMapPathMatcherRouteRulesCustomErrorResponsePolicy?
-  customErrorResponsePolicy;
+  final ComputeUrlMapCustomErrorResponsePolicy? customErrorResponsePolicy;
 
-  final ComputeUrlMapPathMatcherRouteRulesHeaderAction? headerAction;
+  final ComputeUrlMapHeaderAction? headerAction;
 
-  final List<ComputeUrlMapPathMatcherRouteRulesMatchRules>? matchRules;
+  final List<ComputeUrlMapMatchRules>? matchRules;
 
-  final ComputeUrlMapPathMatcherRouteRulesRouteAction? routeAction;
+  final ComputeUrlMapRouteRulesRouteAction? routeAction;
 
-  final ComputeUrlMapPathMatcherRouteRulesUrlRedirect? urlRedirect;
+  final ComputeUrlMapRouteRulesUrlRedirect? urlRedirect;
 
   Map<String, Object?> encode() => {
     'priority': priority.toTfJson(),
@@ -2587,140 +1524,11 @@ final class ComputeUrlMapPathMatcherRouteRules {
   };
 }
 
-/// Typed helper for the `path_matcher.route_rules.custom_error_response_policy` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherRouteRulesCustomErrorResponsePolicy {
-  const ComputeUrlMapPathMatcherRouteRulesCustomErrorResponsePolicy({
-    this.errorService,
-    this.errorResponseRule,
-  });
-
-  final TfArg<String>? errorService;
-
-  final List<
-    ComputeUrlMapPathMatcherRouteRulesCustomErrorResponsePolicyErrorResponseRule
-  >?
-  errorResponseRule;
-
-  Map<String, Object?> encode() => {
-    'error_service': ?errorService?.toTfJson(),
-    if (errorResponseRule != null)
-      'error_response_rule': [for (final e in errorResponseRule!) e.encode()],
-  };
-}
-
-/// Typed helper for the `path_matcher.route_rules.custom_error_response_policy.error_response_rule` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherRouteRulesCustomErrorResponsePolicyErrorResponseRule {
-  const ComputeUrlMapPathMatcherRouteRulesCustomErrorResponsePolicyErrorResponseRule({
-    this.matchResponseCodes,
-    this.overrideResponseCode,
-    this.path,
-  });
-
-  final TfArg<List<String>>? matchResponseCodes;
-
-  final TfArg<num>? overrideResponseCode;
-
-  final TfArg<String>? path;
-
-  Map<String, Object?> encode() => {
-    'match_response_codes': ?matchResponseCodes?.toTfJson(),
-    'override_response_code': ?overrideResponseCode?.toTfJson(),
-    'path': ?path?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.route_rules.header_action` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherRouteRulesHeaderAction {
-  const ComputeUrlMapPathMatcherRouteRulesHeaderAction({
-    this.requestHeadersToRemove,
-    this.responseHeadersToRemove,
-    this.requestHeadersToAdd,
-    this.responseHeadersToAdd,
-  });
-
-  final TfArg<List<String>>? requestHeadersToRemove;
-
-  final TfArg<List<String>>? responseHeadersToRemove;
-
-  final List<ComputeUrlMapPathMatcherRouteRulesHeaderActionRequestHeadersToAdd>?
-  requestHeadersToAdd;
-
-  final List<
-    ComputeUrlMapPathMatcherRouteRulesHeaderActionResponseHeadersToAdd
-  >?
-  responseHeadersToAdd;
-
-  Map<String, Object?> encode() => {
-    'request_headers_to_remove': ?requestHeadersToRemove?.toTfJson(),
-    'response_headers_to_remove': ?responseHeadersToRemove?.toTfJson(),
-    if (requestHeadersToAdd != null)
-      'request_headers_to_add': [
-        for (final e in requestHeadersToAdd!) e.encode(),
-      ],
-    if (responseHeadersToAdd != null)
-      'response_headers_to_add': [
-        for (final e in responseHeadersToAdd!) e.encode(),
-      ],
-  };
-}
-
-/// Typed helper for the `path_matcher.route_rules.header_action.request_headers_to_add` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherRouteRulesHeaderActionRequestHeadersToAdd {
-  const ComputeUrlMapPathMatcherRouteRulesHeaderActionRequestHeadersToAdd({
-    required this.headerName,
-    required this.headerValue,
-    required this.replace,
-  });
-
-  final TfArg<String> headerName;
-
-  final TfArg<String> headerValue;
-
-  final TfArg<bool> replace;
-
-  Map<String, Object?> encode() => {
-    'header_name': headerName.toTfJson(),
-    'header_value': headerValue.toTfJson(),
-    'replace': replace.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.route_rules.header_action.response_headers_to_add` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherRouteRulesHeaderActionResponseHeadersToAdd {
-  const ComputeUrlMapPathMatcherRouteRulesHeaderActionResponseHeadersToAdd({
-    required this.headerName,
-    required this.headerValue,
-    required this.replace,
-  });
-
-  final TfArg<String> headerName;
-
-  final TfArg<String> headerValue;
-
-  final TfArg<bool> replace;
-
-  Map<String, Object?> encode() => {
-    'header_name': headerName.toTfJson(),
-    'header_value': headerValue.toTfJson(),
-    'replace': replace.toTfJson(),
-  };
-}
-
 /// Typed helper for the `path_matcher.route_rules.match_rules` block of
 /// `google_compute_url_map` (derived from provider schema).
 @immutable
-final class ComputeUrlMapPathMatcherRouteRulesMatchRules {
-  const ComputeUrlMapPathMatcherRouteRulesMatchRules({
+final class ComputeUrlMapMatchRules {
+  const ComputeUrlMapMatchRules({
     this.fullPathMatch,
     this.ignoreCase,
     this.pathTemplateMatch,
@@ -2741,14 +1549,11 @@ final class ComputeUrlMapPathMatcherRouteRulesMatchRules {
 
   final TfArg<String>? regexMatch;
 
-  final List<ComputeUrlMapPathMatcherRouteRulesMatchRulesHeaderMatches>?
-  headerMatches;
+  final List<ComputeUrlMapHeaderMatches>? headerMatches;
 
-  final List<ComputeUrlMapPathMatcherRouteRulesMatchRulesMetadataFilters>?
-  metadataFilters;
+  final List<ComputeUrlMapMetadataFilters>? metadataFilters;
 
-  final List<ComputeUrlMapPathMatcherRouteRulesMatchRulesQueryParameterMatches>?
-  queryParameterMatches;
+  final List<ComputeUrlMapQueryParameterMatches>? queryParameterMatches;
 
   Map<String, Object?> encode() => {
     'full_path_match': ?fullPathMatch?.toTfJson(),
@@ -2770,8 +1575,8 @@ final class ComputeUrlMapPathMatcherRouteRulesMatchRules {
 /// Typed helper for the `path_matcher.route_rules.match_rules.header_matches` block of
 /// `google_compute_url_map` (derived from provider schema).
 @immutable
-final class ComputeUrlMapPathMatcherRouteRulesMatchRulesHeaderMatches {
-  const ComputeUrlMapPathMatcherRouteRulesMatchRulesHeaderMatches({
+final class ComputeUrlMapHeaderMatches {
+  const ComputeUrlMapHeaderMatches({
     this.exactMatch,
     required this.headerName,
     this.invertMatch,
@@ -2796,8 +1601,7 @@ final class ComputeUrlMapPathMatcherRouteRulesMatchRulesHeaderMatches {
 
   final TfArg<String>? suffixMatch;
 
-  final ComputeUrlMapPathMatcherRouteRulesMatchRulesHeaderMatchesRangeMatch?
-  rangeMatch;
+  final ComputeUrlMapRangeMatch? rangeMatch;
 
   Map<String, Object?> encode() => {
     'exact_match': ?exactMatch?.toTfJson(),
@@ -2814,8 +1618,8 @@ final class ComputeUrlMapPathMatcherRouteRulesMatchRulesHeaderMatches {
 /// Typed helper for the `path_matcher.route_rules.match_rules.header_matches.range_match` block of
 /// `google_compute_url_map` (derived from provider schema).
 @immutable
-final class ComputeUrlMapPathMatcherRouteRulesMatchRulesHeaderMatchesRangeMatch {
-  const ComputeUrlMapPathMatcherRouteRulesMatchRulesHeaderMatchesRangeMatch({
+final class ComputeUrlMapRangeMatch {
+  const ComputeUrlMapRangeMatch({
     required this.rangeEnd,
     required this.rangeStart,
   });
@@ -2833,18 +1637,15 @@ final class ComputeUrlMapPathMatcherRouteRulesMatchRulesHeaderMatchesRangeMatch 
 /// Typed helper for the `path_matcher.route_rules.match_rules.metadata_filters` block of
 /// `google_compute_url_map` (derived from provider schema).
 @immutable
-final class ComputeUrlMapPathMatcherRouteRulesMatchRulesMetadataFilters {
-  const ComputeUrlMapPathMatcherRouteRulesMatchRulesMetadataFilters({
+final class ComputeUrlMapMetadataFilters {
+  const ComputeUrlMapMetadataFilters({
     required this.filterMatchCriteria,
     required this.filterLabels,
   });
 
   final TfArg<UrlMapMetadataFilterMatchCriteria> filterMatchCriteria;
 
-  final List<
-    ComputeUrlMapPathMatcherRouteRulesMatchRulesMetadataFiltersFilterLabels
-  >
-  filterLabels;
+  final List<ComputeUrlMapFilterLabels> filterLabels;
 
   Map<String, Object?> encode() => {
     'filter_match_criteria': filterMatchCriteria.toTfJson(),
@@ -2855,11 +1656,8 @@ final class ComputeUrlMapPathMatcherRouteRulesMatchRulesMetadataFilters {
 /// Typed helper for the `path_matcher.route_rules.match_rules.metadata_filters.filter_labels` block of
 /// `google_compute_url_map` (derived from provider schema).
 @immutable
-final class ComputeUrlMapPathMatcherRouteRulesMatchRulesMetadataFiltersFilterLabels {
-  const ComputeUrlMapPathMatcherRouteRulesMatchRulesMetadataFiltersFilterLabels({
-    required this.name,
-    required this.value,
-  });
+final class ComputeUrlMapFilterLabels {
+  const ComputeUrlMapFilterLabels({required this.name, required this.value});
 
   final TfArg<String> name;
 
@@ -2874,8 +1672,8 @@ final class ComputeUrlMapPathMatcherRouteRulesMatchRulesMetadataFiltersFilterLab
 /// Typed helper for the `path_matcher.route_rules.match_rules.query_parameter_matches` block of
 /// `google_compute_url_map` (derived from provider schema).
 @immutable
-final class ComputeUrlMapPathMatcherRouteRulesMatchRulesQueryParameterMatches {
-  const ComputeUrlMapPathMatcherRouteRulesMatchRulesQueryParameterMatches({
+final class ComputeUrlMapQueryParameterMatches {
+  const ComputeUrlMapQueryParameterMatches({
     this.exactMatch,
     required this.name,
     this.presentMatch,
@@ -2901,8 +1699,8 @@ final class ComputeUrlMapPathMatcherRouteRulesMatchRulesQueryParameterMatches {
 /// Typed helper for the `path_matcher.route_rules.route_action` block of
 /// `google_compute_url_map` (derived from provider schema).
 @immutable
-final class ComputeUrlMapPathMatcherRouteRulesRouteAction {
-  const ComputeUrlMapPathMatcherRouteRulesRouteAction({
+final class ComputeUrlMapRouteRulesRouteAction {
+  const ComputeUrlMapRouteRulesRouteAction({
     this.cachePolicy,
     this.corsPolicy,
     this.faultInjectionPolicy,
@@ -2914,28 +1712,23 @@ final class ComputeUrlMapPathMatcherRouteRulesRouteAction {
     this.weightedBackendServices,
   });
 
-  final ComputeUrlMapPathMatcherRouteRulesRouteActionCachePolicy? cachePolicy;
+  final ComputeUrlMapDefaultRouteActionCachePolicy? cachePolicy;
 
-  final ComputeUrlMapPathMatcherRouteRulesRouteActionCorsPolicy? corsPolicy;
+  final ComputeUrlMapCorsPolicy? corsPolicy;
 
-  final ComputeUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicy?
-  faultInjectionPolicy;
+  final ComputeUrlMapRouteRulesFaultInjectionPolicy? faultInjectionPolicy;
 
-  final ComputeUrlMapPathMatcherRouteRulesRouteActionMaxStreamDuration?
-  maxStreamDuration;
+  final ComputeUrlMapMaxStreamDuration? maxStreamDuration;
 
-  final ComputeUrlMapPathMatcherRouteRulesRouteActionRequestMirrorPolicy?
-  requestMirrorPolicy;
+  final ComputeUrlMapRequestMirrorPolicy? requestMirrorPolicy;
 
-  final ComputeUrlMapPathMatcherRouteRulesRouteActionRetryPolicy? retryPolicy;
+  final ComputeUrlMapRouteRulesRetryPolicy? retryPolicy;
 
-  final ComputeUrlMapPathMatcherRouteRulesRouteActionTimeout? timeout;
+  final ComputeUrlMapRouteActionTimeout? timeout;
 
-  final ComputeUrlMapPathMatcherRouteRulesRouteActionUrlRewrite? urlRewrite;
+  final ComputeUrlMapRouteActionUrlRewrite? urlRewrite;
 
-  final List<
-    ComputeUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServices
-  >?
+  final List<ComputeUrlMapRouteActionWeightedBackendServices>?
   weightedBackendServices;
 
   Map<String, Object?> encode() => {
@@ -2954,279 +1747,15 @@ final class ComputeUrlMapPathMatcherRouteRulesRouteAction {
   };
 }
 
-/// Typed helper for the `path_matcher.route_rules.route_action.cache_policy` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherRouteRulesRouteActionCachePolicy {
-  const ComputeUrlMapPathMatcherRouteRulesRouteActionCachePolicy({
-    this.cacheBypassRequestHeaderNames,
-    this.cacheMode,
-    this.negativeCaching,
-    this.requestCoalescing,
-    this.cacheKeyPolicy,
-    this.clientTtl,
-    this.defaultTtl,
-    this.maxTtl,
-    this.negativeCachingPolicy,
-    this.serveWhileStale,
-  });
-
-  final TfArg<List<String>>? cacheBypassRequestHeaderNames;
-
-  final TfArg<UrlMapCacheMode>? cacheMode;
-
-  final TfArg<bool>? negativeCaching;
-
-  final TfArg<bool>? requestCoalescing;
-
-  final ComputeUrlMapPathMatcherRouteRulesRouteActionCachePolicyCacheKeyPolicy?
-  cacheKeyPolicy;
-
-  final ComputeUrlMapPathMatcherRouteRulesRouteActionCachePolicyClientTtl?
-  clientTtl;
-
-  final ComputeUrlMapPathMatcherRouteRulesRouteActionCachePolicyDefaultTtl?
-  defaultTtl;
-
-  final ComputeUrlMapPathMatcherRouteRulesRouteActionCachePolicyMaxTtl? maxTtl;
-
-  final List<
-    ComputeUrlMapPathMatcherRouteRulesRouteActionCachePolicyNegativeCachingPolicy
-  >?
-  negativeCachingPolicy;
-
-  final ComputeUrlMapPathMatcherRouteRulesRouteActionCachePolicyServeWhileStale?
-  serveWhileStale;
-
-  Map<String, Object?> encode() => {
-    'cache_bypass_request_header_names': ?cacheBypassRequestHeaderNames
-        ?.toTfJson(),
-    'cache_mode': ?cacheMode?.toTfJson(),
-    'negative_caching': ?negativeCaching?.toTfJson(),
-    'request_coalescing': ?requestCoalescing?.toTfJson(),
-    'cache_key_policy': ?cacheKeyPolicy?.encode(),
-    'client_ttl': ?clientTtl?.encode(),
-    'default_ttl': ?defaultTtl?.encode(),
-    'max_ttl': ?maxTtl?.encode(),
-    if (negativeCachingPolicy != null)
-      'negative_caching_policy': [
-        for (final e in negativeCachingPolicy!) e.encode(),
-      ],
-    'serve_while_stale': ?serveWhileStale?.encode(),
-  };
-}
-
-/// Typed helper for the `path_matcher.route_rules.route_action.cache_policy.cache_key_policy` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherRouteRulesRouteActionCachePolicyCacheKeyPolicy {
-  const ComputeUrlMapPathMatcherRouteRulesRouteActionCachePolicyCacheKeyPolicy({
-    this.excludedQueryParameters,
-    this.includeHost,
-    this.includeProtocol,
-    this.includeQueryString,
-    this.includedCookieNames,
-    this.includedHeaderNames,
-    this.includedQueryParameters,
-  });
-
-  final TfArg<List<String>>? excludedQueryParameters;
-
-  final TfArg<bool>? includeHost;
-
-  final TfArg<bool>? includeProtocol;
-
-  final TfArg<bool>? includeQueryString;
-
-  final TfArg<List<String>>? includedCookieNames;
-
-  final TfArg<List<String>>? includedHeaderNames;
-
-  final TfArg<List<String>>? includedQueryParameters;
-
-  Map<String, Object?> encode() => {
-    'excluded_query_parameters': ?excludedQueryParameters?.toTfJson(),
-    'include_host': ?includeHost?.toTfJson(),
-    'include_protocol': ?includeProtocol?.toTfJson(),
-    'include_query_string': ?includeQueryString?.toTfJson(),
-    'included_cookie_names': ?includedCookieNames?.toTfJson(),
-    'included_header_names': ?includedHeaderNames?.toTfJson(),
-    'included_query_parameters': ?includedQueryParameters?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.route_rules.route_action.cache_policy.client_ttl` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherRouteRulesRouteActionCachePolicyClientTtl {
-  const ComputeUrlMapPathMatcherRouteRulesRouteActionCachePolicyClientTtl({
-    this.nanos,
-    required this.seconds,
-  });
-
-  final TfArg<num>? nanos;
-
-  final TfArg<String> seconds;
-
-  Map<String, Object?> encode() => {
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': seconds.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.route_rules.route_action.cache_policy.default_ttl` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherRouteRulesRouteActionCachePolicyDefaultTtl {
-  const ComputeUrlMapPathMatcherRouteRulesRouteActionCachePolicyDefaultTtl({
-    this.nanos,
-    required this.seconds,
-  });
-
-  final TfArg<num>? nanos;
-
-  final TfArg<String> seconds;
-
-  Map<String, Object?> encode() => {
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': seconds.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.route_rules.route_action.cache_policy.max_ttl` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherRouteRulesRouteActionCachePolicyMaxTtl {
-  const ComputeUrlMapPathMatcherRouteRulesRouteActionCachePolicyMaxTtl({
-    this.nanos,
-    required this.seconds,
-  });
-
-  final TfArg<num>? nanos;
-
-  final TfArg<String> seconds;
-
-  Map<String, Object?> encode() => {
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': seconds.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.route_rules.route_action.cache_policy.negative_caching_policy` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherRouteRulesRouteActionCachePolicyNegativeCachingPolicy {
-  const ComputeUrlMapPathMatcherRouteRulesRouteActionCachePolicyNegativeCachingPolicy({
-    this.code,
-    this.ttl,
-  });
-
-  final TfArg<num>? code;
-
-  final ComputeUrlMapPathMatcherRouteRulesRouteActionCachePolicyNegativeCachingPolicyTtl?
-  ttl;
-
-  Map<String, Object?> encode() => {
-    'code': ?code?.toTfJson(),
-    'ttl': ?ttl?.encode(),
-  };
-}
-
-/// Typed helper for the `path_matcher.route_rules.route_action.cache_policy.negative_caching_policy.ttl` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherRouteRulesRouteActionCachePolicyNegativeCachingPolicyTtl {
-  const ComputeUrlMapPathMatcherRouteRulesRouteActionCachePolicyNegativeCachingPolicyTtl({
-    this.nanos,
-    required this.seconds,
-  });
-
-  final TfArg<num>? nanos;
-
-  final TfArg<String> seconds;
-
-  Map<String, Object?> encode() => {
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': seconds.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.route_rules.route_action.cache_policy.serve_while_stale` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherRouteRulesRouteActionCachePolicyServeWhileStale {
-  const ComputeUrlMapPathMatcherRouteRulesRouteActionCachePolicyServeWhileStale({
-    this.nanos,
-    required this.seconds,
-  });
-
-  final TfArg<num>? nanos;
-
-  final TfArg<String> seconds;
-
-  Map<String, Object?> encode() => {
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': seconds.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.route_rules.route_action.cors_policy` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherRouteRulesRouteActionCorsPolicy {
-  const ComputeUrlMapPathMatcherRouteRulesRouteActionCorsPolicy({
-    this.allowCredentials,
-    this.allowHeaders,
-    this.allowMethods,
-    this.allowOriginRegexes,
-    this.allowOrigins,
-    this.disabled,
-    this.exposeHeaders,
-    this.maxAge,
-  });
-
-  final TfArg<bool>? allowCredentials;
-
-  final TfArg<List<String>>? allowHeaders;
-
-  final TfArg<List<String>>? allowMethods;
-
-  final TfArg<List<String>>? allowOriginRegexes;
-
-  final TfArg<List<String>>? allowOrigins;
-
-  final TfArg<bool>? disabled;
-
-  final TfArg<List<String>>? exposeHeaders;
-
-  final TfArg<num>? maxAge;
-
-  Map<String, Object?> encode() => {
-    'allow_credentials': ?allowCredentials?.toTfJson(),
-    'allow_headers': ?allowHeaders?.toTfJson(),
-    'allow_methods': ?allowMethods?.toTfJson(),
-    'allow_origin_regexes': ?allowOriginRegexes?.toTfJson(),
-    'allow_origins': ?allowOrigins?.toTfJson(),
-    'disabled': ?disabled?.toTfJson(),
-    'expose_headers': ?exposeHeaders?.toTfJson(),
-    'max_age': ?maxAge?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `path_matcher.route_rules.route_action.fault_injection_policy` block of
 /// `google_compute_url_map` (derived from provider schema).
 @immutable
-final class ComputeUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicy {
-  const ComputeUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicy({
-    this.abort,
-    this.delay,
-  });
+final class ComputeUrlMapRouteRulesFaultInjectionPolicy {
+  const ComputeUrlMapRouteRulesFaultInjectionPolicy({this.abort, this.delay});
 
-  final ComputeUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicyAbort?
-  abort;
+  final ComputeUrlMapAbort? abort;
 
-  final ComputeUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicyDelay?
-  delay;
+  final ComputeUrlMapRouteRulesDelay? delay;
 
   Map<String, Object?> encode() => {
     'abort': ?abort?.encode(),
@@ -3234,38 +1763,15 @@ final class ComputeUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicy {
   };
 }
 
-/// Typed helper for the `path_matcher.route_rules.route_action.fault_injection_policy.abort` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicyAbort {
-  const ComputeUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicyAbort({
-    this.httpStatus,
-    this.percentage,
-  });
-
-  final TfArg<num>? httpStatus;
-
-  final TfArg<num>? percentage;
-
-  Map<String, Object?> encode() => {
-    'http_status': ?httpStatus?.toTfJson(),
-    'percentage': ?percentage?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `path_matcher.route_rules.route_action.fault_injection_policy.delay` block of
 /// `google_compute_url_map` (derived from provider schema).
 @immutable
-final class ComputeUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicyDelay {
-  const ComputeUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicyDelay({
-    this.percentage,
-    this.fixedDelay,
-  });
+final class ComputeUrlMapRouteRulesDelay {
+  const ComputeUrlMapRouteRulesDelay({this.percentage, this.fixedDelay});
 
   final TfArg<num>? percentage;
 
-  final ComputeUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicyDelayFixedDelay?
-  fixedDelay;
+  final ComputeUrlMapDelayFixedDelay? fixedDelay;
 
   Map<String, Object?> encode() => {
     'percentage': ?percentage?.toTfJson(),
@@ -3273,64 +1779,11 @@ final class ComputeUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicyDel
   };
 }
 
-/// Typed helper for the `path_matcher.route_rules.route_action.fault_injection_policy.delay.fixed_delay` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicyDelayFixedDelay {
-  const ComputeUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicyDelayFixedDelay({
-    this.nanos,
-    required this.seconds,
-  });
-
-  final TfArg<num>? nanos;
-
-  final TfArg<String> seconds;
-
-  Map<String, Object?> encode() => {
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': seconds.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.route_rules.route_action.max_stream_duration` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherRouteRulesRouteActionMaxStreamDuration {
-  const ComputeUrlMapPathMatcherRouteRulesRouteActionMaxStreamDuration({
-    this.nanos,
-    required this.seconds,
-  });
-
-  final TfArg<num>? nanos;
-
-  final TfArg<String> seconds;
-
-  Map<String, Object?> encode() => {
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': seconds.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.route_rules.route_action.request_mirror_policy` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherRouteRulesRouteActionRequestMirrorPolicy {
-  const ComputeUrlMapPathMatcherRouteRulesRouteActionRequestMirrorPolicy({
-    required this.backendService,
-  });
-
-  final TfArg<String> backendService;
-
-  Map<String, Object?> encode() => {
-    'backend_service': backendService.toTfJson(),
-  };
-}
-
 /// Typed helper for the `path_matcher.route_rules.route_action.retry_policy` block of
 /// `google_compute_url_map` (derived from provider schema).
 @immutable
-final class ComputeUrlMapPathMatcherRouteRulesRouteActionRetryPolicy {
-  const ComputeUrlMapPathMatcherRouteRulesRouteActionRetryPolicy({
+final class ComputeUrlMapRouteRulesRetryPolicy {
+  const ComputeUrlMapRouteRulesRetryPolicy({
     required this.numRetries,
     this.retryConditions,
     this.perTryTimeout,
@@ -3340,8 +1793,7 @@ final class ComputeUrlMapPathMatcherRouteRulesRouteActionRetryPolicy {
 
   final TfArg<List<String>>? retryConditions;
 
-  final ComputeUrlMapPathMatcherRouteRulesRouteActionRetryPolicyPerTryTimeout?
-  perTryTimeout;
+  final ComputeUrlMapRetryPolicyPerTryTimeout? perTryTimeout;
 
   Map<String, Object?> encode() => {
     'num_retries': numRetries.toTfJson(),
@@ -3350,49 +1802,11 @@ final class ComputeUrlMapPathMatcherRouteRulesRouteActionRetryPolicy {
   };
 }
 
-/// Typed helper for the `path_matcher.route_rules.route_action.retry_policy.per_try_timeout` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherRouteRulesRouteActionRetryPolicyPerTryTimeout {
-  const ComputeUrlMapPathMatcherRouteRulesRouteActionRetryPolicyPerTryTimeout({
-    this.nanos,
-    required this.seconds,
-  });
-
-  final TfArg<num>? nanos;
-
-  final TfArg<String> seconds;
-
-  Map<String, Object?> encode() => {
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': seconds.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.route_rules.route_action.timeout` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherRouteRulesRouteActionTimeout {
-  const ComputeUrlMapPathMatcherRouteRulesRouteActionTimeout({
-    this.nanos,
-    required this.seconds,
-  });
-
-  final TfArg<num>? nanos;
-
-  final TfArg<String> seconds;
-
-  Map<String, Object?> encode() => {
-    'nanos': ?nanos?.toTfJson(),
-    'seconds': seconds.toTfJson(),
-  };
-}
-
 /// Typed helper for the `path_matcher.route_rules.route_action.url_rewrite` block of
 /// `google_compute_url_map` (derived from provider schema).
 @immutable
-final class ComputeUrlMapPathMatcherRouteRulesRouteActionUrlRewrite {
-  const ComputeUrlMapPathMatcherRouteRulesRouteActionUrlRewrite({
+final class ComputeUrlMapRouteActionUrlRewrite {
+  const ComputeUrlMapRouteActionUrlRewrite({
     this.hostRewrite,
     this.pathPrefixRewrite,
     this.pathTemplateRewrite,
@@ -3411,120 +1825,11 @@ final class ComputeUrlMapPathMatcherRouteRulesRouteActionUrlRewrite {
   };
 }
 
-/// Typed helper for the `path_matcher.route_rules.route_action.weighted_backend_services` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServices {
-  const ComputeUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServices({
-    required this.backendService,
-    required this.weight,
-    this.headerAction,
-  });
-
-  final TfArg<String> backendService;
-
-  final TfArg<num> weight;
-
-  final ComputeUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServicesHeaderAction?
-  headerAction;
-
-  Map<String, Object?> encode() => {
-    'backend_service': backendService.toTfJson(),
-    'weight': weight.toTfJson(),
-    'header_action': ?headerAction?.encode(),
-  };
-}
-
-/// Typed helper for the `path_matcher.route_rules.route_action.weighted_backend_services.header_action` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServicesHeaderAction {
-  const ComputeUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServicesHeaderAction({
-    this.requestHeadersToRemove,
-    this.responseHeadersToRemove,
-    this.requestHeadersToAdd,
-    this.responseHeadersToAdd,
-  });
-
-  final TfArg<List<String>>? requestHeadersToRemove;
-
-  final TfArg<List<String>>? responseHeadersToRemove;
-
-  final List<
-    ComputeUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd
-  >?
-  requestHeadersToAdd;
-
-  final List<
-    ComputeUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd
-  >?
-  responseHeadersToAdd;
-
-  Map<String, Object?> encode() => {
-    'request_headers_to_remove': ?requestHeadersToRemove?.toTfJson(),
-    'response_headers_to_remove': ?responseHeadersToRemove?.toTfJson(),
-    if (requestHeadersToAdd != null)
-      'request_headers_to_add': [
-        for (final e in requestHeadersToAdd!) e.encode(),
-      ],
-    if (responseHeadersToAdd != null)
-      'response_headers_to_add': [
-        for (final e in responseHeadersToAdd!) e.encode(),
-      ],
-  };
-}
-
-/// Typed helper for the `path_matcher.route_rules.route_action.weighted_backend_services.header_action.request_headers_to_add` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd {
-  const ComputeUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd({
-    required this.headerName,
-    required this.headerValue,
-    required this.replace,
-  });
-
-  final TfArg<String> headerName;
-
-  final TfArg<String> headerValue;
-
-  final TfArg<bool> replace;
-
-  Map<String, Object?> encode() => {
-    'header_name': headerName.toTfJson(),
-    'header_value': headerValue.toTfJson(),
-    'replace': replace.toTfJson(),
-  };
-}
-
-/// Typed helper for the `path_matcher.route_rules.route_action.weighted_backend_services.header_action.response_headers_to_add` block of
-/// `google_compute_url_map` (derived from provider schema).
-@immutable
-final class ComputeUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd {
-  const ComputeUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd({
-    required this.headerName,
-    required this.headerValue,
-    required this.replace,
-  });
-
-  final TfArg<String> headerName;
-
-  final TfArg<String> headerValue;
-
-  final TfArg<bool> replace;
-
-  Map<String, Object?> encode() => {
-    'header_name': headerName.toTfJson(),
-    'header_value': headerValue.toTfJson(),
-    'replace': replace.toTfJson(),
-  };
-}
-
 /// Typed helper for the `path_matcher.route_rules.url_redirect` block of
 /// `google_compute_url_map` (derived from provider schema).
 @immutable
-final class ComputeUrlMapPathMatcherRouteRulesUrlRedirect {
-  const ComputeUrlMapPathMatcherRouteRulesUrlRedirect({
+final class ComputeUrlMapRouteRulesUrlRedirect {
+  const ComputeUrlMapRouteRulesUrlRedirect({
     this.hostRedirect,
     this.httpsRedirect,
     this.pathRedirect,
@@ -3581,7 +1886,7 @@ final class ComputeUrlMapTest {
 
   final TfArg<String>? service;
 
-  final List<ComputeUrlMapTestHeaders>? headers;
+  final List<ComputeUrlMapHeaders>? headers;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -3598,8 +1903,8 @@ final class ComputeUrlMapTest {
 /// Typed helper for the `test.headers` block of
 /// `google_compute_url_map` (derived from provider schema).
 @immutable
-final class ComputeUrlMapTestHeaders {
-  const ComputeUrlMapTestHeaders({required this.name, required this.value});
+final class ComputeUrlMapHeaders {
+  const ComputeUrlMapHeaders({required this.name, required this.value});
 
   final TfArg<String> name;
 
@@ -3676,11 +1981,11 @@ final class ComputeUrlMapTestHeaders {
 ///       name: TfArg.literal('allpaths'),
 ///       defaultService: TfArg.ref(login.selfLink),
 ///       pathRule: [
-///         ComputeUrlMapPathMatcherPathRule(
+///         ComputeUrlMapPathRule(
 ///           paths: TfArg.literal(const ['/home']),
 ///           service: TfArg.ref(login.selfLink),
 ///         ),
-///         ComputeUrlMapPathMatcherPathRule(
+///         ComputeUrlMapPathRule(
 ///           paths: TfArg.literal(const ['/static']),
 ///           service: TfArg.ref(staticBucket.selfLink),
 ///         ),
@@ -3703,7 +2008,7 @@ final class ComputeUrlMapTestHeaders {
 ///
 /// Traffic-policy sub-blocks (`path_matcher.default_route_action`,
 /// `path_rule.route_action`, `route_rules.route_action`, ...) are typed
-/// helpers too (e.g. [ComputeUrlMapPathMatcherPathRuleRouteAction]); the top-level
+/// helpers too (e.g. [ComputeUrlMapPathRuleRouteAction]); the top-level
 /// `default_url_redirect` / `default_route_action` pair is the sealed
 /// [defaultAction] argument (`.defaultUrlRedirect(...)` /
 /// `.defaultRouteAction(...)`).

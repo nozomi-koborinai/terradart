@@ -119,10 +119,10 @@ final class AcmCertificateOptions {
     this.export,
   });
 
-  final TfArg<AcmCertificateOptionsCertificateTransparencyLoggingPreference>?
+  final TfArg<AcmCertificateTransparencyLoggingPreference>?
   certificateTransparencyLoggingPreference;
 
-  final TfArg<AcmCertificateOptionsExport>? export;
+  final TfArg<AcmCertificateExport>? export;
 
   Map<String, Object?> encode() => {
     'certificate_transparency_logging_preference':
@@ -132,24 +132,21 @@ final class AcmCertificateOptions {
 }
 
 /// `certificate_transparency_logging_preference` — derived from the provider schema description.
-enum AcmCertificateOptionsCertificateTransparencyLoggingPreference
-    implements TerraformEnum {
+enum AcmCertificateTransparencyLoggingPreference implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const AcmCertificateOptionsCertificateTransparencyLoggingPreference(
-    this.terraformValue,
-  );
+  const AcmCertificateTransparencyLoggingPreference(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `export` — derived from the provider schema description.
-enum AcmCertificateOptionsExport implements TerraformEnum {
+enum AcmCertificateExport implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const AcmCertificateOptionsExport(this.terraformValue);
+  const AcmCertificateExport(this.terraformValue);
   @override
   final String terraformValue;
 }

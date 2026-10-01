@@ -37,9 +37,9 @@ final class MediaConvertQueueReservationPlanSettings {
     required this.reservedSlots,
   });
 
-  final TfArg<MediaConvertQueueReservationPlanSettingsCommitment> commitment;
+  final TfArg<MediaConvertQueueCommitment> commitment;
 
-  final TfArg<MediaConvertQueueReservationPlanSettingsRenewalType> renewalType;
+  final TfArg<MediaConvertQueueRenewalType> renewalType;
 
   final TfArg<num> reservedSlots;
 
@@ -51,24 +51,20 @@ final class MediaConvertQueueReservationPlanSettings {
 }
 
 /// `commitment` — derived from the provider schema description.
-enum MediaConvertQueueReservationPlanSettingsCommitment
-    implements TerraformEnum {
+enum MediaConvertQueueCommitment implements TerraformEnum {
   oneYear('ONE_YEAR');
 
-  const MediaConvertQueueReservationPlanSettingsCommitment(this.terraformValue);
+  const MediaConvertQueueCommitment(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `renewal_type` — derived from the provider schema description.
-enum MediaConvertQueueReservationPlanSettingsRenewalType
-    implements TerraformEnum {
+enum MediaConvertQueueRenewalType implements TerraformEnum {
   autoRenew('AUTO_RENEW'),
   expire('EXPIRE');
 
-  const MediaConvertQueueReservationPlanSettingsRenewalType(
-    this.terraformValue,
-  );
+  const MediaConvertQueueRenewalType(this.terraformValue);
   @override
   final String terraformValue;
 }

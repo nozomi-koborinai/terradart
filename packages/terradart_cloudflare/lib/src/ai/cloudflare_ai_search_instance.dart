@@ -50,7 +50,7 @@ final class AiSearchInstanceCustomMetadata {
     required this.fieldName,
   });
 
-  final TfArg<AiSearchInstanceCustomMetadataDataType> dataType;
+  final TfArg<AiSearchInstanceDataType> dataType;
 
   final TfArg<String> fieldName;
 
@@ -61,13 +61,13 @@ final class AiSearchInstanceCustomMetadata {
 }
 
 /// `data_type` — derived from the provider schema description.
-enum AiSearchInstanceCustomMetadataDataType implements TerraformEnum {
+enum AiSearchInstanceDataType implements TerraformEnum {
   text('text'),
   number('number'),
   boolean('boolean'),
   datetime('datetime');
 
-  const AiSearchInstanceCustomMetadataDataType(this.terraformValue);
+  const AiSearchInstanceDataType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -97,8 +97,7 @@ final class AiSearchInstanceIndexMethod {
 final class AiSearchInstanceIndexingOptions {
   const AiSearchInstanceIndexingOptions({this.keywordTokenizer, this.useOcr});
 
-  final TfArg<AiSearchInstanceIndexingOptionsKeywordTokenizer>?
-  keywordTokenizer;
+  final TfArg<AiSearchInstanceKeywordTokenizer>? keywordTokenizer;
 
   final TfArg<bool>? useOcr;
 
@@ -109,11 +108,11 @@ final class AiSearchInstanceIndexingOptions {
 }
 
 /// `keyword_tokenizer` — derived from the provider schema description.
-enum AiSearchInstanceIndexingOptionsKeywordTokenizer implements TerraformEnum {
+enum AiSearchInstanceKeywordTokenizer implements TerraformEnum {
   porter('porter'),
   trigram('trigram');
 
-  const AiSearchInstanceIndexingOptionsKeywordTokenizer(this.terraformValue);
+  const AiSearchInstanceKeywordTokenizer(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -160,14 +159,13 @@ final class AiSearchInstancePublicEndpointParams {
 
   final TfArg<bool>? enabled;
 
-  final AiSearchInstancePublicEndpointParamsChatCompletionsEndpoint?
-  chatCompletionsEndpoint;
+  final AiSearchInstanceChatCompletionsEndpoint? chatCompletionsEndpoint;
 
-  final AiSearchInstancePublicEndpointParamsMcp? mcp;
+  final AiSearchInstanceMcp? mcp;
 
-  final AiSearchInstancePublicEndpointParamsRateLimit? rateLimit;
+  final AiSearchInstanceRateLimit? rateLimit;
 
-  final AiSearchInstancePublicEndpointParamsSearchEndpoint? searchEndpoint;
+  final AiSearchInstanceSearchEndpoint? searchEndpoint;
 
   Map<String, Object?> encode() => {
     'authorized_hosts': ?authorizedHosts?.toTfJson(),
@@ -184,10 +182,8 @@ final class AiSearchInstancePublicEndpointParams {
 /// Typed helper for the `public_endpoint_params.chat_completions_endpoint` block of
 /// `cloudflare_ai_search_instance` (derived from provider schema).
 @immutable
-final class AiSearchInstancePublicEndpointParamsChatCompletionsEndpoint {
-  const AiSearchInstancePublicEndpointParamsChatCompletionsEndpoint({
-    this.disabled,
-  });
+final class AiSearchInstanceChatCompletionsEndpoint {
+  const AiSearchInstanceChatCompletionsEndpoint({this.disabled});
 
   final TfArg<bool>? disabled;
 
@@ -197,11 +193,8 @@ final class AiSearchInstancePublicEndpointParamsChatCompletionsEndpoint {
 /// Typed helper for the `public_endpoint_params.mcp` block of
 /// `cloudflare_ai_search_instance` (derived from provider schema).
 @immutable
-final class AiSearchInstancePublicEndpointParamsMcp {
-  const AiSearchInstancePublicEndpointParamsMcp({
-    this.description,
-    this.disabled,
-  });
+final class AiSearchInstanceMcp {
+  const AiSearchInstanceMcp({this.description, this.disabled});
 
   final TfArg<String>? description;
 
@@ -216,8 +209,8 @@ final class AiSearchInstancePublicEndpointParamsMcp {
 /// Typed helper for the `public_endpoint_params.rate_limit` block of
 /// `cloudflare_ai_search_instance` (derived from provider schema).
 @immutable
-final class AiSearchInstancePublicEndpointParamsRateLimit {
-  const AiSearchInstancePublicEndpointParamsRateLimit({
+final class AiSearchInstanceRateLimit {
+  const AiSearchInstanceRateLimit({
     this.periodMs,
     this.requests,
     this.technique,
@@ -227,8 +220,7 @@ final class AiSearchInstancePublicEndpointParamsRateLimit {
 
   final TfArg<num>? requests;
 
-  final TfArg<AiSearchInstancePublicEndpointParamsRateLimitTechnique>?
-  technique;
+  final TfArg<AiSearchInstanceTechnique>? technique;
 
   Map<String, Object?> encode() => {
     'period_ms': ?periodMs?.toTfJson(),
@@ -238,14 +230,11 @@ final class AiSearchInstancePublicEndpointParamsRateLimit {
 }
 
 /// `technique` — derived from the provider schema description.
-enum AiSearchInstancePublicEndpointParamsRateLimitTechnique
-    implements TerraformEnum {
+enum AiSearchInstanceTechnique implements TerraformEnum {
   fixed('fixed'),
   sliding('sliding');
 
-  const AiSearchInstancePublicEndpointParamsRateLimitTechnique(
-    this.terraformValue,
-  );
+  const AiSearchInstanceTechnique(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -253,8 +242,8 @@ enum AiSearchInstancePublicEndpointParamsRateLimitTechnique
 /// Typed helper for the `public_endpoint_params.search_endpoint` block of
 /// `cloudflare_ai_search_instance` (derived from provider schema).
 @immutable
-final class AiSearchInstancePublicEndpointParamsSearchEndpoint {
-  const AiSearchInstancePublicEndpointParamsSearchEndpoint({this.disabled});
+final class AiSearchInstanceSearchEndpoint {
+  const AiSearchInstanceSearchEndpoint({this.disabled});
 
   final TfArg<bool>? disabled;
 
@@ -267,10 +256,9 @@ final class AiSearchInstancePublicEndpointParamsSearchEndpoint {
 final class AiSearchInstanceRetrievalOptions {
   const AiSearchInstanceRetrievalOptions({this.keywordMatchMode, this.boostBy});
 
-  final TfArg<AiSearchInstanceRetrievalOptionsKeywordMatchMode>?
-  keywordMatchMode;
+  final TfArg<AiSearchInstanceKeywordMatchMode>? keywordMatchMode;
 
-  final List<AiSearchInstanceRetrievalOptionsBoostBy>? boostBy;
+  final List<AiSearchInstanceBoostBy>? boostBy;
 
   Map<String, Object?> encode() => {
     'keyword_match_mode': ?keywordMatchMode?.toTfJson(),
@@ -279,11 +267,11 @@ final class AiSearchInstanceRetrievalOptions {
 }
 
 /// `keyword_match_mode` — derived from the provider schema description.
-enum AiSearchInstanceRetrievalOptionsKeywordMatchMode implements TerraformEnum {
+enum AiSearchInstanceKeywordMatchMode implements TerraformEnum {
   and('and'),
   or('or');
 
-  const AiSearchInstanceRetrievalOptionsKeywordMatchMode(this.terraformValue);
+  const AiSearchInstanceKeywordMatchMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -291,13 +279,10 @@ enum AiSearchInstanceRetrievalOptionsKeywordMatchMode implements TerraformEnum {
 /// Typed helper for the `retrieval_options.boost_by` block of
 /// `cloudflare_ai_search_instance` (derived from provider schema).
 @immutable
-final class AiSearchInstanceRetrievalOptionsBoostBy {
-  const AiSearchInstanceRetrievalOptionsBoostBy({
-    this.direction,
-    required this.field,
-  });
+final class AiSearchInstanceBoostBy {
+  const AiSearchInstanceBoostBy({this.direction, required this.field});
 
-  final TfArg<AiSearchInstanceRetrievalOptionsBoostByDirection>? direction;
+  final TfArg<AiSearchInstanceDirection>? direction;
 
   final TfArg<String> field;
 
@@ -308,13 +293,13 @@ final class AiSearchInstanceRetrievalOptionsBoostBy {
 }
 
 /// `direction` — derived from the provider schema description.
-enum AiSearchInstanceRetrievalOptionsBoostByDirection implements TerraformEnum {
+enum AiSearchInstanceDirection implements TerraformEnum {
   asc('asc'),
   desc('desc'),
   exists('exists'),
   notExists('not_exists');
 
-  const AiSearchInstanceRetrievalOptionsBoostByDirection(this.terraformValue);
+  const AiSearchInstanceDirection(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -339,7 +324,7 @@ final class AiSearchInstanceSourceParams {
 
   final TfArg<String>? r2Jurisdiction;
 
-  final AiSearchInstanceSourceParamsWebCrawler? webCrawler;
+  final AiSearchInstanceWebCrawler? webCrawler;
 
   Map<String, Object?> encode() => {
     'exclude_items': ?excludeItems?.toTfJson(),
@@ -353,18 +338,18 @@ final class AiSearchInstanceSourceParams {
 /// Typed helper for the `source_params.web_crawler` block of
 /// `cloudflare_ai_search_instance` (derived from provider schema).
 @immutable
-final class AiSearchInstanceSourceParamsWebCrawler {
-  const AiSearchInstanceSourceParamsWebCrawler({
+final class AiSearchInstanceWebCrawler {
+  const AiSearchInstanceWebCrawler({
     this.parseType,
     this.discoverOptions,
     this.parseOptions,
   });
 
-  final TfArg<AiSearchInstanceSourceParamsWebCrawlerParseType>? parseType;
+  final TfArg<AiSearchInstanceParseType>? parseType;
 
-  final AiSearchInstanceSourceParamsWebCrawlerDiscoverOptions? discoverOptions;
+  final AiSearchInstanceDiscoverOptions? discoverOptions;
 
-  final AiSearchInstanceSourceParamsWebCrawlerParseOptions? parseOptions;
+  final AiSearchInstanceParseOptions? parseOptions;
 
   Map<String, Object?> encode() => {
     'parse_type': ?parseType?.toTfJson(),
@@ -374,11 +359,11 @@ final class AiSearchInstanceSourceParamsWebCrawler {
 }
 
 /// `parse_type` — derived from the provider schema description.
-enum AiSearchInstanceSourceParamsWebCrawlerParseType implements TerraformEnum {
+enum AiSearchInstanceParseType implements TerraformEnum {
   sitemap('sitemap'),
   discover('discover');
 
-  const AiSearchInstanceSourceParamsWebCrawlerParseType(this.terraformValue);
+  const AiSearchInstanceParseType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -386,8 +371,8 @@ enum AiSearchInstanceSourceParamsWebCrawlerParseType implements TerraformEnum {
 /// Typed helper for the `source_params.web_crawler.discover_options` block of
 /// `cloudflare_ai_search_instance` (derived from provider schema).
 @immutable
-final class AiSearchInstanceSourceParamsWebCrawlerDiscoverOptions {
-  const AiSearchInstanceSourceParamsWebCrawlerDiscoverOptions({
+final class AiSearchInstanceDiscoverOptions {
+  const AiSearchInstanceDiscoverOptions({
     this.depth,
     this.includeExternalLinks,
     this.includeSubdomains,
@@ -406,8 +391,7 @@ final class AiSearchInstanceSourceParamsWebCrawlerDiscoverOptions {
 
   final TfArg<num>? maxAge;
 
-  final TfArg<AiSearchInstanceSourceParamsWebCrawlerDiscoverOptionsSource>?
-  source;
+  final TfArg<AiSearchInstanceDiscoverOptionsSource>? source;
 
   Map<String, Object?> encode() => {
     'depth': ?depth?.toTfJson(),
@@ -420,15 +404,12 @@ final class AiSearchInstanceSourceParamsWebCrawlerDiscoverOptions {
 }
 
 /// `source` — derived from the provider schema description.
-enum AiSearchInstanceSourceParamsWebCrawlerDiscoverOptionsSource
-    implements TerraformEnum {
+enum AiSearchInstanceDiscoverOptionsSource implements TerraformEnum {
   all('all'),
   sitemaps('sitemaps'),
   links('links');
 
-  const AiSearchInstanceSourceParamsWebCrawlerDiscoverOptionsSource(
-    this.terraformValue,
-  );
+  const AiSearchInstanceDiscoverOptionsSource(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -436,8 +417,8 @@ enum AiSearchInstanceSourceParamsWebCrawlerDiscoverOptionsSource
 /// Typed helper for the `source_params.web_crawler.parse_options` block of
 /// `cloudflare_ai_search_instance` (derived from provider schema).
 @immutable
-final class AiSearchInstanceSourceParamsWebCrawlerParseOptions {
-  const AiSearchInstanceSourceParamsWebCrawlerParseOptions({
+final class AiSearchInstanceParseOptions {
+  const AiSearchInstanceParseOptions({
     this.includeHeaders,
     this.includeImages,
     this.specificSitemaps,
@@ -453,8 +434,7 @@ final class AiSearchInstanceSourceParamsWebCrawlerParseOptions {
 
   final TfArg<bool>? useBrowserRendering;
 
-  final List<AiSearchInstanceSourceParamsWebCrawlerParseOptionsContentSelector>?
-  contentSelector;
+  final List<AiSearchInstanceContentSelector>? contentSelector;
 
   Map<String, Object?> encode() => {
     'include_headers': ?includeHeaders?.toTfJson(),
@@ -469,8 +449,8 @@ final class AiSearchInstanceSourceParamsWebCrawlerParseOptions {
 /// Typed helper for the `source_params.web_crawler.parse_options.content_selector` block of
 /// `cloudflare_ai_search_instance` (derived from provider schema).
 @immutable
-final class AiSearchInstanceSourceParamsWebCrawlerParseOptionsContentSelector {
-  const AiSearchInstanceSourceParamsWebCrawlerParseOptionsContentSelector({
+final class AiSearchInstanceContentSelector {
+  const AiSearchInstanceContentSelector({
     required this.path,
     required this.selector,
   });

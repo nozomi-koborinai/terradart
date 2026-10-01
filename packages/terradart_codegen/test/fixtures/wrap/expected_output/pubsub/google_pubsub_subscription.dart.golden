@@ -88,9 +88,9 @@ final class PubsubSubscriptionCloudStorageConfig {
 
   final TfArg<String>? serviceAccountEmail;
 
-  final PubsubSubscriptionCloudStorageConfigAvroConfig? avroConfig;
+  final PubsubSubscriptionAvroConfig? avroConfig;
 
-  final PubsubSubscriptionCloudStorageConfigTextConfig? textConfig;
+  final PubsubSubscriptionTextConfig? textConfig;
 
   Map<String, Object?> encode() => {
     'bucket': bucket.toTfJson(),
@@ -109,11 +109,8 @@ final class PubsubSubscriptionCloudStorageConfig {
 /// Typed helper for the `cloud_storage_config.avro_config` block of
 /// `google_pubsub_subscription` (derived from provider schema).
 @immutable
-final class PubsubSubscriptionCloudStorageConfigAvroConfig {
-  const PubsubSubscriptionCloudStorageConfigAvroConfig({
-    this.useTopicSchema,
-    this.writeMetadata,
-  });
+final class PubsubSubscriptionAvroConfig {
+  const PubsubSubscriptionAvroConfig({this.useTopicSchema, this.writeMetadata});
 
   final TfArg<bool>? useTopicSchema;
 
@@ -128,8 +125,8 @@ final class PubsubSubscriptionCloudStorageConfigAvroConfig {
 /// Typed helper for the `cloud_storage_config.text_config` block of
 /// `google_pubsub_subscription` (derived from provider schema).
 @immutable
-final class PubsubSubscriptionCloudStorageConfigTextConfig {
-  const PubsubSubscriptionCloudStorageConfigTextConfig();
+final class PubsubSubscriptionTextConfig {
+  const PubsubSubscriptionTextConfig();
 
   Map<String, Object?> encode() => {};
 }
@@ -176,9 +173,9 @@ final class PubsubSubscriptionMessageTransforms {
 
   final TfArg<bool>? disabled;
 
-  final PubsubSubscriptionMessageTransformsAiInference? aiInference;
+  final PubsubSubscriptionAiInference? aiInference;
 
-  final PubsubSubscriptionMessageTransformsJavascriptUdf? javascriptUdf;
+  final PubsubSubscriptionJavascriptUdf? javascriptUdf;
 
   Map<String, Object?> encode() => {
     'disabled': ?disabled?.toTfJson(),
@@ -190,8 +187,8 @@ final class PubsubSubscriptionMessageTransforms {
 /// Typed helper for the `message_transforms.ai_inference` block of
 /// `google_pubsub_subscription` (derived from provider schema).
 @immutable
-final class PubsubSubscriptionMessageTransformsAiInference {
-  const PubsubSubscriptionMessageTransformsAiInference({
+final class PubsubSubscriptionAiInference {
+  const PubsubSubscriptionAiInference({
     required this.endpoint,
     this.serviceAccountEmail,
     this.unstructuredInference,
@@ -201,8 +198,7 @@ final class PubsubSubscriptionMessageTransformsAiInference {
 
   final TfArg<String>? serviceAccountEmail;
 
-  final PubsubSubscriptionMessageTransformsAiInferenceUnstructuredInference?
-  unstructuredInference;
+  final PubsubSubscriptionUnstructuredInference? unstructuredInference;
 
   Map<String, Object?> encode() => {
     'endpoint': endpoint.toTfJson(),
@@ -214,10 +210,8 @@ final class PubsubSubscriptionMessageTransformsAiInference {
 /// Typed helper for the `message_transforms.ai_inference.unstructured_inference` block of
 /// `google_pubsub_subscription` (derived from provider schema).
 @immutable
-final class PubsubSubscriptionMessageTransformsAiInferenceUnstructuredInference {
-  const PubsubSubscriptionMessageTransformsAiInferenceUnstructuredInference({
-    this.parameters,
-  });
+final class PubsubSubscriptionUnstructuredInference {
+  const PubsubSubscriptionUnstructuredInference({this.parameters});
 
   final TfArg<Map<String, String>>? parameters;
 
@@ -227,8 +221,8 @@ final class PubsubSubscriptionMessageTransformsAiInferenceUnstructuredInference 
 /// Typed helper for the `message_transforms.javascript_udf` block of
 /// `google_pubsub_subscription` (derived from provider schema).
 @immutable
-final class PubsubSubscriptionMessageTransformsJavascriptUdf {
-  const PubsubSubscriptionMessageTransformsJavascriptUdf({
+final class PubsubSubscriptionJavascriptUdf {
+  const PubsubSubscriptionJavascriptUdf({
     required this.code,
     required this.functionName,
   });
@@ -258,9 +252,9 @@ final class PubsubSubscriptionPushConfig {
 
   final TfArg<String> pushEndpoint;
 
-  final PubsubSubscriptionPushConfigNoWrapper? noWrapper;
+  final PubsubSubscriptionNoWrapper? noWrapper;
 
-  final PubsubSubscriptionPushConfigOidcToken? oidcToken;
+  final PubsubSubscriptionOidcToken? oidcToken;
 
   Map<String, Object?> encode() => {
     'attributes': ?attributes?.toTfJson(),
@@ -273,8 +267,8 @@ final class PubsubSubscriptionPushConfig {
 /// Typed helper for the `push_config.no_wrapper` block of
 /// `google_pubsub_subscription` (derived from provider schema).
 @immutable
-final class PubsubSubscriptionPushConfigNoWrapper {
-  const PubsubSubscriptionPushConfigNoWrapper({required this.writeMetadata});
+final class PubsubSubscriptionNoWrapper {
+  const PubsubSubscriptionNoWrapper({required this.writeMetadata});
 
   final TfArg<bool> writeMetadata;
 
@@ -284,8 +278,8 @@ final class PubsubSubscriptionPushConfigNoWrapper {
 /// Typed helper for the `push_config.oidc_token` block of
 /// `google_pubsub_subscription` (derived from provider schema).
 @immutable
-final class PubsubSubscriptionPushConfigOidcToken {
-  const PubsubSubscriptionPushConfigOidcToken({
+final class PubsubSubscriptionOidcToken {
+  const PubsubSubscriptionOidcToken({
     this.audience,
     required this.serviceAccountEmail,
   });

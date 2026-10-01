@@ -34,9 +34,9 @@ final class VectorSearchCollectionVectorSchema {
 
   final TfArg<String> fieldName;
 
-  final VectorSearchCollectionVectorSchemaDenseVector? denseVector;
+  final VectorSearchCollectionDenseVector? denseVector;
 
-  final VectorSearchCollectionVectorSchemaSparseVector? sparseVector;
+  final VectorSearchCollectionSparseVector? sparseVector;
 
   Map<String, Object?> encode() => {
     'field_name': fieldName.toTfJson(),
@@ -48,16 +48,15 @@ final class VectorSearchCollectionVectorSchema {
 /// Typed helper for the `vector_schema.dense_vector` block of
 /// `google_vector_search_collection` (derived from provider schema).
 @immutable
-final class VectorSearchCollectionVectorSchemaDenseVector {
-  const VectorSearchCollectionVectorSchemaDenseVector({
+final class VectorSearchCollectionDenseVector {
+  const VectorSearchCollectionDenseVector({
     this.dimensions,
     this.vertexEmbeddingConfig,
   });
 
   final TfArg<num>? dimensions;
 
-  final VectorSearchCollectionVectorSchemaDenseVectorVertexEmbeddingConfig?
-  vertexEmbeddingConfig;
+  final VectorSearchCollectionVertexEmbeddingConfig? vertexEmbeddingConfig;
 
   Map<String, Object?> encode() => {
     'dimensions': ?dimensions?.toTfJson(),
@@ -68,8 +67,8 @@ final class VectorSearchCollectionVectorSchemaDenseVector {
 /// Typed helper for the `vector_schema.dense_vector.vertex_embedding_config` block of
 /// `google_vector_search_collection` (derived from provider schema).
 @immutable
-final class VectorSearchCollectionVectorSchemaDenseVectorVertexEmbeddingConfig {
-  const VectorSearchCollectionVectorSchemaDenseVectorVertexEmbeddingConfig({
+final class VectorSearchCollectionVertexEmbeddingConfig {
+  const VectorSearchCollectionVertexEmbeddingConfig({
     required this.modelId,
     required this.taskType,
     required this.textTemplate,
@@ -91,8 +90,8 @@ final class VectorSearchCollectionVectorSchemaDenseVectorVertexEmbeddingConfig {
 /// Typed helper for the `vector_schema.sparse_vector` block of
 /// `google_vector_search_collection` (derived from provider schema).
 @immutable
-final class VectorSearchCollectionVectorSchemaSparseVector {
-  const VectorSearchCollectionVectorSchemaSparseVector();
+final class VectorSearchCollectionSparseVector {
+  const VectorSearchCollectionSparseVector();
 
   Map<String, Object?> encode() => {};
 }
@@ -124,7 +123,7 @@ final class VectorSearchCollectionVectorSchemaSparseVector {
 ///   vectorSchema: [
 ///     VectorSearchCollectionVectorSchema(
 ///       fieldName: TfArg.literal('text_embedding'),
-///       denseVector: VectorSearchCollectionVectorSchemaDenseVector(
+///       denseVector: VectorSearchCollectionDenseVector(
 ///         dimensions: TfArg.literal(768),
 ///       ),
 ///     ),

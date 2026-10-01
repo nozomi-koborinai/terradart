@@ -66,7 +66,7 @@ sealed class LakeformationPermissionsResource {
   /// Sets `catalog_resource`.
   const factory LakeformationPermissionsResource.catalogResource(
     TfArg<bool> catalogResource,
-  ) = LakeformationPermissionsResourceCatalogResource;
+  ) = LakeformationPermissionsCatalogResource;
 
   /// Sets `data_cells_filter`.
   const factory LakeformationPermissionsResource.dataCellsFilter(
@@ -114,9 +114,9 @@ sealed class LakeformationPermissionsResource {
 }
 
 /// The [LakeformationPermissionsResource.catalogResource] choice: sets `catalog_resource`.
-final class LakeformationPermissionsResourceCatalogResource
+final class LakeformationPermissionsCatalogResource
     extends LakeformationPermissionsResource {
-  const LakeformationPermissionsResourceCatalogResource(this.catalogResource);
+  const LakeformationPermissionsCatalogResource(this.catalogResource);
 
   final TfArg<bool> catalogResource;
 
@@ -368,9 +368,9 @@ final class LakeformationPermissionsLfTagPolicy {
 
   final TfArg<String>? catalogId;
 
-  final TfArg<LakeformationPermissionsLfTagPolicyResourceType> resourceType;
+  final TfArg<LakeformationPermissionsResourceType> resourceType;
 
-  final List<LakeformationPermissionsLfTagPolicyExpression> expression;
+  final List<LakeformationPermissionsExpression> expression;
 
   Map<String, Object?> encode() => {
     'catalog_id': ?catalogId?.toTfJson(),
@@ -380,11 +380,11 @@ final class LakeformationPermissionsLfTagPolicy {
 }
 
 /// `resource_type` — derived from the provider schema description.
-enum LakeformationPermissionsLfTagPolicyResourceType implements TerraformEnum {
+enum LakeformationPermissionsResourceType implements TerraformEnum {
   database('DATABASE'),
   table('TABLE');
 
-  const LakeformationPermissionsLfTagPolicyResourceType(this.terraformValue);
+  const LakeformationPermissionsResourceType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -392,8 +392,8 @@ enum LakeformationPermissionsLfTagPolicyResourceType implements TerraformEnum {
 /// Typed helper for the `lf_tag_policy.expression` block of
 /// `aws_lakeformation_permissions` (derived from provider schema).
 @immutable
-final class LakeformationPermissionsLfTagPolicyExpression {
-  const LakeformationPermissionsLfTagPolicyExpression({
+final class LakeformationPermissionsExpression {
+  const LakeformationPermissionsExpression({
     required this.key,
     required this.values,
   });

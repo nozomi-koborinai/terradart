@@ -7,7 +7,7 @@ export 'src/wafregional/aws_wafregional_byte_match_set.dart'
     show
         AwsWafregionalByteMatchSet,
         WafregionalByteMatchSetByteMatchTuples,
-        WafregionalByteMatchSetByteMatchTuplesFieldToMatch;
+        WafregionalByteMatchSetFieldToMatch;
 export 'src/wafregional/aws_wafregional_geo_match_set.dart'
     show AwsWafregionalGeoMatchSet, WafregionalGeoMatchSetGeoMatchConstraint;
 export 'src/wafregional/aws_wafregional_ipset.dart'
@@ -16,55 +16,51 @@ export 'src/wafregional/aws_wafregional_rate_based_rule.dart'
     show
         AwsWafregionalRateBasedRule,
         WafregionalRateBasedRulePredicate,
-        WafregionalRateBasedRulePredicateType;
+        WafregionalRateBasedRuleType;
 export 'src/wafregional/aws_wafregional_regex_match_set.dart'
     show
         AwsWafregionalRegexMatchSet,
-        WafregionalRegexMatchSetRegexMatchTuple,
-        WafregionalRegexMatchSetRegexMatchTupleFieldToMatch;
+        WafregionalRegexMatchSetFieldToMatch,
+        WafregionalRegexMatchSetRegexMatchTuple;
 export 'src/wafregional/aws_wafregional_regex_pattern_set.dart'
     show AwsWafregionalRegexPatternSet;
 export 'src/wafregional/aws_wafregional_rule.dart'
-    show
-        AwsWafregionalRule,
-        WafregionalRulePredicate,
-        WafregionalRulePredicateType;
+    show AwsWafregionalRule, WafregionalRulePredicate, WafregionalRuleType;
 export 'src/wafregional/aws_wafregional_rule_group.dart'
     show
         AwsWafregionalRuleGroup,
-        WafregionalRuleGroupActivatedRule,
-        WafregionalRuleGroupActivatedRuleAction;
+        WafregionalRuleGroupAction,
+        WafregionalRuleGroupActivatedRule;
 export 'src/wafregional/aws_wafregional_size_constraint_set.dart'
     show
         AwsWafregionalSizeConstraintSet,
-        WafregionalSizeConstraintSetSizeConstraints,
-        WafregionalSizeConstraintSetSizeConstraintsFieldToMatch;
+        WafregionalSizeConstraintSetFieldToMatch,
+        WafregionalSizeConstraintSetSizeConstraints;
 export 'src/wafregional/aws_wafregional_sql_injection_match_set.dart'
     show
         AwsWafregionalSqlInjectionMatchSet,
-        WafregionalSqlInjectionMatchSetSqlInjectionMatchTuple,
-        WafregionalSqlInjectionMatchSetSqlInjectionMatchTupleFieldToMatch;
+        WafregionalSqlInjectionMatchSetFieldToMatch,
+        WafregionalSqlInjectionMatchSetSqlInjectionMatchTuple;
 export 'src/wafregional/aws_wafregional_web_acl.dart'
     show
         AwsWafregionalWebAcl,
+        WafregionalWebAclAction,
         WafregionalWebAclDefaultAction,
         WafregionalWebAclDefaultActionType,
+        WafregionalWebAclFieldToMatch,
+        WafregionalWebAclFieldToMatchType,
         WafregionalWebAclLoggingConfiguration,
-        WafregionalWebAclLoggingConfigurationRedactedFields,
-        WafregionalWebAclLoggingConfigurationRedactedFieldsFieldToMatch,
-        WafregionalWebAclLoggingConfigurationRedactedFieldsFieldToMatchType,
+        WafregionalWebAclOverrideAction,
+        WafregionalWebAclOverrideActionType,
+        WafregionalWebAclRedactedFields,
         WafregionalWebAclRule,
-        WafregionalWebAclRuleAction,
-        WafregionalWebAclRuleActionType,
-        WafregionalWebAclRuleOverrideAction,
-        WafregionalWebAclRuleOverrideActionType,
         WafregionalWebAclRuleType;
 export 'src/wafregional/aws_wafregional_web_acl_association.dart'
     show AwsWafregionalWebAclAssociation;
 export 'src/wafregional/aws_wafregional_xss_match_set.dart'
     show
         AwsWafregionalXssMatchSet,
-        WafregionalXssMatchSetXssMatchTuple,
-        WafregionalXssMatchSetXssMatchTupleFieldToMatch,
-        WafregionalXssMatchSetXssMatchTupleFieldToMatchType,
-        WafregionalXssMatchSetXssMatchTupleTextTransformation;
+        WafregionalXssMatchSetFieldToMatch,
+        WafregionalXssMatchSetTextTransformation,
+        WafregionalXssMatchSetType,
+        WafregionalXssMatchSetXssMatchTuple;

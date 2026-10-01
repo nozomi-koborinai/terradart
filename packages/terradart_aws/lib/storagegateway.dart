@@ -28,7 +28,7 @@ export 'src/storagegateway/aws_storagegateway_nfs_file_share.dart'
         AwsStoragegatewayNfsFileShare,
         StoragegatewayNfsFileShareCacheAttributes,
         StoragegatewayNfsFileShareDefaultStorageClass,
-        StoragegatewayNfsFileShareNfsFileShareDefaults,
+        StoragegatewayNfsFileShareDefaults,
         StoragegatewayNfsFileShareObjectAcl,
         StoragegatewayNfsFileShareSquash;
 export 'src/storagegateway/aws_storagegateway_smb_file_share.dart'

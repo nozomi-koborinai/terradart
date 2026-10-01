@@ -118,9 +118,9 @@ final class WorkersScriptAnnotations {
 final class WorkersScriptAssets {
   const WorkersScriptAssets({this.source, this.config});
 
-  final WorkersScriptAssetsSource? source;
+  final WorkersScriptSource? source;
 
-  final WorkersScriptAssetsConfig? config;
+  final WorkersScriptConfig? config;
 
   Map<String, Object?> encode() => {
     ...?source?.encode(),
@@ -133,16 +133,16 @@ final class WorkersScriptAssets {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.directory(...)`.
-sealed class WorkersScriptAssetsSource {
-  const WorkersScriptAssetsSource();
+sealed class WorkersScriptSource {
+  const WorkersScriptSource();
 
   /// Sets `directory`.
-  const factory WorkersScriptAssetsSource.directory(TfArg<String> directory) =
-      WorkersScriptAssetsSourceDirectory;
+  const factory WorkersScriptSource.directory(TfArg<String> directory) =
+      WorkersScriptSourceDirectory;
 
   /// Sets `jwt`.
-  const factory WorkersScriptAssetsSource.jwt(TfArg<String> jwt) =
-      WorkersScriptAssetsSourceJwt;
+  const factory WorkersScriptSource.jwt(TfArg<String> jwt) =
+      WorkersScriptSourceJwt;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -150,10 +150,9 @@ sealed class WorkersScriptAssetsSource {
   Map<String, Object?> encode();
 }
 
-/// The [WorkersScriptAssetsSource.directory] choice: sets `directory`.
-final class WorkersScriptAssetsSourceDirectory
-    extends WorkersScriptAssetsSource {
-  const WorkersScriptAssetsSourceDirectory(this.directory);
+/// The [WorkersScriptSource.directory] choice: sets `directory`.
+final class WorkersScriptSourceDirectory extends WorkersScriptSource {
+  const WorkersScriptSourceDirectory(this.directory);
 
   final TfArg<String> directory;
 
@@ -164,9 +163,9 @@ final class WorkersScriptAssetsSourceDirectory
   Map<String, Object?> encode() => {'directory': directory.toTfJson()};
 }
 
-/// The [WorkersScriptAssetsSource.jwt] choice: sets `jwt`.
-final class WorkersScriptAssetsSourceJwt extends WorkersScriptAssetsSource {
-  const WorkersScriptAssetsSourceJwt(this.jwt);
+/// The [WorkersScriptSource.jwt] choice: sets `jwt`.
+final class WorkersScriptSourceJwt extends WorkersScriptSource {
+  const WorkersScriptSourceJwt(this.jwt);
 
   final TfArg<String> jwt;
 
@@ -180,8 +179,8 @@ final class WorkersScriptAssetsSourceJwt extends WorkersScriptAssetsSource {
 /// Typed helper for the `assets.config` block of
 /// `cloudflare_workers_script` (derived from provider schema).
 @immutable
-final class WorkersScriptAssetsConfig {
-  const WorkersScriptAssetsConfig({
+final class WorkersScriptConfig {
+  const WorkersScriptConfig({
     this.basePath,
     this.headers,
     this.htmlHandling,
@@ -195,9 +194,9 @@ final class WorkersScriptAssetsConfig {
 
   final TfArg<String>? headers;
 
-  final TfArg<WorkersScriptAssetsConfigHtmlHandling>? htmlHandling;
+  final TfArg<WorkersScriptHtmlHandling>? htmlHandling;
 
-  final TfArg<WorkersScriptAssetsConfigNotFoundHandling>? notFoundHandling;
+  final TfArg<WorkersScriptNotFoundHandling>? notFoundHandling;
 
   final TfArg<String>? redirects;
 
@@ -217,24 +216,24 @@ final class WorkersScriptAssetsConfig {
 }
 
 /// `html_handling` — derived from the provider schema description.
-enum WorkersScriptAssetsConfigHtmlHandling implements TerraformEnum {
+enum WorkersScriptHtmlHandling implements TerraformEnum {
   autoTrailingSlash('auto-trailing-slash'),
   forceTrailingSlash('force-trailing-slash'),
   dropTrailingSlash('drop-trailing-slash'),
   none('none');
 
-  const WorkersScriptAssetsConfigHtmlHandling(this.terraformValue);
+  const WorkersScriptHtmlHandling(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `not_found_handling` — derived from the provider schema description.
-enum WorkersScriptAssetsConfigNotFoundHandling implements TerraformEnum {
+enum WorkersScriptNotFoundHandling implements TerraformEnum {
   none('none'),
   v404Page('404-page'),
   singlePageApplication('single-page-application');
 
-  const WorkersScriptAssetsConfigNotFoundHandling(this.terraformValue);
+  const WorkersScriptNotFoundHandling(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -315,7 +314,7 @@ final class WorkersScriptBindings {
 
   final TfArg<String>? environment;
 
-  final TfArg<WorkersScriptBindingsFormat>? format;
+  final TfArg<WorkersScriptFormat>? format;
 
   final TfArg<String>? id;
 
@@ -325,7 +324,7 @@ final class WorkersScriptBindings {
 
   final TfArg<String>? json;
 
-  final TfArg<WorkersScriptBindingsJurisdiction>? jurisdiction;
+  final TfArg<WorkersScriptJurisdiction>? jurisdiction;
 
   final TfArg<String>? keyBase64;
 
@@ -363,17 +362,17 @@ final class WorkersScriptBindings {
 
   final TfArg<String>? tunnelId;
 
-  final TfArg<WorkersScriptBindingsType> type;
+  final TfArg<WorkersScriptType> type;
 
-  final List<TfArg<WorkersScriptBindingsUsages>>? usages;
+  final List<TfArg<WorkersScriptUsages>>? usages;
 
   final TfArg<String>? versionId;
 
   final TfArg<String>? workflowName;
 
-  final WorkersScriptBindingsOutbound? outbound;
+  final WorkersScriptOutbound? outbound;
 
-  final WorkersScriptBindingsSimple? simple;
+  final WorkersScriptSimple? simple;
 
   Map<String, Object?> encode() => {
     'algorithm': ?algorithm?.toTfJson(),
@@ -423,30 +422,30 @@ final class WorkersScriptBindings {
 }
 
 /// `format` — derived from the provider schema description.
-enum WorkersScriptBindingsFormat implements TerraformEnum {
+enum WorkersScriptFormat implements TerraformEnum {
   raw('raw'),
   pkcs8('pkcs8'),
   spki('spki'),
   jwk('jwk');
 
-  const WorkersScriptBindingsFormat(this.terraformValue);
+  const WorkersScriptFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `jurisdiction` — derived from the provider schema description.
-enum WorkersScriptBindingsJurisdiction implements TerraformEnum {
+enum WorkersScriptJurisdiction implements TerraformEnum {
   eu('eu'),
   fedramp('fedramp'),
   fedrampHigh('fedramp-high');
 
-  const WorkersScriptBindingsJurisdiction(this.terraformValue);
+  const WorkersScriptJurisdiction(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `type` — derived from the provider schema description.
-enum WorkersScriptBindingsType implements TerraformEnum {
+enum WorkersScriptType implements TerraformEnum {
   ai('ai'),
   aiSearch('ai_search'),
   aiSearchNamespace('ai_search_namespace'),
@@ -483,13 +482,13 @@ enum WorkersScriptBindingsType implements TerraformEnum {
   vpcService('vpc_service'),
   vpcNetwork('vpc_network');
 
-  const WorkersScriptBindingsType(this.terraformValue);
+  const WorkersScriptType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `usages` — derived from the provider schema description.
-enum WorkersScriptBindingsUsages implements TerraformEnum {
+enum WorkersScriptUsages implements TerraformEnum {
   encrypt('encrypt'),
   decrypt('decrypt'),
   sign('sign'),
@@ -499,7 +498,7 @@ enum WorkersScriptBindingsUsages implements TerraformEnum {
   wrapkey('wrapKey'),
   unwrapkey('unwrapKey');
 
-  const WorkersScriptBindingsUsages(this.terraformValue);
+  const WorkersScriptUsages(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -507,12 +506,12 @@ enum WorkersScriptBindingsUsages implements TerraformEnum {
 /// Typed helper for the `bindings.outbound` block of
 /// `cloudflare_workers_script` (derived from provider schema).
 @immutable
-final class WorkersScriptBindingsOutbound {
-  const WorkersScriptBindingsOutbound({this.params, this.worker});
+final class WorkersScriptOutbound {
+  const WorkersScriptOutbound({this.params, this.worker});
 
   final TfArg<List<String>>? params;
 
-  final WorkersScriptBindingsOutboundWorker? worker;
+  final WorkersScriptWorker? worker;
 
   Map<String, Object?> encode() => {
     'params': ?params?.toTfJson(),
@@ -523,8 +522,8 @@ final class WorkersScriptBindingsOutbound {
 /// Typed helper for the `bindings.outbound.worker` block of
 /// `cloudflare_workers_script` (derived from provider schema).
 @immutable
-final class WorkersScriptBindingsOutboundWorker {
-  const WorkersScriptBindingsOutboundWorker({this.environment, this.service});
+final class WorkersScriptWorker {
+  const WorkersScriptWorker({this.environment, this.service});
 
   final TfArg<String>? environment;
 
@@ -539,8 +538,8 @@ final class WorkersScriptBindingsOutboundWorker {
 /// Typed helper for the `bindings.simple` block of
 /// `cloudflare_workers_script` (derived from provider schema).
 @immutable
-final class WorkersScriptBindingsSimple {
-  const WorkersScriptBindingsSimple({
+final class WorkersScriptSimple {
+  const WorkersScriptSimple({
     required this.limit,
     this.mitigationTimeout,
     required this.period,
@@ -583,7 +582,7 @@ final class WorkersScriptExports {
 
   final TfArg<String> type;
 
-  final WorkersScriptExportsCache? cache;
+  final WorkersScriptCache? cache;
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
@@ -594,8 +593,8 @@ final class WorkersScriptExports {
 /// Typed helper for the `exports.cache` block of
 /// `cloudflare_workers_script` (derived from provider schema).
 @immutable
-final class WorkersScriptExportsCache {
-  const WorkersScriptExportsCache({required this.enabled});
+final class WorkersScriptCache {
+  const WorkersScriptCache({required this.enabled});
 
   final TfArg<bool> enabled;
 
@@ -708,11 +707,11 @@ final class WorkersScriptMigrations {
 
   final TfArg<String>? oldTag;
 
-  final List<WorkersScriptMigrationsRenamedClasses>? renamedClasses;
+  final List<WorkersScriptRenamedClasses>? renamedClasses;
 
-  final List<WorkersScriptMigrationsSteps>? steps;
+  final List<WorkersScriptSteps>? steps;
 
-  final List<WorkersScriptMigrationsTransferredClasses>? transferredClasses;
+  final List<WorkersScriptTransferredClasses>? transferredClasses;
 
   Map<String, Object?> encode() => {
     'deleted_classes': ?deletedClasses?.toTfJson(),
@@ -730,9 +729,10 @@ final class WorkersScriptMigrations {
 
 /// Typed helper for the `migrations.renamed_classes` block of
 /// `cloudflare_workers_script` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class WorkersScriptMigrationsRenamedClasses {
-  const WorkersScriptMigrationsRenamedClasses({this.from, this.to});
+final class WorkersScriptRenamedClasses {
+  const WorkersScriptRenamedClasses({this.from, this.to});
 
   final TfArg<String>? from;
 
@@ -747,8 +747,8 @@ final class WorkersScriptMigrationsRenamedClasses {
 /// Typed helper for the `migrations.steps` block of
 /// `cloudflare_workers_script` (derived from provider schema).
 @immutable
-final class WorkersScriptMigrationsSteps {
-  const WorkersScriptMigrationsSteps({
+final class WorkersScriptSteps {
+  const WorkersScriptSteps({
     this.deletedClasses,
     this.newClasses,
     this.newSqliteClasses,
@@ -762,10 +762,9 @@ final class WorkersScriptMigrationsSteps {
 
   final TfArg<List<String>>? newSqliteClasses;
 
-  final List<WorkersScriptMigrationsStepsRenamedClasses>? renamedClasses;
+  final List<WorkersScriptRenamedClasses>? renamedClasses;
 
-  final List<WorkersScriptMigrationsStepsTransferredClasses>?
-  transferredClasses;
+  final List<WorkersScriptTransferredClasses>? transferredClasses;
 
   Map<String, Object?> encode() => {
     'deleted_classes': ?deletedClasses?.toTfJson(),
@@ -778,54 +777,12 @@ final class WorkersScriptMigrationsSteps {
   };
 }
 
-/// Typed helper for the `migrations.steps.renamed_classes` block of
-/// `cloudflare_workers_script` (derived from provider schema).
-@immutable
-final class WorkersScriptMigrationsStepsRenamedClasses {
-  const WorkersScriptMigrationsStepsRenamedClasses({this.from, this.to});
-
-  final TfArg<String>? from;
-
-  final TfArg<String>? to;
-
-  Map<String, Object?> encode() => {
-    'from': ?from?.toTfJson(),
-    'to': ?to?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `migrations.steps.transferred_classes` block of
-/// `cloudflare_workers_script` (derived from provider schema).
-@immutable
-final class WorkersScriptMigrationsStepsTransferredClasses {
-  const WorkersScriptMigrationsStepsTransferredClasses({
-    this.from,
-    this.fromScript,
-    this.to,
-  });
-
-  final TfArg<String>? from;
-
-  final TfArg<String>? fromScript;
-
-  final TfArg<String>? to;
-
-  Map<String, Object?> encode() => {
-    'from': ?from?.toTfJson(),
-    'from_script': ?fromScript?.toTfJson(),
-    'to': ?to?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `migrations.transferred_classes` block of
 /// `cloudflare_workers_script` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class WorkersScriptMigrationsTransferredClasses {
-  const WorkersScriptMigrationsTransferredClasses({
-    this.from,
-    this.fromScript,
-    this.to,
-  });
+final class WorkersScriptTransferredClasses {
+  const WorkersScriptTransferredClasses({this.from, this.fromScript, this.to});
 
   final TfArg<String>? from;
 
@@ -856,11 +813,11 @@ final class WorkersScriptObservability {
 
   final TfArg<num>? headSamplingRate;
 
-  final WorkersScriptObservabilityIssues? issues;
+  final WorkersScriptIssues? issues;
 
-  final WorkersScriptObservabilityLogs? logs;
+  final WorkersScriptLogs? logs;
 
-  final WorkersScriptObservabilityTraces? traces;
+  final WorkersScriptTraces? traces;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
@@ -874,8 +831,8 @@ final class WorkersScriptObservability {
 /// Typed helper for the `observability.issues` block of
 /// `cloudflare_workers_script` (derived from provider schema).
 @immutable
-final class WorkersScriptObservabilityIssues {
-  const WorkersScriptObservabilityIssues({this.enabled});
+final class WorkersScriptIssues {
+  const WorkersScriptIssues({this.enabled});
 
   final TfArg<bool>? enabled;
 
@@ -885,8 +842,8 @@ final class WorkersScriptObservabilityIssues {
 /// Typed helper for the `observability.logs` block of
 /// `cloudflare_workers_script` (derived from provider schema).
 @immutable
-final class WorkersScriptObservabilityLogs {
-  const WorkersScriptObservabilityLogs({
+final class WorkersScriptLogs {
+  const WorkersScriptLogs({
     this.destinations,
     required this.enabled,
     this.headSamplingRate,
@@ -916,8 +873,8 @@ final class WorkersScriptObservabilityLogs {
 /// Typed helper for the `observability.traces` block of
 /// `cloudflare_workers_script` (derived from provider schema).
 @immutable
-final class WorkersScriptObservabilityTraces {
-  const WorkersScriptObservabilityTraces({
+final class WorkersScriptTraces {
+  const WorkersScriptTraces({
     this.destinations,
     this.enabled,
     this.headSamplingRate,
@@ -933,8 +890,7 @@ final class WorkersScriptObservabilityTraces {
 
   final TfArg<bool>? persist;
 
-  final TfArg<WorkersScriptObservabilityTracesPropagationPolicy>?
-  propagationPolicy;
+  final TfArg<WorkersScriptPropagationPolicy>? propagationPolicy;
 
   Map<String, Object?> encode() => {
     'destinations': ?destinations?.toTfJson(),
@@ -946,12 +902,11 @@ final class WorkersScriptObservabilityTraces {
 }
 
 /// `propagation_policy` — derived from the provider schema description.
-enum WorkersScriptObservabilityTracesPropagationPolicy
-    implements TerraformEnum {
+enum WorkersScriptPropagationPolicy implements TerraformEnum {
   authenticated('authenticated'),
   accept('accept');
 
-  const WorkersScriptObservabilityTracesPropagationPolicy(this.terraformValue);
+  const WorkersScriptPropagationPolicy(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -985,17 +940,17 @@ final class WorkersScriptPackageDependencies {
 final class WorkersScriptPlacement {
   const WorkersScriptPlacement({this.mode});
 
-  final TfArg<WorkersScriptPlacementMode>? mode;
+  final TfArg<WorkersScriptMode>? mode;
 
   Map<String, Object?> encode() => {'mode': ?mode?.toTfJson()};
 }
 
 /// `mode` — derived from the provider schema description.
-enum WorkersScriptPlacementMode implements TerraformEnum {
+enum WorkersScriptMode implements TerraformEnum {
   smart('smart'),
   targeted('targeted');
 
-  const WorkersScriptPlacementMode(this.terraformValue);
+  const WorkersScriptMode(this.terraformValue);
   @override
   final String terraformValue;
 }

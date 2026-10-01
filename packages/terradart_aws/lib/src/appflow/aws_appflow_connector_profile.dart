@@ -80,17 +80,15 @@ enum AppflowConnectorProfileConnectorType implements TerraformEnum {
 /// Typed helper for the `connector_profile_config` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfig {
-  const AppflowConnectorProfileConnectorProfileConfig({
+final class AppflowConnectorProfileConfig {
+  const AppflowConnectorProfileConfig({
     required this.connectorProfileCredentials,
     required this.connectorProfileProperties,
   });
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentials
-  connectorProfileCredentials;
+  final AppflowConnectorProfileCredentials connectorProfileCredentials;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileProperties
-  connectorProfileProperties;
+  final AppflowConnectorProfileProperties connectorProfileProperties;
 
   Map<String, Object?> encode() => {
     'connector_profile_credentials': connectorProfileCredentials.encode(),
@@ -101,8 +99,8 @@ final class AppflowConnectorProfileConnectorProfileConfig {
 /// Typed helper for the `connector_profile_config.connector_profile_credentials` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentials {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentials({
+final class AppflowConnectorProfileCredentials {
+  const AppflowConnectorProfileCredentials({
     this.amplitude,
     this.customConnector,
     this.datadog,
@@ -123,59 +121,41 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
     this.zendesk,
   });
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsAmplitude?
-  amplitude;
+  final AppflowConnectorProfileCredentialsAmplitude? amplitude;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsCustomConnector?
-  customConnector;
+  final AppflowConnectorProfileCredentialsCustomConnector? customConnector;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsDatadog?
-  datadog;
+  final AppflowConnectorProfileCredentialsDatadog? datadog;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsDynatrace?
-  dynatrace;
+  final AppflowConnectorProfileCredentialsDynatrace? dynatrace;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsGoogleAnalytics?
-  googleAnalytics;
+  final AppflowConnectorProfileCredentialsGoogleAnalytics? googleAnalytics;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsHoneycode?
-  honeycode;
+  final AppflowConnectorProfileCredentialsHoneycode? honeycode;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsInforNexus?
-  inforNexus;
+  final AppflowConnectorProfileCredentialsInforNexus? inforNexus;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsMarketo?
-  marketo;
+  final AppflowConnectorProfileCredentialsMarketo? marketo;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsRedshift?
-  redshift;
+  final AppflowConnectorProfileCredentialsRedshift? redshift;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSalesforce?
-  salesforce;
+  final AppflowConnectorProfileCredentialsSalesforce? salesforce;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSapoData?
-  sapoData;
+  final AppflowConnectorProfileCredentialsSapoData? sapoData;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsServiceNow?
-  serviceNow;
+  final AppflowConnectorProfileCredentialsServiceNow? serviceNow;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSingular?
-  singular;
+  final AppflowConnectorProfileCredentialsSingular? singular;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSlack?
-  slack;
+  final AppflowConnectorProfileCredentialsSlack? slack;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSnowflake?
-  snowflake;
+  final AppflowConnectorProfileCredentialsSnowflake? snowflake;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsTrendmicro?
-  trendmicro;
+  final AppflowConnectorProfileCredentialsTrendmicro? trendmicro;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsVeeva?
-  veeva;
+  final AppflowConnectorProfileCredentialsVeeva? veeva;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsZendesk?
-  zendesk;
+  final AppflowConnectorProfileCredentialsZendesk? zendesk;
 
   Map<String, Object?> encode() => {
     'amplitude': ?amplitude?.encode(),
@@ -202,8 +182,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
 /// Typed helper for the `connector_profile_config.connector_profile_credentials.amplitude` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsAmplitude {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsAmplitude({
+final class AppflowConnectorProfileCredentialsAmplitude {
+  const AppflowConnectorProfileCredentialsAmplitude({
     required this.apiKey,
     required this.secretKey,
   });
@@ -221,8 +201,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
 /// Typed helper for the `connector_profile_config.connector_profile_credentials.custom_connector` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsCustomConnector {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsCustomConnector({
+final class AppflowConnectorProfileCredentialsCustomConnector {
+  const AppflowConnectorProfileCredentialsCustomConnector({
     required this.authenticationType,
     this.apiKey,
     this.basic,
@@ -230,22 +210,15 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
     this.oauth2,
   });
 
-  final TfArg<
-    AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsCustomConnectorAuthenticationType
-  >
-  authenticationType;
+  final TfArg<AppflowConnectorProfileAuthenticationType> authenticationType;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsCustomConnectorApiKey?
-  apiKey;
+  final AppflowConnectorProfileApiKey? apiKey;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsCustomConnectorBasic?
-  basic;
+  final AppflowConnectorProfileBasic? basic;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsCustomConnectorCustom?
-  custom;
+  final AppflowConnectorProfileCustom? custom;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsCustomConnectorOauth2?
-  oauth2;
+  final AppflowConnectorProfileOauth2? oauth2;
 
   Map<String, Object?> encode() => {
     'authentication_type': authenticationType.toTfJson(),
@@ -257,16 +230,13 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
 }
 
 /// `authentication_type` — derived from the provider schema description.
-enum AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsCustomConnectorAuthenticationType
-    implements TerraformEnum {
+enum AppflowConnectorProfileAuthenticationType implements TerraformEnum {
   oauth2('OAUTH2'),
   apikey('APIKEY'),
   basic('BASIC'),
   custom('CUSTOM');
 
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsCustomConnectorAuthenticationType(
-    this.terraformValue,
-  );
+  const AppflowConnectorProfileAuthenticationType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -274,8 +244,8 @@ enum AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsCus
 /// Typed helper for the `connector_profile_config.connector_profile_credentials.custom_connector.api_key` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsCustomConnectorApiKey {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsCustomConnectorApiKey({
+final class AppflowConnectorProfileApiKey {
+  const AppflowConnectorProfileApiKey({
     required this.apiKey,
     this.apiSecretKey,
   });
@@ -293,8 +263,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
 /// Typed helper for the `connector_profile_config.connector_profile_credentials.custom_connector.basic` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsCustomConnectorBasic {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsCustomConnectorBasic({
+final class AppflowConnectorProfileBasic {
+  const AppflowConnectorProfileBasic({
     required this.password,
     required this.username,
   });
@@ -312,8 +282,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
 /// Typed helper for the `connector_profile_config.connector_profile_credentials.custom_connector.custom` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsCustomConnectorCustom {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsCustomConnectorCustom({
+final class AppflowConnectorProfileCustom {
+  const AppflowConnectorProfileCustom({
     this.credentialsMap,
     required this.customAuthenticationType,
   });
@@ -331,8 +301,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
 /// Typed helper for the `connector_profile_config.connector_profile_credentials.custom_connector.oauth2` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsCustomConnectorOauth2 {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsCustomConnectorOauth2({
+final class AppflowConnectorProfileOauth2 {
+  const AppflowConnectorProfileOauth2({
     this.accessToken,
     this.clientId,
     this.clientSecret,
@@ -348,8 +318,7 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
 
   final TfArg<String>? refreshToken;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsCustomConnectorOauth2OauthRequest?
-  oauthRequest;
+  final AppflowConnectorProfileOauthRequest? oauthRequest;
 
   Map<String, Object?> encode() => {
     'access_token': ?accessToken?.toTfJson(),
@@ -360,14 +329,12 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
   };
 }
 
-/// Typed helper for the `connector_profile_config.connector_profile_credentials.custom_connector.oauth2.oauth_request` block of
+/// Typed helper for the `connector_profile_config.connector_profile_credentials.google_analytics.oauth_request` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsCustomConnectorOauth2OauthRequest {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsCustomConnectorOauth2OauthRequest({
-    this.authCode,
-    this.redirectUri,
-  });
+final class AppflowConnectorProfileOauthRequest {
+  const AppflowConnectorProfileOauthRequest({this.authCode, this.redirectUri});
 
   final TfArg<String>? authCode;
 
@@ -382,8 +349,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
 /// Typed helper for the `connector_profile_config.connector_profile_credentials.datadog` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsDatadog {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsDatadog({
+final class AppflowConnectorProfileCredentialsDatadog {
+  const AppflowConnectorProfileCredentialsDatadog({
     required this.apiKey,
     required this.applicationKey,
   });
@@ -401,10 +368,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
 /// Typed helper for the `connector_profile_config.connector_profile_credentials.dynatrace` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsDynatrace {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsDynatrace({
-    required this.apiToken,
-  });
+final class AppflowConnectorProfileCredentialsDynatrace {
+  const AppflowConnectorProfileCredentialsDynatrace({required this.apiToken});
 
   final TfArg<String> apiToken;
 
@@ -414,8 +379,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
 /// Typed helper for the `connector_profile_config.connector_profile_credentials.google_analytics` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsGoogleAnalytics {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsGoogleAnalytics({
+final class AppflowConnectorProfileCredentialsGoogleAnalytics {
+  const AppflowConnectorProfileCredentialsGoogleAnalytics({
     this.accessToken,
     required this.clientId,
     required this.clientSecret,
@@ -431,8 +396,7 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
 
   final TfArg<String>? refreshToken;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsGoogleAnalyticsOauthRequest?
-  oauthRequest;
+  final AppflowConnectorProfileOauthRequest? oauthRequest;
 
   Map<String, Object?> encode() => {
     'access_token': ?accessToken?.toTfJson(),
@@ -443,30 +407,11 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
   };
 }
 
-/// Typed helper for the `connector_profile_config.connector_profile_credentials.google_analytics.oauth_request` block of
-/// `aws_appflow_connector_profile` (derived from provider schema).
-@immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsGoogleAnalyticsOauthRequest {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsGoogleAnalyticsOauthRequest({
-    this.authCode,
-    this.redirectUri,
-  });
-
-  final TfArg<String>? authCode;
-
-  final TfArg<String>? redirectUri;
-
-  Map<String, Object?> encode() => {
-    'auth_code': ?authCode?.toTfJson(),
-    'redirect_uri': ?redirectUri?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `connector_profile_config.connector_profile_credentials.honeycode` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsHoneycode {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsHoneycode({
+final class AppflowConnectorProfileCredentialsHoneycode {
+  const AppflowConnectorProfileCredentialsHoneycode({
     this.accessToken,
     this.refreshToken,
     this.oauthRequest,
@@ -476,8 +421,7 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
 
   final TfArg<String>? refreshToken;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsHoneycodeOauthRequest?
-  oauthRequest;
+  final AppflowConnectorProfileOauthRequest? oauthRequest;
 
   Map<String, Object?> encode() => {
     'access_token': ?accessToken?.toTfJson(),
@@ -486,30 +430,11 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
   };
 }
 
-/// Typed helper for the `connector_profile_config.connector_profile_credentials.honeycode.oauth_request` block of
-/// `aws_appflow_connector_profile` (derived from provider schema).
-@immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsHoneycodeOauthRequest {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsHoneycodeOauthRequest({
-    this.authCode,
-    this.redirectUri,
-  });
-
-  final TfArg<String>? authCode;
-
-  final TfArg<String>? redirectUri;
-
-  Map<String, Object?> encode() => {
-    'auth_code': ?authCode?.toTfJson(),
-    'redirect_uri': ?redirectUri?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `connector_profile_config.connector_profile_credentials.infor_nexus` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsInforNexus {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsInforNexus({
+final class AppflowConnectorProfileCredentialsInforNexus {
+  const AppflowConnectorProfileCredentialsInforNexus({
     required this.accessKeyId,
     required this.datakey,
     required this.secretAccessKey,
@@ -535,8 +460,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
 /// Typed helper for the `connector_profile_config.connector_profile_credentials.marketo` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsMarketo {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsMarketo({
+final class AppflowConnectorProfileCredentialsMarketo {
+  const AppflowConnectorProfileCredentialsMarketo({
     this.accessToken,
     required this.clientId,
     required this.clientSecret,
@@ -549,8 +474,7 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
 
   final TfArg<String> clientSecret;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsMarketoOauthRequest?
-  oauthRequest;
+  final AppflowConnectorProfileOauthRequest? oauthRequest;
 
   Map<String, Object?> encode() => {
     'access_token': ?accessToken?.toTfJson(),
@@ -560,30 +484,11 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
   };
 }
 
-/// Typed helper for the `connector_profile_config.connector_profile_credentials.marketo.oauth_request` block of
-/// `aws_appflow_connector_profile` (derived from provider schema).
-@immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsMarketoOauthRequest {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsMarketoOauthRequest({
-    this.authCode,
-    this.redirectUri,
-  });
-
-  final TfArg<String>? authCode;
-
-  final TfArg<String>? redirectUri;
-
-  Map<String, Object?> encode() => {
-    'auth_code': ?authCode?.toTfJson(),
-    'redirect_uri': ?redirectUri?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `connector_profile_config.connector_profile_credentials.redshift` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsRedshift {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsRedshift({
+final class AppflowConnectorProfileCredentialsRedshift {
+  const AppflowConnectorProfileCredentialsRedshift({
     required this.password,
     required this.username,
   });
@@ -601,8 +506,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
 /// Typed helper for the `connector_profile_config.connector_profile_credentials.salesforce` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSalesforce {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSalesforce({
+final class AppflowConnectorProfileCredentialsSalesforce {
+  const AppflowConnectorProfileCredentialsSalesforce({
     this.accessToken,
     this.clientCredentialsArn,
     this.jwtToken,
@@ -617,15 +522,11 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
 
   final TfArg<String>? jwtToken;
 
-  final TfArg<
-    AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSalesforceOauth2GrantType
-  >?
-  oauth2GrantType;
+  final TfArg<AppflowConnectorProfileOauth2GrantType>? oauth2GrantType;
 
   final TfArg<String>? refreshToken;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSalesforceOauthRequest?
-  oauthRequest;
+  final AppflowConnectorProfileOauthRequest? oauthRequest;
 
   Map<String, Object?> encode() => {
     'access_token': ?accessToken?.toTfJson(),
@@ -638,52 +539,28 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
 }
 
 /// `oauth2_grant_type` — derived from the provider schema description.
-enum AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSalesforceOauth2GrantType
-    implements TerraformEnum {
+enum AppflowConnectorProfileOauth2GrantType implements TerraformEnum {
   clientCredentials('CLIENT_CREDENTIALS'),
   authorizationCode('AUTHORIZATION_CODE'),
   jwtBearer('JWT_BEARER');
 
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSalesforceOauth2GrantType(
-    this.terraformValue,
-  );
+  const AppflowConnectorProfileOauth2GrantType(this.terraformValue);
   @override
   final String terraformValue;
-}
-
-/// Typed helper for the `connector_profile_config.connector_profile_credentials.salesforce.oauth_request` block of
-/// `aws_appflow_connector_profile` (derived from provider schema).
-@immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSalesforceOauthRequest {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSalesforceOauthRequest({
-    this.authCode,
-    this.redirectUri,
-  });
-
-  final TfArg<String>? authCode;
-
-  final TfArg<String>? redirectUri;
-
-  Map<String, Object?> encode() => {
-    'auth_code': ?authCode?.toTfJson(),
-    'redirect_uri': ?redirectUri?.toTfJson(),
-  };
 }
 
 /// Typed helper for the `connector_profile_config.connector_profile_credentials.sapo_data` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSapoData {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSapoData({
+final class AppflowConnectorProfileCredentialsSapoData {
+  const AppflowConnectorProfileCredentialsSapoData({
     this.basicAuthCredentials,
     this.oauthCredentials,
   });
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSapoDataBasicAuthCredentials?
-  basicAuthCredentials;
+  final AppflowConnectorProfileBasicAuthCredentials? basicAuthCredentials;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSapoDataOauthCredentials?
-  oauthCredentials;
+  final AppflowConnectorProfileOauthCredentials? oauthCredentials;
 
   Map<String, Object?> encode() => {
     'basic_auth_credentials': ?basicAuthCredentials?.encode(),
@@ -694,8 +571,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
 /// Typed helper for the `connector_profile_config.connector_profile_credentials.sapo_data.basic_auth_credentials` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSapoDataBasicAuthCredentials {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSapoDataBasicAuthCredentials({
+final class AppflowConnectorProfileBasicAuthCredentials {
+  const AppflowConnectorProfileBasicAuthCredentials({
     required this.password,
     required this.username,
   });
@@ -713,8 +590,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
 /// Typed helper for the `connector_profile_config.connector_profile_credentials.sapo_data.oauth_credentials` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSapoDataOauthCredentials {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSapoDataOauthCredentials({
+final class AppflowConnectorProfileOauthCredentials {
+  const AppflowConnectorProfileOauthCredentials({
     this.accessToken,
     required this.clientId,
     required this.clientSecret,
@@ -730,8 +607,7 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
 
   final TfArg<String>? refreshToken;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSapoDataOauthCredentialsOauthRequest?
-  oauthRequest;
+  final AppflowConnectorProfileOauthRequest? oauthRequest;
 
   Map<String, Object?> encode() => {
     'access_token': ?accessToken?.toTfJson(),
@@ -742,30 +618,11 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
   };
 }
 
-/// Typed helper for the `connector_profile_config.connector_profile_credentials.sapo_data.oauth_credentials.oauth_request` block of
-/// `aws_appflow_connector_profile` (derived from provider schema).
-@immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSapoDataOauthCredentialsOauthRequest {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSapoDataOauthCredentialsOauthRequest({
-    this.authCode,
-    this.redirectUri,
-  });
-
-  final TfArg<String>? authCode;
-
-  final TfArg<String>? redirectUri;
-
-  Map<String, Object?> encode() => {
-    'auth_code': ?authCode?.toTfJson(),
-    'redirect_uri': ?redirectUri?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `connector_profile_config.connector_profile_credentials.service_now` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsServiceNow {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsServiceNow({
+final class AppflowConnectorProfileCredentialsServiceNow {
+  const AppflowConnectorProfileCredentialsServiceNow({
     required this.password,
     required this.username,
   });
@@ -783,10 +640,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
 /// Typed helper for the `connector_profile_config.connector_profile_credentials.singular` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSingular {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSingular({
-    required this.apiKey,
-  });
+final class AppflowConnectorProfileCredentialsSingular {
+  const AppflowConnectorProfileCredentialsSingular({required this.apiKey});
 
   final TfArg<String> apiKey;
 
@@ -796,8 +651,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
 /// Typed helper for the `connector_profile_config.connector_profile_credentials.slack` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSlack {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSlack({
+final class AppflowConnectorProfileCredentialsSlack {
+  const AppflowConnectorProfileCredentialsSlack({
     this.accessToken,
     required this.clientId,
     required this.clientSecret,
@@ -810,8 +665,7 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
 
   final TfArg<String> clientSecret;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSlackOauthRequest?
-  oauthRequest;
+  final AppflowConnectorProfileOauthRequest? oauthRequest;
 
   Map<String, Object?> encode() => {
     'access_token': ?accessToken?.toTfJson(),
@@ -821,30 +675,11 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
   };
 }
 
-/// Typed helper for the `connector_profile_config.connector_profile_credentials.slack.oauth_request` block of
-/// `aws_appflow_connector_profile` (derived from provider schema).
-@immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSlackOauthRequest {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSlackOauthRequest({
-    this.authCode,
-    this.redirectUri,
-  });
-
-  final TfArg<String>? authCode;
-
-  final TfArg<String>? redirectUri;
-
-  Map<String, Object?> encode() => {
-    'auth_code': ?authCode?.toTfJson(),
-    'redirect_uri': ?redirectUri?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `connector_profile_config.connector_profile_credentials.snowflake` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSnowflake {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSnowflake({
+final class AppflowConnectorProfileCredentialsSnowflake {
+  const AppflowConnectorProfileCredentialsSnowflake({
     required this.password,
     required this.username,
   });
@@ -862,8 +697,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
 /// Typed helper for the `connector_profile_config.connector_profile_credentials.trendmicro` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsTrendmicro {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsTrendmicro({
+final class AppflowConnectorProfileCredentialsTrendmicro {
+  const AppflowConnectorProfileCredentialsTrendmicro({
     required this.apiSecretKey,
   });
 
@@ -875,8 +710,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
 /// Typed helper for the `connector_profile_config.connector_profile_credentials.veeva` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsVeeva {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsVeeva({
+final class AppflowConnectorProfileCredentialsVeeva {
+  const AppflowConnectorProfileCredentialsVeeva({
     required this.password,
     required this.username,
   });
@@ -894,8 +729,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
 /// Typed helper for the `connector_profile_config.connector_profile_credentials.zendesk` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsZendesk {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsZendesk({
+final class AppflowConnectorProfileCredentialsZendesk {
+  const AppflowConnectorProfileCredentialsZendesk({
     this.accessToken,
     required this.clientId,
     required this.clientSecret,
@@ -908,8 +743,7 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
 
   final TfArg<String> clientSecret;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsZendeskOauthRequest?
-  oauthRequest;
+  final AppflowConnectorProfileOauthRequest? oauthRequest;
 
   Map<String, Object?> encode() => {
     'access_token': ?accessToken?.toTfJson(),
@@ -919,30 +753,11 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
   };
 }
 
-/// Typed helper for the `connector_profile_config.connector_profile_credentials.zendesk.oauth_request` block of
-/// `aws_appflow_connector_profile` (derived from provider schema).
-@immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsZendeskOauthRequest {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsZendeskOauthRequest({
-    this.authCode,
-    this.redirectUri,
-  });
-
-  final TfArg<String>? authCode;
-
-  final TfArg<String>? redirectUri;
-
-  Map<String, Object?> encode() => {
-    'auth_code': ?authCode?.toTfJson(),
-    'redirect_uri': ?redirectUri?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `connector_profile_config.connector_profile_properties` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileProperties {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileProperties({
+final class AppflowConnectorProfileProperties {
+  const AppflowConnectorProfileProperties({
     this.amplitude,
     this.customConnector,
     this.datadog,
@@ -963,59 +778,41 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
     this.zendesk,
   });
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesAmplitude?
-  amplitude;
+  final AppflowConnectorProfilePropertiesAmplitude? amplitude;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesCustomConnector?
-  customConnector;
+  final AppflowConnectorProfilePropertiesCustomConnector? customConnector;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesDatadog?
-  datadog;
+  final AppflowConnectorProfilePropertiesDatadog? datadog;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesDynatrace?
-  dynatrace;
+  final AppflowConnectorProfilePropertiesDynatrace? dynatrace;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesGoogleAnalytics?
-  googleAnalytics;
+  final AppflowConnectorProfilePropertiesGoogleAnalytics? googleAnalytics;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesHoneycode?
-  honeycode;
+  final AppflowConnectorProfilePropertiesHoneycode? honeycode;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesInforNexus?
-  inforNexus;
+  final AppflowConnectorProfilePropertiesInforNexus? inforNexus;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesMarketo?
-  marketo;
+  final AppflowConnectorProfilePropertiesMarketo? marketo;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesRedshift?
-  redshift;
+  final AppflowConnectorProfilePropertiesRedshift? redshift;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesSalesforce?
-  salesforce;
+  final AppflowConnectorProfilePropertiesSalesforce? salesforce;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesSapoData?
-  sapoData;
+  final AppflowConnectorProfilePropertiesSapoData? sapoData;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesServiceNow?
-  serviceNow;
+  final AppflowConnectorProfilePropertiesServiceNow? serviceNow;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesSingular?
-  singular;
+  final AppflowConnectorProfilePropertiesSingular? singular;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesSlack?
-  slack;
+  final AppflowConnectorProfilePropertiesSlack? slack;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesSnowflake?
-  snowflake;
+  final AppflowConnectorProfilePropertiesSnowflake? snowflake;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesTrendmicro?
-  trendmicro;
+  final AppflowConnectorProfilePropertiesTrendmicro? trendmicro;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesVeeva?
-  veeva;
+  final AppflowConnectorProfilePropertiesVeeva? veeva;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesZendesk?
-  zendesk;
+  final AppflowConnectorProfilePropertiesZendesk? zendesk;
 
   Map<String, Object?> encode() => {
     'amplitude': ?amplitude?.encode(),
@@ -1042,8 +839,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
 /// Typed helper for the `connector_profile_config.connector_profile_properties.amplitude` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesAmplitude {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesAmplitude();
+final class AppflowConnectorProfilePropertiesAmplitude {
+  const AppflowConnectorProfilePropertiesAmplitude();
 
   Map<String, Object?> encode() => {};
 }
@@ -1051,16 +848,15 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
 /// Typed helper for the `connector_profile_config.connector_profile_properties.custom_connector` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesCustomConnector {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesCustomConnector({
+final class AppflowConnectorProfilePropertiesCustomConnector {
+  const AppflowConnectorProfilePropertiesCustomConnector({
     this.profileProperties,
     this.oauth2Properties,
   });
 
   final TfArg<Map<String, String>>? profileProperties;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesCustomConnectorOauth2Properties?
-  oauth2Properties;
+  final AppflowConnectorProfileOauth2Properties? oauth2Properties;
 
   Map<String, Object?> encode() => {
     'profile_properties': ?profileProperties?.toTfJson(),
@@ -1071,17 +867,14 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
 /// Typed helper for the `connector_profile_config.connector_profile_properties.custom_connector.oauth2_properties` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesCustomConnectorOauth2Properties {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesCustomConnectorOauth2Properties({
+final class AppflowConnectorProfileOauth2Properties {
+  const AppflowConnectorProfileOauth2Properties({
     required this.oauth2GrantType,
     required this.tokenUrl,
     this.tokenUrlCustomProperties,
   });
 
-  final TfArg<
-    AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesCustomConnectorOauth2PropertiesOauth2GrantType
-  >
-  oauth2GrantType;
+  final TfArg<AppflowConnectorProfileOauth2GrantType> oauth2GrantType;
 
   final TfArg<String> tokenUrl;
 
@@ -1094,27 +887,11 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
   };
 }
 
-/// `oauth2_grant_type` — derived from the provider schema description.
-enum AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesCustomConnectorOauth2PropertiesOauth2GrantType
-    implements TerraformEnum {
-  clientCredentials('CLIENT_CREDENTIALS'),
-  authorizationCode('AUTHORIZATION_CODE'),
-  jwtBearer('JWT_BEARER');
-
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesCustomConnectorOauth2PropertiesOauth2GrantType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `connector_profile_config.connector_profile_properties.datadog` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesDatadog {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesDatadog({
-    required this.instanceUrl,
-  });
+final class AppflowConnectorProfilePropertiesDatadog {
+  const AppflowConnectorProfilePropertiesDatadog({required this.instanceUrl});
 
   final TfArg<String> instanceUrl;
 
@@ -1124,10 +901,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
 /// Typed helper for the `connector_profile_config.connector_profile_properties.dynatrace` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesDynatrace {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesDynatrace({
-    required this.instanceUrl,
-  });
+final class AppflowConnectorProfilePropertiesDynatrace {
+  const AppflowConnectorProfilePropertiesDynatrace({required this.instanceUrl});
 
   final TfArg<String> instanceUrl;
 
@@ -1137,8 +912,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
 /// Typed helper for the `connector_profile_config.connector_profile_properties.google_analytics` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesGoogleAnalytics {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesGoogleAnalytics();
+final class AppflowConnectorProfilePropertiesGoogleAnalytics {
+  const AppflowConnectorProfilePropertiesGoogleAnalytics();
 
   Map<String, Object?> encode() => {};
 }
@@ -1146,8 +921,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
 /// Typed helper for the `connector_profile_config.connector_profile_properties.honeycode` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesHoneycode {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesHoneycode();
+final class AppflowConnectorProfilePropertiesHoneycode {
+  const AppflowConnectorProfilePropertiesHoneycode();
 
   Map<String, Object?> encode() => {};
 }
@@ -1155,8 +930,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
 /// Typed helper for the `connector_profile_config.connector_profile_properties.infor_nexus` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesInforNexus {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesInforNexus({
+final class AppflowConnectorProfilePropertiesInforNexus {
+  const AppflowConnectorProfilePropertiesInforNexus({
     required this.instanceUrl,
   });
 
@@ -1168,10 +943,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
 /// Typed helper for the `connector_profile_config.connector_profile_properties.marketo` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesMarketo {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesMarketo({
-    required this.instanceUrl,
-  });
+final class AppflowConnectorProfilePropertiesMarketo {
+  const AppflowConnectorProfilePropertiesMarketo({required this.instanceUrl});
 
   final TfArg<String> instanceUrl;
 
@@ -1181,8 +954,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
 /// Typed helper for the `connector_profile_config.connector_profile_properties.redshift` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesRedshift {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesRedshift({
+final class AppflowConnectorProfilePropertiesRedshift {
+  const AppflowConnectorProfilePropertiesRedshift({
     required this.bucketName,
     this.bucketPrefix,
     this.clusterIdentifier,
@@ -1220,8 +993,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
 /// Typed helper for the `connector_profile_config.connector_profile_properties.salesforce` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesSalesforce {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesSalesforce({
+final class AppflowConnectorProfilePropertiesSalesforce {
+  const AppflowConnectorProfilePropertiesSalesforce({
     this.instanceUrl,
     this.isSandboxEnvironment,
     this.usePrivatelinkForMetadataAndAuthorization,
@@ -1244,8 +1017,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
 /// Typed helper for the `connector_profile_config.connector_profile_properties.sapo_data` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesSapoData {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesSapoData({
+final class AppflowConnectorProfilePropertiesSapoData {
+  const AppflowConnectorProfilePropertiesSapoData({
     required this.applicationHostUrl,
     required this.applicationServicePath,
     required this.clientNumber,
@@ -1267,8 +1040,7 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
 
   final TfArg<String>? privateLinkServiceName;
 
-  final AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesSapoDataOauthProperties?
-  oauthProperties;
+  final AppflowConnectorProfileOauthProperties? oauthProperties;
 
   Map<String, Object?> encode() => {
     'application_host_url': applicationHostUrl.toTfJson(),
@@ -1284,8 +1056,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
 /// Typed helper for the `connector_profile_config.connector_profile_properties.sapo_data.oauth_properties` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesSapoDataOauthProperties {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesSapoDataOauthProperties({
+final class AppflowConnectorProfileOauthProperties {
+  const AppflowConnectorProfileOauthProperties({
     required this.authCodeUrl,
     required this.oauthScopes,
     required this.tokenUrl,
@@ -1307,8 +1079,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
 /// Typed helper for the `connector_profile_config.connector_profile_properties.service_now` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesServiceNow {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesServiceNow({
+final class AppflowConnectorProfilePropertiesServiceNow {
+  const AppflowConnectorProfilePropertiesServiceNow({
     required this.instanceUrl,
   });
 
@@ -1320,8 +1092,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
 /// Typed helper for the `connector_profile_config.connector_profile_properties.singular` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesSingular {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesSingular();
+final class AppflowConnectorProfilePropertiesSingular {
+  const AppflowConnectorProfilePropertiesSingular();
 
   Map<String, Object?> encode() => {};
 }
@@ -1329,10 +1101,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
 /// Typed helper for the `connector_profile_config.connector_profile_properties.slack` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesSlack {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesSlack({
-    required this.instanceUrl,
-  });
+final class AppflowConnectorProfilePropertiesSlack {
+  const AppflowConnectorProfilePropertiesSlack({required this.instanceUrl});
 
   final TfArg<String> instanceUrl;
 
@@ -1342,8 +1112,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
 /// Typed helper for the `connector_profile_config.connector_profile_properties.snowflake` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesSnowflake {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesSnowflake({
+final class AppflowConnectorProfilePropertiesSnowflake {
+  const AppflowConnectorProfilePropertiesSnowflake({
     this.accountName,
     required this.bucketName,
     this.bucketPrefix,
@@ -1381,8 +1151,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
 /// Typed helper for the `connector_profile_config.connector_profile_properties.trendmicro` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesTrendmicro {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesTrendmicro();
+final class AppflowConnectorProfilePropertiesTrendmicro {
+  const AppflowConnectorProfilePropertiesTrendmicro();
 
   Map<String, Object?> encode() => {};
 }
@@ -1390,10 +1160,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
 /// Typed helper for the `connector_profile_config.connector_profile_properties.veeva` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesVeeva {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesVeeva({
-    required this.instanceUrl,
-  });
+final class AppflowConnectorProfilePropertiesVeeva {
+  const AppflowConnectorProfilePropertiesVeeva({required this.instanceUrl});
 
   final TfArg<String> instanceUrl;
 
@@ -1403,10 +1171,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
 /// Typed helper for the `connector_profile_config.connector_profile_properties.zendesk` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
-final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesZendesk {
-  const AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesZendesk({
-    required this.instanceUrl,
-  });
+final class AppflowConnectorProfilePropertiesZendesk {
+  const AppflowConnectorProfilePropertiesZendesk({required this.instanceUrl});
 
   final TfArg<String> instanceUrl;
 
@@ -1425,8 +1191,7 @@ final class AwsAppflowConnectorProfile extends Resource {
     RefTo<AwsKmsKey>? kmsArn,
     required TfArg<String> name,
     TfArg<String>? region,
-    required AppflowConnectorProfileConnectorProfileConfig
-    connectorProfileConfig,
+    required AppflowConnectorProfileConfig connectorProfileConfig,
     super.lifecycle,
     super.dependsOn,
     super.provider,

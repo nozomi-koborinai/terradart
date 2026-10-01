@@ -13,7 +13,7 @@ export 'src/networkmanager/aws_networkmanager_connect_attachment.dart'
     show
         AwsNetworkmanagerConnectAttachment,
         NetworkmanagerConnectAttachmentOptions,
-        NetworkmanagerConnectAttachmentOptionsProtocol;
+        NetworkmanagerConnectAttachmentProtocol;
 export 'src/networkmanager/aws_networkmanager_connect_peer.dart'
     show AwsNetworkmanagerConnectPeer, NetworkmanagerConnectPeerBgpOptions;
 export 'src/networkmanager/aws_networkmanager_connection.dart'

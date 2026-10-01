@@ -25,7 +25,7 @@ final class EvidentlyFeatureVariations {
 
   final TfArg<String> name;
 
-  final EvidentlyFeatureVariationsValue value;
+  final EvidentlyFeatureValue value;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -36,8 +36,8 @@ final class EvidentlyFeatureVariations {
 /// Typed helper for the `variations.value` block of
 /// `aws_evidently_feature` (derived from provider schema).
 @immutable
-final class EvidentlyFeatureVariationsValue {
-  const EvidentlyFeatureVariationsValue({
+final class EvidentlyFeatureValue {
+  const EvidentlyFeatureValue({
     this.boolValue,
     this.doubleValue,
     this.longValue,

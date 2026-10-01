@@ -7,33 +7,33 @@ export 'src/elasticsearch/aws_elasticsearch_domain.dart'
     show
         AwsElasticsearchDomain,
         ElasticsearchDomainAdvancedSecurityOptions,
-        ElasticsearchDomainAdvancedSecurityOptionsMasterUserOptions,
         ElasticsearchDomainAutoTuneOptions,
-        ElasticsearchDomainAutoTuneOptionsDesiredState,
-        ElasticsearchDomainAutoTuneOptionsMaintenanceSchedule,
-        ElasticsearchDomainAutoTuneOptionsMaintenanceScheduleDuration,
-        ElasticsearchDomainAutoTuneOptionsMaintenanceScheduleDurationUnit,
-        ElasticsearchDomainAutoTuneOptionsRollbackOnDisable,
         ElasticsearchDomainClusterConfig,
-        ElasticsearchDomainClusterConfigColdStorageOptions,
-        ElasticsearchDomainClusterConfigZoneAwarenessConfig,
         ElasticsearchDomainCognitoOptions,
-        ElasticsearchDomainDomainEndpointOptions,
-        ElasticsearchDomainDomainEndpointOptionsTlsSecurityPolicy,
+        ElasticsearchDomainColdStorageOptions,
+        ElasticsearchDomainDesiredState,
+        ElasticsearchDomainDuration,
         ElasticsearchDomainEbsOptions,
-        ElasticsearchDomainEbsOptionsVolumeType,
         ElasticsearchDomainEncryptAtRest,
+        ElasticsearchDomainEndpointOptions,
         ElasticsearchDomainLogPublishingOptions,
-        ElasticsearchDomainLogPublishingOptionsLogType,
+        ElasticsearchDomainLogType,
+        ElasticsearchDomainMaintenanceSchedule,
+        ElasticsearchDomainMasterUserOptions,
         ElasticsearchDomainNodeToNodeEncryption,
+        ElasticsearchDomainRollbackOnDisable,
         ElasticsearchDomainSnapshotOptions,
-        ElasticsearchDomainVpcOptions;
+        ElasticsearchDomainTlsSecurityPolicy,
+        ElasticsearchDomainUnit,
+        ElasticsearchDomainVolumeType,
+        ElasticsearchDomainVpcOptions,
+        ElasticsearchDomainZoneAwarenessConfig;
 export 'src/elasticsearch/aws_elasticsearch_domain_policy.dart'
     show AwsElasticsearchDomainPolicy;
 export 'src/elasticsearch/aws_elasticsearch_domain_saml_options.dart'
     show
         AwsElasticsearchDomainSamlOptions,
-        ElasticsearchDomainSamlOptionsSamlOptions,
-        ElasticsearchDomainSamlOptionsSamlOptionsIdp;
+        ElasticsearchDomainSamlOptionsIdp,
+        ElasticsearchDomainSamlOptionsSamlOptions;
 export 'src/elasticsearch/aws_elasticsearch_vpc_endpoint.dart'
     show AwsElasticsearchVpcEndpoint, ElasticsearchVpcEndpointVpcOptions;

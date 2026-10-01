@@ -36,8 +36,8 @@ sealed class VertexAiFeaturestoreOnlineServingConfig {
 
   /// Sets `scaling`.
   const factory VertexAiFeaturestoreOnlineServingConfig.scaling(
-    VertexAiFeaturestoreOnlineServingConfigScaling scaling,
-  ) = VertexAiFeaturestoreOnlineServingConfigScalingChoice;
+    VertexAiFeaturestoreScaling scaling,
+  ) = VertexAiFeaturestoreOnlineServingConfigScaling;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -64,11 +64,11 @@ final class VertexAiFeaturestoreOnlineServingConfigFixedNodeCount
 }
 
 /// The [VertexAiFeaturestoreOnlineServingConfig.scaling] choice: sets `scaling`.
-final class VertexAiFeaturestoreOnlineServingConfigScalingChoice
+final class VertexAiFeaturestoreOnlineServingConfigScaling
     extends VertexAiFeaturestoreOnlineServingConfig {
-  const VertexAiFeaturestoreOnlineServingConfigScalingChoice(this.scaling);
+  const VertexAiFeaturestoreOnlineServingConfigScaling(this.scaling);
 
-  final VertexAiFeaturestoreOnlineServingConfigScaling scaling;
+  final VertexAiFeaturestoreScaling scaling;
 
   @override
   String get blockKey => 'scaling';
@@ -80,8 +80,8 @@ final class VertexAiFeaturestoreOnlineServingConfigScalingChoice
 /// Typed helper for the `online_serving_config.scaling` block of
 /// `google_vertex_ai_featurestore` (derived from provider schema).
 @immutable
-final class VertexAiFeaturestoreOnlineServingConfigScaling {
-  const VertexAiFeaturestoreOnlineServingConfigScaling({
+final class VertexAiFeaturestoreScaling {
+  const VertexAiFeaturestoreScaling({
     required this.maxNodeCount,
     required this.minNodeCount,
   });

@@ -20,15 +20,10 @@ final class AccessContextManagerServicePerimeterIngressPolicyIngressFrom {
 
   final TfArg<List<String>>? identities;
 
-  final TfArg<
-    AccessContextManagerServicePerimeterIngressPolicyIngressFromIdentityType
-  >?
+  final TfArg<AccessContextManagerServicePerimeterIngressPolicyIdentityType>?
   identityType;
 
-  final List<
-    AccessContextManagerServicePerimeterIngressPolicyIngressFromSources
-  >?
-  sources;
+  final List<AccessContextManagerServicePerimeterIngressPolicySources>? sources;
 
   Map<String, Object?> encode() => {
     'identities': ?identities?.toTfJson(),
@@ -38,13 +33,13 @@ final class AccessContextManagerServicePerimeterIngressPolicyIngressFrom {
 }
 
 /// `identity_type` — derived from the provider schema description.
-enum AccessContextManagerServicePerimeterIngressPolicyIngressFromIdentityType
+enum AccessContextManagerServicePerimeterIngressPolicyIdentityType
     implements TerraformEnum {
   anyIdentity('ANY_IDENTITY'),
   anyUserAccount('ANY_USER_ACCOUNT'),
   anyServiceAccount('ANY_SERVICE_ACCOUNT');
 
-  const AccessContextManagerServicePerimeterIngressPolicyIngressFromIdentityType(
+  const AccessContextManagerServicePerimeterIngressPolicyIdentityType(
     this.terraformValue,
   );
   @override
@@ -54,8 +49,8 @@ enum AccessContextManagerServicePerimeterIngressPolicyIngressFromIdentityType
 /// Typed helper for the `ingress_from.sources` block of
 /// `google_access_context_manager_service_perimeter_ingress_policy` (derived from provider schema).
 @immutable
-final class AccessContextManagerServicePerimeterIngressPolicyIngressFromSources {
-  const AccessContextManagerServicePerimeterIngressPolicyIngressFromSources({
+final class AccessContextManagerServicePerimeterIngressPolicySources {
+  const AccessContextManagerServicePerimeterIngressPolicySources({
     this.accessLevel,
     this.resource,
     this.pscEndpoint,
@@ -65,7 +60,7 @@ final class AccessContextManagerServicePerimeterIngressPolicyIngressFromSources 
 
   final TfArg<String>? resource;
 
-  final AccessContextManagerServicePerimeterIngressPolicyIngressFromSourcesPscEndpoint?
+  final AccessContextManagerServicePerimeterIngressPolicyPscEndpoint?
   pscEndpoint;
 
   Map<String, Object?> encode() => {
@@ -78,8 +73,8 @@ final class AccessContextManagerServicePerimeterIngressPolicyIngressFromSources 
 /// Typed helper for the `ingress_from.sources.psc_endpoint` block of
 /// `google_access_context_manager_service_perimeter_ingress_policy` (derived from provider schema).
 @immutable
-final class AccessContextManagerServicePerimeterIngressPolicyIngressFromSourcesPscEndpoint {
-  const AccessContextManagerServicePerimeterIngressPolicyIngressFromSourcesPscEndpoint({
+final class AccessContextManagerServicePerimeterIngressPolicyPscEndpoint {
+  const AccessContextManagerServicePerimeterIngressPolicyPscEndpoint({
     this.forwardingRule,
   });
 
@@ -104,9 +99,7 @@ final class AccessContextManagerServicePerimeterIngressPolicyIngressTo {
 
   final TfArg<List<String>>? roles;
 
-  final List<
-    AccessContextManagerServicePerimeterIngressPolicyIngressToOperations
-  >?
+  final List<AccessContextManagerServicePerimeterIngressPolicyOperations>?
   operations;
 
   Map<String, Object?> encode() => {
@@ -120,17 +113,15 @@ final class AccessContextManagerServicePerimeterIngressPolicyIngressTo {
 /// Typed helper for the `ingress_to.operations` block of
 /// `google_access_context_manager_service_perimeter_ingress_policy` (derived from provider schema).
 @immutable
-final class AccessContextManagerServicePerimeterIngressPolicyIngressToOperations {
-  const AccessContextManagerServicePerimeterIngressPolicyIngressToOperations({
+final class AccessContextManagerServicePerimeterIngressPolicyOperations {
+  const AccessContextManagerServicePerimeterIngressPolicyOperations({
     this.serviceName,
     this.methodSelectors,
   });
 
   final TfArg<String>? serviceName;
 
-  final List<
-    AccessContextManagerServicePerimeterIngressPolicyIngressToOperationsMethodSelectors
-  >?
+  final List<AccessContextManagerServicePerimeterIngressPolicyMethodSelectors>?
   methodSelectors;
 
   Map<String, Object?> encode() => {
@@ -143,8 +134,8 @@ final class AccessContextManagerServicePerimeterIngressPolicyIngressToOperations
 /// Typed helper for the `ingress_to.operations.method_selectors` block of
 /// `google_access_context_manager_service_perimeter_ingress_policy` (derived from provider schema).
 @immutable
-final class AccessContextManagerServicePerimeterIngressPolicyIngressToOperationsMethodSelectors {
-  const AccessContextManagerServicePerimeterIngressPolicyIngressToOperationsMethodSelectors({
+final class AccessContextManagerServicePerimeterIngressPolicyMethodSelectors {
+  const AccessContextManagerServicePerimeterIngressPolicyMethodSelectors({
     this.method,
     this.permission,
   });

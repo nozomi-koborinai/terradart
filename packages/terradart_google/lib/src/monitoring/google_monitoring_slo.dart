@@ -33,7 +33,7 @@ sealed class MonitoringSloPeriod {
   /// Sets `calendar_period`.
   const factory MonitoringSloPeriod.calendarPeriod(
     TfArg<MonitoringSloCalendarPeriod> calendarPeriod,
-  ) = MonitoringSloPeriodCalendarPeriod;
+  ) = MonitoringSloCalendarPeriodChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -66,8 +66,8 @@ final class MonitoringSloPeriodRollingPeriodDays extends MonitoringSloPeriod {
 }
 
 /// The [MonitoringSloPeriod.calendarPeriod] choice: sets `calendar_period`.
-final class MonitoringSloPeriodCalendarPeriod extends MonitoringSloPeriod {
-  const MonitoringSloPeriodCalendarPeriod(this.calendarPeriod);
+final class MonitoringSloCalendarPeriodChoice extends MonitoringSloPeriod {
+  const MonitoringSloCalendarPeriodChoice(this.calendarPeriod);
 
   final TfArg<MonitoringSloCalendarPeriod> calendarPeriod;
 
@@ -92,17 +92,17 @@ sealed class MonitoringSloSli {
 
   /// Sets `basic_sli`.
   const factory MonitoringSloSli.basicSli(MonitoringSloBasicSli basicSli) =
-      MonitoringSloSliBasicSli;
+      MonitoringSloBasicSliChoice;
 
   /// Sets `request_based_sli`.
   const factory MonitoringSloSli.requestBasedSli(
     MonitoringSloRequestBasedSli requestBasedSli,
-  ) = MonitoringSloSliRequestBasedSli;
+  ) = MonitoringSloRequestBasedSliChoice;
 
   /// Sets `windows_based_sli`.
   const factory MonitoringSloSli.windowsBasedSli(
     MonitoringSloWindowsBasedSli windowsBasedSli,
-  ) = MonitoringSloSliWindowsBasedSli;
+  ) = MonitoringSloWindowsBasedSliChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -115,8 +115,8 @@ sealed class MonitoringSloSli {
 }
 
 /// The [MonitoringSloSli.basicSli] choice: sets `basic_sli`.
-final class MonitoringSloSliBasicSli extends MonitoringSloSli {
-  const MonitoringSloSliBasicSli(this.basicSli);
+final class MonitoringSloBasicSliChoice extends MonitoringSloSli {
+  const MonitoringSloBasicSliChoice(this.basicSli);
 
   final MonitoringSloBasicSli basicSli;
 
@@ -133,8 +133,8 @@ final class MonitoringSloSliBasicSli extends MonitoringSloSli {
 }
 
 /// The [MonitoringSloSli.requestBasedSli] choice: sets `request_based_sli`.
-final class MonitoringSloSliRequestBasedSli extends MonitoringSloSli {
-  const MonitoringSloSliRequestBasedSli(this.requestBasedSli);
+final class MonitoringSloRequestBasedSliChoice extends MonitoringSloSli {
+  const MonitoringSloRequestBasedSliChoice(this.requestBasedSli);
 
   final MonitoringSloRequestBasedSli requestBasedSli;
 
@@ -153,8 +153,8 @@ final class MonitoringSloSliRequestBasedSli extends MonitoringSloSli {
 }
 
 /// The [MonitoringSloSli.windowsBasedSli] choice: sets `windows_based_sli`.
-final class MonitoringSloSliWindowsBasedSli extends MonitoringSloSli {
-  const MonitoringSloSliWindowsBasedSli(this.windowsBasedSli);
+final class MonitoringSloWindowsBasedSliChoice extends MonitoringSloSli {
+  const MonitoringSloWindowsBasedSliChoice(this.windowsBasedSli);
 
   final MonitoringSloWindowsBasedSli windowsBasedSli;
 
@@ -189,7 +189,7 @@ final class MonitoringSloBasicSli {
 
   final TfArg<List<String>>? version;
 
-  final MonitoringSloBasicSliObjective objective;
+  final MonitoringSloObjective objective;
 
   Map<String, Object?> encode() => {
     'location': ?location?.toTfJson(),
@@ -203,18 +203,17 @@ final class MonitoringSloBasicSli {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.latency(...)`.
-sealed class MonitoringSloBasicSliObjective {
-  const MonitoringSloBasicSliObjective();
+sealed class MonitoringSloObjective {
+  const MonitoringSloObjective();
 
   /// Sets `latency`.
-  const factory MonitoringSloBasicSliObjective.latency(
-    MonitoringSloBasicSliLatency latency,
-  ) = MonitoringSloBasicSliObjectiveLatency;
+  const factory MonitoringSloObjective.latency(MonitoringSloLatency latency) =
+      MonitoringSloObjectiveLatency;
 
   /// Sets `availability`.
-  const factory MonitoringSloBasicSliObjective.availability(
-    MonitoringSloBasicSliAvailability availability,
-  ) = MonitoringSloBasicSliObjectiveAvailability;
+  const factory MonitoringSloObjective.availability(
+    MonitoringSloAvailability availability,
+  ) = MonitoringSloObjectiveAvailability;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -222,12 +221,11 @@ sealed class MonitoringSloBasicSliObjective {
   Map<String, Object?> encode();
 }
 
-/// The [MonitoringSloBasicSliObjective.latency] choice: sets `latency`.
-final class MonitoringSloBasicSliObjectiveLatency
-    extends MonitoringSloBasicSliObjective {
-  const MonitoringSloBasicSliObjectiveLatency(this.latency);
+/// The [MonitoringSloObjective.latency] choice: sets `latency`.
+final class MonitoringSloObjectiveLatency extends MonitoringSloObjective {
+  const MonitoringSloObjectiveLatency(this.latency);
 
-  final MonitoringSloBasicSliLatency latency;
+  final MonitoringSloLatency latency;
 
   @override
   String get blockKey => 'latency';
@@ -236,12 +234,11 @@ final class MonitoringSloBasicSliObjectiveLatency
   Map<String, Object?> encode() => {'latency': latency.encode()};
 }
 
-/// The [MonitoringSloBasicSliObjective.availability] choice: sets `availability`.
-final class MonitoringSloBasicSliObjectiveAvailability
-    extends MonitoringSloBasicSliObjective {
-  const MonitoringSloBasicSliObjectiveAvailability(this.availability);
+/// The [MonitoringSloObjective.availability] choice: sets `availability`.
+final class MonitoringSloObjectiveAvailability extends MonitoringSloObjective {
+  const MonitoringSloObjectiveAvailability(this.availability);
 
-  final MonitoringSloBasicSliAvailability availability;
+  final MonitoringSloAvailability availability;
 
   @override
   String get blockKey => 'availability';
@@ -252,9 +249,10 @@ final class MonitoringSloBasicSliObjectiveAvailability
 
 /// Typed helper for the `basic_sli.availability` block of
 /// `google_monitoring_slo` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class MonitoringSloBasicSliAvailability {
-  const MonitoringSloBasicSliAvailability({this.enabled});
+final class MonitoringSloAvailability {
+  const MonitoringSloAvailability({this.enabled});
 
   final TfArg<bool>? enabled;
 
@@ -263,9 +261,10 @@ final class MonitoringSloBasicSliAvailability {
 
 /// Typed helper for the `basic_sli.latency` block of
 /// `google_monitoring_slo` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class MonitoringSloBasicSliLatency {
-  const MonitoringSloBasicSliLatency({required this.threshold});
+final class MonitoringSloLatency {
+  const MonitoringSloLatency({required this.threshold});
 
   final TfArg<String> threshold;
 
@@ -281,13 +280,13 @@ sealed class MonitoringSloRequestBasedSli {
 
   /// Sets `good_total_ratio`.
   const factory MonitoringSloRequestBasedSli.goodTotalRatio(
-    MonitoringSloRequestBasedSliGoodTotalRatio goodTotalRatio,
-  ) = MonitoringSloRequestBasedSliGoodTotalRatioChoice;
+    MonitoringSloGoodTotalRatio goodTotalRatio,
+  ) = MonitoringSloRequestBasedSliGoodTotalRatio;
 
   /// Sets `distribution_cut`.
   const factory MonitoringSloRequestBasedSli.distributionCut(
-    MonitoringSloRequestBasedSliDistributionCut distributionCut,
-  ) = MonitoringSloRequestBasedSliDistributionCutChoice;
+    MonitoringSloDistributionCut distributionCut,
+  ) = MonitoringSloRequestBasedSliDistributionCut;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -296,11 +295,11 @@ sealed class MonitoringSloRequestBasedSli {
 }
 
 /// The [MonitoringSloRequestBasedSli.goodTotalRatio] choice: sets `good_total_ratio`.
-final class MonitoringSloRequestBasedSliGoodTotalRatioChoice
+final class MonitoringSloRequestBasedSliGoodTotalRatio
     extends MonitoringSloRequestBasedSli {
-  const MonitoringSloRequestBasedSliGoodTotalRatioChoice(this.goodTotalRatio);
+  const MonitoringSloRequestBasedSliGoodTotalRatio(this.goodTotalRatio);
 
-  final MonitoringSloRequestBasedSliGoodTotalRatio goodTotalRatio;
+  final MonitoringSloGoodTotalRatio goodTotalRatio;
 
   @override
   String get blockKey => 'good_total_ratio';
@@ -312,11 +311,11 @@ final class MonitoringSloRequestBasedSliGoodTotalRatioChoice
 }
 
 /// The [MonitoringSloRequestBasedSli.distributionCut] choice: sets `distribution_cut`.
-final class MonitoringSloRequestBasedSliDistributionCutChoice
+final class MonitoringSloRequestBasedSliDistributionCut
     extends MonitoringSloRequestBasedSli {
-  const MonitoringSloRequestBasedSliDistributionCutChoice(this.distributionCut);
+  const MonitoringSloRequestBasedSliDistributionCut(this.distributionCut);
 
-  final MonitoringSloRequestBasedSliDistributionCut distributionCut;
+  final MonitoringSloDistributionCut distributionCut;
 
   @override
   String get blockKey => 'distribution_cut';
@@ -329,16 +328,17 @@ final class MonitoringSloRequestBasedSliDistributionCutChoice
 
 /// Typed helper for the `request_based_sli.distribution_cut` block of
 /// `google_monitoring_slo` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class MonitoringSloRequestBasedSliDistributionCut {
-  const MonitoringSloRequestBasedSliDistributionCut({
+final class MonitoringSloDistributionCut {
+  const MonitoringSloDistributionCut({
     required this.distributionFilter,
     required this.range,
   });
 
   final TfArg<String> distributionFilter;
 
-  final MonitoringSloRequestBasedSliDistributionCutRange range;
+  final MonitoringSloRange range;
 
   Map<String, Object?> encode() => {
     'distribution_filter': distributionFilter.toTfJson(),
@@ -348,9 +348,10 @@ final class MonitoringSloRequestBasedSliDistributionCut {
 
 /// Typed helper for the `request_based_sli.distribution_cut.range` block of
 /// `google_monitoring_slo` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class MonitoringSloRequestBasedSliDistributionCutRange {
-  const MonitoringSloRequestBasedSliDistributionCutRange({this.max, this.min});
+final class MonitoringSloRange {
+  const MonitoringSloRange({this.max, this.min});
 
   final TfArg<num>? max;
 
@@ -364,9 +365,10 @@ final class MonitoringSloRequestBasedSliDistributionCutRange {
 
 /// Typed helper for the `request_based_sli.good_total_ratio` block of
 /// `google_monitoring_slo` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class MonitoringSloRequestBasedSliGoodTotalRatio {
-  const MonitoringSloRequestBasedSliGoodTotalRatio({
+final class MonitoringSloGoodTotalRatio {
+  const MonitoringSloGoodTotalRatio({
     this.badServiceFilter,
     this.goodServiceFilter,
     this.totalServiceFilter,
@@ -394,7 +396,7 @@ final class MonitoringSloWindowsBasedSli {
     this.windowPeriod,
   });
 
-  final MonitoringSloWindowsBasedSliCriterion criterion;
+  final MonitoringSloCriterion criterion;
 
   final TfArg<String>? windowPeriod;
 
@@ -408,28 +410,28 @@ final class MonitoringSloWindowsBasedSli {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.goodBadMetricFilter(...)`.
-sealed class MonitoringSloWindowsBasedSliCriterion {
-  const MonitoringSloWindowsBasedSliCriterion();
+sealed class MonitoringSloCriterion {
+  const MonitoringSloCriterion();
 
   /// Sets `good_bad_metric_filter`.
-  const factory MonitoringSloWindowsBasedSliCriterion.goodBadMetricFilter(
+  const factory MonitoringSloCriterion.goodBadMetricFilter(
     TfArg<String> goodBadMetricFilter,
-  ) = MonitoringSloWindowsBasedSliCriterionGoodBadMetricFilter;
+  ) = MonitoringSloCriterionGoodBadMetricFilter;
 
   /// Sets `good_total_ratio_threshold`.
-  const factory MonitoringSloWindowsBasedSliCriterion.goodTotalRatioThreshold(
-    MonitoringSloWindowsBasedSliGoodTotalRatioThreshold goodTotalRatioThreshold,
-  ) = MonitoringSloWindowsBasedSliCriterionGoodTotalRatioThreshold;
+  const factory MonitoringSloCriterion.goodTotalRatioThreshold(
+    MonitoringSloGoodTotalRatioThreshold goodTotalRatioThreshold,
+  ) = MonitoringSloCriterionGoodTotalRatioThreshold;
 
   /// Sets `metric_mean_in_range`.
-  const factory MonitoringSloWindowsBasedSliCriterion.metricMeanInRange(
-    MonitoringSloWindowsBasedSliMetricMeanInRange metricMeanInRange,
-  ) = MonitoringSloWindowsBasedSliCriterionMetricMeanInRange;
+  const factory MonitoringSloCriterion.metricMeanInRange(
+    MonitoringSloMetricMeanInRange metricMeanInRange,
+  ) = MonitoringSloCriterionMetricMeanInRange;
 
   /// Sets `metric_sum_in_range`.
-  const factory MonitoringSloWindowsBasedSliCriterion.metricSumInRange(
-    MonitoringSloWindowsBasedSliMetricSumInRange metricSumInRange,
-  ) = MonitoringSloWindowsBasedSliCriterionMetricSumInRange;
+  const factory MonitoringSloCriterion.metricSumInRange(
+    MonitoringSloMetricSumInRange metricSumInRange,
+  ) = MonitoringSloCriterionMetricSumInRange;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -437,12 +439,10 @@ sealed class MonitoringSloWindowsBasedSliCriterion {
   Map<String, Object?> encode();
 }
 
-/// The [MonitoringSloWindowsBasedSliCriterion.goodBadMetricFilter] choice: sets `good_bad_metric_filter`.
-final class MonitoringSloWindowsBasedSliCriterionGoodBadMetricFilter
-    extends MonitoringSloWindowsBasedSliCriterion {
-  const MonitoringSloWindowsBasedSliCriterionGoodBadMetricFilter(
-    this.goodBadMetricFilter,
-  );
+/// The [MonitoringSloCriterion.goodBadMetricFilter] choice: sets `good_bad_metric_filter`.
+final class MonitoringSloCriterionGoodBadMetricFilter
+    extends MonitoringSloCriterion {
+  const MonitoringSloCriterionGoodBadMetricFilter(this.goodBadMetricFilter);
 
   final TfArg<String> goodBadMetricFilter;
 
@@ -455,15 +455,14 @@ final class MonitoringSloWindowsBasedSliCriterionGoodBadMetricFilter
   };
 }
 
-/// The [MonitoringSloWindowsBasedSliCriterion.goodTotalRatioThreshold] choice: sets `good_total_ratio_threshold`.
-final class MonitoringSloWindowsBasedSliCriterionGoodTotalRatioThreshold
-    extends MonitoringSloWindowsBasedSliCriterion {
-  const MonitoringSloWindowsBasedSliCriterionGoodTotalRatioThreshold(
+/// The [MonitoringSloCriterion.goodTotalRatioThreshold] choice: sets `good_total_ratio_threshold`.
+final class MonitoringSloCriterionGoodTotalRatioThreshold
+    extends MonitoringSloCriterion {
+  const MonitoringSloCriterionGoodTotalRatioThreshold(
     this.goodTotalRatioThreshold,
   );
 
-  final MonitoringSloWindowsBasedSliGoodTotalRatioThreshold
-  goodTotalRatioThreshold;
+  final MonitoringSloGoodTotalRatioThreshold goodTotalRatioThreshold;
 
   @override
   String get blockKey => 'good_total_ratio_threshold';
@@ -474,14 +473,12 @@ final class MonitoringSloWindowsBasedSliCriterionGoodTotalRatioThreshold
   };
 }
 
-/// The [MonitoringSloWindowsBasedSliCriterion.metricMeanInRange] choice: sets `metric_mean_in_range`.
-final class MonitoringSloWindowsBasedSliCriterionMetricMeanInRange
-    extends MonitoringSloWindowsBasedSliCriterion {
-  const MonitoringSloWindowsBasedSliCriterionMetricMeanInRange(
-    this.metricMeanInRange,
-  );
+/// The [MonitoringSloCriterion.metricMeanInRange] choice: sets `metric_mean_in_range`.
+final class MonitoringSloCriterionMetricMeanInRange
+    extends MonitoringSloCriterion {
+  const MonitoringSloCriterionMetricMeanInRange(this.metricMeanInRange);
 
-  final MonitoringSloWindowsBasedSliMetricMeanInRange metricMeanInRange;
+  final MonitoringSloMetricMeanInRange metricMeanInRange;
 
   @override
   String get blockKey => 'metric_mean_in_range';
@@ -492,14 +489,12 @@ final class MonitoringSloWindowsBasedSliCriterionMetricMeanInRange
   };
 }
 
-/// The [MonitoringSloWindowsBasedSliCriterion.metricSumInRange] choice: sets `metric_sum_in_range`.
-final class MonitoringSloWindowsBasedSliCriterionMetricSumInRange
-    extends MonitoringSloWindowsBasedSliCriterion {
-  const MonitoringSloWindowsBasedSliCriterionMetricSumInRange(
-    this.metricSumInRange,
-  );
+/// The [MonitoringSloCriterion.metricSumInRange] choice: sets `metric_sum_in_range`.
+final class MonitoringSloCriterionMetricSumInRange
+    extends MonitoringSloCriterion {
+  const MonitoringSloCriterionMetricSumInRange(this.metricSumInRange);
 
-  final MonitoringSloWindowsBasedSliMetricSumInRange metricSumInRange;
+  final MonitoringSloMetricSumInRange metricSumInRange;
 
   @override
   String get blockKey => 'metric_sum_in_range';
@@ -513,15 +508,15 @@ final class MonitoringSloWindowsBasedSliCriterionMetricSumInRange
 /// Typed helper for the `windows_based_sli.good_total_ratio_threshold` block of
 /// `google_monitoring_slo` (derived from provider schema).
 @immutable
-final class MonitoringSloWindowsBasedSliGoodTotalRatioThreshold {
-  const MonitoringSloWindowsBasedSliGoodTotalRatioThreshold({
+final class MonitoringSloGoodTotalRatioThreshold {
+  const MonitoringSloGoodTotalRatioThreshold({
     this.threshold,
     required this.measure,
   });
 
   final TfArg<num>? threshold;
 
-  final MonitoringSloWindowsBasedSliGoodTotalRatioThresholdMeasure measure;
+  final MonitoringSloMeasure measure;
 
   Map<String, Object?> encode() => {
     'threshold': ?threshold?.toTfJson(),
@@ -533,19 +528,18 @@ final class MonitoringSloWindowsBasedSliGoodTotalRatioThreshold {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.performance(...)`.
-sealed class MonitoringSloWindowsBasedSliGoodTotalRatioThresholdMeasure {
-  const MonitoringSloWindowsBasedSliGoodTotalRatioThresholdMeasure();
+sealed class MonitoringSloMeasure {
+  const MonitoringSloMeasure();
 
   /// Sets `performance`.
-  const factory MonitoringSloWindowsBasedSliGoodTotalRatioThresholdMeasure.performance(
-    MonitoringSloWindowsBasedSliGoodTotalRatioThresholdPerformance performance,
-  ) = MonitoringSloWindowsBasedSliGoodTotalRatioThresholdMeasurePerformance;
+  const factory MonitoringSloMeasure.performance(
+    MonitoringSloPerformance performance,
+  ) = MonitoringSloMeasurePerformance;
 
   /// Sets `basic_sli_performance`.
-  const factory MonitoringSloWindowsBasedSliGoodTotalRatioThresholdMeasure.basicSliPerformance(
-    MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformance
-    basicSliPerformance,
-  ) = MonitoringSloWindowsBasedSliGoodTotalRatioThresholdMeasureBasicSliPerformance;
+  const factory MonitoringSloMeasure.basicSliPerformance(
+    MonitoringSloBasicSliPerformance basicSliPerformance,
+  ) = MonitoringSloMeasureBasicSliPerformance;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -553,15 +547,11 @@ sealed class MonitoringSloWindowsBasedSliGoodTotalRatioThresholdMeasure {
   Map<String, Object?> encode();
 }
 
-/// The [MonitoringSloWindowsBasedSliGoodTotalRatioThresholdMeasure.performance] choice: sets `performance`.
-final class MonitoringSloWindowsBasedSliGoodTotalRatioThresholdMeasurePerformance
-    extends MonitoringSloWindowsBasedSliGoodTotalRatioThresholdMeasure {
-  const MonitoringSloWindowsBasedSliGoodTotalRatioThresholdMeasurePerformance(
-    this.performance,
-  );
+/// The [MonitoringSloMeasure.performance] choice: sets `performance`.
+final class MonitoringSloMeasurePerformance extends MonitoringSloMeasure {
+  const MonitoringSloMeasurePerformance(this.performance);
 
-  final MonitoringSloWindowsBasedSliGoodTotalRatioThresholdPerformance
-  performance;
+  final MonitoringSloPerformance performance;
 
   @override
   String get blockKey => 'performance';
@@ -570,15 +560,12 @@ final class MonitoringSloWindowsBasedSliGoodTotalRatioThresholdMeasurePerformanc
   Map<String, Object?> encode() => {'performance': performance.encode()};
 }
 
-/// The [MonitoringSloWindowsBasedSliGoodTotalRatioThresholdMeasure.basicSliPerformance] choice: sets `basic_sli_performance`.
-final class MonitoringSloWindowsBasedSliGoodTotalRatioThresholdMeasureBasicSliPerformance
-    extends MonitoringSloWindowsBasedSliGoodTotalRatioThresholdMeasure {
-  const MonitoringSloWindowsBasedSliGoodTotalRatioThresholdMeasureBasicSliPerformance(
-    this.basicSliPerformance,
-  );
+/// The [MonitoringSloMeasure.basicSliPerformance] choice: sets `basic_sli_performance`.
+final class MonitoringSloMeasureBasicSliPerformance
+    extends MonitoringSloMeasure {
+  const MonitoringSloMeasureBasicSliPerformance(this.basicSliPerformance);
 
-  final MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformance
-  basicSliPerformance;
+  final MonitoringSloBasicSliPerformance basicSliPerformance;
 
   @override
   String get blockKey => 'basic_sli_performance';
@@ -592,8 +579,8 @@ final class MonitoringSloWindowsBasedSliGoodTotalRatioThresholdMeasureBasicSliPe
 /// Typed helper for the `windows_based_sli.good_total_ratio_threshold.basic_sli_performance` block of
 /// `google_monitoring_slo` (derived from provider schema).
 @immutable
-final class MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformance {
-  const MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformance({
+final class MonitoringSloBasicSliPerformance {
+  const MonitoringSloBasicSliPerformance({
     this.location,
     this.method,
     this.version,
@@ -606,8 +593,7 @@ final class MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerforman
 
   final TfArg<List<String>>? version;
 
-  final MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceObjective
-  objective;
+  final MonitoringSloBasicSliPerformanceObjective objective;
 
   Map<String, Object?> encode() => {
     'location': ?location?.toTfJson(),
@@ -621,20 +607,18 @@ final class MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerforman
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.latency(...)`.
-sealed class MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceObjective {
-  const MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceObjective();
+sealed class MonitoringSloBasicSliPerformanceObjective {
+  const MonitoringSloBasicSliPerformanceObjective();
 
   /// Sets `latency`.
-  const factory MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceObjective.latency(
-    MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceLatency
-    latency,
-  ) = MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceObjectiveLatency;
+  const factory MonitoringSloBasicSliPerformanceObjective.latency(
+    MonitoringSloLatency latency,
+  ) = MonitoringSloBasicSliPerformanceObjectiveLatency;
 
   /// Sets `availability`.
-  const factory MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceObjective.availability(
-    MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceAvailability
-    availability,
-  ) = MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceObjectiveAvailability;
+  const factory MonitoringSloBasicSliPerformanceObjective.availability(
+    MonitoringSloAvailability availability,
+  ) = MonitoringSloBasicSliPerformanceObjectiveAvailability;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -642,16 +626,12 @@ sealed class MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerforma
   Map<String, Object?> encode();
 }
 
-/// The [MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceObjective.latency] choice: sets `latency`.
-final class MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceObjectiveLatency
-    extends
-        MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceObjective {
-  const MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceObjectiveLatency(
-    this.latency,
-  );
+/// The [MonitoringSloBasicSliPerformanceObjective.latency] choice: sets `latency`.
+final class MonitoringSloBasicSliPerformanceObjectiveLatency
+    extends MonitoringSloBasicSliPerformanceObjective {
+  const MonitoringSloBasicSliPerformanceObjectiveLatency(this.latency);
 
-  final MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceLatency
-  latency;
+  final MonitoringSloLatency latency;
 
   @override
   String get blockKey => 'latency';
@@ -660,16 +640,14 @@ final class MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerforman
   Map<String, Object?> encode() => {'latency': latency.encode()};
 }
 
-/// The [MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceObjective.availability] choice: sets `availability`.
-final class MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceObjectiveAvailability
-    extends
-        MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceObjective {
-  const MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceObjectiveAvailability(
+/// The [MonitoringSloBasicSliPerformanceObjective.availability] choice: sets `availability`.
+final class MonitoringSloBasicSliPerformanceObjectiveAvailability
+    extends MonitoringSloBasicSliPerformanceObjective {
+  const MonitoringSloBasicSliPerformanceObjectiveAvailability(
     this.availability,
   );
 
-  final MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceAvailability
-  availability;
+  final MonitoringSloAvailability availability;
 
   @override
   String get blockKey => 'availability';
@@ -678,50 +656,22 @@ final class MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerforman
   Map<String, Object?> encode() => {'availability': availability.encode()};
 }
 
-/// Typed helper for the `windows_based_sli.good_total_ratio_threshold.basic_sli_performance.availability` block of
-/// `google_monitoring_slo` (derived from provider schema).
-@immutable
-final class MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceAvailability {
-  const MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceAvailability({
-    this.enabled,
-  });
-
-  final TfArg<bool>? enabled;
-
-  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
-}
-
-/// Typed helper for the `windows_based_sli.good_total_ratio_threshold.basic_sli_performance.latency` block of
-/// `google_monitoring_slo` (derived from provider schema).
-@immutable
-final class MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceLatency {
-  const MonitoringSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceLatency({
-    required this.threshold,
-  });
-
-  final TfArg<String> threshold;
-
-  Map<String, Object?> encode() => {'threshold': threshold.toTfJson()};
-}
-
 /// Exactly one of `good_total_ratio`, `distribution_cut` on the `windows_based_sli.good_total_ratio_threshold.performance` block of `google_monitoring_slo`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.goodTotalRatio(...)`.
-sealed class MonitoringSloWindowsBasedSliGoodTotalRatioThresholdPerformance {
-  const MonitoringSloWindowsBasedSliGoodTotalRatioThresholdPerformance();
+sealed class MonitoringSloPerformance {
+  const MonitoringSloPerformance();
 
   /// Sets `good_total_ratio`.
-  const factory MonitoringSloWindowsBasedSliGoodTotalRatioThresholdPerformance.goodTotalRatio(
-    MonitoringSloWindowsBasedSliGoodTotalRatioThresholdPerformanceGoodTotalRatio
-    goodTotalRatio,
-  ) = MonitoringSloWindowsBasedSliGoodTotalRatioThresholdPerformanceGoodTotalRatioChoice;
+  const factory MonitoringSloPerformance.goodTotalRatio(
+    MonitoringSloGoodTotalRatio goodTotalRatio,
+  ) = MonitoringSloPerformanceGoodTotalRatio;
 
   /// Sets `distribution_cut`.
-  const factory MonitoringSloWindowsBasedSliGoodTotalRatioThresholdPerformance.distributionCut(
-    MonitoringSloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCut
-    distributionCut,
-  ) = MonitoringSloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutChoice;
+  const factory MonitoringSloPerformance.distributionCut(
+    MonitoringSloDistributionCut distributionCut,
+  ) = MonitoringSloPerformanceDistributionCut;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -729,15 +679,12 @@ sealed class MonitoringSloWindowsBasedSliGoodTotalRatioThresholdPerformance {
   Map<String, Object?> encode();
 }
 
-/// The [MonitoringSloWindowsBasedSliGoodTotalRatioThresholdPerformance.goodTotalRatio] choice: sets `good_total_ratio`.
-final class MonitoringSloWindowsBasedSliGoodTotalRatioThresholdPerformanceGoodTotalRatioChoice
-    extends MonitoringSloWindowsBasedSliGoodTotalRatioThresholdPerformance {
-  const MonitoringSloWindowsBasedSliGoodTotalRatioThresholdPerformanceGoodTotalRatioChoice(
-    this.goodTotalRatio,
-  );
+/// The [MonitoringSloPerformance.goodTotalRatio] choice: sets `good_total_ratio`.
+final class MonitoringSloPerformanceGoodTotalRatio
+    extends MonitoringSloPerformance {
+  const MonitoringSloPerformanceGoodTotalRatio(this.goodTotalRatio);
 
-  final MonitoringSloWindowsBasedSliGoodTotalRatioThresholdPerformanceGoodTotalRatio
-  goodTotalRatio;
+  final MonitoringSloGoodTotalRatio goodTotalRatio;
 
   @override
   String get blockKey => 'good_total_ratio';
@@ -748,15 +695,12 @@ final class MonitoringSloWindowsBasedSliGoodTotalRatioThresholdPerformanceGoodTo
   };
 }
 
-/// The [MonitoringSloWindowsBasedSliGoodTotalRatioThresholdPerformance.distributionCut] choice: sets `distribution_cut`.
-final class MonitoringSloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutChoice
-    extends MonitoringSloWindowsBasedSliGoodTotalRatioThresholdPerformance {
-  const MonitoringSloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutChoice(
-    this.distributionCut,
-  );
+/// The [MonitoringSloPerformance.distributionCut] choice: sets `distribution_cut`.
+final class MonitoringSloPerformanceDistributionCut
+    extends MonitoringSloPerformance {
+  const MonitoringSloPerformanceDistributionCut(this.distributionCut);
 
-  final MonitoringSloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCut
-  distributionCut;
+  final MonitoringSloDistributionCut distributionCut;
 
   @override
   String get blockKey => 'distribution_cut';
@@ -767,138 +711,41 @@ final class MonitoringSloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistri
   };
 }
 
-/// Typed helper for the `windows_based_sli.good_total_ratio_threshold.performance.distribution_cut` block of
-/// `google_monitoring_slo` (derived from provider schema).
-@immutable
-final class MonitoringSloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCut {
-  const MonitoringSloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCut({
-    required this.distributionFilter,
-    required this.range,
-  });
-
-  final TfArg<String> distributionFilter;
-
-  final MonitoringSloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutRange
-  range;
-
-  Map<String, Object?> encode() => {
-    'distribution_filter': distributionFilter.toTfJson(),
-    'range': range.encode(),
-  };
-}
-
-/// Typed helper for the `windows_based_sli.good_total_ratio_threshold.performance.distribution_cut.range` block of
-/// `google_monitoring_slo` (derived from provider schema).
-@immutable
-final class MonitoringSloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutRange {
-  const MonitoringSloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutRange({
-    this.max,
-    this.min,
-  });
-
-  final TfArg<num>? max;
-
-  final TfArg<num>? min;
-
-  Map<String, Object?> encode() => {
-    'max': ?max?.toTfJson(),
-    'min': ?min?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `windows_based_sli.good_total_ratio_threshold.performance.good_total_ratio` block of
-/// `google_monitoring_slo` (derived from provider schema).
-@immutable
-final class MonitoringSloWindowsBasedSliGoodTotalRatioThresholdPerformanceGoodTotalRatio {
-  const MonitoringSloWindowsBasedSliGoodTotalRatioThresholdPerformanceGoodTotalRatio({
-    this.badServiceFilter,
-    this.goodServiceFilter,
-    this.totalServiceFilter,
-  });
-
-  final TfArg<String>? badServiceFilter;
-
-  final TfArg<String>? goodServiceFilter;
-
-  final TfArg<String>? totalServiceFilter;
-
-  Map<String, Object?> encode() => {
-    'bad_service_filter': ?badServiceFilter?.toTfJson(),
-    'good_service_filter': ?goodServiceFilter?.toTfJson(),
-    'total_service_filter': ?totalServiceFilter?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `windows_based_sli.metric_mean_in_range` block of
 /// `google_monitoring_slo` (derived from provider schema).
 @immutable
-final class MonitoringSloWindowsBasedSliMetricMeanInRange {
-  const MonitoringSloWindowsBasedSliMetricMeanInRange({
+final class MonitoringSloMetricMeanInRange {
+  const MonitoringSloMetricMeanInRange({
     required this.timeSeries,
     required this.range,
   });
 
   final TfArg<String> timeSeries;
 
-  final MonitoringSloWindowsBasedSliMetricMeanInRangeRange range;
+  final MonitoringSloRange range;
 
   Map<String, Object?> encode() => {
     'time_series': timeSeries.toTfJson(),
     'range': range.encode(),
-  };
-}
-
-/// Typed helper for the `windows_based_sli.metric_mean_in_range.range` block of
-/// `google_monitoring_slo` (derived from provider schema).
-@immutable
-final class MonitoringSloWindowsBasedSliMetricMeanInRangeRange {
-  const MonitoringSloWindowsBasedSliMetricMeanInRangeRange({
-    this.max,
-    this.min,
-  });
-
-  final TfArg<num>? max;
-
-  final TfArg<num>? min;
-
-  Map<String, Object?> encode() => {
-    'max': ?max?.toTfJson(),
-    'min': ?min?.toTfJson(),
   };
 }
 
 /// Typed helper for the `windows_based_sli.metric_sum_in_range` block of
 /// `google_monitoring_slo` (derived from provider schema).
 @immutable
-final class MonitoringSloWindowsBasedSliMetricSumInRange {
-  const MonitoringSloWindowsBasedSliMetricSumInRange({
+final class MonitoringSloMetricSumInRange {
+  const MonitoringSloMetricSumInRange({
     required this.timeSeries,
     required this.range,
   });
 
   final TfArg<String> timeSeries;
 
-  final MonitoringSloWindowsBasedSliMetricSumInRangeRange range;
+  final MonitoringSloRange range;
 
   Map<String, Object?> encode() => {
     'time_series': timeSeries.toTfJson(),
     'range': range.encode(),
-  };
-}
-
-/// Typed helper for the `windows_based_sli.metric_sum_in_range.range` block of
-/// `google_monitoring_slo` (derived from provider schema).
-@immutable
-final class MonitoringSloWindowsBasedSliMetricSumInRangeRange {
-  const MonitoringSloWindowsBasedSliMetricSumInRangeRange({this.max, this.min});
-
-  final TfArg<num>? max;
-
-  final TfArg<num>? min;
-
-  Map<String, Object?> encode() => {
-    'max': ?max?.toTfJson(),
-    'min': ?min?.toTfJson(),
   };
 }
 
@@ -928,7 +775,7 @@ final class MonitoringSloWindowsBasedSliMetricSumInRangeRange {
 ///   sli: .basicSli(
 ///     MonitoringSloBasicSli(
 ///       objective: .availability(
-///         MonitoringSloBasicSliAvailability(enabled: .literal(true)),
+///         MonitoringSloAvailability(enabled: .literal(true)),
 ///       ),
 ///     ),
 ///   ),

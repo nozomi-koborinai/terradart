@@ -7,23 +7,23 @@ export 'src/cloudtrail/aws_cloudtrail.dart'
     show
         AwsCloudtrail,
         CloudtrailAdvancedEventSelector,
-        CloudtrailAdvancedEventSelectorFieldSelector,
-        CloudtrailAdvancedEventSelectorFieldSelectorField,
+        CloudtrailDataResource,
         CloudtrailEventSelector,
-        CloudtrailEventSelectorDataResource,
-        CloudtrailEventSelectorDataResourceType,
-        CloudtrailEventSelectorReadWriteType,
+        CloudtrailField,
+        CloudtrailFieldSelector,
         CloudtrailInsightSelector,
-        CloudtrailInsightSelectorInsightType,
+        CloudtrailInsightType,
+        CloudtrailReadWriteType,
         CloudtrailSelectors,
         CloudtrailSelectorsAdvancedEventSelector,
-        CloudtrailSelectorsEventSelector;
+        CloudtrailSelectorsEventSelector,
+        CloudtrailType;
 export 'src/cloudtrail/aws_cloudtrail_event_data_store.dart'
     show
         AwsCloudtrailEventDataStore,
         CloudtrailEventDataStoreAdvancedEventSelector,
-        CloudtrailEventDataStoreAdvancedEventSelectorFieldSelector,
-        CloudtrailEventDataStoreAdvancedEventSelectorFieldSelectorField,
-        CloudtrailEventDataStoreBillingMode;
+        CloudtrailEventDataStoreBillingMode,
+        CloudtrailEventDataStoreField,
+        CloudtrailEventDataStoreFieldSelector;
 export 'src/cloudtrail/aws_cloudtrail_organization_delegated_admin_account.dart'
     show AwsCloudtrailOrganizationDelegatedAdminAccount;

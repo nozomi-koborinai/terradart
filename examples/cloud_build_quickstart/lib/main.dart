@@ -223,7 +223,7 @@ final class CloudBuildStack extends Stack {
         repositoryEventConfig: CloudbuildTriggerRepositoryEventConfig(
           repository: TfArg.ref<String>(lbRepo.id),
           event: .push(
-            CloudbuildTriggerRepositoryEventConfigPush(
+            CloudbuildTriggerBitbucketServerTriggerConfigPush(
               revision: .branch(.literal('^main\$')),
             ),
           ),

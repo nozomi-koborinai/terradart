@@ -405,10 +405,9 @@ class _Extra {
 /// enforces an `exactly_one_of` / `at_least_one_of` group (or a lookup key
 /// on a data source) at validate time.
 const _extraParams = <String, List<String>>{
-  'AccountaccessEntitlementEntitlementPrincipalRole': ['principal'],
+  'AccountaccessEntitlementPrincipalRole': ['principal'],
   'AgentregistryRegistryDiscoveryConfiguration': ['authorizerConfiguration'],
-  'AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizer':
-      ['allowedAudience'],
+  'AgentregistryRegistryCustomJwtAuthorizer': ['allowedAudience'],
   'AppmeshGatewayRouteSpec': ['grpcRoute'],
   'ApprunnerServiceSourceConfiguration': ['codeRepository'],
   'AppsyncApiEventConfig': [
@@ -738,22 +737,22 @@ const _extraParams = <String, List<String>>{
   'AwsWorkspaceswebIpAccessSettings': ['ipRule'],
   'AwsWorkspaceswebSessionLogger': ['logConfiguration', 'eventFilter'],
   'AwsXrayIndexingRule': ['rule'],
-  'BedrockEvaluationJobEvaluationConfigAutomated': ['datasetMetricConfig'],
-  'BedrockEvaluationJobEvaluationConfigAutomatedDatasetMetricConfig': [
-    'dataset',
-  ],
-  'BedrockagentDataSourceDataSourceConfiguration': ['s3Configuration'],
-  'BedrockagentKnowledgeBaseKnowledgeBaseConfiguration': [
+  'BedrockEvaluationJobAutomated': ['datasetMetricConfig'],
+  'BedrockEvaluationJobDatasetMetricConfig': ['dataset'],
+  'BedrockagentDataSourceConfiguration': ['s3Configuration'],
+  'BedrockagentKnowledgeBaseConfiguration': [
     'vectorKnowledgeBaseConfiguration',
   ],
   'BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfig': [
     'googleOauth2ProviderConfig',
   ],
-  'BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigGoogleOauth2ProviderConfig':
-      ['clientId', 'clientSecret'],
+  'BedrockagentcoreOauth2CredentialProviderGoogleOauth2ProviderConfig': [
+    'clientId',
+    'clientSecret',
+  ],
   'BedrockagentcoreOnlineEvaluationConfigRule': ['samplingConfig'],
   'CloudfrontMultitenantDistributionDefaultCacheBehavior': ['allowedMethods'],
-  'CloudfrontVpcOriginVpcOriginEndpointConfig': ['originSslProtocols'],
+  'CloudfrontVpcOriginEndpointConfig': ['originSslProtocols'],
   'ComprehendDocumentClassifierInputDataConfig': ['augmentedManifests'],
   'ComprehendEntityRecognizerInputDataConfig': [
     'annotations',
@@ -812,14 +811,14 @@ const _extraParams = <String, List<String>>{
   'DataAwsWafregionalSubscribedRuleGroup': ['metricName', 'name'],
   'DataAwsWafv2WebAcl': ['name'],
   'DataEcrLifecyclePolicyDocumentRule': ['selection'],
-  'DataexchangeEventActionActionExportRevisionToS3': ['revisionDestination'],
+  'DataexchangeEventActionExportRevisionToS3': ['revisionDestination'],
   'EbsSnapshotImportDiskContainer': ['url'],
   'FsxS3AccessPointAttachmentOpenzfsConfiguration': ['fileSystemIdentity'],
-  'GlueCatalogCatalogProperties': ['dataLakeAccessProperties'],
-  'ImagebuilderLifecyclePolicyPolicyDetail': ['action', 'filter'],
-  'ImagebuilderLifecyclePolicyPolicyDetailFilter': ['unit'],
+  'GlueCatalogProperties': ['dataLakeAccessProperties'],
+  'ImagebuilderLifecyclePolicyDetail': ['action', 'filter'],
+  'ImagebuilderLifecyclePolicyFilter': ['unit'],
   'LakeformationDataCellsFilterTableData': ['columnNames', 'rowFilter'],
-  'LakeformationDataCellsFilterTableDataRowFilter': ['filterExpression'],
+  'LakeformationDataCellsFilterRowFilter': ['filterExpression'],
   'LakeformationOptInResourceData': ['database'],
   'MskChannelIcebergDestination': [
     'deadLetterQueueS3',
@@ -832,12 +831,13 @@ const _extraParams = <String, List<String>>{
     'sourceKafkaClusterArn',
     'targetKafkaClusterArn',
   ],
-  'NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfiguration':
-      ['scope', 'certificateAuthorityArn'],
-  'NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationScope':
-      ['destination'],
+  'NetworkfirewallTlsInspectionConfigurationServerCertificateConfiguration': [
+    'scope',
+    'certificateAuthorityArn',
+  ],
+  'NetworkfirewallTlsInspectionConfigurationScope': ['destination'],
   'NetworkflowmonitorScopeTarget': ['targetIdentifier'],
-  'NetworkflowmonitorScopeTargetTargetIdentifier': ['targetId'],
+  'NetworkflowmonitorScopeTargetIdentifier': ['targetId'],
   'ObservabilityadminCentralizationRuleForOrganizationRule': [
     'source',
     'destination',
@@ -851,8 +851,9 @@ const _extraParams = <String, List<String>>{
     'journalTableConfiguration',
     'inventoryTableConfiguration',
   ],
-  'S3BucketMetadataConfigurationMetadataConfigurationJournalTableConfiguration':
-      ['recordExpiration'],
+  'S3BucketMetadataConfigurationJournalTableConfiguration': [
+    'recordExpiration',
+  ],
   'SagemakerAlgorithmTrainingSpecification': ['trainingChannels'],
   'SagemakerHyperParameterTuningJobConfig': ['resourceLimits'],
   'SagemakerLabelingJobHumanTaskConfig': ['uiConfig'],
@@ -866,9 +867,7 @@ const _extraParams = <String, List<String>>{
   'Sesv2ConfigurationSetEventDestinationEventDestination': [
     'cloudWatchDestination',
   ],
-  'TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfiguration': [
-    'dimensionMapping',
-  ],
+  'TimestreamqueryScheduledQueryTimestreamConfiguration': ['dimensionMapping'],
   'WorkspaceswebSessionLoggerEventFilter': ['include'],
 };
 
@@ -1315,9 +1314,8 @@ const _maxDepth = 20;
 /// `Owner.param` (resource, data source, or helper class) or by bare
 /// parameter name.
 const _literalByKey = <String, String>{
-  'AcmpcaCertificateAuthorityCertificateAuthorityConfiguration.keyAlgorithm':
-      '\'RSA_2048\'',
-  'AcmpcaCertificateAuthorityCertificateAuthorityConfiguration.signingAlgorithm':
+  'AcmpcaCertificateAuthorityConfiguration.keyAlgorithm': '\'RSA_2048\'',
+  'AcmpcaCertificateAuthorityConfiguration.signingAlgorithm':
       '\'SHA256WITHRSA\'',
   'AcmpcaCertificateValidity.type': '\'END_DATE\'',
   'AcmpcaCertificateValidity.value': '\'2026-01-01T00:00:00Z\'',
@@ -1325,8 +1323,8 @@ const _literalByKey = <String, String>{
       '\'CUSTOM_JWT\'',
   'AlbListenerDefaultAction.type': '\'forward\'',
   'AlbListenerRuleAction.type': '\'forward\'',
-  'Apigatewayv2DomainNameDomainNameConfiguration.endpointType': '\'REGIONAL\'',
-  'Apigatewayv2DomainNameDomainNameConfiguration.securityPolicy': '\'TLS_1_2\'',
+  'Apigatewayv2DomainNameConfiguration.endpointType': '\'REGIONAL\'',
+  'Apigatewayv2DomainNameConfiguration.securityPolicy': '\'TLS_1_2\'',
   'AppautoscalingScheduledActionScalableTargetAction.maxCapacity': '\'64512\'',
   'AppconfigExtensionActionPoint.point':
       '\'PRE_CREATE_HOSTED_CONFIGURATION_VERSION\'',
@@ -1340,16 +1338,14 @@ const _literalByKey = <String, String>{
   'AppflowFlowTriggerConfig.triggerType': '\'Scheduled\'',
   'AppintegrationsEventIntegrationEventFilter.source':
       '\'aws.partner/example.com/leftover\'',
-  'AppmeshVirtualGatewaySpecListenerPortMapping.protocol': '\'http\'',
-  'AppmeshVirtualRouterSpecListenerPortMapping.protocol': '\'http\'',
-  'ApprunnerServiceSourceConfigurationCodeRepositorySourceCodeVersion.type':
-      '\'BRANCH\'',
-  'ApprunnerServiceSourceConfigurationCodeRepositorySourceCodeVersion.value':
-      '\'BRANCH\'',
-  'AppsyncApiEventConfigAuthProvider.authType': '\'API_KEY\'',
-  'AppsyncApiEventConfigConnectionAuthMode.authType': '\'API_KEY\'',
-  'AppsyncApiEventConfigDefaultPublishAuthMode.authType': '\'API_KEY\'',
-  'AppsyncApiEventConfigDefaultSubscribeAuthMode.authType': '\'API_KEY\'',
+  'AppmeshVirtualGatewayPortMapping.protocol': '\'http\'',
+  'AppmeshVirtualRouterPortMapping.protocol': '\'http\'',
+  'ApprunnerServiceSourceCodeVersion.type': '\'BRANCH\'',
+  'ApprunnerServiceSourceCodeVersion.value': '\'BRANCH\'',
+  'AppsyncApiAuthProvider.authType': '\'API_KEY\'',
+  'AppsyncApiConnectionAuthMode.authType': '\'API_KEY\'',
+  'AppsyncApiDefaultPublishAuthMode.authType': '\'API_KEY\'',
+  'AppsyncApiDefaultSubscribeAuthMode.authType': '\'API_KEY\'',
   'AuditmanagerAssessmentRoles.roleType': '\'PROCESS_OWNER\'',
   'AutoscalingplansScalingPlanScalingInstruction.scalableDimension':
       '\'autoscaling:autoScalingGroup:DesiredCapacity\'',
@@ -1614,7 +1610,7 @@ const _literalByKey = <String, String>{
   'AwsGameliftBuild.operatingSystem': '\'WINDOWS_2012\'',
   'AwsGameliftFleet.ec2InstanceType': '\'t2.micro\'',
   'AwsGameliftGameServerGroup.instanceDefinition':
-      '[GameliftGameServerGroupInstanceDefinition(instanceType: TfArg.literal(GameliftGameServerGroupInstanceDefinitionInstanceType.c5Large,),), GameliftGameServerGroupInstanceDefinition(instanceType: TfArg.literal(GameliftGameServerGroupInstanceDefinitionInstanceType.c5Xlarge,),),]',
+      '[GameliftGameServerGroupInstanceDefinition(instanceType: TfArg.literal(GameliftGameServerGroupInstanceType.c5Large,),), GameliftGameServerGroupInstanceDefinition(instanceType: TfArg.literal(GameliftGameServerGroupInstanceType.c5Xlarge,),),]',
   'AwsGlobalacceleratorListener.protocol': '\'TCP\'',
   'AwsGlueCatalogTableOptimizer.type': '\'compaction\'',
   'AwsGlueSchema.compatibility': '\'NONE\'',
@@ -1924,29 +1920,27 @@ const _literalByKey = <String, String>{
       '\'s3://leftover-bucket/leftover\'',
   'BedrockCustomModelTrainingDataConfig.s3Uri':
       '\'s3://leftover-bucket/leftover\'',
-  'BedrockEvaluationJobEvaluationConfigAutomatedDatasetMetricConfig.taskType':
-      '\'Summarization\'',
+  'BedrockEvaluationJobDatasetMetricConfig.taskType': '\'Summarization\'',
   'BedrockEvaluationJobOutputDataConfig.s3Uri':
       '\'s3://leftover-bucket/leftover\'',
-  'BedrockModelInvocationJobInputDataConfigS3InputDataConfig.s3Uri':
+  'BedrockModelInvocationJobS3InputDataConfig.s3Uri':
       '\'s3://leftover-bucket/leftover\'',
-  'BedrockModelInvocationJobOutputDataConfigS3OutputDataConfig.s3Uri':
+  'BedrockModelInvocationJobS3OutputDataConfig.s3Uri':
       '\'s3://leftover-bucket/leftover\'',
-  'BedrockagentDataSourceDataSourceConfiguration.type': '\'S3\'',
-  'BedrockagentKnowledgeBaseKnowledgeBaseConfiguration.type': '\'VECTOR\'',
-  'BedrockagentcoreAgentRuntimeAgentRuntimeArtifactCodeConfiguration.runtime':
-      '\'PYTHON_3_10\'',
+  'BedrockagentDataSourceConfiguration.type': '\'S3\'',
+  'BedrockagentKnowledgeBaseConfiguration.type': '\'VECTOR\'',
+  'BedrockagentcoreAgentRuntimeCodeConfiguration.runtime': '\'PYTHON_3_10\'',
   'BedrockagentcoreAgentRuntimeNetworkConfiguration.networkMode': '\'PUBLIC\'',
   'BedrockagentcoreBrowserNetworkConfiguration.networkMode': '\'PUBLIC\'',
   'BedrockagentcoreCodeInterpreterNetworkConfiguration.networkMode':
       '\'PUBLIC\'',
   'BedrockagentcoreOnlineEvaluationConfigEvaluator.evaluatorId':
       '\'Builtin.Helpfulness\'',
-  'BedrockagentcoreOnlineEvaluationConfigRuleSamplingConfig.samplingPercentage':
+  'BedrockagentcoreOnlineEvaluationConfigSamplingConfig.samplingPercentage':
       '50',
   'BedrockagentcoreTokenVaultCmkKmsConfiguration.keyType':
       '\'CustomerManagedKey\'',
-  'BudgetsBudgetActionActionThreshold.actionThresholdType': '\'PERCENTAGE\'',
+  'BudgetsBudgetActionThreshold.actionThresholdType': '\'PERCENTAGE\'',
   'BudgetsBudgetActionSubscriber.subscriptionType': '\'SNS\'',
   'CeAnomalySubscriptionSubscriber.type': '\'EMAIL\'',
   'CeCostCategoryRule.type': '\'REGULAR\'',
@@ -1956,38 +1950,28 @@ const _literalByKey = <String, String>{
   'ChimeVoiceConnectorOriginationRoute.weight': '1',
   'ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElements.type':
       '\'AmazonTranscribeCallAnalyticsProcessor\'',
-  'CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginCookiesConfig.cookieBehavior':
-      '\'none\'',
-  'CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginHeadersConfig.headerBehavior':
-      '\'none\'',
-  'CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginQueryStringsConfig.queryStringBehavior':
-      '\'none\'',
-  'CloudfrontConnectionFunctionConnectionFunctionConfig.runtime':
-      '\'cloudfront-js-1.0\'',
-  'CloudfrontFieldLevelEncryptionConfigContentTypeProfileConfigContentTypeProfilesItems.format':
+  'CloudfrontCachePolicyCookiesConfig.cookieBehavior': '\'none\'',
+  'CloudfrontCachePolicyHeadersConfig.headerBehavior': '\'none\'',
+  'CloudfrontCachePolicyQueryStringsConfig.queryStringBehavior': '\'none\'',
+  'CloudfrontConnectionFunctionConfig.runtime': '\'cloudfront-js-1.0\'',
+  'CloudfrontFieldLevelEncryptionConfigContentTypeProfilesItems.format':
       '\'URLEncoded\'',
-  'CloudfrontMonitoringSubscriptionMonitoringSubscriptionRealtimeMetricsSubscriptionConfig.realtimeMetricsSubscriptionStatus':
+  'CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionConfig.realtimeMetricsSubscriptionStatus':
       '\'Enabled\'',
   'CloudfrontMultitenantDistributionDefaultCacheBehavior.viewerProtocolPolicy':
       '\'allow-all\'',
-  'CloudfrontMultitenantDistributionDefaultCacheBehaviorAllowedMethods.cachedMethods':
-      '[\'GET\']',
-  'CloudfrontMultitenantDistributionDefaultCacheBehaviorAllowedMethods.items':
-      '[\'GET\']',
+  'CloudfrontMultitenantDistributionAllowedMethods.cachedMethods': '[\'GET\']',
+  'CloudfrontMultitenantDistributionAllowedMethods.items': '[\'GET\']',
   'CloudfrontOriginRequestPolicyCookiesConfig.cookieBehavior': '\'none\'',
   'CloudfrontOriginRequestPolicyHeadersConfig.headerBehavior': '\'none\'',
   'CloudfrontOriginRequestPolicyQueryStringsConfig.queryStringBehavior':
       '\'none\'',
   'CloudfrontRealtimeLogConfigEndpoint.streamType': '\'Kinesis\'',
   'CloudfrontResponseHeadersPolicyServerTimingHeadersConfig.samplingRate': '0',
-  'CloudfrontVpcOriginVpcOriginEndpointConfig.originProtocolPolicy':
-      '\'http-only\'',
-  'CloudfrontVpcOriginVpcOriginEndpointConfigOriginSslProtocols.items':
-      '[\'SSLv3\']',
-  'CloudwatchEventEndpointRoutingConfigFailoverConfigPrimary.healthCheck':
-      'arn',
-  'CloudwatchEventEndpointRoutingConfigFailoverConfigSecondary.route':
-      '\'us-east-1\'',
+  'CloudfrontVpcOriginEndpointConfig.originProtocolPolicy': '\'http-only\'',
+  'CloudfrontVpcOriginSslProtocols.items': '[\'SSLv3\']',
+  'CloudwatchEventEndpointPrimary.healthCheck': 'arn',
+  'CloudwatchEventEndpointSecondary.route': '\'us-east-1\'',
   'CodebuildProjectArtifacts.type': '\'CODEPIPELINE\'',
   'CodebuildProjectEnvironment.computeType': '\'BUILD_GENERAL1_SMALL\'',
   'CodebuildProjectEnvironment.type': '\'WINDOWS_CONTAINER\'',
@@ -1999,13 +1983,12 @@ const _literalByKey = <String, String>{
   'CodepipelineCustomActionTypeInputArtifactDetails.minimumCount': '0',
   'CodepipelineCustomActionTypeOutputArtifactDetails.maximumCount': '0',
   'CodepipelineCustomActionTypeOutputArtifactDetails.minimumCount': '0',
-  'CodepipelineStageAction.category': '\'Source\'',
-  'CodepipelineStageAction.owner': '\'AWS\'',
+  'CodepipelineAction.category': '\'Source\'',
+  'CodepipelineAction.owner': '\'AWS\'',
   'CognitoLogDeliveryConfigurationLogConfigurations.eventSource':
       '\'userNotification\'',
   'CognitoLogDeliveryConfigurationLogConfigurations.logLevel': '\'ERROR\'',
-  'CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsHighAction.eventAction':
-      '\'BLOCK\'',
+  'CognitoRiskConfigurationHighAction.eventAction': '\'BLOCK\'',
   'CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationActions.eventAction':
       '\'BLOCK\'',
   'ComputeoptimizerRecommendationPreferencesExternalMetricsPreference.source':
@@ -2014,7 +1997,7 @@ const _literalByKey = <String, String>{
   'ConfigConfigRuleSource.owner': '\'CUSTOM_LAMBDA\'',
   'ConnectHoursOfOperationConfig.day': '\'SUNDAY\'',
   'ConnectInstanceStorageConfigStorageConfig.storageType': '\'S3\'',
-  'ConnectQuickConnectQuickConnectConfig.quickConnectType': '\'USER\'',
+  'ConnectQuickConnectConfig.quickConnectType': '\'USER\'',
   'ConnectRoutingProfileMediaConcurrencies.channel': '\'VOICE\'',
   'ConnectRoutingProfileMediaConcurrencies.concurrency': '1',
   'ConnectUserPhoneConfig.phoneType': '\'SOFT_PHONE\'',
@@ -2073,21 +2056,17 @@ const _literalByKey = <String, String>{
   'DataAwsWafv2RegexPatternSet.scope': '\'CLOUDFRONT\'',
   'DataAwsWafv2RuleGroup.scope': '\'CLOUDFRONT\'',
   'DataAwsWafv2WebAcl.scope': '\'CLOUDFRONT\'',
-  'DataEcrLifecyclePolicyDocumentRuleSelection.countType':
-      '\'imageCountMoreThan\'',
-  'DataEcrLifecyclePolicyDocumentRuleSelection.tagStatus': '\'any\'',
-  'DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationEdgeLocations.location':
+  'DataEcrLifecyclePolicyDocumentSelection.countType': '\'imageCountMoreThan\'',
+  'DataEcrLifecyclePolicyDocumentSelection.tagStatus': '\'any\'',
+  'DataNetworkmanagerCoreNetworkPolicyDocumentEdgeLocations.location':
       '\'us-east-1\'',
   'DatasyncLocationEfsEc2Config.securityGroupArns': '[arn]',
-  'DatasyncLocationFsxOntapFileSystemProtocolNfsMountOptions.version':
-      '\'NFS3\'',
-  'DatasyncLocationFsxOpenzfsFileSystemProtocolNfsMountOptions.version':
-      '\'AUTOMATIC\'',
+  'DatasyncLocationFsxOntapFileSystemNfsMountOptions.version': '\'NFS3\'',
+  'DatasyncLocationFsxOpenzfsFileSystemMountOptions.version': '\'AUTOMATIC\'',
   'DatasyncLocationNfsOnPremConfig.agentArns': '[arn]',
-  'DatazonePolicyGrantPrincipalDomainUnit.domainUnitDesignation': '\'OWNER\'',
+  'DatazonePolicyGrantDomainUnit.domainUnitDesignation': '\'OWNER\'',
   'DevicefarmDevicePoolRule.attribute': '\'ARN\'',
-  'DevopsguruEventSourcesConfigEventSourcesAmazonCodeGuruProfiler.status':
-      '\'ENABLED\'',
+  'DevopsguruEventSourcesConfigAmazonCodeGuruProfiler.status': '\'ENABLED\'',
   'DevopsguruServiceIntegrationLogsAnomalyDetection.optInStatus': '\'ENABLED\'',
   'DevopsguruServiceIntegrationOpsCenter.optInStatus': '\'ENABLED\'',
   'DynamodbGlobalSecondaryIndexKeySchema.attributeType': '\'S\'',
@@ -2101,84 +2080,78 @@ const _literalByKey = <String, String>{
   'ElbListener.lbProtocol': '\'HTTP\'',
   'EmrManagedScalingPolicyComputeLimits.unitType': '\'InstanceFleetUnits\'',
   'EmrcontainersVirtualClusterContainerProvider.type': '\'EKS\'',
-  'EvidentlyFeatureVariationsValue.boolValue': '\'true\'',
+  'EvidentlyFeatureValue.boolValue': '\'true\'',
   'FinspaceKxClusterVpcConfiguration.ipAddressType': '\'IP_V4\'',
   'FisExperimentTemplateAction.actionId': '\'aws:ec2:stop-instances\'',
   'FisExperimentTemplateStopCondition.source': '\'aws:cloudwatch:alarm\'',
-  'FsxS3AccessPointAttachmentOpenzfsConfigurationFileSystemIdentity.type':
-      '\'POSIX\'',
+  'FsxS3AccessPointAttachmentFileSystemIdentity.type': '\'POSIX\'',
   'GameliftAliasRoutingStrategy.type': '\'SIMPLE\'',
   'GameliftGameServerGroupLaunchTemplate.id': '\'lt-0123456789abcdef0\'',
   'GlobalacceleratorCustomRoutingEndpointGroupDestinationConfiguration.protocols':
       '[\'TCP\']',
   'GlueCrawlerHudiTarget.maximumTraversalDepth': '1',
   'GlueCrawlerIcebergTarget.maximumTraversalDepth': '1',
-  'GlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsEncryptionAtRest.catalogEncryptionMode':
+  'GlueDataCatalogEncryptionSettingsEncryptionAtRest.catalogEncryptionMode':
       '\'DISABLED\'',
   'GlueMlTransformParameters.transformType': '\'FIND_MATCHES\'',
-  'GlueMlTransformParametersFindMatchesParameters.accuracyCostTradeOff': '1',
-  'GlueSecurityConfigurationEncryptionConfigurationCloudwatchEncryption.cloudwatchEncryptionMode':
+  'GlueMlTransformFindMatchesParameters.accuracyCostTradeOff': '1',
+  'GlueSecurityConfigurationCloudwatchEncryption.cloudwatchEncryptionMode':
       '\'DISABLED\'',
-  'GlueSecurityConfigurationEncryptionConfigurationJobBookmarksEncryption.jobBookmarksEncryptionMode':
+  'GlueSecurityConfigurationJobBookmarksEncryption.jobBookmarksEncryptionMode':
       '\'DISABLED\'',
   'ImagebuilderContainerRecipeTargetRepository.service': '\'ECR\'',
-  'ImagebuilderLifecyclePolicyPolicyDetailAction.type': '\'DELETE\'',
-  'ImagebuilderLifecyclePolicyPolicyDetailFilter.type': '\'AGE\'',
-  'ImagebuilderLifecyclePolicyPolicyDetailFilter.unit': '\'DAYS\'',
-  'ImagebuilderLifecyclePolicyPolicyDetailFilter.value': '1',
-  'Inspector2FilterFilterCriteriaAwsAccountId.comparison': '\'EQUALS\'',
+  'ImagebuilderLifecyclePolicyAction.type': '\'DELETE\'',
+  'ImagebuilderLifecyclePolicyFilter.type': '\'AGE\'',
+  'ImagebuilderLifecyclePolicyFilter.unit': '\'DAYS\'',
+  'ImagebuilderLifecyclePolicyFilter.value': '1',
+  'Inspector2FilterAwsAccountId.comparison': '\'EQUALS\'',
   'InstanceLaunchTemplate.id': '\'lt-0123456789abcdef0\'',
   'IotIndexingConfigurationThingGroupIndexingConfiguration.thingGroupIndexingMode':
       '\'OFF\'',
   'IotIndexingConfigurationThingIndexingConfiguration.thingIndexingMode':
       '\'OFF\'',
   'LambdaCodeSigningConfigAllowedPublishers.signingProfileVersionArns': '[arn]',
-  'LambdacoreNetworkConnectorConfigurationVpcEgressConfiguration.associatedComputeResourceTypes':
+  'LambdacoreNetworkConnectorVpcEgressConfiguration.associatedComputeResourceTypes':
       '[\'MicroVm\']',
   'LbListenerDefaultAction.type': '\'forward\'',
   'LbListenerRuleAction.type': '\'forward\'',
-  'LexBotAbortStatementMessage.contentType': '\'PlainText\'',
+  'LexBotMessage.contentType': '\'PlainText\'',
   'LexBotIntent.intentVersion': '\'\\\$LATEST\'',
   'LexIntentFulfillmentActivity.type': '\'ReturnIntent\'',
   'Lexv2modelsSlotValueElicitationSetting.slotConstraint': '\'Required\'',
   'LightsailDistributionDefaultCacheBehavior.behavior': '\'dont-cache\'',
   'LightsailDistributionOrigin.regionName': '\'us-east-1\'',
   'LightsailInstancePublicPortsPortInfo.protocol': '\'tcp\'',
-  'Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndSimpleCriterion.comparator':
-      '\'EQ\'',
-  'MedialiveChannelEncoderSettingsTimecodeConfig.source': '\'EMBEDDED\'',
+  'Macie2ClassificationJobSimpleCriterion.comparator': '\'EQ\'',
+  'MedialiveChannelTimecodeConfig.source': '\'EMBEDDED\'',
   'MedialiveChannelInputSpecification.codec': '\'MPEG2\'',
   'MedialiveChannelInputSpecification.inputResolution': '\'SD\'',
   'MedialiveChannelInputSpecification.maximumBitrate': '\'MAX_10_MBPS\'',
   'MemorydbUserAuthenticationMode.type': '\'password\'',
-  'MskChannelTopicConfigurationRecordConverter.valueConverter':
-      '\'BYTE_ARRAY\'',
-  'MskconnectConnectorCapacityAutoscaling.maxWorkerCount': '1',
-  'MskconnectConnectorCapacityAutoscaling.minWorkerCount': '1',
+  'MskChannelRecordConverter.valueConverter': '\'BYTE_ARRAY\'',
+  'MskconnectConnectorAutoscaling.maxWorkerCount': '1',
+  'MskconnectConnectorAutoscaling.minWorkerCount': '1',
   'MskconnectConnectorKafkaClusterClientAuthentication.authenticationType':
       '\'NONE\'',
   'MskconnectConnectorKafkaClusterEncryptionInTransit.encryptionType':
       '\'PLAINTEXT\'',
-  'NetworkfirewallLoggingConfigurationLoggingConfigurationLogDestinationConfig.logDestination':
+  'NetworkfirewallLoggingConfigurationLogDestinationConfig.logDestination':
       '{\'bucketName\': leftover}',
-  'NetworkfirewallLoggingConfigurationLoggingConfigurationLogDestinationConfig.logDestinationType':
+  'NetworkfirewallLoggingConfigurationLogDestinationConfig.logDestinationType':
       '\'S3\'',
-  'NetworkfirewallLoggingConfigurationLoggingConfigurationLogDestinationConfig.logType':
-      '\'FLOW\'',
-  'NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfiguration.certificateAuthorityArn':
+  'NetworkfirewallLoggingConfigurationLogDestinationConfig.logType': '\'FLOW\'',
+  'NetworkfirewallTlsInspectionConfigurationServerCertificateConfiguration.certificateAuthorityArn':
       'arn',
-  'NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationScope.protocols':
-      '[6]',
-  'NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationScopeDestination.addressDefinition':
+  'NetworkfirewallTlsInspectionConfigurationScope.protocols': '[6]',
+  'NetworkfirewallTlsInspectionConfigurationDestination.addressDefinition':
       '\'10.0.0.0/16\'',
   'NetworkflowmonitorMonitorLocalResource.type': '\'AWS::EC2::VPC\'',
-  'NetworkflowmonitorScopeTargetTargetIdentifier.targetType': '\'ACCOUNT\'',
-  'NetworkflowmonitorScopeTargetTargetIdentifierTargetId.accountId':
-      '\'123456789012\'',
+  'NetworkflowmonitorScopeTargetIdentifier.targetType': '\'ACCOUNT\'',
+  'NetworkflowmonitorScopeTargetId.accountId': '\'123456789012\'',
   'NetworkmanagerConnectAttachmentOptions.protocol': '\'GRE\'',
-  'ObservabilityadminCentralizationRuleForOrganizationRuleDestination.account':
+  'ObservabilityadminCentralizationRuleForOrganizationDestination.account':
       '\'123456789012\'',
-  'ObservabilityadminCentralizationRuleForOrganizationRuleSource.regions':
+  'ObservabilityadminCentralizationRuleForOrganizationSource.regions':
       '[\'us-east-1\']',
   'ObservabilityadminS3TableIntegrationEncryption.sseAlgorithm': '\'aws:kms\'',
   'ObservabilityadminTelemetryRuleForOrganizationRule.telemetryType':
@@ -2189,47 +2162,45 @@ const _literalByKey = <String, String>{
   'OdbCloudExadataInfrastructureMaintenanceWindow.patchingMode': '\'ROLLING\'',
   'OdbCloudExadataInfrastructureMaintenanceWindow.preference':
       '\'NO_PREFERENCE\'',
-  'PrometheusQueryLoggingConfigurationDestinationCloudwatchLogs.logGroupArn':
+  'PrometheusQueryLoggingConfigurationCloudwatchLogs.logGroupArn':
       '\'arn:aws:logs:us-east-1:123456789012:log-group:leftover:*\'',
-  'PrometheusScraperLoggingConfigurationLoggingDestinationCloudwatchLogs.logGroupArn':
+  'PrometheusScraperLoggingConfigurationCloudwatchLogs.logGroupArn':
       '\'arn:aws:logs:us-east-1:123456789012:log-group:leftover:*\'',
   'QbusinessApplicationAttachmentsConfiguration.attachmentsControlMode':
       '\'ENABLED\'',
   'QuicksightCustomPermissionsCapabilities.addOrRunAnomalyDetectionForAnalyses':
       '\'DENY\'',
   'QuicksightRefreshScheduleSchedule.refreshType': '\'INCREMENTAL_REFRESH\'',
-  'QuicksightRefreshScheduleScheduleScheduleFrequency.interval': '\'MINUTE15\'',
+  'QuicksightRefreshScheduleFrequency.interval': '\'MINUTE15\'',
   'RbinRuleRetentionPeriod.retentionPeriodUnit': '\'DAYS\'',
-  'RekognitionStreamProcessorSettingsConnectedHome.labels': '[\'PERSON\']',
+  'RekognitionStreamProcessorConnectedHome.labels': '[\'PERSON\']',
   'Resiliencehubv2PolicyMultiAz.disasterRecoveryApproach': '\'ACTIVE_ACTIVE\'',
   'RolesanywhereTrustAnchorSource.sourceType': '\'AWS_ACM_PCA\'',
-  'Route53recoverycontrolconfigSafetyRuleRuleConfig.type': '\'ATLEAST\'',
+  'Route53recoverycontrolconfigSafetyRuleConfig.type': '\'ATLEAST\'',
   'S3BucketIntelligentTieringConfigurationTiering.accessTier':
       '\'ARCHIVE_ACCESS\'',
   'S3BucketInventoryDestinationBucket.format': '\'CSV\'',
   'S3BucketInventorySchedule.frequency': '\'Daily\'',
-  'S3BucketMetadataConfigurationMetadataConfigurationInventoryTableConfiguration.configurationState':
+  'S3BucketMetadataConfigurationInventoryTableConfiguration.configurationState':
       '\'ENABLED\'',
-  'S3BucketMetadataConfigurationMetadataConfigurationJournalTableConfigurationRecordExpiration.expiration':
-      '\'ENABLED\'',
+  'S3BucketMetadataConfigurationRecordExpiration.expiration': '\'ENABLED\'',
   'S3BucketOwnershipControlsRule.objectOwnership': '\'BucketOwnerPreferred\'',
   'S3BucketReplicationConfigurationRule.status': '\'Enabled\'',
-  'S3BucketReplicationConfigurationRuleDestination.bucket': 'arn',
+  'S3BucketReplicationConfigurationDestination.bucket': 'arn',
   'S3BucketServerSideEncryptionConfigurationRule.blockedEncryptionTypes':
       '[\'NONE\']',
-  'S3BucketVersioningVersioningConfiguration.status': '\'Enabled\'',
+  'S3BucketVersioningConfiguration.status': '\'Enabled\'',
   'S3controlAccessGrantGrantee.granteeType': '\'DIRECTORY_USER\'',
   'S3controlDirectoryBucketAccessPointScopeScope.permissions':
       '[\'GetObject\']',
   'S3controlMultiRegionAccessPointRoutesRoute.trafficDialPercentage': '100',
   'S3controlObjectLambdaAccessPointConfiguration.supportingAccessPoint': 'arn',
-  'S3controlObjectLambdaAccessPointConfigurationTransformationConfiguration.actions':
+  'S3controlObjectLambdaAccessPointTransformationConfiguration.actions':
       '[\'GetObject\']',
   'SagemakerAlgorithmTrainingSpecification.supportedTrainingInstanceTypes':
       '[\'ml.m4.xlarge\']',
-  'SagemakerAlgorithmTrainingSpecificationTrainingChannels.supportedInputModes':
-      '[\'Pipe\']',
-  'SagemakerDataQualityJobDefinitionJobResourcesClusterConfig.instanceType':
+  'SagemakerAlgorithmTrainingChannels.supportedInputModes': '[\'Pipe\']',
+  'SagemakerDataQualityJobDefinitionClusterConfig.instanceType':
       '\'ml.t3.medium\'',
   'SagemakerDomainDefaultUserSettings.executionRole': 'arn',
   'SagemakerEndpointConfigurationProductionVariants.acceleratorType':
@@ -2244,23 +2215,22 @@ const _literalByKey = <String, String>{
       '\'s3://leftover-bucket/leftover\'',
   'SagemakerModelCardExportJobOutputConfig.s3OutputPath':
       '\'s3://leftover-bucket/leftover\'',
-  'SagemakerMonitoringScheduleMonitoringScheduleConfig.monitoringType':
-      '\'DataQuality\'',
+  'SagemakerMonitoringScheduleConfig.monitoringType': '\'DataQuality\'',
   'SchedulerScheduleFlexibleTimeWindow.mode': '\'OFF\'',
   'SecurityhubAutomationRuleActions.type': '\'FINDING_FIELDS_UPDATE\'',
-  'SecurityhubAutomationRuleCriteriaAwsAccountId.comparison': '\'EQUALS\'',
+  'SecurityhubAutomationRuleAwsAccountId.comparison': '\'EQUALS\'',
   'SecurityhubAutomationRuleV2Action.type': '\'FINDING_FIELDS_UPDATE\'',
   'SecurityhubAutomationRuleV2Criteria.ocsfFindingCriteriaJson': 'policy',
-  'SecurityhubInsightFiltersAwsAccountId.comparison': '\'EQUALS\'',
-  'SecuritylakeSubscriberSourceAwsLogSourceResource.sourceName': '\'ROUTE53\'',
+  'SecurityhubInsightAwsAccountId.comparison': '\'EQUALS\'',
+  'SecuritylakeSubscriberAwsLogSourceResource.sourceName': '\'ROUTE53\'',
   'Sesv2ConfigurationSetEventDestinationEventDestination.matchingEventTypes':
       '[\'SEND\']',
-  'Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationDimensionConfiguration.dimensionValueSource':
+  'Sesv2ConfigurationSetEventDestinationDimensionConfiguration.dimensionValueSource':
       '\'MESSAGE_TAG\'',
   'SpotInstanceRequestLaunchTemplate.id': '\'lt-0123456789abcdef0\'',
-  'SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationOidcJwtConfiguration.jwksRetrievalOption':
+  'SsoadminTrustedTokenIssuerOidcJwtConfiguration.jwksRetrievalOption':
       '\'OPEN_ID_DISCOVERY\'',
-  'TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationDimensionMapping.dimensionValueType':
+  'TimestreamqueryScheduledQueryDimensionMapping.dimensionValueType':
       '\'VARCHAR\'',
   'TransferWorkflowSteps.type': '\'COPY\'',
   'VerifiedpermissionsPolicyStoreValidationSettings.mode': '\'OFF\'',
@@ -2268,10 +2238,10 @@ const _literalByKey = <String, String>{
   'VpcIpamOperatingRegions.regionName': '\'us-east-1\'',
   'VpcIpamResourceDiscoveryOperatingRegions.regionName': '\'us-east-1\'',
   'WafregionalWebAclDefaultAction.type': '\'BLOCK\'',
-  'Wafv2WebAclRuleStatementAsnMatchStatement.asnList': '[64512]',
+  'Wafv2WebAclRuleAsnMatchStatement.asnList': '[64512]',
   'WorkspaceswebSessionLoggerEventFilter.include': '[\'WebsiteInteract\']',
-  'WorkspaceswebSessionLoggerLogConfigurationS3.folderStructure': '\'Flat\'',
-  'WorkspaceswebSessionLoggerLogConfigurationS3.logFileFormat': '\'JSONLines\'',
+  'WorkspaceswebSessionLoggerS3.folderStructure': '\'Flat\'',
+  'WorkspaceswebSessionLoggerS3.logFileFormat': '\'JSONLines\'',
 };
 
 /// Lists the provider wants longer than one element, keyed like

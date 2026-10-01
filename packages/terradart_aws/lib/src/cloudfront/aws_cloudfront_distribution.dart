@@ -140,20 +140,15 @@ final class CloudfrontDistributionDefaultCacheBehavior {
 
   final TfArg<List<String>>? trustedSigners;
 
-  final TfArg<CloudfrontDistributionDefaultCacheBehaviorViewerProtocolPolicy>
-  viewerProtocolPolicy;
+  final TfArg<CloudfrontDistributionViewerProtocolPolicy> viewerProtocolPolicy;
 
-  final CloudfrontDistributionDefaultCacheBehaviorForwardedValues?
-  forwardedValues;
+  final CloudfrontDistributionForwardedValues? forwardedValues;
 
-  final List<CloudfrontDistributionDefaultCacheBehaviorFunctionAssociation>?
-  functionAssociation;
+  final List<CloudfrontDistributionFunctionAssociation>? functionAssociation;
 
-  final CloudfrontDistributionDefaultCacheBehaviorGrpcConfig? grpcConfig;
+  final CloudfrontDistributionGrpcConfig? grpcConfig;
 
-  final List<
-    CloudfrontDistributionDefaultCacheBehaviorLambdaFunctionAssociation
-  >?
+  final List<CloudfrontDistributionLambdaFunctionAssociation>?
   lambdaFunctionAssociation;
 
   Map<String, Object?> encode() => {
@@ -187,24 +182,22 @@ final class CloudfrontDistributionDefaultCacheBehavior {
 }
 
 /// `viewer_protocol_policy` — derived from the provider schema description.
-enum CloudfrontDistributionDefaultCacheBehaviorViewerProtocolPolicy
-    implements TerraformEnum {
+enum CloudfrontDistributionViewerProtocolPolicy implements TerraformEnum {
   allowAll('allow-all'),
   httpsOnly('https-only'),
   redirectToHttps('redirect-to-https');
 
-  const CloudfrontDistributionDefaultCacheBehaviorViewerProtocolPolicy(
-    this.terraformValue,
-  );
+  const CloudfrontDistributionViewerProtocolPolicy(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `default_cache_behavior.forwarded_values` block of
 /// `aws_cloudfront_distribution` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CloudfrontDistributionDefaultCacheBehaviorForwardedValues {
-  const CloudfrontDistributionDefaultCacheBehaviorForwardedValues({
+final class CloudfrontDistributionForwardedValues {
+  const CloudfrontDistributionForwardedValues({
     this.headers,
     required this.queryString,
     this.queryStringCacheKeys,
@@ -217,8 +210,7 @@ final class CloudfrontDistributionDefaultCacheBehaviorForwardedValues {
 
   final TfArg<List<String>>? queryStringCacheKeys;
 
-  final CloudfrontDistributionDefaultCacheBehaviorForwardedValuesCookies
-  cookies;
+  final CloudfrontDistributionCookies cookies;
 
   Map<String, Object?> encode() => {
     'headers': ?headers?.toTfJson(),
@@ -230,17 +222,15 @@ final class CloudfrontDistributionDefaultCacheBehaviorForwardedValues {
 
 /// Typed helper for the `default_cache_behavior.forwarded_values.cookies` block of
 /// `aws_cloudfront_distribution` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CloudfrontDistributionDefaultCacheBehaviorForwardedValuesCookies {
-  const CloudfrontDistributionDefaultCacheBehaviorForwardedValuesCookies({
+final class CloudfrontDistributionCookies {
+  const CloudfrontDistributionCookies({
     required this.forward,
     this.whitelistedNames,
   });
 
-  final TfArg<
-    CloudfrontDistributionDefaultCacheBehaviorForwardedValuesCookiesForward
-  >
-  forward;
+  final TfArg<CloudfrontDistributionForward> forward;
 
   final TfArg<List<String>>? whitelistedNames;
 
@@ -251,32 +241,27 @@ final class CloudfrontDistributionDefaultCacheBehaviorForwardedValuesCookies {
 }
 
 /// `forward` — derived from the provider schema description.
-enum CloudfrontDistributionDefaultCacheBehaviorForwardedValuesCookiesForward
-    implements TerraformEnum {
+enum CloudfrontDistributionForward implements TerraformEnum {
   none('none'),
   whitelist('whitelist'),
   all('all');
 
-  const CloudfrontDistributionDefaultCacheBehaviorForwardedValuesCookiesForward(
-    this.terraformValue,
-  );
+  const CloudfrontDistributionForward(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `default_cache_behavior.function_association` block of
 /// `aws_cloudfront_distribution` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CloudfrontDistributionDefaultCacheBehaviorFunctionAssociation {
-  const CloudfrontDistributionDefaultCacheBehaviorFunctionAssociation({
+final class CloudfrontDistributionFunctionAssociation {
+  const CloudfrontDistributionFunctionAssociation({
     required this.eventType,
     required this.functionArn,
   });
 
-  final TfArg<
-    CloudfrontDistributionDefaultCacheBehaviorFunctionAssociationEventType
-  >
-  eventType;
+  final TfArg<CloudfrontDistributionEventType> eventType;
 
   final TfArg<String> functionArn;
 
@@ -287,25 +272,23 @@ final class CloudfrontDistributionDefaultCacheBehaviorFunctionAssociation {
 }
 
 /// `event_type` — derived from the provider schema description.
-enum CloudfrontDistributionDefaultCacheBehaviorFunctionAssociationEventType
-    implements TerraformEnum {
+enum CloudfrontDistributionEventType implements TerraformEnum {
   viewerRequest('viewer-request'),
   viewerResponse('viewer-response'),
   originRequest('origin-request'),
   originResponse('origin-response');
 
-  const CloudfrontDistributionDefaultCacheBehaviorFunctionAssociationEventType(
-    this.terraformValue,
-  );
+  const CloudfrontDistributionEventType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// Typed helper for the `default_cache_behavior.grpc_config` block of
 /// `aws_cloudfront_distribution` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CloudfrontDistributionDefaultCacheBehaviorGrpcConfig {
-  const CloudfrontDistributionDefaultCacheBehaviorGrpcConfig({this.enabled});
+final class CloudfrontDistributionGrpcConfig {
+  const CloudfrontDistributionGrpcConfig({this.enabled});
 
   final TfArg<bool>? enabled;
 
@@ -314,18 +297,16 @@ final class CloudfrontDistributionDefaultCacheBehaviorGrpcConfig {
 
 /// Typed helper for the `default_cache_behavior.lambda_function_association` block of
 /// `aws_cloudfront_distribution` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
-final class CloudfrontDistributionDefaultCacheBehaviorLambdaFunctionAssociation {
-  const CloudfrontDistributionDefaultCacheBehaviorLambdaFunctionAssociation({
+final class CloudfrontDistributionLambdaFunctionAssociation {
+  const CloudfrontDistributionLambdaFunctionAssociation({
     required this.eventType,
     this.includeBody,
     required this.lambdaArn,
   });
 
-  final TfArg<
-    CloudfrontDistributionDefaultCacheBehaviorLambdaFunctionAssociationEventType
-  >
-  eventType;
+  final TfArg<CloudfrontDistributionEventType> eventType;
 
   final TfArg<bool>? includeBody;
 
@@ -336,21 +317,6 @@ final class CloudfrontDistributionDefaultCacheBehaviorLambdaFunctionAssociation 
     'include_body': ?includeBody?.toTfJson(),
     'lambda_arn': lambdaArn.encodeAs('qualified_arn').toTfJson(),
   };
-}
-
-/// `event_type` — derived from the provider schema description.
-enum CloudfrontDistributionDefaultCacheBehaviorLambdaFunctionAssociationEventType
-    implements TerraformEnum {
-  viewerRequest('viewer-request'),
-  viewerResponse('viewer-response'),
-  originRequest('origin-request'),
-  originResponse('origin-response');
-
-  const CloudfrontDistributionDefaultCacheBehaviorLambdaFunctionAssociationEventType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `logging_config` block of
@@ -436,20 +402,15 @@ final class CloudfrontDistributionOrderedCacheBehavior {
 
   final TfArg<List<String>>? trustedSigners;
 
-  final TfArg<CloudfrontDistributionOrderedCacheBehaviorViewerProtocolPolicy>
-  viewerProtocolPolicy;
+  final TfArg<CloudfrontDistributionViewerProtocolPolicy> viewerProtocolPolicy;
 
-  final CloudfrontDistributionOrderedCacheBehaviorForwardedValues?
-  forwardedValues;
+  final CloudfrontDistributionForwardedValues? forwardedValues;
 
-  final List<CloudfrontDistributionOrderedCacheBehaviorFunctionAssociation>?
-  functionAssociation;
+  final List<CloudfrontDistributionFunctionAssociation>? functionAssociation;
 
-  final CloudfrontDistributionOrderedCacheBehaviorGrpcConfig? grpcConfig;
+  final CloudfrontDistributionGrpcConfig? grpcConfig;
 
-  final List<
-    CloudfrontDistributionOrderedCacheBehaviorLambdaFunctionAssociation
-  >?
+  final List<CloudfrontDistributionLambdaFunctionAssociation>?
   lambdaFunctionAssociation;
 
   Map<String, Object?> encode() => {
@@ -481,173 +442,6 @@ final class CloudfrontDistributionOrderedCacheBehavior {
         for (final e in lambdaFunctionAssociation!) e.encode(),
       ],
   };
-}
-
-/// `viewer_protocol_policy` — derived from the provider schema description.
-enum CloudfrontDistributionOrderedCacheBehaviorViewerProtocolPolicy
-    implements TerraformEnum {
-  allowAll('allow-all'),
-  httpsOnly('https-only'),
-  redirectToHttps('redirect-to-https');
-
-  const CloudfrontDistributionOrderedCacheBehaviorViewerProtocolPolicy(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `ordered_cache_behavior.forwarded_values` block of
-/// `aws_cloudfront_distribution` (derived from provider schema).
-@immutable
-final class CloudfrontDistributionOrderedCacheBehaviorForwardedValues {
-  const CloudfrontDistributionOrderedCacheBehaviorForwardedValues({
-    this.headers,
-    required this.queryString,
-    this.queryStringCacheKeys,
-    required this.cookies,
-  });
-
-  final TfArg<List<String>>? headers;
-
-  final TfArg<bool> queryString;
-
-  final TfArg<List<String>>? queryStringCacheKeys;
-
-  final CloudfrontDistributionOrderedCacheBehaviorForwardedValuesCookies
-  cookies;
-
-  Map<String, Object?> encode() => {
-    'headers': ?headers?.toTfJson(),
-    'query_string': queryString.toTfJson(),
-    'query_string_cache_keys': ?queryStringCacheKeys?.toTfJson(),
-    'cookies': cookies.encode(),
-  };
-}
-
-/// Typed helper for the `ordered_cache_behavior.forwarded_values.cookies` block of
-/// `aws_cloudfront_distribution` (derived from provider schema).
-@immutable
-final class CloudfrontDistributionOrderedCacheBehaviorForwardedValuesCookies {
-  const CloudfrontDistributionOrderedCacheBehaviorForwardedValuesCookies({
-    required this.forward,
-    this.whitelistedNames,
-  });
-
-  final TfArg<
-    CloudfrontDistributionOrderedCacheBehaviorForwardedValuesCookiesForward
-  >
-  forward;
-
-  final TfArg<List<String>>? whitelistedNames;
-
-  Map<String, Object?> encode() => {
-    'forward': forward.toTfJson(),
-    'whitelisted_names': ?whitelistedNames?.toTfJson(),
-  };
-}
-
-/// `forward` — derived from the provider schema description.
-enum CloudfrontDistributionOrderedCacheBehaviorForwardedValuesCookiesForward
-    implements TerraformEnum {
-  none('none'),
-  whitelist('whitelist'),
-  all('all');
-
-  const CloudfrontDistributionOrderedCacheBehaviorForwardedValuesCookiesForward(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `ordered_cache_behavior.function_association` block of
-/// `aws_cloudfront_distribution` (derived from provider schema).
-@immutable
-final class CloudfrontDistributionOrderedCacheBehaviorFunctionAssociation {
-  const CloudfrontDistributionOrderedCacheBehaviorFunctionAssociation({
-    required this.eventType,
-    required this.functionArn,
-  });
-
-  final TfArg<
-    CloudfrontDistributionOrderedCacheBehaviorFunctionAssociationEventType
-  >
-  eventType;
-
-  final TfArg<String> functionArn;
-
-  Map<String, Object?> encode() => {
-    'event_type': eventType.toTfJson(),
-    'function_arn': functionArn.toTfJson(),
-  };
-}
-
-/// `event_type` — derived from the provider schema description.
-enum CloudfrontDistributionOrderedCacheBehaviorFunctionAssociationEventType
-    implements TerraformEnum {
-  viewerRequest('viewer-request'),
-  viewerResponse('viewer-response'),
-  originRequest('origin-request'),
-  originResponse('origin-response');
-
-  const CloudfrontDistributionOrderedCacheBehaviorFunctionAssociationEventType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// Typed helper for the `ordered_cache_behavior.grpc_config` block of
-/// `aws_cloudfront_distribution` (derived from provider schema).
-@immutable
-final class CloudfrontDistributionOrderedCacheBehaviorGrpcConfig {
-  const CloudfrontDistributionOrderedCacheBehaviorGrpcConfig({this.enabled});
-
-  final TfArg<bool>? enabled;
-
-  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
-}
-
-/// Typed helper for the `ordered_cache_behavior.lambda_function_association` block of
-/// `aws_cloudfront_distribution` (derived from provider schema).
-@immutable
-final class CloudfrontDistributionOrderedCacheBehaviorLambdaFunctionAssociation {
-  const CloudfrontDistributionOrderedCacheBehaviorLambdaFunctionAssociation({
-    required this.eventType,
-    this.includeBody,
-    required this.lambdaArn,
-  });
-
-  final TfArg<
-    CloudfrontDistributionOrderedCacheBehaviorLambdaFunctionAssociationEventType
-  >
-  eventType;
-
-  final TfArg<bool>? includeBody;
-
-  final RefTo<AwsLambdaFunction> lambdaArn;
-
-  Map<String, Object?> encode() => {
-    'event_type': eventType.toTfJson(),
-    'include_body': ?includeBody?.toTfJson(),
-    'lambda_arn': lambdaArn.encodeAs('qualified_arn').toTfJson(),
-  };
-}
-
-/// `event_type` — derived from the provider schema description.
-enum CloudfrontDistributionOrderedCacheBehaviorLambdaFunctionAssociationEventType
-    implements TerraformEnum {
-  viewerRequest('viewer-request'),
-  viewerResponse('viewer-response'),
-  originRequest('origin-request'),
-  originResponse('origin-response');
-
-  const CloudfrontDistributionOrderedCacheBehaviorLambdaFunctionAssociationEventType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `origin` block of
@@ -683,15 +477,15 @@ final class CloudfrontDistributionOrigin {
 
   final TfArg<num>? responseCompletionTimeout;
 
-  final List<CloudfrontDistributionOriginCustomHeader>? customHeader;
+  final List<CloudfrontDistributionCustomHeader>? customHeader;
 
-  final CloudfrontDistributionOriginCustomOriginConfig? customOriginConfig;
+  final CloudfrontDistributionCustomOriginConfig? customOriginConfig;
 
-  final CloudfrontDistributionOriginOriginShield? originShield;
+  final CloudfrontDistributionOriginShield? originShield;
 
-  final CloudfrontDistributionOriginS3OriginConfig? s3OriginConfig;
+  final CloudfrontDistributionS3OriginConfig? s3OriginConfig;
 
-  final CloudfrontDistributionOriginVpcOriginConfig? vpcOriginConfig;
+  final CloudfrontDistributionVpcOriginConfig? vpcOriginConfig;
 
   Map<String, Object?> encode() => {
     'connection_attempts': ?connectionAttempts?.toTfJson(),
@@ -713,8 +507,8 @@ final class CloudfrontDistributionOrigin {
 /// Typed helper for the `origin.custom_header` block of
 /// `aws_cloudfront_distribution` (derived from provider schema).
 @immutable
-final class CloudfrontDistributionOriginCustomHeader {
-  const CloudfrontDistributionOriginCustomHeader({
+final class CloudfrontDistributionCustomHeader {
+  const CloudfrontDistributionCustomHeader({
     required this.name,
     required this.value,
   });
@@ -732,8 +526,8 @@ final class CloudfrontDistributionOriginCustomHeader {
 /// Typed helper for the `origin.custom_origin_config` block of
 /// `aws_cloudfront_distribution` (derived from provider schema).
 @immutable
-final class CloudfrontDistributionOriginCustomOriginConfig {
-  const CloudfrontDistributionOriginCustomOriginConfig({
+final class CloudfrontDistributionCustomOriginConfig {
+  const CloudfrontDistributionCustomOriginConfig({
     required this.httpPort,
     required this.httpsPort,
     this.ipAddressType,
@@ -748,25 +542,18 @@ final class CloudfrontDistributionOriginCustomOriginConfig {
 
   final TfArg<num> httpsPort;
 
-  final TfArg<CloudfrontDistributionOriginCustomOriginConfigIpAddressType>?
-  ipAddressType;
+  final TfArg<CloudfrontDistributionIpAddressType>? ipAddressType;
 
   final TfArg<num>? originKeepaliveTimeout;
 
-  final TfArg<
-    CloudfrontDistributionOriginCustomOriginConfigOriginProtocolPolicy
-  >
-  originProtocolPolicy;
+  final TfArg<CloudfrontDistributionOriginProtocolPolicy> originProtocolPolicy;
 
   final TfArg<num>? originReadTimeout;
 
-  final List<
-    TfArg<CloudfrontDistributionOriginCustomOriginConfigOriginSslProtocols>
-  >
+  final List<TfArg<CloudfrontDistributionOriginSslProtocols>>
   originSslProtocols;
 
-  final CloudfrontDistributionOriginCustomOriginConfigOriginMtlsConfig?
-  originMtlsConfig;
+  final CloudfrontDistributionOriginMtlsConfig? originMtlsConfig;
 
   Map<String, Object?> encode() => {
     'http_port': httpPort.toTfJson(),
@@ -781,44 +568,35 @@ final class CloudfrontDistributionOriginCustomOriginConfig {
 }
 
 /// `ip_address_type` — derived from the provider schema description.
-enum CloudfrontDistributionOriginCustomOriginConfigIpAddressType
-    implements TerraformEnum {
+enum CloudfrontDistributionIpAddressType implements TerraformEnum {
   ipv4('ipv4'),
   ipv6('ipv6'),
   dualstack('dualstack');
 
-  const CloudfrontDistributionOriginCustomOriginConfigIpAddressType(
-    this.terraformValue,
-  );
+  const CloudfrontDistributionIpAddressType(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `origin_protocol_policy` — derived from the provider schema description.
-enum CloudfrontDistributionOriginCustomOriginConfigOriginProtocolPolicy
-    implements TerraformEnum {
+enum CloudfrontDistributionOriginProtocolPolicy implements TerraformEnum {
   httpOnly('http-only'),
   matchViewer('match-viewer'),
   httpsOnly('https-only');
 
-  const CloudfrontDistributionOriginCustomOriginConfigOriginProtocolPolicy(
-    this.terraformValue,
-  );
+  const CloudfrontDistributionOriginProtocolPolicy(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `origin_ssl_protocols` — derived from the provider schema description.
-enum CloudfrontDistributionOriginCustomOriginConfigOriginSslProtocols
-    implements TerraformEnum {
+enum CloudfrontDistributionOriginSslProtocols implements TerraformEnum {
   sslv3('SSLv3'),
   tlsv1('TLSv1'),
   tlsv1p1('TLSv1.1'),
   tlsv1p2('TLSv1.2');
 
-  const CloudfrontDistributionOriginCustomOriginConfigOriginSslProtocols(
-    this.terraformValue,
-  );
+  const CloudfrontDistributionOriginSslProtocols(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -826,8 +604,8 @@ enum CloudfrontDistributionOriginCustomOriginConfigOriginSslProtocols
 /// Typed helper for the `origin.custom_origin_config.origin_mtls_config` block of
 /// `aws_cloudfront_distribution` (derived from provider schema).
 @immutable
-final class CloudfrontDistributionOriginCustomOriginConfigOriginMtlsConfig {
-  const CloudfrontDistributionOriginCustomOriginConfigOriginMtlsConfig({
+final class CloudfrontDistributionOriginMtlsConfig {
+  const CloudfrontDistributionOriginMtlsConfig({
     required this.clientCertificateArn,
   });
 
@@ -841,8 +619,8 @@ final class CloudfrontDistributionOriginCustomOriginConfigOriginMtlsConfig {
 /// Typed helper for the `origin.origin_shield` block of
 /// `aws_cloudfront_distribution` (derived from provider schema).
 @immutable
-final class CloudfrontDistributionOriginOriginShield {
-  const CloudfrontDistributionOriginOriginShield({
+final class CloudfrontDistributionOriginShield {
+  const CloudfrontDistributionOriginShield({
     required this.enabled,
     this.originShieldRegion,
   });
@@ -860,8 +638,8 @@ final class CloudfrontDistributionOriginOriginShield {
 /// Typed helper for the `origin.s3_origin_config` block of
 /// `aws_cloudfront_distribution` (derived from provider schema).
 @immutable
-final class CloudfrontDistributionOriginS3OriginConfig {
-  const CloudfrontDistributionOriginS3OriginConfig({
+final class CloudfrontDistributionS3OriginConfig {
+  const CloudfrontDistributionS3OriginConfig({
     required this.originAccessIdentity,
   });
 
@@ -875,8 +653,8 @@ final class CloudfrontDistributionOriginS3OriginConfig {
 /// Typed helper for the `origin.vpc_origin_config` block of
 /// `aws_cloudfront_distribution` (derived from provider schema).
 @immutable
-final class CloudfrontDistributionOriginVpcOriginConfig {
-  const CloudfrontDistributionOriginVpcOriginConfig({
+final class CloudfrontDistributionVpcOriginConfig {
+  const CloudfrontDistributionVpcOriginConfig({
     this.originKeepaliveTimeout,
     this.originReadTimeout,
     this.ownerAccountId,
@@ -911,9 +689,9 @@ final class CloudfrontDistributionOriginGroup {
 
   final TfArg<String> originId;
 
-  final CloudfrontDistributionOriginGroupFailoverCriteria failoverCriteria;
+  final CloudfrontDistributionFailoverCriteria failoverCriteria;
 
-  final List<CloudfrontDistributionOriginGroupMember> member;
+  final List<CloudfrontDistributionMember> member;
 
   Map<String, Object?> encode() => {
     'origin_id': originId.toTfJson(),
@@ -925,10 +703,8 @@ final class CloudfrontDistributionOriginGroup {
 /// Typed helper for the `origin_group.failover_criteria` block of
 /// `aws_cloudfront_distribution` (derived from provider schema).
 @immutable
-final class CloudfrontDistributionOriginGroupFailoverCriteria {
-  const CloudfrontDistributionOriginGroupFailoverCriteria({
-    required this.statusCodes,
-  });
+final class CloudfrontDistributionFailoverCriteria {
+  const CloudfrontDistributionFailoverCriteria({required this.statusCodes});
 
   final TfArg<List<num>> statusCodes;
 
@@ -938,8 +714,8 @@ final class CloudfrontDistributionOriginGroupFailoverCriteria {
 /// Typed helper for the `origin_group.member` block of
 /// `aws_cloudfront_distribution` (derived from provider schema).
 @immutable
-final class CloudfrontDistributionOriginGroupMember {
-  const CloudfrontDistributionOriginGroupMember({required this.originId});
+final class CloudfrontDistributionMember {
+  const CloudfrontDistributionMember({required this.originId});
 
   final TfArg<String> originId;
 
@@ -952,7 +728,7 @@ final class CloudfrontDistributionOriginGroupMember {
 final class CloudfrontDistributionRestrictions {
   const CloudfrontDistributionRestrictions({required this.geoRestriction});
 
-  final CloudfrontDistributionRestrictionsGeoRestriction geoRestriction;
+  final CloudfrontDistributionGeoRestriction geoRestriction;
 
   Map<String, Object?> encode() => {'geo_restriction': geoRestriction.encode()};
 }
@@ -960,16 +736,15 @@ final class CloudfrontDistributionRestrictions {
 /// Typed helper for the `restrictions.geo_restriction` block of
 /// `aws_cloudfront_distribution` (derived from provider schema).
 @immutable
-final class CloudfrontDistributionRestrictionsGeoRestriction {
-  const CloudfrontDistributionRestrictionsGeoRestriction({
+final class CloudfrontDistributionGeoRestriction {
+  const CloudfrontDistributionGeoRestriction({
     this.locations,
     required this.restrictionType,
   });
 
   final TfArg<List<String>>? locations;
 
-  final TfArg<CloudfrontDistributionRestrictionsGeoRestrictionRestrictionType>
-  restrictionType;
+  final TfArg<CloudfrontDistributionRestrictionType> restrictionType;
 
   Map<String, Object?> encode() => {
     'locations': ?locations?.toTfJson(),
@@ -978,15 +753,12 @@ final class CloudfrontDistributionRestrictionsGeoRestriction {
 }
 
 /// `restriction_type` — derived from the provider schema description.
-enum CloudfrontDistributionRestrictionsGeoRestrictionRestrictionType
-    implements TerraformEnum {
+enum CloudfrontDistributionRestrictionType implements TerraformEnum {
   blacklist('blacklist'),
   whitelist('whitelist'),
   none('none');
 
-  const CloudfrontDistributionRestrictionsGeoRestrictionRestrictionType(
-    this.terraformValue,
-  );
+  const CloudfrontDistributionRestrictionType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1009,11 +781,10 @@ final class CloudfrontDistributionViewerCertificate {
 
   final TfArg<String>? iamCertificateId;
 
-  final TfArg<CloudfrontDistributionViewerCertificateMinimumProtocolVersion>?
+  final TfArg<CloudfrontDistributionMinimumProtocolVersion>?
   minimumProtocolVersion;
 
-  final TfArg<CloudfrontDistributionViewerCertificateSslSupportMethod>?
-  sslSupportMethod;
+  final TfArg<CloudfrontDistributionSslSupportMethod>? sslSupportMethod;
 
   Map<String, Object?> encode() => {
     'acm_certificate_arn': ?acmCertificateArn?.toTfJson(),
@@ -1025,8 +796,7 @@ final class CloudfrontDistributionViewerCertificate {
 }
 
 /// `minimum_protocol_version` — derived from the provider schema description.
-enum CloudfrontDistributionViewerCertificateMinimumProtocolVersion
-    implements TerraformEnum {
+enum CloudfrontDistributionMinimumProtocolVersion implements TerraformEnum {
   sslv3('SSLv3'),
   tlsv1('TLSv1'),
   tlsv12016('TLSv1_2016'),
@@ -1037,23 +807,18 @@ enum CloudfrontDistributionViewerCertificateMinimumProtocolVersion
   tlsv1p3x2025('TLSv1.3_2025'),
   tlsv1p2x2025('TLSv1.2_2025');
 
-  const CloudfrontDistributionViewerCertificateMinimumProtocolVersion(
-    this.terraformValue,
-  );
+  const CloudfrontDistributionMinimumProtocolVersion(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `ssl_support_method` — derived from the provider schema description.
-enum CloudfrontDistributionViewerCertificateSslSupportMethod
-    implements TerraformEnum {
+enum CloudfrontDistributionSslSupportMethod implements TerraformEnum {
   sniOnly('sni-only'),
   vip('vip'),
   staticIp('static-ip');
 
-  const CloudfrontDistributionViewerCertificateSslSupportMethod(
-    this.terraformValue,
-  );
+  const CloudfrontDistributionSslSupportMethod(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1067,10 +832,9 @@ final class CloudfrontDistributionViewerMtlsConfig {
     this.trustStoreConfig,
   });
 
-  final TfArg<CloudfrontDistributionViewerMtlsConfigMode>? mode;
+  final TfArg<CloudfrontDistributionMode>? mode;
 
-  final CloudfrontDistributionViewerMtlsConfigTrustStoreConfig?
-  trustStoreConfig;
+  final CloudfrontDistributionTrustStoreConfig? trustStoreConfig;
 
   Map<String, Object?> encode() => {
     'mode': ?mode?.toTfJson(),
@@ -1079,12 +843,12 @@ final class CloudfrontDistributionViewerMtlsConfig {
 }
 
 /// `mode` — derived from the provider schema description.
-enum CloudfrontDistributionViewerMtlsConfigMode implements TerraformEnum {
+enum CloudfrontDistributionMode implements TerraformEnum {
   required('required'),
   optional('optional'),
   passthrough('passthrough');
 
-  const CloudfrontDistributionViewerMtlsConfigMode(this.terraformValue);
+  const CloudfrontDistributionMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1092,8 +856,8 @@ enum CloudfrontDistributionViewerMtlsConfigMode implements TerraformEnum {
 /// Typed helper for the `viewer_mtls_config.trust_store_config` block of
 /// `aws_cloudfront_distribution` (derived from provider schema).
 @immutable
-final class CloudfrontDistributionViewerMtlsConfigTrustStoreConfig {
-  const CloudfrontDistributionViewerMtlsConfigTrustStoreConfig({
+final class CloudfrontDistributionTrustStoreConfig {
+  const CloudfrontDistributionTrustStoreConfig({
     this.advertiseTrustStoreCaNames,
     this.ignoreCertificateExpiry,
     required this.trustStoreId,

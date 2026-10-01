@@ -22,13 +22,13 @@ final class S3BucketServerSideEncryptionConfigurationRule {
   });
 
   final List<
-    TfArg<S3BucketServerSideEncryptionConfigurationRuleBlockedEncryptionTypes>
+    TfArg<S3BucketServerSideEncryptionConfigurationBlockedEncryptionTypes>
   >?
   blockedEncryptionTypes;
 
   final TfArg<bool>? bucketKeyEnabled;
 
-  final S3BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault?
+  final S3BucketServerSideEncryptionConfigurationApplyServerSideEncryptionByDefault?
   applyServerSideEncryptionByDefault;
 
   Map<String, Object?> encode() => {
@@ -43,12 +43,12 @@ final class S3BucketServerSideEncryptionConfigurationRule {
 }
 
 /// `blocked_encryption_types` — derived from the provider schema description.
-enum S3BucketServerSideEncryptionConfigurationRuleBlockedEncryptionTypes
+enum S3BucketServerSideEncryptionConfigurationBlockedEncryptionTypes
     implements TerraformEnum {
   none('NONE'),
   sseC('SSE-C');
 
-  const S3BucketServerSideEncryptionConfigurationRuleBlockedEncryptionTypes(
+  const S3BucketServerSideEncryptionConfigurationBlockedEncryptionTypes(
     this.terraformValue,
   );
   @override
@@ -58,17 +58,15 @@ enum S3BucketServerSideEncryptionConfigurationRuleBlockedEncryptionTypes
 /// Typed helper for the `rule.apply_server_side_encryption_by_default` block of
 /// `aws_s3_bucket_server_side_encryption_configuration` (derived from provider schema).
 @immutable
-final class S3BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault {
-  const S3BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault({
+final class S3BucketServerSideEncryptionConfigurationApplyServerSideEncryptionByDefault {
+  const S3BucketServerSideEncryptionConfigurationApplyServerSideEncryptionByDefault({
     this.kmsMasterKeyId,
     required this.sseAlgorithm,
   });
 
   final RefTo<AwsKmsKey>? kmsMasterKeyId;
 
-  final TfArg<
-    S3BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultSseAlgorithm
-  >
+  final TfArg<S3BucketServerSideEncryptionConfigurationSseAlgorithm>
   sseAlgorithm;
 
   Map<String, Object?> encode() => {
@@ -78,7 +76,7 @@ final class S3BucketServerSideEncryptionConfigurationRuleApplyServerSideEncrypti
 }
 
 /// `sse_algorithm` — derived from the provider schema description.
-enum S3BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultSseAlgorithm
+enum S3BucketServerSideEncryptionConfigurationSseAlgorithm
     implements TerraformEnum {
   aes256('AES256'),
   awsFsx('aws:fsx'),
@@ -86,7 +84,7 @@ enum S3BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDef
   awsKms('aws:kms'),
   awsKmsDsse('aws:kms:dsse');
 
-  const S3BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultSseAlgorithm(
+  const S3BucketServerSideEncryptionConfigurationSseAlgorithm(
     this.terraformValue,
   );
   @override

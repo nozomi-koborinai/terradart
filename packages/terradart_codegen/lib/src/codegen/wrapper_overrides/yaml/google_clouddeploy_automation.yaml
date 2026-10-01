@@ -29,14 +29,14 @@ curatedDoc: |-
   ///   suspended: .literal(true),
   ///   selector: ClouddeployAutomationSelector(
   ///     targets: [
-  ///       ClouddeployAutomationSelectorTargets(
+  ///       ClouddeployAutomationTargets(
   ///         id: .literal('terradart-run-target'),
   ///       ),
   ///     ],
   ///   ),
   ///   rules: [
   ///     .promoteReleaseRule(
-  ///       ClouddeployAutomationRulesPromoteReleaseRule(
+  ///       ClouddeployAutomationPromoteReleaseRule(
   ///         id: .literal('promote-release'),
   ///       ),
   ///     ),

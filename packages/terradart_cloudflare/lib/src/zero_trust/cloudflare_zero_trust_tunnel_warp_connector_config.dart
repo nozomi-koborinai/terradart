@@ -34,10 +34,9 @@ final class ZeroTrustTunnelWarpConnectorConfigConfig {
 
   final TfArg<String>? fnrId;
 
-  final List<ZeroTrustTunnelWarpConnectorConfigConfigVips>? vips;
+  final List<ZeroTrustTunnelWarpConnectorConfigVips>? vips;
 
-  final List<ZeroTrustTunnelWarpConnectorConfigConfigVipsPrevious>?
-  vipsPrevious;
+  final List<ZeroTrustTunnelWarpConnectorConfigVipsPrevious>? vipsPrevious;
 
   Map<String, Object?> encode() => {
     'fnr_id': ?fnrId?.toTfJson(),
@@ -50,8 +49,8 @@ final class ZeroTrustTunnelWarpConnectorConfigConfig {
 /// Typed helper for the `config.vips` block of
 /// `cloudflare_zero_trust_tunnel_warp_connector_config` (derived from provider schema).
 @immutable
-final class ZeroTrustTunnelWarpConnectorConfigConfigVips {
-  const ZeroTrustTunnelWarpConnectorConfigConfigVips({required this.address});
+final class ZeroTrustTunnelWarpConnectorConfigVips {
+  const ZeroTrustTunnelWarpConnectorConfigVips({required this.address});
 
   final TfArg<String> address;
 
@@ -61,10 +60,8 @@ final class ZeroTrustTunnelWarpConnectorConfigConfigVips {
 /// Typed helper for the `config.vips_previous` block of
 /// `cloudflare_zero_trust_tunnel_warp_connector_config` (derived from provider schema).
 @immutable
-final class ZeroTrustTunnelWarpConnectorConfigConfigVipsPrevious {
-  const ZeroTrustTunnelWarpConnectorConfigConfigVipsPrevious({
-    required this.address,
-  });
+final class ZeroTrustTunnelWarpConnectorConfigVipsPrevious {
+  const ZeroTrustTunnelWarpConnectorConfigVipsPrevious({required this.address});
 
   final TfArg<String> address;
 

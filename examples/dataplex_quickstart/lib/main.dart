@@ -210,7 +210,7 @@ final class DataplexCatalogStack extends Stack {
           'projects/${current.number.interpolation}/locations/us-central1'
           '/entryTypes/terradart-dataset',
         ),
-        entrySource: DataplexEntryEntrySource(
+        entrySource: DataplexEntrySource(
           displayName: .literal('Customer dataset'),
           description: .literal('Catalog entry for the customer 360 dataset'),
         ),
@@ -532,9 +532,7 @@ final class DataplexCatalogStack extends Stack {
           ),
         ),
         executionSpec: DataplexDatascanExecutionSpec(
-          trigger: const .onDemand(
-            DataplexDatascanExecutionSpecTriggerOnDemand(),
-          ),
+          trigger: const .onDemand(DataplexDatascanOnDemand()),
         ),
         displayName: .literal('Lake data discovery scan'),
         description: .literal(

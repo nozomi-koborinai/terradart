@@ -50,9 +50,9 @@ final class ContactCenterInsightsAnalysisRuleAnnotatorSelector {
 
   final TfArg<bool>? runSummarizationAnnotator;
 
-  final ContactCenterInsightsAnalysisRuleAnnotatorSelectorQaConfig? qaConfig;
+  final ContactCenterInsightsAnalysisRuleQaConfig? qaConfig;
 
-  final ContactCenterInsightsAnalysisRuleAnnotatorSelectorSummarizationConfig?
+  final ContactCenterInsightsAnalysisRuleSummarizationConfig?
   summarizationConfig;
 
   Map<String, Object?> encode() => {
@@ -75,13 +75,10 @@ final class ContactCenterInsightsAnalysisRuleAnnotatorSelector {
 /// Typed helper for the `annotator_selector.qa_config` block of
 /// `google_contact_center_insights_analysis_rule` (derived from provider schema).
 @immutable
-final class ContactCenterInsightsAnalysisRuleAnnotatorSelectorQaConfig {
-  const ContactCenterInsightsAnalysisRuleAnnotatorSelectorQaConfig({
-    this.scorecardList,
-  });
+final class ContactCenterInsightsAnalysisRuleQaConfig {
+  const ContactCenterInsightsAnalysisRuleQaConfig({this.scorecardList});
 
-  final ContactCenterInsightsAnalysisRuleAnnotatorSelectorQaConfigScorecardList?
-  scorecardList;
+  final ContactCenterInsightsAnalysisRuleScorecardList? scorecardList;
 
   Map<String, Object?> encode() => {'scorecard_list': ?scorecardList?.encode()};
 }
@@ -89,8 +86,8 @@ final class ContactCenterInsightsAnalysisRuleAnnotatorSelectorQaConfig {
 /// Typed helper for the `annotator_selector.qa_config.scorecard_list` block of
 /// `google_contact_center_insights_analysis_rule` (derived from provider schema).
 @immutable
-final class ContactCenterInsightsAnalysisRuleAnnotatorSelectorQaConfigScorecardList {
-  const ContactCenterInsightsAnalysisRuleAnnotatorSelectorQaConfigScorecardList({
+final class ContactCenterInsightsAnalysisRuleScorecardList {
+  const ContactCenterInsightsAnalysisRuleScorecardList({
     this.qaScorecardRevisions,
   });
 
@@ -104,17 +101,15 @@ final class ContactCenterInsightsAnalysisRuleAnnotatorSelectorQaConfigScorecardL
 /// Typed helper for the `annotator_selector.summarization_config` block of
 /// `google_contact_center_insights_analysis_rule` (derived from provider schema).
 @immutable
-final class ContactCenterInsightsAnalysisRuleAnnotatorSelectorSummarizationConfig {
-  const ContactCenterInsightsAnalysisRuleAnnotatorSelectorSummarizationConfig({
+final class ContactCenterInsightsAnalysisRuleSummarizationConfig {
+  const ContactCenterInsightsAnalysisRuleSummarizationConfig({
     this.conversationProfile,
     this.summarizationModel,
   });
 
   final TfArg<String>? conversationProfile;
 
-  final TfArg<
-    ContactCenterInsightsAnalysisRuleAnnotatorSelectorSummarizationConfigSummarizationModel
-  >?
+  final TfArg<ContactCenterInsightsAnalysisRuleSummarizationModel>?
   summarizationModel;
 
   Map<String, Object?> encode() => {
@@ -124,12 +119,12 @@ final class ContactCenterInsightsAnalysisRuleAnnotatorSelectorSummarizationConfi
 }
 
 /// `summarization_model` — derived from the provider schema description.
-enum ContactCenterInsightsAnalysisRuleAnnotatorSelectorSummarizationConfigSummarizationModel
+enum ContactCenterInsightsAnalysisRuleSummarizationModel
     implements TerraformEnum {
   baselineModel('BASELINE_MODEL'),
   baselineModelV20('BASELINE_MODEL_V2_0');
 
-  const ContactCenterInsightsAnalysisRuleAnnotatorSelectorSummarizationConfigSummarizationModel(
+  const ContactCenterInsightsAnalysisRuleSummarizationModel(
     this.terraformValue,
   );
   @override

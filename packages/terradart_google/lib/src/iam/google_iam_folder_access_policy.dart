@@ -13,7 +13,7 @@ const Set<String> _googleIamFolderAccessPolicySensitive = <String>{};
 final class IamFolderAccessPolicyDetails {
   const IamFolderAccessPolicyDetails({required this.rules});
 
-  final List<IamFolderAccessPolicyDetailsRules> rules;
+  final List<IamFolderAccessPolicyRules> rules;
 
   Map<String, Object?> encode() => {
     'rules': [for (final e in rules) e.encode()],
@@ -23,8 +23,8 @@ final class IamFolderAccessPolicyDetails {
 /// Typed helper for the `details.rules` block of
 /// `google_iam_folder_access_policy` (derived from provider schema).
 @immutable
-final class IamFolderAccessPolicyDetailsRules {
-  const IamFolderAccessPolicyDetailsRules({
+final class IamFolderAccessPolicyRules {
+  const IamFolderAccessPolicyRules({
     this.description,
     required this.effect,
     this.excludedPrincipals,
@@ -35,15 +35,15 @@ final class IamFolderAccessPolicyDetailsRules {
 
   final TfArg<String>? description;
 
-  final TfArg<IamFolderAccessPolicyDetailsRulesEffect> effect;
+  final TfArg<IamFolderAccessPolicyEffect> effect;
 
   final TfArg<List<String>>? excludedPrincipals;
 
   final TfArg<List<String>> principals;
 
-  final List<IamFolderAccessPolicyDetailsRulesConditions>? conditions;
+  final List<IamFolderAccessPolicyConditions>? conditions;
 
-  final IamFolderAccessPolicyDetailsRulesOperation operation;
+  final IamFolderAccessPolicyOperation operation;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -57,11 +57,11 @@ final class IamFolderAccessPolicyDetailsRules {
 }
 
 /// `effect` — derived from the provider schema description.
-enum IamFolderAccessPolicyDetailsRulesEffect implements TerraformEnum {
+enum IamFolderAccessPolicyEffect implements TerraformEnum {
   deny('DENY'),
   allow('ALLOW');
 
-  const IamFolderAccessPolicyDetailsRulesEffect(this.terraformValue);
+  const IamFolderAccessPolicyEffect(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -69,8 +69,8 @@ enum IamFolderAccessPolicyDetailsRulesEffect implements TerraformEnum {
 /// Typed helper for the `details.rules.conditions` block of
 /// `google_iam_folder_access_policy` (derived from provider schema).
 @immutable
-final class IamFolderAccessPolicyDetailsRulesConditions {
-  const IamFolderAccessPolicyDetailsRulesConditions({
+final class IamFolderAccessPolicyConditions {
+  const IamFolderAccessPolicyConditions({
     this.expression,
     required this.service,
   });
@@ -88,8 +88,8 @@ final class IamFolderAccessPolicyDetailsRulesConditions {
 /// Typed helper for the `details.rules.operation` block of
 /// `google_iam_folder_access_policy` (derived from provider schema).
 @immutable
-final class IamFolderAccessPolicyDetailsRulesOperation {
-  const IamFolderAccessPolicyDetailsRulesOperation({
+final class IamFolderAccessPolicyOperation {
+  const IamFolderAccessPolicyOperation({
     this.excludedPermissions,
     required this.permissions,
   });

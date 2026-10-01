@@ -18,14 +18,10 @@ final class SecuritylakeSubscriberNotificationConfiguration {
     this.sqsNotificationConfiguration,
   });
 
-  final List<
-    SecuritylakeSubscriberNotificationConfigurationHttpsNotificationConfiguration
-  >?
+  final List<SecuritylakeSubscriberNotificationHttpsNotificationConfiguration>?
   httpsNotificationConfiguration;
 
-  final List<
-    SecuritylakeSubscriberNotificationConfigurationSqsNotificationConfiguration
-  >?
+  final List<SecuritylakeSubscriberNotificationSqsNotificationConfiguration>?
   sqsNotificationConfiguration;
 
   Map<String, Object?> encode() => {
@@ -43,8 +39,8 @@ final class SecuritylakeSubscriberNotificationConfiguration {
 /// Typed helper for the `configuration.https_notification_configuration` block of
 /// `aws_securitylake_subscriber_notification` (derived from provider schema).
 @immutable
-final class SecuritylakeSubscriberNotificationConfigurationHttpsNotificationConfiguration {
-  const SecuritylakeSubscriberNotificationConfigurationHttpsNotificationConfiguration({
+final class SecuritylakeSubscriberNotificationHttpsNotificationConfiguration {
+  const SecuritylakeSubscriberNotificationHttpsNotificationConfiguration({
     this.authorizationApiKeyName,
     this.authorizationApiKeyValue,
     required this.endpoint,
@@ -58,10 +54,7 @@ final class SecuritylakeSubscriberNotificationConfigurationHttpsNotificationConf
 
   final TfArg<String> endpoint;
 
-  final TfArg<
-    SecuritylakeSubscriberNotificationConfigurationHttpsNotificationConfigurationHttpMethod
-  >?
-  httpMethod;
+  final TfArg<SecuritylakeSubscriberNotificationHttpMethod>? httpMethod;
 
   final TfArg<String> targetRoleArn;
 
@@ -75,14 +68,11 @@ final class SecuritylakeSubscriberNotificationConfigurationHttpsNotificationConf
 }
 
 /// `http_method` — derived from the provider schema description.
-enum SecuritylakeSubscriberNotificationConfigurationHttpsNotificationConfigurationHttpMethod
-    implements TerraformEnum {
+enum SecuritylakeSubscriberNotificationHttpMethod implements TerraformEnum {
   post('POST'),
   put('PUT');
 
-  const SecuritylakeSubscriberNotificationConfigurationHttpsNotificationConfigurationHttpMethod(
-    this.terraformValue,
-  );
+  const SecuritylakeSubscriberNotificationHttpMethod(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -90,8 +80,8 @@ enum SecuritylakeSubscriberNotificationConfigurationHttpsNotificationConfigurati
 /// Typed helper for the `configuration.sqs_notification_configuration` block of
 /// `aws_securitylake_subscriber_notification` (derived from provider schema).
 @immutable
-final class SecuritylakeSubscriberNotificationConfigurationSqsNotificationConfiguration {
-  const SecuritylakeSubscriberNotificationConfigurationSqsNotificationConfiguration();
+final class SecuritylakeSubscriberNotificationSqsNotificationConfiguration {
+  const SecuritylakeSubscriberNotificationSqsNotificationConfiguration();
 
   Map<String, Object?> encode() => {};
 }

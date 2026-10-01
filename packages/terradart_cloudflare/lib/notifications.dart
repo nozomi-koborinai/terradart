@@ -7,12 +7,12 @@ export 'src/notifications/cloudflare_notification_policy.dart'
     show
         CloudflareNotificationPolicy,
         NotificationPolicyAlertType,
+        NotificationPolicyEmail,
         NotificationPolicyFilters,
-        NotificationPolicyFiltersIncidentImpact,
-        NotificationPolicyFiltersTrafficExclusions,
+        NotificationPolicyIncidentImpact,
         NotificationPolicyMechanisms,
-        NotificationPolicyMechanismsEmail,
-        NotificationPolicyMechanismsPagerduty,
-        NotificationPolicyMechanismsWebhooks;
+        NotificationPolicyPagerduty,
+        NotificationPolicyTrafficExclusions,
+        NotificationPolicyWebhooks;
 export 'src/notifications/cloudflare_notification_policy_webhooks.dart'
     show CloudflareNotificationPolicyWebhooks;

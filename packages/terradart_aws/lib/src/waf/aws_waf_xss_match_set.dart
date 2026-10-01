@@ -16,10 +16,9 @@ final class WafXssMatchSetXssMatchTuples {
     required this.fieldToMatch,
   });
 
-  final TfArg<WafXssMatchSetXssMatchTuplesTextTransformation>
-  textTransformation;
+  final TfArg<WafXssMatchSetTextTransformation> textTransformation;
 
-  final WafXssMatchSetXssMatchTuplesFieldToMatch fieldToMatch;
+  final WafXssMatchSetFieldToMatch fieldToMatch;
 
   Map<String, Object?> encode() => {
     'text_transformation': textTransformation.toTfJson(),
@@ -28,7 +27,7 @@ final class WafXssMatchSetXssMatchTuples {
 }
 
 /// `text_transformation` — derived from the provider schema description.
-enum WafXssMatchSetXssMatchTuplesTextTransformation implements TerraformEnum {
+enum WafXssMatchSetTextTransformation implements TerraformEnum {
   none('NONE'),
   compressWhiteSpace('COMPRESS_WHITE_SPACE'),
   htmlEntityDecode('HTML_ENTITY_DECODE'),
@@ -36,7 +35,7 @@ enum WafXssMatchSetXssMatchTuplesTextTransformation implements TerraformEnum {
   cmdLine('CMD_LINE'),
   urlDecode('URL_DECODE');
 
-  const WafXssMatchSetXssMatchTuplesTextTransformation(this.terraformValue);
+  const WafXssMatchSetTextTransformation(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -44,15 +43,12 @@ enum WafXssMatchSetXssMatchTuplesTextTransformation implements TerraformEnum {
 /// Typed helper for the `xss_match_tuples.field_to_match` block of
 /// `aws_waf_xss_match_set` (derived from provider schema).
 @immutable
-final class WafXssMatchSetXssMatchTuplesFieldToMatch {
-  const WafXssMatchSetXssMatchTuplesFieldToMatch({
-    this.data,
-    required this.type,
-  });
+final class WafXssMatchSetFieldToMatch {
+  const WafXssMatchSetFieldToMatch({this.data, required this.type});
 
   final TfArg<String>? data;
 
-  final TfArg<WafXssMatchSetXssMatchTuplesFieldToMatchType> type;
+  final TfArg<WafXssMatchSetType> type;
 
   Map<String, Object?> encode() => {
     'data': ?data?.toTfJson(),
@@ -61,7 +57,7 @@ final class WafXssMatchSetXssMatchTuplesFieldToMatch {
 }
 
 /// `type` — derived from the provider schema description.
-enum WafXssMatchSetXssMatchTuplesFieldToMatchType implements TerraformEnum {
+enum WafXssMatchSetType implements TerraformEnum {
   uri('URI'),
   queryString('QUERY_STRING'),
   header('HEADER'),
@@ -70,7 +66,7 @@ enum WafXssMatchSetXssMatchTuplesFieldToMatchType implements TerraformEnum {
   singleQueryArg('SINGLE_QUERY_ARG'),
   allQueryArgs('ALL_QUERY_ARGS');
 
-  const WafXssMatchSetXssMatchTuplesFieldToMatchType(this.terraformValue);
+  const WafXssMatchSetType(this.terraformValue);
   @override
   final String terraformValue;
 }

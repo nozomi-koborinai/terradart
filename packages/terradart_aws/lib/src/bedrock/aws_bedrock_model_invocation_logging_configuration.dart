@@ -33,13 +33,10 @@ final class BedrockModelInvocationLoggingConfigurationLoggingConfig {
 
   final TfArg<bool>? videoDataDeliveryEnabled;
 
-  final List<
-    BedrockModelInvocationLoggingConfigurationLoggingConfigCloudwatchConfig
-  >?
+  final List<BedrockModelInvocationLoggingConfigurationCloudwatchConfig>?
   cloudwatchConfig;
 
-  final List<BedrockModelInvocationLoggingConfigurationLoggingConfigS3Config>?
-  s3Config;
+  final List<BedrockModelInvocationLoggingConfigurationS3Config>? s3Config;
 
   Map<String, Object?> encode() => {
     'embedding_data_delivery_enabled': ?embeddingDataDeliveryEnabled
@@ -56,8 +53,8 @@ final class BedrockModelInvocationLoggingConfigurationLoggingConfig {
 /// Typed helper for the `logging_config.cloudwatch_config` block of
 /// `aws_bedrock_model_invocation_logging_configuration` (derived from provider schema).
 @immutable
-final class BedrockModelInvocationLoggingConfigurationLoggingConfigCloudwatchConfig {
-  const BedrockModelInvocationLoggingConfigurationLoggingConfigCloudwatchConfig({
+final class BedrockModelInvocationLoggingConfigurationCloudwatchConfig {
+  const BedrockModelInvocationLoggingConfigurationCloudwatchConfig({
     required this.logGroupName,
     required this.roleArn,
     this.largeDataDeliveryS3Config,
@@ -68,7 +65,7 @@ final class BedrockModelInvocationLoggingConfigurationLoggingConfigCloudwatchCon
   final RefTo<AwsIamRole> roleArn;
 
   final List<
-    BedrockModelInvocationLoggingConfigurationLoggingConfigCloudwatchConfigLargeDataDeliveryS3Config
+    BedrockModelInvocationLoggingConfigurationLargeDataDeliveryS3Config
   >?
   largeDataDeliveryS3Config;
 
@@ -85,8 +82,8 @@ final class BedrockModelInvocationLoggingConfigurationLoggingConfigCloudwatchCon
 /// Typed helper for the `logging_config.cloudwatch_config.large_data_delivery_s3_config` block of
 /// `aws_bedrock_model_invocation_logging_configuration` (derived from provider schema).
 @immutable
-final class BedrockModelInvocationLoggingConfigurationLoggingConfigCloudwatchConfigLargeDataDeliveryS3Config {
-  const BedrockModelInvocationLoggingConfigurationLoggingConfigCloudwatchConfigLargeDataDeliveryS3Config({
+final class BedrockModelInvocationLoggingConfigurationLargeDataDeliveryS3Config {
+  const BedrockModelInvocationLoggingConfigurationLargeDataDeliveryS3Config({
     required this.bucketName,
     this.keyPrefix,
   });
@@ -104,8 +101,8 @@ final class BedrockModelInvocationLoggingConfigurationLoggingConfigCloudwatchCon
 /// Typed helper for the `logging_config.s3_config` block of
 /// `aws_bedrock_model_invocation_logging_configuration` (derived from provider schema).
 @immutable
-final class BedrockModelInvocationLoggingConfigurationLoggingConfigS3Config {
-  const BedrockModelInvocationLoggingConfigurationLoggingConfigS3Config({
+final class BedrockModelInvocationLoggingConfigurationS3Config {
+  const BedrockModelInvocationLoggingConfigurationS3Config({
     required this.bucketName,
     this.keyPrefix,
   });

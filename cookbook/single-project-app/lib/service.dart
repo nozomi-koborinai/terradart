@@ -22,27 +22,23 @@ GoogleCloudRunV2Service buildCloudRunService({
   template: CloudRunV2ServiceTemplate(
     serviceAccount: .of(runSa),
     containers: [
-      CloudRunV2ServiceTemplateContainers(
+      CloudRunV2ServiceContainers(
         image: .literal('us-docker.pkg.dev/cloudrun/container/hello'),
         env: [
           for (final MapEntry(:key, :value) in outputEnvironment.entries)
-            CloudRunV2ServiceTemplateContainersEnv(
-              name: .literal(key),
-              source: .value(value),
-            ),
-          CloudRunV2ServiceTemplateContainersEnv(
+            CloudRunV2ServiceEnv(name: .literal(key), source: .value(value)),
+          CloudRunV2ServiceEnv(
             name: .literal('DB_USER'),
             source: .value(.literal('coffee_app')),
           ),
-          CloudRunV2ServiceTemplateContainersEnv(
+          CloudRunV2ServiceEnv(
             name: .literal('DB_PASSWORD'),
             source: .valueSource(
-              CloudRunV2ServiceTemplateContainersEnvValueSource(
-                secretKeyRef:
-                    CloudRunV2ServiceTemplateContainersEnvValueSourceSecretKeyRef(
-                      secret: .ref(dbPasswordSecret.id),
-                      version: .literal('latest'),
-                    ),
+              CloudRunV2ServiceValueSource(
+                secretKeyRef: CloudRunV2ServiceSecretKeyRef(
+                  secret: .ref(dbPasswordSecret.id),
+                  version: .literal('latest'),
+                ),
               ),
             ),
           ),

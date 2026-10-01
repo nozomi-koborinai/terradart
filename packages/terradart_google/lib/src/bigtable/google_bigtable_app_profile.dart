@@ -26,7 +26,7 @@ sealed class BigtableAppProfileRouting {
   /// Sets `single_cluster_routing`.
   const factory BigtableAppProfileRouting.singleClusterRouting(
     BigtableAppProfileSingleClusterRouting singleClusterRouting,
-  ) = BigtableAppProfileRoutingSingleClusterRouting;
+  ) = BigtableAppProfileSingleClusterRoutingChoice;
 
   /// Sets `multi_cluster_routing_use_any`.
   const factory BigtableAppProfileRouting.multiClusterRoutingUseAny(
@@ -44,11 +44,9 @@ sealed class BigtableAppProfileRouting {
 }
 
 /// The [BigtableAppProfileRouting.singleClusterRouting] choice: sets `single_cluster_routing`.
-final class BigtableAppProfileRoutingSingleClusterRouting
+final class BigtableAppProfileSingleClusterRoutingChoice
     extends BigtableAppProfileRouting {
-  const BigtableAppProfileRoutingSingleClusterRouting(
-    this.singleClusterRouting,
-  );
+  const BigtableAppProfileSingleClusterRoutingChoice(this.singleClusterRouting);
 
   final BigtableAppProfileSingleClusterRouting singleClusterRouting;
 
@@ -100,7 +98,7 @@ sealed class BigtableAppProfileIsolation {
   /// Sets `standard_isolation`.
   const factory BigtableAppProfileIsolation.standardIsolation(
     BigtableAppProfileStandardIsolation standardIsolation,
-  ) = BigtableAppProfileIsolationStandardIsolation;
+  ) = BigtableAppProfileStandardIsolationChoice;
 
   /// Sets `data_boost_isolation_read_only`.
   const factory BigtableAppProfileIsolation.dataBoostIsolationReadOnly(
@@ -118,9 +116,9 @@ sealed class BigtableAppProfileIsolation {
 }
 
 /// The [BigtableAppProfileIsolation.standardIsolation] choice: sets `standard_isolation`.
-final class BigtableAppProfileIsolationStandardIsolation
+final class BigtableAppProfileStandardIsolationChoice
     extends BigtableAppProfileIsolation {
-  const BigtableAppProfileIsolationStandardIsolation(this.standardIsolation);
+  const BigtableAppProfileStandardIsolationChoice(this.standardIsolation);
 
   final BigtableAppProfileStandardIsolation standardIsolation;
 
@@ -203,18 +201,18 @@ final class BigtableAppProfileSingleClusterRouting {
 final class BigtableAppProfileStandardIsolation {
   const BigtableAppProfileStandardIsolation({required this.priority});
 
-  final TfArg<BigtableAppProfileStandardIsolationPriority> priority;
+  final TfArg<BigtableAppProfilePriority> priority;
 
   Map<String, Object?> encode() => {'priority': priority.toTfJson()};
 }
 
 /// `priority` — derived from the provider schema description.
-enum BigtableAppProfileStandardIsolationPriority implements TerraformEnum {
+enum BigtableAppProfilePriority implements TerraformEnum {
   priorityLow('PRIORITY_LOW'),
   priorityMedium('PRIORITY_MEDIUM'),
   priorityHigh('PRIORITY_HIGH');
 
-  const BigtableAppProfileStandardIsolationPriority(this.terraformValue);
+  const BigtableAppProfilePriority(this.terraformValue);
   @override
   final String terraformValue;
 }

@@ -24,7 +24,7 @@ sealed class DiscoveryEngineDataConnectorParams {
   /// Sets `json_params`.
   const factory DiscoveryEngineDataConnectorParams.jsonParams(
     TfArg<String> jsonParams,
-  ) = DiscoveryEngineDataConnectorParamsJsonParams;
+  ) = DiscoveryEngineDataConnectorJsonParams;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -54,9 +54,9 @@ final class DiscoveryEngineDataConnectorParamsChoice
 }
 
 /// The [DiscoveryEngineDataConnectorParams.jsonParams] choice: sets `json_params`.
-final class DiscoveryEngineDataConnectorParamsJsonParams
+final class DiscoveryEngineDataConnectorJsonParams
     extends DiscoveryEngineDataConnectorParams {
-  const DiscoveryEngineDataConnectorParamsJsonParams(this.jsonParams);
+  const DiscoveryEngineDataConnectorJsonParams(this.jsonParams);
 
   final TfArg<String> jsonParams;
 
@@ -122,8 +122,7 @@ final class DiscoveryEngineDataConnectorDestinationConfigs {
 
   final TfArg<String>? params;
 
-  final List<DiscoveryEngineDataConnectorDestinationConfigsDestinations>?
-  destinations;
+  final List<DiscoveryEngineDataConnectorDestinations>? destinations;
 
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
@@ -136,11 +135,8 @@ final class DiscoveryEngineDataConnectorDestinationConfigs {
 /// Typed helper for the `destination_configs.destinations` block of
 /// `google_discovery_engine_data_connector` (derived from provider schema).
 @immutable
-final class DiscoveryEngineDataConnectorDestinationConfigsDestinations {
-  const DiscoveryEngineDataConnectorDestinationConfigsDestinations({
-    this.host,
-    this.port,
-  });
+final class DiscoveryEngineDataConnectorDestinations {
+  const DiscoveryEngineDataConnectorDestinations({this.host, this.port});
 
   final TfArg<String>? host;
 

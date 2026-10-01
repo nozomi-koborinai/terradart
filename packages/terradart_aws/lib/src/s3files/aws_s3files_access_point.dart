@@ -38,8 +38,7 @@ final class S3filesAccessPointRootDirectory {
 
   final TfArg<String>? path;
 
-  final List<S3filesAccessPointRootDirectoryCreationPermissions>?
-  creationPermissions;
+  final List<S3filesAccessPointCreationPermissions>? creationPermissions;
 
   Map<String, Object?> encode() => {
     'path': ?path?.toTfJson(),
@@ -53,8 +52,8 @@ final class S3filesAccessPointRootDirectory {
 /// Typed helper for the `root_directory.creation_permissions` block of
 /// `aws_s3files_access_point` (derived from provider schema).
 @immutable
-final class S3filesAccessPointRootDirectoryCreationPermissions {
-  const S3filesAccessPointRootDirectoryCreationPermissions({
+final class S3filesAccessPointCreationPermissions {
+  const S3filesAccessPointCreationPermissions({
     required this.ownerGid,
     required this.ownerUid,
     required this.permissions,

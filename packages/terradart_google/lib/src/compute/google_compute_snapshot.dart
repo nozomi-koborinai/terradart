@@ -93,8 +93,8 @@ final class ComputeSnapshotParams {
 /// Typed helper for the `snapshot_encryption_key` block of
 /// `google_compute_snapshot` (derived from provider schema).
 @immutable
-final class ComputeSnapshotSnapshotEncryptionKey {
-  const ComputeSnapshotSnapshotEncryptionKey({
+final class ComputeSnapshotEncryptionKey {
+  const ComputeSnapshotEncryptionKey({
     this.kmsKeySelfLink,
     this.kmsKeyServiceAccount,
     this.rawKey,
@@ -179,7 +179,7 @@ final class GoogleComputeSnapshot extends Resource {
     TfArg<String>? deletionPolicy,
     TfArg<String>? zone,
     TfArg<String>? project,
-    ComputeSnapshotSnapshotEncryptionKey? snapshotEncryptionKey,
+    ComputeSnapshotEncryptionKey? snapshotEncryptionKey,
     ComputeSnapshotSourceDiskEncryptionKey? sourceDiskEncryptionKey,
     ComputeSnapshotParams? params,
     super.lifecycle,

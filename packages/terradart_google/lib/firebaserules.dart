@@ -9,7 +9,7 @@ export 'src/firebaserules/google_firebaserules_release.dart'
     show GoogleFirebaserulesRelease;
 export 'src/firebaserules/google_firebaserules_ruleset.dart'
     show
+        FirebaserulesRulesetFiles,
+        FirebaserulesRulesetLanguage,
         FirebaserulesRulesetSource,
-        FirebaserulesRulesetSourceFiles,
-        FirebaserulesRulesetSourceLanguage,
         GoogleFirebaserulesRuleset;

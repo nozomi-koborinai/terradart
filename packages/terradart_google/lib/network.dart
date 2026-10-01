@@ -58,12 +58,12 @@ export 'src/network/google_network_connectivity_policy_based_route.dart'
     show
         GoogleNetworkConnectivityPolicyBasedRoute,
         NetworkConnectivityPolicyBasedRouteFilter,
-        NetworkConnectivityPolicyBasedRouteFilterProtocolVersion,
         NetworkConnectivityPolicyBasedRouteInterconnectAttachment,
         NetworkConnectivityPolicyBasedRouteNextHop,
         NetworkConnectivityPolicyBasedRouteNextHopIlbIp,
         NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes,
         NetworkConnectivityPolicyBasedRouteNextHopOtherRoutesChoice,
+        NetworkConnectivityPolicyBasedRouteProtocolVersion,
         NetworkConnectivityPolicyBasedRouteScope,
         NetworkConnectivityPolicyBasedRouteScopeInterconnectAttachment,
         NetworkConnectivityPolicyBasedRouteScopeVirtualMachine,
@@ -75,8 +75,8 @@ export 'src/network/google_network_connectivity_regional_endpoint.dart'
 export 'src/network/google_network_connectivity_service_connection_policy.dart'
     show
         GoogleNetworkConnectivityServiceConnectionPolicy,
-        NetworkConnectivityServiceConnectionPolicyPscConfig,
-        NetworkConnectivityServiceConnectionPolicyPscConfigProducerInstanceLocation;
+        NetworkConnectivityServiceConnectionPolicyProducerInstanceLocation,
+        NetworkConnectivityServiceConnectionPolicyPscConfig;
 export 'src/network/google_network_connectivity_spoke.dart'
     show
         GoogleNetworkConnectivitySpoke,
@@ -87,13 +87,13 @@ export 'src/network/google_network_connectivity_spoke.dart'
         NetworkConnectivitySpokeAttachmentLinkedRouterApplianceInstances,
         NetworkConnectivitySpokeAttachmentLinkedVpcNetwork,
         NetworkConnectivitySpokeAttachmentLinkedVpnTunnels,
+        NetworkConnectivitySpokeCapacity,
         NetworkConnectivitySpokeGateway,
-        NetworkConnectivitySpokeGatewayCapacity,
-        NetworkConnectivitySpokeGatewayIpRangeReservations,
+        NetworkConnectivitySpokeInstances,
+        NetworkConnectivitySpokeIpRangeReservations,
         NetworkConnectivitySpokeLinkedInterconnectAttachments,
         NetworkConnectivitySpokeLinkedProducerVpcNetwork,
         NetworkConnectivitySpokeLinkedRouterApplianceInstances,
-        NetworkConnectivitySpokeLinkedRouterApplianceInstancesInstances,
         NetworkConnectivitySpokeLinkedVpcNetwork,
         NetworkConnectivitySpokeLinkedVpnTunnels;
 export 'src/network/google_network_connectivity_transport.dart'
@@ -104,12 +104,12 @@ export 'src/network/google_network_connectivity_transport.dart'
 export 'src/network/google_network_management_connectivity_test.dart'
     show
         GoogleNetworkManagementConnectivityTest,
+        NetworkManagementConnectivityTestAppEngineVersion,
+        NetworkManagementConnectivityTestCloudFunction,
+        NetworkManagementConnectivityTestCloudRunRevision,
         NetworkManagementConnectivityTestDestination,
         NetworkManagementConnectivityTestDestinationNetworkType,
         NetworkManagementConnectivityTestSource,
-        NetworkManagementConnectivityTestSourceAppEngineVersion,
-        NetworkManagementConnectivityTestSourceCloudFunction,
-        NetworkManagementConnectivityTestSourceCloudRunRevision,
         NetworkManagementConnectivityTestSourceNetworkType;
 export 'src/network/google_network_management_network_monitoring_provider.dart'
     show GoogleNetworkManagementNetworkMonitoringProvider;
@@ -137,62 +137,44 @@ export 'src/network/google_network_security_authz_policy.dart'
     show
         GoogleNetworkSecurityAuthzPolicy,
         NetworkSecurityAuthzPolicyAction,
+        NetworkSecurityAuthzPolicyAuthzExtension,
+        NetworkSecurityAuthzPolicyBaseProtocolMethodsOption,
+        NetworkSecurityAuthzPolicyCloudIap,
         NetworkSecurityAuthzPolicyCustomProvider,
-        NetworkSecurityAuthzPolicyCustomProviderAuthzExtension,
-        NetworkSecurityAuthzPolicyCustomProviderCloudIap,
+        NetworkSecurityAuthzPolicyHeaderSet,
+        NetworkSecurityAuthzPolicyHeaders,
+        NetworkSecurityAuthzPolicyHosts,
         NetworkSecurityAuthzPolicyHttpRules,
         NetworkSecurityAuthzPolicyHttpRulesFrom,
-        NetworkSecurityAuthzPolicyHttpRulesFromNotSources,
-        NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesIpBlocks,
-        NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesPrincipals,
-        NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesPrincipalsPrincipal,
-        NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesPrincipalsPrincipalSelector,
-        NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesResources,
-        NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesResourcesIamServiceAccount,
-        NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesResourcesTagValueIdSet,
-        NetworkSecurityAuthzPolicyHttpRulesFromSources,
-        NetworkSecurityAuthzPolicyHttpRulesFromSourcesIpBlocks,
-        NetworkSecurityAuthzPolicyHttpRulesFromSourcesPrincipals,
-        NetworkSecurityAuthzPolicyHttpRulesFromSourcesPrincipalsPrincipal,
-        NetworkSecurityAuthzPolicyHttpRulesFromSourcesPrincipalsPrincipalSelector,
-        NetworkSecurityAuthzPolicyHttpRulesFromSourcesResources,
-        NetworkSecurityAuthzPolicyHttpRulesFromSourcesResourcesIamServiceAccount,
-        NetworkSecurityAuthzPolicyHttpRulesFromSourcesResourcesTagValueIdSet,
+        NetworkSecurityAuthzPolicyHttpRulesNotSources,
+        NetworkSecurityAuthzPolicyHttpRulesOperations,
+        NetworkSecurityAuthzPolicyHttpRulesPrincipal,
+        NetworkSecurityAuthzPolicyHttpRulesPrincipals,
+        NetworkSecurityAuthzPolicyHttpRulesSources,
         NetworkSecurityAuthzPolicyHttpRulesTo,
-        NetworkSecurityAuthzPolicyHttpRulesToNotOperations,
-        NetworkSecurityAuthzPolicyHttpRulesToNotOperationsHeaderSet,
-        NetworkSecurityAuthzPolicyHttpRulesToNotOperationsHeaderSetHeaders,
-        NetworkSecurityAuthzPolicyHttpRulesToNotOperationsHeaderSetHeadersValue,
-        NetworkSecurityAuthzPolicyHttpRulesToNotOperationsHosts,
-        NetworkSecurityAuthzPolicyHttpRulesToNotOperationsPaths,
-        NetworkSecurityAuthzPolicyHttpRulesToOperations,
-        NetworkSecurityAuthzPolicyHttpRulesToOperationsHeaderSet,
-        NetworkSecurityAuthzPolicyHttpRulesToOperationsHeaderSetHeaders,
-        NetworkSecurityAuthzPolicyHttpRulesToOperationsHeaderSetHeadersValue,
-        NetworkSecurityAuthzPolicyHttpRulesToOperationsHosts,
-        NetworkSecurityAuthzPolicyHttpRulesToOperationsMcp,
-        NetworkSecurityAuthzPolicyHttpRulesToOperationsMcpBaseProtocolMethodsOption,
-        NetworkSecurityAuthzPolicyHttpRulesToOperationsMcpMethods,
-        NetworkSecurityAuthzPolicyHttpRulesToOperationsMcpMethodsParams,
-        NetworkSecurityAuthzPolicyHttpRulesToOperationsPaths,
+        NetworkSecurityAuthzPolicyIamServiceAccount,
+        NetworkSecurityAuthzPolicyIpBlocks,
+        NetworkSecurityAuthzPolicyLoadBalancingScheme,
+        NetworkSecurityAuthzPolicyMcp,
+        NetworkSecurityAuthzPolicyMethods,
         NetworkSecurityAuthzPolicyNetworkRules,
         NetworkSecurityAuthzPolicyNetworkRulesFrom,
-        NetworkSecurityAuthzPolicyNetworkRulesFromNotSources,
-        NetworkSecurityAuthzPolicyNetworkRulesFromNotSourcesIpBlocks,
-        NetworkSecurityAuthzPolicyNetworkRulesFromNotSourcesPrincipals,
-        NetworkSecurityAuthzPolicyNetworkRulesFromNotSourcesPrincipalsPrincipal,
-        NetworkSecurityAuthzPolicyNetworkRulesFromNotSourcesPrincipalsPrincipalSelector,
-        NetworkSecurityAuthzPolicyNetworkRulesFromSources,
-        NetworkSecurityAuthzPolicyNetworkRulesFromSourcesIpBlocks,
-        NetworkSecurityAuthzPolicyNetworkRulesFromSourcesPrincipals,
-        NetworkSecurityAuthzPolicyNetworkRulesFromSourcesPrincipalsPrincipal,
-        NetworkSecurityAuthzPolicyNetworkRulesFromSourcesPrincipalsPrincipalSelector,
+        NetworkSecurityAuthzPolicyNetworkRulesNotSources,
+        NetworkSecurityAuthzPolicyNetworkRulesOperations,
+        NetworkSecurityAuthzPolicyNetworkRulesPrincipal,
+        NetworkSecurityAuthzPolicyNetworkRulesPrincipals,
+        NetworkSecurityAuthzPolicyNetworkRulesSources,
         NetworkSecurityAuthzPolicyNetworkRulesTo,
-        NetworkSecurityAuthzPolicyNetworkRulesToOperations,
-        NetworkSecurityAuthzPolicyNetworkRulesToOperationsSnis,
+        NetworkSecurityAuthzPolicyNotOperations,
+        NetworkSecurityAuthzPolicyParams,
+        NetworkSecurityAuthzPolicyPaths,
         NetworkSecurityAuthzPolicyPolicyProfile,
+        NetworkSecurityAuthzPolicyPrincipalSelector,
+        NetworkSecurityAuthzPolicyResources,
+        NetworkSecurityAuthzPolicySnis,
+        NetworkSecurityAuthzPolicyTagValueIdSet,
         NetworkSecurityAuthzPolicyTarget,
-        NetworkSecurityAuthzPolicyTargetLoadBalancingScheme;
+        NetworkSecurityAuthzPolicyValue;
 export 'src/network/google_network_security_backend_authentication_config.dart'
     show
         GoogleNetworkSecurityBackendAuthenticationConfig,
@@ -200,16 +182,14 @@ export 'src/network/google_network_security_backend_authentication_config.dart'
 export 'src/network/google_network_security_client_tls_policy.dart'
     show
         GoogleNetworkSecurityClientTlsPolicy,
+        NetworkSecurityClientTlsPolicyCertificateProviderInstance,
         NetworkSecurityClientTlsPolicyClientCertificate,
-        NetworkSecurityClientTlsPolicyClientCertificateCertificateProviderInstance,
         NetworkSecurityClientTlsPolicyClientCertificateGrpcEndpoint,
-        NetworkSecurityClientTlsPolicyClientCertificateGrpcEndpointChoice,
         NetworkSecurityClientTlsPolicyClientCertificateProviderInstance,
+        NetworkSecurityClientTlsPolicyGrpcEndpoint,
         NetworkSecurityClientTlsPolicyServerValidationCa,
         NetworkSecurityClientTlsPolicyServerValidationCaCertificateProviderInstance,
-        NetworkSecurityClientTlsPolicyServerValidationCaCertificateProviderInstanceChoice,
-        NetworkSecurityClientTlsPolicyServerValidationCaGrpcEndpoint,
-        NetworkSecurityClientTlsPolicyServerValidationCaGrpcEndpointChoice;
+        NetworkSecurityClientTlsPolicyServerValidationCaGrpcEndpoint;
 export 'src/network/google_network_security_dns_threat_detector.dart'
     show
         GoogleNetworkSecurityDnsThreatDetector,
@@ -217,7 +197,7 @@ export 'src/network/google_network_security_dns_threat_detector.dart'
 export 'src/network/google_network_security_firewall_endpoint.dart'
     show
         GoogleNetworkSecurityFirewallEndpoint,
-        NetworkSecurityFirewallEndpointEndpointSettings;
+        NetworkSecurityFirewallEndpointSettings;
 export 'src/network/google_network_security_firewall_endpoint_association.dart'
     show
         GoogleNetworkSecurityFirewallEndpointAssociation,
@@ -253,42 +233,38 @@ export 'src/network/google_network_security_mirroring_endpoint_group_association
 export 'src/network/google_network_security_security_profile.dart'
     show
         GoogleNetworkSecuritySecurityProfile,
+        NetworkSecuritySecurityProfileAction,
+        NetworkSecuritySecurityProfileAntivirusOverrides,
         NetworkSecuritySecurityProfileCustomInterceptProfile,
         NetworkSecuritySecurityProfileCustomMirroringProfile,
+        NetworkSecuritySecurityProfileFilteringAction,
+        NetworkSecuritySecurityProfileProtocol,
         NetworkSecuritySecurityProfileSettings,
         NetworkSecuritySecurityProfileSettingsCustomInterceptProfile,
         NetworkSecuritySecurityProfileSettingsCustomMirroringProfile,
         NetworkSecuritySecurityProfileSettingsThreatPreventionProfile,
         NetworkSecuritySecurityProfileSettingsUrlFilteringProfile,
+        NetworkSecuritySecurityProfileSeverity,
+        NetworkSecuritySecurityProfileSeverityOverrides,
+        NetworkSecuritySecurityProfileThreatOverrides,
         NetworkSecuritySecurityProfileThreatPreventionProfile,
-        NetworkSecuritySecurityProfileThreatPreventionProfileAntivirusOverrides,
-        NetworkSecuritySecurityProfileThreatPreventionProfileAntivirusOverridesAction,
-        NetworkSecuritySecurityProfileThreatPreventionProfileAntivirusOverridesProtocol,
-        NetworkSecuritySecurityProfileThreatPreventionProfileSeverityOverrides,
-        NetworkSecuritySecurityProfileThreatPreventionProfileSeverityOverridesAction,
-        NetworkSecuritySecurityProfileThreatPreventionProfileSeverityOverridesSeverity,
-        NetworkSecuritySecurityProfileThreatPreventionProfileThreatOverrides,
-        NetworkSecuritySecurityProfileThreatPreventionProfileThreatOverridesAction,
         NetworkSecuritySecurityProfileType,
         NetworkSecuritySecurityProfileUrlFilteringProfile,
-        NetworkSecuritySecurityProfileUrlFilteringProfileUrlFilters,
-        NetworkSecuritySecurityProfileUrlFilteringProfileUrlFiltersFilteringAction;
+        NetworkSecuritySecurityProfileUrlFilters;
 export 'src/network/google_network_security_security_profile_group.dart'
     show GoogleNetworkSecuritySecurityProfileGroup;
 export 'src/network/google_network_security_server_tls_policy.dart'
     show
         GoogleNetworkSecurityServerTlsPolicy,
+        NetworkSecurityServerTlsPolicyCertificateProviderInstance,
+        NetworkSecurityServerTlsPolicyClientValidationCa,
+        NetworkSecurityServerTlsPolicyClientValidationCaCertificateProviderInstance,
+        NetworkSecurityServerTlsPolicyClientValidationCaGrpcEndpoint,
+        NetworkSecurityServerTlsPolicyClientValidationMode,
+        NetworkSecurityServerTlsPolicyGrpcEndpoint,
         NetworkSecurityServerTlsPolicyMtlsPolicy,
-        NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationCa,
-        NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationCaCertificateProviderInstance,
-        NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationCaCertificateProviderInstanceChoice,
-        NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationCaGrpcEndpoint,
-        NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationCaGrpcEndpointChoice,
-        NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationMode,
         NetworkSecurityServerTlsPolicyServerCertificate,
-        NetworkSecurityServerTlsPolicyServerCertificateCertificateProviderInstance,
         NetworkSecurityServerTlsPolicyServerCertificateGrpcEndpoint,
-        NetworkSecurityServerTlsPolicyServerCertificateGrpcEndpointChoice,
         NetworkSecurityServerTlsPolicyServerCertificateProviderInstance;
 export 'src/network/google_network_security_tls_inspection_policy.dart'
     show
@@ -315,18 +291,18 @@ export 'src/network/google_network_services_agent_connectivity_template.dart'
     show
         GoogleNetworkServicesAgentConnectivityTemplate,
         NetworkServicesAgentConnectivityTemplateAccessPath,
+        NetworkServicesAgentConnectivityTemplateDnsPeeringConfig,
         NetworkServicesAgentConnectivityTemplateEgressNetworkConfig,
-        NetworkServicesAgentConnectivityTemplateEgressNetworkConfigDnsPeeringConfig,
-        NetworkServicesAgentConnectivityTemplateEgressNetworkConfigVpcEgress;
+        NetworkServicesAgentConnectivityTemplateVpcEgress;
 export 'src/network/google_network_services_agent_gateway.dart'
     show
         GoogleNetworkServicesAgentGateway,
         NetworkServicesAgentGatewayDeployment,
+        NetworkServicesAgentGatewayDnsPeeringConfig,
+        NetworkServicesAgentGatewayEgress,
         NetworkServicesAgentGatewayGoogleManaged,
         NetworkServicesAgentGatewayGoogleManagedGovernedAccessPath,
         NetworkServicesAgentGatewayNetworkConfig,
-        NetworkServicesAgentGatewayNetworkConfigDnsPeeringConfig,
-        NetworkServicesAgentGatewayNetworkConfigEgress,
         NetworkServicesAgentGatewaySelfManaged;
 export 'src/network/google_network_services_authz_extension.dart'
     show
@@ -343,137 +319,137 @@ export 'src/network/google_network_services_edge_cache_origin.dart'
         GoogleNetworkServicesEdgeCacheOrigin,
         NetworkServicesEdgeCacheOriginAwsV4Authentication,
         NetworkServicesEdgeCacheOriginFlexShielding,
-        NetworkServicesEdgeCacheOriginFlexShieldingFlexShieldingRegions,
-        NetworkServicesEdgeCacheOriginOriginOverrideAction,
-        NetworkServicesEdgeCacheOriginOriginOverrideActionHeaderAction,
-        NetworkServicesEdgeCacheOriginOriginOverrideActionHeaderActionRequestHeadersToAdd,
-        NetworkServicesEdgeCacheOriginOriginOverrideActionUrlRewrite,
-        NetworkServicesEdgeCacheOriginOriginRedirect,
+        NetworkServicesEdgeCacheOriginFlexShieldingRegions,
+        NetworkServicesEdgeCacheOriginHeaderAction,
+        NetworkServicesEdgeCacheOriginOverrideAction,
         NetworkServicesEdgeCacheOriginProtocol,
-        NetworkServicesEdgeCacheOriginTimeout;
+        NetworkServicesEdgeCacheOriginRedirect,
+        NetworkServicesEdgeCacheOriginRequestHeadersToAdd,
+        NetworkServicesEdgeCacheOriginTimeout,
+        NetworkServicesEdgeCacheOriginUrlRewrite;
 export 'src/network/google_network_services_edge_cache_service.dart'
     show
         GoogleNetworkServicesEdgeCacheService,
+        NetworkServicesEdgeCacheServiceActions,
+        NetworkServicesEdgeCacheServiceAddSignatures,
+        NetworkServicesEdgeCacheServiceAllowedSignatureAlgorithms,
+        NetworkServicesEdgeCacheServiceCacheKeyPolicy,
+        NetworkServicesEdgeCacheServiceCacheMode,
+        NetworkServicesEdgeCacheServiceCdnPolicy,
+        NetworkServicesEdgeCacheServiceCompressionMode,
+        NetworkServicesEdgeCacheServiceCorsPolicy,
+        NetworkServicesEdgeCacheServiceHeaderAction,
+        NetworkServicesEdgeCacheServiceHeaderMatch,
+        NetworkServicesEdgeCacheServiceHostRule,
         NetworkServicesEdgeCacheServiceLogConfig,
+        NetworkServicesEdgeCacheServiceMatchRule,
+        NetworkServicesEdgeCacheServicePathMatcher,
+        NetworkServicesEdgeCacheServiceQueryParameterMatch,
+        NetworkServicesEdgeCacheServiceRedirectResponseCode,
+        NetworkServicesEdgeCacheServiceRequestHeaderToAdd,
+        NetworkServicesEdgeCacheServiceRequestHeaderToRemove,
+        NetworkServicesEdgeCacheServiceResponseHeaderToAdd,
+        NetworkServicesEdgeCacheServiceResponseHeaderToRemove,
+        NetworkServicesEdgeCacheServiceRouteAction,
+        NetworkServicesEdgeCacheServiceRouteMethods,
+        NetworkServicesEdgeCacheServiceRouteRule,
         NetworkServicesEdgeCacheServiceRouting,
-        NetworkServicesEdgeCacheServiceRoutingHostRule,
-        NetworkServicesEdgeCacheServiceRoutingPathMatcher,
-        NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRule,
-        NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleHeaderAction,
-        NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleHeaderActionRequestHeaderToAdd,
-        NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleHeaderActionRequestHeaderToRemove,
-        NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleHeaderActionResponseHeaderToAdd,
-        NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleHeaderActionResponseHeaderToRemove,
-        NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleMatchRule,
-        NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleMatchRuleHeaderMatch,
-        NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleMatchRuleQueryParameterMatch,
-        NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteAction,
-        NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPolicy,
-        NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPolicyAddSignatures,
-        NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPolicyAddSignaturesActions,
-        NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPolicyCacheKeyPolicy,
-        NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPolicyCacheMode,
-        NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPolicySignedRequestMode,
-        NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPolicySignedTokenOptions,
-        NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCdnPolicySignedTokenOptionsAllowedSignatureAlgorithms,
-        NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCompressionMode,
-        NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionCorsPolicy,
-        NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteActionUrlRewrite,
-        NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteMethods,
-        NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleUrlRedirect,
-        NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleUrlRedirectRedirectResponseCode;
+        NetworkServicesEdgeCacheServiceSignedRequestMode,
+        NetworkServicesEdgeCacheServiceSignedTokenOptions,
+        NetworkServicesEdgeCacheServiceUrlRedirect,
+        NetworkServicesEdgeCacheServiceUrlRewrite;
 export 'src/network/google_network_services_endpoint_policy.dart'
     show
         GoogleNetworkServicesEndpointPolicy,
         NetworkServicesEndpointPolicyEndpointMatcher,
-        NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcher,
-        NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcherMetadataLabelMatchCriteria,
-        NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcherMetadataLabels,
+        NetworkServicesEndpointPolicyMetadataLabelMatchCriteria,
+        NetworkServicesEndpointPolicyMetadataLabelMatcher,
+        NetworkServicesEndpointPolicyMetadataLabels,
         NetworkServicesEndpointPolicyTrafficPortSelector,
         NetworkServicesEndpointPolicyType;
 export 'src/network/google_network_services_gateway.dart'
     show
         GoogleNetworkServicesGateway,
+        NetworkServicesGatewayAllPorts,
         NetworkServicesGatewayEnvoyHeaders,
         NetworkServicesGatewayIpVersion,
         NetworkServicesGatewayPorts,
-        NetworkServicesGatewayPortsAllPorts,
         NetworkServicesGatewayPortsChoice,
         NetworkServicesGatewayRoutingMode,
         NetworkServicesGatewayType;
 export 'src/network/google_network_services_grpc_route.dart'
     show
         GoogleNetworkServicesGrpcRoute,
+        NetworkServicesGrpcRouteAbort,
+        NetworkServicesGrpcRouteAction,
+        NetworkServicesGrpcRouteDelay,
+        NetworkServicesGrpcRouteDestinations,
+        NetworkServicesGrpcRouteFaultInjectionPolicy,
+        NetworkServicesGrpcRouteHeaders,
+        NetworkServicesGrpcRouteMatches,
+        NetworkServicesGrpcRouteMethod,
+        NetworkServicesGrpcRouteRetryConditions,
+        NetworkServicesGrpcRouteRetryPolicy,
         NetworkServicesGrpcRouteRules,
-        NetworkServicesGrpcRouteRulesAction,
-        NetworkServicesGrpcRouteRulesActionDestinations,
-        NetworkServicesGrpcRouteRulesActionFaultInjectionPolicy,
-        NetworkServicesGrpcRouteRulesActionFaultInjectionPolicyAbort,
-        NetworkServicesGrpcRouteRulesActionFaultInjectionPolicyDelay,
-        NetworkServicesGrpcRouteRulesActionRetryPolicy,
-        NetworkServicesGrpcRouteRulesActionRetryPolicyRetryConditions,
-        NetworkServicesGrpcRouteRulesMatches,
-        NetworkServicesGrpcRouteRulesMatchesHeaders,
-        NetworkServicesGrpcRouteRulesMatchesHeadersType,
-        NetworkServicesGrpcRouteRulesMatchesMethod;
+        NetworkServicesGrpcRouteType;
 export 'src/network/google_network_services_http_route.dart'
     show
         GoogleNetworkServicesHttpRoute,
+        NetworkServicesHttpRouteAbort,
+        NetworkServicesHttpRouteAction,
+        NetworkServicesHttpRouteCorsPolicy,
+        NetworkServicesHttpRouteDelay,
+        NetworkServicesHttpRouteDestination,
+        NetworkServicesHttpRouteDestinations,
+        NetworkServicesHttpRouteFaultInjectionPolicy,
+        NetworkServicesHttpRouteFullPathMatch,
+        NetworkServicesHttpRouteHeaders,
+        NetworkServicesHttpRouteHeadersExactMatch,
+        NetworkServicesHttpRouteHeadersMatch,
+        NetworkServicesHttpRouteHeadersPrefixMatch,
+        NetworkServicesHttpRouteHeadersPresentMatch,
+        NetworkServicesHttpRouteHeadersRangeMatch,
+        NetworkServicesHttpRouteHeadersRegexMatch,
+        NetworkServicesHttpRouteHeadersSuffixMatch,
+        NetworkServicesHttpRouteMatch,
+        NetworkServicesHttpRouteMatches,
+        NetworkServicesHttpRoutePrefixMatch,
+        NetworkServicesHttpRouteQueryParameters,
+        NetworkServicesHttpRouteQueryParametersExactMatch,
+        NetworkServicesHttpRouteQueryParametersMatch,
+        NetworkServicesHttpRouteQueryParametersPresentMatch,
+        NetworkServicesHttpRouteQueryParametersRegexMatch,
+        NetworkServicesHttpRouteRangeMatch,
+        NetworkServicesHttpRouteRedirect,
+        NetworkServicesHttpRouteRegexMatch,
+        NetworkServicesHttpRouteRequestHeaderModifier,
+        NetworkServicesHttpRouteRequestMirrorPolicy,
+        NetworkServicesHttpRouteResponseHeaderModifier,
+        NetworkServicesHttpRouteRetryPolicy,
         NetworkServicesHttpRouteRules,
-        NetworkServicesHttpRouteRulesAction,
-        NetworkServicesHttpRouteRulesActionCorsPolicy,
-        NetworkServicesHttpRouteRulesActionDestinations,
-        NetworkServicesHttpRouteRulesActionFaultInjectionPolicy,
-        NetworkServicesHttpRouteRulesActionFaultInjectionPolicyAbort,
-        NetworkServicesHttpRouteRulesActionFaultInjectionPolicyDelay,
-        NetworkServicesHttpRouteRulesActionRedirect,
-        NetworkServicesHttpRouteRulesActionRequestHeaderModifier,
-        NetworkServicesHttpRouteRulesActionRequestMirrorPolicy,
-        NetworkServicesHttpRouteRulesActionRequestMirrorPolicyDestination,
-        NetworkServicesHttpRouteRulesActionResponseHeaderModifier,
-        NetworkServicesHttpRouteRulesActionRetryPolicy,
-        NetworkServicesHttpRouteRulesActionUrlRewrite,
-        NetworkServicesHttpRouteRulesMatches,
-        NetworkServicesHttpRouteRulesMatchesHeaders,
-        NetworkServicesHttpRouteRulesMatchesHeadersMatch,
-        NetworkServicesHttpRouteRulesMatchesHeadersMatchExactMatch,
-        NetworkServicesHttpRouteRulesMatchesHeadersMatchPrefixMatch,
-        NetworkServicesHttpRouteRulesMatchesHeadersMatchPresentMatch,
-        NetworkServicesHttpRouteRulesMatchesHeadersMatchRangeMatch,
-        NetworkServicesHttpRouteRulesMatchesHeadersMatchRegexMatch,
-        NetworkServicesHttpRouteRulesMatchesHeadersMatchSuffixMatch,
-        NetworkServicesHttpRouteRulesMatchesHeadersRangeMatch,
-        NetworkServicesHttpRouteRulesMatchesMatch,
-        NetworkServicesHttpRouteRulesMatchesMatchFullPathMatch,
-        NetworkServicesHttpRouteRulesMatchesMatchPrefixMatch,
-        NetworkServicesHttpRouteRulesMatchesMatchRegexMatch,
-        NetworkServicesHttpRouteRulesMatchesQueryParameters,
-        NetworkServicesHttpRouteRulesMatchesQueryParametersMatch,
-        NetworkServicesHttpRouteRulesMatchesQueryParametersMatchExactMatch,
-        NetworkServicesHttpRouteRulesMatchesQueryParametersMatchPresentMatch,
-        NetworkServicesHttpRouteRulesMatchesQueryParametersMatchRegexMatch;
+        NetworkServicesHttpRouteUrlRewrite;
 export 'src/network/google_network_services_lb_edge_extension.dart'
     show
         GoogleNetworkServicesLbEdgeExtension,
-        NetworkServicesLbEdgeExtensionExtensionChains,
-        NetworkServicesLbEdgeExtensionExtensionChainsExtensions,
-        NetworkServicesLbEdgeExtensionExtensionChainsMatchCondition,
-        NetworkServicesLbEdgeExtensionLoadBalancingScheme;
+        NetworkServicesLbEdgeExtensionChains,
+        NetworkServicesLbEdgeExtensionExtensions,
+        NetworkServicesLbEdgeExtensionLoadBalancingScheme,
+        NetworkServicesLbEdgeExtensionMatchCondition;
 export 'src/network/google_network_services_lb_route_extension.dart'
     show
         GoogleNetworkServicesLbRouteExtension,
-        NetworkServicesLbRouteExtensionExtensionChains,
-        NetworkServicesLbRouteExtensionExtensionChainsExtensions,
-        NetworkServicesLbRouteExtensionExtensionChainsExtensionsRequestBodySendMode,
-        NetworkServicesLbRouteExtensionExtensionChainsMatchCondition,
-        NetworkServicesLbRouteExtensionLoadBalancingScheme;
+        NetworkServicesLbRouteExtensionChains,
+        NetworkServicesLbRouteExtensionExtensions,
+        NetworkServicesLbRouteExtensionLoadBalancingScheme,
+        NetworkServicesLbRouteExtensionMatchCondition,
+        NetworkServicesLbRouteExtensionRequestBodySendMode;
 export 'src/network/google_network_services_lb_traffic_extension.dart'
     show
         GoogleNetworkServicesLbTrafficExtension,
-        NetworkServicesLbTrafficExtensionExtensionChains,
-        NetworkServicesLbTrafficExtensionExtensionChainsExtensions,
-        NetworkServicesLbTrafficExtensionExtensionChainsMatchCondition,
-        NetworkServicesLbTrafficExtensionLoadBalancingScheme;
+        NetworkServicesLbTrafficExtensionChains,
+        NetworkServicesLbTrafficExtensionExtensions,
+        NetworkServicesLbTrafficExtensionLoadBalancingScheme,
+        NetworkServicesLbTrafficExtensionMatchCondition;
 export 'src/network/google_network_services_mesh.dart'
     show GoogleNetworkServicesMesh;
 export 'src/network/google_network_services_multicast_consumer_association.dart'
@@ -510,20 +486,20 @@ export 'src/network/google_network_services_service_binding.dart'
 export 'src/network/google_network_services_tcp_route.dart'
     show
         GoogleNetworkServicesTcpRoute,
-        NetworkServicesTcpRouteRules,
-        NetworkServicesTcpRouteRulesAction,
-        NetworkServicesTcpRouteRulesActionDestinations,
-        NetworkServicesTcpRouteRulesMatches;
+        NetworkServicesTcpRouteAction,
+        NetworkServicesTcpRouteDestinations,
+        NetworkServicesTcpRouteMatches,
+        NetworkServicesTcpRouteRules;
 export 'src/network/google_network_services_tls_route.dart'
     show
         GoogleNetworkServicesTlsRoute,
-        NetworkServicesTlsRouteRules,
-        NetworkServicesTlsRouteRulesAction,
-        NetworkServicesTlsRouteRulesActionDestinations,
-        NetworkServicesTlsRouteRulesMatches;
+        NetworkServicesTlsRouteAction,
+        NetworkServicesTlsRouteDestinations,
+        NetworkServicesTlsRouteMatches,
+        NetworkServicesTlsRouteRules;
 export 'src/network/google_network_services_wasm_plugin.dart'
     show
         GoogleNetworkServicesWasmPlugin,
         NetworkServicesWasmPluginLogConfig,
-        NetworkServicesWasmPluginLogConfigMinLogLevel,
+        NetworkServicesWasmPluginMinLogLevel,
         NetworkServicesWasmPluginVersions;

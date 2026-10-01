@@ -30,7 +30,7 @@ final class ObservabilityadminTelemetryRuleForOrganizationRule {
 
   final TfArg<List<String>>? regions;
 
-  final TfArg<ObservabilityadminTelemetryRuleForOrganizationRuleResourceType>?
+  final TfArg<ObservabilityadminTelemetryRuleForOrganizationResourceType>?
   resourceType;
 
   final TfArg<String>? scope;
@@ -38,17 +38,15 @@ final class ObservabilityadminTelemetryRuleForOrganizationRule {
   final TfArg<String>? selectionCriteria;
 
   final List<
-    TfArg<
-      ObservabilityadminTelemetryRuleForOrganizationRuleTelemetrySourceTypes
-    >
+    TfArg<ObservabilityadminTelemetryRuleForOrganizationTelemetrySourceTypes>
   >?
   telemetrySourceTypes;
 
-  final TfArg<ObservabilityadminTelemetryRuleForOrganizationRuleTelemetryType>
+  final TfArg<ObservabilityadminTelemetryRuleForOrganizationTelemetryType>
   telemetryType;
 
   final List<
-    ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfiguration
+    ObservabilityadminTelemetryRuleForOrganizationDestinationConfiguration
   >?
   destinationConfiguration;
 
@@ -72,7 +70,7 @@ final class ObservabilityadminTelemetryRuleForOrganizationRule {
 }
 
 /// `resource_type` — derived from the provider schema description.
-enum ObservabilityadminTelemetryRuleForOrganizationRuleResourceType
+enum ObservabilityadminTelemetryRuleForOrganizationResourceType
     implements TerraformEnum {
   awsEc2Instance('AWS::EC2::Instance'),
   awsEc2Vpc('AWS::EC2::VPC'),
@@ -100,7 +98,7 @@ enum ObservabilityadminTelemetryRuleForOrganizationRuleResourceType
   awsS3Bucket('AWS::S3::Bucket'),
   awsBedrockKnowledgebase('AWS::Bedrock::KnowledgeBase');
 
-  const ObservabilityadminTelemetryRuleForOrganizationRuleResourceType(
+  const ObservabilityadminTelemetryRuleForOrganizationResourceType(
     this.terraformValue,
   );
   @override
@@ -108,7 +106,7 @@ enum ObservabilityadminTelemetryRuleForOrganizationRuleResourceType
 }
 
 /// `telemetry_source_types` — derived from the provider schema description.
-enum ObservabilityadminTelemetryRuleForOrganizationRuleTelemetrySourceTypes
+enum ObservabilityadminTelemetryRuleForOrganizationTelemetrySourceTypes
     implements TerraformEnum {
   vpcFlowLogs('VPC_FLOW_LOGS'),
   route53ResolverQueryLogs('ROUTE53_RESOLVER_QUERY_LOGS'),
@@ -118,7 +116,7 @@ enum ObservabilityadminTelemetryRuleForOrganizationRuleTelemetrySourceTypes
   eksSchedulerLogs('EKS_SCHEDULER_LOGS'),
   eksApiLogs('EKS_API_LOGS');
 
-  const ObservabilityadminTelemetryRuleForOrganizationRuleTelemetrySourceTypes(
+  const ObservabilityadminTelemetryRuleForOrganizationTelemetrySourceTypes(
     this.terraformValue,
   );
   @override
@@ -126,13 +124,13 @@ enum ObservabilityadminTelemetryRuleForOrganizationRuleTelemetrySourceTypes
 }
 
 /// `telemetry_type` — derived from the provider schema description.
-enum ObservabilityadminTelemetryRuleForOrganizationRuleTelemetryType
+enum ObservabilityadminTelemetryRuleForOrganizationTelemetryType
     implements TerraformEnum {
   logs('Logs'),
   metrics('Metrics'),
   traces('Traces');
 
-  const ObservabilityadminTelemetryRuleForOrganizationRuleTelemetryType(
+  const ObservabilityadminTelemetryRuleForOrganizationTelemetryType(
     this.terraformValue,
   );
   @override
@@ -142,8 +140,8 @@ enum ObservabilityadminTelemetryRuleForOrganizationRuleTelemetryType
 /// Typed helper for the `rule.destination_configuration` block of
 /// `aws_observabilityadmin_telemetry_rule_for_organization` (derived from provider schema).
 @immutable
-final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfiguration {
-  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfiguration({
+final class ObservabilityadminTelemetryRuleForOrganizationDestinationConfiguration {
+  const ObservabilityadminTelemetryRuleForOrganizationDestinationConfiguration({
     this.destinationPattern,
     this.destinationType,
     this.retentionInDays,
@@ -157,40 +155,38 @@ final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigu
 
   final TfArg<String>? destinationPattern;
 
-  final TfArg<
-    ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationDestinationType
-  >?
+  final TfArg<ObservabilityadminTelemetryRuleForOrganizationDestinationType>?
   destinationType;
 
   final TfArg<num>? retentionInDays;
 
   final List<
-    ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationCloudtrailParameters
+    ObservabilityadminTelemetryRuleForOrganizationCloudtrailParameters
   >?
   cloudtrailParameters;
 
   final List<
-    ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationElbLoadBalancerLoggingParameters
+    ObservabilityadminTelemetryRuleForOrganizationElbLoadBalancerLoggingParameters
   >?
   elbLoadBalancerLoggingParameters;
 
   final List<
-    ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationLogDeliveryParameters
+    ObservabilityadminTelemetryRuleForOrganizationLogDeliveryParameters
   >?
   logDeliveryParameters;
 
   final List<
-    ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationMskMonitoringParameters
+    ObservabilityadminTelemetryRuleForOrganizationMskMonitoringParameters
   >?
   mskMonitoringParameters;
 
   final List<
-    ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationVpcFlowLogParameters
+    ObservabilityadminTelemetryRuleForOrganizationVpcFlowLogParameters
   >?
   vpcFlowLogParameters;
 
   final List<
-    ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParameters
+    ObservabilityadminTelemetryRuleForOrganizationWafLoggingParameters
   >?
   wafLoggingParameters;
 
@@ -226,11 +222,11 @@ final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigu
 }
 
 /// `destination_type` — derived from the provider schema description.
-enum ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationDestinationType
+enum ObservabilityadminTelemetryRuleForOrganizationDestinationType
     implements TerraformEnum {
   cloudWatchLogs('cloud-watch-logs');
 
-  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationDestinationType(
+  const ObservabilityadminTelemetryRuleForOrganizationDestinationType(
     this.terraformValue,
   );
   @override
@@ -240,13 +236,13 @@ enum ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationD
 /// Typed helper for the `rule.destination_configuration.cloudtrail_parameters` block of
 /// `aws_observabilityadmin_telemetry_rule_for_organization` (derived from provider schema).
 @immutable
-final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationCloudtrailParameters {
-  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationCloudtrailParameters({
+final class ObservabilityadminTelemetryRuleForOrganizationCloudtrailParameters {
+  const ObservabilityadminTelemetryRuleForOrganizationCloudtrailParameters({
     this.advancedEventSelectors,
   });
 
   final List<
-    ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationCloudtrailParametersAdvancedEventSelectors
+    ObservabilityadminTelemetryRuleForOrganizationAdvancedEventSelectors
   >?
   advancedEventSelectors;
 
@@ -261,17 +257,15 @@ final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigu
 /// Typed helper for the `rule.destination_configuration.cloudtrail_parameters.advanced_event_selectors` block of
 /// `aws_observabilityadmin_telemetry_rule_for_organization` (derived from provider schema).
 @immutable
-final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationCloudtrailParametersAdvancedEventSelectors {
-  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationCloudtrailParametersAdvancedEventSelectors({
+final class ObservabilityadminTelemetryRuleForOrganizationAdvancedEventSelectors {
+  const ObservabilityadminTelemetryRuleForOrganizationAdvancedEventSelectors({
     this.name,
     this.fieldSelectors,
   });
 
   final TfArg<String>? name;
 
-  final List<
-    ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationCloudtrailParametersAdvancedEventSelectorsFieldSelectors
-  >?
+  final List<ObservabilityadminTelemetryRuleForOrganizationFieldSelectors>?
   fieldSelectors;
 
   Map<String, Object?> encode() => {
@@ -284,8 +278,8 @@ final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigu
 /// Typed helper for the `rule.destination_configuration.cloudtrail_parameters.advanced_event_selectors.field_selectors` block of
 /// `aws_observabilityadmin_telemetry_rule_for_organization` (derived from provider schema).
 @immutable
-final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationCloudtrailParametersAdvancedEventSelectorsFieldSelectors {
-  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationCloudtrailParametersAdvancedEventSelectorsFieldSelectors({
+final class ObservabilityadminTelemetryRuleForOrganizationFieldSelectors {
+  const ObservabilityadminTelemetryRuleForOrganizationFieldSelectors({
     this.endsWith,
     this.equals,
     required this.field,
@@ -323,17 +317,15 @@ final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigu
 /// Typed helper for the `rule.destination_configuration.elb_load_balancer_logging_parameters` block of
 /// `aws_observabilityadmin_telemetry_rule_for_organization` (derived from provider schema).
 @immutable
-final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationElbLoadBalancerLoggingParameters {
-  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationElbLoadBalancerLoggingParameters({
+final class ObservabilityadminTelemetryRuleForOrganizationElbLoadBalancerLoggingParameters {
+  const ObservabilityadminTelemetryRuleForOrganizationElbLoadBalancerLoggingParameters({
     this.fieldDelimiter,
     this.outputFormat,
   });
 
   final TfArg<String>? fieldDelimiter;
 
-  final TfArg<
-    ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationElbLoadBalancerLoggingParametersOutputFormat
-  >?
+  final TfArg<ObservabilityadminTelemetryRuleForOrganizationOutputFormat>?
   outputFormat;
 
   Map<String, Object?> encode() => {
@@ -343,12 +335,12 @@ final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigu
 }
 
 /// `output_format` — derived from the provider schema description.
-enum ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationElbLoadBalancerLoggingParametersOutputFormat
+enum ObservabilityadminTelemetryRuleForOrganizationOutputFormat
     implements TerraformEnum {
   plain('plain'),
   json('json');
 
-  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationElbLoadBalancerLoggingParametersOutputFormat(
+  const ObservabilityadminTelemetryRuleForOrganizationOutputFormat(
     this.terraformValue,
   );
   @override
@@ -358,16 +350,12 @@ enum ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationE
 /// Typed helper for the `rule.destination_configuration.log_delivery_parameters` block of
 /// `aws_observabilityadmin_telemetry_rule_for_organization` (derived from provider schema).
 @immutable
-final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationLogDeliveryParameters {
-  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationLogDeliveryParameters({
+final class ObservabilityadminTelemetryRuleForOrganizationLogDeliveryParameters {
+  const ObservabilityadminTelemetryRuleForOrganizationLogDeliveryParameters({
     this.logTypes,
   });
 
-  final List<
-    TfArg<
-      ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationLogDeliveryParametersLogTypes
-    >
-  >?
+  final List<TfArg<ObservabilityadminTelemetryRuleForOrganizationLogTypes>>?
   logTypes;
 
   Map<String, Object?> encode() => {
@@ -377,7 +365,7 @@ final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigu
 }
 
 /// `log_types` — derived from the provider schema description.
-enum ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationLogDeliveryParametersLogTypes
+enum ObservabilityadminTelemetryRuleForOrganizationLogTypes
     implements TerraformEnum {
   applicationLogs('APPLICATION_LOGS'),
   usageLogs('USAGE_LOGS'),
@@ -389,7 +377,7 @@ enum ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationL
   albConnectionLogs('ALB_CONNECTION_LOGS'),
   albHealthCheckLogs('ALB_HEALTH_CHECK_LOGS');
 
-  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationLogDeliveryParametersLogTypes(
+  const ObservabilityadminTelemetryRuleForOrganizationLogTypes(
     this.terraformValue,
   );
   @override
@@ -399,14 +387,12 @@ enum ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationL
 /// Typed helper for the `rule.destination_configuration.msk_monitoring_parameters` block of
 /// `aws_observabilityadmin_telemetry_rule_for_organization` (derived from provider schema).
 @immutable
-final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationMskMonitoringParameters {
-  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationMskMonitoringParameters({
+final class ObservabilityadminTelemetryRuleForOrganizationMskMonitoringParameters {
+  const ObservabilityadminTelemetryRuleForOrganizationMskMonitoringParameters({
     this.enhancedMonitoring,
   });
 
-  final TfArg<
-    ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationMskMonitoringParametersEnhancedMonitoring
-  >?
+  final TfArg<ObservabilityadminTelemetryRuleForOrganizationEnhancedMonitoring>?
   enhancedMonitoring;
 
   Map<String, Object?> encode() => {
@@ -415,14 +401,14 @@ final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigu
 }
 
 /// `enhanced_monitoring` — derived from the provider schema description.
-enum ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationMskMonitoringParametersEnhancedMonitoring
+enum ObservabilityadminTelemetryRuleForOrganizationEnhancedMonitoring
     implements TerraformEnum {
   defaultCase('DEFAULT'),
   perBroker('PER_BROKER'),
   perTopicPerBroker('PER_TOPIC_PER_BROKER'),
   perTopicPerPartition('PER_TOPIC_PER_PARTITION');
 
-  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationMskMonitoringParametersEnhancedMonitoring(
+  const ObservabilityadminTelemetryRuleForOrganizationEnhancedMonitoring(
     this.terraformValue,
   );
   @override
@@ -432,8 +418,8 @@ enum ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationM
 /// Typed helper for the `rule.destination_configuration.vpc_flow_log_parameters` block of
 /// `aws_observabilityadmin_telemetry_rule_for_organization` (derived from provider schema).
 @immutable
-final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationVpcFlowLogParameters {
-  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationVpcFlowLogParameters({
+final class ObservabilityadminTelemetryRuleForOrganizationVpcFlowLogParameters {
+  const ObservabilityadminTelemetryRuleForOrganizationVpcFlowLogParameters({
     this.logFormat,
     this.maxAggregationInterval,
     this.trafficType,
@@ -455,26 +441,19 @@ final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigu
 /// Typed helper for the `rule.destination_configuration.waf_logging_parameters` block of
 /// `aws_observabilityadmin_telemetry_rule_for_organization` (derived from provider schema).
 @immutable
-final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParameters {
-  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParameters({
+final class ObservabilityadminTelemetryRuleForOrganizationWafLoggingParameters {
+  const ObservabilityadminTelemetryRuleForOrganizationWafLoggingParameters({
     this.logType,
     this.loggingFilter,
     this.redactedFields,
   });
 
-  final TfArg<
-    ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLogType
-  >?
-  logType;
+  final TfArg<ObservabilityadminTelemetryRuleForOrganizationLogType>? logType;
 
-  final List<
-    ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilter
-  >?
+  final List<ObservabilityadminTelemetryRuleForOrganizationLoggingFilter>?
   loggingFilter;
 
-  final List<
-    ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersRedactedFields
-  >?
+  final List<ObservabilityadminTelemetryRuleForOrganizationRedactedFields>?
   redactedFields;
 
   Map<String, Object?> encode() => {
@@ -487,11 +466,11 @@ final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigu
 }
 
 /// `log_type` — derived from the provider schema description.
-enum ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLogType
+enum ObservabilityadminTelemetryRuleForOrganizationLogType
     implements TerraformEnum {
   wafLogs('WAF_LOGS');
 
-  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLogType(
+  const ObservabilityadminTelemetryRuleForOrganizationLogType(
     this.terraformValue,
   );
   @override
@@ -501,21 +480,16 @@ enum ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationW
 /// Typed helper for the `rule.destination_configuration.waf_logging_parameters.logging_filter` block of
 /// `aws_observabilityadmin_telemetry_rule_for_organization` (derived from provider schema).
 @immutable
-final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilter {
-  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilter({
+final class ObservabilityadminTelemetryRuleForOrganizationLoggingFilter {
+  const ObservabilityadminTelemetryRuleForOrganizationLoggingFilter({
     this.defaultBehavior,
     this.filters,
   });
 
-  final TfArg<
-    ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterDefaultBehavior
-  >?
+  final TfArg<ObservabilityadminTelemetryRuleForOrganizationDefaultBehavior>?
   defaultBehavior;
 
-  final List<
-    ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFilters
-  >?
-  filters;
+  final List<ObservabilityadminTelemetryRuleForOrganizationFilters>? filters;
 
   Map<String, Object?> encode() => {
     'default_behavior': ?defaultBehavior?.toTfJson(),
@@ -524,12 +498,12 @@ final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigu
 }
 
 /// `default_behavior` — derived from the provider schema description.
-enum ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterDefaultBehavior
+enum ObservabilityadminTelemetryRuleForOrganizationDefaultBehavior
     implements TerraformEnum {
   keep('KEEP'),
   drop('DROP');
 
-  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterDefaultBehavior(
+  const ObservabilityadminTelemetryRuleForOrganizationDefaultBehavior(
     this.terraformValue,
   );
   @override
@@ -539,26 +513,19 @@ enum ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationW
 /// Typed helper for the `rule.destination_configuration.waf_logging_parameters.logging_filter.filters` block of
 /// `aws_observabilityadmin_telemetry_rule_for_organization` (derived from provider schema).
 @immutable
-final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFilters {
-  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFilters({
+final class ObservabilityadminTelemetryRuleForOrganizationFilters {
+  const ObservabilityadminTelemetryRuleForOrganizationFilters({
     this.behavior,
     this.requirement,
     this.conditions,
   });
 
-  final TfArg<
-    ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersBehavior
-  >?
-  behavior;
+  final TfArg<ObservabilityadminTelemetryRuleForOrganizationBehavior>? behavior;
 
-  final TfArg<
-    ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersRequirement
-  >?
+  final TfArg<ObservabilityadminTelemetryRuleForOrganizationRequirement>?
   requirement;
 
-  final List<
-    ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersConditions
-  >?
+  final List<ObservabilityadminTelemetryRuleForOrganizationConditions>?
   conditions;
 
   Map<String, Object?> encode() => {
@@ -570,12 +537,12 @@ final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigu
 }
 
 /// `behavior` — derived from the provider schema description.
-enum ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersBehavior
+enum ObservabilityadminTelemetryRuleForOrganizationBehavior
     implements TerraformEnum {
   keep('KEEP'),
   drop('DROP');
 
-  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersBehavior(
+  const ObservabilityadminTelemetryRuleForOrganizationBehavior(
     this.terraformValue,
   );
   @override
@@ -583,12 +550,12 @@ enum ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationW
 }
 
 /// `requirement` — derived from the provider schema description.
-enum ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersRequirement
+enum ObservabilityadminTelemetryRuleForOrganizationRequirement
     implements TerraformEnum {
   meetsAll('MEETS_ALL'),
   meetsAny('MEETS_ANY');
 
-  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersRequirement(
+  const ObservabilityadminTelemetryRuleForOrganizationRequirement(
     this.terraformValue,
   );
   @override
@@ -598,20 +565,16 @@ enum ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationW
 /// Typed helper for the `rule.destination_configuration.waf_logging_parameters.logging_filter.filters.conditions` block of
 /// `aws_observabilityadmin_telemetry_rule_for_organization` (derived from provider schema).
 @immutable
-final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersConditions {
-  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersConditions({
+final class ObservabilityadminTelemetryRuleForOrganizationConditions {
+  const ObservabilityadminTelemetryRuleForOrganizationConditions({
     this.actionCondition,
     this.labelNameCondition,
   });
 
-  final List<
-    ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersConditionsActionCondition
-  >?
+  final List<ObservabilityadminTelemetryRuleForOrganizationActionCondition>?
   actionCondition;
 
-  final List<
-    ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersConditionsLabelNameCondition
-  >?
+  final List<ObservabilityadminTelemetryRuleForOrganizationLabelNameCondition>?
   labelNameCondition;
 
   Map<String, Object?> encode() => {
@@ -625,21 +588,18 @@ final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigu
 /// Typed helper for the `rule.destination_configuration.waf_logging_parameters.logging_filter.filters.conditions.action_condition` block of
 /// `aws_observabilityadmin_telemetry_rule_for_organization` (derived from provider schema).
 @immutable
-final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersConditionsActionCondition {
-  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersConditionsActionCondition({
+final class ObservabilityadminTelemetryRuleForOrganizationActionCondition {
+  const ObservabilityadminTelemetryRuleForOrganizationActionCondition({
     required this.action,
   });
 
-  final TfArg<
-    ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersConditionsActionConditionAction
-  >
-  action;
+  final TfArg<ObservabilityadminTelemetryRuleForOrganizationAction> action;
 
   Map<String, Object?> encode() => {'action': action.toTfJson()};
 }
 
 /// `action` — derived from the provider schema description.
-enum ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersConditionsActionConditionAction
+enum ObservabilityadminTelemetryRuleForOrganizationAction
     implements TerraformEnum {
   allow('ALLOW'),
   block('BLOCK'),
@@ -648,7 +608,7 @@ enum ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationW
   challenge('CHALLENGE'),
   excludedAsCount('EXCLUDED_AS_COUNT');
 
-  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersConditionsActionConditionAction(
+  const ObservabilityadminTelemetryRuleForOrganizationAction(
     this.terraformValue,
   );
   @override
@@ -658,8 +618,8 @@ enum ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationW
 /// Typed helper for the `rule.destination_configuration.waf_logging_parameters.logging_filter.filters.conditions.label_name_condition` block of
 /// `aws_observabilityadmin_telemetry_rule_for_organization` (derived from provider schema).
 @immutable
-final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersConditionsLabelNameCondition {
-  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersConditionsLabelNameCondition({
+final class ObservabilityadminTelemetryRuleForOrganizationLabelNameCondition {
+  const ObservabilityadminTelemetryRuleForOrganizationLabelNameCondition({
     this.labelName,
   });
 
@@ -671,8 +631,8 @@ final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigu
 /// Typed helper for the `rule.destination_configuration.waf_logging_parameters.redacted_fields` block of
 /// `aws_observabilityadmin_telemetry_rule_for_organization` (derived from provider schema).
 @immutable
-final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersRedactedFields {
-  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersRedactedFields({
+final class ObservabilityadminTelemetryRuleForOrganizationRedactedFields {
+  const ObservabilityadminTelemetryRuleForOrganizationRedactedFields({
     this.method,
     this.queryString,
     this.uriPath,
@@ -685,9 +645,7 @@ final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigu
 
   final TfArg<String>? uriPath;
 
-  final List<
-    ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersRedactedFieldsSingleHeader
-  >?
+  final List<ObservabilityadminTelemetryRuleForOrganizationSingleHeader>?
   singleHeader;
 
   Map<String, Object?> encode() => {
@@ -702,8 +660,8 @@ final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigu
 /// Typed helper for the `rule.destination_configuration.waf_logging_parameters.redacted_fields.single_header` block of
 /// `aws_observabilityadmin_telemetry_rule_for_organization` (derived from provider schema).
 @immutable
-final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersRedactedFieldsSingleHeader {
-  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersRedactedFieldsSingleHeader({
+final class ObservabilityadminTelemetryRuleForOrganizationSingleHeader {
+  const ObservabilityadminTelemetryRuleForOrganizationSingleHeader({
     required this.name,
   });
 

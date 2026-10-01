@@ -11,6 +11,7 @@ const Set<String> _cloudflareMagicTransitSiteLanSensitive = <String>{};
 
 /// Typed helper for the `nat` block of
 /// `cloudflare_magic_transit_site_lan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
 final class MagicTransitSiteLanNat {
   const MagicTransitSiteLanNat({this.staticPrefix});
@@ -34,24 +35,13 @@ final class MagicTransitSiteLanRoutedSubnets {
 
   final TfArg<String> prefix;
 
-  final MagicTransitSiteLanRoutedSubnetsNat? nat;
+  final MagicTransitSiteLanNat? nat;
 
   Map<String, Object?> encode() => {
     'next_hop': nextHop.toTfJson(),
     'prefix': prefix.toTfJson(),
     'nat': ?nat?.encode(),
   };
-}
-
-/// Typed helper for the `routed_subnets.nat` block of
-/// `cloudflare_magic_transit_site_lan` (derived from provider schema).
-@immutable
-final class MagicTransitSiteLanRoutedSubnetsNat {
-  const MagicTransitSiteLanRoutedSubnetsNat({this.staticPrefix});
-
-  final TfArg<String>? staticPrefix;
-
-  Map<String, Object?> encode() => {'static_prefix': ?staticPrefix?.toTfJson()};
 }
 
 /// Typed helper for the `static_addressing` block of
@@ -72,9 +62,9 @@ final class MagicTransitSiteLanStaticAddressing {
 
   final TfArg<String>? virtualAddress;
 
-  final MagicTransitSiteLanStaticAddressingDhcpRelay? dhcpRelay;
+  final MagicTransitSiteLanDhcpRelay? dhcpRelay;
 
-  final MagicTransitSiteLanStaticAddressingDhcpServer? dhcpServer;
+  final MagicTransitSiteLanDhcpServer? dhcpServer;
 
   Map<String, Object?> encode() => {
     'address': address.toTfJson(),
@@ -88,8 +78,8 @@ final class MagicTransitSiteLanStaticAddressing {
 /// Typed helper for the `static_addressing.dhcp_relay` block of
 /// `cloudflare_magic_transit_site_lan` (derived from provider schema).
 @immutable
-final class MagicTransitSiteLanStaticAddressingDhcpRelay {
-  const MagicTransitSiteLanStaticAddressingDhcpRelay({this.serverAddresses});
+final class MagicTransitSiteLanDhcpRelay {
+  const MagicTransitSiteLanDhcpRelay({this.serverAddresses});
 
   final TfArg<List<String>>? serverAddresses;
 
@@ -101,8 +91,8 @@ final class MagicTransitSiteLanStaticAddressingDhcpRelay {
 /// Typed helper for the `static_addressing.dhcp_server` block of
 /// `cloudflare_magic_transit_site_lan` (derived from provider schema).
 @immutable
-final class MagicTransitSiteLanStaticAddressingDhcpServer {
-  const MagicTransitSiteLanStaticAddressingDhcpServer({
+final class MagicTransitSiteLanDhcpServer {
+  const MagicTransitSiteLanDhcpServer({
     this.dhcpPoolEnd,
     this.dhcpPoolStart,
     this.dnsServer,
@@ -121,8 +111,7 @@ final class MagicTransitSiteLanStaticAddressingDhcpServer {
 
   final TfArg<Map<String, String>>? reservations;
 
-  final List<MagicTransitSiteLanStaticAddressingDhcpServerDhcpOptions>?
-  dhcpOptions;
+  final List<MagicTransitSiteLanDhcpOptions>? dhcpOptions;
 
   Map<String, Object?> encode() => {
     'dhcp_pool_end': ?dhcpPoolEnd?.toTfJson(),
@@ -138,8 +127,8 @@ final class MagicTransitSiteLanStaticAddressingDhcpServer {
 /// Typed helper for the `static_addressing.dhcp_server.dhcp_options` block of
 /// `cloudflare_magic_transit_site_lan` (derived from provider schema).
 @immutable
-final class MagicTransitSiteLanStaticAddressingDhcpServerDhcpOptions {
-  const MagicTransitSiteLanStaticAddressingDhcpServerDhcpOptions({
+final class MagicTransitSiteLanDhcpOptions {
+  const MagicTransitSiteLanDhcpOptions({
     required this.code,
     required this.type,
     required this.value,
@@ -147,8 +136,7 @@ final class MagicTransitSiteLanStaticAddressingDhcpServerDhcpOptions {
 
   final TfArg<num> code;
 
-  final TfArg<MagicTransitSiteLanStaticAddressingDhcpServerDhcpOptionsType>
-  type;
+  final TfArg<MagicTransitSiteLanType> type;
 
   final TfArg<String> value;
 
@@ -160,8 +148,7 @@ final class MagicTransitSiteLanStaticAddressingDhcpServerDhcpOptions {
 }
 
 /// `type` — derived from the provider schema description.
-enum MagicTransitSiteLanStaticAddressingDhcpServerDhcpOptionsType
-    implements TerraformEnum {
+enum MagicTransitSiteLanType implements TerraformEnum {
   text('text'),
   hex('hex'),
   ip('ip'),
@@ -169,9 +156,7 @@ enum MagicTransitSiteLanStaticAddressingDhcpServerDhcpOptionsType
   short('short'),
   integer('integer');
 
-  const MagicTransitSiteLanStaticAddressingDhcpServerDhcpOptionsType(
-    this.terraformValue,
-  );
+  const MagicTransitSiteLanType(this.terraformValue);
   @override
   final String terraformValue;
 }

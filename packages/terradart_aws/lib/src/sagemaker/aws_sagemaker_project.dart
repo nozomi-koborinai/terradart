@@ -24,10 +24,7 @@ final class SagemakerProjectServiceCatalogProvisioningDetails {
 
   final TfArg<String>? provisioningArtifactId;
 
-  final List<
-    SagemakerProjectServiceCatalogProvisioningDetailsProvisioningParameter
-  >?
-  provisioningParameter;
+  final List<SagemakerProjectProvisioningParameter>? provisioningParameter;
 
   Map<String, Object?> encode() => {
     'path_id': ?pathId?.toTfJson(),
@@ -43,11 +40,8 @@ final class SagemakerProjectServiceCatalogProvisioningDetails {
 /// Typed helper for the `service_catalog_provisioning_details.provisioning_parameter` block of
 /// `aws_sagemaker_project` (derived from provider schema).
 @immutable
-final class SagemakerProjectServiceCatalogProvisioningDetailsProvisioningParameter {
-  const SagemakerProjectServiceCatalogProvisioningDetailsProvisioningParameter({
-    required this.key,
-    this.value,
-  });
+final class SagemakerProjectProvisioningParameter {
+  const SagemakerProjectProvisioningParameter({required this.key, this.value});
 
   final TfArg<String> key;
 

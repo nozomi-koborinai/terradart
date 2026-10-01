@@ -143,16 +143,15 @@ final class FsxOntapVolumeSnaplockConfiguration {
 
   final TfArg<bool>? auditLogVolume;
 
-  final TfArg<FsxOntapVolumeSnaplockConfigurationPrivilegedDelete>?
-  privilegedDelete;
+  final TfArg<FsxOntapVolumePrivilegedDelete>? privilegedDelete;
 
-  final TfArg<FsxOntapVolumeSnaplockConfigurationSnaplockType> snaplockType;
+  final TfArg<FsxOntapVolumeSnaplockType> snaplockType;
 
   final TfArg<bool>? volumeAppendModeEnabled;
 
-  final FsxOntapVolumeSnaplockConfigurationAutocommitPeriod? autocommitPeriod;
+  final FsxOntapVolumeAutocommitPeriod? autocommitPeriod;
 
-  final FsxOntapVolumeSnaplockConfigurationRetentionPeriod? retentionPeriod;
+  final FsxOntapVolumeRetentionPeriod? retentionPeriod;
 
   Map<String, Object?> encode() => {
     'audit_log_volume': ?auditLogVolume?.toTfJson(),
@@ -165,25 +164,22 @@ final class FsxOntapVolumeSnaplockConfiguration {
 }
 
 /// `privileged_delete` — derived from the provider schema description.
-enum FsxOntapVolumeSnaplockConfigurationPrivilegedDelete
-    implements TerraformEnum {
+enum FsxOntapVolumePrivilegedDelete implements TerraformEnum {
   disabled('DISABLED'),
   enabled('ENABLED'),
   permanentlyDisabled('PERMANENTLY_DISABLED');
 
-  const FsxOntapVolumeSnaplockConfigurationPrivilegedDelete(
-    this.terraformValue,
-  );
+  const FsxOntapVolumePrivilegedDelete(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `snaplock_type` — derived from the provider schema description.
-enum FsxOntapVolumeSnaplockConfigurationSnaplockType implements TerraformEnum {
+enum FsxOntapVolumeSnaplockType implements TerraformEnum {
   compliance('COMPLIANCE'),
   enterprise('ENTERPRISE');
 
-  const FsxOntapVolumeSnaplockConfigurationSnaplockType(this.terraformValue);
+  const FsxOntapVolumeSnaplockType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -191,13 +187,10 @@ enum FsxOntapVolumeSnaplockConfigurationSnaplockType implements TerraformEnum {
 /// Typed helper for the `snaplock_configuration.autocommit_period` block of
 /// `aws_fsx_ontap_volume` (derived from provider schema).
 @immutable
-final class FsxOntapVolumeSnaplockConfigurationAutocommitPeriod {
-  const FsxOntapVolumeSnaplockConfigurationAutocommitPeriod({
-    this.type,
-    this.value,
-  });
+final class FsxOntapVolumeAutocommitPeriod {
+  const FsxOntapVolumeAutocommitPeriod({this.type, this.value});
 
-  final TfArg<FsxOntapVolumeSnaplockConfigurationAutocommitPeriodType>? type;
+  final TfArg<FsxOntapVolumeType>? type;
 
   final TfArg<num>? value;
 
@@ -208,8 +201,7 @@ final class FsxOntapVolumeSnaplockConfigurationAutocommitPeriod {
 }
 
 /// `type` — derived from the provider schema description.
-enum FsxOntapVolumeSnaplockConfigurationAutocommitPeriodType
-    implements TerraformEnum {
+enum FsxOntapVolumeType implements TerraformEnum {
   minutes('MINUTES'),
   hours('HOURS'),
   days('DAYS'),
@@ -217,9 +209,7 @@ enum FsxOntapVolumeSnaplockConfigurationAutocommitPeriodType
   years('YEARS'),
   none('NONE');
 
-  const FsxOntapVolumeSnaplockConfigurationAutocommitPeriodType(
-    this.terraformValue,
-  );
+  const FsxOntapVolumeType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -227,21 +217,18 @@ enum FsxOntapVolumeSnaplockConfigurationAutocommitPeriodType
 /// Typed helper for the `snaplock_configuration.retention_period` block of
 /// `aws_fsx_ontap_volume` (derived from provider schema).
 @immutable
-final class FsxOntapVolumeSnaplockConfigurationRetentionPeriod {
-  const FsxOntapVolumeSnaplockConfigurationRetentionPeriod({
+final class FsxOntapVolumeRetentionPeriod {
+  const FsxOntapVolumeRetentionPeriod({
     this.defaultRetention,
     this.maximumRetention,
     this.minimumRetention,
   });
 
-  final FsxOntapVolumeSnaplockConfigurationRetentionPeriodDefaultRetention?
-  defaultRetention;
+  final FsxOntapVolumeDefaultRetention? defaultRetention;
 
-  final FsxOntapVolumeSnaplockConfigurationRetentionPeriodMaximumRetention?
-  maximumRetention;
+  final FsxOntapVolumeMaximumRetention? maximumRetention;
 
-  final FsxOntapVolumeSnaplockConfigurationRetentionPeriodMinimumRetention?
-  minimumRetention;
+  final FsxOntapVolumeMinimumRetention? minimumRetention;
 
   Map<String, Object?> encode() => {
     'default_retention': ?defaultRetention?.encode(),
@@ -253,16 +240,10 @@ final class FsxOntapVolumeSnaplockConfigurationRetentionPeriod {
 /// Typed helper for the `snaplock_configuration.retention_period.default_retention` block of
 /// `aws_fsx_ontap_volume` (derived from provider schema).
 @immutable
-final class FsxOntapVolumeSnaplockConfigurationRetentionPeriodDefaultRetention {
-  const FsxOntapVolumeSnaplockConfigurationRetentionPeriodDefaultRetention({
-    this.type,
-    this.value,
-  });
+final class FsxOntapVolumeDefaultRetention {
+  const FsxOntapVolumeDefaultRetention({this.type, this.value});
 
-  final TfArg<
-    FsxOntapVolumeSnaplockConfigurationRetentionPeriodDefaultRetentionType
-  >?
-  type;
+  final TfArg<FsxOntapVolumeDefaultRetentionType>? type;
 
   final TfArg<num>? value;
 
@@ -273,8 +254,7 @@ final class FsxOntapVolumeSnaplockConfigurationRetentionPeriodDefaultRetention {
 }
 
 /// `type` — derived from the provider schema description.
-enum FsxOntapVolumeSnaplockConfigurationRetentionPeriodDefaultRetentionType
-    implements TerraformEnum {
+enum FsxOntapVolumeDefaultRetentionType implements TerraformEnum {
   seconds('SECONDS'),
   minutes('MINUTES'),
   hours('HOURS'),
@@ -284,9 +264,7 @@ enum FsxOntapVolumeSnaplockConfigurationRetentionPeriodDefaultRetentionType
   infinite('INFINITE'),
   unspecified('UNSPECIFIED');
 
-  const FsxOntapVolumeSnaplockConfigurationRetentionPeriodDefaultRetentionType(
-    this.terraformValue,
-  );
+  const FsxOntapVolumeDefaultRetentionType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -294,16 +272,10 @@ enum FsxOntapVolumeSnaplockConfigurationRetentionPeriodDefaultRetentionType
 /// Typed helper for the `snaplock_configuration.retention_period.maximum_retention` block of
 /// `aws_fsx_ontap_volume` (derived from provider schema).
 @immutable
-final class FsxOntapVolumeSnaplockConfigurationRetentionPeriodMaximumRetention {
-  const FsxOntapVolumeSnaplockConfigurationRetentionPeriodMaximumRetention({
-    this.type,
-    this.value,
-  });
+final class FsxOntapVolumeMaximumRetention {
+  const FsxOntapVolumeMaximumRetention({this.type, this.value});
 
-  final TfArg<
-    FsxOntapVolumeSnaplockConfigurationRetentionPeriodMaximumRetentionType
-  >?
-  type;
+  final TfArg<FsxOntapVolumeDefaultRetentionType>? type;
 
   final TfArg<num>? value;
 
@@ -311,40 +283,15 @@ final class FsxOntapVolumeSnaplockConfigurationRetentionPeriodMaximumRetention {
     'type': ?type?.toTfJson(),
     'value': ?value?.toTfJson(),
   };
-}
-
-/// `type` — derived from the provider schema description.
-enum FsxOntapVolumeSnaplockConfigurationRetentionPeriodMaximumRetentionType
-    implements TerraformEnum {
-  seconds('SECONDS'),
-  minutes('MINUTES'),
-  hours('HOURS'),
-  days('DAYS'),
-  months('MONTHS'),
-  years('YEARS'),
-  infinite('INFINITE'),
-  unspecified('UNSPECIFIED');
-
-  const FsxOntapVolumeSnaplockConfigurationRetentionPeriodMaximumRetentionType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `snaplock_configuration.retention_period.minimum_retention` block of
 /// `aws_fsx_ontap_volume` (derived from provider schema).
 @immutable
-final class FsxOntapVolumeSnaplockConfigurationRetentionPeriodMinimumRetention {
-  const FsxOntapVolumeSnaplockConfigurationRetentionPeriodMinimumRetention({
-    this.type,
-    this.value,
-  });
+final class FsxOntapVolumeMinimumRetention {
+  const FsxOntapVolumeMinimumRetention({this.type, this.value});
 
-  final TfArg<
-    FsxOntapVolumeSnaplockConfigurationRetentionPeriodMinimumRetentionType
-  >?
-  type;
+  final TfArg<FsxOntapVolumeDefaultRetentionType>? type;
 
   final TfArg<num>? value;
 
@@ -352,25 +299,6 @@ final class FsxOntapVolumeSnaplockConfigurationRetentionPeriodMinimumRetention {
     'type': ?type?.toTfJson(),
     'value': ?value?.toTfJson(),
   };
-}
-
-/// `type` — derived from the provider schema description.
-enum FsxOntapVolumeSnaplockConfigurationRetentionPeriodMinimumRetentionType
-    implements TerraformEnum {
-  seconds('SECONDS'),
-  minutes('MINUTES'),
-  hours('HOURS'),
-  days('DAYS'),
-  months('MONTHS'),
-  years('YEARS'),
-  infinite('INFINITE'),
-  unspecified('UNSPECIFIED');
-
-  const FsxOntapVolumeSnaplockConfigurationRetentionPeriodMinimumRetentionType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `tiering_policy` block of

@@ -7,24 +7,23 @@ export 'src/keyspaces/aws_keyspaces_keyspace.dart'
     show
         AwsKeyspacesKeyspace,
         KeyspacesKeyspaceReplicationSpecification,
-        KeyspacesKeyspaceReplicationSpecificationReplicationStrategy;
+        KeyspacesKeyspaceReplicationStrategy;
 export 'src/keyspaces/aws_keyspaces_table.dart'
     show
         AwsKeyspacesTable,
         KeyspacesTableCapacitySpecification,
-        KeyspacesTableCapacitySpecificationThroughputMode,
         KeyspacesTableClientSideTimestamps,
         KeyspacesTableClientSideTimestampsStatus,
+        KeyspacesTableClusteringKey,
+        KeyspacesTableColumn,
         KeyspacesTableComment,
         KeyspacesTableEncryptionSpecification,
-        KeyspacesTableEncryptionSpecificationType,
+        KeyspacesTableOrderBy,
+        KeyspacesTablePartitionKey,
         KeyspacesTablePointInTimeRecovery,
         KeyspacesTablePointInTimeRecoveryStatus,
         KeyspacesTableSchemaDefinition,
-        KeyspacesTableSchemaDefinitionClusteringKey,
-        KeyspacesTableSchemaDefinitionClusteringKeyOrderBy,
-        KeyspacesTableSchemaDefinitionColumn,
-        KeyspacesTableSchemaDefinitionPartitionKey,
-        KeyspacesTableSchemaDefinitionStaticColumn,
+        KeyspacesTableStaticColumn,
+        KeyspacesTableThroughputMode,
         KeyspacesTableTtl,
-        KeyspacesTableTtlStatus;
+        KeyspacesTableType;

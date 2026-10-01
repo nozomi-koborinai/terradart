@@ -92,17 +92,17 @@ sealed class AppEngineStandardAppVersionScaling {
   /// Sets `automatic_scaling`.
   const factory AppEngineStandardAppVersionScaling.automaticScaling(
     AppEngineStandardAppVersionAutomaticScaling automaticScaling,
-  ) = AppEngineStandardAppVersionScalingAutomaticScaling;
+  ) = AppEngineStandardAppVersionAutomaticScalingChoice;
 
   /// Sets `basic_scaling`.
   const factory AppEngineStandardAppVersionScaling.basicScaling(
     AppEngineStandardAppVersionBasicScaling basicScaling,
-  ) = AppEngineStandardAppVersionScalingBasicScaling;
+  ) = AppEngineStandardAppVersionBasicScalingChoice;
 
   /// Sets `manual_scaling`.
   const factory AppEngineStandardAppVersionScaling.manualScaling(
     AppEngineStandardAppVersionManualScaling manualScaling,
-  ) = AppEngineStandardAppVersionScalingManualScaling;
+  ) = AppEngineStandardAppVersionManualScalingChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -115,9 +115,9 @@ sealed class AppEngineStandardAppVersionScaling {
 }
 
 /// The [AppEngineStandardAppVersionScaling.automaticScaling] choice: sets `automatic_scaling`.
-final class AppEngineStandardAppVersionScalingAutomaticScaling
+final class AppEngineStandardAppVersionAutomaticScalingChoice
     extends AppEngineStandardAppVersionScaling {
-  const AppEngineStandardAppVersionScalingAutomaticScaling(
+  const AppEngineStandardAppVersionAutomaticScalingChoice(
     this.automaticScaling,
   );
 
@@ -138,9 +138,9 @@ final class AppEngineStandardAppVersionScalingAutomaticScaling
 }
 
 /// The [AppEngineStandardAppVersionScaling.basicScaling] choice: sets `basic_scaling`.
-final class AppEngineStandardAppVersionScalingBasicScaling
+final class AppEngineStandardAppVersionBasicScalingChoice
     extends AppEngineStandardAppVersionScaling {
-  const AppEngineStandardAppVersionScalingBasicScaling(this.basicScaling);
+  const AppEngineStandardAppVersionBasicScalingChoice(this.basicScaling);
 
   final AppEngineStandardAppVersionBasicScaling basicScaling;
 
@@ -157,9 +157,9 @@ final class AppEngineStandardAppVersionScalingBasicScaling
 }
 
 /// The [AppEngineStandardAppVersionScaling.manualScaling] choice: sets `manual_scaling`.
-final class AppEngineStandardAppVersionScalingManualScaling
+final class AppEngineStandardAppVersionManualScalingChoice
     extends AppEngineStandardAppVersionScaling {
-  const AppEngineStandardAppVersionScalingManualScaling(this.manualScaling);
+  const AppEngineStandardAppVersionManualScalingChoice(this.manualScaling);
 
   final AppEngineStandardAppVersionManualScaling manualScaling;
 
@@ -198,7 +198,7 @@ final class AppEngineStandardAppVersionAutomaticScaling {
 
   final TfArg<String>? minPendingLatency;
 
-  final AppEngineStandardAppVersionAutomaticScalingStandardSchedulerSettings?
+  final AppEngineStandardAppVersionStandardSchedulerSettings?
   standardSchedulerSettings;
 
   Map<String, Object?> encode() => {
@@ -214,8 +214,8 @@ final class AppEngineStandardAppVersionAutomaticScaling {
 /// Typed helper for the `automatic_scaling.standard_scheduler_settings` block of
 /// `google_app_engine_standard_app_version` (derived from provider schema).
 @immutable
-final class AppEngineStandardAppVersionAutomaticScalingStandardSchedulerSettings {
-  const AppEngineStandardAppVersionAutomaticScalingStandardSchedulerSettings({
+final class AppEngineStandardAppVersionStandardSchedulerSettings {
+  const AppEngineStandardAppVersionStandardSchedulerSettings({
     this.maxInstances,
     this.minInstances,
     this.targetCpuUtilization,
@@ -263,9 +263,9 @@ final class AppEngineStandardAppVersionBasicScaling {
 final class AppEngineStandardAppVersionDeployment {
   const AppEngineStandardAppVersionDeployment({this.files, this.zip});
 
-  final List<AppEngineStandardAppVersionDeploymentFiles>? files;
+  final List<AppEngineStandardAppVersionFiles>? files;
 
-  final AppEngineStandardAppVersionDeploymentZip? zip;
+  final AppEngineStandardAppVersionZip? zip;
 
   Map<String, Object?> encode() => {
     if (files != null) 'files': [for (final e in files!) e.encode()],
@@ -276,8 +276,8 @@ final class AppEngineStandardAppVersionDeployment {
 /// Typed helper for the `deployment.files` block of
 /// `google_app_engine_standard_app_version` (derived from provider schema).
 @immutable
-final class AppEngineStandardAppVersionDeploymentFiles {
-  const AppEngineStandardAppVersionDeploymentFiles({
+final class AppEngineStandardAppVersionFiles {
+  const AppEngineStandardAppVersionFiles({
     required this.name,
     this.sha1Sum,
     required this.sourceUrl,
@@ -299,8 +299,8 @@ final class AppEngineStandardAppVersionDeploymentFiles {
 /// Typed helper for the `deployment.zip` block of
 /// `google_app_engine_standard_app_version` (derived from provider schema).
 @immutable
-final class AppEngineStandardAppVersionDeploymentZip {
-  const AppEngineStandardAppVersionDeploymentZip({
+final class AppEngineStandardAppVersionZip {
+  const AppEngineStandardAppVersionZip({
     this.filesCount,
     required this.sourceUrl,
   });
@@ -340,21 +340,20 @@ final class AppEngineStandardAppVersionHandlers {
     this.staticFiles,
   });
 
-  final TfArg<AppEngineStandardAppVersionHandlersAuthFailAction>?
-  authFailAction;
+  final TfArg<AppEngineStandardAppVersionAuthFailAction>? authFailAction;
 
-  final TfArg<AppEngineStandardAppVersionHandlersLogin>? login;
+  final TfArg<AppEngineStandardAppVersionLogin>? login;
 
-  final TfArg<AppEngineStandardAppVersionHandlersRedirectHttpResponseCode>?
+  final TfArg<AppEngineStandardAppVersionRedirectHttpResponseCode>?
   redirectHttpResponseCode;
 
-  final TfArg<AppEngineStandardAppVersionHandlersSecurityLevel>? securityLevel;
+  final TfArg<AppEngineStandardAppVersionSecurityLevel>? securityLevel;
 
   final TfArg<String>? urlRegex;
 
-  final AppEngineStandardAppVersionHandlersScript? script;
+  final AppEngineStandardAppVersionScript? script;
 
-  final AppEngineStandardAppVersionHandlersStaticFiles? staticFiles;
+  final AppEngineStandardAppVersionStaticFiles? staticFiles;
 
   Map<String, Object?> encode() => {
     'auth_fail_action': ?authFailAction?.toTfJson(),
@@ -368,36 +367,35 @@ final class AppEngineStandardAppVersionHandlers {
 }
 
 /// `auth_fail_action` — derived from the provider schema description.
-enum AppEngineStandardAppVersionHandlersAuthFailAction
-    implements TerraformEnum {
+enum AppEngineStandardAppVersionAuthFailAction implements TerraformEnum {
   authFailActionRedirect('AUTH_FAIL_ACTION_REDIRECT'),
   authFailActionUnauthorized('AUTH_FAIL_ACTION_UNAUTHORIZED');
 
-  const AppEngineStandardAppVersionHandlersAuthFailAction(this.terraformValue);
+  const AppEngineStandardAppVersionAuthFailAction(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `login` — derived from the provider schema description.
-enum AppEngineStandardAppVersionHandlersLogin implements TerraformEnum {
+enum AppEngineStandardAppVersionLogin implements TerraformEnum {
   loginOptional('LOGIN_OPTIONAL'),
   loginAdmin('LOGIN_ADMIN'),
   loginRequired('LOGIN_REQUIRED');
 
-  const AppEngineStandardAppVersionHandlersLogin(this.terraformValue);
+  const AppEngineStandardAppVersionLogin(this.terraformValue);
   @override
   final String terraformValue;
 }
 
 /// `redirect_http_response_code` — derived from the provider schema description.
-enum AppEngineStandardAppVersionHandlersRedirectHttpResponseCode
+enum AppEngineStandardAppVersionRedirectHttpResponseCode
     implements TerraformEnum {
   redirectHttpResponseCode301('REDIRECT_HTTP_RESPONSE_CODE_301'),
   redirectHttpResponseCode302('REDIRECT_HTTP_RESPONSE_CODE_302'),
   redirectHttpResponseCode303('REDIRECT_HTTP_RESPONSE_CODE_303'),
   redirectHttpResponseCode307('REDIRECT_HTTP_RESPONSE_CODE_307');
 
-  const AppEngineStandardAppVersionHandlersRedirectHttpResponseCode(
+  const AppEngineStandardAppVersionRedirectHttpResponseCode(
     this.terraformValue,
   );
   @override
@@ -405,13 +403,13 @@ enum AppEngineStandardAppVersionHandlersRedirectHttpResponseCode
 }
 
 /// `security_level` — derived from the provider schema description.
-enum AppEngineStandardAppVersionHandlersSecurityLevel implements TerraformEnum {
+enum AppEngineStandardAppVersionSecurityLevel implements TerraformEnum {
   secureDefault('SECURE_DEFAULT'),
   secureNever('SECURE_NEVER'),
   secureOptional('SECURE_OPTIONAL'),
   secureAlways('SECURE_ALWAYS');
 
-  const AppEngineStandardAppVersionHandlersSecurityLevel(this.terraformValue);
+  const AppEngineStandardAppVersionSecurityLevel(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -419,8 +417,8 @@ enum AppEngineStandardAppVersionHandlersSecurityLevel implements TerraformEnum {
 /// Typed helper for the `handlers.script` block of
 /// `google_app_engine_standard_app_version` (derived from provider schema).
 @immutable
-final class AppEngineStandardAppVersionHandlersScript {
-  const AppEngineStandardAppVersionHandlersScript({required this.scriptPath});
+final class AppEngineStandardAppVersionScript {
+  const AppEngineStandardAppVersionScript({required this.scriptPath});
 
   final TfArg<String> scriptPath;
 
@@ -430,8 +428,8 @@ final class AppEngineStandardAppVersionHandlersScript {
 /// Typed helper for the `handlers.static_files` block of
 /// `google_app_engine_standard_app_version` (derived from provider schema).
 @immutable
-final class AppEngineStandardAppVersionHandlersStaticFiles {
-  const AppEngineStandardAppVersionHandlersStaticFiles({
+final class AppEngineStandardAppVersionStaticFiles {
+  const AppEngineStandardAppVersionStaticFiles({
     this.applicationReadable,
     this.expiration,
     this.httpHeaders,

@@ -44,21 +44,20 @@ final class ComputeRolloutStack extends Stack {
           ComputeRolloutPlanWaves(
             displayName: .literal('wave-1'),
             selectors: [
-              ComputeRolloutPlanWavesSelectors(
-                locationSelector:
-                    ComputeRolloutPlanWavesSelectorsLocationSelector(
-                      includedLocations: .literal(['us-central1-a']),
-                    ),
+              ComputeRolloutPlanSelectors(
+                locationSelector: ComputeRolloutPlanLocationSelector(
+                  includedLocations: .literal(['us-central1-a']),
+                ),
               ),
             ],
-            validation: ComputeRolloutPlanWavesValidation(
+            validation: ComputeRolloutPlanValidation(
               type: .literal('time'),
               timeBasedValidationMetadata:
-                  ComputeRolloutPlanWavesValidationTimeBasedValidationMetadata(
+                  ComputeRolloutPlanTimeBasedValidationMetadata(
                     waitDuration: .literal('0s'),
                   ),
             ),
-            orchestrationOptions: ComputeRolloutPlanWavesOrchestrationOptions(
+            orchestrationOptions: ComputeRolloutPlanOrchestrationOptions(
               maxConcurrentLocations: .literal(10),
               maxConcurrentResourcesPerLocation: .literal(10),
             ),
@@ -90,17 +89,15 @@ final class ComputeRolloutStack extends Stack {
         ],
         instanceSelectors: [
           ComputeGlobalVmExtensionPolicyInstanceSelectors(
-            labelSelector:
-                ComputeGlobalVmExtensionPolicyInstanceSelectorsLabelSelector(
-                  inclusionLabels: .literal({'terradart-smoke': 'never'}),
-                ),
+            labelSelector: ComputeGlobalVmExtensionPolicyLabelSelector(
+              inclusionLabels: .literal({'terradart-smoke': 'never'}),
+            ),
           ),
         ],
         rolloutOperation: ComputeGlobalVmExtensionPolicyRolloutOperation(
-          rolloutInput:
-              ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInput(
-                plan: .name(.literal(planResourceName)),
-              ),
+          rolloutInput: ComputeGlobalVmExtensionPolicyRolloutInput(
+            plan: .name(.literal(planResourceName)),
+          ),
         ),
         dependsOn: [ResourceDependency(apiCompute), ResourceDependency(plan)],
       ),

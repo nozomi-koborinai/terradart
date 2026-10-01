@@ -96,7 +96,7 @@ void main() {
         GoogleSecretManagerSecret(
           localName: 'api_key',
           secretId: TfArg.literal('orders-api-key'),
-          replication: const .auto(SecretManagerSecretReplicationAuto()),
+          replication: const .auto(SecretManagerSecretAuto()),
         ),
       );
 
