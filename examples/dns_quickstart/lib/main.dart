@@ -86,7 +86,7 @@ final class InternalDnsStack extends Stack {
         localName: 'internal_zone_admin_member',
         managedZone: internalZone.ref,
         role: .literal('roles/dns.admin'),
-        member: .ref(zoneAdmin.iamMember),
+        member: zoneAdmin.principal,
         dependsOn: [
           ResourceDependency(internalZone),
           ResourceDependency(zoneAdmin),
@@ -99,7 +99,7 @@ final class InternalDnsStack extends Stack {
         localName: 'internal_zone_admin_binding',
         managedZone: internalZone.ref,
         role: .literal('roles/dns.admin'),
-        members: .literal([zoneAdmin.iamMember.interpolation]),
+        members: .literal([zoneAdmin.principal]),
         dependsOn: [
           ResourceDependency(internalZone),
           ResourceDependency(zoneAdminMember),

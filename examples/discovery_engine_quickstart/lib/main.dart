@@ -77,7 +77,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
         localName: 'search_reader_viewer',
         engine: searchEngine.ref,
         role: .literal('roles/discoveryengine.viewer'),
-        member: .ref(reader.iamMember),
+        member: reader.principal,
         dependsOn: [
           ResourceDependency(searchEngine),
           ResourceDependency(reader),
@@ -90,7 +90,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
         localName: 'search_reader_binding',
         engine: searchEngine.ref,
         role: .literal('roles/discoveryengine.viewer'),
-        members: .literal([reader.iamMember.interpolation]),
+        members: .literal([reader.principal]),
         dependsOn: [
           ResourceDependency(searchEngine),
           ResourceDependency(reader),

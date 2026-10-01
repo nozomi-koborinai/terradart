@@ -85,7 +85,7 @@ final class HttpFunctionStack extends Stack {
         localName: 'hello_http_invoker',
         function: helloHttp.ref,
         role: .literal('roles/cloudfunctions.invoker'),
-        member: .literal('allAuthenticatedUsers'),
+        member: .allAuthenticatedUsers,
       ),
     );
   }

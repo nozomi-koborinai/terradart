@@ -83,7 +83,7 @@ final class DbCredentialsStack extends Stack {
         // Secret IAM identity is `secret_id` (NOT `id` / `name`).
         secret: secret.ref,
         role: .literal('roles/secretmanager.secretAccessor'),
-        member: .ref(appSa.iamMember),
+        member: appSa.principal,
         dependsOn: [ResourceDependency(appSa)],
       ),
     );
@@ -96,7 +96,7 @@ final class DbCredentialsStack extends Stack {
         localName: 'db_password_accessor_binding',
         secret: secret.ref,
         role: .literal('roles/secretmanager.secretAccessor'),
-        members: .literal([appSa.iamMember.interpolation]),
+        members: .literal([appSa.principal]),
         dependsOn: [ResourceDependency(secret), ResourceDependency(appSa)],
       ),
     );
@@ -146,7 +146,7 @@ final class DbCredentialsStack extends Stack {
         localName: 'db_password_regional_accessor',
         secret: regionalSecret.ref,
         role: .literal('roles/secretmanager.secretAccessor'),
-        member: .ref(appSa.iamMember),
+        member: appSa.principal,
         dependsOn: [
           ResourceDependency(regionalSecret),
           ResourceDependency(appSa),
@@ -159,7 +159,7 @@ final class DbCredentialsStack extends Stack {
         localName: 'db_password_regional_accessor_binding',
         secret: regionalSecret.ref,
         role: .literal('roles/secretmanager.secretAccessor'),
-        members: .literal([appSa.iamMember.interpolation]),
+        members: .literal([appSa.principal]),
         dependsOn: [
           ResourceDependency(regionalSecret),
           ResourceDependency(appSa),

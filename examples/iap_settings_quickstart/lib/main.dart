@@ -71,7 +71,7 @@ final class IapSettingsStack extends Stack {
         localName: 'location_web_invokers',
         location: .literal('us-central1'),
         role: .literal('roles/iap.httpsResourceAccessor'),
-        members: .literal([webInvoker.iamMember.interpolation]),
+        members: .literal([webInvoker.principal]),
         dependsOn: [ResourceDependency(apiIap), ResourceDependency(webInvoker)],
       ),
     );

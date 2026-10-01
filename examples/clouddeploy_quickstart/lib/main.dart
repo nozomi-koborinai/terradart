@@ -114,7 +114,7 @@ final class DeployStack extends Stack {
         localName: 'deployer_target_viewer',
         target: runTarget.ref,
         role: .literal('roles/clouddeploy.viewer'),
-        member: .ref(deployer.iamMember),
+        member: deployer.principal,
         dependsOn: [
           ResourceDependency(runTarget),
           ResourceDependency(deployer),
@@ -127,7 +127,7 @@ final class DeployStack extends Stack {
         localName: 'deployer_pipeline_viewer',
         deliveryPipeline: pipeline.ref,
         role: .literal('roles/clouddeploy.viewer'),
-        member: .ref(deployer.iamMember),
+        member: deployer.principal,
         dependsOn: [ResourceDependency(pipeline), ResourceDependency(deployer)],
       ),
     );
@@ -137,7 +137,7 @@ final class DeployStack extends Stack {
         localName: 'deployer_pipeline_releaser',
         deliveryPipeline: pipeline.ref,
         role: .literal('roles/clouddeploy.releaser'),
-        member: .ref(deployer.iamMember),
+        member: deployer.principal,
         dependsOn: [ResourceDependency(pipeline), ResourceDependency(deployer)],
       ),
     );
@@ -148,8 +148,8 @@ final class DeployStack extends Stack {
         localName: 'deployer_actas',
         serviceAccount: deployer.ref,
         role: .literal('roles/iam.serviceAccountUser'),
-        member: .literal(
-          'serviceAccount:service-${current.number.interpolation}'
+        member: .serviceAccount(
+          'service-${current.number.interpolation}'
           '@gcp-sa-clouddeploy.iam.gserviceaccount.com',
         ),
         dependsOn: [ResourceDependency(deployer)],
@@ -161,7 +161,7 @@ final class DeployStack extends Stack {
         localName: 'deployer_custom_type_viewer',
         customTargetType: customType.ref,
         role: .literal('roles/clouddeploy.viewer'),
-        member: .ref(deployer.iamMember),
+        member: deployer.principal,
         dependsOn: [
           ResourceDependency(customType),
           ResourceDependency(deployer),

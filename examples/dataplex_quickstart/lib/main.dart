@@ -91,7 +91,7 @@ final class DataplexCatalogStack extends Stack {
         localName: 'customer_360_reader',
         dataProduct: dataProduct.ref,
         role: .literal('roles/dataplex.viewer'),
-        member: .ref(reader.iamMember),
+        member: reader.principal,
         dependsOn: [
           ResourceDependency(dataProduct),
           ResourceDependency(reader),
@@ -163,7 +163,7 @@ final class DataplexCatalogStack extends Stack {
         entryGroup: .literal('terradart-catalog'),
         location: .literal('us-central1'),
         role: .literal('roles/dataplex.catalogViewer'),
-        member: .ref(reader.iamMember),
+        member: reader.principal,
         dependsOn: [
           ResourceDependency(catalogGroup),
           ResourceDependency(reader),
@@ -177,7 +177,7 @@ final class DataplexCatalogStack extends Stack {
         entryType: .literal('terradart-dataset'),
         location: .literal('us-central1'),
         role: .literal('roles/dataplex.catalogViewer'),
-        member: .ref(reader.iamMember),
+        member: reader.principal,
         dependsOn: [
           ResourceDependency(datasetType),
           ResourceDependency(reader),
@@ -191,7 +191,7 @@ final class DataplexCatalogStack extends Stack {
         aspectType: .literal('terradart-quality'),
         location: .literal('us-central1'),
         role: .literal('roles/dataplex.catalogViewer'),
-        member: .ref(reader.iamMember),
+        member: reader.principal,
         dependsOn: [
           ResourceDependency(qualityAspect),
           ResourceDependency(reader),
@@ -239,8 +239,8 @@ final class DataplexCatalogStack extends Stack {
         localName: 'catalog_changes_dataplex_agent',
         topic: catalogChangesTopic.ref,
         role: .literal('roles/pubsub.publisher'),
-        member: .literal(
-          'serviceAccount:service-${current.number.interpolation}'
+        member: .serviceAccount(
+          'service-${current.number.interpolation}'
           '@gcp-sa-dataplex.iam.gserviceaccount.com',
         ),
         dependsOn: [
@@ -257,8 +257,8 @@ final class DataplexCatalogStack extends Stack {
         localName: 'catalog_changes_dataplex_agent_viewer',
         topic: catalogChangesTopic.ref,
         role: .literal('roles/pubsub.viewer'),
-        member: .literal(
-          'serviceAccount:service-${current.number.interpolation}'
+        member: .serviceAccount(
+          'service-${current.number.interpolation}'
           '@gcp-sa-dataplex.iam.gserviceaccount.com',
         ),
         dependsOn: [
@@ -356,7 +356,7 @@ final class DataplexCatalogStack extends Stack {
         glossary: .literal('terradart-glossary'),
         location: .literal('us-central1'),
         role: .literal('roles/dataplex.catalogViewer'),
-        member: .ref(reader.iamMember),
+        member: reader.principal,
         dependsOn: [ResourceDependency(glossary), ResourceDependency(reader)],
       ),
     );
@@ -413,7 +413,7 @@ final class DataplexCatalogStack extends Stack {
         lake: .literal('terradart-lake'),
         location: .literal('us-central1'),
         role: .literal('roles/dataplex.viewer'),
-        member: .ref(reader.iamMember),
+        member: reader.principal,
         dependsOn: [ResourceDependency(lake), ResourceDependency(reader)],
       ),
     );
@@ -495,7 +495,7 @@ final class DataplexCatalogStack extends Stack {
         lake: .literal('terradart-lake'),
         location: .literal('us-central1'),
         role: .literal('roles/dataplex.viewer'),
-        member: .ref(reader.iamMember),
+        member: reader.principal,
         dependsOn: [
           ResourceDependency(lakeDataAsset),
           ResourceDependency(reader),
@@ -508,7 +508,7 @@ final class DataplexCatalogStack extends Stack {
         localName: 'raw_zone_viewer',
         zone: rawZone.ref,
         role: .literal('roles/dataplex.viewer'),
-        member: .ref(reader.iamMember),
+        member: reader.principal,
         dependsOn: [ResourceDependency(rawZone), ResourceDependency(reader)],
       ),
     );
@@ -548,7 +548,7 @@ final class DataplexCatalogStack extends Stack {
         localName: 'discovery_viewer',
         dataScan: lakeDiscoveryScan.ref,
         role: .literal('roles/dataplex.viewer'),
-        member: .ref(reader.iamMember),
+        member: reader.principal,
         dependsOn: [
           ResourceDependency(lakeDiscoveryScan),
           ResourceDependency(reader),
@@ -597,7 +597,7 @@ final class DataplexCatalogStack extends Stack {
         localName: 'sql_task_viewer',
         task: lakeSqlTask.ref,
         role: .literal('roles/dataplex.viewer'),
-        member: .ref(reader.iamMember),
+        member: reader.principal,
         dependsOn: [
           ResourceDependency(lakeSqlTask),
           ResourceDependency(reader),

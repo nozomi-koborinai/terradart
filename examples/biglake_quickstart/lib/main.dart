@@ -179,7 +179,7 @@ final class MetastoreStack extends Stack {
         localName: 'catalog_reader',
         catalog: icebergCatalog.ref,
         role: .literal('roles/viewer'),
-        member: .ref(reader.iamMember),
+        member: reader.principal,
         dependsOn: [
           ResourceDependency(icebergCatalog),
           ResourceDependency(reader),
@@ -192,7 +192,7 @@ final class MetastoreStack extends Stack {
         localName: 'namespace_reader',
         namespace: icebergNamespace.ref,
         role: .literal('roles/viewer'),
-        member: .ref(reader.iamMember),
+        member: reader.principal,
         dependsOn: [
           ResourceDependency(icebergNamespace),
           ResourceDependency(reader),
@@ -205,7 +205,7 @@ final class MetastoreStack extends Stack {
         localName: 'table_reader',
         table: icebergTable.ref,
         role: .literal('roles/viewer'),
-        member: .ref(reader.iamMember),
+        member: reader.principal,
         dependsOn: [
           ResourceDependency(icebergTable),
           ResourceDependency(reader),

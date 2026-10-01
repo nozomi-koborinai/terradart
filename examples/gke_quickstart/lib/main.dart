@@ -155,7 +155,7 @@ final class GkeQuickstartStack extends Stack {
         localName: 'membership_viewer',
         membership: .literal('main-cluster'),
         role: .literal('roles/viewer'),
-        member: .ref(backupOperator.iamMember),
+        member: backupOperator.principal,
         dependsOn: [
           ResourceDependency(membership),
           ResourceDependency(backupOperator),
@@ -223,7 +223,7 @@ final class GkeQuickstartStack extends Stack {
         localName: 'viewer',
         backupPlan: backupPlan.ref,
         role: .literal('roles/gkebackup.viewer'),
-        member: .ref(backupOperator.iamMember),
+        member: backupOperator.principal,
         dependsOn: [ResourceDependency(backupOperator)],
       ),
     );

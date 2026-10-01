@@ -62,7 +62,7 @@ final class DataprocAutoscalingStack extends Stack {
         autoscalingPolicy: .literal('terradart-asp'),
         location: .literal('us-central1'),
         role: .literal('roles/viewer'),
-        member: .ref(policyReader.iamMember),
+        member: policyReader.principal,
         dependsOn: [
           ResourceDependency(policy),
           ResourceDependency(policyReader),

@@ -50,7 +50,7 @@ final class PrivilegedAccessManagerStack extends Stack {
         maxRequestDuration: .literal('1800s'),
         eligibleUsers: [
           PrivilegedAccessManagerEntitlementEligibleUsers(
-            principals: .literal([requester.iamMember.interpolation]),
+            principals: .literal([requester.principal]),
           ),
         ],
         privilegedAccess: PrivilegedAccessManagerEntitlementPrivilegedAccess(

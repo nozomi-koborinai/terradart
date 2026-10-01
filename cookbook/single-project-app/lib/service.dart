@@ -56,5 +56,5 @@ GoogleCloudRunV2ServiceIamMember buildCloudRunInvoker(
   role: .literal('roles/run.invoker'),
   // allUsers = public webhook. Acceptable for dogfood smoke; harden in
   // production by replacing with the upstream Pub/Sub push SA or similar.
-  member: .literal('allUsers'),
+  member: .allUsers,
 );

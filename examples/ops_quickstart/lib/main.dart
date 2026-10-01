@@ -122,7 +122,7 @@ final class AuditPipelineStack extends Stack {
         localName: 'audit_view_viewer',
         logView: auditView.ref,
         role: .literal('roles/logging.viewer'),
-        member: .literal('group:security-auditors@example.com'),
+        member: .group('security-auditors@example.com'),
         dependsOn: [ResourceDependency(auditView)],
       ),
     );
@@ -257,7 +257,7 @@ final class AuditPipelineStack extends Stack {
         localName: 'spanner_instance_viewer',
         instance: spanner.ref,
         role: .literal('roles/spanner.viewer'),
-        member: .literal('group:audit-readers@example.com'),
+        member: .group('audit-readers@example.com'),
         dependsOn: [ResourceDependency(spanner)],
       ),
     );
@@ -267,7 +267,7 @@ final class AuditPipelineStack extends Stack {
         localName: 'spanner_db_reader',
         database: spannerDb.ref,
         role: .literal('roles/spanner.databaseReader'),
-        member: .literal('group:audit-readers@example.com'),
+        member: .group('audit-readers@example.com'),
         dependsOn: [ResourceDependency(spannerDb)],
       ),
     );

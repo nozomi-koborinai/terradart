@@ -107,7 +107,7 @@ final class EventarcStack extends Stack {
         localName: 'ingest_pipeline_viewer',
         pipeline: pipeline.ref,
         role: .literal('roles/viewer'),
-        member: .ref(triggerSa.iamMember),
+        member: triggerSa.principal,
         dependsOn: [ResourceDependency(pipeline)],
       ),
     );

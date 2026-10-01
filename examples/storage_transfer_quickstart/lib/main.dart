@@ -35,10 +35,12 @@ final class StorageTransferStack extends Stack {
     );
 
     final current = addData(GoogleProject(localName: 'current'));
-    final stsMember =
-        'serviceAccount:project-${current.number.interpolation}@storage-transfer-service.iam.gserviceaccount.com';
-    final insightsMember =
-        'serviceAccount:service-${current.number.interpolation}@gcp-sa-storageinsights.iam.gserviceaccount.com';
+    final stsMember = IamPrincipal.serviceAccount(
+      'project-${current.number.interpolation}@storage-transfer-service.iam.gserviceaccount.com',
+    );
+    final insightsMember = IamPrincipal.serviceAccount(
+      'service-${current.number.interpolation}@gcp-sa-storageinsights.iam.gserviceaccount.com',
+    );
 
     final src = add(
       GoogleStorageBucket(
@@ -69,7 +71,7 @@ final class StorageTransferStack extends Stack {
         localName: 'sts_src_admin',
         bucket: src.ref,
         role: .literal('roles/storage.objectAdmin'),
-        member: .literal(stsMember),
+        member: stsMember,
         dependsOn: [...apiDeps, ResourceDependency(src)],
       ),
     );
@@ -79,7 +81,7 @@ final class StorageTransferStack extends Stack {
         localName: 'sts_dst_admin',
         bucket: dst.ref,
         role: .literal('roles/storage.objectAdmin'),
-        member: .literal(stsMember),
+        member: stsMember,
         dependsOn: [...apiDeps, ResourceDependency(dst)],
       ),
     );
@@ -89,7 +91,7 @@ final class StorageTransferStack extends Stack {
         localName: 'sts_pubsub_editor',
         project: .literal(projectId),
         role: .literal('roles/pubsub.editor'),
-        member: .literal(stsMember),
+        member: stsMember,
         dependsOn: apiDeps,
       ),
     );
@@ -99,7 +101,7 @@ final class StorageTransferStack extends Stack {
         localName: 'insights_src_admin',
         bucket: src.ref,
         role: .literal('roles/storage.admin'),
-        member: .literal(insightsMember),
+        member: insightsMember,
         dependsOn: [...apiDeps, ResourceDependency(src)],
       ),
     );

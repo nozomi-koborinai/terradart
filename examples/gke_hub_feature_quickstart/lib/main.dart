@@ -59,7 +59,7 @@ final class GkeHubFeatureStack extends Stack {
         localName: 'mcsd_viewer',
         feature: feature.ref,
         role: .literal('roles/viewer'),
-        member: .ref(fleetReader.iamMember),
+        member: fleetReader.principal,
         dependsOn: [
           ResourceDependency(feature),
           ResourceDependency(fleetReader),

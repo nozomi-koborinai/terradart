@@ -98,7 +98,7 @@ final class VmComplianceStack extends Stack {
         localName: 'ci_attestor_viewer',
         attestor: attestor.ref,
         role: .literal('roles/viewer'),
-        member: .ref(ciSigner.iamMember),
+        member: ciSigner.principal,
         dependsOn: [ResourceDependency(attestor), ResourceDependency(ciSigner)],
       ),
     );

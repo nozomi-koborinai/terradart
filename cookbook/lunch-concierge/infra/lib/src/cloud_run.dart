@@ -100,7 +100,7 @@ GoogleCloudRunV2Service addCloudRunService({
       localName: 'speaker_invoker',
       service: service.ref,
       role: .literal('roles/run.invoker'),
-      member: .literal('user:$invokerEmail'),
+      member: .user(invokerEmail),
       dependsOn: [ResourceDependency(service)],
     ),
   );
@@ -115,8 +115,8 @@ GoogleCloudRunV2Service addCloudRunService({
       localName: 'iap_agent_invoker',
       service: service.ref,
       role: .literal('roles/run.invoker'),
-      member: .literal(
-        'serviceAccount:service-${project.number.interpolation}'
+      member: .serviceAccount(
+        'service-${project.number.interpolation}'
         '@gcp-sa-iap.iam.gserviceaccount.com',
       ),
       dependsOn: [ResourceDependency(service), ResourceDependency(iapApi)],

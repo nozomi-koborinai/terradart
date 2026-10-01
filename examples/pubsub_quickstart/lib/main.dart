@@ -58,7 +58,7 @@ final class OrdersStack extends Stack {
     // The order publisher's identity. A bare `serviceAccount:...@example.com`
     // literal fails apply ("Service account ... does not exist") because the
     // IAM API validates that the principal is real, so provision the service
-    // account in-stack and bind against its `iamMember` ref.
+    // account in-stack and bind against its `principal`.
     final ordersPublisher = add(
       GoogleServiceAccount(
         localName: 'orders_publisher',
@@ -79,7 +79,7 @@ final class OrdersStack extends Stack {
         // schema, which `roles/pubsub.viewer` covers
         // (pubsub.schemas.get/list/validate).
         role: .literal('roles/pubsub.viewer'),
-        member: .ref(ordersPublisher.iamMember),
+        member: ordersPublisher.principal,
         dependsOn: [
           ResourceDependency(ordersSchema),
           ResourceDependency(ordersPublisher),
@@ -92,7 +92,7 @@ final class OrdersStack extends Stack {
         localName: 'orders_schema_viewer_binding',
         schema: ordersSchema.ref,
         role: .literal('roles/pubsub.viewer'),
-        members: .literal([ordersPublisher.iamMember.interpolation]),
+        members: .literal([ordersPublisher.principal]),
         dependsOn: [
           ResourceDependency(ordersSchema),
           ResourceDependency(ordersPublisher),
@@ -150,9 +150,7 @@ final class OrdersStack extends Stack {
         localName: 'orders_pubsub_agent',
         topic: topic.ref,
         role: .literal('roles/pubsub.publisher'),
-        member: .literal(
-          'serviceAccount:service-${current.number.interpolation}@gcp-sa-pubsub.iam.gserviceaccount.com',
-        ),
+        member: .serviceAccount('service-${current.number.interpolation}@gcp-sa-pubsub.iam.gserviceaccount.com'),
         dependsOn: [ResourceDependency(topic)],
       ),
     );
@@ -164,7 +162,7 @@ final class OrdersStack extends Stack {
         localName: 'orders_publisher_binding',
         topic: topic.ref,
         role: .literal('roles/pubsub.viewer'),
-        members: .literal([ordersPublisher.iamMember.interpolation]),
+        members: .literal([ordersPublisher.principal]),
         dependsOn: [
           ResourceDependency(topic),
           ResourceDependency(ordersPublisher),

@@ -235,7 +235,7 @@ final class ComputeLbStack extends Stack {
         localName: 'cm_ca_pool_auditor',
         caPool: cmCaPool.ref,
         role: .literal('roles/privateca.auditor'),
-        member: .literal('group:security-admins@example.com'),
+        member: .group('security-admins@example.com'),
         dependsOn: [ResourceDependency(cmCaPool)],
       ),
     );
@@ -245,7 +245,7 @@ final class ComputeLbStack extends Stack {
         localName: 'cm_cert_template_user',
         certificateTemplate: cmCertTemplate.ref,
         role: .literal('roles/privateca.templateUser'),
-        member: .literal('group:security-admins@example.com'),
+        member: .group('security-admins@example.com'),
         dependsOn: [ResourceDependency(cmCertTemplate)],
       ),
     );
@@ -951,7 +951,7 @@ final class ComputeLbStack extends Stack {
         localName: 'lb_iap_accessor',
         webBackendService: .ref(lbBackend.nameRef),
         role: .literal('roles/iap.httpsResourceAccessor'),
-        member: .literal('allAuthenticatedUsers'),
+        member: .allAuthenticatedUsers,
         dependsOn: [ResourceDependency(lbBackend)],
       ),
     );
@@ -961,7 +961,7 @@ final class ComputeLbStack extends Stack {
         localName: 'lb_iap_binding',
         webBackendService: .ref(lbBackend.nameRef),
         role: .literal('roles/iap.httpsResourceAccessor'),
-        members: .literal(['group:platform-admins@example.com']),
+        members: .literal([.group('platform-admins@example.com')]),
         dependsOn: [ResourceDependency(lbBackend)],
       ),
     );
@@ -972,7 +972,7 @@ final class ComputeLbStack extends Stack {
         localName: 'ilb_https_iap_accessor',
         forwardingRuleServiceName: .ref(ilbHttps.nameRef),
         role: .literal('roles/iap.httpsResourceAccessor'),
-        member: .literal('allAuthenticatedUsers'),
+        member: .allAuthenticatedUsers,
         dependsOn: [ResourceDependency(ilbHttps)],
       ),
     );
@@ -982,7 +982,7 @@ final class ComputeLbStack extends Stack {
         localName: 'ilb_https_region_iap_accessor',
         forwardingRuleRegionServiceName: .ref(ilbHttps.nameRef),
         role: .literal('roles/iap.httpsResourceAccessor'),
-        member: .literal('allAuthenticatedUsers'),
+        member: .allAuthenticatedUsers,
         region: .literal(region),
         dependsOn: [ResourceDependency(ilbHttps)],
       ),
@@ -993,7 +993,7 @@ final class ComputeLbStack extends Stack {
         localName: 'regional_backend_iap_accessor',
         webRegionBackendService: .ref(regionalBackend.nameRef),
         role: .literal('roles/iap.httpsResourceAccessor'),
-        member: .literal('allAuthenticatedUsers'),
+        member: .allAuthenticatedUsers,
         region: .literal(region),
         dependsOn: [ResourceDependency(regionalBackend)],
       ),

@@ -100,8 +100,6 @@ final class IamShowcaseStack extends Stack {
       ),
     );
 
-    final saMember = TfArg.ref(sa.iamMember);
-
     // Additive IAM on the pool itself: lets the demo SA read pool/provider
     // metadata without granting the authoritative pool policy.
     add(
@@ -109,7 +107,7 @@ final class IamShowcaseStack extends Stack {
         localName: 'wif_pool_viewer',
         workloadIdentityPool: wifPool.ref,
         role: .literal('roles/iam.workloadIdentityPoolViewer'),
-        member: saMember,
+        member: sa.principal,
         dependsOn: [ResourceDependency(wifPool), ResourceDependency(sa)],
       ),
     );
@@ -189,7 +187,7 @@ final class IamShowcaseStack extends Stack {
         // Topic IAM identifies the topic by its **name** (not id).
         topic: topic.ref,
         role: .literal('roles/pubsub.publisher'),
-        member: saMember,
+        member: sa.principal,
       ),
     );
 
@@ -201,7 +199,7 @@ final class IamShowcaseStack extends Stack {
         // Subscription IAM uses the subscription **name**.
         subscription: subscription.ref,
         role: .literal('roles/pubsub.subscriber'),
-        member: saMember,
+        member: sa.principal,
       ),
     );
 
@@ -213,7 +211,7 @@ final class IamShowcaseStack extends Stack {
         // Queue IAM identifies via **name + location** (not id).
         queue: queue.ref,
         role: .literal('roles/cloudtasks.enqueuer'),
-        member: saMember,
+        member: sa.principal,
       ),
     );
 
@@ -225,7 +223,7 @@ final class IamShowcaseStack extends Stack {
         // Secret IAM identifies via **secret_id** (not id / name).
         secret: secret.ref,
         role: .literal('roles/secretmanager.secretAccessor'),
-        member: saMember,
+        member: sa.principal,
       ),
     );
 
@@ -240,7 +238,7 @@ final class IamShowcaseStack extends Stack {
         appId: .literal(projectId),
         service: .literal('default'),
         role: .literal('roles/iap.httpsResourceAccessor'),
-        member: saMember,
+        member: sa.principal,
         dependsOn: [ResourceDependency(apiIap)],
       ),
     );
@@ -252,7 +250,7 @@ final class IamShowcaseStack extends Stack {
         service: .literal('default'),
         versionId: .literal('v1'),
         role: .literal('roles/iap.httpsResourceAccessor'),
-        member: saMember,
+        member: sa.principal,
         dependsOn: [ResourceDependency(apiIap)],
       ),
     );
@@ -262,7 +260,7 @@ final class IamShowcaseStack extends Stack {
         localName: 'gae_app_invoker',
         appId: .literal(projectId),
         role: .literal('roles/iap.httpsResourceAccessor'),
-        member: saMember,
+        member: sa.principal,
         dependsOn: [ResourceDependency(apiIap)],
       ),
     );
@@ -277,7 +275,7 @@ final class IamShowcaseStack extends Stack {
         localName: 'agent_registry_invoker',
         location: .literal('us-central1'),
         role: .literal('roles/iap.httpsResourceAccessor'),
-        member: saMember,
+        member: sa.principal,
         dependsOn: [ResourceDependency(apiIap)],
       ),
     );
@@ -287,7 +285,7 @@ final class IamShowcaseStack extends Stack {
         localName: 'location_web_invoker',
         location: .literal('us-central1'),
         role: .literal('roles/iap.httpsResourceAccessor'),
-        member: saMember,
+        member: sa.principal,
         dependsOn: [ResourceDependency(apiIap)],
       ),
     );
@@ -299,7 +297,7 @@ final class IamShowcaseStack extends Stack {
       GoogleIapWebIamMember(
         localName: 'web_invoker',
         role: .literal('roles/iap.httpsResourceAccessor'),
-        member: saMember,
+        member: sa.principal,
         dependsOn: [ResourceDependency(apiIap)],
       ),
     );
@@ -308,7 +306,7 @@ final class IamShowcaseStack extends Stack {
       GoogleIapWebTypeComputeIamMember(
         localName: 'web_type_compute_invoker',
         role: .literal('roles/iap.httpsResourceAccessor'),
-        member: saMember,
+        member: sa.principal,
         dependsOn: [ResourceDependency(apiIap)],
       ),
     );
@@ -348,7 +346,7 @@ final class IamShowcaseStack extends Stack {
         // Reference the custom role's full path so Terraform binds against
         // the created resource (not just a string literal).
         role: .ref(customRole.nameRef),
-        member: saMember,
+        member: sa.principal,
         dependsOn: [ResourceDependency(customRole)],
       ),
     );
@@ -373,7 +371,7 @@ final class IamShowcaseStack extends Stack {
         // Target SA is the demo SA; identified by its full resource path.
         serviceAccount: sa.ref,
         role: .literal('roles/iam.serviceAccountUser'),
-        member: .ref(impersonator.iamMember),
+        member: impersonator.principal,
       ),
     );
 
@@ -480,7 +478,7 @@ final class IamShowcaseStack extends Stack {
         workforcePool: .literal('terradart-wf'),
         location: .literal('global'),
         role: .literal('roles/iam.workforcePoolViewer'),
-        member: saMember,
+        member: sa.principal,
         dependsOn: [ResourceDependency(workforce), ResourceDependency(sa)],
       ),
     );

@@ -171,7 +171,7 @@ final class AccessControlsStack extends Stack {
         localName: 'policy_viewer',
         accessPolicy: policy.ref,
         role: .literal('roles/accesscontextmanager.policyViewer'),
-        member: .literal('group:security-admins@example.com'),
+        member: .group('security-admins@example.com'),
         dependsOn: [ResourceDependency(policy)],
       ),
     );

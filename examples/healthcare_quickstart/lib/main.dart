@@ -38,7 +38,7 @@ final class HealthcareStack extends Stack {
     );
 
     // IAM members validate that the principal exists, so provision the service
-    // account in-stack and bind against its `iamMember` ref.
+    // account in-stack and bind against its `principal`.
     final analyst = add(
       GoogleServiceAccount(
         localName: 'analyst',
@@ -107,7 +107,7 @@ final class HealthcareStack extends Stack {
         localName: 'dataset_viewer',
         dataset: dataset.ref,
         role: .literal('roles/healthcare.datasetViewer'),
-        member: .ref(analyst.iamMember),
+        member: analyst.principal,
         dependsOn: [ResourceDependency(dataset), ResourceDependency(analyst)],
       ),
     );
@@ -118,7 +118,7 @@ final class HealthcareStack extends Stack {
         localName: 'dicom_viewer',
         dicomStore: dicom.ref,
         role: .literal('roles/healthcare.dicomViewer'),
-        member: .ref(analyst.iamMember),
+        member: analyst.principal,
         dependsOn: [ResourceDependency(dicom), ResourceDependency(analyst)],
       ),
     );
@@ -128,7 +128,7 @@ final class HealthcareStack extends Stack {
         localName: 'hl7_consumer',
         hl7V2Store: hl7.ref,
         role: .literal('roles/healthcare.hl7V2Consumer'),
-        member: .ref(analyst.iamMember),
+        member: analyst.principal,
         dependsOn: [ResourceDependency(hl7), ResourceDependency(analyst)],
       ),
     );
@@ -138,7 +138,7 @@ final class HealthcareStack extends Stack {
         localName: 'consent_viewer',
         consentStore: consent.ref,
         role: .literal('roles/healthcare.consentStoreViewer'),
-        member: .ref(analyst.iamMember),
+        member: analyst.principal,
         dependsOn: [ResourceDependency(consent), ResourceDependency(analyst)],
       ),
     );
@@ -148,7 +148,7 @@ final class HealthcareStack extends Stack {
         localName: 'fhir_viewer',
         fhirStore: fhir.ref,
         role: .literal('roles/healthcare.fhirResourceReader'),
-        member: .ref(analyst.iamMember),
+        member: analyst.principal,
         dependsOn: [ResourceDependency(fhir), ResourceDependency(analyst)],
       ),
     );
