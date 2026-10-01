@@ -2,6 +2,7 @@ import 'package:terradart_core/terradart_core.dart';
 import 'package:test/test.dart';
 
 import 'helpers/fake_resources.dart';
+import 'helpers/synth_issues.dart';
 
 void main() {
   group('synth provider coverage', () {
@@ -18,12 +19,8 @@ void main() {
       stack.add(FakeResource(localName: 'x', name: TfArg.literal('x')));
       expect(
         () => stack.synth(),
-        throwsA(
-          isA<StateError>().having(
-            (e) => e.message,
-            'message',
-            allOf(contains('"fake"'), contains('fake_thing.x')),
-          ),
+        throwsSynthIssue<MissingProvider>(
+          allOf(startsWith('fake_thing.x: '), contains('"fake"')),
         ),
       );
     });
@@ -61,14 +58,10 @@ void main() {
       );
       expect(
         () => stack.synth(),
-        throwsA(
-          isA<StateError>().having(
-            (e) => e.message,
-            'message',
-            allOf(
-              contains('"google-beta"'),
-              contains('google_pubsub_topic.orders'),
-            ),
+        throwsSynthIssue<MissingProvider>(
+          allOf(
+            startsWith('google_pubsub_topic.orders: '),
+            contains('"google-beta"'),
           ),
         ),
       );

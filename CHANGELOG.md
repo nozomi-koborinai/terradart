@@ -44,6 +44,9 @@ Per-package changelogs live alongside each package and are the system of record 
   to the provider default. CES resources absorb `location` and `project`
   the same way (`with:` on a ledger rule). The migrator leaves those keys
   out when the HCL reads them off the same parent block.
+- **Synth reports every problem at once, as one sealed `SynthIssue` type.** `Stack.synth()` / `writeTo()` check the whole Stack first and throw one `SynthException` listing every issue — `NoProviders`, `MissingProvider`, `ProviderConflict`, `UndeclaredVariable`, `UnregisteredReference`, `SensitiveLiteral`, `InvalidTimeout`, `InvalidMoveTarget`, `UnresolvableConstant` — each with the address of the block that holds it and a fix. `Stack.validate()` returns them without throwing. Replaces the `StateError` / `SensitiveLiteralError` / `ArgumentError` synth used to throw at the first problem.
+- **Synth refuses a reference to a block the Stack does not hold** (`UnregisteredReference`): a resource read or `depends_on`'d but never passed to `add(...)` used to synthesize and fail at `terraform plan`. `Stack.addExternalBlock('<address>')` declares a block a hand-written file beside `main.tf.json` holds; `terradart-migrate` writes one for every block it keeps in the sidecar that the Stack still reads.
+- **Names are checked where they are registered.** `add`, `addData`, `addModule`, `addVariable` and `addExternalVariable` throw `ArgumentError` for a `localName` or variable name that is not a Terraform identifier, as `addOutput` already did.
 
 ## [0.31.0] - 2026-10-01
 

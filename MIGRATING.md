@@ -57,6 +57,41 @@ Synth output gains the parent's `project` (and its `location`, `region` or
 It is the value the provider already resolved, so `terraform plan` shows no
 change.
 
+### Synth issues
+
+Synth output does not change for a Stack that synthesized before, unless it
+read a block it never registered — which `terraform plan` rejected anyway.
+
+Synth now checks the whole Stack before it encodes anything and throws one
+`SynthException` listing every problem, each a subtype of the sealed
+`SynthIssue`. Code that caught the old errors catches the new one:
+
+| Before (0.31) | After (0.32) |
+|---------------|--------------|
+| `on SensitiveLiteralError catch (e)` → `e.fieldPath` | `on SynthException catch (e)` → `e.issues.whereType<SensitiveLiteral>()`, `.field` |
+| `on StateError` from `synth()` (no provider, undeclared variable, unresolvable constant, invalid `moved` target, provider conflict) | `on SynthException` — `NoProviders`, `MissingProvider`, `ProviderConflict`, `UndeclaredVariable`, `UnresolvableConstant`, `InvalidMoveTarget` |
+| `on ArgumentError` from `TfTimeouts.toTfJson()` | `InvalidTimeout` at synth; `TfTimeouts.isDuration(value)` to check one value |
+| `expect(stack.synth, throwsStateError)` | `expect(stack.validate(), isEmpty)`, or match `isA<SynthException>()` |
+| `TfJsonEncoder.validateProviders(stack)` / `encodeArgMapWithSensitive(...)` | `stack.validate()` / `TfJsonEncoder.encodeArgMap(...)` |
+
+### Unregistered references
+
+A reference — in an argument, `depends_on` or `replace_triggered_by` — to a
+resource, data source or module the Stack does not hold is now an
+`UnregisteredReference`. Usually the block was built but never passed to
+`add(...)`: pass it. When a hand-written `.tf` file beside `main.tf.json`
+declares it, say so with `addExternalBlock('google_pubsub_topic.legacy')`, the
+counterpart of `addExternalVariable`. A package `terradart-migrate` wrote
+before 0.32.0 needs one such line per sidecar block its Stack reads; migrating
+again writes them.
+
+### Names
+
+`add`, `addData`, `addModule`, `addVariable` and `addExternalVariable` throw
+`ArgumentError` for a `localName` or variable name that is not a Terraform
+identifier (letters, digits, `_` and `-`, not starting with a digit), as
+`addOutput` already did. Terraform rejected those names at `plan`.
+
 ## 0.30.x → 0.31.0
 
 0.31.0 is a breaking release for the Dart API of every package, but not for
