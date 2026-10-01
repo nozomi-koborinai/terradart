@@ -1718,7 +1718,8 @@ output "count" {
           'google_project': {
             'p': {'project_id': 'proj'},
           },
-          if (clientConfig) 'google_client_config': {'current': {}},
+          if (clientConfig)
+            'google_client_config': {'current': <String, Object?>{}},
         },
         'resource': {
           'google_pubsub_topic': {
@@ -1727,7 +1728,10 @@ output "count" {
         },
       };
       final service = _migrateJson(module(clientConfig: false)).stackSource;
-      expect(service, contains("import 'package:terradart_google/project.dart';"));
+      expect(
+        service,
+        contains("import 'package:terradart_google/project.dart';"),
+      );
       expect(service, isNot(contains('terradart_google/data.dart')));
 
       final data = _migrateJson(module(clientConfig: true)).stackSource;
