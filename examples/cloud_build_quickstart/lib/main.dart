@@ -74,7 +74,7 @@ final class CloudBuildStack extends Stack {
         localName: 'build_sa_log_writer',
         project: .literal(projectId),
         role: .literal('roles/logging.logWriter'),
-        member: TfArg.ref<String>(buildSa.iamMember),
+        member: buildSa.principal,
       ),
     );
 
@@ -83,7 +83,7 @@ final class CloudBuildStack extends Stack {
         localName: 'build_sa_builder',
         project: .literal(projectId),
         role: .literal('roles/cloudbuild.builds.builder'),
-        member: TfArg.ref<String>(buildSa.iamMember),
+        member: buildSa.principal,
       ),
     );
 
@@ -124,7 +124,7 @@ final class CloudBuildStack extends Stack {
         localName: 'lb_conn_iam',
         connection: lbConn.ref,
         role: .literal('roles/cloudbuild.connectionViewer'),
-        member: TfArg.ref<String>(buildSa.iamMember),
+        member: buildSa.principal,
         dependsOn: [ResourceDependency(lbConn), ResourceDependency(buildSa)],
       ),
     );
@@ -168,7 +168,7 @@ final class CloudBuildStack extends Stack {
     //
     // The trigger executes as the build service account from step 0; that
     // account needs `artifactregistry.writer` on the destination repo to
-    // `docker push` the resulting image. `buildSa.iamMember` is the
+    // `docker push` the resulting image. `buildSa.principal` is the
     // pre-formatted `serviceAccount:<email>` binding subject.
 
     final arIam = add(
@@ -176,7 +176,7 @@ final class CloudBuildStack extends Stack {
         localName: 'lb_ar_iam',
         repository: lbAr.ref,
         role: .literal('roles/artifactregistry.writer'),
-        member: TfArg.ref<String>(buildSa.iamMember),
+        member: buildSa.principal,
       ),
     );
 

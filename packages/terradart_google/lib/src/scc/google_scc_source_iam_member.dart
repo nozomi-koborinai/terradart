@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
 import '../scc/google_scc_source.dart' show GoogleSccSource;
 
 /// Sensitive field paths for `google_scc_source_iam_member`.
@@ -41,7 +42,7 @@ final class GoogleSccSourceIamMember extends Resource {
     required RefTo<GoogleSccSource> source,
     TfArg<String>? organization,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     SccSourceIamMemberCondition? condition,
     super.lifecycle,
     super.dependsOn,

@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import 'package:terradart_google/terradart_google.dart' show IamPrincipal;
 import '../api_gateway/google_api_gateway_api_config.dart'
     show GoogleApiGatewayApiConfig;
 
@@ -46,7 +47,7 @@ final class GoogleApiGatewayApiConfigIamBinding extends Resource {
     required super.localName,
     TfArg<String>? api,
     required RefTo<GoogleApiGatewayApiConfig> apiConfig,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     TfArg<String>? project,
     required TfArg<String> role,
     ApiGatewayApiConfigIamBindingCondition? condition,

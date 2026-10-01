@@ -38,7 +38,7 @@ final class ConfigDeploymentStack extends Stack {
         localName: 'im_config_agent',
         project: .literal(projectId),
         role: .literal('roles/config.agent'),
-        member: .ref(actuationSa.iamMember),
+        member: actuationSa.principal,
       ),
     );
 
@@ -47,7 +47,7 @@ final class ConfigDeploymentStack extends Stack {
         localName: 'im_network_admin',
         project: .literal(projectId),
         role: .literal('roles/compute.networkAdmin'),
-        member: .ref(actuationSa.iamMember),
+        member: actuationSa.principal,
       ),
     );
 

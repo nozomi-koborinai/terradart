@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
+
 /// Sensitive field paths for `google_privileged_access_manager_entitlement`.
 const Set<String> _googlePrivilegedAccessManagerEntitlementSensitive =
     <String>{};
@@ -90,7 +92,7 @@ final class PrivilegedAccessManagerEntitlementSteps {
 final class PrivilegedAccessManagerEntitlementApprovers {
   const PrivilegedAccessManagerEntitlementApprovers({required this.principals});
 
-  final TfArg<List<String>> principals;
+  final TfArg<List<IamPrincipal>> principals;
 
   Map<String, Object?> encode() => {'principals': principals.toTfJson()};
 }
@@ -103,7 +105,7 @@ final class PrivilegedAccessManagerEntitlementEligibleUsers {
     required this.principals,
   });
 
-  final TfArg<List<String>> principals;
+  final TfArg<List<IamPrincipal>> principals;
 
   Map<String, Object?> encode() => {'principals': principals.toTfJson()};
 }
@@ -283,8 +285,8 @@ final class PrivilegedAccessManagerEntitlementUnstructured {
 ///   maxRequestDuration: TfArg.literal('1800s'),
 ///   eligibleUsers: [
 ///     PrivilegedAccessManagerEntitlementEligibleUsers(
-///       principals: TfArg.literal([
-///         'serviceAccount:pam-requester@my-project.iam.gserviceaccount.com',
+///       principals: .literal([
+///         .serviceAccount('pam-requester@my-project.iam.gserviceaccount.com'),
 ///       ]),
 ///     ),
 ///   ],

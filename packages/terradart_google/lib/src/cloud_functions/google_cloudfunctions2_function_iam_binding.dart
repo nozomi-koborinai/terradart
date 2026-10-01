@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../cloud_functions/google_cloudfunctions2_function.dart'
     show GoogleCloudfunctions2Function;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_cloudfunctions2_function_iam_binding`.
 const Set<String> _googleCloudfunctions2FunctionIamBindingSensitive =
@@ -48,7 +49,7 @@ final class GoogleCloudfunctions2FunctionIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleCloudfunctions2Function> function,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     Cloudfunctions2FunctionIamBindingCondition? condition,
     TfArg<String>? location,
     TfArg<String>? project,

@@ -97,6 +97,14 @@ SlotShape _classify(
   ShapeContext ctx, {
   required bool repeated,
 }) {
+  if (type.name == 'IamPrincipal' && type.args.isEmpty && !type.nullable) {
+    return repeated
+        ? SlotShape.manual('bare list of principals `${type.render()}`')
+        : const SlotShape(
+            kind: MigrateSlotKind.principal,
+            dartType: 'IamPrincipal',
+          );
+  }
   if (_referenceTarget(type) case final target?) {
     return repeated
         ? SlotShape.manual('bare list of references `${type.render()}`')
@@ -105,7 +113,17 @@ SlotShape _classify(
   if (type.name == 'TfArg' && type.args.length == 1) {
     final payload = type.args.single.nonNullable;
     if (payload.name == 'List' && payload.args.length == 1) {
-      final target = _referenceTarget(payload.args.single);
+      final element = payload.args.single;
+      if (element.name == 'IamPrincipal' && element.args.isEmpty) {
+        return repeated
+            ? SlotShape.manual('list of principal lists `${type.render()}`')
+            : const SlotShape(
+                kind: MigrateSlotKind.principal,
+                dartType: 'IamPrincipal',
+                repeated: true,
+              );
+      }
+      final target = _referenceTarget(element);
       if (target != null) {
         return repeated
             ? SlotShape.manual('list of reference lists `${type.render()}`')
@@ -273,6 +291,8 @@ SlotShape mergedShape(SlotShape shape) {
       return SlotShape.manual('spread-merged enum `${shape.dartType}`');
     case MigrateSlotKind.reference:
       return SlotShape.manual('spread-merged reference `${shape.dartType}`');
+    case MigrateSlotKind.principal:
+      return const SlotShape.manual('spread-merged principal');
     case MigrateSlotKind.manual:
       return shape;
   }

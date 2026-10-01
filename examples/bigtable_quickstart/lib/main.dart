@@ -150,7 +150,7 @@ final class EventsStack extends Stack {
         localName: 'instance_viewer',
         instance: instance.ref,
         role: .literal('roles/bigtable.viewer'),
-        member: .ref(readerSa.iamMember),
+        member: readerSa.principal,
         dependsOn: [
           ResourceDependency(readerSa),
           ResourceDependency(instance),
@@ -164,7 +164,7 @@ final class EventsStack extends Stack {
         localName: 'table_reader',
         table: table.ref,
         role: .literal('roles/bigtable.reader'),
-        member: .ref(readerSa.iamMember),
+        member: readerSa.principal,
         dependsOn: [
           ResourceDependency(readerSa),
           ResourceDependency(table),

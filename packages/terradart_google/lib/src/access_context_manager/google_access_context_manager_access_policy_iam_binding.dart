@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../access_context_manager/google_access_context_manager_access_policy.dart'
     show GoogleAccessContextManagerAccessPolicy;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_access_context_manager_access_policy_iam_binding`.
 const Set<String> _googleAccessContextManagerAccessPolicyIamBindingSensitive =
@@ -49,7 +50,7 @@ final class GoogleAccessContextManagerAccessPolicyIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleAccessContextManagerAccessPolicy> accessPolicy,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     AccessContextManagerAccessPolicyIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,

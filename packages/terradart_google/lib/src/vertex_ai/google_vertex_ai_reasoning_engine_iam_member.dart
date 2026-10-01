@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
 import '../vertex_ai/google_vertex_ai_reasoning_engine.dart'
     show GoogleVertexAiReasoningEngine;
 
@@ -41,7 +42,7 @@ final class GoogleVertexAiReasoningEngineIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleVertexAiReasoningEngine> reasoningEngine,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     VertexAiReasoningEngineIamMemberCondition? condition,
     TfArg<String>? region,
     TfArg<String>? project,

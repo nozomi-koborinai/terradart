@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../biglake/google_biglake_iceberg_namespace.dart'
     show GoogleBiglakeIcebergNamespace;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_biglake_iceberg_namespace_iam_member`.
 const Set<String> _googleBiglakeIcebergNamespaceIamMemberSensitive = <String>{};
@@ -42,7 +43,7 @@ final class GoogleBiglakeIcebergNamespaceIamMember extends Resource {
     TfArg<String>? catalog,
     required RefTo<GoogleBiglakeIcebergNamespace> namespace,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     TfArg<String>? project,
     BiglakeIcebergNamespaceIamMemberCondition? condition,
     super.lifecycle,

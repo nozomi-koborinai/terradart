@@ -99,7 +99,7 @@ final class AnalyticsStack extends Stack {
         localName: 'analytics_reader_binding',
         dataset: dataset.ref,
         role: .literal('roles/bigquery.dataViewer'),
-        member: .ref(reader.iamMember),
+        member: reader.principal,
       ),
     );
 
@@ -122,7 +122,7 @@ final class AnalyticsStack extends Stack {
         localName: 'events_ingestor_binding',
         table: eventsTable.ref,
         role: .literal('roles/bigquery.dataEditor'),
-        member: .ref(ingestor.iamMember),
+        member: ingestor.principal,
       ),
     );
 
@@ -155,7 +155,7 @@ final class AnalyticsStack extends Stack {
         dataPolicy: .literal('mask-email'),
         location: .literal('asia-northeast1'),
         role: .literal('roles/bigquerydatapolicy.maskedReader'),
-        member: .ref(reader.iamMember),
+        member: reader.principal,
       ),
     );
 
@@ -221,7 +221,7 @@ final class AnalyticsStack extends Stack {
         dataExchange: .literal('shared-exchange'),
         location: .literal('asia-northeast1'),
         role: .literal('roles/analyticshub.subscriber'),
-        member: .ref(reader.iamMember),
+        member: reader.principal,
       ),
     );
 
@@ -232,7 +232,7 @@ final class AnalyticsStack extends Stack {
         listing: .literal('events-listing'),
         location: .literal('asia-northeast1'),
         role: .literal('roles/analyticshub.viewer'),
-        member: .ref(reader.iamMember),
+        member: reader.principal,
       ),
     );
 
@@ -269,7 +269,7 @@ final class AnalyticsStack extends Stack {
         connection: .literal('cloud-resource-link'),
         location: .literal('asia-northeast1'),
         role: .literal('roles/bigquery.connectionUser'),
-        member: .ref(ingestor.iamMember),
+        member: ingestor.principal,
       ),
     );
 
@@ -321,7 +321,7 @@ final class AnalyticsStack extends Stack {
         localName: 'add_one_reader',
         routine: addOneRoutine.ref,
         role: .literal('roles/bigquery.dataViewer'),
-        member: .ref(reader.iamMember),
+        member: reader.principal,
       ),
     );
 
@@ -330,7 +330,7 @@ final class AnalyticsStack extends Stack {
         localName: 'add_one_binding',
         routine: addOneRoutine.ref,
         role: .literal('roles/bigquery.dataEditor'),
-        members: .literal([reader.iamMember.interpolation]),
+        members: .literal([reader.principal]),
         dependsOn: [ResourceDependency(addOneRoutine)],
       ),
     );

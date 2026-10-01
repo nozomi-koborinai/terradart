@@ -107,7 +107,7 @@ final class ColabStack extends Stack {
         localName: 'runner_viewer',
         runtimeTemplate: template.ref,
         role: .literal('roles/viewer'),
-        member: .ref(runner.iamMember),
+        member: runner.principal,
         dependsOn: [ResourceDependency(template), ResourceDependency(runner)],
       ),
     );

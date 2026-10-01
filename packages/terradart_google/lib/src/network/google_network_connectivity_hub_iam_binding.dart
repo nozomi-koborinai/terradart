@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
 import '../network/google_network_connectivity_hub.dart'
     show GoogleNetworkConnectivityHub;
 
@@ -47,7 +48,7 @@ final class GoogleNetworkConnectivityHubIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleNetworkConnectivityHub> hub,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     TfArg<String>? project,
     NetworkConnectivityHubIamBindingCondition? condition,
     super.lifecycle,

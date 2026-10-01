@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
+
 /// Sensitive field paths for `google_project_iam_binding`.
 const Set<String> _googleProjectIamBindingSensitive = <String>{};
 
@@ -43,7 +45,7 @@ final class GoogleProjectIamBinding extends Resource {
     required super.localName,
     required TfArg<String> project,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     ProjectIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,

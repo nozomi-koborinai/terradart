@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../cloud_run/google_cloud_run_service.dart' show GoogleCloudRunService;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_cloud_run_service_iam_member`.
 const Set<String> _googleCloudRunServiceIamMemberSensitive = <String>{};
@@ -40,7 +41,7 @@ final class GoogleCloudRunServiceIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleCloudRunService> service,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     CloudRunServiceIamMemberCondition? condition,
     TfArg<String>? location,
     TfArg<String>? project,

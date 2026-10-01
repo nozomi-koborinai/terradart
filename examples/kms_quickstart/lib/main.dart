@@ -117,7 +117,7 @@ final class CryptoStack extends Stack {
         localName: 'payments_encrypter_binding',
         cryptoKey: paymentsKey.ref,
         role: .literal('roles/cloudkms.cryptoKeyEncrypter'),
-        member: .ref(encrypter.iamMember),
+        member: encrypter.principal,
       ),
     );
 
@@ -140,7 +140,7 @@ final class CryptoStack extends Stack {
         localName: 'ring_inventory_binding',
         keyRing: ring.ref,
         role: .literal('roles/cloudkms.viewer'),
-        member: .ref(ringInventory.iamMember),
+        member: ringInventory.principal,
       ),
     );
 

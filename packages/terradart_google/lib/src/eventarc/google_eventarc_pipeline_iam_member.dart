@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../eventarc/google_eventarc_pipeline.dart' show GoogleEventarcPipeline;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_eventarc_pipeline_iam_member`.
 const Set<String> _googleEventarcPipelineIamMemberSensitive = <String>{};
@@ -40,7 +41,7 @@ final class GoogleEventarcPipelineIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleEventarcPipeline> pipeline,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     EventarcPipelineIamMemberCondition? condition,
     TfArg<String>? location,
     TfArg<String>? project,

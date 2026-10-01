@@ -44,7 +44,10 @@ Set<String> _topLevelDeclarations(String source) {
   // Named extensions only: `extension Foo on Bar`. The `\s+on\b` suffix
   // skips anonymous extensions (`extension on String`) because (\w+)
   // would have to consume `on` and then no second `on` is present.
-  final extensionRegex = RegExp(r'^extension\s+(\w+)\s+on\b', multiLine: true);
+  final extensionRegex = RegExp(
+    r'^extension\s+(?:type\s+(?:const\s+)?(\w+)|(\w+)\s+on\b)',
+    multiLine: true,
+  );
   final constRegex = RegExp(
     r"^const\s+\w+(?:<[^>]*>)?\s+(\w+)\s*=",
     multiLine: true,
@@ -54,7 +57,7 @@ Set<String> _topLevelDeclarations(String source) {
     names.add(m.group(1)!);
   }
   for (final m in extensionRegex.allMatches(source)) {
-    names.add(m.group(1)!);
+    names.add((m.group(1) ?? m.group(2))!);
   }
   for (final m in constRegex.allMatches(source)) {
     names.add(m.group(1)!);

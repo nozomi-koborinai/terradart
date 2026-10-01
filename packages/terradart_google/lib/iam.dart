@@ -7,7 +7,8 @@
 /// org parent), Workforce OAuth clients, OS Login SSH public keys,
 /// project deny policies, and per-resource IAM members live
 /// alongside their owning service barrel (e.g. `pubsub.dart`
-/// exports `GooglePubsubTopicIamMember`).
+/// exports `GooglePubsubTopicIamMember`). `IamPrincipal` names who a
+/// grant is for.
 library;
 
 export 'src/iam/google_iam_access_boundary_policy.dart'
@@ -184,3 +185,4 @@ export 'src/iam/google_service_account_key.dart'
     show GoogleServiceAccountKey, KeyAlgorithm, PrivateKeyType, PublicKeyType;
 export 'src/iam/google_workload_identity_service_agent.dart'
     show GoogleWorkloadIdentityServiceAgent;
+export 'src/iam/iam_principal.dart' show IamPrincipal;

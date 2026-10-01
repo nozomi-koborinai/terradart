@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../apigee/google_apigee_environment.dart' show GoogleApigeeEnvironment;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_apigee_environment_iam_member`.
 const Set<String> _googleApigeeEnvironmentIamMemberSensitive = <String>{};
@@ -41,7 +42,7 @@ final class GoogleApigeeEnvironmentIamMember extends Resource {
     TfArg<String>? orgId,
     required RefTo<GoogleApigeeEnvironment> environment,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     ApigeeEnvironmentIamMemberCondition? condition,
     super.lifecycle,
     super.dependsOn,

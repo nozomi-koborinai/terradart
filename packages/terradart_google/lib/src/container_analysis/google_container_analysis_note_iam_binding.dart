@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../container_analysis/google_container_analysis_note.dart'
     show GoogleContainerAnalysisNote;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_container_analysis_note_iam_binding`.
 const Set<String> _googleContainerAnalysisNoteIamBindingSensitive = <String>{};
@@ -47,7 +48,7 @@ final class GoogleContainerAnalysisNoteIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleContainerAnalysisNote> note,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     ContainerAnalysisNoteIamBindingCondition? condition,
     TfArg<String>? project,
     super.lifecycle,

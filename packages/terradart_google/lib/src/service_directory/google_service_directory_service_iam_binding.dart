@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
 import '../service_directory/google_service_directory_service.dart'
     show GoogleServiceDirectoryService;
 
@@ -48,7 +49,7 @@ final class GoogleServiceDirectoryServiceIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleServiceDirectoryService> service,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     ServiceDirectoryServiceIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,

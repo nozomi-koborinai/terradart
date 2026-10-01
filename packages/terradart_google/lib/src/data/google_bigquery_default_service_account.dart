@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_bigquery_default_service_account`.
 const Set<String> _googleBigqueryDefaultServiceAccountSensitive = <String>{};
@@ -35,4 +36,8 @@ final class DataGoogleBigqueryDefaultServiceAccount extends Data {
 
   /// Reference to `project` attribute.
   TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// This identity as an IAM principal, for `member` / `members`.
+  IamPrincipal get principal =>
+      IamPrincipal.read(TfRef.data<String>(this, 'member'));
 }

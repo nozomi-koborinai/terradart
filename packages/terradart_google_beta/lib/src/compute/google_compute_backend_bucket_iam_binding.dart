@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import 'package:terradart_google/terradart_google.dart'
-    show GoogleComputeBackendBucket;
+    show GoogleComputeBackendBucket, IamPrincipal;
 
 /// Sensitive field paths for `google_compute_backend_bucket_iam_binding`.
 const Set<String> _googleComputeBackendBucketIamBindingSensitive = <String>{};
@@ -44,7 +44,7 @@ final class GoogleComputeBackendBucketIamBinding extends Resource {
 
   GoogleComputeBackendBucketIamBinding({
     required super.localName,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     required RefTo<GoogleComputeBackendBucket> backendBucket,
     TfArg<String>? project,
     required TfArg<String> role,

@@ -72,7 +72,7 @@ final class DataprocMetastoreStack extends Stack {
         service: .literal(serviceId),
         location: .literal(location),
         role: .literal('roles/metastore.metadataViewer'),
-        member: .ref(viewerSa.iamMember),
+        member: viewerSa.principal,
         dependsOn: [
           ...apiDeps,
           ResourceDependency(service),
@@ -103,7 +103,7 @@ final class DataprocMetastoreStack extends Stack {
         federation: .literal(federationId),
         location: .literal(location),
         role: .literal('roles/metastore.federationViewer'),
-        member: .ref(viewerSa.iamMember),
+        member: viewerSa.principal,
         dependsOn: [
           ...apiDeps,
           ResourceDependency(federation),

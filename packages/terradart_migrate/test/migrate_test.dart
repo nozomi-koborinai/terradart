@@ -241,12 +241,7 @@ resource "aws_s3_bucket" "logs" {
       expect(src, contains('.literal(.protocolBuffer)'));
       expect(src, contains('.pushConfig(.new('));
       expect(src, contains('ackDeadlineSeconds: .literal(60)'));
-      expect(
-        src,
-        contains(
-          'members: .literal([ordersPublisher.iamMember.interpolation])',
-        ),
-      );
+      expect(src, contains('members: .literal([ordersPublisher.principal])'));
       expect(
         src,
         contains(
@@ -290,6 +285,93 @@ resource "aws_s3_bucket" "logs" {
         result.files['bin/infra.dart'],
         contains("PubsubQuickstartStack().writeTo('tf-out')"),
       );
+    });
+  });
+
+  group('IAM principals', () {
+    final result = _migrateJson({
+      'terraform': _google,
+      'variable': {
+        'admins': {'type': 'list(string)'},
+      },
+      'resource': {
+        'google_service_account': {
+          'runtime': {'account_id': 'runtime'},
+        },
+        'google_pubsub_topic': {
+          'orders': {'name': 'orders'},
+        },
+        'google_pubsub_topic_iam_member': {
+          'runtime': {
+            'topic': r'${google_pubsub_topic.orders.name}',
+            'role': 'roles/pubsub.publisher',
+            'member': r'${google_service_account.runtime.member}',
+          },
+          'public': {
+            'topic': r'${google_pubsub_topic.orders.name}',
+            'role': 'roles/pubsub.subscriber',
+            'member': 'allUsers',
+          },
+          'agent': {
+            'topic': r'${google_pubsub_topic.orders.name}',
+            'role': 'roles/pubsub.viewer',
+            'member': r'serviceAccount:${google_service_account.runtime.email}',
+          },
+        },
+        'google_pubsub_topic_iam_binding': {
+          'viewers': {
+            'topic': r'${google_pubsub_topic.orders.name}',
+            'role': 'roles/viewer',
+            'members': [
+              'user:a@example.com',
+              'group:sre@example.com',
+              'deleted:user:b@example.com?uid=1',
+              r'${google_service_account.runtime.member}',
+            ],
+          },
+          'editors': {
+            'topic': r'${google_pubsub_topic.orders.name}',
+            'role': 'roles/editor',
+            'members': r'${var.admins}',
+          },
+        },
+      },
+    });
+    final src = result.stackSource;
+
+    test('migrates every block', () {
+      expect(
+        result.report.isComplete,
+        isTrue,
+        reason: result.report.renderText(),
+      );
+    });
+
+    test("a block's member reads its principal getter", () {
+      expect(src, contains('member: runtime.principal)'));
+    });
+
+    test('a literal takes the named constructor of its kind', () {
+      expect(src, contains('member: .allUsers)'));
+      expect(
+        src,
+        contains(
+          "members: .literal([.user('a@example.com'), "
+          ".group('sre@example.com'), ",
+        ),
+      );
+      expect(src, contains(".literal('deleted:user:b@example.com?uid=1')"));
+      expect(src, contains('runtime.principal]'));
+    });
+
+    test('a template and a whole-list variable stay as they are', () {
+      expect(
+        src,
+        contains(
+          r"member: .arg(.expression(r'serviceAccount:${google_service_account.runtime.email}')))",
+        ),
+      );
+      expect(src, contains("members: .variable('admins'))"));
     });
   });
 

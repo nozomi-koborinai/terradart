@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../data_catalog/google_data_catalog_policy_tag.dart'
     show GoogleDataCatalogPolicyTag;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_data_catalog_policy_tag_iam_binding`.
 const Set<String> _googleDataCatalogPolicyTagIamBindingSensitive = <String>{};
@@ -46,7 +47,7 @@ final class GoogleDataCatalogPolicyTagIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleDataCatalogPolicyTag> policyTag,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     DataCatalogPolicyTagIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,

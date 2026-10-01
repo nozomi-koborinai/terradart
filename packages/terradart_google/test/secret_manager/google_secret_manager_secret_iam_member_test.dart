@@ -13,7 +13,7 @@ void main() {
       localName: 'api_key_reader',
       secret: s.ref,
       role: TfArg.literal('roles/secretmanager.secretAccessor'),
-      member: TfArg.literal('serviceAccount:reader@p.iam.gserviceaccount.com'),
+      member: .serviceAccount('reader@p.iam.gserviceaccount.com'),
     );
     expect(
       iam.argMap.keys.toList(),

@@ -47,7 +47,7 @@ final class SourcerepoStack extends Stack {
         localName: 'reader',
         repository: repo.ref,
         role: .literal('roles/source.reader'),
-        member: .ref(reader.iamMember),
+        member: reader.principal,
         dependsOn: [ResourceDependency(repo), ResourceDependency(reader)],
       ),
     );

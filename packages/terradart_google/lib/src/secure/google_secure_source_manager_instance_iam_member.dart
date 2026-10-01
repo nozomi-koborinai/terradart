@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
 import '../secure/google_secure_source_manager_instance.dart'
     show GoogleSecureSourceManagerInstance;
 
@@ -48,7 +49,7 @@ final class GoogleSecureSourceManagerInstanceIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleSecureSourceManagerInstance> instance,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     TfArg<String>? location,
     TfArg<String>? project,
     SecureSourceManagerInstanceIamMemberCondition? condition,

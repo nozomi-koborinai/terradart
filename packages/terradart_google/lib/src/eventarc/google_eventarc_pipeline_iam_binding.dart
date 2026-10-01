@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../eventarc/google_eventarc_pipeline.dart' show GoogleEventarcPipeline;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_eventarc_pipeline_iam_binding`.
 const Set<String> _googleEventarcPipelineIamBindingSensitive = <String>{};
@@ -46,7 +47,7 @@ final class GoogleEventarcPipelineIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleEventarcPipeline> pipeline,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     EventarcPipelineIamBindingCondition? condition,
     TfArg<String>? location,
     TfArg<String>? project,

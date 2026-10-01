@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
 import '../pubsub/google_pubsub_schema.dart' show GooglePubsubSchema;
 
 /// Sensitive field paths for `google_pubsub_schema_iam_member`.
@@ -40,7 +41,7 @@ final class GooglePubsubSchemaIamMember extends Resource {
     required super.localName,
     required RefTo<GooglePubsubSchema> schema,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     PubsubSchemaIamMemberCondition? condition,
     TfArg<String>? project,
     super.lifecycle,

@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../dataproc/google_dataproc_autoscaling_policy.dart'
     show GoogleDataprocAutoscalingPolicy;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_dataproc_autoscaling_policy_iam_member`.
 const Set<String> _googleDataprocAutoscalingPolicyIamMemberSensitive =
@@ -43,7 +44,7 @@ final class GoogleDataprocAutoscalingPolicyIamMember extends Resource {
     required RefTo<GoogleDataprocAutoscalingPolicy> autoscalingPolicy,
     TfArg<String>? location,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     TfArg<String>? project,
     DataprocAutoscalingPolicyIamMemberCondition? condition,
     super.lifecycle,

@@ -713,7 +713,7 @@ ExactlyOneVariant _referenceVariant(
     tfName: attr.tfName,
     ident: ident,
     fieldType: reference.dartType,
-    encodeExpr: "$ident.encodeAs('${reference.attribute}').toTfJson()",
+    encodeExpr: '$ident${reference.encode}.toTfJson()',
     argMapExpr: null,
     deprecation: null,
   );

@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import 'package:terradart_google/terradart_google.dart'
-    show GoogleVertexAiEndpoint;
+    show GoogleVertexAiEndpoint, IamPrincipal;
 
 /// Sensitive field paths for `google_vertex_ai_endpoint_iam_member`.
 const Set<String> _googleVertexAiEndpointIamMemberSensitive = <String>{};
@@ -41,7 +41,7 @@ final class GoogleVertexAiEndpointIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleVertexAiEndpoint> endpoint,
     TfArg<String>? location,
-    required TfArg<String> member,
+    required IamPrincipal member,
     TfArg<String>? project,
     required TfArg<String> role,
     VertexAiEndpointIamMemberCondition? condition,

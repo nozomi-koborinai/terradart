@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../cloud_tasks/google_cloud_tasks_queue.dart'
     show GoogleCloudTasksQueue;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_cloud_tasks_queue_iam_binding`.
 const Set<String> _googleCloudTasksQueueIamBindingSensitive = <String>{};
@@ -47,7 +48,7 @@ final class GoogleCloudTasksQueueIamBinding extends Resource {
     required RefTo<GoogleCloudTasksQueue> queue,
     TfArg<String>? location,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     CloudTasksQueueIamBindingCondition? condition,
     TfArg<String>? project,
     super.lifecycle,

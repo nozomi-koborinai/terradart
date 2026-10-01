@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../dataplex/google_dataplex_glossary.dart' show GoogleDataplexGlossary;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_dataplex_glossary_iam_member`.
 const Set<String> _googleDataplexGlossaryIamMemberSensitive = <String>{};
@@ -40,7 +41,7 @@ final class GoogleDataplexGlossaryIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleDataplexGlossary> glossary,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     DataplexGlossaryIamMemberCondition? condition,
     TfArg<String>? location,
     TfArg<String>? project,

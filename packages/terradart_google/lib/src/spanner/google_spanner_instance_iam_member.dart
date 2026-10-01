@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
 import '../spanner/google_spanner_instance.dart' show GoogleSpannerInstance;
 
 /// Sensitive field paths for `google_spanner_instance_iam_member`.
@@ -40,7 +41,7 @@ final class GoogleSpannerInstanceIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleSpannerInstance> instance,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     TfArg<String>? project,
     SpannerInstanceIamMemberCondition? condition,
     super.lifecycle,

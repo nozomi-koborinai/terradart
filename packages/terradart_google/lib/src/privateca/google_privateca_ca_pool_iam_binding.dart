@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
 import '../privateca/google_privateca_ca_pool.dart' show GooglePrivatecaCaPool;
 
 /// Sensitive field paths for `google_privateca_ca_pool_iam_binding`.
@@ -45,7 +46,7 @@ final class GooglePrivatecaCaPoolIamBinding extends Resource {
     required super.localName,
     required RefTo<GooglePrivatecaCaPool> caPool,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     PrivatecaCaPoolIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,

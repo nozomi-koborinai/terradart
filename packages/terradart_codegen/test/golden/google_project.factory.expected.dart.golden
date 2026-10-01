@@ -29,8 +29,8 @@ const Set<String> _googleProjectSensitive = <String>{};
 ///   localName: 'pubsub_cmek',
 ///   topic: topic.ref,
 ///   role: TfArg.literal('roles/cloudkms.cryptoKeyEncrypterDecrypter'),
-///   member: TfArg.literal(
-///     'serviceAccount:service-${current.number.interpolation}@gcp-sa-pubsub.iam.gserviceaccount.com',
+///   member: .serviceAccount(
+///     'service-${current.number.interpolation}@gcp-sa-pubsub.iam.gserviceaccount.com',
 ///   ),
 /// );
 /// ```

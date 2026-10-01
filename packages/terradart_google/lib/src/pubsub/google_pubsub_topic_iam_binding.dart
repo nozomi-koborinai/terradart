@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
 import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
 
 /// Sensitive field paths for `google_pubsub_topic_iam_binding`.
@@ -45,7 +46,7 @@ final class GooglePubsubTopicIamBinding extends Resource {
     required super.localName,
     required RefTo<GooglePubsubTopic> topic,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     PubsubTopicIamBindingCondition? condition,
     TfArg<String>? project,
     super.lifecycle,

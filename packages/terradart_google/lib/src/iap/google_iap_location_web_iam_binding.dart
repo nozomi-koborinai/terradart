@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
+
 /// Sensitive field paths for `google_iap_location_web_iam_binding`.
 const Set<String> _googleIapLocationWebIamBindingSensitive = <String>{};
 
@@ -44,7 +46,7 @@ final class GoogleIapLocationWebIamBinding extends Resource {
     required super.localName,
     required TfArg<String> location,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     IapLocationWebIamBindingCondition? condition,
     TfArg<String>? project,
     super.lifecycle,

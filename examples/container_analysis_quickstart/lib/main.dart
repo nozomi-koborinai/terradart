@@ -62,7 +62,7 @@ final class ContainerAnalysisStack extends Stack {
         localName: 'note_viewer',
         note: note.ref,
         role: .literal('roles/containeranalysis.notes.occurrences.viewer'),
-        member: .ref(viewer.iamMember),
+        member: viewer.principal,
         dependsOn: [ResourceDependency(note), ResourceDependency(viewer)],
       ),
     );
@@ -72,7 +72,7 @@ final class ContainerAnalysisStack extends Stack {
         localName: 'note_viewer_binding',
         note: note.ref,
         role: .literal('roles/containeranalysis.notes.occurrences.viewer'),
-        members: .literal([viewer.iamMember.interpolation]),
+        members: .literal([viewer.principal]),
         dependsOn: [ResourceDependency(note), ResourceDependency(viewer)],
       ),
     );

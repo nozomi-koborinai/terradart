@@ -29,11 +29,10 @@ curatedDoc: |-
   /// - `project`: target project (ID or number).
   /// - `role`: role name, e.g. `'roles/storage.objectViewer'` or the full
   ///   path to a project-level custom role (`projects/<id>/roles/<role_id>`).
-  /// - `member`: principal in IAM v1 string form, e.g.
-  ///   `'serviceAccount:foo@<project>.iam.gserviceaccount.com'`,
-  ///   `'user:alice@example.com'`, `'group:eng@example.com'`. The
-  ///   `serviceAccount:` prefix is best sourced from
-  ///   [GoogleServiceAccount.member] to avoid manual concatenation.
+  /// - `member`: an [IamPrincipal] — a block's `principal`
+  ///   (`runtime.principal`) or a named constructor such as
+  ///   `.user('alice@example.com')`, `.group('eng@example.com')` or
+  ///   `.serviceAccount('foo@<project>.iam.gserviceaccount.com')`.
   ///
   /// Optional `condition` is a single IAM Condition block (CEL `expression`,
   /// `title`, optional `description`). Conditioned bindings count as a

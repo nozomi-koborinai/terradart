@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import 'package:terradart_google/terradart_google.dart' show IamPrincipal;
+
 /// Sensitive field paths for `google_folder_service_identity`.
 const Set<String> _googleFolderServiceIdentitySensitive = <String>{};
 
@@ -52,4 +54,8 @@ final class GoogleFolderServiceIdentity extends Resource {
 
   /// Reference to `service` attribute.
   TfRef<String> get serviceRef => TfRef.attribute<String>(this, 'service');
+
+  /// This identity as an IAM principal, for `member` / `members`.
+  IamPrincipal get principal =>
+      IamPrincipal.read(TfRef.attribute<String>(this, 'member'));
 }

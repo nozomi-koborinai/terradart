@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
 import '../workstations/google_workstations_workstation_config.dart'
     show GoogleWorkstationsWorkstationConfig;
 
@@ -49,7 +50,7 @@ final class GoogleWorkstationsWorkstationConfigIamMember extends Resource {
     TfArg<String>? workstationClusterId,
     required RefTo<GoogleWorkstationsWorkstationConfig> workstationConfig,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     TfArg<String>? location,
     TfArg<String>? project,
     WorkstationsWorkstationConfigIamMemberCondition? condition,

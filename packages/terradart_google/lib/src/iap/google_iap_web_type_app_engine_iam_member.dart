@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
+
 /// Sensitive field paths for `google_iap_web_type_app_engine_iam_member`.
 const Set<String> _googleIapWebTypeAppEngineIamMemberSensitive = <String>{};
 
@@ -47,7 +49,7 @@ final class IapWebTypeAppEngineIamMemberCondition {
 ///   localName: 'app_invoker',
 ///   appId: TfArg.literal(projectId),
 ///   role: TfArg.literal('roles/iap.httpsResourceAccessor'),
-///   member: TfArg.ref(sa.iamMember),
+///   member: sa.principal,
 /// );
 /// ```
 final class GoogleIapWebTypeAppEngineIamMember extends Resource {
@@ -57,7 +59,7 @@ final class GoogleIapWebTypeAppEngineIamMember extends Resource {
     required super.localName,
     required TfArg<String> appId,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     IapWebTypeAppEngineIamMemberCondition? condition,
     TfArg<String>? project,
     super.lifecycle,

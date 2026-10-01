@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../container/google_gke_hub_membership.dart'
     show GoogleGkeHubMembership;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_gke_hub_membership_iam_binding`.
 const Set<String> _googleGkeHubMembershipIamBindingSensitive = <String>{};
@@ -47,7 +48,7 @@ final class GoogleGkeHubMembershipIamBinding extends Resource {
     required RefTo<GoogleGkeHubMembership> membership,
     TfArg<String>? location,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     TfArg<String>? project,
     GkeHubMembershipIamBindingCondition? condition,
     super.lifecycle,

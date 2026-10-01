@@ -47,6 +47,23 @@ Per-package changelogs live alongside each package and are the system of record 
 - **Synth reports every problem at once, as one sealed `SynthIssue` type.** `Stack.synth()` / `writeTo()` check the whole Stack first and throw one `SynthException` listing every issue — `NoProviders`, `MissingProvider`, `ProviderConflict`, `UndeclaredVariable`, `UnregisteredReference`, `SensitiveLiteral`, `InvalidTimeout`, `InvalidMoveTarget`, `UnresolvableConstant` — each with the address of the block that holds it and a fix. `Stack.validate()` returns them without throwing. Replaces the `StateError` / `SensitiveLiteralError` / `ArgumentError` synth used to throw at the first problem.
 - **Synth refuses a reference to a block the Stack does not hold** (`UnregisteredReference`): a resource read or `depends_on`'d but never passed to `add(...)` used to synthesize and fail at `terraform plan`. `Stack.addExternalBlock('<address>')` declares a block a hand-written file beside `main.tf.json` holds; `terradart-migrate` writes one for every block it keeps in the sidecar that the Stack still reads.
 - **Names are checked where they are registered.** `add`, `addData`, `addModule`, `addVariable` and `addExternalVariable` throw `ArgumentError` for a `localName` or variable name that is not a Terraform identifier, as `addOutput` already did.
+- **IAM grants take an `IamPrincipal`** (`terradart_codegen`,
+  `terradart_google`, `terradart_google_beta`, `terradart_migrate`) — the
+  `member` of every `*IamMember`, the `members` of every `*IamBinding`,
+  audit-config `exempted_members`, `data.google_iam_policy` bindings and
+  Privileged Access Manager `principals` are typed `IamPrincipal`
+  (`- principals: IamPrincipal` in `tool/reference_targets.yaml`): an
+  extension type over `TfArg<String>` with dot shorthands
+  `.user(email)`, `.group(email)`, `.serviceAccount(email)`,
+  `.domain(domain)`, `.allUsers`, `.allAuthenticatedUsers`,
+  `.principalSet(pool, attribute)`, `.principal(pool, subject)`,
+  `.literal(value)` and `.arg(arg)`. Every block with a computed `member`
+  (service accounts, service agents, default service account data
+  sources) has an `IamPrincipal get principal`, which replaces
+  `GoogleServiceAccount.iamMember`. The migration manifest records these
+  slots as `MigrateSlotKind.principal`, and the migrator writes
+  `member: sa.principal` / `.user('a@example.com')`. Synth output is
+  unchanged.
 - **Nested blocks use `.new(...)`** — the examples, cookbook, README,
   website, generated doc comments, the aws / cloudflare leftover-example
   generators and `terradart-migrate` output build a block that sits inside

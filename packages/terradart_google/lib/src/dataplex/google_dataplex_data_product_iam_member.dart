@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../dataplex/google_dataplex_data_product.dart'
     show GoogleDataplexDataProduct;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_dataplex_data_product_iam_member`.
 const Set<String> _googleDataplexDataProductIamMemberSensitive = <String>{};
@@ -41,7 +42,7 @@ final class GoogleDataplexDataProductIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleDataplexDataProduct> dataProduct,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     DataplexDataProductIamMemberCondition? condition,
     TfArg<String>? location,
     TfArg<String>? project,

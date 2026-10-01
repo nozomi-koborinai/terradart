@@ -298,6 +298,7 @@ final class ValueEmitter {
         case MigrateSlotKind.scalar ||
             MigrateSlotKind.enumValue ||
             MigrateSlotKind.reference ||
+            MigrateSlotKind.principal ||
             MigrateSlotKind.passthrough:
           throw MigrateBlocker(
             'argument "${level.path}${slot.dartName}": merged '
@@ -346,6 +347,7 @@ final class ValueEmitter {
       MigrateSlotKind.scalar => _scalar(slot, value, path: path),
       MigrateSlotKind.enumValue => _enum(slot, value, path: path),
       MigrateSlotKind.reference => _reference(slot, value, path: path),
+      MigrateSlotKind.principal => _principal(slot, value, path: path),
       MigrateSlotKind.helper =>
         slot.repeated
             ? _helperList(slot.helper!, value, path: path)
@@ -788,6 +790,110 @@ final class ValueEmitter {
     return arg.startsWith(prefix)
         ? _refTo('$call${arg.substring(prefix.length)}')
         : _refTo('arg($arg)');
+  }
+
+  // ---------------------------------------------------------------------
+  // IAM principals
+  // ---------------------------------------------------------------------
+
+  /// An `IamPrincipal` argument, or a `TfArg<List<IamPrincipal>>` when
+  /// [slot] is repeated: a literal list holds one principal per element,
+  /// anything else is the whole list (`var.members`, a splat).
+  String _principal(MigrateSlot slot, Expr value, {required String path}) {
+    if (!slot.repeated) return _principalValue(value, path: path);
+    if (value is TupleExpr) {
+      final items = [
+        for (final e in value.elements) _principalValue(e, path: path),
+      ];
+      return _arg('literal([${items.join(', ')}])');
+    }
+    if (value is LiteralExpr ||
+        value is ObjectExpr ||
+        value.constantString != null) {
+      throw MigrateBlocker(
+        'argument "$path" expects a list of IAM principals but is a '
+        '${_describe(value)}',
+      );
+    }
+    if (singleReference(value) case final ref?) {
+      if (classifyTraversal(ref) case VariableReference(:final name)) {
+        usedVariables.add(name);
+        return _arg('variable(${dartString(name)})');
+      }
+    }
+    return _expression(value);
+  }
+
+  /// One `IamPrincipal`: the block's `principal` getter when [value] reads
+  /// the `member` of a migrated block that has one, a named constructor
+  /// (`.user('a@example.com')`, `.allUsers`) for a literal, else the value
+  /// wrapped as it is.
+  String _principalValue(Expr value, {required String path}) {
+    final ref = singleReference(value);
+    if (ref != null) {
+      if (classifyTraversal(ref) case BlockReference(
+        :final address,
+        attribute: 'member',
+      )) {
+        final target = ctx.targets[address];
+        if (target != null && target.entry.principal) {
+          usedTargets.add(address);
+          return '${target.dartName}.principal';
+        }
+      }
+      final arg = _refArg(ref, type: 'String');
+      if (arg != null) return _principalCall('arg($arg)');
+    }
+    final text = constantText(value);
+    if (text != null) {
+      if (sensitivePaths.contains(path)) {
+        throw MigrateBlocker(
+          'argument "$path" is sensitive: its value is not copied into Dart '
+          '(pass it as a variable)',
+        );
+      }
+      final envExpr = envValues[path];
+      if (envExpr != null) {
+        envSlotTypes[envExpr] = 'String';
+        return _principalCall('literal($envExpr)');
+      }
+      return _principalLiteral(text);
+    }
+    if (value is LiteralExpr || value is TupleExpr || value is ObjectExpr) {
+      throw MigrateBlocker(
+        'argument "$path" expects an IAM principal but is a '
+        '${_describe(value)}',
+      );
+    }
+    return _principalCall('arg(${_expression(value)})');
+  }
+
+  static const _principalKinds = {
+    'user:': 'user',
+    'group:': 'group',
+    'serviceAccount:': 'serviceAccount',
+    'domain:': 'domain',
+  };
+
+  String _principalLiteral(String text) {
+    if (text == 'allUsers' || text == 'allAuthenticatedUsers') {
+      return _principalCall(text);
+    }
+    for (final MapEntry(key: prefix, value: kind) in _principalKinds.entries) {
+      if (text.startsWith(prefix) && text.length > prefix.length) {
+        final rest = text.substring(prefix.length);
+        if (hasTemplateSequence(rest)) break;
+        return _principalCall('$kind(${dartString(rest)})');
+      }
+    }
+    return _principalCall('literal(${dartString(text)})');
+  }
+
+  /// `IamPrincipal.<call>`, or the `.<call>` shorthand in a typed position.
+  String _principalCall(String call) {
+    if (_typed) return '.$call';
+    ctx.import('terradart_google', 'iam');
+    return 'IamPrincipal.$call';
   }
 
   /// Whether [target]'s `ref` is a `RefTo<className>`: the resource itself,

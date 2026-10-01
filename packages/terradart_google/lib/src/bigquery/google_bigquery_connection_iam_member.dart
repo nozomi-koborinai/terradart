@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../bigquery/google_bigquery_connection.dart'
     show GoogleBigqueryConnection;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_bigquery_connection_iam_member`.
 const Set<String> _googleBigqueryConnectionIamMemberSensitive = <String>{};
@@ -41,7 +42,7 @@ final class GoogleBigqueryConnectionIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleBigqueryConnection> connection,
     TfArg<String>? location,
-    required TfArg<String> member,
+    required IamPrincipal member,
     TfArg<String>? project,
     required TfArg<String> role,
     BigqueryConnectionIamMemberCondition? condition,

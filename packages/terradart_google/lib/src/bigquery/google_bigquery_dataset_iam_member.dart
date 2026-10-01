@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../bigquery/google_bigquery_dataset.dart' show GoogleBigqueryDataset;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_bigquery_dataset_iam_member`.
 const Set<String> _googleBigqueryDatasetIamMemberSensitive = <String>{};
@@ -40,7 +41,7 @@ final class GoogleBigqueryDatasetIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleBigqueryDataset> dataset,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     BigqueryDatasetIamMemberCondition? condition,
     TfArg<String>? project,
     super.lifecycle,

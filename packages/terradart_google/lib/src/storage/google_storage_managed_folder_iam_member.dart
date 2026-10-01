@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
 import '../storage/google_storage_managed_folder.dart'
     show GoogleStorageManagedFolder;
 
@@ -45,7 +46,7 @@ final class StorageManagedFolderIamMemberCondition {
 ///   bucket: assets.ref,
 ///   managedFolder: folder.ref,
 ///   role: TfArg.literal('roles/storage.objectViewer'),
-///   member: TfArg.ref(reader.iamMember),
+///   member: reader.principal,
 /// );
 /// ```
 final class GoogleStorageManagedFolderIamMember extends Resource {
@@ -56,7 +57,7 @@ final class GoogleStorageManagedFolderIamMember extends Resource {
     TfArg<String>? bucket,
     required RefTo<GoogleStorageManagedFolder> managedFolder,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     StorageManagedFolderIamMemberCondition? condition,
     super.lifecycle,
     super.dependsOn,

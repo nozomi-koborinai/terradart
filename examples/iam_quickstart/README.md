@@ -22,7 +22,7 @@ Each IAM resource has a slightly different identity surface; the factory takes t
 
 Each grant also carries the parent's `project`, read off the parent, so it cannot drift from the resource it names.
 
-The `member` argument on every `_iam_member` is wired via `sa.member` -- the pre-formatted `serviceAccount:<email>` computed attribute on `GoogleServiceAccount`. No manual `'serviceAccount:' + email` concatenation, and renaming the `accountId` re-flows through every binding automatically.
+The `member` argument on every `_iam_member` is `sa.principal` -- the `IamPrincipal` that reads the `serviceAccount:<email>` `member` attribute of `GoogleServiceAccount`. No manual `'serviceAccount:' + email` concatenation, and renaming the `accountId` re-flows through every binding automatically.
 
 ## Before you apply
 

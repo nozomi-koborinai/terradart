@@ -103,7 +103,7 @@ final class FleetStack extends Stack {
         localName: 'team_scope_viewer',
         scope: scope.ref,
         role: .literal('roles/viewer'),
-        member: .ref(teamReader.iamMember),
+        member: teamReader.principal,
         dependsOn: [ResourceDependency(scope), ResourceDependency(teamReader)],
       ),
     );

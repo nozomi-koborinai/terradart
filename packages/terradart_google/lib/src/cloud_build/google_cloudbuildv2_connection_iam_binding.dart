@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../cloud_build/google_cloudbuildv2_connection.dart'
     show GoogleCloudbuildv2Connection;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_cloudbuildv2_connection_iam_binding`.
 const Set<String> _googleCloudbuildv2ConnectionIamBindingSensitive = <String>{};
@@ -47,7 +48,7 @@ final class GoogleCloudbuildv2ConnectionIamBinding extends Resource {
     required RefTo<GoogleCloudbuildv2Connection> connection,
     TfArg<String>? location,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     TfArg<String>? project,
     Cloudbuildv2ConnectionIamBindingCondition? condition,
     super.lifecycle,

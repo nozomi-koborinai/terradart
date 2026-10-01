@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
 import '../kms/google_kms_key_ring.dart' show GoogleKmsKeyRing;
 
 /// Sensitive field paths for `google_kms_key_ring_iam_binding`.
@@ -45,7 +46,7 @@ final class GoogleKmsKeyRingIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleKmsKeyRing> keyRing,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     KmsKeyRingIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,

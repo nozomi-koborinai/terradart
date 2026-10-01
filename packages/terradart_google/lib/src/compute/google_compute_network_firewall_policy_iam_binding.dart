@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../compute/google_compute_network_firewall_policy.dart'
     show GoogleComputeNetworkFirewallPolicy;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_compute_network_firewall_policy_iam_binding`.
 const Set<String> _googleComputeNetworkFirewallPolicyIamBindingSensitive =
@@ -49,7 +50,7 @@ final class GoogleComputeNetworkFirewallPolicyIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleComputeNetworkFirewallPolicy> firewallPolicy,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     ComputeNetworkFirewallPolicyIamBindingCondition? condition,
     TfArg<String>? project,
     super.lifecycle,

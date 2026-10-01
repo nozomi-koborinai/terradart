@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../compute/google_compute_instance_template.dart'
     show GoogleComputeInstanceTemplate;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_compute_instance_template_iam_member`.
 const Set<String> _googleComputeInstanceTemplateIamMemberSensitive = <String>{};
@@ -41,7 +42,7 @@ final class GoogleComputeInstanceTemplateIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleComputeInstanceTemplate> instanceTemplate,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     ComputeInstanceTemplateIamMemberCondition? condition,
     TfArg<String>? project,
     super.lifecycle,

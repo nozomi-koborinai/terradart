@@ -81,7 +81,7 @@ final class BetaLeftoverStack extends Stack {
         localName: 'api_gateway_api_config_iam_binding',
         api: .literal('terradart-leftover'),
         apiConfig: .literal('terradart-leftover'),
-        members: .literal(['user:terradart-leftover@example.com']),
+        members: .literal([.user('terradart-leftover@example.com')]),
         role: .literal('roles/viewer'),
       ),
     );
@@ -90,7 +90,7 @@ final class BetaLeftoverStack extends Stack {
         localName: 'api_gateway_api_config_iam_member',
         api: .literal('terradart-leftover'),
         apiConfig: .literal('terradart-leftover'),
-        member: .literal('user:terradart-leftover@example.com'),
+        member: .user('terradart-leftover@example.com'),
         role: .literal('roles/viewer'),
       ),
     );
@@ -106,7 +106,7 @@ final class BetaLeftoverStack extends Stack {
       GoogleApiGatewayApiIamBinding(
         localName: 'api_gateway_api_iam_binding',
         api: .literal('terradart-leftover'),
-        members: .literal(['user:terradart-leftover@example.com']),
+        members: .literal([.user('terradart-leftover@example.com')]),
         role: .literal('roles/viewer'),
       ),
     );
@@ -114,7 +114,7 @@ final class BetaLeftoverStack extends Stack {
       GoogleApiGatewayApiIamMember(
         localName: 'api_gateway_api_iam_member',
         api: .literal('terradart-leftover'),
-        member: .literal('user:terradart-leftover@example.com'),
+        member: .user('terradart-leftover@example.com'),
         role: .literal('roles/viewer'),
       ),
     );
@@ -136,7 +136,7 @@ final class BetaLeftoverStack extends Stack {
       GoogleApiGatewayGatewayIamBinding(
         localName: 'api_gateway_gateway_iam_binding',
         gateway: .literal('terradart-leftover'),
-        members: .literal(['user:terradart-leftover@example.com']),
+        members: .literal([.user('terradart-leftover@example.com')]),
         role: .literal('roles/viewer'),
       ),
     );
@@ -144,7 +144,7 @@ final class BetaLeftoverStack extends Stack {
       GoogleApiGatewayGatewayIamMember(
         localName: 'api_gateway_gateway_iam_member',
         gateway: .literal('terradart-leftover'),
-        member: .literal('user:terradart-leftover@example.com'),
+        member: .user('terradart-leftover@example.com'),
         role: .literal('roles/viewer'),
       ),
     );
@@ -197,7 +197,7 @@ final class BetaLeftoverStack extends Stack {
     add(
       GoogleComputeBackendBucketIamBinding(
         localName: 'compute_backend_bucket_iam_binding',
-        members: .literal(['user:terradart-leftover@example.com']),
+        members: .literal([.user('terradart-leftover@example.com')]),
         backendBucket: .literal('terradart-leftover'),
         role: .literal('roles/viewer'),
       ),
@@ -205,7 +205,7 @@ final class BetaLeftoverStack extends Stack {
     add(
       GoogleComputeBackendBucketIamMember(
         localName: 'compute_backend_bucket_iam_member',
-        member: .literal('user:terradart-leftover@example.com'),
+        member: .user('terradart-leftover@example.com'),
         backendBucket: .literal('terradart-leftover'),
         role: .literal('roles/viewer'),
       ),
@@ -220,7 +220,7 @@ final class BetaLeftoverStack extends Stack {
     add(
       GoogleComputeBackendServiceIamBinding(
         localName: 'compute_backend_service_iam_binding',
-        members: .literal(['user:terradart-leftover@example.com']),
+        members: .literal([.user('terradart-leftover@example.com')]),
         backendService: .literal('terradart-leftover'),
         role: .literal('roles/viewer'),
       ),
@@ -228,7 +228,7 @@ final class BetaLeftoverStack extends Stack {
     add(
       GoogleComputeBackendServiceIamMember(
         localName: 'compute_backend_service_iam_member',
-        member: .literal('user:terradart-leftover@example.com'),
+        member: .user('terradart-leftover@example.com'),
         backendService: .literal('terradart-leftover'),
         role: .literal('roles/viewer'),
       ),
@@ -268,7 +268,7 @@ final class BetaLeftoverStack extends Stack {
       GoogleComputeMachineImageIamBinding(
         localName: 'compute_machine_image_iam_binding',
         machineImage: .literal('terradart-leftover'),
-        members: .literal(['user:terradart-leftover@example.com']),
+        members: .literal([.user('terradart-leftover@example.com')]),
         role: .literal('roles/viewer'),
       ),
     );
@@ -276,7 +276,7 @@ final class BetaLeftoverStack extends Stack {
       GoogleComputeMachineImageIamMember(
         localName: 'compute_machine_image_iam_member',
         machineImage: .literal('terradart-leftover'),
-        member: .literal('user:terradart-leftover@example.com'),
+        member: .user('terradart-leftover@example.com'),
         role: .literal('roles/viewer'),
       ),
     );
@@ -311,7 +311,7 @@ final class BetaLeftoverStack extends Stack {
     add(
       GoogleComputeRegionBackendBucketIamBinding(
         localName: 'compute_region_backend_bucket_iam_binding',
-        members: .literal(['user:terradart-leftover@example.com']),
+        members: .literal([.user('terradart-leftover@example.com')]),
         backendBucket: .literal('terradart-leftover'),
         role: .literal('roles/viewer'),
       ),
@@ -319,7 +319,7 @@ final class BetaLeftoverStack extends Stack {
     add(
       GoogleComputeRegionBackendBucketIamMember(
         localName: 'compute_region_backend_bucket_iam_member',
-        member: .literal('user:terradart-leftover@example.com'),
+        member: .user('terradart-leftover@example.com'),
         backendBucket: .literal('terradart-leftover'),
         role: .literal('roles/viewer'),
       ),
@@ -334,7 +334,7 @@ final class BetaLeftoverStack extends Stack {
     add(
       GoogleComputeRegionBackendServiceIamBinding(
         localName: 'compute_region_backend_service_iam_binding',
-        members: .literal(['user:terradart-leftover@example.com']),
+        members: .literal([.user('terradart-leftover@example.com')]),
         backendService: .literal('terradart-leftover'),
         role: .literal('roles/viewer'),
       ),
@@ -342,7 +342,7 @@ final class BetaLeftoverStack extends Stack {
     add(
       GoogleComputeRegionBackendServiceIamMember(
         localName: 'compute_region_backend_service_iam_member',
-        member: .literal('user:terradart-leftover@example.com'),
+        member: .user('terradart-leftover@example.com'),
         backendService: .literal('terradart-leftover'),
         role: .literal('roles/viewer'),
       ),
@@ -613,7 +613,7 @@ final class BetaLeftoverStack extends Stack {
       GoogleRuntimeconfigConfigIamBinding(
         localName: 'runtimeconfig_config_iam_binding',
         config: .literal('terradart-leftover'),
-        members: .literal(['user:terradart-leftover@example.com']),
+        members: .literal([.user('terradart-leftover@example.com')]),
         role: .literal('roles/viewer'),
       ),
     );
@@ -621,7 +621,7 @@ final class BetaLeftoverStack extends Stack {
       GoogleRuntimeconfigConfigIamMember(
         localName: 'runtimeconfig_config_iam_member',
         config: .literal('terradart-leftover'),
-        member: .literal('user:terradart-leftover@example.com'),
+        member: .user('terradart-leftover@example.com'),
         role: .literal('roles/viewer'),
       ),
     );
@@ -734,7 +734,7 @@ final class BetaLeftoverStack extends Stack {
       GoogleVertexAiEndpointIamBinding(
         localName: 'vertex_ai_endpoint_iam_binding',
         endpoint: .literal('terradart-leftover'),
-        members: .literal(['user:terradart-leftover@example.com']),
+        members: .literal([.user('terradart-leftover@example.com')]),
         role: .literal('roles/viewer'),
       ),
     );
@@ -742,7 +742,7 @@ final class BetaLeftoverStack extends Stack {
       GoogleVertexAiEndpointIamMember(
         localName: 'vertex_ai_endpoint_iam_member',
         endpoint: .literal('terradart-leftover'),
-        member: .literal('user:terradart-leftover@example.com'),
+        member: .user('terradart-leftover@example.com'),
         role: .literal('roles/viewer'),
       ),
     );
@@ -757,7 +757,7 @@ final class BetaLeftoverStack extends Stack {
       GoogleVertexAiFeatureGroupIamBinding(
         localName: 'vertex_ai_feature_group_iam_binding',
         featureGroup: .literal('terradart-leftover'),
-        members: .literal(['user:terradart-leftover@example.com']),
+        members: .literal([.user('terradart-leftover@example.com')]),
         role: .literal('roles/viewer'),
       ),
     );
@@ -765,7 +765,7 @@ final class BetaLeftoverStack extends Stack {
       GoogleVertexAiFeatureGroupIamMember(
         localName: 'vertex_ai_feature_group_iam_member',
         featureGroup: .literal('terradart-leftover'),
-        member: .literal('user:terradart-leftover@example.com'),
+        member: .user('terradart-leftover@example.com'),
         role: .literal('roles/viewer'),
       ),
     );
@@ -781,7 +781,7 @@ final class BetaLeftoverStack extends Stack {
         localName: 'vertex_ai_feature_online_store_featureview_iam_binding',
         featureOnlineStore: .literal('terradart-leftover'),
         featureView: .literal('terradart-leftover'),
-        members: .literal(['user:terradart-leftover@example.com']),
+        members: .literal([.user('terradart-leftover@example.com')]),
         role: .literal('roles/viewer'),
       ),
     );
@@ -790,7 +790,7 @@ final class BetaLeftoverStack extends Stack {
         localName: 'vertex_ai_feature_online_store_featureview_iam_member',
         featureOnlineStore: .literal('terradart-leftover'),
         featureView: .literal('terradart-leftover'),
-        member: .literal('user:terradart-leftover@example.com'),
+        member: .user('terradart-leftover@example.com'),
         role: .literal('roles/viewer'),
       ),
     );
@@ -806,7 +806,7 @@ final class BetaLeftoverStack extends Stack {
       GoogleVertexAiFeatureOnlineStoreIamBinding(
         localName: 'vertex_ai_feature_online_store_iam_binding',
         featureOnlineStore: .literal('terradart-leftover'),
-        members: .literal(['user:terradart-leftover@example.com']),
+        members: .literal([.user('terradart-leftover@example.com')]),
         role: .literal('roles/viewer'),
       ),
     );
@@ -814,7 +814,7 @@ final class BetaLeftoverStack extends Stack {
       GoogleVertexAiFeatureOnlineStoreIamMember(
         localName: 'vertex_ai_feature_online_store_iam_member',
         featureOnlineStore: .literal('terradart-leftover'),
-        member: .literal('user:terradart-leftover@example.com'),
+        member: .user('terradart-leftover@example.com'),
         role: .literal('roles/viewer'),
       ),
     );
@@ -830,7 +830,7 @@ final class BetaLeftoverStack extends Stack {
         localName: 'vertex_ai_featurestore_entitytype_iam_binding',
         entitytype: .literal('terradart-leftover'),
         featurestore: .literal('terradart-leftover'),
-        members: .literal(['user:terradart-leftover@example.com']),
+        members: .literal([.user('terradart-leftover@example.com')]),
         role: .literal('roles/viewer'),
       ),
     );
@@ -839,7 +839,7 @@ final class BetaLeftoverStack extends Stack {
         localName: 'vertex_ai_featurestore_entitytype_iam_member',
         entitytype: .literal('terradart-leftover'),
         featurestore: .literal('terradart-leftover'),
-        member: .literal('user:terradart-leftover@example.com'),
+        member: .user('terradart-leftover@example.com'),
         role: .literal('roles/viewer'),
       ),
     );
@@ -855,7 +855,7 @@ final class BetaLeftoverStack extends Stack {
       GoogleVertexAiFeaturestoreIamBinding(
         localName: 'vertex_ai_featurestore_iam_binding',
         featurestore: .literal('terradart-leftover'),
-        members: .literal(['user:terradart-leftover@example.com']),
+        members: .literal([.user('terradart-leftover@example.com')]),
         role: .literal('roles/viewer'),
       ),
     );
@@ -863,7 +863,7 @@ final class BetaLeftoverStack extends Stack {
       GoogleVertexAiFeaturestoreIamMember(
         localName: 'vertex_ai_featurestore_iam_member',
         featurestore: .literal('terradart-leftover'),
-        member: .literal('user:terradart-leftover@example.com'),
+        member: .user('terradart-leftover@example.com'),
         role: .literal('roles/viewer'),
       ),
     );

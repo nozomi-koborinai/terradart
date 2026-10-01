@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
+
 /// Sensitive field paths for `google_iap_location_web_iam_member`.
 const Set<String> _googleIapLocationWebIamMemberSensitive = <String>{};
 
@@ -47,7 +49,7 @@ final class IapLocationWebIamMemberCondition {
 ///   localName: 'location_web_invoker',
 ///   location: TfArg.literal('us-central1'),
 ///   role: TfArg.literal('roles/iap.httpsResourceAccessor'),
-///   member: TfArg.ref(sa.iamMember),
+///   member: sa.principal,
 /// );
 /// ```
 final class GoogleIapLocationWebIamMember extends Resource {
@@ -57,7 +59,7 @@ final class GoogleIapLocationWebIamMember extends Resource {
     required super.localName,
     required TfArg<String> location,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     IapLocationWebIamMemberCondition? condition,
     TfArg<String>? project,
     super.lifecycle,

@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../beyondcorp/google_beyondcorp_security_gateway.dart'
     show GoogleBeyondcorpSecurityGateway;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_beyondcorp_security_gateway_iam_member`.
 const Set<String> _googleBeyondcorpSecurityGatewayIamMemberSensitive =
@@ -42,7 +43,7 @@ final class GoogleBeyondcorpSecurityGatewayIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleBeyondcorpSecurityGateway> securityGateway,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     BeyondcorpSecurityGatewayIamMemberCondition? condition,
     TfArg<String>? location,
     TfArg<String>? project,

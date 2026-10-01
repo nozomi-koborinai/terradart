@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
+
 /// Sensitive field paths for `google_iap_web_forwarding_rule_service_iam_member`.
 const Set<String> _googleIapWebForwardingRuleServiceIamMemberSensitive =
     <String>{};
@@ -40,7 +42,7 @@ final class GoogleIapWebForwardingRuleServiceIamMember extends Resource {
     required super.localName,
     required TfArg<String> forwardingRuleServiceName,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     IapWebForwardingRuleServiceIamMemberCondition? condition,
     TfArg<String>? project,
     super.lifecycle,

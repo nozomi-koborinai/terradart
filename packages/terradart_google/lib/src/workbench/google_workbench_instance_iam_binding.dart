@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
 import '../workbench/google_workbench_instance.dart'
     show GoogleWorkbenchInstance;
 
@@ -48,7 +49,7 @@ final class GoogleWorkbenchInstanceIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleWorkbenchInstance> instance,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     TfArg<String>? location,
     TfArg<String>? project,
     WorkbenchInstanceIamBindingCondition? condition,

@@ -58,7 +58,7 @@ final class CloudAssetStack extends Stack {
         localName: 'cloudasset_publisher',
         topic: topic.ref,
         role: .literal('roles/pubsub.publisher'),
-        member: .ref(assetSa.member),
+        member: assetSa.principal,
         dependsOn: [ResourceDependency(topic), ResourceDependency(assetSa)],
       ),
     );

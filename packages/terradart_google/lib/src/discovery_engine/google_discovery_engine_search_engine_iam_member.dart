@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../discovery_engine/google_discovery_engine_search_engine.dart'
     show GoogleDiscoveryEngineSearchEngine;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_discovery_engine_search_engine_iam_member`.
 const Set<String> _googleDiscoveryEngineSearchEngineIamMemberSensitive =
@@ -45,7 +46,7 @@ final class GoogleDiscoveryEngineSearchEngineIamMember extends Resource {
     TfArg<String>? collectionId,
     required RefTo<GoogleDiscoveryEngineSearchEngine> engine,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     DiscoveryEngineSearchEngineIamMemberCondition? condition,
     TfArg<String>? project,
     super.lifecycle,

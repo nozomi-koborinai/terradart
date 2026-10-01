@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../bigtable/google_bigtable_table.dart' show GoogleBigtableTable;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_bigtable_table_iam_member`.
 const Set<String> _googleBigtableTableIamMemberSensitive = <String>{};
@@ -41,7 +42,7 @@ final class GoogleBigtableTableIamMember extends Resource {
     TfArg<String>? instanceName,
     required RefTo<GoogleBigtableTable> table,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     BigtableTableIamMemberCondition? condition,
     TfArg<String>? project,
     super.lifecycle,

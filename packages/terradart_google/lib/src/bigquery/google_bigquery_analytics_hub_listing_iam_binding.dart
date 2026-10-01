@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../bigquery/google_bigquery_analytics_hub_listing.dart'
     show GoogleBigqueryAnalyticsHubListing;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_bigquery_analytics_hub_listing_iam_binding`.
 const Set<String> _googleBigqueryAnalyticsHubListingIamBindingSensitive =
@@ -51,7 +52,7 @@ final class GoogleBigqueryAnalyticsHubListingIamBinding extends Resource {
     required RefTo<GoogleBigqueryAnalyticsHubListing> listing,
     TfArg<String>? location,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     BigqueryAnalyticsHubListingIamBindingCondition? condition,
     TfArg<String>? project,
     super.lifecycle,

@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../healthcare/google_healthcare_hl7_v2_store.dart'
     show GoogleHealthcareHl7V2Store;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_healthcare_hl7_v2_store_iam_binding`.
 const Set<String> _googleHealthcareHl7V2StoreIamBindingSensitive = <String>{};
@@ -47,7 +48,7 @@ final class GoogleHealthcareHl7V2StoreIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleHealthcareHl7V2Store> hl7V2Store,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     HealthcareHl7V2StoreIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,

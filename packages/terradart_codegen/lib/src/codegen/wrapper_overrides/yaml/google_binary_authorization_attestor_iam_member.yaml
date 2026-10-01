@@ -15,7 +15,7 @@ curatedDoc: |-
   ///   localName: 'attestor_viewer',
   ///   attestor: attestor.ref,
   ///   role: TfArg.literal('roles/binaryauthorization.attestorViewer'),
-  ///   member: TfArg.literal('serviceAccount:ci@$projectId.iam.gserviceaccount.com'),
+  ///   member: .serviceAccount('ci@$projectId.iam.gserviceaccount.com'),
   /// );
   /// ```
 

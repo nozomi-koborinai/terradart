@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../dataplex/google_dataplex_entry_group.dart'
     show GoogleDataplexEntryGroup;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_dataplex_entry_group_iam_binding`.
 const Set<String> _googleDataplexEntryGroupIamBindingSensitive = <String>{};
@@ -46,7 +47,7 @@ final class GoogleDataplexEntryGroupIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleDataplexEntryGroup> entryGroup,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     DataplexEntryGroupIamBindingCondition? condition,
     TfArg<String>? location,
     TfArg<String>? project,

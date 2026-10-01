@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../gemini/google_gemini_repository_group.dart'
     show GoogleGeminiRepositoryGroup;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_gemini_repository_group_iam_member`.
 const Set<String> _googleGeminiRepositoryGroupIamMemberSensitive = <String>{};
@@ -42,7 +43,7 @@ final class GoogleGeminiRepositoryGroupIamMember extends Resource {
     required RefTo<GoogleGeminiRepositoryGroup> repositoryGroup,
     TfArg<String>? codeRepositoryIndex,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     GeminiRepositoryGroupIamMemberCondition? condition,
     TfArg<String>? location,
     TfArg<String>? project,

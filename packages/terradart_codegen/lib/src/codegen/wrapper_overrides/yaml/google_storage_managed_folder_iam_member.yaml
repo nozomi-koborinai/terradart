@@ -15,7 +15,7 @@ curatedDoc: |-
   ///   bucket: assets.ref,
   ///   managedFolder: folder.ref,
   ///   role: TfArg.literal('roles/storage.objectViewer'),
-  ///   member: TfArg.ref(reader.iamMember),
+  ///   member: reader.principal,
   /// );
   /// ```
 

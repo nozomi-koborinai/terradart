@@ -47,7 +47,7 @@ final class RegistryStack extends Stack {
     );
 
     // IAM members validate that the principal exists, so provision the service
-    // account in-stack and bind against its `iamMember` ref.
+    // account in-stack and bind against its `principal`.
     final consumer = add(
       GoogleServiceAccount(
         localName: 'registry_consumer',
@@ -94,7 +94,7 @@ final class RegistryStack extends Stack {
         localName: 'namespace_viewer',
         namespace: namespace.ref,
         role: .literal('roles/servicedirectory.viewer'),
-        member: .ref(consumer.iamMember),
+        member: consumer.principal,
         dependsOn: [
           ResourceDependency(namespace),
           ResourceDependency(consumer),
@@ -107,7 +107,7 @@ final class RegistryStack extends Stack {
         localName: 'namespace_viewer_binding',
         namespace: namespace.ref,
         role: .literal('roles/servicedirectory.viewer'),
-        members: .literal([consumer.iamMember.interpolation]),
+        members: .literal([consumer.principal]),
         dependsOn: [
           ResourceDependency(namespace),
           ResourceDependency(namespaceViewer),
@@ -139,7 +139,7 @@ final class RegistryStack extends Stack {
         localName: 'service_editor',
         service: service.ref,
         role: .literal('roles/servicedirectory.editor'),
-        member: .ref(consumer.iamMember),
+        member: consumer.principal,
         dependsOn: [ResourceDependency(service), ResourceDependency(consumer)],
       ),
     );
@@ -149,7 +149,7 @@ final class RegistryStack extends Stack {
         localName: 'service_editor_binding',
         service: service.ref,
         role: .literal('roles/servicedirectory.editor'),
-        members: .literal([consumer.iamMember.interpolation]),
+        members: .literal([consumer.principal]),
         dependsOn: [
           ResourceDependency(service),
           ResourceDependency(serviceEditor),

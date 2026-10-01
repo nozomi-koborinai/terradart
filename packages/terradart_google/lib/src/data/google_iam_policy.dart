@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_iam_policy`.
 const Set<String> _googleIamPolicySensitive = <String>{};
@@ -35,7 +36,7 @@ final class DataIamPolicyAuditLogConfigs {
     required this.logType,
   });
 
-  final TfArg<List<String>>? exemptedMembers;
+  final TfArg<List<IamPrincipal>>? exemptedMembers;
 
   final TfArg<String> logType;
 
@@ -55,7 +56,7 @@ final class DataIamPolicyBinding {
     this.condition,
   });
 
-  final TfArg<List<String>> members;
+  final TfArg<List<IamPrincipal>> members;
 
   final TfArg<String> role;
 
