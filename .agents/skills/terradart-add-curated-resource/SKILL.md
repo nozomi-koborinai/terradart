@@ -23,7 +23,7 @@ Read [`CONTEXT.md`](../../../CONTEXT.md) for vocabulary. Generation policy and p
 
 **Task progress:**
 
-- [ ] 1. **Confirm the type** exists in `schema.json`. Note the exact `google_*` key (do not infer from MM product file names). IAM adjuncts may be `*_iam_member`, `*_iam_binding`, or `*_iam_policy`. For binding/policy, set `curatedDoc` that states authoritative / replace semantics (`yaml_loader_test.dart` enforces this). Prefer `*_iam_member` in examples when an additive grant is enough.
+- [ ] 1. **Confirm the type** exists in `schema.json`. Note the exact `google_*` key (do not infer from MM product file names). IAM adjuncts may be `*_iam_member`, `*_iam_binding`, or `*_iam_policy`. For binding/policy, set `curatedDoc` that states authoritative / replace semantics (`yaml_loader_test.dart` enforces this). Prefer `*_iam_member` in examples when an additive grant is enough. The adjunct's parent argument comes from `- parents: iam-adjuncts` in `tool/reference_targets.yaml` (`service: api.ref`); a parent whose identity input the heuristic misses gets an `identity:` entry there, not a `customSlots` override.
 - [ ] 2. **Manifest:** add or update **one** row in `tool/mm_yaml_sources.yaml` (`upstream` path or `null` with reason). Every curated override must have a manifest entry.
 - [ ] 3. **MM fixture (when `upstream` is set):** run `dart tool/sync_mm_yaml.dart` for that type only if you intend to consume new MM hints in this PR.
 - [ ] 4. **New resource only:** scaffold with `terradart wrap-init` (skip when editing an existing override — including one the weekly schema bump already scaffolded; its `tool/curation_backlog.yaml` note says so).

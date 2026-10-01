@@ -29,6 +29,21 @@ Per-package changelogs live alongside each package and are the system of record 
   `workload_identity_pool_id`, the Logging bucket inputs (the bucket's
   `id`), and the MM-imported attribute on a few compute, AlloyDB, Secret
   Manager and Healthcare inputs.
+- **IAM adjuncts take their parent as one `RefTo<R>`**
+  (`terradart_codegen`, `terradart_google`, `terradart_google_beta`,
+  `terradart_core`, `terradart_migrate`) — every
+  `*_iam_member` / `*_iam_binding` / `*_iam_policy` factory names its
+  parent with one argument called after the parent
+  (`GoogleCloudRunV2ServiceIamMember(service: api.ref, ...)`) instead of
+  `name:` plus `location:` / `project:` copied from the parent
+  (`- parents: iam-adjuncts` in `tool/reference_targets.yaml`). The
+  positional keys the parent also exports stay optional overrides and
+  default to the parent's attribute through the new
+  `RefTo.alsoAs(attribute)`, so synth output now carries the parent's
+  `project` (and `location` / `region` / `zone`) instead of falling back
+  to the provider default. CES resources absorb `location` and `project`
+  the same way (`with:` on a ledger rule). The migrator leaves those keys
+  out when the HCL reads them off the same parent block.
 
 ## [0.31.0] - 2026-10-01
 
