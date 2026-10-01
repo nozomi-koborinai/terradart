@@ -1,8 +1,11 @@
 // ignore_for_file: avoid_print
 //
-// Maintainer gate: schema-documented finite values must not surface as
-// TfArg<String> when the wrapper override lacks dartTypeOverrides / prelude
-// enum coverage.
+// google lane gate: in the GA `hashicorp/google` overrides,
+// schema-documented finite values must not surface as TfArg<String> when
+// the wrapper override lacks dartTypeOverrides / prelude enum coverage.
+// Only that lane needs it — google-beta derives its enums from MM YAML
+// (--mm-hints), and aws / cloudflare / appwrite from provider hints
+// (--provider-enums).
 //
 // Top-level gaps (THIN / PARTIAL) and NESTED_PARTIAL (customSlot helpers
 // still using TfArg<String> for schema enums) fail CI by default.
@@ -10,8 +13,8 @@
 // --strict-nested is passed.
 //
 // Usage:
-//   dart tool/check_override_enum_gaps.dart
-//   dart tool/check_override_enum_gaps.dart --strict-nested
+//   dart tool/check_google_enum_gaps.dart
+//   dart tool/check_google_enum_gaps.dart --strict-nested
 
 import 'dart:convert';
 import 'dart:io';
@@ -20,9 +23,7 @@ import 'package:path/path.dart' as p;
 import 'package:terradart_codegen/src/codegen/enum_value_parser.dart';
 import 'package:yaml/yaml.dart';
 
-final _root = Directory.current.path == '/workspace'
-    ? Directory.current
-    : Directory(p.join(Directory.current.path));
+final _root = Directory.current;
 
 final _schema =
     jsonDecode(
@@ -332,7 +333,7 @@ void main(List<String> args) {
   final staleDebt = debt.keys.where((k) => !allGapKeys.contains(k)).toList();
   if (staleDebt.isNotEmpty) {
     print(
-      'check_override_enum_gaps: stale tool/enum_gap_debt.yaml entries '
+      'check_google_enum_gaps: stale tool/enum_gap_debt.yaml entries '
       '(no longer a gap — remove the lines):',
     );
     for (final k in staleDebt) {
@@ -363,7 +364,7 @@ void main(List<String> args) {
 
   if (effective.isEmpty && nestedThinAdvisory.isEmpty) {
     print(
-      'check_override_enum_gaps: OK (0 top-level, 0 nested partial, '
+      'check_google_enum_gaps: OK (0 top-level, 0 nested partial, '
       '0 nested thin$debtNote; ${frozenByExcludeGaps.length} frozen-by-exclude)',
     );
     printFrozen();
@@ -372,7 +373,7 @@ void main(List<String> args) {
 
   if (effective.isEmpty) {
     print(
-      'check_override_enum_gaps: OK (0 failing$debtNote; '
+      'check_google_enum_gaps: OK (0 failing$debtNote; '
       '${nestedThinAdvisory.length} nested thin advisory; '
       '${frozenByExcludeGaps.length} frozen-by-exclude)',
     );
@@ -383,7 +384,7 @@ void main(List<String> args) {
     exit(0);
   }
 
-  print('check_override_enum_gaps: ${effective.length} gap(s)$debtNote:');
+  print('check_google_enum_gaps: ${effective.length} gap(s)$debtNote:');
   for (final g in effective) {
     print('  $g');
   }

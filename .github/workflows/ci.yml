@@ -38,8 +38,8 @@ jobs:
           # Selection logic lives in tested Dart
           # (tool/select_changed_examples.dart + its unit test) — an earlier
           # awk regex here once fanned a pubspec-only bump out to every
-          # example, a real GCP-cost leak. The shell only feeds it the git
-          # diff. The script is dart:core-only, so no `dart pub get` needed.
+          # example. The shell only feeds it the git diff. The script is
+          # dart:core-only, so no `dart pub get` needed.
           if [ "$EVENT" = 'pull_request' ]; then
             base="${BASE_SHA:-origin/main}"
             json="$(git diff --name-only "$base" HEAD \
@@ -116,13 +116,11 @@ jobs:
       - name: Verify generated wrappers are up to date (every providers.yaml lane)
         run: dart tool/wrap_lanes.dart --gate wrap
 
-  override_gates:
-    name: override gates (lint, enum gaps, MM fingerprint)
+  override_lint:
+    name: override lint (every lane)
     runs-on: ubuntu-latest
-    # These three gates previously lived ONLY in tool/agent_verify.sh — when
-    # nobody ran the full local gate, they silently rotted (enum-gap failures
-    # accumulated across Waves 42-77 with CI staying green). Running them per
-    # PR closes that structural hole; they are all seconds-cheap.
+    # Seconds-cheap gates that once lived only in tool/agent_verify.sh and
+    # rotted whenever nobody ran the full local gate.
     steps:
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1
@@ -131,10 +129,23 @@ jobs:
       - run: dart pub get
       - name: terradart lint-override (every providers.yaml lane)
         run: dart tool/wrap_lanes.dart --gate lint
-      - name: check_override_enum_gaps (+ debt ledger staleness)
-        run: dart tool/check_override_enum_gaps.dart --strict-nested
-      - name: check_mm_upstream_fingerprint
-        run: dart tool/check_mm_upstream_fingerprint.dart
+
+  google_lane_gates:
+    name: google lane gates (enum gaps, MM upstream fingerprint)
+    runs-on: ubuntu-latest
+    # Gates that only the google GA lane needs: its overrides hand-promote
+    # enums (the other lanes derive them from MM YAML or provider hints), and
+    # only it records MM upstream paths in tool/mm_yaml_sources.yaml.
+    steps:
+      - uses: actions/checkout@v6
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - run: dart pub get
+      - name: google enum gaps (+ debt ledger staleness)
+        run: dart tool/check_google_enum_gaps.dart --strict-nested
+      - name: google MM upstream fingerprint
+        run: dart tool/check_google_mm_fingerprint.dart
 
   publish_dry_run:
     name: pub publish --dry-run (${{ matrix.package }})
@@ -142,11 +153,12 @@ jobs:
     needs: test
     # Pre-merge dry-run catches what previously broke publish AFTER merge:
     # MM/cert fixtures tripping pub.dev's secret scanner (fixed reactively in
-    # 0.12.5 and 0.12.11 by adding false_secrets).
+    # 0.12.5 and 0.12.11 by adding false_secrets). Every package publish.yml
+    # publishes is listed.
     strategy:
       fail-fast: false
       matrix:
-        package: [terradart_core, terradart_codegen, terradart_google, terradart_hcl, terradart_migrate]
+        package: [terradart_core, terradart_codegen, terradart_time, terradart_google, terradart_google_beta, terradart_appwrite, terradart_cloudflare, terradart_aws, terradart_hcl, terradart_migrate]
     steps:
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1
@@ -228,9 +240,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ${{ env.TF_PLUGIN_CACHE_DIR }}
-          # A cache entry is immutable per key, and synth writes the floating
-          # constraint `~> 7.0`, so `terraform init` resolves the NEWEST
-          # provider release while a key derived from the pinned metadata
+          # A cache entry is immutable per key, and google synth writes the
+          # floating constraint `~> 7.0`, so `terraform init` resolves the
+          # NEWEST provider release while a key derived from the pinned metadata
           # never changed: the entry went stale on the first upstream release
           # and every leg then restored it, missed, downloaded, and could not
           # save ("Cache hit occurred on the primary key, not saving"). Key on
@@ -261,12 +273,14 @@ jobs:
           dart pub get
           echo "duration_ms=$(( ($(date +%s%N) - start) / 1000000 ))" >> "$GITHUB_OUTPUT"
 
+      - name: Placeholder synth inputs
+        # The same environment tool/example_synth_gates.dart synths every
+        # example with, whatever its provider.
+        run: dart tool/example_synth_env.dart >> "$GITHUB_ENV"
+
       - name: Synth
         id: synth
         working-directory: examples/${{ matrix.example }}_quickstart
-        env:
-          GCP_PROJECT_ID: ci-test-project-id
-          DB_PASSWORD: ci-test-secret
         run: |
           start=$(date +%s%N)
           dart run bin/infra.dart
@@ -282,7 +296,7 @@ jobs:
           terraform validate
           echo "duration_ms=$(( ($(date +%s%N) - start) / 1000000 ))" >> "$GITHUB_OUTPUT"
 
-      - name: Phase 5.0 timing summary
+      - name: Timing summary
         if: always()
         run: |
           job_start_ns="${{ steps.job_start.outputs.started_ns }}"
@@ -443,7 +457,8 @@ jobs:
       - migrate_roundtrip
       - migrate_fixtures
       - migrate_moved
-      - override_gates
+      - override_lint
+      - google_lane_gates
       - publish_dry_run
       - wrap_init_check
       - wrap_promote_check
@@ -467,7 +482,8 @@ jobs:
             migrate round-trip gate=${{ needs.migrate_roundtrip.result }}
             migrate fixture gate=${{ needs.migrate_fixtures.result }}
             migrate moved gate=${{ needs.migrate_moved.result }}
-            override gates=${{ needs.override_gates.result }}
+            override lint=${{ needs.override_lint.result }}
+            google lane gates=${{ needs.google_lane_gates.result }}
             pub publish --dry-run=${{ needs.publish_dry_run.result }}
             terradart wrap-init smoke=${{ needs.wrap_init_check.result }}
             terradart wrap-promote smoke=${{ needs.wrap_promote_check.result }}

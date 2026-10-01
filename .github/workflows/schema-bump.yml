@@ -117,10 +117,9 @@ jobs:
         with:
           sdk: stable
 
-      - uses: hashicorp/setup-terraform@v3
-        # Default terraform_version is latest stable; intentional per
-        # docs/superpowers/specs/2026-05-17-plan5e-schema-bump-automation-design.md
-        # Section 9 question 1.
+      - uses: hashicorp/setup-terraform@v4
+        # No terraform_version: the latest stable Terraform reads every
+        # lane's newest provider release.
 
       - name: Resolve workspace deps
         run: dart pub get
