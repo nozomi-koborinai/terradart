@@ -35,7 +35,7 @@
 #   - packages/terradart_time/README.md           (pubspec sample carets)
 #   - packages/terradart_codegen/README.md        (`dart pub global activate` caret)
 #   - website/src/content/docs/docs/getting-started.mdx  (pubspec sample caret note + version line)
-#   - website/src/content/docs/docs/providers/aws.md              (pubspec sample carets)
+#   - website/src/content/docs/docs/providers/*.md                (pubspec sample carets)
 #   - .github/ISSUE_TEMPLATE/bug.yml              (alpha banner version)
 #   - .github/ISSUE_TEMPLATE/feature.yml          (alpha banner version)
 #   - .github/ISSUE_TEMPLATE/question.yml         (alpha banner version)
@@ -261,7 +261,7 @@ done
 echo "  Minor (.x) caret samples + banner:"
 for f in README.md \
          website/src/content/docs/docs/getting-started.mdx \
-         website/src/content/docs/docs/providers/aws.md \
+         website/src/content/docs/docs/providers/*.md \
          packages/terradart_core/README.md \
          packages/terradart_google/README.md \
          packages/terradart_google_beta/README.md \
