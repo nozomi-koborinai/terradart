@@ -85,6 +85,32 @@ void main() {
     });
   });
 
+  test('conciseTypeNames fails on a final name another type owns', () {
+    expect(
+      () => conciseTypeNames(
+        'FooBar',
+        [
+          ['type'],
+        ],
+        owned: {'FooBarType'},
+      ),
+      throwsStateError,
+    );
+  });
+
+  test('a reserved variant name yields to a path with no other name', () {
+    expect(
+      conciseTypeNames(
+        'FooBar',
+        [
+          ['type'],
+        ],
+        reserved: {'FooBarType'},
+      ),
+      ['FooBarType'],
+    );
+  });
+
   test('conciseTypeNames keeps the stem away from stemless paths', () {
     expect(
       conciseTypeNames(

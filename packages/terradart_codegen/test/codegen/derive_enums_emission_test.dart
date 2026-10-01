@@ -44,6 +44,76 @@ void main() {
       expect(src, contains('final String terraformValue;'));
     });
 
+    test('a top-level enum and block helper never share a name', () {
+      const def = ResourceDef(
+        terraformType: 'google_foo_bar',
+        root: BlockDef(
+          attributes: [
+            Attribute(
+              name: 'bar_type',
+              type: StringType(),
+              constraints: Constraints(
+                optional: true,
+                enumValues: ['ONE', 'TWO'],
+              ),
+            ),
+          ],
+          nestedBlocks: [
+            NestedBlockDef(
+              name: 'type',
+              nesting: NestingMode.single,
+              constraints: Constraints(optional: true),
+              block: BlockDef(
+                attributes: [
+                  Attribute(
+                    name: 'x',
+                    type: StringType(),
+                    constraints: Constraints(optional: true),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
+      final emitter = WrapperEmitter(
+        overrides: {
+          'google_foo_bar': const WrapperOverride(
+            outputDir: 'foo',
+            deriveEnums: true,
+            deriveNestedTypes: true,
+          ),
+        },
+        rawResourceSchemas: {
+          'google_foo_bar': {
+            'attributes': {
+              'bar_type': {'type': 'string', 'optional': true},
+            },
+            'block_types': {
+              'type': {
+                'nesting_mode': 'single',
+                'block': {
+                  'attributes': {
+                    'x': {'type': 'string', 'optional': true},
+                  },
+                },
+              },
+            },
+          },
+        },
+      );
+      final src = emitter.emit(def, providerSource: 'hashicorp/google');
+      final declared = [
+        for (final m in RegExp(
+          r'^(?:final class|class|enum) (\w+)',
+          multiLine: true,
+        ).allMatches(src))
+          m[1]!,
+      ];
+      expect(declared, containsAll(['FooBarType', 'FooBarBarType']));
+      expect(declared.toSet(), hasLength(declared.length));
+    });
+
     test('does NOT emit a derived enum when deriveEnums is false', () {
       final emitter = WrapperEmitter(
         overrides: {

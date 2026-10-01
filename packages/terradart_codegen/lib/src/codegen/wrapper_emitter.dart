@@ -312,11 +312,10 @@ class WrapperEmitter {
     // replacing the hand-written `prelude` enum block. Nested-block enums are
     // out of scope for A1 (top-level attributes only).
     if (override?.deriveEnums ?? false) {
-      final names = topLevelTypeNames(
-        shortResourcePascal(def.terraformType),
-        def.root.attributes.map((a) => a.name),
-        laneInputs: laneInputs,
-      );
+      final names = topLevelTypeNames(shortResourcePascal(def.terraformType), [
+        ...def.root.attributes.map((a) => a.name),
+        ...def.root.nestedBlocks.map((b) => b.name),
+      ], laneInputs: laneInputs);
       for (final attr in def.root.attributes) {
         final values = attr.constraints.enumValues;
         if (values == null || values.isEmpty) continue;

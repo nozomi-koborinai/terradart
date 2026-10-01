@@ -178,8 +178,9 @@ List<String>? descriptionEnumValues(List<String> path, String? description) =>
 ///
 /// Each class is named by [conciseTypeNames]: [resourcePrefix] plus the
 /// shortest trailing part of its path no other type of the resource takes
-/// — neither a top-level input's name ([topLevelTypeNames]) nor a name in [reserved]
-/// (see [rootSealedTypeNames]).
+/// — never a top-level input's name ([topLevelTypeNames]), and a name in
+/// [reserved] (a root sealed variant's, see [rootSealedTypeNames]) only
+/// when nothing shorter is left.
 ///
 /// [enumValues] decides each leaf attribute's enum value set from its
 /// dotted path and description; the default reads the description with
@@ -237,15 +238,17 @@ List<NestedBlockSpec> collectNestedTypes({
     scan.children,
     acrossNames: shareIdenticalShapes,
   );
-  return _renameConcisely(specs, resourcePrefix, laneInputs, {
-    ...reserved,
-    ...topLevelTypeNames(resourcePrefix, laneInputs: laneInputs, [
-      for (final MapEntry(:key, :value) in _optionalMap(
-        resourceBlock['attributes'],
-        context: 'attributes',
-      ).entries)
-        if (value is! Map || !value.containsKey('nested_type')) key,
-    ]).values,
+  final attributes = _optionalMap(
+    resourceBlock['attributes'],
+    context: 'attributes',
+  );
+  final topLevel = topLevelTypeNames(resourcePrefix, laneInputs: laneInputs, [
+    ...attributes.keys,
+    ..._optionalMap(resourceBlock['block_types'], context: 'block_types').keys,
+  ]);
+  return _renameConcisely(specs, resourcePrefix, laneInputs, reserved, {
+    for (final MapEntry(:key, :value) in attributes.entries)
+      if (value is! Map || !value.containsKey('nested_type')) topLevel[key]!,
   });
 }
 
@@ -257,6 +260,7 @@ List<NestedBlockSpec> _renameConcisely(
   String stem,
   Map<String, Set<String>> laneInputs,
   Set<String> reserved,
+  Set<String> owned,
 ) {
   final classes = <String, NestedBlockSpec>{};
   final enums = <String, List<String>>{};
@@ -307,6 +311,7 @@ List<NestedBlockSpec> _renameConcisely(
       for (final k in enumKeys) enums[k]!,
       ...groupPaths,
     ],
+    owned: owned,
     reserved: reserved,
     laneInputs: laneInputs,
     stemless: {

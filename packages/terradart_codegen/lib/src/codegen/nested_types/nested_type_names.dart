@@ -29,7 +29,8 @@ Set<String> rootSealedTypeNames(
   };
 }
 
-/// The type name each top-level input in [keys] takes on [stem]: [stem]
+/// The type name each top-level input in [keys] — attributes and blocks
+/// alike, so an enum and a block helper never share one — takes on [stem]: [stem]
 /// joined with the input's name by [joinTypeName] (`ComputeSnapshot` +
 /// `snapshot_type` → `ComputeSnapshotType`; `Ec2InstanceState` + `state` →
 /// `Ec2InstanceState`). When inputs join alike, the one that drops the
@@ -153,17 +154,22 @@ List<String> typeNameCandidates(
 /// index-aligned.
 ///
 /// Each takes the first of its [typeNameCandidates] that nothing else in
-/// the resource takes: no other path, and no name in [reserved]. On a
+/// the resource takes: no other path, and no name in [owned] or [reserved].
+/// [owned] names belong to other types outright (the top-level inputs'); a
+/// [reserved] name is one a sealed variant prefers, and a path left with no
+/// other candidate takes it (the variant then ends in `Choice`). On a
 /// collision the shorter path keeps its name and the deeper ones move to
 /// their next candidate; paths of the same depth all move. So a block
 /// named like no other block or enum input of the resource is
 /// `<stem><Name>`, and a deeper namesake is told apart by its nearest
 /// distinguishing ancestor. The paths at [stemless] (sealed types, whose
 /// variants are named after them) never take [stem] itself. [laneInputs]
-/// as for [joinStem].
+/// as for [joinStem]. Throws a [StateError] when a path runs out of
+/// candidates on a name another path or [owned] holds.
 List<String> conciseTypeNames(
   String stem,
   List<List<String>> paths, {
+  Set<String> owned = const {},
   Set<String> reserved = const {},
   Set<int> stemless = const {},
   Map<String, Set<String>> laneInputs = const {},
@@ -187,7 +193,7 @@ List<String> conciseTypeNames(
     }
     final move = <int>{};
     for (final MapEntry(key: name, value: ids) in owners.entries) {
-      if (reserved.contains(name)) {
+      if (owned.contains(name) || reserved.contains(name)) {
         move.addAll(ids.where(canMove));
         continue;
       }
@@ -209,7 +215,7 @@ List<String> conciseTypeNames(
   final names = [for (var i = 0; i < paths.length; i++) candidates[i][at[i]]];
   final seen = <String>{};
   for (var i = 0; i < names.length; i++) {
-    if (!seen.add(names[i])) {
+    if (owned.contains(names[i]) || !seen.add(names[i])) {
       throw StateError(
         'no unique type name for $stem ${paths[i].join('.')}: '
         '${names[i]} is taken',

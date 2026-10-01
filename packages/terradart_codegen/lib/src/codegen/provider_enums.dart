@@ -446,11 +446,10 @@ final class ProviderEnums {
     if (!o.deriveEnums || def == null) return o;
     final explicit = o.dartTypeOverrides ?? const <String, String>{};
     final slots = o.customSlots ?? const <String, CustomSlot>{};
-    final names = topLevelTypeNames(
-      shortResourcePascal(def.terraformType),
-      def.root.attributes.map((a) => a.name),
-      laneInputs: laneInputs,
-    );
+    final names = topLevelTypeNames(shortResourcePascal(def.terraformType), [
+      ...def.root.attributes.map((a) => a.name),
+      ...def.root.nestedBlocks.map((b) => b.name),
+    ], laneInputs: laneInputs);
     final derived = <String, String>{
       for (final attr in def.root.attributes)
         if (_isStringish(attr.type) &&
