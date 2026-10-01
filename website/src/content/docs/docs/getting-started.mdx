@@ -1,7 +1,9 @@
 ---
 title: Getting Started
-description: Install TerraDart and generate your first *.tf.json from a Stack.
+description: Install TerraDart, define a Stack for your provider, and generate your first *.tf.json plus the typed file your app imports.
 ---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
 
 This guide matches the [README quickstart](https://github.com/nozomi-koborinai/terradart#quickstart) for the **0.31.x** line. TerraDart is **alpha** — breaking changes land only on **minor** bumps; see [Status & versioning](/docs/status/) for the change policy and the [path to beta](/docs/status/#path-to-beta).
 
@@ -9,34 +11,80 @@ This guide matches the [README quickstart](https://github.com/nozomi-koborinai/t
 
 - Dart SDK ≥ 3.10
 - Terraform CLI ≥ 1.11.0
-- Credentials for your target provider (e.g. Google Cloud Application Default Credentials `gcloud auth application-default login`, or provider environment variables)
+- Credentials for your provider at apply time — Google Cloud Application Default Credentials (`gcloud auth application-default login`), the AWS SDK credential chain, `CLOUDFLARE_API_TOKEN`, or `APPWRITE_API_KEY`. Synth needs none, and none are written into the output.
 
 ## 1. Add dependencies
 
-Choose `terradart_core` along with the provider factory package(s) your stack requires:
+`terradart_core` plus the package for each provider your Stack uses (all on [pub.dev](https://pub.dev/packages/terradart_core)):
+
+<Tabs syncKey="provider">
+<TabItem label="Google Cloud">
 
 ```yaml
 # pubspec.yaml
+name: my_app
+environment:
+  sdk: ^3.10.0
 dependencies:
   terradart_core: ^0.31.x
-  terradart_google: ^0.31.x # for Google Cloud (GA)
-  # terradart_google_beta: ^0.31.x # for Google Cloud beta-only resources
-  # terradart_appwrite: ^0.31.x    # for Appwrite
-  # terradart_cloudflare: ^0.31.x  # for Cloudflare edge infrastructure
-  # terradart_aws: ^0.31.x        # for AWS
+  terradart_google: ^0.31.x
+  # terradart_google_beta: ^0.31.x  # beta-only types (Firebase, ...)
 ```
 
-Check [pub.dev](https://pub.dev/packages/terradart_core) for the latest patch, then run:
+</TabItem>
+<TabItem label="AWS">
+
+```yaml
+# pubspec.yaml
+name: my_app
+environment:
+  sdk: ^3.10.0
+dependencies:
+  terradart_core: ^0.31.x
+  terradart_aws: ^0.31.x
+```
+
+</TabItem>
+<TabItem label="Cloudflare">
+
+```yaml
+# pubspec.yaml
+name: my_app
+environment:
+  sdk: ^3.10.0
+dependencies:
+  terradart_core: ^0.31.x
+  terradart_cloudflare: ^0.31.x
+```
+
+</TabItem>
+<TabItem label="Appwrite">
+
+```yaml
+# pubspec.yaml
+name: my_app
+environment:
+  sdk: ^3.10.0
+dependencies:
+  terradart_core: ^0.31.x
+  terradart_appwrite: ^0.31.x
+```
+
+</TabItem>
+</Tabs>
 
 ```bash
 dart pub get
 ```
 
-The GA `hashicorp/google` catalog is filled. Beta-only types live in [`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta) (112 resource factories). [`terradart_appwrite`](https://pub.dev/packages/terradart_appwrite) is filled at the current pin (38 resource factories + 24 data sources). [`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare) is filled at its exact `cloudflare/cloudflare` pin (every resource and data source). [`terradart_aws`](/docs/aws/) is filled at its exact `hashicorp/aws` pin and installs from Git until its first pub.dev release.
+Each provider package wraps the whole catalog of its Terraform provider (Google's beta-only types live in [`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta)), so any resource the provider documents has a factory. One Stack can mix packages.
 
 ## 2. Define a Stack
 
-Create `lib/orders_stack.dart` (or follow the [pubsub quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart)):
+A Stack is one Terraform root module. `add` registers a resource; `addConstant` and `addOutput` declare what your app reads back — a constant at synth time, an output after apply — and `appExports` names the Dart file they are generated into:
+
+<Tabs syncKey="provider">
+<TabItem label="Google Cloud">
 
 ```dart
 // lib/orders_stack.dart
@@ -60,9 +108,111 @@ final class OrdersStack extends Stack {
 }
 ```
 
+</TabItem>
+<TabItem label="AWS">
+
+```dart
+// lib/queue_stack.dart
+import 'package:terradart_aws/provider.dart';
+import 'package:terradart_aws/sqs.dart';
+import 'package:terradart_core/terradart_core.dart';
+
+final class QueueStack extends Stack {
+  QueueStack()
+    : super(
+        providers: [const AwsProvider(region: 'us-east-1')],
+        appExports: AppExports('lib/generated/queue_stack.app.dart'),
+      ) {
+    final queue = add(AwsSqsQueue(
+      localName: 'orders',
+      name: .literal('orders-prod'),
+    ));
+    addConstant('ordersQueueName', .ref(queue.nameRef));
+    addOutput('orders_queue_url', .ref(queue.url));
+  }
+}
+```
+
+More on AWS — Lambda, ECS Express Mode, S3 + CloudFront: [Dart apps on AWS](/docs/aws/).
+
+</TabItem>
+<TabItem label="Cloudflare">
+
+```dart
+// lib/edge_stack.dart
+import 'package:terradart_cloudflare/dns.dart';
+import 'package:terradart_cloudflare/provider.dart';
+import 'package:terradart_cloudflare/zone.dart';
+import 'package:terradart_core/terradart_core.dart';
+
+final class EdgeStack extends Stack {
+  EdgeStack({required String accountId})
+    : super(
+        providers: [const CloudflareProvider()],
+        appExports: AppExports('lib/generated/edge_stack.app.dart'),
+      ) {
+    final zone = add(CloudflareZone(
+      localName: 'main',
+      name: .literal('example.com'),
+      account: ZoneAccount(id: .literal(accountId)),
+    ));
+    final api = add(CloudflareDnsRecord(
+      localName: 'api',
+      zoneId: zone.ref, // only a CloudflareZone fits here
+      name: .literal('api.example.com'),
+      type: .literal(.cname),
+      ttl: .literal(1),
+      content: .content(.literal('ghs.googlehosted.com')),
+      proxied: .literal(true),
+    ));
+    addConstant('apiHost', .ref(api.nameRef));
+    addOutput('zone_id', .ref(zone.id));
+  }
+}
+```
+
+Runnable: [`examples/cloudflare_dns_quickstart`](https://github.com/nozomi-koborinai/terradart/tree/main/examples/cloudflare_dns_quickstart).
+
+</TabItem>
+<TabItem label="Appwrite">
+
+```dart
+// lib/uploads_stack.dart
+import 'package:terradart_appwrite/provider.dart';
+import 'package:terradart_appwrite/storage.dart';
+import 'package:terradart_core/terradart_core.dart';
+
+final class UploadsStack extends Stack {
+  UploadsStack()
+    : super(
+        providers: [
+          const AppwriteProvider(
+            endpoint: 'https://cloud.appwrite.io/v1',
+            projectId: 'my-project',
+          ),
+        ],
+        appExports: AppExports('lib/generated/uploads_stack.app.dart'),
+      ) {
+    final uploads = add(AppwriteStorageBucket(
+      localName: 'uploads',
+      name: .literal('uploads'),
+      fileSecurity: .literal(true),
+    ));
+    addOutput('uploads_bucket_id', .ref(uploads.id));
+  }
+}
+```
+
+Runnable: [`examples/appwrite_quickstart`](https://github.com/nozomi-koborinai/terradart/tree/main/examples/appwrite_quickstart), which covers every Appwrite factory.
+
+</TabItem>
+</Tabs>
+
+`.literal(...)` is a value known now; `.ref(...)` is one Terraform resolves during apply. An argument that names another resource takes that resource's `ref` (`zoneId: zone.ref`) and does not compile with the wrong kind. Both are Dart 3.10 dot shorthands, like the enum in `.literal(.cname)` — every argument is typed, so the type name can be left out.
+
 ## 3. Synth Terraform JSON
 
-From `bin/infra.dart`:
+There is no synth CLI: `bin/infra.dart` constructs the Stack and writes it. The rest of this guide follows the Google Cloud Stack; for the others, construct `QueueStack()`, `EdgeStack(accountId: ...)` or `UploadsStack()` the same way.
 
 ```dart
 // bin/infra.dart
@@ -78,7 +228,7 @@ Future<void> main() async {
 dart run bin/infra.dart
 ```
 
-This writes `tf-out/main.tf.json` (with the `orders_topic_id` output) and `lib/generated/orders_stack.app.dart` (with the `ordersTopicName` constant).
+This writes `tf-out/main.tf.json` (with the `orders_topic_id` output) and `lib/generated/orders_stack.app.dart` (with the `ordersTopicName` constant and the `OrdersStackOutputs` reader).
 
 ## 4. Plan and apply
 
@@ -91,9 +241,9 @@ terraform apply
 
 Your existing remote state backend and modules stay unchanged — TerraDart only replaces HCL/JSON authoring.
 
-## 5. The boundary (optional)
+## 5. Read it from your app
 
-Import generated constants in app code instead of string literals:
+App code imports the generated file instead of repeating strings:
 
 ```dart
 // lib/subscriber.dart
@@ -109,7 +259,7 @@ String ordersTopicId() =>
     OrdersStackOutputs.fromEnvironment(Platform.environment).ordersTopicId;
 ```
 
-Values known only after apply, such as the topic's full ID, come from the generated `OrdersStackOutputs` reader, as `ordersTopicId()` shows: a deployed service reads them from its environment (`ORDERS_TOPIC_ID`), and a script can read `terraform output -json` with `OrdersStackOutputs.fromTerraformJson`.
+A deployed service reads outputs from its environment (`ORDERS_TOPIC_ID`) — the Stack passes them with `outputEnvironment()` — and a script can read `terraform output -json` with `OrdersStackOutputs.fromTerraformJson`.
 
 Rename `orders-prod` in the Stack and the subscriber follows on the next synth — there is no second copy of the string to update. Rename or remove the constant and `dart analyze` fails. See [Architecture — outputs and constants](/docs/architecture/#outputs-and-constants-the-iac--application-seam) and the runnable [pubsub quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) (`lib/subscriber_stub.dart`).
 
@@ -248,7 +398,9 @@ Synth emits `provider.google` as a list when a name has more than one configurat
 
 - [Why TerraDart](/docs/why-terradart/) — motivation and comparisons
 - [Architecture](/docs/architecture/) — `synth()`, `writeTo()`, curated coverage
-- [Coverage](/docs/coverage/) — every curated factory, its barrel, and runnable examples
+- [Coverage](/docs/coverage/) — every Google factory, its barrel, and runnable examples
+- [Dart apps on AWS](/docs/aws/) — Lambda, ECS Express Mode, S3 + CloudFront
+- [Migrating from HCL](/docs/migrate-from-hcl/) — bring an existing Terraform tree over
 - [Migrating](/docs/migrating/) — read before every minor bump
 - [Status & versioning](/docs/status/) — alpha vs beta vs 1.0
 - [Examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) and [cookbook](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook) for fuller stacks
