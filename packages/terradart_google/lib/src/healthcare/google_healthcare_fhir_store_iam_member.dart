@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../healthcare/google_healthcare_fhir_store.dart'
     show GoogleHealthcareFhirStore;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_healthcare_fhir_store_iam_member`.
 const Set<String> _googleHealthcareFhirStoreIamMemberSensitive = <String>{};
@@ -46,7 +47,7 @@ final class GoogleHealthcareFhirStoreIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleHealthcareFhirStore> fhirStore,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     HealthcareFhirStoreIamMemberCondition? condition,
     super.lifecycle,
     super.dependsOn,

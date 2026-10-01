@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
 import '../pubsub/google_pubsub_subscription.dart'
     show GooglePubsubSubscription;
 
@@ -46,7 +47,7 @@ final class GooglePubsubSubscriptionIamBinding extends Resource {
     required super.localName,
     required RefTo<GooglePubsubSubscription> subscription,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     PubsubSubscriptionIamBindingCondition? condition,
     TfArg<String>? project,
     super.lifecycle,

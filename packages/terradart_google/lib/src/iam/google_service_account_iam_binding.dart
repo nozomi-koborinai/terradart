@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../iam/google_service_account.dart' show GoogleServiceAccount;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_service_account_iam_binding`.
 const Set<String> _googleServiceAccountIamBindingSensitive = <String>{};
@@ -46,7 +47,7 @@ final class GoogleServiceAccountIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleServiceAccount> serviceAccount,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     ServiceAccountIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,

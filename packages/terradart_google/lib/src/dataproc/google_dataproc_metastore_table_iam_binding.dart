@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
+
 /// Sensitive field paths for `google_dataproc_metastore_table_iam_binding`.
 const Set<String> _googleDataprocMetastoreTableIamBindingSensitive = <String>{};
 
@@ -45,7 +47,7 @@ final class GoogleDataprocMetastoreTableIamBinding extends Resource {
     required TfArg<String> databaseId,
     required TfArg<String> table,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     TfArg<String>? location,
     DataprocMetastoreTableIamBindingCondition? condition,
     TfArg<String>? project,

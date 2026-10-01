@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
 import '../secret_manager/google_secret_manager_regional_secret.dart'
     show GoogleSecretManagerRegionalSecret;
 
@@ -50,7 +51,7 @@ final class GoogleSecretManagerRegionalSecretIamBinding extends Resource {
     required RefTo<GoogleSecretManagerRegionalSecret> secret,
     TfArg<String>? location,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     SecretManagerRegionalSecretIamBindingCondition? condition,
     TfArg<String>? project,
     super.lifecycle,

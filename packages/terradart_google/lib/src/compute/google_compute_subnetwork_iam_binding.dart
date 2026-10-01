@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_compute_subnetwork_iam_binding`.
 const Set<String> _googleComputeSubnetworkIamBindingSensitive = <String>{};
@@ -46,7 +47,7 @@ final class GoogleComputeSubnetworkIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleComputeSubnetwork> subnetwork,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     ComputeSubnetworkIamBindingCondition? condition,
     TfArg<String>? region,
     TfArg<String>? project,

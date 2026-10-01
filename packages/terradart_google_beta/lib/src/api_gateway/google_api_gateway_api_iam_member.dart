@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import 'package:terradart_google/terradart_google.dart' show IamPrincipal;
 import '../api_gateway/google_api_gateway_api.dart' show GoogleApiGatewayApi;
 
 /// Sensitive field paths for `google_api_gateway_api_iam_member`.
@@ -39,7 +40,7 @@ final class GoogleApiGatewayApiIamMember extends Resource {
   GoogleApiGatewayApiIamMember({
     required super.localName,
     required RefTo<GoogleApiGatewayApi> api,
-    required TfArg<String> member,
+    required IamPrincipal member,
     TfArg<String>? project,
     required TfArg<String> role,
     ApiGatewayApiIamMemberCondition? condition,

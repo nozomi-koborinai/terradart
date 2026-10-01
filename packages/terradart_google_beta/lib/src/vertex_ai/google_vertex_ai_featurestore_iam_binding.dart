@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import 'package:terradart_google/terradart_google.dart'
-    show GoogleVertexAiFeaturestore;
+    show GoogleVertexAiFeaturestore, IamPrincipal;
 
 /// Sensitive field paths for `google_vertex_ai_featurestore_iam_binding`.
 const Set<String> _googleVertexAiFeaturestoreIamBindingSensitive = <String>{};
@@ -45,7 +45,7 @@ final class GoogleVertexAiFeaturestoreIamBinding extends Resource {
   GoogleVertexAiFeaturestoreIamBinding({
     required super.localName,
     required RefTo<GoogleVertexAiFeaturestore> featurestore,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     TfArg<String>? project,
     TfArg<String>? region,
     required TfArg<String> role,

@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../discovery_engine/google_discovery_engine_search_engine.dart'
     show GoogleDiscoveryEngineSearchEngine;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_discovery_engine_search_engine_iam_binding`.
 const Set<String> _googleDiscoveryEngineSearchEngineIamBindingSensitive =
@@ -51,7 +52,7 @@ final class GoogleDiscoveryEngineSearchEngineIamBinding extends Resource {
     TfArg<String>? collectionId,
     required RefTo<GoogleDiscoveryEngineSearchEngine> engine,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     DiscoveryEngineSearchEngineIamBindingCondition? condition,
     TfArg<String>? project,
     super.lifecycle,

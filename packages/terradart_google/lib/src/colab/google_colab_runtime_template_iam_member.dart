@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../colab/google_colab_runtime_template.dart'
     show GoogleColabRuntimeTemplate;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_colab_runtime_template_iam_member`.
 const Set<String> _googleColabRuntimeTemplateIamMemberSensitive = <String>{};
@@ -45,7 +46,7 @@ final class GoogleColabRuntimeTemplateIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleColabRuntimeTemplate> runtimeTemplate,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     TfArg<String>? location,
     ColabRuntimeTemplateIamMemberCondition? condition,
     TfArg<String>? project,

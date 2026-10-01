@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../bigquery/google_bigquery_dataset.dart' show GoogleBigqueryDataset;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_bigquery_dataset_iam_binding`.
 const Set<String> _googleBigqueryDatasetIamBindingSensitive = <String>{};
@@ -46,7 +47,7 @@ final class GoogleBigqueryDatasetIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleBigqueryDataset> dataset,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     BigqueryDatasetIamBindingCondition? condition,
     TfArg<String>? project,
     super.lifecycle,

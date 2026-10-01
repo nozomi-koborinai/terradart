@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import 'package:terradart_google/terradart_google.dart'
-    show GoogleVertexAiFeatureOnlineStoreFeatureview;
+    show GoogleVertexAiFeatureOnlineStoreFeatureview, IamPrincipal;
 
 /// Sensitive field paths for `google_vertex_ai_feature_online_store_featureview_iam_binding`.
 const Set<String>
@@ -49,7 +49,7 @@ final class GoogleVertexAiFeatureOnlineStoreFeatureviewIamBinding
     required super.localName,
     TfArg<String>? featureOnlineStore,
     required RefTo<GoogleVertexAiFeatureOnlineStoreFeatureview> featureView,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     TfArg<String>? project,
     TfArg<String>? region,
     required TfArg<String> role,

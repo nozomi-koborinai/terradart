@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
 import '../tags/google_tags_tag_key.dart' show GoogleTagsTagKey;
 
 /// Sensitive field paths for `google_tags_tag_key_iam_binding`.
@@ -46,7 +47,7 @@ final class GoogleTagsTagKeyIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleTagsTagKey> tagKey,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     TagsTagKeyIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,

@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../biglake/google_biglake_iceberg_table.dart'
     show GoogleBiglakeIcebergTable;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_biglake_iceberg_table_iam_binding`.
 const Set<String> _googleBiglakeIcebergTableIamBindingSensitive = <String>{};
@@ -50,7 +51,7 @@ final class GoogleBiglakeIcebergTableIamBinding extends Resource {
     TfArg<String>? namespace,
     required RefTo<GoogleBiglakeIcebergTable> table,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     TfArg<String>? project,
     BiglakeIcebergTableIamBindingCondition? condition,
     super.lifecycle,

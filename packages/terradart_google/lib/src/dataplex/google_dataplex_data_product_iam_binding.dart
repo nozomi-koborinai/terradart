@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../dataplex/google_dataplex_data_product.dart'
     show GoogleDataplexDataProduct;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_dataplex_data_product_iam_binding`.
 const Set<String> _googleDataplexDataProductIamBindingSensitive = <String>{};
@@ -46,7 +47,7 @@ final class GoogleDataplexDataProductIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleDataplexDataProduct> dataProduct,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     DataplexDataProductIamBindingCondition? condition,
     TfArg<String>? location,
     TfArg<String>? project,

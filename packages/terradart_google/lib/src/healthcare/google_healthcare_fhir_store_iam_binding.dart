@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../healthcare/google_healthcare_fhir_store.dart'
     show GoogleHealthcareFhirStore;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_healthcare_fhir_store_iam_binding`.
 const Set<String> _googleHealthcareFhirStoreIamBindingSensitive = <String>{};
@@ -47,7 +48,7 @@ final class GoogleHealthcareFhirStoreIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleHealthcareFhirStore> fhirStore,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     HealthcareFhirStoreIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,

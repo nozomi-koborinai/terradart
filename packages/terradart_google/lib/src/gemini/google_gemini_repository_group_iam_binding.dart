@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../gemini/google_gemini_repository_group.dart'
     show GoogleGeminiRepositoryGroup;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_gemini_repository_group_iam_binding`.
 const Set<String> _googleGeminiRepositoryGroupIamBindingSensitive = <String>{};
@@ -47,7 +48,7 @@ final class GoogleGeminiRepositoryGroupIamBinding extends Resource {
     required RefTo<GoogleGeminiRepositoryGroup> repositoryGroup,
     TfArg<String>? codeRepositoryIndex,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     GeminiRepositoryGroupIamBindingCondition? condition,
     TfArg<String>? location,
     TfArg<String>? project,

@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../compute/google_compute_storage_pool.dart'
     show GoogleComputeStoragePool;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_compute_storage_pool_iam_member`.
 const Set<String> _googleComputeStoragePoolIamMemberSensitive = <String>{};
@@ -41,7 +42,7 @@ final class GoogleComputeStoragePoolIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleComputeStoragePool> storagePool,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     ComputeStoragePoolIamMemberCondition? condition,
     TfArg<String>? zone,
     TfArg<String>? project,

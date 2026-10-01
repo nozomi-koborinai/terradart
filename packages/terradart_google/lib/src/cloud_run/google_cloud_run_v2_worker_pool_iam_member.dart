@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../cloud_run/google_cloud_run_v2_worker_pool.dart'
     show GoogleCloudRunV2WorkerPool;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_cloud_run_v2_worker_pool_iam_member`.
 const Set<String> _googleCloudRunV2WorkerPoolIamMemberSensitive = <String>{};
@@ -41,7 +42,7 @@ final class GoogleCloudRunV2WorkerPoolIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleCloudRunV2WorkerPool> workerPool,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     CloudRunV2WorkerPoolIamMemberCondition? condition,
     TfArg<String>? location,
     TfArg<String>? project,

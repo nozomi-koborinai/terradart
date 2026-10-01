@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../dataform/google_dataform_repository.dart'
     show GoogleDataformRepository;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_dataform_repository_iam_member`.
 const Set<String> _googleDataformRepositoryIamMemberSensitive = <String>{};
@@ -49,7 +50,7 @@ final class GoogleDataformRepositoryIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleDataformRepository> repository,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     TfArg<String>? region,
     TfArg<String>? project,
     DataformRepositoryIamMemberCondition? condition,

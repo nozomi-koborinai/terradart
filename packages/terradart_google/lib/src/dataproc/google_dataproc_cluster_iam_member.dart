@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../dataproc/google_dataproc_cluster.dart' show GoogleDataprocCluster;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_dataproc_cluster_iam_member`.
 const Set<String> _googleDataprocClusterIamMemberSensitive = <String>{};
@@ -45,7 +46,7 @@ final class GoogleDataprocClusterIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleDataprocCluster> cluster,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     TfArg<String>? region,
     TfArg<String>? project,
     DataprocClusterIamMemberCondition? condition,

@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
 import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 
 /// Sensitive field paths for `google_kms_crypto_key_iam_binding`.
@@ -45,7 +46,7 @@ final class GoogleKmsCryptoKeyIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleKmsCryptoKey> cryptoKey,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     KmsCryptoKeyIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,

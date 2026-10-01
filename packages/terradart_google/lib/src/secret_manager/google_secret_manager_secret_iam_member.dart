@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
 import '../secret_manager/google_secret_manager_secret.dart'
     show GoogleSecretManagerSecret;
 
@@ -41,7 +42,7 @@ final class GoogleSecretManagerSecretIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleSecretManagerSecret> secret,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     SecretManagerSecretIamMemberCondition? condition,
     TfArg<String>? project,
     super.lifecycle,

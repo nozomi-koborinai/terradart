@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../compute/google_compute_instant_snapshot.dart'
     show GoogleComputeInstantSnapshot;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_compute_instant_snapshot_iam_member`.
 const Set<String> _googleComputeInstantSnapshotIamMemberSensitive = <String>{};
@@ -41,7 +42,7 @@ final class GoogleComputeInstantSnapshotIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleComputeInstantSnapshot> instantSnapshot,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     ComputeInstantSnapshotIamMemberCondition? condition,
     TfArg<String>? zone,
     TfArg<String>? project,

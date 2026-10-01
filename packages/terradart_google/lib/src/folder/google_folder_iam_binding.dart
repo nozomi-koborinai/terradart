@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../folder/google_folder.dart' show GoogleFolder;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_folder_iam_binding`.
 const Set<String> _googleFolderIamBindingSensitive = <String>{};
@@ -45,7 +46,7 @@ final class GoogleFolderIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleFolder> folder,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     FolderIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,

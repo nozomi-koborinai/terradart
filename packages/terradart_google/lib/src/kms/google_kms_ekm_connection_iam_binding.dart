@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
 import '../kms/google_kms_ekm_connection.dart' show GoogleKmsEkmConnection;
 
 /// Sensitive field paths for `google_kms_ekm_connection_iam_binding`.
@@ -46,7 +47,7 @@ final class GoogleKmsEkmConnectionIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleKmsEkmConnection> connection,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     TfArg<String>? location,
     TfArg<String>? project,
     KmsEkmConnectionIamBindingCondition? condition,

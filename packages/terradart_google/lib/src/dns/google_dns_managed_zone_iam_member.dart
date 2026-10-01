@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../dns/google_dns_managed_zone.dart' show GoogleDnsManagedZone;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_dns_managed_zone_iam_member`.
 const Set<String> _googleDnsManagedZoneIamMemberSensitive = <String>{};
@@ -75,7 +76,7 @@ final class DnsManagedZoneIamMemberCondition {
 ///   localName: 'zone_admin',
 ///   managedZone: zone.ref,
 ///   role: TfArg.literal('roles/dns.admin'),
-///   member: TfArg.literal('group:sre-team-a@example.com'),
+///   member: .group('sre-team-a@example.com'),
 /// );
 /// ```
 final class GoogleDnsManagedZoneIamMember extends Resource {
@@ -85,7 +86,7 @@ final class GoogleDnsManagedZoneIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleDnsManagedZone> managedZone,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     DnsManagedZoneIamMemberCondition? condition,
     TfArg<String>? project,
     super.lifecycle,

@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../iam/google_iam_workload_identity_pool.dart'
     show GoogleIamWorkloadIdentityPool;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_iam_workload_identity_pool_iam_binding`.
 const Set<String> _googleIamWorkloadIdentityPoolIamBindingSensitive =
@@ -47,7 +48,7 @@ final class GoogleIamWorkloadIdentityPoolIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleIamWorkloadIdentityPool> workloadIdentityPool,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     TfArg<String>? project,
     IamWorkloadIdentityPoolIamBindingCondition? condition,
     super.lifecycle,

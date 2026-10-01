@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
+
 /// Sensitive field paths for `google_organization_iam_binding`.
 const Set<String> _googleOrganizationIamBindingSensitive = <String>{};
 
@@ -43,7 +45,7 @@ final class GoogleOrganizationIamBinding extends Resource {
     required super.localName,
     required TfArg<String> orgId,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     OrganizationIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,

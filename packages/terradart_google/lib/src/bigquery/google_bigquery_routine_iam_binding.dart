@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../bigquery/google_bigquery_routine.dart' show GoogleBigqueryRoutine;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_bigquery_routine_iam_binding`.
 const Set<String> _googleBigqueryRoutineIamBindingSensitive = <String>{};
@@ -47,7 +48,7 @@ final class GoogleBigqueryRoutineIamBinding extends Resource {
     TfArg<String>? datasetId,
     required RefTo<GoogleBigqueryRoutine> routine,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     BigqueryRoutineIamBindingCondition? condition,
     TfArg<String>? project,
     super.lifecycle,

@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../bigquery/google_bigquery_datapolicyv2_data_policy.dart'
     show GoogleBigqueryDatapolicyv2DataPolicy;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_bigquery_datapolicyv2_data_policy_iam_member`.
 const Set<String> _googleBigqueryDatapolicyv2DataPolicyIamMemberSensitive =
@@ -46,7 +47,7 @@ final class BigqueryDatapolicyv2DataPolicyIamMemberCondition {
 ///   dataPolicy: .literal('raw-access'),
 ///   location: TfArg.literal('us-central1'),
 ///   role: TfArg.literal('roles/bigquerydatapolicy.maskedReader'),
-///   member: TfArg.ref(reader.iamMember),
+///   member: reader.principal,
 /// );
 /// ```
 final class GoogleBigqueryDatapolicyv2DataPolicyIamMember extends Resource {
@@ -57,7 +58,7 @@ final class GoogleBigqueryDatapolicyv2DataPolicyIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleBigqueryDatapolicyv2DataPolicy> dataPolicy,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     BigqueryDatapolicyv2DataPolicyIamMemberCondition? condition,
     TfArg<String>? location,
     TfArg<String>? project,

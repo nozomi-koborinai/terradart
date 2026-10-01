@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
 import '../privateca/google_privateca_ca_pool.dart' show GooglePrivatecaCaPool;
 
 /// Sensitive field paths for `google_privateca_ca_pool_iam_member`.
@@ -48,7 +49,7 @@ final class PrivatecaCaPoolIamMemberCondition {
 ///   localName: 'pool_auditor',
 ///   caPool: caPool.ref,
 ///   role: TfArg.literal('roles/privateca.auditor'),
-///   member: TfArg.literal('group:security@example.com'),
+///   member: .group('security@example.com'),
 /// );
 /// ```
 final class GooglePrivatecaCaPoolIamMember extends Resource {
@@ -58,7 +59,7 @@ final class GooglePrivatecaCaPoolIamMember extends Resource {
     required super.localName,
     required RefTo<GooglePrivatecaCaPool> caPool,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     PrivatecaCaPoolIamMemberCondition? condition,
     super.lifecycle,
     super.dependsOn,

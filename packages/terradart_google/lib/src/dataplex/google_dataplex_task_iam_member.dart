@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../dataplex/google_dataplex_task.dart' show GoogleDataplexTask;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_dataplex_task_iam_member`.
 const Set<String> _googleDataplexTaskIamMemberSensitive = <String>{};
@@ -41,7 +42,7 @@ final class GoogleDataplexTaskIamMember extends Resource {
     required RefTo<GoogleDataplexTask> task,
     TfArg<String>? lake,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     DataplexTaskIamMemberCondition? condition,
     TfArg<String>? location,
     TfArg<String>? project,

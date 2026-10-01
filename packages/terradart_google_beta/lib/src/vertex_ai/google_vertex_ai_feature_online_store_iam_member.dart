@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import 'package:terradart_google/terradart_google.dart'
-    show GoogleVertexAiFeatureOnlineStore;
+    show GoogleVertexAiFeatureOnlineStore, IamPrincipal;
 
 /// Sensitive field paths for `google_vertex_ai_feature_online_store_iam_member`.
 const Set<String> _googleVertexAiFeatureOnlineStoreIamMemberSensitive =
@@ -42,7 +42,7 @@ final class GoogleVertexAiFeatureOnlineStoreIamMember extends Resource {
   GoogleVertexAiFeatureOnlineStoreIamMember({
     required super.localName,
     required RefTo<GoogleVertexAiFeatureOnlineStore> featureOnlineStore,
-    required TfArg<String> member,
+    required IamPrincipal member,
     TfArg<String>? project,
     TfArg<String>? region,
     required TfArg<String> role,

@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../biglake/google_biglake_hive_catalog.dart'
     show GoogleBiglakeHiveCatalog;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_biglake_hive_catalog_iam_binding`.
 const Set<String> _googleBiglakeHiveCatalogIamBindingSensitive = <String>{};
@@ -44,7 +45,7 @@ final class GoogleBiglakeHiveCatalogIamBinding extends Resource {
 
   GoogleBiglakeHiveCatalogIamBinding({
     required super.localName,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     required RefTo<GoogleBiglakeHiveCatalog> catalog,
     TfArg<String>? project,
     required TfArg<String> role,

@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
 import '../privateca/google_privateca_certificate_template.dart'
     show GooglePrivatecaCertificateTemplate;
 
@@ -44,7 +45,7 @@ final class GooglePrivatecaCertificateTemplateIamMember extends Resource {
     required RefTo<GooglePrivatecaCertificateTemplate> certificateTemplate,
     TfArg<String>? location,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     TfArg<String>? project,
     PrivatecaCertificateTemplateIamMemberCondition? condition,
     super.lifecycle,

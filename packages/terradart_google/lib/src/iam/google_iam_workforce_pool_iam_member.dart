@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../iam/google_iam_workforce_pool.dart' show GoogleIamWorkforcePool;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_iam_workforce_pool_iam_member`.
 const Set<String> _googleIamWorkforcePoolIamMemberSensitive = <String>{};
@@ -40,7 +41,7 @@ final class GoogleIamWorkforcePoolIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleIamWorkforcePool> workforcePool,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     TfArg<String>? location,
     IamWorkforcePoolIamMemberCondition? condition,
     super.lifecycle,

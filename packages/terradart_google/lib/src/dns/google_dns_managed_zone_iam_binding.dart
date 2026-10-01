@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../dns/google_dns_managed_zone.dart' show GoogleDnsManagedZone;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_dns_managed_zone_iam_binding`.
 const Set<String> _googleDnsManagedZoneIamBindingSensitive = <String>{};
@@ -46,7 +47,7 @@ final class GoogleDnsManagedZoneIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleDnsManagedZone> managedZone,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     DnsManagedZoneIamBindingCondition? condition,
     TfArg<String>? project,
     super.lifecycle,

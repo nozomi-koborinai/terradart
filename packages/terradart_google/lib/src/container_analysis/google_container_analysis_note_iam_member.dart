@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../container_analysis/google_container_analysis_note.dart'
     show GoogleContainerAnalysisNote;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_container_analysis_note_iam_member`.
 const Set<String> _googleContainerAnalysisNoteIamMemberSensitive = <String>{};
@@ -44,7 +45,7 @@ final class ContainerAnalysisNoteIamMemberCondition {
 ///   localName: 'note_viewer',
 ///   note: note.ref,
 ///   role: TfArg.literal('roles/containeranalysis.notes.occurrences.viewer'),
-///   member: TfArg.literal('serviceAccount:ci@$projectId.iam.gserviceaccount.com'),
+///   member: .serviceAccount('ci@$projectId.iam.gserviceaccount.com'),
 /// );
 /// ```
 final class GoogleContainerAnalysisNoteIamMember extends Resource {
@@ -54,7 +55,7 @@ final class GoogleContainerAnalysisNoteIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleContainerAnalysisNote> note,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     TfArg<String>? project,
     ContainerAnalysisNoteIamMemberCondition? condition,
     super.lifecycle,

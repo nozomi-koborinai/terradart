@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../apigee/google_apigee_environment.dart' show GoogleApigeeEnvironment;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_apigee_environment_iam_binding`.
 const Set<String> _googleApigeeEnvironmentIamBindingSensitive = <String>{};
@@ -46,7 +47,7 @@ final class GoogleApigeeEnvironmentIamBinding extends Resource {
     TfArg<String>? orgId,
     required RefTo<GoogleApigeeEnvironment> environment,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     ApigeeEnvironmentIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_storage_project_service_account`.
 const Set<String> _googleStorageProjectServiceAccountSensitive = <String>{};
@@ -44,4 +45,8 @@ final class DataGoogleStorageProjectServiceAccount extends Data {
   /// Reference to `user_project` attribute.
   TfRef<String> get userProjectRef =>
       TfRef.attribute<String>(this, 'user_project');
+
+  /// This identity as an IAM principal, for `member` / `members`.
+  IamPrincipal get principal =>
+      IamPrincipal.read(TfRef.data<String>(this, 'member'));
 }

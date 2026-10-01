@@ -42,7 +42,7 @@ enum StorageDefaultObjectAccessControlRole implements TerraformEnum {
 /// GoogleStorageDefaultObjectAccessControl(
 ///   localName: 'default_reader',
 ///   bucket: legacy.ref,
-///   entity: TfArg.ref(reader.iamMember),
+///   entity: .literal('allAuthenticatedUsers'),
 ///   role: TfArg.literal(StorageDefaultObjectAccessControlRole.reader),
 /// );
 /// ```

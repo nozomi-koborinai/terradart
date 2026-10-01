@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
+
 /// Sensitive field paths for `google_iap_agent_registry_mcp_server_iam_binding`.
 const Set<String> _googleIapAgentRegistryMcpServerIamBindingSensitive =
     <String>{};
@@ -47,7 +49,7 @@ final class GoogleIapAgentRegistryMcpServerIamBinding extends Resource {
     required super.localName,
     required TfArg<String> mcpServerId,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     TfArg<String>? location,
     TfArg<String>? project,
     IapAgentRegistryMcpServerIamBindingCondition? condition,

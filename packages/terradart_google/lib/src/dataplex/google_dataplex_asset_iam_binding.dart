@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../dataplex/google_dataplex_asset.dart' show GoogleDataplexAsset;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_dataplex_asset_iam_binding`.
 const Set<String> _googleDataplexAssetIamBindingSensitive = <String>{};
@@ -47,7 +48,7 @@ final class GoogleDataplexAssetIamBinding extends Resource {
     TfArg<String>? dataplexZone,
     TfArg<String>? lake,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     DataplexAssetIamBindingCondition? condition,
     TfArg<String>? location,
     TfArg<String>? project,

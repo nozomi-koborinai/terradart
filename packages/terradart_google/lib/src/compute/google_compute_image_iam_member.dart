@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../compute/google_compute_image.dart' show GoogleComputeImage;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_compute_image_iam_member`.
 const Set<String> _googleComputeImageIamMemberSensitive = <String>{};
@@ -40,7 +41,7 @@ final class GoogleComputeImageIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleComputeImage> image,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     ComputeImageIamMemberCondition? condition,
     TfArg<String>? project,
     super.lifecycle,

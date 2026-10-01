@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../compute/google_compute_disk.dart' show GoogleComputeDisk;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_compute_disk_iam_member`.
 const Set<String> _googleComputeDiskIamMemberSensitive = <String>{};
@@ -40,7 +41,7 @@ final class GoogleComputeDiskIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleComputeDisk> disk,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     ComputeDiskIamMemberCondition? condition,
     TfArg<String>? zone,
     TfArg<String>? project,

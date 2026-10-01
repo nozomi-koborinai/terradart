@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
 import '../sourcerepo/google_sourcerepo_repository.dart'
     show GoogleSourcerepoRepository;
 
@@ -45,7 +46,7 @@ final class GoogleSourcerepoRepositoryIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleSourcerepoRepository> repository,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     SourcerepoRepositoryIamMemberCondition? condition,
     TfArg<String>? project,
     super.lifecycle,

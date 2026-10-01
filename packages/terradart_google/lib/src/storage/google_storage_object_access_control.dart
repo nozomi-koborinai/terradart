@@ -41,7 +41,7 @@ enum StorageObjectAccessControlRole implements TerraformEnum {
 ///   localName: 'object_reader',
 ///   bucket: legacy.ref,
 ///   object: TfArg.literal('config/app.json'),
-///   entity: TfArg.ref(reader.iamMember),
+///   entity: .literal('allAuthenticatedUsers'),
 ///   role: TfArg.literal(StorageObjectAccessControlRole.reader),
 /// );
 /// ```

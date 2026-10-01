@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
+
 /// Sensitive field paths for `google_iap_app_engine_version_iam_binding`.
 const Set<String> _googleIapAppEngineVersionIamBindingSensitive = <String>{};
 
@@ -46,7 +48,7 @@ final class GoogleIapAppEngineVersionIamBinding extends Resource {
     required TfArg<String> service,
     required TfArg<String> versionId,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     IapAppEngineVersionIamBindingCondition? condition,
     TfArg<String>? project,
     super.lifecycle,

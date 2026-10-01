@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../container/google_gke_hub_membership.dart'
     show GoogleGkeHubMembership;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_gke_hub_membership_iam_member`.
 const Set<String> _googleGkeHubMembershipIamMemberSensitive = <String>{};
@@ -42,7 +43,7 @@ final class GoogleGkeHubMembershipIamMember extends Resource {
     required RefTo<GoogleGkeHubMembership> membership,
     TfArg<String>? location,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     TfArg<String>? project,
     GkeHubMembershipIamMemberCondition? condition,
     super.lifecycle,

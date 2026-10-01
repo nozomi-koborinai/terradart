@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
+
 /// Sensitive field paths for `google_iap_agent_registry_agent_iam_member`.
 const Set<String> _googleIapAgentRegistryAgentIamMemberSensitive = <String>{};
 
@@ -45,7 +47,7 @@ final class GoogleIapAgentRegistryAgentIamMember extends Resource {
     required super.localName,
     required TfArg<String> agentId,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     TfArg<String>? location,
     TfArg<String>? project,
     IapAgentRegistryAgentIamMemberCondition? condition,

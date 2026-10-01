@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import 'package:terradart_google/terradart_google.dart' show IamPrincipal;
 import '../compute/google_compute_machine_image.dart'
     show GoogleComputeMachineImage;
 
@@ -40,7 +41,7 @@ final class GoogleComputeMachineImageIamMember extends Resource {
   GoogleComputeMachineImageIamMember({
     required super.localName,
     required RefTo<GoogleComputeMachineImage> machineImage,
-    required TfArg<String> member,
+    required IamPrincipal member,
     TfArg<String>? project,
     required TfArg<String> role,
     ComputeMachineImageIamMemberCondition? condition,

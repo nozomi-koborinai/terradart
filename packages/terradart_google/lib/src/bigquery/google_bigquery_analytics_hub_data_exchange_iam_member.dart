@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../bigquery/google_bigquery_analytics_hub_data_exchange.dart'
     show GoogleBigqueryAnalyticsHubDataExchange;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_bigquery_analytics_hub_data_exchange_iam_member`.
 const Set<String> _googleBigqueryAnalyticsHubDataExchangeIamMemberSensitive =
@@ -43,7 +44,7 @@ final class GoogleBigqueryAnalyticsHubDataExchangeIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleBigqueryAnalyticsHubDataExchange> dataExchange,
     TfArg<String>? location,
-    required TfArg<String> member,
+    required IamPrincipal member,
     TfArg<String>? project,
     required TfArg<String> role,
     BigqueryAnalyticsHubDataExchangeIamMemberCondition? condition,

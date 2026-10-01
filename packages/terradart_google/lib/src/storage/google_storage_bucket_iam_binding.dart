@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
 import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
 
 /// Sensitive field paths for `google_storage_bucket_iam_binding`.
@@ -46,7 +47,7 @@ final class GoogleStorageBucketIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleStorageBucket> bucket,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     StorageBucketIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,

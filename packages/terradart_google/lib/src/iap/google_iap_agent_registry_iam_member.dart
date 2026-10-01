@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
+
 /// Sensitive field paths for `google_iap_agent_registry_iam_member`.
 const Set<String> _googleIapAgentRegistryIamMemberSensitive = <String>{};
 
@@ -47,7 +49,7 @@ final class IapAgentRegistryIamMemberCondition {
 ///   localName: 'agent_registry_invoker',
 ///   location: TfArg.literal('us-central1'),
 ///   role: TfArg.literal('roles/iap.httpsResourceAccessor'),
-///   member: TfArg.ref(sa.iamMember),
+///   member: sa.principal,
 /// );
 /// ```
 final class GoogleIapAgentRegistryIamMember extends Resource {
@@ -57,7 +59,7 @@ final class GoogleIapAgentRegistryIamMember extends Resource {
     required super.localName,
     required TfArg<String> location,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     IapAgentRegistryIamMemberCondition? condition,
     TfArg<String>? project,
     super.lifecycle,

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
+
 /// Sensitive field paths for `google_iap_web_backend_service_iam_member`.
 const Set<String> _googleIapWebBackendServiceIamMemberSensitive = <String>{};
 
@@ -36,7 +38,7 @@ final class GoogleIapWebBackendServiceIamMember extends Resource {
 
   GoogleIapWebBackendServiceIamMember({
     required super.localName,
-    required TfArg<String> member,
+    required IamPrincipal member,
     TfArg<String>? project,
     required TfArg<String> role,
     required TfArg<String> webBackendService,

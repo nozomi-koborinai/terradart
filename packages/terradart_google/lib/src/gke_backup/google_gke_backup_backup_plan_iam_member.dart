@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../gke_backup/google_gke_backup_backup_plan.dart'
     show GoogleGkeBackupBackupPlan;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_gke_backup_backup_plan_iam_member`.
 const Set<String> _googleGkeBackupBackupPlanIamMemberSensitive = <String>{};
@@ -41,7 +42,7 @@ final class GoogleGkeBackupBackupPlanIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleGkeBackupBackupPlan> backupPlan,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     TfArg<String>? location,
     GkeBackupBackupPlanIamMemberCondition? condition,
     TfArg<String>? project,

@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../data_catalog/google_data_catalog_tag_template.dart'
     show GoogleDataCatalogTagTemplate;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_data_catalog_tag_template_iam_member`.
 const Set<String> _googleDataCatalogTagTemplateIamMemberSensitive = <String>{};
@@ -42,7 +43,7 @@ final class GoogleDataCatalogTagTemplateIamMember extends Resource {
     required RefTo<GoogleDataCatalogTagTemplate> tagTemplate,
     TfArg<String>? region,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     TfArg<String>? project,
     DataCatalogTagTemplateIamMemberCondition? condition,
     super.lifecycle,

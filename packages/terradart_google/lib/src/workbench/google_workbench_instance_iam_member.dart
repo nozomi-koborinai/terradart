@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
 import '../workbench/google_workbench_instance.dart'
     show GoogleWorkbenchInstance;
 
@@ -46,7 +47,7 @@ final class GoogleWorkbenchInstanceIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleWorkbenchInstance> instance,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     TfArg<String>? location,
     TfArg<String>? project,
     WorkbenchInstanceIamMemberCondition? condition,

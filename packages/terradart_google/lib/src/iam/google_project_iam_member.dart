@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
+
 /// Sensitive field paths for `google_project_iam_member`.
 const Set<String> _googleProjectIamMemberSensitive = <String>{};
 
@@ -74,7 +76,7 @@ final class GoogleProjectIamMember extends Resource {
     required super.localName,
     required TfArg<String> project,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     ProjectIamMemberCondition? condition,
     super.lifecycle,
     super.dependsOn,

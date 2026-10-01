@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../bigquery/google_bigquery_datapolicy_data_policy.dart'
     show GoogleBigqueryDatapolicyDataPolicy;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_bigquery_datapolicy_data_policy_iam_member`.
 const Set<String> _googleBigqueryDatapolicyDataPolicyIamMemberSensitive =
@@ -43,7 +44,7 @@ final class GoogleBigqueryDatapolicyDataPolicyIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleBigqueryDatapolicyDataPolicy> dataPolicy,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     BigqueryDatapolicyDataPolicyIamMemberCondition? condition,
     TfArg<String>? location,
     TfArg<String>? project,

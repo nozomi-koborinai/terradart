@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../artifact_registry/google_artifact_registry_repository.dart'
     show GoogleArtifactRegistryRepository;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_artifact_registry_repository_iam_binding`.
 const Set<String> _googleArtifactRegistryRepositoryIamBindingSensitive =
@@ -49,7 +50,7 @@ final class GoogleArtifactRegistryRepositoryIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleArtifactRegistryRepository> repository,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     ArtifactRegistryRepositoryIamBindingCondition? condition,
     TfArg<String>? location,
     TfArg<String>? project,

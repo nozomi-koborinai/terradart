@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import 'package:terradart_google/terradart_google.dart'
-    show GoogleVertexAiFeaturestoreEntitytype;
+    show GoogleVertexAiFeaturestoreEntitytype, IamPrincipal;
 
 /// Sensitive field paths for `google_vertex_ai_featurestore_entitytype_iam_member`.
 const Set<String> _googleVertexAiFeaturestoreEntitytypeIamMemberSensitive =
@@ -43,7 +43,7 @@ final class GoogleVertexAiFeaturestoreEntitytypeIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleVertexAiFeaturestoreEntitytype> entitytype,
     TfArg<String>? featurestore,
-    required TfArg<String> member,
+    required IamPrincipal member,
     required TfArg<String> role,
     VertexAiFeaturestoreEntitytypeIamMemberCondition? condition,
     super.lifecycle,

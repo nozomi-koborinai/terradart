@@ -3,15 +3,16 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
+
 /// Sensitive field paths for `google_service_account`.
 const Set<String> _googleServiceAccountSensitive = <String>{};
 
 /// Factory wrapper for `google_service_account`.
 ///
-/// Creates an IAM service account on a project. The most user-facing computed
-/// attribute is [member] — a pre-formatted `serviceAccount:<email>` string
-/// you pass straight into IAM bindings, sidestepping the manual
-/// `'serviceAccount:' + email` concatenation that's easy to typo.
+/// Creates an IAM service account on a project. Its [principal] is the
+/// `serviceAccount:<email>` an IAM grant takes, so no call site spells the
+/// prefix by hand.
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after
@@ -31,8 +32,7 @@ const Set<String> _googleServiceAccountSensitive = <String>{};
 ///   peer Terraform stack may have created the SA first.
 /// - `disabled`: disables the SA without deleting it. Defaults to `false`.
 ///
-/// Example pairing with [GooglePubsubTopicIamMember] — the canonical
-/// `sa.iamMember` flow:
+/// Example pairing with [GooglePubsubTopicIamMember]:
 /// ```dart
 /// final sa = GoogleServiceAccount(
 ///   localName: 'publisher',
@@ -45,13 +45,12 @@ const Set<String> _googleServiceAccountSensitive = <String>{};
 ///   name: TfArg.literal('orders-prod'),
 /// );
 ///
-/// // member is `serviceAccount:orders-publisher@<project>.iam.gserviceaccount.com`
-/// // — pass it directly without manually prefixing `serviceAccount:`.
+/// // `serviceAccount:orders-publisher@<project>.iam.gserviceaccount.com`
 /// GooglePubsubTopicIamMember(
 ///   localName: 'orders_publisher_binding',
 ///   topic: orders.ref,
 ///   role: TfArg.literal('roles/pubsub.publisher'),
-///   member: TfArg.ref(sa.iamMember),
+///   member: sa.principal,
 /// );
 /// ```
 ///
@@ -96,13 +95,17 @@ final class GoogleServiceAccount extends Resource {
   /// `RefTo<GoogleServiceAccount>`.
   RefTo<GoogleServiceAccount> get ref => RefTo.of(this);
 
+  /// This identity as an IAM principal, for `member` / `members`.
+  IamPrincipal get principal =>
+      IamPrincipal.read(TfRef.attribute<String>(this, 'member'));
+
   /// `id` — full resource path
   /// `projects/{project}/serviceAccounts/{email}`.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// `email` — `<accountId>@<project>.iam.gserviceaccount.com`. Use this
   /// when you need the bare email (e.g. injecting into an external
-  /// system's config) — for IAM bindings prefer [member].
+  /// system's config) — for IAM grants pass [principal].
   TfRef<String> get email => TfRef.attribute<String>(this, 'email');
 
   /// `name` — same as [id] (legacy alias retained by the provider).
@@ -111,10 +114,4 @@ final class GoogleServiceAccount extends Resource {
   /// `unique_id` — numeric unique identifier assigned by GCP. Stable across
   /// rename if you change `display_name`; differs from [id] / [email].
   TfRef<String> get uniqueId => TfRef.attribute<String>(this, 'unique_id');
-
-  /// `member` — pre-formatted `serviceAccount:<email>` string. **Use this
-  /// for IAM bindings** (e.g. `member: TfArg.ref(sa.iamMember)`) — it
-  /// eliminates the manual `'serviceAccount:' + email` concatenation that
-  /// is easy to typo and brittle when refactoring.
-  TfRef<String> get iamMember => TfRef.attribute<String>(this, 'member');
 }

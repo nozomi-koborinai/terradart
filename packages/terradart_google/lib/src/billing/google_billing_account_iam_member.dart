@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
+
 /// Sensitive field paths for `google_billing_account_iam_member`.
 const Set<String> _googleBillingAccountIamMemberSensitive = <String>{};
 
@@ -38,7 +40,7 @@ final class GoogleBillingAccountIamMember extends Resource {
     required super.localName,
     required TfArg<String> billingAccountId,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     BillingAccountIamMemberCondition? condition,
     super.lifecycle,
     super.dependsOn,
